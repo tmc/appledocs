@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // ColorControlsProtocol is the CIColorControls protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIColorControls.
 var ColorControlsProtocol *objc.Protocol
 
 func init() {
 	ColorControlsProtocol = objc.GetProtocol("CIColorControls")
 }
+

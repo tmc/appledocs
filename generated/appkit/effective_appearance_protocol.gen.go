@@ -15,3 +15,4 @@ var effectiveAppearanceProtocol *objc.Protocol
 func init() {
 	effectiveAppearanceProtocol = objc.GetProtocol("effectiveAppearance")
 }
+

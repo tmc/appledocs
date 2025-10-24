@@ -36,7 +36,6 @@ type IMonitorConfiguration interface {
 
 // An object for configuring a location monitor instance.
 
-
 // An object for configuring a location monitor instance.
 //
 // [Full Topic]
@@ -82,7 +81,3 @@ func (m_ MonitorConfiguration) Autorelease() MonitorConfiguration {
 func NewMonitorConfiguration() MonitorConfiguration {
 	return getMonitorConfigurationClass().New()
 }
-
-
-
-

@@ -7,12 +7,12 @@ import "github.com/ebitengine/purego/objc"
 // waitUntilCompletedProtocol is the waitUntilCompleted protocol.
 //
 // Availability:
-//   - Mac Catalyst 16.0+
-//   - iOS 16.0+
-//   - iPadOS 16.0+
-//   - macOS 13.0+
-//   - tvOS 16.0+
-//   - visionOS 1.0+
+//   - Mac Catalyst 26.0+
+//   - iOS 26.0+
+//   - iPadOS 26.0+
+//   - macOS 26.0+
+//   - tvOS 26.0+
+//   - visionOS 26.0+
 //
 // Use this protocol when registering custom classes that conform to waitUntilCompleted.
 var waitUntilCompletedProtocol *objc.Protocol
@@ -20,3 +20,4 @@ var waitUntilCompletedProtocol *objc.Protocol
 func init() {
 	waitUntilCompletedProtocol = objc.GetProtocol("waitUntilCompleted")
 }
+

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for Automator. DO NOT EDIT.
 
 // Package automator provides Go bindings for the Automator framework.
 //
-// Develop actions that the Automator app can load and run. View, edit, and run Automator workflows in your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Automator without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Automator
 package automator
 
 import (

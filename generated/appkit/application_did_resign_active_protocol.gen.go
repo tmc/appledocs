@@ -15,3 +15,4 @@ var applicationDidResignActiveProtocol *objc.Protocol
 func init() {
 	applicationDidResignActiveProtocol = objc.GetProtocol("applicationDidResignActive:")
 }
+

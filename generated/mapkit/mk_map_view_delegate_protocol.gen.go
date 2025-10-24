@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // MKMapViewDelegateProtocol is the MKMapViewDelegate protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to MKMapViewDelegate.
 var MKMapViewDelegateProtocol *objc.Protocol
 
 func init() {
 	MKMapViewDelegateProtocol = objc.GetProtocol("MKMapViewDelegate")
 }
+

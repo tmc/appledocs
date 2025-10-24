@@ -16,3 +16,4 @@ var streamPropertiesForPropertiesProtocol *objc.Protocol
 func init() {
 	streamPropertiesForPropertiesProtocol = objc.GetProtocol("streamPropertiesForProperties:")
 }
+

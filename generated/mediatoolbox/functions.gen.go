@@ -2,6 +2,7 @@
 
 package mediatoolbox
 
+/* debug [functions.gen.go]: Generating 7 functions for MediaToolbox */
 import (
 	"unsafe"
 
@@ -15,12 +16,12 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_MTAudioProcessingTapCreate func(unsafe.Pointer, unsafe.Pointer, MTAudioProcessingTapCreationFlags, unsafe.Pointer) unsafe.Pointer
-	_MTAudioProcessingTapGetSourceAudio func(MTAudioProcessingTapRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MTAudioProcessingTapCreate func(AllocatorRef, unsafe.Pointer, MTAudioProcessingTapCreationFlags, unsafe.Pointer) unsafe.Pointer
+	_MTAudioProcessingTapGetSourceAudio func(MTAudioProcessingTapRef, ItemCount, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_MTAudioProcessingTapGetStorage func(MTAudioProcessingTapRef) unsafe.Pointer
-	_MTAudioProcessingTapGetTypeID func() unsafe.Pointer
-	_MTCopyLocalizedNameForMediaSubType func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MTCopyLocalizedNameForMediaType func(unsafe.Pointer) unsafe.Pointer
+	_MTAudioProcessingTapGetTypeID func() TypeID
+	_MTCopyLocalizedNameForMediaSubType func(MediaType, unsafe.Pointer) StringRef
+	_MTCopyLocalizedNameForMediaType func(MediaType) StringRef
 	_MTRegisterProfessionalVideoWorkflowFormatReaders func()
 )
 
@@ -59,9 +60,9 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTAudioProcessingTapCreate(_:_:_:_:)
-func MTAudioProcessingTapCreate(allocator unsafe.Pointer, callbacks unsafe.Pointer, flags MTAudioProcessingTapCreationFlags, tapOut unsafe.Pointer) unsafe.Pointer {
+func MTAudioProcessingTapCreate(allocator AllocatorRef, callbacks unsafe.Pointer, flags MTAudioProcessingTapCreationFlags, tapOut unsafe.Pointer) unsafe.Pointer {
 	return _MTAudioProcessingTapCreate(allocator, callbacks, flags, tapOut)
-}
+}/* debug [functions.gen.go/function]: MTAudioProcessingTapCreate */
 
 // Retrieves source audio for an audio processing tap.
 //
@@ -70,9 +71,9 @@ func MTAudioProcessingTapCreate(allocator unsafe.Pointer, callbacks unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTAudioProcessingTapGetSourceAudio(_:_:_:_:_:_:)
-func MTAudioProcessingTapGetSourceAudio(tap MTAudioProcessingTapRef, numberFrames unsafe.Pointer, bufferListInOut unsafe.Pointer, flagsOut unsafe.Pointer, timeRangeOut unsafe.Pointer, numberFramesOut unsafe.Pointer) unsafe.Pointer {
+func MTAudioProcessingTapGetSourceAudio(tap MTAudioProcessingTapRef, numberFrames ItemCount, bufferListInOut unsafe.Pointer, flagsOut unsafe.Pointer, timeRangeOut unsafe.Pointer, numberFramesOut unsafe.Pointer) unsafe.Pointer {
 	return _MTAudioProcessingTapGetSourceAudio(tap, numberFrames, bufferListInOut, flagsOut, timeRangeOut, numberFramesOut)
-}
+}/* debug [functions.gen.go/function]: MTAudioProcessingTapGetSourceAudio */
 
 // Retrieves a custom storage pointer for an audio processing tap.
 //
@@ -83,7 +84,7 @@ func MTAudioProcessingTapGetSourceAudio(tap MTAudioProcessingTapRef, numberFrame
 // [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTAudioProcessingTapGetStorage(_:)
 func MTAudioProcessingTapGetStorage(tap MTAudioProcessingTapRef) unsafe.Pointer {
 	return _MTAudioProcessingTapGetStorage(tap)
-}
+}/* debug [functions.gen.go/function]: MTAudioProcessingTapGetStorage */
 
 // Retrieves the type identifier for this audio processing tap.
 //
@@ -92,9 +93,9 @@ func MTAudioProcessingTapGetStorage(tap MTAudioProcessingTapRef) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTAudioProcessingTapGetTypeID()
-func MTAudioProcessingTapGetTypeID() unsafe.Pointer {
+func MTAudioProcessingTapGetTypeID() TypeID {
 	return _MTAudioProcessingTapGetTypeID()
-}
+}/* debug [functions.gen.go/function]: MTAudioProcessingTapGetTypeID */
 
 // Returns a localized name for the specified media type and subtype.
 //
@@ -103,9 +104,9 @@ func MTAudioProcessingTapGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTCopyLocalizedNameForMediaSubType(_:_:)
-func MTCopyLocalizedNameForMediaSubType(mediaType unsafe.Pointer, mediaSubType unsafe.Pointer) unsafe.Pointer {
+func MTCopyLocalizedNameForMediaSubType(mediaType MediaType, mediaSubType unsafe.Pointer) StringRef {
 	return _MTCopyLocalizedNameForMediaSubType(mediaType, mediaSubType)
-}
+}/* debug [functions.gen.go/function]: MTCopyLocalizedNameForMediaSubType */
 
 // Returns a localized name for the specified media type.
 //
@@ -114,9 +115,9 @@ func MTCopyLocalizedNameForMediaSubType(mediaType unsafe.Pointer, mediaSubType u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTCopyLocalizedNameForMediaType(_:)
-func MTCopyLocalizedNameForMediaType(mediaType unsafe.Pointer) unsafe.Pointer {
+func MTCopyLocalizedNameForMediaType(mediaType MediaType) StringRef {
 	return _MTCopyLocalizedNameForMediaType(mediaType)
-}
+}/* debug [functions.gen.go/function]: MTCopyLocalizedNameForMediaType */
 
 // Enables the use of media format readers that support professional video workflows.
 //
@@ -127,7 +128,8 @@ func MTCopyLocalizedNameForMediaType(mediaType unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTRegisterProfessionalVideoWorkflowFormatReaders()
 func MTRegisterProfessionalVideoWorkflowFormatReaders() {
 	_MTRegisterProfessionalVideoWorkflowFormatReaders()
-}
+}/* debug [functions.gen.go/function]: MTRegisterProfessionalVideoWorkflowFormatReaders */
+
 
 
 

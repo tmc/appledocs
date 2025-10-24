@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // occlusionProtocol is the occlusion protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to occlusion.
 var occlusionProtocol *objc.Protocol
 
 func init() {
 	occlusionProtocol = objc.GetProtocol("occlusion")
 }
+

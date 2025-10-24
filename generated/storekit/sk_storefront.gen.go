@@ -82,7 +82,6 @@ func NewStorefront() Storefront {
 	return getStorefrontClass().New()
 }
 
-
 // The three-letter code representing the country or region associated with the App Store storefront.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStorefront/countryCode
@@ -99,7 +98,6 @@ func (s_ Storefront) Identifier() string {
 	return rv
 }
 
-
 // SetIdentifier sets the value of the identifier property.
 // A value defined by Apple that uniquely identifies an App Store storefront.
 
@@ -108,7 +106,3 @@ func (s_ Storefront) Identifier() string {
 func (s_ Storefront) SetIdentifier(value string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
-
-
-
-

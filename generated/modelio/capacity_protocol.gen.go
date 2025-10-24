@@ -20,3 +20,4 @@ var capacityProtocol *objc.Protocol
 func init() {
 	capacityProtocol = objc.GetProtocol("capacity")
 }
+

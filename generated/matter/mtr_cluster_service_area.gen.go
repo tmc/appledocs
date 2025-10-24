@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterServiceArea */
+
+
+/* debug [class_header]: Header for MTRClusterServiceArea */
 // The class instance for the [MTRClusterServiceArea] class.
 var (
 	MTRClusterServiceAreaClass     _MTRClusterServiceAreaClass
@@ -26,47 +30,31 @@ func getMTRClusterServiceAreaClass() _MTRClusterServiceAreaClass {
 type _MTRClusterServiceAreaClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterServiceArea */
 // An interface definition for the [MTRClusterServiceArea] class.
 type IMTRClusterServiceArea interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterServiceArea */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterServiceArea */
 	// methods:
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeCurrentAreaWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeEstimatedEndTimeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeProgressWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSelectedAreasWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedAreasWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedMapsWithParams(params IMTRReadParams) foundation.IDictionary
 	SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRServiceAreaClusterSelectAreasParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRServiceAreaClusterSkipAreaParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Service Area The Service Area cluster provides an interface for controlling the areas where a device should operate, and for querying the current area being serviced.
 
 
-// Cluster Service Area The Service Area cluster provides an interface for controlling the areas where a device should operate, and for querying the current area being serviced.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea
-type MTRClusterServiceArea struct {
-	MTRGenericCluster
-}
-
-// MTRClusterServiceAreaFrom constructs a [MTRClusterServiceArea] from an unsafe.Pointer.
-//
-// Cluster Service Area The Service Area cluster provides an interface for controlling the areas where a device should operate, and for querying the current area being serviced.
-func MTRClusterServiceAreaFrom(ptr unsafe.Pointer) MTRClusterServiceArea {
-	return MTRClusterServiceArea{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterServiceArea */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterServiceAreaClass) Alloc() MTRClusterServiceArea {
 	rv := objc.Send[MTRClusterServiceArea](objc.ID(mc.class), objc.Sel("alloc"))
@@ -74,7 +62,6 @@ func (mc _MTRClusterServiceAreaClass) Alloc() MTRClusterServiceArea {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterServiceAreaClass) New() MTRClusterServiceArea {
 	rv := objc.Send[MTRClusterServiceArea](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,121 +84,65 @@ func (m_ MTRClusterServiceArea) Autorelease() MTRClusterServiceArea {
 func NewMTRClusterServiceArea() MTRClusterServiceArea {
 	return getMTRClusterServiceAreaClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRClusterServiceArea */
+// Cluster Service Area The Service Area cluster provides an interface for controlling the areas where a device should operate, and for querying the current area being serviced.
+
+
+// Cluster Service Area The Service Area cluster provides an interface for controlling the areas where a device should operate, and for querying the current area being serviced.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/init(device:endpointID:queue:)
-func NewMTRClusterServiceAreaWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterServiceArea {
-	instance := getMTRClusterServiceAreaClass().Alloc()
-	rv := objc.Send[MTRClusterServiceArea](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea
+type MTRClusterServiceArea struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
+// MTRClusterServiceAreaFrom constructs a [MTRClusterServiceArea] from an unsafe.Pointer.
+//
+// Cluster Service Area The Service Area cluster provides an interface for controlling the areas where a device should operate, and for querying the current area being serviced.
+func MTRClusterServiceAreaFrom(ptr unsafe.Pointer) MTRClusterServiceArea {
+	return MTRClusterServiceArea{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeAttributeList(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRClusterServiceArea *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeClusterRevision(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [class_methods]: Class methods for MTRClusterServiceArea */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeCurrentArea(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeCurrentAreaWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentAreaWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterServiceArea */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeEstimatedEndTime(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeEstimatedEndTimeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeEstimatedEndTimeWithParams:"), params)
-	return rv
-}
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeFeatureMap(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeProgress(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeProgressWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeProgressWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeSelectedAreas(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeSelectedAreasWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSelectedAreasWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeSupportedAreas(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeSupportedAreasWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedAreasWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/readAttributeSupportedMaps(with:)
-func (m_ MTRClusterServiceArea) ReadAttributeSupportedMapsWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedMapsWithParams:"), params)
-	return rv
-}
-
+/* debug [instance_methods]: Instance methods for MTRClusterServiceArea */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/selectAreas(with:expectedValues:expectedValueInterval:completion:)
 func (m_ MTRClusterServiceArea) SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRServiceAreaClusterSelectAreasParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("selectAreasWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+}/* debug [instance_methods/method]: SelectAreasWithParamsExpectedValuesExpectedValueIntervalCompletion */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterServiceArea/skip(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterServiceArea) SkipAreaWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRServiceAreaClusterSkipAreaParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("skipAreaWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterServiceArea */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRClusterServiceArea */
+
 
 

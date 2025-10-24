@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -64,7 +64,6 @@ type IINMessage interface {
 //
 // When your app responds to an , you create instances of this class to provide Siri with information about the messages in your app. Each message contains a unique identifier, the participants’ details, and the content. You can group messages into larger discussions and, if you app supports multiple services, identify the service that delivers each message.
 
-
 // An object that describes a sent or received message.
 //
 // [Full Topic]
@@ -111,8 +110,6 @@ func NewINMessage() INMessage {
 	return getINMessageClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INMessage/init(identifier:conversationIdentifier:content:dateSent:sender:recipients:groupName:serviceName:messageType:referencedMessage:reaction:)
 func NewINMessageWithIdentifierConversationIdentifierContentDateSentSenderRecipientsGroupNameServiceNameMessageTypeReferencedMessageReaction(identifier string, conversationIdentifier string, content string, dateSent foundation.IDate, sender INPerson, recipients []INPerson, groupName INSpeakableString, serviceName string, messageType unsafe.Pointer, referencedMessage INMessage, reaction unsafe.Pointer) INMessage {
@@ -121,8 +118,6 @@ func NewINMessageWithIdentifierConversationIdentifierContentDateSentSenderRecipi
 	rv.Autorelease()
 	return rv
 }
-
-
 
 // The date and time the app sent the message to each recipient.
 //
@@ -133,7 +128,6 @@ func (i_ INMessage) DateSent() foundation.NSDate {
 	return rv
 }
 
-
 // The type of content the message contains.
 //
 // [Full Topic]
@@ -142,7 +136,6 @@ func (i_ INMessage) MessageType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("messageType"))
 	return rv
 }
-
 
 // The people who received the message.
 //
@@ -153,7 +146,6 @@ func (i_ INMessage) Recipients() []INPerson {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/attachmentfiles
 func (i_ INMessage) AttachmentFiles() unsafe.Pointer {
@@ -161,13 +153,11 @@ func (i_ INMessage) AttachmentFiles() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/attachmentfiles
 func (i_ INMessage) SetAttachmentFiles(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttachmentFiles:"), value)
 }
-
 
 // An audio recording that Siri plays to the message recipient.
 //
@@ -178,7 +168,6 @@ func (i_ INMessage) AudioMessageFile() unsafe.Pointer {
 	return rv
 }
 
-
 // An audio recording that Siri plays to the message recipient.
 //
 // [Full Topic]
@@ -186,7 +175,6 @@ func (i_ INMessage) AudioMessageFile() unsafe.Pointer {
 func (i_ INMessage) SetAudioMessageFile(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioMessageFile:"), value)
 }
-
 
 // The text that Siri recites to the message recipient.
 //
@@ -197,7 +185,6 @@ func (i_ INMessage) Content() string {
 	return rv
 }
 
-
 // The text that Siri recites to the message recipient.
 //
 // [Full Topic]
@@ -205,7 +192,6 @@ func (i_ INMessage) Content() string {
 func (i_ INMessage) SetContent(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), objc.String(value))
 }
-
 
 // The identifier of the conversation that contains this message.
 //
@@ -216,7 +202,6 @@ func (i_ INMessage) ConversationIdentifier() string {
 	return rv
 }
 
-
 // The identifier of the conversation that contains this message.
 //
 // [Full Topic]
@@ -224,7 +209,6 @@ func (i_ INMessage) ConversationIdentifier() string {
 func (i_ INMessage) SetConversationIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifier:"), objc.String(value))
 }
-
 
 // The name of the grouped conversation.
 //
@@ -235,7 +219,6 @@ func (i_ INMessage) GroupName() INSpeakableString {
 	return rv
 }
 
-
 // The name of the grouped conversation.
 //
 // [Full Topic]
@@ -243,7 +226,6 @@ func (i_ INMessage) GroupName() INSpeakableString {
 func (i_ INMessage) SetGroupName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
-
 
 // The message’s unique identifier.
 //
@@ -254,7 +236,6 @@ func (i_ INMessage) Identifier() string {
 	return rv
 }
 
-
 // The message’s unique identifier.
 //
 // [Full Topic]
@@ -263,7 +244,6 @@ func (i_ INMessage) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/linkmetadata
 func (i_ INMessage) LinkMetadata() unsafe.Pointer {
@@ -271,13 +251,11 @@ func (i_ INMessage) LinkMetadata() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/linkmetadata
 func (i_ INMessage) SetLinkMetadata(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLinkMetadata:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/numberofattachments
@@ -286,13 +264,11 @@ func (i_ INMessage) NumberOfAttachments() foundation.Number {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/numberofattachments
 func (i_ INMessage) SetNumberOfAttachments(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAttachments:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/reaction
@@ -301,13 +277,11 @@ func (i_ INMessage) Reaction() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/reaction
 func (i_ INMessage) SetReaction(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReaction:"), value)
 }
-
 
 // The person who sent the message.
 //
@@ -318,7 +292,6 @@ func (i_ INMessage) Sender() INPerson {
 	return rv
 }
 
-
 // The person who sent the message.
 //
 // [Full Topic]
@@ -326,7 +299,6 @@ func (i_ INMessage) Sender() INPerson {
 func (i_ INMessage) SetSender(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
 }
-
 
 // The name of the service that delivers the message.
 //
@@ -337,7 +309,6 @@ func (i_ INMessage) ServiceName() string {
 	return rv
 }
 
-
 // The name of the service that delivers the message.
 //
 // [Full Topic]
@@ -346,7 +317,6 @@ func (i_ INMessage) SetServiceName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setServiceName:"), objc.String(value))
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sticker
 func (i_ INMessage) Sticker() unsafe.Pointer {
@@ -354,11 +324,8 @@ func (i_ INMessage) Sticker() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inmessage/sticker
 func (i_ INMessage) SetSticker(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSticker:"), value)
 }
-
-

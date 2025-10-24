@@ -48,7 +48,6 @@ type IINObject interface {
 //
 // Use to create custom parameters and response properties for intent data that doesn’t fit into one of the System Types, such as Boolean, Duration, or Location. Define custom types and associate them with your custom intents and responses in the Intent Definition file. Xcode uses the type defined in the Intent Definition file to generate a subclass of . Create an instance of this subclass to structure data in intents and intent responses.
 
-
 // A representation of a custom intent parameter or response property.
 //
 // [Full Topic]
@@ -95,8 +94,6 @@ func NewINObject() INObject {
 	return getINObjectClass().New()
 }
 
-
-
 // An array of alternative speakable strings that identify the object.
 //
 // [Full Topic]
@@ -106,7 +103,6 @@ func (i_ INObject) AlternativeSpeakableMatches() INSpeakableString {
 	return rv
 }
 
-
 // An array of alternative speakable strings that identify the object.
 //
 // [Full Topic]
@@ -114,7 +110,6 @@ func (i_ INObject) AlternativeSpeakableMatches() INSpeakableString {
 func (i_ INObject) SetAlternativeSpeakableMatches(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlternativeSpeakableMatches:"), value)
 }
-
 
 // An image to display alongside the custom intent object’s text.
 //
@@ -125,7 +120,6 @@ func (i_ INObject) DisplayImage() INImage {
 	return rv
 }
 
-
 // An image to display alongside the custom intent object’s text.
 //
 // [Full Topic]
@@ -133,7 +127,6 @@ func (i_ INObject) DisplayImage() INImage {
 func (i_ INObject) SetDisplayImage(value INImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayImage:"), value)
 }
-
 
 // A name or description for the custom intent object.
 //
@@ -144,7 +137,6 @@ func (i_ INObject) DisplayString() string {
 	return rv
 }
 
-
 // A name or description for the custom intent object.
 //
 // [Full Topic]
@@ -152,7 +144,6 @@ func (i_ INObject) DisplayString() string {
 func (i_ INObject) SetDisplayString(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayString:"), objc.String(value))
 }
-
 
 // A string that identifies the custom intent object within your app.
 //
@@ -163,7 +154,6 @@ func (i_ INObject) Identifier() string {
 	return rv
 }
 
-
 // A string that identifies the custom intent object within your app.
 //
 // [Full Topic]
@@ -171,7 +161,6 @@ func (i_ INObject) Identifier() string {
 func (i_ INObject) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
-
 
 // A hint that describes how to pronounce the custom intent object.
 //
@@ -182,7 +171,6 @@ func (i_ INObject) PronunciationHint() string {
 	return rv
 }
 
-
 // A hint that describes how to pronounce the custom intent object.
 //
 // [Full Topic]
@@ -190,7 +178,6 @@ func (i_ INObject) PronunciationHint() string {
 func (i_ INObject) SetPronunciationHint(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPronunciationHint:"), objc.String(value))
 }
-
 
 // Additional details about the custom intent object.
 //
@@ -201,7 +188,6 @@ func (i_ INObject) SubtitleString() string {
 	return rv
 }
 
-
 // Additional details about the custom intent object.
 //
 // [Full Topic]
@@ -209,6 +195,3 @@ func (i_ INObject) SubtitleString() string {
 func (i_ INObject) SetSubtitleString(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSubtitleString:"), objc.String(value))
 }
-
-
-

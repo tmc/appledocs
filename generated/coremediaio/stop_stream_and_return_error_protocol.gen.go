@@ -16,3 +16,4 @@ var stopStreamAndReturnErrorProtocol *objc.Protocol
 func init() {
 	stopStreamAndReturnErrorProtocol = objc.GetProtocol("stopStreamAndReturnError:")
 }
+

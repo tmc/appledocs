@@ -2,10 +2,10 @@
 
 package identitydocumentservices
 
+/* debug [functions.gen.go]: Generating 0 functions for IdentityDocumentServices */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // IdentityDocumentServices Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

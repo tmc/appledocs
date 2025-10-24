@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNGradientFilterNode */
+
+
+/* debug [class_header]: Header for MPSNNGradientFilterNode */
 // The class instance for the [GradientFilterNode] class.
 var (
 	GradientFilterNodeClass     _GradientFilterNodeClass
@@ -25,34 +29,30 @@ func getGradientFilterNodeClass() _GradientFilterNodeClass {
 type _GradientFilterNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GradientFilterNode */
 // An interface definition for the [GradientFilterNode] class.
 type IGradientFilterNode interface {
 	IFilterNode
+	
+/* debug [class_interface_properties]: Properties for GradientFilterNode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GradientFilterNode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A representation of a gradient filter.
 
 
-// A representation of a gradient filter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGradientFilterNode
-type GradientFilterNode struct {
-	FilterNode
-}
-
-// GradientFilterNodeFrom constructs a [GradientFilterNode] from an unsafe.Pointer.
-//
-// A representation of a gradient filter.
-func GradientFilterNodeFrom(ptr unsafe.Pointer) GradientFilterNode {
-	return GradientFilterNode{
-		FilterNode: FilterNodeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GradientFilterNode */
 // Alloc allocates a new instance without initialization.
 func (gc _GradientFilterNodeClass) Alloc() GradientFilterNode {
 	rv := objc.Send[GradientFilterNode](objc.ID(gc.class), objc.Sel("alloc"))
@@ -60,7 +60,6 @@ func (gc _GradientFilterNodeClass) Alloc() GradientFilterNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GradientFilterNodeClass) New() GradientFilterNode {
 	rv := objc.Send[GradientFilterNode](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -83,7 +82,58 @@ func (g_ GradientFilterNode) Autorelease() GradientFilterNode {
 func NewGradientFilterNode() GradientFilterNode {
 	return getGradientFilterNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for GradientFilterNode */
+// A representation of a gradient filter.
+
+
+// A representation of a gradient filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGradientFilterNode
+type GradientFilterNode struct {
+	FilterNode
+}
+
+// GradientFilterNodeFrom constructs a [GradientFilterNode] from an unsafe.Pointer.
+//
+// A representation of a gradient filter.
+func GradientFilterNodeFrom(ptr unsafe.Pointer) GradientFilterNode {
+	return GradientFilterNode{
+		FilterNode: FilterNodeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GradientFilterNode *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GradientFilterNode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GradientFilterNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GradientFilterNode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GradientFilterNode */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNNGradientFilterNode */
 
 
 

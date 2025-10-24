@@ -18,3 +18,4 @@ var PreviewControllerDataSourceProtocol *objc.Protocol
 func init() {
 	PreviewControllerDataSourceProtocol = objc.GetProtocol("QLPreviewControllerDataSource")
 }
+

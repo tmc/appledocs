@@ -15,3 +15,4 @@ var activeConversationWillChangeProtocol *objc.Protocol
 func init() {
 	activeConversationWillChangeProtocol = objc.GetProtocol("activeConversationWillChange:")
 }
+

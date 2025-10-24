@@ -18,3 +18,4 @@ package foundation
 // See: doc://com.apple.foundation/documentation/Foundation/XMLParserDelegate/parserDidStartDocument(_:)
 type PparserDidStartDocument interface {
 }
+

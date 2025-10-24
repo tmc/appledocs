@@ -19,3 +19,4 @@ var CNContactPickerDelegateProtocol *objc.Protocol
 func init() {
 	CNContactPickerDelegateProtocol = objc.GetProtocol("CNContactPickerDelegate")
 }
+

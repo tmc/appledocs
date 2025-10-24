@@ -36,7 +36,6 @@ type IPHPickerResult interface {
 
 // Types that represent a selected asset from the user’s photo library.
 
-
 // Types that represent a selected asset from the user’s photo library.
 //
 // [Full Topic]
@@ -82,7 +81,3 @@ func (p_ PHPickerResult) Autorelease() PHPickerResult {
 func NewPHPickerResult() PHPickerResult {
 	return getPHPickerResultClass().New()
 }
-
-
-
-

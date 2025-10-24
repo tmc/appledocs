@@ -15,3 +15,4 @@ var insertLineBreakProtocol *objc.Protocol
 func init() {
 	insertLineBreakProtocol = objc.GetProtocol("insertLineBreak:")
 }
+

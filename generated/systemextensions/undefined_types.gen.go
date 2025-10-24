@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	Set = _undefined // referenced in SystemExtensions
 )
-
-

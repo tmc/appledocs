@@ -7,10 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coredata"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSPersistentDocument */
+
+
+/* debug [class_header]: Header for NSPersistentDocument */
 // The class instance for the [PersistentDocument] class.
 var (
 	PersistentDocumentClass     _PersistentDocumentClass
@@ -27,10 +31,16 @@ func getPersistentDocumentClass() _PersistentDocumentClass {
 type _PersistentDocumentClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PersistentDocument */
 // An interface definition for the [PersistentDocument] class.
 type IPersistentDocument interface {
 	IDocument
+	
+/* debug [class_interface_properties]: Properties for PersistentDocument */
 	// properties:
 	ManagedObjectContext() coredata.ManagedObjectContext
 	SetManagedObjectContext(value coredata.ManagedObjectContext)
@@ -41,36 +51,24 @@ type IPersistentDocument interface {
 	SetIsDocumentEdited(value bool)
 	UndoManager() foundation.UndoManager
 	SetUndoManager(value foundation.UndoManager)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PersistentDocument */
 	// methods:
-	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url objc.IObject /* cross-framework: NSURL */, fileType objc.IObject /* cross-framework: NSString */, configuration objc.IObject /* cross-framework: NSString */, storeOptions foundation.IDictionary, error_ unsafe.Pointer) bool
+	ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url objc.IObject /* cross-framework: NSURL */, fileType objc.IObject /* cross-framework: NSString */, configuration objc.IObject /* cross-framework: NSString */, storeOptions foundation.IDictionary, error_ objectivec.IObject) bool
 	PersistentStoreTypeForFileType(fileType objc.IObject /* cross-framework: NSString */) foundation.String
-	ReadFromURLOfTypeError(absoluteURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool
-	RevertToContentsOfURLOfTypeError(inAbsoluteURL objc.IObject /* cross-framework: NSURL */, inTypeName objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) bool
-	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, saveOperation SaveOperationType, absoluteOriginalContentsURL objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool
+	ReadFromURLOfTypeError(absoluteURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, error_ objectivec.IObject) bool
+	RevertToContentsOfURLOfTypeError(inAbsoluteURL objc.IObject /* cross-framework: NSURL */, inTypeName objc.IObject /* cross-framework: NSString */, outError objectivec.IObject) bool
+	WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, saveOperation SaveOperationType, absoluteOriginalContentsURL objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A document object that can integrate with Core Data.
-//
-// The class is a subclass of that is designed to easily integrate into the Core Data framework. It provides methods to access a document-wide object, and provides default implementations of methods to read and write files using the persistence framework. In a persistent document, the undo manager functionality is taken over by managed object context. Standard document behavior is implemented as follows: Opening a document invokes with the new URL, and adds a store of the default type (XML). Objects are loaded from the persistent store on demand through the document’s context. Saving a new document adds a store of the default type with the chosen URL and invokes save: on the context. For an existing document, a save just invokes on the context. Save As for a new document simply invokes save. For an opened document, it migrates the persistent store to the new URL and invokes on the context. Revert resets the document’s managed object context. Objects are subsequently loaded from the persistent store on demand, as with opening a new document. By default an instance creates its own ready-to-use persistence stack including managed object context, persistent object store coordinator and persistent store. There is a one-to-one mapping between the document and the backing object store. You can customize the architecture of the persistence stack by overriding the property and method. You might wish to do this, for example, to specify a particular managed object model.
+/* debug [class_interface]: End interface */
 
 
-// A document object that can integrate with Core Data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument
-type PersistentDocument struct {
-	Document
-}
 
-// PersistentDocumentFrom constructs a [PersistentDocument] from an unsafe.Pointer.
-//
-// A document object that can integrate with Core Data.
-func PersistentDocumentFrom(ptr unsafe.Pointer) PersistentDocument {
-	return PersistentDocument{
-		Document: DocumentFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for PersistentDocument */
 // Alloc allocates a new instance without initialization.
 func (pc _PersistentDocumentClass) Alloc() PersistentDocument {
 	rv := objc.Send[PersistentDocument](objc.ID(pc.class), objc.Sel("alloc"))
@@ -78,7 +76,6 @@ func (pc _PersistentDocumentClass) Alloc() PersistentDocument {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PersistentDocumentClass) New() PersistentDocument {
 	rv := objc.Send[PersistentDocument](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,17 +98,60 @@ func (p_ PersistentDocument) Autorelease() PersistentDocument {
 func NewPersistentDocument() PersistentDocument {
 	return getPersistentDocumentClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PersistentDocument */
+// A document object that can integrate with Core Data.
+//
+// The class is a subclass of that is designed to easily integrate into the Core Data framework. It provides methods to access a document-wide object, and provides default implementations of methods to read and write files using the persistence framework. In a persistent document, the undo manager functionality is taken over by managed object context. Standard document behavior is implemented as follows: Opening a document invokes with the new URL, and adds a store of the default type (XML). Objects are loaded from the persistent store on demand through the document’s context. Saving a new document adds a store of the default type with the chosen URL and invokes save: on the context. For an existing document, a save just invokes on the context. Save As for a new document simply invokes save. For an opened document, it migrates the persistent store to the new URL and invokes on the context. Revert resets the document’s managed object context. Objects are subsequently loaded from the persistent store on demand, as with opening a new document. By default an instance creates its own ready-to-use persistence stack including managed object context, persistent object store coordinator and persistent store. There is a one-to-one mapping between the document and the backing object store. You can customize the architecture of the persistence stack by overriding the property and method. You might wish to do this, for example, to specify a particular managed object model.
+
+
+// A document object that can integrate with Core Data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument
+type PersistentDocument struct {
+	Document
+}
+
+// PersistentDocumentFrom constructs a [PersistentDocument] from an unsafe.Pointer.
+//
+// A document object that can integrate with Core Data.
+func PersistentDocumentFrom(ptr unsafe.Pointer) PersistentDocument {
+	return PersistentDocument{
+		Document: DocumentFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PersistentDocument *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PersistentDocument */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PersistentDocument */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PersistentDocument */
 
 // Configures the receiver’s persistent store coordinator with the appropriate stores for a given URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/configurePersistentStoreCoordinator(for:ofType:modelConfiguration:storeOptions:)
-func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url objc.IObject /* cross-framework: NSURL */, fileType objc.IObject /* cross-framework: NSString */, configuration objc.IObject /* cross-framework: NSString */, storeOptions foundation.IDictionary, error_ unsafe.Pointer) bool {
+func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError(url objc.IObject /* cross-framework: NSURL */, fileType objc.IObject /* cross-framework: NSString */, configuration objc.IObject /* cross-framework: NSString */, storeOptions foundation.IDictionary, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("configurePersistentStoreCoordinatorForURL:ofType:modelConfiguration:storeOptions:error:"), url, fileType, configuration, storeOptions, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ConfigurePersistentStoreCoordinatorForURLOfTypeModelConfigurationStoreOptionsError */
 
 
 // Returns the type of persistent store associated with the specified file type.
@@ -121,38 +161,43 @@ func (p_ PersistentDocument) ConfigurePersistentStoreCoordinatorForURLOfTypeMode
 func (p_ PersistentDocument) PersistentStoreTypeForFileType(fileType objc.IObject /* cross-framework: NSString */) foundation.String {
 	rv := objc.Send[foundation.String](p_.ID, objc.Sel("persistentStoreTypeForFileType:"), fileType)
 	return rv
-}
+}/* debug [instance_methods/method]: PersistentStoreTypeForFileType */
 
 
 // Sets the contents of the receiver by reading from a file of a given type located by a given URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/read(from:ofType:)
-func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
+func (p_ PersistentDocument) ReadFromURLOfTypeError(absoluteURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("readFromURL:ofType:error:"), absoluteURL, typeName, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadFromURLOfTypeError */
 
 
 // Overridden to clean up the managed object context and controllers during a revert.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/revert(toContentsOf:ofType:)
-func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL objc.IObject /* cross-framework: NSURL */, inTypeName objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) bool {
+func (p_ PersistentDocument) RevertToContentsOfURLOfTypeError(inAbsoluteURL objc.IObject /* cross-framework: NSURL */, inTypeName objc.IObject /* cross-framework: NSString */, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("revertToContentsOfURL:ofType:error:"), inAbsoluteURL, inTypeName, outError)
 	return rv
-}
+}/* debug [instance_methods/method]: RevertToContentsOfURLOfTypeError */
 
 
 // Saves changes in the document’s managed object context and saves the document’s persistent store to a given URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/write(to:ofType:for:originalContentsURL:)
-func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, saveOperation SaveOperationType, absoluteOriginalContentsURL objc.IObject /* cross-framework: NSURL */, error_ unsafe.Pointer) bool {
+func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURLError(absoluteURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, saveOperation SaveOperationType, absoluteOriginalContentsURL objc.IObject /* cross-framework: NSURL */, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("writeToURL:ofType:forSaveOperation:originalContentsURL:error:"), absoluteURL, typeName, saveOperation, absoluteOriginalContentsURL, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: WriteToURLOfTypeForSaveOperationOriginalContentsURLError */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PersistentDocument */
 
 // The managed object context for the document.
 //
@@ -161,7 +206,7 @@ func (p_ PersistentDocument) WriteToURLOfTypeForSaveOperationOriginalContentsURL
 func (p_ PersistentDocument) ManagedObjectContext() coredata.ManagedObjectContext {
 	rv := objc.Send[coredata.ManagedObjectContext](p_.ID, objc.Sel("managedObjectContext"))
 	return rv
-}
+}/* debug [instance_properties/getter]: managedObjectContext */
 
 
 // The managed object context for the document.
@@ -170,7 +215,7 @@ func (p_ PersistentDocument) ManagedObjectContext() coredata.ManagedObjectContex
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPersistentDocument/managedObjectContext
 func (p_ PersistentDocument) SetManagedObjectContext(value coredata.ManagedObjectContext) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setManagedObjectContext:"), value)
-}
+}/* debug [instance_properties/setter]: managedObjectContext */
 
 
 // The managed object model of the document.
@@ -180,7 +225,7 @@ func (p_ PersistentDocument) SetManagedObjectContext(value coredata.ManagedObjec
 func (p_ PersistentDocument) ManagedObjectModel() coredata.ManagedObjectModel {
 	rv := objc.Send[coredata.ManagedObjectModel](p_.ID, objc.Sel("managedObjectModel"))
 	return rv
-}
+}/* debug [instance_properties/getter]: managedObjectModel */
 
 
 // A Boolean value that indicates whether the document owns an undo manager object.
@@ -190,7 +235,7 @@ func (p_ PersistentDocument) ManagedObjectModel() coredata.ManagedObjectModel {
 func (p_ PersistentDocument) HasUndoManager() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("hasUndoManager"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hasUndoManager */
 
 
 // A Boolean value that indicates whether the document owns an undo manager object.
@@ -199,7 +244,7 @@ func (p_ PersistentDocument) HasUndoManager() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/hasundomanager
 func (p_ PersistentDocument) SetHasUndoManager(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHasUndoManager:"), value)
-}
+}/* debug [instance_properties/setter]: hasUndoManager */
 
 
 // A Boolean value that indicates whether the document has unsaved changes.
@@ -209,7 +254,7 @@ func (p_ PersistentDocument) SetHasUndoManager(value bool) {
 func (p_ PersistentDocument) IsDocumentEdited() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isDocumentEdited"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isDocumentEdited */
 
 
 // A Boolean value that indicates whether the document has unsaved changes.
@@ -218,7 +263,7 @@ func (p_ PersistentDocument) IsDocumentEdited() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/isdocumentedited
 func (p_ PersistentDocument) SetIsDocumentEdited(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsDocumentEdited:"), value)
-}
+}/* debug [instance_properties/setter]: isDocumentEdited */
 
 
 // The object that the document uses to support undo/redo operations.
@@ -228,7 +273,7 @@ func (p_ PersistentDocument) SetIsDocumentEdited(value bool) {
 func (p_ PersistentDocument) UndoManager() foundation.UndoManager {
 	rv := objc.Send[foundation.UndoManager](p_.ID, objc.Sel("undoManager"))
 	return rv
-}
+}/* debug [instance_properties/getter]: undoManager */
 
 
 // The object that the document uses to support undo/redo operations.
@@ -237,7 +282,12 @@ func (p_ PersistentDocument) UndoManager() foundation.UndoManager {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocument/undomanager
 func (p_ PersistentDocument) SetUndoManager(value foundation.UndoManager) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUndoManager:"), value)
-}
+}/* debug [instance_properties/setter]: undoManager */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSPersistentDocument */
 
 
 

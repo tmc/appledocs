@@ -19,3 +19,4 @@ var outputTextureFormatProtocol *objc.Protocol
 func init() {
 	outputTextureFormatProtocol = objc.GetProtocol("outputTextureFormat")
 }
+

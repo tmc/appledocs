@@ -33,8 +33,6 @@ type IMTRApplicationBasicClusterApplicationBasicApplication interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRApplicationBasicClusterApplicationBasicApplication
 type MTRApplicationBasicClusterApplicationBasicApplication struct {
@@ -78,7 +76,3 @@ func (m_ MTRApplicationBasicClusterApplicationBasicApplication) Autorelease() MT
 func NewMTRApplicationBasicClusterApplicationBasicApplication() MTRApplicationBasicClusterApplicationBasicApplication {
 	return getMTRApplicationBasicClusterApplicationBasicApplicationClass().New()
 }
-
-
-
-

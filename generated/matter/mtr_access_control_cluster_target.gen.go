@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRAccessControlClusterTarget] class.
@@ -39,8 +39,6 @@ type IMTRAccessControlClusterTarget interface {
 	SetEndpoint(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterTarget
@@ -86,8 +84,6 @@ func NewMTRAccessControlClusterTarget() MTRAccessControlClusterTarget {
 	return getMTRAccessControlClusterTargetClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/cluster
 func (m_ MTRAccessControlClusterTarget) Cluster() objc.IObject /* cross-framework: NSNumber */ {
@@ -95,13 +91,11 @@ func (m_ MTRAccessControlClusterTarget) Cluster() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/cluster
 func (m_ MTRAccessControlClusterTarget) SetCluster(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/devicetype
@@ -110,13 +104,11 @@ func (m_ MTRAccessControlClusterTarget) DeviceType() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/devicetype
 func (m_ MTRAccessControlClusterTarget) SetDeviceType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/endpoint
@@ -125,12 +117,8 @@ func (m_ MTRAccessControlClusterTarget) Endpoint() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclustertarget/endpoint
 func (m_ MTRAccessControlClusterTarget) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
-
-
-

@@ -4,7 +4,7 @@ package foundation
 
 // PfileManager is the fileManager: protocol interface.
 //
-// Asks the delegate if a hard link should be created between the items at the two URLs.
+// Asks the delegate if the file manager should copy the specified item to the new URL.
 //
 // Availability:
 //   - Mac Catalyst 13.1+
@@ -15,6 +15,6 @@ package foundation
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 //
-// See: doc://com.apple.foundation/documentation/Foundation/FileManagerDelegate/fileManager(_:shouldLinkItemAt:to:)
+// See: doc://com.apple.foundation/documentation/Foundation/FileManagerDelegate/fileManager(_:shouldCopyItemAt:to:)
 type PfileManager interface {
 }

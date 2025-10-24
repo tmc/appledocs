@@ -2,10 +2,10 @@
 
 package realitycomposerpro
 
+/* debug [functions.gen.go]: Generating 0 functions for RealityComposerPro */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // RealityComposerPro Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

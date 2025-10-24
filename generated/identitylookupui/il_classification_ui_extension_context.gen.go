@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ILClassificationUIExtensionContext] class.
@@ -37,7 +37,6 @@ type IILClassificationUIExtensionContext interface {
 }
 
 // An object that manages the state of the current request.
-
 
 // An object that manages the state of the current request.
 //
@@ -87,8 +86,6 @@ func NewILClassificationUIExtensionContext() ILClassificationUIExtensionContext 
 	return getILClassificationUIExtensionContextClass().New()
 }
 
-
-
 // A Boolean value that determines whether the extension has enough information to complete the report.
 //
 // [Full Topic]
@@ -98,7 +95,6 @@ func (i_ ILClassificationUIExtensionContext) IsReadyForClassificationResponse() 
 	return rv
 }
 
-
 // A Boolean value that determines whether the extension has enough information to complete the report.
 //
 // [Full Topic]
@@ -106,5 +102,3 @@ func (i_ ILClassificationUIExtensionContext) IsReadyForClassificationResponse() 
 func (i_ ILClassificationUIExtensionContext) SetIsReadyForClassificationResponse(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsReadyForClassificationResponse:"), value)
 }
-
-

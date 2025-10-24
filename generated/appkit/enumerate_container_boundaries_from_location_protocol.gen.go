@@ -15,3 +15,4 @@ var enumerateContainerBoundariesFromLocationProtocol *objc.Protocol
 func init() {
 	enumerateContainerBoundariesFromLocationProtocol = objc.GetProtocol("enumerateContainerBoundariesFromLocation:")
 }
+

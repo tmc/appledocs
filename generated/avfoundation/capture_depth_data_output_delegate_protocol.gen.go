@@ -18,3 +18,4 @@ var CaptureDepthDataOutputDelegateProtocol *objc.Protocol
 func init() {
 	CaptureDepthDataOutputDelegateProtocol = objc.GetProtocol("AVCaptureDepthDataOutputDelegate")
 }
+

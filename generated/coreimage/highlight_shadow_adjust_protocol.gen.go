@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // HighlightShadowAdjustProtocol is the CIHighlightShadowAdjust protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIHighlightShadowAdjust.
 var HighlightShadowAdjustProtocol *objc.Protocol
 
 func init() {
 	HighlightShadowAdjustProtocol = objc.GetProtocol("CIHighlightShadowAdjust")
 }
+

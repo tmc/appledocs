@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PSplitViewDelegate is the NSSplitViewDelegate protocol interface.
@@ -17,7 +19,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSSplitViewDelegate
 type PSplitViewDelegate interface {
 	// Optional methods
-	SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView ISplitView, dividerIndex int) corefoundation.Rect
+	SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView ISplitView, dividerIndex int) Rect
 	HasSplitViewAdditionalEffectiveRectOfDividerAtIndex() bool
 	SplitViewCanCollapseSubview(splitView ISplitView, subview IView) bool
 	HasSplitViewCanCollapseSubview() bool
@@ -27,9 +29,9 @@ type PSplitViewDelegate interface {
 	HasSplitViewConstrainMinCoordinateOfSubviewAt() bool
 	SplitViewConstrainSplitPositionOfSubviewAt(splitView ISplitView, proposedPosition float64, dividerIndex int) float64
 	HasSplitViewConstrainSplitPositionOfSubviewAt() bool
-	SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView ISplitView, proposedEffectiveRect objc.IObject /* cross-framework: Rect */, drawnRect objc.IObject /* cross-framework: Rect */, dividerIndex int) corefoundation.Rect
+	SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView ISplitView, proposedEffectiveRect Rect /* not a class type */, drawnRect Rect /* not a class type */, dividerIndex int) Rect
 	HasSplitViewEffectiveRectForDrawnRectOfDividerAtIndex() bool
-	SplitViewResizeSubviewsWithOldSize(splitView ISplitView, oldSize objc.IObject /* cross-framework: Size */)
+	SplitViewResizeSubviewsWithOldSize(splitView ISplitView, oldSize Size /* not a class type */)
 	HasSplitViewResizeSubviewsWithOldSize() bool
 	SplitViewShouldAdjustSizeOfSubview(splitView ISplitView, view IView) bool
 	HasSplitViewShouldAdjustSizeOfSubview() bool
@@ -47,13 +49,13 @@ type PSplitViewDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type SplitViewDelegate struct {
-	_SplitViewAdditionalEffectiveRectOfDividerAtIndex func(splitView ISplitView, dividerIndex int) corefoundation.Rect
+	_SplitViewAdditionalEffectiveRectOfDividerAtIndex func(splitView ISplitView, dividerIndex int) Rect
 	_SplitViewCanCollapseSubview func(splitView ISplitView, subview IView) bool
 	_SplitViewConstrainMaxCoordinateOfSubviewAt func(splitView ISplitView, proposedMaximumPosition float64, dividerIndex int) float64
 	_SplitViewConstrainMinCoordinateOfSubviewAt func(splitView ISplitView, proposedMinimumPosition float64, dividerIndex int) float64
 	_SplitViewConstrainSplitPositionOfSubviewAt func(splitView ISplitView, proposedPosition float64, dividerIndex int) float64
-	_SplitViewEffectiveRectForDrawnRectOfDividerAtIndex func(splitView ISplitView, proposedEffectiveRect objc.IObject /* cross-framework: Rect */, drawnRect objc.IObject /* cross-framework: Rect */, dividerIndex int) corefoundation.Rect
-	_SplitViewResizeSubviewsWithOldSize func(splitView ISplitView, oldSize objc.IObject /* cross-framework: Size */)
+	_SplitViewEffectiveRectForDrawnRectOfDividerAtIndex func(splitView ISplitView, proposedEffectiveRect Rect /* not a class type */, drawnRect Rect /* not a class type */, dividerIndex int) Rect
+	_SplitViewResizeSubviewsWithOldSize func(splitView ISplitView, oldSize Size /* not a class type */)
 	_SplitViewShouldAdjustSizeOfSubview func(splitView ISplitView, view IView) bool
 	_SplitViewShouldCollapseSubviewForDoubleClickOnDividerAtIndex func(splitView ISplitView, subview IView, dividerIndex int) bool
 	_SplitViewShouldHideDividerAtIndex func(splitView ISplitView, dividerIndex int) bool
@@ -64,7 +66,7 @@ type SplitViewDelegate struct {
 // SetSplitViewAdditionalEffectiveRectOfDividerAtIndex sets the handler for the SplitViewAdditionalEffectiveRectOfDividerAtIndex delegate method.
 //
 // Allows the delegate to return an additional rectangle where mouse clicks can initiate divider dragging.
-func (d *SplitViewDelegate) SetSplitViewAdditionalEffectiveRectOfDividerAtIndex(f func(splitView ISplitView, dividerIndex int) corefoundation.Rect) {
+func (d *SplitViewDelegate) SetSplitViewAdditionalEffectiveRectOfDividerAtIndex(f func(splitView ISplitView, dividerIndex int) Rect) {
 	d._SplitViewAdditionalEffectiveRectOfDividerAtIndex = f
 }
 
@@ -99,14 +101,14 @@ func (d *SplitViewDelegate) SetSplitViewConstrainSplitPositionOfSubviewAt(f func
 // SetSplitViewEffectiveRectForDrawnRectOfDividerAtIndex sets the handler for the SplitViewEffectiveRectForDrawnRectOfDividerAtIndex delegate method.
 //
 // Allows the delegate to modify the rectangle where mouse clicks initiate divider dragging.
-func (d *SplitViewDelegate) SetSplitViewEffectiveRectForDrawnRectOfDividerAtIndex(f func(splitView ISplitView, proposedEffectiveRect objc.IObject /* cross-framework: Rect */, drawnRect objc.IObject /* cross-framework: Rect */, dividerIndex int) corefoundation.Rect) {
+func (d *SplitViewDelegate) SetSplitViewEffectiveRectForDrawnRectOfDividerAtIndex(f func(splitView ISplitView, proposedEffectiveRect Rect /* not a class type */, drawnRect Rect /* not a class type */, dividerIndex int) Rect) {
 	d._SplitViewEffectiveRectForDrawnRectOfDividerAtIndex = f
 }
 
 // SetSplitViewResizeSubviewsWithOldSize sets the handler for the SplitViewResizeSubviewsWithOldSize delegate method.
 //
 // Allows the delegate to specify custom sizing behavior for the subviews of the split view.
-func (d *SplitViewDelegate) SetSplitViewResizeSubviewsWithOldSize(f func(splitView ISplitView, oldSize objc.IObject /* cross-framework: Size */)) {
+func (d *SplitViewDelegate) SetSplitViewResizeSubviewsWithOldSize(f func(splitView ISplitView, oldSize Size /* not a class type */)) {
 	d._SplitViewResizeSubviewsWithOldSize = f
 }
 
@@ -146,11 +148,11 @@ func (d *SplitViewDelegate) SetSplitViewWillResizeSubviews(f func(notification f
 }
 
 // SplitViewAdditionalEffectiveRectOfDividerAtIndex implements the PSplitViewDelegate interface.
-func (d *SplitViewDelegate) SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView ISplitView, dividerIndex int) corefoundation.Rect {
+func (d *SplitViewDelegate) SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView ISplitView, dividerIndex int) Rect {
 	if d._SplitViewAdditionalEffectiveRectOfDividerAtIndex != nil {
 		return d._SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView, dividerIndex)
 	}
-	var zero corefoundation.Rect
+	var zero Rect
 	return zero
 }
 
@@ -216,11 +218,11 @@ func (d *SplitViewDelegate) HasSplitViewConstrainSplitPositionOfSubviewAt() bool
 }
 
 // SplitViewEffectiveRectForDrawnRectOfDividerAtIndex implements the PSplitViewDelegate interface.
-func (d *SplitViewDelegate) SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView ISplitView, proposedEffectiveRect objc.IObject /* cross-framework: Rect */, drawnRect objc.IObject /* cross-framework: Rect */, dividerIndex int) corefoundation.Rect {
+func (d *SplitViewDelegate) SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView ISplitView, proposedEffectiveRect Rect /* not a class type */, drawnRect Rect /* not a class type */, dividerIndex int) Rect {
 	if d._SplitViewEffectiveRectForDrawnRectOfDividerAtIndex != nil {
 		return d._SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView, proposedEffectiveRect, drawnRect, dividerIndex)
 	}
-	var zero corefoundation.Rect
+	var zero Rect
 	return zero
 }
 
@@ -230,7 +232,7 @@ func (d *SplitViewDelegate) HasSplitViewEffectiveRectForDrawnRectOfDividerAtInde
 }
 
 // SplitViewResizeSubviewsWithOldSize implements the PSplitViewDelegate interface.
-func (d *SplitViewDelegate) SplitViewResizeSubviewsWithOldSize(splitView ISplitView, oldSize objc.IObject /* cross-framework: Size */) {
+func (d *SplitViewDelegate) SplitViewResizeSubviewsWithOldSize(splitView ISplitView, oldSize Size /* not a class type */) {
 	if d._SplitViewResizeSubviewsWithOldSize != nil {
 		d._SplitViewResizeSubviewsWithOldSize(splitView, oldSize)
 	}

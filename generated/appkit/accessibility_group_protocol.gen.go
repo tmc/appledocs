@@ -15,3 +15,4 @@ var AccessibilityGroupProtocol *objc.Protocol
 func init() {
 	AccessibilityGroupProtocol = objc.GetProtocol("NSAccessibilityGroup")
 }
+

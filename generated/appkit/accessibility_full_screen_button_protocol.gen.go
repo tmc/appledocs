@@ -15,3 +15,4 @@ var accessibilityFullScreenButtonProtocol *objc.Protocol
 func init() {
 	accessibilityFullScreenButtonProtocol = objc.GetProtocol("accessibilityFullScreenButton")
 }
+

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for AddressBook. DO NOT EDIT.
 
 // Package addressbook provides Go bindings for the AddressBook framework.
 //
-// Access the centralized database for storing users’ contacts.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AddressBook without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/AddressBook
 package addressbook
 
 import (

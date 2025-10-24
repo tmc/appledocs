@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNReductionRowMeanNode */
+
+
+/* debug [class_header]: Header for MPSNNReductionRowMeanNode */
 // The class instance for the [ReductionRowMeanNode] class.
 var (
 	ReductionRowMeanNodeClass     _ReductionRowMeanNodeClass
@@ -25,29 +29,30 @@ func getReductionRowMeanNodeClass() _ReductionRowMeanNodeClass {
 type _ReductionRowMeanNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ReductionRowMeanNode */
 // An interface definition for the [ReductionRowMeanNode] class.
 type IReductionRowMeanNode interface {
 	IUnaryReductionNode
+	
+/* debug [class_interface_properties]: Properties for ReductionRowMeanNode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ReductionRowMeanNode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionRowMeanNode
-type ReductionRowMeanNode struct {
-	UnaryReductionNode
-}
-
-// ReductionRowMeanNodeFrom constructs a [ReductionRowMeanNode] from an unsafe.Pointer.
-func ReductionRowMeanNodeFrom(ptr unsafe.Pointer) ReductionRowMeanNode {
-	return ReductionRowMeanNode{
-		UnaryReductionNode: UnaryReductionNodeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ReductionRowMeanNode */
 // Alloc allocates a new instance without initialization.
 func (rc _ReductionRowMeanNodeClass) Alloc() ReductionRowMeanNode {
 	rv := objc.Send[ReductionRowMeanNode](objc.ID(rc.class), objc.Sel("alloc"))
@@ -55,7 +60,6 @@ func (rc _ReductionRowMeanNodeClass) Alloc() ReductionRowMeanNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _ReductionRowMeanNodeClass) New() ReductionRowMeanNode {
 	rv := objc.Send[ReductionRowMeanNode](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -78,7 +82,53 @@ func (r_ ReductionRowMeanNode) Autorelease() ReductionRowMeanNode {
 func NewReductionRowMeanNode() ReductionRowMeanNode {
 	return getReductionRowMeanNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for ReductionRowMeanNode */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionRowMeanNode
+type ReductionRowMeanNode struct {
+	UnaryReductionNode
+}
+
+// ReductionRowMeanNodeFrom constructs a [ReductionRowMeanNode] from an unsafe.Pointer.
+func ReductionRowMeanNodeFrom(ptr unsafe.Pointer) ReductionRowMeanNode {
+	return ReductionRowMeanNode{
+		UnaryReductionNode: UnaryReductionNodeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ReductionRowMeanNode *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ReductionRowMeanNode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ReductionRowMeanNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ReductionRowMeanNode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ReductionRowMeanNode */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNNReductionRowMeanNode */
 
 
 

@@ -15,3 +15,4 @@ var toolbarItemNameProtocol *objc.Protocol
 func init() {
 	toolbarItemNameProtocol = objc.GetProtocol("toolbarItemName")
 }
+

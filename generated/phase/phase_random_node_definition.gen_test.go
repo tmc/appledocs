@@ -15,11 +15,3 @@ func ExampleNewPHASERandomNodeDefinition() {
 	_ = phase.NewPHASERandomNodeDefinition()
 	// Output:
 }
-// ExampleNewPHASERandomNodeDefinitionWithIdentifier demonstrates how to create a PHASERandomNodeDefinition instance using NewPHASERandomNodeDefinitionWithIdentifier.
-// Creates a random node with the name you specify.
-func ExampleNewPHASERandomNodeDefinitionWithIdentifier() {
-	_ = phase.NewPHASERandomNodeDefinitionWithIdentifier(
-		"identifier", // identifier string
-	)
-	// Output:
-}

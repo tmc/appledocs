@@ -15,3 +15,11 @@ func ExampleNewMKHybridMapConfiguration() {
 	_ = mapkit.NewMKHybridMapConfiguration()
 	// Output:
 }
+// ExampleNewMKHybridMapConfigurationWithElevationStyle demonstrates how to create a MKHybridMapConfiguration instance using NewMKHybridMapConfigurationWithElevationStyle.
+// Creates a new hybrid map configuration with the specified elevation style.
+func ExampleNewMKHybridMapConfigurationWithElevationStyle() {
+	_ = mapkit.NewMKHybridMapConfigurationWithElevationStyle(
+		mapkit.MKMapElevationStyle{}, // elevationStyle MKMapElevationStyle
+	)
+	// Output:
+}

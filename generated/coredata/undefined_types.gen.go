@@ -9,22 +9,20 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Array = _undefined // referenced in CoreData
-	BatchUpdateRequestResultType = _undefined // referenced in CoreData
-	CKShare = _undefined // referenced in CoreData
-	DeleteRule = _undefined // referenced in CoreData
-	EventType = _undefined // referenced in CoreData
-	FetchIndexDescription = _undefined // referenced in CoreData
-	FetchRequestResult = _undefined // referenced in CoreData
-	IndexPath = _undefined // referenced in CoreData
-	ManagedObjectContextConcurrencyType = _undefined // referenced in CoreData
-	MergePolicyType = _undefined // referenced in CoreData
-	Notification = _undefined // referenced in CoreData
-	PersistentHistoryChangeType = _undefined // referenced in CoreData
+	Array                                                 = _undefined // referenced in CoreData
+	BatchUpdateRequestResultType                          = _undefined // referenced in CoreData
+	CKShare                                               = _undefined // referenced in CoreData
+	DeleteRule                                            = _undefined // referenced in CoreData
+	EventType                                             = _undefined // referenced in CoreData
+	FetchIndexDescription                                 = _undefined // referenced in CoreData
+	FetchRequestResult                                    = _undefined // referenced in CoreData
+	IndexPath                                             = _undefined // referenced in CoreData
+	ManagedObjectContextConcurrencyType                   = _undefined // referenced in CoreData
+	MergePolicyType                                       = _undefined // referenced in CoreData
+	Notification                                          = _undefined // referenced in CoreData
+	PersistentHistoryChangeType                           = _undefined // referenced in CoreData
 	PersistentStoreAsynchronousFetchResultCompletionBlock = _undefined // referenced in CoreData
-	ResultType = _undefined // referenced in CoreData
-	String = _undefined // referenced in CoreData
-	URL = _undefined // referenced in CoreData
+	ResultType                                            = _undefined // referenced in CoreData
+	String                                                = _undefined // referenced in CoreData
+	URL                                                   = _undefined // referenced in CoreData
 )
-
-

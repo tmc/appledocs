@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureDeviceRotationCoordinator */
+
+
+/* debug [class_header]: Header for AVCaptureDeviceRotationCoordinator */
 // The class instance for the [CaptureDeviceRotationCoordinator] class.
 var (
 	CaptureDeviceRotationCoordinatorClass     _CaptureDeviceRotationCoordinatorClass
@@ -26,42 +30,34 @@ func getCaptureDeviceRotationCoordinatorClass() _CaptureDeviceRotationCoordinato
 type _CaptureDeviceRotationCoordinatorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureDeviceRotationCoordinator */
 // An interface definition for the [CaptureDeviceRotationCoordinator] class.
 type ICaptureDeviceRotationCoordinator interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CaptureDeviceRotationCoordinator */
 	// properties:
 	Device() IAVCaptureDevice
-	SetDevice(value IAVCaptureDevice)
 	PreviewLayer() objc.IObject /* cross-framework: Layer */
-	SetPreviewLayer(value objc.IObject /* cross-framework: Layer */)
 	VideoRotationAngleForHorizonLevelCapture() float64
-	SetVideoRotationAngleForHorizonLevelCapture(value float64)
 	VideoRotationAngleForHorizonLevelPreview() float64
-	SetVideoRotationAngleForHorizonLevelPreview(value float64)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureDeviceRotationCoordinator */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A class that monitors the physical orientation of a capture device and provides adjustment angles to keep images level, relative to gravity.
-//
-// Correctly rotate the photos and movies your app captures, and optionally, a live camera preview, by applying a coordinator’s and properties, respectively. Each rotation coordinator instance updates its properties so that your app can observe them and immediately apply them to the relevant components.
+/* debug [class_interface]: End interface */
 
 
-// A class that monitors the physical orientation of a capture device and provides adjustment angles to keep images level, relative to gravity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator
-type CaptureDeviceRotationCoordinator struct {
-	objectivec.Object
-}
 
-// CaptureDeviceRotationCoordinatorFrom constructs a [CaptureDeviceRotationCoordinator] from an unsafe.Pointer.
-//
-// A class that monitors the physical orientation of a capture device and provides adjustment angles to keep images level, relative to gravity.
-func CaptureDeviceRotationCoordinatorFrom(ptr unsafe.Pointer) CaptureDeviceRotationCoordinator {
-	return CaptureDeviceRotationCoordinator{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CaptureDeviceRotationCoordinator */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureDeviceRotationCoordinatorClass) Alloc() CaptureDeviceRotationCoordinator {
 	rv := objc.Send[CaptureDeviceRotationCoordinator](objc.ID(cc.class), objc.Sel("alloc"))
@@ -69,7 +65,6 @@ func (cc _CaptureDeviceRotationCoordinatorClass) Alloc() CaptureDeviceRotationCo
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureDeviceRotationCoordinatorClass) New() CaptureDeviceRotationCoordinator {
 	rv := objc.Send[CaptureDeviceRotationCoordinator](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,83 +87,110 @@ func (c_ CaptureDeviceRotationCoordinator) Autorelease() CaptureDeviceRotationCo
 func NewCaptureDeviceRotationCoordinator() CaptureDeviceRotationCoordinator {
 	return getCaptureDeviceRotationCoordinatorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CaptureDeviceRotationCoordinator */
+// A class that monitors the physical orientation of a capture device and provides adjustment angles to keep images level, relative to gravity.
+//
+// Correctly rotate the photos and movies your app captures, and optionally, a live camera preview, by applying a coordinator’s and properties, respectively. Each rotation coordinator instance updates its properties so that your app can observe them and immediately apply them to the relevant components.
+
+
+// A class that monitors the physical orientation of a capture device and provides adjustment angles to keep images level, relative to gravity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator
+type CaptureDeviceRotationCoordinator struct {
+	objectivec.Object
+}
+
+// CaptureDeviceRotationCoordinatorFrom constructs a [CaptureDeviceRotationCoordinator] from an unsafe.Pointer.
+//
+// A class that monitors the physical orientation of a capture device and provides adjustment angles to keep images level, relative to gravity.
+func CaptureDeviceRotationCoordinatorFrom(ptr unsafe.Pointer) CaptureDeviceRotationCoordinator {
+	return CaptureDeviceRotationCoordinator{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CaptureDeviceRotationCoordinator */
+
+// Creates a coordinator that provides separate compensation angles for content your app takes with a capture device, and for your app’s camera preview.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/init(device:previewLayer:)
+func NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer(device IAVCaptureDevice, previewLayer objc.IObject /* cross-framework: Layer */) CaptureDeviceRotationCoordinator {
+	instance := getCaptureDeviceRotationCoordinatorClass().Alloc()
+	rv := objc.Send[CaptureDeviceRotationCoordinator](instance.ID, objc.Sel("initWithDevice:previewLayer:"), device, previewLayer)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewCaptureDeviceRotationCoordinatorWithDevicePreviewLayer */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CaptureDeviceRotationCoordinator */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CaptureDeviceRotationCoordinator */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CaptureDeviceRotationCoordinator */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureDeviceRotationCoordinator */
 
 // The capture device the coordinator monitors to track its physical rotation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/device
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/device
 func (c_ CaptureDeviceRotationCoordinator) Device() IAVCaptureDevice {
 	rv := objc.Send[CaptureDevice](c_.ID, objc.Sel("device"))
 	return rv
-}
-
-
-// The capture device the coordinator monitors to track its physical rotation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/device
-func (c_ CaptureDeviceRotationCoordinator) SetDevice(value IAVCaptureDevice) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDevice:"), value)
-}
+}/* debug [instance_properties/getter]: device */
 
 
 // The layer that displays a camera preview the coordinator calculates a video rotation angle for.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/previewLayer
 func (c_ CaptureDeviceRotationCoordinator) PreviewLayer() objc.IObject /* cross-framework: Layer */ {
-	rv := objc.Send[Layer](c_.ID, objc.Sel("previewLayer"))
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("previewLayer"))
 	return rv
-}
-
-
-// The layer that displays a camera preview the coordinator calculates a video rotation angle for.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/previewlayer
-func (c_ CaptureDeviceRotationCoordinator) SetPreviewLayer(value objc.IObject /* cross-framework: Layer */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreviewLayer:"), value)
-}
+}/* debug [instance_properties/getter]: previewLayer */
 
 
 // An angle the coordinator provides your app to apply to photos or videos it captures with the device so that they’re level relative to gravity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelcapture
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/videoRotationAngleForHorizonLevelCapture
 func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelCapture() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngleForHorizonLevelCapture"))
 	return rv
-}
-
-
-// An angle the coordinator provides your app to apply to photos or videos it captures with the device so that they’re level relative to gravity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelcapture
-func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelCapture(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngleForHorizonLevelCapture:"), value)
-}
+}/* debug [instance_properties/getter]: videoRotationAngleForHorizonLevelCapture */
 
 
 // An angle the coordinator provides your app to apply to the preview layer so that it’s level relative to gravity.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelpreview
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/RotationCoordinator/videoRotationAngleForHorizonLevelPreview
 func (c_ CaptureDeviceRotationCoordinator) VideoRotationAngleForHorizonLevelPreview() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoRotationAngleForHorizonLevelPreview"))
 	return rv
-}
+}/* debug [instance_properties/getter]: videoRotationAngleForHorizonLevelPreview */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// An angle the coordinator provides your app to apply to the preview layer so that it’s level relative to gravity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/rotationcoordinator/videorotationangleforhorizonlevelpreview
-func (c_ CaptureDeviceRotationCoordinator) SetVideoRotationAngleForHorizonLevelPreview(value float64) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoRotationAngleForHorizonLevelPreview:"), value)
-}
-
+/* debug [class.gen.go]: End class AVCaptureDeviceRotationCoordinator */
 
 

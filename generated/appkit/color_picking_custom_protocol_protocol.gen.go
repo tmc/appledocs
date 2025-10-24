@@ -12,5 +12,5 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSColorPickingCustom
 type PColorPickingCustom interface {
 	// Required methods
-	CurrentMode() ColorPanelMode
+	CurrentMode() ColorPanelMode/* debug [protocol_interface/required_method]: CurrentMode */
 }

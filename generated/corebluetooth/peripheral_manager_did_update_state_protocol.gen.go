@@ -21,3 +21,4 @@ var peripheralManagerDidUpdateStateProtocol *objc.Protocol
 func init() {
 	peripheralManagerDidUpdateStateProtocol = objc.GetProtocol("peripheralManagerDidUpdateState:")
 }
+

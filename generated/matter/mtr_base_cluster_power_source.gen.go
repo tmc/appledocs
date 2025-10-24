@@ -33,8 +33,6 @@ type IMTRBaseClusterPowerSource interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterPowerSource
 type MTRBaseClusterPowerSource struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterPowerSource) Autorelease() MTRBaseClusterPowerSource {
 func NewMTRBaseClusterPowerSource() MTRBaseClusterPowerSource {
 	return getMTRBaseClusterPowerSourceClass().New()
 }
-
-
-
-

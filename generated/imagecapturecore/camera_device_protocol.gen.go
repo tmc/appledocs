@@ -19,3 +19,4 @@ var cameraDeviceProtocol *objc.Protocol
 func init() {
 	cameraDeviceProtocol = objc.GetProtocol("cameraDevice:")
 }
+

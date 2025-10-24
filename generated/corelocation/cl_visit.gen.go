@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,9 +32,9 @@ type _VisitClass struct {
 type IVisit interface {
 	objectivec.IObject
 	// properties:
-	ArrivalDate() objc.IObject /* cross-framework: NSDate */
-	Coordinate() CLLocationCoordinate2D /* not a class type */
-	DepartureDate() objc.IObject /* cross-framework: NSDate */
+	ArrivalDate() objc.IObject            /* cross-framework: NSDate */
+	Coordinate() CLLocationCoordinate2D   /* not a class type */
+	DepartureDate() objc.IObject          /* cross-framework: NSDate */
 	HorizontalAccuracy() LocationAccuracy /* not a class type */
 	// methods:
 }
@@ -42,7 +42,6 @@ type IVisit interface {
 // Information about the user’s location during a specific period of time.
 //
 // A object encapsulates information about places that the user has been. Visit objects are created by the system and delivered by the object to its delegate after you start the delivery of events. The visit includes the location where the visit occurred and information about the arrival and departure times as relevant. You do not create visit objects directly, nor should you subclass . Visit objects contain as much information about the visit as possible but may not always include both the arrival and departure times. For example, when the user arrives at a location, the system may send an event with only an arrival time. When the user departs a location, the event can contain both the arrival time (if your app was monitoring visits prior to the user’s arrival) and the departure time.
-
 
 // Information about the user’s location during a specific period of time.
 //
@@ -90,8 +89,6 @@ func NewVisit() Visit {
 	return getVisitClass().New()
 }
 
-
-
 // The approximate time at which the user arrived at the specified location.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (v_ Visit) ArrivalDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](v_.ID, objc.Sel("arrivalDate"))
 	return rv
 }
-
 
 // The geographical coordinate information.
 //
@@ -111,7 +107,6 @@ func (v_ Visit) Coordinate() CLLocationCoordinate2D /* not a class type */ {
 	return rv
 }
 
-
 // The approximate time at which the user left the specified location.
 //
 // [Full Topic]
@@ -121,7 +116,6 @@ func (v_ Visit) DepartureDate() objc.IObject /* cross-framework: NSDate */ {
 	return rv
 }
 
-
 // The horizontal accuracy (in meters) of the specified coordinate.
 //
 // [Full Topic]
@@ -130,7 +124,3 @@ func (v_ Visit) HorizontalAccuracy() LocationAccuracy /* not a class type */ {
 	rv := objc.Send[LocationAccuracy](v_.ID, objc.Sel("horizontalAccuracy"))
 	return rv
 }
-
-
-
-

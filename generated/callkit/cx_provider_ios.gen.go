@@ -27,7 +27,7 @@ func (c_ CXProvider) Invalidate() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/pendingCallActions(of:withCall:)
-func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID objc.IObject /* cross-framework: UUID */) []ICXCallAction {
+func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.Class, callUUID foundation.UUID) []CXCallAction {
 	rv := objc.Send[[]CXCallAction](c_.ID, objc.Sel("pendingCallActionsOfClass:withCallUUID:"), callActionClass, callUUID)
 	return rv
 }
@@ -36,7 +36,7 @@ func (c_ CXProvider) PendingCallActionsOfClassWithCallUUID(callActionClass objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportCall(with:endedAt:reason:)
-func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID objc.IObject /* cross-framework: UUID */, dateEnded objc.IObject /* cross-framework: NSDate */, endedReason CXCallEndedReason) {
+func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID foundation.UUID, dateEnded objc.IObject /* cross-framework: NSDate */, endedReason CXCallEndedReason) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportCallWithUUID:endedAtDate:reason:"), UUID, dateEnded, endedReason)
 }
 
@@ -44,7 +44,7 @@ func (c_ CXProvider) ReportCallWithUUIDEndedAtDateReason(UUID objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportCall(with:updated:)
-func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID objc.IObject /* cross-framework: UUID */, update ICXCallUpdate) {
+func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID foundation.UUID, update ICXCallUpdate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportCallWithUUID:updated:"), UUID, update)
 }
 
@@ -52,7 +52,7 @@ func (c_ CXProvider) ReportCallWithUUIDUpdated(UUID objc.IObject /* cross-framew
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportNewIncomingCall(with:update:completion:)
-func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID objc.IObject /* cross-framework: UUID */, update ICXCallUpdate, completion unsafe.Pointer) {
+func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID foundation.UUID, update ICXCallUpdate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportNewIncomingCallWithUUID:update:completion:"), UUID, update, completion)
 }
 
@@ -60,7 +60,7 @@ func (c_ CXProvider) ReportNewIncomingCallWithUUIDUpdateCompletion(UUID objc.IOb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportOutgoingCall(with:connectedAt:)
-func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID objc.IObject /* cross-framework: UUID */, dateConnected objc.IObject /* cross-framework: NSDate */) {
+func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID foundation.UUID, dateConnected objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportOutgoingCallWithUUID:connectedAtDate:"), UUID, dateConnected)
 }
 
@@ -68,7 +68,7 @@ func (c_ CXProvider) ReportOutgoingCallWithUUIDConnectedAtDate(UUID objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportOutgoingCall(with:startedConnectingAt:)
-func (c_ CXProvider) ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID objc.IObject /* cross-framework: UUID */, dateStartedConnecting objc.IObject /* cross-framework: NSDate */) {
+func (c_ CXProvider) ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID foundation.UUID, dateStartedConnecting objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reportOutgoingCallWithUUID:startedConnectingAtDate:"), UUID, dateStartedConnecting)
 }
 
@@ -76,7 +76,7 @@ func (c_ CXProvider) ReportOutgoingCallWithUUIDStartedConnectingAtDate(UUID objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/setDelegate(_:queue:)
-func (c_ CXProvider) SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) {
+func (c_ CXProvider) SetDelegateQueue(delegate unsafe.Pointer, queue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
 }
 
@@ -98,7 +98,7 @@ func (c_ CXProvider) SetConfiguration(value ICXProviderConfiguration) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/pendingTransactions
-func (c_ CXProvider) PendingTransactions() []ICXTransaction {
+func (c_ CXProvider) PendingTransactions() []CXTransaction {
 	rv := objc.Send[[]CXTransaction](c_.ID, objc.Sel("pendingTransactions"))
 	return rv
 }

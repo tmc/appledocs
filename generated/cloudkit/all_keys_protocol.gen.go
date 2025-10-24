@@ -21,3 +21,4 @@ var allKeysProtocol *objc.Protocol
 func init() {
 	allKeysProtocol = objc.GetProtocol("allKeys")
 }
+

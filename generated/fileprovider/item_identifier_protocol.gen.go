@@ -18,3 +18,4 @@ var itemIdentifierProtocol *objc.Protocol
 func init() {
 	itemIdentifierProtocol = objc.GetProtocol("itemIdentifier")
 }
+

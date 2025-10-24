@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVAssetDownloadStorageManagementPolicy */
+
+
+/* debug [class_header]: Header for AVAssetDownloadStorageManagementPolicy */
 // The class instance for the [AssetDownloadStorageManagementPolicy] class.
 var (
 	AssetDownloadStorageManagementPolicyClass     _AssetDownloadStorageManagementPolicyClass
@@ -27,32 +30,32 @@ func getAssetDownloadStorageManagementPolicyClass() _AssetDownloadStorageManagem
 type _AssetDownloadStorageManagementPolicyClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AssetDownloadStorageManagementPolicy */
 // An interface definition for the [AssetDownloadStorageManagementPolicy] class.
 type IAssetDownloadStorageManagementPolicy interface {
 	objectivec.IObject
-	ExpirationDate() foundation.NSDate
-	Priority() unsafe.Pointer
+	
+/* debug [class_interface_properties]: Properties for AssetDownloadStorageManagementPolicy */
+	// properties:
+	ExpirationDate() objc.IObject /* cross-framework: NSDate */
+	Priority() AssetDownloadedAssetEvictionPriority /* typedef */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AssetDownloadStorageManagementPolicy */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that defines a policy to automatically manage the storage of downloaded assets.
 
 
-// An object that defines a policy to automatically manage the storage of downloaded assets.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy
-type AssetDownloadStorageManagementPolicy struct {
-	objectivec.Object
-}
-
-// AssetDownloadStorageManagementPolicyFrom constructs a [AssetDownloadStorageManagementPolicy] from an unsafe.Pointer.
-//
-// An object that defines a policy to automatically manage the storage of downloaded assets.
-func AssetDownloadStorageManagementPolicyFrom(ptr unsafe.Pointer) AssetDownloadStorageManagementPolicy {
-	return AssetDownloadStorageManagementPolicy{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AssetDownloadStorageManagementPolicy */
 // Alloc allocates a new instance without initialization.
 func (ac _AssetDownloadStorageManagementPolicyClass) Alloc() AssetDownloadStorageManagementPolicy {
 	rv := objc.Send[AssetDownloadStorageManagementPolicy](objc.ID(ac.class), objc.Sel("alloc"))
@@ -60,7 +63,6 @@ func (ac _AssetDownloadStorageManagementPolicyClass) Alloc() AssetDownloadStorag
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AssetDownloadStorageManagementPolicyClass) New() AssetDownloadStorageManagementPolicy {
 	rv := objc.Send[AssetDownloadStorageManagementPolicy](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -83,27 +85,76 @@ func (a_ AssetDownloadStorageManagementPolicy) Autorelease() AssetDownloadStorag
 func NewAssetDownloadStorageManagementPolicy() AssetDownloadStorageManagementPolicy {
 	return getAssetDownloadStorageManagementPolicyClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for AssetDownloadStorageManagementPolicy */
+// An object that defines a policy to automatically manage the storage of downloaded assets.
+
+
+// An object that defines a policy to automatically manage the storage of downloaded assets.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy
+type AssetDownloadStorageManagementPolicy struct {
+	objectivec.Object
+}
+
+// AssetDownloadStorageManagementPolicyFrom constructs a [AssetDownloadStorageManagementPolicy] from an unsafe.Pointer.
+//
+// An object that defines a policy to automatically manage the storage of downloaded assets.
+func AssetDownloadStorageManagementPolicyFrom(ptr unsafe.Pointer) AssetDownloadStorageManagementPolicy {
+	return AssetDownloadStorageManagementPolicy{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AssetDownloadStorageManagementPolicy *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AssetDownloadStorageManagementPolicy */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AssetDownloadStorageManagementPolicy */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AssetDownloadStorageManagementPolicy */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AssetDownloadStorageManagementPolicy */
 
 // The expiration date for an asset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy/expirationDate
-func (a_ AssetDownloadStorageManagementPolicy) ExpirationDate() foundation.NSDate {
+func (a_ AssetDownloadStorageManagementPolicy) ExpirationDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](a_.ID, objc.Sel("expirationDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: expirationDate */
 
 
 // The eviction priority for an asset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadStorageManagementPolicy/priority
-func (a_ AssetDownloadStorageManagementPolicy) Priority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("priority"))
+func (a_ AssetDownloadStorageManagementPolicy) Priority() AssetDownloadedAssetEvictionPriority /* typedef */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("priority"))
 	return rv
-}
+}/* debug [instance_properties/getter]: priority */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVAssetDownloadStorageManagementPolicy */
 
 
 

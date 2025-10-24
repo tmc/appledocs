@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PersistentStoreAsynchronousResult] class.
@@ -33,13 +33,12 @@ type IPersistentStoreAsynchronousResult interface {
 	// properties:
 	ManagedObjectContext() IManagedObjectContext
 	OperationError() objc.IObject /* cross-framework: Error */
-	Progress() objc.IObject /* cross-framework: Progress */
+	Progress() objc.IObject       /* cross-framework: Progress */
 	// methods:
 	Cancel()
 }
 
 // A concrete class used to represent the results of an asynchronous request.
-
 
 // A concrete class used to represent the results of an asynchronous request.
 //
@@ -89,8 +88,6 @@ func NewPersistentStoreAsynchronousResult() PersistentStoreAsynchronousResult {
 	return getPersistentStoreAsynchronousResultClass().New()
 }
 
-
-
 // Cancels the asynchronous fetch request.
 //
 // [Full Topic]
@@ -98,7 +95,6 @@ func NewPersistentStoreAsynchronousResult() PersistentStoreAsynchronousResult {
 func (p_ PersistentStoreAsynchronousResult) Cancel() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("cancel"))
 }
-
 
 // The managed object context for the result.
 //
@@ -109,7 +105,6 @@ func (p_ PersistentStoreAsynchronousResult) ManagedObjectContext() IManagedObjec
 	return rv
 }
 
-
 // An error that contains details if the asynchronous fetch request fails.
 //
 // [Full Topic]
@@ -119,7 +114,6 @@ func (p_ PersistentStoreAsynchronousResult) OperationError() objc.IObject /* cro
 	return rv
 }
 
-
 // An object that reports progress for the asynchronous fetch request.
 //
 // [Full Topic]
@@ -128,6 +122,3 @@ func (p_ PersistentStoreAsynchronousResult) Progress() objc.IObject /* cross-fra
 	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("progress"))
 	return rv
 }
-
-
-

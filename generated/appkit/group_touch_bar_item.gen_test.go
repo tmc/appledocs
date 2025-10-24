@@ -14,16 +14,17 @@ var _ = appkit.NewGroupTouchBarItem
 func ExampleNewGroupTouchBarItemGroupItemWithIdentifierItems() {
 	_ = appkit.NewGroupTouchBarItemGroupItemWithIdentifierItems(
 		appkit.TouchBarItemIdentifier{}, // identifier TouchBarItemIdentifier
-		[]appkit.TouchBarItem{}, // items []TouchBarItem
+		[]appkit.TouchBarItem{},         // items []TouchBarItem
 	)
 	// Output:
 }
+
 // ExampleNewGroupTouchBarItemGroupItemWithIdentifierItemsAllowedCompressionOptions demonstrates how to create a GroupTouchBarItem instance using NewGroupTouchBarItemGroupItemWithIdentifierItemsAllowedCompressionOptions.
 // Initializes and returns a group item whose bar is constructed from the supplied items, and with the specified compression options.
 func ExampleNewGroupTouchBarItemGroupItemWithIdentifierItemsAllowedCompressionOptions() {
 	_ = appkit.NewGroupTouchBarItemGroupItemWithIdentifierItemsAllowedCompressionOptions(
-		appkit.TouchBarItemIdentifier{}, // identifier TouchBarItemIdentifier
-		[]appkit.TouchBarItem{}, // items []TouchBarItem
+		appkit.TouchBarItemIdentifier{},            // identifier TouchBarItemIdentifier
+		[]appkit.TouchBarItem{},                    // items []TouchBarItem
 		appkit.NSUserInterfaceCompressionOptions{}, // allowedCompressionOptions NSUserInterfaceCompressionOptions
 	)
 	// Output:

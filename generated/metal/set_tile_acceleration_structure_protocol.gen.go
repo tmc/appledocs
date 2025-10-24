@@ -20,3 +20,4 @@ var setTileAccelerationStructureProtocol *objc.Protocol
 func init() {
 	setTileAccelerationStructureProtocol = objc.GetProtocol("setTileAccelerationStructure:")
 }
+

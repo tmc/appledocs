@@ -19,3 +19,4 @@ var didReceiveDiagnosticPayloadsProtocol *objc.Protocol
 func init() {
 	didReceiveDiagnosticPayloadsProtocol = objc.GetProtocol("didReceiveDiagnosticPayloads:")
 }
+

@@ -21,3 +21,4 @@ var attributedTitleProtocol *objc.Protocol
 func init() {
 	attributedTitleProtocol = objc.GetProtocol("attributedTitle")
 }
+

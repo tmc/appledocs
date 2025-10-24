@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRGroupsClusterRemoveGroupResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterRemoveGroupResponseParams
@@ -87,8 +85,6 @@ func NewMTRGroupsClusterRemoveGroupResponseParams() MTRGroupsClusterRemoveGroupR
 	return getMTRGroupsClusterRemoveGroupResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/groupid-5taii
 func (m_ MTRGroupsClusterRemoveGroupResponseParams) GroupID() objc.IObject /* cross-framework: NSNumber */ {
@@ -96,13 +92,11 @@ func (m_ MTRGroupsClusterRemoveGroupResponseParams) GroupID() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/groupid-5taii
 func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetGroupID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/groupid-5tahm
@@ -111,13 +105,11 @@ func (m_ MTRGroupsClusterRemoveGroupResponseParams) GroupId() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/groupid-5tahm
 func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetGroupId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/status
@@ -126,13 +118,11 @@ func (m_ MTRGroupsClusterRemoveGroupResponseParams) Status() objc.IObject /* cro
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/status
 func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/timedinvoketimeoutms
@@ -141,12 +131,8 @@ func (m_ MTRGroupsClusterRemoveGroupResponseParams) TimedInvokeTimeoutMs() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremovegroupresponseparams/timedinvoketimeoutms
 func (m_ MTRGroupsClusterRemoveGroupResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

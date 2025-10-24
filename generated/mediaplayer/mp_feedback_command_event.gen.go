@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPFeedbackCommandEvent */
+
+
+/* debug [class_header]: Header for MPFeedbackCommandEvent */
 // The class instance for the [FeedbackCommandEvent] class.
 var (
 	FeedbackCommandEventClass     _FeedbackCommandEventClass
@@ -25,36 +29,33 @@ func getFeedbackCommandEventClass() _FeedbackCommandEventClass {
 type _FeedbackCommandEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FeedbackCommandEvent */
 // An interface definition for the [FeedbackCommandEvent] class.
 type IFeedbackCommandEvent interface {
 	IRemoteCommandEvent
+	
+/* debug [class_interface_properties]: Properties for FeedbackCommandEvent */
 	// properties:
+	Negative() bool
 	IsNegative() bool
 	SetIsNegative(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FeedbackCommandEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An event requesting a change in the feedback setting.
 
 
-// An event requesting a change in the feedback setting.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPFeedbackCommandEvent
-type FeedbackCommandEvent struct {
-	RemoteCommandEvent
-}
-
-// FeedbackCommandEventFrom constructs a [FeedbackCommandEvent] from an unsafe.Pointer.
-//
-// An event requesting a change in the feedback setting.
-func FeedbackCommandEventFrom(ptr unsafe.Pointer) FeedbackCommandEvent {
-	return FeedbackCommandEvent{
-		RemoteCommandEvent: RemoteCommandEventFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for FeedbackCommandEvent */
 // Alloc allocates a new instance without initialization.
 func (fc _FeedbackCommandEventClass) Alloc() FeedbackCommandEvent {
 	rv := objc.Send[FeedbackCommandEvent](objc.ID(fc.class), objc.Sel("alloc"))
@@ -62,7 +63,6 @@ func (fc _FeedbackCommandEventClass) Alloc() FeedbackCommandEvent {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FeedbackCommandEventClass) New() FeedbackCommandEvent {
 	rv := objc.Send[FeedbackCommandEvent](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,7 +85,63 @@ func (f_ FeedbackCommandEvent) Autorelease() FeedbackCommandEvent {
 func NewFeedbackCommandEvent() FeedbackCommandEvent {
 	return getFeedbackCommandEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for FeedbackCommandEvent */
+// An event requesting a change in the feedback setting.
+
+
+// An event requesting a change in the feedback setting.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPFeedbackCommandEvent
+type FeedbackCommandEvent struct {
+	RemoteCommandEvent
+}
+
+// FeedbackCommandEventFrom constructs a [FeedbackCommandEvent] from an unsafe.Pointer.
+//
+// An event requesting a change in the feedback setting.
+func FeedbackCommandEventFrom(ptr unsafe.Pointer) FeedbackCommandEvent {
+	return FeedbackCommandEvent{
+		RemoteCommandEvent: RemoteCommandEventFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FeedbackCommandEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for FeedbackCommandEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FeedbackCommandEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FeedbackCommandEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FeedbackCommandEvent */
+
+// A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPFeedbackCommandEvent/isNegative
+func (f_ FeedbackCommandEvent) Negative() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("negative"))
+	return rv
+}/* debug [instance_properties/getter]: negative */
 
 
 // A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
@@ -95,7 +151,7 @@ func NewFeedbackCommandEvent() FeedbackCommandEvent {
 func (f_ FeedbackCommandEvent) IsNegative() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isNegative"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isNegative */
 
 
 // A Boolean value that indicates whether an app should perform a negative command appropriate to the target.
@@ -104,7 +160,12 @@ func (f_ FeedbackCommandEvent) IsNegative() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpfeedbackcommandevent/isnegative
 func (f_ FeedbackCommandEvent) SetIsNegative(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsNegative:"), value)
-}
+}/* debug [instance_properties/setter]: isNegative */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPFeedbackCommandEvent */
 
 
 

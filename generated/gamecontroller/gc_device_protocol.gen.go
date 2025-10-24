@@ -20,3 +20,4 @@ var GCDeviceProtocol *objc.Protocol
 func init() {
 	GCDeviceProtocol = objc.GetProtocol("GCDevice")
 }
+

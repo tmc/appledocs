@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,7 +42,6 @@ type IINVoiceShortcut interface {
 // A shortcut the user added to Siri.
 //
 // To add a shortcut to Siri, create an object and add it using . You don’t create an instance of ; the system creates the instance for you when an instance is needed.
-
 
 // A shortcut the user added to Siri.
 //
@@ -90,8 +89,6 @@ func NewINVoiceShortcut() INVoiceShortcut {
 	return getINVoiceShortcutClass().New()
 }
 
-
-
 // The unique identifier for the shortcut.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INVoiceShortcut) Identifier() foundation.UUID {
 	return rv
 }
 
-
 // The unique identifier for the shortcut.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INVoiceShortcut) Identifier() foundation.UUID {
 func (i_ INVoiceShortcut) SetIdentifier(value foundation.IUUID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 // The phrase the user speaks to invoke the shortcut.
 //
@@ -120,7 +115,6 @@ func (i_ INVoiceShortcut) InvocationPhrase() string {
 	return rv
 }
 
-
 // The phrase the user speaks to invoke the shortcut.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INVoiceShortcut) InvocationPhrase() string {
 func (i_ INVoiceShortcut) SetInvocationPhrase(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setInvocationPhrase:"), objc.String(value))
 }
-
 
 // The shortcut Siri invokes when the user speaks the invocation phrase.
 //
@@ -139,7 +132,6 @@ func (i_ INVoiceShortcut) Shortcut() INShortcut {
 	return rv
 }
 
-
 // The shortcut Siri invokes when the user speaks the invocation phrase.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INVoiceShortcut) Shortcut() INShortcut {
 func (i_ INVoiceShortcut) SetShortcut(value INShortcut) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcut:"), value)
 }
-
-
-

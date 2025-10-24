@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for MetalPerformanceShaders. DO NOT EDIT.
 
 // Package metalperformanceshaders provides Go bindings for the MetalPerformanceShaders framework.

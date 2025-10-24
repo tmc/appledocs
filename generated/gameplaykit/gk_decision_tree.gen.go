@@ -6,12 +6,14 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GKDecisionTree */
+
+/* debug [class_header]: Header for GKDecisionTree */
 // The class instance for the [DecisionTree] class.
 var (
 	DecisionTreeClass     _DecisionTreeClass
@@ -29,40 +31,33 @@ type _DecisionTreeClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for DecisionTree */
 // An interface definition for the [DecisionTree] class.
 type IDecisionTree interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for DecisionTree */
 	// properties:
 	RandomSource() IGKRandomSource
 	SetRandomSource(value IGKRandomSource)
 	RootNode() IGKDecisionNode
 	Description() objc.IObject /* cross-framework: NSString */
 	SetDescription(value objc.IObject /* cross-framework: NSString */)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for DecisionTree */
 	// methods:
 	ExportToURLError(url objc.IObject /* cross-framework: NSURL */, error_ objc.IObject /* cross-framework: Error */) bool
 	FindActionForAnswers(answers foundation.IDictionary) objc.ID
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
-//
-// You can define a decision tree manually, by specifying questions, answers, and actions, or you can allow the class to automatically learn a predictive model based on example data. A decision tree has several elements: represent individual questions to be answered or choices to be made. are the possible answers to the questions or choices posed by each attribute. are the final outcomes of the tree’s decision-making process. Each branch from an attribute leads either to another attribute or to an action. When you use the class, attributes and actions can be any object type relevant to your app or game. You can define branches for specific answer values, using predicates, or with weights that influence a random decision. For example, a strategy combat game might use a decision tree to choose what a character should do on its turn, based on several criteria about the match in progress. In this case: For attributes, you might use (non-user-visible) strings that represent those criteria, such as (what type of enemy is the character’s opponent?), (how much health does the opponent have remaining?), and (is the character’s special move available for use?). For branches, you’d use an appropriate style for each attribute. The attribute might have a branch for each possible enemy type, but the attribute could use predicates to determine whether the enemy’s health is above or below a certain threshold value. For actions, you might define your own enumerated type representing the kinds of attacks the character can choose (such as , , and ). Alternately, you might use instances of your own custom classes representing items or spells available to the character. illustrates a possible tree structure based on the above example attributes, branches, and actions.
+/* debug [class_interface]: End interface */
 
-
-// A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree
-type DecisionTree struct {
-	objectivec.Object
-}
-
-// DecisionTreeFrom constructs a [DecisionTree] from an unsafe.Pointer.
-//
-// A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
-func DecisionTreeFrom(ptr unsafe.Pointer) DecisionTree {
-	return DecisionTree{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for DecisionTree */
 // Alloc allocates a new instance without initialization.
 func (dc _DecisionTreeClass) Alloc() DecisionTree {
 	rv := objc.Send[DecisionTree](objc.ID(dc.class), objc.Sel("alloc"))
@@ -70,7 +65,6 @@ func (dc _DecisionTreeClass) Alloc() DecisionTree {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DecisionTreeClass) New() DecisionTree {
 	rv := objc.Send[DecisionTree](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,31 +88,53 @@ func NewDecisionTree() DecisionTree {
 	return getDecisionTreeClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for DecisionTree */
+// A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
+//
+// You can define a decision tree manually, by specifying questions, answers, and actions, or you can allow the class to automatically learn a predictive model based on example data. A decision tree has several elements: represent individual questions to be answered or choices to be made. are the possible answers to the questions or choices posed by each attribute. are the final outcomes of the tree’s decision-making process. Each branch from an attribute leads either to another attribute or to an action. When you use the class, attributes and actions can be any object type relevant to your app or game. You can define branches for specific answer values, using predicates, or with weights that influence a random decision. For example, a strategy combat game might use a decision tree to choose what a character should do on its turn, based on several criteria about the match in progress. In this case: For attributes, you might use (non-user-visible) strings that represent those criteria, such as (what type of enemy is the character’s opponent?), (how much health does the opponent have remaining?), and (is the character’s special move available for use?). For branches, you’d use an appropriate style for each attribute. The attribute might have a branch for each possible enemy type, but the attribute could use predicates to determine whether the enemy’s health is above or below a certain threshold value. For actions, you might define your own enumerated type representing the kinds of attacks the character can choose (such as , , and ). Alternately, you might use instances of your own custom classes representing items or spells available to the character. illustrates a possible tree structure based on the above example attributes, branches, and actions.
+
+// A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree
+type DecisionTree struct {
+	objectivec.Object
+}
+
+// DecisionTreeFrom constructs a [DecisionTree] from an unsafe.Pointer.
+//
+// A data structure that models a set of specific questions, their possible answers, and the actions that follow from a series of answers.
+func DecisionTreeFrom(ptr unsafe.Pointer) DecisionTree {
+	return DecisionTree{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for DecisionTree */
 
 // Creates a decision tree starting with the specified initial attribute to test.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(attribute:)
-func NewDecisionTreeWithAttribute(attribute objectivec.IObject) DecisionTree {
+func NewDecisionTreeWithAttribute(attribute objc.IObject) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithAttribute:"), attribute)
 	rv.Autorelease()
 	return rv
-}
-
+} /* debug [class_init_methods/constructor]: NewDecisionTreeWithAttribute */
 
 // Creates an automatically learned decision tree using the specified attributes, example items, and actions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(examples:actions:attributes:)
-func NewDecisionTreeWithExamplesActionsAttributes(examples []objc.IObject /* cross-framework: Array */, actions []objc.ID, attributes []objc.ID) DecisionTree {
+func NewDecisionTreeWithExamplesActionsAttributes(examples []foundation.Array, actions []objc.ID, attributes []objc.ID) DecisionTree {
 	instance := getDecisionTreeClass().Alloc()
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithExamples:actions:attributes:"), examples, actions, attributes)
 	rv.Autorelease()
 	return rv
-}
-
+} /* debug [class_init_methods/constructor]: NewDecisionTreeWithExamplesActionsAttributes */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/init(url:error:)
@@ -127,17 +143,24 @@ func NewDecisionTreeWithURLError(url objc.IObject /* cross-framework: NSURL */, 
 	rv := objc.Send[DecisionTree](instance.ID, objc.Sel("initWithURL:error:"), url, error_)
 	rv.Autorelease()
 	return rv
-}
+} /* debug [class_init_methods/constructor]: NewDecisionTreeWithURLError */
 
+/* debug [class_init_methods]: End init methods */
 
+/* debug [class_methods]: Class methods for DecisionTree */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for DecisionTree */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for DecisionTree */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/export(to:error:)
 func (d_ DecisionTree) ExportToURLError(url objc.IObject /* cross-framework: NSURL */, error_ objc.IObject /* cross-framework: Error */) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("exportToURL:error:"), url, error_)
 	return rv
-}
-
+} /* debug [instance_methods/method]: ExportToURLError */
 
 // Searches the decision tree, following the branches corresponding to each of the specified answers, and returns the resulting action object.
 //
@@ -146,8 +169,11 @@ func (d_ DecisionTree) ExportToURLError(url objc.IObject /* cross-framework: NSU
 func (d_ DecisionTree) FindActionForAnswers(answers foundation.IDictionary) objc.ID {
 	rv := objc.Send[objc.ID](d_.ID, objc.Sel("findActionForAnswers:"), answers)
 	return rv
-}
+} /* debug [instance_methods/method]: FindActionForAnswers */
 
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for DecisionTree */
 
 // The randomizer to be used when evaluating parts of the tree that branch randomly.
 //
@@ -156,8 +182,7 @@ func (d_ DecisionTree) FindActionForAnswers(answers foundation.IDictionary) objc
 func (d_ DecisionTree) RandomSource() IGKRandomSource {
 	rv := objc.Send[RandomSource](d_.ID, objc.Sel("randomSource"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: randomSource */
 
 // The randomizer to be used when evaluating parts of the tree that branch randomly.
 //
@@ -165,8 +190,7 @@ func (d_ DecisionTree) RandomSource() IGKRandomSource {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKDecisionTree/randomSource
 func (d_ DecisionTree) SetRandomSource(value IGKRandomSource) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setRandomSource:"), value)
-}
-
+} /* debug [instance_properties/setter]: randomSource */
 
 // The decision node at the root of the decision tree, representing the first attribute to test.
 //
@@ -175,8 +199,7 @@ func (d_ DecisionTree) SetRandomSource(value IGKRandomSource) {
 func (d_ DecisionTree) RootNode() IGKDecisionNode {
 	rv := objc.Send[DecisionNode](d_.ID, objc.Sel("rootNode"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: rootNode */
 
 // A textual representation of the receiver.
 //
@@ -185,8 +208,7 @@ func (d_ DecisionTree) RootNode() IGKDecisionNode {
 func (d_ DecisionTree) Description() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("description"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: description */
 
 // A textual representation of the receiver.
 //
@@ -194,6 +216,8 @@ func (d_ DecisionTree) Description() objc.IObject /* cross-framework: NSString *
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/description
 func (d_ DecisionTree) SetDescription(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDescription:"), value)
-}
+} /* debug [instance_properties/setter]: description */
 
+/* debug [instance_properties]: End instance properties */
 
+/* debug [class.gen.go]: End class GKDecisionTree */

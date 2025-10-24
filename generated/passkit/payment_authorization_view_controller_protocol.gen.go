@@ -7,11 +7,11 @@ import "github.com/ebitengine/purego/objc"
 // paymentAuthorizationViewControllerProtocol is the paymentAuthorizationViewController: protocol.
 //
 // Availability:
-//   - Mac Catalyst 13.1+
-//   - iOS 11.0+
-//   - iPadOS 11.0+
+//   - Mac Catalyst 13.1+ (Deprecated in 13.1)
+//   - iOS 8.0+ (Deprecated in 11.0)
+//   - iPadOS 8.0+ (Deprecated in 11.0)
 //   - macOS 11.0+
-//   - visionOS 1.0+
+//   - visionOS 1.0+ (Deprecated in 1.0)
 //
 // Use this protocol when registering custom classes that conform to paymentAuthorizationViewController:.
 var paymentAuthorizationViewControllerProtocol *objc.Protocol
@@ -19,3 +19,4 @@ var paymentAuthorizationViewControllerProtocol *objc.Protocol
 func init() {
 	paymentAuthorizationViewControllerProtocol = objc.GetProtocol("paymentAuthorizationViewController:")
 }
+

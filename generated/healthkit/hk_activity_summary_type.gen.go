@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class HKActivitySummaryType */
+
+
+/* debug [class_header]: Header for HKActivitySummaryType */
 // The class instance for the [HKActivitySummaryType] class.
 var (
 	HKActivitySummaryTypeClass     _HKActivitySummaryTypeClass
@@ -25,36 +29,30 @@ func getHKActivitySummaryTypeClass() _HKActivitySummaryTypeClass {
 type _HKActivitySummaryTypeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKActivitySummaryType */
 // An interface definition for the [HKActivitySummaryType] class.
 type IHKActivitySummaryType interface {
 	IHKObjectType
+	
+/* debug [class_interface_properties]: Properties for HKActivitySummaryType */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKActivitySummaryType */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A type that identifies activity summary objects.
-//
-// Use the activity summary type to request permission to read objects from the HealthKit store. To create an activity summary type, use the class’s convenience method. The class is a concrete subclass of the class. Like many HealthKit classes, activity summary types aren’t extensible and you shouldn’t subclass them.
+/* debug [class_interface]: End interface */
 
 
-// A type that identifies activity summary objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryType
-type HKActivitySummaryType struct {
-	HKObjectType
-}
 
-// HKActivitySummaryTypeFrom constructs a [HKActivitySummaryType] from an unsafe.Pointer.
-//
-// A type that identifies activity summary objects.
-func HKActivitySummaryTypeFrom(ptr unsafe.Pointer) HKActivitySummaryType {
-	return HKActivitySummaryType{
-		HKObjectType: HKObjectTypeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for HKActivitySummaryType */
 // Alloc allocates a new instance without initialization.
 func (hc _HKActivitySummaryTypeClass) Alloc() HKActivitySummaryType {
 	rv := objc.Send[HKActivitySummaryType](objc.ID(hc.class), objc.Sel("alloc"))
@@ -62,7 +60,6 @@ func (hc _HKActivitySummaryTypeClass) Alloc() HKActivitySummaryType {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKActivitySummaryTypeClass) New() HKActivitySummaryType {
 	rv := objc.Send[HKActivitySummaryType](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,7 +82,60 @@ func (h_ HKActivitySummaryType) Autorelease() HKActivitySummaryType {
 func NewHKActivitySummaryType() HKActivitySummaryType {
 	return getHKActivitySummaryTypeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for HKActivitySummaryType */
+// A type that identifies activity summary objects.
+//
+// Use the activity summary type to request permission to read objects from the HealthKit store. To create an activity summary type, use the class’s convenience method. The class is a concrete subclass of the class. Like many HealthKit classes, activity summary types aren’t extensible and you shouldn’t subclass them.
+
+
+// A type that identifies activity summary objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKActivitySummaryType
+type HKActivitySummaryType struct {
+	HKObjectType
+}
+
+// HKActivitySummaryTypeFrom constructs a [HKActivitySummaryType] from an unsafe.Pointer.
+//
+// A type that identifies activity summary objects.
+func HKActivitySummaryTypeFrom(ptr unsafe.Pointer) HKActivitySummaryType {
+	return HKActivitySummaryType{
+		HKObjectType: HKObjectTypeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKActivitySummaryType *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKActivitySummaryType */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKActivitySummaryType */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKActivitySummaryType */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKActivitySummaryType */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class HKActivitySummaryType */
 
 
 

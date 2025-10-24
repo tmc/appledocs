@@ -15,3 +15,4 @@ var commitEditingProtocol *objc.Protocol
 func init() {
 	commitEditingProtocol = objc.GetProtocol("commitEditing")
 }
+

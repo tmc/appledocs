@@ -9,10 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Mode = _undefined // referenced in GameController
-	Status = _undefined // referenced in GameController
-	String = _undefined // referenced in GameController
-	TouchState = _undefined // referenced in GameController
+	HIDDeviceRef = _undefined // referenced in GameController
 )
 
 

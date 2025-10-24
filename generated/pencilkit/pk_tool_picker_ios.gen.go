@@ -11,6 +11,7 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/mapkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -21,7 +22,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/addObserver(_:)
-func (t_ ToolPicker) AddObserver(observer objectivec.IObject) {
+func (t_ ToolPicker) AddObserver(observer unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("addObserver:"), observer)
 }
 
@@ -29,8 +30,8 @@ func (t_ ToolPicker) AddObserver(observer objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/frameObscured(in:)
-func (t_ ToolPicker) FrameObscuredInView(view objc.IObject /* cross-framework: View */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("frameObscuredInView:"), view)
+func (t_ ToolPicker) FrameObscuredInView(view appkit.View) corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](t_.ID, objc.Sel("frameObscuredInView:"), view)
 	return rv
 }
 
@@ -38,7 +39,7 @@ func (t_ ToolPicker) FrameObscuredInView(view objc.IObject /* cross-framework: V
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/removeObserver(_:)
-func (t_ ToolPicker) RemoveObserver(observer objectivec.IObject) {
+func (t_ ToolPicker) RemoveObserver(observer unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeObserver:"), observer)
 }
 
@@ -46,7 +47,7 @@ func (t_ ToolPicker) RemoveObserver(observer objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/setVisible(_:forFirstResponder:)
-func (t_ ToolPicker) SetVisibleForFirstResponder(visible bool, responder objc.IObject /* cross-framework: Responder */) {
+func (t_ ToolPicker) SetVisibleForFirstResponder(visible bool, responder appkit.Responder) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisible:forFirstResponder:"), visible, responder)
 }
 
@@ -56,11 +57,11 @@ func (t_ ToolPicker) SetVisibleForFirstResponder(visible bool, responder objc.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/accessoryItem
-func (t_ ToolPicker) AccessoryItem() BarButtonItem /* not a class type */ {
-	rv := objc.Send[BarButtonItem](t_.ID, objc.Sel("accessoryItem"))
+func (t_ ToolPicker) AccessoryItem() mapkit.BarButtonItem {
+	rv := objc.Send[mapkit.BarButtonItem](t_.ID, objc.Sel("accessoryItem"))
 	return rv
 }
-func (t_ ToolPicker) SetAccessoryItem(value BarButtonItem /* not a class type */) {
+func (t_ ToolPicker) SetAccessoryItem(value mapkit.BarButtonItem) {
 	t_.ID.Send(objc.RegisterName("setAccessoryItem:"), value)
 }
 
@@ -92,11 +93,11 @@ func (t_ ToolPicker) SetColorUserInterfaceStyle(value UserInterfaceStyle /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/delegate-swift.property
-func (t_ ToolPicker) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
+func (t_ ToolPicker) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (t_ ToolPicker) SetDelegate(value objc.ID) {
+func (t_ ToolPicker) SetDelegate(value unsafe.Pointer) {
 	t_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -221,7 +222,7 @@ func (t_ ToolPicker) SetStateAutosaveName(value objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPicker/toolItems
-func (t_ ToolPicker) ToolItems() []IToolPickerItem {
+func (t_ ToolPicker) ToolItems() []ToolPickerItem {
 	rv := objc.Send[[]ToolPickerItem](t_.ID, objc.Sel("toolItems"))
 	return rv
 }

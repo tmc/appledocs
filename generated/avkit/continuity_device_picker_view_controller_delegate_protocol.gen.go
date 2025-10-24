@@ -15,3 +15,4 @@ var ContinuityDevicePickerViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	ContinuityDevicePickerViewControllerDelegateProtocol = objc.GetProtocol("AVContinuityDevicePickerViewControllerDelegate")
 }
+

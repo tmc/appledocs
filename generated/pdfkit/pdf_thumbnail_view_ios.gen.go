@@ -20,11 +20,11 @@ import (
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/contentInset
-func (p_ PDFThumbnailView) ContentInset() objc.IObject /* cross-framework: EdgeInsets */ {
+func (p_ PDFThumbnailView) ContentInset() foundation.EdgeInsets {
 	rv := objc.Send[foundation.EdgeInsets](p_.ID, objc.Sel("contentInset"))
 	return rv
 }
-func (p_ PDFThumbnailView) SetContentInset(value objc.IObject /* cross-framework: EdgeInsets */) {
+func (p_ PDFThumbnailView) SetContentInset(value foundation.EdgeInsets) {
 	p_.ID.Send(objc.RegisterName("setContentInset:"), value)
 }
 

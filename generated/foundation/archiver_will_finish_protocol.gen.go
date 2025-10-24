@@ -21,3 +21,4 @@ var archiverWillFinishProtocol *objc.Protocol
 func init() {
 	archiverWillFinishProtocol = objc.GetProtocol("archiverWillFinish:")
 }
+

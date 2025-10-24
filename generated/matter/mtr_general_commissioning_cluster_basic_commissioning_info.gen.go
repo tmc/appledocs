@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRGeneralCommissioningClusterBasicCommissioningInfo interface {
 	SetMaxCumulativeFailsafeSeconds(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterBasicCommissioningInfo
@@ -83,8 +81,6 @@ func NewMTRGeneralCommissioningClusterBasicCommissioningInfo() MTRGeneralCommiss
 	return getMTRGeneralCommissioningClusterBasicCommissioningInfoClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterbasiccommissioninginfo/failsafeexpirylengthseconds
 func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) FailSafeExpiryLengthSeconds() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) FailSafeExpiryLen
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterbasiccommissioninginfo/failsafeexpirylengthseconds
 func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) SetFailSafeExpiryLengthSeconds(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFailSafeExpiryLengthSeconds:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterbasiccommissioninginfo/maxcumulativefailsafeseconds
@@ -107,12 +101,8 @@ func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) MaxCumulativeFail
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterbasiccommissioninginfo/maxcumulativefailsafeseconds
 func (m_ MTRGeneralCommissioningClusterBasicCommissioningInfo) SetMaxCumulativeFailsafeSeconds(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMaxCumulativeFailsafeSeconds:"), value)
 }
-
-
-

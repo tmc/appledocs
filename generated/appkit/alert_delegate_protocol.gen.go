@@ -15,3 +15,4 @@ var AlertDelegateProtocol *objc.Protocol
 func init() {
 	AlertDelegateProtocol = objc.GetProtocol("NSAlertDelegate")
 }
+

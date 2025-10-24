@@ -2,7 +2,9 @@
 
 package servicemanagement
 
+/* debug [enums.gen.go]: Generating 1 enums for ServiceManagement */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum SMAppServiceStatus (4 cases) */
 // SMAppServiceStatus - Constants that describe the registration or authorization status of a helper executable.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/Status-swift.enum
@@ -26,5 +28,3 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/ServiceManagement/SMAppService/Status-swift.enum/requiresApproval
 	SMAppServiceStatusRequiresApproval SMAppServiceStatus = 0
 )
-
-

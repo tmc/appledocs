@@ -16,3 +16,4 @@ var devicePropertiesForPropertiesProtocol *objc.Protocol
 func init() {
 	devicePropertiesForPropertiesProtocol = objc.GetProtocol("devicePropertiesForProperties:")
 }
+

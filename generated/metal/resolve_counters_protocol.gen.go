@@ -20,3 +20,4 @@ var resolveCountersProtocol *objc.Protocol
 func init() {
 	resolveCountersProtocol = objc.GetProtocol("resolveCounters:")
 }
+

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for MetalPerformanceShadersGraph. DO NOT EDIT.
 
 // Package metalperformanceshadersgraph provides Go bindings for the MetalPerformanceShadersGraph framework.
 //
-// Build, compile, and execute compute graphs utilizing all the different compute devices on the platform, including GPU, CPU, and Neural Engine.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MetalPerformanceShadersGraph without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/MetalPerformanceShadersGraph
 package metalperformanceshadersgraph
 
 import (

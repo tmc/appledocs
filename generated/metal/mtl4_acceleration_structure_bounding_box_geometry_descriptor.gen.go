@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
+
+
+/* debug [class_header]: Header for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
 // The class instance for the [MTL4AccelerationStructureBoundingBoxGeometryDescriptor] class.
 var (
 	MTL4AccelerationStructureBoundingBoxGeometryDescriptorClass     _MTL4AccelerationStructureBoundingBoxGeometryDescriptorClass
@@ -25,36 +29,36 @@ func getMTL4AccelerationStructureBoundingBoxGeometryDescriptorClass() _MTL4Accel
 type _MTL4AccelerationStructureBoundingBoxGeometryDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
 // An interface definition for the [MTL4AccelerationStructureBoundingBoxGeometryDescriptor] class.
 type IMTL4AccelerationStructureBoundingBoxGeometryDescriptor interface {
 	IMTL4AccelerationStructureGeometryDescriptor
-	BoundingBoxBuffer() unsafe.Pointer
-	SetBoundingBoxBuffer(value unsafe.Pointer)
-	BoundingBoxCount() int
-	SetBoundingBoxCount(value int)
-	BoundingBoxStride() int
-	SetBoundingBoxStride(value int)
-}
+	
+/* debug [class_interface_properties]: Properties for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
+	// properties:
+	BoundingBoxBuffer() objc.IObject /* cross-framework: MTL4BufferRange */
+	SetBoundingBoxBuffer(value objc.IObject /* cross-framework: MTL4BufferRange */)
+	BoundingBoxCount() uint
+	SetBoundingBoxCount(value uint)
+	BoundingBoxStride() uint
+	SetBoundingBoxStride(value uint)
+/* debug [class_interface_properties]: End properties */
 
-// Describes bounding-box geometry suitable for ray tracing.
-//
-// You use bounding boxes to implement procedural geometry for ray tracing, such as spheres or any other shape you define by using intersection functions. Use a to mark residency of all buffers this descriptor references when you build this acceleration structure.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureBoundingBoxGeometryDescriptor
-type MTL4AccelerationStructureBoundingBoxGeometryDescriptor struct {
-	MTL4AccelerationStructureGeometryDescriptor
-}
+	
+/* debug [class_interface_methods]: Methods for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// MTL4AccelerationStructureBoundingBoxGeometryDescriptorFrom constructs a [MTL4AccelerationStructureBoundingBoxGeometryDescriptor] from an unsafe.Pointer.
-//
-// Describes bounding-box geometry suitable for ray tracing.
-func MTL4AccelerationStructureBoundingBoxGeometryDescriptorFrom(ptr unsafe.Pointer) MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
-	return MTL4AccelerationStructureBoundingBoxGeometryDescriptor{
-		MTL4AccelerationStructureGeometryDescriptor: MTL4AccelerationStructureGeometryDescriptorFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4AccelerationStructureBoundingBoxGeometryDescriptorClass) Alloc() MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
 	rv := objc.Send[MTL4AccelerationStructureBoundingBoxGeometryDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
@@ -62,7 +66,6 @@ func (mc _MTL4AccelerationStructureBoundingBoxGeometryDescriptorClass) Alloc() M
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTL4AccelerationStructureBoundingBoxGeometryDescriptorClass) New() MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
 	rv := objc.Send[MTL4AccelerationStructureBoundingBoxGeometryDescriptor](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,61 +88,117 @@ func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) Autorelease() M
 func NewMTL4AccelerationStructureBoundingBoxGeometryDescriptor() MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
 	return getMTL4AccelerationStructureBoundingBoxGeometryDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-// References a buffer containing bounding box data in
+
+/* debug [class_struct]: Struct for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
+// Describes bounding-box geometry suitable for ray tracing.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxbuffer
-func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("boundingBoxBuffer"))
-	return rv
+// You use bounding boxes to implement procedural geometry for ray tracing, such as spheres or any other shape you define by using intersection functions. Use a to mark residency of all buffers this descriptor references when you build this acceleration structure.
+
+
+// Describes bounding-box geometry suitable for ray tracing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureBoundingBoxGeometryDescriptor
+type MTL4AccelerationStructureBoundingBoxGeometryDescriptor struct {
+	MTL4AccelerationStructureGeometryDescriptor
 }
 
-
-// SetBoundingBoxBuffer sets the value of the boundingBoxBuffer property.
-// References a buffer containing bounding box data in
-
+// MTL4AccelerationStructureBoundingBoxGeometryDescriptorFrom constructs a [MTL4AccelerationStructureBoundingBoxGeometryDescriptor] from an unsafe.Pointer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxbuffer
-func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxBuffer(value unsafe.Pointer) {
+// Describes bounding-box geometry suitable for ray tracing.
+func MTL4AccelerationStructureBoundingBoxGeometryDescriptorFrom(ptr unsafe.Pointer) MTL4AccelerationStructureBoundingBoxGeometryDescriptor {
+	return MTL4AccelerationStructureBoundingBoxGeometryDescriptor{
+		MTL4AccelerationStructureGeometryDescriptor: MTL4AccelerationStructureGeometryDescriptorFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTL4AccelerationStructureBoundingBoxGeometryDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
+
+// References a buffer containing bounding box data in format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureBoundingBoxGeometryDescriptor/boundingBoxBuffer
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxBuffer() objc.IObject /* cross-framework: MTL4BufferRange */ {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("boundingBoxBuffer"))
+	return rv
+}/* debug [instance_properties/getter]: boundingBoxBuffer */
+
+
+// References a buffer containing bounding box data in format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureBoundingBoxGeometryDescriptor/boundingBoxBuffer
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxBuffer(value objc.IObject /* cross-framework: MTL4BufferRange */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: boundingBoxBuffer */
 
-// Describes the number of bounding boxes the
+
+// Describes the number of bounding boxes the contains.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxcount
-func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("boundingBoxCount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureBoundingBoxGeometryDescriptor/boundingBoxCount
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("boundingBoxCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: boundingBoxCount */
 
 
-// SetBoundingBoxCount sets the value of the boundingBoxCount property.
-// Describes the number of bounding boxes the
-
+// Describes the number of bounding boxes the contains.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxcount
-func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureBoundingBoxGeometryDescriptor/boundingBoxCount
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxCount:"), value)
-}
+}/* debug [instance_properties/setter]: boundingBoxCount */
 
-// Assigns the stride, in bytes, between bounding boxes in the bounding box buffer
+
+// Assigns the stride, in bytes, between bounding boxes in the bounding box buffer references.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxstride
-func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxStride() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("boundingBoxStride"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureBoundingBoxGeometryDescriptor/boundingBoxStride
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) BoundingBoxStride() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("boundingBoxStride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: boundingBoxStride */
 
 
-// SetBoundingBoxStride sets the value of the boundingBoxStride property.
-// Assigns the stride, in bytes, between bounding boxes in the bounding box buffer
-
+// Assigns the stride, in bytes, between bounding boxes in the bounding box buffer references.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructureboundingboxgeometrydescriptor/boundingboxstride
-func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureBoundingBoxGeometryDescriptor/boundingBoxStride
+func (m_ MTL4AccelerationStructureBoundingBoxGeometryDescriptor) SetBoundingBoxStride(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBoundingBoxStride:"), value)
-}
+}/* debug [instance_properties/setter]: boundingBoxStride */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTL4AccelerationStructureBoundingBoxGeometryDescriptor */
 
 
 

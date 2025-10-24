@@ -2,12 +2,8 @@
 
 // Package audiounit provides Go bindings for the AudioUnit framework.
 //
-// Add sophisticated audio manipulation and processing capabilities to your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AudioUnit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/AudioUnit
 package audiounit
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/AudioUnit.framework/AudioUnit"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

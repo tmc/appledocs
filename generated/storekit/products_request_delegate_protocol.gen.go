@@ -11,6 +11,7 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 3.0+ (Deprecated in 18.0)
 //   - iPadOS 3.0+ (Deprecated in 18.0)
 //   - macOS 10.7+ (Deprecated in 15.0)
+//   - tvOS + (Deprecated in 18.0)
 //   - visionOS 1.0+ (Deprecated in 2.0)
 //   - watchOS 6.2+ (Deprecated in 11.0)
 //

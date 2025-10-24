@@ -15,3 +15,4 @@ var applicationDidChangeScreenParametersProtocol *objc.Protocol
 func init() {
 	applicationDidChangeScreenParametersProtocol = objc.GetProtocol("applicationDidChangeScreenParameters:")
 }
+

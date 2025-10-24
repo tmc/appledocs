@@ -15,3 +15,4 @@ var findBarViewProtocol *objc.Protocol
 func init() {
 	findBarViewProtocol = objc.GetProtocol("findBarView")
 }
+

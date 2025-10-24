@@ -7,10 +7,15 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VNCoreMLModel */
+
+
+/* debug [class_header]: Header for VNCoreMLModel */
 // The class instance for the [CoreMLModel] class.
 var (
 	CoreMLModelClass     _CoreMLModelClass
@@ -27,40 +32,36 @@ func getCoreMLModelClass() _CoreMLModelClass {
 type _CoreMLModelClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CoreMLModel */
 // An interface definition for the [CoreMLModel] class.
 type ICoreMLModel interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CoreMLModel */
 	// properties:
-	FeatureProvider() objc.ID
-	SetFeatureProvider(value objc.ID)
+	FeatureProvider() unsafe.Pointer
+	SetFeatureProvider(value unsafe.Pointer)
 	InputImageFeatureName() objc.IObject /* cross-framework: NSString */
 	SetInputImageFeatureName(value objc.IObject /* cross-framework: NSString */)
 	Model() IVNCoreMLModel
 	SetModel(value IVNCoreMLModel)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CoreMLModel */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A container for the model to use with Vision requests.
-//
-// A model encapsulates the information trained from a data set used to drive Vision recognition requests. See for instructions on training your own model. Once you train the model, use this class to initialize a for identification.
+/* debug [class_interface]: End interface */
 
 
-// A container for the model to use with Vision requests.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel
-type CoreMLModel struct {
-	objectivec.Object
-}
 
-// CoreMLModelFrom constructs a [CoreMLModel] from an unsafe.Pointer.
-//
-// A container for the model to use with Vision requests.
-func CoreMLModelFrom(ptr unsafe.Pointer) CoreMLModel {
-	return CoreMLModel{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CoreMLModel */
 // Alloc allocates a new instance without initialization.
 func (cc _CoreMLModelClass) Alloc() CoreMLModel {
 	rv := objc.Send[CoreMLModel](objc.ID(cc.class), objc.Sel("alloc"))
@@ -68,7 +69,6 @@ func (cc _CoreMLModelClass) Alloc() CoreMLModel {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CoreMLModelClass) New() CoreMLModel {
 	rv := objc.Send[CoreMLModel](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,45 +91,112 @@ func (c_ CoreMLModel) Autorelease() CoreMLModel {
 func NewCoreMLModel() CoreMLModel {
 	return getCoreMLModelClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// An optional object to support inputs outside Vision.
+/* debug [class_struct]: Struct for CoreMLModel */
+// A container for the model to use with Vision requests.
+//
+// A model encapsulates the information trained from a data set used to drive Vision recognition requests. See for instructions on training your own model. Once you train the model, use this class to initialize a for identification.
+
+
+// A container for the model to use with Vision requests.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/featureProvider
-func (c_ CoreMLModel) FeatureProvider() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("featureProvider"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel
+type CoreMLModel struct {
+	objectivec.Object
+}
+
+// CoreMLModelFrom constructs a [CoreMLModel] from an unsafe.Pointer.
+//
+// A container for the model to use with Vision requests.
+func CoreMLModelFrom(ptr unsafe.Pointer) CoreMLModel {
+	return CoreMLModel{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CoreMLModel */
+
+// Creates a model container to use with a Core ML request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/init(for:)
+func NewCoreMLModelForMLModelError(model coreml.Model, error_ objectivec.IObject) CoreMLModel {
+	rv := objc.Send[CoreMLModel](objc.ID(getCoreMLModelClass().class), objc.Sel("modelForMLModel:error:"), model, error_)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCoreMLModelForMLModelError */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CoreMLModel */
+
+// Creates a model container to use with a Core ML request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/init(for:)
+func (cc _CoreMLModelClass) ModelForMLModelError(model coreml.Model, error_ objectivec.IObject) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("modelForMLModel:error:"), model, error_)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ModelForMLModelError) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CoreMLModel */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CoreMLModel */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CoreMLModel */
+
+// An optional object to support inputs outside Vision.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/featureProvider
+func (c_ CoreMLModel) FeatureProvider() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("featureProvider"))
+	return rv
+}/* debug [instance_properties/getter]: featureProvider */
 
 
 // An optional object to support inputs outside Vision.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/featureProvider
-func (c_ CoreMLModel) SetFeatureProvider(value objc.ID) {
+func (c_ CoreMLModel) SetFeatureProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureProvider:"), value)
-}
+}/* debug [instance_properties/setter]: featureProvider */
 
 
 // The name of the feature value that Vision sets from the request handler.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlmodel/inputimagefeaturename
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
 func (c_ CoreMLModel) InputImageFeatureName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("inputImageFeatureName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: inputImageFeatureName */
 
 
 // The name of the feature value that Vision sets from the request handler.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlmodel/inputimagefeaturename
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNCoreMLModel/inputImageFeatureName
 func (c_ CoreMLModel) SetInputImageFeatureName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setInputImageFeatureName:"), value)
-}
+}/* debug [instance_properties/setter]: inputImageFeatureName */
 
 
 // The model to base the image analysis request on.
@@ -139,7 +206,7 @@ func (c_ CoreMLModel) SetInputImageFeatureName(value objc.IObject /* cross-frame
 func (c_ CoreMLModel) Model() IVNCoreMLModel {
 	rv := objc.Send[CoreMLModel](c_.ID, objc.Sel("model"))
 	return rv
-}
+}/* debug [instance_properties/getter]: model */
 
 
 // The model to base the image analysis request on.
@@ -148,7 +215,11 @@ func (c_ CoreMLModel) Model() IVNCoreMLModel {
 // [Full Topic]: https://developer.apple.com/documentation/vision/vncoremlrequest/model
 func (c_ CoreMLModel) SetModel(value IVNCoreMLModel) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setModel:"), value)
-}
+}/* debug [instance_properties/setter]: model */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class VNCoreMLModel */
 
 

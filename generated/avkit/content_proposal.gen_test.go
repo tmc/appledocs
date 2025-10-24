@@ -13,8 +13,8 @@ var _ = avkit.NewContentProposal
 // Creates a new content proposal with the specified transition time, title, and preview image.
 func ExampleNewContentProposalWithContentTimeForTransitionTitlePreviewImage() {
 	_ = avkit.NewContentProposalWithContentTimeForTransitionTitlePreviewImage(
-		avkit.Time{}, // contentTimeForTransition Time
-		"title", // title string
+		avkit.Time{},  // contentTimeForTransition Time
+		"title",       // title string
 		avkit.Image{}, // previewImage Image
 	)
 	// Output:

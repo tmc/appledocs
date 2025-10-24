@@ -18,9 +18,9 @@ package foundation
 // See: doc://com.apple.foundation/documentation/Foundation/URLAuthenticationChallengeSender
 type PURLAuthenticationChallengeSender interface {
 	// Required methods
-	CancelAuthenticationChallenge(challenge IURLAuthenticationChallenge)
-	ContinueWithoutCredentialForAuthenticationChallenge(challenge IURLAuthenticationChallenge)
-	UseCredentialForAuthenticationChallenge(credential IURLCredential, challenge IURLAuthenticationChallenge)
+	CancelAuthenticationChallenge(challenge IURLAuthenticationChallenge)/* debug [protocol_interface/required_method]: CancelAuthenticationChallenge */
+	ContinueWithoutCredentialForAuthenticationChallenge(challenge IURLAuthenticationChallenge)/* debug [protocol_interface/required_method]: ContinueWithoutCredentialForAuthenticationChallenge */
+	UseCredentialForAuthenticationChallenge(credential IURLCredential, challenge IURLAuthenticationChallenge)/* debug [protocol_interface/required_method]: UseCredentialForAuthenticationChallenge */
 	// Optional methods
 	PerformDefaultHandlingForAuthenticationChallenge(challenge IURLAuthenticationChallenge)
 	HasPerformDefaultHandlingForAuthenticationChallenge() bool

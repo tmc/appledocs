@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,7 +44,6 @@ type IINPersonHandle interface {
 // The identifying information for a user of your app.
 //
 // An object contains information that you use to uniquely identify a user of your app. When resolving a person associated with an intent, you might create instances of this class and add them to an object when resolving an intent involving that person. Handles contain unique information such as an email address or phone number.
-
 
 // The identifying information for a user of your app.
 //
@@ -92,8 +91,6 @@ func NewINPersonHandle() INPersonHandle {
 	return getINPersonHandleClass().New()
 }
 
-
-
 // A standard label that describes the meaning of the information.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (i_ INPersonHandle) Label() unsafe.Pointer {
 	return rv
 }
 
-
 // A standard label that describes the meaning of the information.
 //
 // [Full Topic]
@@ -111,7 +107,6 @@ func (i_ INPersonHandle) Label() unsafe.Pointer {
 func (i_ INPersonHandle) SetLabel(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLabel:"), value)
 }
-
 
 // The type of information contained in the handle.
 //
@@ -122,7 +117,6 @@ func (i_ INPersonHandle) Type() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of information contained in the handle.
 //
 // [Full Topic]
@@ -130,7 +124,6 @@ func (i_ INPersonHandle) Type() unsafe.Pointer {
 func (i_ INPersonHandle) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
-
 
 // The data for the handle.
 //
@@ -141,7 +134,6 @@ func (i_ INPersonHandle) Value() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The data for the handle.
 //
 // [Full Topic]
@@ -149,6 +141,3 @@ func (i_ INPersonHandle) Value() objc.IObject /* cross-framework: NSString */ {
 func (i_ INPersonHandle) SetValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

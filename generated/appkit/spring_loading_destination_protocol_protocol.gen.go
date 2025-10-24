@@ -3,8 +3,7 @@
 package appkit
 
 import (
-
-	"github.com/tmc/appledocs/generated/objc"
+	"unsafe"
 )
 
 // PSpringLoadingDestination is the NSSpringLoadingDestination protocol interface.
@@ -17,15 +16,15 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSSpringLoadingDestination
 type PSpringLoadingDestination interface {
 	// Required methods
-	SpringLoadingActivatedDraggingInfo(activated bool, draggingInfo objc.IObject)
-	SpringLoadingHighlightChanged(draggingInfo objc.IObject)
+	SpringLoadingActivatedDraggingInfo(activated bool, draggingInfo unsafe.Pointer)/* debug [protocol_interface/required_method]: SpringLoadingActivatedDraggingInfo */
+	SpringLoadingHighlightChanged(draggingInfo unsafe.Pointer)/* debug [protocol_interface/required_method]: SpringLoadingHighlightChanged */
 	// Optional methods
-	DraggingEnded(draggingInfo objc.IObject)
+	DraggingEnded(draggingInfo unsafe.Pointer)
 	HasDraggingEnded() bool
-	SpringLoadingEntered(draggingInfo objc.IObject) SpringLoadingOptions
+	SpringLoadingEntered(draggingInfo unsafe.Pointer) SpringLoadingOptions
 	HasSpringLoadingEntered() bool
-	SpringLoadingExited(draggingInfo objc.IObject)
+	SpringLoadingExited(draggingInfo unsafe.Pointer)
 	HasSpringLoadingExited() bool
-	SpringLoadingUpdated(draggingInfo objc.IObject) SpringLoadingOptions
+	SpringLoadingUpdated(draggingInfo unsafe.Pointer) SpringLoadingOptions
 	HasSpringLoadingUpdated() bool
 }

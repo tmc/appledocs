@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class PHASESamplerNodeDefinition */
+
+
+/* debug [class_header]: Header for PHASESamplerNodeDefinition */
 // The class instance for the [PHASESamplerNodeDefinition] class.
 var (
 	PHASESamplerNodeDefinitionClass     _PHASESamplerNodeDefinitionClass
@@ -26,42 +30,35 @@ func getPHASESamplerNodeDefinitionClass() _PHASESamplerNodeDefinitionClass {
 type _PHASESamplerNodeDefinitionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PHASESamplerNodeDefinition */
 // An interface definition for the [PHASESamplerNodeDefinition] class.
 type IPHASESamplerNodeDefinition interface {
 	IPHASEGeneratorNodeDefinition
+	
+/* debug [class_interface_properties]: Properties for PHASESamplerNodeDefinition */
 	// properties:
+	AssetIdentifier() objc.IObject /* cross-framework: NSString */
+	CullOption() PHASECullOption
+	SetCullOption(value PHASECullOption)
 	PlaybackMode() PHASEPlaybackMode
 	SetPlaybackMode(value PHASEPlaybackMode)
-	AssetIdentifier() objc.IObject /* cross-framework: NSString */
-	SetAssetIdentifier(value objc.IObject /* cross-framework: NSString */)
-	CullOption() unsafe.Pointer
-	SetCullOption(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PHASESamplerNodeDefinition */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A node that plays complete audio data.
-//
-// Generate sound events from this node to play audio data that your app loads completely, either from disk or from memory.
+/* debug [class_interface]: End interface */
 
 
-// A node that plays complete audio data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition
-type PHASESamplerNodeDefinition struct {
-	PHASEGeneratorNodeDefinition
-}
 
-// PHASESamplerNodeDefinitionFrom constructs a [PHASESamplerNodeDefinition] from an unsafe.Pointer.
-//
-// A node that plays complete audio data.
-func PHASESamplerNodeDefinitionFrom(ptr unsafe.Pointer) PHASESamplerNodeDefinition {
-	return PHASESamplerNodeDefinition{
-		PHASEGeneratorNodeDefinition: PHASEGeneratorNodeDefinitionFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for PHASESamplerNodeDefinition */
 // Alloc allocates a new instance without initialization.
 func (pc _PHASESamplerNodeDefinitionClass) Alloc() PHASESamplerNodeDefinition {
 	rv := objc.Send[PHASESamplerNodeDefinition](objc.ID(pc.class), objc.Sel("alloc"))
@@ -69,7 +66,6 @@ func (pc _PHASESamplerNodeDefinitionClass) Alloc() PHASESamplerNodeDefinition {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PHASESamplerNodeDefinitionClass) New() PHASESamplerNodeDefinition {
 	rv := objc.Send[PHASESamplerNodeDefinition](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,7 +88,109 @@ func (p_ PHASESamplerNodeDefinition) Autorelease() PHASESamplerNodeDefinition {
 func NewPHASESamplerNodeDefinition() PHASESamplerNodeDefinition {
 	return getPHASESamplerNodeDefinitionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for PHASESamplerNodeDefinition */
+// A node that plays complete audio data.
+//
+// Generate sound events from this node to play audio data that your app loads completely, either from disk or from memory.
+
+
+// A node that plays complete audio data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition
+type PHASESamplerNodeDefinition struct {
+	PHASEGeneratorNodeDefinition
+}
+
+// PHASESamplerNodeDefinitionFrom constructs a [PHASESamplerNodeDefinition] from an unsafe.Pointer.
+//
+// A node that plays complete audio data.
+func PHASESamplerNodeDefinitionFrom(ptr unsafe.Pointer) PHASESamplerNodeDefinition {
+	return PHASESamplerNodeDefinition{
+		PHASEGeneratorNodeDefinition: PHASEGeneratorNodeDefinitionFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PHASESamplerNodeDefinition */
+
+// Creates a sampler node with the given sound asset and mixer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/init(soundAssetIdentifier:mixerDefinition:)
+func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition(soundAssetIdentifier objc.IObject /* cross-framework: NSString */, mixerDefinition IPHASEMixerDefinition) PHASESamplerNodeDefinition {
+	instance := getPHASESamplerNodeDefinitionClass().Alloc()
+	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:"), soundAssetIdentifier, mixerDefinition)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinition */
+
+
+// Creates a named sampler node with the given sound asset and mixer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/init(soundAssetIdentifier:mixerDefinition:identifier:)
+func NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentifier(soundAssetIdentifier objc.IObject /* cross-framework: NSString */, mixerDefinition IPHASEMixerDefinition, identifier objc.IObject /* cross-framework: NSString */) PHASESamplerNodeDefinition {
+	instance := getPHASESamplerNodeDefinitionClass().Alloc()
+	rv := objc.Send[PHASESamplerNodeDefinition](instance.ID, objc.Sel("initWithSoundAssetIdentifier:mixerDefinition:identifier:"), soundAssetIdentifier, mixerDefinition, identifier)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewPHASESamplerNodeDefinitionWithSoundAssetIdentifierMixerDefinitionIdentifier */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PHASESamplerNodeDefinition */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PHASESamplerNodeDefinition */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PHASESamplerNodeDefinition */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PHASESamplerNodeDefinition */
+
+// The name of the audio this node plays.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/assetIdentifier
+func (p_ PHASESamplerNodeDefinition) AssetIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("assetIdentifier"))
+	return rv
+}/* debug [instance_properties/getter]: assetIdentifier */
+
+
+// The action the engine performs after it temporarily removes the node’s sound from the audio output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/cullOption
+func (p_ PHASESamplerNodeDefinition) CullOption() PHASECullOption {
+	rv := objc.Send[PHASECullOption](p_.ID, objc.Sel("cullOption"))
+	return rv
+}/* debug [instance_properties/getter]: cullOption */
+
+
+// The action the engine performs after it temporarily removes the node’s sound from the audio output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/cullOption
+func (p_ PHASESamplerNodeDefinition) SetCullOption(value PHASECullOption) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCullOption:"), value)
+}/* debug [instance_properties/setter]: cullOption */
 
 
 // An option that determines whether the node’s audio plays in a loop.
@@ -102,7 +200,7 @@ func NewPHASESamplerNodeDefinition() PHASESamplerNodeDefinition {
 func (p_ PHASESamplerNodeDefinition) PlaybackMode() PHASEPlaybackMode {
 	rv := objc.Send[PHASEPlaybackMode](p_.ID, objc.Sel("playbackMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: playbackMode */
 
 
 // An option that determines whether the node’s audio plays in a loop.
@@ -111,45 +209,11 @@ func (p_ PHASESamplerNodeDefinition) PlaybackMode() PHASEPlaybackMode {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASESamplerNodeDefinition/playbackMode
 func (p_ PHASESamplerNodeDefinition) SetPlaybackMode(value PHASEPlaybackMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackMode:"), value)
-}
+}/* debug [instance_properties/setter]: playbackMode */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The name of the audio this node plays.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/assetidentifier
-func (p_ PHASESamplerNodeDefinition) AssetIdentifier() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("assetIdentifier"))
-	return rv
-}
-
-
-// The name of the audio this node plays.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/assetidentifier
-func (p_ PHASESamplerNodeDefinition) SetAssetIdentifier(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetIdentifier:"), value)
-}
-
-
-// The action the engine performs after it temporarily removes the node’s sound from the audio output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/culloption
-func (p_ PHASESamplerNodeDefinition) CullOption() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("cullOption"))
-	return rv
-}
-
-
-// The action the engine performs after it temporarily removes the node’s sound from the audio output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasesamplernodedefinition/culloption
-func (p_ PHASESamplerNodeDefinition) SetCullOption(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCullOption:"), value)
-}
-
+/* debug [class.gen.go]: End class PHASESamplerNodeDefinition */
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRIdentifyClusterTriggerEffectParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRIdentifyClusterTriggerEffectParams
@@ -87,8 +85,6 @@ func NewMTRIdentifyClusterTriggerEffectParams() MTRIdentifyClusterTriggerEffectP
 	return getMTRIdentifyClusterTriggerEffectParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectidentifier
 func (m_ MTRIdentifyClusterTriggerEffectParams) EffectIdentifier() objc.IObject /* cross-framework: NSNumber */ {
@@ -96,13 +92,11 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) EffectIdentifier() objc.IObject 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectidentifier
 func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectIdentifier(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectIdentifier:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
@@ -111,13 +105,11 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) EffectVariant() objc.IObject /* 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/effectvariant
 func (m_ MTRIdentifyClusterTriggerEffectParams) SetEffectVariant(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEffectVariant:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/serversideprocessingtimeout
@@ -126,13 +118,11 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) ServerSideProcessingTimeout() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/serversideprocessingtimeout
 func (m_ MTRIdentifyClusterTriggerEffectParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
@@ -141,12 +131,8 @@ func (m_ MTRIdentifyClusterTriggerEffectParams) TimedInvokeTimeoutMs() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtridentifyclustertriggereffectparams/timedinvoketimeoutms
 func (m_ MTRIdentifyClusterTriggerEffectParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

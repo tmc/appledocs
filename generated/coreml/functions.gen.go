@@ -2,6 +2,7 @@
 
 package coreml
 
+/* debug [functions.gen.go]: Generating 1 functions for CoreML */
 import (
 	"unsafe"
 
@@ -49,7 +50,8 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreML/MLAllComputeDevices
 func MLAllComputeDevices() []unsafe.Pointer {
 	return _MLAllComputeDevices()
-}
+}/* debug [functions.gen.go/function]: MLAllComputeDevices */
+
 
 
 

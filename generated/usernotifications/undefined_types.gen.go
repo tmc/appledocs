@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	Date = _undefined // referenced in UserNotifications
 )
-
-

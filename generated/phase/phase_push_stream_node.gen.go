@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/avfaudio"
 )
 
+/* debug [class.gen.go]: Generating class PHASEPushStreamNode */
+
+
+/* debug [class_header]: Header for PHASEPushStreamNode */
 // The class instance for the [PHASEPushStreamNode] class.
 var (
 	PHASEPushStreamNodeClass     _PHASEPushStreamNodeClass
@@ -26,46 +30,40 @@ func getPHASEPushStreamNodeClass() _PHASEPushStreamNodeClass {
 type _PHASEPushStreamNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PHASEPushStreamNode */
 // An interface definition for the [PHASEPushStreamNode] class.
 type IPHASEPushStreamNode interface {
 	IPHASEStreamNode
+	
+/* debug [class_interface_properties]: Properties for PHASEPushStreamNode */
 	// properties:
-	Format() objc.IObject /* cross-framework: AudioFormat */
-	SetFormat(value objc.IObject /* cross-framework: AudioFormat */)
+	Format() avfaudio.AudioFormat
 	GainMetaParameter() IPHASENumberMetaParameter
-	SetGainMetaParameter(value IPHASENumberMetaParameter)
 	Mixer() IPHASEMixer
-	SetMixer(value IPHASEMixer)
 	RateMetaParameter() IPHASENumberMetaParameter
-	SetRateMetaParameter(value IPHASENumberMetaParameter)
 	PushStreamNodes() IPHASEPushStreamNode
 	SetPushStreamNodes(value IPHASEPushStreamNode)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PHASEPushStreamNode */
 	// methods:
+	ScheduleBuffer(buffer avfaudio.AudioPCMBuffer)
+	ScheduleBufferCompletionCallbackTypeCompletionHandler(buffer avfaudio.AudioPCMBuffer, completionCallbackType PHASEPushStreamCompletionCallbackCondition, completionHandler unsafe.Pointer)
+	ScheduleBufferAtTimeOptions(buffer avfaudio.AudioPCMBuffer, when avfaudio.AudioTime, options PHASEPushStreamBufferOptions)
+	ScheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler(buffer avfaudio.AudioPCMBuffer, when avfaudio.AudioTime, options PHASEPushStreamBufferOptions, completionCallbackType PHASEPushStreamCompletionCallbackCondition, completionHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An audio stream you manage to provide a sound buffer data.
-//
-// A sound event’s dictionary populates with an instance of this class when PHASE invokes a in your event node tree. Your app provides the audio data that the sound event plays by calling one or more of this class’s buffer-scheduling functions, for example, .
+/* debug [class_interface]: End interface */
 
 
-// An audio stream you manage to provide a sound buffer data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode
-type PHASEPushStreamNode struct {
-	PHASEStreamNode
-}
 
-// PHASEPushStreamNodeFrom constructs a [PHASEPushStreamNode] from an unsafe.Pointer.
-//
-// An audio stream you manage to provide a sound buffer data.
-func PHASEPushStreamNodeFrom(ptr unsafe.Pointer) PHASEPushStreamNode {
-	return PHASEPushStreamNode{
-		PHASEStreamNode: PHASEStreamNodeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for PHASEPushStreamNode */
 // Alloc allocates a new instance without initialization.
 func (pc _PHASEPushStreamNodeClass) Alloc() PHASEPushStreamNode {
 	rv := objc.Send[PHASEPushStreamNode](objc.ID(pc.class), objc.Sel("alloc"))
@@ -73,7 +71,6 @@ func (pc _PHASEPushStreamNodeClass) Alloc() PHASEPushStreamNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PHASEPushStreamNodeClass) New() PHASEPushStreamNode {
 	rv := objc.Send[PHASEPushStreamNode](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -96,83 +93,131 @@ func (p_ PHASEPushStreamNode) Autorelease() PHASEPushStreamNode {
 func NewPHASEPushStreamNode() PHASEPushStreamNode {
 	return getPHASEPushStreamNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PHASEPushStreamNode */
+// An audio stream you manage to provide a sound buffer data.
+//
+// A sound event’s dictionary populates with an instance of this class when PHASE invokes a in your event node tree. Your app provides the audio data that the sound event plays by calling one or more of this class’s buffer-scheduling functions, for example, .
+
+
+// An audio stream you manage to provide a sound buffer data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode
+type PHASEPushStreamNode struct {
+	PHASEStreamNode
+}
+
+// PHASEPushStreamNodeFrom constructs a [PHASEPushStreamNode] from an unsafe.Pointer.
+//
+// An audio stream you manage to provide a sound buffer data.
+func PHASEPushStreamNodeFrom(ptr unsafe.Pointer) PHASEPushStreamNode {
+	return PHASEPushStreamNode{
+		PHASEStreamNode: PHASEStreamNodeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PHASEPushStreamNode *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PHASEPushStreamNode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PHASEPushStreamNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PHASEPushStreamNode */
+
+// Schedules audio data for playback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode/scheduleBuffer(buffer:)
+func (p_ PHASEPushStreamNode) ScheduleBuffer(buffer avfaudio.AudioPCMBuffer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("scheduleBuffer:"), buffer)
+}/* debug [instance_methods/method]: ScheduleBuffer */
+
+
+// Schedules audio data playback with a completion handler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode/scheduleBuffer(buffer:completionCallbackType:completionHandler:)
+func (p_ PHASEPushStreamNode) ScheduleBufferCompletionCallbackTypeCompletionHandler(buffer avfaudio.AudioPCMBuffer, completionCallbackType PHASEPushStreamCompletionCallbackCondition, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("scheduleBuffer:completionCallbackType:completionHandler:"), buffer, completionCallbackType, completionHandler)
+}/* debug [instance_methods/method]: ScheduleBufferCompletionCallbackTypeCompletionHandler */
+
+
+// Schedules audio data playback at a specific time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode/scheduleBuffer(buffer:time:options:)
+func (p_ PHASEPushStreamNode) ScheduleBufferAtTimeOptions(buffer avfaudio.AudioPCMBuffer, when avfaudio.AudioTime, options PHASEPushStreamBufferOptions) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("scheduleBuffer:atTime:options:"), buffer, when, options)
+}/* debug [instance_methods/method]: ScheduleBufferAtTimeOptions */
+
+
+// Schedules audio data playback at a specific time with a completion handler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode/scheduleBuffer(buffer:time:options:completionCallbackType:completionHandler:)
+func (p_ PHASEPushStreamNode) ScheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler(buffer avfaudio.AudioPCMBuffer, when avfaudio.AudioTime, options PHASEPushStreamBufferOptions, completionCallbackType PHASEPushStreamCompletionCallbackCondition, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("scheduleBuffer:atTime:options:completionCallbackType:completionHandler:"), buffer, when, options, completionCallbackType, completionHandler)
+}/* debug [instance_methods/method]: ScheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PHASEPushStreamNode */
 
 // The format of the audio stream data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/format
-func (p_ PHASEPushStreamNode) Format() objc.IObject /* cross-framework: AudioFormat */ {
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode/format
+func (p_ PHASEPushStreamNode) Format() avfaudio.AudioFormat {
 	rv := objc.Send[avfaudio.AudioFormat](p_.ID, objc.Sel("format"))
 	return rv
-}
-
-
-// The format of the audio stream data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/format
-func (p_ PHASEPushStreamNode) SetFormat(value objc.IObject /* cross-framework: AudioFormat */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFormat:"), value)
-}
+}/* debug [instance_properties/getter]: format */
 
 
 // A meta parameter for dynamic loudness control.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/gainmetaparameter
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode/gainMetaParameter
 func (p_ PHASEPushStreamNode) GainMetaParameter() IPHASENumberMetaParameter {
 	rv := objc.Send[PHASENumberMetaParameter](p_.ID, objc.Sel("gainMetaParameter"))
 	return rv
-}
-
-
-// A meta parameter for dynamic loudness control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/gainmetaparameter
-func (p_ PHASEPushStreamNode) SetGainMetaParameter(value IPHASENumberMetaParameter) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGainMetaParameter:"), value)
-}
+}/* debug [instance_properties/getter]: gainMetaParameter */
 
 
 // The audio stream’s output pipeline.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/mixer
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode/mixer
 func (p_ PHASEPushStreamNode) Mixer() IPHASEMixer {
 	rv := objc.Send[PHASEMixer](p_.ID, objc.Sel("mixer"))
 	return rv
-}
-
-
-// The audio stream’s output pipeline.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/mixer
-func (p_ PHASEPushStreamNode) SetMixer(value IPHASEMixer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setMixer:"), value)
-}
+}/* debug [instance_properties/getter]: mixer */
 
 
 // A meta parameter for dynamic rate control.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/ratemetaparameter
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEPushStreamNode/rateMetaParameter
 func (p_ PHASEPushStreamNode) RateMetaParameter() IPHASENumberMetaParameter {
 	rv := objc.Send[PHASENumberMetaParameter](p_.ID, objc.Sel("rateMetaParameter"))
 	return rv
-}
-
-
-// A meta parameter for dynamic rate control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/phase/phasepushstreamnode/ratemetaparameter
-func (p_ PHASEPushStreamNode) SetRateMetaParameter(value IPHASENumberMetaParameter) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRateMetaParameter:"), value)
-}
+}/* debug [instance_properties/getter]: rateMetaParameter */
 
 
 // A collection of audio streams for playback.
@@ -182,7 +227,7 @@ func (p_ PHASEPushStreamNode) SetRateMetaParameter(value IPHASENumberMetaParamet
 func (p_ PHASEPushStreamNode) PushStreamNodes() IPHASEPushStreamNode {
 	rv := objc.Send[PHASEPushStreamNode](p_.ID, objc.Sel("pushStreamNodes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pushStreamNodes */
 
 
 // A collection of audio streams for playback.
@@ -191,7 +236,12 @@ func (p_ PHASEPushStreamNode) PushStreamNodes() IPHASEPushStreamNode {
 // [Full Topic]: https://developer.apple.com/documentation/phase/phasesoundevent/pushstreamnodes
 func (p_ PHASEPushStreamNode) SetPushStreamNodes(value IPHASEPushStreamNode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPushStreamNodes:"), value)
-}
+}/* debug [instance_properties/setter]: pushStreamNodes */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PHASEPushStreamNode */
 
 
 

@@ -15,3 +15,4 @@ var IKSlideshowDataSourceProtocol *objc.Protocol
 func init() {
 	IKSlideshowDataSourceProtocol = objc.GetProtocol("IKSlideshowDataSource")
 }
+

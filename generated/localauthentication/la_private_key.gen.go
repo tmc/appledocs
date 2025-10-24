@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class LAPrivateKey */
+
+
+/* debug [class_header]: Header for LAPrivateKey */
 // The class instance for the [PrivateKey] class.
 var (
 	PrivateKeyClass     _PrivateKeyClass
@@ -27,12 +31,22 @@ func getPrivateKeyClass() _PrivateKeyClass {
 type _PrivateKeyClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PrivateKey */
 // An interface definition for the [PrivateKey] class.
 type IPrivateKey interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PrivateKey */
 	// properties:
 	PublicKey() ILAPublicKey
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PrivateKey */
 	// methods:
 	CanDecryptUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool
 	CanExchangeKeysUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool
@@ -40,26 +54,14 @@ type IPrivateKey interface {
 	DecryptDataSecKeyAlgorithmCompletion(data objc.IObject /* cross-framework: NSData */, algorithm unsafe.Pointer, handler unsafe.Pointer)
 	ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion(publicKey objc.IObject /* cross-framework: NSData */, algorithm unsafe.Pointer, parameters objc.IObject /* cross-framework: NSDictionary */, handler unsafe.Pointer)
 	SignDataSecKeyAlgorithmCompletion(data objc.IObject /* cross-framework: NSData */, algorithm unsafe.Pointer, handler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// The private portion of an asymmetric key pair.
 
 
-// The private portion of an asymmetric key pair.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey
-type PrivateKey struct {
-	objectivec.Object
-}
-
-// PrivateKeyFrom constructs a [PrivateKey] from an unsafe.Pointer.
-//
-// The private portion of an asymmetric key pair.
-func PrivateKeyFrom(ptr unsafe.Pointer) PrivateKey {
-	return PrivateKey{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PrivateKey */
 // Alloc allocates a new instance without initialization.
 func (pc _PrivateKeyClass) Alloc() PrivateKey {
 	rv := objc.Send[PrivateKey](objc.ID(pc.class), objc.Sel("alloc"))
@@ -67,7 +69,6 @@ func (pc _PrivateKeyClass) Alloc() PrivateKey {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PrivateKeyClass) New() PrivateKey {
 	rv := objc.Send[PrivateKey](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,8 +91,47 @@ func (p_ PrivateKey) Autorelease() PrivateKey {
 func NewPrivateKey() PrivateKey {
 	return getPrivateKeyClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PrivateKey */
+// The private portion of an asymmetric key pair.
+
+
+// The private portion of an asymmetric key pair.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey
+type PrivateKey struct {
+	objectivec.Object
+}
+
+// PrivateKeyFrom constructs a [PrivateKey] from an unsafe.Pointer.
+//
+// The private portion of an asymmetric key pair.
+func PrivateKeyFrom(ptr unsafe.Pointer) PrivateKey {
+	return PrivateKey{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PrivateKey *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PrivateKey */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PrivateKey */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PrivateKey */
 
 // Checks whether the algorithm you supply is valid for decrypting data with the key.
 //
@@ -100,7 +140,7 @@ func NewPrivateKey() PrivateKey {
 func (p_ PrivateKey) CanDecryptUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canDecryptUsingSecKeyAlgorithm:"), algorithm)
 	return rv
-}
+}/* debug [instance_methods/method]: CanDecryptUsingSecKeyAlgorithm */
 
 
 // Checks whether the algorithm you supply is valid for performing key exchanges.
@@ -110,7 +150,7 @@ func (p_ PrivateKey) CanDecryptUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bo
 func (p_ PrivateKey) CanExchangeKeysUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canExchangeKeysUsingSecKeyAlgorithm:"), algorithm)
 	return rv
-}
+}/* debug [instance_methods/method]: CanExchangeKeysUsingSecKeyAlgorithm */
 
 
 // Checks whether the algorithm you supply is valid for signing data with the key.
@@ -120,7 +160,7 @@ func (p_ PrivateKey) CanExchangeKeysUsingSecKeyAlgorithm(algorithm unsafe.Pointe
 func (p_ PrivateKey) CanSignUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("canSignUsingSecKeyAlgorithm:"), algorithm)
 	return rv
-}
+}/* debug [instance_methods/method]: CanSignUsingSecKeyAlgorithm */
 
 
 // Decrypts the data you supply with a given algorithm.
@@ -129,7 +169,7 @@ func (p_ PrivateKey) CanSignUsingSecKeyAlgorithm(algorithm unsafe.Pointer) bool 
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/decrypt(_:algorithm:completion:)
 func (p_ PrivateKey) DecryptDataSecKeyAlgorithmCompletion(data objc.IObject /* cross-framework: NSData */, algorithm unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("decryptData:secKeyAlgorithm:completion:"), data, algorithm, handler)
-}
+}/* debug [instance_methods/method]: DecryptDataSecKeyAlgorithmCompletion */
 
 
 // Performs a Diffie-Hellman style key exchange operation.
@@ -138,7 +178,7 @@ func (p_ PrivateKey) DecryptDataSecKeyAlgorithmCompletion(data objc.IObject /* c
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/exchangeKeys(publicKey:algorithm:parameters:completion:)
 func (p_ PrivateKey) ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion(publicKey objc.IObject /* cross-framework: NSData */, algorithm unsafe.Pointer, parameters objc.IObject /* cross-framework: NSDictionary */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("exchangeKeysWithPublicKey:secKeyAlgorithm:secKeyParameters:completion:"), publicKey, algorithm, parameters, handler)
-}
+}/* debug [instance_methods/method]: ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCompletion */
 
 
 // Generates a digital signature for the data you supply.
@@ -147,8 +187,13 @@ func (p_ PrivateKey) ExchangeKeysWithPublicKeySecKeyAlgorithmSecKeyParametersCom
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAPrivateKey/sign(_:algorithm:completion:)
 func (p_ PrivateKey) SignDataSecKeyAlgorithmCompletion(data objc.IObject /* cross-framework: NSData */, algorithm unsafe.Pointer, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("signData:secKeyAlgorithm:completion:"), data, algorithm, handler)
-}
+}/* debug [instance_methods/method]: SignDataSecKeyAlgorithmCompletion */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PrivateKey */
 
 // The public key that corresponds with the private key in a key pair.
 //
@@ -157,7 +202,12 @@ func (p_ PrivateKey) SignDataSecKeyAlgorithmCompletion(data objc.IObject /* cros
 func (p_ PrivateKey) PublicKey() ILAPublicKey {
 	rv := objc.Send[PublicKey](p_.ID, objc.Sel("publicKey"))
 	return rv
-}
+}/* debug [instance_properties/getter]: publicKey */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class LAPrivateKey */
 
 
 

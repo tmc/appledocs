@@ -16,3 +16,4 @@ var mmioWriteAtOffsetProtocol *objc.Protocol
 func init() {
 	mmioWriteAtOffsetProtocol = objc.GetProtocol("mmioWriteAtOffset:")
 }
+

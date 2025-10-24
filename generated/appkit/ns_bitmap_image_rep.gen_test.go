@@ -23,3 +23,11 @@ func ExampleNewBitmapImageRepWithCGImage() {
 	)
 	// Output:
 }
+// ExampleNewBitmapImageRepWithFocusedViewRect demonstrates how to create a BitmapImageRep instance using NewBitmapImageRepWithFocusedViewRect.
+// Initializes a newly allocated bitmap image representation with bitmap data from a rendered image.
+func ExampleNewBitmapImageRepWithFocusedViewRect() {
+	_ = appkit.NewBitmapImageRepWithFocusedViewRect(
+		appkit.Rect /* not a class type */{}, // rect Rect /* not a class type */
+	)
+	// Output:
+}

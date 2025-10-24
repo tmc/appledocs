@@ -18,3 +18,4 @@ var capabilitiesProtocol *objc.Protocol
 func init() {
 	capabilitiesProtocol = objc.GetProtocol("capabilities")
 }
+

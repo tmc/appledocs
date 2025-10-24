@@ -15,3 +15,4 @@ var didFinishInteractingWithScrubberProtocol *objc.Protocol
 func init() {
 	didFinishInteractingWithScrubberProtocol = objc.GetProtocol("didFinishInteractingWithScrubber:")
 }
+

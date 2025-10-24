@@ -21,3 +21,4 @@ var debugDescriptionProtocol *objc.Protocol
 func init() {
 	debugDescriptionProtocol = objc.GetProtocol("debugDescription")
 }
+

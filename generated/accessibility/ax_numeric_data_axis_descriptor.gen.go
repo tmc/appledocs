@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AXNumericDataAxisDescriptor */
+
+
+/* debug [class_header]: Header for AXNumericDataAxisDescriptor */
 // The class instance for the [AXNumericDataAxisDescriptor] class.
 var (
 	AXNumericDataAxisDescriptorClass     _AXNumericDataAxisDescriptorClass
@@ -27,42 +31,42 @@ func getAXNumericDataAxisDescriptorClass() _AXNumericDataAxisDescriptorClass {
 type _AXNumericDataAxisDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AXNumericDataAxisDescriptor */
 // An interface definition for the [AXNumericDataAxisDescriptor] class.
 type IAXNumericDataAxisDescriptor interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AXNumericDataAxisDescriptor */
+	// properties:
 	GridlinePositions() []foundation.Number
-	SetGridlinePositions(value []foundation.INumber)
+	SetGridlinePositions(value []foundation.Number)
 	LowerBound() float64
 	SetLowerBound(value float64)
 	ScaleType() AXNumericDataAxisDescriptorScale
-	SetScaleType(value IAXNumericDataAxisDescriptorScale)
+	SetScaleType(value AXNumericDataAxisDescriptorScale)
 	UpperBound() float64
 	SetUpperBound(value float64)
 	ValueDescriptionProvider() unsafe.Pointer
 	SetValueDescriptionProvider(value unsafe.Pointer)
 	Range() float64
 	SetRange(value float64)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AXNumericDataAxisDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that represents an axis of numerical data.
 
 
-// An object that represents an axis of numerical data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor
-type AXNumericDataAxisDescriptor struct {
-	objectivec.Object
-}
-
-// AXNumericDataAxisDescriptorFrom constructs a [AXNumericDataAxisDescriptor] from an unsafe.Pointer.
-//
-// An object that represents an axis of numerical data.
-func AXNumericDataAxisDescriptorFrom(ptr unsafe.Pointer) AXNumericDataAxisDescriptor {
-	return AXNumericDataAxisDescriptor{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AXNumericDataAxisDescriptor */
 // Alloc allocates a new instance without initialization.
 func (ac _AXNumericDataAxisDescriptorClass) Alloc() AXNumericDataAxisDescriptor {
 	rv := objc.Send[AXNumericDataAxisDescriptor](objc.ID(ac.class), objc.Sel("alloc"))
@@ -70,7 +74,6 @@ func (ac _AXNumericDataAxisDescriptorClass) Alloc() AXNumericDataAxisDescriptor 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AXNumericDataAxisDescriptorClass) New() AXNumericDataAxisDescriptor {
 	rv := objc.Send[AXNumericDataAxisDescriptor](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,33 +96,77 @@ func (a_ AXNumericDataAxisDescriptor) Autorelease() AXNumericDataAxisDescriptor 
 func NewAXNumericDataAxisDescriptor() AXNumericDataAxisDescriptor {
 	return getAXNumericDataAxisDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for AXNumericDataAxisDescriptor */
+// An object that represents an axis of numerical data.
+
+
+// An object that represents an axis of numerical data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor
+type AXNumericDataAxisDescriptor struct {
+	objectivec.Object
+}
+
+// AXNumericDataAxisDescriptorFrom constructs a [AXNumericDataAxisDescriptor] from an unsafe.Pointer.
+//
+// An object that represents an axis of numerical data.
+func AXNumericDataAxisDescriptorFrom(ptr unsafe.Pointer) AXNumericDataAxisDescriptor {
+	return AXNumericDataAxisDescriptor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AXNumericDataAxisDescriptor */
 
 // Creates a numeric data axis with the specified attributed title, lower bound value, upper bound value, gridline positions, and value description provider block.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:
-func NewAXNumericDataAxisDescriptorWithAttributedTitleLowerBoundUpperBoundGridlinePositionsValueDescriptionProvider(attributedTitle foundation.IAttributedString, lowerbound float64, upperBound float64, gridlinePositions []foundation.INumber, valueDescriptionProvider unsafe.Pointer) AXNumericDataAxisDescriptor {
+func NewAXNumericDataAxisDescriptorWithAttributedTitleLowerBoundUpperBoundGridlinePositionsValueDescriptionProvider(attributedTitle foundation.AttributedString, lowerbound float64, upperBound float64, gridlinePositions []foundation.Number, valueDescriptionProvider unsafe.Pointer) AXNumericDataAxisDescriptor {
 	instance := getAXNumericDataAxisDescriptorClass().Alloc()
 	rv := objc.Send[AXNumericDataAxisDescriptor](instance.ID, objc.Sel("initWithAttributedTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:"), attributedTitle, lowerbound, upperBound, gridlinePositions, valueDescriptionProvider)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAXNumericDataAxisDescriptorWithAttributedTitleLowerBoundUpperBoundGridlinePositionsValueDescriptionProvider */
 
 
 // Creates a numeric data axis with the specified title, lower bound value, upper bound value, gridline positions, and value description provider block.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:
-func NewAXNumericDataAxisDescriptorWithTitleLowerBoundUpperBoundGridlinePositionsValueDescriptionProvider(title string, lowerbound float64, upperBound float64, gridlinePositions []foundation.INumber, valueDescriptionProvider unsafe.Pointer) AXNumericDataAxisDescriptor {
+func NewAXNumericDataAxisDescriptorWithTitleLowerBoundUpperBoundGridlinePositionsValueDescriptionProvider(title objc.IObject /* cross-framework: NSString */, lowerbound float64, upperBound float64, gridlinePositions []foundation.Number, valueDescriptionProvider unsafe.Pointer) AXNumericDataAxisDescriptor {
 	instance := getAXNumericDataAxisDescriptorClass().Alloc()
-	rv := objc.Send[AXNumericDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:"), objc.String(title), lowerbound, upperBound, gridlinePositions, valueDescriptionProvider)
+	rv := objc.Send[AXNumericDataAxisDescriptor](instance.ID, objc.Sel("initWithTitle:lowerBound:upperBound:gridlinePositions:valueDescriptionProvider:"), title, lowerbound, upperBound, gridlinePositions, valueDescriptionProvider)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAXNumericDataAxisDescriptorWithTitleLowerBoundUpperBoundGridlinePositionsValueDescriptionProvider */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for AXNumericDataAxisDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AXNumericDataAxisDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AXNumericDataAxisDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AXNumericDataAxisDescriptor */
 
 // The positions of the gridlines along the axis.
 //
@@ -128,15 +175,14 @@ func NewAXNumericDataAxisDescriptorWithTitleLowerBoundUpperBoundGridlinePosition
 func (a_ AXNumericDataAxisDescriptor) GridlinePositions() []foundation.Number {
 	rv := objc.Send[[]foundation.Number](a_.ID, objc.Sel("gridlinePositions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: gridlinePositions */
 
 
 // The positions of the gridlines along the axis.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/gridlinePositions-9z10e
-func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []foundation.INumber) {
-	// Convert Go slice to NSArray
+func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []foundation.Number) {
 	var nsArray objc.ID
 	if len(value) > 0 {
 		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
@@ -147,7 +193,7 @@ func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []foundation.IN
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setGridlinePositions:"), nsArray)
-}
+}/* debug [instance_properties/setter]: gridlinePositions */
 
 
 // The minimum displayable value for the axis.
@@ -157,7 +203,7 @@ func (a_ AXNumericDataAxisDescriptor) SetGridlinePositions(value []foundation.IN
 func (a_ AXNumericDataAxisDescriptor) LowerBound() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("lowerBound"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lowerBound */
 
 
 // The minimum displayable value for the axis.
@@ -166,7 +212,7 @@ func (a_ AXNumericDataAxisDescriptor) LowerBound() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/lowerBound
 func (a_ AXNumericDataAxisDescriptor) SetLowerBound(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setLowerBound:"), value)
-}
+}/* debug [instance_properties/setter]: lowerBound */
 
 
 // The scale for the axis.
@@ -176,16 +222,16 @@ func (a_ AXNumericDataAxisDescriptor) SetLowerBound(value float64) {
 func (a_ AXNumericDataAxisDescriptor) ScaleType() AXNumericDataAxisDescriptorScale {
 	rv := objc.Send[AXNumericDataAxisDescriptorScale](a_.ID, objc.Sel("scaleType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scaleType */
 
 
 // The scale for the axis.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/scaleType-swift.property
-func (a_ AXNumericDataAxisDescriptor) SetScaleType(value IAXNumericDataAxisDescriptorScale) {
+func (a_ AXNumericDataAxisDescriptor) SetScaleType(value AXNumericDataAxisDescriptorScale) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setScaleType:"), value)
-}
+}/* debug [instance_properties/setter]: scaleType */
 
 
 // The maximum displayable value for the axis.
@@ -195,7 +241,7 @@ func (a_ AXNumericDataAxisDescriptor) SetScaleType(value IAXNumericDataAxisDescr
 func (a_ AXNumericDataAxisDescriptor) UpperBound() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("upperBound"))
 	return rv
-}
+}/* debug [instance_properties/getter]: upperBound */
 
 
 // The maximum displayable value for the axis.
@@ -204,7 +250,7 @@ func (a_ AXNumericDataAxisDescriptor) UpperBound() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/upperBound
 func (a_ AXNumericDataAxisDescriptor) SetUpperBound(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setUpperBound:"), value)
-}
+}/* debug [instance_properties/setter]: upperBound */
 
 
 // A description to speak for a particular data value on the axis.
@@ -214,7 +260,7 @@ func (a_ AXNumericDataAxisDescriptor) SetUpperBound(value float64) {
 func (a_ AXNumericDataAxisDescriptor) ValueDescriptionProvider() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("valueDescriptionProvider"))
 	return rv
-}
+}/* debug [instance_properties/getter]: valueDescriptionProvider */
 
 
 // A description to speak for a particular data value on the axis.
@@ -223,7 +269,7 @@ func (a_ AXNumericDataAxisDescriptor) ValueDescriptionProvider() unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXNumericDataAxisDescriptor/valueDescriptionProvider
 func (a_ AXNumericDataAxisDescriptor) SetValueDescriptionProvider(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValueDescriptionProvider:"), value)
-}
+}/* debug [instance_properties/setter]: valueDescriptionProvider */
 
 
 // A range that defines the minimum and maximum displayable values for the axis.
@@ -233,7 +279,7 @@ func (a_ AXNumericDataAxisDescriptor) SetValueDescriptionProvider(value unsafe.P
 func (a_ AXNumericDataAxisDescriptor) Range() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("range"))
 	return rv
-}
+}/* debug [instance_properties/getter]: range */
 
 
 // A range that defines the minimum and maximum displayable values for the axis.
@@ -242,6 +288,11 @@ func (a_ AXNumericDataAxisDescriptor) Range() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/accessibility/axnumericdataaxisdescriptor/range
 func (a_ AXNumericDataAxisDescriptor) SetRange(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRange:"), value)
-}
+}/* debug [instance_properties/setter]: range */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AXNumericDataAxisDescriptor */
 
 

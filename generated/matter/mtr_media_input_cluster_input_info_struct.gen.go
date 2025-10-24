@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRMediaInputClusterInputInfoStruct interface {
 	SetName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaInputClusterInputInfoStruct
@@ -87,8 +85,6 @@ func NewMTRMediaInputClusterInputInfoStruct() MTRMediaInputClusterInputInfoStruc
 	return getMTRMediaInputClusterInputInfoStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfostruct/descriptionstring
 func (m_ MTRMediaInputClusterInputInfoStruct) DescriptionString() objc.IObject /* cross-framework: NSString */ {
@@ -96,13 +92,11 @@ func (m_ MTRMediaInputClusterInputInfoStruct) DescriptionString() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfostruct/descriptionstring
 func (m_ MTRMediaInputClusterInputInfoStruct) SetDescriptionString(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescriptionString:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfostruct/index
@@ -111,13 +105,11 @@ func (m_ MTRMediaInputClusterInputInfoStruct) Index() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfostruct/index
 func (m_ MTRMediaInputClusterInputInfoStruct) SetIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfostruct/inputtype
@@ -126,13 +118,11 @@ func (m_ MTRMediaInputClusterInputInfoStruct) InputType() objc.IObject /* cross-
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfostruct/inputtype
 func (m_ MTRMediaInputClusterInputInfoStruct) SetInputType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInputType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfostruct/name
@@ -141,12 +131,8 @@ func (m_ MTRMediaInputClusterInputInfoStruct) Name() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterinputinfostruct/name
 func (m_ MTRMediaInputClusterInputInfoStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
-
-
-

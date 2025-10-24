@@ -15,3 +15,4 @@ var menuHasKeyEquivalentProtocol *objc.Protocol
 func init() {
 	menuHasKeyEquivalentProtocol = objc.GetProtocol("menuHasKeyEquivalent:")
 }
+

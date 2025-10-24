@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRDescriptorClusterDeviceType] class.
@@ -35,8 +35,6 @@ type IMTRDescriptorClusterDeviceType interface {
 	SetRevision(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDescriptorClusterDeviceType
@@ -82,8 +80,6 @@ func NewMTRDescriptorClusterDeviceType() MTRDescriptorClusterDeviceType {
 	return getMTRDescriptorClusterDeviceTypeClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetype/revision
 func (m_ MTRDescriptorClusterDeviceType) Revision() objc.IObject /* cross-framework: NSNumber */ {
@@ -91,12 +87,8 @@ func (m_ MTRDescriptorClusterDeviceType) Revision() objc.IObject /* cross-framew
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetype/revision
 func (m_ MTRDescriptorClusterDeviceType) SetRevision(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
 }
-
-
-

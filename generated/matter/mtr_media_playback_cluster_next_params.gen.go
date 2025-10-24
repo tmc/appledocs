@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRMediaPlaybackClusterNextParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterNextParams
@@ -83,8 +81,6 @@ func NewMTRMediaPlaybackClusterNextParams() MTRMediaPlaybackClusterNextParams {
 	return getMTRMediaPlaybackClusterNextParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusternextparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterNextParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRMediaPlaybackClusterNextParams) ServerSideProcessingTimeout() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusternextparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterNextParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusternextparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRMediaPlaybackClusterNextParams) TimedInvokeTimeoutMs() objc.IObject 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusternextparams/timedinvoketimeoutms
 func (m_ MTRMediaPlaybackClusterNextParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

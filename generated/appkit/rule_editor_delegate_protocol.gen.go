@@ -15,3 +15,4 @@ var RuleEditorDelegateProtocol *objc.Protocol
 func init() {
 	RuleEditorDelegateProtocol = objc.GetProtocol("NSRuleEditorDelegate")
 }
+

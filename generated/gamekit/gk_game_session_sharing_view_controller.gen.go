@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class GKGameSessionSharingViewController */
+
+
+/* debug [class_header]: Header for GKGameSessionSharingViewController */
 // The class instance for the [GameSessionSharingViewController] class.
 var (
 	GameSessionSharingViewControllerClass     _GameSessionSharingViewControllerClass
@@ -26,37 +29,30 @@ func getGameSessionSharingViewControllerClass() _GameSessionSharingViewControlle
 type _GameSessionSharingViewControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GameSessionSharingViewController */
 // An interface definition for the [GameSessionSharingViewController] class.
 type IGameSessionSharingViewController interface {
-	appkit.IViewController
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
-	Session() GKGameSession
+	IViewController
+	
+/* debug [class_interface_properties]: Properties for GameSessionSharingViewController */
+	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GameSessionSharingViewController */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A user interface you can use to invite other users into a tvOS game session.
-//
-// The sharing view controller on tvOS presents a user’s Game Center friend list, along with other people with whom the user has recently played the game. Users can select a person from the list and send them an invite using the Send button.
+/* debug [class_interface]: End interface */
 
 
-// A user interface you can use to invite other users into a tvOS game session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController
-type GameSessionSharingViewController struct {
-	appkit.ViewController
-}
 
-// GameSessionSharingViewControllerFrom constructs a [GameSessionSharingViewController] from an unsafe.Pointer.
-//
-// A user interface you can use to invite other users into a tvOS game session.
-func GameSessionSharingViewControllerFrom(ptr unsafe.Pointer) GameSessionSharingViewController {
-	return GameSessionSharingViewController{
-		ViewController: appkit.ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GameSessionSharingViewController */
 // Alloc allocates a new instance without initialization.
 func (gc _GameSessionSharingViewControllerClass) Alloc() GameSessionSharingViewController {
 	rv := objc.Send[GameSessionSharingViewController](objc.ID(gc.class), objc.Sel("alloc"))
@@ -64,7 +60,6 @@ func (gc _GameSessionSharingViewControllerClass) Alloc() GameSessionSharingViewC
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GameSessionSharingViewControllerClass) New() GameSessionSharingViewController {
 	rv := objc.Send[GameSessionSharingViewController](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,8 +82,37 @@ func (g_ GameSessionSharingViewController) Autorelease() GameSessionSharingViewC
 func NewGameSessionSharingViewController() GameSessionSharingViewController {
 	return getGameSessionSharingViewControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GameSessionSharingViewController */
+// A user interface you can use to invite other users into a tvOS game session.
+//
+// The sharing view controller on tvOS presents a user’s Game Center friend list, along with other people with whom the user has recently played the game. Users can select a person from the list and send them an invite using the Send button.
+
+
+// A user interface you can use to invite other users into a tvOS game session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController
+type GameSessionSharingViewController struct {
+	ViewController
+}
+
+// GameSessionSharingViewControllerFrom constructs a [GameSessionSharingViewController] from an unsafe.Pointer.
+//
+// A user interface you can use to invite other users into a tvOS game session.
+func GameSessionSharingViewControllerFrom(ptr unsafe.Pointer) GameSessionSharingViewController {
+	return GameSessionSharingViewController{
+		ViewController: ViewControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GameSessionSharingViewController */
 
 // Creates a new sharing view controller for a specified session.
 //
@@ -99,36 +123,31 @@ func NewGameSessionSharingViewControllerWithSession(session IGKGameSession) Game
 	rv := objc.Send[GameSessionSharingViewController](instance.ID, objc.Sel("initWithSession:"), session)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewGameSessionSharingViewControllerWithSession */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// The delegate for the sharing view controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/delegate
-func (g_ GameSessionSharingViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](g_.ID, objc.Sel("delegate"))
-	return rv
-}
+/* debug [class_methods]: Class methods for GameSessionSharingViewController */
+/* debug [class_methods]: End class methods */
 
 
-// The delegate for the sharing view controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/delegate
-func (g_ GameSessionSharingViewController) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDelegate:"), value)
-}
+
+/* debug [class_properties_class]: Class properties for GameSessionSharingViewController */
+/* debug [class_properties_class]: End class properties */
 
 
-// The game session associated with the view controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameKit/GKGameSessionSharingViewController/session
-func (g_ GameSessionSharingViewController) Session() GKGameSession {
-	rv := objc.Send[GKGameSession](g_.ID, objc.Sel("session"))
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for GameSessionSharingViewController */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GameSessionSharingViewController */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GKGameSessionSharingViewController */
 
 

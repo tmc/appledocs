@@ -20,3 +20,4 @@ var RasterizationRateMapProtocol *objc.Protocol
 func init() {
 	RasterizationRateMapProtocol = objc.GetProtocol("MTLRasterizationRateMap")
 }
+

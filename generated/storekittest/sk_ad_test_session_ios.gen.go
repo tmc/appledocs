@@ -7,14 +7,12 @@ package storekittest
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/storekit"
 )
 
 // iOS-only methods for AdTestSession
-
 
 // Sends the test postbacks and handles the responses.
 //
@@ -28,7 +26,7 @@ func (a_ AdTestSession) FlushPostbacksWithResponses(responses ANTestPostbackResp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/setPostbacks(_:)
-func (a_ AdTestSession) SetPostbacksError(postbacks []IAdTestPostback, error_ unsafe.Pointer) bool {
+func (a_ AdTestSession) SetPostbacksError(postbacks []AdTestPostback, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPostbacks:error:"), postbacks, error_)
 	return rv
 }
@@ -37,7 +35,7 @@ func (a_ AdTestSession) SetPostbacksError(postbacks []IAdTestPostback, error_ un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/validate(_:publicKey:)
-func (a_ AdTestSession) ValidateImpressionPublicKeyError(impression objc.IObject /* cross-framework: AdImpression */, publicKey objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
+func (a_ AdTestSession) ValidateImpressionPublicKeyError(impression storekit.AdImpression, publicKey objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("validateImpression:publicKey:error:"), impression, publicKey, error_)
 	return rv
 }
@@ -75,11 +73,7 @@ func (a_ AdTestSession) DeveloperPostbackURL() objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestSession/postbacks
-func (a_ AdTestSession) Postbacks() []IAdTestPostback {
+func (a_ AdTestSession) Postbacks() []AdTestPostback {
 	rv := objc.Send[[]AdTestPostback](a_.ID, objc.Sel("postbacks"))
 	return rv
 }
-
-
-
-

@@ -8,11 +8,17 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for Overlay
 
+// Presents an overlay in a window scene.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/present(in:)
+func (o_ Overlay) PresentInScene(scene WindowScene /* not a class type */) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("presentInScene:"), scene)
+}
 
 // iOS-only properties
 
@@ -20,7 +26,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/configuration-swift.property
-func (o_ Overlay) Configuration() objc.IObject /* cross-framework: OverlayConfiguration */ {
+func (o_ Overlay) Configuration() ISKOverlayConfiguration {
 	rv := objc.Send[OverlayConfiguration](o_.ID, objc.Sel("configuration"))
 	return rv
 }
@@ -29,14 +35,10 @@ func (o_ Overlay) Configuration() objc.IObject /* cross-framework: OverlayConfig
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/delegate
-func (o_ Overlay) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("delegate"))
+func (o_ Overlay) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (o_ Overlay) SetDelegate(value objc.ID) {
+func (o_ Overlay) SetDelegate(value unsafe.Pointer) {
 	o_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
-
-
-
-

@@ -15,3 +15,4 @@ var IKImageEditPanelDataSourceProtocol *objc.Protocol
 func init() {
 	IKImageEditPanelDataSourceProtocol = objc.GetProtocol("IKImageEditPanelDataSource")
 }
+

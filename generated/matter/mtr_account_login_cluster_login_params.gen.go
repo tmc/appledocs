@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRAccountLoginClusterLoginParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterLoginParams
@@ -89,8 +87,6 @@ func NewMTRAccountLoginClusterLoginParams() MTRAccountLoginClusterLoginParams {
 	return getMTRAccountLoginClusterLoginParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/node
 func (m_ MTRAccountLoginClusterLoginParams) Node() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRAccountLoginClusterLoginParams) Node() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/node
 func (m_ MTRAccountLoginClusterLoginParams) SetNode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/serversideprocessingtimeout
@@ -113,13 +107,11 @@ func (m_ MTRAccountLoginClusterLoginParams) ServerSideProcessingTimeout() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/serversideprocessingtimeout
 func (m_ MTRAccountLoginClusterLoginParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/setuppin
@@ -128,13 +120,11 @@ func (m_ MTRAccountLoginClusterLoginParams) SetupPIN() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/setuppin
 func (m_ MTRAccountLoginClusterLoginParams) SetSetupPIN(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSetupPIN:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/tempaccountidentifier
@@ -143,13 +133,11 @@ func (m_ MTRAccountLoginClusterLoginParams) TempAccountIdentifier() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/tempaccountidentifier
 func (m_ MTRAccountLoginClusterLoginParams) SetTempAccountIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTempAccountIdentifier:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/timedinvoketimeoutms
@@ -158,12 +146,8 @@ func (m_ MTRAccountLoginClusterLoginParams) TimedInvokeTimeoutMs() objc.IObject 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclusterloginparams/timedinvoketimeoutms
 func (m_ MTRAccountLoginClusterLoginParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

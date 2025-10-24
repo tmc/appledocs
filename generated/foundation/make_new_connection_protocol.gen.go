@@ -16,3 +16,4 @@ var makeNewConnectionProtocol *objc.Protocol
 func init() {
 	makeNewConnectionProtocol = objc.GetProtocol("makeNewConnection:")
 }
+

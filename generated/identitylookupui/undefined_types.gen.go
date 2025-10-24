@@ -9,8 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in IdentityLookupUI
+	Bool                     = _undefined // referenced in IdentityLookupUI
 	ILClassificationResponse = _undefined // referenced in IdentityLookupUI
 )
-
-

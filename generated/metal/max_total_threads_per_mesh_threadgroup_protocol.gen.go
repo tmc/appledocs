@@ -20,3 +20,4 @@ var maxTotalThreadsPerMeshThreadgroupProtocol *objc.Protocol
 func init() {
 	maxTotalThreadsPerMeshThreadgroupProtocol = objc.GetProtocol("maxTotalThreadsPerMeshThreadgroup")
 }
+

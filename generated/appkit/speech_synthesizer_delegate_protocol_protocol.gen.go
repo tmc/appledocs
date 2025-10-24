@@ -3,9 +3,14 @@
 package appkit
 
 import (
-	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PSpeechSynthesizerDelegate is the NSSpeechSynthesizerDelegate protocol interface.
@@ -24,7 +29,7 @@ type PSpeechSynthesizerDelegate interface {
 	HasSpeechSynthesizerDidEncounterSyncMessage() bool
 	SpeechSynthesizerDidFinishSpeaking(sender objc.IObject /* cross-framework: SpeechSynthesizer */, finishedSpeaking bool)
 	HasSpeechSynthesizerDidFinishSpeaking() bool
-	SpeechSynthesizerWillSpeakPhoneme(sender objc.IObject /* cross-framework: SpeechSynthesizer */, phonemeOpcode unsafe.Pointer)
+	SpeechSynthesizerWillSpeakPhoneme(sender objc.IObject /* cross-framework: SpeechSynthesizer */, phonemeOpcode objectivec.IObject)
 	HasSpeechSynthesizerWillSpeakPhoneme() bool
 	SpeechSynthesizerWillSpeakWordOfString(sender objc.IObject /* cross-framework: SpeechSynthesizer */, characterRange corefoundation.Range, string_ objc.IObject /* cross-framework: NSString */)
 	HasSpeechSynthesizerWillSpeakWordOfString() bool
@@ -37,7 +42,7 @@ type SpeechSynthesizerDelegate struct {
 	_SpeechSynthesizerDidEncounterErrorAtIndexOfStringMessage func(sender objc.IObject /* cross-framework: SpeechSynthesizer */, characterIndex uint, string_ objc.IObject /* cross-framework: NSString */, message objc.IObject /* cross-framework: NSString */)
 	_SpeechSynthesizerDidEncounterSyncMessage func(sender objc.IObject /* cross-framework: SpeechSynthesizer */, message objc.IObject /* cross-framework: NSString */)
 	_SpeechSynthesizerDidFinishSpeaking func(sender objc.IObject /* cross-framework: SpeechSynthesizer */, finishedSpeaking bool)
-	_SpeechSynthesizerWillSpeakPhoneme func(sender objc.IObject /* cross-framework: SpeechSynthesizer */, phonemeOpcode unsafe.Pointer)
+	_SpeechSynthesizerWillSpeakPhoneme func(sender objc.IObject /* cross-framework: SpeechSynthesizer */, phonemeOpcode objectivec.IObject)
 	_SpeechSynthesizerWillSpeakWordOfString func(sender objc.IObject /* cross-framework: SpeechSynthesizer */, characterRange corefoundation.Range, string_ objc.IObject /* cross-framework: NSString */)
 }
 
@@ -65,7 +70,7 @@ func (d *SpeechSynthesizerDelegate) SetSpeechSynthesizerDidFinishSpeaking(f func
 // SetSpeechSynthesizerWillSpeakPhoneme sets the handler for the SpeechSynthesizerWillSpeakPhoneme delegate method.
 //
 // Sent just before a synthesized phoneme is spoken through the sound output device.
-func (d *SpeechSynthesizerDelegate) SetSpeechSynthesizerWillSpeakPhoneme(f func(sender objc.IObject /* cross-framework: SpeechSynthesizer */, phonemeOpcode unsafe.Pointer)) {
+func (d *SpeechSynthesizerDelegate) SetSpeechSynthesizerWillSpeakPhoneme(f func(sender objc.IObject /* cross-framework: SpeechSynthesizer */, phonemeOpcode objectivec.IObject)) {
 	d._SpeechSynthesizerWillSpeakPhoneme = f
 }
 
@@ -113,7 +118,7 @@ func (d *SpeechSynthesizerDelegate) HasSpeechSynthesizerDidFinishSpeaking() bool
 }
 
 // SpeechSynthesizerWillSpeakPhoneme implements the PSpeechSynthesizerDelegate interface.
-func (d *SpeechSynthesizerDelegate) SpeechSynthesizerWillSpeakPhoneme(sender objc.IObject /* cross-framework: SpeechSynthesizer */, phonemeOpcode unsafe.Pointer) {
+func (d *SpeechSynthesizerDelegate) SpeechSynthesizerWillSpeakPhoneme(sender objc.IObject /* cross-framework: SpeechSynthesizer */, phonemeOpcode objectivec.IObject) {
 	if d._SpeechSynthesizerWillSpeakPhoneme != nil {
 		d._SpeechSynthesizerWillSpeakPhoneme(sender, phonemeOpcode)
 	}

@@ -20,3 +20,4 @@ var nextUniformProtocol *objc.Protocol
 func init() {
 	nextUniformProtocol = objc.GetProtocol("nextUniform")
 }
+

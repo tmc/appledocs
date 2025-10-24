@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,7 +40,6 @@ type IINReservationAction interface {
 }
 
 // An action a user can perform that’s relevant to a reservation.
-
 
 // An action a user can perform that’s relevant to a reservation.
 //
@@ -88,8 +87,6 @@ func NewINReservationAction() INReservationAction {
 	return getINReservationActionClass().New()
 }
 
-
-
 // The type of action for the reservation.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INReservationAction) Type() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of action for the reservation.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (i_ INReservationAction) Type() unsafe.Pointer {
 func (i_ INReservationAction) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
-
 
 // The user activity object used when launching your app.
 //
@@ -118,7 +113,6 @@ func (i_ INReservationAction) UserActivity() foundation.UserActivity {
 	return rv
 }
 
-
 // The user activity object used when launching your app.
 //
 // [Full Topic]
@@ -126,7 +120,6 @@ func (i_ INReservationAction) UserActivity() foundation.UserActivity {
 func (i_ INReservationAction) SetUserActivity(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivity:"), value)
 }
-
 
 // The date and time range that the action is valid.
 //
@@ -137,7 +130,6 @@ func (i_ INReservationAction) ValidDuration() INDateComponentsRange {
 	return rv
 }
 
-
 // The date and time range that the action is valid.
 //
 // [Full Topic]
@@ -145,6 +137,3 @@ func (i_ INReservationAction) ValidDuration() INDateComponentsRange {
 func (i_ INReservationAction) SetValidDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setValidDuration:"), value)
 }
-
-
-

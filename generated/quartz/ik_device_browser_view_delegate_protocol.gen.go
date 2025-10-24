@@ -15,3 +15,4 @@ var IKDeviceBrowserViewDelegateProtocol *objc.Protocol
 func init() {
 	IKDeviceBrowserViewDelegateProtocol = objc.GetProtocol("IKDeviceBrowserViewDelegate")
 }
+

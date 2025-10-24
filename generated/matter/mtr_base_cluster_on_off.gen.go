@@ -33,8 +33,6 @@ type IMTRBaseClusterOnOff interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOnOff
 type MTRBaseClusterOnOff struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterOnOff) Autorelease() MTRBaseClusterOnOff {
 func NewMTRBaseClusterOnOff() MTRBaseClusterOnOff {
 	return getMTRBaseClusterOnOffClass().New()
 }
-
-
-
-

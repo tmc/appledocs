@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRNetworkCommissioningClusterThreadInterfaceScanResult] class.
@@ -49,8 +49,6 @@ type IMTRNetworkCommissioningClusterThreadInterfaceScanResult interface {
 	SetVersion(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterThreadInterfaceScanResult
@@ -96,8 +94,6 @@ func NewMTRNetworkCommissioningClusterThreadInterfaceScanResult() MTRNetworkComm
 	return getMTRNetworkCommissioningClusterThreadInterfaceScanResultClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/channel
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) Channel() objc.IObject /* cross-framework: NSNumber */ {
@@ -105,13 +101,11 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) Channel() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/channel
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetChannel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/extendedaddress
@@ -120,13 +114,11 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) ExtendedAddres
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/extendedaddress
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetExtendedAddress(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedAddress:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/extendedpanid
@@ -135,13 +127,11 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) ExtendedPanId(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/extendedpanid
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetExtendedPanId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedPanId:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/lqi
@@ -150,13 +140,11 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) Lqi() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/lqi
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetLqi(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLqi:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/networkname
@@ -165,13 +153,11 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) NetworkName() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/networkname
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetNetworkName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/panid
@@ -180,13 +166,11 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) PanId() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/panid
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetPanId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPanId:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/rssi
@@ -195,13 +179,11 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) Rssi() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/rssi
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetRssi(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRssi:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/version
@@ -210,12 +192,8 @@ func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) Version() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterthreadinterfacescanresult/version
 func (m_ MTRNetworkCommissioningClusterThreadInterfaceScanResult) SetVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersion:"), value)
 }
-
-
-

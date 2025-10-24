@@ -18,3 +18,4 @@ var enumeratorForContainerItemIdentifierProtocol *objc.Protocol
 func init() {
 	enumeratorForContainerItemIdentifierProtocol = objc.GetProtocol("enumeratorForContainerItemIdentifier:")
 }
+

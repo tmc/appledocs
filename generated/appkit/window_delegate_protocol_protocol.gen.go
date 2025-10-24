@@ -5,6 +5,10 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/vision"
 )
 
 // PWindowDelegate is the NSWindowDelegate protocol interface.
@@ -17,11 +21,11 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSWindowDelegate
 type PWindowDelegate interface {
 	// Optional methods
-	WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation objc.IObject /* cross-framework: Point */, pasteboard IPasteboard) bool
+	WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation vision.Point, pasteboard IPasteboard) bool
 	HasWindowShouldDragDocumentWithEventFromWithPasteboard() bool
 	WindowShouldPopUpDocumentPathMenu(window IWindow, menu IMenu) bool
 	HasWindowShouldPopUpDocumentPathMenu() bool
-	WindowWillUseFullScreenContentSize(window IWindow, proposedSize objc.IObject /* cross-framework: Size */) corefoundation.Size
+	WindowWillUseFullScreenContentSize(window IWindow, proposedSize Size /* not a class type */) Size
 	HasWindowWillUseFullScreenContentSize() bool
 	WindowWillUseFullScreenPresentationOptions(window IWindow, proposedOptions ApplicationPresentationOptions) ApplicationPresentationOptions
 	HasWindowWillUseFullScreenPresentationOptions() bool
@@ -43,7 +47,7 @@ type PWindowDelegate interface {
 	HasWindowDidResize() bool
 	WindowShouldClose(sender IWindow) bool
 	HasWindowShouldClose() bool
-	WindowShouldZoomToFrame(window IWindow, newFrame objc.IObject /* cross-framework: Rect */) bool
+	WindowShouldZoomToFrame(window IWindow, newFrame Rect /* not a class type */) bool
 	HasWindowShouldZoomToFrame() bool
 	WindowWillClose(notification foundation.Notification)
 	HasWindowWillClose() bool
@@ -51,13 +55,13 @@ type PWindowDelegate interface {
 	HasWindowWillEnterFullScreen() bool
 	WindowWillExitFullScreen(notification foundation.Notification)
 	HasWindowWillExitFullScreen() bool
-	WindowWillResizeToSize(sender IWindow, frameSize objc.IObject /* cross-framework: Size */) corefoundation.Size
+	WindowWillResizeToSize(sender IWindow, frameSize Size /* not a class type */) Size
 	HasWindowWillResizeToSize() bool
 	WindowWillReturnFieldEditorToObject(sender IWindow, client objc.IObject) objc.ID
 	HasWindowWillReturnFieldEditorToObject() bool
 	WindowWillStartLiveResize(notification foundation.Notification)
 	HasWindowWillStartLiveResize() bool
-	WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame objc.IObject /* cross-framework: Rect */) corefoundation.Rect
+	WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame Rect /* not a class type */) Rect
 	HasWindowWillUseStandardFrameDefaultFrame() bool
 }
 
@@ -65,9 +69,9 @@ type PWindowDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WindowDelegate struct {
-	_WindowShouldDragDocumentWithEventFromWithPasteboard func(window IWindow, event IEvent, dragImageLocation objc.IObject /* cross-framework: Point */, pasteboard IPasteboard) bool
+	_WindowShouldDragDocumentWithEventFromWithPasteboard func(window IWindow, event IEvent, dragImageLocation vision.Point, pasteboard IPasteboard) bool
 	_WindowShouldPopUpDocumentPathMenu func(window IWindow, menu IMenu) bool
-	_WindowWillUseFullScreenContentSize func(window IWindow, proposedSize objc.IObject /* cross-framework: Size */) corefoundation.Size
+	_WindowWillUseFullScreenContentSize func(window IWindow, proposedSize Size /* not a class type */) Size
 	_WindowWillUseFullScreenPresentationOptions func(window IWindow, proposedOptions ApplicationPresentationOptions) ApplicationPresentationOptions
 	_WindowDidBecomeKey func(notification foundation.Notification)
 	_WindowDidBecomeMain func(notification foundation.Notification)
@@ -78,20 +82,20 @@ type WindowDelegate struct {
 	_WindowDidResignMain func(notification foundation.Notification)
 	_WindowDidResize func(notification foundation.Notification)
 	_WindowShouldClose func(sender IWindow) bool
-	_WindowShouldZoomToFrame func(window IWindow, newFrame objc.IObject /* cross-framework: Rect */) bool
+	_WindowShouldZoomToFrame func(window IWindow, newFrame Rect /* not a class type */) bool
 	_WindowWillClose func(notification foundation.Notification)
 	_WindowWillEnterFullScreen func(notification foundation.Notification)
 	_WindowWillExitFullScreen func(notification foundation.Notification)
-	_WindowWillResizeToSize func(sender IWindow, frameSize objc.IObject /* cross-framework: Size */) corefoundation.Size
+	_WindowWillResizeToSize func(sender IWindow, frameSize Size /* not a class type */) Size
 	_WindowWillReturnFieldEditorToObject func(sender IWindow, client objc.IObject) objc.ID
 	_WindowWillStartLiveResize func(notification foundation.Notification)
-	_WindowWillUseStandardFrameDefaultFrame func(window IWindow, newFrame objc.IObject /* cross-framework: Rect */) corefoundation.Rect
+	_WindowWillUseStandardFrameDefaultFrame func(window IWindow, newFrame Rect /* not a class type */) Rect
 }
 
 // SetWindowShouldDragDocumentWithEventFromWithPasteboard sets the handler for the WindowShouldDragDocumentWithEventFromWithPasteboard delegate method.
 //
 // Asks the delegate whether a user can drag the document icon from the window’s title bar.
-func (d *WindowDelegate) SetWindowShouldDragDocumentWithEventFromWithPasteboard(f func(window IWindow, event IEvent, dragImageLocation objc.IObject /* cross-framework: Point */, pasteboard IPasteboard) bool) {
+func (d *WindowDelegate) SetWindowShouldDragDocumentWithEventFromWithPasteboard(f func(window IWindow, event IEvent, dragImageLocation vision.Point, pasteboard IPasteboard) bool) {
 	d._WindowShouldDragDocumentWithEventFromWithPasteboard = f
 }
 
@@ -105,7 +109,7 @@ func (d *WindowDelegate) SetWindowShouldPopUpDocumentPathMenu(f func(window IWin
 // SetWindowWillUseFullScreenContentSize sets the handler for the WindowWillUseFullScreenContentSize delegate method.
 //
 // Called to allow the delegate to modify the full-screen content size.
-func (d *WindowDelegate) SetWindowWillUseFullScreenContentSize(f func(window IWindow, proposedSize objc.IObject /* cross-framework: Size */) corefoundation.Size) {
+func (d *WindowDelegate) SetWindowWillUseFullScreenContentSize(f func(window IWindow, proposedSize Size /* not a class type */) Size) {
 	d._WindowWillUseFullScreenContentSize = f
 }
 
@@ -182,7 +186,7 @@ func (d *WindowDelegate) SetWindowShouldClose(f func(sender IWindow) bool) {
 // SetWindowShouldZoomToFrame sets the handler for the WindowShouldZoomToFrame delegate method.
 //
 // Asks the delegate whether the specified window should zoom to the specified frame.
-func (d *WindowDelegate) SetWindowShouldZoomToFrame(f func(window IWindow, newFrame objc.IObject /* cross-framework: Rect */) bool) {
+func (d *WindowDelegate) SetWindowShouldZoomToFrame(f func(window IWindow, newFrame Rect /* not a class type */) bool) {
 	d._WindowShouldZoomToFrame = f
 }
 
@@ -210,7 +214,7 @@ func (d *WindowDelegate) SetWindowWillExitFullScreen(f func(notification foundat
 // SetWindowWillResizeToSize sets the handler for the WindowWillResizeToSize delegate method.
 //
 // Tells the delegate that the window is being resized (whether by the user or through one of the   methods other than  ).
-func (d *WindowDelegate) SetWindowWillResizeToSize(f func(sender IWindow, frameSize objc.IObject /* cross-framework: Size */) corefoundation.Size) {
+func (d *WindowDelegate) SetWindowWillResizeToSize(f func(sender IWindow, frameSize Size /* not a class type */) Size) {
 	d._WindowWillResizeToSize = f
 }
 
@@ -231,12 +235,12 @@ func (d *WindowDelegate) SetWindowWillStartLiveResize(f func(notification founda
 // SetWindowWillUseStandardFrameDefaultFrame sets the handler for the WindowWillUseStandardFrameDefaultFrame delegate method.
 //
 // Called by  ’s   method while determining the frame a window may be zoomed to.
-func (d *WindowDelegate) SetWindowWillUseStandardFrameDefaultFrame(f func(window IWindow, newFrame objc.IObject /* cross-framework: Rect */) corefoundation.Rect) {
+func (d *WindowDelegate) SetWindowWillUseStandardFrameDefaultFrame(f func(window IWindow, newFrame Rect /* not a class type */) Rect) {
 	d._WindowWillUseStandardFrameDefaultFrame = f
 }
 
 // WindowShouldDragDocumentWithEventFromWithPasteboard implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation objc.IObject /* cross-framework: Point */, pasteboard IPasteboard) bool {
+func (d *WindowDelegate) WindowShouldDragDocumentWithEventFromWithPasteboard(window IWindow, event IEvent, dragImageLocation vision.Point, pasteboard IPasteboard) bool {
 	if d._WindowShouldDragDocumentWithEventFromWithPasteboard != nil {
 		return d._WindowShouldDragDocumentWithEventFromWithPasteboard(window, event, dragImageLocation, pasteboard)
 	}
@@ -264,11 +268,11 @@ func (d *WindowDelegate) HasWindowShouldPopUpDocumentPathMenu() bool {
 }
 
 // WindowWillUseFullScreenContentSize implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillUseFullScreenContentSize(window IWindow, proposedSize objc.IObject /* cross-framework: Size */) corefoundation.Size {
+func (d *WindowDelegate) WindowWillUseFullScreenContentSize(window IWindow, proposedSize Size /* not a class type */) Size {
 	if d._WindowWillUseFullScreenContentSize != nil {
 		return d._WindowWillUseFullScreenContentSize(window, proposedSize)
 	}
-	var zero corefoundation.Size
+	var zero Size
 	return zero
 }
 
@@ -402,7 +406,7 @@ func (d *WindowDelegate) HasWindowShouldClose() bool {
 }
 
 // WindowShouldZoomToFrame implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowShouldZoomToFrame(window IWindow, newFrame objc.IObject /* cross-framework: Rect */) bool {
+func (d *WindowDelegate) WindowShouldZoomToFrame(window IWindow, newFrame Rect /* not a class type */) bool {
 	if d._WindowShouldZoomToFrame != nil {
 		return d._WindowShouldZoomToFrame(window, newFrame)
 	}
@@ -452,11 +456,11 @@ func (d *WindowDelegate) HasWindowWillExitFullScreen() bool {
 }
 
 // WindowWillResizeToSize implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillResizeToSize(sender IWindow, frameSize objc.IObject /* cross-framework: Size */) corefoundation.Size {
+func (d *WindowDelegate) WindowWillResizeToSize(sender IWindow, frameSize Size /* not a class type */) Size {
 	if d._WindowWillResizeToSize != nil {
 		return d._WindowWillResizeToSize(sender, frameSize)
 	}
-	var zero corefoundation.Size
+	var zero Size
 	return zero
 }
 
@@ -492,11 +496,11 @@ func (d *WindowDelegate) HasWindowWillStartLiveResize() bool {
 }
 
 // WindowWillUseStandardFrameDefaultFrame implements the PWindowDelegate interface.
-func (d *WindowDelegate) WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame objc.IObject /* cross-framework: Rect */) corefoundation.Rect {
+func (d *WindowDelegate) WindowWillUseStandardFrameDefaultFrame(window IWindow, newFrame Rect /* not a class type */) Rect {
 	if d._WindowWillUseStandardFrameDefaultFrame != nil {
 		return d._WindowWillUseStandardFrameDefaultFrame(window, newFrame)
 	}
-	var zero corefoundation.Rect
+	var zero Rect
 	return zero
 }
 

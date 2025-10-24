@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = mapkit.NewMKLookAroundSnapshotter
 
+// ExampleMKLookAroundSnapshotter_Cancel demonstrates using Cancel on a MKLookAroundSnapshotter instance.
+// Cancels an in-progress snapshot request.
+func ExampleMKLookAroundSnapshotter_Cancel() {
+	obj := mapkit.NewMKLookAroundSnapshotter()
+	obj.Cancel()
+	// Output:
+	}
+

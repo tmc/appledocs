@@ -8,9 +8,14 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MKMapSnapshot */
+
+
+/* debug [class_header]: Header for MKMapSnapshot */
 // The class instance for the [MKMapSnapshot] class.
 var (
 	MKMapSnapshotClass     _MKMapSnapshotClass
@@ -27,40 +32,33 @@ func getMKMapSnapshotClass() _MKMapSnapshotClass {
 type _MKMapSnapshotClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MKMapSnapshot */
 // An interface definition for the [MKMapSnapshot] class.
 type IMKMapSnapshot interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MKMapSnapshot */
 	// properties:
-	Appearance() objc.IObject /* cross-framework: Appearance */
-	SetAppearance(value objc.IObject /* cross-framework: Appearance */)
-	Image() objc.IObject /* cross-framework: Image */
-	SetImage(value objc.IObject /* cross-framework: Image */)
-	TraitCollection() TraitCollection /* not a class type */
-	SetTraitCollection(value TraitCollection /* not a class type */)
+	Appearance() appkit.Appearance
+	Image() appkit.Image
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MKMapSnapshot */
 	// methods:
+	PointForCoordinate(coordinate LocationCoordinate2D /* not a class type */) corefoundation.CGPoint
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An image that a snapshotter object generates.
-//
-// You don’t create instances of this class directly. Instead, you use an object to capture the map contents asynchronously. An object contains the image that the snapshotter generates from the map contents. Snapshot images don’t include any custom overlays or annotations that your app adds to the map view. If you want your annotations and overlays to appear on the final image, you need to draw them yourself. To position those items correctly on the image, use the method of this class to translate the overlay or annotation coordinate value to an appropriate location inside the image’s coordinate space.
+/* debug [class_interface]: End interface */
 
 
-// An image that a snapshotter object generates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot
-type MKMapSnapshot struct {
-	objectivec.Object
-}
 
-// MKMapSnapshotFrom constructs a [MKMapSnapshot] from an unsafe.Pointer.
-//
-// An image that a snapshotter object generates.
-func MKMapSnapshotFrom(ptr unsafe.Pointer) MKMapSnapshot {
-	return MKMapSnapshot{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MKMapSnapshot */
 // Alloc allocates a new instance without initialization.
 func (mc _MKMapSnapshotClass) Alloc() MKMapSnapshot {
 	rv := objc.Send[MKMapSnapshot](objc.ID(mc.class), objc.Sel("alloc"))
@@ -68,7 +66,6 @@ func (mc _MKMapSnapshotClass) Alloc() MKMapSnapshot {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MKMapSnapshotClass) New() MKMapSnapshot {
 	rv := objc.Send[MKMapSnapshot](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,64 +88,87 @@ func (m_ MKMapSnapshot) Autorelease() MKMapSnapshot {
 func NewMKMapSnapshot() MKMapSnapshot {
 	return getMKMapSnapshotClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MKMapSnapshot */
+// An image that a snapshotter object generates.
+//
+// You don’t create instances of this class directly. Instead, you use an object to capture the map contents asynchronously. An object contains the image that the snapshotter generates from the map contents. Snapshot images don’t include any custom overlays or annotations that your app adds to the map view. If you want your annotations and overlays to appear on the final image, you need to draw them yourself. To position those items correctly on the image, use the method of this class to translate the overlay or annotation coordinate value to an appropriate location inside the image’s coordinate space.
+
+
+// An image that a snapshotter object generates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot
+type MKMapSnapshot struct {
+	objectivec.Object
+}
+
+// MKMapSnapshotFrom constructs a [MKMapSnapshot] from an unsafe.Pointer.
+//
+// An image that a snapshotter object generates.
+func MKMapSnapshotFrom(ptr unsafe.Pointer) MKMapSnapshot {
+	return MKMapSnapshot{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MKMapSnapshot *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MKMapSnapshot */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MKMapSnapshot */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MKMapSnapshot */
+
+// Converts the specified map coordinate to a point in the coordinate space of the image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/point(for:)
+func (m_ MKMapSnapshot) PointForCoordinate(coordinate LocationCoordinate2D /* not a class type */) corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](m_.ID, objc.Sel("pointForCoordinate:"), coordinate)
+	return rv
+}/* debug [instance_methods/method]: PointForCoordinate */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MKMapSnapshot */
 
 // The visual style that MapKit uses when rendering the snapshot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/appearance
-func (m_ MKMapSnapshot) Appearance() objc.IObject /* cross-framework: Appearance */ {
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/appearance
+func (m_ MKMapSnapshot) Appearance() appkit.Appearance {
 	rv := objc.Send[appkit.Appearance](m_.ID, objc.Sel("appearance"))
 	return rv
-}
-
-
-// The visual style that MapKit uses when rendering the snapshot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/appearance
-func (m_ MKMapSnapshot) SetAppearance(value objc.IObject /* cross-framework: Appearance */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAppearance:"), value)
-}
+}/* debug [instance_properties/getter]: appearance */
 
 
 // The image of the map’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
-func (m_ MKMapSnapshot) Image() objc.IObject /* cross-framework: Image */ {
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKMapSnapshotter/Snapshot/image
+func (m_ MKMapSnapshot) Image() appkit.Image {
 	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("image"))
 	return rv
-}
+}/* debug [instance_properties/getter]: image */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The image of the map’s content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/image
-func (m_ MKMapSnapshot) SetImage(value objc.IObject /* cross-framework: Image */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
-}
-
-
-// Traits to use when creating the snapshot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/traitcollection
-func (m_ MKMapSnapshot) TraitCollection() TraitCollection /* not a class type */ {
-	rv := objc.Send[TraitCollection](m_.ID, objc.Sel("traitCollection"))
-	return rv
-}
-
-
-// Traits to use when creating the snapshot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkmapsnapshotter/snapshot/traitcollection
-func (m_ MKMapSnapshot) SetTraitCollection(value TraitCollection /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTraitCollection:"), value)
-}
-
+/* debug [class.gen.go]: End class MKMapSnapshot */
 
 

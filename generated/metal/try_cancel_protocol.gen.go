@@ -20,3 +20,4 @@ var tryCancelProtocol *objc.Protocol
 func init() {
 	tryCancelProtocol = objc.GetProtocol("tryCancel")
 }
+

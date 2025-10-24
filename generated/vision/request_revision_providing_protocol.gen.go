@@ -20,3 +20,4 @@ var RequestRevisionProvidingProtocol *objc.Protocol
 func init() {
 	RequestRevisionProvidingProtocol = objc.GetProtocol("VNRequestRevisionProviding")
 }
+

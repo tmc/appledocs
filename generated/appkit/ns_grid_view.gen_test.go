@@ -9,12 +9,20 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewGridView
 
+// ExampleNewGridViewWithFrame demonstrates how to create a GridView instance using NewGridViewWithFrame.
+// Creates a newly allocated grid view object with the specified frame rectangle.
+func ExampleNewGridViewWithFrame() {
+	_ = appkit.NewGridViewWithFrame(
+		appkit.Rect /* not a class type */{}, // frameRect Rect /* not a class type */
+	)
+	// Output:
+}
 // ExampleNewGridViewWithNumberOfColumnsRows demonstrates how to create a GridView instance using NewGridViewWithNumberOfColumnsRows.
 // Creates a newly allocated grid view object with the specified number of columns and rows.
 func ExampleNewGridViewWithNumberOfColumnsRows() {
 	_ = appkit.NewGridViewWithNumberOfColumnsRows(
-		0, // columnCount int
-		0, // rowCount int
+		10, // columnCount int
+		10, // rowCount int
 	)
 	// Output:
 }

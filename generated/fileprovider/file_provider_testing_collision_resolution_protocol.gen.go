@@ -18,3 +18,4 @@ var FileProviderTestingCollisionResolutionProtocol *objc.Protocol
 func init() {
 	FileProviderTestingCollisionResolutionProtocol = objc.GetProtocol("NSFileProviderTestingCollisionResolution")
 }
+

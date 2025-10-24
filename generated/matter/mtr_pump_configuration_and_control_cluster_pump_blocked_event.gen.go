@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
+
+
+/* debug [class_header]: Header for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
 // The class instance for the [MTRPumpConfigurationAndControlClusterPumpBlockedEvent] class.
 var (
 	MTRPumpConfigurationAndControlClusterPumpBlockedEventClass     _MTRPumpConfigurationAndControlClusterPumpBlockedEventClass
@@ -26,27 +30,30 @@ func getMTRPumpConfigurationAndControlClusterPumpBlockedEventClass() _MTRPumpCon
 type _MTRPumpConfigurationAndControlClusterPumpBlockedEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
 // An interface definition for the [MTRPumpConfigurationAndControlClusterPumpBlockedEvent] class.
 type IMTRPumpConfigurationAndControlClusterPumpBlockedEvent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterPumpBlockedEvent
-type MTRPumpConfigurationAndControlClusterPumpBlockedEvent struct {
-	objectivec.Object
-}
-
-// MTRPumpConfigurationAndControlClusterPumpBlockedEventFrom constructs a [MTRPumpConfigurationAndControlClusterPumpBlockedEvent] from an unsafe.Pointer.
-func MTRPumpConfigurationAndControlClusterPumpBlockedEventFrom(ptr unsafe.Pointer) MTRPumpConfigurationAndControlClusterPumpBlockedEvent {
-	return MTRPumpConfigurationAndControlClusterPumpBlockedEvent{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRPumpConfigurationAndControlClusterPumpBlockedEventClass) Alloc() MTRPumpConfigurationAndControlClusterPumpBlockedEvent {
 	rv := objc.Send[MTRPumpConfigurationAndControlClusterPumpBlockedEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _MTRPumpConfigurationAndControlClusterPumpBlockedEventClass) Alloc() MT
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRPumpConfigurationAndControlClusterPumpBlockedEventClass) New() MTRPumpConfigurationAndControlClusterPumpBlockedEvent {
 	rv := objc.Send[MTRPumpConfigurationAndControlClusterPumpBlockedEvent](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ MTRPumpConfigurationAndControlClusterPumpBlockedEvent) Autorelease() MT
 func NewMTRPumpConfigurationAndControlClusterPumpBlockedEvent() MTRPumpConfigurationAndControlClusterPumpBlockedEvent {
 	return getMTRPumpConfigurationAndControlClusterPumpBlockedEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterPumpBlockedEvent
+type MTRPumpConfigurationAndControlClusterPumpBlockedEvent struct {
+	objectivec.Object
+}
+
+// MTRPumpConfigurationAndControlClusterPumpBlockedEventFrom constructs a [MTRPumpConfigurationAndControlClusterPumpBlockedEvent] from an unsafe.Pointer.
+func MTRPumpConfigurationAndControlClusterPumpBlockedEventFrom(ptr unsafe.Pointer) MTRPumpConfigurationAndControlClusterPumpBlockedEvent {
+	return MTRPumpConfigurationAndControlClusterPumpBlockedEvent{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRPumpConfigurationAndControlClusterPumpBlockedEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRPumpConfigurationAndControlClusterPumpBlockedEvent */
 
 
 

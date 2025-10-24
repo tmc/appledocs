@@ -18,3 +18,4 @@ var pendingItemsDidChangeWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	pendingItemsDidChangeWithCompletionHandlerProtocol = objc.GetProtocol("pendingItemsDidChangeWithCompletionHandler:")
 }
+

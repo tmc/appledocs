@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -41,7 +41,6 @@ type IPHObject interface {
 // The abstract superclass for Photos model objects (assets and collections).
 //
 // You do not create or use instances of this class directly. Instead, work with instances of its concrete subclasses— , , , and . Because the class implements the and methods in terms of its property, you can use techniques that depend on these methods to keep track of asset and collection objects.
-
 
 // The abstract superclass for Photos model objects (assets and collections).
 //
@@ -89,8 +88,6 @@ func NewPHObject() PHObject {
 	return getPHObjectClass().New()
 }
 
-
-
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (p_ PHObject) LocalIdentifier() objc.IObject /* cross-framework: NSString *
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localIdentifier"))
 	return rv
 }
-
 
 // Returns an integer that can be used as a table address in a hash table structure.
 //
@@ -110,7 +106,6 @@ func (p_ PHObject) Hash() int {
 	return rv
 }
 
-
 // Returns an integer that can be used as a table address in a hash table structure.
 //
 // [Full Topic]
@@ -118,6 +113,3 @@ func (p_ PHObject) Hash() int {
 func (p_ PHObject) SetHash(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHash:"), value)
 }
-
-
-

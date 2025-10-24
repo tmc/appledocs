@@ -20,3 +20,4 @@ var advertiserAssistantWillPresentInvitationProtocol *objc.Protocol
 func init() {
 	advertiserAssistantWillPresentInvitationProtocol = objc.GetProtocol("advertiserAssistantWillPresentInvitation:")
 }
+

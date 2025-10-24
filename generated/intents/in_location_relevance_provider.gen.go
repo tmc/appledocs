@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INLocationRelevanceProvider] class.
@@ -39,7 +39,6 @@ type IINLocationRelevanceProvider interface {
 // The provider class that specifies a relevant location.
 //
 // Ask the user for permission to use their location before providing shortcuts to that include a location relevance provider. If the user gives your app permission to access their location While In Use or Always_,_ shortcuts your app provides can influence widget stacks and the Siri watch face.
-
 
 // The provider class that specifies a relevant location.
 //
@@ -89,8 +88,6 @@ func NewINLocationRelevanceProvider() INLocationRelevanceProvider {
 	return getINLocationRelevanceProviderClass().New()
 }
 
-
-
 // The region representing the relevant location.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (i_ INLocationRelevanceProvider) Region() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // The region representing the relevant location.
 //
 // [Full Topic]
@@ -108,6 +104,3 @@ func (i_ INLocationRelevanceProvider) Region() objc.IObject /* cross-framework: 
 func (i_ INLocationRelevanceProvider) SetRegion(value objc.IObject /* cross-framework: Region */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegion:"), value)
 }
-
-
-

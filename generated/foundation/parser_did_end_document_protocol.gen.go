@@ -21,3 +21,4 @@ var parserDidEndDocumentProtocol *objc.Protocol
 func init() {
 	parserDidEndDocumentProtocol = objc.GetProtocol("parserDidEndDocument:")
 }
+

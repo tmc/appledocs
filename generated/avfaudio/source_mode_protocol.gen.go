@@ -20,3 +20,4 @@ var sourceModeProtocol *objc.Protocol
 func init() {
 	sourceModeProtocol = objc.GetProtocol("sourceMode")
 }
+

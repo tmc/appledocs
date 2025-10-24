@@ -15,3 +15,4 @@ var isAccessibilityMinimizedProtocol *objc.Protocol
 func init() {
 	isAccessibilityMinimizedProtocol = objc.GetProtocol("isAccessibilityMinimized")
 }
+

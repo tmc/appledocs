@@ -15,3 +15,5 @@ func ExampleNewAEAssessmentParticipantConfiguration() {
 	_ = automaticassessmentconfiguration.NewAEAssessmentParticipantConfiguration()
 	// Output:
 }
+
+

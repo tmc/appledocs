@@ -5,14 +5,10 @@
 package healthkit
 
 import (
-	"unsafe"
-
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for HKLiveWorkoutDataSource
-
 
 // Stops automatically calculating statistics for the quantity type.
 //
@@ -23,8 +19,3 @@ func (h_ HKLiveWorkoutDataSource) DisableCollectionForType(quantityType IHKQuant
 }
 
 // iOS-only properties
-
-
-
-
-

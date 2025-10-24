@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // PDF417BarcodeGeneratorProtocol is the CIPDF417BarcodeGenerator protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIPDF417BarcodeGenerator.
 var PDF417BarcodeGeneratorProtocol *objc.Protocol
 
 func init() {
 	PDF417BarcodeGeneratorProtocol = objc.GetProtocol("CIPDF417BarcodeGenerator")
 }
+

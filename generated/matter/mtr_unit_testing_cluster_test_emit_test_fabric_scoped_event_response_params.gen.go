@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams interface
 	SetValue(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams
@@ -83,8 +81,6 @@ func NewMTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams() MTRUn
 	return getMTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventresponseparams/timedinvoketimeoutms
 func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams) Timed
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventresponseparams/timedinvoketimeoutms
 func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventresponseparams/value
@@ -107,12 +101,8 @@ func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams) Value
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittestfabricscopedeventresponseparams/value
 func (m_ MTRUnitTestingClusterTestEmitTestFabricScopedEventResponseParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

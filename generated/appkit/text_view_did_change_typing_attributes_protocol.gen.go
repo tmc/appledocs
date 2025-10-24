@@ -15,3 +15,4 @@ var textViewDidChangeTypingAttributesProtocol *objc.Protocol
 func init() {
 	textViewDidChangeTypingAttributesProtocol = objc.GetProtocol("textViewDidChangeTypingAttributes:")
 }
+

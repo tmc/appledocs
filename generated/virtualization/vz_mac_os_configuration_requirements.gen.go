@@ -10,6 +10,9 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VZMacOSConfigurationRequirements */
+
+/* debug [class_header]: Header for VZMacOSConfigurationRequirements */
 // The class instance for the [VZMacOSConfigurationRequirements] class.
 var (
 	VZMacOSConfigurationRequirementsClass     _VZMacOSConfigurationRequirementsClass
@@ -27,34 +30,29 @@ type _VZMacOSConfigurationRequirementsClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for VZMacOSConfigurationRequirements */
 // An interface definition for the [VZMacOSConfigurationRequirements] class.
 type IVZMacOSConfigurationRequirements interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for VZMacOSConfigurationRequirements */
 	// properties:
 	HardwareModel() IVZMacHardwareModel
 	MinimumSupportedCPUCount() uint
 	MinimumSupportedMemorySize() uint64
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for VZMacOSConfigurationRequirements */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that describes the parameter constraints required by a specific configuration of macOS.
+/* debug [class_interface]: End interface */
 
-
-// An object that describes the parameter constraints required by a specific configuration of macOS.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSConfigurationRequirements
-type VZMacOSConfigurationRequirements struct {
-	objectivec.Object
-}
-
-// VZMacOSConfigurationRequirementsFrom constructs a [VZMacOSConfigurationRequirements] from an unsafe.Pointer.
-//
-// An object that describes the parameter constraints required by a specific configuration of macOS.
-func VZMacOSConfigurationRequirementsFrom(ptr unsafe.Pointer) VZMacOSConfigurationRequirements {
-	return VZMacOSConfigurationRequirements{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for VZMacOSConfigurationRequirements */
 // Alloc allocates a new instance without initialization.
 func (vc _VZMacOSConfigurationRequirementsClass) Alloc() VZMacOSConfigurationRequirements {
 	rv := objc.Send[VZMacOSConfigurationRequirements](objc.ID(vc.class), objc.Sel("alloc"))
@@ -62,7 +60,6 @@ func (vc _VZMacOSConfigurationRequirementsClass) Alloc() VZMacOSConfigurationReq
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _VZMacOSConfigurationRequirementsClass) New() VZMacOSConfigurationRequirements {
 	rv := objc.Send[VZMacOSConfigurationRequirements](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,7 +83,40 @@ func NewVZMacOSConfigurationRequirements() VZMacOSConfigurationRequirements {
 	return getVZMacOSConfigurationRequirementsClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for VZMacOSConfigurationRequirements */
+// An object that describes the parameter constraints required by a specific configuration of macOS.
+
+// An object that describes the parameter constraints required by a specific configuration of macOS.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacOSConfigurationRequirements
+type VZMacOSConfigurationRequirements struct {
+	objectivec.Object
+}
+
+// VZMacOSConfigurationRequirementsFrom constructs a [VZMacOSConfigurationRequirements] from an unsafe.Pointer.
+//
+// An object that describes the parameter constraints required by a specific configuration of macOS.
+func VZMacOSConfigurationRequirementsFrom(ptr unsafe.Pointer) VZMacOSConfigurationRequirements {
+	return VZMacOSConfigurationRequirements{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for VZMacOSConfigurationRequirements */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for VZMacOSConfigurationRequirements */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for VZMacOSConfigurationRequirements */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for VZMacOSConfigurationRequirements */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for VZMacOSConfigurationRequirements */
 
 // The hardware model for this configuration.
 //
@@ -95,8 +125,7 @@ func NewVZMacOSConfigurationRequirements() VZMacOSConfigurationRequirements {
 func (v_ VZMacOSConfigurationRequirements) HardwareModel() IVZMacHardwareModel {
 	rv := objc.Send[VZMacHardwareModel](v_.ID, objc.Sel("hardwareModel"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: hardwareModel */
 
 // The minimum supported number of CPUs for this configuration.
 //
@@ -105,8 +134,7 @@ func (v_ VZMacOSConfigurationRequirements) HardwareModel() IVZMacHardwareModel {
 func (v_ VZMacOSConfigurationRequirements) MinimumSupportedCPUCount() uint {
 	rv := objc.Send[uint](v_.ID, objc.Sel("minimumSupportedCPUCount"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: minimumSupportedCPUCount */
 
 // The minimum supported memory size for this configuration.
 //
@@ -115,7 +143,8 @@ func (v_ VZMacOSConfigurationRequirements) MinimumSupportedCPUCount() uint {
 func (v_ VZMacOSConfigurationRequirements) MinimumSupportedMemorySize() uint64 {
 	rv := objc.Send[uint64](v_.ID, objc.Sel("minimumSupportedMemorySize"))
 	return rv
-}
+} /* debug [instance_properties/getter]: minimumSupportedMemorySize */
 
+/* debug [instance_properties]: End instance properties */
 
-
+/* debug [class.gen.go]: End class VZMacOSConfigurationRequirements */

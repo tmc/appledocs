@@ -7,11 +7,15 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/vision"
 )
 
+/* debug [class.gen.go]: Generating class NSEvent */
+
+
+/* debug [class_header]: Header for NSEvent */
 // The class instance for the [Event] class.
 var (
 	EventClass     _EventClass
@@ -28,10 +32,16 @@ func getEventClass() _EventClass {
 type _EventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Event */
 // An interface definition for the [Event] class.
 type IEvent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Event */
 	// properties:
 	AbsoluteX() int
 	AbsoluteY() int
@@ -49,12 +59,12 @@ type IEvent interface {
 	DeltaY() float64
 	DeltaZ() float64
 	EventNumber() int
-	EventRef() unsafe.Pointer
+	EventRef() objectivec.IObject
 	HasPreciseScrollingDeltas() bool
 	ARepeat() bool
 	DirectionInvertedFromDevice() bool
-	KeyCode() unsafe.Pointer
-	LocationInWindow() objc.IObject /* cross-framework: Point */
+	KeyCode() objectivec.IObject
+	LocationInWindow() vision.Point
 	Magnification() float64
 	ModifierFlags() EventModifierFlags
 	MomentumPhase() EventPhase
@@ -68,12 +78,12 @@ type IEvent interface {
 	StageTransition() float64
 	Subtype() EventSubtype
 	TangentialPressure() float32
-	Tilt() objc.IObject /* cross-framework: Point */
+	Tilt() vision.Point
 	Timestamp() float64
 	TrackingArea() ITrackingArea
 	TrackingNumber() int
 	Type() EventType
-	UserData() unsafe.Pointer
+	UserData() objectivec.IObject
 	VendorDefined() objc.ID
 	Window() IWindow
 	WindowNumber() int
@@ -93,10 +103,10 @@ type IEvent interface {
 	SetPointingDeviceID(value int)
 	PointingDeviceSerialNumber() int
 	SetPointingDeviceSerialNumber(value int)
-	PointingDeviceType() unsafe.Pointer
-	SetPointingDeviceType(value unsafe.Pointer)
-	SpecialKey() unsafe.Pointer
-	SetSpecialKey(value unsafe.Pointer)
+	PointingDeviceType() objectivec.IObject
+	SetPointingDeviceType(value objectivec.IObject)
+	SpecialKey() objectivec.IObject
+	SetSpecialKey(value objectivec.IObject)
 	SystemTabletID() int
 	SetSystemTabletID(value int)
 	TabletID() int
@@ -107,34 +117,24 @@ type IEvent interface {
 	SetVendorID(value int)
 	VendorPointingDeviceType() int
 	SetVendorPointingDeviceType(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Event */
 	// methods:
 	AllTouches() unsafe.Pointer
 	CharactersByApplyingModifiers(modifiers EventModifierFlags) foundation.String
 	CoalescedTouchesForTouch(touch ITouch) []Touch
 	TouchesForView(view IView) unsafe.Pointer
 	TouchesMatchingPhaseInView(phase TouchPhase, view IView) unsafe.Pointer
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that contains information about an input action, such as a mouse click or a key press.
-//
-// AppKit reports events that occur in a window to the app that created the window. Events include mouse clicks, key presses, and other types of input to the system. An object contains pertinent information about each event, such as the event type and when the event occurred. The event type defines what other information is available in the event object. For example, a keyboard event contains information about the pressed keys. Although you can create objects directly, you typically don’t. The system generates them automatically in response to input from the mouse, keyboard, trackpad, or other peripherals such as connected tablets. It enqueues those events in its event queue, and dequeues them when it’s ready to process them. The system delivers events to the most relevant object, which might be the first responder or the object where the event occurred. For example, the system delivers mouse-click events to the view that contains the event location. To handle events, add support to your app’s objects. You can also use gesture recognizers to handle some events for you and execute your app’s code at appropriate times. For more information, see the reference. You can also monitor the events your app receives and modify or cancel some events as needed. Install a local monitor using the method to detect specific types of events and take action when your app receives them. Install a global monitor using the method to monitor events systemwide, although without the ability to modify them.
+/* debug [class_interface]: End interface */
 
 
-// An object that contains information about an input action, such as a mouse click or a key press.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent
-type Event struct {
-	objectivec.Object
-}
 
-// EventFrom constructs a [Event] from an unsafe.Pointer.
-//
-// An object that contains information about an input action, such as a mouse click or a key press.
-func EventFrom(ptr unsafe.Pointer) Event {
-	return Event{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Event */
 // Alloc allocates a new instance without initialization.
 func (ec _EventClass) Alloc() Event {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("alloc"))
@@ -142,7 +142,6 @@ func (ec _EventClass) Alloc() Event {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EventClass) New() Event {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -165,8 +164,35 @@ func (e_ Event) Autorelease() Event {
 func NewEvent() Event {
 	return getEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Event */
+// An object that contains information about an input action, such as a mouse click or a key press.
+//
+// AppKit reports events that occur in a window to the app that created the window. Events include mouse clicks, key presses, and other types of input to the system. An object contains pertinent information about each event, such as the event type and when the event occurred. The event type defines what other information is available in the event object. For example, a keyboard event contains information about the pressed keys. Although you can create objects directly, you typically don’t. The system generates them automatically in response to input from the mouse, keyboard, trackpad, or other peripherals such as connected tablets. It enqueues those events in its event queue, and dequeues them when it’s ready to process them. The system delivers events to the most relevant object, which might be the first responder or the object where the event occurred. For example, the system delivers mouse-click events to the view that contains the event location. To handle events, add support to your app’s objects. You can also use gesture recognizers to handle some events for you and execute your app’s code at appropriate times. For more information, see the reference. You can also monitor the events your app receives and modify or cancel some events as needed. Install a local monitor using the method to detect specific types of events and take action when your app receives them. Install a global monitor using the method to monitor events systemwide, although without the ability to modify them.
+
+
+// An object that contains information about an input action, such as a mouse click or a key press.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent
+type Event struct {
+	objectivec.Object
+}
+
+// EventFrom constructs a [Event] from an unsafe.Pointer.
+//
+// An object that contains information about an input action, such as a mouse click or a key press.
+func EventFrom(ptr unsafe.Pointer) Event {
+	return Event{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Event */
 
 // Creates and returns an event object for a Core Graphics event.
 //
@@ -175,19 +201,23 @@ func NewEvent() Event {
 func NewEventWithCGEvent(cgEvent EventRef /* not a class type */) Event {
 	rv := objc.Send[Event](objc.ID(getEventClass().class), objc.Sel("eventWithCGEvent:"), cgEvent)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewEventWithCGEvent */
 
 
 // Creates and returns a new event object for a Carbon event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/init(eventRef:)
-func NewEventWithEventRef(eventRef unsafe.Pointer) Event {
+func NewEventWithEventRef(eventRef objectivec.IObject) Event {
 	rv := objc.Send[Event](objc.ID(getEventClass().class), objc.Sel("eventWithEventRef:"), eventRef)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewEventWithEventRef */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for Event */
 
 // Installs an event monitor that receives copies of events the system posts to other applications.
 //
@@ -196,27 +226,27 @@ func NewEventWithEventRef(eventRef unsafe.Pointer) Event {
 func (ec _EventClass) AddGlobalMonitorForEventsMatchingMaskHandler(mask EventMask, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("addGlobalMonitorForEventsMatchingMask:handler:"), mask, block)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AddGlobalMonitorForEventsMatchingMaskHandler) */
 
 
 // Installs an event monitor that receives copies of events the system posts to this app prior to their dispatch.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/addLocalMonitorForEvents(matching:handler:)
-func (ec _EventClass) AddLocalMonitorForEventsMatchingMaskHandler(mask EventMask, block Event  * (^)( NSEvent  *  event /* not a class type */) objc.ID {
+func (ec _EventClass) AddLocalMonitorForEventsMatchingMaskHandler(mask EventMask, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("addLocalMonitorForEventsMatchingMask:handler:"), mask, block)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AddLocalMonitorForEventsMatchingMaskHandler) */
 
 
 // Creates and returns a new event object that describes a tracking-rectangle or cursor-update event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/enterExitEvent(with:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:)
-func (ec _EventClass) EnterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData(type_ EventType, location objc.IObject /* cross-framework: Point */, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, eNum int, tNum int, data unsafe.Pointer) IEvent {
+func (ec _EventClass) EnterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData(type_ EventType, location vision.Point, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, eNum int, tNum int, data objectivec.IObject) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("enterExitEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:trackingNumber:userData:"), type_, location, flags, time, wNum, unusedPassNil, eNum, tNum, data)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=EnterExitEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberTrackingNumberUserData) */
 
 
 // Creates and returns an event object for a Core Graphics event.
@@ -226,47 +256,47 @@ func (ec _EventClass) EnterExitEventWithTypeLocationModifierFlagsTimestampWindow
 func (ec _EventClass) EventWithCGEvent(cgEvent EventRef /* not a class type */) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("eventWithCGEvent:"), cgEvent)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=EventWithCGEvent) */
 
 
 // Creates and returns a new event object for a Carbon event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/init(eventRef:)
-func (ec _EventClass) EventWithEventRef(eventRef unsafe.Pointer) IEvent {
+func (ec _EventClass) EventWithEventRef(eventRef objectivec.IObject) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("eventWithEventRef:"), eventRef)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=EventWithEventRef) */
 
 
 // Creates and returns a new event object that describes a key event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyEvent(with:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:)
-func (ec _EventClass) KeyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode(type_ EventType, location objc.IObject /* cross-framework: Point */, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, keys objc.IObject /* cross-framework: NSString */, ukeys objc.IObject /* cross-framework: NSString */, flag bool, code unsafe.Pointer) IEvent {
+func (ec _EventClass) KeyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode(type_ EventType, location vision.Point, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, keys objc.IObject /* cross-framework: NSString */, ukeys objc.IObject /* cross-framework: NSString */, flag bool, code objectivec.IObject) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("keyEventWithType:location:modifierFlags:timestamp:windowNumber:context:characters:charactersIgnoringModifiers:isARepeat:keyCode:"), type_, location, flags, time, wNum, unusedPassNil, keys, ukeys, flag, code)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=KeyEventWithTypeLocationModifierFlagsTimestampWindowNumberContextCharactersCharactersIgnoringModifiersIsARepeatKeyCode) */
 
 
 // Creates and returns a new event object that describes a mouse-down, -up, -moved, or -dragged event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseEvent(with:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:)
-func (ec _EventClass) MouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure(type_ EventType, location objc.IObject /* cross-framework: Point */, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, eNum int, cNum int, pressure float32) IEvent {
+func (ec _EventClass) MouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure(type_ EventType, location vision.Point, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, eNum int, cNum int, pressure float32) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("mouseEventWithType:location:modifierFlags:timestamp:windowNumber:context:eventNumber:clickCount:pressure:"), type_, location, flags, time, wNum, unusedPassNil, eNum, cNum, pressure)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MouseEventWithTypeLocationModifierFlagsTimestampWindowNumberContextEventNumberClickCountPressure) */
 
 
 // Creates and returns a new event object that describes a custom event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/otherEvent(with:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:)
-func (ec _EventClass) OtherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(type_ EventType, location objc.IObject /* cross-framework: Point */, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, subtype unsafe.Pointer, d1 int, d2 int) IEvent {
+func (ec _EventClass) OtherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2(type_ EventType, location vision.Point, flags EventModifierFlags, time float64, wNum int, unusedPassNil IGraphicsContext, subtype objectivec.IObject, d1 int, d2 int) IEvent {
 	rv := objc.Send[Event](objc.ID(ec.class), objc.Sel("otherEventWithType:location:modifierFlags:timestamp:windowNumber:context:subtype:data1:data2:"), type_, location, flags, time, wNum, unusedPassNil, subtype, d1, d2)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=OtherEventWithTypeLocationModifierFlagsTimestampWindowNumberContextSubtypeData1Data2) */
 
 
 // Removes the specified event monitor.
@@ -275,8 +305,13 @@ func (ec _EventClass) OtherEventWithTypeLocationModifierFlagsTimestampWindowNumb
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/removeMonitor(_:)
 func (ec _EventClass) RemoveMonitor(eventMonitor objc.IObject) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("removeMonitor:"), eventMonitor)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RemoveMonitor) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Event */
 
 // The maximum number of seconds in which a second mouse click must occur for an event to be a double-click event.
 //
@@ -285,7 +320,7 @@ func (ec _EventClass) RemoveMonitor(eventMonitor objc.IObject) {
 func (ec _EventClass) DoubleClickInterval() float64 {
 	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("doubleClickInterval"))
 	return rv
-}
+}/* debug [class_properties_class/property]: doubleClickInterval */
 
 // A Boolean value that indicates whether the system coalesces mouse movement events.
 //
@@ -294,7 +329,7 @@ func (ec _EventClass) DoubleClickInterval() float64 {
 func (ec _EventClass) MouseCoalescingEnabled() bool {
 	rv := objc.Send[bool](objc.ID(ec.class), objc.Sel("mouseCoalescingEnabled"))
 	return rv
-}
+}/* debug [class_properties_class/property]: mouseCoalescingEnabled */
 
 // The number of seconds someone must hold down a key before the first key repeat event occurs.
 //
@@ -303,7 +338,7 @@ func (ec _EventClass) MouseCoalescingEnabled() bool {
 func (ec _EventClass) KeyRepeatDelay() float64 {
 	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("keyRepeatDelay"))
 	return rv
-}
+}/* debug [class_properties_class/property]: keyRepeatDelay */
 
 // The number of seconds someone must hold down a key to generate key-repeat events after the initial delay.
 //
@@ -312,16 +347,16 @@ func (ec _EventClass) KeyRepeatDelay() float64 {
 func (ec _EventClass) KeyRepeatInterval() float64 {
 	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("keyRepeatInterval"))
 	return rv
-}
+}/* debug [class_properties_class/property]: keyRepeatInterval */
 
 // Reports the current mouse position in screen coordinates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseLocation
-func (ec _EventClass) MouseLocation() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[corefoundation.Point](objc.ID(ec.class), objc.Sel("mouseLocation"))
+func (ec _EventClass) MouseLocation() vision.Point {
+	rv := objc.Send[vision.Point](objc.ID(ec.class), objc.Sel("mouseLocation"))
 	return rv
-}
+}/* debug [class_properties_class/property]: mouseLocation */
 
 // The indices of the currently pressed mouse buttons.
 //
@@ -330,7 +365,12 @@ func (ec _EventClass) MouseLocation() objc.IObject /* cross-framework: Point */ 
 func (ec _EventClass) PressedMouseButtons() uint {
 	rv := objc.Send[uint](objc.ID(ec.class), objc.Sel("pressedMouseButtons"))
 	return rv
-}
+}/* debug [class_properties_class/property]: pressedMouseButtons */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Event */
 
 // Returns all touch objects associated with the event.
 //
@@ -339,7 +379,7 @@ func (ec _EventClass) PressedMouseButtons() uint {
 func (e_ Event) AllTouches() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("allTouches"))
 	return rv
-}
+}/* debug [instance_methods/method]: AllTouches */
 
 
 // Returns the new characters that result if you apply the specified modifier keys to the event.
@@ -349,7 +389,7 @@ func (e_ Event) AllTouches() unsafe.Pointer {
 func (e_ Event) CharactersByApplyingModifiers(modifiers EventModifierFlags) foundation.String {
 	rv := objc.Send[foundation.String](e_.ID, objc.Sel("charactersByApplyingModifiers:"), modifiers)
 	return rv
-}
+}/* debug [instance_methods/method]: CharactersByApplyingModifiers */
 
 
 // Returns all of the touch objects associated with the specified main touch.
@@ -359,7 +399,7 @@ func (e_ Event) CharactersByApplyingModifiers(modifiers EventModifierFlags) foun
 func (e_ Event) CoalescedTouchesForTouch(touch ITouch) []Touch {
 	rv := objc.Send[[]Touch](e_.ID, objc.Sel("coalescedTouchesForTouch:"), touch)
 	return rv
-}
+}/* debug [instance_methods/method]: CoalescedTouchesForTouch */
 
 
 // Returns the touch objects from the event that belong to the specified view.
@@ -369,7 +409,7 @@ func (e_ Event) CoalescedTouchesForTouch(touch ITouch) []Touch {
 func (e_ Event) TouchesForView(view IView) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("touchesForView:"), view)
 	return rv
-}
+}/* debug [instance_methods/method]: TouchesForView */
 
 
 // Returns the touch objects associated with the specified phase.
@@ -379,8 +419,13 @@ func (e_ Event) TouchesForView(view IView) unsafe.Pointer {
 func (e_ Event) TouchesMatchingPhaseInView(phase TouchPhase, view IView) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("touchesMatchingPhase:inView:"), phase, view)
 	return rv
-}
+}/* debug [instance_methods/method]: TouchesMatchingPhaseInView */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Event */
 
 // The absolute x coordinate of a pointing device on its tablet at full tablet resolution.
 //
@@ -389,7 +434,7 @@ func (e_ Event) TouchesMatchingPhaseInView(phase TouchPhase, view IView) unsafe.
 func (e_ Event) AbsoluteX() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteX"))
 	return rv
-}
+}/* debug [instance_properties/getter]: absoluteX */
 
 
 // The absolute y coordinate of a pointing device on its tablet at full tablet resolution.
@@ -399,7 +444,7 @@ func (e_ Event) AbsoluteX() int {
 func (e_ Event) AbsoluteY() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteY"))
 	return rv
-}
+}/* debug [instance_properties/getter]: absoluteY */
 
 
 // The absolute z coordinate of pointing device on its tablet at full tablet resolution.
@@ -409,7 +454,7 @@ func (e_ Event) AbsoluteY() int {
 func (e_ Event) AbsoluteZ() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("absoluteZ"))
 	return rv
-}
+}/* debug [instance_properties/getter]: absoluteZ */
 
 
 // The associated events mask of a mouse event.
@@ -419,7 +464,7 @@ func (e_ Event) AbsoluteZ() int {
 func (e_ Event) AssociatedEventsMask() EventMask {
 	rv := objc.Send[EventMask](e_.ID, objc.Sel("associatedEventsMask"))
 	return rv
-}
+}/* debug [instance_properties/getter]: associatedEventsMask */
 
 
 // A bit mask identifying the buttons pressed for a tablet event.
@@ -429,7 +474,7 @@ func (e_ Event) AssociatedEventsMask() EventMask {
 func (e_ Event) ButtonMask() EventButtonMask {
 	rv := objc.Send[EventButtonMask](e_.ID, objc.Sel("buttonMask"))
 	return rv
-}
+}/* debug [instance_properties/getter]: buttonMask */
 
 
 // The button number for a mouse event.
@@ -439,7 +484,7 @@ func (e_ Event) ButtonMask() EventButtonMask {
 func (e_ Event) ButtonNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("buttonNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: buttonNumber */
 
 
 // The Core Graphics event object corresponding to this event.
@@ -449,7 +494,7 @@ func (e_ Event) ButtonNumber() int {
 func (e_ Event) CGEvent() EventRef /* not a class type */ {
 	rv := objc.Send[EventRef](e_.ID, objc.Sel("CGEvent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CGEvent */
 
 
 // The characters associated with a key-up or key-down event.
@@ -459,7 +504,7 @@ func (e_ Event) CGEvent() EventRef /* not a class type */ {
 func (e_ Event) Characters() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("characters"))
 	return rv
-}
+}/* debug [instance_properties/getter]: characters */
 
 
 // The characters generated by a key event as if no modifier key (except for Shift) applies.
@@ -469,7 +514,7 @@ func (e_ Event) Characters() objc.IObject /* cross-framework: NSString */ {
 func (e_ Event) CharactersIgnoringModifiers() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("charactersIgnoringModifiers"))
 	return rv
-}
+}/* debug [instance_properties/getter]: charactersIgnoringModifiers */
 
 
 // The number of mouse clicks associated with a mouse-down or mouse-up event.
@@ -479,7 +524,7 @@ func (e_ Event) CharactersIgnoringModifiers() objc.IObject /* cross-framework: N
 func (e_ Event) ClickCount() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("clickCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: clickCount */
 
 
 // Additional data associated with this event.
@@ -489,7 +534,7 @@ func (e_ Event) ClickCount() int {
 func (e_ Event) Data1() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("data1"))
 	return rv
-}
+}/* debug [instance_properties/getter]: data1 */
 
 
 // Additional data associated with this event.
@@ -499,7 +544,7 @@ func (e_ Event) Data1() int {
 func (e_ Event) Data2() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("data2"))
 	return rv
-}
+}/* debug [instance_properties/getter]: data2 */
 
 
 // The x-coordinate change for scroll wheel, mouse-move, mouse-drag, and swipe events.
@@ -509,7 +554,7 @@ func (e_ Event) Data2() int {
 func (e_ Event) DeltaX() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaX"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deltaX */
 
 
 // The y-coordinate change for scroll wheel, mouse-move, mouse-drag, and swipe events.
@@ -519,7 +564,7 @@ func (e_ Event) DeltaX() float64 {
 func (e_ Event) DeltaY() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaY"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deltaY */
 
 
 // The z-coordinate change for a scroll wheel, mouse-move, or mouse-drag event.
@@ -529,7 +574,7 @@ func (e_ Event) DeltaY() float64 {
 func (e_ Event) DeltaZ() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("deltaZ"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deltaZ */
 
 
 // The maximum number of seconds in which a second mouse click must occur for an event to be a double-click event.
@@ -539,7 +584,7 @@ func (e_ Event) DeltaZ() float64 {
 func (e_ Event) DoubleClickInterval() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("doubleClickInterval"))
 	return rv
-}
+}/* debug [instance_properties/getter]: doubleClickInterval */
 
 
 // The counter value of the latest mouse or tracking-rectangle event object.
@@ -549,17 +594,17 @@ func (e_ Event) DoubleClickInterval() float64 {
 func (e_ Event) EventNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("eventNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: eventNumber */
 
 
 // An opaque Carbon type associated with this event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/eventRef
-func (e_ Event) EventRef() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("eventRef"))
+func (e_ Event) EventRef() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("eventRef"))
 	return rv
-}
+}/* debug [instance_properties/getter]: eventRef */
 
 
 // A Boolean value that indicates whether precise scrolling deltas are available.
@@ -569,7 +614,7 @@ func (e_ Event) EventRef() unsafe.Pointer {
 func (e_ Event) HasPreciseScrollingDeltas() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasPreciseScrollingDeltas"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hasPreciseScrollingDeltas */
 
 
 // A Boolean value that indicates whether the key event is a repeat.
@@ -579,7 +624,7 @@ func (e_ Event) HasPreciseScrollingDeltas() bool {
 func (e_ Event) ARepeat() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("ARepeat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: ARepeat */
 
 
 // A Boolean value that indicates whether the user has changed the device inversion.
@@ -589,7 +634,7 @@ func (e_ Event) ARepeat() bool {
 func (e_ Event) DirectionInvertedFromDevice() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("directionInvertedFromDevice"))
 	return rv
-}
+}/* debug [instance_properties/getter]: directionInvertedFromDevice */
 
 
 // A Boolean value that indicates whether the system coalesces mouse movement events.
@@ -599,7 +644,7 @@ func (e_ Event) DirectionInvertedFromDevice() bool {
 func (e_ Event) MouseCoalescingEnabled() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("mouseCoalescingEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mouseCoalescingEnabled */
 
 
 // A Boolean value that indicates whether the system coalesces mouse movement events.
@@ -608,17 +653,17 @@ func (e_ Event) MouseCoalescingEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isMouseCoalescingEnabled
 func (e_ Event) SetMouseCoalescingEnabled(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setMouseCoalescingEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: mouseCoalescingEnabled */
 
 
 // The virtual code for the key associated with the event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyCode
-func (e_ Event) KeyCode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("keyCode"))
+func (e_ Event) KeyCode() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("keyCode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: keyCode */
 
 
 // The number of seconds someone must hold down a key before the first key repeat event occurs.
@@ -628,7 +673,7 @@ func (e_ Event) KeyCode() unsafe.Pointer {
 func (e_ Event) KeyRepeatDelay() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("keyRepeatDelay"))
 	return rv
-}
+}/* debug [instance_properties/getter]: keyRepeatDelay */
 
 
 // The number of seconds someone must hold down a key to generate key-repeat events after the initial delay.
@@ -638,17 +683,17 @@ func (e_ Event) KeyRepeatDelay() float64 {
 func (e_ Event) KeyRepeatInterval() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("keyRepeatInterval"))
 	return rv
-}
+}/* debug [instance_properties/getter]: keyRepeatInterval */
 
 
 // The event location in the base coordinate system of the associated window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/locationInWindow
-func (e_ Event) LocationInWindow() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[corefoundation.Point](e_.ID, objc.Sel("locationInWindow"))
+func (e_ Event) LocationInWindow() vision.Point {
+	rv := objc.Send[vision.Point](e_.ID, objc.Sel("locationInWindow"))
 	return rv
-}
+}/* debug [instance_properties/getter]: locationInWindow */
 
 
 // The amount of change to add to a magnification gesture.
@@ -658,7 +703,7 @@ func (e_ Event) LocationInWindow() objc.IObject /* cross-framework: Point */ {
 func (e_ Event) Magnification() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("magnification"))
 	return rv
-}
+}/* debug [instance_properties/getter]: magnification */
 
 
 // An integer bit field that indicates the pressed modifier keys.
@@ -668,7 +713,7 @@ func (e_ Event) Magnification() float64 {
 func (e_ Event) ModifierFlags() EventModifierFlags {
 	rv := objc.Send[EventModifierFlags](e_.ID, objc.Sel("modifierFlags"))
 	return rv
-}
+}/* debug [instance_properties/getter]: modifierFlags */
 
 
 // The momentum phase for a scroll or flick gesture.
@@ -678,17 +723,17 @@ func (e_ Event) ModifierFlags() EventModifierFlags {
 func (e_ Event) MomentumPhase() EventPhase {
 	rv := objc.Send[EventPhase](e_.ID, objc.Sel("momentumPhase"))
 	return rv
-}
+}/* debug [instance_properties/getter]: momentumPhase */
 
 
 // Reports the current mouse position in screen coordinates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/mouseLocation
-func (e_ Event) MouseLocation() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[corefoundation.Point](e_.ID, objc.Sel("mouseLocation"))
+func (e_ Event) MouseLocation() vision.Point {
+	rv := objc.Send[vision.Point](e_.ID, objc.Sel("mouseLocation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mouseLocation */
 
 
 // The phase of a gesture event, such as a magnify, scroll, or pressure change.
@@ -698,7 +743,7 @@ func (e_ Event) MouseLocation() objc.IObject /* cross-framework: Point */ {
 func (e_ Event) Phase() EventPhase {
 	rv := objc.Send[EventPhase](e_.ID, objc.Sel("phase"))
 	return rv
-}
+}/* debug [instance_properties/getter]: phase */
 
 
 // The indices of the currently pressed mouse buttons.
@@ -708,7 +753,7 @@ func (e_ Event) Phase() EventPhase {
 func (e_ Event) PressedMouseButtons() uint {
 	rv := objc.Send[uint](e_.ID, objc.Sel("pressedMouseButtons"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pressedMouseButtons */
 
 
 // A normalized value that indicates the degree of pressure applied to an appropriate input device.
@@ -718,7 +763,7 @@ func (e_ Event) PressedMouseButtons() uint {
 func (e_ Event) Pressure() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("pressure"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pressure */
 
 
 // The behavior and progression for a pressure event.
@@ -728,7 +773,7 @@ func (e_ Event) Pressure() float32 {
 func (e_ Event) PressureBehavior() PressureBehavior {
 	rv := objc.Send[PressureBehavior](e_.ID, objc.Sel("pressureBehavior"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pressureBehavior */
 
 
 // The rotation in degrees of the tablet pointing device associated with this event.
@@ -738,7 +783,7 @@ func (e_ Event) PressureBehavior() PressureBehavior {
 func (e_ Event) Rotation() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("rotation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rotation */
 
 
 // The scroll wheel’s horizontal delta.
@@ -748,7 +793,7 @@ func (e_ Event) Rotation() float32 {
 func (e_ Event) ScrollingDeltaX() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("scrollingDeltaX"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scrollingDeltaX */
 
 
 // The scroll wheel’s vertical delta.
@@ -758,7 +803,7 @@ func (e_ Event) ScrollingDeltaX() float64 {
 func (e_ Event) ScrollingDeltaY() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("scrollingDeltaY"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scrollingDeltaY */
 
 
 // A value that indicates the stage of a pressure gesture event.
@@ -768,7 +813,7 @@ func (e_ Event) ScrollingDeltaY() float64 {
 func (e_ Event) Stage() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("stage"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stage */
 
 
 // The transition value for the stage of a pressure gesture event.
@@ -778,7 +823,7 @@ func (e_ Event) Stage() int {
 func (e_ Event) StageTransition() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("stageTransition"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stageTransition */
 
 
 // The event’s subtype.
@@ -788,7 +833,7 @@ func (e_ Event) StageTransition() float64 {
 func (e_ Event) Subtype() EventSubtype {
 	rv := objc.Send[EventSubtype](e_.ID, objc.Sel("subtype"))
 	return rv
-}
+}/* debug [instance_properties/getter]: subtype */
 
 
 // The tangential pressure on the device that generated this event.
@@ -798,17 +843,17 @@ func (e_ Event) Subtype() EventSubtype {
 func (e_ Event) TangentialPressure() float32 {
 	rv := objc.Send[float32](e_.ID, objc.Sel("tangentialPressure"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tangentialPressure */
 
 
 // The scaled tilt values of the pointing device that generated this event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/tilt
-func (e_ Event) Tilt() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[corefoundation.Point](e_.ID, objc.Sel("tilt"))
+func (e_ Event) Tilt() vision.Point {
+	rv := objc.Send[vision.Point](e_.ID, objc.Sel("tilt"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tilt */
 
 
 // The time when the event occurred in seconds since system startup.
@@ -818,7 +863,7 @@ func (e_ Event) Tilt() objc.IObject /* cross-framework: Point */ {
 func (e_ Event) Timestamp() float64 {
 	rv := objc.Send[float64](e_.ID, objc.Sel("timestamp"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timestamp */
 
 
 // The tracking area for the event.
@@ -828,7 +873,7 @@ func (e_ Event) Timestamp() float64 {
 func (e_ Event) TrackingArea() ITrackingArea {
 	rv := objc.Send[TrackingArea](e_.ID, objc.Sel("trackingArea"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trackingArea */
 
 
 // The identifier of a mouse-tracking event.
@@ -838,7 +883,7 @@ func (e_ Event) TrackingArea() ITrackingArea {
 func (e_ Event) TrackingNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("trackingNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trackingNumber */
 
 
 // The event’s type.
@@ -848,17 +893,17 @@ func (e_ Event) TrackingNumber() int {
 func (e_ Event) Type() EventType {
 	rv := objc.Send[EventType](e_.ID, objc.Sel("type"))
 	return rv
-}
+}/* debug [instance_properties/getter]: type */
 
 
 // The data associated with a mouse-tracking event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/userData
-func (e_ Event) UserData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("userData"))
+func (e_ Event) UserData() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("userData"))
 	return rv
-}
+}/* debug [instance_properties/getter]: userData */
 
 
 // An array of three vendor-defined number objects associated with a pointing-type event.
@@ -868,7 +913,7 @@ func (e_ Event) UserData() unsafe.Pointer {
 func (e_ Event) VendorDefined() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("vendorDefined"))
 	return rv
-}
+}/* debug [instance_properties/getter]: vendorDefined */
 
 
 // The window object associated with the event.
@@ -878,7 +923,7 @@ func (e_ Event) VendorDefined() objc.ID {
 func (e_ Event) Window() IWindow {
 	rv := objc.Send[Window](e_.ID, objc.Sel("window"))
 	return rv
-}
+}/* debug [instance_properties/getter]: window */
 
 
 // The identifier for the window device associated with the event.
@@ -888,7 +933,7 @@ func (e_ Event) Window() IWindow {
 func (e_ Event) WindowNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("windowNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: windowNumber */
 
 
 // A mask that indicates the capabilities of the tablet device that generated this event.
@@ -898,7 +943,7 @@ func (e_ Event) WindowNumber() int {
 func (e_ Event) CapabilityMask() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("capabilityMask"))
 	return rv
-}
+}/* debug [instance_properties/getter]: capabilityMask */
 
 
 // A mask that indicates the capabilities of the tablet device that generated this event.
@@ -907,7 +952,7 @@ func (e_ Event) CapabilityMask() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/capabilitymask
 func (e_ Event) SetCapabilityMask(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCapabilityMask:"), value)
-}
+}/* debug [instance_properties/setter]: capabilityMask */
 
 
 // The display graphics context for this event.
@@ -917,7 +962,7 @@ func (e_ Event) SetCapabilityMask(value int) {
 func (e_ Event) Context() IGraphicsContext {
 	rv := objc.Send[GraphicsContext](e_.ID, objc.Sel("context"))
 	return rv
-}
+}/* debug [instance_properties/getter]: context */
 
 
 // The display graphics context for this event.
@@ -926,7 +971,7 @@ func (e_ Event) Context() IGraphicsContext {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/context
 func (e_ Event) SetContext(value IGraphicsContext) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setContext:"), value)
-}
+}/* debug [instance_properties/setter]: context */
 
 
 // A special identifier the system matches against tablet-pointer and tablet-proximity events.
@@ -936,7 +981,7 @@ func (e_ Event) SetContext(value IGraphicsContext) {
 func (e_ Event) DeviceID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("deviceID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deviceID */
 
 
 // A special identifier the system matches against tablet-pointer and tablet-proximity events.
@@ -945,7 +990,7 @@ func (e_ Event) DeviceID() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deviceid
 func (e_ Event) SetDeviceID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDeviceID:"), value)
-}
+}/* debug [instance_properties/setter]: deviceID */
 
 
 // A Boolean value that indicates whether the key event is a repeat.
@@ -955,7 +1000,7 @@ func (e_ Event) SetDeviceID(value int) {
 func (e_ Event) IsARepeat() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isARepeat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isARepeat */
 
 
 // A Boolean value that indicates whether the key event is a repeat.
@@ -964,7 +1009,7 @@ func (e_ Event) IsARepeat() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isarepeat
 func (e_ Event) SetIsARepeat(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsARepeat:"), value)
-}
+}/* debug [instance_properties/setter]: isARepeat */
 
 
 // A Boolean value that indicates whether the user has changed the device inversion.
@@ -974,7 +1019,7 @@ func (e_ Event) SetIsARepeat(value bool) {
 func (e_ Event) IsDirectionInvertedFromDevice() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isDirectionInvertedFromDevice"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isDirectionInvertedFromDevice */
 
 
 // A Boolean value that indicates whether the user has changed the device inversion.
@@ -983,7 +1028,7 @@ func (e_ Event) IsDirectionInvertedFromDevice() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isdirectioninvertedfromdevice
 func (e_ Event) SetIsDirectionInvertedFromDevice(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsDirectionInvertedFromDevice:"), value)
-}
+}/* debug [instance_properties/setter]: isDirectionInvertedFromDevice */
 
 
 // A Boolean value that indicates whether a pointing device is entering or leaving the proximity of its tablet.
@@ -993,7 +1038,7 @@ func (e_ Event) SetIsDirectionInvertedFromDevice(value bool) {
 func (e_ Event) IsEnteringProximity() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isEnteringProximity"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isEnteringProximity */
 
 
 // A Boolean value that indicates whether a pointing device is entering or leaving the proximity of its tablet.
@@ -1002,7 +1047,7 @@ func (e_ Event) IsEnteringProximity() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/isenteringproximity
 func (e_ Event) SetIsEnteringProximity(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsEnteringProximity:"), value)
-}
+}/* debug [instance_properties/setter]: isEnteringProximity */
 
 
 // The index of the pointing device currently in proximity with the tablet.
@@ -1012,7 +1057,7 @@ func (e_ Event) SetIsEnteringProximity(value bool) {
 func (e_ Event) PointingDeviceID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("pointingDeviceID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pointingDeviceID */
 
 
 // The index of the pointing device currently in proximity with the tablet.
@@ -1021,7 +1066,7 @@ func (e_ Event) PointingDeviceID() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceid
 func (e_ Event) SetPointingDeviceID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceID:"), value)
-}
+}/* debug [instance_properties/setter]: pointingDeviceID */
 
 
 // The vendor-assigned serial number of a pointing device.
@@ -1031,7 +1076,7 @@ func (e_ Event) SetPointingDeviceID(value int) {
 func (e_ Event) PointingDeviceSerialNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("pointingDeviceSerialNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pointingDeviceSerialNumber */
 
 
 // The vendor-assigned serial number of a pointing device.
@@ -1040,45 +1085,45 @@ func (e_ Event) PointingDeviceSerialNumber() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceserialnumber
 func (e_ Event) SetPointingDeviceSerialNumber(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceSerialNumber:"), value)
-}
+}/* debug [instance_properties/setter]: pointingDeviceSerialNumber */
 
 
 // The kind of pointing device associated with this event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.property
-func (e_ Event) PointingDeviceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("pointingDeviceType"))
+func (e_ Event) PointingDeviceType() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("pointingDeviceType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pointingDeviceType */
 
 
 // The kind of pointing device associated with this event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.property
-func (e_ Event) SetPointingDeviceType(value unsafe.Pointer) {
+func (e_ Event) SetPointingDeviceType(value objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceType:"), value)
-}
+}/* debug [instance_properties/setter]: pointingDeviceType */
 
 
 // The code associated with a function key or other special key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/specialkey-swift.property
-func (e_ Event) SpecialKey() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("specialKey"))
+func (e_ Event) SpecialKey() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("specialKey"))
 	return rv
-}
+}/* debug [instance_properties/getter]: specialKey */
 
 
 // The code associated with a function key or other special key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/specialkey-swift.property
-func (e_ Event) SetSpecialKey(value unsafe.Pointer) {
+func (e_ Event) SetSpecialKey(value objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSpecialKey:"), value)
-}
+}/* debug [instance_properties/setter]: specialKey */
 
 
 // The index of the tablet device connected to the system.
@@ -1088,7 +1133,7 @@ func (e_ Event) SetSpecialKey(value unsafe.Pointer) {
 func (e_ Event) SystemTabletID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("systemTabletID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: systemTabletID */
 
 
 // The index of the tablet device connected to the system.
@@ -1097,7 +1142,7 @@ func (e_ Event) SystemTabletID() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/systemtabletid
 func (e_ Event) SetSystemTabletID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSystemTabletID:"), value)
-}
+}/* debug [instance_properties/setter]: systemTabletID */
 
 
 // The USB model identifier of the tablet device associated with this event.
@@ -1107,7 +1152,7 @@ func (e_ Event) SetSystemTabletID(value int) {
 func (e_ Event) TabletID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("tabletID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tabletID */
 
 
 // The USB model identifier of the tablet device associated with this event.
@@ -1116,7 +1161,7 @@ func (e_ Event) TabletID() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tabletid
 func (e_ Event) SetTabletID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setTabletID:"), value)
-}
+}/* debug [instance_properties/setter]: tabletID */
 
 
 // The unique identifier of the pointing device that generated this event.
@@ -1126,7 +1171,7 @@ func (e_ Event) SetTabletID(value int) {
 func (e_ Event) UniqueID() uint64 {
 	rv := objc.Send[uint64](e_.ID, objc.Sel("uniqueID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: uniqueID */
 
 
 // The unique identifier of the pointing device that generated this event.
@@ -1135,7 +1180,7 @@ func (e_ Event) UniqueID() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/uniqueid
 func (e_ Event) SetUniqueID(value uint64) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUniqueID:"), value)
-}
+}/* debug [instance_properties/setter]: uniqueID */
 
 
 // The vendor identifier of the tablet associated with the event.
@@ -1145,7 +1190,7 @@ func (e_ Event) SetUniqueID(value uint64) {
 func (e_ Event) VendorID() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("vendorID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: vendorID */
 
 
 // The vendor identifier of the tablet associated with the event.
@@ -1154,7 +1199,7 @@ func (e_ Event) VendorID() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorid
 func (e_ Event) SetVendorID(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVendorID:"), value)
-}
+}/* debug [instance_properties/setter]: vendorID */
 
 
 // A coded bit field whose set bits indicate the type of pointing device (within a vendor selection) associated with the event.
@@ -1164,7 +1209,7 @@ func (e_ Event) SetVendorID(value int) {
 func (e_ Event) VendorPointingDeviceType() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("vendorPointingDeviceType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: vendorPointingDeviceType */
 
 
 // A coded bit field whose set bits indicate the type of pointing device (within a vendor selection) associated with the event.
@@ -1173,6 +1218,11 @@ func (e_ Event) VendorPointingDeviceType() int {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorpointingdevicetype
 func (e_ Event) SetVendorPointingDeviceType(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVendorPointingDeviceType:"), value)
-}
+}/* debug [instance_properties/setter]: vendorPointingDeviceType */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSEvent */
 
 

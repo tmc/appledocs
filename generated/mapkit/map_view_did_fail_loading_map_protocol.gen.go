@@ -20,3 +20,4 @@ var mapViewDidFailLoadingMapProtocol *objc.Protocol
 func init() {
 	mapViewDidFailLoadingMapProtocol = objc.GetProtocol("mapViewDidFailLoadingMap:")
 }
+

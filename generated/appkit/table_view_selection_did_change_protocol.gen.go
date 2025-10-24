@@ -15,3 +15,4 @@ var tableViewSelectionDidChangeProtocol *objc.Protocol
 func init() {
 	tableViewSelectionDidChangeProtocol = objc.GetProtocol("tableViewSelectionDidChange:")
 }
+

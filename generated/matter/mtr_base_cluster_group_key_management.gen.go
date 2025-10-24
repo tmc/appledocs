@@ -33,8 +33,6 @@ type IMTRBaseClusterGroupKeyManagement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterGroupKeyManagement
 type MTRBaseClusterGroupKeyManagement struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterGroupKeyManagement) Autorelease() MTRBaseClusterGroupKeyM
 func NewMTRBaseClusterGroupKeyManagement() MTRBaseClusterGroupKeyManagement {
 	return getMTRBaseClusterGroupKeyManagementClass().New()
 }
-
-
-
-

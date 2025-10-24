@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -50,11 +50,11 @@ type IManagedObject interface {
 	SetIsInserted(value bool)
 	IsUpdated() bool
 	SetIsUpdated(value bool)
-	NSValidationKeyErrorKey() objc.IObject /* cross-framework: NSString */
-	NSValidationObjectErrorKey() objc.IObject /* cross-framework: NSString */
+	NSValidationKeyErrorKey() objc.IObject       /* cross-framework: NSString */
+	NSValidationObjectErrorKey() objc.IObject    /* cross-framework: NSString */
 	NSValidationPredicateErrorKey() objc.IObject /* cross-framework: NSString */
-	NSValidationValueErrorKey() objc.IObject /* cross-framework: NSString */
-	Description() objc.IObject /* cross-framework: NSString */
+	NSValidationValueErrorKey() objc.IObject     /* cross-framework: NSString */
+	Description() objc.IObject                   /* cross-framework: NSString */
 	SetDescription(value objc.IObject /* cross-framework: NSString */)
 	Hash() int
 	SetHash(value int)
@@ -66,7 +66,6 @@ type IManagedObject interface {
 // The base class that all Core Data model objects inherit from.
 //
 // A managed object has an associated entity description ( ) that provides metadata about the object, including the name of the entity that the object represents and the names of its attributes and relationships. A managed object also has an associated managed object context that tracks changes to the object graph. You can’t use instances of direct subclasses of , or any other class that doesn’t inherit from , with a managed object context. You may create custom subclasses of , although this isn’t always necessary. If you don’t need custom logic, you can create a complete object graph with instances. If you instantiate a managed object directly, you must call the designated initializer .
-
 
 // The base class that all Core Data model objects inherit from.
 //
@@ -114,8 +113,6 @@ func NewManagedObject() ManagedObject {
 	return getManagedObjectClass().New()
 }
 
-
-
 // Initializes a managed object from an entity description and inserts it into the specified managed object context.
 //
 // [Full Topic]
@@ -127,8 +124,6 @@ func NewManagedObjectWithEntityInsertIntoManagedObjectContext(entity IEntityDesc
 	return rv
 }
 
-
-
 // The entity description of the managed object.
 //
 // [Full Topic]
@@ -137,7 +132,6 @@ func (m_ ManagedObject) Entity() IEntityDescription {
 	rv := objc.Send[EntityDescription](m_.ID, objc.Sel("entity"))
 	return rv
 }
-
 
 // A Boolean value that indicates whether the managed object has been inserted in a managed object context.
 //
@@ -148,7 +142,6 @@ func (m_ ManagedObject) Inserted() bool {
 	return rv
 }
 
-
 // The managed object context with which the managed object is registered.
 //
 // [Full Topic]
@@ -157,7 +150,6 @@ func (m_ ManagedObject) ManagedObjectContext() IManagedObjectContext {
 	rv := objc.Send[ManagedObjectContext](m_.ID, objc.Sel("managedObjectContext"))
 	return rv
 }
-
 
 // The object ID of the managed object.
 //
@@ -168,7 +160,6 @@ func (m_ ManagedObject) ObjectID() IManagedObjectID {
 	return rv
 }
 
-
 // The faulting state of the managed object.
 //
 // [Full Topic]
@@ -178,7 +169,6 @@ func (m_ ManagedObject) FaultingState() int {
 	return rv
 }
 
-
 // The faulting state of the managed object.
 //
 // [Full Topic]
@@ -186,7 +176,6 @@ func (m_ ManagedObject) FaultingState() int {
 func (m_ ManagedObject) SetFaultingState(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFaultingState:"), value)
 }
-
 
 // A Boolean value that indicates whether the managed object has been inserted, has been deleted, or has unsaved changes.
 //
@@ -197,7 +186,6 @@ func (m_ ManagedObject) HasChanges() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the managed object has been inserted, has been deleted, or has unsaved changes.
 //
 // [Full Topic]
@@ -205,7 +193,6 @@ func (m_ ManagedObject) HasChanges() bool {
 func (m_ ManagedObject) SetHasChanges(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasChanges:"), value)
 }
-
 
 // A Boolean value that indicates whether the managed object has persistent changes.
 //
@@ -216,7 +203,6 @@ func (m_ ManagedObject) HasPersistentChangedValues() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the managed object has persistent changes.
 //
 // [Full Topic]
@@ -224,7 +210,6 @@ func (m_ ManagedObject) HasPersistentChangedValues() bool {
 func (m_ ManagedObject) SetHasPersistentChangedValues(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasPersistentChangedValues:"), value)
 }
-
 
 // A Boolean value that indicates whether the managed object will be deleted during the next save.
 //
@@ -235,7 +220,6 @@ func (m_ ManagedObject) IsDeleted() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the managed object will be deleted during the next save.
 //
 // [Full Topic]
@@ -243,7 +227,6 @@ func (m_ ManagedObject) IsDeleted() bool {
 func (m_ ManagedObject) SetIsDeleted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeleted:"), value)
 }
-
 
 // A Boolean value that indicates whether the managed object is a fault.
 //
@@ -254,7 +237,6 @@ func (m_ ManagedObject) IsFault() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the managed object is a fault.
 //
 // [Full Topic]
@@ -262,7 +244,6 @@ func (m_ ManagedObject) IsFault() bool {
 func (m_ ManagedObject) SetIsFault(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsFault:"), value)
 }
-
 
 // A Boolean value that indicates whether the managed object has been inserted in a managed object context.
 //
@@ -273,7 +254,6 @@ func (m_ ManagedObject) IsInserted() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the managed object has been inserted in a managed object context.
 //
 // [Full Topic]
@@ -281,7 +261,6 @@ func (m_ ManagedObject) IsInserted() bool {
 func (m_ ManagedObject) SetIsInserted(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsInserted:"), value)
 }
-
 
 // A Boolean value that indicates whether the managed object has unsaved changes.
 //
@@ -292,7 +271,6 @@ func (m_ ManagedObject) IsUpdated() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the managed object has unsaved changes.
 //
 // [Full Topic]
@@ -300,7 +278,6 @@ func (m_ ManagedObject) IsUpdated() bool {
 func (m_ ManagedObject) SetIsUpdated(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsUpdated:"), value)
 }
-
 
 // The error key for the attribute that failed to validate.
 //
@@ -311,7 +288,6 @@ func (m_ ManagedObject) NSValidationKeyErrorKey() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The error key for the object that failed to validate.
 //
 // [Full Topic]
@@ -320,7 +296,6 @@ func (m_ ManagedObject) NSValidationObjectErrorKey() objc.IObject /* cross-frame
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSValidationObjectErrorKey"))
 	return rv
 }
-
 
 // The error key for the predicate that failed to validate.
 //
@@ -331,7 +306,6 @@ func (m_ ManagedObject) NSValidationPredicateErrorKey() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // The error key for the value that failed to validate.
 //
 // [Full Topic]
@@ -340,7 +314,6 @@ func (m_ ManagedObject) NSValidationValueErrorKey() objc.IObject /* cross-framew
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSValidationValueErrorKey"))
 	return rv
 }
-
 
 // A textual representation of the receiver.
 //
@@ -351,7 +324,6 @@ func (m_ ManagedObject) Description() objc.IObject /* cross-framework: NSString 
 	return rv
 }
 
-
 // A textual representation of the receiver.
 //
 // [Full Topic]
@@ -359,7 +331,6 @@ func (m_ ManagedObject) Description() objc.IObject /* cross-framework: NSString 
 func (m_ ManagedObject) SetDescription(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDescription:"), value)
 }
-
 
 // Returns an integer that can be used as a table address in a hash table structure.
 //
@@ -370,7 +341,6 @@ func (m_ ManagedObject) Hash() int {
 	return rv
 }
 
-
 // Returns an integer that can be used as a table address in a hash table structure.
 //
 // [Full Topic]
@@ -378,7 +348,6 @@ func (m_ ManagedObject) Hash() int {
 func (m_ ManagedObject) SetHash(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHash:"), value)
 }
-
 
 // Returns the class object for the receiver’s superclass.
 //
@@ -389,7 +358,6 @@ func (m_ ManagedObject) Superclass() objc.Class {
 	return rv
 }
 
-
 // Returns the class object for the receiver’s superclass.
 //
 // [Full Topic]
@@ -397,5 +365,3 @@ func (m_ ManagedObject) Superclass() objc.Class {
 func (m_ ManagedObject) SetSuperclass(value objc.Class) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSuperclass:"), value)
 }
-
-

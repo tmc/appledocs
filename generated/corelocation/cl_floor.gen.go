@@ -40,7 +40,6 @@ type IFloor interface {
 //
 // A object specifies the floor of the building on which the device is located. In places where floor information can be determined, a object may include a floor object along with the regular location data. You do not create instances of this class directly, nor should you subclass it.
 
-
 // The floor of a building on which the user’s device is located.
 //
 // [Full Topic]
@@ -87,8 +86,6 @@ func NewFloor() Floor {
 	return getFloorClass().New()
 }
 
-
-
 // The logical floor of the building.
 //
 // [Full Topic]
@@ -98,7 +95,6 @@ func (f_ Floor) Level() unsafe.Pointer {
 	return rv
 }
 
-
 // The logical floor of the building.
 //
 // [Full Topic]
@@ -106,6 +102,3 @@ func (f_ Floor) Level() unsafe.Pointer {
 func (f_ Floor) SetLevel(value unsafe.Pointer) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setLevel:"), value)
 }
-
-
-

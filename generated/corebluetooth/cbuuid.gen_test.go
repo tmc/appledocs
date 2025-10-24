@@ -17,4 +17,3 @@ func ExampleNewCBUUIDWithCFUUID() {
 	)
 	// Output:
 }
-

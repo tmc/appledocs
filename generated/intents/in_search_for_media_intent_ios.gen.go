@@ -5,13 +5,10 @@
 package intents
 
 import (
-	"unsafe"
-
 	"github.com/tmc/appledocs/generated/objc"
 )
 
 // iOS-only methods for INSearchForMediaIntent
-
 
 // iOS-only properties
 
@@ -23,8 +20,3 @@ func (i_ INSearchForMediaIntent) MediaItems() []INMediaItem {
 	rv := objc.Send[[]INMediaItem](i_.ID, objc.Sel("mediaItems"))
 	return rv
 }
-
-
-
-
-

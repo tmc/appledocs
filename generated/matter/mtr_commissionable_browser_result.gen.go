@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRCommissionableBrowserResult interface {
 	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCommissionableBrowserResult
@@ -89,8 +87,6 @@ func NewMTRCommissionableBrowserResult() MTRCommissionableBrowserResult {
 	return getMTRCommissionableBrowserResultClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/commissioningmode
 func (m_ MTRCommissionableBrowserResult) CommissioningMode() bool {
@@ -98,13 +94,11 @@ func (m_ MTRCommissionableBrowserResult) CommissioningMode() bool {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/commissioningmode
 func (m_ MTRCommissionableBrowserResult) SetCommissioningMode(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningMode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/discriminator
@@ -113,13 +107,11 @@ func (m_ MTRCommissionableBrowserResult) Discriminator() objc.IObject /* cross-f
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/discriminator
 func (m_ MTRCommissionableBrowserResult) SetDiscriminator(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/instancename
@@ -128,13 +120,11 @@ func (m_ MTRCommissionableBrowserResult) InstanceName() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/instancename
 func (m_ MTRCommissionableBrowserResult) SetInstanceName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setInstanceName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/productid
@@ -143,13 +133,11 @@ func (m_ MTRCommissionableBrowserResult) ProductID() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/productid
 func (m_ MTRCommissionableBrowserResult) SetProductID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/vendorid
@@ -158,12 +146,8 @@ func (m_ MTRCommissionableBrowserResult) VendorID() objc.IObject /* cross-framew
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcommissionablebrowserresult/vendorid
 func (m_ MTRCommissionableBrowserResult) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
 }
-
-
-

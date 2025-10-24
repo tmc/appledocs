@@ -15,3 +15,4 @@ var GlyphStorageProtocol *objc.Protocol
 func init() {
 	GlyphStorageProtocol = objc.GetProtocol("NSGlyphStorage")
 }
+

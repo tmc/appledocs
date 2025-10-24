@@ -45,7 +45,6 @@ type IINSetRadioStationIntent interface {
 //
 // When the user asks Siri to change the current radio station, SiriKit creates an object and delivers it to the app’s Intents extension. You use the intent to identify which radio station the user wants. Automotive vendors can use this intent to change the settings on a vehicle’s built-in entertainment system. This properties of this class support identifying a radio station in several different ways, but a given instance of this class contains doesn’t populate all of those properties. When resolving and confirming the parameters of this intent, use the properties that are available to change the station. The object that handles this intent must adopt the protocol. Use this intent object to identify the selected station and to create an object indicating the results of changing the station.
 
-
 // A request to change the current radio station.
 //
 // [Full Topic]
@@ -94,8 +93,6 @@ func NewINSetRadioStationIntent() INSetRadioStationIntent {
 	return getINSetRadioStationIntentClass().New()
 }
 
-
-
 // The channel number of the station.
 //
 // [Full Topic]
@@ -105,7 +102,6 @@ func (i_ INSetRadioStationIntent) Channel() string {
 	return rv
 }
 
-
 // The channel number of the station.
 //
 // [Full Topic]
@@ -113,7 +109,6 @@ func (i_ INSetRadioStationIntent) Channel() string {
 func (i_ INSetRadioStationIntent) SetChannel(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setChannel:"), objc.String(value))
 }
-
 
 // The broadcast frequency of the radio station.
 //
@@ -124,7 +119,6 @@ func (i_ INSetRadioStationIntent) Frequency() float64 {
 	return rv
 }
 
-
 // The broadcast frequency of the radio station.
 //
 // [Full Topic]
@@ -132,7 +126,6 @@ func (i_ INSetRadioStationIntent) Frequency() float64 {
 func (i_ INSetRadioStationIntent) SetFrequency(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFrequency:"), value)
 }
-
 
 // The programmable preset assigned to the station.
 //
@@ -143,7 +136,6 @@ func (i_ INSetRadioStationIntent) PresetNumber() int {
 	return rv
 }
 
-
 // The programmable preset assigned to the station.
 //
 // [Full Topic]
@@ -151,7 +143,6 @@ func (i_ INSetRadioStationIntent) PresetNumber() int {
 func (i_ INSetRadioStationIntent) SetPresetNumber(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPresetNumber:"), value)
 }
-
 
 // The type of radio tuner to use.
 //
@@ -162,7 +153,6 @@ func (i_ INSetRadioStationIntent) RadioType() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of radio tuner to use.
 //
 // [Full Topic]
@@ -170,7 +160,6 @@ func (i_ INSetRadioStationIntent) RadioType() unsafe.Pointer {
 func (i_ INSetRadioStationIntent) SetRadioType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRadioType:"), value)
 }
-
 
 // The name associated with the radio station.
 //
@@ -181,7 +170,6 @@ func (i_ INSetRadioStationIntent) StationName() string {
 	return rv
 }
 
-
 // The name associated with the radio station.
 //
 // [Full Topic]
@@ -189,6 +177,3 @@ func (i_ INSetRadioStationIntent) StationName() string {
 func (i_ INSetRadioStationIntent) SetStationName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStationName:"), objc.String(value))
 }
-
-
-

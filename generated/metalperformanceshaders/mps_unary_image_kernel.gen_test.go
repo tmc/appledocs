@@ -17,4 +17,11 @@ func ExampleUnaryImageKernel_Encode() {
 	// Output:
 	}
 
+// ExampleUnaryImageKernel_SourceRegion demonstrates using SourceRegion on a UnaryImageKernel instance.
+// Determines the region of the source texture that will be read for an encode operation.
+func ExampleUnaryImageKernel_SourceRegion() {
+	obj := metalperformanceshaders.NewUnaryImageKernel()
+	obj.SourceRegion()
+	// Output:
+	}
 

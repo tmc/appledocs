@@ -15,3 +15,4 @@ var tokenFieldCellProtocol *objc.Protocol
 func init() {
 	tokenFieldCellProtocol = objc.GetProtocol("tokenFieldCell:")
 }
+

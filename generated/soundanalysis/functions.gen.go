@@ -2,10 +2,10 @@
 
 package soundanalysis
 
+/* debug [functions.gen.go]: Generating 0 functions for SoundAnalysis */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // SoundAnalysis Functions (0 total)
 //
@@ -20,8 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-

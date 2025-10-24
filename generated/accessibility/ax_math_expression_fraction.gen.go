@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class AXMathExpressionFraction */
+
+
+/* debug [class_header]: Header for AXMathExpressionFraction */
 // The class instance for the [AXMathExpressionFraction] class.
 var (
 	AXMathExpressionFractionClass     _AXMathExpressionFractionClass
@@ -25,31 +29,32 @@ func getAXMathExpressionFractionClass() _AXMathExpressionFractionClass {
 type _AXMathExpressionFractionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AXMathExpressionFraction */
 // An interface definition for the [AXMathExpressionFraction] class.
 type IAXMathExpressionFraction interface {
 	IAXMathExpression
+	
+/* debug [class_interface_properties]: Properties for AXMathExpressionFraction */
 	// properties:
 	DenimonatorExpression() IAXMathExpression
 	NumeratorExpression() IAXMathExpression
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AXMathExpressionFraction */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction
-type AXMathExpressionFraction struct {
-	AXMathExpression
-}
-
-// AXMathExpressionFractionFrom constructs a [AXMathExpressionFraction] from an unsafe.Pointer.
-func AXMathExpressionFractionFrom(ptr unsafe.Pointer) AXMathExpressionFraction {
-	return AXMathExpressionFraction{
-		AXMathExpression: AXMathExpressionFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for AXMathExpressionFraction */
 // Alloc allocates a new instance without initialization.
 func (ac _AXMathExpressionFractionClass) Alloc() AXMathExpressionFraction {
 	rv := objc.Send[AXMathExpressionFraction](objc.ID(ac.class), objc.Sel("alloc"))
@@ -57,7 +62,6 @@ func (ac _AXMathExpressionFractionClass) Alloc() AXMathExpressionFraction {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AXMathExpressionFractionClass) New() AXMathExpressionFraction {
 	rv := objc.Send[AXMathExpressionFraction](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -80,8 +84,30 @@ func (a_ AXMathExpressionFraction) Autorelease() AXMathExpressionFraction {
 func NewAXMathExpressionFraction() AXMathExpressionFraction {
 	return getAXMathExpressionFractionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for AXMathExpressionFraction */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction
+type AXMathExpressionFraction struct {
+	AXMathExpression
+}
+
+// AXMathExpressionFractionFrom constructs a [AXMathExpressionFraction] from an unsafe.Pointer.
+func AXMathExpressionFractionFrom(ptr unsafe.Pointer) AXMathExpressionFraction {
+	return AXMathExpressionFraction{
+		AXMathExpression: AXMathExpressionFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AXMathExpressionFraction */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction/init(numeratorExpression:denimonatorExpression:)
@@ -90,16 +116,35 @@ func NewAXMathExpressionFractionWithNumeratorExpressionDenimonatorExpression(num
 	rv := objc.Send[AXMathExpressionFraction](instance.ID, objc.Sel("initWithNumeratorExpression:denimonatorExpression:"), numeratorExpression, denimonatorExpression)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAXMathExpressionFractionWithNumeratorExpressionDenimonatorExpression */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for AXMathExpressionFraction */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AXMathExpressionFraction */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AXMathExpressionFraction */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AXMathExpressionFraction */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpressionFraction/denimonatorExpression
 func (a_ AXMathExpressionFraction) DenimonatorExpression() IAXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("denimonatorExpression"))
 	return rv
-}
+}/* debug [instance_properties/getter]: denimonatorExpression */
 
 
 // [Full Topic]
@@ -107,6 +152,11 @@ func (a_ AXMathExpressionFraction) DenimonatorExpression() IAXMathExpression {
 func (a_ AXMathExpressionFraction) NumeratorExpression() IAXMathExpression {
 	rv := objc.Send[AXMathExpression](a_.ID, objc.Sel("numeratorExpression"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numeratorExpression */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AXMathExpressionFraction */
 
 

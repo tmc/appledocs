@@ -7,6 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // queryProtocol is the query: protocol.
 //
 // Availability:
+//   - Mac Catalyst +
 //   - macOS 10.6+
 //
 // Use this protocol when registering custom classes that conform to query:.
@@ -15,3 +16,4 @@ var queryProtocol *objc.Protocol
 func init() {
 	queryProtocol = objc.GetProtocol("query:")
 }
+

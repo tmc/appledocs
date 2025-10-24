@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterBooleanResponseParams] class.
@@ -37,8 +37,6 @@ type IMTRTestClusterClusterBooleanResponseParams interface {
 	SetValue(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterBooleanResponseParams
@@ -84,8 +82,6 @@ func NewMTRTestClusterClusterBooleanResponseParams() MTRTestClusterClusterBoolea
 	return getMTRTestClusterClusterBooleanResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterBooleanResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
@@ -93,13 +89,11 @@ func (m_ MTRTestClusterClusterBooleanResponseParams) TimedInvokeTimeoutMs() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterBooleanResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/value
@@ -108,12 +102,8 @@ func (m_ MTRTestClusterClusterBooleanResponseParams) Value() objc.IObject /* cro
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterbooleanresponseparams/value
 func (m_ MTRTestClusterClusterBooleanResponseParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -81,7 +81,6 @@ type ITouchBar interface {
 //
 // On supported MacBook Pro models, the Touch Bar, above the keyboard, shows instances of the class from the front-most app. Such an instance is called a . You define a bar to provide controls relevant to the user’s context. Each such control is an instance of the class, called an . You can provide many bars within your app, one for each responder instance; macOS frameworks can provide bars, as well, that can appear alongside your app’s bars. The system determines which bars to show at any given time. For example, an app that uses standard AppKit objects, such as text fields (instances of the class), obtains appropriate bars along with relevant items automatically. Refer to the following sample code projects, which demonstrate how to use and related classes, including the class, with its rich API that lets you build a highly customized picker control: To use the Touch Bar, define bars in objects in your app’s responder chain. At run time, the system traverses up the responder chain to discover, combine, and show bars from your app and from frameworks you link against. You can configure a bar to support dynamic composition, in which the system shows the bar in an expanded form that contains items from bars lower in the responder chain (from closer to the first responder). Because of dynamic composition and placement of items shown on the Touch Bar, always ensure that your bars appear as you expect them to, testing on the versions of macOS that you support. Instances of the class employ gesture recognizers and take advantage of macOS 10.12.1 event enhancements. Because of the physical geometry of the Touch Bar, touch events passed to gesture recognizers have only a meaningful , or horizontal, component. There’s no need, and no API, for your app to know whether or not there’s a Touch Bar available. Whether your app is running on a machine that supports the Touch Bar or not, your app’s onscreen user interface (UI) appears and behaves the same way. The Touch Bar is a Retina display, like the screen of a MacBook Pro. To perform custom drawing or animation within the Touch Bar, follow the same best practices that you would on the screen. On the right side of the Touch Bar, the system supplies the always-available . The Control Strip gives the user access to standard controls for display brightness, sound volume, Siri, and so on. Your app’s bars appear to the left of the Control Strip. The user can choose to hide the Control Strip, which gives the frontmost app the entire Touch Bar width. To the right of the Control Strip is a Touch ID sensor. To use Touch ID on supported MacBook Pro models, use methods from the framework. The Touch Bar dims automatically and wakes when the user touches it. Don’t show alerts in the Touch Bar, and don’t use the Touch Bar for widgets. For Touch Bar design guidance, read .
 
-
 // An object that provides dynamic contextual controls in the Touch Bar of supported models of MacBook Pro.
 //
 // [Full Topic]
@@ -128,8 +127,6 @@ func NewTouchBar() TouchBar {
 	return getTouchBarClass().New()
 }
 
-
-
 // A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
 //
 // [Full Topic]
@@ -139,7 +136,6 @@ func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
 //
 // [Full Topic]
@@ -147,7 +143,6 @@ func (t_ TouchBar) IsAutomaticCustomizeTouchBarMenuItemEnabled() bool {
 func (t_ TouchBar) SetIsAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
 }
-
 
 // The color of the button’s bezel, in appearances that support it.
 //
@@ -158,7 +153,6 @@ func (t_ TouchBar) BezelColor() objc.IObject /* cross-framework: Color */ {
 	return rv
 }
 
-
 // The color of the button’s bezel, in appearances that support it.
 //
 // [Full Topic]
@@ -167,7 +161,6 @@ func (t_ TouchBar) SetBezelColor(value objc.IObject /* cross-framework: Color */
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBezelColor:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
 func (t_ TouchBar) AllowedTouchTypes() unsafe.Pointer {
@@ -175,13 +168,11 @@ func (t_ TouchBar) AllowedTouchTypes() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/allowedtouchtypes
 func (t_ TouchBar) SetAllowedTouchTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowedTouchTypes:"), value)
 }
-
 
 // A bar that holds this group’s items.
 //
@@ -192,7 +183,6 @@ func (t_ TouchBar) GroupTouchBar() ITouchBar {
 	return rv
 }
 
-
 // A bar that holds this group’s items.
 //
 // [Full Topic]
@@ -200,7 +190,6 @@ func (t_ TouchBar) GroupTouchBar() ITouchBar {
 func (t_ TouchBar) SetGroupTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGroupTouchBar:"), value)
 }
-
 
 // The bar displayed when this item is “popped.”
 //
@@ -211,7 +200,6 @@ func (t_ TouchBar) PopoverTouchBar() ITouchBar {
 	return rv
 }
 
-
 // The bar displayed when this item is “popped.”
 //
 // [Full Topic]
@@ -219,7 +207,6 @@ func (t_ TouchBar) PopoverTouchBar() ITouchBar {
 func (t_ TouchBar) SetPopoverTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
-
 
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
@@ -230,7 +217,6 @@ func (t_ TouchBar) PressAndHoldTouchBar() ITouchBar {
 	return rv
 }
 
-
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
 // [Full Topic]
@@ -238,7 +224,6 @@ func (t_ TouchBar) PressAndHoldTouchBar() ITouchBar {
 func (t_ TouchBar) SetPressAndHoldTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
-
 
 // The color of the selected segment’s bezel, in appearances that support it.
 //
@@ -249,7 +234,6 @@ func (t_ TouchBar) SelectedSegmentBezelColor() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // The color of the selected segment’s bezel, in appearances that support it.
 //
 // [Full Topic]
@@ -257,7 +241,6 @@ func (t_ TouchBar) SelectedSegmentBezelColor() objc.IObject /* cross-framework: 
 func (t_ TouchBar) SetSelectedSegmentBezelColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedSegmentBezelColor:"), value)
 }
-
 
 // The color of the filled portion of the slider track, in appearances that support it.
 //
@@ -268,7 +251,6 @@ func (t_ TouchBar) TrackFillColor() objc.IObject /* cross-framework: Color */ {
 	return rv
 }
 
-
 // The color of the filled portion of the slider track, in appearances that support it.
 //
 // [Full Topic]
@@ -276,7 +258,6 @@ func (t_ TouchBar) TrackFillColor() objc.IObject /* cross-framework: Color */ {
 func (t_ TouchBar) SetTrackFillColor(value objc.IObject /* cross-framework: Color */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTrackFillColor:"), value)
 }
-
 
 // A list of identifiers for items to show in the Touch Bar’s customization UI.
 //
@@ -287,7 +268,6 @@ func (t_ TouchBar) CustomizationAllowedItemIdentifiers() unsafe.Pointer {
 	return rv
 }
 
-
 // A list of identifiers for items to show in the Touch Bar’s customization UI.
 //
 // [Full Topic]
@@ -295,7 +275,6 @@ func (t_ TouchBar) CustomizationAllowedItemIdentifiers() unsafe.Pointer {
 func (t_ TouchBar) SetCustomizationAllowedItemIdentifiers(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationAllowedItemIdentifiers:"), value)
 }
-
 
 // A globally unique string that makes the Touch Bar eligible for user customization.
 //
@@ -306,7 +285,6 @@ func (t_ TouchBar) CustomizationIdentifier() unsafe.Pointer {
 	return rv
 }
 
-
 // A globally unique string that makes the Touch Bar eligible for user customization.
 //
 // [Full Topic]
@@ -314,7 +292,6 @@ func (t_ TouchBar) CustomizationIdentifier() unsafe.Pointer {
 func (t_ TouchBar) SetCustomizationIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationIdentifier:"), value)
 }
-
 
 // An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
 //
@@ -325,7 +302,6 @@ func (t_ TouchBar) CustomizationRequiredItemIdentifiers() unsafe.Pointer {
 	return rv
 }
 
-
 // An optional list of identifiers for items you want to always appear in the Touch Bar and which the user can’t remove during customization.
 //
 // [Full Topic]
@@ -333,7 +309,6 @@ func (t_ TouchBar) CustomizationRequiredItemIdentifiers() unsafe.Pointer {
 func (t_ TouchBar) SetCustomizationRequiredItemIdentifiers(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationRequiredItemIdentifiers:"), value)
 }
-
 
 // A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
 //
@@ -344,7 +319,6 @@ func (t_ TouchBar) DefaultItemIdentifiers() unsafe.Pointer {
 	return rv
 }
 
-
 // A required list of identifiers for items that you want to appear in the Touch Bar after instantiating it.
 //
 // [Full Topic]
@@ -352,7 +326,6 @@ func (t_ TouchBar) DefaultItemIdentifiers() unsafe.Pointer {
 func (t_ TouchBar) SetDefaultItemIdentifiers(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDefaultItemIdentifiers:"), value)
 }
-
 
 // The delegate that provides items to the Touch Bar.
 //
@@ -363,7 +336,6 @@ func (t_ TouchBar) Delegate() TouchBarDelegate /* not a class type */ {
 	return rv
 }
 
-
 // The delegate that provides items to the Touch Bar.
 //
 // [Full Topic]
@@ -371,7 +343,6 @@ func (t_ TouchBar) Delegate() TouchBarDelegate /* not a class type */ {
 func (t_ TouchBar) SetDelegate(value TouchBarDelegate /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
 }
-
 
 // The identifier of an item that replaces the system-provided button in the Touch Bar.
 //
@@ -382,7 +353,6 @@ func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() unsafe.Pointer {
 	return rv
 }
 
-
 // The identifier of an item that replaces the system-provided button in the Touch Bar.
 //
 // [Full Topic]
@@ -390,7 +360,6 @@ func (t_ TouchBar) EscapeKeyReplacementItemIdentifier() unsafe.Pointer {
 func (t_ TouchBar) SetEscapeKeyReplacementItemIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEscapeKeyReplacementItemIdentifier:"), value)
 }
-
 
 // A Boolean value that Indicates whether the Touch Bar is eligible for display.
 //
@@ -401,7 +370,6 @@ func (t_ TouchBar) IsVisible() bool {
 	return rv
 }
 
-
 // A Boolean value that Indicates whether the Touch Bar is eligible for display.
 //
 // [Full Topic]
@@ -409,7 +377,6 @@ func (t_ TouchBar) IsVisible() bool {
 func (t_ TouchBar) SetIsVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
 }
-
 
 // The list of identifiers for the current items in the Touch Bar.
 //
@@ -420,7 +387,6 @@ func (t_ TouchBar) ItemIdentifiers() unsafe.Pointer {
 	return rv
 }
 
-
 // The list of identifiers for the current items in the Touch Bar.
 //
 // [Full Topic]
@@ -428,7 +394,6 @@ func (t_ TouchBar) ItemIdentifiers() unsafe.Pointer {
 func (t_ TouchBar) SetItemIdentifiers(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setItemIdentifiers:"), value)
 }
-
 
 // The identifier of an item you want the system to center in the Touch Bar.
 //
@@ -439,7 +404,6 @@ func (t_ TouchBar) PrincipalItemIdentifier() unsafe.Pointer {
 	return rv
 }
 
-
 // The identifier of an item you want the system to center in the Touch Bar.
 //
 // [Full Topic]
@@ -447,7 +411,6 @@ func (t_ TouchBar) PrincipalItemIdentifier() unsafe.Pointer {
 func (t_ TouchBar) SetPrincipalItemIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPrincipalItemIdentifier:"), value)
 }
-
 
 // The primary source of items that the Touch Bar uses to fill its private items array, unless you provide items using a delegate.
 //
@@ -458,7 +421,6 @@ func (t_ TouchBar) TemplateItems() ITouchBarItem {
 	return rv
 }
 
-
 // The primary source of items that the Touch Bar uses to fill its private items array, unless you provide items using a delegate.
 //
 // [Full Topic]
@@ -466,7 +428,6 @@ func (t_ TouchBar) TemplateItems() ITouchBarItem {
 func (t_ TouchBar) SetTemplateItems(value ITouchBarItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTemplateItems:"), value)
 }
-
 
 // The user-visible string identifying this item during bar customization.
 //
@@ -477,7 +438,6 @@ func (t_ TouchBar) CustomizationLabel() objc.IObject /* cross-framework: NSStrin
 	return rv
 }
 
-
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
@@ -485,7 +445,6 @@ func (t_ TouchBar) CustomizationLabel() objc.IObject /* cross-framework: NSStrin
 func (t_ TouchBar) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
-
 
 // The property you implement to provide a Touch Bar object.
 //
@@ -496,7 +455,6 @@ func (t_ TouchBar) TouchBar() ITouchBar {
 	return rv
 }
 
-
 // The property you implement to provide a Touch Bar object.
 //
 // [Full Topic]
@@ -504,7 +462,6 @@ func (t_ TouchBar) TouchBar() ITouchBar {
 func (t_ TouchBar) SetTouchBar(value ITouchBar) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTouchBar:"), value)
 }
-
 
 // A Boolean value indicating whether the view accepts touch events.
 //
@@ -515,7 +472,6 @@ func (t_ TouchBar) AcceptsTouchEvents() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the view accepts touch events.
 //
 // [Full Topic]
@@ -523,6 +479,3 @@ func (t_ TouchBar) AcceptsTouchEvents() bool {
 func (t_ TouchBar) SetAcceptsTouchEvents(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAcceptsTouchEvents:"), value)
 }
-
-
-

@@ -19,3 +19,4 @@ var didRemoveDeviceProtocol *objc.Protocol
 func init() {
 	didRemoveDeviceProtocol = objc.GetProtocol("didRemoveDevice:")
 }
+

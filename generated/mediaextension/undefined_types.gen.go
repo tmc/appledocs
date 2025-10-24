@@ -13,8 +13,6 @@ type (
 	MediaType = _undefined // referenced in MediaExtension
 	PersistentTrackID = _undefined // referenced in MediaExtension
 	PixelBufferRef = _undefined // referenced in MediaExtension
-	SampleCursorChunkInfo = _undefined // referenced in MediaExtension
-	SampleCursorStorageRange = _undefined // referenced in MediaExtension
 	TimeScale = _undefined // referenced in MediaExtension
 )
 

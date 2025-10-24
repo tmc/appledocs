@@ -12,7 +12,7 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSPasteboardItemDataProvider
 type PPasteboardItemDataProvider interface {
 	// Required methods
-	PasteboardItemProvideDataForType(pasteboard IPasteboard, item IPasteboardItem, type_ objc.IObject /* cross-framework: PasteboardType */)
+	PasteboardItemProvideDataForType(pasteboard IPasteboard, item IPasteboardItem, type_ PasteboardType /* typedef */)/* debug [protocol_interface/required_method]: PasteboardItemProvideDataForType */
 	// Optional methods
 	PasteboardFinishedWithDataProvider(pasteboard IPasteboard)
 	HasPasteboardFinishedWithDataProvider() bool

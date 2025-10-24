@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRMediaPlaybackClusterPauseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterPauseParams
@@ -83,8 +81,6 @@ func NewMTRMediaPlaybackClusterPauseParams() MTRMediaPlaybackClusterPauseParams 
 	return getMTRMediaPlaybackClusterPauseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterpauseparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterPauseParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRMediaPlaybackClusterPauseParams) ServerSideProcessingTimeout() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterpauseparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterPauseParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterpauseparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRMediaPlaybackClusterPauseParams) TimedInvokeTimeoutMs() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterpauseparams/timedinvoketimeoutms
 func (m_ MTRMediaPlaybackClusterPauseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

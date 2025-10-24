@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for GameKit. DO NOT EDIT.
 
 // Package gamekit provides Go bindings for the GameKit framework.
 //
-// Enable players to interact with friends, compare leaderboard ranks, earn achievements, and participate in multiplayer games.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GameKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/GameKit
 package gamekit
 
 import (

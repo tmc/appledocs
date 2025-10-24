@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRBasicClusterMfgSpecificPingParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicClusterMfgSpecificPingParams
@@ -83,8 +81,6 @@ func NewMTRBasicClusterMfgSpecificPingParams() MTRBasicClusterMfgSpecificPingPar
 	return getMTRBasicClusterMfgSpecificPingParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustermfgspecificpingparams/serversideprocessingtimeout
 func (m_ MTRBasicClusterMfgSpecificPingParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRBasicClusterMfgSpecificPingParams) ServerSideProcessingTimeout() obj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustermfgspecificpingparams/serversideprocessingtimeout
 func (m_ MTRBasicClusterMfgSpecificPingParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustermfgspecificpingparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRBasicClusterMfgSpecificPingParams) TimedInvokeTimeoutMs() objc.IObje
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustermfgspecificpingparams/timedinvoketimeoutms
 func (m_ MTRBasicClusterMfgSpecificPingParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

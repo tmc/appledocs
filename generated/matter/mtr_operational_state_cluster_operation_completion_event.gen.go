@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTROperationalStateClusterOperationCompletionEvent interface {
 	SetTotalOperationalTime(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalStateClusterOperationCompletionEvent
@@ -85,8 +83,6 @@ func NewMTROperationalStateClusterOperationCompletionEvent() MTROperationalState
 	return getMTROperationalStateClusterOperationCompletionEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/completionerrorcode
 func (m_ MTROperationalStateClusterOperationCompletionEvent) CompletionErrorCode() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTROperationalStateClusterOperationCompletionEvent) CompletionErrorCode
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/completionerrorcode
 func (m_ MTROperationalStateClusterOperationCompletionEvent) SetCompletionErrorCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCompletionErrorCode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
@@ -109,13 +103,11 @@ func (m_ MTROperationalStateClusterOperationCompletionEvent) PausedTime() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/pausedtime
 func (m_ MTROperationalStateClusterOperationCompletionEvent) SetPausedTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPausedTime:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/totaloperationaltime
@@ -124,12 +116,8 @@ func (m_ MTROperationalStateClusterOperationCompletionEvent) TotalOperationalTim
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationcompletionevent/totaloperationaltime
 func (m_ MTROperationalStateClusterOperationCompletionEvent) SetTotalOperationalTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalOperationalTime:"), value)
 }
-
-
-

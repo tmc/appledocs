@@ -33,8 +33,6 @@ type IMTRBaseClusterThreadNetworkDiagnostics interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadNetworkDiagnostics
 type MTRBaseClusterThreadNetworkDiagnostics struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterThreadNetworkDiagnostics) Autorelease() MTRBaseClusterThr
 func NewMTRBaseClusterThreadNetworkDiagnostics() MTRBaseClusterThreadNetworkDiagnostics {
 	return getMTRBaseClusterThreadNetworkDiagnosticsClass().New()
 }
-
-
-
-

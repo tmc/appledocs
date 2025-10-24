@@ -15,3 +15,4 @@ var windowDidEnterFullScreenProtocol *objc.Protocol
 func init() {
 	windowDidEnterFullScreenProtocol = objc.GetProtocol("windowDidEnterFullScreen:")
 }
+

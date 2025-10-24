@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class GCExtendedGamepad */
+
+
+/* debug [class_header]: Header for GCExtendedGamepad */
 // The class instance for the [GCExtendedGamepad] class.
 var (
 	GCExtendedGamepadClass     _GCExtendedGamepadClass
@@ -25,72 +29,60 @@ func getGCExtendedGamepadClass() _GCExtendedGamepadClass {
 type _GCExtendedGamepadClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GCExtendedGamepad */
 // An interface definition for the [GCExtendedGamepad] class.
 type IGCExtendedGamepad interface {
 	IGCPhysicalInputProfile
+	
+/* debug [class_interface_properties]: Properties for GCExtendedGamepad */
 	// properties:
-	ButtonB() objc.IObject /* cross-framework: GCControllerButtonInput */
-	ButtonHome() objc.IObject /* cross-framework: GCControllerButtonInput */
-	ButtonOptions() objc.IObject /* cross-framework: GCControllerButtonInput */
-	Dpad() objc.IObject /* cross-framework: GCControllerDirectionPad */
-	LeftThumbstick() objc.IObject /* cross-framework: GCControllerDirectionPad */
-	LeftThumbstickButton() objc.IObject /* cross-framework: GCControllerButtonInput */
-	LeftTrigger() objc.IObject /* cross-framework: GCControllerButtonInput */
-	RightShoulder() objc.IObject /* cross-framework: GCControllerButtonInput */
-	RightThumbstick() objc.IObject /* cross-framework: GCControllerDirectionPad */
-	RightThumbstickButton() objc.IObject /* cross-framework: GCControllerButtonInput */
-	RightTrigger() objc.IObject /* cross-framework: GCControllerButtonInput */
+	ButtonA() IGCControllerButtonInput
+	ButtonB() IGCControllerButtonInput
+	ButtonHome() IGCControllerButtonInput
+	ButtonMenu() IGCControllerButtonInput
+	ButtonOptions() IGCControllerButtonInput
+	ButtonX() IGCControllerButtonInput
+	ButtonY() IGCControllerButtonInput
+	Controller() IGCController
+	Dpad() IGCControllerDirectionPad
+	LeftShoulder() IGCControllerButtonInput
+	LeftThumbstick() IGCControllerDirectionPad
+	LeftThumbstickButton() IGCControllerButtonInput
+	LeftTrigger() IGCControllerButtonInput
+	RightShoulder() IGCControllerButtonInput
+	RightThumbstick() IGCControllerDirectionPad
+	RightThumbstickButton() IGCControllerButtonInput
+	RightTrigger() IGCControllerButtonInput
 	ValueChangedHandler() unsafe.Pointer
 	SetValueChangedHandler(value unsafe.Pointer)
 	ExtendedGamepad() IGCExtendedGamepad
 	SetExtendedGamepad(value IGCExtendedGamepad)
-	Gamepad() unsafe.Pointer
-	SetGamepad(value unsafe.Pointer)
-	MicroGamepad() objc.IObject /* cross-framework: GCMicroGamepad */
-	SetMicroGamepad(value objc.IObject /* cross-framework: GCMicroGamepad */)
+	Gamepad() IGCGamepad
+	SetGamepad(value IGCGamepad)
+	MicroGamepad() IGCMicroGamepad
+	SetMicroGamepad(value IGCMicroGamepad)
 	Motion() IGCMotion
 	SetMotion(value IGCMotion)
 	PhysicalInputProfile() IGCPhysicalInputProfile
 	SetPhysicalInputProfile(value IGCPhysicalInputProfile)
-	ButtonA() objc.IObject /* cross-framework: GCControllerButtonInput */
-	SetButtonA(value objc.IObject /* cross-framework: GCControllerButtonInput */)
-	ButtonMenu() objc.IObject /* cross-framework: GCControllerButtonInput */
-	SetButtonMenu(value objc.IObject /* cross-framework: GCControllerButtonInput */)
-	ButtonX() objc.IObject /* cross-framework: GCControllerButtonInput */
-	SetButtonX(value objc.IObject /* cross-framework: GCControllerButtonInput */)
-	ButtonY() objc.IObject /* cross-framework: GCControllerButtonInput */
-	SetButtonY(value objc.IObject /* cross-framework: GCControllerButtonInput */)
-	Controller() IGCController
-	SetController(value IGCController)
-	LeftShoulder() objc.IObject /* cross-framework: GCControllerButtonInput */
-	SetLeftShoulder(value objc.IObject /* cross-framework: GCControllerButtonInput */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GCExtendedGamepad */
 	// methods:
 	SetStateFromExtendedGamepad(extendedGamepad IGCExtendedGamepad)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A controller profile that supports the extended set of gamepad controls.
-//
-// The extended gamepad controller profile represents a physical or virtual controller with the following input elements: Two shoulder buttons Two trigger buttons Four face buttons in a diamond pattern One directional pad Two thumbsticks with optional thumbstick buttons Optional Home and Options buttons A Menu button If a object supports this type of profile, get the input values of the elements from the controller’s property or use the profile’s method to receive a callback when the input values change. Alternatively, use the method to capture the input values at a moment in time. If the controller’s property is , the controller doesn’t support this type of profile. See for other profiles you can use.
+/* debug [class_interface]: End interface */
 
 
-// A controller profile that supports the extended set of gamepad controls.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad
-type GCExtendedGamepad struct {
-	GCPhysicalInputProfile
-}
 
-// GCExtendedGamepadFrom constructs a [GCExtendedGamepad] from an unsafe.Pointer.
-//
-// A controller profile that supports the extended set of gamepad controls.
-func GCExtendedGamepadFrom(ptr unsafe.Pointer) GCExtendedGamepad {
-	return GCExtendedGamepad{
-		GCPhysicalInputProfile: GCPhysicalInputProfileFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GCExtendedGamepad */
 // Alloc allocates a new instance without initialization.
 func (gc _GCExtendedGamepadClass) Alloc() GCExtendedGamepad {
 	rv := objc.Send[GCExtendedGamepad](objc.ID(gc.class), objc.Sel("alloc"))
@@ -98,7 +90,6 @@ func (gc _GCExtendedGamepadClass) Alloc() GCExtendedGamepad {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GCExtendedGamepadClass) New() GCExtendedGamepad {
 	rv := objc.Send[GCExtendedGamepad](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -121,8 +112,51 @@ func (g_ GCExtendedGamepad) Autorelease() GCExtendedGamepad {
 func NewGCExtendedGamepad() GCExtendedGamepad {
 	return getGCExtendedGamepadClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GCExtendedGamepad */
+// A controller profile that supports the extended set of gamepad controls.
+//
+// The extended gamepad controller profile represents a physical or virtual controller with the following input elements: Two shoulder buttons Two trigger buttons Four face buttons in a diamond pattern One directional pad Two thumbsticks with optional thumbstick buttons Optional Home and Options buttons A Menu button If a object supports this type of profile, get the input values of the elements from the controller’s property or use the profile’s method to receive a callback when the input values change. Alternatively, use the method to capture the input values at a moment in time. If the controller’s property is , the controller doesn’t support this type of profile. See for other profiles you can use.
+
+
+// A controller profile that supports the extended set of gamepad controls.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad
+type GCExtendedGamepad struct {
+	GCPhysicalInputProfile
+}
+
+// GCExtendedGamepadFrom constructs a [GCExtendedGamepad] from an unsafe.Pointer.
+//
+// A controller profile that supports the extended set of gamepad controls.
+func GCExtendedGamepadFrom(ptr unsafe.Pointer) GCExtendedGamepad {
+	return GCExtendedGamepad{
+		GCPhysicalInputProfile: GCPhysicalInputProfileFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GCExtendedGamepad *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GCExtendedGamepad */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GCExtendedGamepad */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GCExtendedGamepad */
 
 // Copies the input values from a specified extended gamepad to a snapshot of an extended gamepad.
 //
@@ -130,117 +164,182 @@ func NewGCExtendedGamepad() GCExtendedGamepad {
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/setStateFrom(_:)
 func (g_ GCExtendedGamepad) SetStateFromExtendedGamepad(extendedGamepad IGCExtendedGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStateFromExtendedGamepad:"), extendedGamepad)
-}
+}/* debug [instance_methods/method]: SetStateFromExtendedGamepad */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GCExtendedGamepad */
+
+// The bottom face button that uses or another indicator as its label.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonA
+func (g_ GCExtendedGamepad) ButtonA() IGCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonA"))
+	return rv
+}/* debug [instance_properties/getter]: buttonA */
 
 
 // The right face button that uses or another indicator as its label.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonB
-func (g_ GCExtendedGamepad) ButtonB() objc.IObject /* cross-framework: GCControllerButtonInput */ {
+func (g_ GCExtendedGamepad) ButtonB() IGCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonB"))
 	return rv
-}
+}/* debug [instance_properties/getter]: buttonB */
 
 
 // The main menu button element that players use to enter the secondary menu and pause the game.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonHome
-func (g_ GCExtendedGamepad) ButtonHome() objc.IObject /* cross-framework: GCControllerButtonInput */ {
+func (g_ GCExtendedGamepad) ButtonHome() IGCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonHome"))
 	return rv
-}
+}/* debug [instance_properties/getter]: buttonHome */
+
+
+// The primary menu button element that players use to enter the main menu and pause the game.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonMenu
+func (g_ GCExtendedGamepad) ButtonMenu() IGCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonMenu"))
+	return rv
+}/* debug [instance_properties/getter]: buttonMenu */
 
 
 // The controller’s secondary menu button element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonOptions
-func (g_ GCExtendedGamepad) ButtonOptions() objc.IObject /* cross-framework: GCControllerButtonInput */ {
+func (g_ GCExtendedGamepad) ButtonOptions() IGCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonOptions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: buttonOptions */
+
+
+// The left face button that uses or another indicator as its label.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonX
+func (g_ GCExtendedGamepad) ButtonX() IGCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonX"))
+	return rv
+}/* debug [instance_properties/getter]: buttonX */
+
+
+// The top face button that uses or another indicator as its label.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/buttonY
+func (g_ GCExtendedGamepad) ButtonY() IGCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonY"))
+	return rv
+}/* debug [instance_properties/getter]: buttonY */
+
+
+// The controller for the profile.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/controller
+func (g_ GCExtendedGamepad) Controller() IGCController {
+	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
+	return rv
+}/* debug [instance_properties/getter]: controller */
 
 
 // The controller’s directional pad element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/dpad
-func (g_ GCExtendedGamepad) Dpad() objc.IObject /* cross-framework: GCControllerDirectionPad */ {
+func (g_ GCExtendedGamepad) Dpad() IGCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("dpad"))
 	return rv
-}
+}/* debug [instance_properties/getter]: dpad */
+
+
+// The controller’s left shoulder button element.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/leftShoulder
+func (g_ GCExtendedGamepad) LeftShoulder() IGCControllerButtonInput {
+	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftShoulder"))
+	return rv
+}/* debug [instance_properties/getter]: leftShoulder */
 
 
 // The controller’s left thumbstick element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/leftThumbstick
-func (g_ GCExtendedGamepad) LeftThumbstick() objc.IObject /* cross-framework: GCControllerDirectionPad */ {
+func (g_ GCExtendedGamepad) LeftThumbstick() IGCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("leftThumbstick"))
 	return rv
-}
+}/* debug [instance_properties/getter]: leftThumbstick */
 
 
 // The button on the left thumbstick of the controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/leftThumbstickButton
-func (g_ GCExtendedGamepad) LeftThumbstickButton() objc.IObject /* cross-framework: GCControllerButtonInput */ {
+func (g_ GCExtendedGamepad) LeftThumbstickButton() IGCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftThumbstickButton"))
 	return rv
-}
+}/* debug [instance_properties/getter]: leftThumbstickButton */
 
 
 // The controller’s left trigger element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/leftTrigger
-func (g_ GCExtendedGamepad) LeftTrigger() objc.IObject /* cross-framework: GCControllerButtonInput */ {
+func (g_ GCExtendedGamepad) LeftTrigger() IGCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftTrigger"))
 	return rv
-}
+}/* debug [instance_properties/getter]: leftTrigger */
 
 
 // The controller’s right shoulder button element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/rightShoulder
-func (g_ GCExtendedGamepad) RightShoulder() objc.IObject /* cross-framework: GCControllerButtonInput */ {
+func (g_ GCExtendedGamepad) RightShoulder() IGCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightShoulder"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rightShoulder */
 
 
 // The controller’s right thumbstick element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/rightThumbstick
-func (g_ GCExtendedGamepad) RightThumbstick() objc.IObject /* cross-framework: GCControllerDirectionPad */ {
+func (g_ GCExtendedGamepad) RightThumbstick() IGCControllerDirectionPad {
 	rv := objc.Send[GCControllerDirectionPad](g_.ID, objc.Sel("rightThumbstick"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rightThumbstick */
 
 
 // The button on the right thumbstick of the controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/rightThumbstickButton
-func (g_ GCExtendedGamepad) RightThumbstickButton() objc.IObject /* cross-framework: GCControllerButtonInput */ {
+func (g_ GCExtendedGamepad) RightThumbstickButton() IGCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightThumbstickButton"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rightThumbstickButton */
 
 
 // The controller’s right trigger element.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/rightTrigger
-func (g_ GCExtendedGamepad) RightTrigger() objc.IObject /* cross-framework: GCControllerButtonInput */ {
+func (g_ GCExtendedGamepad) RightTrigger() IGCControllerButtonInput {
 	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("rightTrigger"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rightTrigger */
 
 
 // The block that the profile calls when an element’s value changes.
@@ -250,7 +349,7 @@ func (g_ GCExtendedGamepad) RightTrigger() objc.IObject /* cross-framework: GCCo
 func (g_ GCExtendedGamepad) ValueChangedHandler() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("valueChangedHandler"))
 	return rv
-}
+}/* debug [instance_properties/getter]: valueChangedHandler */
 
 
 // The block that the profile calls when an element’s value changes.
@@ -259,7 +358,7 @@ func (g_ GCExtendedGamepad) ValueChangedHandler() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCExtendedGamepad/valueChangedHandler
 func (g_ GCExtendedGamepad) SetValueChangedHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setValueChangedHandler:"), value)
-}
+}/* debug [instance_properties/setter]: valueChangedHandler */
 
 
 // The extended gamepad profile.
@@ -269,7 +368,7 @@ func (g_ GCExtendedGamepad) SetValueChangedHandler(value unsafe.Pointer) {
 func (g_ GCExtendedGamepad) ExtendedGamepad() IGCExtendedGamepad {
 	rv := objc.Send[GCExtendedGamepad](g_.ID, objc.Sel("extendedGamepad"))
 	return rv
-}
+}/* debug [instance_properties/getter]: extendedGamepad */
 
 
 // The extended gamepad profile.
@@ -278,45 +377,45 @@ func (g_ GCExtendedGamepad) ExtendedGamepad() IGCExtendedGamepad {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/extendedgamepad
 func (g_ GCExtendedGamepad) SetExtendedGamepad(value IGCExtendedGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setExtendedGamepad:"), value)
-}
+}/* debug [instance_properties/setter]: extendedGamepad */
 
 
 // The gamepad profile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
-func (g_ GCExtendedGamepad) Gamepad() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("gamepad"))
+func (g_ GCExtendedGamepad) Gamepad() IGCGamepad {
+	rv := objc.Send[GCGamepad](g_.ID, objc.Sel("gamepad"))
 	return rv
-}
+}/* debug [instance_properties/getter]: gamepad */
 
 
 // The gamepad profile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/gamepad
-func (g_ GCExtendedGamepad) SetGamepad(value unsafe.Pointer) {
+func (g_ GCExtendedGamepad) SetGamepad(value IGCGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setGamepad:"), value)
-}
+}/* debug [instance_properties/setter]: gamepad */
 
 
 // The micro gamepad profile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCExtendedGamepad) MicroGamepad() objc.IObject /* cross-framework: GCMicroGamepad */ {
+func (g_ GCExtendedGamepad) MicroGamepad() IGCMicroGamepad {
 	rv := objc.Send[GCMicroGamepad](g_.ID, objc.Sel("microGamepad"))
 	return rv
-}
+}/* debug [instance_properties/getter]: microGamepad */
 
 
 // The micro gamepad profile.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/microgamepad
-func (g_ GCExtendedGamepad) SetMicroGamepad(value objc.IObject /* cross-framework: GCMicroGamepad */) {
+func (g_ GCExtendedGamepad) SetMicroGamepad(value IGCMicroGamepad) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMicroGamepad:"), value)
-}
+}/* debug [instance_properties/setter]: microGamepad */
 
 
 // The motion input profile.
@@ -326,7 +425,7 @@ func (g_ GCExtendedGamepad) SetMicroGamepad(value objc.IObject /* cross-framewor
 func (g_ GCExtendedGamepad) Motion() IGCMotion {
 	rv := objc.Send[GCMotion](g_.ID, objc.Sel("motion"))
 	return rv
-}
+}/* debug [instance_properties/getter]: motion */
 
 
 // The motion input profile.
@@ -335,7 +434,7 @@ func (g_ GCExtendedGamepad) Motion() IGCMotion {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/motion
 func (g_ GCExtendedGamepad) SetMotion(value IGCMotion) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setMotion:"), value)
-}
+}/* debug [instance_properties/setter]: motion */
 
 
 // The physical input profile for the controller.
@@ -345,7 +444,7 @@ func (g_ GCExtendedGamepad) SetMotion(value IGCMotion) {
 func (g_ GCExtendedGamepad) PhysicalInputProfile() IGCPhysicalInputProfile {
 	rv := objc.Send[GCPhysicalInputProfile](g_.ID, objc.Sel("physicalInputProfile"))
 	return rv
-}
+}/* debug [instance_properties/getter]: physicalInputProfile */
 
 
 // The physical input profile for the controller.
@@ -354,121 +453,12 @@ func (g_ GCExtendedGamepad) PhysicalInputProfile() IGCPhysicalInputProfile {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccontroller/physicalinputprofile
 func (g_ GCExtendedGamepad) SetPhysicalInputProfile(value IGCPhysicalInputProfile) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPhysicalInputProfile:"), value)
-}
+}/* debug [instance_properties/setter]: physicalInputProfile */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The bottom face button that uses
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttona
-func (g_ GCExtendedGamepad) ButtonA() objc.IObject /* cross-framework: GCControllerButtonInput */ {
-	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonA"))
-	return rv
-}
-
-
-// The bottom face button that uses
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttona
-func (g_ GCExtendedGamepad) SetButtonA(value objc.IObject /* cross-framework: GCControllerButtonInput */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonA:"), value)
-}
-
-
-// The primary menu button element that players use to enter the main menu and pause the game.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonmenu
-func (g_ GCExtendedGamepad) ButtonMenu() objc.IObject /* cross-framework: GCControllerButtonInput */ {
-	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonMenu"))
-	return rv
-}
-
-
-// The primary menu button element that players use to enter the main menu and pause the game.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonmenu
-func (g_ GCExtendedGamepad) SetButtonMenu(value objc.IObject /* cross-framework: GCControllerButtonInput */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonMenu:"), value)
-}
-
-
-// The left face button that uses
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonx
-func (g_ GCExtendedGamepad) ButtonX() objc.IObject /* cross-framework: GCControllerButtonInput */ {
-	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonX"))
-	return rv
-}
-
-
-// The left face button that uses
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttonx
-func (g_ GCExtendedGamepad) SetButtonX(value objc.IObject /* cross-framework: GCControllerButtonInput */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonX:"), value)
-}
-
-
-// The top face button that uses
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttony
-func (g_ GCExtendedGamepad) ButtonY() objc.IObject /* cross-framework: GCControllerButtonInput */ {
-	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("buttonY"))
-	return rv
-}
-
-
-// The top face button that uses
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/buttony
-func (g_ GCExtendedGamepad) SetButtonY(value objc.IObject /* cross-framework: GCControllerButtonInput */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setButtonY:"), value)
-}
-
-
-// The controller for the profile.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/controller
-func (g_ GCExtendedGamepad) Controller() IGCController {
-	rv := objc.Send[GCController](g_.ID, objc.Sel("controller"))
-	return rv
-}
-
-
-// The controller for the profile.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/controller
-func (g_ GCExtendedGamepad) SetController(value IGCController) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setController:"), value)
-}
-
-
-// The controller’s left shoulder button element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftshoulder
-func (g_ GCExtendedGamepad) LeftShoulder() objc.IObject /* cross-framework: GCControllerButtonInput */ {
-	rv := objc.Send[GCControllerButtonInput](g_.ID, objc.Sel("leftShoulder"))
-	return rv
-}
-
-
-// The controller’s left shoulder button element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcextendedgamepad/leftshoulder
-func (g_ GCExtendedGamepad) SetLeftShoulder(value objc.IObject /* cross-framework: GCControllerButtonInput */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLeftShoulder:"), value)
-}
+/* debug [class.gen.go]: End class GCExtendedGamepad */
 
 
 

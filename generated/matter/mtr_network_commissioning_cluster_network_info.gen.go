@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRNetworkCommissioningClusterNetworkInfo] class.
@@ -37,8 +37,6 @@ type IMTRNetworkCommissioningClusterNetworkInfo interface {
 	SetNetworkID(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterNetworkInfo
@@ -84,8 +82,6 @@ func NewMTRNetworkCommissioningClusterNetworkInfo() MTRNetworkCommissioningClust
 	return getMTRNetworkCommissioningClusterNetworkInfoClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/connected
 func (m_ MTRNetworkCommissioningClusterNetworkInfo) Connected() objc.IObject /* cross-framework: NSNumber */ {
@@ -93,13 +89,11 @@ func (m_ MTRNetworkCommissioningClusterNetworkInfo) Connected() objc.IObject /* 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/connected
 func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetConnected(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnected:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/networkid
@@ -108,12 +102,8 @@ func (m_ MTRNetworkCommissioningClusterNetworkInfo) NetworkID() objc.IObject /* 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfo/networkid
 func (m_ MTRNetworkCommissioningClusterNetworkInfo) SetNetworkID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
 }
-
-
-

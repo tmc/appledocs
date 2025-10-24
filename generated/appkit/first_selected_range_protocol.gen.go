@@ -15,3 +15,4 @@ var firstSelectedRangeProtocol *objc.Protocol
 func init() {
 	firstSelectedRangeProtocol = objc.GetProtocol("firstSelectedRange")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRTargetNavigatorClusterNavigateTargetResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterNavigateTargetResponseParams
@@ -85,8 +83,6 @@ func NewMTRTargetNavigatorClusterNavigateTargetResponseParams() MTRTargetNavigat
 	return getMTRTargetNavigatorClusterNavigateTargetResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/data
 func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() objc.IObject /* cross-framework: NSString */ {
@@ -94,13 +90,11 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Data() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/data
 func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetData(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/status
@@ -109,13 +103,11 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) Status() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/status
 func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) TimedInvokeTimeo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclusternavigatetargetresponseparams/timedinvoketimeoutms
 func (m_ MTRTargetNavigatorClusterNavigateTargetResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

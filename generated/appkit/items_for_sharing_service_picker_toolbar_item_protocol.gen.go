@@ -15,3 +15,4 @@ var itemsForSharingServicePickerToolbarItemProtocol *objc.Protocol
 func init() {
 	itemsForSharingServicePickerToolbarItemProtocol = objc.GetProtocol("itemsForSharingServicePickerToolbarItem:")
 }
+

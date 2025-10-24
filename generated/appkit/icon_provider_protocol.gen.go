@@ -15,3 +15,4 @@ var iconProviderProtocol *objc.Protocol
 func init() {
 	iconProviderProtocol = objc.GetProtocol("iconProvider")
 }
+

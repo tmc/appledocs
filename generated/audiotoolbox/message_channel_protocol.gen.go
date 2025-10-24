@@ -19,3 +19,4 @@ var MessageChannelProtocol *objc.Protocol
 func init() {
 	MessageChannelProtocol = objc.GetProtocol("AUMessageChannel")
 }
+

@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PUserInterfaceItemSearching is the NSUserInterfaceItemSearching protocol interface.
@@ -18,8 +20,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceItemSearching
 type PUserInterfaceItemSearching interface {
 	// Required methods
-	LocalizedTitlesForItem(item objc.IObject) []string
-	SearchForItemsWithSearchStringResultLimitMatchedItemHandler(searchString objc.IObject /* cross-framework: NSString */, resultLimit int, handleMatchedItems unsafe.Pointer)
+	LocalizedTitlesForItem(item objc.IObject) []string/* debug [protocol_interface/required_method]: LocalizedTitlesForItem */
+	SearchForItemsWithSearchStringResultLimitMatchedItemHandler(searchString objc.IObject /* cross-framework: NSString */, resultLimit int, handleMatchedItems unsafe.Pointer)/* debug [protocol_interface/required_method]: SearchForItemsWithSearchStringResultLimitMatchedItemHandler */
 	// Optional methods
 	PerformActionForItem(item objc.IObject)
 	HasPerformActionForItem() bool

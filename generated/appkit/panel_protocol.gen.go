@@ -15,3 +15,4 @@ var panelProtocol *objc.Protocol
 func init() {
 	panelProtocol = objc.GetProtocol("panel:")
 }
+

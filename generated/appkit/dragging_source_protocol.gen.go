@@ -15,3 +15,4 @@ var DraggingSourceProtocol *objc.Protocol
 func init() {
 	DraggingSourceProtocol = objc.GetProtocol("NSDraggingSource")
 }
+

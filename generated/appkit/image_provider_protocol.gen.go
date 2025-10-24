@@ -15,3 +15,4 @@ var imageProviderProtocol *objc.Protocol
 func init() {
 	imageProviderProtocol = objc.GetProtocol("imageProvider")
 }
+

@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHAssetCollection] class.
@@ -34,7 +34,7 @@ type IPHAssetCollection interface {
 	// properties:
 	EndDate() objc.IObject /* cross-framework: NSDate */
 	EstimatedAssetCount() uint
-	StartDate() objc.IObject /* cross-framework: NSDate */
+	StartDate() objc.IObject           /* cross-framework: NSDate */
 	ApproximateLocation() objc.IObject /* cross-framework: Location */
 	SetApproximateLocation(value objc.IObject /* cross-framework: Location */)
 	AssetCollectionSubtype() unsafe.Pointer
@@ -49,7 +49,6 @@ type IPHAssetCollection interface {
 // A representation of a Photos asset grouping, such as a moment, user-created album, or smart album.
 //
 // In the Photos framework, collection objects (including asset collections) do not directly reference their member objects, and there are no other objects that directly reference collection objects. To retrieve the members of an asset collection, fetch them with a class method such as . To find asset collections, use one of the methods listed in the Fetching Asset Collections group below. Like assets and collection lists, asset collections are immutable. To create, rename, or delete asset collections, or to add, remove, or rearrange members in an asset collection, create a object within a photo library change block. For details on using change requests and change blocks to update the photo library, see .
-
 
 // A representation of a Photos asset grouping, such as a moment, user-created album, or smart album.
 //
@@ -99,8 +98,6 @@ func NewPHAssetCollection() PHAssetCollection {
 	return getPHAssetCollectionClass().New()
 }
 
-
-
 // The latest creation date among all assets in the asset collection.
 //
 // [Full Topic]
@@ -109,7 +106,6 @@ func (p_ PHAssetCollection) EndDate() objc.IObject /* cross-framework: NSDate */
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("endDate"))
 	return rv
 }
-
 
 // The estimated number of assets in the asset collection.
 //
@@ -120,7 +116,6 @@ func (p_ PHAssetCollection) EstimatedAssetCount() uint {
 	return rv
 }
 
-
 // The earliest creation date among all assets in the asset collection.
 //
 // [Full Topic]
@@ -129,7 +124,6 @@ func (p_ PHAssetCollection) StartDate() objc.IObject /* cross-framework: NSDate 
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
 	return rv
 }
-
 
 // A location representing those of all assets in the collection.
 //
@@ -140,7 +134,6 @@ func (p_ PHAssetCollection) ApproximateLocation() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // A location representing those of all assets in the collection.
 //
 // [Full Topic]
@@ -148,7 +141,6 @@ func (p_ PHAssetCollection) ApproximateLocation() objc.IObject /* cross-framewor
 func (p_ PHAssetCollection) SetApproximateLocation(value objc.IObject /* cross-framework: Location */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setApproximateLocation:"), value)
 }
-
 
 // The subtype of the asset collection.
 //
@@ -159,7 +151,6 @@ func (p_ PHAssetCollection) AssetCollectionSubtype() unsafe.Pointer {
 	return rv
 }
 
-
 // The subtype of the asset collection.
 //
 // [Full Topic]
@@ -167,7 +158,6 @@ func (p_ PHAssetCollection) AssetCollectionSubtype() unsafe.Pointer {
 func (p_ PHAssetCollection) SetAssetCollectionSubtype(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetCollectionSubtype:"), value)
 }
-
 
 // The type of the asset collection, such as an album or a moment.
 //
@@ -178,7 +168,6 @@ func (p_ PHAssetCollection) AssetCollectionType() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of the asset collection, such as an album or a moment.
 //
 // [Full Topic]
@@ -186,7 +175,6 @@ func (p_ PHAssetCollection) AssetCollectionType() unsafe.Pointer {
 func (p_ PHAssetCollection) SetAssetCollectionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetCollectionType:"), value)
 }
-
 
 // The names of locations grouped by the collection (an array of
 //
@@ -197,7 +185,6 @@ func (p_ PHAssetCollection) LocalizedLocationNames() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // The names of locations grouped by the collection (an array of
 //
 // [Full Topic]
@@ -205,6 +192,3 @@ func (p_ PHAssetCollection) LocalizedLocationNames() objc.IObject /* cross-frame
 func (p_ PHAssetCollection) SetLocalizedLocationNames(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalizedLocationNames:"), value)
 }
-
-
-

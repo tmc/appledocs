@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // WhitePointAdjustProtocol is the CIWhitePointAdjust protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIWhitePointAdjust.
 var WhitePointAdjustProtocol *objc.Protocol
 
 func init() {
 	WhitePointAdjustProtocol = objc.GetProtocol("CIWhitePointAdjust")
 }
+

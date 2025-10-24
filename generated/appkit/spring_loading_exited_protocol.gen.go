@@ -15,3 +15,4 @@ var springLoadingExitedProtocol *objc.Protocol
 func init() {
 	springLoadingExitedProtocol = objc.GetProtocol("springLoadingExited:")
 }
+

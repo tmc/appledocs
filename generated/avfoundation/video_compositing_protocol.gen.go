@@ -20,3 +20,4 @@ var VideoCompositingProtocol *objc.Protocol
 func init() {
 	VideoCompositingProtocol = objc.GetProtocol("AVVideoCompositing")
 }
+

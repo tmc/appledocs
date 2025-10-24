@@ -2,7 +2,9 @@
 
 package storekittest
 
+/* debug [enums.gen.go]: Generating 3 enums for StoreKitTest */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum SKAdTestErrorCode (33 cases) */
 // SKAdTestErrorCode - Enumerated error codes related to ad network testing in the testing environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestError/Code
@@ -143,6 +145,7 @@ const (
 	SKAdTestErrorCodeUnlinkedWinningPostbacks SKAdTestErrorCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum SKTestErrorCode (8 cases) */
 // SKTestErrorCode - Error codes in the testing environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestError/Code
@@ -183,16 +186,45 @@ const (
 	SKTestErrorCodeServiceUnavailable SKTestErrorCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum SKTestTimeRate (18 cases) */
 // SKTestTimeRate - The values for rates of time passing in the test environment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum
 type SKTestTimeRate uint
 
 const (
+	// SKTestTimeRateFiveMinutesIsOneDay - A rate of time in which 5 minutes in the test environment represents one day.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/fiveMinutesIsOneDay
+	SKTestTimeRateFiveMinutesIsOneDay SKTestTimeRate = 0
+	// SKTestTimeRateMonthlyRenewalEveryFifteenMinutes - A rate of time in the test environment in which monthly subscriptions renew every 15 minutes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/monthlyRenewalEveryFifteenMinutes
+	SKTestTimeRateMonthlyRenewalEveryFifteenMinutes SKTestTimeRate = 0
+	// SKTestTimeRateMonthlyRenewalEveryFiveMinutes - A rate of time in the test environment in which monthly subscriptions renew every 5 minutes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/monthlyRenewalEveryFiveMinutes
+	SKTestTimeRateMonthlyRenewalEveryFiveMinutes SKTestTimeRate = 0
+	// SKTestTimeRateMonthlyRenewalEveryHour - A rate of time in the test environment in which monthly subscriptions renew every hour.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/monthlyRenewalEveryHour
+	SKTestTimeRateMonthlyRenewalEveryHour SKTestTimeRate = 0
+	// SKTestTimeRateMonthlyRenewalEveryThirtyMinutes - A rate of time in the test environment in which monthly subscriptions renew every 30 minutes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/monthlyRenewalEveryThirtyMinutes
+	SKTestTimeRateMonthlyRenewalEveryThirtyMinutes SKTestTimeRate = 0
 	// SKTestTimeRateMonthlyRenewalEveryThirtySeconds - A rate of time in the test environment in which monthly subscriptions renew every 30 seconds.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/monthlyRenewalEveryThirtySeconds
 	SKTestTimeRateMonthlyRenewalEveryThirtySeconds SKTestTimeRate = 0
+	// SKTestTimeRateOneHourIsOneDay - A rate of time in which 1 hour in the test environment represents one day.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/oneHourIsOneDay
+	SKTestTimeRateOneHourIsOneDay SKTestTimeRate = 0
+	// SKTestTimeRateOneMinuteIsOneDay - A rate of time in which 1 minute in the test environment represents one day.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/oneMinuteIsOneDay
+	SKTestTimeRateOneMinuteIsOneDay SKTestTimeRate = 0
 	// SKTestTimeRateOneRenewalEveryFifteenMinutes - A rate of time in the test environment in which subscriptions of any time length renew every 15 minutes.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/oneRenewalEveryFifteenMinutes
@@ -213,6 +245,24 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/oneRenewalEveryThirtySeconds
 	SKTestTimeRateOneRenewalEveryThirtySeconds SKTestTimeRate = 0
+	// SKTestTimeRateOneRenewalEveryTwoSeconds - A rate of time in the test environment in which subscriptions of any time length renew every 2 seconds.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/oneRenewalEveryTwoSeconds
+	SKTestTimeRateOneRenewalEveryTwoSeconds SKTestTimeRate = 0
+	// SKTestTimeRateOneSecondIsOneDay - A rate of time in which 1 second in the test environment represents one day.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/oneSecondIsOneDay
+	SKTestTimeRateOneSecondIsOneDay SKTestTimeRate = 0
+	// SKTestTimeRateRealTime - A rate of time in which the test environment runs in real time.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/realTime
+	SKTestTimeRateRealTime SKTestTimeRate = 0
+	// SKTestTimeRateThirtyMinutesIsOneDay - A rate of time in which 30 minutes in the test environment represents one day.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/thirtyMinutesIsOneDay
+	SKTestTimeRateThirtyMinutesIsOneDay SKTestTimeRate = 0
+	// SKTestTimeRateThirtySecondsIsOneDay - A rate of time in which 30 seconds in the test environment represents one day.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKTestSession/TimeRate-swift.enum/thirtySecondsIsOneDay
+	SKTestTimeRateThirtySecondsIsOneDay SKTestTimeRate = 0
 )
-
-

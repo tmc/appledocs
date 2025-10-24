@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,7 +42,6 @@ type IPHProjectElement interface {
 // The superclass for all element objects.
 //
 // You should never use this class directly; opt instead for one of its subclasses. It defines the shared properties of any element in an instance of .
-
 
 // The superclass for all element objects.
 //
@@ -90,8 +89,6 @@ func NewPHProjectElement() PHProjectElement {
 	return getPHProjectElementClass().New()
 }
 
-
-
 // A rectangle defining where an element is placed in grid space coordinates.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (p_ PHProjectElement) Placement() objc.IObject /* cross-framework: Rect */ 
 	return rv
 }
 
-
 // A rectangle defining where an element is placed in grid space coordinates.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (p_ PHProjectElement) Placement() objc.IObject /* cross-framework: Rect */ 
 func (p_ PHProjectElement) SetPlacement(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlacement:"), value)
 }
-
 
 // A value between 0 and 1 representing relative significance of the element in its section.
 //
@@ -120,7 +115,6 @@ func (p_ PHProjectElement) Weight() float64 {
 	return rv
 }
 
-
 // A value between 0 and 1 representing relative significance of the element in its section.
 //
 // [Full Topic]
@@ -128,6 +122,3 @@ func (p_ PHProjectElement) Weight() float64 {
 func (p_ PHProjectElement) SetWeight(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWeight:"), value)
 }
-
-
-

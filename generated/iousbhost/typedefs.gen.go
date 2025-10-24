@@ -3,11 +3,6 @@
 package iousbhost
 
 // Type aliases and typedefs
-// USBHostCIDoorbell type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDoorbell
-// IOUSBHostCIDoorbell has base type: uint32_t
-type USBHostCIDoorbell uintptr
 // USBHostDevicePropertyKey - Properties of a USB device that describe its state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostDevicePropertyKey
@@ -28,4 +23,19 @@ type USBHostMatchingPropertyKey = string
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostPropertyKey
 // IOUSBHostPropertyKey is a string typedef
 type USBHostPropertyKey = string
+// USBHostCIDoorbell type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDoorbell
+// IOUSBHostCIDoorbell has base type: uint32_t
+type USBHostCIDoorbell uintptr
+// USBHostCIPortStatus type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIPortStatus
+// IOUSBHostCIPortStatus has base type: uint32_t
+type USBHostCIPortStatus uintptr
+// USBHostTime - The absolute time.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostTime
+// IOUSBHostTime has base type: uint64_t
+type USBHostTime uintptr
 

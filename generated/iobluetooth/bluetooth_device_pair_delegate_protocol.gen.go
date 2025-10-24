@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // BluetoothDevicePairDelegateProtocol is the IOBluetoothDevicePairDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to IOBluetoothDevicePairDelegate.
 var BluetoothDevicePairDelegateProtocol *objc.Protocol
 
 func init() {
 	BluetoothDevicePairDelegateProtocol = objc.GetProtocol("IOBluetoothDevicePairDelegate")
 }
+

@@ -39,7 +39,6 @@ type IINSetAudioSourceInCarIntent interface {
 //
 // Automotive venders can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change the audio source of the vehicle, SiriKit creates an object and delivers it to your app’s Intents extension. You use the intent to identify which audio source the user wants to use and to communicate the new audio source information directly to your vehicle’s systems. Users may select audio sources by name or by asking for the next or previous audio source that’s available. When the user asks for an audio source by name, Siri populates the property of this intent object with the specific requested source. When the user asks for the next or previous audio source, Siri places the appropriate value in the property so that you can determine which audio source to select. Only one of these properties contains usable information; Siri sets the other to a constant indicating an unknown status for the value. The object that handles this intent must adopt the protocol. Use this intent object to resolve the audio source details and to create an object indicating the results of changing the audio source.
 
-
 // A request to change the source of audio playback in a CarPlay-enabled vehicle.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINSetAudioSourceInCarIntent() INSetAudioSourceInCarIntent {
 	return getINSetAudioSourceInCarIntentClass().New()
 }
 
-
-
 // The audio source to select.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INSetAudioSourceInCarIntent) AudioSource() unsafe.Pointer {
 	return rv
 }
 
-
 // The audio source to select.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (i_ INSetAudioSourceInCarIntent) AudioSource() unsafe.Pointer {
 func (i_ INSetAudioSourceInCarIntent) SetAudioSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioSource:"), value)
 }
-
 
 // The relative audio source to select.
 //
@@ -118,7 +113,6 @@ func (i_ INSetAudioSourceInCarIntent) RelativeAudioSourceReference() unsafe.Poin
 	return rv
 }
 
-
 // The relative audio source to select.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (i_ INSetAudioSourceInCarIntent) RelativeAudioSourceReference() unsafe.Poin
 func (i_ INSetAudioSourceInCarIntent) SetRelativeAudioSourceReference(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeAudioSourceReference:"), value)
 }
-
-
-

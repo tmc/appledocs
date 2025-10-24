@@ -15,3 +15,4 @@ var accessibilityServesAsTitleForUIElementsProtocol *objc.Protocol
 func init() {
 	accessibilityServesAsTitleForUIElementsProtocol = objc.GetProtocol("accessibilityServesAsTitleForUIElements")
 }
+

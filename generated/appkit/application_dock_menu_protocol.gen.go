@@ -15,3 +15,4 @@ var applicationDockMenuProtocol *objc.Protocol
 func init() {
 	applicationDockMenuProtocol = objc.GetProtocol("applicationDockMenu:")
 }
+

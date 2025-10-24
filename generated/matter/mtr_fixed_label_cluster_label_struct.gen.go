@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRFixedLabelClusterLabelStruct interface {
 	SetValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFixedLabelClusterLabelStruct
@@ -83,8 +81,6 @@ func NewMTRFixedLabelClusterLabelStruct() MTRFixedLabelClusterLabelStruct {
 	return getMTRFixedLabelClusterLabelStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfixedlabelclusterlabelstruct/label
 func (m_ MTRFixedLabelClusterLabelStruct) Label() objc.IObject /* cross-framework: NSString */ {
@@ -92,13 +88,11 @@ func (m_ MTRFixedLabelClusterLabelStruct) Label() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfixedlabelclusterlabelstruct/label
 func (m_ MTRFixedLabelClusterLabelStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfixedlabelclusterlabelstruct/value
@@ -107,12 +101,8 @@ func (m_ MTRFixedLabelClusterLabelStruct) Value() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfixedlabelclusterlabelstruct/value
 func (m_ MTRFixedLabelClusterLabelStruct) SetValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

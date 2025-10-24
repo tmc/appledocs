@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SCRunningApplication */
+
+
+/* debug [class_header]: Header for SCRunningApplication */
 // The class instance for the [RunningApplication] class.
 var (
 	RunningApplicationClass     _RunningApplicationClass
@@ -27,38 +31,33 @@ func getRunningApplicationClass() _RunningApplicationClass {
 type _RunningApplicationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for RunningApplication */
 // An interface definition for the [RunningApplication] class.
 type IRunningApplication interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for RunningApplication */
 	// properties:
 	ApplicationName() objc.IObject /* cross-framework: NSString */
 	BundleIdentifier() objc.IObject /* cross-framework: NSString */
 	ProcessID() unsafe.Pointer
-	SetProcessID(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for RunningApplication */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An instance that represents an app running on a device.
-//
-// Retrieve the available apps from an instance of . Select one or more apps to capture and use them to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+/* debug [class_interface]: End interface */
 
 
-// An instance that represents an app running on a device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication
-type RunningApplication struct {
-	objectivec.Object
-}
 
-// RunningApplicationFrom constructs a [RunningApplication] from an unsafe.Pointer.
-//
-// An instance that represents an app running on a device.
-func RunningApplicationFrom(ptr unsafe.Pointer) RunningApplication {
-	return RunningApplication{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for RunningApplication */
 // Alloc allocates a new instance without initialization.
 func (rc _RunningApplicationClass) Alloc() RunningApplication {
 	rv := objc.Send[RunningApplication](objc.ID(rc.class), objc.Sel("alloc"))
@@ -66,7 +65,6 @@ func (rc _RunningApplicationClass) Alloc() RunningApplication {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RunningApplicationClass) New() RunningApplication {
 	rv := objc.Send[RunningApplication](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,8 +87,54 @@ func (r_ RunningApplication) Autorelease() RunningApplication {
 func NewRunningApplication() RunningApplication {
 	return getRunningApplicationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for RunningApplication */
+// An instance that represents an app running on a device.
+//
+// Retrieve the available apps from an instance of . Select one or more apps to capture and use them to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+
+
+// An instance that represents an app running on a device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication
+type RunningApplication struct {
+	objectivec.Object
+}
+
+// RunningApplicationFrom constructs a [RunningApplication] from an unsafe.Pointer.
+//
+// An instance that represents an app running on a device.
+func RunningApplicationFrom(ptr unsafe.Pointer) RunningApplication {
+	return RunningApplication{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for RunningApplication *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for RunningApplication */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for RunningApplication */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for RunningApplication */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for RunningApplication */
 
 // The display name of the app.
 //
@@ -99,7 +143,7 @@ func NewRunningApplication() RunningApplication {
 func (r_ RunningApplication) ApplicationName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("applicationName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: applicationName */
 
 
 // The unique bundle identifier of the app.
@@ -109,26 +153,22 @@ func (r_ RunningApplication) ApplicationName() objc.IObject /* cross-framework: 
 func (r_ RunningApplication) BundleIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("bundleIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bundleIdentifier */
 
 
 // The system process identifier of the app.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scrunningapplication/processid
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCRunningApplication/processID
 func (r_ RunningApplication) ProcessID() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("processID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: processID */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The system process identifier of the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scrunningapplication/processid
-func (r_ RunningApplication) SetProcessID(value unsafe.Pointer) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setProcessID:"), value)
-}
+/* debug [class.gen.go]: End class SCRunningApplication */
 
 
 

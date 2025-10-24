@@ -18,7 +18,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/add(_:completionHandler:)
-func (m_ MediaPlaylist) AddMediaItemsCompletionHandler(mediaItems []IMediaItem, completionHandler unsafe.Pointer) {
+func (m_ MediaPlaylist) AddMediaItemsCompletionHandler(mediaItems []MediaItem, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addMediaItems:completionHandler:"), mediaItems, completionHandler)
 }
 
@@ -72,8 +72,8 @@ func (m_ MediaPlaylist) Name() objc.IObject /* cross-framework: NSString */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/persistentID
-func (m_ MediaPlaylist) PersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("persistentID"))
+func (m_ MediaPlaylist) PersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("persistentID"))
 	return rv
 }
 
@@ -90,7 +90,7 @@ func (m_ MediaPlaylist) PlaylistAttributes() MediaPlaylistAttribute {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist/seedItems
-func (m_ MediaPlaylist) SeedItems() []IMediaItem {
+func (m_ MediaPlaylist) SeedItems() []MediaItem {
 	rv := objc.Send[[]MediaItem](m_.ID, objc.Sel("seedItems"))
 	return rv
 }

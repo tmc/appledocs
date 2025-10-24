@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // ColorPolynomialProtocol is the CIColorPolynomial protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIColorPolynomial.
 var ColorPolynomialProtocol *objc.Protocol
 
 func init() {
 	ColorPolynomialProtocol = objc.GetProtocol("CIColorPolynomial")
 }
+

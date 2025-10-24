@@ -15,3 +15,4 @@ var setAccessibilitySelectedRowsProtocol *objc.Protocol
 func init() {
 	setAccessibilitySelectedRowsProtocol = objc.GetProtocol("setAccessibilitySelectedRows:")
 }
+

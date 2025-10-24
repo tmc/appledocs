@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRRVCCleanModeClusterChangeToModeResponseParams interface {
 	SetStatusText(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCCleanModeClusterChangeToModeResponseParams
@@ -83,8 +81,6 @@ func NewMTRRVCCleanModeClusterChangeToModeResponseParams() MTRRVCCleanModeCluste
 	return getMTRRVCCleanModeClusterChangeToModeResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/status
 func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) Status() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/status
 func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/statustext
@@ -107,12 +101,8 @@ func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) StatusText() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclusterchangetomoderesponseparams/statustext
 func (m_ MTRRVCCleanModeClusterChangeToModeResponseParams) SetStatusText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
 }
-
-
-

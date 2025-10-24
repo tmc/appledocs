@@ -8,8 +8,13 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GKNSPredicateRule */
+
+
+/* debug [class_header]: Header for GKNSPredicateRule */
 // The class instance for the [NSPredicateRule] class.
 var (
 	NSPredicateRuleClass     _NSPredicateRuleClass
@@ -26,38 +31,32 @@ func getNSPredicateRuleClass() _NSPredicateRuleClass {
 type _NSPredicateRuleClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NSPredicateRule */
 // An interface definition for the [NSPredicateRule] class.
 type INSPredicateRule interface {
 	IRule
+	
+/* debug [class_interface_properties]: Properties for NSPredicateRule */
 	// properties:
-	Predicate() objc.IObject /* cross-framework: Predicate */
+	Predicate() foundation.Predicate
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NSPredicateRule */
 	// methods:
 	EvaluatePredicateWithSystem(system IGKRuleSystem) bool
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A rule for use in a rule system that uses a Foundation object to evaluate itself.
-//
-// The class is a specialized subclass of the class (which represents rules to be used by objects). Custom subclasses of use an object to evaluate a rule, rather than requiring custom logic for evaluation as is the case with custom subclasses. For more information about rules and rule systems, read in .
+/* debug [class_interface]: End interface */
 
 
-// A rule for use in a rule system that uses a Foundation object to evaluate itself.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule
-type NSPredicateRule struct {
-	Rule
-}
 
-// NSPredicateRuleFrom constructs a [NSPredicateRule] from an unsafe.Pointer.
-//
-// A rule for use in a rule system that uses a Foundation object to evaluate itself.
-func NSPredicateRuleFrom(ptr unsafe.Pointer) NSPredicateRule {
-	return NSPredicateRule{
-		Rule: RuleFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for NSPredicateRule */
 // Alloc allocates a new instance without initialization.
 func (pc _NSPredicateRuleClass) Alloc() NSPredicateRule {
 	rv := objc.Send[NSPredicateRule](objc.ID(pc.class), objc.Sel("alloc"))
@@ -65,7 +64,6 @@ func (pc _NSPredicateRuleClass) Alloc() NSPredicateRule {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _NSPredicateRuleClass) New() NSPredicateRule {
 	rv := objc.Send[NSPredicateRule](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,21 +86,64 @@ func (p_ NSPredicateRule) Autorelease() NSPredicateRule {
 func NewNSPredicateRule() NSPredicateRule {
 	return getNSPredicateRuleClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for NSPredicateRule */
+// A rule for use in a rule system that uses a Foundation object to evaluate itself.
+//
+// The class is a specialized subclass of the class (which represents rules to be used by objects). Custom subclasses of use an object to evaluate a rule, rather than requiring custom logic for evaluation as is the case with custom subclasses. For more information about rules and rule systems, read in .
+
+
+// A rule for use in a rule system that uses a Foundation object to evaluate itself.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule
+type NSPredicateRule struct {
+	Rule
+}
+
+// NSPredicateRuleFrom constructs a [NSPredicateRule] from an unsafe.Pointer.
+//
+// A rule for use in a rule system that uses a Foundation object to evaluate itself.
+func NSPredicateRuleFrom(ptr unsafe.Pointer) NSPredicateRule {
+	return NSPredicateRule{
+		Rule: RuleFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NSPredicateRule */
 
 // Initializes a rule with the specified predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/init(predicate:)
-func NewNSPredicateRuleWithPredicate(predicate objc.IObject /* cross-framework: Predicate */) NSPredicateRule {
+func NewNSPredicateRuleWithPredicate(predicate foundation.Predicate) NSPredicateRule {
 	instance := getNSPredicateRuleClass().Alloc()
 	rv := objc.Send[NSPredicateRule](instance.ID, objc.Sel("initWithPredicate:"), predicate)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewNSPredicateRuleWithPredicate */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for NSPredicateRule */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NSPredicateRule */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NSPredicateRule */
 
 // Returns a Boolean value indicating whether the rule’s predicate has been satisfied in the context of the specified rule system.
 //
@@ -111,16 +152,26 @@ func NewNSPredicateRuleWithPredicate(predicate objc.IObject /* cross-framework: 
 func (p_ NSPredicateRule) EvaluatePredicateWithSystem(system IGKRuleSystem) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluatePredicateWithSystem:"), system)
 	return rv
-}
+}/* debug [instance_methods/method]: EvaluatePredicateWithSystem */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NSPredicateRule */
 
 // A predicate to be tested when evaluating the rule.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKNSPredicateRule/predicate
-func (p_ NSPredicateRule) Predicate() objc.IObject /* cross-framework: Predicate */ {
+func (p_ NSPredicateRule) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("predicate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: predicate */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GKNSPredicateRule */
 
 

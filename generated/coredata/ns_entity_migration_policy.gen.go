@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -35,11 +35,11 @@ type IEntityMigrationPolicy interface {
 	EntityMigrationPolicyClassName() objc.IObject /* cross-framework: NSString */
 	SetEntityMigrationPolicyClassName(value objc.IObject /* cross-framework: NSString */)
 	NSMigrationDestinationObjectKey() objc.IObject /* cross-framework: NSString */
-	NSMigrationEntityMappingKey() objc.IObject /* cross-framework: NSString */
-	NSMigrationEntityPolicyKey() objc.IObject /* cross-framework: NSString */
-	NSMigrationManagerKey() objc.IObject /* cross-framework: NSString */
-	NSMigrationPropertyMappingKey() objc.IObject /* cross-framework: NSString */
-	NSMigrationSourceObjectKey() objc.IObject /* cross-framework: NSString */
+	NSMigrationEntityMappingKey() objc.IObject     /* cross-framework: NSString */
+	NSMigrationEntityPolicyKey() objc.IObject      /* cross-framework: NSString */
+	NSMigrationManagerKey() objc.IObject           /* cross-framework: NSString */
+	NSMigrationPropertyMappingKey() objc.IObject   /* cross-framework: NSString */
+	NSMigrationSourceObjectKey() objc.IObject      /* cross-framework: NSString */
 	// methods:
 	CreateDestinationInstancesForSourceInstanceEntityMappingManagerError(sInstance IManagedObject, mapping IEntityMapping, manager IMigrationManager, error_ unsafe.Pointer) bool
 }
@@ -47,7 +47,6 @@ type IEntityMigrationPolicy interface {
 // A policy instance that customizes the migration process for an entity mapping.
 //
 // You set the policy for an entity mapping by passing the name of the migration policy class as the argument to . Typically, you specify the name in the Xcode mapping model editor.
-
 
 // A policy instance that customizes the migration process for an entity mapping.
 //
@@ -95,8 +94,6 @@ func NewEntityMigrationPolicy() EntityMigrationPolicy {
 	return getEntityMigrationPolicyClass().New()
 }
 
-
-
 // Creates the destination instance(s) for a given source instance.
 //
 // [Full Topic]
@@ -105,7 +102,6 @@ func (e_ EntityMigrationPolicy) CreateDestinationInstancesForSourceInstanceEntit
 	rv := objc.Send[bool](e_.ID, objc.Sel("createDestinationInstancesForSourceInstance:entityMapping:manager:error:"), sInstance, mapping, manager, error_)
 	return rv
 }
-
 
 // The class name of the migration policy for the entity mapping.
 //
@@ -116,7 +112,6 @@ func (e_ EntityMigrationPolicy) EntityMigrationPolicyClassName() objc.IObject /*
 	return rv
 }
 
-
 // The class name of the migration policy for the entity mapping.
 //
 // [Full Topic]
@@ -124,7 +119,6 @@ func (e_ EntityMigrationPolicy) EntityMigrationPolicyClassName() objc.IObject /*
 func (e_ EntityMigrationPolicy) SetEntityMigrationPolicyClassName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEntityMigrationPolicyClassName:"), value)
 }
-
 
 // Key for the destination object.
 //
@@ -135,7 +129,6 @@ func (e_ EntityMigrationPolicy) NSMigrationDestinationObjectKey() objc.IObject /
 	return rv
 }
 
-
 // Key for the entity mapping object.
 //
 // [Full Topic]
@@ -144,7 +137,6 @@ func (e_ EntityMigrationPolicy) NSMigrationEntityMappingKey() objc.IObject /* cr
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("NSMigrationEntityMappingKey"))
 	return rv
 }
-
 
 // Key for the entity migration policy object.
 //
@@ -155,7 +147,6 @@ func (e_ EntityMigrationPolicy) NSMigrationEntityPolicyKey() objc.IObject /* cro
 	return rv
 }
 
-
 // Key for the migration manager.
 //
 // [Full Topic]
@@ -164,7 +155,6 @@ func (e_ EntityMigrationPolicy) NSMigrationManagerKey() objc.IObject /* cross-fr
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("NSMigrationManagerKey"))
 	return rv
 }
-
 
 // Key for the property mapping object.
 //
@@ -175,7 +165,6 @@ func (e_ EntityMigrationPolicy) NSMigrationPropertyMappingKey() objc.IObject /* 
 	return rv
 }
 
-
 // Key for the source object.
 //
 // [Full Topic]
@@ -184,6 +173,3 @@ func (e_ EntityMigrationPolicy) NSMigrationSourceObjectKey() objc.IObject /* cro
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("NSMigrationSourceObjectKey"))
 	return rv
 }
-
-
-

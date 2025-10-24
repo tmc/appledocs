@@ -20,3 +20,4 @@ var metalTextureProtocol *objc.Protocol
 func init() {
 	metalTextureProtocol = objc.GetProtocol("metalTexture")
 }
+

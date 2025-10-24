@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for CoreBluetooth. DO NOT EDIT.
 
 // Package corebluetooth provides Go bindings for the CoreBluetooth framework.
 //
-// Communicate with Bluetooth low energy and BR/EDR (“Classic”) Devices.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreBluetooth without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CoreBluetooth
 package corebluetooth
 
 import (

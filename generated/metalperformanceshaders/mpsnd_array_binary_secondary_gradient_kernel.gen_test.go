@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewNDArrayBinarySecondaryGradientKernel
 
+// ExampleNDArrayBinarySecondaryGradientKernel_Encode demonstrates using Encode on a NDArrayBinarySecondaryGradientKernel instance.
+func ExampleNDArrayBinarySecondaryGradientKernel_Encode() {
+	obj := metalperformanceshaders.NewNDArrayBinarySecondaryGradientKernel()
+	obj.Encode()
+	// Output:
+	}
+

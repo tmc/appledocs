@@ -15,7 +15,7 @@ import (
 type NXHashState struct {
 	I int
 	J int
-}
+}/* debug [types.gen.go/struct]: NXHashState */
 
 // NXHashTable
 //
@@ -27,7 +27,7 @@ type NXHashTable struct {
 	Info unsafe.Pointer
 	NbBuckets unsafe.Pointer
 	Prototype NXHashTablePrototype
-}
+}/* debug [types.gen.go/struct]: NXHashTable */
 
 // NXHashTablePrototype
 //
@@ -38,7 +38,7 @@ type NXHashTablePrototype struct {
 	Hash unsafe.Pointer
 	IsEqual unsafe.Pointer
 	Style int
-}
+}/* debug [types.gen.go/struct]: NXHashTablePrototype */
 
 // objc_method_description - Defines an Objective-C method.
 //
@@ -47,7 +47,7 @@ type NXHashTablePrototype struct {
 type objc_method_description struct {
 	Name objc.SEL // The name of the method at runtime.
 	Types unsafe.Pointer // The types of the method arguments.
-}
+}/* debug [types.gen.go/struct]: objc_method_description */
 
 // objc_object - Represents an instance of a class.
 //
@@ -55,7 +55,7 @@ type objc_method_description struct {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_object
 type objc_object struct {
 	Isa objc.Class // A pointer to the class definition of which this object is an instance.
-}
+}/* debug [types.gen.go/struct]: objc_object */
 
 // objc_property_attribute_t - Defines a property attribute.
 //
@@ -64,7 +64,7 @@ type objc_object struct {
 type objc_property_attribute_t struct {
 	Name unsafe.Pointer // The name of the attribute.
 	Value unsafe.Pointer // The value of the attribute (usually empty).
-}
+}/* debug [types.gen.go/struct]: objc_property_attribute_t */
 
 // objc_super - Specifies the superclass of an instance.
 //
@@ -73,7 +73,7 @@ type objc_property_attribute_t struct {
 type objc_super struct {
 	Receiver unsafe.Pointer // A pointer of type  . Specifies an instance of a class.
 	Super_class objc.Class // A pointer to a   data structure. Specifies the particular superclass of the instance to message.
-}
+}/* debug [types.gen.go/struct]: objc_super */
 
 
 

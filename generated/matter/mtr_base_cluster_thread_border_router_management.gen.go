@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRBaseClusterThreadBorderRouterManagement */
+
+
+/* debug [class_header]: Header for MTRBaseClusterThreadBorderRouterManagement */
 // The class instance for the [MTRBaseClusterThreadBorderRouterManagement] class.
 var (
 	MTRBaseClusterThreadBorderRouterManagementClass     _MTRBaseClusterThreadBorderRouterManagementClass
@@ -26,64 +29,31 @@ func getMTRBaseClusterThreadBorderRouterManagementClass() _MTRBaseClusterThreadB
 type _MTRBaseClusterThreadBorderRouterManagementClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRBaseClusterThreadBorderRouterManagement */
 // An interface definition for the [MTRBaseClusterThreadBorderRouterManagement] class.
 type IMTRBaseClusterThreadBorderRouterManagement interface {
 	IMTRGenericBaseCluster
+	
+/* debug [class_interface_properties]: Properties for MTRBaseClusterThreadBorderRouterManagement */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRBaseClusterThreadBorderRouterManagement */
 	// methods:
-	GetActiveDatasetRequestWithCompletion(completion unsafe.Pointer)
-	GetActiveDatasetRequestWithParamsCompletion(params IMTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams, completion unsafe.Pointer)
-	GetPendingDatasetRequestWithCompletion(completion unsafe.Pointer)
-	GetPendingDatasetRequestWithParamsCompletion(params IMTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeActiveDatasetTimestampWithCompletion(completion unsafe.Pointer)
-	ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeBorderAgentIDWithCompletion(completion unsafe.Pointer)
-	ReadAttributeBorderRouterNameWithCompletion(completion unsafe.Pointer)
-	ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer)
-	ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer)
-	ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeInterfaceEnabledWithCompletion(completion unsafe.Pointer)
-	ReadAttributePendingDatasetTimestampWithCompletion(completion unsafe.Pointer)
-	ReadAttributeThreadVersionWithCompletion(completion unsafe.Pointer)
-	SetActiveDatasetRequestWithParamsCompletion(params IMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams, completion unsafe.Pointer)
-	SetPendingDatasetRequestWithParamsCompletion(params IMTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams, completion unsafe.Pointer)
-	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeActiveDatasetTimestampWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeBorderAgentIDWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeBorderRouterNameWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
 	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeInterfaceEnabledWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributePendingDatasetTimestampWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeThreadVersionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Cluster Thread Border Router Management
-//
-// Manage the Thread network of Thread Border Router
+/* debug [class_interface]: End interface */
 
 
-// Cluster Thread Border Router Management
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement
-type MTRBaseClusterThreadBorderRouterManagement struct {
-	MTRGenericBaseCluster
-}
 
-// MTRBaseClusterThreadBorderRouterManagementFrom constructs a [MTRBaseClusterThreadBorderRouterManagement] from an unsafe.Pointer.
-//
-// Cluster Thread Border Router Management
-func MTRBaseClusterThreadBorderRouterManagementFrom(ptr unsafe.Pointer) MTRBaseClusterThreadBorderRouterManagement {
-	return MTRBaseClusterThreadBorderRouterManagement{
-		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRBaseClusterThreadBorderRouterManagement */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRBaseClusterThreadBorderRouterManagementClass) Alloc() MTRBaseClusterThreadBorderRouterManagement {
 	rv := objc.Send[MTRBaseClusterThreadBorderRouterManagement](objc.ID(mc.class), objc.Sel("alloc"))
@@ -91,7 +61,6 @@ func (mc _MTRBaseClusterThreadBorderRouterManagementClass) Alloc() MTRBaseCluste
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRBaseClusterThreadBorderRouterManagementClass) New() MTRBaseClusterThreadBorderRouterManagement {
 	rv := objc.Send[MTRBaseClusterThreadBorderRouterManagement](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -114,300 +83,67 @@ func (m_ MTRBaseClusterThreadBorderRouterManagement) Autorelease() MTRBaseCluste
 func NewMTRBaseClusterThreadBorderRouterManagement() MTRBaseClusterThreadBorderRouterManagement {
 	return getMTRBaseClusterThreadBorderRouterManagementClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRBaseClusterThreadBorderRouterManagement */
+// Cluster Thread Border Router Management
+//
+// Manage the Thread network of Thread Border Router
+
+
+// Cluster Thread Border Router Management
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/init(device:endpointID:queue:)
-func NewMTRBaseClusterThreadBorderRouterManagementWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRBaseClusterThreadBorderRouterManagement {
-	instance := getMTRBaseClusterThreadBorderRouterManagementClass().Alloc()
-	rv := objc.Send[MTRBaseClusterThreadBorderRouterManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement
+type MTRBaseClusterThreadBorderRouterManagement struct {
+	MTRGenericBaseCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeActiveDatasetTimestamp(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeActiveDatasetTimestampWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeActiveDatasetTimestampWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeBorderAgentID(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeBorderAgentIDWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeBorderAgentIDWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeBorderRouterName(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeBorderRouterNameWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeBorderRouterNameWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeInterfaceEnabled(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeInterfaceEnabledWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeInterfaceEnabledWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributePendingDatasetTimestamp(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributePendingDatasetTimestampWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributePendingDatasetTimestampWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeThreadVersion(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterThreadBorderRouterManagementClass) ReadAttributeThreadVersionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeThreadVersionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/getActiveDatasetRequest(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) GetActiveDatasetRequestWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getActiveDatasetRequestWithCompletion:"), completion)
-}
-
-
-// Command GetActiveDatasetRequest
+// MTRBaseClusterThreadBorderRouterManagementFrom constructs a [MTRBaseClusterThreadBorderRouterManagement] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/getActiveDatasetRequest(with:completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) GetActiveDatasetRequestWithParamsCompletion(params IMTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getActiveDatasetRequestWithParams:completion:"), params, completion)
+// Cluster Thread Border Router Management
+func MTRBaseClusterThreadBorderRouterManagementFrom(ptr unsafe.Pointer) MTRBaseClusterThreadBorderRouterManagement {
+	return MTRBaseClusterThreadBorderRouterManagement{
+		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/getPendingDatasetRequest(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) GetPendingDatasetRequestWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getPendingDatasetRequestWithCompletion:"), completion)
-}
+
+/* debug [class_init_methods]: Init methods for MTRBaseClusterThreadBorderRouterManagement *//* debug [class_init_methods]: End init methods */
 
 
-// Command GetPendingDatasetRequest
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/getPendingDatasetRequest(with:completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) GetPendingDatasetRequestWithParamsCompletion(params IMTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getPendingDatasetRequestWithParams:completion:"), params, completion)
-}
+
+/* debug [class_methods]: Class methods for MTRBaseClusterThreadBorderRouterManagement */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeAcceptedCommandList(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithCompletion:"), completion)
-}
+
+/* debug [class_properties_class]: Class properties for MTRBaseClusterThreadBorderRouterManagement */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeActiveDatasetTimestamp(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeActiveDatasetTimestampWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeActiveDatasetTimestampWithCompletion:"), completion)
-}
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeAttributeList(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAttributeListWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeBorderAgentID(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeBorderAgentIDWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeBorderAgentIDWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeBorderRouterName(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeBorderRouterNameWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeBorderRouterNameWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeClusterRevision(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClusterRevisionWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeFeatureMap(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeFeatureMapWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeGeneratedCommandList(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeInterfaceEnabled(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeInterfaceEnabledWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeInterfaceEnabledWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributePendingDatasetTimestamp(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributePendingDatasetTimestampWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributePendingDatasetTimestampWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/readAttributeThreadVersion(completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) ReadAttributeThreadVersionWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeThreadVersionWithCompletion:"), completion)
-}
-
-
-// Command SetActiveDatasetRequest
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/setActiveDatasetRequestWith(_:completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SetActiveDatasetRequestWithParamsCompletion(params IMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveDatasetRequestWithParams:completion:"), params, completion)
-}
-
-
-// Command SetPendingDatasetRequest
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/setPendingDatasetRequestWith(_:completion:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SetPendingDatasetRequestWithParamsCompletion(params IMTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPendingDatasetRequestWithParams:completion:"), params, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeActiveDatasetTimestamp(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeActiveDatasetTimestampWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeActiveDatasetTimestampWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeBorderAgentID(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeBorderAgentIDWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeBorderAgentIDWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeBorderRouterName(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeBorderRouterNameWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeBorderRouterNameWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
+/* debug [instance_methods]: Instance methods for MTRBaseClusterThreadBorderRouterManagement */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
 func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
+}/* debug [instance_methods/method]: SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
+
+/* debug [instance_properties]: Instance properties for MTRBaseClusterThreadBorderRouterManagement */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
+/* debug [class.gen.go]: End class MTRBaseClusterThreadBorderRouterManagement */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeInterfaceEnabled(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeInterfaceEnabledWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeInterfaceEnabledWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributePendingDatasetTimestamp(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributePendingDatasetTimestampWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributePendingDatasetTimestampWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThreadBorderRouterManagement/subscribeAttributeThreadVersion(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterThreadBorderRouterManagement) SubscribeAttributeThreadVersionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeThreadVersionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
 
 

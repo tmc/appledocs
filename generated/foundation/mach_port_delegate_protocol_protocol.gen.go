@@ -3,9 +3,10 @@
 package foundation
 
 import (
-	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PMachPortDelegate is the NSMachPortDelegate protocol interface.
@@ -24,7 +25,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSMachPortDelegate
 type PMachPortDelegate interface {
 	// Optional methods
-	HandleMachMessage(msg unsafe.Pointer)
+	HandleMachMessage(msg objectivec.IObject)
 	HasHandleMachMessage() bool
 }
 
@@ -32,18 +33,18 @@ type PMachPortDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type MachPortDelegate struct {
-	_HandleMachMessage func(msg unsafe.Pointer)
+	_HandleMachMessage func(msg objectivec.IObject)
 }
 
 // SetHandleMachMessage sets the handler for the HandleMachMessage delegate method.
 //
 // Process an incoming Mach message.
-func (d *MachPortDelegate) SetHandleMachMessage(f func(msg unsafe.Pointer)) {
+func (d *MachPortDelegate) SetHandleMachMessage(f func(msg objectivec.IObject)) {
 	d._HandleMachMessage = f
 }
 
 // HandleMachMessage implements the PMachPortDelegate interface.
-func (d *MachPortDelegate) HandleMachMessage(msg unsafe.Pointer) {
+func (d *MachPortDelegate) HandleMachMessage(msg objectivec.IObject) {
 	if d._HandleMachMessage != nil {
 		d._HandleMachMessage(msg)
 	}

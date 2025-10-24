@@ -17,6 +17,7 @@ func ExampleNewGradientWithColors() {
 	)
 	// Output:
 }
+
 // ExampleNewGradientWithColorsAndLocations demonstrates how to create a Gradient instance using NewGradientWithColorsAndLocations.
 // Initializes a newly allocated gradient object with a comma-separated list of arguments.
 func ExampleNewGradientWithColorsAndLocations() {
@@ -25,6 +26,7 @@ func ExampleNewGradientWithColorsAndLocations() {
 	)
 	// Output:
 }
+
 // ExampleNewGradientWithStartingColorEndingColor demonstrates how to create a Gradient instance using NewGradientWithStartingColorEndingColor.
 // Initializes a newly allocated gradient object with two colors.
 func ExampleNewGradientWithStartingColorEndingColor() {

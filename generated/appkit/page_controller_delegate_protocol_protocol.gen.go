@@ -19,13 +19,13 @@ type PPageControllerDelegate interface {
 	// Optional methods
 	PageControllerDidTransitionToObject(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject)
 	HasPageControllerDidTransitionToObject() bool
-	PageControllerFrameForObject(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) corefoundation.Rect
+	PageControllerFrameForObject(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) Rect
 	HasPageControllerFrameForObject() bool
 	PageControllerIdentifierForObject(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) PageControllerObjectIdentifier
 	HasPageControllerIdentifierForObject() bool
 	PageControllerPrepareViewControllerWithObject(pageController objc.IObject /* cross-framework: PageController */, viewController IViewController, object objc.IObject)
 	HasPageControllerPrepareViewControllerWithObject() bool
-	PageControllerViewControllerForIdentifier(pageController objc.IObject /* cross-framework: PageController */, identifier objc.IObject /* cross-framework: PageControllerObjectIdentifier */) ViewController
+	PageControllerViewControllerForIdentifier(pageController objc.IObject /* cross-framework: PageController */, identifier PageControllerObjectIdentifier /* typedef */) ViewController
 	HasPageControllerViewControllerForIdentifier() bool
 	PageControllerDidEndLiveTransition(pageController objc.IObject /* cross-framework: PageController */)
 	HasPageControllerDidEndLiveTransition() bool
@@ -38,10 +38,10 @@ type PPageControllerDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type PageControllerDelegate struct {
 	_PageControllerDidTransitionToObject func(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject)
-	_PageControllerFrameForObject func(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) corefoundation.Rect
+	_PageControllerFrameForObject func(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) Rect
 	_PageControllerIdentifierForObject func(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) PageControllerObjectIdentifier
 	_PageControllerPrepareViewControllerWithObject func(pageController objc.IObject /* cross-framework: PageController */, viewController IViewController, object objc.IObject)
-	_PageControllerViewControllerForIdentifier func(pageController objc.IObject /* cross-framework: PageController */, identifier objc.IObject /* cross-framework: PageControllerObjectIdentifier */) ViewController
+	_PageControllerViewControllerForIdentifier func(pageController objc.IObject /* cross-framework: PageController */, identifier PageControllerObjectIdentifier /* typedef */) ViewController
 	_PageControllerDidEndLiveTransition func(pageController objc.IObject /* cross-framework: PageController */)
 	_PageControllerWillStartLiveTransition func(pageController objc.IObject /* cross-framework: PageController */)
 }
@@ -56,7 +56,7 @@ func (d *PageControllerDelegate) SetPageControllerDidTransitionToObject(f func(p
 // SetPageControllerFrameForObject sets the handler for the PageControllerFrameForObject delegate method.
 //
 // Returns the frame appropriate for displaying the specified object.
-func (d *PageControllerDelegate) SetPageControllerFrameForObject(f func(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) corefoundation.Rect) {
+func (d *PageControllerDelegate) SetPageControllerFrameForObject(f func(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) Rect) {
 	d._PageControllerFrameForObject = f
 }
 
@@ -77,7 +77,7 @@ func (d *PageControllerDelegate) SetPageControllerPrepareViewControllerWithObjec
 // SetPageControllerViewControllerForIdentifier sets the handler for the PageControllerViewControllerForIdentifier delegate method.
 //
 // Returns a view controller the page controller uses for managing the specified identifier.
-func (d *PageControllerDelegate) SetPageControllerViewControllerForIdentifier(f func(pageController objc.IObject /* cross-framework: PageController */, identifier objc.IObject /* cross-framework: PageControllerObjectIdentifier */) ViewController) {
+func (d *PageControllerDelegate) SetPageControllerViewControllerForIdentifier(f func(pageController objc.IObject /* cross-framework: PageController */, identifier PageControllerObjectIdentifier /* typedef */) ViewController) {
 	d._PageControllerViewControllerForIdentifier = f
 }
 
@@ -108,11 +108,11 @@ func (d *PageControllerDelegate) HasPageControllerDidTransitionToObject() bool {
 }
 
 // PageControllerFrameForObject implements the PPageControllerDelegate interface.
-func (d *PageControllerDelegate) PageControllerFrameForObject(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) corefoundation.Rect {
+func (d *PageControllerDelegate) PageControllerFrameForObject(pageController objc.IObject /* cross-framework: PageController */, object objc.IObject) Rect {
 	if d._PageControllerFrameForObject != nil {
 		return d._PageControllerFrameForObject(pageController, object)
 	}
-	var zero corefoundation.Rect
+	var zero Rect
 	return zero
 }
 
@@ -148,7 +148,7 @@ func (d *PageControllerDelegate) HasPageControllerPrepareViewControllerWithObjec
 }
 
 // PageControllerViewControllerForIdentifier implements the PPageControllerDelegate interface.
-func (d *PageControllerDelegate) PageControllerViewControllerForIdentifier(pageController objc.IObject /* cross-framework: PageController */, identifier objc.IObject /* cross-framework: PageControllerObjectIdentifier */) ViewController {
+func (d *PageControllerDelegate) PageControllerViewControllerForIdentifier(pageController objc.IObject /* cross-framework: PageController */, identifier PageControllerObjectIdentifier /* typedef */) ViewController {
 	if d._PageControllerViewControllerForIdentifier != nil {
 		return d._PageControllerViewControllerForIdentifier(pageController, identifier)
 	}

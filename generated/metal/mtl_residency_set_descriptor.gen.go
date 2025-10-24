@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTLResidencySetDescriptor */
+
+
+/* debug [class_header]: Header for MTLResidencySetDescriptor */
 // The class instance for the [ResidencySetDescriptor] class.
 var (
 	ResidencySetDescriptorClass     _ResidencySetDescriptorClass
@@ -26,32 +31,34 @@ func getResidencySetDescriptorClass() _ResidencySetDescriptorClass {
 type _ResidencySetDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ResidencySetDescriptor */
 // An interface definition for the [ResidencySetDescriptor] class.
 type IResidencySetDescriptor interface {
 	objectivec.IObject
-	Label() string
-	SetLabel(value string)
-	InitialCapacity() int
-	SetInitialCapacity(value int)
-}
+	
+/* debug [class_interface_properties]: Properties for ResidencySetDescriptor */
+	// properties:
+	InitialCapacity() uint
+	SetInitialCapacity(value uint)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
 
-// A configuration that customizes the behavior for a residency set.
-//
-// Make an by creating and configuring an instance and pass it to the method of an instance. See for more information.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor
-type ResidencySetDescriptor struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for ResidencySetDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// ResidencySetDescriptorFrom constructs a [ResidencySetDescriptor] from an unsafe.Pointer.
-//
-// A configuration that customizes the behavior for a residency set.
-func ResidencySetDescriptorFrom(ptr unsafe.Pointer) ResidencySetDescriptor {
-	return ResidencySetDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for ResidencySetDescriptor */
 // Alloc allocates a new instance without initialization.
 func (rc _ResidencySetDescriptorClass) Alloc() ResidencySetDescriptor {
 	rv := objc.Send[ResidencySetDescriptor](objc.ID(rc.class), objc.Sel("alloc"))
@@ -59,7 +66,6 @@ func (rc _ResidencySetDescriptorClass) Alloc() ResidencySetDescriptor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _ResidencySetDescriptorClass) New() ResidencySetDescriptor {
 	rv := objc.Send[ResidencySetDescriptor](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,43 +88,96 @@ func (r_ ResidencySetDescriptor) Autorelease() ResidencySetDescriptor {
 func NewResidencySetDescriptor() ResidencySetDescriptor {
 	return getResidencySetDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-// An optional name that can help you identify a residency set you create with the descriptor.
+
+/* debug [class_struct]: Struct for ResidencySetDescriptor */
+// A configuration that customizes the behavior for a residency set.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label
-func (r_ ResidencySetDescriptor) Label() string {
-	rv := objc.Send[string](r_.ID, objc.Sel("label"))
-	return rv
+// Make an by creating and configuring an instance and pass it to the method of an instance. See for more information.
+
+
+// A configuration that customizes the behavior for a residency set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor
+type ResidencySetDescriptor struct {
+	objectivec.Object
 }
 
-
-// SetLabel sets the value of the label property.
-// An optional name that can help you identify a residency set you create with the descriptor.
-
+// ResidencySetDescriptorFrom constructs a [ResidencySetDescriptor] from an unsafe.Pointer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label
-func (r_ ResidencySetDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), objc.String(value))
+// A configuration that customizes the behavior for a residency set.
+func ResidencySetDescriptorFrom(ptr unsafe.Pointer) ResidencySetDescriptor {
+	return ResidencySetDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ResidencySetDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ResidencySetDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ResidencySetDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ResidencySetDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ResidencySetDescriptor */
 
 // The number of allocations a new residency set can store without reallocating memory.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor/initialcapacity
-func (r_ ResidencySetDescriptor) InitialCapacity() int {
-	rv := objc.Send[int](r_.ID, objc.Sel("initialCapacity"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/initialCapacity
+func (r_ ResidencySetDescriptor) InitialCapacity() uint {
+	rv := objc.Send[uint](r_.ID, objc.Sel("initialCapacity"))
 	return rv
-}
+}/* debug [instance_properties/getter]: initialCapacity */
 
 
-// SetInitialCapacity sets the value of the initialCapacity property.
 // The number of allocations a new residency set can store without reallocating memory.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlresidencysetdescriptor/initialcapacity
-func (r_ ResidencySetDescriptor) SetInitialCapacity(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/initialCapacity
+func (r_ ResidencySetDescriptor) SetInitialCapacity(value uint) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setInitialCapacity:"), value)
-}
+}/* debug [instance_properties/setter]: initialCapacity */
+
+
+// An optional name that can help you identify a residency set you create with the descriptor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label
+func (r_ ResidencySetDescriptor) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](r_.ID, objc.Sel("label"))
+	return rv
+}/* debug [instance_properties/getter]: label */
+
+
+// An optional name that can help you identify a residency set you create with the descriptor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLResidencySetDescriptor/label
+func (r_ ResidencySetDescriptor) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setLabel:"), value)
+}/* debug [instance_properties/setter]: label */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTLResidencySetDescriptor */
 
 
 

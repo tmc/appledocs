@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRModeSelectClusterChangeToModeParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRModeSelectClusterChangeToModeParams
@@ -85,8 +83,6 @@ func NewMTRModeSelectClusterChangeToModeParams() MTRModeSelectClusterChangeToMod
 	return getMTRModeSelectClusterChangeToModeParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/newmode
 func (m_ MTRModeSelectClusterChangeToModeParams) NewMode() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRModeSelectClusterChangeToModeParams) NewMode() objc.IObject /* cross
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/newmode
 func (m_ MTRModeSelectClusterChangeToModeParams) SetNewMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRModeSelectClusterChangeToModeParams) ServerSideProcessingTimeout() o
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/serversideprocessingtimeout
 func (m_ MTRModeSelectClusterChangeToModeParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRModeSelectClusterChangeToModeParams) TimedInvokeTimeoutMs() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclusterchangetomodeparams/timedinvoketimeoutms
 func (m_ MTRModeSelectClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

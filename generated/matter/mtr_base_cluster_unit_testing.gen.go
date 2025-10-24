@@ -33,8 +33,6 @@ type IMTRBaseClusterUnitTesting interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterUnitTesting
 type MTRBaseClusterUnitTesting struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterUnitTesting) Autorelease() MTRBaseClusterUnitTesting {
 func NewMTRBaseClusterUnitTesting() MTRBaseClusterUnitTesting {
 	return getMTRBaseClusterUnitTestingClass().New()
 }
-
-
-
-

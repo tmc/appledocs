@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class HKCorrelationType */
+
+
+/* debug [class_header]: Header for HKCorrelationType */
 // The class instance for the [HKCorrelationType] class.
 var (
 	HKCorrelationTypeClass     _HKCorrelationTypeClass
@@ -25,36 +29,30 @@ func getHKCorrelationTypeClass() _HKCorrelationTypeClass {
 type _HKCorrelationTypeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKCorrelationType */
 // An interface definition for the [HKCorrelationType] class.
 type IHKCorrelationType interface {
 	IHKSampleType
+	
+/* debug [class_interface_properties]: Properties for HKCorrelationType */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKCorrelationType */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A type that identifies samples that group multiple subsamples.
-//
-// The class is a concrete subclass of the class. To create a correlation type instance, use the object type’s conveniance method. Use correlation types to: Request permission to read or write matching quantity samples. Create and share matching quantity samples. Query for matching quantity samples. HealthKit provides two correlation types: blood pressure and food.
+/* debug [class_interface]: End interface */
 
 
-// A type that identifies samples that group multiple subsamples.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationType
-type HKCorrelationType struct {
-	HKSampleType
-}
 
-// HKCorrelationTypeFrom constructs a [HKCorrelationType] from an unsafe.Pointer.
-//
-// A type that identifies samples that group multiple subsamples.
-func HKCorrelationTypeFrom(ptr unsafe.Pointer) HKCorrelationType {
-	return HKCorrelationType{
-		HKSampleType: HKSampleTypeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for HKCorrelationType */
 // Alloc allocates a new instance without initialization.
 func (hc _HKCorrelationTypeClass) Alloc() HKCorrelationType {
 	rv := objc.Send[HKCorrelationType](objc.ID(hc.class), objc.Sel("alloc"))
@@ -62,7 +60,6 @@ func (hc _HKCorrelationTypeClass) Alloc() HKCorrelationType {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKCorrelationTypeClass) New() HKCorrelationType {
 	rv := objc.Send[HKCorrelationType](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,7 +82,60 @@ func (h_ HKCorrelationType) Autorelease() HKCorrelationType {
 func NewHKCorrelationType() HKCorrelationType {
 	return getHKCorrelationTypeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for HKCorrelationType */
+// A type that identifies samples that group multiple subsamples.
+//
+// The class is a concrete subclass of the class. To create a correlation type instance, use the object type’s conveniance method. Use correlation types to: Request permission to read or write matching quantity samples. Create and share matching quantity samples. Query for matching quantity samples. HealthKit provides two correlation types: blood pressure and food.
+
+
+// A type that identifies samples that group multiple subsamples.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCorrelationType
+type HKCorrelationType struct {
+	HKSampleType
+}
+
+// HKCorrelationTypeFrom constructs a [HKCorrelationType] from an unsafe.Pointer.
+//
+// A type that identifies samples that group multiple subsamples.
+func HKCorrelationTypeFrom(ptr unsafe.Pointer) HKCorrelationType {
+	return HKCorrelationType{
+		HKSampleType: HKSampleTypeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKCorrelationType *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKCorrelationType */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKCorrelationType */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKCorrelationType */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKCorrelationType */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class HKCorrelationType */
 
 
 

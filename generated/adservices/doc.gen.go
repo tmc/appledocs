@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for AdServices. DO NOT EDIT.
 
 // Package adservices provides Go bindings for the AdServices framework.
 //
-// Attribute app-download campaigns that originate from the App Store, Apple News, or
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AdServices without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/AdServices
 package adservices
 
 import (

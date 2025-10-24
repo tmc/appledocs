@@ -15,3 +15,4 @@ var insertTabIgnoringFieldEditorProtocol *objc.Protocol
 func init() {
 	insertTabIgnoringFieldEditorProtocol = objc.GetProtocol("insertTabIgnoringFieldEditor:")
 }
+

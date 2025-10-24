@@ -2,7 +2,9 @@
 
 package network
 
+/* debug [enums.gen.go]: Generating 1 enums for Network */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum nw_parameters_attribution_t (2 cases) */
 // nw_parameters_attribution_t - The entities that can make a network request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_attribution_t

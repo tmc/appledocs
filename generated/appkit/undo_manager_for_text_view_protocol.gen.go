@@ -15,3 +15,4 @@ var undoManagerForTextViewProtocol *objc.Protocol
 func init() {
 	undoManagerForTextViewProtocol = objc.GetProtocol("undoManagerForTextView:")
 }
+

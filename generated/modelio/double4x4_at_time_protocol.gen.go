@@ -20,3 +20,4 @@ var double4x4AtTimeProtocol *objc.Protocol
 func init() {
 	double4x4AtTimeProtocol = objc.GetProtocol("double4x4AtTime:")
 }
+

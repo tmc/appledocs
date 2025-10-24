@@ -43,7 +43,6 @@ type IINSearchForBillsIntent interface {
 //
 // Siri creates an object when the user asks to see pending or already paid bills. The intent object contains the values to match when searching for bills. Users can search for bills based on the due date, the payee, the type, and whether they’re pending or already paid. When performing the search, use only the provided parameters to filter the search results and ignore any parameters that have a missing or unknown value. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of the search. For successful searches, Siri offers a way for the user to view the results.
 
-
 // A request for the list of bills matching the specified criteria.
 //
 // [Full Topic]
@@ -92,8 +91,6 @@ func NewINSearchForBillsIntent() INSearchForBillsIntent {
 	return getINSearchForBillsIntentClass().New()
 }
 
-
-
 // Initializes an intent object that describes a search for bill details with the specified search parameters.
 //
 // [Full Topic]
@@ -105,8 +102,6 @@ func NewINSearchForBillsIntentWithBillPayeePaymentDateRangeBillTypeStatusDueDate
 	return rv
 }
 
-
-
 // The type of the bill.
 //
 // [Full Topic]
@@ -115,7 +110,6 @@ func (i_ INSearchForBillsIntent) BillType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("billType"))
 	return rv
 }
-
 
 // The range of due dates in which to search for bills.
 //
@@ -126,7 +120,6 @@ func (i_ INSearchForBillsIntent) DueDateRange() INDateComponentsRange {
 	return rv
 }
 
-
 // The recipient of the payment.
 //
 // [Full Topic]
@@ -136,7 +129,6 @@ func (i_ INSearchForBillsIntent) BillPayee() unsafe.Pointer {
 	return rv
 }
 
-
 // The recipient of the payment.
 //
 // [Full Topic]
@@ -144,7 +136,6 @@ func (i_ INSearchForBillsIntent) BillPayee() unsafe.Pointer {
 func (i_ INSearchForBillsIntent) SetBillPayee(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBillPayee:"), value)
 }
-
 
 // The range of payment dates in which to search for bills.
 //
@@ -155,7 +146,6 @@ func (i_ INSearchForBillsIntent) PaymentDateRange() INDateComponentsRange {
 	return rv
 }
 
-
 // The range of payment dates in which to search for bills.
 //
 // [Full Topic]
@@ -163,7 +153,6 @@ func (i_ INSearchForBillsIntent) PaymentDateRange() INDateComponentsRange {
 func (i_ INSearchForBillsIntent) SetPaymentDateRange(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentDateRange:"), value)
 }
-
 
 // The status of the bill.
 //
@@ -174,7 +163,6 @@ func (i_ INSearchForBillsIntent) Status() unsafe.Pointer {
 	return rv
 }
 
-
 // The status of the bill.
 //
 // [Full Topic]
@@ -182,5 +170,3 @@ func (i_ INSearchForBillsIntent) Status() unsafe.Pointer {
 func (i_ INSearchForBillsIntent) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
 }
-
-

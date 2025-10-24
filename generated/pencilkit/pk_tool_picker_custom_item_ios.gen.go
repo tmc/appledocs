@@ -40,11 +40,11 @@ func (t_ ToolPickerCustomItem) SetAllowsColorSelection(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem/color
-func (t_ ToolPickerCustomItem) Color() objc.IObject /* cross-framework: Color */ {
+func (t_ ToolPickerCustomItem) Color() appkit.Color {
 	rv := objc.Send[appkit.Color](t_.ID, objc.Sel("color"))
 	return rv
 }
-func (t_ ToolPickerCustomItem) SetColor(value objc.IObject /* cross-framework: Color */) {
+func (t_ ToolPickerCustomItem) SetColor(value appkit.Color) {
 	t_.ID.Send(objc.RegisterName("setColor:"), value)
 }
 

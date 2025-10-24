@@ -15,3 +15,4 @@ var replaceCharactersInRangeProtocol *objc.Protocol
 func init() {
 	replaceCharactersInRangeProtocol = objc.GetProtocol("replaceCharactersInRange:")
 }
+

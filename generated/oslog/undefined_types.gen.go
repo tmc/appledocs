@@ -10,8 +10,4 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	Argument = _undefined // referenced in OSLog
-	ArgumentCategory = _undefined // referenced in OSLog
-	StoreCategory = _undefined // referenced in OSLog
 )
-
-

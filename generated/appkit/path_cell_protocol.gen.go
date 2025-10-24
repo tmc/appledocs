@@ -15,3 +15,4 @@ var pathCellProtocol *objc.Protocol
 func init() {
 	pathCellProtocol = objc.GetProtocol("pathCell:")
 }
+

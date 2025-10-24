@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GCColor */
+
+
+/* debug [class_header]: Header for GCColor */
 // The class instance for the [GCColor] class.
 var (
 	GCColorClass     _GCColorClass
@@ -26,40 +30,35 @@ func getGCColorClass() _GCColorClass {
 type _GCColorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GCColor */
 // An interface definition for the [GCColor] class.
 type IGCColor interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GCColor */
 	// properties:
 	Blue() float32
-	SetBlue(value float32)
 	Green() float32
-	SetGreen(value float32)
 	Red() float32
-	SetRed(value float32)
 	Color() IGCColor
 	SetColor(value IGCColor)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GCColor */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// The color of a device light.
 
 
-// The color of a device light.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor
-type GCColor struct {
-	objectivec.Object
-}
-
-// GCColorFrom constructs a [GCColor] from an unsafe.Pointer.
-//
-// The color of a device light.
-func GCColorFrom(ptr unsafe.Pointer) GCColor {
-	return GCColor{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GCColor */
 // Alloc allocates a new instance without initialization.
 func (gc _GCColorClass) Alloc() GCColor {
 	rv := objc.Send[GCColor](objc.ID(gc.class), objc.Sel("alloc"))
@@ -67,7 +66,6 @@ func (gc _GCColorClass) Alloc() GCColor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GCColorClass) New() GCColor {
 	rv := objc.Send[GCColor](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,64 +88,94 @@ func (g_ GCColor) Autorelease() GCColor {
 func NewGCColor() GCColor {
 	return getGCColorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GCColor */
+// The color of a device light.
+
+
+// The color of a device light.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor
+type GCColor struct {
+	objectivec.Object
+}
+
+// GCColorFrom constructs a [GCColor] from an unsafe.Pointer.
+//
+// The color of a device light.
+func GCColorFrom(ptr unsafe.Pointer) GCColor {
+	return GCColor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GCColor */
+
+// Creates a color with the specified red, green, and blue values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/init(red:green:blue:)
+func NewGCColorWithRedGreenBlue(red float32, green float32, blue float32) GCColor {
+	instance := getGCColorClass().Alloc()
+	rv := objc.Send[GCColor](instance.ID, objc.Sel("initWithRed:green:blue:"), red, green, blue)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewGCColorWithRedGreenBlue */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GCColor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GCColor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GCColor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GCColor */
 
 // The normalized value of the blue component ranging from 0 to 1.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/blue
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/blue
 func (g_ GCColor) Blue() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("blue"))
 	return rv
-}
-
-
-// The normalized value of the blue component ranging from 0 to 1.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/blue
-func (g_ GCColor) SetBlue(value float32) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setBlue:"), value)
-}
+}/* debug [instance_properties/getter]: blue */
 
 
 // The normalized value of the green component ranging from 0 to 1.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/green
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/green
 func (g_ GCColor) Green() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("green"))
 	return rv
-}
-
-
-// The normalized value of the green component ranging from 0 to 1.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/green
-func (g_ GCColor) SetGreen(value float32) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setGreen:"), value)
-}
+}/* debug [instance_properties/getter]: green */
 
 
 // The normalized value of the red component ranging from 0 to 1.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/red
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCColor/red
 func (g_ GCColor) Red() float32 {
 	rv := objc.Send[float32](g_.ID, objc.Sel("red"))
 	return rv
-}
-
-
-// The normalized value of the red component ranging from 0 to 1.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gccolor/red
-func (g_ GCColor) SetRed(value float32) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setRed:"), value)
-}
+}/* debug [instance_properties/getter]: red */
 
 
 // The color of a device’s light.
@@ -157,7 +185,7 @@ func (g_ GCColor) SetRed(value float32) {
 func (g_ GCColor) Color() IGCColor {
 	rv := objc.Send[GCColor](g_.ID, objc.Sel("color"))
 	return rv
-}
+}/* debug [instance_properties/getter]: color */
 
 
 // The color of a device’s light.
@@ -166,7 +194,11 @@ func (g_ GCColor) Color() IGCColor {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcdevicelight/color
 func (g_ GCColor) SetColor(value IGCColor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColor:"), value)
-}
+}/* debug [instance_properties/setter]: color */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GCColor */
 
 

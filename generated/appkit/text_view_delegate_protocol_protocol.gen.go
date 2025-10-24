@@ -3,8 +3,13 @@
 package appkit
 
 import (
+	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PTextViewDelegate is the NSTextViewDelegate protocol interface.
@@ -17,10 +22,10 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextViewDelegate
 type PTextViewDelegate interface {
 	// Required methods
-	TextViewClickedOnCellInRect(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */)
-	TextViewClickedOnLink(textView ITextView, link objc.IObject) bool
-	TextViewDoubleClickedOnCellInRect(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */)
-	TextViewDraggedCellInRectEvent(view ITextView, cell objc.IObject, rect objc.IObject /* cross-framework: Rect */, event IEvent)
+	TextViewClickedOnCellInRect(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */)/* debug [protocol_interface/required_method]: TextViewClickedOnCellInRect */
+	TextViewClickedOnLink(textView ITextView, link objc.IObject) bool/* debug [protocol_interface/required_method]: TextViewClickedOnLink */
+	TextViewDoubleClickedOnCellInRect(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */)/* debug [protocol_interface/required_method]: TextViewDoubleClickedOnCellInRect */
+	TextViewDraggedCellInRectEvent(view ITextView, cell unsafe.Pointer, rect Rect /* not a class type */, event IEvent)/* debug [protocol_interface/required_method]: TextViewDraggedCellInRectEvent */
 	// Optional methods
 	TextViewShouldSetSpellingStateRange(textView ITextView, value int, affectedCharRange corefoundation.Range) int
 	HasTextViewShouldSetSpellingStateRange() bool
@@ -32,7 +37,7 @@ type PTextViewDelegate interface {
 	HasTextViewWritingToolsWillBegin() bool
 	TextViewCandidatesForSelectedRange(textView ITextView, candidates []foundation.TextCheckingResult, selectedRange corefoundation.Range) []foundation.TextCheckingResult
 	HasTextViewCandidatesForSelectedRange() bool
-	TextViewClickedOnCellInRectAtIndex(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */, charIndex uint)
+	TextViewClickedOnCellInRectAtIndex(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */, charIndex uint)
 	HasTextViewClickedOnCellInRectAtIndex() bool
 	TextViewClickedOnLinkAtIndex(textView ITextView, link objc.IObject, charIndex uint) bool
 	HasTextViewClickedOnLinkAtIndex() bool
@@ -42,9 +47,9 @@ type PTextViewDelegate interface {
 	HasTextViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount() bool
 	TextViewDoCommandBySelector(textView ITextView, commandSelector objc.SEL) bool
 	HasTextViewDoCommandBySelector() bool
-	TextViewDoubleClickedOnCellInRectAtIndex(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */, charIndex uint)
+	TextViewDoubleClickedOnCellInRectAtIndex(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */, charIndex uint)
 	HasTextViewDoubleClickedOnCellInRectAtIndex() bool
-	TextViewDraggedCellInRectEventAtIndex(view ITextView, cell objc.IObject, rect objc.IObject /* cross-framework: Rect */, event IEvent, charIndex uint)
+	TextViewDraggedCellInRectEventAtIndex(view ITextView, cell unsafe.Pointer, rect Rect /* not a class type */, event IEvent, charIndex uint)
 	HasTextViewDraggedCellInRectEventAtIndex() bool
 	TextViewMenuForEventAtIndex(view ITextView, menu IMenu, event IEvent, charIndex uint) Menu
 	HasTextViewMenuForEventAtIndex() bool
@@ -70,9 +75,9 @@ type PTextViewDelegate interface {
 	HasTextViewWillDisplayToolTipForCharacterAtIndex() bool
 	TextViewWillShowSharingServicePickerForItems(textView ITextView, servicePicker ISharingServicePicker, items objc.IObject /* cross-framework: NSArray */) SharingServicePicker
 	HasTextViewWillShowSharingServicePickerForItems() bool
-	TextViewWritablePasteboardTypesForCellAtIndex(view ITextView, cell objc.IObject, charIndex uint) []string
+	TextViewWritablePasteboardTypesForCellAtIndex(view ITextView, cell unsafe.Pointer, charIndex uint) []string
 	HasTextViewWritablePasteboardTypesForCellAtIndex() bool
-	TextViewWriteCellAtIndexToPasteboardType(view ITextView, cell objc.IObject, charIndex uint, pboard IPasteboard, type_ objc.IObject /* cross-framework: PasteboardType */) bool
+	TextViewWriteCellAtIndexToPasteboardType(view ITextView, cell unsafe.Pointer, charIndex uint, pboard IPasteboard, type_ PasteboardType /* typedef */) bool
 	HasTextViewWriteCellAtIndexToPasteboardType() bool
 	TextViewDidChangeSelection(notification foundation.Notification)
 	HasTextViewDidChangeSelection() bool
@@ -91,13 +96,13 @@ type TextViewDelegate struct {
 	_TextViewWritingToolsDidEnd func(textView ITextView)
 	_TextViewWritingToolsWillBegin func(textView ITextView)
 	_TextViewCandidatesForSelectedRange func(textView ITextView, candidates []foundation.TextCheckingResult, selectedRange corefoundation.Range) []foundation.TextCheckingResult
-	_TextViewClickedOnCellInRectAtIndex func(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */, charIndex uint)
+	_TextViewClickedOnCellInRectAtIndex func(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */, charIndex uint)
 	_TextViewClickedOnLinkAtIndex func(textView ITextView, link objc.IObject, charIndex uint) bool
 	_TextViewCompletionsForPartialWordRangeIndexOfSelectedItem func(textView ITextView, words []string, charRange corefoundation.Range, index int) []string
 	_TextViewDidCheckTextInRangeTypesOptionsResultsOrthographyWordCount func(view ITextView, range_ corefoundation.Range, checkingTypes TextCheckingTypes /* not a class type */, options foundation.IDictionary, results []foundation.TextCheckingResult, orthography foundation.Orthography, wordCount int) []foundation.TextCheckingResult
 	_TextViewDoCommandBySelector func(textView ITextView, commandSelector objc.SEL) bool
-	_TextViewDoubleClickedOnCellInRectAtIndex func(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */, charIndex uint)
-	_TextViewDraggedCellInRectEventAtIndex func(view ITextView, cell objc.IObject, rect objc.IObject /* cross-framework: Rect */, event IEvent, charIndex uint)
+	_TextViewDoubleClickedOnCellInRectAtIndex func(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */, charIndex uint)
+	_TextViewDraggedCellInRectEventAtIndex func(view ITextView, cell unsafe.Pointer, rect Rect /* not a class type */, event IEvent, charIndex uint)
 	_TextViewMenuForEventAtIndex func(view ITextView, menu IMenu, event IEvent, charIndex uint) Menu
 	_TextViewShouldChangeTextInRangeReplacementString func(textView ITextView, affectedCharRange corefoundation.Range, replacementString objc.IObject /* cross-framework: NSString */) bool
 	_TextViewShouldChangeTextInRangesReplacementStrings func(textView ITextView, affectedRanges []foundation.Value, replacementStrings []string) bool
@@ -110,15 +115,15 @@ type TextViewDelegate struct {
 	_TextViewWillCheckTextInRangeOptionsTypes func(view ITextView, range_ corefoundation.Range, options foundation.IDictionary, checkingTypes TextCheckingTypes /* not a class type */) foundation.IDictionary
 	_TextViewWillDisplayToolTipForCharacterAtIndex func(textView ITextView, tooltip objc.IObject /* cross-framework: NSString */, characterIndex uint) foundation.String
 	_TextViewWillShowSharingServicePickerForItems func(textView ITextView, servicePicker ISharingServicePicker, items objc.IObject /* cross-framework: NSArray */) SharingServicePicker
-	_TextViewWritablePasteboardTypesForCellAtIndex func(view ITextView, cell objc.IObject, charIndex uint) []string
-	_TextViewWriteCellAtIndexToPasteboardType func(view ITextView, cell objc.IObject, charIndex uint, pboard IPasteboard, type_ objc.IObject /* cross-framework: PasteboardType */) bool
+	_TextViewWritablePasteboardTypesForCellAtIndex func(view ITextView, cell unsafe.Pointer, charIndex uint) []string
+	_TextViewWriteCellAtIndexToPasteboardType func(view ITextView, cell unsafe.Pointer, charIndex uint, pboard IPasteboard, type_ PasteboardType /* typedef */) bool
 	_TextViewDidChangeSelection func(notification foundation.Notification)
 	_TextViewDidChangeTypingAttributes func(notification foundation.Notification)
 	_UndoManagerForTextView func(view ITextView) foundation.UndoManager
-	_TextViewClickedOnCellInRect func(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */)
+	_TextViewClickedOnCellInRect func(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */)
 	_TextViewClickedOnLink func(textView ITextView, link objc.IObject) bool
-	_TextViewDoubleClickedOnCellInRect func(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */)
-	_TextViewDraggedCellInRectEvent func(view ITextView, cell objc.IObject, rect objc.IObject /* cross-framework: Rect */, event IEvent)
+	_TextViewDoubleClickedOnCellInRect func(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */)
+	_TextViewDraggedCellInRectEvent func(view ITextView, cell unsafe.Pointer, rect Rect /* not a class type */, event IEvent)
 }
 
 // SetTextViewShouldSetSpellingStateRange sets the handler for the TextViewShouldSetSpellingStateRange delegate method.
@@ -153,7 +158,7 @@ func (d *TextViewDelegate) SetTextViewCandidatesForSelectedRange(f func(textView
 // SetTextViewClickedOnCellInRectAtIndex sets the handler for the TextViewClickedOnCellInRectAtIndex delegate method.
 //
 // Sent when the user clicks a cell.
-func (d *TextViewDelegate) SetTextViewClickedOnCellInRectAtIndex(f func(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */, charIndex uint)) {
+func (d *TextViewDelegate) SetTextViewClickedOnCellInRectAtIndex(f func(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */, charIndex uint)) {
 	d._TextViewClickedOnCellInRectAtIndex = f
 }
 
@@ -188,14 +193,14 @@ func (d *TextViewDelegate) SetTextViewDoCommandBySelector(f func(textView ITextV
 // SetTextViewDoubleClickedOnCellInRectAtIndex sets the handler for the TextViewDoubleClickedOnCellInRectAtIndex delegate method.
 //
 // Sent when the user double-clicks a cell.
-func (d *TextViewDelegate) SetTextViewDoubleClickedOnCellInRectAtIndex(f func(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */, charIndex uint)) {
+func (d *TextViewDelegate) SetTextViewDoubleClickedOnCellInRectAtIndex(f func(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */, charIndex uint)) {
 	d._TextViewDoubleClickedOnCellInRectAtIndex = f
 }
 
 // SetTextViewDraggedCellInRectEventAtIndex sets the handler for the TextViewDraggedCellInRectEventAtIndex delegate method.
 //
 // Sent when the user attempts to drag a cell.
-func (d *TextViewDelegate) SetTextViewDraggedCellInRectEventAtIndex(f func(view ITextView, cell objc.IObject, rect objc.IObject /* cross-framework: Rect */, event IEvent, charIndex uint)) {
+func (d *TextViewDelegate) SetTextViewDraggedCellInRectEventAtIndex(f func(view ITextView, cell unsafe.Pointer, rect Rect /* not a class type */, event IEvent, charIndex uint)) {
 	d._TextViewDraggedCellInRectEventAtIndex = f
 }
 
@@ -286,14 +291,14 @@ func (d *TextViewDelegate) SetTextViewWillShowSharingServicePickerForItems(f fun
 // SetTextViewWritablePasteboardTypesForCellAtIndex sets the handler for the TextViewWritablePasteboardTypesForCellAtIndex delegate method.
 //
 // Returns the writable pasteboard types for a given cell.
-func (d *TextViewDelegate) SetTextViewWritablePasteboardTypesForCellAtIndex(f func(view ITextView, cell objc.IObject, charIndex uint) []string) {
+func (d *TextViewDelegate) SetTextViewWritablePasteboardTypesForCellAtIndex(f func(view ITextView, cell unsafe.Pointer, charIndex uint) []string) {
 	d._TextViewWritablePasteboardTypesForCellAtIndex = f
 }
 
 // SetTextViewWriteCellAtIndexToPasteboardType sets the handler for the TextViewWriteCellAtIndexToPasteboardType delegate method.
 //
 // Returns whether data of the specified type for the given cell could be written to the specified pasteboard.
-func (d *TextViewDelegate) SetTextViewWriteCellAtIndexToPasteboardType(f func(view ITextView, cell objc.IObject, charIndex uint, pboard IPasteboard, type_ objc.IObject /* cross-framework: PasteboardType */) bool) {
+func (d *TextViewDelegate) SetTextViewWriteCellAtIndexToPasteboardType(f func(view ITextView, cell unsafe.Pointer, charIndex uint, pboard IPasteboard, type_ PasteboardType /* typedef */) bool) {
 	d._TextViewWriteCellAtIndexToPasteboardType = f
 }
 
@@ -321,7 +326,7 @@ func (d *TextViewDelegate) SetUndoManagerForTextView(f func(view ITextView) foun
 // SetTextViewClickedOnCellInRect sets the handler for the TextViewClickedOnCellInRect delegate method.
 //
 // Sent when the user clicks a cell.
-func (d *TextViewDelegate) SetTextViewClickedOnCellInRect(f func(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */)) {
+func (d *TextViewDelegate) SetTextViewClickedOnCellInRect(f func(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */)) {
 	d._TextViewClickedOnCellInRect = f
 }
 
@@ -335,14 +340,14 @@ func (d *TextViewDelegate) SetTextViewClickedOnLink(f func(textView ITextView, l
 // SetTextViewDoubleClickedOnCellInRect sets the handler for the TextViewDoubleClickedOnCellInRect delegate method.
 //
 // Sent when the user double-clicks a cell.
-func (d *TextViewDelegate) SetTextViewDoubleClickedOnCellInRect(f func(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */)) {
+func (d *TextViewDelegate) SetTextViewDoubleClickedOnCellInRect(f func(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */)) {
 	d._TextViewDoubleClickedOnCellInRect = f
 }
 
 // SetTextViewDraggedCellInRectEvent sets the handler for the TextViewDraggedCellInRectEvent delegate method.
 //
 // Sent when the user attempts to drag a cell.
-func (d *TextViewDelegate) SetTextViewDraggedCellInRectEvent(f func(view ITextView, cell objc.IObject, rect objc.IObject /* cross-framework: Rect */, event IEvent)) {
+func (d *TextViewDelegate) SetTextViewDraggedCellInRectEvent(f func(view ITextView, cell unsafe.Pointer, rect Rect /* not a class type */, event IEvent)) {
 	d._TextViewDraggedCellInRectEvent = f
 }
 
@@ -413,7 +418,7 @@ func (d *TextViewDelegate) HasTextViewCandidatesForSelectedRange() bool {
 }
 
 // TextViewClickedOnCellInRectAtIndex implements the PTextViewDelegate interface.
-func (d *TextViewDelegate) TextViewClickedOnCellInRectAtIndex(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */, charIndex uint) {
+func (d *TextViewDelegate) TextViewClickedOnCellInRectAtIndex(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */, charIndex uint) {
 	if d._TextViewClickedOnCellInRectAtIndex != nil {
 		d._TextViewClickedOnCellInRectAtIndex(textView, cell, cellFrame, charIndex)
 	}
@@ -481,7 +486,7 @@ func (d *TextViewDelegate) HasTextViewDoCommandBySelector() bool {
 }
 
 // TextViewDoubleClickedOnCellInRectAtIndex implements the PTextViewDelegate interface.
-func (d *TextViewDelegate) TextViewDoubleClickedOnCellInRectAtIndex(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */, charIndex uint) {
+func (d *TextViewDelegate) TextViewDoubleClickedOnCellInRectAtIndex(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */, charIndex uint) {
 	if d._TextViewDoubleClickedOnCellInRectAtIndex != nil {
 		d._TextViewDoubleClickedOnCellInRectAtIndex(textView, cell, cellFrame, charIndex)
 	}
@@ -493,7 +498,7 @@ func (d *TextViewDelegate) HasTextViewDoubleClickedOnCellInRectAtIndex() bool {
 }
 
 // TextViewDraggedCellInRectEventAtIndex implements the PTextViewDelegate interface.
-func (d *TextViewDelegate) TextViewDraggedCellInRectEventAtIndex(view ITextView, cell objc.IObject, rect objc.IObject /* cross-framework: Rect */, event IEvent, charIndex uint) {
+func (d *TextViewDelegate) TextViewDraggedCellInRectEventAtIndex(view ITextView, cell unsafe.Pointer, rect Rect /* not a class type */, event IEvent, charIndex uint) {
 	if d._TextViewDraggedCellInRectEventAtIndex != nil {
 		d._TextViewDraggedCellInRectEventAtIndex(view, cell, rect, event, charIndex)
 	}
@@ -673,7 +678,7 @@ func (d *TextViewDelegate) HasTextViewWillShowSharingServicePickerForItems() boo
 }
 
 // TextViewWritablePasteboardTypesForCellAtIndex implements the PTextViewDelegate interface.
-func (d *TextViewDelegate) TextViewWritablePasteboardTypesForCellAtIndex(view ITextView, cell objc.IObject, charIndex uint) []string {
+func (d *TextViewDelegate) TextViewWritablePasteboardTypesForCellAtIndex(view ITextView, cell unsafe.Pointer, charIndex uint) []string {
 	if d._TextViewWritablePasteboardTypesForCellAtIndex != nil {
 		return d._TextViewWritablePasteboardTypesForCellAtIndex(view, cell, charIndex)
 	}
@@ -687,7 +692,7 @@ func (d *TextViewDelegate) HasTextViewWritablePasteboardTypesForCellAtIndex() bo
 }
 
 // TextViewWriteCellAtIndexToPasteboardType implements the PTextViewDelegate interface.
-func (d *TextViewDelegate) TextViewWriteCellAtIndexToPasteboardType(view ITextView, cell objc.IObject, charIndex uint, pboard IPasteboard, type_ objc.IObject /* cross-framework: PasteboardType */) bool {
+func (d *TextViewDelegate) TextViewWriteCellAtIndexToPasteboardType(view ITextView, cell unsafe.Pointer, charIndex uint, pboard IPasteboard, type_ PasteboardType /* typedef */) bool {
 	if d._TextViewWriteCellAtIndexToPasteboardType != nil {
 		return d._TextViewWriteCellAtIndexToPasteboardType(view, cell, charIndex, pboard, type_)
 	}
@@ -739,7 +744,7 @@ func (d *TextViewDelegate) HasUndoManagerForTextView() bool {
 }
 
 // TextViewClickedOnCellInRect implements the PTextViewDelegate interface.
-func (d *TextViewDelegate) TextViewClickedOnCellInRect(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */) {
+func (d *TextViewDelegate) TextViewClickedOnCellInRect(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */) {
 	if d._TextViewClickedOnCellInRect != nil {
 		d._TextViewClickedOnCellInRect(textView, cell, cellFrame)
 	}
@@ -765,7 +770,7 @@ func (d *TextViewDelegate) HasTextViewClickedOnLink() bool {
 }
 
 // TextViewDoubleClickedOnCellInRect implements the PTextViewDelegate interface.
-func (d *TextViewDelegate) TextViewDoubleClickedOnCellInRect(textView ITextView, cell objc.IObject, cellFrame objc.IObject /* cross-framework: Rect */) {
+func (d *TextViewDelegate) TextViewDoubleClickedOnCellInRect(textView ITextView, cell unsafe.Pointer, cellFrame Rect /* not a class type */) {
 	if d._TextViewDoubleClickedOnCellInRect != nil {
 		d._TextViewDoubleClickedOnCellInRect(textView, cell, cellFrame)
 	}
@@ -777,7 +782,7 @@ func (d *TextViewDelegate) HasTextViewDoubleClickedOnCellInRect() bool {
 }
 
 // TextViewDraggedCellInRectEvent implements the PTextViewDelegate interface.
-func (d *TextViewDelegate) TextViewDraggedCellInRectEvent(view ITextView, cell objc.IObject, rect objc.IObject /* cross-framework: Rect */, event IEvent) {
+func (d *TextViewDelegate) TextViewDraggedCellInRectEvent(view ITextView, cell unsafe.Pointer, rect Rect /* not a class type */, event IEvent) {
 	if d._TextViewDraggedCellInRectEvent != nil {
 		d._TextViewDraggedCellInRectEvent(view, cell, rect, event)
 	}

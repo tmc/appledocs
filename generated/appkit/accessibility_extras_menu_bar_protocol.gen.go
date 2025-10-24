@@ -15,3 +15,4 @@ var accessibilityExtrasMenuBarProtocol *objc.Protocol
 func init() {
 	accessibilityExtrasMenuBarProtocol = objc.GetProtocol("accessibilityExtrasMenuBar")
 }
+

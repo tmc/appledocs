@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRBaseClusterEnergyEVSEMode */
+
+
+/* debug [class_header]: Header for MTRBaseClusterEnergyEVSEMode */
 // The class instance for the [MTRBaseClusterEnergyEVSEMode] class.
 var (
 	MTRBaseClusterEnergyEVSEModeClass     _MTRBaseClusterEnergyEVSEModeClass
@@ -26,51 +30,30 @@ func getMTRBaseClusterEnergyEVSEModeClass() _MTRBaseClusterEnergyEVSEModeClass {
 type _MTRBaseClusterEnergyEVSEModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRBaseClusterEnergyEVSEMode */
 // An interface definition for the [MTRBaseClusterEnergyEVSEMode] class.
 type IMTRBaseClusterEnergyEVSEMode interface {
 	IMTRGenericBaseCluster
+	
+/* debug [class_interface_properties]: Properties for MTRBaseClusterEnergyEVSEMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRBaseClusterEnergyEVSEMode */
 	// methods:
-	ChangeToModeWithParamsCompletion(params IMTREnergyEVSEModeClusterChangeToModeParams, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer)
-	ReadAttributeCurrentModeWithCompletion(completion unsafe.Pointer)
-	ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer)
-	ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeSupportedModesWithCompletion(completion unsafe.Pointer)
-	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeCurrentModeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeSupportedModesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Cluster Energy EVSE Mode
-//
-// Attributes and commands for selecting a mode from a list of supported options.
+/* debug [class_interface]: End interface */
 
 
-// Cluster Energy EVSE Mode
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode
-type MTRBaseClusterEnergyEVSEMode struct {
-	MTRGenericBaseCluster
-}
 
-// MTRBaseClusterEnergyEVSEModeFrom constructs a [MTRBaseClusterEnergyEVSEMode] from an unsafe.Pointer.
-//
-// Cluster Energy EVSE Mode
-func MTRBaseClusterEnergyEVSEModeFrom(ptr unsafe.Pointer) MTRBaseClusterEnergyEVSEMode {
-	return MTRBaseClusterEnergyEVSEMode{
-		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRBaseClusterEnergyEVSEMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRBaseClusterEnergyEVSEModeClass) Alloc() MTRBaseClusterEnergyEVSEMode {
 	rv := objc.Send[MTRBaseClusterEnergyEVSEMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -78,7 +61,6 @@ func (mc _MTRBaseClusterEnergyEVSEModeClass) Alloc() MTRBaseClusterEnergyEVSEMod
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRBaseClusterEnergyEVSEModeClass) New() MTRBaseClusterEnergyEVSEMode {
 	rv := objc.Send[MTRBaseClusterEnergyEVSEMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,175 +83,67 @@ func (m_ MTRBaseClusterEnergyEVSEMode) Autorelease() MTRBaseClusterEnergyEVSEMod
 func NewMTRBaseClusterEnergyEVSEMode() MTRBaseClusterEnergyEVSEMode {
 	return getMTRBaseClusterEnergyEVSEModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRBaseClusterEnergyEVSEMode */
+// Cluster Energy EVSE Mode
+//
+// Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Energy EVSE Mode
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/init(device:endpointID:queue:)
-func NewMTRBaseClusterEnergyEVSEModeWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRBaseClusterEnergyEVSEMode {
-	instance := getMTRBaseClusterEnergyEVSEModeClass().Alloc()
-	rv := objc.Send[MTRBaseClusterEnergyEVSEMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode
+type MTRBaseClusterEnergyEVSEMode struct {
+	MTRGenericBaseCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEModeClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
+// MTRBaseClusterEnergyEVSEModeFrom constructs a [MTRBaseClusterEnergyEVSEMode] from an unsafe.Pointer.
+//
+// Cluster Energy EVSE Mode
+func MTRBaseClusterEnergyEVSEModeFrom(ptr unsafe.Pointer) MTRBaseClusterEnergyEVSEMode {
+	return MTRBaseClusterEnergyEVSEMode{
+		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEModeClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
 
+/* debug [class_init_methods]: Init methods for MTRBaseClusterEnergyEVSEMode *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRBaseClusterEnergyEVSEMode */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
 func (mc _MTRBaseClusterEnergyEVSEModeClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion) */
+
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeCurrentMode(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEModeClass) ReadAttributeCurrentModeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeCurrentModeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [class_properties_class]: Class properties for MTRBaseClusterEnergyEVSEMode */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEModeClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [instance_methods]: Instance methods for MTRBaseClusterEnergyEVSEMode */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEModeClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [instance_properties]: Instance properties for MTRBaseClusterEnergyEVSEMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeSupportedModes(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterEnergyEVSEModeClass) ReadAttributeSupportedModesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedModesWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+/* debug [class.gen.go]: End class MTRBaseClusterEnergyEVSEMode */
 
-
-// Command ChangeToMode
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/changeToMode(with:completion:)
-func (m_ MTRBaseClusterEnergyEVSEMode) ChangeToModeWithParamsCompletion(params IMTREnergyEVSEModeClusterChangeToModeParams, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:completion:"), params, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeAcceptedCommandList(completion:)
-func (m_ MTRBaseClusterEnergyEVSEMode) ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeAttributeList(completion:)
-func (m_ MTRBaseClusterEnergyEVSEMode) ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAttributeListWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeClusterRevision(completion:)
-func (m_ MTRBaseClusterEnergyEVSEMode) ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClusterRevisionWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeCurrentMode(completion:)
-func (m_ MTRBaseClusterEnergyEVSEMode) ReadAttributeCurrentModeWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeCurrentModeWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeFeatureMap(completion:)
-func (m_ MTRBaseClusterEnergyEVSEMode) ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeFeatureMapWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeGeneratedCommandList(completion:)
-func (m_ MTRBaseClusterEnergyEVSEMode) ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/readAttributeSupportedModes(completion:)
-func (m_ MTRBaseClusterEnergyEVSEMode) ReadAttributeSupportedModesWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeSupportedModesWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterEnergyEVSEMode) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterEnergyEVSEMode) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterEnergyEVSEMode) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/subscribeAttributeCurrentMode(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterEnergyEVSEMode) SubscribeAttributeCurrentModeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeCurrentModeWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterEnergyEVSEMode) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterEnergyEVSEMode) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterEnergyEVSEMode/subscribeAttributeSupportedModes(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterEnergyEVSEMode) SubscribeAttributeSupportedModesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeSupportedModesWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
 
 

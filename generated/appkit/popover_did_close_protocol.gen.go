@@ -15,3 +15,4 @@ var popoverDidCloseProtocol *objc.Protocol
 func init() {
 	popoverDidCloseProtocol = objc.GetProtocol("popoverDidClose:")
 }
+

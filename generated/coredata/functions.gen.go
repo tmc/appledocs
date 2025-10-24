@@ -2,10 +2,10 @@
 
 package coredata
 
+/* debug [functions.gen.go]: Generating 0 functions for CoreData */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // CoreData Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

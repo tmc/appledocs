@@ -15,3 +15,4 @@ var previewPanelProtocol *objc.Protocol
 func init() {
 	previewPanelProtocol = objc.GetProtocol("previewPanel:")
 }
+

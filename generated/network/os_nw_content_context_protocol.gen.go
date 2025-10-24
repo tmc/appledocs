@@ -21,3 +21,4 @@ var OS_nw_content_contextProtocol *objc.Protocol
 func init() {
 	OS_nw_content_contextProtocol = objc.GetProtocol("OS_nw_content_context")
 }
+

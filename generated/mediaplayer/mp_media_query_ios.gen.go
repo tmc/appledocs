@@ -33,21 +33,21 @@ func (m_ MediaQuery) RemoveFilterPredicate(predicate IMPMediaPredicate) {
 
 // iOS-only properties
 
-// An array representing the section grouping of the query’s specified media item collections.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/collectionSections
-func (m_ MediaQuery) CollectionSections() []IMediaQuerySection {
-	rv := objc.Send[[]MediaQuerySection](m_.ID, objc.Sel("collectionSections"))
-	return rv
-}
-
 // An array of media item collections whose contained items match the query’s media property predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/collections
-func (m_ MediaQuery) Collections() []IMediaItemCollection {
+func (m_ MediaQuery) Collections() []MediaItemCollection {
 	rv := objc.Send[[]MediaItemCollection](m_.ID, objc.Sel("collections"))
+	return rv
+}
+
+// An array representing the section grouping of the query’s specified media item collections.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/collectionSections
+func (m_ MediaQuery) CollectionSections() []MediaQuerySection {
+	rv := objc.Send[[]MediaQuerySection](m_.ID, objc.Sel("collectionSections"))
 	return rv
 }
 
@@ -75,21 +75,21 @@ func (m_ MediaQuery) SetGroupingType(value MediaGrouping) {
 	m_.ID.Send(objc.RegisterName("setGroupingType:"), value)
 }
 
-// An array representing the section grouping of the query’s specified media items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/itemSections
-func (m_ MediaQuery) ItemSections() []IMediaQuerySection {
-	rv := objc.Send[[]MediaQuerySection](m_.ID, objc.Sel("itemSections"))
-	return rv
-}
-
 // An array of media items that match the media query’s predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/items
-func (m_ MediaQuery) Items() []IMediaItem {
+func (m_ MediaQuery) Items() []MediaItem {
 	rv := objc.Send[[]MediaItem](m_.ID, objc.Sel("items"))
+	return rv
+}
+
+// An array representing the section grouping of the query’s specified media items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuery/itemSections
+func (m_ MediaQuery) ItemSections() []MediaQuerySection {
+	rv := objc.Send[[]MediaQuerySection](m_.ID, objc.Sel("itemSections"))
 	return rv
 }
 

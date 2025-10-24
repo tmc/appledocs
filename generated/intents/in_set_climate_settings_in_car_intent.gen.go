@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INSetClimateSettingsInCarIntent] class.
@@ -60,7 +60,6 @@ type IINSetClimateSettingsInCarIntent interface {
 //
 // Automotive vendors can add support for this intent to an Intents extension that they ship with their automotive apps. When the user asks Siri to change a setting related to the vehicle’s climate control, Siri creates an object and delivers it to the app’s Intents extension. You use the intent to identify which setting the user wants to change. This class contains properties for multiple types of climate settings, but a given instance of this class contains changes for only one system at a time. When resolving and confirming the parameters of this intent, use the specified properties to modify your vehicle’s settings. Assume no changes for other settings. If your vehicle doesn’t support a particular setting, offer a reasonable fallback setting and ask the user for confirmation. The object that handles this intent must adopt the protocol. Use this intent object to identify which setting changed and to create an object indicating the results of changing the climate settings.
 
-
 // A request to change the climate settings in a CarPlay-enabled vehicle.
 //
 // [Full Topic]
@@ -109,8 +108,6 @@ func NewINSetClimateSettingsInCarIntent() INSetClimateSettingsInCarIntent {
 	return getINSetClimateSettingsInCarIntentClass().New()
 }
 
-
-
 // The air circulation mode for the climate control system.
 //
 // [Full Topic]
@@ -120,7 +117,6 @@ func (i_ INSetClimateSettingsInCarIntent) AirCirculationMode() unsafe.Pointer {
 	return rv
 }
 
-
 // The air circulation mode for the climate control system.
 //
 // [Full Topic]
@@ -128,7 +124,6 @@ func (i_ INSetClimateSettingsInCarIntent) AirCirculationMode() unsafe.Pointer {
 func (i_ INSetClimateSettingsInCarIntent) SetAirCirculationMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAirCirculationMode:"), value)
 }
-
 
 // A name that identifies the user’s car.
 //
@@ -139,7 +134,6 @@ func (i_ INSetClimateSettingsInCarIntent) CarName() INSpeakableString {
 	return rv
 }
 
-
 // A name that identifies the user’s car.
 //
 // [Full Topic]
@@ -147,7 +141,6 @@ func (i_ INSetClimateSettingsInCarIntent) CarName() INSpeakableString {
 func (i_ INSetClimateSettingsInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
-
 
 // The seat position to have its climate settings modified.
 //
@@ -158,7 +151,6 @@ func (i_ INSetClimateSettingsInCarIntent) ClimateZone() unsafe.Pointer {
 	return rv
 }
 
-
 // The seat position to have its climate settings modified.
 //
 // [Full Topic]
@@ -166,7 +158,6 @@ func (i_ INSetClimateSettingsInCarIntent) ClimateZone() unsafe.Pointer {
 func (i_ INSetClimateSettingsInCarIntent) SetClimateZone(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setClimateZone:"), value)
 }
-
 
 // A Boolean value indicating whether to turn on the air conditioner system.
 //
@@ -177,7 +168,6 @@ func (i_ INSetClimateSettingsInCarIntent) EnableAirConditioner() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether to turn on the air conditioner system.
 //
 // [Full Topic]
@@ -185,7 +175,6 @@ func (i_ INSetClimateSettingsInCarIntent) EnableAirConditioner() bool {
 func (i_ INSetClimateSettingsInCarIntent) SetEnableAirConditioner(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableAirConditioner:"), value)
 }
-
 
 // A Boolean value indicating whether to enable automatic mode for the climate control system.
 //
@@ -196,7 +185,6 @@ func (i_ INSetClimateSettingsInCarIntent) EnableAutoMode() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether to enable automatic mode for the climate control system.
 //
 // [Full Topic]
@@ -204,7 +192,6 @@ func (i_ INSetClimateSettingsInCarIntent) EnableAutoMode() bool {
 func (i_ INSetClimateSettingsInCarIntent) SetEnableAutoMode(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableAutoMode:"), value)
 }
-
 
 // A Boolean value indicating whether to turn on the climate control system.
 //
@@ -215,7 +202,6 @@ func (i_ INSetClimateSettingsInCarIntent) EnableClimateControl() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether to turn on the climate control system.
 //
 // [Full Topic]
@@ -223,7 +209,6 @@ func (i_ INSetClimateSettingsInCarIntent) EnableClimateControl() bool {
 func (i_ INSetClimateSettingsInCarIntent) SetEnableClimateControl(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableClimateControl:"), value)
 }
-
 
 // A Boolean value indicating whether to turn on the cabin fan system.
 //
@@ -234,7 +219,6 @@ func (i_ INSetClimateSettingsInCarIntent) EnableFan() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether to turn on the cabin fan system.
 //
 // [Full Topic]
@@ -242,7 +226,6 @@ func (i_ INSetClimateSettingsInCarIntent) EnableFan() bool {
 func (i_ INSetClimateSettingsInCarIntent) SetEnableFan(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEnableFan:"), value)
 }
-
 
 // An integer value indicating the desired fan speed position.
 //
@@ -253,7 +236,6 @@ func (i_ INSetClimateSettingsInCarIntent) FanSpeedIndex() int {
 	return rv
 }
 
-
 // An integer value indicating the desired fan speed position.
 //
 // [Full Topic]
@@ -261,7 +243,6 @@ func (i_ INSetClimateSettingsInCarIntent) FanSpeedIndex() int {
 func (i_ INSetClimateSettingsInCarIntent) SetFanSpeedIndex(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFanSpeedIndex:"), value)
 }
-
 
 // A floating-point value indicating the requested fan speed specified as a percentage of the maximum speed.
 //
@@ -272,7 +253,6 @@ func (i_ INSetClimateSettingsInCarIntent) FanSpeedPercentage() float64 {
 	return rv
 }
 
-
 // A floating-point value indicating the requested fan speed specified as a percentage of the maximum speed.
 //
 // [Full Topic]
@@ -280,7 +260,6 @@ func (i_ INSetClimateSettingsInCarIntent) FanSpeedPercentage() float64 {
 func (i_ INSetClimateSettingsInCarIntent) SetFanSpeedPercentage(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFanSpeedPercentage:"), value)
 }
-
 
 // A relative fan speed setting.
 //
@@ -291,7 +270,6 @@ func (i_ INSetClimateSettingsInCarIntent) RelativeFanSpeedSetting() unsafe.Point
 	return rv
 }
 
-
 // A relative fan speed setting.
 //
 // [Full Topic]
@@ -299,7 +277,6 @@ func (i_ INSetClimateSettingsInCarIntent) RelativeFanSpeedSetting() unsafe.Point
 func (i_ INSetClimateSettingsInCarIntent) SetRelativeFanSpeedSetting(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeFanSpeedSetting:"), value)
 }
-
 
 // A relative temperature setting.
 //
@@ -310,7 +287,6 @@ func (i_ INSetClimateSettingsInCarIntent) RelativeTemperatureSetting() unsafe.Po
 	return rv
 }
 
-
 // A relative temperature setting.
 //
 // [Full Topic]
@@ -318,7 +294,6 @@ func (i_ INSetClimateSettingsInCarIntent) RelativeTemperatureSetting() unsafe.Po
 func (i_ INSetClimateSettingsInCarIntent) SetRelativeTemperatureSetting(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRelativeTemperatureSetting:"), value)
 }
-
 
 // The specific temperature to set for the climate control system.
 //
@@ -329,7 +304,6 @@ func (i_ INSetClimateSettingsInCarIntent) Temperature() foundation.UnitTemperatu
 	return rv
 }
 
-
 // The specific temperature to set for the climate control system.
 //
 // [Full Topic]
@@ -337,6 +311,3 @@ func (i_ INSetClimateSettingsInCarIntent) Temperature() foundation.UnitTemperatu
 func (i_ INSetClimateSettingsInCarIntent) SetTemperature(value foundation.IUnitTemperature) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTemperature:"), value)
 }
-
-
-

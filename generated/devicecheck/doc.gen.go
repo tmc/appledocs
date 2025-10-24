@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for DeviceCheck. DO NOT EDIT.
 
 // Package devicecheck provides Go bindings for the DeviceCheck framework.
 //
-// Reduce fraudulent use of your services by managing device state and asserting app
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DeviceCheck without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/DeviceCheck
 package devicecheck
 
 import (

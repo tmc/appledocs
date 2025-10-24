@@ -15,3 +15,4 @@ var BrowserDelegateProtocol *objc.Protocol
 func init() {
 	BrowserDelegateProtocol = objc.GetProtocol("NSBrowserDelegate")
 }
+

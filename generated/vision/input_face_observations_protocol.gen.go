@@ -20,3 +20,4 @@ var inputFaceObservationsProtocol *objc.Protocol
 func init() {
 	inputFaceObservationsProtocol = objc.GetProtocol("inputFaceObservations")
 }
+

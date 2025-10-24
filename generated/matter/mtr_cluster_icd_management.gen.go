@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterICDManagement */
+
+
+/* debug [class_header]: Header for MTRClusterICDManagement */
 // The class instance for the [MTRClusterICDManagement] class.
 var (
 	MTRClusterICDManagementClass     _MTRClusterICDManagementClass
@@ -26,52 +30,31 @@ func getMTRClusterICDManagementClass() _MTRClusterICDManagementClass {
 type _MTRClusterICDManagementClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterICDManagement */
 // An interface definition for the [MTRClusterICDManagement] class.
 type IMTRClusterICDManagement interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterICDManagement */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterICDManagement */
 	// methods:
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeActiveModeDurationWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeActiveModeThresholdWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClientsSupportedPerFabricWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
 	ReadAttributeICDCounterWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeIdleModeDurationWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeMaximumCheckInBackOffWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeOperatingModeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeRegisteredClientsWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeUserActiveModeTriggerHintWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeUserActiveModeTriggerInstructionWithParams(params IMTRReadParams) foundation.IDictionary
-	RegisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterRegisterClientParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	StayActiveRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterStayActiveRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	UnregisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterUnregisterClientParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster ICD Management Allows servers to ensure that listed clients are notified when a server is available for communication.
 
 
-// Cluster ICD Management Allows servers to ensure that listed clients are notified when a server is available for communication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement
-type MTRClusterICDManagement struct {
-	MTRGenericCluster
-}
-
-// MTRClusterICDManagementFrom constructs a [MTRClusterICDManagement] from an unsafe.Pointer.
-//
-// Cluster ICD Management Allows servers to ensure that listed clients are notified when a server is available for communication.
-func MTRClusterICDManagementFrom(ptr unsafe.Pointer) MTRClusterICDManagement {
-	return MTRClusterICDManagement{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterICDManagement */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterICDManagementClass) Alloc() MTRClusterICDManagement {
 	rv := objc.Send[MTRClusterICDManagement](objc.ID(mc.class), objc.Sel("alloc"))
@@ -79,7 +62,6 @@ func (mc _MTRClusterICDManagementClass) Alloc() MTRClusterICDManagement {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterICDManagementClass) New() MTRClusterICDManagement {
 	rv := objc.Send[MTRClusterICDManagement](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -102,160 +84,66 @@ func (m_ MTRClusterICDManagement) Autorelease() MTRClusterICDManagement {
 func NewMTRClusterICDManagement() MTRClusterICDManagement {
 	return getMTRClusterICDManagementClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRClusterICDManagement */
+// Cluster ICD Management Allows servers to ensure that listed clients are notified when a server is available for communication.
+
+
+// Cluster ICD Management Allows servers to ensure that listed clients are notified when a server is available for communication.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/init(device:endpointID:queue:)
-func NewMTRClusterICDManagementWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterICDManagement {
-	instance := getMTRClusterICDManagementClass().Alloc()
-	rv := objc.Send[MTRClusterICDManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement
+type MTRClusterICDManagement struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
+// MTRClusterICDManagementFrom constructs a [MTRClusterICDManagement] from an unsafe.Pointer.
+//
+// Cluster ICD Management Allows servers to ensure that listed clients are notified when a server is available for communication.
+func MTRClusterICDManagementFrom(ptr unsafe.Pointer) MTRClusterICDManagement {
+	return MTRClusterICDManagement{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeActiveModeDuration(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeActiveModeDurationWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeActiveModeDurationWithParams:"), params)
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRClusterICDManagement *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeActiveModeThreshold(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeActiveModeThresholdWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeActiveModeThresholdWithParams:"), params)
-	return rv
-}
+
+/* debug [class_methods]: Class methods for MTRClusterICDManagement */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterICDManagement */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeClientsSupportedPerFabric(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeClientsSupportedPerFabricWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClientsSupportedPerFabricWithParams:"), params)
-	return rv
-}
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
+/* debug [instance_methods]: Instance methods for MTRClusterICDManagement */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeICDCounter(with:)
 func (m_ MTRClusterICDManagement) ReadAttributeICDCounterWithParams(params IMTRReadParams) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeICDCounterWithParams:"), params)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadAttributeICDCounterWithParams */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeIdleModeDuration(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeIdleModeDurationWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeIdleModeDurationWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterICDManagement */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeMaximumCheckInBackOff(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeMaximumCheckInBackOffWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeMaximumCheckInBackOffWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterICDManagement */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeOperatingMode(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeOperatingModeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeOperatingModeWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeRegisteredClients(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeRegisteredClientsWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeRegisteredClientsWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeUserActiveModeTriggerHint(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeUserActiveModeTriggerHintWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeUserActiveModeTriggerHintWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/readAttributeUserActiveModeTriggerInstruction(with:)
-func (m_ MTRClusterICDManagement) ReadAttributeUserActiveModeTriggerInstructionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeUserActiveModeTriggerInstructionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/registerClient(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterICDManagement) RegisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterRegisterClientParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("registerClientWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/stayActiveRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterICDManagement) StayActiveRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterStayActiveRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("stayActiveRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterICDManagement/unregisterClient(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterICDManagement) UnregisterClientWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRICDManagementClusterUnregisterClientParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("unregisterClientWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
 
 

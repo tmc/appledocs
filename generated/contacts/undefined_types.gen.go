@@ -9,11 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AttributedString = _undefined // referenced in Contacts
 	Comparator = _undefined // referenced in Contacts
-	Data = _undefined // referenced in Contacts
 	Predicate = _undefined // referenced in Contacts
-	String = _undefined // referenced in Contacts
 )
 
 

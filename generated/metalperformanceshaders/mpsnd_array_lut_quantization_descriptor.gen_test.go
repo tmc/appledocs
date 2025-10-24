@@ -12,14 +12,14 @@ var _ = metalperformanceshaders.NewNDArrayLUTQuantizationDescriptor
 // ExampleNewNDArrayLUTQuantizationDescriptorWithDataType demonstrates how to create a NDArrayLUTQuantizationDescriptor instance using NewNDArrayLUTQuantizationDescriptorWithDataType.
 func ExampleNewNDArrayLUTQuantizationDescriptorWithDataType() {
 	_ = metalperformanceshaders.NewNDArrayLUTQuantizationDescriptorWithDataType(
-		metalperformanceshaders.DataType /* not a class type */{}, // quantizationDataType DataType /* not a class type */
+		metalperformanceshaders.DataType{}, // quantizationDataType DataType
 	)
 	// Output:
 }
 // ExampleNewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis demonstrates how to create a NDArrayLUTQuantizationDescriptor instance using NewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis.
 func ExampleNewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis() {
 	_ = metalperformanceshaders.NewNDArrayLUTQuantizationDescriptorWithDataTypeVectorAxis(
-		metalperformanceshaders.DataType /* not a class type */{}, // quantizationDataType DataType /* not a class type */
+		metalperformanceshaders.DataType{}, // quantizationDataType DataType
 		0, // vectorAxis uint
 	)
 	// Output:

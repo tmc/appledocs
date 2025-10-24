@@ -15,3 +15,4 @@ var splitViewDidResizeSubviewsProtocol *objc.Protocol
 func init() {
 	splitViewDidResizeSubviewsProtocol = objc.GetProtocol("splitViewDidResizeSubviews:")
 }
+

@@ -7,13 +7,13 @@ import "github.com/ebitengine/purego/objc"
 // deviceCachePrimedProtocol is the deviceCachePrimed: protocol.
 //
 // Availability:
-//   - Mac Catalyst 18.2+
-//   - iOS 18.2+
-//   - iPadOS 18.2+
-//   - macOS 15.2+
-//   - tvOS 18.2+
-//   - visionOS 2.2+
-//   - watchOS 11.2+
+//   - Mac Catalyst 17.6+
+//   - iOS 17.6+
+//   - iPadOS 17.6+
+//   - macOS 14.6+
+//   - tvOS 17.6+
+//   - visionOS 1.0+
+//   - watchOS 10.6+
 //
 // Use this protocol when registering custom classes that conform to deviceCachePrimed:.
 var deviceCachePrimedProtocol *objc.Protocol
@@ -21,3 +21,4 @@ var deviceCachePrimedProtocol *objc.Protocol
 func init() {
 	deviceCachePrimedProtocol = objc.GetProtocol("deviceCachePrimed:")
 }
+

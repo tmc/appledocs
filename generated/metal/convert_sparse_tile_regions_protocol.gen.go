@@ -20,3 +20,4 @@ var convertSparseTileRegionsProtocol *objc.Protocol
 func init() {
 	convertSparseTileRegionsProtocol = objc.GetProtocol("convertSparseTileRegions:")
 }
+

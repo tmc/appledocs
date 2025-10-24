@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,7 +42,6 @@ type IPropertyMapping interface {
 }
 
 // A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity.
-
 
 // A mapping instance that specifies in a model how to map from a property in a source entity to a property in a destination entity.
 //
@@ -90,8 +89,6 @@ func NewPropertyMapping() PropertyMapping {
 	return getPropertyMappingClass().New()
 }
 
-
-
 // The name of the property in the destination entity for the property mapping.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (p_ PropertyMapping) Name() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The name of the property in the destination entity for the property mapping.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (p_ PropertyMapping) Name() objc.IObject /* cross-framework: NSString */ {
 func (p_ PropertyMapping) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
-
 
 // The user info for the property mapping.
 //
@@ -120,7 +115,6 @@ func (p_ PropertyMapping) UserInfo() unsafe.Pointer {
 	return rv
 }
 
-
 // The user info for the property mapping.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (p_ PropertyMapping) UserInfo() unsafe.Pointer {
 func (p_ PropertyMapping) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
-
 
 // The value expression for the property mapping.
 //
@@ -139,7 +132,6 @@ func (p_ PropertyMapping) ValueExpression() objc.IObject /* cross-framework: Exp
 	return rv
 }
 
-
 // The value expression for the property mapping.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (p_ PropertyMapping) ValueExpression() objc.IObject /* cross-framework: Exp
 func (p_ PropertyMapping) SetValueExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValueExpression:"), value)
 }
-
-
-

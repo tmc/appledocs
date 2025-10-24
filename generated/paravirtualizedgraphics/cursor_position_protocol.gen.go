@@ -16,3 +16,4 @@ var cursorPositionProtocol *objc.Protocol
 func init() {
 	cursorPositionProtocol = objc.GetProtocol("cursorPosition")
 }
+

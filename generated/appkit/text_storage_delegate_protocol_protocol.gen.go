@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // PTextStorageDelegate is the NSTextStorageDelegate protocol interface.

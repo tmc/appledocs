@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for AuthenticationServices. DO NOT EDIT.
 
 // Package authenticationservices provides Go bindings for the AuthenticationServices framework.
 //
-// Make it easy for users to log into apps and services.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AuthenticationServices without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/AuthenticationServices
 package authenticationservices
 
 import (

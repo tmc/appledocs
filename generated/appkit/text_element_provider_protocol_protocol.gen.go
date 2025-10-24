@@ -4,8 +4,6 @@ package appkit
 
 import (
 	"unsafe"
-
-	"github.com/tmc/appledocs/generated/objc"
 )
 
 // PTextElementProvider is the NSTextElementProvider protocol interface.
@@ -18,14 +16,14 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextElementProvider
 type PTextElementProvider interface {
 	// Required methods
-	EnumerateTextElementsFromLocationOptionsUsingBlock(textLocation objc.IObject, options TextContentManagerEnumerationOptions, block unsafe.Pointer) objc.ID
-	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)
-	SynchronizeToBackingStore(completionHandler unsafe.Pointer)
+	EnumerateTextElementsFromLocationOptionsUsingBlock(textLocation unsafe.Pointer, options TextContentManagerEnumerationOptions, block unsafe.Pointer) unsafe.Pointer/* debug [protocol_interface/required_method]: EnumerateTextElementsFromLocationOptionsUsingBlock */
+	ReplaceContentsInRangeWithTextElements(range_ ITextRange, textElements []TextElement)/* debug [protocol_interface/required_method]: ReplaceContentsInRangeWithTextElements */
+	SynchronizeToBackingStore(completionHandler unsafe.Pointer)/* debug [protocol_interface/required_method]: SynchronizeToBackingStore */
 	// Optional methods
 	AdjustedRangeFromRangeForEditingTextSelection(textRange ITextRange, forEditingTextSelection bool) TextRange
 	HasAdjustedRangeFromRangeForEditingTextSelection() bool
-	LocationFromLocationWithOffset(location objc.IObject, offset int) objc.ID
+	LocationFromLocationWithOffset(location unsafe.Pointer, offset int) unsafe.Pointer
 	HasLocationFromLocationWithOffset() bool
-	OffsetFromLocationToLocation(from objc.IObject, to objc.IObject) int
+	OffsetFromLocationToLocation(from unsafe.Pointer, to unsafe.Pointer) int
 	HasOffsetFromLocationToLocation() bool
 }

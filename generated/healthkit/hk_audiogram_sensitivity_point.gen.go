@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class HKAudiogramSensitivityPoint */
+
+
+/* debug [class_header]: Header for HKAudiogramSensitivityPoint */
 // The class instance for the [HKAudiogramSensitivityPoint] class.
 var (
 	HKAudiogramSensitivityPointClass     _HKAudiogramSensitivityPointClass
@@ -26,40 +30,34 @@ func getHKAudiogramSensitivityPointClass() _HKAudiogramSensitivityPointClass {
 type _HKAudiogramSensitivityPointClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKAudiogramSensitivityPoint */
 // An interface definition for the [HKAudiogramSensitivityPoint] class.
 type IHKAudiogramSensitivityPoint interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for HKAudiogramSensitivityPoint */
 	// properties:
 	Frequency() IHKQuantity
-	SetFrequency(value IHKQuantity)
 	LeftEarSensitivity() IHKQuantity
-	SetLeftEarSensitivity(value IHKQuantity)
 	RightEarSensitivity() IHKQuantity
-	SetRightEarSensitivity(value IHKQuantity)
-	Tests() IHKAudiogramSensitivityTest
-	SetTests(value IHKAudiogramSensitivityTest)
+	Tests() []HKAudiogramSensitivityTest
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKAudiogramSensitivityPoint */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A hearing sensitivity reading associated with a hearing test.
 
 
-// A hearing sensitivity reading associated with a hearing test.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint
-type HKAudiogramSensitivityPoint struct {
-	objectivec.Object
-}
-
-// HKAudiogramSensitivityPointFrom constructs a [HKAudiogramSensitivityPoint] from an unsafe.Pointer.
-//
-// A hearing sensitivity reading associated with a hearing test.
-func HKAudiogramSensitivityPointFrom(ptr unsafe.Pointer) HKAudiogramSensitivityPoint {
-	return HKAudiogramSensitivityPoint{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for HKAudiogramSensitivityPoint */
 // Alloc allocates a new instance without initialization.
 func (hc _HKAudiogramSensitivityPointClass) Alloc() HKAudiogramSensitivityPoint {
 	rv := objc.Send[HKAudiogramSensitivityPoint](objc.ID(hc.class), objc.Sel("alloc"))
@@ -67,7 +65,6 @@ func (hc _HKAudiogramSensitivityPointClass) Alloc() HKAudiogramSensitivityPoint 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKAudiogramSensitivityPointClass) New() HKAudiogramSensitivityPoint {
 	rv := objc.Send[HKAudiogramSensitivityPoint](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,79 +87,130 @@ func (h_ HKAudiogramSensitivityPoint) Autorelease() HKAudiogramSensitivityPoint 
 func NewHKAudiogramSensitivityPoint() HKAudiogramSensitivityPoint {
 	return getHKAudiogramSensitivityPointClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HKAudiogramSensitivityPoint */
+// A hearing sensitivity reading associated with a hearing test.
+
+
+// A hearing sensitivity reading associated with a hearing test.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint
+type HKAudiogramSensitivityPoint struct {
+	objectivec.Object
+}
+
+// HKAudiogramSensitivityPointFrom constructs a [HKAudiogramSensitivityPoint] from an unsafe.Pointer.
+//
+// A hearing sensitivity reading associated with a hearing test.
+func HKAudiogramSensitivityPointFrom(ptr unsafe.Pointer) HKAudiogramSensitivityPoint {
+	return HKAudiogramSensitivityPoint{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKAudiogramSensitivityPoint */
+
+// Creates a new sensitivity point.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint/init(frequency:leftEarSensitivity:rightEarSensitivity:)
+func NewHKAudiogramSensitivityPointWithFrequencyLeftEarSensitivityRightEarSensitivityError(frequency IHKQuantity, leftEarSensitivity IHKQuantity, rightEarSensitivity IHKQuantity, error_ objectivec.IObject) HKAudiogramSensitivityPoint {
+	rv := objc.Send[HKAudiogramSensitivityPoint](objc.ID(getHKAudiogramSensitivityPointClass().class), objc.Sel("sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:"), frequency, leftEarSensitivity, rightEarSensitivity, error_)
+	return rv
+}/* debug [class_init_methods/constructor]: NewHKAudiogramSensitivityPointWithFrequencyLeftEarSensitivityRightEarSensitivityError */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint/init(frequency:tests:)
+func NewHKAudiogramSensitivityPointWithFrequencyTestsError(frequency IHKQuantity, tests []HKAudiogramSensitivityTest, errorOut objectivec.IObject) HKAudiogramSensitivityPoint {
+	rv := objc.Send[HKAudiogramSensitivityPoint](objc.ID(getHKAudiogramSensitivityPointClass().class), objc.Sel("sensitivityPointWithFrequency:tests:error:"), frequency, tests, errorOut)
+	return rv
+}/* debug [class_init_methods/constructor]: NewHKAudiogramSensitivityPointWithFrequencyTestsError */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKAudiogramSensitivityPoint */
+
+// Creates a new sensitivity point.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint/init(frequency:leftEarSensitivity:rightEarSensitivity:)
+func (hc _HKAudiogramSensitivityPointClass) SensitivityPointWithFrequencyLeftEarSensitivityRightEarSensitivityError(frequency IHKQuantity, leftEarSensitivity IHKQuantity, rightEarSensitivity IHKQuantity, error_ objectivec.IObject) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(hc.class), objc.Sel("sensitivityPointWithFrequency:leftEarSensitivity:rightEarSensitivity:error:"), frequency, leftEarSensitivity, rightEarSensitivity, error_)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SensitivityPointWithFrequencyLeftEarSensitivityRightEarSensitivityError) */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint/init(frequency:tests:)
+func (hc _HKAudiogramSensitivityPointClass) SensitivityPointWithFrequencyTestsError(frequency IHKQuantity, tests []HKAudiogramSensitivityTest, errorOut objectivec.IObject) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(hc.class), objc.Sel("sensitivityPointWithFrequency:tests:error:"), frequency, tests, errorOut)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SensitivityPointWithFrequencyTestsError) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKAudiogramSensitivityPoint */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKAudiogramSensitivityPoint */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKAudiogramSensitivityPoint */
 
 // The frequency tested in the hearing test.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/frequency
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint/frequency
 func (h_ HKAudiogramSensitivityPoint) Frequency() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("frequency"))
 	return rv
-}
-
-
-// The frequency tested in the hearing test.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/frequency
-func (h_ HKAudiogramSensitivityPoint) SetFrequency(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setFrequency:"), value)
-}
+}/* debug [instance_properties/getter]: frequency */
 
 
 // The sensitivity of the left ear.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/leftearsensitivity
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint/leftEarSensitivity
 func (h_ HKAudiogramSensitivityPoint) LeftEarSensitivity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("leftEarSensitivity"))
 	return rv
-}
-
-
-// The sensitivity of the left ear.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/leftearsensitivity
-func (h_ HKAudiogramSensitivityPoint) SetLeftEarSensitivity(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setLeftEarSensitivity:"), value)
-}
+}/* debug [instance_properties/getter]: leftEarSensitivity */
 
 
 // The sensitivity of the right ear.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/rightearsensitivity
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint/rightEarSensitivity
 func (h_ HKAudiogramSensitivityPoint) RightEarSensitivity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("rightEarSensitivity"))
 	return rv
-}
-
-
-// The sensitivity of the right ear.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/rightearsensitivity
-func (h_ HKAudiogramSensitivityPoint) SetRightEarSensitivity(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setRightEarSensitivity:"), value)
-}
+}/* debug [instance_properties/getter]: rightEarSensitivity */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/tests
-func (h_ HKAudiogramSensitivityPoint) Tests() IHKAudiogramSensitivityTest {
-	rv := objc.Send[HKAudiogramSensitivityTest](h_.ID, objc.Sel("tests"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAudiogramSensitivityPoint/tests
+func (h_ HKAudiogramSensitivityPoint) Tests() []HKAudiogramSensitivityTest {
+	rv := objc.Send[[]HKAudiogramSensitivityTest](h_.ID, objc.Sel("tests"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tests */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkaudiogramsensitivitypoint/tests
-func (h_ HKAudiogramSensitivityPoint) SetTests(value IHKAudiogramSensitivityTest) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setTests:"), value)
-}
-
+/* debug [class.gen.go]: End class HKAudiogramSensitivityPoint */
 
 

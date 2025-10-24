@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // remoteNameRequestCompleteProtocol is the remoteNameRequestComplete: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to remoteNameRequestComplete:.
 var remoteNameRequestCompleteProtocol *objc.Protocol
 
 func init() {
 	remoteNameRequestCompleteProtocol = objc.GetProtocol("remoteNameRequestComplete:")
 }
+

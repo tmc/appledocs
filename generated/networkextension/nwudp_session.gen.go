@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NWUDPSession */
+
+
+/* debug [class_header]: Header for NWUDPSession */
 // The class instance for the [NWUDPSession] class.
 var (
 	NWUDPSessionClass     _NWUDPSessionClass
@@ -26,42 +31,39 @@ func getNWUDPSessionClass() _NWUDPSessionClass {
 type _NWUDPSessionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NWUDPSession */
 // An interface definition for the [NWUDPSession] class.
 type INWUDPSession interface {
 	objectivec.IObject
-	CurrentPath() NWPath
-	SetCurrentPath(value INWPath)
-	Endpoint() NWEndpoint
-	SetEndpoint(value INWEndpoint)
+	
+/* debug [class_interface_properties]: Properties for NWUDPSession */
+	// properties:
+	CurrentPath() INWPath
+	Endpoint() INWEndpoint
 	HasBetterPath() bool
-	SetHasBetterPath(value bool)
+	Viable() bool
+	MaximumDatagramLength() uint
+	ResolvedEndpoint() INWEndpoint
+	State() NWUDPSessionState
 	IsViable() bool
 	SetIsViable(value bool)
-	MaximumDatagramLength() int
-	SetMaximumDatagramLength(value int)
-	ResolvedEndpoint() NWEndpoint
-	SetResolvedEndpoint(value INWEndpoint)
-	State() unsafe.Pointer
-	SetState(value unsafe.Pointer)
-}
+/* debug [class_interface_properties]: End properties */
 
-// An object to manage a UDP session to a network endpoint.
-//
-// Since UDP does not include a handshake with the remote endpoint as part of its protocol, it is up to the client of the UDP session to provide feedback on the viability of the current endpoint. If a session is opened to a hostname, the system will resolve that hostname into potentially several IP addresses. Once the session state is , the client should try to write and read datagrams. If there is no response from the remote endpoint, the client can try the next address that was resolved using .
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession
-type NWUDPSession struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for NWUDPSession */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// NWUDPSessionFrom constructs a [NWUDPSession] from an unsafe.Pointer.
-//
-// An object to manage a UDP session to a network endpoint.
-func NWUDPSessionFrom(ptr unsafe.Pointer) NWUDPSession {
-	return NWUDPSession{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for NWUDPSession */
 // Alloc allocates a new instance without initialization.
 func (nc _NWUDPSessionClass) Alloc() NWUDPSession {
 	rv := objc.Send[NWUDPSession](objc.ID(nc.class), objc.Sel("alloc"))
@@ -69,7 +71,6 @@ func (nc _NWUDPSessionClass) Alloc() NWUDPSession {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NWUDPSessionClass) New() NWUDPSession {
 	rv := objc.Send[NWUDPSession](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,134 +93,159 @@ func (n_ NWUDPSession) Autorelease() NWUDPSession {
 func NewNWUDPSession() NWUDPSession {
 	return getNWUDPSessionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-// The current evaluated path for the session’s
+
+/* debug [class_struct]: Struct for NWUDPSession */
+// An object to manage a UDP session to a network endpoint.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
-func (n_ NWUDPSession) CurrentPath() NWPath {
+// Since UDP does not include a handshake with the remote endpoint as part of its protocol, it is up to the client of the UDP session to provide feedback on the viability of the current endpoint. If a session is opened to a hostname, the system will resolve that hostname into potentially several IP addresses. Once the session state is , the client should try to write and read datagrams. If there is no response from the remote endpoint, the client can try the next address that was resolved using .
+
+
+// An object to manage a UDP session to a network endpoint.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession
+type NWUDPSession struct {
+	objectivec.Object
+}
+
+// NWUDPSessionFrom constructs a [NWUDPSession] from an unsafe.Pointer.
+//
+// An object to manage a UDP session to a network endpoint.
+func NWUDPSessionFrom(ptr unsafe.Pointer) NWUDPSession {
+	return NWUDPSession{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NWUDPSession */
+
+// This convenience initializer can be used to create a new session based on the original session’s endpoint and parameters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession/init(upgradeFor:)
+func NewNWUDPSessionWithUpgradeForSession(session INWUDPSession) NWUDPSession {
+	instance := getNWUDPSessionClass().Alloc()
+	rv := objc.Send[NWUDPSession](instance.ID, objc.Sel("initWithUpgradeForSession:"), session)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewNWUDPSessionWithUpgradeForSession */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NWUDPSession */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NWUDPSession */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NWUDPSession */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NWUDPSession */
+
+// The current evaluated path for the session’s property.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession/currentPath
+func (n_ NWUDPSession) CurrentPath() INWPath {
 	rv := objc.Send[NWPath](n_.ID, objc.Sel("currentPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentPath */
 
-
-// SetCurrentPath sets the value of the currentPath property.
-// The current evaluated path for the session’s
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/currentpath
-func (n_ NWUDPSession) SetCurrentPath(value INWPath) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCurrentPath:"), value)
-}
 
 // The destination endpoint with which this session was created.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/endpoint
-func (n_ NWUDPSession) Endpoint() NWEndpoint {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession/endpoint
+func (n_ NWUDPSession) Endpoint() INWEndpoint {
 	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("endpoint"))
 	return rv
-}
+}/* debug [instance_properties/getter]: endpoint */
 
-
-// SetEndpoint sets the value of the endpoint property.
-// The destination endpoint with which this session was created.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/endpoint
-func (n_ NWUDPSession) SetEndpoint(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setEndpoint:"), value)
-}
 
 // If a session has a better path, new session would use a different interface.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/hasbetterpath
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession/hasBetterPath
 func (n_ NWUDPSession) HasBetterPath() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("hasBetterPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hasBetterPath */
 
-
-// SetHasBetterPath sets the value of the hasBetterPath property.
-// If a session has a better path, new session would use a different interface.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/hasbetterpath
-func (n_ NWUDPSession) SetHasBetterPath(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setHasBetterPath:"), value)
-}
 
 // The viability of a UDP session represents whether or not data can be transferred.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession/isViable
+func (n_ NWUDPSession) Viable() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("viable"))
+	return rv
+}/* debug [instance_properties/getter]: viable */
+
+
+// The maximum size of a datagram to be written currently.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession/maximumDatagramLength
+func (n_ NWUDPSession) MaximumDatagramLength() uint {
+	rv := objc.Send[uint](n_.ID, objc.Sel("maximumDatagramLength"))
+	return rv
+}/* debug [instance_properties/getter]: maximumDatagramLength */
+
+
+// The currently targeted remote endpoint.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession/resolvedEndpoint
+func (n_ NWUDPSession) ResolvedEndpoint() INWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("resolvedEndpoint"))
+	return rv
+}/* debug [instance_properties/getter]: resolvedEndpoint */
+
+
+// The current state of the UDP session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWUDPSession/state
+func (n_ NWUDPSession) State() NWUDPSessionState {
+	rv := objc.Send[NWUDPSessionState](n_.ID, objc.Sel("state"))
+	return rv
+}/* debug [instance_properties/getter]: state */
+
+
+// The viability of a UDP session represents whether or not data can be transferred.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/isviable
 func (n_ NWUDPSession) IsViable() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isViable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isViable */
 
 
-// SetIsViable sets the value of the isViable property.
 // The viability of a UDP session represents whether or not data can be transferred.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/isviable
 func (n_ NWUDPSession) SetIsViable(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsViable:"), value)
-}
+}/* debug [instance_properties/setter]: isViable */
 
-// The maximum size of a datagram to be written currently.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/maximumdatagramlength
-func (n_ NWUDPSession) MaximumDatagramLength() int {
-	rv := objc.Send[int](n_.ID, objc.Sel("maximumDatagramLength"))
-	return rv
-}
+/* debug [instance_properties]: End instance properties */
 
 
-// SetMaximumDatagramLength sets the value of the maximumDatagramLength property.
-// The maximum size of a datagram to be written currently.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/maximumdatagramlength
-func (n_ NWUDPSession) SetMaximumDatagramLength(value int) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMaximumDatagramLength:"), value)
-}
-
-// The currently targeted remote endpoint.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/resolvedendpoint
-func (n_ NWUDPSession) ResolvedEndpoint() NWEndpoint {
-	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("resolvedEndpoint"))
-	return rv
-}
-
-
-// SetResolvedEndpoint sets the value of the resolvedEndpoint property.
-// The currently targeted remote endpoint.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/resolvedendpoint
-func (n_ NWUDPSession) SetResolvedEndpoint(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setResolvedEndpoint:"), value)
-}
-
-// The current state of the UDP session.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/state
-func (n_ NWUDPSession) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("state"))
-	return rv
-}
-
-
-// SetState sets the value of the state property.
-// The current state of the UDP session.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwudpsession/state
-func (n_ NWUDPSession) SetState(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setState:"), value)
-}
-
-
+/* debug [class.gen.go]: End class NWUDPSession */
 
 

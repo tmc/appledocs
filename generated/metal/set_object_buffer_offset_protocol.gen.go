@@ -20,3 +20,4 @@ var setObjectBufferOffsetProtocol *objc.Protocol
 func init() {
 	setObjectBufferOffsetProtocol = objc.GetProtocol("setObjectBufferOffset:")
 }
+

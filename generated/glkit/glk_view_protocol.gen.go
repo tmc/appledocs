@@ -17,3 +17,4 @@ var glkViewProtocol *objc.Protocol
 func init() {
 	glkViewProtocol = objc.GetProtocol("glkView:")
 }
+

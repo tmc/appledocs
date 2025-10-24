@@ -36,7 +36,6 @@ type IView interface {
 
 // A parent class referenced by other HealthKitUI classes.
 
-
 // A parent class referenced by other HealthKitUI classes. [Full Topic]
 type View struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (v_ View) Autorelease() View {
 func NewView() View {
 	return getViewClass().New()
 }
-
-
-
-

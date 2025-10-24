@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRRVCCleanModeClusterModeOptionStruct interface {
 	SetModeTags(value unsafe.Pointer)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCCleanModeClusterModeOptionStruct
@@ -85,8 +83,6 @@ func NewMTRRVCCleanModeClusterModeOptionStruct() MTRRVCCleanModeClusterModeOptio
 	return getMTRRVCCleanModeClusterModeOptionStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/label
 func (m_ MTRRVCCleanModeClusterModeOptionStruct) Label() objc.IObject /* cross-framework: NSString */ {
@@ -94,13 +90,11 @@ func (m_ MTRRVCCleanModeClusterModeOptionStruct) Label() objc.IObject /* cross-f
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/label
 func (m_ MTRRVCCleanModeClusterModeOptionStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/mode
@@ -109,13 +103,11 @@ func (m_ MTRRVCCleanModeClusterModeOptionStruct) Mode() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/mode
 func (m_ MTRRVCCleanModeClusterModeOptionStruct) SetMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/modetags
@@ -124,12 +116,8 @@ func (m_ MTRRVCCleanModeClusterModeOptionStruct) ModeTags() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvccleanmodeclustermodeoptionstruct/modetags
 func (m_ MTRRVCCleanModeClusterModeOptionStruct) SetModeTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setModeTags:"), value)
 }
-
-
-

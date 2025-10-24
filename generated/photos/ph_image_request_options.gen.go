@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -52,7 +52,6 @@ type IPHImageRequestOptions interface {
 }
 
 // A set of options affecting the delivery of still image representations of Photos assets you request from an image manager.
-
 
 // A set of options affecting the delivery of still image representations of Photos assets you request from an image manager.
 //
@@ -100,8 +99,6 @@ func NewPHImageRequestOptions() PHImageRequestOptions {
 	return getPHImageRequestOptionsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/allowsecondarydegradedimage
 func (p_ PHImageRequestOptions) AllowSecondaryDegradedImage() bool {
@@ -109,13 +106,11 @@ func (p_ PHImageRequestOptions) AllowSecondaryDegradedImage() bool {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phimagerequestoptions/allowsecondarydegradedimage
 func (p_ PHImageRequestOptions) SetAllowSecondaryDegradedImage(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowSecondaryDegradedImage:"), value)
 }
-
 
 // The requested image quality and delivery priority.
 //
@@ -126,7 +121,6 @@ func (p_ PHImageRequestOptions) DeliveryMode() unsafe.Pointer {
 	return rv
 }
 
-
 // The requested image quality and delivery priority.
 //
 // [Full Topic]
@@ -134,7 +128,6 @@ func (p_ PHImageRequestOptions) DeliveryMode() unsafe.Pointer {
 func (p_ PHImageRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
-
 
 // A Boolean value that specifies whether Photos can download the requested image from iCloud.
 //
@@ -145,7 +138,6 @@ func (p_ PHImageRequestOptions) IsNetworkAccessAllowed() bool {
 	return rv
 }
 
-
 // A Boolean value that specifies whether Photos can download the requested image from iCloud.
 //
 // [Full Topic]
@@ -153,7 +145,6 @@ func (p_ PHImageRequestOptions) IsNetworkAccessAllowed() bool {
 func (p_ PHImageRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
 }
-
 
 // A Boolean value that determines whether Photos processes the image request synchronously.
 //
@@ -164,7 +155,6 @@ func (p_ PHImageRequestOptions) IsSynchronous() bool {
 	return rv
 }
 
-
 // A Boolean value that determines whether Photos processes the image request synchronously.
 //
 // [Full Topic]
@@ -172,7 +162,6 @@ func (p_ PHImageRequestOptions) IsSynchronous() bool {
 func (p_ PHImageRequestOptions) SetIsSynchronous(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSynchronous:"), value)
 }
-
 
 // A rectangle for requesting a cropped version of the original image.
 //
@@ -183,7 +172,6 @@ func (p_ PHImageRequestOptions) NormalizedCropRect() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // A rectangle for requesting a cropped version of the original image.
 //
 // [Full Topic]
@@ -191,7 +179,6 @@ func (p_ PHImageRequestOptions) NormalizedCropRect() objc.IObject /* cross-frame
 func (p_ PHImageRequestOptions) SetNormalizedCropRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNormalizedCropRect:"), value)
 }
-
 
 // A block that Photos calls periodically while downloading the image.
 //
@@ -202,7 +189,6 @@ func (p_ PHImageRequestOptions) ProgressHandler() unsafe.Pointer {
 	return rv
 }
 
-
 // A block that Photos calls periodically while downloading the image.
 //
 // [Full Topic]
@@ -210,7 +196,6 @@ func (p_ PHImageRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHImageRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
-
 
 // A mode that specifies how to resize the requested image.
 //
@@ -221,7 +206,6 @@ func (p_ PHImageRequestOptions) ResizeMode() unsafe.Pointer {
 	return rv
 }
 
-
 // A mode that specifies how to resize the requested image.
 //
 // [Full Topic]
@@ -229,7 +213,6 @@ func (p_ PHImageRequestOptions) ResizeMode() unsafe.Pointer {
 func (p_ PHImageRequestOptions) SetResizeMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResizeMode:"), value)
 }
-
 
 // The version of the image to be requested.
 //
@@ -240,7 +223,6 @@ func (p_ PHImageRequestOptions) Version() unsafe.Pointer {
 	return rv
 }
 
-
 // The version of the image to be requested.
 //
 // [Full Topic]
@@ -248,6 +230,3 @@ func (p_ PHImageRequestOptions) Version() unsafe.Pointer {
 func (p_ PHImageRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
-
-
-

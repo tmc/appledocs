@@ -15,3 +15,4 @@ var accessibilityProxyProtocol *objc.Protocol
 func init() {
 	accessibilityProxyProtocol = objc.GetProtocol("accessibilityProxy")
 }
+

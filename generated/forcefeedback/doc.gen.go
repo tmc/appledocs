@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for ForceFeedback. DO NOT EDIT.
 
 // Package forcefeedback provides Go bindings for the ForceFeedback framework.
 //
-// Control force feedback devices attached to the system. Develop plug-ins that enable communication with force feedback hardware.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ForceFeedback without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/ForceFeedback
 package forcefeedback
 
 import (

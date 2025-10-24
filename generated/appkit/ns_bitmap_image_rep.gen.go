@@ -7,11 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSBitmapImageRep */
+
+
+/* debug [class_header]: Header for NSBitmapImageRep */
 // The class instance for the [BitmapImageRep] class.
 var (
 	BitmapImageRepClass     _BitmapImageRepClass
@@ -28,12 +31,18 @@ func getBitmapImageRepClass() _BitmapImageRepClass {
 type _BitmapImageRepClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for BitmapImageRep */
 // An interface definition for the [BitmapImageRep] class.
 type IBitmapImageRep interface {
 	IImageRep
+	
+/* debug [class_interface_properties]: Properties for BitmapImageRep */
 	// properties:
-	BitmapData() unsafe.Pointer
+	BitmapData() objectivec.IObject
 	BitmapFormat() BitmapFormat
 	BitsPerPixel() int
 	BytesPerPlane() int
@@ -46,13 +55,17 @@ type IBitmapImageRep interface {
 	TIFFRepresentation() objc.IObject /* cross-framework: NSData */
 	IsPlanar() bool
 	SetIsPlanar(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for BitmapImageRep */
 	// methods:
 	CanBeCompressedUsing(compression TIFFCompression) bool
 	ColorAtXY(x int, y int) IColor
 	ColorizeByMappingGrayToColorBlackMappingWhiteMapping(midPoint float64, midPointColor IColor, shadowColor IColor, lightColor IColor)
 	BitmapImageRepByConvertingToColorSpaceRenderingIntent(targetSpace IColorSpace, renderingIntent ColorRenderingIntent /* not a class type */) IBitmapImageRep
-	GetBitmapDataPlanes(data unsafe.Pointer)
-	GetCompressionFactor(compression TIFFCompression, factor unsafe.Pointer)
+	GetBitmapDataPlanes(data objectivec.IObject)
+	GetCompressionFactor(compression TIFFCompression, factor objectivec.IObject)
 	GetPixelAtXY(p []uint, x int, y int)
 	IncrementalLoadFromDataComplete(data objc.IObject /* cross-framework: NSData */, complete bool) int
 	RepresentationUsingTypeProperties(storageType BitmapImageFileType, properties foundation.IDictionary) foundation.Data
@@ -60,33 +73,17 @@ type IBitmapImageRep interface {
 	SetColorAtXY(color IColor, x int, y int)
 	SetCompressionFactor(compression TIFFCompression, factor float32)
 	SetPixelAtXY(p []uint, x int, y int)
-	SetPropertyWithValue(property objc.IObject /* cross-framework: BitmapImageRepPropertyKey */, value objc.IObject)
+	SetPropertyWithValue(property BitmapImageRepPropertyKey /* typedef */, value objc.IObject)
 	TIFFRepresentationUsingCompressionFactor(comp TIFFCompression, factor float32) foundation.Data
-	ValueForProperty(property objc.IObject /* cross-framework: BitmapImageRepPropertyKey */) objc.ID
+	ValueForProperty(property BitmapImageRepPropertyKey /* typedef */) objc.ID
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that renders an image from bitmap data.
-//
-// Supported bitmap data formats include GIF, JPEG, TIFF, PNG, and various permutations of raw bitmap data.
+/* debug [class_interface]: End interface */
 
 
-// An object that renders an image from bitmap data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep
-type BitmapImageRep struct {
-	ImageRep
-}
 
-// BitmapImageRepFrom constructs a [BitmapImageRep] from an unsafe.Pointer.
-//
-// An object that renders an image from bitmap data.
-func BitmapImageRepFrom(ptr unsafe.Pointer) BitmapImageRep {
-	return BitmapImageRep{
-		ImageRep: ImageRepFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for BitmapImageRep */
 // Alloc allocates a new instance without initialization.
 func (bc _BitmapImageRepClass) Alloc() BitmapImageRep {
 	rv := objc.Send[BitmapImageRep](objc.ID(bc.class), objc.Sel("alloc"))
@@ -94,7 +91,6 @@ func (bc _BitmapImageRepClass) Alloc() BitmapImageRep {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BitmapImageRepClass) New() BitmapImageRep {
 	rv := objc.Send[BitmapImageRep](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -117,8 +113,37 @@ func (b_ BitmapImageRep) Autorelease() BitmapImageRep {
 func NewBitmapImageRep() BitmapImageRep {
 	return getBitmapImageRepClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for BitmapImageRep */
+// An object that renders an image from bitmap data.
+//
+// Supported bitmap data formats include GIF, JPEG, TIFF, PNG, and various permutations of raw bitmap data.
+
+
+// An object that renders an image from bitmap data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep
+type BitmapImageRep struct {
+	ImageRep
+}
+
+// BitmapImageRepFrom constructs a [BitmapImageRep] from an unsafe.Pointer.
+//
+// An object that renders an image from bitmap data.
+func BitmapImageRepFrom(ptr unsafe.Pointer) BitmapImageRep {
+	return BitmapImageRep{
+		ImageRep: ImageRepFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for BitmapImageRep */
 
 // Initializes a newly allocated bitmap image representation for incremental loading.
 //
@@ -129,31 +154,31 @@ func NewBitmapImageRepForIncrementalLoad() BitmapImageRep {
 	rv := objc.Send[BitmapImageRep](instance.ID, objc.Sel("initForIncrementalLoad"))
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBitmapImageRepForIncrementalLoad */
 
 
 // Initializes a newly allocated bitmap image representation so it can render the specified image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/init(bitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:)
-func NewBitmapImageRepWithBitmapDataPlanesPixelsWidePixelsHighBitsPerSampleSamplesPerPixelHasAlphaIsPlanarColorSpaceNameBitmapFormatBytesPerRowBitsPerPixel(planes unsafe.Pointer, width int, height int, bps int, spp int, alpha bool, isPlanar bool, colorSpaceName objc.IObject /* cross-framework: ColorSpaceName */, bitmapFormat BitmapFormat, rBytes int, pBits int) BitmapImageRep {
+func NewBitmapImageRepWithBitmapDataPlanesPixelsWidePixelsHighBitsPerSampleSamplesPerPixelHasAlphaIsPlanarColorSpaceNameBitmapFormatBytesPerRowBitsPerPixel(planes objectivec.IObject, width int, height int, bps int, spp int, alpha bool, isPlanar bool, colorSpaceName ColorSpaceName /* typedef */, bitmapFormat BitmapFormat, rBytes int, pBits int) BitmapImageRep {
 	instance := getBitmapImageRepClass().Alloc()
 	rv := objc.Send[BitmapImageRep](instance.ID, objc.Sel("initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bitmapFormat:bytesPerRow:bitsPerPixel:"), planes, width, height, bps, spp, alpha, isPlanar, colorSpaceName, bitmapFormat, rBytes, pBits)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBitmapImageRepWithBitmapDataPlanesPixelsWidePixelsHighBitsPerSampleSamplesPerPixelHasAlphaIsPlanarColorSpaceNameBitmapFormatBytesPerRowBitsPerPixel */
 
 
 // Initializes a newly allocated bitmap image representation so it can render the specified image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/init(bitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:)
-func NewBitmapImageRepWithBitmapDataPlanesPixelsWidePixelsHighBitsPerSampleSamplesPerPixelHasAlphaIsPlanarColorSpaceNameBytesPerRowBitsPerPixel(planes unsafe.Pointer, width int, height int, bps int, spp int, alpha bool, isPlanar bool, colorSpaceName objc.IObject /* cross-framework: ColorSpaceName */, rBytes int, pBits int) BitmapImageRep {
+func NewBitmapImageRepWithBitmapDataPlanesPixelsWidePixelsHighBitsPerSampleSamplesPerPixelHasAlphaIsPlanarColorSpaceNameBytesPerRowBitsPerPixel(planes objectivec.IObject, width int, height int, bps int, spp int, alpha bool, isPlanar bool, colorSpaceName ColorSpaceName /* typedef */, rBytes int, pBits int) BitmapImageRep {
 	instance := getBitmapImageRepClass().Alloc()
 	rv := objc.Send[BitmapImageRep](instance.ID, objc.Sel("initWithBitmapDataPlanes:pixelsWide:pixelsHigh:bitsPerSample:samplesPerPixel:hasAlpha:isPlanar:colorSpaceName:bytesPerRow:bitsPerPixel:"), planes, width, height, bps, spp, alpha, isPlanar, colorSpaceName, rBytes, pBits)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBitmapImageRepWithBitmapDataPlanesPixelsWidePixelsHighBitsPerSampleSamplesPerPixelHasAlphaIsPlanarColorSpaceNameBytesPerRowBitsPerPixel */
 
 
 // Returns a bitmap image representation from a Core Graphics image object.
@@ -165,7 +190,7 @@ func NewBitmapImageRepWithCGImage(cgImage ImageRef /* not a class type */) Bitma
 	rv := objc.Send[BitmapImageRep](instance.ID, objc.Sel("initWithCGImage:"), cgImage)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBitmapImageRepWithCGImage */
 
 
 // Returns a bitmap image representation from a Core Image object.
@@ -177,7 +202,7 @@ func NewBitmapImageRepWithCIImage(ciImage IImage) BitmapImageRep {
 	rv := objc.Send[BitmapImageRep](instance.ID, objc.Sel("initWithCIImage:"), ciImage)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBitmapImageRepWithCIImage */
 
 
 // Initializes a newly allocated bitmap image representation from the specified data.
@@ -189,21 +214,25 @@ func NewBitmapImageRepWithData(data objc.IObject /* cross-framework: NSData */) 
 	rv := objc.Send[BitmapImageRep](instance.ID, objc.Sel("initWithData:"), data)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBitmapImageRepWithData */
 
 
 // Initializes a newly allocated bitmap image representation with bitmap data from a rendered image.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/init(focusedViewRect:)
-func NewBitmapImageRepWithFocusedViewRect(rect objc.IObject /* cross-framework: Rect */) BitmapImageRep {
+func NewBitmapImageRepWithFocusedViewRect(rect Rect /* not a class type */) BitmapImageRep {
 	instance := getBitmapImageRepClass().Alloc()
 	rv := objc.Send[BitmapImageRep](instance.ID, objc.Sel("initWithFocusedViewRect:"), rect)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBitmapImageRepWithFocusedViewRect */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for BitmapImageRep */
 
 // Returns by indirection an array of all available compression types that can be used when writing a TIFF image.
 //
@@ -211,17 +240,17 @@ func NewBitmapImageRepWithFocusedViewRect(rect objc.IObject /* cross-framework: 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/getTIFFCompressionTypes(_:count:)
 func (bc _BitmapImageRepClass) GetTIFFCompressionTypesCount(list TIFFCompression, numTypes int) {
 	objc.Send[objc.ID](objc.ID(bc.class), objc.Sel("getTIFFCompressionTypes:count:"), list, numTypes)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=GetTIFFCompressionTypesCount) */
 
 
 // Creates and returns a bitmap image representation with the first image in the specified data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/imageRepWithData:
-func (bc _BitmapImageRepClass) ImageRepWithData(data objc.IObject /* cross-framework: NSData */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("imageRepWithData:"), data)
+func (bc _BitmapImageRepClass) ImageRepWithData(data objc.IObject /* cross-framework: NSData */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(bc.class), objc.Sel("imageRepWithData:"), data)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ImageRepWithData) */
 
 
 // Creates and returns an array of bitmap image representation objects that correspond to the images in the specified data.
@@ -231,7 +260,7 @@ func (bc _BitmapImageRepClass) ImageRepWithData(data objc.IObject /* cross-frame
 func (bc _BitmapImageRepClass) ImageRepsWithData(data objc.IObject /* cross-framework: NSData */) []ImageRep {
 	rv := objc.Send[[]ImageRep](objc.ID(bc.class), objc.Sel("imageRepsWithData:"), data)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ImageRepsWithData) */
 
 
 // Returns an autoreleased string containing the localized name for the specified compression type.
@@ -241,7 +270,7 @@ func (bc _BitmapImageRepClass) ImageRepsWithData(data objc.IObject /* cross-fram
 func (bc _BitmapImageRepClass) LocalizedNameForTIFFCompressionType(compression TIFFCompression) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(bc.class), objc.Sel("localizedNameForTIFFCompressionType:"), compression)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedNameForTIFFCompressionType) */
 
 
 // Formats the specified bitmap images using the specified storage type and properties and returns them in a data object.
@@ -251,7 +280,7 @@ func (bc _BitmapImageRepClass) LocalizedNameForTIFFCompressionType(compression T
 func (bc _BitmapImageRepClass) RepresentationOfImageRepsInArrayUsingTypeProperties(imageReps []ImageRep, storageType BitmapImageFileType, properties foundation.IDictionary) foundation.Data {
 	rv := objc.Send[foundation.Data](objc.ID(bc.class), objc.Sel("representationOfImageRepsInArray:usingType:properties:"), imageReps, storageType, properties)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RepresentationOfImageRepsInArrayUsingTypeProperties) */
 
 
 // Returns a TIFF representation of the specified images.
@@ -261,7 +290,7 @@ func (bc _BitmapImageRepClass) RepresentationOfImageRepsInArrayUsingTypeProperti
 func (bc _BitmapImageRepClass) TIFFRepresentationOfImageRepsInArray(array []ImageRep) foundation.Data {
 	rv := objc.Send[foundation.Data](objc.ID(bc.class), objc.Sel("TIFFRepresentationOfImageRepsInArray:"), array)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TIFFRepresentationOfImageRepsInArray) */
 
 
 // Returns a TIFF representation of the specified images using the specified compression scheme and factor.
@@ -271,8 +300,18 @@ func (bc _BitmapImageRepClass) TIFFRepresentationOfImageRepsInArray(array []Imag
 func (bc _BitmapImageRepClass) TIFFRepresentationOfImageRepsInArrayUsingCompressionFactor(array []ImageRep, comp TIFFCompression, factor float32) foundation.Data {
 	rv := objc.Send[foundation.Data](objc.ID(bc.class), objc.Sel("TIFFRepresentationOfImageRepsInArray:usingCompression:factor:"), array, comp, factor)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TIFFRepresentationOfImageRepsInArrayUsingCompressionFactor) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for BitmapImageRep */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for BitmapImageRep */
 
 // Tests whether the bitmap image representation can be compressed by the specified compression scheme.
 //
@@ -281,7 +320,7 @@ func (bc _BitmapImageRepClass) TIFFRepresentationOfImageRepsInArrayUsingCompress
 func (b_ BitmapImageRep) CanBeCompressedUsing(compression TIFFCompression) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("canBeCompressedUsing:"), compression)
 	return rv
-}
+}/* debug [instance_methods/method]: CanBeCompressedUsing */
 
 
 // Returns the color of the pixel at the specified coordinates.
@@ -291,7 +330,7 @@ func (b_ BitmapImageRep) CanBeCompressedUsing(compression TIFFCompression) bool 
 func (b_ BitmapImageRep) ColorAtXY(x int, y int) IColor {
 	rv := objc.Send[Color](b_.ID, objc.Sel("colorAtX:y:"), x, y)
 	return rv
-}
+}/* debug [instance_methods/method]: ColorAtXY */
 
 
 // Colorizes a grayscale image.
@@ -300,7 +339,7 @@ func (b_ BitmapImageRep) ColorAtXY(x int, y int) IColor {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/colorize(byMappingGray:to:blackMapping:whiteMapping:)
 func (b_ BitmapImageRep) ColorizeByMappingGrayToColorBlackMappingWhiteMapping(midPoint float64, midPointColor IColor, shadowColor IColor, lightColor IColor) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("colorizeByMappingGray:toColor:blackMapping:whiteMapping:"), midPoint, midPointColor, shadowColor, lightColor)
-}
+}/* debug [instance_methods/method]: ColorizeByMappingGrayToColorBlackMappingWhiteMapping */
 
 
 // Converts the bitmap image representation to the specified color space.
@@ -310,25 +349,25 @@ func (b_ BitmapImageRep) ColorizeByMappingGrayToColorBlackMappingWhiteMapping(mi
 func (b_ BitmapImageRep) BitmapImageRepByConvertingToColorSpaceRenderingIntent(targetSpace IColorSpace, renderingIntent ColorRenderingIntent /* not a class type */) IBitmapImageRep {
 	rv := objc.Send[BitmapImageRep](b_.ID, objc.Sel("bitmapImageRepByConvertingToColorSpace:renderingIntent:"), targetSpace, renderingIntent)
 	return rv
-}
+}/* debug [instance_methods/method]: BitmapImageRepByConvertingToColorSpaceRenderingIntent */
 
 
 // Returns by indirection bitmap data of the bitmap image representation separated into planes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/getBitmapDataPlanes(_:)
-func (b_ BitmapImageRep) GetBitmapDataPlanes(data unsafe.Pointer) {
+func (b_ BitmapImageRep) GetBitmapDataPlanes(data objectivec.IObject) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getBitmapDataPlanes:"), data)
-}
+}/* debug [instance_methods/method]: GetBitmapDataPlanes */
 
 
 // Returns by indirection the bitmap image representation’s compression type and compression factor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/getCompression(_:factor:)
-func (b_ BitmapImageRep) GetCompressionFactor(compression TIFFCompression, factor unsafe.Pointer) {
+func (b_ BitmapImageRep) GetCompressionFactor(compression TIFFCompression, factor objectivec.IObject) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getCompression:factor:"), compression, factor)
-}
+}/* debug [instance_methods/method]: GetCompressionFactor */
 
 
 // Returns by indirection the pixel data for the specified location in the bitmap image representation.
@@ -337,7 +376,7 @@ func (b_ BitmapImageRep) GetCompressionFactor(compression TIFFCompression, facto
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/getPixel(_:atX:y:)
 func (b_ BitmapImageRep) GetPixelAtXY(p []uint, x int, y int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("getPixel:atX:y:"), p, x, y)
-}
+}/* debug [instance_methods/method]: GetPixelAtXY */
 
 
 // Loads the current image data into an incrementally-loaded image representation and returns the current status of the image.
@@ -347,7 +386,7 @@ func (b_ BitmapImageRep) GetPixelAtXY(p []uint, x int, y int) {
 func (b_ BitmapImageRep) IncrementalLoadFromDataComplete(data objc.IObject /* cross-framework: NSData */, complete bool) int {
 	rv := objc.Send[int](b_.ID, objc.Sel("incrementalLoadFromData:complete:"), data, complete)
 	return rv
-}
+}/* debug [instance_methods/method]: IncrementalLoadFromDataComplete */
 
 
 // Formats the bitmap representation’s image data using the specified storage type and properties and returns it in a data object.
@@ -357,7 +396,7 @@ func (b_ BitmapImageRep) IncrementalLoadFromDataComplete(data objc.IObject /* cr
 func (b_ BitmapImageRep) RepresentationUsingTypeProperties(storageType BitmapImageFileType, properties foundation.IDictionary) foundation.Data {
 	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("representationUsingType:properties:"), storageType, properties)
 	return rv
-}
+}/* debug [instance_methods/method]: RepresentationUsingTypeProperties */
 
 
 // Changes the color space tag of the bitmap image representation.
@@ -367,7 +406,7 @@ func (b_ BitmapImageRep) RepresentationUsingTypeProperties(storageType BitmapIma
 func (b_ BitmapImageRep) BitmapImageRepByRetaggingWithColorSpace(newSpace IColorSpace) IBitmapImageRep {
 	rv := objc.Send[BitmapImageRep](b_.ID, objc.Sel("bitmapImageRepByRetaggingWithColorSpace:"), newSpace)
 	return rv
-}
+}/* debug [instance_methods/method]: BitmapImageRepByRetaggingWithColorSpace */
 
 
 // Changes the color of the pixel at the specified coordinates.
@@ -376,7 +415,7 @@ func (b_ BitmapImageRep) BitmapImageRepByRetaggingWithColorSpace(newSpace IColor
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/setColor(_:atX:y:)
 func (b_ BitmapImageRep) SetColorAtXY(color IColor, x int, y int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setColor:atX:y:"), color, x, y)
-}
+}/* debug [instance_methods/method]: SetColorAtXY */
 
 
 // Sets the bitmap image representation’s compression type and compression factor.
@@ -385,7 +424,7 @@ func (b_ BitmapImageRep) SetColorAtXY(color IColor, x int, y int) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/setCompression(_:factor:)
 func (b_ BitmapImageRep) SetCompressionFactor(compression TIFFCompression, factor float32) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setCompression:factor:"), compression, factor)
-}
+}/* debug [instance_methods/method]: SetCompressionFactor */
 
 
 // Sets the bitmap image representation’s pixel at the specified coordinates to the specified raw pixel values.
@@ -394,16 +433,16 @@ func (b_ BitmapImageRep) SetCompressionFactor(compression TIFFCompression, facto
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/setPixel(_:atX:y:)
 func (b_ BitmapImageRep) SetPixelAtXY(p []uint, x int, y int) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPixel:atX:y:"), p, x, y)
-}
+}/* debug [instance_methods/method]: SetPixelAtXY */
 
 
 // Sets the specified property of the bitmap image representation to the specified value.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/setProperty(_:withValue:)
-func (b_ BitmapImageRep) SetPropertyWithValue(property objc.IObject /* cross-framework: BitmapImageRepPropertyKey */, value objc.IObject) {
+func (b_ BitmapImageRep) SetPropertyWithValue(property BitmapImageRepPropertyKey /* typedef */, value objc.IObject) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setProperty:withValue:"), property, value)
-}
+}/* debug [instance_methods/method]: SetPropertyWithValue */
 
 
 // Returns a TIFF representation of the image using the specified compression.
@@ -413,27 +452,32 @@ func (b_ BitmapImageRep) SetPropertyWithValue(property objc.IObject /* cross-fra
 func (b_ BitmapImageRep) TIFFRepresentationUsingCompressionFactor(comp TIFFCompression, factor float32) foundation.Data {
 	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("TIFFRepresentationUsingCompression:factor:"), comp, factor)
 	return rv
-}
+}/* debug [instance_methods/method]: TIFFRepresentationUsingCompressionFactor */
 
 
 // Returns the value for the specified property.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/value(forProperty:)
-func (b_ BitmapImageRep) ValueForProperty(property objc.IObject /* cross-framework: BitmapImageRepPropertyKey */) objc.ID {
+func (b_ BitmapImageRep) ValueForProperty(property BitmapImageRepPropertyKey /* typedef */) objc.ID {
 	rv := objc.Send[objc.ID](b_.ID, objc.Sel("valueForProperty:"), property)
 	return rv
-}
+}/* debug [instance_methods/method]: ValueForProperty */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for BitmapImageRep */
 
 // A pointer to the bitmap data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/bitmapData
-func (b_ BitmapImageRep) BitmapData() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("bitmapData"))
+func (b_ BitmapImageRep) BitmapData() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](b_.ID, objc.Sel("bitmapData"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bitmapData */
 
 
 // The format of the bitmap image representation.
@@ -443,7 +487,7 @@ func (b_ BitmapImageRep) BitmapData() unsafe.Pointer {
 func (b_ BitmapImageRep) BitmapFormat() BitmapFormat {
 	rv := objc.Send[BitmapFormat](b_.ID, objc.Sel("bitmapFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bitmapFormat */
 
 
 // The number of bits allocated for each pixel in each plane of data.
@@ -453,7 +497,7 @@ func (b_ BitmapImageRep) BitmapFormat() BitmapFormat {
 func (b_ BitmapImageRep) BitsPerPixel() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("bitsPerPixel"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bitsPerPixel */
 
 
 // The number of bytes in each plane or channel of data.
@@ -463,7 +507,7 @@ func (b_ BitmapImageRep) BitsPerPixel() int {
 func (b_ BitmapImageRep) BytesPerPlane() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("bytesPerPlane"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bytesPerPlane */
 
 
 // The minimum number of bytes required to specify a scan line in each data plane.
@@ -473,7 +517,7 @@ func (b_ BitmapImageRep) BytesPerPlane() int {
 func (b_ BitmapImageRep) BytesPerRow() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("bytesPerRow"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bytesPerRow */
 
 
 // A Core Graphics image object based on the bitmap image representation’s data.
@@ -483,7 +527,7 @@ func (b_ BitmapImageRep) BytesPerRow() int {
 func (b_ BitmapImageRep) CGImage() ImageRef /* not a class type */ {
 	rv := objc.Send[ImageRef](b_.ID, objc.Sel("CGImage"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CGImage */
 
 
 // The color space of the bitmap.
@@ -493,7 +537,7 @@ func (b_ BitmapImageRep) CGImage() ImageRef /* not a class type */ {
 func (b_ BitmapImageRep) ColorSpace() IColorSpace {
 	rv := objc.Send[ColorSpace](b_.ID, objc.Sel("colorSpace"))
 	return rv
-}
+}/* debug [instance_properties/getter]: colorSpace */
 
 
 // A Boolean value that indicates whether the image data is in a planar configuration.
@@ -503,7 +547,7 @@ func (b_ BitmapImageRep) ColorSpace() IColorSpace {
 func (b_ BitmapImageRep) Planar() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("planar"))
 	return rv
-}
+}/* debug [instance_properties/getter]: planar */
 
 
 // The number of separate planes into which the image data is organized.
@@ -513,7 +557,7 @@ func (b_ BitmapImageRep) Planar() bool {
 func (b_ BitmapImageRep) NumberOfPlanes() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("numberOfPlanes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfPlanes */
 
 
 // The number of components for each pixel.
@@ -523,7 +567,7 @@ func (b_ BitmapImageRep) NumberOfPlanes() int {
 func (b_ BitmapImageRep) SamplesPerPixel() int {
 	rv := objc.Send[int](b_.ID, objc.Sel("samplesPerPixel"))
 	return rv
-}
+}/* debug [instance_properties/getter]: samplesPerPixel */
 
 
 // A TIFF representation of the bitmap image data.
@@ -533,7 +577,7 @@ func (b_ BitmapImageRep) SamplesPerPixel() int {
 func (b_ BitmapImageRep) TIFFRepresentation() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](b_.ID, objc.Sel("TIFFRepresentation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: TIFFRepresentation */
 
 
 // A Boolean value that indicates whether the image data is in a planar configuration.
@@ -543,7 +587,7 @@ func (b_ BitmapImageRep) TIFFRepresentation() objc.IObject /* cross-framework: N
 func (b_ BitmapImageRep) IsPlanar() bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isPlanar"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isPlanar */
 
 
 // A Boolean value that indicates whether the image data is in a planar configuration.
@@ -552,6 +596,11 @@ func (b_ BitmapImageRep) IsPlanar() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsbitmapimagerep/isplanar
 func (b_ BitmapImageRep) SetIsPlanar(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsPlanar:"), value)
-}
+}/* debug [instance_properties/setter]: isPlanar */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSBitmapImageRep */
 
 

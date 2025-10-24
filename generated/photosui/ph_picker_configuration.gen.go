@@ -36,7 +36,6 @@ type IPHPickerConfiguration interface {
 
 // An object that contains information about how to configure a picker view controller.
 
-
 // An object that contains information about how to configure a picker view controller.
 //
 // [Full Topic]
@@ -82,7 +81,3 @@ func (p_ PHPickerConfiguration) Autorelease() PHPickerConfiguration {
 func NewPHPickerConfiguration() PHPickerConfiguration {
 	return getPHPickerConfigurationClass().New()
 }
-
-
-
-

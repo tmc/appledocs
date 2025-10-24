@@ -15,3 +15,4 @@ var setInputValuesWithPropertyListProtocol *objc.Protocol
 func init() {
 	setInputValuesWithPropertyListProtocol = objc.GetProtocol("setInputValuesWithPropertyList:")
 }
+

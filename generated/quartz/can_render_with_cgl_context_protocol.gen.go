@@ -15,3 +15,4 @@ var canRenderWithCGLContextProtocol *objc.Protocol
 func init() {
 	canRenderWithCGLContextProtocol = objc.GetProtocol("canRenderWithCGLContext:")
 }
+

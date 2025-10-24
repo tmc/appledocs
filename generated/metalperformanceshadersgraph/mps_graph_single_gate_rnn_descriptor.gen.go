@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPSGraphSingleGateRNNDescriptor */
+
+
+/* debug [class_header]: Header for MPSGraphSingleGateRNNDescriptor */
 // The class instance for the [GraphSingleGateRNNDescriptor] class.
 var (
 	GraphSingleGateRNNDescriptorClass     _GraphSingleGateRNNDescriptorClass
@@ -25,10 +29,16 @@ func getGraphSingleGateRNNDescriptorClass() _GraphSingleGateRNNDescriptorClass {
 type _GraphSingleGateRNNDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GraphSingleGateRNNDescriptor */
 // An interface definition for the [GraphSingleGateRNNDescriptor] class.
 type IGraphSingleGateRNNDescriptor interface {
 	IGraphObject
+	
+/* debug [class_interface_properties]: Properties for GraphSingleGateRNNDescriptor */
 	// properties:
 	Activation() GraphRNNActivation
 	SetActivation(value GraphRNNActivation)
@@ -38,31 +48,19 @@ type IGraphSingleGateRNNDescriptor interface {
 	SetReverse(value bool)
 	Training() bool
 	SetTraining(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GraphSingleGateRNNDescriptor */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The class that defines the parameters for a single gate RNN operation.
-//
-// Use this descriptor with the following methods:
+/* debug [class_interface]: End interface */
 
 
-// The class that defines the parameters for a single gate RNN operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphSingleGateRNNDescriptor
-type GraphSingleGateRNNDescriptor struct {
-	GraphObject
-}
 
-// GraphSingleGateRNNDescriptorFrom constructs a [GraphSingleGateRNNDescriptor] from an unsafe.Pointer.
-//
-// The class that defines the parameters for a single gate RNN operation.
-func GraphSingleGateRNNDescriptorFrom(ptr unsafe.Pointer) GraphSingleGateRNNDescriptor {
-	return GraphSingleGateRNNDescriptor{
-		GraphObject: GraphObjectFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GraphSingleGateRNNDescriptor */
 // Alloc allocates a new instance without initialization.
 func (gc _GraphSingleGateRNNDescriptorClass) Alloc() GraphSingleGateRNNDescriptor {
 	rv := objc.Send[GraphSingleGateRNNDescriptor](objc.ID(gc.class), objc.Sel("alloc"))
@@ -70,7 +68,6 @@ func (gc _GraphSingleGateRNNDescriptorClass) Alloc() GraphSingleGateRNNDescripto
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GraphSingleGateRNNDescriptorClass) New() GraphSingleGateRNNDescriptor {
 	rv := objc.Send[GraphSingleGateRNNDescriptor](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +90,56 @@ func (g_ GraphSingleGateRNNDescriptor) Autorelease() GraphSingleGateRNNDescripto
 func NewGraphSingleGateRNNDescriptor() GraphSingleGateRNNDescriptor {
 	return getGraphSingleGateRNNDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GraphSingleGateRNNDescriptor */
+// The class that defines the parameters for a single gate RNN operation.
+//
+// Use this descriptor with the following methods:
+
+
+// The class that defines the parameters for a single gate RNN operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphSingleGateRNNDescriptor
+type GraphSingleGateRNNDescriptor struct {
+	GraphObject
+}
+
+// GraphSingleGateRNNDescriptorFrom constructs a [GraphSingleGateRNNDescriptor] from an unsafe.Pointer.
+//
+// The class that defines the parameters for a single gate RNN operation.
+func GraphSingleGateRNNDescriptorFrom(ptr unsafe.Pointer) GraphSingleGateRNNDescriptor {
+	return GraphSingleGateRNNDescriptor{
+		GraphObject: GraphObjectFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GraphSingleGateRNNDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GraphSingleGateRNNDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GraphSingleGateRNNDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GraphSingleGateRNNDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GraphSingleGateRNNDescriptor */
 
 // A parameter that defines the activation function to use with the RNN operation.
 //
@@ -103,7 +148,7 @@ func NewGraphSingleGateRNNDescriptor() GraphSingleGateRNNDescriptor {
 func (g_ GraphSingleGateRNNDescriptor) Activation() GraphRNNActivation {
 	rv := objc.Send[GraphRNNActivation](g_.ID, objc.Sel("activation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: activation */
 
 
 // A parameter that defines the activation function to use with the RNN operation.
@@ -112,7 +157,7 @@ func (g_ GraphSingleGateRNNDescriptor) Activation() GraphRNNActivation {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/activation
 func (g_ GraphSingleGateRNNDescriptor) SetActivation(value GraphRNNActivation) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setActivation:"), value)
-}
+}/* debug [instance_properties/setter]: activation */
 
 
 // A parameter that defines a bidirectional RNN layer.
@@ -122,7 +167,7 @@ func (g_ GraphSingleGateRNNDescriptor) SetActivation(value GraphRNNActivation) {
 func (g_ GraphSingleGateRNNDescriptor) Bidirectional() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("bidirectional"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bidirectional */
 
 
 // A parameter that defines a bidirectional RNN layer.
@@ -131,7 +176,7 @@ func (g_ GraphSingleGateRNNDescriptor) Bidirectional() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/bidirectional
 func (g_ GraphSingleGateRNNDescriptor) SetBidirectional(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setBidirectional:"), value)
-}
+}/* debug [instance_properties/setter]: bidirectional */
 
 
 // A parameter that defines time direction of the input sequence.
@@ -141,7 +186,7 @@ func (g_ GraphSingleGateRNNDescriptor) SetBidirectional(value bool) {
 func (g_ GraphSingleGateRNNDescriptor) Reverse() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("reverse"))
 	return rv
-}
+}/* debug [instance_properties/getter]: reverse */
 
 
 // A parameter that defines time direction of the input sequence.
@@ -150,7 +195,7 @@ func (g_ GraphSingleGateRNNDescriptor) Reverse() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/reverse
 func (g_ GraphSingleGateRNNDescriptor) SetReverse(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setReverse:"), value)
-}
+}/* debug [instance_properties/setter]: reverse */
 
 
 // A parameter that makes the RNN layer support training.
@@ -160,7 +205,7 @@ func (g_ GraphSingleGateRNNDescriptor) SetReverse(value bool) {
 func (g_ GraphSingleGateRNNDescriptor) Training() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("training"))
 	return rv
-}
+}/* debug [instance_properties/getter]: training */
 
 
 // A parameter that makes the RNN layer support training.
@@ -169,7 +214,12 @@ func (g_ GraphSingleGateRNNDescriptor) Training() bool {
 // [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphsinglegaternndescriptor/training
 func (g_ GraphSingleGateRNNDescriptor) SetTraining(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTraining:"), value)
-}
+}/* debug [instance_properties/setter]: training */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSGraphSingleGateRNNDescriptor */
 
 
 

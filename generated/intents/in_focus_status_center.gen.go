@@ -41,7 +41,6 @@ type IINFocusStatusCenter interface {
 
 // An object that maintains the user’s current focus status and your app’s ability to access it.
 
-
 // An object that maintains the user’s current focus status and your app’s ability to access it.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINFocusStatusCenter() INFocusStatusCenter {
 	return getINFocusStatusCenterClass().New()
 }
 
-
-
 // Asks the system for access to the user’s focus status.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func NewINFocusStatusCenter() INFocusStatusCenter {
 func (i_ INFocusStatusCenter) RequestAuthorizationWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("requestAuthorizationWithCompletionHandler:"), completionHandler)
 }
-
 
 // Returns your app’s current ability to access the user’s focus status.
 //
@@ -108,7 +104,6 @@ func (i_ INFocusStatusCenter) AuthorizationStatus() unsafe.Pointer {
 	return rv
 }
 
-
 // Returns your app’s current ability to access the user’s focus status.
 //
 // [Full Topic]
@@ -116,7 +111,6 @@ func (i_ INFocusStatusCenter) AuthorizationStatus() unsafe.Pointer {
 func (i_ INFocusStatusCenter) SetAuthorizationStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAuthorizationStatus:"), value)
 }
-
 
 // The user’s ability to receive notifications.
 //
@@ -127,7 +121,6 @@ func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus {
 	return rv
 }
 
-
 // The user’s ability to receive notifications.
 //
 // [Full Topic]
@@ -135,6 +128,3 @@ func (i_ INFocusStatusCenter) FocusStatus() INFocusStatus {
 func (i_ INFocusStatusCenter) SetFocusStatus(value INFocusStatus) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFocusStatus:"), value)
 }
-
-
-

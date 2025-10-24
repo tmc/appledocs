@@ -15,3 +15,4 @@ var TextViewportLayoutControllerDelegateProtocol *objc.Protocol
 func init() {
 	TextViewportLayoutControllerDelegateProtocol = objc.GetProtocol("NSTextViewportLayoutControllerDelegate")
 }
+

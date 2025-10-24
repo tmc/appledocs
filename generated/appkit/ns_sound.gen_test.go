@@ -9,6 +9,14 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewSound
 
+// ExampleNewSoundNamed demonstrates how to create a Sound instance using NewSoundNamed.
+// Returns the   instance associated with a given name.
+func ExampleNewSoundNamed() {
+	_ = appkit.NewSoundNamed(
+		appkit.SoundName /* typedef */{}, // name SoundName /* typedef */
+	)
+	// Output:
+}
 // ExampleSound_Pause demonstrates using Pause on a Sound instance.
 // Pauses audio playback.
 func ExampleSound_Pause() {

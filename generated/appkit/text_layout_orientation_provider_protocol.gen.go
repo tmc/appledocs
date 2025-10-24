@@ -15,3 +15,4 @@ var TextLayoutOrientationProviderProtocol *objc.Protocol
 func init() {
 	TextLayoutOrientationProviderProtocol = objc.GetProtocol("NSTextLayoutOrientationProvider")
 }
+

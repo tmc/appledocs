@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestEmitTestEventResponseParams] class.
@@ -37,8 +37,6 @@ type IMTRTestClusterClusterTestEmitTestEventResponseParams interface {
 	SetValue(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestEmitTestEventResponseParams
@@ -84,8 +82,6 @@ func NewMTRTestClusterClusterTestEmitTestEventResponseParams() MTRTestClusterClu
 	return getMTRTestClusterClusterTestEmitTestEventResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
@@ -93,13 +89,11 @@ func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) TimedInvokeTimeou
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/value
@@ -108,12 +102,8 @@ func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) Value() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittesteventresponseparams/value
 func (m_ MTRTestClusterClusterTestEmitTestEventResponseParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

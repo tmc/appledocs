@@ -2,7 +2,9 @@
 
 package identitylookup
 
+/* debug [enums.gen.go]: Generating 4 enums for IdentityLookup */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum ILClassificationAction (4 cases) */
 // ILClassificationAction - The actions the system can take in response to the reported communication.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILClassificationAction
@@ -27,29 +29,79 @@ const (
 	ILClassificationActionReportNotJunk ILClassificationAction = 0
 )
 
+/* debug [enums.gen.go]: Processing enum ILMessageFilterAction (6 cases) */
 // ILMessageFilterAction - Responds to a received message with a filter action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterAction
 type ILMessageFilterAction uint
 
 const (
+	// ILMessageFilterActionAllow - Allows the system to show the message unfiltered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterAction/allow
+	ILMessageFilterActionAllow ILMessageFilterAction = 0
+	// ILMessageFilterActionFilter - Prevents the system from showing the message unfiltered.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterAction/filter
+	ILMessageFilterActionFilter ILMessageFilterAction = 0
 	// ILMessageFilterActionJunk - Prevents the system from showing the message normally, filtered as a Junk message.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterAction/junk
 	ILMessageFilterActionJunk ILMessageFilterAction = 0
+	// ILMessageFilterActionNone - Allows the system to show the message unfiltered due to insufficient information to determine an action.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterAction/none
+	ILMessageFilterActionNone ILMessageFilterAction = 0
+	// ILMessageFilterActionPromotion - Prevents the system from showing the message normally, filtered as a Promotional message.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterAction/promotion
+	ILMessageFilterActionPromotion ILMessageFilterAction = 0
+	// ILMessageFilterActionTransaction - Prevents the system from showing the message normally, filtered as a Transactional message.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterAction/transaction
+	ILMessageFilterActionTransaction ILMessageFilterAction = 0
 )
 
+/* debug [enums.gen.go]: Processing enum ILMessageFilterError (5 cases) */
 // ILMessageFilterError - IdentityLookup error codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterError-swift.struct/Code
 type ILMessageFilterError uint
 
+const (
+	// ILMessageFilterErrorInvalidNetworkURL - The network request URL given by the   key in the app extension’s   file is either missing or invalid.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterError-swift.struct/Code/invalidNetworkURL
+	ILMessageFilterErrorInvalidNetworkURL ILMessageFilterError = 0
+	// ILMessageFilterErrorNetworkRequestFailed - The network request failed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterError-swift.struct/Code/networkRequestFailed
+	ILMessageFilterErrorNetworkRequestFailed ILMessageFilterError = 0
+	// ILMessageFilterErrorNetworkURLUnauthorized - The app extension’s containing app isn’t authorized to allow the app extension to defer network requests to the host specified in its   file.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterError-swift.struct/Code/networkURLUnauthorized
+	ILMessageFilterErrorNetworkURLUnauthorized ILMessageFilterError = 0
+	// ILMessageFilterErrorRedundantNetworkDeferral - The app extension tried to defer a request to its network service more than once, which isn’t allowed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterError-swift.struct/Code/redundantNetworkDeferral
+	ILMessageFilterErrorRedundantNetworkDeferral ILMessageFilterError = 0
+	// ILMessageFilterErrorSystem - An unspecified system error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterError-swift.struct/Code/system
+	ILMessageFilterErrorSystem ILMessageFilterError = 0
+)
+
+/* debug [enums.gen.go]: Processing enum ILMessageFilterSubAction (13 cases) */
 // ILMessageFilterSubAction - Responds to a received message with a filter subaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction
 type ILMessageFilterSubAction uint
 
 const (
+	// ILMessageFilterSubActionNone - Allows the system to show the message unfiltered due to insufficient information to determine an action.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/none
+	ILMessageFilterSubActionNone ILMessageFilterSubAction = 0
 	// ILMessageFilterSubActionPromotionalCoupons - Prevents the system from showing the message normally, filtered as an Coupons message.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/promotionalCoupons
@@ -90,6 +142,14 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/transactionalReminders
 	ILMessageFilterSubActionTransactionalReminders ILMessageFilterSubAction = 0
+	// ILMessageFilterSubActionTransactionalRewards - Prevents the system from showing the message normally, filtered as a Rewards message.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/transactionalRewards
+	ILMessageFilterSubActionTransactionalRewards ILMessageFilterSubAction = 0
+	// ILMessageFilterSubActionTransactionalWeather - Prevents the system from showing the message normally, filtered as a Weather message.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/IdentityLookup/ILMessageFilterSubAction/transactionalWeather
+	ILMessageFilterSubActionTransactionalWeather ILMessageFilterSubAction = 0
 )
 
 

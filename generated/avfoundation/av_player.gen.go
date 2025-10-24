@@ -7,12 +7,15 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/audiotoolbox"
-	"github.com/tmc/appledocs/generated/coremedia"
+	"github.com/tmc/appledocs/generated/corevideo"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVPlayer */
+
+
+/* debug [class_header]: Header for AVPlayer */
 // The class instance for the [Player] class.
 var (
 	PlayerClass     _PlayerClass
@@ -29,10 +32,16 @@ func getPlayerClass() _PlayerClass {
 type _PlayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Player */
 // An interface definition for the [Player] class.
 type IPlayer interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Player */
 	// properties:
 	ActionAtItemEnd() PlayerActionAtItemEnd
 	SetActionAtItemEnd(value PlayerActionAtItemEnd)
@@ -67,13 +76,13 @@ type IPlayer interface {
 	SetPreventsDisplaySleepDuringVideoPlayback(value bool)
 	Rate() float32
 	SetRate(value float32)
-	ReasonForWaitingToPlay() objc.IObject /* cross-framework: PlayerWaitingReason */
+	ReasonForWaitingToPlay() PlayerWaitingReason /* typedef */
 	SourceClock() ClockRef /* not a class type */
 	SetSourceClock(value ClockRef /* not a class type */)
 	Status() PlayerStatus
 	TimeControlStatus() PlayerTimeControlStatus
-	VideoOutput() PlayerVideoOutput /* not a class type */
-	SetVideoOutput(value PlayerVideoOutput /* not a class type */)
+	VideoOutput() IAVPlayerVideoOutput
+	SetVideoOutput(value IAVPlayerVideoOutput)
 	Volume() float32
 	SetVolume(value float32)
 	IsAirPlayVideoActive() bool
@@ -90,17 +99,21 @@ type IPlayer interface {
 	SetAllowedAudioSpatializationFormats(value AudioSpatializationFormats)
 	IsAudioSpatializationAllowed() bool
 	SetIsAudioSpatializationAllowed(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Player */
 	// methods:
-	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []objc.IObject /* cross-framework: Value */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
-	AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval objc.IObject /* cross-framework: Time */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID
+	AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value, queue objectivec.IObject, block unsafe.Pointer) objc.ID
+	AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval objc.IObject /* cross-framework: Time */, queue objectivec.IObject, block unsafe.Pointer) objc.ID
 	CancelPendingPrerolls()
 	CurrentTime() objc.IObject /* cross-framework: Time */
-	MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic MediaCharacteristic /* not a class type */) IPlayerMediaSelectionCriteria
+	MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic MediaCharacteristic /* typedef */) IPlayerMediaSelectionCriteria
 	Pause()
 	Play()
 	PlayImmediatelyAtRate(rate float32)
 	PrerollAtRateCompletionHandler(rate float32, completionHandler unsafe.Pointer)
-	RemoveTimeObserver(observer objectivec.IObject)
+	RemoveTimeObserver(observer objc.IObject)
 	ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem)
 	SeekToTime(time objc.IObject /* cross-framework: Time */)
 	SeekToDate(date objc.IObject /* cross-framework: NSDate */)
@@ -108,30 +121,16 @@ type IPlayer interface {
 	SeekToDateCompletionHandler(date objc.IObject /* cross-framework: NSDate */, completionHandler unsafe.Pointer)
 	SeekToTimeToleranceBeforeToleranceAfter(time objc.IObject /* cross-framework: Time */, toleranceBefore objc.IObject /* cross-framework: Time */, toleranceAfter objc.IObject /* cross-framework: Time */)
 	SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time objc.IObject /* cross-framework: Time */, toleranceBefore objc.IObject /* cross-framework: Time */, toleranceAfter objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer)
-	SetMediaSelectionCriteriaForMediaCharacteristic(criteria IAVPlayerMediaSelectionCriteria, mediaCharacteristic MediaCharacteristic /* not a class type */)
+	SetMediaSelectionCriteriaForMediaCharacteristic(criteria IAVPlayerMediaSelectionCriteria, mediaCharacteristic MediaCharacteristic /* typedef */)
 	SetRateTimeAtHostTime(rate float32, itemTime objc.IObject /* cross-framework: Time */, hostClockTime objc.IObject /* cross-framework: Time */)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that provides the interface to control the player’s transport behavior.
-//
-// A player is a controller object that manages the playback and timing of a media asset. Use an instance of to play local and remote file-based media, such as QuickTime movies and MP3 audio files, as well as audiovisual media served using HTTP Live Streaming. Use a player object to play a single media asset. You can reuse the player instance to play additional media assets using its method, but it manages the playback of only a single media asset at a time. The framework also provides a subclass called that you can use to manage the playback of a queue of media assets. You use an to play media assets, which AVFoundation represents using the class. only models the aspects of the media, such as its duration or creation date, and on its own, isn’t suitable for playback with an . To play an asset, you create an instance of its counterpart found in . This object models the timing and presentation state of an asset played by an instance of . See the reference for more details. is a dynamic object whose state continuously changes. There are two approaches you can use to observe a player’s state: You can use key-value observing (KVO) to observe state changes to many of the player’s dynamic properties, such as its or its playback . KVO works well for general state observations, but isn’t intended for observing continuously changing state like the player’s time. provides two methods to observe time changes: These methods let you observe time changes either periodically or by boundary, respectively. As changes occur, invoke the callback block or closure you supply to these methods to give you the opportunity to take some action such as updating the state of your player’s user interface. and are nonvisual objects, meaning that on their own they’re unable to present an asset’s video onscreen. There are two primary approaches you use to present your video content onscreen: The best way to present your video content is with the AVKit framework’s class in iOS and tvOS, or the class in macOS. These classes present the video content, along with playback controls and other media features giving you a full-featured playback experience. When building a custom interface for your player, use . You can set this layer a view’s backing layer or add it directly to the layer hierarchy. Unlike and , a player layer doesn’t present any playback controls—it only presents the visual content onscreen. It’s up to you to build the playback transport controls to play, pause, and seek through the media. Alongside the visual content presented with AVKit or , you can also present animated content synchronized with the player’s timing using . Use a synchronized layer pass along player timing to its layer subtree. You can use to build custom effects in Core Animation, such as animated lower thirds or video transitions, and have them play in sync with the timing of the player’s current .
+/* debug [class_interface]: End interface */
 
 
-// An object that provides the interface to control the player’s transport behavior.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer
-type Player struct {
-	objectivec.Object
-}
 
-// PlayerFrom constructs a [Player] from an unsafe.Pointer.
-//
-// An object that provides the interface to control the player’s transport behavior.
-func PlayerFrom(ptr unsafe.Pointer) Player {
-	return Player{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Player */
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerClass) Alloc() Player {
 	rv := objc.Send[Player](objc.ID(pc.class), objc.Sel("alloc"))
@@ -139,7 +138,6 @@ func (pc _PlayerClass) Alloc() Player {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PlayerClass) New() Player {
 	rv := objc.Send[Player](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -162,8 +160,35 @@ func (p_ Player) Autorelease() Player {
 func NewPlayer() Player {
 	return getPlayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Player */
+// An object that provides the interface to control the player’s transport behavior.
+//
+// A player is a controller object that manages the playback and timing of a media asset. Use an instance of to play local and remote file-based media, such as QuickTime movies and MP3 audio files, as well as audiovisual media served using HTTP Live Streaming. Use a player object to play a single media asset. You can reuse the player instance to play additional media assets using its method, but it manages the playback of only a single media asset at a time. The framework also provides a subclass called that you can use to manage the playback of a queue of media assets. You use an to play media assets, which AVFoundation represents using the class. only models the aspects of the media, such as its duration or creation date, and on its own, isn’t suitable for playback with an . To play an asset, you create an instance of its counterpart found in . This object models the timing and presentation state of an asset played by an instance of . See the reference for more details. is a dynamic object whose state continuously changes. There are two approaches you can use to observe a player’s state: You can use key-value observing (KVO) to observe state changes to many of the player’s dynamic properties, such as its or its playback . KVO works well for general state observations, but isn’t intended for observing continuously changing state like the player’s time. provides two methods to observe time changes: These methods let you observe time changes either periodically or by boundary, respectively. As changes occur, invoke the callback block or closure you supply to these methods to give you the opportunity to take some action such as updating the state of your player’s user interface. and are nonvisual objects, meaning that on their own they’re unable to present an asset’s video onscreen. There are two primary approaches you use to present your video content onscreen: The best way to present your video content is with the AVKit framework’s class in iOS and tvOS, or the class in macOS. These classes present the video content, along with playback controls and other media features giving you a full-featured playback experience. When building a custom interface for your player, use . You can set this layer a view’s backing layer or add it directly to the layer hierarchy. Unlike and , a player layer doesn’t present any playback controls—it only presents the visual content onscreen. It’s up to you to build the playback transport controls to play, pause, and seek through the media. Alongside the visual content presented with AVKit or , you can also present animated content synchronized with the player’s timing using . Use a synchronized layer pass along player timing to its layer subtree. You can use to build custom effects in Core Animation, such as animated lower thirds or video transitions, and have them play in sync with the timing of the player’s current .
+
+
+// An object that provides the interface to control the player’s transport behavior.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer
+type Player struct {
+	objectivec.Object
+}
+
+// PlayerFrom constructs a [Player] from an unsafe.Pointer.
+//
+// An object that provides the interface to control the player’s transport behavior.
+func PlayerFrom(ptr unsafe.Pointer) Player {
+	return Player{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Player */
 
 // Creates a new player to play the specified player item.
 //
@@ -174,7 +199,7 @@ func NewPlayerWithPlayerItem(item IAVPlayerItem) Player {
 	rv := objc.Send[Player](instance.ID, objc.Sel("initWithPlayerItem:"), item)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPlayerWithPlayerItem */
 
 
 // Creates a new player to play a single audiovisual resource referenced by a given URL.
@@ -186,29 +211,38 @@ func NewPlayerWithURL(URL objc.IObject /* cross-framework: NSURL */) Player {
 	rv := objc.Send[Player](instance.ID, objc.Sel("initWithURL:"), URL)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPlayerWithURL */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for Player */
 
 // Returns a new player initialized to play the specified player item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playerWithPlayerItem:
-func (pc _PlayerClass) PlayerWithPlayerItem(item IAVPlayerItem) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerWithPlayerItem:"), item)
+func (pc _PlayerClass) PlayerWithPlayerItem(item IAVPlayerItem) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(pc.class), objc.Sel("playerWithPlayerItem:"), item)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PlayerWithPlayerItem) */
 
 
 // Returns a new player to play a single audiovisual resource referenced by a given URL.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playerWithURL:
-func (pc _PlayerClass) PlayerWithURL(URL objc.IObject /* cross-framework: NSURL */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("playerWithURL:"), URL)
+func (pc _PlayerClass) PlayerWithURL(URL objc.IObject /* cross-framework: NSURL */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(pc.class), objc.Sel("playerWithURL:"), URL)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PlayerWithURL) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Player */
 
 // The HDR modes that are available for playback.
 //
@@ -217,7 +251,7 @@ func (pc _PlayerClass) PlayerWithURL(URL objc.IObject /* cross-framework: NSURL 
 func (pc _PlayerClass) AvailableHDRModes() PlayerHDRMode {
 	rv := objc.Send[PlayerHDRMode](objc.ID(pc.class), objc.Sel("availableHDRModes"))
 	return rv
-}
+}/* debug [class_properties_class/property]: availableHDRModes */
 
 // A Boolean value that indicates whether the current device can present content to an HDR display.
 //
@@ -226,7 +260,7 @@ func (pc _PlayerClass) AvailableHDRModes() PlayerHDRMode {
 func (pc _PlayerClass) EligibleForHDRPlayback() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("eligibleForHDRPlayback"))
 	return rv
-}
+}/* debug [class_properties_class/property]: eligibleForHDRPlayback */
 
 // AVPlayer and other AVFoundation types can optionally be observed using Swift Observation.
 //
@@ -235,26 +269,31 @@ func (pc _PlayerClass) EligibleForHDRPlayback() bool {
 func (pc _PlayerClass) ObservationEnabled() bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("observationEnabled"))
 	return rv
-}
+}/* debug [class_properties_class/property]: observationEnabled */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Player */
 
 // Requests the invocation of a block when specified times are traversed during normal playback.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/addBoundaryTimeObserver(forTimes:queue:using:)
-func (p_ Player) AddBoundaryTimeObserverForTimesQueueUsingBlock(times []objc.IObject /* cross-framework: Value */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
+func (p_ Player) AddBoundaryTimeObserverForTimesQueueUsingBlock(times []foundation.Value, queue objectivec.IObject, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("addBoundaryTimeObserverForTimes:queue:usingBlock:"), times, queue, block)
 	return rv
-}
+}/* debug [instance_methods/method]: AddBoundaryTimeObserverForTimesQueueUsingBlock */
 
 
 // Requests the periodic invocation of a given block during playback to report changing time.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/addPeriodicTimeObserver(forInterval:queue:using:)
-func (p_ Player) AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval objc.IObject /* cross-framework: Time */, queue unsafe.Pointer, block unsafe.Pointer) objc.ID {
+func (p_ Player) AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval objc.IObject /* cross-framework: Time */, queue objectivec.IObject, block unsafe.Pointer) objc.ID {
 	rv := objc.Send[objc.ID](p_.ID, objc.Sel("addPeriodicTimeObserverForInterval:queue:usingBlock:"), interval, queue, block)
 	return rv
-}
+}/* debug [instance_methods/method]: AddPeriodicTimeObserverForIntervalQueueUsingBlock */
 
 
 // Cancels any pending preroll requests and invokes the corresponding completion handlers, if present.
@@ -263,7 +302,7 @@ func (p_ Player) AddPeriodicTimeObserverForIntervalQueueUsingBlock(interval objc
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/cancelPendingPrerolls()
 func (p_ Player) CancelPendingPrerolls() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("cancelPendingPrerolls"))
-}
+}/* debug [instance_methods/method]: CancelPendingPrerolls */
 
 
 // Returns the current time of the current player item.
@@ -271,19 +310,19 @@ func (p_ Player) CancelPendingPrerolls() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/currentTime()
 func (p_ Player) CurrentTime() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[coremedia.Time](p_.ID, objc.Sel("currentTime"))
+	rv := objc.Send[corevideo.Time](p_.ID, objc.Sel("currentTime"))
 	return rv
-}
+}/* debug [instance_methods/method]: CurrentTime */
 
 
 // Returns the automatic selection criteria for media items with the specified media characteristic.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/mediaSelectionCriteria(forMediaCharacteristic:)
-func (p_ Player) MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic MediaCharacteristic /* not a class type */) IPlayerMediaSelectionCriteria {
+func (p_ Player) MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristic MediaCharacteristic /* typedef */) IPlayerMediaSelectionCriteria {
 	rv := objc.Send[PlayerMediaSelectionCriteria](p_.ID, objc.Sel("mediaSelectionCriteriaForMediaCharacteristic:"), mediaCharacteristic)
 	return rv
-}
+}/* debug [instance_methods/method]: MediaSelectionCriteriaForMediaCharacteristic */
 
 
 // Pauses playback of the current item.
@@ -292,7 +331,7 @@ func (p_ Player) MediaSelectionCriteriaForMediaCharacteristic(mediaCharacteristi
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/pause()
 func (p_ Player) Pause() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("pause"))
-}
+}/* debug [instance_methods/method]: Pause */
 
 
 // Begins playback of the current item.
@@ -301,7 +340,7 @@ func (p_ Player) Pause() {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/play()
 func (p_ Player) Play() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("play"))
-}
+}/* debug [instance_methods/method]: Play */
 
 
 // Plays the available media data immediately, at the specified rate.
@@ -310,7 +349,7 @@ func (p_ Player) Play() {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/playImmediately(atRate:)
 func (p_ Player) PlayImmediatelyAtRate(rate float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("playImmediatelyAtRate:"), rate)
-}
+}/* debug [instance_methods/method]: PlayImmediatelyAtRate */
 
 
 // Begins loading media data to prime the media pipelines for playback.
@@ -319,16 +358,16 @@ func (p_ Player) PlayImmediatelyAtRate(rate float32) {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preroll(atRate:completionHandler:)
 func (p_ Player) PrerollAtRateCompletionHandler(rate float32, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("prerollAtRate:completionHandler:"), rate, completionHandler)
-}
+}/* debug [instance_methods/method]: PrerollAtRateCompletionHandler */
 
 
 // Cancels a previously registered periodic or boundary time observer.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/removeTimeObserver(_:)
-func (p_ Player) RemoveTimeObserver(observer objectivec.IObject) {
+func (p_ Player) RemoveTimeObserver(observer objc.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeTimeObserver:"), observer)
-}
+}/* debug [instance_methods/method]: RemoveTimeObserver */
 
 
 // Replaces the current item with a new item.
@@ -337,7 +376,7 @@ func (p_ Player) RemoveTimeObserver(observer objectivec.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/replaceCurrentItem(with:)
 func (p_ Player) ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("replaceCurrentItemWithPlayerItem:"), item)
-}
+}/* debug [instance_methods/method]: ReplaceCurrentItemWithPlayerItem */
 
 
 // Requests that the player seek to a specified time.
@@ -346,7 +385,7 @@ func (p_ Player) ReplaceCurrentItemWithPlayerItem(item IAVPlayerItem) {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:)-87h2r
 func (p_ Player) SeekToTime(time objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:"), time)
-}
+}/* debug [instance_methods/method]: SeekToTime */
 
 
 // Requests that the player seek to a specified date.
@@ -355,7 +394,7 @@ func (p_ Player) SeekToTime(time objc.IObject /* cross-framework: Time */) {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:)-9h9qr
 func (p_ Player) SeekToDate(date objc.IObject /* cross-framework: NSDate */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToDate:"), date)
-}
+}/* debug [instance_methods/method]: SeekToDate */
 
 
 // Requests that the player seek to a specified time, and to notify you when the seek is complete.
@@ -364,7 +403,7 @@ func (p_ Player) SeekToDate(date objc.IObject /* cross-framework: NSDate */) {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:completionHandler:)-75bls
 func (p_ Player) SeekToTimeCompletionHandler(time objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:completionHandler:"), time, completionHandler)
-}
+}/* debug [instance_methods/method]: SeekToTimeCompletionHandler */
 
 
 // Requests that the player seek to a specified date, and to notify you when the seek is complete.
@@ -373,7 +412,7 @@ func (p_ Player) SeekToTimeCompletionHandler(time objc.IObject /* cross-framewor
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:completionHandler:)-wr1l
 func (p_ Player) SeekToDateCompletionHandler(date objc.IObject /* cross-framework: NSDate */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToDate:completionHandler:"), date, completionHandler)
-}
+}/* debug [instance_methods/method]: SeekToDateCompletionHandler */
 
 
 // Requests that the player seek to a specified time with the amount of accuracy specified by the time tolerance values.
@@ -382,7 +421,7 @@ func (p_ Player) SeekToDateCompletionHandler(date objc.IObject /* cross-framewor
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:toleranceBefore:toleranceAfter:)
 func (p_ Player) SeekToTimeToleranceBeforeToleranceAfter(time objc.IObject /* cross-framework: Time */, toleranceBefore objc.IObject /* cross-framework: Time */, toleranceAfter objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:toleranceBefore:toleranceAfter:"), time, toleranceBefore, toleranceAfter)
-}
+}/* debug [instance_methods/method]: SeekToTimeToleranceBeforeToleranceAfter */
 
 
 // Requests that the player seek to a specified time with the amount of accuracy specified by the time tolerance values, and to notify you when the seek is complete.
@@ -391,16 +430,16 @@ func (p_ Player) SeekToTimeToleranceBeforeToleranceAfter(time objc.IObject /* cr
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/seek(to:toleranceBefore:toleranceAfter:completionHandler:)
 func (p_ Player) SeekToTimeToleranceBeforeToleranceAfterCompletionHandler(time objc.IObject /* cross-framework: Time */, toleranceBefore objc.IObject /* cross-framework: Time */, toleranceAfter objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("seekToTime:toleranceBefore:toleranceAfter:completionHandler:"), time, toleranceBefore, toleranceAfter, completionHandler)
-}
+}/* debug [instance_methods/method]: SeekToTimeToleranceBeforeToleranceAfterCompletionHandler */
 
 
 // Applies automatic selection criteria for media that has the specified media characteristic.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/setMediaSelectionCriteria(_:forMediaCharacteristic:)
-func (p_ Player) SetMediaSelectionCriteriaForMediaCharacteristic(criteria IAVPlayerMediaSelectionCriteria, mediaCharacteristic MediaCharacteristic /* not a class type */) {
+func (p_ Player) SetMediaSelectionCriteriaForMediaCharacteristic(criteria IAVPlayerMediaSelectionCriteria, mediaCharacteristic MediaCharacteristic /* typedef */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMediaSelectionCriteria:forMediaCharacteristic:"), criteria, mediaCharacteristic)
-}
+}/* debug [instance_methods/method]: SetMediaSelectionCriteriaForMediaCharacteristic */
 
 
 // Synchronizes the playback rate and time of the current item with an external source.
@@ -409,8 +448,13 @@ func (p_ Player) SetMediaSelectionCriteriaForMediaCharacteristic(criteria IAVPla
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/setRate(_:time:atHostTime:)
 func (p_ Player) SetRateTimeAtHostTime(rate float32, itemTime objc.IObject /* cross-framework: Time */, hostClockTime objc.IObject /* cross-framework: Time */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:time:atHostTime:"), rate, itemTime, hostClockTime)
-}
+}/* debug [instance_methods/method]: SetRateTimeAtHostTime */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Player */
 
 // The action to perform when the current player item has finished playing.
 //
@@ -419,7 +463,7 @@ func (p_ Player) SetRateTimeAtHostTime(rate float32, itemTime objc.IObject /* cr
 func (p_ Player) ActionAtItemEnd() PlayerActionAtItemEnd {
 	rv := objc.Send[PlayerActionAtItemEnd](p_.ID, objc.Sel("actionAtItemEnd"))
 	return rv
-}
+}/* debug [instance_properties/getter]: actionAtItemEnd */
 
 
 // The action to perform when the current player item has finished playing.
@@ -428,7 +472,7 @@ func (p_ Player) ActionAtItemEnd() PlayerActionAtItemEnd {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/actionAtItemEnd-swift.property
 func (p_ Player) SetActionAtItemEnd(value PlayerActionAtItemEnd) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setActionAtItemEnd:"), value)
-}
+}/* debug [instance_properties/setter]: actionAtItemEnd */
 
 
 // A Boolean value that indicates whether the player allows switching to external playback mode.
@@ -438,7 +482,7 @@ func (p_ Player) SetActionAtItemEnd(value PlayerActionAtItemEnd) {
 func (p_ Player) AllowsExternalPlayback() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsExternalPlayback"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allowsExternalPlayback */
 
 
 // A Boolean value that indicates whether the player allows switching to external playback mode.
@@ -447,7 +491,7 @@ func (p_ Player) AllowsExternalPlayback() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/allowsExternalPlayback
 func (p_ Player) SetAllowsExternalPlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsExternalPlayback:"), value)
-}
+}/* debug [instance_properties/setter]: allowsExternalPlayback */
 
 
 // A Boolean value that indicates whether the receiver should apply the current selection criteria automatically to player items.
@@ -457,7 +501,7 @@ func (p_ Player) SetAllowsExternalPlayback(value bool) {
 func (p_ Player) AppliesMediaSelectionCriteriaAutomatically() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("appliesMediaSelectionCriteriaAutomatically"))
 	return rv
-}
+}/* debug [instance_properties/getter]: appliesMediaSelectionCriteriaAutomatically */
 
 
 // A Boolean value that indicates whether the receiver should apply the current selection criteria automatically to player items.
@@ -466,7 +510,7 @@ func (p_ Player) AppliesMediaSelectionCriteriaAutomatically() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/appliesMediaSelectionCriteriaAutomatically
 func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAppliesMediaSelectionCriteriaAutomatically:"), value)
-}
+}/* debug [instance_properties/setter]: appliesMediaSelectionCriteriaAutomatically */
 
 
 // Specifies the unique ID of the Core Audio output device used to play audio.
@@ -476,7 +520,7 @@ func (p_ Player) SetAppliesMediaSelectionCriteriaAutomatically(value bool) {
 func (p_ Player) AudioOutputDeviceUniqueID() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("audioOutputDeviceUniqueID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: audioOutputDeviceUniqueID */
 
 
 // Specifies the unique ID of the Core Audio output device used to play audio.
@@ -485,7 +529,7 @@ func (p_ Player) AudioOutputDeviceUniqueID() objc.IObject /* cross-framework: NS
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audioOutputDeviceUniqueID
 func (p_ Player) SetAudioOutputDeviceUniqueID(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioOutputDeviceUniqueID:"), value)
-}
+}/* debug [instance_properties/setter]: audioOutputDeviceUniqueID */
 
 
 // A policy that determines how playback of audiovisual media continues when the app transitions to the background.
@@ -495,7 +539,7 @@ func (p_ Player) SetAudioOutputDeviceUniqueID(value objc.IObject /* cross-framew
 func (p_ Player) AudiovisualBackgroundPlaybackPolicy() PlayerAudiovisualBackgroundPlaybackPolicy {
 	rv := objc.Send[PlayerAudiovisualBackgroundPlaybackPolicy](p_.ID, objc.Sel("audiovisualBackgroundPlaybackPolicy"))
 	return rv
-}
+}/* debug [instance_properties/getter]: audiovisualBackgroundPlaybackPolicy */
 
 
 // A policy that determines how playback of audiovisual media continues when the app transitions to the background.
@@ -504,7 +548,7 @@ func (p_ Player) AudiovisualBackgroundPlaybackPolicy() PlayerAudiovisualBackgrou
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/audiovisualBackgroundPlaybackPolicy
 func (p_ Player) SetAudiovisualBackgroundPlaybackPolicy(value PlayerAudiovisualBackgroundPlaybackPolicy) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudiovisualBackgroundPlaybackPolicy:"), value)
-}
+}/* debug [instance_properties/setter]: audiovisualBackgroundPlaybackPolicy */
 
 
 // A Boolean value that indicates whether the player should automatically delay playback in order to minimize stalling.
@@ -514,7 +558,7 @@ func (p_ Player) SetAudiovisualBackgroundPlaybackPolicy(value PlayerAudiovisualB
 func (p_ Player) AutomaticallyWaitsToMinimizeStalling() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("automaticallyWaitsToMinimizeStalling"))
 	return rv
-}
+}/* debug [instance_properties/getter]: automaticallyWaitsToMinimizeStalling */
 
 
 // A Boolean value that indicates whether the player should automatically delay playback in order to minimize stalling.
@@ -523,7 +567,7 @@ func (p_ Player) AutomaticallyWaitsToMinimizeStalling() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/automaticallyWaitsToMinimizeStalling
 func (p_ Player) SetAutomaticallyWaitsToMinimizeStalling(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAutomaticallyWaitsToMinimizeStalling:"), value)
-}
+}/* debug [instance_properties/setter]: automaticallyWaitsToMinimizeStalling */
 
 
 // The item for which the player is currently controlling playback.
@@ -533,7 +577,7 @@ func (p_ Player) SetAutomaticallyWaitsToMinimizeStalling(value bool) {
 func (p_ Player) CurrentItem() IAVPlayerItem {
 	rv := objc.Send[PlayerItem](p_.ID, objc.Sel("currentItem"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentItem */
 
 
 // A default rate at which to begin playback.
@@ -543,7 +587,7 @@ func (p_ Player) CurrentItem() IAVPlayerItem {
 func (p_ Player) DefaultRate() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("defaultRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: defaultRate */
 
 
 // A default rate at which to begin playback.
@@ -552,7 +596,7 @@ func (p_ Player) DefaultRate() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/defaultRate
 func (p_ Player) SetDefaultRate(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRate:"), value)
-}
+}/* debug [instance_properties/setter]: defaultRate */
 
 
 // A Boolean value that indicates whether the current device can present content to an HDR display.
@@ -562,7 +606,7 @@ func (p_ Player) SetDefaultRate(value float32) {
 func (p_ Player) EligibleForHDRPlayback() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("eligibleForHDRPlayback"))
 	return rv
-}
+}/* debug [instance_properties/getter]: eligibleForHDRPlayback */
 
 
 // An error that caused a failure.
@@ -572,7 +616,7 @@ func (p_ Player) EligibleForHDRPlayback() bool {
 func (p_ Player) Error() Error {
 	rv := objc.Send[Error](p_.ID, objc.Sel("error"))
 	return rv
-}
+}/* debug [instance_properties/getter]: error */
 
 
 // A Boolean value that indicates whether the player uses closed captioning.
@@ -582,7 +626,7 @@ func (p_ Player) Error() Error {
 func (p_ Player) ClosedCaptionDisplayEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("closedCaptionDisplayEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: closedCaptionDisplayEnabled */
 
 
 // A Boolean value that indicates whether the player uses closed captioning.
@@ -591,7 +635,7 @@ func (p_ Player) ClosedCaptionDisplayEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isClosedCaptionDisplayEnabled
 func (p_ Player) SetClosedCaptionDisplayEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setClosedCaptionDisplayEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: closedCaptionDisplayEnabled */
 
 
 // A Boolean value that indicates whether the player is currently playing video in external playback mode.
@@ -601,7 +645,7 @@ func (p_ Player) SetClosedCaptionDisplayEnabled(value bool) {
 func (p_ Player) ExternalPlaybackActive() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("externalPlaybackActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: externalPlaybackActive */
 
 
 // A Boolean value that indicates whether the audio output of the player is muted.
@@ -611,7 +655,7 @@ func (p_ Player) ExternalPlaybackActive() bool {
 func (p_ Player) Muted() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("muted"))
 	return rv
-}
+}/* debug [instance_properties/getter]: muted */
 
 
 // A Boolean value that indicates whether the audio output of the player is muted.
@@ -620,7 +664,7 @@ func (p_ Player) Muted() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isMuted
 func (p_ Player) SetMuted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMuted:"), value)
-}
+}/* debug [instance_properties/setter]: muted */
 
 
 // AVPlayer and other AVFoundation types can optionally be observed using Swift Observation.
@@ -630,7 +674,7 @@ func (p_ Player) SetMuted(value bool) {
 func (p_ Player) ObservationEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("observationEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: observationEnabled */
 
 
 // AVPlayer and other AVFoundation types can optionally be observed using Swift Observation.
@@ -639,7 +683,7 @@ func (p_ Player) ObservationEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/isObservationEnabled
 func (p_ Player) SetObservationEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservationEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: observationEnabled */
 
 
 // A Boolean value that indicates whether output is being obscured because of insufficient external protection.
@@ -649,7 +693,7 @@ func (p_ Player) SetObservationEnabled(value bool) {
 func (p_ Player) OutputObscuredDueToInsufficientExternalProtection() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("outputObscuredDueToInsufficientExternalProtection"))
 	return rv
-}
+}/* debug [instance_properties/getter]: outputObscuredDueToInsufficientExternalProtection */
 
 
 // The host clock for item time bases.
@@ -659,7 +703,7 @@ func (p_ Player) OutputObscuredDueToInsufficientExternalProtection() bool {
 func (p_ Player) MasterClock() ClockRef /* not a class type */ {
 	rv := objc.Send[ClockRef](p_.ID, objc.Sel("masterClock"))
 	return rv
-}
+}/* debug [instance_properties/getter]: masterClock */
 
 
 // The host clock for item time bases.
@@ -668,7 +712,7 @@ func (p_ Player) MasterClock() ClockRef /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/masterClock
 func (p_ Player) SetMasterClock(value ClockRef /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMasterClock:"), value)
-}
+}/* debug [instance_properties/setter]: masterClock */
 
 
 // Indicates the priority of this player for network bandwidth resource distribution.
@@ -678,7 +722,7 @@ func (p_ Player) SetMasterClock(value ClockRef /* not a class type */) {
 func (p_ Player) NetworkResourcePriority() PlayerNetworkResourcePriority {
 	rv := objc.Send[PlayerNetworkResourcePriority](p_.ID, objc.Sel("networkResourcePriority"))
 	return rv
-}
+}/* debug [instance_properties/getter]: networkResourcePriority */
 
 
 // Indicates the priority of this player for network bandwidth resource distribution.
@@ -687,7 +731,7 @@ func (p_ Player) NetworkResourcePriority() PlayerNetworkResourcePriority {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/networkResourcePriority-swift.property
 func (p_ Player) SetNetworkResourcePriority(value PlayerNetworkResourcePriority) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setNetworkResourcePriority:"), value)
-}
+}/* debug [instance_properties/setter]: networkResourcePriority */
 
 
 // The playback coordinator for the player.
@@ -697,7 +741,7 @@ func (p_ Player) SetNetworkResourcePriority(value PlayerNetworkResourcePriority)
 func (p_ Player) PlaybackCoordinator() IAVPlayerPlaybackCoordinator {
 	rv := objc.Send[PlayerPlaybackCoordinator](p_.ID, objc.Sel("playbackCoordinator"))
 	return rv
-}
+}/* debug [instance_properties/getter]: playbackCoordinator */
 
 
 // The registry identifier for the GPU used for video decoding.
@@ -707,7 +751,7 @@ func (p_ Player) PlaybackCoordinator() IAVPlayerPlaybackCoordinator {
 func (p_ Player) PreferredVideoDecoderGPURegistryID() uint64 {
 	rv := objc.Send[uint64](p_.ID, objc.Sel("preferredVideoDecoderGPURegistryID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preferredVideoDecoderGPURegistryID */
 
 
 // The registry identifier for the GPU used for video decoding.
@@ -716,7 +760,7 @@ func (p_ Player) PreferredVideoDecoderGPURegistryID() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preferredVideoDecoderGPURegistryID
 func (p_ Player) SetPreferredVideoDecoderGPURegistryID(value uint64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredVideoDecoderGPURegistryID:"), value)
-}
+}/* debug [instance_properties/setter]: preferredVideoDecoderGPURegistryID */
 
 
 // A Boolean value that indicates whether video playback prevents display and device sleep.
@@ -726,7 +770,7 @@ func (p_ Player) SetPreferredVideoDecoderGPURegistryID(value uint64) {
 func (p_ Player) PreventsDisplaySleepDuringVideoPlayback() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("preventsDisplaySleepDuringVideoPlayback"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preventsDisplaySleepDuringVideoPlayback */
 
 
 // A Boolean value that indicates whether video playback prevents display and device sleep.
@@ -735,7 +779,7 @@ func (p_ Player) PreventsDisplaySleepDuringVideoPlayback() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/preventsDisplaySleepDuringVideoPlayback
 func (p_ Player) SetPreventsDisplaySleepDuringVideoPlayback(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreventsDisplaySleepDuringVideoPlayback:"), value)
-}
+}/* debug [instance_properties/setter]: preventsDisplaySleepDuringVideoPlayback */
 
 
 // The current playback rate.
@@ -745,7 +789,7 @@ func (p_ Player) SetPreventsDisplaySleepDuringVideoPlayback(value bool) {
 func (p_ Player) Rate() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("rate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rate */
 
 
 // The current playback rate.
@@ -754,17 +798,17 @@ func (p_ Player) Rate() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/rate
 func (p_ Player) SetRate(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRate:"), value)
-}
+}/* debug [instance_properties/setter]: rate */
 
 
 // The reason the player is currently waiting for playback to begin or resume.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/reasonForWaitingToPlay
-func (p_ Player) ReasonForWaitingToPlay() objc.IObject /* cross-framework: PlayerWaitingReason */ {
-	rv := objc.Send[PlayerWaitingReason](p_.ID, objc.Sel("reasonForWaitingToPlay"))
+func (p_ Player) ReasonForWaitingToPlay() PlayerWaitingReason /* typedef */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("reasonForWaitingToPlay"))
 	return rv
-}
+}/* debug [instance_properties/getter]: reasonForWaitingToPlay */
 
 
 // A clock the player uses for item time bases.
@@ -774,7 +818,7 @@ func (p_ Player) ReasonForWaitingToPlay() objc.IObject /* cross-framework: Playe
 func (p_ Player) SourceClock() ClockRef /* not a class type */ {
 	rv := objc.Send[ClockRef](p_.ID, objc.Sel("sourceClock"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sourceClock */
 
 
 // A clock the player uses for item time bases.
@@ -783,7 +827,7 @@ func (p_ Player) SourceClock() ClockRef /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/sourceClock
 func (p_ Player) SetSourceClock(value ClockRef /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSourceClock:"), value)
-}
+}/* debug [instance_properties/setter]: sourceClock */
 
 
 // A value that indicates the readiness of a player object for playback.
@@ -793,7 +837,7 @@ func (p_ Player) SetSourceClock(value ClockRef /* not a class type */) {
 func (p_ Player) Status() PlayerStatus {
 	rv := objc.Send[PlayerStatus](p_.ID, objc.Sel("status"))
 	return rv
-}
+}/* debug [instance_properties/getter]: status */
 
 
 // A value that indicates whether playback is in progress, paused indefinitely, or waiting for network conditions to improve.
@@ -803,26 +847,26 @@ func (p_ Player) Status() PlayerStatus {
 func (p_ Player) TimeControlStatus() PlayerTimeControlStatus {
 	rv := objc.Send[PlayerTimeControlStatus](p_.ID, objc.Sel("timeControlStatus"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeControlStatus */
 
 
 // The video output for this player.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/videoOutput
-func (p_ Player) VideoOutput() PlayerVideoOutput /* not a class type */ {
+func (p_ Player) VideoOutput() IAVPlayerVideoOutput {
 	rv := objc.Send[PlayerVideoOutput](p_.ID, objc.Sel("videoOutput"))
 	return rv
-}
+}/* debug [instance_properties/getter]: videoOutput */
 
 
 // The video output for this player.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/videoOutput
-func (p_ Player) SetVideoOutput(value PlayerVideoOutput /* not a class type */) {
+func (p_ Player) SetVideoOutput(value IAVPlayerVideoOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVideoOutput:"), value)
-}
+}/* debug [instance_properties/setter]: videoOutput */
 
 
 // The audio playback volume for the player.
@@ -832,7 +876,7 @@ func (p_ Player) SetVideoOutput(value PlayerVideoOutput /* not a class type */) 
 func (p_ Player) Volume() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("volume"))
 	return rv
-}
+}/* debug [instance_properties/getter]: volume */
 
 
 // The audio playback volume for the player.
@@ -841,7 +885,7 @@ func (p_ Player) Volume() float32 {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayer/volume
 func (p_ Player) SetVolume(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVolume:"), value)
-}
+}/* debug [instance_properties/setter]: volume */
 
 
 // A Boolean value that indicates whether the player is playing video through AirPlay.
@@ -851,7 +895,7 @@ func (p_ Player) SetVolume(value float32) {
 func (p_ Player) IsAirPlayVideoActive() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isAirPlayVideoActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAirPlayVideoActive */
 
 
 // A Boolean value that indicates whether the player is playing video through AirPlay.
@@ -860,7 +904,7 @@ func (p_ Player) IsAirPlayVideoActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isairplayvideoactive
 func (p_ Player) SetIsAirPlayVideoActive(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAirPlayVideoActive:"), value)
-}
+}/* debug [instance_properties/setter]: isAirPlayVideoActive */
 
 
 // A Boolean value that indicates whether the player uses closed captioning.
@@ -870,7 +914,7 @@ func (p_ Player) SetIsAirPlayVideoActive(value bool) {
 func (p_ Player) IsClosedCaptionDisplayEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isClosedCaptionDisplayEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isClosedCaptionDisplayEnabled */
 
 
 // A Boolean value that indicates whether the player uses closed captioning.
@@ -879,7 +923,7 @@ func (p_ Player) IsClosedCaptionDisplayEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isclosedcaptiondisplayenabled
 func (p_ Player) SetIsClosedCaptionDisplayEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsClosedCaptionDisplayEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isClosedCaptionDisplayEnabled */
 
 
 // A Boolean value that indicates whether the player is currently playing video in external playback mode.
@@ -889,7 +933,7 @@ func (p_ Player) SetIsClosedCaptionDisplayEnabled(value bool) {
 func (p_ Player) IsExternalPlaybackActive() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isExternalPlaybackActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isExternalPlaybackActive */
 
 
 // A Boolean value that indicates whether the player is currently playing video in external playback mode.
@@ -898,7 +942,7 @@ func (p_ Player) IsExternalPlaybackActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isexternalplaybackactive
 func (p_ Player) SetIsExternalPlaybackActive(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsExternalPlaybackActive:"), value)
-}
+}/* debug [instance_properties/setter]: isExternalPlaybackActive */
 
 
 // A Boolean value that indicates whether the audio output of the player is muted.
@@ -908,7 +952,7 @@ func (p_ Player) SetIsExternalPlaybackActive(value bool) {
 func (p_ Player) IsMuted() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isMuted"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isMuted */
 
 
 // A Boolean value that indicates whether the audio output of the player is muted.
@@ -917,7 +961,7 @@ func (p_ Player) IsMuted() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/ismuted
 func (p_ Player) SetIsMuted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
-}
+}/* debug [instance_properties/setter]: isMuted */
 
 
 // A Boolean value that indicates whether output is being obscured because of insufficient external protection.
@@ -927,7 +971,7 @@ func (p_ Player) SetIsMuted(value bool) {
 func (p_ Player) IsOutputObscuredDueToInsufficientExternalProtection() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isOutputObscuredDueToInsufficientExternalProtection"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isOutputObscuredDueToInsufficientExternalProtection */
 
 
 // A Boolean value that indicates whether output is being obscured because of insufficient external protection.
@@ -936,7 +980,7 @@ func (p_ Player) IsOutputObscuredDueToInsufficientExternalProtection() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayer/isoutputobscuredduetoinsufficientexternalprotection
 func (p_ Player) SetIsOutputObscuredDueToInsufficientExternalProtection(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOutputObscuredDueToInsufficientExternalProtection:"), value)
-}
+}/* debug [instance_properties/setter]: isOutputObscuredDueToInsufficientExternalProtection */
 
 
 // The source audio channel layouts the player item supports for spatialization.
@@ -946,7 +990,7 @@ func (p_ Player) SetIsOutputObscuredDueToInsufficientExternalProtection(value bo
 func (p_ Player) AllowedAudioSpatializationFormats() AudioSpatializationFormats {
 	rv := objc.Send[AudioSpatializationFormats](p_.ID, objc.Sel("allowedAudioSpatializationFormats"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allowedAudioSpatializationFormats */
 
 
 // The source audio channel layouts the player item supports for spatialization.
@@ -955,7 +999,7 @@ func (p_ Player) AllowedAudioSpatializationFormats() AudioSpatializationFormats 
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/allowedaudiospatializationformats
 func (p_ Player) SetAllowedAudioSpatializationFormats(value AudioSpatializationFormats) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowedAudioSpatializationFormats:"), value)
-}
+}/* debug [instance_properties/setter]: allowedAudioSpatializationFormats */
 
 
 // A Boolean value that indicates whether the player item allows spatialized audio playback.
@@ -965,7 +1009,7 @@ func (p_ Player) SetAllowedAudioSpatializationFormats(value AudioSpatializationF
 func (p_ Player) IsAudioSpatializationAllowed() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("isAudioSpatializationAllowed"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAudioSpatializationAllowed */
 
 
 // A Boolean value that indicates whether the player item allows spatialized audio playback.
@@ -974,6 +1018,11 @@ func (p_ Player) IsAudioSpatializationAllowed() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/isaudiospatializationallowed
 func (p_ Player) SetIsAudioSpatializationAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsAudioSpatializationAllowed:"), value)
-}
+}/* debug [instance_properties/setter]: isAudioSpatializationAllowed */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVPlayer */
 
 

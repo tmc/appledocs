@@ -21,3 +21,4 @@ var ContentKeyRecipientProtocol *objc.Protocol
 func init() {
 	ContentKeyRecipientProtocol = objc.GetProtocol("AVContentKeyRecipient")
 }
+

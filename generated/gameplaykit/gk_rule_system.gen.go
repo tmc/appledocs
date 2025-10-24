@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GKRuleSystem */
+
+
+/* debug [class_header]: Header for GKRuleSystem */
 // The class instance for the [RuleSystem] class.
 var (
 	RuleSystemClass     _RuleSystemClass
@@ -27,53 +31,49 @@ func getRuleSystemClass() _RuleSystemClass {
 type _RuleSystemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for RuleSystem */
 // An interface definition for the [RuleSystem] class.
 type IRuleSystem interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for RuleSystem */
 	// properties:
-	Agenda() []IRule
-	Executed() []IRule
+	Agenda() []Rule
+	Executed() []Rule
 	Facts() objc.IObject /* cross-framework: NSArray */
-	Rules() []IRule
-	State() objc.IObject /* cross-framework: MutableDictionary */
+	Rules() []Rule
+	State() foundation.MutableDictionary
 	Salience() int
 	SetSalience(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for RuleSystem */
 	// methods:
 	AddRule(rule IGKRule)
-	AddRulesFromArray(rules []IRule)
-	AssertFact(fact objectivec.IObject)
-	AssertFactGrade(fact objectivec.IObject, grade float32)
+	AddRulesFromArray(rules []Rule)
+	AssertFact(fact unsafe.Pointer)
+	AssertFactGrade(fact unsafe.Pointer, grade float32)
 	Evaluate()
-	GradeForFact(fact objectivec.IObject) float32
+	GradeForFact(fact unsafe.Pointer) float32
 	MaximumGradeForFacts(facts objc.IObject /* cross-framework: NSArray */) float32
 	MinimumGradeForFacts(facts objc.IObject /* cross-framework: NSArray */) float32
 	RemoveAllRules()
 	Reset()
-	RetractFact(fact objectivec.IObject)
-	RetractFactGrade(fact objectivec.IObject, grade float32)
+	RetractFact(fact unsafe.Pointer)
+	RetractFactGrade(fact unsafe.Pointer, grade float32)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
-//
-// A object manages a list of rules ( objects). A rule system also offers methods for evaluating its list of rules in a context defined by two features: a dictionary containing information to be tested by rules, and a set of representing the conclusions drawn as a result of rule evaluation. You can evaluate facts based on a binary truth state—that is, a fact either is or is not in the set—or on a continuously variable membership grade, representing different levels of veracity, confidence, or strength for use in fuzzy logic. You construct a rule system by creating objects and adding them to the system’s list of rules. There are multiple ways to construct rules: for greater reusability, use the methods listed in Creating Data-Driven Rules; or for greater flexibility, use the method or create a custom subclass of or . Then, add rules to the system with the methods listed in Managing a System’s List of Rules below. To evaluate a system, call the method. This method processes each rule in the system in the order it appears in the system’s list. You set this order with the property of each rule, or with the order in which you add rules to the system. As the system processes each rule, it tests the rule’s method to determine whether the rule is satisfied in the context of the system. If the rule’s predicate is satisfied, the system executes the rule’s method and moves the rule to the list (so the further evaluation of the agenda doesn’t repeatedly trigger the rule’s action). Rules typically use the system’s dictionary as input and its set of as output. (However, more complex systems can include sets of rules whose predicates test facts or whose actions mutate the system’s state.) After evaluating a rule system, you can examine the set of facts it has produced using the methods listed in Drawing Conclusions from Facts below. You can then use the presence of a fact in the set, the value of its membership grade, or the combined membership grades of a group of facts to influence the behaviors in your game. For more information about rules and rule systems, read in .
+/* debug [class_interface]: End interface */
 
 
-// A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem
-type RuleSystem struct {
-	objectivec.Object
-}
 
-// RuleSystemFrom constructs a [RuleSystem] from an unsafe.Pointer.
-//
-// A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
-func RuleSystemFrom(ptr unsafe.Pointer) RuleSystem {
-	return RuleSystem{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for RuleSystem */
 // Alloc allocates a new instance without initialization.
 func (rc _RuleSystemClass) Alloc() RuleSystem {
 	rv := objc.Send[RuleSystem](objc.ID(rc.class), objc.Sel("alloc"))
@@ -81,7 +81,6 @@ func (rc _RuleSystemClass) Alloc() RuleSystem {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RuleSystemClass) New() RuleSystem {
 	rv := objc.Send[RuleSystem](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -104,9 +103,50 @@ func (r_ RuleSystem) Autorelease() RuleSystem {
 func NewRuleSystem() RuleSystem {
 	return getRuleSystemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
+/* debug [class_struct]: Struct for RuleSystem */
+// A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
+//
+// A object manages a list of rules ( objects). A rule system also offers methods for evaluating its list of rules in a context defined by two features: a dictionary containing information to be tested by rules, and a set of representing the conclusions drawn as a result of rule evaluation. You can evaluate facts based on a binary truth state—that is, a fact either is or is not in the set—or on a continuously variable membership grade, representing different levels of veracity, confidence, or strength for use in fuzzy logic. You construct a rule system by creating objects and adding them to the system’s list of rules. There are multiple ways to construct rules: for greater reusability, use the methods listed in Creating Data-Driven Rules; or for greater flexibility, use the method or create a custom subclass of or . Then, add rules to the system with the methods listed in Managing a System’s List of Rules below. To evaluate a system, call the method. This method processes each rule in the system in the order it appears in the system’s list. You set this order with the property of each rule, or with the order in which you add rules to the system. As the system processes each rule, it tests the rule’s method to determine whether the rule is satisfied in the context of the system. If the rule’s predicate is satisfied, the system executes the rule’s method and moves the rule to the list (so the further evaluation of the agenda doesn’t repeatedly trigger the rule’s action). Rules typically use the system’s dictionary as input and its set of as output. (However, more complex systems can include sets of rules whose predicates test facts or whose actions mutate the system’s state.) After evaluating a rule system, you can examine the set of facts it has produced using the methods listed in Drawing Conclusions from Facts below. You can then use the presence of a fact in the set, the value of its membership grade, or the combined membership grades of a group of facts to influence the behaviors in your game. For more information about rules and rule systems, read in .
+
+
+// A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem
+type RuleSystem struct {
+	objectivec.Object
+}
+
+// RuleSystemFrom constructs a [RuleSystem] from an unsafe.Pointer.
+//
+// A list of rules, together with a context for evaluating them and interpreting results, for use in constructing data-driven logic or fuzzy logic systems.
+func RuleSystemFrom(ptr unsafe.Pointer) RuleSystem {
+	return RuleSystem{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for RuleSystem */
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for RuleSystem */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for RuleSystem */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for RuleSystem */
 
 // Adds the specified rule to the system.
 //
@@ -114,34 +154,34 @@ func NewRuleSystem() RuleSystem {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/add(_:)-76jb5
 func (r_ RuleSystem) AddRule(rule IGKRule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addRule:"), rule)
-}
+}/* debug [instance_methods/method]: AddRule */
 
 
 // Adds the specified list of rules to the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/add(_:)-7u5zw
-func (r_ RuleSystem) AddRulesFromArray(rules []IRule) {
+func (r_ RuleSystem) AddRulesFromArray(rules []Rule) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("addRulesFromArray:"), rules)
-}
+}/* debug [instance_methods/method]: AddRulesFromArray */
 
 
 // Adds the specified fact to the fact set with a membership grade of 1.0, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/assertFact(_:)
-func (r_ RuleSystem) AssertFact(fact objectivec.IObject) {
+func (r_ RuleSystem) AssertFact(fact unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("assertFact:"), fact)
-}
+}/* debug [instance_methods/method]: AssertFact */
 
 
 // Increases the membership grade of the specified fact by the specified amount, adding it to the fact set if necessary, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/assertFact(_:grade:)
-func (r_ RuleSystem) AssertFactGrade(fact objectivec.IObject, grade float32) {
+func (r_ RuleSystem) AssertFactGrade(fact unsafe.Pointer, grade float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("assertFact:grade:"), fact, grade)
-}
+}/* debug [instance_methods/method]: AssertFactGrade */
 
 
 // Evaluates the rule system, executing the list of rules in its agenda.
@@ -150,17 +190,17 @@ func (r_ RuleSystem) AssertFactGrade(fact objectivec.IObject, grade float32) {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/evaluate()
 func (r_ RuleSystem) Evaluate() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("evaluate"))
-}
+}/* debug [instance_methods/method]: Evaluate */
 
 
 // Returns the membership grade of the specified fact.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/grade(forFact:)
-func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) float32 {
+func (r_ RuleSystem) GradeForFact(fact unsafe.Pointer) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("gradeForFact:"), fact)
 	return rv
-}
+}/* debug [instance_methods/method]: GradeForFact */
 
 
 // Returns the highest membership grade among the specified facts.
@@ -170,7 +210,7 @@ func (r_ RuleSystem) GradeForFact(fact objectivec.IObject) float32 {
 func (r_ RuleSystem) MaximumGradeForFacts(facts objc.IObject /* cross-framework: NSArray */) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("maximumGradeForFacts:"), facts)
 	return rv
-}
+}/* debug [instance_methods/method]: MaximumGradeForFacts */
 
 
 // Returns the lowest membership grade among the specified facts.
@@ -180,7 +220,7 @@ func (r_ RuleSystem) MaximumGradeForFacts(facts objc.IObject /* cross-framework:
 func (r_ RuleSystem) MinimumGradeForFacts(facts objc.IObject /* cross-framework: NSArray */) float32 {
 	rv := objc.Send[float32](r_.ID, objc.Sel("minimumGradeForFacts:"), facts)
 	return rv
-}
+}/* debug [instance_methods/method]: MinimumGradeForFacts */
 
 
 // Removes all rules from the system.
@@ -189,7 +229,7 @@ func (r_ RuleSystem) MinimumGradeForFacts(facts objc.IObject /* cross-framework:
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/removeAllRules()
 func (r_ RuleSystem) RemoveAllRules() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("removeAllRules"))
-}
+}/* debug [instance_methods/method]: RemoveAllRules */
 
 
 // Returns the rule system to its original agenda and clears all facts.
@@ -198,45 +238,50 @@ func (r_ RuleSystem) RemoveAllRules() {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/reset()
 func (r_ RuleSystem) Reset() {
 	objc.Send[objc.ID](r_.ID, objc.Sel("reset"))
-}
+}/* debug [instance_methods/method]: Reset */
 
 
 // Removes the specified fact from the fact set, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/retractFact(_:)
-func (r_ RuleSystem) RetractFact(fact objectivec.IObject) {
+func (r_ RuleSystem) RetractFact(fact unsafe.Pointer) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:"), fact)
-}
+}/* debug [instance_methods/method]: RetractFact */
 
 
 // Reduces the membership grade of the specified fact by the specified amount, removing it from the fact set if necessary, and reevaluates the rules in the system’s agenda.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/retractFact(_:grade:)
-func (r_ RuleSystem) RetractFactGrade(fact objectivec.IObject, grade float32) {
+func (r_ RuleSystem) RetractFactGrade(fact unsafe.Pointer, grade float32) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("retractFact:grade:"), fact, grade)
-}
+}/* debug [instance_methods/method]: RetractFactGrade */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for RuleSystem */
 
 // The list of rules to be considered when evaluating the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/agenda
-func (r_ RuleSystem) Agenda() []IRule {
+func (r_ RuleSystem) Agenda() []Rule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("agenda"))
 	return rv
-}
+}/* debug [instance_properties/getter]: agenda */
 
 
 // The list of rules whose actions have been performed during evaluation of the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/executed
-func (r_ RuleSystem) Executed() []IRule {
+func (r_ RuleSystem) Executed() []Rule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("executed"))
 	return rv
-}
+}/* debug [instance_properties/getter]: executed */
 
 
 // The list of facts claimed by the rule system.
@@ -246,27 +291,27 @@ func (r_ RuleSystem) Executed() []IRule {
 func (r_ RuleSystem) Facts() objc.IObject /* cross-framework: NSArray */ {
 	rv := objc.Send[foundation.NSArray](r_.ID, objc.Sel("facts"))
 	return rv
-}
+}/* debug [instance_properties/getter]: facts */
 
 
 // The list of rules to be executed when evaluating the system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/rules
-func (r_ RuleSystem) Rules() []IRule {
+func (r_ RuleSystem) Rules() []Rule {
 	rv := objc.Send[[]Rule](r_.ID, objc.Sel("rules"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rules */
 
 
 // A dictionary of state information to be evaluated by the system’s rules.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKRuleSystem/state
-func (r_ RuleSystem) State() objc.IObject /* cross-framework: MutableDictionary */ {
+func (r_ RuleSystem) State() foundation.MutableDictionary {
 	rv := objc.Send[foundation.MutableDictionary](r_.ID, objc.Sel("state"))
 	return rv
-}
+}/* debug [instance_properties/getter]: state */
 
 
 // The importance of the rule relative to others in a rule system’s agenda.
@@ -276,7 +321,7 @@ func (r_ RuleSystem) State() objc.IObject /* cross-framework: MutableDictionary 
 func (r_ RuleSystem) Salience() int {
 	rv := objc.Send[int](r_.ID, objc.Sel("salience"))
 	return rv
-}
+}/* debug [instance_properties/getter]: salience */
 
 
 // The importance of the rule relative to others in a rule system’s agenda.
@@ -285,6 +330,11 @@ func (r_ RuleSystem) Salience() int {
 // [Full Topic]: https://developer.apple.com/documentation/gameplaykit/gkrule/salience
 func (r_ RuleSystem) SetSalience(value int) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setSalience:"), value)
-}
+}/* debug [instance_properties/setter]: salience */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GKRuleSystem */
 
 

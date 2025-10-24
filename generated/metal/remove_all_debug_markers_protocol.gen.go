@@ -20,3 +20,4 @@ var removeAllDebugMarkersProtocol *objc.Protocol
 func init() {
 	removeAllDebugMarkersProtocol = objc.GetProtocol("removeAllDebugMarkers")
 }
+

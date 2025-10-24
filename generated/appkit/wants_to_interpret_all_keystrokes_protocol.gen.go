@@ -15,3 +15,4 @@ var wantsToInterpretAllKeystrokesProtocol *objc.Protocol
 func init() {
 	wantsToInterpretAllKeystrokesProtocol = objc.GetProtocol("wantsToInterpretAllKeystrokes")
 }
+

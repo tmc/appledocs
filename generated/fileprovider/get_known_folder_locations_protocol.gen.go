@@ -15,3 +15,4 @@ var getKnownFolderLocationsProtocol *objc.Protocol
 func init() {
 	getKnownFolderLocationsProtocol = objc.GetProtocol("getKnownFolderLocations:")
 }
+

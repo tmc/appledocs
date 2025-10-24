@@ -15,3 +15,4 @@ var setAccessibilityColumnTitlesProtocol *objc.Protocol
 func init() {
 	setAccessibilityColumnTitlesProtocol = objc.GetProtocol("setAccessibilityColumnTitles")
 }
+

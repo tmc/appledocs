@@ -21,3 +21,4 @@ var MTRDevicePairingDelegateProtocol *objc.Protocol
 func init() {
 	MTRDevicePairingDelegateProtocol = objc.GetProtocol("MTRDevicePairingDelegate")
 }
+

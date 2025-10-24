@@ -13,16 +13,17 @@ var _ = appkit.NewMutableFontCollection
 // Creates a mutable named font collection object.
 func ExampleNewMutableFontCollectionWithName() {
 	_ = appkit.NewMutableFontCollectionWithName(
-		appkit.FontCollectionName /* not a class type */{}, // name FontCollectionName /* not a class type */
+		appkit.FontCollectionName /* not a class type */ {}, // name FontCollectionName /* not a class type */
 	)
 	// Output:
 }
+
 // ExampleNewMutableFontCollectionWithNameVisibility demonstrates how to create a MutableFontCollection instance using NewMutableFontCollectionWithNameVisibility.
 // Creates a mutable font collection with the specified name and font visibility.
 func ExampleNewMutableFontCollectionWithNameVisibility() {
 	_ = appkit.NewMutableFontCollectionWithNameVisibility(
-		appkit.FontCollectionName /* not a class type */{}, // name FontCollectionName /* not a class type */
-		appkit.FontCollectionVisibility /* not a class type */{}, // visibility FontCollectionVisibility /* not a class type */
+		appkit.FontCollectionName /* not a class type */ {},       // name FontCollectionName /* not a class type */
+		appkit.FontCollectionVisibility /* not a class type */ {}, // visibility FontCollectionVisibility /* not a class type */
 	)
 	// Output:
 }

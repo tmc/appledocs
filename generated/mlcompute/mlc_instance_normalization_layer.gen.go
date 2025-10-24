@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MLCInstanceNormalizationLayer */
+
+
+/* debug [class_header]: Header for MLCInstanceNormalizationLayer */
 // The class instance for the [CInstanceNormalizationLayer] class.
 var (
 	CInstanceNormalizationLayerClass     _CInstanceNormalizationLayerClass
@@ -25,52 +29,39 @@ func getCInstanceNormalizationLayerClass() _CInstanceNormalizationLayerClass {
 type _CInstanceNormalizationLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CInstanceNormalizationLayer */
 // An interface definition for the [CInstanceNormalizationLayer] class.
 type ICInstanceNormalizationLayer interface {
 	ICLayer
+	
+/* debug [class_interface_properties]: Properties for CInstanceNormalizationLayer */
 	// properties:
 	Beta() IMLCTensor
-	SetBeta(value IMLCTensor)
-	BetaParameter() objc.IObject /* cross-framework: CTensorParameter */
-	SetBetaParameter(value objc.IObject /* cross-framework: CTensorParameter */)
-	FeatureChannelCount() int
-	SetFeatureChannelCount(value int)
+	BetaParameter() IMLCTensorParameter
+	FeatureChannelCount() uint
 	Gamma() IMLCTensor
-	SetGamma(value IMLCTensor)
-	GammaParameter() objc.IObject /* cross-framework: CTensorParameter */
-	SetGammaParameter(value objc.IObject /* cross-framework: CTensorParameter */)
+	GammaParameter() IMLCTensorParameter
 	Mean() IMLCTensor
-	SetMean(value IMLCTensor)
 	Momentum() float32
-	SetMomentum(value float32)
 	Variance() IMLCTensor
-	SetVariance(value IMLCTensor)
 	VarianceEpsilon() float32
-	SetVarianceEpsilon(value float32)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CInstanceNormalizationLayer */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A layer that normalizes all features of one channel.
 
 
-// A layer that normalizes all features of one channel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer
-type CInstanceNormalizationLayer struct {
-	CLayer
-}
-
-// CInstanceNormalizationLayerFrom constructs a [CInstanceNormalizationLayer] from an unsafe.Pointer.
-//
-// A layer that normalizes all features of one channel.
-func CInstanceNormalizationLayerFrom(ptr unsafe.Pointer) CInstanceNormalizationLayer {
-	return CInstanceNormalizationLayer{
-		CLayer: CLayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CInstanceNormalizationLayer */
 // Alloc allocates a new instance without initialization.
 func (cc _CInstanceNormalizationLayerClass) Alloc() CInstanceNormalizationLayer {
 	rv := objc.Send[CInstanceNormalizationLayer](objc.ID(cc.class), objc.Sel("alloc"))
@@ -78,7 +69,6 @@ func (cc _CInstanceNormalizationLayerClass) Alloc() CInstanceNormalizationLayer 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CInstanceNormalizationLayerClass) New() CInstanceNormalizationLayer {
 	rv := objc.Send[CInstanceNormalizationLayer](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,178 +91,208 @@ func (c_ CInstanceNormalizationLayer) Autorelease() CInstanceNormalizationLayer 
 func NewCInstanceNormalizationLayer() CInstanceNormalizationLayer {
 	return getCInstanceNormalizationLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CInstanceNormalizationLayer */
+// A layer that normalizes all features of one channel.
+
+
+// A layer that normalizes all features of one channel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer
+type CInstanceNormalizationLayer struct {
+	CLayer
+}
+
+// CInstanceNormalizationLayerFrom constructs a [CInstanceNormalizationLayer] from an unsafe.Pointer.
+//
+// A layer that normalizes all features of one channel.
+func CInstanceNormalizationLayerFrom(ptr unsafe.Pointer) CInstanceNormalizationLayer {
+	return CInstanceNormalizationLayer{
+		CLayer: CLayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CInstanceNormalizationLayer */
+
+// Creates an instance normalization layer with the number of feature channels, beta and gamma tensors, and variance epsilon you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/init(featureChannelCount:beta:gamma:varianceEpsilon:)
+func NewCInstanceNormalizationLayerWithFeatureChannelCountBetaGammaVarianceEpsilon(featureChannelCount uint, beta IMLCTensor, gamma IMLCTensor, varianceEpsilon float32) CInstanceNormalizationLayer {
+	rv := objc.Send[CInstanceNormalizationLayer](objc.ID(getCInstanceNormalizationLayerClass().class), objc.Sel("layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:"), featureChannelCount, beta, gamma, varianceEpsilon)
+	return rv
+}/* debug [class_init_methods/constructor]: NewCInstanceNormalizationLayerWithFeatureChannelCountBetaGammaVarianceEpsilon */
+
+
+// Creates an instance normalization layer with the number of feature channels, beta and gamma tensors, variance epsilon, and momentum you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/init(featureChannelCount:beta:gamma:varianceEpsilon:momentum:)
+func NewCInstanceNormalizationLayerWithFeatureChannelCountBetaGammaVarianceEpsilonMomentum(featureChannelCount uint, beta IMLCTensor, gamma IMLCTensor, varianceEpsilon float32, momentum float32) CInstanceNormalizationLayer {
+	rv := objc.Send[CInstanceNormalizationLayer](objc.ID(getCInstanceNormalizationLayerClass().class), objc.Sel("layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:momentum:"), featureChannelCount, beta, gamma, varianceEpsilon, momentum)
+	return rv
+}/* debug [class_init_methods/constructor]: NewCInstanceNormalizationLayerWithFeatureChannelCountBetaGammaVarianceEpsilonMomentum */
+
+
+// Creates an instance normalization layer with the number of feature channels, mean, variance, beta and gamma tensors, variance epsilon, and momentum you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/init(featureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:)
+func NewCInstanceNormalizationLayerWithFeatureChannelCountMeanVarianceBetaGammaVarianceEpsilonMomentum(featureChannelCount uint, mean IMLCTensor, variance IMLCTensor, beta IMLCTensor, gamma IMLCTensor, varianceEpsilon float32, momentum float32) CInstanceNormalizationLayer {
+	rv := objc.Send[CInstanceNormalizationLayer](objc.ID(getCInstanceNormalizationLayerClass().class), objc.Sel("layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:"), featureChannelCount, mean, variance, beta, gamma, varianceEpsilon, momentum)
+	return rv
+}/* debug [class_init_methods/constructor]: NewCInstanceNormalizationLayerWithFeatureChannelCountMeanVarianceBetaGammaVarianceEpsilonMomentum */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CInstanceNormalizationLayer */
+
+// Creates an instance normalization layer with the number of feature channels, beta and gamma tensors, and variance epsilon you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/init(featureChannelCount:beta:gamma:varianceEpsilon:)
+func (cc _CInstanceNormalizationLayerClass) LayerWithFeatureChannelCountBetaGammaVarianceEpsilon(featureChannelCount uint, beta IMLCTensor, gamma IMLCTensor, varianceEpsilon float32) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:"), featureChannelCount, beta, gamma, varianceEpsilon)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithFeatureChannelCountBetaGammaVarianceEpsilon) */
+
+
+// Creates an instance normalization layer with the number of feature channels, beta and gamma tensors, variance epsilon, and momentum you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/init(featureChannelCount:beta:gamma:varianceEpsilon:momentum:)
+func (cc _CInstanceNormalizationLayerClass) LayerWithFeatureChannelCountBetaGammaVarianceEpsilonMomentum(featureChannelCount uint, beta IMLCTensor, gamma IMLCTensor, varianceEpsilon float32, momentum float32) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithFeatureChannelCount:beta:gamma:varianceEpsilon:momentum:"), featureChannelCount, beta, gamma, varianceEpsilon, momentum)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithFeatureChannelCountBetaGammaVarianceEpsilonMomentum) */
+
+
+// Creates an instance normalization layer with the number of feature channels, mean, variance, beta and gamma tensors, variance epsilon, and momentum you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/init(featureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:)
+func (cc _CInstanceNormalizationLayerClass) LayerWithFeatureChannelCountMeanVarianceBetaGammaVarianceEpsilonMomentum(featureChannelCount uint, mean IMLCTensor, variance IMLCTensor, beta IMLCTensor, gamma IMLCTensor, varianceEpsilon float32, momentum float32) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithFeatureChannelCount:mean:variance:beta:gamma:varianceEpsilon:momentum:"), featureChannelCount, mean, variance, beta, gamma, varianceEpsilon, momentum)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithFeatureChannelCountMeanVarianceBetaGammaVarianceEpsilonMomentum) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CInstanceNormalizationLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CInstanceNormalizationLayer */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CInstanceNormalizationLayer */
 
 // The beta tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/beta
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/beta
 func (c_ CInstanceNormalizationLayer) Beta() IMLCTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("beta"))
 	return rv
-}
-
-
-// The beta tensor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/beta
-func (c_ CInstanceNormalizationLayer) SetBeta(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
-}
+}/* debug [instance_properties/getter]: beta */
 
 
 // The beta tensor parameter you use for optimizer updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/betaparameter
-func (c_ CInstanceNormalizationLayer) BetaParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/betaParameter
+func (c_ CInstanceNormalizationLayer) BetaParameter() IMLCTensorParameter {
 	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("betaParameter"))
 	return rv
-}
-
-
-// The beta tensor parameter you use for optimizer updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/betaparameter
-func (c_ CInstanceNormalizationLayer) SetBetaParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBetaParameter:"), value)
-}
+}/* debug [instance_properties/getter]: betaParameter */
 
 
 // The number of feature channels.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/featurechannelcount
-func (c_ CInstanceNormalizationLayer) FeatureChannelCount() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("featureChannelCount"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/featureChannelCount
+func (c_ CInstanceNormalizationLayer) FeatureChannelCount() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("featureChannelCount"))
 	return rv
-}
-
-
-// The number of feature channels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/featurechannelcount
-func (c_ CInstanceNormalizationLayer) SetFeatureChannelCount(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFeatureChannelCount:"), value)
-}
+}/* debug [instance_properties/getter]: featureChannelCount */
 
 
 // The gamma tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gamma
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/gamma
 func (c_ CInstanceNormalizationLayer) Gamma() IMLCTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("gamma"))
 	return rv
-}
-
-
-// The gamma tensor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gamma
-func (c_ CInstanceNormalizationLayer) SetGamma(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGamma:"), value)
-}
+}/* debug [instance_properties/getter]: gamma */
 
 
 // The gamma tensor parameter you use for optimizer updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gammaparameter
-func (c_ CInstanceNormalizationLayer) GammaParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/gammaParameter
+func (c_ CInstanceNormalizationLayer) GammaParameter() IMLCTensorParameter {
 	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("gammaParameter"))
 	return rv
-}
-
-
-// The gamma tensor parameter you use for optimizer updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/gammaparameter
-func (c_ CInstanceNormalizationLayer) SetGammaParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGammaParameter:"), value)
-}
+}/* debug [instance_properties/getter]: gammaParameter */
 
 
 // The running mean tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/mean
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/mean
 func (c_ CInstanceNormalizationLayer) Mean() IMLCTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("mean"))
 	return rv
-}
-
-
-// The running mean tensor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/mean
-func (c_ CInstanceNormalizationLayer) SetMean(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMean:"), value)
-}
+}/* debug [instance_properties/getter]: mean */
 
 
 // The momentum value for the running mean and variance computation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/momentum
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/momentum
 func (c_ CInstanceNormalizationLayer) Momentum() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("momentum"))
 	return rv
-}
-
-
-// The momentum value for the running mean and variance computation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/momentum
-func (c_ CInstanceNormalizationLayer) SetMomentum(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMomentum:"), value)
-}
+}/* debug [instance_properties/getter]: momentum */
 
 
 // The running variance tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/variance
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/variance
 func (c_ CInstanceNormalizationLayer) Variance() IMLCTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("variance"))
 	return rv
-}
-
-
-// The running variance tensor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/variance
-func (c_ CInstanceNormalizationLayer) SetVariance(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVariance:"), value)
-}
+}/* debug [instance_properties/getter]: variance */
 
 
 // The variance epsilon you use for numerical stability.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/varianceepsilon
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCInstanceNormalizationLayer/varianceEpsilon
 func (c_ CInstanceNormalizationLayer) VarianceEpsilon() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("varianceEpsilon"))
 	return rv
-}
+}/* debug [instance_properties/getter]: varianceEpsilon */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The variance epsilon you use for numerical stability.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcinstancenormalizationlayer/varianceepsilon
-func (c_ CInstanceNormalizationLayer) SetVarianceEpsilon(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setVarianceEpsilon:"), value)
-}
-
+/* debug [class.gen.go]: End class MLCInstanceNormalizationLayer */
 
 

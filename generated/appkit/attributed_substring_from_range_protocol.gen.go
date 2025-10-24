@@ -15,3 +15,4 @@ var attributedSubstringFromRangeProtocol *objc.Protocol
 func init() {
 	attributedSubstringFromRangeProtocol = objc.GetProtocol("attributedSubstringFromRange:")
 }
+

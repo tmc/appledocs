@@ -3,7 +3,12 @@
 package appkit
 
 import (
-	"unsafe"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PTextFinderClient is the NSTextFinderClient protocol interface.
@@ -30,7 +35,7 @@ type PTextFinderClient interface {
 	HasScrollRangeToVisible() bool
 	ShouldReplaceCharactersInRangesWithStrings(ranges []foundation.Value, strings []string) bool
 	HasShouldReplaceCharactersInRangesWithStrings() bool
-	StringAtIndexEffectiveRangeEndsWithSearchBoundary(characterIndex uint, outRange RangePointer /* not a class type */, outFlag unsafe.Pointer) foundation.String
+	StringAtIndexEffectiveRangeEndsWithSearchBoundary(characterIndex uint, outRange RangePointer /* not a class type */, outFlag objectivec.IObject) foundation.String
 	HasStringAtIndexEffectiveRangeEndsWithSearchBoundary() bool
 	StringLength() uint
 	HasStringLength() bool

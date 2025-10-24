@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRBasicInformationClusterCapabilityMinimaStruct interface {
 	SetSubscriptionsPerFabric(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicInformationClusterCapabilityMinimaStruct
@@ -83,8 +81,6 @@ func NewMTRBasicInformationClusterCapabilityMinimaStruct() MTRBasicInformationCl
 	return getMTRBasicInformationClusterCapabilityMinimaStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclustercapabilityminimastruct/casesessionsperfabric
 func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) CaseSessionsPerFabric() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) CaseSessionsPerFabric
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclustercapabilityminimastruct/casesessionsperfabric
 func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) SetCaseSessionsPerFabric(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseSessionsPerFabric:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclustercapabilityminimastruct/subscriptionsperfabric
@@ -107,12 +101,8 @@ func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) SubscriptionsPerFabri
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclustercapabilityminimastruct/subscriptionsperfabric
 func (m_ MTRBasicInformationClusterCapabilityMinimaStruct) SetSubscriptionsPerFabric(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubscriptionsPerFabric:"), value)
 }
-
-
-

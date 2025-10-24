@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VNImageHomographicAlignmentObservation */
+
+
+/* debug [class_header]: Header for VNImageHomographicAlignmentObservation */
 // The class instance for the [ImageHomographicAlignmentObservation] class.
 var (
 	ImageHomographicAlignmentObservationClass     _ImageHomographicAlignmentObservationClass
@@ -25,38 +30,31 @@ func getImageHomographicAlignmentObservationClass() _ImageHomographicAlignmentOb
 type _ImageHomographicAlignmentObservationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ImageHomographicAlignmentObservation */
 // An interface definition for the [ImageHomographicAlignmentObservation] class.
 type IImageHomographicAlignmentObservation interface {
 	IImageAlignmentObservation
+	
+/* debug [class_interface_properties]: Properties for ImageHomographicAlignmentObservation */
 	// properties:
-	WarpTransform() unsafe.Pointer
-	SetWarpTransform(value unsafe.Pointer)
+	WarpTransform() objectivec.IObject
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ImageHomographicAlignmentObservation */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents a perspective warp transformation.
-//
-// This type of observation results from a , informing the performed to align the input images.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents a perspective warp transformation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageHomographicAlignmentObservation
-type ImageHomographicAlignmentObservation struct {
-	ImageAlignmentObservation
-}
 
-// ImageHomographicAlignmentObservationFrom constructs a [ImageHomographicAlignmentObservation] from an unsafe.Pointer.
-//
-// An object that represents a perspective warp transformation.
-func ImageHomographicAlignmentObservationFrom(ptr unsafe.Pointer) ImageHomographicAlignmentObservation {
-	return ImageHomographicAlignmentObservation{
-		ImageAlignmentObservation: ImageAlignmentObservationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ImageHomographicAlignmentObservation */
 // Alloc allocates a new instance without initialization.
 func (ic _ImageHomographicAlignmentObservationClass) Alloc() ImageHomographicAlignmentObservation {
 	rv := objc.Send[ImageHomographicAlignmentObservation](objc.ID(ic.class), objc.Sel("alloc"))
@@ -64,7 +62,6 @@ func (ic _ImageHomographicAlignmentObservationClass) Alloc() ImageHomographicAli
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ImageHomographicAlignmentObservationClass) New() ImageHomographicAlignmentObservation {
 	rv := objc.Send[ImageHomographicAlignmentObservation](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,26 +84,70 @@ func (i_ ImageHomographicAlignmentObservation) Autorelease() ImageHomographicAli
 func NewImageHomographicAlignmentObservation() ImageHomographicAlignmentObservation {
 	return getImageHomographicAlignmentObservationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ImageHomographicAlignmentObservation */
+// An object that represents a perspective warp transformation.
+//
+// This type of observation results from a , informing the performed to align the input images.
+
+
+// An object that represents a perspective warp transformation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageHomographicAlignmentObservation
+type ImageHomographicAlignmentObservation struct {
+	ImageAlignmentObservation
+}
+
+// ImageHomographicAlignmentObservationFrom constructs a [ImageHomographicAlignmentObservation] from an unsafe.Pointer.
+//
+// An object that represents a perspective warp transformation.
+func ImageHomographicAlignmentObservationFrom(ptr unsafe.Pointer) ImageHomographicAlignmentObservation {
+	return ImageHomographicAlignmentObservation{
+		ImageAlignmentObservation: ImageAlignmentObservationFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ImageHomographicAlignmentObservation *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ImageHomographicAlignmentObservation */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ImageHomographicAlignmentObservation */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ImageHomographicAlignmentObservation */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ImageHomographicAlignmentObservation */
 
 // The warp transform matrix to morph the floating image into the reference image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation/warptransform
-func (i_ ImageHomographicAlignmentObservation) WarpTransform() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("warpTransform"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageHomographicAlignmentObservation/warpTransform
+func (i_ ImageHomographicAlignmentObservation) WarpTransform() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("warpTransform"))
 	return rv
-}
+}/* debug [instance_properties/getter]: warpTransform */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The warp transform matrix to morph the floating image into the reference image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnimagehomographicalignmentobservation/warptransform
-func (i_ ImageHomographicAlignmentObservation) SetWarpTransform(value unsafe.Pointer) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setWarpTransform:"), value)
-}
+/* debug [class.gen.go]: End class VNImageHomographicAlignmentObservation */
 
 
 

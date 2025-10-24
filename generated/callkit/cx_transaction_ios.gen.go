@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -29,7 +28,7 @@ func (c_ CXTransaction) AddAction(action ICXAction) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/actions
-func (c_ CXTransaction) Actions() []ICXAction {
+func (c_ CXTransaction) Actions() []CXAction {
 	rv := objc.Send[[]CXAction](c_.ID, objc.Sel("actions"))
 	return rv
 }
@@ -47,7 +46,7 @@ func (c_ CXTransaction) Complete() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTransaction/uuid
-func (c_ CXTransaction) UUID() objc.IObject /* cross-framework: UUID */ {
+func (c_ CXTransaction) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }

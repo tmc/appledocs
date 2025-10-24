@@ -20,3 +20,4 @@ var isTouchedProtocol *objc.Protocol
 func init() {
 	isTouchedProtocol = objc.GetProtocol("isTouched")
 }
+

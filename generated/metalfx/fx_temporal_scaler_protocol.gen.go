@@ -19,3 +19,4 @@ var FXTemporalScalerProtocol *objc.Protocol
 func init() {
 	FXTemporalScalerProtocol = objc.GetProtocol("MTLFXTemporalScaler")
 }
+

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CKAsset */
+
+
+/* debug [class_header]: Header for CKAsset */
 // The class instance for the [CKAsset] class.
 var (
 	CKAssetClass     _CKAssetClass
@@ -27,36 +31,31 @@ func getCKAssetClass() _CKAssetClass {
 type _CKAssetClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CKAsset */
 // An interface definition for the [CKAsset] class.
 type ICKAsset interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CKAsset */
 	// properties:
-	FileURL() objc.IObject /* cross-framework: URL */
-	SetFileURL(value objc.IObject /* cross-framework: URL */)
+	FileURL() objc.IObject /* cross-framework: NSURL */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CKAsset */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An external file that belongs to a record.
-//
-// Use assets to incorporate external files into your app’s records, such as photos, videos, and binary files. Alternatively, use assets when a field’s value is more than a few kilobytes in size. To associate an instance of with a record, assign it to one of its fields. CloudKit stores an asset’s data separately from a record that references it, but maintains an association with that record. When you save a record that has an asset, CloudKit saves both the record and the asset to the server. Similarly, when you fetch the record, the server returns the record and the asset. When you fetch a record that contains an asset, CloudKit stores the asset’s data in a staging area accessible to your app. Use the asset’s property to access its staged location. The system regularly deletes files in the staging area to reclaim disk space. To avoid this behavior, move the data into your app’s container as soon as you fetch it. If you don’t require the asset when retrieving records, use the operation’s property to exclude the field. For more information, see , , and . If you no longer require an asset that’s on the server, you don’t delete it. Instead, orphan the asset by setting any fields that contain the asset to and then saving the record. CloudKit periodically deletes orphaned assets from the server.
+/* debug [class_interface]: End interface */
 
 
-// An external file that belongs to a record.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset
-type CKAsset struct {
-	objectivec.Object
-}
 
-// CKAssetFrom constructs a [CKAsset] from an unsafe.Pointer.
-//
-// An external file that belongs to a record.
-func CKAssetFrom(ptr unsafe.Pointer) CKAsset {
-	return CKAsset{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CKAsset */
 // Alloc allocates a new instance without initialization.
 func (cc _CKAssetClass) Alloc() CKAsset {
 	rv := objc.Send[CKAsset](objc.ID(cc.class), objc.Sel("alloc"))
@@ -64,7 +63,6 @@ func (cc _CKAssetClass) Alloc() CKAsset {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CKAssetClass) New() CKAsset {
 	rv := objc.Send[CKAsset](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,26 +85,80 @@ func (c_ CKAsset) Autorelease() CKAsset {
 func NewCKAsset() CKAsset {
 	return getCKAssetClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The URL for accessing the asset.
+/* debug [class_struct]: Struct for CKAsset */
+// An external file that belongs to a record.
+//
+// Use assets to incorporate external files into your app’s records, such as photos, videos, and binary files. Alternatively, use assets when a field’s value is more than a few kilobytes in size. To associate an instance of with a record, assign it to one of its fields. CloudKit stores an asset’s data separately from a record that references it, but maintains an association with that record. When you save a record that has an asset, CloudKit saves both the record and the asset to the server. Similarly, when you fetch the record, the server returns the record and the asset. When you fetch a record that contains an asset, CloudKit stores the asset’s data in a staging area accessible to your app. Use the asset’s property to access its staged location. The system regularly deletes files in the staging area to reclaim disk space. To avoid this behavior, move the data into your app’s container as soon as you fetch it. If you don’t require the asset when retrieving records, use the operation’s property to exclude the field. For more information, see , , and . If you no longer require an asset that’s on the server, you don’t delete it. Instead, orphan the asset by setting any fields that contain the asset to and then saving the record. CloudKit periodically deletes orphaned assets from the server.
+
+
+// An external file that belongs to a record.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckasset/fileurl
-func (c_ CKAsset) FileURL() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](c_.ID, objc.Sel("fileURL"))
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset
+type CKAsset struct {
+	objectivec.Object
+}
+
+// CKAssetFrom constructs a [CKAsset] from an unsafe.Pointer.
+//
+// An external file that belongs to a record.
+func CKAssetFrom(ptr unsafe.Pointer) CKAsset {
+	return CKAsset{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CKAsset */
+
+// Creates an asset that references a file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/init(fileURL:)
+func NewCKAssetWithFileURL(fileURL objc.IObject /* cross-framework: NSURL */) CKAsset {
+	instance := getCKAssetClass().Alloc()
+	rv := objc.Send[CKAsset](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCKAssetWithFileURL */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CKAsset */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CKAsset */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CKAsset */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CKAsset */
 
 // The URL for accessing the asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckasset/fileurl
-func (c_ CKAsset) SetFileURL(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFileURL:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAsset/fileURL
+func (c_ CKAsset) FileURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](c_.ID, objc.Sel("fileURL"))
+	return rv
+}/* debug [instance_properties/getter]: fileURL */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CKAsset */
 
 

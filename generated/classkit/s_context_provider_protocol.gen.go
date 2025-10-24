@@ -19,3 +19,4 @@ var SContextProviderProtocol *objc.Protocol
 func init() {
 	SContextProviderProtocol = objc.GetProtocol("CLSContextProvider")
 }
+

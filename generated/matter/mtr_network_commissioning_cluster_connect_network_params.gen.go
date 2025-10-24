@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRNetworkCommissioningClusterConnectNetworkParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterConnectNetworkParams
@@ -87,8 +85,6 @@ func NewMTRNetworkCommissioningClusterConnectNetworkParams() MTRNetworkCommissio
 	return getMTRNetworkCommissioningClusterConnectNetworkParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/breadcrumb
 func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
@@ -96,13 +92,11 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) Breadcrumb() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/breadcrumb
 func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/networkid
@@ -111,13 +105,11 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) NetworkID() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/networkid
 func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetNetworkID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/serversideprocessingtimeout
@@ -126,13 +118,11 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) ServerSideProcessin
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/serversideprocessingtimeout
 func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/timedinvoketimeoutms
@@ -141,12 +131,8 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) TimedInvokeTimeoutM
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkparams/timedinvoketimeoutms
 func (m_ MTRNetworkCommissioningClusterConnectNetworkParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

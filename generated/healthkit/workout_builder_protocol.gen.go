@@ -19,3 +19,4 @@ var workoutBuilderProtocol *objc.Protocol
 func init() {
 	workoutBuilderProtocol = objc.GetProtocol("workoutBuilder:")
 }
+

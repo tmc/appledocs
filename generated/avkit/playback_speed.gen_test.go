@@ -13,7 +13,7 @@ var _ = avkit.NewPlaybackSpeed
 // Creates a playback speed with a rate and localized name.
 func ExampleNewPlaybackSpeedWithRateLocalizedName() {
 	_ = avkit.NewPlaybackSpeedWithRateLocalizedName(
-		0.0, // rate float32
+		0.0,             // rate float32
 		"localizedName", // localizedName string
 	)
 	// Output:

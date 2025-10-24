@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CKSyncEngineFetchedRecordDeletion */
+
+
+/* debug [class_header]: Header for CKSyncEngineFetchedRecordDeletion */
 // The class instance for the [CKSyncEngineFetchedRecordDeletion] class.
 var (
 	CKSyncEngineFetchedRecordDeletionClass     _CKSyncEngineFetchedRecordDeletionClass
@@ -26,32 +30,32 @@ func getCKSyncEngineFetchedRecordDeletionClass() _CKSyncEngineFetchedRecordDelet
 type _CKSyncEngineFetchedRecordDeletionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CKSyncEngineFetchedRecordDeletion */
 // An interface definition for the [CKSyncEngineFetchedRecordDeletion] class.
 type ICKSyncEngineFetchedRecordDeletion interface {
 	objectivec.IObject
-	RecordID() CKRecordID
-	RecordType() unsafe.Pointer
+	
+/* debug [class_interface_properties]: Properties for CKSyncEngineFetchedRecordDeletion */
+	// properties:
+	RecordID() ICKRecordID
+	RecordType() objectivec.IObject
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CKSyncEngineFetchedRecordDeletion */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that describes the deletion of an individual record.
 
 
-// An object that describes the deletion of an individual record.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion
-type CKSyncEngineFetchedRecordDeletion struct {
-	objectivec.Object
-}
-
-// CKSyncEngineFetchedRecordDeletionFrom constructs a [CKSyncEngineFetchedRecordDeletion] from an unsafe.Pointer.
-//
-// An object that describes the deletion of an individual record.
-func CKSyncEngineFetchedRecordDeletionFrom(ptr unsafe.Pointer) CKSyncEngineFetchedRecordDeletion {
-	return CKSyncEngineFetchedRecordDeletion{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CKSyncEngineFetchedRecordDeletion */
 // Alloc allocates a new instance without initialization.
 func (cc _CKSyncEngineFetchedRecordDeletionClass) Alloc() CKSyncEngineFetchedRecordDeletion {
 	rv := objc.Send[CKSyncEngineFetchedRecordDeletion](objc.ID(cc.class), objc.Sel("alloc"))
@@ -59,7 +63,6 @@ func (cc _CKSyncEngineFetchedRecordDeletionClass) Alloc() CKSyncEngineFetchedRec
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CKSyncEngineFetchedRecordDeletionClass) New() CKSyncEngineFetchedRecordDeletion {
 	rv := objc.Send[CKSyncEngineFetchedRecordDeletion](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,27 +85,76 @@ func (c_ CKSyncEngineFetchedRecordDeletion) Autorelease() CKSyncEngineFetchedRec
 func NewCKSyncEngineFetchedRecordDeletion() CKSyncEngineFetchedRecordDeletion {
 	return getCKSyncEngineFetchedRecordDeletionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CKSyncEngineFetchedRecordDeletion */
+// An object that describes the deletion of an individual record.
+
+
+// An object that describes the deletion of an individual record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion
+type CKSyncEngineFetchedRecordDeletion struct {
+	objectivec.Object
+}
+
+// CKSyncEngineFetchedRecordDeletionFrom constructs a [CKSyncEngineFetchedRecordDeletion] from an unsafe.Pointer.
+//
+// An object that describes the deletion of an individual record.
+func CKSyncEngineFetchedRecordDeletionFrom(ptr unsafe.Pointer) CKSyncEngineFetchedRecordDeletion {
+	return CKSyncEngineFetchedRecordDeletion{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CKSyncEngineFetchedRecordDeletion *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CKSyncEngineFetchedRecordDeletion */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CKSyncEngineFetchedRecordDeletion */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CKSyncEngineFetchedRecordDeletion */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CKSyncEngineFetchedRecordDeletion */
 
 // The deleted record’s unique identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion/recordID
-func (c_ CKSyncEngineFetchedRecordDeletion) RecordID() CKRecordID {
+func (c_ CKSyncEngineFetchedRecordDeletion) RecordID() ICKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: recordID */
 
 
 // The record type of the deleted record.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineFetchedRecordDeletion/recordType
-func (c_ CKSyncEngineFetchedRecordDeletion) RecordType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordType"))
+func (c_ CKSyncEngineFetchedRecordDeletion) RecordType() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("recordType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: recordType */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CKSyncEngineFetchedRecordDeletion */
 
 
 

@@ -15,3 +15,4 @@ var isHiddenProtocol *objc.Protocol
 func init() {
 	isHiddenProtocol = objc.GetProtocol("isHidden")
 }
+

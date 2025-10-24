@@ -21,3 +21,4 @@ var componentsProtocol *objc.Protocol
 func init() {
 	componentsProtocol = objc.GetProtocol("components")
 }
+

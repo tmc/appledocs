@@ -42,7 +42,6 @@ type ISaveChangesRequest interface {
 
 // An encapsulation of a collection of changes to be made by an object store in response to a save operation on a managed object context.
 
-
 // An encapsulation of a collection of changes to be made by an object store in response to a save operation on a managed object context.
 //
 // [Full Topic]
@@ -91,8 +90,6 @@ func NewSaveChangesRequest() SaveChangesRequest {
 	return getSaveChangesRequestClass().New()
 }
 
-
-
 // The objects that were modified in the calling context.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (s_ SaveChangesRequest) UpdatedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("updatedObjects"))
 	return rv
 }
-
 
 // The objects that were deleted in the calling context.
 //
@@ -112,7 +108,6 @@ func (s_ SaveChangesRequest) DeletedObjects() IManagedObject {
 	return rv
 }
 
-
 // The objects that were deleted in the calling context.
 //
 // [Full Topic]
@@ -120,7 +115,6 @@ func (s_ SaveChangesRequest) DeletedObjects() IManagedObject {
 func (s_ SaveChangesRequest) SetDeletedObjects(value IManagedObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletedObjects:"), value)
 }
-
 
 // The objects that were inserted into the calling context.
 //
@@ -131,7 +125,6 @@ func (s_ SaveChangesRequest) InsertedObjects() IManagedObject {
 	return rv
 }
 
-
 // The objects that were inserted into the calling context.
 //
 // [Full Topic]
@@ -139,7 +132,6 @@ func (s_ SaveChangesRequest) InsertedObjects() IManagedObject {
 func (s_ SaveChangesRequest) SetInsertedObjects(value IManagedObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setInsertedObjects:"), value)
 }
-
 
 // The objects that were flagged for optimistic locking on the calling context.
 //
@@ -150,7 +142,6 @@ func (s_ SaveChangesRequest) LockedObjects() IManagedObject {
 	return rv
 }
 
-
 // The objects that were flagged for optimistic locking on the calling context.
 //
 // [Full Topic]
@@ -158,6 +149,3 @@ func (s_ SaveChangesRequest) LockedObjects() IManagedObject {
 func (s_ SaveChangesRequest) SetLockedObjects(value IManagedObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLockedObjects:"), value)
 }
-
-
-

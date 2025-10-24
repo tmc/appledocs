@@ -38,7 +38,6 @@ type IQueryGenerationToken interface {
 //
 // When a managed object context is pinned to a specific generation of the app data, a query generation token will be associated with that context.
 
-
 // A token that indicates which generation of the persistent store is being accessed.
 //
 // [Full Topic]
@@ -85,8 +84,6 @@ func NewQueryGenerationToken() QueryGenerationToken {
 	return getQueryGenerationTokenClass().New()
 }
 
-
-
 // A token that informs a context to use the current generation.
 //
 // [Full Topic]
@@ -104,6 +101,3 @@ func (q_ QueryGenerationToken) CurrentQueryGenerationToken() IQueryGenerationTok
 	rv := objc.Send[QueryGenerationToken](q_.ID, objc.Sel("currentQueryGenerationToken"))
 	return rv
 }
-
-
-

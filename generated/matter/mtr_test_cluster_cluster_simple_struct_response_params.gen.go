@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterSimpleStructResponseParams] class.
@@ -37,8 +37,6 @@ type IMTRTestClusterClusterSimpleStructResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterSimpleStructResponseParams
@@ -84,8 +82,6 @@ func NewMTRTestClusterClusterSimpleStructResponseParams() MTRTestClusterClusterS
 	return getMTRTestClusterClusterSimpleStructResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructresponseparams/arg1
 func (m_ MTRTestClusterClusterSimpleStructResponseParams) Arg1() IMTRUnitTestingClusterSimpleStruct {
@@ -93,13 +89,11 @@ func (m_ MTRTestClusterClusterSimpleStructResponseParams) Arg1() IMTRUnitTesting
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructresponseparams/arg1
 func (m_ MTRTestClusterClusterSimpleStructResponseParams) SetArg1(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructresponseparams/timedinvoketimeoutms
@@ -108,12 +102,8 @@ func (m_ MTRTestClusterClusterSimpleStructResponseParams) TimedInvokeTimeoutMs()
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestructresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterSimpleStructResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

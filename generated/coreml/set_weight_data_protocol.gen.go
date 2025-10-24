@@ -21,3 +21,4 @@ var setWeightDataProtocol *objc.Protocol
 func init() {
 	setWeightDataProtocol = objc.GetProtocol("setWeightData:")
 }
+

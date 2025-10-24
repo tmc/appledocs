@@ -20,3 +20,4 @@ var dpadsProtocol *objc.Protocol
 func init() {
 	dpadsProtocol = objc.GetProtocol("dpads")
 }
+

@@ -38,7 +38,6 @@ type IPHPersistentChangeToken interface {
 
 // An opaque object that tracks the state of the Photos library between runs, and that you can copy and serialize for future use.
 
-
 // An opaque object that tracks the state of the Photos library between runs, and that you can copy and serialize for future use.
 //
 // [Full Topic]
@@ -85,8 +84,6 @@ func NewPHPersistentChangeToken() PHPersistentChangeToken {
 	return getPHPersistentChangeTokenClass().New()
 }
 
-
-
 // The opaque token that represents the current state of the Photos library.
 //
 // [Full Topic]
@@ -96,7 +93,6 @@ func (p_ PHPersistentChangeToken) CurrentChangeToken() IPHPersistentChangeToken 
 	return rv
 }
 
-
 // The opaque token that represents the current state of the Photos library.
 //
 // [Full Topic]
@@ -104,6 +100,3 @@ func (p_ PHPersistentChangeToken) CurrentChangeToken() IPHPersistentChangeToken 
 func (p_ PHPersistentChangeToken) SetCurrentChangeToken(value IPHPersistentChangeToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentChangeToken:"), value)
 }
-
-
-

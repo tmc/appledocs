@@ -10,6 +10,9 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VZMemoryBalloonDeviceConfiguration */
+
+/* debug [class_header]: Header for VZMemoryBalloonDeviceConfiguration */
 // The class instance for the [VZMemoryBalloonDeviceConfiguration] class.
 var (
 	VZMemoryBalloonDeviceConfigurationClass     _VZMemoryBalloonDeviceConfigurationClass
@@ -27,33 +30,26 @@ type _VZMemoryBalloonDeviceConfigurationClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for VZMemoryBalloonDeviceConfiguration */
 // An interface definition for the [VZMemoryBalloonDeviceConfiguration] class.
 type IVZMemoryBalloonDeviceConfiguration interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for VZMemoryBalloonDeviceConfiguration */
 	// properties:
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for VZMemoryBalloonDeviceConfiguration */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// The common configuration traits for memory balloon devices.
-//
-// Don’t instantiate this abstract class directly. Instead, instantiate one of its subclasses such as .
+/* debug [class_interface]: End interface */
 
-
-// The common configuration traits for memory balloon devices.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMemoryBalloonDeviceConfiguration
-type VZMemoryBalloonDeviceConfiguration struct {
-	objectivec.Object
-}
-
-// VZMemoryBalloonDeviceConfigurationFrom constructs a [VZMemoryBalloonDeviceConfiguration] from an unsafe.Pointer.
-//
-// The common configuration traits for memory balloon devices.
-func VZMemoryBalloonDeviceConfigurationFrom(ptr unsafe.Pointer) VZMemoryBalloonDeviceConfiguration {
-	return VZMemoryBalloonDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for VZMemoryBalloonDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
 func (vc _VZMemoryBalloonDeviceConfigurationClass) Alloc() VZMemoryBalloonDeviceConfiguration {
 	rv := objc.Send[VZMemoryBalloonDeviceConfiguration](objc.ID(vc.class), objc.Sel("alloc"))
@@ -61,7 +57,6 @@ func (vc _VZMemoryBalloonDeviceConfigurationClass) Alloc() VZMemoryBalloonDevice
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _VZMemoryBalloonDeviceConfigurationClass) New() VZMemoryBalloonDeviceConfiguration {
 	rv := objc.Send[VZMemoryBalloonDeviceConfiguration](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,6 +80,42 @@ func NewVZMemoryBalloonDeviceConfiguration() VZMemoryBalloonDeviceConfiguration 
 	return getVZMemoryBalloonDeviceConfigurationClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for VZMemoryBalloonDeviceConfiguration */
+// The common configuration traits for memory balloon devices.
+//
+// Don’t instantiate this abstract class directly. Instead, instantiate one of its subclasses such as .
 
+// The common configuration traits for memory balloon devices.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMemoryBalloonDeviceConfiguration
+type VZMemoryBalloonDeviceConfiguration struct {
+	objectivec.Object
+}
 
+// VZMemoryBalloonDeviceConfigurationFrom constructs a [VZMemoryBalloonDeviceConfiguration] from an unsafe.Pointer.
+//
+// The common configuration traits for memory balloon devices.
+func VZMemoryBalloonDeviceConfigurationFrom(ptr unsafe.Pointer) VZMemoryBalloonDeviceConfiguration {
+	return VZMemoryBalloonDeviceConfiguration{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for VZMemoryBalloonDeviceConfiguration */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for VZMemoryBalloonDeviceConfiguration */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for VZMemoryBalloonDeviceConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for VZMemoryBalloonDeviceConfiguration */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for VZMemoryBalloonDeviceConfiguration */
+/* debug [instance_properties]: End instance properties */
+
+/* debug [class.gen.go]: End class VZMemoryBalloonDeviceConfiguration */

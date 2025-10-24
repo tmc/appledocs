@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRGeneralCommissioningClusterCommissioningCompleteParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterCommissioningCompleteParams
@@ -83,8 +81,6 @@ func NewMTRGeneralCommissioningClusterCommissioningCompleteParams() MTRGeneralCo
 	return getMTRGeneralCommissioningClusterCommissioningCompleteParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteparams/serversideprocessingtimeout
 func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) ServerSidePr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteparams/serversideprocessingtimeout
 func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) TimedInvokeT
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteparams/timedinvoketimeoutms
 func (m_ MTRGeneralCommissioningClusterCommissioningCompleteParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

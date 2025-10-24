@@ -2,7 +2,9 @@
 
 package corefoundation
 
+/* debug [enums.gen.go]: Generating 42 enums for CoreFoundation */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum CFCalendarUnit (15 cases) */
 // CalendarUnit - CFCalendarUnit constants are used to specify calendrical units, such as day or month, in various calendar calculations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCalendarUnit
@@ -70,6 +72,7 @@ const (
 	kCFCalendarUnitYearForWeekOfYear CalendarUnit = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFCharacterSetPredefinedSet (15 cases) */
 // CharacterSetPredefinedSet - Defines a predefined character set.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFCharacterSetPredefinedSet
@@ -138,6 +141,7 @@ const (
 	kCFCharacterSetWhitespaceAndNewline CharacterSetPredefinedSet = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFComparisonResult (3 cases) */
 // ComparisonResult - Constants returned by comparison functions, indicating whether a value is equal to, less than, or greater than another value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFComparisonResult
@@ -158,6 +162,7 @@ const (
 	kCFCompareLessThan ComparisonResult = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFDataSearchFlags (2 cases) */
 // DataSearchFlags - A 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDataSearchFlags
@@ -174,6 +179,7 @@ const (
 	kCFDataSearchBackwards DataSearchFlags = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFDateFormatterStyle (5 cases) */
 // DateFormatterStyle - Data type for predefined date and time format styles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFDateFormatterStyle
@@ -202,6 +208,7 @@ const (
 	kCFDateFormatterShortStyle DateFormatterStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFFileSecurityClearOptions (6 cases) */
 // FileSecurityClearOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFFileSecurityClearOptions
@@ -234,6 +241,7 @@ const (
 	kCFFileSecurityClearOwnerUUID FileSecurityClearOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFGregorianUnitFlags (7 cases) */
 // GregorianUnitFlags - These option flags are used as a mask to indicate a specific set of fields in the CFGregorianDate or CFGregorianUnits structures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFGregorianUnitFlags
@@ -270,6 +278,7 @@ const (
 	kCFGregorianUnitsYears GregorianUnitFlags = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFISO8601DateFormatOptions (14 cases) */
 // ISO8601DateFormatOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFISO8601DateFormatOptions
@@ -320,6 +329,7 @@ const (
 	kCFISO8601DateFormatWithYear ISO8601DateFormatOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFLocaleLanguageDirection (5 cases) */
 // LocaleLanguageDirection - These constants describe the text direction for a language. They are returned by the functions 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFLocaleLanguageDirection
@@ -348,6 +358,7 @@ const (
 	kCFLocaleLanguageDirectionUnknown LocaleLanguageDirection = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFNotificationSuspensionBehavior (4 cases) */
 // NotificationSuspensionBehavior - Suspension flags that indicate how distributed notifications should be handled when the receiving application is in the background.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNotificationSuspensionBehavior
@@ -372,6 +383,7 @@ const (
 	NotificationSuspensionBehaviorHold NotificationSuspensionBehavior = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFNumberFormatterOptionFlags (1 cases) */
 // NumberFormatterOptionFlags - Type for constants specifying how numbers should be parsed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterOptionFlags
@@ -384,6 +396,7 @@ const (
 	kCFNumberFormatterParseIntegersOnly NumberFormatterOptionFlags = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFNumberFormatterPadPosition (4 cases) */
 // NumberFormatterPadPosition - Type for constants specifying how numbers should be padded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterPadPosition
@@ -408,6 +421,7 @@ const (
 	kCFNumberFormatterPadBeforeSuffix NumberFormatterPadPosition = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFNumberFormatterRoundingMode (7 cases) */
 // NumberFormatterRoundingMode - These constants are used to specify how numbers should be rounded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterRoundingMode
@@ -444,6 +458,7 @@ const (
 	kCFNumberFormatterRoundUp NumberFormatterRoundingMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFNumberFormatterStyle (10 cases) */
 // NumberFormatterStyle - Type for constants specifying a formatter style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberFormatterStyle
@@ -488,6 +503,7 @@ const (
 	kCFNumberFormatterSpellOutStyle NumberFormatterStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFNumberType (17 cases) */
 // NumberType - Flags used by CFNumber to indicate the data type of a value.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFNumberType
@@ -564,6 +580,7 @@ const (
 	kCFNumberShortType NumberType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFPropertyListFormat (3 cases) */
 // PropertyListFormat - Specifies the format of a property list.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListFormat
@@ -584,6 +601,7 @@ const (
 	kCFPropertyListXMLFormat_v1_0 PropertyListFormat = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFPropertyListMutabilityOptions (3 cases) */
 // PropertyListMutabilityOptions - Type for flags that determine the degree of mutability of newly created property lists.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFPropertyListMutabilityOptions
@@ -604,6 +622,7 @@ const (
 	kCFPropertyListMutableContainersAndLeaves PropertyListMutabilityOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFRunLoopActivity (7 cases) */
 // RunLoopActivity - Run loop activity stages in which run loop observers can be scheduled.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopActivity
@@ -640,6 +659,7 @@ const (
 	kCFRunLoopExit RunLoopActivity = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFRunLoopRunResult (4 cases) */
 // RunLoopRunResult enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFRunLoopRunResult
@@ -664,6 +684,7 @@ const (
 	kCFRunLoopRunTimedOut RunLoopRunResult = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFSocketCallBackType (6 cases) */
 // SocketCallBackType - Types of socket activity that can cause the callback function of a CFSocket object to be called.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketCallBackType
@@ -696,6 +717,7 @@ const (
 	kCFSocketWriteCallBack SocketCallBackType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFSocketError (3 cases) */
 // SocketError - Error codes for many CFSocket functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFSocketError
@@ -716,6 +738,7 @@ const (
 	kCFSocketTimeout SocketError = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStreamErrorDomain (3 cases) */
 // StreamErrorDomain - Defines constants for values returned in the domain field of the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamErrorDomain
@@ -736,6 +759,7 @@ const (
 	kCFStreamErrorDomainMacOSStatus StreamErrorDomain = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStreamEventType (6 cases) */
 // StreamEventType - Defines constants for stream-related events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamEventType
@@ -768,6 +792,7 @@ const (
 	kCFStreamEventOpenCompleted StreamEventType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStreamStatus (8 cases) */
 // StreamStatus - Constants that describe the status of a stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStreamStatus
@@ -808,6 +833,7 @@ const (
 	kCFStreamStatusWriting StreamStatus = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStringBuiltInEncodings (14 cases) */
 // StringBuiltInEncodings - Encodings that are built-in on all platforms on which macOS runs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringBuiltInEncodings
@@ -872,6 +898,7 @@ const (
 	kCFStringEncodingWindowsLatin1 StringBuiltInEncodings = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStringCompareFlags (9 cases) */
 // StringCompareFlags - A 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringCompareFlags
@@ -916,6 +943,7 @@ const (
 	kCFCompareWidthInsensitive StringCompareFlags = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStringEncodings (129 cases) */
 // StringEncodings - Index type for constants used to specify external string encodings.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringEncodings
@@ -1388,6 +1416,7 @@ const (
 	kCFStringEncodingWindowsVietnamese StringEncodings = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStringNormalizationForm (4 cases) */
 // StringNormalizationForm - Unicode normalization forms as described in Unicode Technical Report #15.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringNormalizationForm
@@ -1412,6 +1441,7 @@ const (
 	kCFStringNormalizationFormKD StringNormalizationForm = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStringTokenizerTokenType (7 cases) */
 // StringTokenizerTokenType - Token types returned by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFStringTokenizerTokenType
@@ -1448,6 +1478,7 @@ const (
 	kCFStringTokenizerTokenNormal StringTokenizerTokenType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFTimeZoneNameStyle (6 cases) */
 // TimeZoneNameStyle - Index type for constants used to specify styles of time zone names.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFTimeZoneNameStyle
@@ -1480,6 +1511,7 @@ const (
 	kCFTimeZoneNameStyleStandard TimeZoneNameStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFURLBookmarkCreationOptions (6 cases) */
 // URLBookmarkCreationOptions - Type for bookmark data creation options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkCreationOptions
@@ -1511,6 +1543,7 @@ const (
 	kCFURLBookmarkCreationWithoutImplicitSecurityScope URLBookmarkCreationOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFURLBookmarkResolutionOptions (6 cases) */
 // URLBookmarkResolutionOptions - Type for bookmark data resolution options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLBookmarkResolutionOptions
@@ -1540,6 +1573,7 @@ const (
 	kCFURLBookmarkResolutionWithoutUIMask URLBookmarkResolutionOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFURLComponentType (12 cases) */
 // URLComponentType - The types of components in a URL.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLComponentType
@@ -1596,6 +1630,7 @@ const (
 	kCFURLComponentUserInfo URLComponentType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFURLEnumeratorOptions (8 cases) */
 // URLEnumeratorOptions - Options for controlling enumerator behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorOptions
@@ -1635,6 +1670,7 @@ const (
 	kCFURLEnumeratorSkipPackageContents URLEnumeratorOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFURLEnumeratorResult (4 cases) */
 // URLEnumeratorResult - Result codes from the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLEnumeratorResult
@@ -1659,6 +1695,7 @@ const (
 	kCFURLEnumeratorSuccess URLEnumeratorResult = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFURLError (9 cases) */
 // URLError enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLError
@@ -1703,6 +1740,7 @@ const (
 	kCFURLUnknownSchemeError URLError = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFURLPathStyle (3 cases) */
 // URLPathStyle - Options you can use to determine how CFURL functions parse a file system path name.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFURLPathStyle
@@ -1723,6 +1761,7 @@ const (
 	kCFURLPOSIXPathStyle URLPathStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFXMLEntityTypeCode (5 cases) */
 // XMLEntityTypeCode - The entity type identification codes that the parser uses to describe XML entities.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLEntityTypeCode
@@ -1751,6 +1790,7 @@ const (
 	kCFXMLEntityTypeUnparsed XMLEntityTypeCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFXMLNodeTypeCode (15 cases) */
 // XMLNodeTypeCode - The various XML data type identification codes that the parser uses to describe XML structures.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLNodeTypeCode
@@ -1819,6 +1859,7 @@ const (
 	kCFXMLNodeTypeWhitespace XMLNodeTypeCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFXMLParserOptions (8 cases) */
 // XMLParserOptions - Options you can use to control the parser’s treatment of an XML document.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserOptions
@@ -1859,6 +1900,7 @@ const (
 	kCFXMLParserValidateDocument XMLParserOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFXMLParserStatusCode (18 cases) */
 // XMLParserStatusCode - The various status and error flags that can be returned by the parser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CFXMLParserStatusCode
@@ -1939,6 +1981,7 @@ const (
 	kCFXMLStatusParseNotBegun XMLParserStatusCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CGRectEdge (4 cases) */
 // CGRectEdge enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreFoundation/CGRectEdge

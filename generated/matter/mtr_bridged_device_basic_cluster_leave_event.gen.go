@@ -33,8 +33,6 @@ type IMTRBridgedDeviceBasicClusterLeaveEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicClusterLeaveEvent
 type MTRBridgedDeviceBasicClusterLeaveEvent struct {
@@ -78,7 +76,3 @@ func (m_ MTRBridgedDeviceBasicClusterLeaveEvent) Autorelease() MTRBridgedDeviceB
 func NewMTRBridgedDeviceBasicClusterLeaveEvent() MTRBridgedDeviceBasicClusterLeaveEvent {
 	return getMTRBridgedDeviceBasicClusterLeaveEventClass().New()
 }
-
-
-
-

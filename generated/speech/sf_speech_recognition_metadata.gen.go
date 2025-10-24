@@ -10,6 +10,9 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SFSpeechRecognitionMetadata */
+
+/* debug [class_header]: Header for SFSpeechRecognitionMetadata */
 // The class instance for the [SFSpeechRecognitionMetadata] class.
 var (
 	SFSpeechRecognitionMetadataClass     _SFSpeechRecognitionMetadataClass
@@ -27,41 +30,31 @@ type _SFSpeechRecognitionMetadataClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for SFSpeechRecognitionMetadata */
 // An interface definition for the [SFSpeechRecognitionMetadata] class.
 type ISFSpeechRecognitionMetadata interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for SFSpeechRecognitionMetadata */
 	// properties:
 	AveragePauseDuration() float64
-	SetAveragePauseDuration(value float64)
 	SpeakingRate() float64
-	SetSpeakingRate(value float64)
 	SpeechDuration() float64
-	SetSpeechDuration(value float64)
 	SpeechStartTimestamp() float64
-	SetSpeechStartTimestamp(value float64)
 	VoiceAnalytics() ISFVoiceAnalytics
-	SetVoiceAnalytics(value ISFVoiceAnalytics)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for SFSpeechRecognitionMetadata */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// The metadata of speech in the audio of a speech recognition request.
+/* debug [class_interface]: End interface */
 
-
-// The metadata of speech in the audio of a speech recognition request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionMetadata
-type SFSpeechRecognitionMetadata struct {
-	objectivec.Object
-}
-
-// SFSpeechRecognitionMetadataFrom constructs a [SFSpeechRecognitionMetadata] from an unsafe.Pointer.
-//
-// The metadata of speech in the audio of a speech recognition request.
-func SFSpeechRecognitionMetadataFrom(ptr unsafe.Pointer) SFSpeechRecognitionMetadata {
-	return SFSpeechRecognitionMetadata{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SFSpeechRecognitionMetadata */
 // Alloc allocates a new instance without initialization.
 func (sc _SFSpeechRecognitionMetadataClass) Alloc() SFSpeechRecognitionMetadata {
 	rv := objc.Send[SFSpeechRecognitionMetadata](objc.ID(sc.class), objc.Sel("alloc"))
@@ -69,7 +62,6 @@ func (sc _SFSpeechRecognitionMetadataClass) Alloc() SFSpeechRecognitionMetadata 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SFSpeechRecognitionMetadataClass) New() SFSpeechRecognitionMetadata {
 	rv := objc.Send[SFSpeechRecognitionMetadata](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,101 +85,86 @@ func NewSFSpeechRecognitionMetadata() SFSpeechRecognitionMetadata {
 	return getSFSpeechRecognitionMetadataClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for SFSpeechRecognitionMetadata */
+// The metadata of speech in the audio of a speech recognition request.
+
+// The metadata of speech in the audio of a speech recognition request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionMetadata
+type SFSpeechRecognitionMetadata struct {
+	objectivec.Object
+}
+
+// SFSpeechRecognitionMetadataFrom constructs a [SFSpeechRecognitionMetadata] from an unsafe.Pointer.
+//
+// The metadata of speech in the audio of a speech recognition request.
+func SFSpeechRecognitionMetadataFrom(ptr unsafe.Pointer) SFSpeechRecognitionMetadata {
+	return SFSpeechRecognitionMetadata{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for SFSpeechRecognitionMetadata */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for SFSpeechRecognitionMetadata */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for SFSpeechRecognitionMetadata */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for SFSpeechRecognitionMetadata */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for SFSpeechRecognitionMetadata */
 
 // The average pause duration between words, measured in seconds.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/averagepauseduration
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionMetadata/averagePauseDuration
 func (s_ SFSpeechRecognitionMetadata) AveragePauseDuration() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("averagePauseDuration"))
 	return rv
-}
-
-
-// The average pause duration between words, measured in seconds.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/averagepauseduration
-func (s_ SFSpeechRecognitionMetadata) SetAveragePauseDuration(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAveragePauseDuration:"), value)
-}
-
+} /* debug [instance_properties/getter]: averagePauseDuration */
 
 // The number of words spoken per minute.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speakingrate
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionMetadata/speakingRate
 func (s_ SFSpeechRecognitionMetadata) SpeakingRate() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("speakingRate"))
 	return rv
-}
-
-
-// The number of words spoken per minute.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speakingrate
-func (s_ SFSpeechRecognitionMetadata) SetSpeakingRate(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeakingRate:"), value)
-}
-
+} /* debug [instance_properties/getter]: speakingRate */
 
 // The duration in seconds of speech in the audio.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechduration
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionMetadata/speechDuration
 func (s_ SFSpeechRecognitionMetadata) SpeechDuration() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("speechDuration"))
 	return rv
-}
-
-
-// The duration in seconds of speech in the audio.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechduration
-func (s_ SFSpeechRecognitionMetadata) SetSpeechDuration(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechDuration:"), value)
-}
-
+} /* debug [instance_properties/getter]: speechDuration */
 
 // The start timestamp of speech in the audio.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechstarttimestamp
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionMetadata/speechStartTimestamp
 func (s_ SFSpeechRecognitionMetadata) SpeechStartTimestamp() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("speechStartTimestamp"))
 	return rv
-}
-
-
-// The start timestamp of speech in the audio.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/speechstarttimestamp
-func (s_ SFSpeechRecognitionMetadata) SetSpeechStartTimestamp(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechStartTimestamp:"), value)
-}
-
+} /* debug [instance_properties/getter]: speechStartTimestamp */
 
 // An analysis of the transcription segment’s vocal properties.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
+// [Full Topic]: https://developer.apple.com/documentation/Speech/SFSpeechRecognitionMetadata/voiceAnalytics
 func (s_ SFSpeechRecognitionMetadata) VoiceAnalytics() ISFVoiceAnalytics {
 	rv := objc.Send[SFVoiceAnalytics](s_.ID, objc.Sel("voiceAnalytics"))
 	return rv
-}
+} /* debug [instance_properties/getter]: voiceAnalytics */
 
+/* debug [instance_properties]: End instance properties */
 
-// An analysis of the transcription segment’s vocal properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/speech/sfspeechrecognitionmetadata/voiceanalytics
-func (s_ SFSpeechRecognitionMetadata) SetVoiceAnalytics(value ISFVoiceAnalytics) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceAnalytics:"), value)
-}
-
-
-
+/* debug [class.gen.go]: End class SFSpeechRecognitionMetadata */

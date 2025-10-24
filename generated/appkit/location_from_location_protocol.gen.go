@@ -15,3 +15,4 @@ var locationFromLocationProtocol *objc.Protocol
 func init() {
 	locationFromLocationProtocol = objc.GetProtocol("locationFromLocation:")
 }
+

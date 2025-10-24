@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class PKToolPickerCustomItem */
+
+
+/* debug [class_header]: Header for PKToolPickerCustomItem */
 // The class instance for the [ToolPickerCustomItem] class.
 var (
 	ToolPickerCustomItemClass     _ToolPickerCustomItemClass
@@ -26,38 +30,32 @@ func getToolPickerCustomItemClass() _ToolPickerCustomItemClass {
 type _ToolPickerCustomItemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ToolPickerCustomItem */
 // An interface definition for the [ToolPickerCustomItem] class.
 type IToolPickerCustomItem interface {
 	IToolPickerItem
+	
+/* debug [class_interface_properties]: Properties for ToolPickerCustomItem */
 	// properties:
-	ImageProvider() objc.IObject /* cross-framework: Image */
-	SetImageProvider(value objc.IObject /* cross-framework: Image */)
+	ImageProvider() appkit.Image
+	SetImageProvider(value appkit.Image)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ToolPickerCustomItem */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An item that represents a custom tool in the tool picker.
-//
-// A custom tool item represents a tool that isn’t one of the system tools. You configure details about a custom tool item yourself using , including providing custom images to draw the body of the tool. The following code shows how to create a tool picker with a custom tool item. This basic implementation of retrieves an image for the tool body from an asset catalog. A full app might use a more advanced drawing implementation for the image provider, such as using . For a more complete example of creating a custom tool item, see .
+/* debug [class_interface]: End interface */
 
 
-// An item that represents a custom tool in the tool picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem
-type ToolPickerCustomItem struct {
-	ToolPickerItem
-}
 
-// ToolPickerCustomItemFrom constructs a [ToolPickerCustomItem] from an unsafe.Pointer.
-//
-// An item that represents a custom tool in the tool picker.
-func ToolPickerCustomItemFrom(ptr unsafe.Pointer) ToolPickerCustomItem {
-	return ToolPickerCustomItem{
-		ToolPickerItem: ToolPickerItemFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ToolPickerCustomItem */
 // Alloc allocates a new instance without initialization.
 func (tc _ToolPickerCustomItemClass) Alloc() ToolPickerCustomItem {
 	rv := objc.Send[ToolPickerCustomItem](objc.ID(tc.class), objc.Sel("alloc"))
@@ -65,7 +63,6 @@ func (tc _ToolPickerCustomItemClass) Alloc() ToolPickerCustomItem {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _ToolPickerCustomItemClass) New() ToolPickerCustomItem {
 	rv := objc.Send[ToolPickerCustomItem](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +85,37 @@ func (t_ ToolPickerCustomItem) Autorelease() ToolPickerCustomItem {
 func NewToolPickerCustomItem() ToolPickerCustomItem {
 	return getToolPickerCustomItemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ToolPickerCustomItem */
+// An item that represents a custom tool in the tool picker.
+//
+// A custom tool item represents a tool that isn’t one of the system tools. You configure details about a custom tool item yourself using , including providing custom images to draw the body of the tool. The following code shows how to create a tool picker with a custom tool item. This basic implementation of retrieves an image for the tool body from an asset catalog. A full app might use a more advanced drawing implementation for the image provider, such as using . For a more complete example of creating a custom tool item, see .
+
+
+// An item that represents a custom tool in the tool picker.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerCustomItem
+type ToolPickerCustomItem struct {
+	ToolPickerItem
+}
+
+// ToolPickerCustomItemFrom constructs a [ToolPickerCustomItem] from an unsafe.Pointer.
+//
+// An item that represents a custom tool in the tool picker.
+func ToolPickerCustomItemFrom(ptr unsafe.Pointer) ToolPickerCustomItem {
+	return ToolPickerCustomItem{
+		ToolPickerItem: ToolPickerItemFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ToolPickerCustomItem */
 
 // Creates a new custom item with the specified configuration.
 //
@@ -100,26 +126,50 @@ func NewToolPickerCustomItemWithConfiguration(configuration IPKToolPickerCustomI
 	rv := objc.Send[ToolPickerCustomItem](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewToolPickerCustomItemWithConfiguration */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for ToolPickerCustomItem */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ToolPickerCustomItem */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ToolPickerCustomItem */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ToolPickerCustomItem */
 
 // A closure to provide an image that represents the custom tool item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider
-func (t_ ToolPickerCustomItem) ImageProvider() objc.IObject /* cross-framework: Image */ {
+func (t_ ToolPickerCustomItem) ImageProvider() appkit.Image {
 	rv := objc.Send[appkit.Image](t_.ID, objc.Sel("imageProvider"))
 	return rv
-}
+}/* debug [instance_properties/getter]: imageProvider */
 
 
 // A closure to provide an image that represents the custom tool item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/pencilkit/pktoolpickercustomitem/configuration-swift.struct/imageprovider
-func (t_ ToolPickerCustomItem) SetImageProvider(value objc.IObject /* cross-framework: Image */) {
+func (t_ ToolPickerCustomItem) SetImageProvider(value appkit.Image) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImageProvider:"), value)
-}
+}/* debug [instance_properties/setter]: imageProvider */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PKToolPickerCustomItem */
 
 

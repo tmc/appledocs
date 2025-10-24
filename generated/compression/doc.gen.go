@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for Compression. DO NOT EDIT.
 
 // Package compression provides Go bindings for the Compression framework.
 //
-// Leverage common compression algorithms for lossless data compression.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Compression without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Compression
 package compression
 
 import (

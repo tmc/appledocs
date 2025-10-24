@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterWaterHeaterManagement */
+
+
+/* debug [class_header]: Header for MTRClusterWaterHeaterManagement */
 // The class instance for the [MTRClusterWaterHeaterManagement] class.
 var (
 	MTRClusterWaterHeaterManagementClass     _MTRClusterWaterHeaterManagementClass
@@ -26,48 +30,31 @@ func getMTRClusterWaterHeaterManagementClass() _MTRClusterWaterHeaterManagementC
 type _MTRClusterWaterHeaterManagementClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterWaterHeaterManagement */
 // An interface definition for the [MTRClusterWaterHeaterManagement] class.
 type IMTRClusterWaterHeaterManagement interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterWaterHeaterManagement */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterWaterHeaterManagement */
 	// methods:
-	BoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterBoostParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	CancelBoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterCancelBoostParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	CancelBoostWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeBoostStateWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeEstimatedHeatRequiredWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
 	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeHeatDemandWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeHeaterTypesWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeTankPercentageWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeTankVolumeWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Water Heater Management This cluster is used to allow clients to control the operation of a hot water heating appliance so that it can be used with energy management.
 
 
-// Cluster Water Heater Management This cluster is used to allow clients to control the operation of a hot water heating appliance so that it can be used with energy management.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement
-type MTRClusterWaterHeaterManagement struct {
-	MTRGenericCluster
-}
-
-// MTRClusterWaterHeaterManagementFrom constructs a [MTRClusterWaterHeaterManagement] from an unsafe.Pointer.
-//
-// Cluster Water Heater Management This cluster is used to allow clients to control the operation of a hot water heating appliance so that it can be used with energy management.
-func MTRClusterWaterHeaterManagementFrom(ptr unsafe.Pointer) MTRClusterWaterHeaterManagement {
-	return MTRClusterWaterHeaterManagement{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterWaterHeaterManagement */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterWaterHeaterManagementClass) Alloc() MTRClusterWaterHeaterManagement {
 	rv := objc.Send[MTRClusterWaterHeaterManagement](objc.ID(mc.class), objc.Sel("alloc"))
@@ -75,7 +62,6 @@ func (mc _MTRClusterWaterHeaterManagementClass) Alloc() MTRClusterWaterHeaterMan
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterWaterHeaterManagementClass) New() MTRClusterWaterHeaterManagement {
 	rv := objc.Send[MTRClusterWaterHeaterManagement](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -98,128 +84,66 @@ func (m_ MTRClusterWaterHeaterManagement) Autorelease() MTRClusterWaterHeaterMan
 func NewMTRClusterWaterHeaterManagement() MTRClusterWaterHeaterManagement {
 	return getMTRClusterWaterHeaterManagementClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRClusterWaterHeaterManagement */
+// Cluster Water Heater Management This cluster is used to allow clients to control the operation of a hot water heating appliance so that it can be used with energy management.
+
+
+// Cluster Water Heater Management This cluster is used to allow clients to control the operation of a hot water heating appliance so that it can be used with energy management.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/init(device:endpointID:queue:)
-func NewMTRClusterWaterHeaterManagementWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterWaterHeaterManagement {
-	instance := getMTRClusterWaterHeaterManagementClass().Alloc()
-	rv := objc.Send[MTRClusterWaterHeaterManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement
+type MTRClusterWaterHeaterManagement struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/boost(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWaterHeaterManagement) BoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterBoostParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("boostWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
+// MTRClusterWaterHeaterManagementFrom constructs a [MTRClusterWaterHeaterManagement] from an unsafe.Pointer.
+//
+// Cluster Water Heater Management This cluster is used to allow clients to control the operation of a hot water heating appliance so that it can be used with energy management.
+func MTRClusterWaterHeaterManagementFrom(ptr unsafe.Pointer) MTRClusterWaterHeaterManagement {
+	return MTRClusterWaterHeaterManagement{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/cancelBoost(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWaterHeaterManagement) CancelBoostWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterManagementClusterCancelBoostParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelBoostWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+
+/* debug [class_init_methods]: Init methods for MTRClusterWaterHeaterManagement *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/cancelBoost(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWaterHeaterManagement) CancelBoostWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelBoostWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
+
+/* debug [class_methods]: Class methods for MTRClusterWaterHeaterManagement */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterWaterHeaterManagement */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeBoostState(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeBoostStateWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeBoostStateWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeEstimatedHeatRequired(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeEstimatedHeatRequiredWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeEstimatedHeatRequiredWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
+/* debug [instance_methods]: Instance methods for MTRClusterWaterHeaterManagement */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeGeneratedCommandList(with:)
 func (m_ MTRClusterWaterHeaterManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadAttributeGeneratedCommandListWithParams */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeHeatDemand(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeHeatDemandWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeHeatDemandWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterWaterHeaterManagement */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeHeaterTypes(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeHeaterTypesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeHeaterTypesWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterWaterHeaterManagement */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeTankPercentage(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeTankPercentageWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeTankPercentageWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterManagement/readAttributeTankVolume(with:)
-func (m_ MTRClusterWaterHeaterManagement) ReadAttributeTankVolumeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeTankVolumeWithParams:"), params)
-	return rv
-}
 
 

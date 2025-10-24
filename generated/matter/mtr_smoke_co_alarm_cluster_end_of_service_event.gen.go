@@ -34,8 +34,6 @@ type IMTRSmokeCOAlarmClusterEndOfServiceEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterEndOfServiceEvent
 type MTRSmokeCOAlarmClusterEndOfServiceEvent struct {
@@ -77,7 +75,3 @@ func (m_ MTRSmokeCOAlarmClusterEndOfServiceEvent) Autorelease() MTRSmokeCOAlarmC
 func NewMTRSmokeCOAlarmClusterEndOfServiceEvent() MTRSmokeCOAlarmClusterEndOfServiceEvent {
 	return getMTRSmokeCOAlarmClusterEndOfServiceEventClass().New()
 }
-
-
-
-

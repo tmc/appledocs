@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
@@ -19,7 +20,7 @@ type PTextContentManagerDelegate interface {
 	// Optional methods
 	TextContentManagerShouldEnumerateTextElementOptions(textContentManager ITextContentManager, textElement ITextElement, options TextContentManagerEnumerationOptions) bool
 	HasTextContentManagerShouldEnumerateTextElementOptions() bool
-	TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location objc.IObject) TextElement
+	TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location unsafe.Pointer) TextElement
 	HasTextContentManagerTextElementAtLocation() bool
 }
 
@@ -28,7 +29,7 @@ type PTextContentManagerDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type TextContentManagerDelegate struct {
 	_TextContentManagerShouldEnumerateTextElementOptions func(textContentManager ITextContentManager, textElement ITextElement, options TextContentManagerEnumerationOptions) bool
-	_TextContentManagerTextElementAtLocation func(textContentManager ITextContentManager, location objc.IObject) TextElement
+	_TextContentManagerTextElementAtLocation func(textContentManager ITextContentManager, location unsafe.Pointer) TextElement
 }
 
 // SetTextContentManagerShouldEnumerateTextElementOptions sets the handler for the TextContentManagerShouldEnumerateTextElementOptions delegate method.
@@ -41,7 +42,7 @@ func (d *TextContentManagerDelegate) SetTextContentManagerShouldEnumerateTextEle
 // SetTextContentManagerTextElementAtLocation sets the handler for the TextContentManagerTextElementAtLocation delegate method.
 //
 // The method the framework calls to return the text element at a specific location.
-func (d *TextContentManagerDelegate) SetTextContentManagerTextElementAtLocation(f func(textContentManager ITextContentManager, location objc.IObject) TextElement) {
+func (d *TextContentManagerDelegate) SetTextContentManagerTextElementAtLocation(f func(textContentManager ITextContentManager, location unsafe.Pointer) TextElement) {
 	d._TextContentManagerTextElementAtLocation = f
 }
 
@@ -60,7 +61,7 @@ func (d *TextContentManagerDelegate) HasTextContentManagerShouldEnumerateTextEle
 }
 
 // TextContentManagerTextElementAtLocation implements the PTextContentManagerDelegate interface.
-func (d *TextContentManagerDelegate) TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location objc.IObject) TextElement {
+func (d *TextContentManagerDelegate) TextContentManagerTextElementAtLocation(textContentManager ITextContentManager, location unsafe.Pointer) TextElement {
 	if d._TextContentManagerTextElementAtLocation != nil {
 		return d._TextContentManagerTextElementAtLocation(textContentManager, location)
 	}

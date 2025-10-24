@@ -6,9 +6,19 @@ import "github.com/ebitengine/purego/objc"
 
 // DispatchSourceWriteProtocol is the DispatchSourceWrite protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//   - watchOS +
+//
 // Use this protocol when registering custom classes that conform to DispatchSourceWrite.
 var DispatchSourceWriteProtocol *objc.Protocol
 
 func init() {
 	DispatchSourceWriteProtocol = objc.GetProtocol("DispatchSourceWrite")
 }
+

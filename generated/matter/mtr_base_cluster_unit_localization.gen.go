@@ -33,8 +33,6 @@ type IMTRBaseClusterUnitLocalization interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterUnitLocalization
 type MTRBaseClusterUnitLocalization struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterUnitLocalization) Autorelease() MTRBaseClusterUnitLocaliz
 func NewMTRBaseClusterUnitLocalization() MTRBaseClusterUnitLocalization {
 	return getMTRBaseClusterUnitLocalizationClass().New()
 }
-
-
-
-

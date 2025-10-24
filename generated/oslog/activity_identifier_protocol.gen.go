@@ -21,3 +21,4 @@ var activityIdentifierProtocol *objc.Protocol
 func init() {
 	activityIdentifierProtocol = objc.GetProtocol("activityIdentifier")
 }
+

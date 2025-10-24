@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHCollectionListChangeRequest] class.
@@ -41,7 +41,6 @@ type IPHCollectionListChangeRequest interface {
 // A request to create, delete, or modify a Photos collection list, for use in a photo library change block.
 //
 // You use the class to request changes for objects. To make changes to collection lists (such as folders containing user-created albums) in the Photos library, create a change request using the appropriate class method for the change you want to perform. Call the method to create a new asset collection. Call the method to delete existing asset collections. Call the or method to modify a collection’s metadata or its list of child collections. Before creating a change request, use the method to verify that the collection allows the edit operation you’re requesting. If you attempt to perform an unsupported edit operation, Photos throws an exception. A change request for creating or modifying a collection list works like a mutable version of the collection list object. Use the change request’s properties and instance methods to request changes to the collection list itself. For example, the following code removes an album from a folder. After Photos runs the change block and calls your completion handler, the collection list’s state reflects the changes you requested in the block. If you create or use a change request object outside a photo library change block, Photos raises an Objective-C exception. For details on change blocks, see .
-
 
 // A request to create, delete, or modify a Photos collection list, for use in a photo library change block.
 //
@@ -91,8 +90,6 @@ func NewPHCollectionListChangeRequest() PHCollectionListChangeRequest {
 	return getPHCollectionListChangeRequestClass().New()
 }
 
-
-
 // A placeholder object for the collection list that the change request creates.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (p_ PHCollectionListChangeRequest) PlaceholderForCreatedCollectionList() IP
 	return rv
 }
 
-
 // A placeholder object for the collection list that the change request creates.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (p_ PHCollectionListChangeRequest) PlaceholderForCreatedCollectionList() IP
 func (p_ PHCollectionListChangeRequest) SetPlaceholderForCreatedCollectionList(value IPHObjectPlaceholder) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderForCreatedCollectionList:"), value)
 }
-
 
 // The displayed name of the collection list.
 //
@@ -121,7 +116,6 @@ func (p_ PHCollectionListChangeRequest) Title() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // The displayed name of the collection list.
 //
 // [Full Topic]
@@ -129,6 +123,3 @@ func (p_ PHCollectionListChangeRequest) Title() objc.IObject /* cross-framework:
 func (p_ PHCollectionListChangeRequest) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
-
-
-

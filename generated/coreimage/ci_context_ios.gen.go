@@ -20,8 +20,8 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/inputImageMaximumSize()
-func (c_ Context) InputImageMaximumSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](c_.ID, objc.Sel("inputImageMaximumSize"))
+func (c_ Context) InputImageMaximumSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](c_.ID, objc.Sel("inputImageMaximumSize"))
 	return rv
 }
 
@@ -29,8 +29,8 @@ func (c_ Context) InputImageMaximumSize() objc.IObject /* cross-framework: Size 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContext/outputImageMaximumSize()
-func (c_ Context) OutputImageMaximumSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](c_.ID, objc.Sel("outputImageMaximumSize"))
+func (c_ Context) OutputImageMaximumSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](c_.ID, objc.Sel("outputImageMaximumSize"))
 	return rv
 }
 

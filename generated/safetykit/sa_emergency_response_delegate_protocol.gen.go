@@ -19,3 +19,4 @@ var SAEmergencyResponseDelegateProtocol *objc.Protocol
 func init() {
 	SAEmergencyResponseDelegateProtocol = objc.GetProtocol("SAEmergencyResponseDelegate")
 }
+

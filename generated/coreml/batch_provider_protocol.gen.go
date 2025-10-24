@@ -21,3 +21,4 @@ var BatchProviderProtocol *objc.Protocol
 func init() {
 	BatchProviderProtocol = objc.GetProtocol("MLBatchProvider")
 }
+

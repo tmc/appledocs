@@ -15,3 +15,4 @@ var draggingPasteboardProtocol *objc.Protocol
 func init() {
 	draggingPasteboardProtocol = objc.GetProtocol("draggingPasteboard")
 }
+

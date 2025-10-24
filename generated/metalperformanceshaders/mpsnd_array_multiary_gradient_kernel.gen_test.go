@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewNDArrayMultiaryGradientKernel
 
+// ExampleNDArrayMultiaryGradientKernel_Encode demonstrates using Encode on a NDArrayMultiaryGradientKernel instance.
+func ExampleNDArrayMultiaryGradientKernel_Encode() {
+	obj := metalperformanceshaders.NewNDArrayMultiaryGradientKernel()
+	obj.Encode()
+	// Output:
+	}
+

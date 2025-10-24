@@ -21,3 +21,4 @@ var AXChartProtocol *objc.Protocol
 func init() {
 	AXChartProtocol = objc.GetProtocol("AXChart")
 }
+

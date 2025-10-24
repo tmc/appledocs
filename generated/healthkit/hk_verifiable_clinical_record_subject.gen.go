@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class HKVerifiableClinicalRecordSubject */
+
+
+/* debug [class_header]: Header for HKVerifiableClinicalRecordSubject */
 // The class instance for the [HKVerifiableClinicalRecordSubject] class.
 var (
 	HKVerifiableClinicalRecordSubjectClass     _HKVerifiableClinicalRecordSubjectClass
@@ -27,38 +31,32 @@ func getHKVerifiableClinicalRecordSubjectClass() _HKVerifiableClinicalRecordSubj
 type _HKVerifiableClinicalRecordSubjectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKVerifiableClinicalRecordSubject */
 // An interface definition for the [HKVerifiableClinicalRecordSubject] class.
 type IHKVerifiableClinicalRecordSubject interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for HKVerifiableClinicalRecordSubject */
 	// properties:
-	DateOfBirthComponents() objc.IObject /* cross-framework: DateComponents */
-	SetDateOfBirthComponents(value objc.IObject /* cross-framework: DateComponents */)
+	DateOfBirthComponents() foundation.DateComponents
 	FullName() objc.IObject /* cross-framework: NSString */
-	SetFullName(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKVerifiableClinicalRecordSubject */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The subject associated with a signed clinical record.
-//
-// objects contain data about the subject from a SMART Health Card. These cards combine both the user’s identity and clinical data into a cryptographically-signed bundle. To protect the subject’s privacy, SMART Health Cards provide the minimum required data. For more information, see .
+/* debug [class_interface]: End interface */
 
 
-// The subject associated with a signed clinical record.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordSubject
-type HKVerifiableClinicalRecordSubject struct {
-	objectivec.Object
-}
 
-// HKVerifiableClinicalRecordSubjectFrom constructs a [HKVerifiableClinicalRecordSubject] from an unsafe.Pointer.
-//
-// The subject associated with a signed clinical record.
-func HKVerifiableClinicalRecordSubjectFrom(ptr unsafe.Pointer) HKVerifiableClinicalRecordSubject {
-	return HKVerifiableClinicalRecordSubject{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for HKVerifiableClinicalRecordSubject */
 // Alloc allocates a new instance without initialization.
 func (hc _HKVerifiableClinicalRecordSubjectClass) Alloc() HKVerifiableClinicalRecordSubject {
 	rv := objc.Send[HKVerifiableClinicalRecordSubject](objc.ID(hc.class), objc.Sel("alloc"))
@@ -66,7 +64,6 @@ func (hc _HKVerifiableClinicalRecordSubjectClass) Alloc() HKVerifiableClinicalRe
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKVerifiableClinicalRecordSubjectClass) New() HKVerifiableClinicalRecordSubject {
 	rv := objc.Send[HKVerifiableClinicalRecordSubject](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,45 +86,78 @@ func (h_ HKVerifiableClinicalRecordSubject) Autorelease() HKVerifiableClinicalRe
 func NewHKVerifiableClinicalRecordSubject() HKVerifiableClinicalRecordSubject {
 	return getHKVerifiableClinicalRecordSubjectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HKVerifiableClinicalRecordSubject */
+// The subject associated with a signed clinical record.
+//
+// objects contain data about the subject from a SMART Health Card. These cards combine both the user’s identity and clinical data into a cryptographically-signed bundle. To protect the subject’s privacy, SMART Health Cards provide the minimum required data. For more information, see .
+
+
+// The subject associated with a signed clinical record.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordSubject
+type HKVerifiableClinicalRecordSubject struct {
+	objectivec.Object
+}
+
+// HKVerifiableClinicalRecordSubjectFrom constructs a [HKVerifiableClinicalRecordSubject] from an unsafe.Pointer.
+//
+// The subject associated with a signed clinical record.
+func HKVerifiableClinicalRecordSubjectFrom(ptr unsafe.Pointer) HKVerifiableClinicalRecordSubject {
+	return HKVerifiableClinicalRecordSubject{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKVerifiableClinicalRecordSubject *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKVerifiableClinicalRecordSubject */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKVerifiableClinicalRecordSubject */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKVerifiableClinicalRecordSubject */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKVerifiableClinicalRecordSubject */
 
 // The subject’s birthdate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
-func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() objc.IObject /* cross-framework: DateComponents */ {
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordSubject/dateOfBirthComponents
+func (h_ HKVerifiableClinicalRecordSubject) DateOfBirthComponents() foundation.DateComponents {
 	rv := objc.Send[foundation.DateComponents](h_.ID, objc.Sel("dateOfBirthComponents"))
 	return rv
-}
-
-
-// The subject’s birthdate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/dateofbirthcomponents
-func (h_ HKVerifiableClinicalRecordSubject) SetDateOfBirthComponents(value objc.IObject /* cross-framework: DateComponents */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDateOfBirthComponents:"), value)
-}
+}/* debug [instance_properties/getter]: dateOfBirthComponents */
 
 
 // The subject’s full name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKVerifiableClinicalRecordSubject/fullName
 func (h_ HKVerifiableClinicalRecordSubject) FullName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("fullName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fullName */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The subject’s full name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkverifiableclinicalrecordsubject/fullname
-func (h_ HKVerifiableClinicalRecordSubject) SetFullName(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setFullName:"), value)
-}
+/* debug [class.gen.go]: End class HKVerifiableClinicalRecordSubject */
 
 
 

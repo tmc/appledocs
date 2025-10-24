@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -40,6 +39,7 @@ func (r_ RPSystemBroadcastPickerView) ShowsMicrophoneButton() bool {
 func (r_ RPSystemBroadcastPickerView) SetShowsMicrophoneButton(value bool) {
 	r_.ID.Send(objc.RegisterName("setShowsMicrophoneButton:"), value)
 }
+
 
 
 

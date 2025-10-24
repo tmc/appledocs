@@ -37,7 +37,6 @@ type IINGetAvailableRestaurantReservationBookingDefaultsIntent interface {
 //
 // An object asks you to provide the set of default options to use when fetching possible reservation times for the specified restaurant. Because restaurants may have different requirements for booking reservations, this intent lets you provide a set of reasonable default values that reflect any restaurant-specific requirements or user tendencies. For example, you use this intent to return the minimum or maximum party size supported by the restaurant. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should resolve and confirm any parameters and create an object with the found results.
 
-
 // A request for the default values to use when fetching potential reservation options.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINGetAvailableRestaurantReservationBookingDefaultsIntent() INGetAvailabl
 	return getINGetAvailableRestaurantReservationBookingDefaultsIntentClass().New()
 }
 
-
-
 // The restaurant to use when determining any default values.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INGetAvailableRestaurantReservationBookingDefaultsIntent) Restaurant() 
 	return rv
 }
 
-
 // The restaurant to use when determining any default values.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INGetAvailableRestaurantReservationBookingDefaultsIntent) Restaurant() 
 func (i_ INGetAvailableRestaurantReservationBookingDefaultsIntent) SetRestaurant(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)
 }
-
-
-

@@ -3,9 +3,10 @@
 package appkit
 
 import (
-	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PMenuDelegate is the NSMenuDelegate protocol interface.
@@ -18,7 +19,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSMenuDelegate
 type PMenuDelegate interface {
 	// Optional methods
-	MenuHasKeyEquivalentForEventTargetAction(menu IMenu, event IEvent, target unsafe.Pointer, action unsafe.Pointer) bool
+	MenuHasKeyEquivalentForEventTargetAction(menu IMenu, event IEvent, target objectivec.IObject, action objectivec.IObject) bool
 	HasMenuHasKeyEquivalentForEventTargetAction() bool
 }
 
@@ -26,18 +27,18 @@ type PMenuDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type MenuDelegate struct {
-	_MenuHasKeyEquivalentForEventTargetAction func(menu IMenu, event IEvent, target unsafe.Pointer, action unsafe.Pointer) bool
+	_MenuHasKeyEquivalentForEventTargetAction func(menu IMenu, event IEvent, target objectivec.IObject, action objectivec.IObject) bool
 }
 
 // SetMenuHasKeyEquivalentForEventTargetAction sets the handler for the MenuHasKeyEquivalentForEventTargetAction delegate method.
 //
 // Invoked to allow the delegate to return the target and action for a key-down event.
-func (d *MenuDelegate) SetMenuHasKeyEquivalentForEventTargetAction(f func(menu IMenu, event IEvent, target unsafe.Pointer, action unsafe.Pointer) bool) {
+func (d *MenuDelegate) SetMenuHasKeyEquivalentForEventTargetAction(f func(menu IMenu, event IEvent, target objectivec.IObject, action objectivec.IObject) bool) {
 	d._MenuHasKeyEquivalentForEventTargetAction = f
 }
 
 // MenuHasKeyEquivalentForEventTargetAction implements the PMenuDelegate interface.
-func (d *MenuDelegate) MenuHasKeyEquivalentForEventTargetAction(menu IMenu, event IEvent, target unsafe.Pointer, action unsafe.Pointer) bool {
+func (d *MenuDelegate) MenuHasKeyEquivalentForEventTargetAction(menu IMenu, event IEvent, target objectivec.IObject, action objectivec.IObject) bool {
 	if d._MenuHasKeyEquivalentForEventTargetAction != nil {
 		return d._MenuHasKeyEquivalentForEventTargetAction(menu, event, target, action)
 	}

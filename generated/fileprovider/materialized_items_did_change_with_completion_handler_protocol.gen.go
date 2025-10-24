@@ -18,3 +18,4 @@ var materializedItemsDidChangeWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	materializedItemsDidChangeWithCompletionHandlerProtocol = objc.GetProtocol("materializedItemsDidChangeWithCompletionHandler:")
 }
+

@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewValueTransformer
 
+// ExampleNewValueTransformerForName demonstrates how to create a ValueTransformer instance using NewValueTransformerForName.
+// Returns the value transformer identified by a given identifier.
+func ExampleNewValueTransformerForName() {
+	_ = foundation.NewValueTransformerForName(
+		foundation.ValueTransformerName /* typedef */{}, // name ValueTransformerName /* typedef */
+	)
+	// Output:
+}

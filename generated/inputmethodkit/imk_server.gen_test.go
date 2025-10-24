@@ -32,3 +32,4 @@ func ExampleIMKServer_PaletteWillTerminate() {
 	}
 
 
+

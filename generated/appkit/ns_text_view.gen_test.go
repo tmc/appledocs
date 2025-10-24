@@ -16,6 +16,14 @@ func ExampleNewTextViewUsingTextLayoutManager() {
 	)
 	// Output:
 }
+// ExampleNewTextViewWithFrame demonstrates how to create a TextView instance using NewTextViewWithFrame.
+// Initializes a text view.
+func ExampleNewTextViewWithFrame() {
+	_ = appkit.NewTextViewWithFrame(
+		appkit.Rect /* not a class type */{}, // frameRect Rect /* not a class type */
+	)
+	// Output:
+}
 // ExampleTextView_BreakUndoCoalescing demonstrates using BreakUndoCoalescing on a TextView instance.
 // Informs the receiver that it should begin coalescing successive typing operations in a new undo grouping.
 func ExampleTextView_BreakUndoCoalescing() {

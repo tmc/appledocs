@@ -15,3 +15,4 @@ var validAttributesForMarkedTextProtocol *objc.Protocol
 func init() {
 	validAttributesForMarkedTextProtocol = objc.GetProtocol("validAttributesForMarkedText")
 }
+

@@ -15,3 +15,4 @@ var ChallengesViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	ChallengesViewControllerDelegateProtocol = objc.GetProtocol("GKChallengesViewControllerDelegate")
 }
+

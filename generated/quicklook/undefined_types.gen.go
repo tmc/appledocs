@@ -9,9 +9,16 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	PreviewControllerDataSource = _undefined // referenced in QuickLook
-	PreviewControllerDelegate = _undefined // referenced in QuickLook
-	PreviewItem = _undefined // referenced in QuickLook
+	AllocatorRef = _undefined // referenced in QuickLook
+	BundleRef = _undefined // referenced in QuickLook
+	ContextRef = _undefined // referenced in QuickLook
+	DataRef = _undefined // referenced in QuickLook
+	DictionaryRef = _undefined // referenced in QuickLook
+	ImageRef = _undefined // referenced in QuickLook
+	StringEncoding = _undefined // referenced in QuickLook
+	StringRef = _undefined // referenced in QuickLook
+	TypeID = _undefined // referenced in QuickLook
+	URLRef = _undefined // referenced in QuickLook
 )
 
 

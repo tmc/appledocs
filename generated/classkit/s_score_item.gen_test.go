@@ -14,10 +14,9 @@ var _ = classkit.NewSScoreItem
 func ExampleNewSScoreItemWithIdentifierTitleScoreMaxScore() {
 	_ = classkit.NewSScoreItemWithIdentifierTitleScoreMaxScore(
 		"identifier", // identifier string
-		"title", // title string
-		0.0, // score float64
-		0.0, // maxScore float64
+		"title",      // title string
+		0.0,          // score float64
+		0.0,          // maxScore float64
 	)
 	// Output:
 }
-

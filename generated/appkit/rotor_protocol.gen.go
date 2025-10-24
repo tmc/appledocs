@@ -15,3 +15,4 @@ var rotorProtocol *objc.Protocol
 func init() {
 	rotorProtocol = objc.GetProtocol("rotor:")
 }
+

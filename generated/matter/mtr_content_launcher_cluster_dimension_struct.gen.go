@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRContentLauncherClusterDimensionStruct */
+
+
+/* debug [class_header]: Header for MTRContentLauncherClusterDimensionStruct */
 // The class instance for the [MTRContentLauncherClusterDimensionStruct] class.
 var (
 	MTRContentLauncherClusterDimensionStructClass     _MTRContentLauncherClusterDimensionStructClass
@@ -27,10 +31,16 @@ func getMTRContentLauncherClusterDimensionStructClass() _MTRContentLauncherClust
 type _MTRContentLauncherClusterDimensionStructClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRContentLauncherClusterDimensionStruct */
 // An interface definition for the [MTRContentLauncherClusterDimensionStruct] class.
 type IMTRContentLauncherClusterDimensionStruct interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRContentLauncherClusterDimensionStruct */
 	// properties:
 	Height() objc.IObject /* cross-framework: NSNumber */
 	SetHeight(value objc.IObject /* cross-framework: NSNumber */)
@@ -38,22 +48,19 @@ type IMTRContentLauncherClusterDimensionStruct interface {
 	SetMetric(value objc.IObject /* cross-framework: NSNumber */)
 	Width() objc.IObject /* cross-framework: NSNumber */
 	SetWidth(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRContentLauncherClusterDimensionStruct */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimensionStruct
-type MTRContentLauncherClusterDimensionStruct struct {
-	objectivec.Object
-}
-
-// MTRContentLauncherClusterDimensionStructFrom constructs a [MTRContentLauncherClusterDimensionStruct] from an unsafe.Pointer.
-func MTRContentLauncherClusterDimensionStructFrom(ptr unsafe.Pointer) MTRContentLauncherClusterDimensionStruct {
-	return MTRContentLauncherClusterDimensionStruct{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRContentLauncherClusterDimensionStruct */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRContentLauncherClusterDimensionStructClass) Alloc() MTRContentLauncherClusterDimensionStruct {
 	rv := objc.Send[MTRContentLauncherClusterDimensionStruct](objc.ID(mc.class), objc.Sel("alloc"))
@@ -61,7 +68,6 @@ func (mc _MTRContentLauncherClusterDimensionStructClass) Alloc() MTRContentLaunc
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRContentLauncherClusterDimensionStructClass) New() MTRContentLauncherClusterDimensionStruct {
 	rv := objc.Send[MTRContentLauncherClusterDimensionStruct](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,52 +90,96 @@ func (m_ MTRContentLauncherClusterDimensionStruct) Autorelease() MTRContentLaunc
 func NewMTRContentLauncherClusterDimensionStruct() MTRContentLauncherClusterDimensionStruct {
 	return getMTRContentLauncherClusterDimensionStructClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRContentLauncherClusterDimensionStruct */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/height
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimensionStruct
+type MTRContentLauncherClusterDimensionStruct struct {
+	objectivec.Object
+}
+
+// MTRContentLauncherClusterDimensionStructFrom constructs a [MTRContentLauncherClusterDimensionStruct] from an unsafe.Pointer.
+func MTRContentLauncherClusterDimensionStructFrom(ptr unsafe.Pointer) MTRContentLauncherClusterDimensionStruct {
+	return MTRContentLauncherClusterDimensionStruct{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRContentLauncherClusterDimensionStruct *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRContentLauncherClusterDimensionStruct */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRContentLauncherClusterDimensionStruct */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRContentLauncherClusterDimensionStruct */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRContentLauncherClusterDimensionStruct */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimensionStruct/height
 func (m_ MTRContentLauncherClusterDimensionStruct) Height() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("height"))
 	return rv
-}
+}/* debug [instance_properties/getter]: height */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/height
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimensionStruct/height
 func (m_ MTRContentLauncherClusterDimensionStruct) SetHeight(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHeight:"), value)
-}
+}/* debug [instance_properties/setter]: height */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/metric
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimensionStruct/metric
 func (m_ MTRContentLauncherClusterDimensionStruct) Metric() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("metric"))
 	return rv
-}
+}/* debug [instance_properties/getter]: metric */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/metric
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimensionStruct/metric
 func (m_ MTRContentLauncherClusterDimensionStruct) SetMetric(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetric:"), value)
-}
+}/* debug [instance_properties/setter]: metric */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/width
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimensionStruct/width
 func (m_ MTRContentLauncherClusterDimensionStruct) Width() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("width"))
 	return rv
-}
+}/* debug [instance_properties/getter]: width */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterdimensionstruct/width
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterDimensionStruct/width
 func (m_ MTRContentLauncherClusterDimensionStruct) SetWidth(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWidth:"), value)
-}
+}/* debug [instance_properties/setter]: width */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRContentLauncherClusterDimensionStruct */
 
 
 

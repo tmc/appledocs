@@ -6,6 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // UIDelegateProtocol is the WKUIDelegate protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to WKUIDelegate.
 var UIDelegateProtocol *objc.Protocol
 

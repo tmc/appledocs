@@ -15,3 +15,4 @@ var ScrubberDataSourceProtocol *objc.Protocol
 func init() {
 	ScrubberDataSourceProtocol = objc.GetProtocol("NSScrubberDataSource")
 }
+

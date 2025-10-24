@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTREventReport */
+
+
+/* debug [class_header]: Header for MTREventReport */
 // The class instance for the [MTREventReport] class.
 var (
 	MTREventReportClass     _MTREventReportClass
@@ -28,45 +32,39 @@ func getMTREventReportClass() _MTREventReportClass {
 type _MTREventReportClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTREventReport */
 // An interface definition for the [MTREventReport] class.
 type IMTREventReport interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTREventReport */
 	// properties:
 	Error() objc.IObject /* cross-framework: Error */
-	SetError(value objc.IObject /* cross-framework: Error */)
 	EventNumber() objc.IObject /* cross-framework: NSNumber */
-	SetEventNumber(value objc.IObject /* cross-framework: NSNumber */)
-	EventTimeType() MTREventTimeType
-	SetEventTimeType(value MTREventTimeType)
+	EventTimeType() unsafe.Pointer
 	Path() IMTREventPath
-	SetPath(value IMTREventPath)
 	Priority() objc.IObject /* cross-framework: NSNumber */
-	SetPriority(value objc.IObject /* cross-framework: NSNumber */)
 	SystemUpTime() float64
-	SetSystemUpTime(value float64)
 	Timestamp() objc.IObject /* cross-framework: NSNumber */
-	SetTimestamp(value objc.IObject /* cross-framework: NSNumber */)
-	TimestampDate() objc.IObject /* cross-framework: Date */
-	SetTimestampDate(value objc.IObject /* cross-framework: Date */)
-	Value() unsafe.Pointer
-	SetValue(value unsafe.Pointer)
+	TimestampDate() objc.IObject /* cross-framework: NSDate */
+	Value() objc.ID
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTREventReport */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport
-type MTREventReport struct {
-	objectivec.Object
-}
-
-// MTREventReportFrom constructs a [MTREventReport] from an unsafe.Pointer.
-func MTREventReportFrom(ptr unsafe.Pointer) MTREventReport {
-	return MTREventReport{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTREventReport */
 // Alloc allocates a new instance without initialization.
 func (mc _MTREventReportClass) Alloc() MTREventReport {
 	rv := objc.Send[MTREventReport](objc.ID(mc.class), objc.Sel("alloc"))
@@ -74,7 +72,6 @@ func (mc _MTREventReportClass) Alloc() MTREventReport {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTREventReportClass) New() MTREventReport {
 	rv := objc.Send[MTREventReport](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,142 +94,133 @@ func (m_ MTREventReport) Autorelease() MTREventReport {
 func NewMTREventReport() MTREventReport {
 	return getMTREventReportClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTREventReport */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/error
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport
+type MTREventReport struct {
+	objectivec.Object
+}
+
+// MTREventReportFrom constructs a [MTREventReport] from an unsafe.Pointer.
+func MTREventReportFrom(ptr unsafe.Pointer) MTREventReport {
+	return MTREventReport{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTREventReport */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/init(responseValue:)
+func NewMTREventReportWithResponseValueError(responseValue foundation.IDictionary, error_ unsafe.Pointer) MTREventReport {
+	instance := getMTREventReportClass().Alloc()
+	rv := objc.Send[MTREventReport](instance.ID, objc.Sel("initWithResponseValue:error:"), responseValue, error_)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewMTREventReportWithResponseValueError */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTREventReport */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTREventReport */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTREventReport */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTREventReport */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/error
 func (m_ MTREventReport) Error() objc.IObject /* cross-framework: Error */ {
 	rv := objc.Send[coretelephony.Error](m_.ID, objc.Sel("error"))
 	return rv
-}
+}/* debug [instance_properties/getter]: error */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/error
-func (m_ MTREventReport) SetError(value objc.IObject /* cross-framework: Error */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setError:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/eventnumber
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/eventNumber
 func (m_ MTREventReport) EventNumber() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("eventNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: eventNumber */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/eventnumber
-func (m_ MTREventReport) SetEventNumber(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEventNumber:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/eventtimetype
-func (m_ MTREventReport) EventTimeType() MTREventTimeType {
-	rv := objc.Send[MTREventTimeType](m_.ID, objc.Sel("eventTimeType"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/eventTimeType
+func (m_ MTREventReport) EventTimeType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("eventTimeType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: eventTimeType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/eventtimetype
-func (m_ MTREventReport) SetEventTimeType(value MTREventTimeType) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEventTimeType:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/path
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/path
 func (m_ MTREventReport) Path() IMTREventPath {
 	rv := objc.Send[MTREventPath](m_.ID, objc.Sel("path"))
 	return rv
-}
+}/* debug [instance_properties/getter]: path */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/path
-func (m_ MTREventReport) SetPath(value IMTREventPath) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPath:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/priority
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/priority
 func (m_ MTREventReport) Priority() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("priority"))
 	return rv
-}
+}/* debug [instance_properties/getter]: priority */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/priority
-func (m_ MTREventReport) SetPriority(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/systemuptime
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/systemUpTime
 func (m_ MTREventReport) SystemUpTime() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("systemUpTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: systemUpTime */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/systemuptime
-func (m_ MTREventReport) SetSystemUpTime(value float64) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSystemUpTime:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/timestamp
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/timestamp
 func (m_ MTREventReport) Timestamp() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timestamp"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timestamp */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/timestamp
-func (m_ MTREventReport) SetTimestamp(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimestamp:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/timestampdate
-func (m_ MTREventReport) TimestampDate() objc.IObject /* cross-framework: Date */ {
-	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("timestampDate"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/timestampDate
+func (m_ MTREventReport) TimestampDate() objc.IObject /* cross-framework: NSDate */ {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("timestampDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timestampDate */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/timestampdate
-func (m_ MTREventReport) SetTimestampDate(value objc.IObject /* cross-framework: Date */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTimestampDate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/value
-func (m_ MTREventReport) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventReport/value
+func (m_ MTREventReport) Value() objc.ID {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: value */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtreventreport/value
-func (m_ MTREventReport) SetValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
-}
-
+/* debug [class.gen.go]: End class MTREventReport */
 
 

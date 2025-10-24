@@ -15,3 +15,4 @@ var tabViewDidChangeNumberOfTabViewItemsProtocol *objc.Protocol
 func init() {
 	tabViewDidChangeNumberOfTabViewItemsProtocol = objc.GetProtocol("tabViewDidChangeNumberOfTabViewItems:")
 }
+

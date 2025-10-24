@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class EKVirtualConferenceProvider */
+
+
+/* debug [class_header]: Header for EKVirtualConferenceProvider */
 // The class instance for the [EKVirtualConferenceProvider] class.
 var (
 	EKVirtualConferenceProviderClass     _EKVirtualConferenceProviderClass
@@ -26,36 +30,32 @@ func getEKVirtualConferenceProviderClass() _EKVirtualConferenceProviderClass {
 type _EKVirtualConferenceProviderClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EKVirtualConferenceProvider */
 // An interface definition for the [EKVirtualConferenceProvider] class.
 type IEKVirtualConferenceProvider interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for EKVirtualConferenceProvider */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EKVirtualConferenceProvider */
 	// methods:
 	FetchAvailableRoomTypesWithCompletionHandler(completionHandler unsafe.Pointer)
 	FetchVirtualConferenceForIdentifierCompletionHandler(identifier EKVirtualConferenceRoomTypeIdentifier /* typedef */, completionHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that associates virtual conferencing details with an event object in a user’s calendar.
-//
-// lets apps that offer virtual conferencing services to integrate directly with events in users’ calendars. To add this support to your app, add a virtual conference extension. The principal class of the app extension is a custom subclass of that you create that provides the following: A list of room types where events take place, such as Personal Room or Team Room A descriptor for a virtual conference, including a user-visible title, one or more URLs, and additional details
+/* debug [class_interface]: End interface */
 
 
-// An object that associates virtual conferencing details with an event object in a user’s calendar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider
-type EKVirtualConferenceProvider struct {
-	objectivec.Object
-}
 
-// EKVirtualConferenceProviderFrom constructs a [EKVirtualConferenceProvider] from an unsafe.Pointer.
-//
-// An object that associates virtual conferencing details with an event object in a user’s calendar.
-func EKVirtualConferenceProviderFrom(ptr unsafe.Pointer) EKVirtualConferenceProvider {
-	return EKVirtualConferenceProvider{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for EKVirtualConferenceProvider */
 // Alloc allocates a new instance without initialization.
 func (ec _EKVirtualConferenceProviderClass) Alloc() EKVirtualConferenceProvider {
 	rv := objc.Send[EKVirtualConferenceProvider](objc.ID(ec.class), objc.Sel("alloc"))
@@ -63,7 +63,6 @@ func (ec _EKVirtualConferenceProviderClass) Alloc() EKVirtualConferenceProvider 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EKVirtualConferenceProviderClass) New() EKVirtualConferenceProvider {
 	rv := objc.Send[EKVirtualConferenceProvider](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,8 +85,49 @@ func (e_ EKVirtualConferenceProvider) Autorelease() EKVirtualConferenceProvider 
 func NewEKVirtualConferenceProvider() EKVirtualConferenceProvider {
 	return getEKVirtualConferenceProviderClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for EKVirtualConferenceProvider */
+// An object that associates virtual conferencing details with an event object in a user’s calendar.
+//
+// lets apps that offer virtual conferencing services to integrate directly with events in users’ calendars. To add this support to your app, add a virtual conference extension. The principal class of the app extension is a custom subclass of that you create that provides the following: A list of room types where events take place, such as Personal Room or Team Room A descriptor for a virtual conference, including a user-visible title, one or more URLs, and additional details
+
+
+// An object that associates virtual conferencing details with an event object in a user’s calendar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider
+type EKVirtualConferenceProvider struct {
+	objectivec.Object
+}
+
+// EKVirtualConferenceProviderFrom constructs a [EKVirtualConferenceProvider] from an unsafe.Pointer.
+//
+// An object that associates virtual conferencing details with an event object in a user’s calendar.
+func EKVirtualConferenceProviderFrom(ptr unsafe.Pointer) EKVirtualConferenceProvider {
+	return EKVirtualConferenceProvider{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EKVirtualConferenceProvider *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for EKVirtualConferenceProvider */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EKVirtualConferenceProvider */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EKVirtualConferenceProvider */
 
 // Provides an array of room types where events take place.
 //
@@ -95,7 +135,7 @@ func NewEKVirtualConferenceProvider() EKVirtualConferenceProvider {
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider/fetchAvailableRoomTypes(completionHandler:)
 func (e_ EKVirtualConferenceProvider) FetchAvailableRoomTypesWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("fetchAvailableRoomTypesWithCompletionHandler:"), completionHandler)
-}
+}/* debug [instance_methods/method]: FetchAvailableRoomTypesWithCompletionHandler */
 
 
 // Provides details about a virtual conference that takes place in a room the user selects.
@@ -104,7 +144,17 @@ func (e_ EKVirtualConferenceProvider) FetchAvailableRoomTypesWithCompletionHandl
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceProvider/fetchVirtualConference(identifier:completionHandler:)
 func (e_ EKVirtualConferenceProvider) FetchVirtualConferenceForIdentifierCompletionHandler(identifier EKVirtualConferenceRoomTypeIdentifier /* typedef */, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("fetchVirtualConferenceForIdentifier:completionHandler:"), identifier, completionHandler)
-}
+}/* debug [instance_methods/method]: FetchVirtualConferenceForIdentifierCompletionHandler */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EKVirtualConferenceProvider */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class EKVirtualConferenceProvider */
 
 
 

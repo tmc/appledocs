@@ -20,3 +20,4 @@ var boundingBoxProtocol *objc.Protocol
 func init() {
 	boundingBoxProtocol = objc.GetProtocol("boundingBox")
 }
+

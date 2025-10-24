@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPSGraphDepthwiseConvolution2DOpDescriptor */
+
+
+/* debug [class_header]: Header for MPSGraphDepthwiseConvolution2DOpDescriptor */
 // The class instance for the [GraphDepthwiseConvolution2DOpDescriptor] class.
 var (
 	GraphDepthwiseConvolution2DOpDescriptorClass     _GraphDepthwiseConvolution2DOpDescriptorClass
@@ -25,58 +29,53 @@ func getGraphDepthwiseConvolution2DOpDescriptorClass() _GraphDepthwiseConvolutio
 type _GraphDepthwiseConvolution2DOpDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GraphDepthwiseConvolution2DOpDescriptor */
 // An interface definition for the [GraphDepthwiseConvolution2DOpDescriptor] class.
 type IGraphDepthwiseConvolution2DOpDescriptor interface {
 	IGraphObject
+	
+/* debug [class_interface_properties]: Properties for GraphDepthwiseConvolution2DOpDescriptor */
 	// properties:
-	PaddingRight() uint
-	SetPaddingRight(value uint)
 	DataLayout() GraphTensorNamedDataLayout
 	SetDataLayout(value GraphTensorNamedDataLayout)
-	DilationRateInX() int
-	SetDilationRateInX(value int)
-	DilationRateInY() int
-	SetDilationRateInY(value int)
-	PaddingBottom() int
-	SetPaddingBottom(value int)
-	PaddingLeft() int
-	SetPaddingLeft(value int)
+	DilationRateInX() uint
+	SetDilationRateInX(value uint)
+	DilationRateInY() uint
+	SetDilationRateInY(value uint)
+	PaddingBottom() uint
+	SetPaddingBottom(value uint)
+	PaddingLeft() uint
+	SetPaddingLeft(value uint)
+	PaddingRight() uint
+	SetPaddingRight(value uint)
 	PaddingStyle() GraphPaddingStyle
 	SetPaddingStyle(value GraphPaddingStyle)
-	PaddingTop() int
-	SetPaddingTop(value int)
-	StrideInX() int
-	SetStrideInX(value int)
-	StrideInY() int
-	SetStrideInY(value int)
+	PaddingTop() uint
+	SetPaddingTop(value uint)
+	StrideInX() uint
+	SetStrideInX(value uint)
+	StrideInY() uint
+	SetStrideInY(value uint)
 	WeightsLayout() GraphTensorNamedDataLayout
 	SetWeightsLayout(value GraphTensorNamedDataLayout)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GraphDepthwiseConvolution2DOpDescriptor */
 	// methods:
+	SetExplicitPaddingWithPaddingLeftPaddingRightPaddingTopPaddingBottom(paddingLeft uint, paddingRight uint, paddingTop uint, paddingBottom uint)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A class that defines the parameters for a 2D-depthwise convolution operation.
-//
-// An defines constant parameters for 2D-depthwise convolutions. Use this class with , , and methods.
+/* debug [class_interface]: End interface */
 
 
-// A class that defines the parameters for a 2D-depthwise convolution operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor
-type GraphDepthwiseConvolution2DOpDescriptor struct {
-	GraphObject
-}
 
-// GraphDepthwiseConvolution2DOpDescriptorFrom constructs a [GraphDepthwiseConvolution2DOpDescriptor] from an unsafe.Pointer.
-//
-// A class that defines the parameters for a 2D-depthwise convolution operation.
-func GraphDepthwiseConvolution2DOpDescriptorFrom(ptr unsafe.Pointer) GraphDepthwiseConvolution2DOpDescriptor {
-	return GraphDepthwiseConvolution2DOpDescriptor{
-		GraphObject: GraphObjectFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GraphDepthwiseConvolution2DOpDescriptor */
 // Alloc allocates a new instance without initialization.
 func (gc _GraphDepthwiseConvolution2DOpDescriptorClass) Alloc() GraphDepthwiseConvolution2DOpDescriptor {
 	rv := objc.Send[GraphDepthwiseConvolution2DOpDescriptor](objc.ID(gc.class), objc.Sel("alloc"))
@@ -84,7 +83,6 @@ func (gc _GraphDepthwiseConvolution2DOpDescriptorClass) Alloc() GraphDepthwiseCo
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GraphDepthwiseConvolution2DOpDescriptorClass) New() GraphDepthwiseConvolution2DOpDescriptor {
 	rv := objc.Send[GraphDepthwiseConvolution2DOpDescriptor](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -107,7 +105,200 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) Autorelease() GraphDepthwiseCo
 func NewGraphDepthwiseConvolution2DOpDescriptor() GraphDepthwiseConvolution2DOpDescriptor {
 	return getGraphDepthwiseConvolution2DOpDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for GraphDepthwiseConvolution2DOpDescriptor */
+// A class that defines the parameters for a 2D-depthwise convolution operation.
+//
+// An defines constant parameters for 2D-depthwise convolutions. Use this class with , , and methods.
+
+
+// A class that defines the parameters for a 2D-depthwise convolution operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor
+type GraphDepthwiseConvolution2DOpDescriptor struct {
+	GraphObject
+}
+
+// GraphDepthwiseConvolution2DOpDescriptorFrom constructs a [GraphDepthwiseConvolution2DOpDescriptor] from an unsafe.Pointer.
+//
+// A class that defines the parameters for a 2D-depthwise convolution operation.
+func GraphDepthwiseConvolution2DOpDescriptorFrom(ptr unsafe.Pointer) GraphDepthwiseConvolution2DOpDescriptor {
+	return GraphDepthwiseConvolution2DOpDescriptor{
+		GraphObject: GraphObjectFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GraphDepthwiseConvolution2DOpDescriptor */
+
+// Creates a 2D-depthwise convolution descriptor with given properties and default values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/init(dataLayout:weightsLayout:)
+func NewGraphDepthwiseConvolution2DOpDescriptorWithDataLayoutWeightsLayout(dataLayout GraphTensorNamedDataLayout, weightsLayout GraphTensorNamedDataLayout) GraphDepthwiseConvolution2DOpDescriptor {
+	rv := objc.Send[GraphDepthwiseConvolution2DOpDescriptor](objc.ID(getGraphDepthwiseConvolution2DOpDescriptorClass().class), objc.Sel("descriptorWithDataLayout:weightsLayout:"), dataLayout, weightsLayout)
+	return rv
+}/* debug [class_init_methods/constructor]: NewGraphDepthwiseConvolution2DOpDescriptorWithDataLayoutWeightsLayout */
+
+
+// Creates a 2D-depthwise convolution descriptor with given values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/init(strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:)
+func NewGraphDepthwiseConvolution2DOpDescriptorWithStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayoutWeightsLayout(strideInX uint, strideInY uint, dilationRateInX uint, dilationRateInY uint, paddingLeft uint, paddingRight uint, paddingTop uint, paddingBottom uint, paddingStyle GraphPaddingStyle, dataLayout GraphTensorNamedDataLayout, weightsLayout GraphTensorNamedDataLayout) GraphDepthwiseConvolution2DOpDescriptor {
+	rv := objc.Send[GraphDepthwiseConvolution2DOpDescriptor](objc.ID(getGraphDepthwiseConvolution2DOpDescriptorClass().class), objc.Sel("descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:"), strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout, weightsLayout)
+	return rv
+}/* debug [class_init_methods/constructor]: NewGraphDepthwiseConvolution2DOpDescriptorWithStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayoutWeightsLayout */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GraphDepthwiseConvolution2DOpDescriptor */
+
+// Creates a 2D-depthwise convolution descriptor with given properties and default values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/init(dataLayout:weightsLayout:)
+func (gc _GraphDepthwiseConvolution2DOpDescriptorClass) DescriptorWithDataLayoutWeightsLayout(dataLayout GraphTensorNamedDataLayout, weightsLayout GraphTensorNamedDataLayout) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithDataLayout:weightsLayout:"), dataLayout, weightsLayout)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithDataLayoutWeightsLayout) */
+
+
+// Creates a 2D-depthwise convolution descriptor with given values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/init(strideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:)
+func (gc _GraphDepthwiseConvolution2DOpDescriptorClass) DescriptorWithStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayoutWeightsLayout(strideInX uint, strideInY uint, dilationRateInX uint, dilationRateInY uint, paddingLeft uint, paddingRight uint, paddingTop uint, paddingBottom uint, paddingStyle GraphPaddingStyle, dataLayout GraphTensorNamedDataLayout, weightsLayout GraphTensorNamedDataLayout) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("descriptorWithStrideInX:strideInY:dilationRateInX:dilationRateInY:paddingLeft:paddingRight:paddingTop:paddingBottom:paddingStyle:dataLayout:weightsLayout:"), strideInX, strideInY, dilationRateInX, dilationRateInY, paddingLeft, paddingRight, paddingTop, paddingBottom, paddingStyle, dataLayout, weightsLayout)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DescriptorWithStrideInXStrideInYDilationRateInXDilationRateInYPaddingLeftPaddingRightPaddingTopPaddingBottomPaddingStyleDataLayoutWeightsLayout) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GraphDepthwiseConvolution2DOpDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GraphDepthwiseConvolution2DOpDescriptor */
+
+// Sets the explicit padding values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/setExplicitPaddingWithPaddingLeft(_:paddingRight:paddingTop:paddingBottom:)
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetExplicitPaddingWithPaddingLeftPaddingRightPaddingTopPaddingBottom(paddingLeft uint, paddingRight uint, paddingTop uint, paddingBottom uint) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setExplicitPaddingWithPaddingLeft:paddingRight:paddingTop:paddingBottom:"), paddingLeft, paddingRight, paddingTop, paddingBottom)
+}/* debug [instance_methods/method]: SetExplicitPaddingWithPaddingLeftPaddingRightPaddingTopPaddingBottom */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GraphDepthwiseConvolution2DOpDescriptor */
+
+// The data layout of the input data in the forward pass.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/dataLayout
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) DataLayout() GraphTensorNamedDataLayout {
+	rv := objc.Send[GraphTensorNamedDataLayout](g_.ID, objc.Sel("dataLayout"))
+	return rv
+}/* debug [instance_properties/getter]: dataLayout */
+
+
+// The data layout of the input data in the forward pass.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/dataLayout
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDataLayout(value GraphTensorNamedDataLayout) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
+}/* debug [instance_properties/setter]: dataLayout */
+
+
+// The dilation rate for the x dimension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/dilationRateInX
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) DilationRateInX() uint {
+	rv := objc.Send[uint](g_.ID, objc.Sel("dilationRateInX"))
+	return rv
+}/* debug [instance_properties/getter]: dilationRateInX */
+
+
+// The dilation rate for the x dimension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/dilationRateInX
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDilationRateInX(value uint) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInX:"), value)
+}/* debug [instance_properties/setter]: dilationRateInX */
+
+
+// The dilation rate for the y dimension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/dilationRateInY
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) DilationRateInY() uint {
+	rv := objc.Send[uint](g_.ID, objc.Sel("dilationRateInY"))
+	return rv
+}/* debug [instance_properties/getter]: dilationRateInY */
+
+
+// The dilation rate for the y dimension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/dilationRateInY
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDilationRateInY(value uint) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInY:"), value)
+}/* debug [instance_properties/setter]: dilationRateInY */
+
+
+// The explicit padding value for the y dimension operation adds after the data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingBottom
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingBottom() uint {
+	rv := objc.Send[uint](g_.ID, objc.Sel("paddingBottom"))
+	return rv
+}/* debug [instance_properties/getter]: paddingBottom */
+
+
+// The explicit padding value for the y dimension operation adds after the data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingBottom
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingBottom(value uint) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingBottom:"), value)
+}/* debug [instance_properties/setter]: paddingBottom */
+
+
+// The explicit padding value for the x dimension the operation adds before the data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingLeft
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingLeft() uint {
+	rv := objc.Send[uint](g_.ID, objc.Sel("paddingLeft"))
+	return rv
+}/* debug [instance_properties/getter]: paddingLeft */
+
+
+// The explicit padding value for the x dimension the operation adds before the data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingLeft
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingLeft(value uint) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingLeft:"), value)
+}/* debug [instance_properties/setter]: paddingLeft */
 
 
 // The explicit padding value for the x dimension operation adds after the data.
@@ -117,7 +308,7 @@ func NewGraphDepthwiseConvolution2DOpDescriptor() GraphDepthwiseConvolution2DOpD
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingRight() uint {
 	rv := objc.Send[uint](g_.ID, objc.Sel("paddingRight"))
 	return rv
-}
+}/* debug [instance_properties/getter]: paddingRight */
 
 
 // The explicit padding value for the x dimension operation adds after the data.
@@ -126,197 +317,106 @@ func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingRight() uint {
 // [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingRight
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingRight(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingRight:"), value)
-}
-
-
-// The data layout of the input data in the forward pass.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/datalayout
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) DataLayout() GraphTensorNamedDataLayout {
-	rv := objc.Send[GraphTensorNamedDataLayout](g_.ID, objc.Sel("dataLayout"))
-	return rv
-}
-
-
-// The data layout of the input data in the forward pass.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/datalayout
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDataLayout(value GraphTensorNamedDataLayout) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDataLayout:"), value)
-}
-
-
-// The dilation rate for the x dimension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/dilationrateinx
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) DilationRateInX() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("dilationRateInX"))
-	return rv
-}
-
-
-// The dilation rate for the x dimension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/dilationrateinx
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDilationRateInX(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInX:"), value)
-}
-
-
-// The dilation rate for the y dimension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/dilationrateiny
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) DilationRateInY() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("dilationRateInY"))
-	return rv
-}
-
-
-// The dilation rate for the y dimension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/dilationrateiny
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetDilationRateInY(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setDilationRateInY:"), value)
-}
-
-
-// The explicit padding value for the y dimension operation adds after the data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingbottom
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingBottom() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("paddingBottom"))
-	return rv
-}
-
-
-// The explicit padding value for the y dimension operation adds after the data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingbottom
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingBottom(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingBottom:"), value)
-}
-
-
-// The explicit padding value for the x dimension the operation adds before the data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingleft
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingLeft() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("paddingLeft"))
-	return rv
-}
-
-
-// The explicit padding value for the x dimension the operation adds before the data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingleft
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingLeft(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingLeft:"), value)
-}
+}/* debug [instance_properties/setter]: paddingRight */
 
 
 // The padding style for the operation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingstyle
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingStyle
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingStyle() GraphPaddingStyle {
 	rv := objc.Send[GraphPaddingStyle](g_.ID, objc.Sel("paddingStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: paddingStyle */
 
 
 // The padding style for the operation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingstyle
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingStyle
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingStyle(value GraphPaddingStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingStyle:"), value)
-}
+}/* debug [instance_properties/setter]: paddingStyle */
 
 
 // The explicit padding value for the y dimension operation adds before the data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingtop
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingTop() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("paddingTop"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingTop
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) PaddingTop() uint {
+	rv := objc.Send[uint](g_.ID, objc.Sel("paddingTop"))
 	return rv
-}
+}/* debug [instance_properties/getter]: paddingTop */
 
 
 // The explicit padding value for the y dimension operation adds before the data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/paddingtop
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingTop(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/paddingTop
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetPaddingTop(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPaddingTop:"), value)
-}
+}/* debug [instance_properties/setter]: paddingTop */
 
 
 // The stride for the x dimension.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/strideinx
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) StrideInX() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("strideInX"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/strideInX
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) StrideInX() uint {
+	rv := objc.Send[uint](g_.ID, objc.Sel("strideInX"))
 	return rv
-}
+}/* debug [instance_properties/getter]: strideInX */
 
 
 // The stride for the x dimension.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/strideinx
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetStrideInX(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/strideInX
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetStrideInX(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrideInX:"), value)
-}
+}/* debug [instance_properties/setter]: strideInX */
 
 
 // The stride for the y dimension.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/strideiny
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) StrideInY() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("strideInY"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/strideInY
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) StrideInY() uint {
+	rv := objc.Send[uint](g_.ID, objc.Sel("strideInY"))
 	return rv
-}
+}/* debug [instance_properties/getter]: strideInY */
 
 
 // The stride for the y dimension.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/strideiny
-func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetStrideInY(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/strideInY
+func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetStrideInY(value uint) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStrideInY:"), value)
-}
+}/* debug [instance_properties/setter]: strideInY */
 
 
 // The data layout of the weights.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/weightslayout
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/weightsLayout
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) WeightsLayout() GraphTensorNamedDataLayout {
 	rv := objc.Send[GraphTensorNamedDataLayout](g_.ID, objc.Sel("weightsLayout"))
 	return rv
-}
+}/* debug [instance_properties/getter]: weightsLayout */
 
 
 // The data layout of the weights.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshadersgraph/mpsgraphdepthwiseconvolution2dopdescriptor/weightslayout
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphDepthwiseConvolution2DOpDescriptor/weightsLayout
 func (g_ GraphDepthwiseConvolution2DOpDescriptor) SetWeightsLayout(value GraphTensorNamedDataLayout) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setWeightsLayout:"), value)
-}
+}/* debug [instance_properties/setter]: weightsLayout */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSGraphDepthwiseConvolution2DOpDescriptor */
 
 

@@ -15,3 +15,4 @@ var handlerForMessageSecurityProtocol *objc.Protocol
 func init() {
 	handlerForMessageSecurityProtocol = objc.GetProtocol("handlerForMessageSecurity")
 }
+

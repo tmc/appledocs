@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MEAddressAnnotation */
+
+
+/* debug [class_header]: Header for MEAddressAnnotation */
 // The class instance for the [MEAddressAnnotation] class.
 var (
 	MEAddressAnnotationClass     _MEAddressAnnotationClass
@@ -27,34 +31,30 @@ func getMEAddressAnnotationClass() _MEAddressAnnotationClass {
 type _MEAddressAnnotationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MEAddressAnnotation */
 // An interface definition for the [MEAddressAnnotation] class.
 type IMEAddressAnnotation interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MEAddressAnnotation */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MEAddressAnnotation */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that indicates the validity of an email address.
-//
-// Mail displays the status of an annotation as part of the address tokens in the To, Cc, and Bcc fields using a status icon and color.
+/* debug [class_interface]: End interface */
 
 
-// An object that indicates the validity of an email address.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEAddressAnnotation
-type MEAddressAnnotation struct {
-	objectivec.Object
-}
 
-// MEAddressAnnotationFrom constructs a [MEAddressAnnotation] from an unsafe.Pointer.
-//
-// An object that indicates the validity of an email address.
-func MEAddressAnnotationFrom(ptr unsafe.Pointer) MEAddressAnnotation {
-	return MEAddressAnnotation{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MEAddressAnnotation */
 // Alloc allocates a new instance without initialization.
 func (mc _MEAddressAnnotationClass) Alloc() MEAddressAnnotation {
 	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("alloc"))
@@ -62,7 +62,6 @@ func (mc _MEAddressAnnotationClass) Alloc() MEAddressAnnotation {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MEAddressAnnotationClass) New() MEAddressAnnotation {
 	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,8 +84,39 @@ func (m_ MEAddressAnnotation) Autorelease() MEAddressAnnotation {
 func NewMEAddressAnnotation() MEAddressAnnotation {
 	return getMEAddressAnnotationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MEAddressAnnotation */
+// An object that indicates the validity of an email address.
+//
+// Mail displays the status of an annotation as part of the address tokens in the To, Cc, and Bcc fields using a status icon and color.
+
+
+// An object that indicates the validity of an email address.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEAddressAnnotation
+type MEAddressAnnotation struct {
+	objectivec.Object
+}
+
+// MEAddressAnnotationFrom constructs a [MEAddressAnnotation] from an unsafe.Pointer.
+//
+// An object that indicates the validity of an email address.
+func MEAddressAnnotationFrom(ptr unsafe.Pointer) MEAddressAnnotation {
+	return MEAddressAnnotation{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MEAddressAnnotation *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MEAddressAnnotation */
 
 // Indicates an address is invalid and may result in failure to deliver a message.
 //
@@ -95,7 +125,7 @@ func NewMEAddressAnnotation() MEAddressAnnotation {
 func (mc _MEAddressAnnotationClass) ErrorWithLocalizedDescription(localizedDescription objc.IObject /* cross-framework: NSString */) MEAddressAnnotation {
 	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("errorWithLocalizedDescription:"), localizedDescription)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ErrorWithLocalizedDescription) */
 
 
 // Indicates an address is valid and correct.
@@ -105,7 +135,7 @@ func (mc _MEAddressAnnotationClass) ErrorWithLocalizedDescription(localizedDescr
 func (mc _MEAddressAnnotationClass) SuccessWithLocalizedDescription(localizedDescription objc.IObject /* cross-framework: NSString */) MEAddressAnnotation {
 	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("successWithLocalizedDescription:"), localizedDescription)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SuccessWithLocalizedDescription) */
 
 
 // Indicates an address may be invalid or needs attention.
@@ -115,7 +145,27 @@ func (mc _MEAddressAnnotationClass) SuccessWithLocalizedDescription(localizedDes
 func (mc _MEAddressAnnotationClass) WarningWithLocalizedDescription(localizedDescription objc.IObject /* cross-framework: NSString */) MEAddressAnnotation {
 	rv := objc.Send[MEAddressAnnotation](objc.ID(mc.class), objc.Sel("warningWithLocalizedDescription:"), localizedDescription)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=WarningWithLocalizedDescription) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MEAddressAnnotation */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MEAddressAnnotation */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MEAddressAnnotation */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MEAddressAnnotation */
 
 
 

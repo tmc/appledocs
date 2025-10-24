@@ -9,6 +9,9 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class VZUSBScreenCoordinatePointingDeviceConfiguration */
+
+/* debug [class_header]: Header for VZUSBScreenCoordinatePointingDeviceConfiguration */
 // The class instance for the [VZUSBScreenCoordinatePointingDeviceConfiguration] class.
 var (
 	VZUSBScreenCoordinatePointingDeviceConfigurationClass     _VZUSBScreenCoordinatePointingDeviceConfigurationClass
@@ -26,35 +29,26 @@ type _VZUSBScreenCoordinatePointingDeviceConfigurationClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for VZUSBScreenCoordinatePointingDeviceConfiguration */
 // An interface definition for the [VZUSBScreenCoordinatePointingDeviceConfiguration] class.
 type IVZUSBScreenCoordinatePointingDeviceConfiguration interface {
 	IVZPointingDeviceConfiguration
+
+	/* debug [class_interface_properties]: Properties for VZUSBScreenCoordinatePointingDeviceConfiguration */
 	// properties:
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for VZUSBScreenCoordinatePointingDeviceConfiguration */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that defines the configuration for a USB pointing device that reports absolute coordinates.
-//
-// A can use this device to send pointer events to the VM.
+/* debug [class_interface]: End interface */
 
-
-// An object that defines the configuration for a USB pointing device that reports absolute coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBScreenCoordinatePointingDeviceConfiguration
-type VZUSBScreenCoordinatePointingDeviceConfiguration struct {
-	VZPointingDeviceConfiguration
-}
-
-// VZUSBScreenCoordinatePointingDeviceConfigurationFrom constructs a [VZUSBScreenCoordinatePointingDeviceConfiguration] from an unsafe.Pointer.
-//
-// An object that defines the configuration for a USB pointing device that reports absolute coordinates.
-func VZUSBScreenCoordinatePointingDeviceConfigurationFrom(ptr unsafe.Pointer) VZUSBScreenCoordinatePointingDeviceConfiguration {
-	return VZUSBScreenCoordinatePointingDeviceConfiguration{
-		VZPointingDeviceConfiguration: VZPointingDeviceConfigurationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for VZUSBScreenCoordinatePointingDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
 func (vc _VZUSBScreenCoordinatePointingDeviceConfigurationClass) Alloc() VZUSBScreenCoordinatePointingDeviceConfiguration {
 	rv := objc.Send[VZUSBScreenCoordinatePointingDeviceConfiguration](objc.ID(vc.class), objc.Sel("alloc"))
@@ -62,7 +56,6 @@ func (vc _VZUSBScreenCoordinatePointingDeviceConfigurationClass) Alloc() VZUSBSc
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _VZUSBScreenCoordinatePointingDeviceConfigurationClass) New() VZUSBScreenCoordinatePointingDeviceConfiguration {
 	rv := objc.Send[VZUSBScreenCoordinatePointingDeviceConfiguration](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,6 +79,45 @@ func NewVZUSBScreenCoordinatePointingDeviceConfiguration() VZUSBScreenCoordinate
 	return getVZUSBScreenCoordinatePointingDeviceConfigurationClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for VZUSBScreenCoordinatePointingDeviceConfiguration */
+// An object that defines the configuration for a USB pointing device that reports absolute coordinates.
+//
+// A can use this device to send pointer events to the VM.
 
+// An object that defines the configuration for a USB pointing device that reports absolute coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZUSBScreenCoordinatePointingDeviceConfiguration
+type VZUSBScreenCoordinatePointingDeviceConfiguration struct {
+	VZPointingDeviceConfiguration
+}
 
+// VZUSBScreenCoordinatePointingDeviceConfigurationFrom constructs a [VZUSBScreenCoordinatePointingDeviceConfiguration] from an unsafe.Pointer.
+//
+// An object that defines the configuration for a USB pointing device that reports absolute coordinates.
+func VZUSBScreenCoordinatePointingDeviceConfigurationFrom(ptr unsafe.Pointer) VZUSBScreenCoordinatePointingDeviceConfiguration {
+	return VZUSBScreenCoordinatePointingDeviceConfiguration{
+		VZPointingDeviceConfiguration: VZPointingDeviceConfigurationFrom(ptr),
+	}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for VZUSBScreenCoordinatePointingDeviceConfiguration */
+/* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for VZUSBScreenCoordinatePointingDeviceConfiguration */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for VZUSBScreenCoordinatePointingDeviceConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for VZUSBScreenCoordinatePointingDeviceConfiguration */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for VZUSBScreenCoordinatePointingDeviceConfiguration */
+/* debug [instance_properties]: End instance properties */
+
+/* debug [class.gen.go]: End class VZUSBScreenCoordinatePointingDeviceConfiguration */

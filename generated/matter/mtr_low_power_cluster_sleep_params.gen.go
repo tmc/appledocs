@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRLowPowerClusterSleepParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRLowPowerClusterSleepParams
@@ -83,8 +81,6 @@ func NewMTRLowPowerClusterSleepParams() MTRLowPowerClusterSleepParams {
 	return getMTRLowPowerClusterSleepParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlowpowerclustersleepparams/serversideprocessingtimeout
 func (m_ MTRLowPowerClusterSleepParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRLowPowerClusterSleepParams) ServerSideProcessingTimeout() objc.IObje
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlowpowerclustersleepparams/serversideprocessingtimeout
 func (m_ MTRLowPowerClusterSleepParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlowpowerclustersleepparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRLowPowerClusterSleepParams) TimedInvokeTimeoutMs() objc.IObject /* c
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrlowpowerclustersleepparams/timedinvoketimeoutms
 func (m_ MTRLowPowerClusterSleepParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

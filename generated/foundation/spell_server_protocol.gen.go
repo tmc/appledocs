@@ -15,3 +15,4 @@ var spellServerProtocol *objc.Protocol
 func init() {
 	spellServerProtocol = objc.GetProtocol("spellServer:")
 }
+

@@ -2,7 +2,9 @@
 
 package adservices
 
+/* debug [enums.gen.go]: Generating 1 enums for AdServices */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum AAAttributionErrorCode (3 cases) */
 // AAAttributionErrorCode - The error code that the parent class issues.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AdServices/AAAttributionError/Code

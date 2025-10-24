@@ -47,7 +47,6 @@ type IINSearchCallHistoryIntent interface {
 //
 // SiriKit creates objects when the user asks to see previous calls from their call history. This intent object contains the values for you to match when searching the user’s call history. Users can search for calls involving a specific person, calls that occurred on specific dates, or calls that are of a specific type such as missed calls. When performing the search, use only the parameters provided and ignore any that have no values. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler confirms the request and creates an object with the results of the search. For successful searches, Siri offers the user a way to launch your app and see the results.
 
-
 // A request to list the calls matching the specified criteria.
 //
 // [Full Topic]
@@ -96,8 +95,6 @@ func NewINSearchCallHistoryIntent() INSearchCallHistoryIntent {
 	return getINSearchCallHistoryIntentClass().New()
 }
 
-
-
 // The audio-video capabilities of the call.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func (i_ INSearchCallHistoryIntent) CallCapabilities() unsafe.Pointer {
 	return rv
 }
 
-
 // The audio-video capabilities of the call.
 //
 // [Full Topic]
@@ -115,7 +111,6 @@ func (i_ INSearchCallHistoryIntent) CallCapabilities() unsafe.Pointer {
 func (i_ INSearchCallHistoryIntent) SetCallCapabilities(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapabilities:"), value)
 }
-
 
 // The call type.
 //
@@ -126,7 +121,6 @@ func (i_ INSearchCallHistoryIntent) CallType() INCallRecordType {
 	return rv
 }
 
-
 // The call type.
 //
 // [Full Topic]
@@ -134,7 +128,6 @@ func (i_ INSearchCallHistoryIntent) CallType() INCallRecordType {
 func (i_ INSearchCallHistoryIntent) SetCallType(value INCallRecordType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallType:"), value)
 }
-
 
 // The types of calls to search.
 //
@@ -145,7 +138,6 @@ func (i_ INSearchCallHistoryIntent) CallTypes() unsafe.Pointer {
 	return rv
 }
 
-
 // The types of calls to search.
 //
 // [Full Topic]
@@ -153,7 +145,6 @@ func (i_ INSearchCallHistoryIntent) CallTypes() unsafe.Pointer {
 func (i_ INSearchCallHistoryIntent) SetCallTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallTypes:"), value)
 }
-
 
 // The range of dates associated with the call records.
 //
@@ -164,7 +155,6 @@ func (i_ INSearchCallHistoryIntent) DateCreated() INDateComponentsRange {
 	return rv
 }
 
-
 // The range of dates associated with the call records.
 //
 // [Full Topic]
@@ -172,7 +162,6 @@ func (i_ INSearchCallHistoryIntent) DateCreated() INDateComponentsRange {
 func (i_ INSearchCallHistoryIntent) SetDateCreated(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
-
 
 // The person involved in the call.
 //
@@ -183,7 +172,6 @@ func (i_ INSearchCallHistoryIntent) Recipient() INPerson {
 	return rv
 }
 
-
 // The person involved in the call.
 //
 // [Full Topic]
@@ -191,7 +179,6 @@ func (i_ INSearchCallHistoryIntent) Recipient() INPerson {
 func (i_ INSearchCallHistoryIntent) SetRecipient(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipient:"), value)
 }
-
 
 // A Boolean value that indicates whether the user has seen the call yet.
 //
@@ -202,7 +189,6 @@ func (i_ INSearchCallHistoryIntent) Unseen() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user has seen the call yet.
 //
 // [Full Topic]
@@ -210,6 +196,3 @@ func (i_ INSearchCallHistoryIntent) Unseen() bool {
 func (i_ INSearchCallHistoryIntent) SetUnseen(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUnseen:"), value)
 }
-
-
-

@@ -33,8 +33,6 @@ type IMTRBaseClusterKeypadInput interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterKeypadInput
 type MTRBaseClusterKeypadInput struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterKeypadInput) Autorelease() MTRBaseClusterKeypadInput {
 func NewMTRBaseClusterKeypadInput() MTRBaseClusterKeypadInput {
 	return getMTRBaseClusterKeypadInputClass().New()
 }
-
-
-
-

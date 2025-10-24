@@ -15,3 +15,4 @@ var splitViewProtocol *objc.Protocol
 func init() {
 	splitViewProtocol = objc.GetProtocol("splitView:")
 }
+

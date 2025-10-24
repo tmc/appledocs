@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPSImageTent */
+
+
+/* debug [class_header]: Header for MPSImageTent */
 // The class instance for the [ImageTent] class.
 var (
 	ImageTentClass     _ImageTentClass
@@ -25,36 +29,30 @@ func getImageTentClass() _ImageTentClass {
 type _ImageTentClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ImageTent */
 // An interface definition for the [ImageTent] class.
 type IImageTent interface {
 	IImageBox
+	
+/* debug [class_interface_properties]: Properties for ImageTent */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ImageTent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A filter that convolves an image with a tent filter.
-//
-// The kernel elements of the filter form a tent shape with increasing sides, for example: Like a box filter, this arrangement allows for much faster algorithms, especially for larger blur radii but with a more pleasing appearance. The tent blur is a separable filter and the Metal Performance Shaders framework will act accordingly to give the best performance for multi-dimensional blurs.
+/* debug [class_interface]: End interface */
 
 
-// A filter that convolves an image with a tent filter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageTent
-type ImageTent struct {
-	ImageBox
-}
 
-// ImageTentFrom constructs a [ImageTent] from an unsafe.Pointer.
-//
-// A filter that convolves an image with a tent filter.
-func ImageTentFrom(ptr unsafe.Pointer) ImageTent {
-	return ImageTent{
-		ImageBox: ImageBoxFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ImageTent */
 // Alloc allocates a new instance without initialization.
 func (ic _ImageTentClass) Alloc() ImageTent {
 	rv := objc.Send[ImageTent](objc.ID(ic.class), objc.Sel("alloc"))
@@ -62,7 +60,6 @@ func (ic _ImageTentClass) Alloc() ImageTent {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ImageTentClass) New() ImageTent {
 	rv := objc.Send[ImageTent](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,7 +82,60 @@ func (i_ ImageTent) Autorelease() ImageTent {
 func NewImageTent() ImageTent {
 	return getImageTentClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for ImageTent */
+// A filter that convolves an image with a tent filter.
+//
+// The kernel elements of the filter form a tent shape with increasing sides, for example: Like a box filter, this arrangement allows for much faster algorithms, especially for larger blur radii but with a more pleasing appearance. The tent blur is a separable filter and the Metal Performance Shaders framework will act accordingly to give the best performance for multi-dimensional blurs.
+
+
+// A filter that convolves an image with a tent filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageTent
+type ImageTent struct {
+	ImageBox
+}
+
+// ImageTentFrom constructs a [ImageTent] from an unsafe.Pointer.
+//
+// A filter that convolves an image with a tent filter.
+func ImageTentFrom(ptr unsafe.Pointer) ImageTent {
+	return ImageTent{
+		ImageBox: ImageBoxFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ImageTent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ImageTent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ImageTent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ImageTent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ImageTent */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSImageTent */
 
 
 

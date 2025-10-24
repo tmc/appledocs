@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class CMRecordedAccelerometerData */
+
+
+/* debug [class_header]: Header for CMRecordedAccelerometerData */
 // The class instance for the [RecordedAccelerometerData] class.
 var (
 	RecordedAccelerometerDataClass     _RecordedAccelerometerDataClass
@@ -26,36 +30,30 @@ func getRecordedAccelerometerDataClass() _RecordedAccelerometerDataClass {
 type _RecordedAccelerometerDataClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for RecordedAccelerometerData */
 // An interface definition for the [RecordedAccelerometerData] class.
 type IRecordedAccelerometerData interface {
 	IAccelerometerData
+	
+/* debug [class_interface_properties]: Properties for RecordedAccelerometerData */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for RecordedAccelerometerData */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A single piece of accelerometer data that was recorded by the device.
-//
-// You do not create instances of this class directly. Instead, you use a object to retrieve already recorded data from the system.
+/* debug [class_interface]: End interface */
 
 
-// A single piece of accelerometer data that was recorded by the device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData
-type RecordedAccelerometerData struct {
-	AccelerometerData
-}
 
-// RecordedAccelerometerDataFrom constructs a [RecordedAccelerometerData] from an unsafe.Pointer.
-//
-// A single piece of accelerometer data that was recorded by the device.
-func RecordedAccelerometerDataFrom(ptr unsafe.Pointer) RecordedAccelerometerData {
-	return RecordedAccelerometerData{
-		AccelerometerData: AccelerometerDataFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for RecordedAccelerometerData */
 // Alloc allocates a new instance without initialization.
 func (rc _RecordedAccelerometerDataClass) Alloc() RecordedAccelerometerData {
 	rv := objc.Send[RecordedAccelerometerData](objc.ID(rc.class), objc.Sel("alloc"))
@@ -63,7 +61,6 @@ func (rc _RecordedAccelerometerDataClass) Alloc() RecordedAccelerometerData {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RecordedAccelerometerDataClass) New() RecordedAccelerometerData {
 	rv := objc.Send[RecordedAccelerometerData](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,6 +83,59 @@ func (r_ RecordedAccelerometerData) Autorelease() RecordedAccelerometerData {
 func NewRecordedAccelerometerData() RecordedAccelerometerData {
 	return getRecordedAccelerometerDataClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for RecordedAccelerometerData */
+// A single piece of accelerometer data that was recorded by the device.
+//
+// You do not create instances of this class directly. Instead, you use a object to retrieve already recorded data from the system.
+
+
+// A single piece of accelerometer data that was recorded by the device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMRecordedAccelerometerData
+type RecordedAccelerometerData struct {
+	AccelerometerData
+}
+
+// RecordedAccelerometerDataFrom constructs a [RecordedAccelerometerData] from an unsafe.Pointer.
+//
+// A single piece of accelerometer data that was recorded by the device.
+func RecordedAccelerometerDataFrom(ptr unsafe.Pointer) RecordedAccelerometerData {
+	return RecordedAccelerometerData{
+		AccelerometerData: AccelerometerDataFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for RecordedAccelerometerData *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for RecordedAccelerometerData */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for RecordedAccelerometerData */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for RecordedAccelerometerData */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for RecordedAccelerometerData */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CMRecordedAccelerometerData */
 
 

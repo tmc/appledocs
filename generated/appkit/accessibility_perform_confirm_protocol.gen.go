@@ -15,3 +15,4 @@ var accessibilityPerformConfirmProtocol *objc.Protocol
 func init() {
 	accessibilityPerformConfirmProtocol = objc.GetProtocol("accessibilityPerformConfirm")
 }
+

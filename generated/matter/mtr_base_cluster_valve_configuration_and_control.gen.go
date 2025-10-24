@@ -33,8 +33,6 @@ type IMTRBaseClusterValveConfigurationAndControl interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterValveConfigurationAndControl
 type MTRBaseClusterValveConfigurationAndControl struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterValveConfigurationAndControl) Autorelease() MTRBaseCluste
 func NewMTRBaseClusterValveConfigurationAndControl() MTRBaseClusterValveConfigurationAndControl {
 	return getMTRBaseClusterValveConfigurationAndControlClass().New()
 }
-
-
-
-

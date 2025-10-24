@@ -5,6 +5,10 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/vision"
 )
 
 // POutlineViewDelegate is the NSOutlineViewDelegate protocol interface.
@@ -63,7 +67,7 @@ type POutlineViewDelegate interface {
 	HasOutlineViewSizeToFitWidthOfColumn() bool
 	OutlineViewTintConfigurationForItem(outlineView IOutlineView, item objc.IObject) TintConfiguration
 	HasOutlineViewTintConfigurationForItem() bool
-	OutlineViewToolTipForCellRectTableColumnItemMouseLocation(outlineView IOutlineView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, item objc.IObject, mouseLocation objc.IObject /* cross-framework: Point */) foundation.String
+	OutlineViewToolTipForCellRectTableColumnItemMouseLocation(outlineView IOutlineView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, item objc.IObject, mouseLocation vision.Point) foundation.String
 	HasOutlineViewToolTipForCellRectTableColumnItemMouseLocation() bool
 	OutlineViewTypeSelectStringForTableColumnItem(outlineView IOutlineView, tableColumn ITableColumn, item objc.IObject) foundation.String
 	HasOutlineViewTypeSelectStringForTableColumnItem() bool
@@ -124,7 +128,7 @@ type OutlineViewDelegate struct {
 	_OutlineViewShouldTypeSelectForEventWithCurrentSearchString func(outlineView IOutlineView, event IEvent, searchString objc.IObject /* cross-framework: NSString */) bool
 	_OutlineViewSizeToFitWidthOfColumn func(outlineView IOutlineView, column int) float64
 	_OutlineViewTintConfigurationForItem func(outlineView IOutlineView, item objc.IObject) TintConfiguration
-	_OutlineViewToolTipForCellRectTableColumnItemMouseLocation func(outlineView IOutlineView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, item objc.IObject, mouseLocation objc.IObject /* cross-framework: Point */) foundation.String
+	_OutlineViewToolTipForCellRectTableColumnItemMouseLocation func(outlineView IOutlineView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, item objc.IObject, mouseLocation vision.Point) foundation.String
 	_OutlineViewTypeSelectStringForTableColumnItem func(outlineView IOutlineView, tableColumn ITableColumn, item objc.IObject) foundation.String
 	_OutlineViewUserCanChangeVisibilityOfTableColumn func(outlineView IOutlineView, column ITableColumn) bool
 	_OutlineViewUserDidChangeVisibilityOfTableColumns func(outlineView IOutlineView, columns []TableColumn)
@@ -306,7 +310,7 @@ func (d *OutlineViewDelegate) SetOutlineViewTintConfigurationForItem(f func(outl
 // SetOutlineViewToolTipForCellRectTableColumnItemMouseLocation sets the handler for the OutlineViewToolTipForCellRectTableColumnItemMouseLocation delegate method.
 //
 // When the cursor pauses over a given cell, the value returned from this method is displayed in a tooltip.
-func (d *OutlineViewDelegate) SetOutlineViewToolTipForCellRectTableColumnItemMouseLocation(f func(outlineView IOutlineView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, item objc.IObject, mouseLocation objc.IObject /* cross-framework: Point */) foundation.String) {
+func (d *OutlineViewDelegate) SetOutlineViewToolTipForCellRectTableColumnItemMouseLocation(f func(outlineView IOutlineView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, item objc.IObject, mouseLocation vision.Point) foundation.String) {
 	d._OutlineViewToolTipForCellRectTableColumnItemMouseLocation = f
 }
 
@@ -724,7 +728,7 @@ func (d *OutlineViewDelegate) HasOutlineViewTintConfigurationForItem() bool {
 }
 
 // OutlineViewToolTipForCellRectTableColumnItemMouseLocation implements the POutlineViewDelegate interface.
-func (d *OutlineViewDelegate) OutlineViewToolTipForCellRectTableColumnItemMouseLocation(outlineView IOutlineView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, item objc.IObject, mouseLocation objc.IObject /* cross-framework: Point */) foundation.String {
+func (d *OutlineViewDelegate) OutlineViewToolTipForCellRectTableColumnItemMouseLocation(outlineView IOutlineView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, item objc.IObject, mouseLocation vision.Point) foundation.String {
 	if d._OutlineViewToolTipForCellRectTableColumnItemMouseLocation != nil {
 		return d._OutlineViewToolTipForCellRectTableColumnItemMouseLocation(outlineView, cell, rect, tableColumn, item, mouseLocation)
 	}

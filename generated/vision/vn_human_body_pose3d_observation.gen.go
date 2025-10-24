@@ -7,8 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VNHumanBodyPose3DObservation */
+
+
+/* debug [class_header]: Header for VNHumanBodyPose3DObservation */
 // The class instance for the [HumanBodyPose3DObservation] class.
 var (
 	HumanBodyPose3DObservationClass     _HumanBodyPose3DObservationClass
@@ -25,44 +31,40 @@ func getHumanBodyPose3DObservationClass() _HumanBodyPose3DObservationClass {
 type _HumanBodyPose3DObservationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HumanBodyPose3DObservation */
 // An interface definition for the [HumanBodyPose3DObservation] class.
 type IHumanBodyPose3DObservation interface {
 	IRecognizedPoints3DObservation
+	
+/* debug [class_interface_properties]: Properties for HumanBodyPose3DObservation */
 	// properties:
-	AvailableJointNames() unsafe.Pointer
-	SetAvailableJointNames(value unsafe.Pointer)
-	AvailableJointsGroupNames() unsafe.Pointer
-	SetAvailableJointsGroupNames(value unsafe.Pointer)
+	AvailableJointNames() []string
+	AvailableJointsGroupNames() []string
 	BodyHeight() float32
-	SetBodyHeight(value float32)
-	CameraOriginMatrix() unsafe.Pointer
-	SetCameraOriginMatrix(value unsafe.Pointer)
-	HeightEstimation() unsafe.Pointer
-	SetHeightEstimation(value unsafe.Pointer)
+	CameraOriginMatrix() objectivec.IObject
+	HeightEstimation() HumanBodyPose3DObservationHeightEstimation
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HumanBodyPose3DObservation */
 	// methods:
+	GetCameraRelativePositionForJointNameError(modelPositionOut objectivec.IObject, jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) bool
+	ParentJointNameForJointName(jointName HumanBodyPose3DObservationJointName /* typedef */) HumanBodyPose3DObservationJointName /* typedef */
+	PointInImageForJointNameError(jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) IPoint
+	RecognizedPointForJointNameError(jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) IHumanBodyRecognizedPoint3D
+	RecognizedPointsForJointsGroupNameError(jointsGroupName HumanBodyPose3DObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An observation that provides the 3D body points the request recognizes.
 
 
-// An observation that provides the 3D body points the request recognizes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation
-type HumanBodyPose3DObservation struct {
-	RecognizedPoints3DObservation
-}
-
-// HumanBodyPose3DObservationFrom constructs a [HumanBodyPose3DObservation] from an unsafe.Pointer.
-//
-// An observation that provides the 3D body points the request recognizes.
-func HumanBodyPose3DObservationFrom(ptr unsafe.Pointer) HumanBodyPose3DObservation {
-	return HumanBodyPose3DObservation{
-		RecognizedPoints3DObservation: RecognizedPoints3DObservationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for HumanBodyPose3DObservation */
 // Alloc allocates a new instance without initialization.
 func (hc _HumanBodyPose3DObservationClass) Alloc() HumanBodyPose3DObservation {
 	rv := objc.Send[HumanBodyPose3DObservation](objc.ID(hc.class), objc.Sel("alloc"))
@@ -70,7 +72,6 @@ func (hc _HumanBodyPose3DObservationClass) Alloc() HumanBodyPose3DObservation {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HumanBodyPose3DObservationClass) New() HumanBodyPose3DObservation {
 	rv := objc.Send[HumanBodyPose3DObservation](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,102 +94,158 @@ func (h_ HumanBodyPose3DObservation) Autorelease() HumanBodyPose3DObservation {
 func NewHumanBodyPose3DObservation() HumanBodyPose3DObservation {
 	return getHumanBodyPose3DObservationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The names of the available joints in the observation.
+/* debug [class_struct]: Struct for HumanBodyPose3DObservation */
+// An observation that provides the 3D body points the request recognizes.
+
+
+// An observation that provides the 3D body points the request recognizes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/availablejointnames
-func (h_ HumanBodyPose3DObservation) AvailableJointNames() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("availableJointNames"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation
+type HumanBodyPose3DObservation struct {
+	RecognizedPoints3DObservation
+}
+
+// HumanBodyPose3DObservationFrom constructs a [HumanBodyPose3DObservation] from an unsafe.Pointer.
+//
+// An observation that provides the 3D body points the request recognizes.
+func HumanBodyPose3DObservationFrom(ptr unsafe.Pointer) HumanBodyPose3DObservation {
+	return HumanBodyPose3DObservation{
+		RecognizedPoints3DObservation: RecognizedPoints3DObservationFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HumanBodyPose3DObservation *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HumanBodyPose3DObservation */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HumanBodyPose3DObservation */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HumanBodyPose3DObservation */
+
+// Gets a position relative to the camera for the body joint you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/getCameraRelativePosition:forJointName:error:
+func (h_ HumanBodyPose3DObservation) GetCameraRelativePositionForJointNameError(modelPositionOut objectivec.IObject, jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) bool {
+	rv := objc.Send[bool](h_.ID, objc.Sel("getCameraRelativePosition:forJointName:error:"), modelPositionOut, jointName, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: GetCameraRelativePositionForJointNameError */
 
+
+// Returns the parent joint of the joint name you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/parentJointName(_:)
+func (h_ HumanBodyPose3DObservation) ParentJointNameForJointName(jointName HumanBodyPose3DObservationJointName /* typedef */) HumanBodyPose3DObservationJointName /* typedef */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("parentJointNameForJointName:"), jointName)
+	return rv
+}/* debug [instance_methods/method]: ParentJointNameForJointName */
+
+
+// Returns a 2D point for the joint name you specify, relative to the input image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/pointInImage(_:)
+func (h_ HumanBodyPose3DObservation) PointInImageForJointNameError(jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) IPoint {
+	rv := objc.Send[Point](h_.ID, objc.Sel("pointInImageForJointName:error:"), jointName, error_)
+	return rv
+}/* debug [instance_methods/method]: PointInImageForJointNameError */
+
+
+// Returns the point for a joint name that the observation recognizes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/recognizedPoint(_:)
+func (h_ HumanBodyPose3DObservation) RecognizedPointForJointNameError(jointName HumanBodyPose3DObservationJointName /* typedef */, error_ objectivec.IObject) IHumanBodyRecognizedPoint3D {
+	rv := objc.Send[HumanBodyRecognizedPoint3D](h_.ID, objc.Sel("recognizedPointForJointName:error:"), jointName, error_)
+	return rv
+}/* debug [instance_methods/method]: RecognizedPointForJointNameError */
+
+
+// Returns a collection of points for the group name you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/recognizedPoints(_:)
+func (h_ HumanBodyPose3DObservation) RecognizedPointsForJointsGroupNameError(jointsGroupName HumanBodyPose3DObservationJointsGroupName /* typedef */, error_ objectivec.IObject) foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](h_.ID, objc.Sel("recognizedPointsForJointsGroupName:error:"), jointsGroupName, error_)
+	return rv
+}/* debug [instance_methods/method]: RecognizedPointsForJointsGroupNameError */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HumanBodyPose3DObservation */
 
 // The names of the available joints in the observation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/availablejointnames
-func (h_ HumanBodyPose3DObservation) SetAvailableJointNames(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAvailableJointNames:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/availableJointNames
+func (h_ HumanBodyPose3DObservation) AvailableJointNames() []string {
+	rv := objc.Send[[]string](h_.ID, objc.Sel("availableJointNames"))
+	return rv
+}/* debug [instance_properties/getter]: availableJointNames */
 
 
 // The available joint group names in the observation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/availablejointsgroupnames
-func (h_ HumanBodyPose3DObservation) AvailableJointsGroupNames() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("availableJointsGroupNames"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/availableJointsGroupNames
+func (h_ HumanBodyPose3DObservation) AvailableJointsGroupNames() []string {
+	rv := objc.Send[[]string](h_.ID, objc.Sel("availableJointsGroupNames"))
 	return rv
-}
-
-
-// The available joint group names in the observation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/availablejointsgroupnames
-func (h_ HumanBodyPose3DObservation) SetAvailableJointsGroupNames(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAvailableJointsGroupNames:"), value)
-}
+}/* debug [instance_properties/getter]: availableJointsGroupNames */
 
 
 // The estimated human body height, in meters.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/bodyheight
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/bodyHeight
 func (h_ HumanBodyPose3DObservation) BodyHeight() float32 {
 	rv := objc.Send[float32](h_.ID, objc.Sel("bodyHeight"))
 	return rv
-}
-
-
-// The estimated human body height, in meters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/bodyheight
-func (h_ HumanBodyPose3DObservation) SetBodyHeight(value float32) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setBodyHeight:"), value)
-}
+}/* debug [instance_properties/getter]: bodyHeight */
 
 
 // A transform from the skeleton hip to the camera.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/cameraoriginmatrix
-func (h_ HumanBodyPose3DObservation) CameraOriginMatrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("cameraOriginMatrix"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/cameraOriginMatrix
+func (h_ HumanBodyPose3DObservation) CameraOriginMatrix() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("cameraOriginMatrix"))
 	return rv
-}
-
-
-// A transform from the skeleton hip to the camera.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/cameraoriginmatrix
-func (h_ HumanBodyPose3DObservation) SetCameraOriginMatrix(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setCameraOriginMatrix:"), value)
-}
+}/* debug [instance_properties/getter]: cameraOriginMatrix */
 
 
 // The technique the framework uses to estimate body height.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.property
-func (h_ HumanBodyPose3DObservation) HeightEstimation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("heightEstimation"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNHumanBodyPose3DObservation/heightEstimation-swift.property
+func (h_ HumanBodyPose3DObservation) HeightEstimation() HumanBodyPose3DObservationHeightEstimation {
+	rv := objc.Send[HumanBodyPose3DObservationHeightEstimation](h_.ID, objc.Sel("heightEstimation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: heightEstimation */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The technique the framework uses to estimate body height.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnhumanbodypose3dobservation/heightestimation-swift.property
-func (h_ HumanBodyPose3DObservation) SetHeightEstimation(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setHeightEstimation:"), value)
-}
+/* debug [class.gen.go]: End class VNHumanBodyPose3DObservation */
 
 
 

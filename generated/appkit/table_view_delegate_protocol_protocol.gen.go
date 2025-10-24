@@ -5,6 +5,10 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/vision"
 )
 
 // PTableViewDelegate is the NSTableViewDelegate protocol interface.
@@ -59,7 +63,7 @@ type PTableViewDelegate interface {
 	HasTableViewShouldTypeSelectForEventWithCurrentSearchString() bool
 	TableViewSizeToFitWidthOfColumn(tableView ITableView, column int) float64
 	HasTableViewSizeToFitWidthOfColumn() bool
-	TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation objc.IObject /* cross-framework: Point */) foundation.String
+	TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation vision.Point) foundation.String
 	HasTableViewToolTipForCellRectTableColumnRowMouseLocation() bool
 	TableViewTypeSelectStringForTableColumnRow(tableView ITableView, tableColumn ITableColumn, row int) foundation.String
 	HasTableViewTypeSelectStringForTableColumnRow() bool
@@ -106,7 +110,7 @@ type TableViewDelegate struct {
 	_TableViewShouldTrackCellForTableColumnRow func(tableView ITableView, cell ICell, tableColumn ITableColumn, row int) bool
 	_TableViewShouldTypeSelectForEventWithCurrentSearchString func(tableView ITableView, event IEvent, searchString objc.IObject /* cross-framework: NSString */) bool
 	_TableViewSizeToFitWidthOfColumn func(tableView ITableView, column int) float64
-	_TableViewToolTipForCellRectTableColumnRowMouseLocation func(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation objc.IObject /* cross-framework: Point */) foundation.String
+	_TableViewToolTipForCellRectTableColumnRowMouseLocation func(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation vision.Point) foundation.String
 	_TableViewTypeSelectStringForTableColumnRow func(tableView ITableView, tableColumn ITableColumn, row int) foundation.String
 	_TableViewUserCanChangeVisibilityOfTableColumn func(tableView ITableView, column ITableColumn) bool
 	_TableViewUserDidChangeVisibilityOfTableColumns func(tableView ITableView, columns []TableColumn)
@@ -268,7 +272,7 @@ func (d *TableViewDelegate) SetTableViewSizeToFitWidthOfColumn(f func(tableView 
 // SetTableViewToolTipForCellRectTableColumnRowMouseLocation sets the handler for the TableViewToolTipForCellRectTableColumnRowMouseLocation delegate method.
 //
 // Asks the delegate for a string to display in a tooltip for the specified cell in the column and row.
-func (d *TableViewDelegate) SetTableViewToolTipForCellRectTableColumnRowMouseLocation(f func(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation objc.IObject /* cross-framework: Point */) foundation.String) {
+func (d *TableViewDelegate) SetTableViewToolTipForCellRectTableColumnRowMouseLocation(f func(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation vision.Point) foundation.String) {
 	d._TableViewToolTipForCellRectTableColumnRowMouseLocation = f
 }
 
@@ -620,7 +624,7 @@ func (d *TableViewDelegate) HasTableViewSizeToFitWidthOfColumn() bool {
 }
 
 // TableViewToolTipForCellRectTableColumnRowMouseLocation implements the PTableViewDelegate interface.
-func (d *TableViewDelegate) TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation objc.IObject /* cross-framework: Point */) foundation.String {
+func (d *TableViewDelegate) TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView ITableView, cell ICell, rect RectPointer /* not a class type */, tableColumn ITableColumn, row int, mouseLocation vision.Point) foundation.String {
 	if d._TableViewToolTipForCellRectTableColumnRowMouseLocation != nil {
 		return d._TableViewToolTipForCellRectTableColumnRowMouseLocation(tableView, cell, rect, tableColumn, row, mouseLocation)
 	}

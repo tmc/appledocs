@@ -2,12 +2,8 @@
 
 // Package mattersupport provides Go bindings for the MatterSupport framework.
 //
-// Coordinate and control compatible smart home accessories.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MatterSupport without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/MatterSupport
 package mattersupport
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/MatterSupport.framework/MatterSupport"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

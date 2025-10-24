@@ -12,5 +12,3 @@ type (
 	Bool = _undefined // referenced in AdSupport
 	UUID = _undefined // referenced in AdSupport
 )
-
-

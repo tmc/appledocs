@@ -8,5 +8,3 @@ import (
 
 // Suppress unused import errors
 var _ = coreml.NewUpdateTask
-
-

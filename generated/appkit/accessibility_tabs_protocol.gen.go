@@ -15,3 +15,4 @@ var accessibilityTabsProtocol *objc.Protocol
 func init() {
 	accessibilityTabsProtocol = objc.GetProtocol("accessibilityTabs")
 }
+

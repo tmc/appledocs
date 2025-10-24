@@ -18,3 +18,4 @@ var isDownloadedProtocol *objc.Protocol
 func init() {
 	isDownloadedProtocol = objc.GetProtocol("isDownloaded")
 }
+

@@ -54,7 +54,7 @@ func (b_ BatchedSensorManager) StopDeviceMotionUpdates() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/accelerometerBatch
-func (b_ BatchedSensorManager) AccelerometerBatch() []IAccelerometerData {
+func (b_ BatchedSensorManager) AccelerometerBatch() []AccelerometerData {
 	rv := objc.Send[[]AccelerometerData](b_.ID, objc.Sel("accelerometerBatch"))
 	return rv
 }
@@ -68,7 +68,7 @@ func (b_ BatchedSensorManager) AccelerometerDataFrequency() int {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMBatchedSensorManager/deviceMotionBatch
-func (b_ BatchedSensorManager) DeviceMotionBatch() []IDeviceMotion {
+func (b_ BatchedSensorManager) DeviceMotionBatch() []DeviceMotion {
 	rv := objc.Send[[]DeviceMotion](b_.ID, objc.Sel("deviceMotionBatch"))
 	return rv
 }

@@ -1,0 +1,19 @@
+// Code generated from Apple documentation for Metal. DO NOT EDIT.
+
+package metal
+
+// PnewResidencySetWithDescriptor is the newResidencySetWithDescriptor: protocol interface.
+//
+// Creates a residency set, which can move resources in and out of memory residency.
+//
+// Availability:
+//   - Mac Catalyst 18.0+
+//   - iOS 18.0+
+//   - iPadOS 18.0+
+//   - macOS 15.0+
+//   - tvOS 18.0+
+//   - visionOS 2.0+
+//
+// See: doc://com.apple.metal/documentation/Metal/MTLDevice/makeResidencySet(descriptor:)
+type PnewResidencySetWithDescriptor interface {
+}

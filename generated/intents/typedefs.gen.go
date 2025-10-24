@@ -8,4 +8,3 @@ package intents
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INCar/ChargingConnectorType
 // INCarChargingConnectorType has base type: NSString *
 type INCarChargingConnectorType uintptr
-

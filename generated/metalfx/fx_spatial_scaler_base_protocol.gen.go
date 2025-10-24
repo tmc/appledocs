@@ -11,6 +11,7 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 16.0+
 //   - iPadOS 16.0+
 //   - macOS 13.0+
+//   - tvOS +
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to MTLFXSpatialScalerBase.
@@ -19,3 +20,4 @@ var FXSpatialScalerBaseProtocol *objc.Protocol
 func init() {
 	FXSpatialScalerBaseProtocol = objc.GetProtocol("MTLFXSpatialScalerBase")
 }
+

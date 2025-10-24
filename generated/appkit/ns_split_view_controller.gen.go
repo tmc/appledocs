@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSSplitViewController */
+
+
+/* debug [class_header]: Header for NSSplitViewController */
 // The class instance for the [SplitViewController] class.
 var (
 	SplitViewControllerClass     _SplitViewControllerClass
@@ -27,10 +30,16 @@ func getSplitViewControllerClass() _SplitViewControllerClass {
 type _SplitViewControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SplitViewController */
 // An interface definition for the [SplitViewController] class.
 type ISplitViewController interface {
 	IViewController
+	
+/* debug [class_interface_properties]: Properties for SplitViewController */
 	// properties:
 	MinimumThicknessForInlineSidebars() float64
 	SetMinimumThicknessForInlineSidebars(value float64)
@@ -40,43 +49,31 @@ type ISplitViewController interface {
 	SetSplitViewItems(value []SplitViewItem)
 	IsVertical() bool
 	SetIsVertical(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SplitViewController */
 	// methods:
 	AddSplitViewItem(splitViewItem ISplitViewItem)
 	InsertSplitViewItemAtIndex(splitViewItem ISplitViewItem, index int)
 	RemoveSplitViewItem(splitViewItem ISplitViewItem)
-	SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView ISplitView, dividerIndex int) objc.IObject /* cross-framework: Rect */
+	SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView ISplitView, dividerIndex int) Rect /* not a class type */
 	SplitViewCanCollapseSubview(splitView ISplitView, subview IView) bool
-	SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView ISplitView, proposedEffectiveRect objc.IObject /* cross-framework: Rect */, drawnRect objc.IObject /* cross-framework: Rect */, dividerIndex int) objc.IObject /* cross-framework: Rect */
+	SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView ISplitView, proposedEffectiveRect Rect /* not a class type */, drawnRect Rect /* not a class type */, dividerIndex int) Rect /* not a class type */
 	SplitViewShouldHideDividerAtIndex(splitView ISplitView, dividerIndex int) bool
 	SplitViewItemForViewController(viewController IViewController) ISplitViewItem
 	ToggleInspector(sender objc.IObject)
 	ToggleSidebar(sender objc.IObject)
-	ValidateUserInterfaceItem(item objc.IObject) bool
+	ValidateUserInterfaceItem(item unsafe.Pointer) bool
 	ViewDidLoad()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
-//
-// A split view controller manages a set of child views that it displays next to each other in a side-by-side or top-to-bottom arrangement. A split view controller owns an array of split view items ( ), each of which has a view controller ( ) and corresponding view. The split view controller’s object manages those child views and the dividers between them. By default, a split view arranges its child views vertically from top to bottom. To specify a horizontal (side-by-side) arrangement, implement the property of the object to return . The split view controller serves as the delegate of its object. If you override a split view delegate method, your override must call . To use a split view controller, you must use Auto Layout for the child views and to support animations that collapse and reveal child views. For example, if you design a layout that contains two views, a content area and an optional sidebar, you employ Auto Layout constraints to specify whether the content area shrinks or remains the same size when the sidebar becomes visible. A split view controller employs lazy loading of its views. For example, adding a collapsed split view item as a new child doesn’t load the associated view until it shows. For more information about using in your app, see .
+/* debug [class_interface]: End interface */
 
 
-// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController
-type SplitViewController struct {
-	ViewController
-}
 
-// SplitViewControllerFrom constructs a [SplitViewController] from an unsafe.Pointer.
-//
-// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
-func SplitViewControllerFrom(ptr unsafe.Pointer) SplitViewController {
-	return SplitViewController{
-		ViewController: ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for SplitViewController */
 // Alloc allocates a new instance without initialization.
 func (sc _SplitViewControllerClass) Alloc() SplitViewController {
 	rv := objc.Send[SplitViewController](objc.ID(sc.class), objc.Sel("alloc"))
@@ -84,7 +81,6 @@ func (sc _SplitViewControllerClass) Alloc() SplitViewController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SplitViewControllerClass) New() SplitViewController {
 	rv := objc.Send[SplitViewController](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -107,8 +103,51 @@ func (s_ SplitViewController) Autorelease() SplitViewController {
 func NewSplitViewController() SplitViewController {
 	return getSplitViewControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SplitViewController */
+// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
+//
+// A split view controller manages a set of child views that it displays next to each other in a side-by-side or top-to-bottom arrangement. A split view controller owns an array of split view items ( ), each of which has a view controller ( ) and corresponding view. The split view controller’s object manages those child views and the dividers between them. By default, a split view arranges its child views vertically from top to bottom. To specify a horizontal (side-by-side) arrangement, implement the property of the object to return . The split view controller serves as the delegate of its object. If you override a split view delegate method, your override must call . To use a split view controller, you must use Auto Layout for the child views and to support animations that collapse and reveal child views. For example, if you design a layout that contains two views, a content area and an optional sidebar, you employ Auto Layout constraints to specify whether the content area shrinks or remains the same size when the sidebar becomes visible. A split view controller employs lazy loading of its views. For example, adding a collapsed split view item as a new child doesn’t load the associated view until it shows. For more information about using in your app, see .
+
+
+// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController
+type SplitViewController struct {
+	ViewController
+}
+
+// SplitViewControllerFrom constructs a [SplitViewController] from an unsafe.Pointer.
+//
+// An object that manages an array of adjacent child views, and has a split view object for managing dividers between those views.
+func SplitViewControllerFrom(ptr unsafe.Pointer) SplitViewController {
+	return SplitViewController{
+		ViewController: ViewControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SplitViewController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SplitViewController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SplitViewController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SplitViewController */
 
 // Adds a split view item to the end of the array of split view items.
 //
@@ -116,7 +155,7 @@ func NewSplitViewController() SplitViewController {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/addSplitViewItem(_:)
 func (s_ SplitViewController) AddSplitViewItem(splitViewItem ISplitViewItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("addSplitViewItem:"), splitViewItem)
-}
+}/* debug [instance_methods/method]: AddSplitViewItem */
 
 
 // Adds a split view item to the array of split view items at the specified index position.
@@ -125,7 +164,7 @@ func (s_ SplitViewController) AddSplitViewItem(splitViewItem ISplitViewItem) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/insertSplitViewItem(_:at:)
 func (s_ SplitViewController) InsertSplitViewItemAtIndex(splitViewItem ISplitViewItem, index int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("insertSplitViewItem:atIndex:"), splitViewItem, index)
-}
+}/* debug [instance_methods/method]: InsertSplitViewItemAtIndex */
 
 
 // Removes a specified split view item from the split view controller.
@@ -134,17 +173,17 @@ func (s_ SplitViewController) InsertSplitViewItemAtIndex(splitViewItem ISplitVie
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/removeSplitViewItem(_:)
 func (s_ SplitViewController) RemoveSplitViewItem(splitViewItem ISplitViewItem) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeSplitViewItem:"), splitViewItem)
-}
+}/* debug [instance_methods/method]: RemoveSplitViewItem */
 
 
 // Allows the split view controller to return an additional rectangle where mouse clicks can initiate divider dragging.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitView(_:additionalEffectiveRectOfDividerAt:)
-func (s_ SplitViewController) SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView ISplitView, dividerIndex int) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("splitView:additionalEffectiveRectOfDividerAtIndex:"), splitView, dividerIndex)
+func (s_ SplitViewController) SplitViewAdditionalEffectiveRectOfDividerAtIndex(splitView ISplitView, dividerIndex int) Rect /* not a class type */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("splitView:additionalEffectiveRectOfDividerAtIndex:"), splitView, dividerIndex)
 	return rv
-}
+}/* debug [instance_methods/method]: SplitViewAdditionalEffectiveRectOfDividerAtIndex */
 
 
 // Allows the split view controller to determine whether the user can collapse and expand the specified subview.
@@ -154,17 +193,17 @@ func (s_ SplitViewController) SplitViewAdditionalEffectiveRectOfDividerAtIndex(s
 func (s_ SplitViewController) SplitViewCanCollapseSubview(splitView ISplitView, subview IView) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("splitView:canCollapseSubview:"), splitView, subview)
 	return rv
-}
+}/* debug [instance_methods/method]: SplitViewCanCollapseSubview */
 
 
 // Allows the split view controller to modify the rectangle where mouse clicks initiate divider dragging.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitView(_:effectiveRect:forDrawnRect:ofDividerAt:)
-func (s_ SplitViewController) SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView ISplitView, proposedEffectiveRect objc.IObject /* cross-framework: Rect */, drawnRect objc.IObject /* cross-framework: Rect */, dividerIndex int) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:"), splitView, proposedEffectiveRect, drawnRect, dividerIndex)
+func (s_ SplitViewController) SplitViewEffectiveRectForDrawnRectOfDividerAtIndex(splitView ISplitView, proposedEffectiveRect Rect /* not a class type */, drawnRect Rect /* not a class type */, dividerIndex int) Rect /* not a class type */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("splitView:effectiveRect:forDrawnRect:ofDividerAtIndex:"), splitView, proposedEffectiveRect, drawnRect, dividerIndex)
 	return rv
-}
+}/* debug [instance_methods/method]: SplitViewEffectiveRectForDrawnRectOfDividerAtIndex */
 
 
 // Allows the split view controller to determine whether the user can drag a divider or adjust it off the edge of the split view.
@@ -174,7 +213,7 @@ func (s_ SplitViewController) SplitViewEffectiveRectForDrawnRectOfDividerAtIndex
 func (s_ SplitViewController) SplitViewShouldHideDividerAtIndex(splitView ISplitView, dividerIndex int) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("splitView:shouldHideDividerAtIndex:"), splitView, dividerIndex)
 	return rv
-}
+}/* debug [instance_methods/method]: SplitViewShouldHideDividerAtIndex */
 
 
 // Returns the corresponding split view item for the specified child view controller of the split view controller.
@@ -184,14 +223,14 @@ func (s_ SplitViewController) SplitViewShouldHideDividerAtIndex(splitView ISplit
 func (s_ SplitViewController) SplitViewItemForViewController(viewController IViewController) ISplitViewItem {
 	rv := objc.Send[SplitViewItem](s_.ID, objc.Sel("splitViewItemForViewController:"), viewController)
 	return rv
-}
+}/* debug [instance_methods/method]: SplitViewItemForViewController */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/toggleInspector(_:)
 func (s_ SplitViewController) ToggleInspector(sender objc.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("toggleInspector:"), sender)
-}
+}/* debug [instance_methods/method]: ToggleInspector */
 
 
 // Collapses or expands the first sidebar in the split view controller using an animation.
@@ -200,17 +239,17 @@ func (s_ SplitViewController) ToggleInspector(sender objc.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/toggleSidebar(_:)
 func (s_ SplitViewController) ToggleSidebar(sender objc.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("toggleSidebar:"), sender)
-}
+}/* debug [instance_methods/method]: ToggleSidebar */
 
 
 // Returns a Boolean value that indicates whether to enable the specified item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/validateUserInterfaceItem(_:)
-func (s_ SplitViewController) ValidateUserInterfaceItem(item objc.IObject) bool {
+func (s_ SplitViewController) ValidateUserInterfaceItem(item unsafe.Pointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("validateUserInterfaceItem:"), item)
 	return rv
-}
+}/* debug [instance_methods/method]: ValidateUserInterfaceItem */
 
 
 // Configures the split view controller after its view loads into memory.
@@ -219,8 +258,13 @@ func (s_ SplitViewController) ValidateUserInterfaceItem(item objc.IObject) bool 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/viewDidLoad()
 func (s_ SplitViewController) ViewDidLoad() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("viewDidLoad"))
-}
+}/* debug [instance_methods/method]: ViewDidLoad */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SplitViewController */
 
 // The minimum thickness for a sidebar before it automatically collapses.
 //
@@ -229,7 +273,7 @@ func (s_ SplitViewController) ViewDidLoad() {
 func (s_ SplitViewController) MinimumThicknessForInlineSidebars() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumThicknessForInlineSidebars"))
 	return rv
-}
+}/* debug [instance_properties/getter]: minimumThicknessForInlineSidebars */
 
 
 // The minimum thickness for a sidebar before it automatically collapses.
@@ -238,7 +282,7 @@ func (s_ SplitViewController) MinimumThicknessForInlineSidebars() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/minimumThicknessForInlineSidebars
 func (s_ SplitViewController) SetMinimumThicknessForInlineSidebars(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumThicknessForInlineSidebars:"), value)
-}
+}/* debug [instance_properties/setter]: minimumThicknessForInlineSidebars */
 
 
 // The split view that the split view controller manages.
@@ -248,7 +292,7 @@ func (s_ SplitViewController) SetMinimumThicknessForInlineSidebars(value float64
 func (s_ SplitViewController) SplitView() ISplitView {
 	rv := objc.Send[SplitView](s_.ID, objc.Sel("splitView"))
 	return rv
-}
+}/* debug [instance_properties/getter]: splitView */
 
 
 // The split view that the split view controller manages.
@@ -257,7 +301,7 @@ func (s_ SplitViewController) SplitView() ISplitView {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitView
 func (s_ SplitViewController) SetSplitView(value ISplitView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSplitView:"), value)
-}
+}/* debug [instance_properties/setter]: splitView */
 
 
 // The array of split view items that correspond to the split view controller’s child view controllers.
@@ -267,7 +311,7 @@ func (s_ SplitViewController) SetSplitView(value ISplitView) {
 func (s_ SplitViewController) SplitViewItems() []SplitViewItem {
 	rv := objc.Send[[]SplitViewItem](s_.ID, objc.Sel("splitViewItems"))
 	return rv
-}
+}/* debug [instance_properties/getter]: splitViewItems */
 
 
 // The array of split view items that correspond to the split view controller’s child view controllers.
@@ -275,7 +319,6 @@ func (s_ SplitViewController) SplitViewItems() []SplitViewItem {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewController/splitViewItems
 func (s_ SplitViewController) SetSplitViewItems(value []SplitViewItem) {
-	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
 		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
@@ -286,7 +329,7 @@ func (s_ SplitViewController) SetSplitViewItems(value []SplitViewItem) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSplitViewItems:"), nsArray)
-}
+}/* debug [instance_properties/setter]: splitViewItems */
 
 
 // A Boolean value that determines the geometric orientation of the split view’s dividers.
@@ -296,7 +339,7 @@ func (s_ SplitViewController) SetSplitViewItems(value []SplitViewItem) {
 func (s_ SplitViewController) IsVertical() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isVertical"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isVertical */
 
 
 // A Boolean value that determines the geometric orientation of the split view’s dividers.
@@ -305,7 +348,12 @@ func (s_ SplitViewController) IsVertical() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitview/isvertical
 func (s_ SplitViewController) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
-}
+}/* debug [instance_properties/setter]: isVertical */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSSplitViewController */
 
 
 

@@ -15,3 +15,4 @@ var searchForItemsWithSearchStringProtocol *objc.Protocol
 func init() {
 	searchForItemsWithSearchStringProtocol = objc.GetProtocol("searchForItemsWithSearchString:")
 }
+

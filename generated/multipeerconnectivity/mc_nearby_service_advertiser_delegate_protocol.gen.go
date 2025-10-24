@@ -20,3 +20,4 @@ var MCNearbyServiceAdvertiserDelegateProtocol *objc.Protocol
 func init() {
 	MCNearbyServiceAdvertiserDelegateProtocol = objc.GetProtocol("MCNearbyServiceAdvertiserDelegate")
 }
+

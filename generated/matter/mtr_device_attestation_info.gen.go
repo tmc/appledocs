@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRDeviceAttestationInfo */
+
+
+/* debug [class_header]: Header for MTRDeviceAttestationInfo */
 // The class instance for the [MTRDeviceAttestationInfo] class.
 var (
 	MTRDeviceAttestationInfoClass     _MTRDeviceAttestationInfoClass
@@ -27,43 +31,38 @@ func getMTRDeviceAttestationInfoClass() _MTRDeviceAttestationInfoClass {
 type _MTRDeviceAttestationInfoClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRDeviceAttestationInfo */
 // An interface definition for the [MTRDeviceAttestationInfo] class.
 type IMTRDeviceAttestationInfo interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRDeviceAttestationInfo */
 	// properties:
-	CertificationDeclaration() objc.IObject /* cross-framework: Data */
-	SetCertificationDeclaration(value objc.IObject /* cross-framework: Data */)
-	Challenge() objc.IObject /* cross-framework: Data */
-	SetChallenge(value objc.IObject /* cross-framework: Data */)
-	DeviceAttestationCertificate() objc.IObject /* cross-framework: Data */
-	SetDeviceAttestationCertificate(value objc.IObject /* cross-framework: Data */)
-	ElementsSignature() objc.IObject /* cross-framework: Data */
-	SetElementsSignature(value objc.IObject /* cross-framework: Data */)
-	ElementsTLV() objc.IObject /* cross-framework: Data */
-	SetElementsTLV(value objc.IObject /* cross-framework: Data */)
-	FirmwareInfo() objc.IObject /* cross-framework: Data */
-	SetFirmwareInfo(value objc.IObject /* cross-framework: Data */)
-	Nonce() objc.IObject /* cross-framework: Data */
-	SetNonce(value objc.IObject /* cross-framework: Data */)
-	ProductAttestationIntermediateCertificate() objc.IObject /* cross-framework: Data */
-	SetProductAttestationIntermediateCertificate(value objc.IObject /* cross-framework: Data */)
+	CertificationDeclaration() objc.IObject /* cross-framework: NSData */
+	Challenge() objc.IObject /* cross-framework: NSData */
+	DeviceAttestationCertificate() unsafe.Pointer
+	ElementsSignature() objc.IObject /* cross-framework: NSData */
+	ElementsTLV() unsafe.Pointer
+	FirmwareInfo() objc.IObject /* cross-framework: NSData */
+	Nonce() objc.IObject /* cross-framework: NSData */
+	ProductAttestationIntermediateCertificate() unsafe.Pointer
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRDeviceAttestationInfo */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo
-type MTRDeviceAttestationInfo struct {
-	objectivec.Object
-}
-
-// MTRDeviceAttestationInfoFrom constructs a [MTRDeviceAttestationInfo] from an unsafe.Pointer.
-func MTRDeviceAttestationInfoFrom(ptr unsafe.Pointer) MTRDeviceAttestationInfo {
-	return MTRDeviceAttestationInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRDeviceAttestationInfo */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRDeviceAttestationInfoClass) Alloc() MTRDeviceAttestationInfo {
 	rv := objc.Send[MTRDeviceAttestationInfo](objc.ID(mc.class), objc.Sel("alloc"))
@@ -71,7 +70,6 @@ func (mc _MTRDeviceAttestationInfoClass) Alloc() MTRDeviceAttestationInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRDeviceAttestationInfoClass) New() MTRDeviceAttestationInfo {
 	rv := objc.Send[MTRDeviceAttestationInfo](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,127 +92,125 @@ func (m_ MTRDeviceAttestationInfo) Autorelease() MTRDeviceAttestationInfo {
 func NewMTRDeviceAttestationInfo() MTRDeviceAttestationInfo {
 	return getMTRDeviceAttestationInfoClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRDeviceAttestationInfo */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/certificationdeclaration
-func (m_ MTRDeviceAttestationInfo) CertificationDeclaration() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificationDeclaration"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo
+type MTRDeviceAttestationInfo struct {
+	objectivec.Object
+}
+
+// MTRDeviceAttestationInfoFrom constructs a [MTRDeviceAttestationInfo] from an unsafe.Pointer.
+func MTRDeviceAttestationInfoFrom(ptr unsafe.Pointer) MTRDeviceAttestationInfo {
+	return MTRDeviceAttestationInfo{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRDeviceAttestationInfo */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/init(deviceAttestationChallenge:nonce:elementsTLV:elementsSignature:deviceAttestationCertificate:productAttestationIntermediateCertificate:certificationDeclaration:firmwareInfo:)
+func NewMTRDeviceAttestationInfoWithDeviceAttestationChallengeNonceElementsTLVElementsSignatureDeviceAttestationCertificateProductAttestationIntermediateCertificateCertificationDeclarationFirmwareInfo(challenge objc.IObject /* cross-framework: NSData */, nonce objc.IObject /* cross-framework: NSData */, elementsTLV unsafe.Pointer, elementsSignature objc.IObject /* cross-framework: NSData */, deviceAttestationCertificate unsafe.Pointer, processAttestationIntermediateCertificate unsafe.Pointer, certificationDeclaration objc.IObject /* cross-framework: NSData */, firmwareInfo objc.IObject /* cross-framework: NSData */) MTRDeviceAttestationInfo {
+	instance := getMTRDeviceAttestationInfoClass().Alloc()
+	rv := objc.Send[MTRDeviceAttestationInfo](instance.ID, objc.Sel("initWithDeviceAttestationChallenge:nonce:elementsTLV:elementsSignature:deviceAttestationCertificate:productAttestationIntermediateCertificate:certificationDeclaration:firmwareInfo:"), challenge, nonce, elementsTLV, elementsSignature, deviceAttestationCertificate, processAttestationIntermediateCertificate, certificationDeclaration, firmwareInfo)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRDeviceAttestationInfoWithDeviceAttestationChallengeNonceElementsTLVElementsSignatureDeviceAttestationCertificateProductAttestationIntermediateCertificateCertificationDeclarationFirmwareInfo */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRDeviceAttestationInfo */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRDeviceAttestationInfo */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRDeviceAttestationInfo */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRDeviceAttestationInfo */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/certificationdeclaration
-func (m_ MTRDeviceAttestationInfo) SetCertificationDeclaration(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclaration:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/challenge
-func (m_ MTRDeviceAttestationInfo) Challenge() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("challenge"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/certificationDeclaration
+func (m_ MTRDeviceAttestationInfo) CertificationDeclaration() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("certificationDeclaration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: certificationDeclaration */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/challenge
-func (m_ MTRDeviceAttestationInfo) SetChallenge(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setChallenge:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/deviceattestationcertificate
-func (m_ MTRDeviceAttestationInfo) DeviceAttestationCertificate() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("deviceAttestationCertificate"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/challenge
+func (m_ MTRDeviceAttestationInfo) Challenge() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("challenge"))
 	return rv
-}
+}/* debug [instance_properties/getter]: challenge */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/deviceattestationcertificate
-func (m_ MTRDeviceAttestationInfo) SetDeviceAttestationCertificate(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceAttestationCertificate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementssignature
-func (m_ MTRDeviceAttestationInfo) ElementsSignature() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("elementsSignature"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/deviceAttestationCertificate
+func (m_ MTRDeviceAttestationInfo) DeviceAttestationCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("deviceAttestationCertificate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deviceAttestationCertificate */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementssignature
-func (m_ MTRDeviceAttestationInfo) SetElementsSignature(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setElementsSignature:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementstlv
-func (m_ MTRDeviceAttestationInfo) ElementsTLV() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("elementsTLV"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/elementsSignature
+func (m_ MTRDeviceAttestationInfo) ElementsSignature() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("elementsSignature"))
 	return rv
-}
+}/* debug [instance_properties/getter]: elementsSignature */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/elementstlv
-func (m_ MTRDeviceAttestationInfo) SetElementsTLV(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setElementsTLV:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/firmwareinfo
-func (m_ MTRDeviceAttestationInfo) FirmwareInfo() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("firmwareInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/elementsTLV
+func (m_ MTRDeviceAttestationInfo) ElementsTLV() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("elementsTLV"))
 	return rv
-}
+}/* debug [instance_properties/getter]: elementsTLV */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/firmwareinfo
-func (m_ MTRDeviceAttestationInfo) SetFirmwareInfo(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFirmwareInfo:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/nonce
-func (m_ MTRDeviceAttestationInfo) Nonce() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("nonce"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/firmwareInfo
+func (m_ MTRDeviceAttestationInfo) FirmwareInfo() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("firmwareInfo"))
 	return rv
-}
+}/* debug [instance_properties/getter]: firmwareInfo */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/nonce
-func (m_ MTRDeviceAttestationInfo) SetNonce(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNonce:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/productattestationintermediatecertificate
-func (m_ MTRDeviceAttestationInfo) ProductAttestationIntermediateCertificate() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("productAttestationIntermediateCertificate"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/nonce
+func (m_ MTRDeviceAttestationInfo) Nonce() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("nonce"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nonce */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdeviceattestationinfo/productattestationintermediatecertificate
-func (m_ MTRDeviceAttestationInfo) SetProductAttestationIntermediateCertificate(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationIntermediateCertificate:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceAttestationInfo/productAttestationIntermediateCertificate
+func (m_ MTRDeviceAttestationInfo) ProductAttestationIntermediateCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("productAttestationIntermediateCertificate"))
+	return rv
+}/* debug [instance_properties/getter]: productAttestationIntermediateCertificate */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRDeviceAttestationInfo */
 
 

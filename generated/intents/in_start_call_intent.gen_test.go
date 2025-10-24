@@ -13,24 +13,25 @@ var _ = intents.NewINStartCallIntent
 // Creates a start call intent object with the specified parameters.
 func ExampleNewINStartCallIntentWithAudioRouteDestinationTypeContactsRecordTypeForRedialingCallCapability() {
 	_ = intents.NewINStartCallIntentWithAudioRouteDestinationTypeContactsRecordTypeForRedialingCallCapability(
-		intents.INCallAudioRoute{}, // audioRoute INCallAudioRoute
+		intents.INCallAudioRoute{},      // audioRoute INCallAudioRoute
 		intents.INCallDestinationType{}, // destinationType INCallDestinationType
-		[]intents.INPerson{}, // contacts []INPerson
-		intents.INCallRecordType{}, // recordTypeForRedialing INCallRecordType
-		intents.INCallCapability{}, // callCapability INCallCapability
+		[]intents.INPerson{},            // contacts []INPerson
+		intents.INCallRecordType{},      // recordTypeForRedialing INCallRecordType
+		intents.INCallCapability{},      // callCapability INCallCapability
 	)
 	// Output:
 }
+
 // ExampleNewINStartCallIntentWithCallRecordFilterCallRecordToCallBackAudioRouteDestinationTypeContactsCallCapability demonstrates how to create a INStartCallIntent instance using NewINStartCallIntentWithCallRecordFilterCallRecordToCallBackAudioRouteDestinationTypeContactsCallCapability.
 // Creates a start call intent object with the specified parameters.
 func ExampleNewINStartCallIntentWithCallRecordFilterCallRecordToCallBackAudioRouteDestinationTypeContactsCallCapability() {
 	_ = intents.NewINStartCallIntentWithCallRecordFilterCallRecordToCallBackAudioRouteDestinationTypeContactsCallCapability(
-		intents.INCallRecordFilter{}, // callRecordFilter INCallRecordFilter
-		intents.INCallRecord{}, // callRecordToCallBack INCallRecord
-		intents.INCallAudioRoute{}, // audioRoute INCallAudioRoute
+		intents.INCallRecordFilter{},    // callRecordFilter INCallRecordFilter
+		intents.INCallRecord{},          // callRecordToCallBack INCallRecord
+		intents.INCallAudioRoute{},      // audioRoute INCallAudioRoute
 		intents.INCallDestinationType{}, // destinationType INCallDestinationType
-		[]intents.INPerson{}, // contacts []INPerson
-		intents.INCallCapability{}, // callCapability INCallCapability
+		[]intents.INPerson{},            // contacts []INPerson
+		intents.INCallCapability{},      // callCapability INCallCapability
 	)
 	// Output:
 }

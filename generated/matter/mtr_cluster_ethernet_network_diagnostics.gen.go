@@ -33,8 +33,6 @@ type IMTRClusterEthernetNetworkDiagnostics interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEthernetNetworkDiagnostics
 type MTRClusterEthernetNetworkDiagnostics struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterEthernetNetworkDiagnostics) Autorelease() MTRClusterEthernetN
 func NewMTRClusterEthernetNetworkDiagnostics() MTRClusterEthernetNetworkDiagnostics {
 	return getMTRClusterEthernetNetworkDiagnosticsClass().New()
 }
-
-
-
-

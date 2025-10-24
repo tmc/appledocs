@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class EXHostViewController */
+
+
+/* debug [class_header]: Header for EXHostViewController */
 // The class instance for the [EXHostViewController] class.
 var (
 	EXHostViewControllerClass     _EXHostViewControllerClass
@@ -26,39 +30,33 @@ func getEXHostViewControllerClass() _EXHostViewControllerClass {
 type _EXHostViewControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EXHostViewController */
 // An interface definition for the [EXHostViewController] class.
 type IEXHostViewController interface {
 	appkit.IViewController
+	
+/* debug [class_interface_properties]: Properties for EXHostViewController */
 	// properties:
 	Configuration() unsafe.Pointer
 	SetConfiguration(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EXHostViewController */
 	// methods:
 	MakeXPCConnection()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A view controller that hosts remote views provided by an app extension.
-//
-// Present this view controller from your app’s interface to display the content for an associated app extension. Configure the view controller with the app extension identity and the specific scene you want to display. Use the associated delegate object to receive notifications when the app extension becomes active or inactive. For more information about presenting this view controller and using it to display an app extension’s UI, see .
+/* debug [class_interface]: End interface */
 
 
-// A view controller that hosts remote views provided by an app extension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXHostViewController
-type EXHostViewController struct {
-	appkit.ViewController
-}
 
-// EXHostViewControllerFrom constructs a [EXHostViewController] from an unsafe.Pointer.
-//
-// A view controller that hosts remote views provided by an app extension.
-func EXHostViewControllerFrom(ptr unsafe.Pointer) EXHostViewController {
-	return EXHostViewController{
-		ViewController: appkit.ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for EXHostViewController */
 // Alloc allocates a new instance without initialization.
 func (ec _EXHostViewControllerClass) Alloc() EXHostViewController {
 	rv := objc.Send[EXHostViewController](objc.ID(ec.class), objc.Sel("alloc"))
@@ -66,7 +64,6 @@ func (ec _EXHostViewControllerClass) Alloc() EXHostViewController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EXHostViewControllerClass) New() EXHostViewController {
 	rv := objc.Send[EXHostViewController](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,8 +86,51 @@ func (e_ EXHostViewController) Autorelease() EXHostViewController {
 func NewEXHostViewController() EXHostViewController {
 	return getEXHostViewControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for EXHostViewController */
+// A view controller that hosts remote views provided by an app extension.
+//
+// Present this view controller from your app’s interface to display the content for an associated app extension. Configure the view controller with the app extension identity and the specific scene you want to display. Use the associated delegate object to receive notifications when the app extension becomes active or inactive. For more information about presenting this view controller and using it to display an app extension’s UI, see .
+
+
+// A view controller that hosts remote views provided by an app extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXHostViewController
+type EXHostViewController struct {
+	appkit.ViewController
+}
+
+// EXHostViewControllerFrom constructs a [EXHostViewController] from an unsafe.Pointer.
+//
+// A view controller that hosts remote views provided by an app extension.
+func EXHostViewControllerFrom(ptr unsafe.Pointer) EXHostViewController {
+	return EXHostViewController{
+		ViewController: appkit.ViewControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EXHostViewController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for EXHostViewController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EXHostViewController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EXHostViewController */
 
 // Initiates an XPC connection to the app extension’s scene.
 //
@@ -98,8 +138,13 @@ func NewEXHostViewController() EXHostViewController {
 // [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXHostViewController/makeXPCConnection()
 func (e_ EXHostViewController) MakeXPCConnection() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("makeXPCConnection"))
-}
+}/* debug [instance_methods/method]: MakeXPCConnection */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EXHostViewController */
 
 // The information the host view controller uses to fetch the appropriate scene
 //
@@ -108,7 +153,7 @@ func (e_ EXHostViewController) MakeXPCConnection() {
 func (e_ EXHostViewController) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("configuration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: configuration */
 
 
 // The information the host view controller uses to fetch the appropriate scene
@@ -117,7 +162,13 @@ func (e_ EXHostViewController) Configuration() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/extensionkit/exhostviewcontroller/configuration-swift.property
 func (e_ EXHostViewController) SetConfiguration(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setConfiguration:"), value)
-}
+}/* debug [instance_properties/setter]: configuration */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class EXHostViewController */
+
 
 
 

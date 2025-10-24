@@ -20,3 +20,4 @@ var vendorNameProtocol *objc.Protocol
 func init() {
 	vendorNameProtocol = objc.GetProtocol("vendorName")
 }
+

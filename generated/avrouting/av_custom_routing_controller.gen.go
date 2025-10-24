@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCustomRoutingController */
+
+
+/* debug [class_header]: Header for AVCustomRoutingController */
 // The class instance for the [CustomRoutingController] class.
 var (
 	CustomRoutingControllerClass     _CustomRoutingControllerClass
@@ -26,38 +30,30 @@ func getCustomRoutingControllerClass() _CustomRoutingControllerClass {
 type _CustomRoutingControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CustomRoutingController */
 // An interface definition for the [CustomRoutingController] class.
 type ICustomRoutingController interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CustomRoutingController */
 	// properties:
-	AuthorizedRoutes() IAVCustomDeviceRoute
-	SetAuthorizedRoutes(value IAVCustomDeviceRoute)
-	KnownRouteIPs() objc.IObject /* cross-framework: CustomRoutingPartialIP */
-	SetKnownRouteIPs(value objc.IObject /* cross-framework: CustomRoutingPartialIP */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CustomRoutingController */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that manages the connection from a device to a destination.
-//
-// A routing controller also informs its object about which routes the user previously authorized, so it can reconnect, if appropriate.
+/* debug [class_interface]: End interface */
 
 
-// An object that manages the connection from a device to a destination.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController
-type CustomRoutingController struct {
-	objectivec.Object
-}
 
-// CustomRoutingControllerFrom constructs a [CustomRoutingController] from an unsafe.Pointer.
-//
-// An object that manages the connection from a device to a destination.
-func CustomRoutingControllerFrom(ptr unsafe.Pointer) CustomRoutingController {
-	return CustomRoutingController{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CustomRoutingController */
 // Alloc allocates a new instance without initialization.
 func (cc _CustomRoutingControllerClass) Alloc() CustomRoutingController {
 	rv := objc.Send[CustomRoutingController](objc.ID(cc.class), objc.Sel("alloc"))
@@ -65,7 +61,6 @@ func (cc _CustomRoutingControllerClass) Alloc() CustomRoutingController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CustomRoutingControllerClass) New() CustomRoutingController {
 	rv := objc.Send[CustomRoutingController](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,44 +83,57 @@ func (c_ CustomRoutingController) Autorelease() CustomRoutingController {
 func NewCustomRoutingController() CustomRoutingController {
 	return getCustomRoutingControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A list of authorized routes.
+/* debug [class_struct]: Struct for CustomRoutingController */
+// An object that manages the connection from a device to a destination.
+//
+// A routing controller also informs its object about which routes the user previously authorized, so it can reconnect, if appropriate.
+
+
+// An object that manages the connection from a device to a destination.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
-func (c_ CustomRoutingController) AuthorizedRoutes() IAVCustomDeviceRoute {
-	rv := objc.Send[CustomDeviceRoute](c_.ID, objc.Sel("authorizedRoutes"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingController
+type CustomRoutingController struct {
+	objectivec.Object
 }
 
-
-// A list of authorized routes.
+// CustomRoutingControllerFrom constructs a [CustomRoutingController] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/authorizedroutes
-func (c_ CustomRoutingController) SetAuthorizedRoutes(value IAVCustomDeviceRoute) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAuthorizedRoutes:"), value)
+// An object that manages the connection from a device to a destination.
+func CustomRoutingControllerFrom(ptr unsafe.Pointer) CustomRoutingController {
+	return CustomRoutingController{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// An array of route addresses known to be on the local network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-func (c_ CustomRoutingController) KnownRouteIPs() objc.IObject /* cross-framework: CustomRoutingPartialIP */ {
-	rv := objc.Send[CustomRoutingPartialIP](c_.ID, objc.Sel("knownRouteIPs"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for CustomRoutingController *//* debug [class_init_methods]: End init methods */
 
 
-// An array of route addresses known to be on the local network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingcontroller/knownrouteips
-func (c_ CustomRoutingController) SetKnownRouteIPs(value objc.IObject /* cross-framework: CustomRoutingPartialIP */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setKnownRouteIPs:"), value)
-}
+
+/* debug [class_methods]: Class methods for CustomRoutingController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CustomRoutingController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CustomRoutingController */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CustomRoutingController */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVCustomRoutingController */
 
 

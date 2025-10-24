@@ -15,3 +15,4 @@ var AccessibilityCustomRotorItemSearchDelegateProtocol *objc.Protocol
 func init() {
 	AccessibilityCustomRotorItemSearchDelegateProtocol = objc.GetProtocol("NSAccessibilityCustomRotorItemSearchDelegate")
 }
+

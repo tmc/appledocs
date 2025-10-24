@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class errorCorrectedPayload */
+
+
+/* debug [class_header]: Header for errorCorrectedPayload */
 // The class instance for the [errorCorrectedPayload] class.
 var (
 	ErrorCorrectedPayloadClass     _errorCorrectedPayloadClass
@@ -26,27 +30,30 @@ func geterrorCorrectedPayloadClass() _errorCorrectedPayloadClass {
 type _errorCorrectedPayloadClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for errorCorrectedPayload */
 // An interface definition for the [errorCorrectedPayload] class.
 type IerrorCorrectedPayload interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for errorCorrectedPayload */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for errorCorrectedPayload */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/errorCorrectedPayload-c.ivar
-type errorCorrectedPayload struct {
-	objectivec.Object
-}
-
-// errorCorrectedPayloadFrom constructs a [errorCorrectedPayload] from an unsafe.Pointer.
-func errorCorrectedPayloadFrom(ptr unsafe.Pointer) errorCorrectedPayload {
-	return errorCorrectedPayload{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for errorCorrectedPayload */
 // Alloc allocates a new instance without initialization.
 func (ec _errorCorrectedPayloadClass) Alloc() errorCorrectedPayload {
 	rv := objc.Send[errorCorrectedPayload](objc.ID(ec.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (ec _errorCorrectedPayloadClass) Alloc() errorCorrectedPayload {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _errorCorrectedPayloadClass) New() errorCorrectedPayload {
 	rv := objc.Send[errorCorrectedPayload](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (e_ errorCorrectedPayload) Autorelease() errorCorrectedPayload {
 func NewerrorCorrectedPayload() errorCorrectedPayload {
 	return geterrorCorrectedPayloadClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for errorCorrectedPayload */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIAztecCodeDescriptor/errorCorrectedPayload-c.ivar
+type errorCorrectedPayload struct {
+	objectivec.Object
+}
+
+// errorCorrectedPayloadFrom constructs a [errorCorrectedPayload] from an unsafe.Pointer.
+func errorCorrectedPayloadFrom(ptr unsafe.Pointer) errorCorrectedPayload {
+	return errorCorrectedPayload{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for errorCorrectedPayload *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for errorCorrectedPayload */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for errorCorrectedPayload */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for errorCorrectedPayload */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for errorCorrectedPayload */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class errorCorrectedPayload */
 
 
 

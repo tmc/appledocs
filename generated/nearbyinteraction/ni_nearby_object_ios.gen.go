@@ -25,6 +25,15 @@ func (n_ NINearbyObject) Direction() unsafe.Pointer {
 	return rv
 }
 
+// A unique identifier for a peer device in the session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/discoveryToken
+func (n_ NINearbyObject) DiscoveryToken() INIDiscoveryToken {
+	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("discoveryToken"))
+	return rv
+}
+
 // The distance from the user’s device to the peer device in meters.
 //
 // [Full Topic]
@@ -34,12 +43,21 @@ func (n_ NINearbyObject) Distance() float32 {
 	return rv
 }
 
+// An angle in radians that indicates the azimuthal direction to the nearby object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/horizontalAngle-9ibky
+func (n_ NINearbyObject) HorizontalAngle() float32 {
+	rv := objc.Send[float32](n_.ID, objc.Sel("horizontalAngle"))
+	return rv
+}
+
 // The estimation of a nearby object’s vertical position as it relates to the user’s device.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject/verticalDirectionEstimate-swift.property
-func (n_ NINearbyObject) VerticalDirectionEstimate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("verticalDirectionEstimate"))
+func (n_ NINearbyObject) VerticalDirectionEstimate() NINearbyObjectVerticalDirectionEstimate {
+	rv := objc.Send[NINearbyObjectVerticalDirectionEstimate](n_.ID, objc.Sel("verticalDirectionEstimate"))
 	return rv
 }
 

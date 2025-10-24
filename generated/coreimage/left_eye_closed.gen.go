@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class leftEyeClosed */
+
+
+/* debug [class_header]: Header for leftEyeClosed */
 // The class instance for the [leftEyeClosed] class.
 var (
 	LeftEyeClosedClass     _leftEyeClosedClass
@@ -26,27 +30,30 @@ func getleftEyeClosedClass() _leftEyeClosedClass {
 type _leftEyeClosedClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for leftEyeClosed */
 // An interface definition for the [leftEyeClosed] class.
 type IleftEyeClosed interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for leftEyeClosed */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for leftEyeClosed */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyeClosed-c.ivar
-type leftEyeClosed struct {
-	objectivec.Object
-}
-
-// leftEyeClosedFrom constructs a [leftEyeClosed] from an unsafe.Pointer.
-func leftEyeClosedFrom(ptr unsafe.Pointer) leftEyeClosed {
-	return leftEyeClosed{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for leftEyeClosed */
 // Alloc allocates a new instance without initialization.
 func (lc _leftEyeClosedClass) Alloc() leftEyeClosed {
 	rv := objc.Send[leftEyeClosed](objc.ID(lc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (lc _leftEyeClosedClass) Alloc() leftEyeClosed {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _leftEyeClosedClass) New() leftEyeClosed {
 	rv := objc.Send[leftEyeClosed](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (l_ leftEyeClosed) Autorelease() leftEyeClosed {
 func NewleftEyeClosed() leftEyeClosed {
 	return getleftEyeClosedClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for leftEyeClosed */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFaceFeature/leftEyeClosed-c.ivar
+type leftEyeClosed struct {
+	objectivec.Object
+}
+
+// leftEyeClosedFrom constructs a [leftEyeClosed] from an unsafe.Pointer.
+func leftEyeClosedFrom(ptr unsafe.Pointer) leftEyeClosed {
+	return leftEyeClosed{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for leftEyeClosed *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for leftEyeClosed */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for leftEyeClosed */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for leftEyeClosed */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for leftEyeClosed */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class leftEyeClosed */
 
 
 

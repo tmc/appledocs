@@ -5,6 +5,10 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PTextInputClient is the NSTextInputClient protocol interface.
@@ -17,9 +21,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextInputClient
 type PTextInputClient interface {
 	// Required methods
-	AttributedSubstringForProposedRangeActualRange(range_ corefoundation.Range, actualRange RangePointer /* not a class type */) foundation.AttributedString
-	InsertTextReplacementRange(string_ objc.IObject, replacementRange corefoundation.Range)
-	SetMarkedTextSelectedRangeReplacementRange(string_ objc.IObject, selectedRange corefoundation.Range, replacementRange corefoundation.Range)
+	AttributedSubstringForProposedRangeActualRange(range_ corefoundation.Range, actualRange RangePointer /* not a class type */) foundation.AttributedString/* debug [protocol_interface/required_method]: AttributedSubstringForProposedRangeActualRange */
+	InsertTextReplacementRange(string_ objc.IObject, replacementRange corefoundation.Range)/* debug [protocol_interface/required_method]: InsertTextReplacementRange */
+	SetMarkedTextSelectedRangeReplacementRange(string_ objc.IObject, selectedRange corefoundation.Range, replacementRange corefoundation.Range)/* debug [protocol_interface/required_method]: SetMarkedTextSelectedRangeReplacementRange */
 	// Optional methods
 	AttributedString() foundation.AttributedString
 	HasAttributedString() bool

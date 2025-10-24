@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -48,8 +48,6 @@ type IMTRDiagnosticLogsClusterRetrieveLogsResponseParams interface {
 	SetUtcTimeStamp(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDiagnosticLogsClusterRetrieveLogsResponseParams
@@ -93,8 +91,6 @@ func NewMTRDiagnosticLogsClusterRetrieveLogsResponseParams() MTRDiagnosticLogsCl
 	return getMTRDiagnosticLogsClusterRetrieveLogsResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/content
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Content() objc.IObject /* cross-framework: Data */ {
@@ -102,13 +98,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Content() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/content
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetContent(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/logcontent
@@ -117,13 +111,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) LogContent() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/logcontent
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetLogContent(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLogContent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/status
@@ -132,13 +124,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) Status() objc.IObje
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/status
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timesinceboot
@@ -147,13 +137,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimeSinceBoot() obj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timesinceboot
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeSinceBoot(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeSinceBoot:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timestamp
@@ -162,13 +150,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimeStamp() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timestamp
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimeStamp(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeStamp:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timedinvoketimeoutms
@@ -177,13 +163,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) TimedInvokeTimeoutM
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/timedinvoketimeoutms
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/utctimestamp
@@ -192,12 +176,8 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) UtcTimeStamp() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsresponseparams/utctimestamp
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsResponseParams) SetUtcTimeStamp(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUtcTimeStamp:"), value)
 }
-
-
-

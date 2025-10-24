@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSGraphObject */
+
+
+/* debug [class_header]: Header for MPSGraphObject */
 // The class instance for the [GraphObject] class.
 var (
 	GraphObjectClass     _GraphObjectClass
@@ -26,34 +30,30 @@ func getGraphObjectClass() _GraphObjectClass {
 type _GraphObjectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GraphObject */
 // An interface definition for the [GraphObject] class.
 type IGraphObject interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GraphObject */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GraphObject */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The common base class for all Metal Performance Shaders Graph objects.
-//
-// Only the child classes should be used.
+/* debug [class_interface]: End interface */
 
 
-// The common base class for all Metal Performance Shaders Graph objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphObject
-type GraphObject struct {
-	objectivec.Object
-}
 
-// GraphObjectFrom constructs a [GraphObject] from an unsafe.Pointer.
-//
-// The common base class for all Metal Performance Shaders Graph objects.
-func GraphObjectFrom(ptr unsafe.Pointer) GraphObject {
-	return GraphObject{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GraphObject */
 // Alloc allocates a new instance without initialization.
 func (gc _GraphObjectClass) Alloc() GraphObject {
 	rv := objc.Send[GraphObject](objc.ID(gc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (gc _GraphObjectClass) Alloc() GraphObject {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GraphObjectClass) New() GraphObject {
 	rv := objc.Send[GraphObject](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,7 +83,58 @@ func (g_ GraphObject) Autorelease() GraphObject {
 func NewGraphObject() GraphObject {
 	return getGraphObjectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for GraphObject */
+// The common base class for all Metal Performance Shaders Graph objects.
+//
+// Only the child classes should be used.
+
+
+// The common base class for all Metal Performance Shaders Graph objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShadersGraph/MPSGraphObject
+type GraphObject struct {
+	objectivec.Object
+}
+
+// GraphObjectFrom constructs a [GraphObject] from an unsafe.Pointer.
+//
+// The common base class for all Metal Performance Shaders Graph objects.
+func GraphObjectFrom(ptr unsafe.Pointer) GraphObject {
+	return GraphObject{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GraphObject *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GraphObject */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GraphObject */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GraphObject */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GraphObject */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSGraphObject */
 
 
 

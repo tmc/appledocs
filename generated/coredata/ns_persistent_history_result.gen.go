@@ -37,7 +37,6 @@ type IPersistentHistoryResult interface {
 
 // The result of a request to fetch persistent history.
 
-
 // The result of a request to fetch persistent history.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewPersistentHistoryResult() PersistentHistoryResult {
 	return getPersistentHistoryResultClass().New()
 }
 
-
-
 // The result of the history request determined by the persistent history result type.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (p_ PersistentHistoryResult) Result() objc.ID {
 	return rv
 }
 
-
 // The type of result that the persistent history change request returns.
 //
 // [Full Topic]
@@ -106,6 +102,3 @@ func (p_ PersistentHistoryResult) ResultType() PersistentHistoryResultType {
 	rv := objc.Send[PersistentHistoryResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
-
-
-

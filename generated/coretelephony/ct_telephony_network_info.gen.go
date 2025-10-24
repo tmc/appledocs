@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CTTelephonyNetworkInfo */
+
+
+/* debug [class_header]: Header for CTTelephonyNetworkInfo */
 // The class instance for the [TelephonyNetworkInfo] class.
 var (
 	TelephonyNetworkInfoClass     _TelephonyNetworkInfoClass
@@ -27,36 +31,30 @@ func getTelephonyNetworkInfoClass() _TelephonyNetworkInfoClass {
 type _TelephonyNetworkInfoClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TelephonyNetworkInfo */
 // An interface definition for the [TelephonyNetworkInfo] class.
 type ITelephonyNetworkInfo interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for TelephonyNetworkInfo */
 	// properties:
-	Delegate() TelephonyNetworkInfoDelegate /* not a class type */
-	SetDelegate(value TelephonyNetworkInfoDelegate /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TelephonyNetworkInfo */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that provides notifications of changes to the user’s cellular service provider.
-//
-// Your app should be able to handle changes to the user’s cellular service provider. For example, the user could swap the device’s SIM card with one from another provider while your app is running. This class also gives you access to the object, which contains information about the user’s home cellular service provider.
+/* debug [class_interface]: End interface */
 
 
-// An object that provides notifications of changes to the user’s cellular service provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTTelephonyNetworkInfo
-type TelephonyNetworkInfo struct {
-	objectivec.Object
-}
 
-// TelephonyNetworkInfoFrom constructs a [TelephonyNetworkInfo] from an unsafe.Pointer.
-//
-// An object that provides notifications of changes to the user’s cellular service provider.
-func TelephonyNetworkInfoFrom(ptr unsafe.Pointer) TelephonyNetworkInfo {
-	return TelephonyNetworkInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for TelephonyNetworkInfo */
 // Alloc allocates a new instance without initialization.
 func (tc _TelephonyNetworkInfoClass) Alloc() TelephonyNetworkInfo {
 	rv := objc.Send[TelephonyNetworkInfo](objc.ID(tc.class), objc.Sel("alloc"))
@@ -64,7 +62,6 @@ func (tc _TelephonyNetworkInfoClass) Alloc() TelephonyNetworkInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TelephonyNetworkInfoClass) New() TelephonyNetworkInfo {
 	rv := objc.Send[TelephonyNetworkInfo](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,25 +84,57 @@ func (t_ TelephonyNetworkInfo) Autorelease() TelephonyNetworkInfo {
 func NewTelephonyNetworkInfo() TelephonyNetworkInfo {
 	return getTelephonyNetworkInfoClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// An object that the system notifies when the data service identifier changes.
+/* debug [class_struct]: Struct for TelephonyNetworkInfo */
+// An object that provides notifications of changes to the user’s cellular service provider.
+//
+// Your app should be able to handle changes to the user’s cellular service provider. For example, the user could swap the device’s SIM card with one from another provider while your app is running. This class also gives you access to the object, which contains information about the user’s home cellular service provider.
+
+
+// An object that provides notifications of changes to the user’s cellular service provider.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/delegate
-func (t_ TelephonyNetworkInfo) Delegate() TelephonyNetworkInfoDelegate /* not a class type */ {
-	rv := objc.Send[TelephonyNetworkInfoDelegate](t_.ID, objc.Sel("delegate"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTTelephonyNetworkInfo
+type TelephonyNetworkInfo struct {
+	objectivec.Object
 }
 
-
-// An object that the system notifies when the data service identifier changes.
+// TelephonyNetworkInfoFrom constructs a [TelephonyNetworkInfo] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/cttelephonynetworkinfo/delegate
-func (t_ TelephonyNetworkInfo) SetDelegate(value TelephonyNetworkInfoDelegate /* not a class type */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+// An object that provides notifications of changes to the user’s cellular service provider.
+func TelephonyNetworkInfoFrom(ptr unsafe.Pointer) TelephonyNetworkInfo {
+	return TelephonyNetworkInfo{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TelephonyNetworkInfo *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for TelephonyNetworkInfo */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TelephonyNetworkInfo */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TelephonyNetworkInfo */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TelephonyNetworkInfo */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CTTelephonyNetworkInfo */
 
 

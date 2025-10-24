@@ -20,3 +20,4 @@ var resetWithRangeProtocol *objc.Protocol
 func init() {
 	resetWithRangeProtocol = objc.GetProtocol("resetWithRange:")
 }
+

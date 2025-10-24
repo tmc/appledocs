@@ -6,16 +6,41 @@ import (
 )
 
 // Type aliases and typedefs
-// ODAuthenticationType - An Open Directory authentication type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAuthenticationType
-// ODAuthenticationType is a string typedef
-type ODAuthenticationType = string
 // ODContextRef - An Open Directory context type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODContext
 // ODContextRef has base type: const struct __ODContext *
 type ODContextRef uintptr
+// ODNodeRef - An Open Directory node type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeRef
+// ODNodeRef has base type: struct __ODNode *
+type ODNodeRef uintptr
+// ODQueryRef - An Open Directory query type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQueryRef
+// ODQueryRef has base type: struct __ODQuery *
+type ODQueryRef uintptr
+// ODRecordRef - An Open Directory record type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordRef
+// ODRecordRef has base type: struct __ODRecord *
+type ODRecordRef uintptr
+// ODSessionRef - An Open Directory session type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODSessionRef
+// ODSessionRef has base type: struct __ODSession *
+type ODSessionRef uintptr
+// ODAttributeType - An Open Directory attribute type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeType
+// ODAttributeType is a string typedef
+type ODAttributeType = string
+// ODAuthenticationType - An Open Directory authentication type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAuthenticationType
+// ODAuthenticationType is a string typedef
+type ODAuthenticationType = string
 // ODErrorUserInfoKeyType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODErrorUserInfoKeyType
@@ -26,11 +51,6 @@ type ODErrorUserInfoKeyType = string
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMatchType
 // ODMatchType has base type: uint32_t
 type ODMatchType uintptr
-// ODNodeRef - An Open Directory node type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeRef
-// ODNodeRef has base type: struct __ODNode *
-type ODNodeRef uintptr
 // ODNodeType - An Open Directory node type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODNodeType
@@ -67,24 +87,9 @@ type ODPolicyType = string
 // ODQueryCallback is a callback function
 // C type: void (*)(struct __ODQuery *, const struct __CFArray *, struct __CFError *, void *)
 type ODQueryCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-// ODQueryRef - An Open Directory query type.
+// ODRecordType - An Open Directory record type.
 //
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODQueryRef
-// ODQueryRef has base type: struct __ODQuery *
-type ODQueryRef uintptr
-// ODRecordRef - An Open Directory record type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordRef
-// ODRecordRef has base type: struct __ODRecord *
-type ODRecordRef uintptr
-// ODSessionRef - An Open Directory session type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODSessionRef
-// ODSessionRef has base type: struct __ODSession *
-type ODSessionRef uintptr
-// ODAttributeType - An Open Directory attribute type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeType
-// ODAttributeType is a string typedef
-type ODAttributeType = string
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODRecordType
+// ODRecordType is a string typedef
+type ODRecordType = string
 

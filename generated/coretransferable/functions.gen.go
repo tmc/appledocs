@@ -2,10 +2,10 @@
 
 package coretransferable
 
+/* debug [functions.gen.go]: Generating 0 functions for CoreTransferable */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // CoreTransferable Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

@@ -15,3 +15,4 @@ var currentModeProtocol *objc.Protocol
 func init() {
 	currentModeProtocol = objc.GetProtocol("currentMode")
 }
+

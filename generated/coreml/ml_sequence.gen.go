@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MLSequence */
+
+
+/* debug [class_header]: Header for MLSequence */
 // The class instance for the [Sequence] class.
 var (
 	SequenceClass     _SequenceClass
@@ -27,40 +30,33 @@ func getSequenceClass() _SequenceClass {
 type _SequenceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Sequence */
 // An interface definition for the [Sequence] class.
 type ISequence interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Sequence */
 	// properties:
-	Int64Values() objc.IObject /* cross-framework: NSNumber */
-	SetInt64Values(value objc.IObject /* cross-framework: NSNumber */)
-	StringValues() objc.IObject /* cross-framework: NSString */
-	SetStringValues(value objc.IObject /* cross-framework: NSString */)
+	Int64Values() []foundation.Number
+	StringValues() []string
 	Type() FeatureType
-	SetType(value FeatureType)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Sequence */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A machine learning collection type that stores a series of strings or integers.
-//
-// A sequence stores a series of integers or strings of any length as the underlying type of an . Some classifier models — typically natural language models, such as an — produce an feature value from their output features.
+/* debug [class_interface]: End interface */
 
 
-// A machine learning collection type that stores a series of strings or integers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence
-type Sequence struct {
-	objectivec.Object
-}
 
-// SequenceFrom constructs a [Sequence] from an unsafe.Pointer.
-//
-// A machine learning collection type that stores a series of strings or integers.
-func SequenceFrom(ptr unsafe.Pointer) Sequence {
-	return Sequence{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Sequence */
 // Alloc allocates a new instance without initialization.
 func (sc _SequenceClass) Alloc() Sequence {
 	rv := objc.Send[Sequence](objc.ID(sc.class), objc.Sel("alloc"))
@@ -68,7 +64,6 @@ func (sc _SequenceClass) Alloc() Sequence {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SequenceClass) New() Sequence {
 	rv := objc.Send[Sequence](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,64 +86,148 @@ func (s_ Sequence) Autorelease() Sequence {
 func NewSequence() Sequence {
 	return getSequenceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// An array of 64-bit integers in the sequence.
+/* debug [class_struct]: Struct for Sequence */
+// A machine learning collection type that stores a series of strings or integers.
+//
+// A sequence stores a series of integers or strings of any length as the underlying type of an . Some classifier models — typically natural language models, such as an — produce an feature value from their output features.
+
+
+// A machine learning collection type that stores a series of strings or integers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
-func (s_ Sequence) Int64Values() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](s_.ID, objc.Sel("int64Values"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence
+type Sequence struct {
+	objectivec.Object
+}
+
+// SequenceFrom constructs a [Sequence] from an unsafe.Pointer.
+//
+// A machine learning collection type that stores a series of strings or integers.
+func SequenceFrom(ptr unsafe.Pointer) Sequence {
+	return Sequence{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Sequence */
+
+// Creates an empty sequence of strings or integers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/init(empty:)
+func NewSequenceEmptySequenceWithType(type_ FeatureType) Sequence {
+	rv := objc.Send[Sequence](objc.ID(getSequenceClass().class), objc.Sel("emptySequenceWithType:"), type_)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewSequenceEmptySequenceWithType */
 
+
+// Creates a sequence of integers from an array of numbers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/init(int64s:)
+func NewSequenceWithInt64Array(int64Values []foundation.Number) Sequence {
+	rv := objc.Send[Sequence](objc.ID(getSequenceClass().class), objc.Sel("sequenceWithInt64Array:"), int64Values)
+	return rv
+}/* debug [class_init_methods/constructor]: NewSequenceWithInt64Array */
+
+
+// Creates a sequence of strings from a string array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/init(strings:)
+func NewSequenceWithStringArray(stringValues []string) Sequence {
+	rv := objc.Send[Sequence](objc.ID(getSequenceClass().class), objc.Sel("sequenceWithStringArray:"), stringValues)
+	return rv
+}/* debug [class_init_methods/constructor]: NewSequenceWithStringArray */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for Sequence */
+
+// Creates an empty sequence of strings or integers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/init(empty:)
+func (sc _SequenceClass) EmptySequenceWithType(type_ FeatureType) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("emptySequenceWithType:"), type_)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=EmptySequenceWithType) */
+
+
+// Creates a sequence of integers from an array of numbers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/init(int64s:)
+func (sc _SequenceClass) SequenceWithInt64Array(int64Values []foundation.Number) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("sequenceWithInt64Array:"), int64Values)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SequenceWithInt64Array) */
+
+
+// Creates a sequence of strings from a string array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/init(strings:)
+func (sc _SequenceClass) SequenceWithStringArray(stringValues []string) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("sequenceWithStringArray:"), stringValues)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SequenceWithStringArray) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Sequence */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Sequence */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Sequence */
 
 // An array of 64-bit integers in the sequence.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/int64values
-func (s_ Sequence) SetInt64Values(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setInt64Values:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/int64Values
+func (s_ Sequence) Int64Values() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](s_.ID, objc.Sel("int64Values"))
+	return rv
+}/* debug [instance_properties/getter]: int64Values */
 
 
 // An array of strings in the sequence.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-func (s_ Sequence) StringValues() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("stringValues"))
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/stringValues
+func (s_ Sequence) StringValues() []string {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("stringValues"))
 	return rv
-}
-
-
-// An array of strings in the sequence.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/stringvalues
-func (s_ Sequence) SetStringValues(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStringValues:"), value)
-}
+}/* debug [instance_properties/getter]: stringValues */
 
 
 // The underlying type of the sequence’s elements.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLSequence/type
 func (s_ Sequence) Type() FeatureType {
 	rv := objc.Send[FeatureType](s_.ID, objc.Sel("type"))
 	return rv
-}
+}/* debug [instance_properties/getter]: type */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The underlying type of the sequence’s elements.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlsequence/type
-func (s_ Sequence) SetType(value FeatureType) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setType:"), value)
-}
-
+/* debug [class.gen.go]: End class MLSequence */
 
 

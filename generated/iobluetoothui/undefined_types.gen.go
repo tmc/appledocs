@@ -9,8 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Return = _undefined // referenced in IOBluetoothUI
-	String = _undefined // referenced in IOBluetoothUI
+	StringRef = _undefined // referenced in IOBluetoothUI
 )
 
 

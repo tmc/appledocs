@@ -33,8 +33,6 @@ type IMTRBaseClusterOzoneConcentrationMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOzoneConcentrationMeasurement
 type MTRBaseClusterOzoneConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterOzoneConcentrationMeasurement) Autorelease() MTRBaseClust
 func NewMTRBaseClusterOzoneConcentrationMeasurement() MTRBaseClusterOzoneConcentrationMeasurement {
 	return getMTRBaseClusterOzoneConcentrationMeasurementClass().New()
 }
-
-
-
-

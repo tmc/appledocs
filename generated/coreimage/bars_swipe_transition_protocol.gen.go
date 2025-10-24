@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // BarsSwipeTransitionProtocol is the CIBarsSwipeTransition protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIBarsSwipeTransition.
 var BarsSwipeTransitionProtocol *objc.Protocol
 
 func init() {
 	BarsSwipeTransitionProtocol = objc.GetProtocol("CIBarsSwipeTransition")
 }
+

@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -45,7 +45,6 @@ type IINRidePartySizeOption interface {
 // The price of a ride involving the specified number of people.
 //
 // An object describes many passengers and the special pricing that applies to a party of that size. When configuring a object, you create one or more instances of this class to specify pricing for the user’s party. Present this information to the user along with the other ride option information.
-
 
 // The price of a ride involving the specified number of people.
 //
@@ -93,8 +92,6 @@ func NewINRidePartySizeOption() INRidePartySizeOption {
 	return getINRidePartySizeOptionClass().New()
 }
 
-
-
 // The number of people in the party, specified as a minimum and maximum value.
 //
 // [Full Topic]
@@ -104,7 +101,6 @@ func (i_ INRidePartySizeOption) PartySizeRange() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The number of people in the party, specified as a minimum and maximum value.
 //
 // [Full Topic]
@@ -112,7 +108,6 @@ func (i_ INRidePartySizeOption) PartySizeRange() objc.IObject /* cross-framework
 func (i_ INRidePartySizeOption) SetPartySizeRange(value objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySizeRange:"), value)
 }
-
 
 // The pricing information for parties of the specified size.
 //
@@ -123,7 +118,6 @@ func (i_ INRidePartySizeOption) PriceRange() unsafe.Pointer {
 	return rv
 }
 
-
 // The pricing information for parties of the specified size.
 //
 // [Full Topic]
@@ -131,7 +125,6 @@ func (i_ INRidePartySizeOption) PriceRange() unsafe.Pointer {
 func (i_ INRidePartySizeOption) SetPriceRange(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPriceRange:"), value)
 }
-
 
 // The user-visible description of the party size.
 //
@@ -142,7 +135,6 @@ func (i_ INRidePartySizeOption) SizeDescription() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The user-visible description of the party size.
 //
 // [Full Topic]
@@ -150,6 +142,3 @@ func (i_ INRidePartySizeOption) SizeDescription() objc.IObject /* cross-framewor
 func (i_ INRidePartySizeOption) SetSizeDescription(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSizeDescription:"), value)
 }
-
-
-

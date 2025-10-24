@@ -16,3 +16,4 @@ var authorizedToStartStreamForClientProtocol *objc.Protocol
 func init() {
 	authorizedToStartStreamForClientProtocol = objc.GetProtocol("authorizedToStartStreamForClient:")
 }
+

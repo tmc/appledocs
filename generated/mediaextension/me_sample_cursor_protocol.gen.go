@@ -15,3 +15,4 @@ var MESampleCursorProtocol *objc.Protocol
 func init() {
 	MESampleCursorProtocol = objc.GetProtocol("MESampleCursor")
 }
+

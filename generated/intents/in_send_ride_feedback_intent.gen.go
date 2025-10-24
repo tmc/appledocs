@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INSendRideFeedbackIntent] class.
@@ -40,7 +40,6 @@ type IINSendRideFeedbackIntent interface {
 // An intent indicating that the user provided feedback for a completed ride.
 //
 // When the user provides feedback for a completed ride, SiriKit sends an object to your handler. SiriKit populates this intent object with the ride identifier and the feedback, including a possible driver rating and tip. Upon receiving this intent, validate the provided information and forward it along to your service. SiriKit guarantees that it provides at least one piece of feedback. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the status of the task.
-
 
 // An intent indicating that the user provided feedback for a completed ride.
 //
@@ -90,8 +89,6 @@ func NewINSendRideFeedbackIntent() INSendRideFeedbackIntent {
 	return getINSendRideFeedbackIntentClass().New()
 }
 
-
-
 // The unique identifier that you assigned to the ride.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (i_ INSendRideFeedbackIntent) RideIdentifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
-
 
 // The user-supplied rating for the driver.
 //
@@ -111,7 +107,6 @@ func (i_ INSendRideFeedbackIntent) Rating() foundation.Number {
 	return rv
 }
 
-
 // The user-supplied rating for the driver.
 //
 // [Full Topic]
@@ -119,7 +114,6 @@ func (i_ INSendRideFeedbackIntent) Rating() foundation.Number {
 func (i_ INSendRideFeedbackIntent) SetRating(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRating:"), value)
 }
-
 
 // The tip for the driver.
 //
@@ -130,7 +124,6 @@ func (i_ INSendRideFeedbackIntent) Tip() INCurrencyAmount {
 	return rv
 }
 
-
 // The tip for the driver.
 //
 // [Full Topic]
@@ -138,6 +131,3 @@ func (i_ INSendRideFeedbackIntent) Tip() INCurrencyAmount {
 func (i_ INSendRideFeedbackIntent) SetTip(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTip:"), value)
 }
-
-
-

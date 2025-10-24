@@ -33,8 +33,6 @@ type IMTRBaseClusterBarrierControl interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterBarrierControl
 type MTRBaseClusterBarrierControl struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterBarrierControl) Autorelease() MTRBaseClusterBarrierContro
 func NewMTRBaseClusterBarrierControl() MTRBaseClusterBarrierControl {
 	return getMTRBaseClusterBarrierControlClass().New()
 }
-
-
-
-

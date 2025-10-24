@@ -7,13 +7,13 @@ import "github.com/ebitengine/purego/objc"
 // paymentQueueProtocol is the paymentQueue: protocol.
 //
 // Availability:
-//   - Mac Catalyst 14.0+ (Deprecated in 18.0)
-//   - iOS 14.0+ (Deprecated in 18.0)
-//   - iPadOS 14.0+ (Deprecated in 18.0)
-//   - macOS 11.0+ (Deprecated in 15.0)
-//   - tvOS 14.0+ (Deprecated in 18.0)
+//   - Mac Catalyst 13.1+ (Deprecated in 18.0)
+//   - iOS 13.0+ (Deprecated in 18.0)
+//   - iPadOS 13.0+ (Deprecated in 18.0)
+//   - macOS 10.15+ (Deprecated in 15.0)
+//   - tvOS 13.0+ (Deprecated in 18.0)
 //   - visionOS 1.0+ (Deprecated in 2.0)
-//   - watchOS 7.0+ (Deprecated in 11.0)
+//   - watchOS 6.2+ (Deprecated in 11.0)
 //
 // Use this protocol when registering custom classes that conform to paymentQueue:.
 var paymentQueueProtocol *objc.Protocol

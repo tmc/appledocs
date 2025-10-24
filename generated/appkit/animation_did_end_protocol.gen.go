@@ -15,3 +15,4 @@ var animationDidEndProtocol *objc.Protocol
 func init() {
 	animationDidEndProtocol = objc.GetProtocol("animationDidEnd:")
 }
+

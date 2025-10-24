@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -52,7 +52,6 @@ type IPHProjectInfo interface {
 // Information about the project extension.
 //
 // macOS Photos automatically generates a object when creating a new project. Photos passes along the project information with a object. This object contains metadata about the project’s creation source, sections, product type, branding, and page numbers. Your extension leverages project information to influence project layout, autoflow, and theme selection. The properties of this class are immutable, and your extension can’t instantiate the object directly.
-
 
 // Information about the project extension.
 //
@@ -100,8 +99,6 @@ func NewPHProjectInfo() PHProjectInfo {
 	return getPHProjectInfoClass().New()
 }
 
-
-
 // A Boolean value indicating whether branding was enabled in the source project.
 //
 // [Full Topic]
@@ -111,7 +108,6 @@ func (p_ PHProjectInfo) BrandingEnabled() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether branding was enabled in the source project.
 //
 // [Full Topic]
@@ -119,7 +115,6 @@ func (p_ PHProjectInfo) BrandingEnabled() bool {
 func (p_ PHProjectInfo) SetBrandingEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBrandingEnabled:"), value)
 }
-
 
 // The source from which the project was created.
 //
@@ -130,7 +125,6 @@ func (p_ PHProjectInfo) CreationSource() unsafe.Pointer {
 	return rv
 }
 
-
 // The source from which the project was created.
 //
 // [Full Topic]
@@ -138,7 +132,6 @@ func (p_ PHProjectInfo) CreationSource() unsafe.Pointer {
 func (p_ PHProjectInfo) SetCreationSource(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationSource:"), value)
 }
-
 
 // A Boolean value indicating whether page numbering was enabled in the source project.
 //
@@ -149,7 +142,6 @@ func (p_ PHProjectInfo) PageNumbersEnabled() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether page numbering was enabled in the source project.
 //
 // [Full Topic]
@@ -157,7 +149,6 @@ func (p_ PHProjectInfo) PageNumbersEnabled() bool {
 func (p_ PHProjectInfo) SetPageNumbersEnabled(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPageNumbersEnabled:"), value)
 }
-
 
 // The product identifier of the originating Apple Print Product.
 //
@@ -168,7 +159,6 @@ func (p_ PHProjectInfo) ProductIdentifier() objc.IObject /* cross-framework: NSS
 	return rv
 }
 
-
 // The product identifier of the originating Apple Print Product.
 //
 // [Full Topic]
@@ -176,7 +166,6 @@ func (p_ PHProjectInfo) ProductIdentifier() objc.IObject /* cross-framework: NSS
 func (p_ PHProjectInfo) SetProductIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProductIdentifier:"), value)
 }
-
 
 // The project type that the user selected from the project extension options.
 //
@@ -187,7 +176,6 @@ func (p_ PHProjectInfo) ProjectType() unsafe.Pointer {
 	return rv
 }
 
-
 // The project type that the user selected from the project extension options.
 //
 // [Full Topic]
@@ -195,7 +183,6 @@ func (p_ PHProjectInfo) ProjectType() unsafe.Pointer {
 func (p_ PHProjectInfo) SetProjectType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectType:"), value)
 }
-
 
 // An array of project sections, each containing one or more section content objects.
 //
@@ -206,7 +193,6 @@ func (p_ PHProjectInfo) Sections() IPHProjectSection {
 	return rv
 }
 
-
 // An array of project sections, each containing one or more section content objects.
 //
 // [Full Topic]
@@ -214,7 +200,6 @@ func (p_ PHProjectInfo) Sections() IPHProjectSection {
 func (p_ PHProjectInfo) SetSections(value IPHProjectSection) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSections:"), value)
 }
-
 
 // The product theme identifier of the originating Apple Print Product.
 //
@@ -225,7 +210,6 @@ func (p_ PHProjectInfo) ThemeIdentifier() objc.IObject /* cross-framework: NSStr
 	return rv
 }
 
-
 // The product theme identifier of the originating Apple Print Product.
 //
 // [Full Topic]
@@ -233,6 +217,3 @@ func (p_ PHProjectInfo) ThemeIdentifier() objc.IObject /* cross-framework: NSStr
 func (p_ PHProjectInfo) SetThemeIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setThemeIdentifier:"), value)
 }
-
-
-

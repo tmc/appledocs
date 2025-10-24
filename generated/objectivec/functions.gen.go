@@ -2,6 +2,7 @@
 
 package objectivec
 
+/* debug [functions.gen.go]: Generating 160 functions for ObjectiveC */
 import (
 	"unsafe"
 
@@ -368,7 +369,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCompareHashTables
 func NXCompareHashTables(table1 unsafe.Pointer, table2 unsafe.Pointer) bool {
 	return _NXCompareHashTables(table1, table2)
-}
+}/* debug [functions.gen.go/function]: NXCompareHashTables */
 
 // NXCopyHashTable is a ObjectiveC function.
 //
@@ -379,7 +380,7 @@ func NXCompareHashTables(table1 unsafe.Pointer, table2 unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCopyHashTable
 func NXCopyHashTable(table unsafe.Pointer) unsafe.Pointer {
 	return _NXCopyHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NXCopyHashTable */
 
 // NXCountHashTable is a ObjectiveC function.
 //
@@ -390,7 +391,7 @@ func NXCopyHashTable(table unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCountHashTable
 func NXCountHashTable(table unsafe.Pointer) unsafe.Pointer {
 	return _NXCountHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NXCountHashTable */
 
 // NXCreateHashTable is a ObjectiveC function.
 //
@@ -401,7 +402,7 @@ func NXCountHashTable(table unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCreateHashTable
 func NXCreateHashTable(prototype NXHashTablePrototype, capacity unsafe.Pointer, info unsafe.Pointer) unsafe.Pointer {
 	return _NXCreateHashTable(prototype, capacity, info)
-}
+}/* debug [functions.gen.go/function]: NXCreateHashTable */
 
 // NXCreateHashTableFromZone is a ObjectiveC function.
 //
@@ -412,7 +413,7 @@ func NXCreateHashTable(prototype NXHashTablePrototype, capacity unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXCreateHashTableFromZone
 func NXCreateHashTableFromZone(prototype NXHashTablePrototype, capacity unsafe.Pointer, info unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
 	return _NXCreateHashTableFromZone(prototype, capacity, info, zone)
-}
+}/* debug [functions.gen.go/function]: NXCreateHashTableFromZone */
 
 // NXEmptyHashTable is a ObjectiveC function.
 //
@@ -423,7 +424,7 @@ func NXCreateHashTableFromZone(prototype NXHashTablePrototype, capacity unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXEmptyHashTable
 func NXEmptyHashTable(table unsafe.Pointer) {
 	_NXEmptyHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NXEmptyHashTable */
 
 // NXFreeHashTable is a ObjectiveC function.
 //
@@ -434,7 +435,7 @@ func NXEmptyHashTable(table unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXFreeHashTable
 func NXFreeHashTable(table unsafe.Pointer) {
 	_NXFreeHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NXFreeHashTable */
 
 // NXHashGet is a ObjectiveC function.
 //
@@ -445,7 +446,7 @@ func NXFreeHashTable(table unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashGet
 func NXHashGet(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _NXHashGet(table, data)
-}
+}/* debug [functions.gen.go/function]: NXHashGet */
 
 // NXHashInsert is a ObjectiveC function.
 //
@@ -456,7 +457,7 @@ func NXHashGet(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashInsert
 func NXHashInsert(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _NXHashInsert(table, data)
-}
+}/* debug [functions.gen.go/function]: NXHashInsert */
 
 // NXHashInsertIfAbsent is a ObjectiveC function.
 //
@@ -467,7 +468,7 @@ func NXHashInsert(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashInsertIfAbsent
 func NXHashInsertIfAbsent(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _NXHashInsertIfAbsent(table, data)
-}
+}/* debug [functions.gen.go/function]: NXHashInsertIfAbsent */
 
 // NXHashMember is a ObjectiveC function.
 //
@@ -478,7 +479,7 @@ func NXHashInsertIfAbsent(table unsafe.Pointer, data unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashMember
 func NXHashMember(table unsafe.Pointer, data unsafe.Pointer) int {
 	return _NXHashMember(table, data)
-}
+}/* debug [functions.gen.go/function]: NXHashMember */
 
 // NXHashRemove is a ObjectiveC function.
 //
@@ -489,7 +490,7 @@ func NXHashMember(table unsafe.Pointer, data unsafe.Pointer) int {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXHashRemove
 func NXHashRemove(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _NXHashRemove(table, data)
-}
+}/* debug [functions.gen.go/function]: NXHashRemove */
 
 // NXInitHashState is a ObjectiveC function.
 //
@@ -500,7 +501,7 @@ func NXHashRemove(table unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXInitHashState
 func NXInitHashState(table unsafe.Pointer) NXHashState {
 	return _NXInitHashState(table)
-}
+}/* debug [functions.gen.go/function]: NXInitHashState */
 
 // NXNextHashState is a ObjectiveC function.
 //
@@ -511,7 +512,7 @@ func NXInitHashState(table unsafe.Pointer) NXHashState {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXNextHashState
 func NXNextHashState(table unsafe.Pointer, state unsafe.Pointer, data unsafe.Pointer) int {
 	return _NXNextHashState(table, state, data)
-}
+}/* debug [functions.gen.go/function]: NXNextHashState */
 
 // NXNoEffectFree is a ObjectiveC function.
 //
@@ -522,7 +523,7 @@ func NXNextHashState(table unsafe.Pointer, state unsafe.Pointer, data unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXNoEffectFree
 func NXNoEffectFree(info unsafe.Pointer, data unsafe.Pointer) {
 	_NXNoEffectFree(info, data)
-}
+}/* debug [functions.gen.go/function]: NXNoEffectFree */
 
 // NXPtrHash is a ObjectiveC function.
 //
@@ -533,7 +534,7 @@ func NXNoEffectFree(info unsafe.Pointer, data unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXPtrHash
 func NXPtrHash(info unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _NXPtrHash(info, data)
-}
+}/* debug [functions.gen.go/function]: NXPtrHash */
 
 // NXPtrIsEqual is a ObjectiveC function.
 //
@@ -544,7 +545,7 @@ func NXPtrHash(info unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXPtrIsEqual
 func NXPtrIsEqual(info unsafe.Pointer, data1 unsafe.Pointer, data2 unsafe.Pointer) int {
 	return _NXPtrIsEqual(info, data1, data2)
-}
+}/* debug [functions.gen.go/function]: NXPtrIsEqual */
 
 // NXReallyFree is a ObjectiveC function.
 //
@@ -555,7 +556,7 @@ func NXPtrIsEqual(info unsafe.Pointer, data1 unsafe.Pointer, data2 unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXReallyFree
 func NXReallyFree(info unsafe.Pointer, data unsafe.Pointer) {
 	_NXReallyFree(info, data)
-}
+}/* debug [functions.gen.go/function]: NXReallyFree */
 
 // NXResetHashTable is a ObjectiveC function.
 //
@@ -566,7 +567,7 @@ func NXReallyFree(info unsafe.Pointer, data unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXResetHashTable
 func NXResetHashTable(table unsafe.Pointer) {
 	_NXResetHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NXResetHashTable */
 
 // NXStrHash is a ObjectiveC function.
 //
@@ -577,7 +578,7 @@ func NXResetHashTable(table unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXStrHash
 func NXStrHash(info unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 	return _NXStrHash(info, data)
-}
+}/* debug [functions.gen.go/function]: NXStrHash */
 
 // NXStrIsEqual is a ObjectiveC function.
 //
@@ -588,7 +589,7 @@ func NXStrHash(info unsafe.Pointer, data unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NXStrIsEqual
 func NXStrIsEqual(info unsafe.Pointer, data1 unsafe.Pointer, data2 unsafe.Pointer) int {
 	return _NXStrIsEqual(info, data1, data2)
-}
+}/* debug [functions.gen.go/function]: NXStrIsEqual */
 
 // Adds a new instance variable to a class.
 //
@@ -599,7 +600,7 @@ func NXStrIsEqual(info unsafe.Pointer, data1 unsafe.Pointer, data2 unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_addIvar(_:_:_:_:_:)
 func class_addIvar(cls objc.Class, name unsafe.Pointer, size uintptr, alignment uint8, types unsafe.Pointer) bool {
 	return _class_addIvar(cls, name, size, alignment, types)
-}
+}/* debug [functions.gen.go/function]: class_addIvar */
 
 // Adds a new method to a class with a given name and implementation.
 //
@@ -610,7 +611,7 @@ func class_addIvar(cls objc.Class, name unsafe.Pointer, size uintptr, alignment 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_addMethod(_:_:_:_:)
 func class_addMethod(cls objc.Class, name objc.SEL, imp IMP, types unsafe.Pointer) bool {
 	return _class_addMethod(cls, name, imp, types)
-}
+}/* debug [functions.gen.go/function]: class_addMethod */
 
 // Adds a property to a class.
 //
@@ -621,7 +622,7 @@ func class_addMethod(cls objc.Class, name objc.SEL, imp IMP, types unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_addProperty(_:_:_:_:)
 func class_addProperty(cls objc.Class, name unsafe.Pointer, attributes unsafe.Pointer, attributeCount unsafe.Pointer) bool {
 	return _class_addProperty(cls, name, attributes, attributeCount)
-}
+}/* debug [functions.gen.go/function]: class_addProperty */
 
 // Adds a protocol to a class.
 //
@@ -632,7 +633,7 @@ func class_addProperty(cls objc.Class, name unsafe.Pointer, attributes unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_addProtocol(_:_:)
 func class_addProtocol(cls objc.Class, protocol_ unsafe.Pointer) bool {
 	return _class_addProtocol(cls, protocol_)
-}
+}/* debug [functions.gen.go/function]: class_addProtocol */
 
 // Returns a Boolean value that indicates whether a class conforms to a given protocol.
 //
@@ -643,7 +644,7 @@ func class_addProtocol(cls objc.Class, protocol_ unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_conformsToProtocol(_:_:)
 func class_conformsToProtocol(cls objc.Class, protocol_ unsafe.Pointer) bool {
 	return _class_conformsToProtocol(cls, protocol_)
-}
+}/* debug [functions.gen.go/function]: class_conformsToProtocol */
 
 // Describes the instance variables declared by a class.
 //
@@ -654,7 +655,7 @@ func class_conformsToProtocol(cls objc.Class, protocol_ unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_copyIvarList(_:_:)
 func class_copyIvarList(cls objc.Class, outCount unsafe.Pointer) unsafe.Pointer {
 	return _class_copyIvarList(cls, outCount)
-}
+}/* debug [functions.gen.go/function]: class_copyIvarList */
 
 // Describes the instance methods implemented by a class.
 //
@@ -665,7 +666,7 @@ func class_copyIvarList(cls objc.Class, outCount unsafe.Pointer) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_copyMethodList(_:_:)
 func class_copyMethodList(cls objc.Class, outCount unsafe.Pointer) unsafe.Pointer {
 	return _class_copyMethodList(cls, outCount)
-}
+}/* debug [functions.gen.go/function]: class_copyMethodList */
 
 // Describes the properties declared by a class.
 //
@@ -676,7 +677,7 @@ func class_copyMethodList(cls objc.Class, outCount unsafe.Pointer) unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_copyPropertyList(_:_:)
 func class_copyPropertyList(cls objc.Class, outCount unsafe.Pointer) unsafe.Pointer {
 	return _class_copyPropertyList(cls, outCount)
-}
+}/* debug [functions.gen.go/function]: class_copyPropertyList */
 
 // Describes the protocols adopted by a class.
 //
@@ -687,7 +688,7 @@ func class_copyPropertyList(cls objc.Class, outCount unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_copyProtocolList(_:_:)
 func class_copyProtocolList(cls objc.Class, outCount unsafe.Pointer) unsafe.Pointer {
 	return _class_copyProtocolList(cls, outCount)
-}
+}/* debug [functions.gen.go/function]: class_copyProtocolList */
 
 // Creates an instance of a class, allocating memory for the class in the default malloc memory zone.
 //
@@ -698,7 +699,7 @@ func class_copyProtocolList(cls objc.Class, outCount unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_createInstance(_:_:)
 func class_createInstance(cls objc.Class, extraBytes uintptr) objc.ID {
 	return _class_createInstance(cls, extraBytes)
-}
+}/* debug [functions.gen.go/function]: class_createInstance */
 
 // class_createInstanceFromZone is a ObjectiveC function.
 //
@@ -709,7 +710,7 @@ func class_createInstance(cls objc.Class, extraBytes uintptr) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_createInstanceFromZone
 func class_createInstanceFromZone(p0 objc.Class, idxIvars uintptr, zone unsafe.Pointer) objc.ID {
 	return _class_createInstanceFromZone(p0, idxIvars, zone)
-}
+}/* debug [functions.gen.go/function]: class_createInstanceFromZone */
 
 // Returns a pointer to the data structure describing a given class method for a given class.
 //
@@ -720,7 +721,7 @@ func class_createInstanceFromZone(p0 objc.Class, idxIvars uintptr, zone unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getClassMethod(_:_:)
 func class_getClassMethod(cls objc.Class, name objc.SEL) Method {
 	return _class_getClassMethod(cls, name)
-}
+}/* debug [functions.gen.go/function]: class_getClassMethod */
 
 // Returns the for a specified class variable of a given class.
 //
@@ -731,7 +732,7 @@ func class_getClassMethod(cls objc.Class, name objc.SEL) Method {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getClassVariable(_:_:)
 func class_getClassVariable(cls objc.Class, name unsafe.Pointer) Ivar {
 	return _class_getClassVariable(cls, name)
-}
+}/* debug [functions.gen.go/function]: class_getClassVariable */
 
 // Returns the name of the dynamic library a class originated from.
 //
@@ -742,7 +743,7 @@ func class_getClassVariable(cls objc.Class, name unsafe.Pointer) Ivar {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getImageName(_:)
 func class_getImageName(cls objc.Class) unsafe.Pointer {
 	return _class_getImageName(cls)
-}
+}/* debug [functions.gen.go/function]: class_getImageName */
 
 // Returns a specified instance method for a given class.
 //
@@ -753,7 +754,7 @@ func class_getImageName(cls objc.Class) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getInstanceMethod(_:_:)
 func class_getInstanceMethod(cls objc.Class, name objc.SEL) Method {
 	return _class_getInstanceMethod(cls, name)
-}
+}/* debug [functions.gen.go/function]: class_getInstanceMethod */
 
 // Returns the size of instances of a class.
 //
@@ -764,7 +765,7 @@ func class_getInstanceMethod(cls objc.Class, name objc.SEL) Method {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getInstanceSize(_:)
 func class_getInstanceSize(cls objc.Class) uintptr {
 	return _class_getInstanceSize(cls)
-}
+}/* debug [functions.gen.go/function]: class_getInstanceSize */
 
 // Returns the for a specified instance variable of a given class.
 //
@@ -775,7 +776,7 @@ func class_getInstanceSize(cls objc.Class) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getInstanceVariable(_:_:)
 func class_getInstanceVariable(cls objc.Class, name unsafe.Pointer) Ivar {
 	return _class_getInstanceVariable(cls, name)
-}
+}/* debug [functions.gen.go/function]: class_getInstanceVariable */
 
 // Returns a description of the layout for a given class.
 //
@@ -786,7 +787,7 @@ func class_getInstanceVariable(cls objc.Class, name unsafe.Pointer) Ivar {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getIvarLayout(_:)
 func class_getIvarLayout(cls objc.Class) unsafe.Pointer {
 	return _class_getIvarLayout(cls)
-}
+}/* debug [functions.gen.go/function]: class_getIvarLayout */
 
 // Returns the function pointer that would be called if a particular message were sent to an instance of a class.
 //
@@ -797,7 +798,7 @@ func class_getIvarLayout(cls objc.Class) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getMethodImplementation(_:_:)
 func class_getMethodImplementation(cls objc.Class, name objc.SEL) IMP {
 	return _class_getMethodImplementation(cls, name)
-}
+}/* debug [functions.gen.go/function]: class_getMethodImplementation */
 
 // Returns the function pointer that would be called if a particular message were sent to an instance of a class.
 //
@@ -808,7 +809,7 @@ func class_getMethodImplementation(cls objc.Class, name objc.SEL) IMP {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getMethodImplementation_stret(_:_:)
 func class_getMethodImplementation_stret(cls objc.Class, name objc.SEL) IMP {
 	return _class_getMethodImplementation_stret(cls, name)
-}
+}/* debug [functions.gen.go/function]: class_getMethodImplementation_stret */
 
 // Returns the name of a class.
 //
@@ -819,7 +820,7 @@ func class_getMethodImplementation_stret(cls objc.Class, name objc.SEL) IMP {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getName(_:)
 func class_getName(cls objc.Class) unsafe.Pointer {
 	return _class_getName(cls)
-}
+}/* debug [functions.gen.go/function]: class_getName */
 
 // Returns a property with a given name of a given class.
 //
@@ -830,7 +831,7 @@ func class_getName(cls objc.Class) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getProperty(_:_:)
 func class_getProperty(cls objc.Class, name unsafe.Pointer) objc_property_t {
 	return _class_getProperty(cls, name)
-}
+}/* debug [functions.gen.go/function]: class_getProperty */
 
 // Returns the superclass of a class.
 //
@@ -841,7 +842,7 @@ func class_getProperty(cls objc.Class, name unsafe.Pointer) objc_property_t {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getSuperclass(_:)
 func class_getSuperclass(cls objc.Class) objc.Class {
 	return _class_getSuperclass(cls)
-}
+}/* debug [functions.gen.go/function]: class_getSuperclass */
 
 // Returns the version number of a class definition.
 //
@@ -852,7 +853,7 @@ func class_getSuperclass(cls objc.Class) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getVersion(_:)
 func class_getVersion(cls objc.Class) int {
 	return _class_getVersion(cls)
-}
+}/* debug [functions.gen.go/function]: class_getVersion */
 
 // Returns a description of the layout of weak s for a given class.
 //
@@ -863,7 +864,7 @@ func class_getVersion(cls objc.Class) int {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_getWeakIvarLayout(_:)
 func class_getWeakIvarLayout(cls objc.Class) unsafe.Pointer {
 	return _class_getWeakIvarLayout(cls)
-}
+}/* debug [functions.gen.go/function]: class_getWeakIvarLayout */
 
 // Returns a Boolean value that indicates whether a class object is a metaclass.
 //
@@ -874,7 +875,7 @@ func class_getWeakIvarLayout(cls objc.Class) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_isMetaClass(_:)
 func class_isMetaClass(cls objc.Class) bool {
 	return _class_isMetaClass(cls)
-}
+}/* debug [functions.gen.go/function]: class_isMetaClass */
 
 // class_lookupMethod is a ObjectiveC function.
 
@@ -882,7 +883,7 @@ func class_isMetaClass(cls objc.Class) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_lookupMethod(_:_:)
 func class_lookupMethod(cls objc.Class, sel objc.SEL) IMP {
 	return _class_lookupMethod(cls, sel)
-}
+}/* debug [functions.gen.go/function]: class_lookupMethod */
 
 // Replaces the implementation of a method for a given class.
 //
@@ -893,7 +894,7 @@ func class_lookupMethod(cls objc.Class, sel objc.SEL) IMP {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_replaceMethod(_:_:_:_:)
 func class_replaceMethod(cls objc.Class, name objc.SEL, imp IMP, types unsafe.Pointer) IMP {
 	return _class_replaceMethod(cls, name, imp, types)
-}
+}/* debug [functions.gen.go/function]: class_replaceMethod */
 
 // Replace a property of a class.
 //
@@ -904,7 +905,7 @@ func class_replaceMethod(cls objc.Class, name objc.SEL, imp IMP, types unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_replaceProperty(_:_:_:_:)
 func class_replaceProperty(cls objc.Class, name unsafe.Pointer, attributes unsafe.Pointer, attributeCount unsafe.Pointer) {
 	_class_replaceProperty(cls, name, attributes, attributeCount)
-}
+}/* debug [functions.gen.go/function]: class_replaceProperty */
 
 // class_respondsToMethod is a ObjectiveC function.
 
@@ -912,7 +913,7 @@ func class_replaceProperty(cls objc.Class, name unsafe.Pointer, attributes unsaf
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_respondsToMethod(_:_:)
 func class_respondsToMethod(cls objc.Class, sel objc.SEL) bool {
 	return _class_respondsToMethod(cls, sel)
-}
+}/* debug [functions.gen.go/function]: class_respondsToMethod */
 
 // Returns a Boolean value that indicates whether instances of a class respond to a particular selector.
 //
@@ -923,7 +924,7 @@ func class_respondsToMethod(cls objc.Class, sel objc.SEL) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_respondsToSelector(_:_:)
 func class_respondsToSelector(cls objc.Class, sel objc.SEL) bool {
 	return _class_respondsToSelector(cls, sel)
-}
+}/* debug [functions.gen.go/function]: class_respondsToSelector */
 
 // Sets the layout for a given class.
 //
@@ -934,7 +935,7 @@ func class_respondsToSelector(cls objc.Class, sel objc.SEL) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_setIvarLayout(_:_:)
 func class_setIvarLayout(cls objc.Class, layout unsafe.Pointer) {
 	_class_setIvarLayout(cls, layout)
-}
+}/* debug [functions.gen.go/function]: class_setIvarLayout */
 
 // Sets the superclass of a given class.
 
@@ -944,7 +945,7 @@ func class_setIvarLayout(cls objc.Class, layout unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_setSuperclass(_:_:)
 func class_setSuperclass(cls objc.Class, newSuper objc.Class) objc.Class {
 	return _class_setSuperclass(cls, newSuper)
-}
+}/* debug [functions.gen.go/function]: class_setSuperclass */
 
 // Sets the version number of a class definition.
 //
@@ -955,7 +956,7 @@ func class_setSuperclass(cls objc.Class, newSuper objc.Class) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_setVersion(_:_:)
 func class_setVersion(cls objc.Class, version int) {
 	_class_setVersion(cls, version)
-}
+}/* debug [functions.gen.go/function]: class_setVersion */
 
 // Sets the layout for weak s for a given class.
 //
@@ -966,7 +967,7 @@ func class_setVersion(cls objc.Class, version int) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/class_setWeakIvarLayout(_:_:)
 func class_setWeakIvarLayout(cls objc.Class, layout unsafe.Pointer) {
 	_class_setWeakIvarLayout(cls, layout)
-}
+}/* debug [functions.gen.go/function]: class_setWeakIvarLayout */
 
 // Returns the block associated with an that was created using .
 //
@@ -977,7 +978,7 @@ func class_setWeakIvarLayout(cls objc.Class, layout unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/imp_getBlock(_:)
 func imp_getBlock(anImp IMP) objc.ID {
 	return _imp_getBlock(anImp)
-}
+}/* debug [functions.gen.go/function]: imp_getBlock */
 
 // Creates a pointer to a function that calls the specified block when the method is called.
 //
@@ -988,7 +989,7 @@ func imp_getBlock(anImp IMP) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/imp_implementationWithBlock(_:)
 func imp_implementationWithBlock(block objc.ID) IMP {
 	return _imp_implementationWithBlock(block)
-}
+}/* debug [functions.gen.go/function]: imp_implementationWithBlock */
 
 // Disassociates a block from an that was created using , and releases the copy of the block that was created.
 //
@@ -999,7 +1000,7 @@ func imp_implementationWithBlock(block objc.ID) IMP {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/imp_removeBlock(_:)
 func imp_removeBlock(anImp IMP) bool {
 	return _imp_removeBlock(anImp)
-}
+}/* debug [functions.gen.go/function]: imp_removeBlock */
 
 // Returns the name of an instance variable.
 //
@@ -1010,7 +1011,7 @@ func imp_removeBlock(anImp IMP) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/ivar_getName(_:)
 func ivar_getName(v Ivar) unsafe.Pointer {
 	return _ivar_getName(v)
-}
+}/* debug [functions.gen.go/function]: ivar_getName */
 
 // Returns the offset of an instance variable.
 //
@@ -1021,7 +1022,7 @@ func ivar_getName(v Ivar) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/ivar_getOffset(_:)
 func ivar_getOffset(v Ivar) unsafe.Pointer {
 	return _ivar_getOffset(v)
-}
+}/* debug [functions.gen.go/function]: ivar_getOffset */
 
 // Returns the type string of an instance variable.
 //
@@ -1032,7 +1033,7 @@ func ivar_getOffset(v Ivar) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/ivar_getTypeEncoding(_:)
 func ivar_getTypeEncoding(v Ivar) unsafe.Pointer {
 	return _ivar_getTypeEncoding(v)
-}
+}/* debug [functions.gen.go/function]: ivar_getTypeEncoding */
 
 // Returns a string describing a single parameter type of a method.
 //
@@ -1043,7 +1044,7 @@ func ivar_getTypeEncoding(v Ivar) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_copyArgumentType(_:_:)
 func method_copyArgumentType(m Method, index unsafe.Pointer) unsafe.Pointer {
 	return _method_copyArgumentType(m, index)
-}
+}/* debug [functions.gen.go/function]: method_copyArgumentType */
 
 // Returns a string describing a method’s return type.
 //
@@ -1054,7 +1055,7 @@ func method_copyArgumentType(m Method, index unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_copyReturnType(_:)
 func method_copyReturnType(m Method) unsafe.Pointer {
 	return _method_copyReturnType(m)
-}
+}/* debug [functions.gen.go/function]: method_copyReturnType */
 
 // Exchanges the implementations of two methods.
 //
@@ -1065,7 +1066,7 @@ func method_copyReturnType(m Method) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_exchangeImplementations(_:_:)
 func method_exchangeImplementations(m1 Method, m2 Method) {
 	_method_exchangeImplementations(m1, m2)
-}
+}/* debug [functions.gen.go/function]: method_exchangeImplementations */
 
 // Returns by reference a string describing a single parameter type of a method.
 //
@@ -1076,7 +1077,7 @@ func method_exchangeImplementations(m1 Method, m2 Method) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getArgumentType(_:_:_:_:)
 func method_getArgumentType(m Method, index unsafe.Pointer, dst unsafe.Pointer, dst_len uintptr) {
 	_method_getArgumentType(m, index, dst, dst_len)
-}
+}/* debug [functions.gen.go/function]: method_getArgumentType */
 
 // Returns a method description structure for a specified method.
 //
@@ -1087,7 +1088,7 @@ func method_getArgumentType(m Method, index unsafe.Pointer, dst unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getDescription(_:)
 func method_getDescription(m Method) unsafe.Pointer {
 	return _method_getDescription(m)
-}
+}/* debug [functions.gen.go/function]: method_getDescription */
 
 // Returns the implementation of a method.
 //
@@ -1098,7 +1099,7 @@ func method_getDescription(m Method) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getImplementation(_:)
 func method_getImplementation(m Method) IMP {
 	return _method_getImplementation(m)
-}
+}/* debug [functions.gen.go/function]: method_getImplementation */
 
 // Returns the name of a method.
 //
@@ -1109,7 +1110,7 @@ func method_getImplementation(m Method) IMP {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getName(_:)
 func method_getName(m Method) objc.SEL {
 	return _method_getName(m)
-}
+}/* debug [functions.gen.go/function]: method_getName */
 
 // Returns the number of arguments accepted by a method.
 //
@@ -1120,7 +1121,7 @@ func method_getName(m Method) objc.SEL {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getNumberOfArguments(_:)
 func method_getNumberOfArguments(m Method) unsafe.Pointer {
 	return _method_getNumberOfArguments(m)
-}
+}/* debug [functions.gen.go/function]: method_getNumberOfArguments */
 
 // Returns by reference a string describing a method’s return type.
 //
@@ -1131,7 +1132,7 @@ func method_getNumberOfArguments(m Method) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getReturnType(_:_:_:)
 func method_getReturnType(m Method, dst unsafe.Pointer, dst_len uintptr) {
 	_method_getReturnType(m, dst, dst_len)
-}
+}/* debug [functions.gen.go/function]: method_getReturnType */
 
 // Returns a string describing a method’s parameter and return types.
 //
@@ -1142,7 +1143,7 @@ func method_getReturnType(m Method, dst unsafe.Pointer, dst_len uintptr) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_getTypeEncoding(_:)
 func method_getTypeEncoding(m Method) unsafe.Pointer {
 	return _method_getTypeEncoding(m)
-}
+}/* debug [functions.gen.go/function]: method_getTypeEncoding */
 
 // Calls the implementation of a specified method.
 //
@@ -1153,7 +1154,7 @@ func method_getTypeEncoding(m Method) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_invoke
 func method_invoke() {
 	_method_invoke()
-}
+}/* debug [functions.gen.go/function]: method_invoke */
 
 // Calls the implementation of a specified method that returns a data-structure.
 //
@@ -1164,7 +1165,7 @@ func method_invoke() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_invoke_stret
 func method_invoke_stret() {
 	_method_invoke_stret()
-}
+}/* debug [functions.gen.go/function]: method_invoke_stret */
 
 // Sets the implementation of a method.
 //
@@ -1175,7 +1176,7 @@ func method_invoke_stret() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/method_setImplementation(_:_:)
 func method_setImplementation(m Method, imp IMP) IMP {
 	return _method_setImplementation(m, imp)
-}
+}/* debug [functions.gen.go/function]: method_setImplementation */
 
 // objc_addExceptionHandler is a ObjectiveC function.
 //
@@ -1184,7 +1185,7 @@ func method_setImplementation(m Method, imp IMP) IMP {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_addExceptionHandler(_:_:)
 func objc_addExceptionHandler(fn objc_exception_handler, context unsafe.Pointer) unsafe.Pointer {
 	return _objc_addExceptionHandler(fn, context)
-}
+}/* debug [functions.gen.go/function]: objc_addExceptionHandler */
 
 // objc_addLoadImageFunc is a ObjectiveC function.
 //
@@ -1193,7 +1194,7 @@ func objc_addExceptionHandler(fn objc_exception_handler, context unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_addLoadImageFunc(_:)
 func objc_addLoadImageFunc(func_ objc_func_loadImage) {
 	_objc_addLoadImageFunc(func_)
-}
+}/* debug [functions.gen.go/function]: objc_addLoadImageFunc */
 
 // Creates a new class and metaclass.
 //
@@ -1204,7 +1205,7 @@ func objc_addLoadImageFunc(func_ objc_func_loadImage) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_allocateClassPair(_:_:_:)
 func objc_allocateClassPair(superclass objc.Class, name unsafe.Pointer, extraBytes uintptr) objc.Class {
 	return _objc_allocateClassPair(superclass, name, extraBytes)
-}
+}/* debug [functions.gen.go/function]: objc_allocateClassPair */
 
 // Creates a new protocol instance.
 //
@@ -1215,7 +1216,7 @@ func objc_allocateClassPair(superclass objc.Class, name unsafe.Pointer, extraByt
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_allocateProtocol(_:)
 func objc_allocateProtocol(name unsafe.Pointer) unsafe.Pointer {
 	return _objc_allocateProtocol(name)
-}
+}/* debug [functions.gen.go/function]: objc_allocateProtocol */
 
 // objc_begin_catch is a ObjectiveC function.
 //
@@ -1224,7 +1225,7 @@ func objc_allocateProtocol(name unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_begin_catch(_:)
 func objc_begin_catch(exc_buf unsafe.Pointer) objc.ID {
 	return _objc_begin_catch(exc_buf)
-}
+}/* debug [functions.gen.go/function]: objc_begin_catch */
 
 // Creates an instance of a class at the specified location.
 //
@@ -1235,7 +1236,7 @@ func objc_begin_catch(exc_buf unsafe.Pointer) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_constructInstance
 func objc_constructInstance(cls objc.Class, bytes unsafe.Pointer) objc.ID {
 	return _objc_constructInstance(cls, bytes)
-}
+}/* debug [functions.gen.go/function]: objc_constructInstance */
 
 // Creates and returns a list of pointers to all registered class definitions.
 //
@@ -1246,7 +1247,7 @@ func objc_constructInstance(cls objc.Class, bytes unsafe.Pointer) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_copyClassList(_:)
 func objc_copyClassList(outCount unsafe.Pointer) unsafe.Pointer {
 	return _objc_copyClassList(outCount)
-}
+}/* debug [functions.gen.go/function]: objc_copyClassList */
 
 // Returns the names of all the classes within a specified library or framework.
 //
@@ -1257,7 +1258,7 @@ func objc_copyClassList(outCount unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_copyClassNamesForImage(_:_:)
 func objc_copyClassNamesForImage(image unsafe.Pointer, outCount unsafe.Pointer) unsafe.Pointer {
 	return _objc_copyClassNamesForImage(image, outCount)
-}
+}/* debug [functions.gen.go/function]: objc_copyClassNamesForImage */
 
 // Returns the names of all the loaded Objective-C frameworks and dynamic libraries.
 //
@@ -1268,7 +1269,7 @@ func objc_copyClassNamesForImage(image unsafe.Pointer, outCount unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_copyImageNames(_:)
 func objc_copyImageNames(outCount unsafe.Pointer) unsafe.Pointer {
 	return _objc_copyImageNames(outCount)
-}
+}/* debug [functions.gen.go/function]: objc_copyImageNames */
 
 // Returns an array of all the protocols known to the runtime.
 //
@@ -1279,7 +1280,7 @@ func objc_copyImageNames(outCount unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_copyProtocolList(_:)
 func objc_copyProtocolList(outCount unsafe.Pointer) unsafe.Pointer {
 	return _objc_copyProtocolList(outCount)
-}
+}/* debug [functions.gen.go/function]: objc_copyProtocolList */
 
 // Destroys an instance of a class without freeing memory and removes any of its associated references.
 //
@@ -1290,7 +1291,7 @@ func objc_copyProtocolList(outCount unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_destructInstance
 func objc_destructInstance(obj objc.ID) unsafe.Pointer {
 	return _objc_destructInstance(obj)
-}
+}/* debug [functions.gen.go/function]: objc_destructInstance */
 
 // Destroys a class and its associated metaclass.
 //
@@ -1301,7 +1302,7 @@ func objc_destructInstance(obj objc.ID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_disposeClassPair(_:)
 func objc_disposeClassPair(cls objc.Class) {
 	_objc_disposeClassPair(cls)
-}
+}/* debug [functions.gen.go/function]: objc_disposeClassPair */
 
 // Used by Foundation’s Key-Value Observing.
 //
@@ -1312,7 +1313,7 @@ func objc_disposeClassPair(cls objc.Class) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_duplicateClass(_:_:_:)
 func objc_duplicateClass(original objc.Class, name unsafe.Pointer, extraBytes uintptr) objc.Class {
 	return _objc_duplicateClass(original, name, extraBytes)
-}
+}/* debug [functions.gen.go/function]: objc_duplicateClass */
 
 // objc_end_catch is a ObjectiveC function.
 //
@@ -1321,7 +1322,7 @@ func objc_duplicateClass(original objc.Class, name unsafe.Pointer, extraBytes ui
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_end_catch()
 func objc_end_catch() {
 	_objc_end_catch()
-}
+}/* debug [functions.gen.go/function]: objc_end_catch */
 
 // objc_enumerateClasses is a ObjectiveC function.
 //
@@ -1330,7 +1331,7 @@ func objc_end_catch() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_enumerateClasses
 func objc_enumerateClasses(image unsafe.Pointer, namePrefix unsafe.Pointer, conformingTo unsafe.Pointer, subclassing objc.Class) {
 	_objc_enumerateClasses(image, namePrefix, conformingTo, subclassing)
-}
+}/* debug [functions.gen.go/function]: objc_enumerateClasses */
 
 // Inserted by the compiler when a mutation is detected during a foreach iteration.
 //
@@ -1341,7 +1342,7 @@ func objc_enumerateClasses(image unsafe.Pointer, namePrefix unsafe.Pointer, conf
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_enumerationMutation(_:)
 func objc_enumerationMutation(obj objc.ID) {
 	_objc_enumerationMutation(obj)
-}
+}/* debug [functions.gen.go/function]: objc_enumerationMutation */
 
 // objc_exception_rethrow is a ObjectiveC function.
 //
@@ -1350,7 +1351,7 @@ func objc_enumerationMutation(obj objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_rethrow()
 func objc_exception_rethrow() {
 	_objc_exception_rethrow()
-}
+}/* debug [functions.gen.go/function]: objc_exception_rethrow */
 
 // Throw a runtime exception. This function is inserted by the compiler where \c @throw would otherwise be.
 //
@@ -1361,7 +1362,7 @@ func objc_exception_rethrow() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_exception_throw(_:)
 func objc_exception_throw(exception objc.ID) {
 	_objc_exception_throw(exception)
-}
+}/* debug [functions.gen.go/function]: objc_exception_throw */
 
 // Returns the value associated with a given object for a given key.
 //
@@ -1372,7 +1373,7 @@ func objc_exception_throw(exception objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_getAssociatedObject(_:_:)
 func objc_getAssociatedObject(object objc.ID, key unsafe.Pointer) objc.ID {
 	return _objc_getAssociatedObject(object, key)
-}
+}/* debug [functions.gen.go/function]: objc_getAssociatedObject */
 
 // Returns the class definition of a specified class.
 //
@@ -1383,7 +1384,7 @@ func objc_getAssociatedObject(object objc.ID, key unsafe.Pointer) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_getClass(_:)
 func objc_getClass(name unsafe.Pointer) objc.ID {
 	return _objc_getClass(name)
-}
+}/* debug [functions.gen.go/function]: objc_getClass */
 
 // Obtains the list of registered class definitions.
 //
@@ -1394,7 +1395,7 @@ func objc_getClass(name unsafe.Pointer) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_getClassList(_:_:)
 func objc_getClassList(buffer unsafe.Pointer, bufferCount int) int {
 	return _objc_getClassList(buffer, bufferCount)
-}
+}/* debug [functions.gen.go/function]: objc_getClassList */
 
 // Used by CoreFoundation’s toll-free bridging.
 //
@@ -1405,7 +1406,7 @@ func objc_getClassList(buffer unsafe.Pointer, bufferCount int) int {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_getFutureClass
 func objc_getFutureClass(name unsafe.Pointer) objc.Class {
 	return _objc_getFutureClass(name)
-}
+}/* debug [functions.gen.go/function]: objc_getFutureClass */
 
 // Returns the metaclass definition of a specified class.
 //
@@ -1416,7 +1417,7 @@ func objc_getFutureClass(name unsafe.Pointer) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_getMetaClass(_:)
 func objc_getMetaClass(name unsafe.Pointer) objc.ID {
 	return _objc_getMetaClass(name)
-}
+}/* debug [functions.gen.go/function]: objc_getMetaClass */
 
 // Returns a specified protocol.
 //
@@ -1427,7 +1428,7 @@ func objc_getMetaClass(name unsafe.Pointer) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_getProtocol(_:)
 func objc_getProtocol(name unsafe.Pointer) unsafe.Pointer {
 	return _objc_getProtocol(name)
-}
+}/* debug [functions.gen.go/function]: objc_getProtocol */
 
 // Returns the class definition of a specified class.
 //
@@ -1438,7 +1439,7 @@ func objc_getProtocol(name unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_getRequiredClass(_:)
 func objc_getRequiredClass(name unsafe.Pointer) objc.Class {
 	return _objc_getRequiredClass(name)
-}
+}/* debug [functions.gen.go/function]: objc_getRequiredClass */
 
 // Loads the object referenced by a weak pointer and returns it.
 //
@@ -1449,7 +1450,7 @@ func objc_getRequiredClass(name unsafe.Pointer) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_loadWeak(_:)
 func objc_loadWeak(location unsafe.Pointer) objc.ID {
 	return _objc_loadWeak(location)
-}
+}/* debug [functions.gen.go/function]: objc_loadWeak */
 
 // Returns the class definition of a specified class.
 //
@@ -1460,7 +1461,7 @@ func objc_loadWeak(location unsafe.Pointer) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_lookUpClass(_:)
 func objc_lookUpClass(name unsafe.Pointer) objc.Class {
 	return _objc_lookUpClass(name)
-}
+}/* debug [functions.gen.go/function]: objc_lookUpClass */
 
 // Sends a message with a simple return value to an instance of a class.
 //
@@ -1471,7 +1472,7 @@ func objc_lookUpClass(name unsafe.Pointer) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend
 func objc_msgSend() {
 	_objc_msgSend()
-}
+}/* debug [functions.gen.go/function]: objc_msgSend */
 
 // Sends a message with a simple return value to the superclass of an instance of a class.
 //
@@ -1482,7 +1483,7 @@ func objc_msgSend() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSendSuper
 func objc_msgSendSuper() {
 	_objc_msgSendSuper()
-}
+}/* debug [functions.gen.go/function]: objc_msgSendSuper */
 
 // Sends a message with a data-structure return value to the superclass of an instance of a class.
 //
@@ -1493,7 +1494,7 @@ func objc_msgSendSuper() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSendSuper_stret
 func objc_msgSendSuper_stret() {
 	_objc_msgSendSuper_stret()
-}
+}/* debug [functions.gen.go/function]: objc_msgSendSuper_stret */
 
 // objc_msgSend_fp2ret is a ObjectiveC function.
 //
@@ -1502,7 +1503,7 @@ func objc_msgSendSuper_stret() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend_fp2ret
 func objc_msgSend_fp2ret() {
 	_objc_msgSend_fp2ret()
-}
+}/* debug [functions.gen.go/function]: objc_msgSend_fp2ret */
 
 // Sends a message with a floating-point return value to an instance of a class.
 //
@@ -1513,7 +1514,7 @@ func objc_msgSend_fp2ret() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend_fpret
 func objc_msgSend_fpret() {
 	_objc_msgSend_fpret()
-}
+}/* debug [functions.gen.go/function]: objc_msgSend_fpret */
 
 // Sends a message with a data-structure return value to an instance of a class.
 //
@@ -1524,7 +1525,7 @@ func objc_msgSend_fpret() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_msgSend_stret
 func objc_msgSend_stret() {
 	_objc_msgSend_stret()
-}
+}/* debug [functions.gen.go/function]: objc_msgSend_stret */
 
 // Registers a class that was allocated using .
 //
@@ -1535,7 +1536,7 @@ func objc_msgSend_stret() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_registerClassPair(_:)
 func objc_registerClassPair(cls objc.Class) {
 	_objc_registerClassPair(cls)
-}
+}/* debug [functions.gen.go/function]: objc_registerClassPair */
 
 // Registers a newly created protocol with the Objective-C runtime.
 //
@@ -1546,7 +1547,7 @@ func objc_registerClassPair(cls objc.Class) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_registerProtocol(_:)
 func objc_registerProtocol(proto unsafe.Pointer) {
 	_objc_registerProtocol(proto)
-}
+}/* debug [functions.gen.go/function]: objc_registerProtocol */
 
 // Removes all associations for a given object.
 //
@@ -1557,7 +1558,7 @@ func objc_registerProtocol(proto unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_removeAssociatedObjects(_:)
 func objc_removeAssociatedObjects(object objc.ID) {
 	_objc_removeAssociatedObjects(object)
-}
+}/* debug [functions.gen.go/function]: objc_removeAssociatedObjects */
 
 // objc_removeExceptionHandler is a ObjectiveC function.
 //
@@ -1566,7 +1567,7 @@ func objc_removeAssociatedObjects(object objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_removeExceptionHandler(_:)
 func objc_removeExceptionHandler(token unsafe.Pointer) {
 	_objc_removeExceptionHandler(token)
-}
+}/* debug [functions.gen.go/function]: objc_removeExceptionHandler */
 
 // Sets an associated value for a given object using a given key and association policy.
 //
@@ -1577,7 +1578,7 @@ func objc_removeExceptionHandler(token unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setAssociatedObject(_:_:_:_:)
 func objc_setAssociatedObject(object objc.ID, key unsafe.Pointer, value objc.ID, policy objc_AssociationPolicy) {
 	_objc_setAssociatedObject(object, key, value, policy)
-}
+}/* debug [functions.gen.go/function]: objc_setAssociatedObject */
 
 // Sets the current mutation handler.
 //
@@ -1588,7 +1589,7 @@ func objc_setAssociatedObject(object objc.ID, key unsafe.Pointer, value objc.ID,
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setEnumerationMutationHandler(_:)
 func objc_setEnumerationMutationHandler() {
 	_objc_setEnumerationMutationHandler()
-}
+}/* debug [functions.gen.go/function]: objc_setEnumerationMutationHandler */
 
 // objc_setExceptionMatcher is a ObjectiveC function.
 //
@@ -1597,7 +1598,7 @@ func objc_setEnumerationMutationHandler() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setExceptionMatcher(_:)
 func objc_setExceptionMatcher(fn objc_exception_matcher) objc_exception_matcher {
 	return _objc_setExceptionMatcher(fn)
-}
+}/* debug [functions.gen.go/function]: objc_setExceptionMatcher */
 
 // objc_setExceptionPreprocessor is a ObjectiveC function.
 //
@@ -1606,7 +1607,7 @@ func objc_setExceptionMatcher(fn objc_exception_matcher) objc_exception_matcher 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setExceptionPreprocessor(_:)
 func objc_setExceptionPreprocessor(fn objc_exception_preprocessor) objc_exception_preprocessor {
 	return _objc_setExceptionPreprocessor(fn)
-}
+}/* debug [functions.gen.go/function]: objc_setExceptionPreprocessor */
 
 // Set the function to be called by objc_msgForward.
 //
@@ -1617,7 +1618,7 @@ func objc_setExceptionPreprocessor(fn objc_exception_preprocessor) objc_exceptio
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setForwardHandler(_:_:)
 func objc_setForwardHandler(fwd unsafe.Pointer, fwd_stret unsafe.Pointer) {
 	_objc_setForwardHandler(fwd, fwd_stret)
-}
+}/* debug [functions.gen.go/function]: objc_setForwardHandler */
 
 // objc_setHook_getClass is a ObjectiveC function.
 //
@@ -1626,7 +1627,7 @@ func objc_setForwardHandler(fwd unsafe.Pointer, fwd_stret unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setHook_getClass(_:_:)
 func objc_setHook_getClass(newValue objc_hook_getClass, outOldValue unsafe.Pointer) {
 	_objc_setHook_getClass(newValue, outOldValue)
-}
+}/* debug [functions.gen.go/function]: objc_setHook_getClass */
 
 // objc_setHook_getImageName is a ObjectiveC function.
 //
@@ -1635,7 +1636,7 @@ func objc_setHook_getClass(newValue objc_hook_getClass, outOldValue unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setHook_getImageName(_:_:)
 func objc_setHook_getImageName(newValue objc_hook_getImageName, outOldValue unsafe.Pointer) {
 	_objc_setHook_getImageName(newValue, outOldValue)
-}
+}/* debug [functions.gen.go/function]: objc_setHook_getImageName */
 
 // objc_setHook_lazyClassNamer is a ObjectiveC function.
 //
@@ -1644,7 +1645,7 @@ func objc_setHook_getImageName(newValue objc_hook_getImageName, outOldValue unsa
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setHook_lazyClassNamer(_:_:)
 func objc_setHook_lazyClassNamer(newValue objc_hook_lazyClassNamer, oldOutValue unsafe.Pointer) {
 	_objc_setHook_lazyClassNamer(newValue, oldOutValue)
-}
+}/* debug [functions.gen.go/function]: objc_setHook_lazyClassNamer */
 
 // objc_setUncaughtExceptionHandler is a ObjectiveC function.
 //
@@ -1653,7 +1654,7 @@ func objc_setHook_lazyClassNamer(newValue objc_hook_lazyClassNamer, oldOutValue 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_setUncaughtExceptionHandler(_:)
 func objc_setUncaughtExceptionHandler(fn objc_uncaught_exception_handler) objc_uncaught_exception_handler {
 	return _objc_setUncaughtExceptionHandler(fn)
-}
+}/* debug [functions.gen.go/function]: objc_setUncaughtExceptionHandler */
 
 // Stores a new value in a variable.
 //
@@ -1664,7 +1665,7 @@ func objc_setUncaughtExceptionHandler(fn objc_uncaught_exception_handler) objc_u
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_storeWeak(_:_:)
 func objc_storeWeak(location unsafe.Pointer, obj objc.ID) objc.ID {
 	return _objc_storeWeak(location, obj)
-}
+}/* debug [functions.gen.go/function]: objc_storeWeak */
 
 // Begin synchronizing on ‘obj’. Allocates recursive pthread_mutex associated with ‘obj’ if needed.
 //
@@ -1675,7 +1676,7 @@ func objc_storeWeak(location unsafe.Pointer, obj objc.ID) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_sync_enter
 func objc_sync_enter(obj objc.ID) int {
 	return _objc_sync_enter(obj)
-}
+}/* debug [functions.gen.go/function]: objc_sync_enter */
 
 // End synchronizing on ‘obj’.
 //
@@ -1686,7 +1687,7 @@ func objc_sync_enter(obj objc.ID) int {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_sync_exit
 func objc_sync_exit(obj objc.ID) int {
 	return _objc_sync_exit(obj)
-}
+}/* debug [functions.gen.go/function]: objc_sync_exit */
 
 // objc_terminate is a ObjectiveC function.
 //
@@ -1695,7 +1696,7 @@ func objc_sync_exit(obj objc.ID) int {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/objc_terminate()
 func objc_terminate() {
 	_objc_terminate()
-}
+}/* debug [functions.gen.go/function]: objc_terminate */
 
 // Returns a copy of a given object.
 //
@@ -1706,7 +1707,7 @@ func objc_terminate() {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_copy
 func object_copy(obj objc.ID, size uintptr) objc.ID {
 	return _object_copy(obj, size)
-}
+}/* debug [functions.gen.go/function]: object_copy */
 
 // object_copyFromZone is a ObjectiveC function.
 //
@@ -1717,7 +1718,7 @@ func object_copy(obj objc.ID, size uintptr) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_copyFromZone
 func object_copyFromZone(anObject objc.ID, nBytes uintptr, zone unsafe.Pointer) objc.ID {
 	return _object_copyFromZone(anObject, nBytes, zone)
-}
+}/* debug [functions.gen.go/function]: object_copyFromZone */
 
 // Frees the memory occupied by a given object.
 //
@@ -1728,7 +1729,7 @@ func object_copyFromZone(anObject objc.ID, nBytes uintptr, zone unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_dispose
 func object_dispose(obj objc.ID) objc.ID {
 	return _object_dispose(obj)
-}
+}/* debug [functions.gen.go/function]: object_dispose */
 
 // Returns the class of an object.
 //
@@ -1739,7 +1740,7 @@ func object_dispose(obj objc.ID) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_getClass(_:)
 func object_getClass(obj objc.ID) objc.Class {
 	return _object_getClass(obj)
-}
+}/* debug [functions.gen.go/function]: object_getClass */
 
 // Returns the class name of a given object.
 //
@@ -1750,7 +1751,7 @@ func object_getClass(obj objc.ID) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_getClassName(_:)
 func object_getClassName(obj objc.ID) unsafe.Pointer {
 	return _object_getClassName(obj)
-}
+}/* debug [functions.gen.go/function]: object_getClassName */
 
 // Returns a pointer to any extra bytes allocated with a instance given object.
 //
@@ -1761,7 +1762,7 @@ func object_getClassName(obj objc.ID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_getIndexedIvars(_:)
 func object_getIndexedIvars(obj objc.ID) unsafe.Pointer {
 	return _object_getIndexedIvars(obj)
-}
+}/* debug [functions.gen.go/function]: object_getIndexedIvars */
 
 // Obtains the value of an instance variable of a class instance.
 //
@@ -1772,7 +1773,7 @@ func object_getIndexedIvars(obj objc.ID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_getInstanceVariable
 func object_getInstanceVariable(obj objc.ID, name unsafe.Pointer, outValue unsafe.Pointer) Ivar {
 	return _object_getInstanceVariable(obj, name, outValue)
-}
+}/* debug [functions.gen.go/function]: object_getInstanceVariable */
 
 // Reads the value of an instance variable in an object.
 //
@@ -1783,7 +1784,7 @@ func object_getInstanceVariable(obj objc.ID, name unsafe.Pointer, outValue unsaf
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_getIvar(_:_:)
 func object_getIvar(obj objc.ID, ivar Ivar) objc.ID {
 	return _object_getIvar(obj, ivar)
-}
+}/* debug [functions.gen.go/function]: object_getIvar */
 
 // object_isClass is a ObjectiveC function.
 //
@@ -1792,7 +1793,7 @@ func object_getIvar(obj objc.ID, ivar Ivar) objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_isClass(_:)
 func object_isClass(obj objc.ID) bool {
 	return _object_isClass(obj)
-}
+}/* debug [functions.gen.go/function]: object_isClass */
 
 // Sets the class of an object.
 //
@@ -1803,7 +1804,7 @@ func object_isClass(obj objc.ID) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setClass(_:_:)
 func object_setClass(obj objc.ID, cls objc.Class) objc.Class {
 	return _object_setClass(obj, cls)
-}
+}/* debug [functions.gen.go/function]: object_setClass */
 
 // Changes the value of an instance variable of a class instance.
 //
@@ -1814,7 +1815,7 @@ func object_setClass(obj objc.ID, cls objc.Class) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setInstanceVariable
 func object_setInstanceVariable(obj objc.ID, name unsafe.Pointer, value unsafe.Pointer) Ivar {
 	return _object_setInstanceVariable(obj, name, value)
-}
+}/* debug [functions.gen.go/function]: object_setInstanceVariable */
 
 // object_setInstanceVariableWithStrongDefault is a ObjectiveC function.
 //
@@ -1823,7 +1824,7 @@ func object_setInstanceVariable(obj objc.ID, name unsafe.Pointer, value unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setInstanceVariableWithStrongDefault
 func object_setInstanceVariableWithStrongDefault(obj objc.ID, name unsafe.Pointer, value unsafe.Pointer) Ivar {
 	return _object_setInstanceVariableWithStrongDefault(obj, name, value)
-}
+}/* debug [functions.gen.go/function]: object_setInstanceVariableWithStrongDefault */
 
 // Sets the value of an instance variable in an object.
 //
@@ -1834,7 +1835,7 @@ func object_setInstanceVariableWithStrongDefault(obj objc.ID, name unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setIvar(_:_:_:)
 func object_setIvar(obj objc.ID, ivar Ivar, value objc.ID) {
 	_object_setIvar(obj, ivar, value)
-}
+}/* debug [functions.gen.go/function]: object_setIvar */
 
 // object_setIvarWithStrongDefault is a ObjectiveC function.
 //
@@ -1843,7 +1844,7 @@ func object_setIvar(obj objc.ID, ivar Ivar, value objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/object_setIvarWithStrongDefault(_:_:_:)
 func object_setIvarWithStrongDefault(obj objc.ID, ivar Ivar, value objc.ID) {
 	_object_setIvarWithStrongDefault(obj, ivar, value)
-}
+}/* debug [functions.gen.go/function]: object_setIvarWithStrongDefault */
 
 // Returns an array of property attributes for a given property.
 //
@@ -1854,7 +1855,7 @@ func object_setIvarWithStrongDefault(obj objc.ID, ivar Ivar, value objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/property_copyAttributeList(_:_:)
 func property_copyAttributeList(property objc_property_t, outCount unsafe.Pointer) unsafe.Pointer {
 	return _property_copyAttributeList(property, outCount)
-}
+}/* debug [functions.gen.go/function]: property_copyAttributeList */
 
 // Returns the value of a property attribute given the attribute name.
 //
@@ -1865,7 +1866,7 @@ func property_copyAttributeList(property objc_property_t, outCount unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/property_copyAttributeValue(_:_:)
 func property_copyAttributeValue(property objc_property_t, attributeName unsafe.Pointer) unsafe.Pointer {
 	return _property_copyAttributeValue(property, attributeName)
-}
+}/* debug [functions.gen.go/function]: property_copyAttributeValue */
 
 // Returns the attribute string of a property.
 //
@@ -1876,7 +1877,7 @@ func property_copyAttributeValue(property objc_property_t, attributeName unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/property_getAttributes(_:)
 func property_getAttributes(property objc_property_t) unsafe.Pointer {
 	return _property_getAttributes(property)
-}
+}/* debug [functions.gen.go/function]: property_getAttributes */
 
 // Returns the name of a property.
 //
@@ -1887,7 +1888,7 @@ func property_getAttributes(property objc_property_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/property_getName(_:)
 func property_getName(property objc_property_t) unsafe.Pointer {
 	return _property_getName(property)
-}
+}/* debug [functions.gen.go/function]: property_getName */
 
 // Adds a method to a protocol.
 //
@@ -1898,7 +1899,7 @@ func property_getName(property objc_property_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_addMethodDescription(_:_:_:_:_:)
 func protocol_addMethodDescription(proto unsafe.Pointer, name objc.SEL, types unsafe.Pointer, isRequiredMethod bool, isInstanceMethod bool) {
 	_protocol_addMethodDescription(proto, name, types, isRequiredMethod, isInstanceMethod)
-}
+}/* debug [functions.gen.go/function]: protocol_addMethodDescription */
 
 // Adds a property to a protocol that is under construction.
 //
@@ -1909,7 +1910,7 @@ func protocol_addMethodDescription(proto unsafe.Pointer, name objc.SEL, types un
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_addProperty(_:_:_:_:_:_:)
 func protocol_addProperty(proto unsafe.Pointer, name unsafe.Pointer, attributes unsafe.Pointer, attributeCount unsafe.Pointer, isRequiredProperty bool, isInstanceProperty bool) {
 	_protocol_addProperty(proto, name, attributes, attributeCount, isRequiredProperty, isInstanceProperty)
-}
+}/* debug [functions.gen.go/function]: protocol_addProperty */
 
 // Adds a registered protocol to another protocol that is under construction.
 //
@@ -1920,7 +1921,7 @@ func protocol_addProperty(proto unsafe.Pointer, name unsafe.Pointer, attributes 
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_addProtocol(_:_:)
 func protocol_addProtocol(proto unsafe.Pointer, addition unsafe.Pointer) {
 	_protocol_addProtocol(proto, addition)
-}
+}/* debug [functions.gen.go/function]: protocol_addProtocol */
 
 // Returns a Boolean value that indicates whether one protocol conforms to another protocol.
 //
@@ -1931,7 +1932,7 @@ func protocol_addProtocol(proto unsafe.Pointer, addition unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_conformsToProtocol(_:_:)
 func protocol_conformsToProtocol(proto unsafe.Pointer, other unsafe.Pointer) bool {
 	return _protocol_conformsToProtocol(proto, other)
-}
+}/* debug [functions.gen.go/function]: protocol_conformsToProtocol */
 
 // Returns an array of method descriptions of methods meeting a given specification for a given protocol.
 //
@@ -1942,7 +1943,7 @@ func protocol_conformsToProtocol(proto unsafe.Pointer, other unsafe.Pointer) boo
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_copyMethodDescriptionList(_:_:_:_:)
 func protocol_copyMethodDescriptionList(proto unsafe.Pointer, isRequiredMethod bool, isInstanceMethod bool, outCount unsafe.Pointer) unsafe.Pointer {
 	return _protocol_copyMethodDescriptionList(proto, isRequiredMethod, isInstanceMethod, outCount)
-}
+}/* debug [functions.gen.go/function]: protocol_copyMethodDescriptionList */
 
 // Returns an array of the properties declared by a protocol.
 //
@@ -1953,7 +1954,7 @@ func protocol_copyMethodDescriptionList(proto unsafe.Pointer, isRequiredMethod b
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_copyPropertyList(_:_:)
 func protocol_copyPropertyList(proto unsafe.Pointer, outCount unsafe.Pointer) unsafe.Pointer {
 	return _protocol_copyPropertyList(proto, outCount)
-}
+}/* debug [functions.gen.go/function]: protocol_copyPropertyList */
 
 // protocol_copyPropertyList2 is a ObjectiveC function.
 //
@@ -1962,7 +1963,7 @@ func protocol_copyPropertyList(proto unsafe.Pointer, outCount unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_copyPropertyList2(_:_:_:_:)
 func protocol_copyPropertyList2(proto unsafe.Pointer, outCount unsafe.Pointer, isRequiredProperty bool, isInstanceProperty bool) unsafe.Pointer {
 	return _protocol_copyPropertyList2(proto, outCount, isRequiredProperty, isInstanceProperty)
-}
+}/* debug [functions.gen.go/function]: protocol_copyPropertyList2 */
 
 // Returns an array of the protocols adopted by a protocol.
 //
@@ -1973,7 +1974,7 @@ func protocol_copyPropertyList2(proto unsafe.Pointer, outCount unsafe.Pointer, i
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_copyProtocolList(_:_:)
 func protocol_copyProtocolList(proto unsafe.Pointer, outCount unsafe.Pointer) unsafe.Pointer {
 	return _protocol_copyProtocolList(proto, outCount)
-}
+}/* debug [functions.gen.go/function]: protocol_copyProtocolList */
 
 // Returns a method description structure for a specified method of a given protocol.
 //
@@ -1984,7 +1985,7 @@ func protocol_copyProtocolList(proto unsafe.Pointer, outCount unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_getMethodDescription(_:_:_:_:)
 func protocol_getMethodDescription(proto unsafe.Pointer, aSel objc.SEL, isRequiredMethod bool, isInstanceMethod bool) unsafe.Pointer {
 	return _protocol_getMethodDescription(proto, aSel, isRequiredMethod, isInstanceMethod)
-}
+}/* debug [functions.gen.go/function]: protocol_getMethodDescription */
 
 // Returns the name of a protocol.
 //
@@ -1995,7 +1996,7 @@ func protocol_getMethodDescription(proto unsafe.Pointer, aSel objc.SEL, isRequir
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_getName(_:)
 func protocol_getName(proto unsafe.Pointer) unsafe.Pointer {
 	return _protocol_getName(proto)
-}
+}/* debug [functions.gen.go/function]: protocol_getName */
 
 // Returns the specified property of a given protocol.
 //
@@ -2006,7 +2007,7 @@ func protocol_getName(proto unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_getProperty(_:_:_:_:)
 func protocol_getProperty(proto unsafe.Pointer, name unsafe.Pointer, isRequiredProperty bool, isInstanceProperty bool) objc_property_t {
 	return _protocol_getProperty(proto, name, isRequiredProperty, isInstanceProperty)
-}
+}/* debug [functions.gen.go/function]: protocol_getProperty */
 
 // Returns a Boolean value that indicates whether two protocols are equal.
 //
@@ -2017,7 +2018,7 @@ func protocol_getProperty(proto unsafe.Pointer, name unsafe.Pointer, isRequiredP
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/protocol_isEqual(_:_:)
 func protocol_isEqual(proto unsafe.Pointer, other unsafe.Pointer) bool {
 	return _protocol_isEqual(proto, other)
-}
+}/* debug [functions.gen.go/function]: protocol_isEqual */
 
 // Returns the name of the method specified by a given selector.
 //
@@ -2028,7 +2029,7 @@ func protocol_isEqual(proto unsafe.Pointer, other unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/sel_getName(_:)
 func sel_getName(sel objc.SEL) unsafe.Pointer {
 	return _sel_getName(sel)
-}
+}/* debug [functions.gen.go/function]: sel_getName */
 
 // Registers a method name with the Objective-C runtime system.
 //
@@ -2039,7 +2040,7 @@ func sel_getName(sel objc.SEL) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/sel_getUid(_:)
 func sel_getUid(str unsafe.Pointer) objc.SEL {
 	return _sel_getUid(str)
-}
+}/* debug [functions.gen.go/function]: sel_getUid */
 
 // Returns a Boolean value that indicates whether two selectors are equal.
 //
@@ -2050,7 +2051,7 @@ func sel_getUid(str unsafe.Pointer) objc.SEL {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/sel_isEqual(_:_:)
 func sel_isEqual(lhs objc.SEL, rhs objc.SEL) bool {
 	return _sel_isEqual(lhs, rhs)
-}
+}/* debug [functions.gen.go/function]: sel_isEqual */
 
 // Identifies a selector as being valid or invalid.
 //
@@ -2061,7 +2062,7 @@ func sel_isEqual(lhs objc.SEL, rhs objc.SEL) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/sel_isMapped(_:)
 func sel_isMapped(sel objc.SEL) bool {
 	return _sel_isMapped(sel)
-}
+}/* debug [functions.gen.go/function]: sel_isMapped */
 
 // Registers a method with the Objective-C runtime system, maps the method name to a selector, and returns the selector value.
 //
@@ -2072,7 +2073,8 @@ func sel_isMapped(sel objc.SEL) bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/sel_registerName(_:)
 func sel_registerName(str unsafe.Pointer) objc.SEL {
 	return _sel_registerName(str)
-}
+}/* debug [functions.gen.go/function]: sel_registerName */
+
 
 
 

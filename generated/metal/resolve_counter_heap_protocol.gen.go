@@ -20,3 +20,4 @@ var resolveCounterHeapProtocol *objc.Protocol
 func init() {
 	resolveCounterHeapProtocol = objc.GetProtocol("resolveCounterHeap:")
 }
+

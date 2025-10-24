@@ -33,8 +33,6 @@ type IMTRBridgedDeviceBasicClusterShutDownEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicClusterShutDownEvent
 type MTRBridgedDeviceBasicClusterShutDownEvent struct {
@@ -78,7 +76,3 @@ func (m_ MTRBridgedDeviceBasicClusterShutDownEvent) Autorelease() MTRBridgedDevi
 func NewMTRBridgedDeviceBasicClusterShutDownEvent() MTRBridgedDeviceBasicClusterShutDownEvent {
 	return getMTRBridgedDeviceBasicClusterShutDownEventClass().New()
 }
-
-
-
-

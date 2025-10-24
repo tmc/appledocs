@@ -1,0 +1,168 @@
+// Code generated from Apple documentation for AVFoundation. DO NOT EDIT.
+
+package avfoundation
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+/* debug [class.gen.go]: Generating class AVContentKey */
+
+
+/* debug [class_header]: Header for AVContentKey */
+// The class instance for the [ContentKey] class.
+var (
+	ContentKeyClass     _ContentKeyClass
+	ContentKeyClassOnce sync.Once
+)
+
+func getContentKeyClass() _ContentKeyClass {
+	ContentKeyClassOnce.Do(func() {
+		ContentKeyClass = _ContentKeyClass{objc.GetClass("AVContentKey")}
+	})
+	return ContentKeyClass
+}
+
+type _ContentKeyClass struct {
+	class objc.Class
+}
+/* debug [class_header]: End header */
+
+
+
+/* debug [class_interface]: Interface for ContentKey */
+// An interface definition for the [ContentKey] class.
+type IContentKey interface {
+	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ContentKey */
+	// properties:
+	ContentKeySpecifier() IAVContentKeySpecifier
+	ExternalContentProtectionStatus() ExternalContentProtectionStatus
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ContentKey */
+	// methods:
+	Revoke()
+/* debug [class_interface_methods]: End methods */
+
+}
+/* debug [class_interface]: End interface */
+
+
+
+/* debug [class_constructors]: Constructors for ContentKey */
+// Alloc allocates a new instance without initialization.
+func (cc _ContentKeyClass) Alloc() ContentKey {
+	rv := objc.Send[ContentKey](objc.ID(cc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+func (cc _ContentKeyClass) New() ContentKey {
+	rv := objc.Send[ContentKey](objc.ID(cc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (c_ ContentKey) Init() ContentKey {
+	rv := objc.Send[ContentKey](c_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (c_ ContentKey) Autorelease() ContentKey {
+	rv := objc.Send[ContentKey](c_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewContentKey creates a new ContentKey instance.
+func NewContentKey() ContentKey {
+	return getContentKeyClass().New()
+}
+/* debug [class_constructors]: End constructors */
+
+
+
+/* debug [class_struct]: Struct for ContentKey */
+// An object that represents the content key decryptor.
+
+
+// An object that represents the content key decryptor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKey
+type ContentKey struct {
+	objectivec.Object
+}
+
+// ContentKeyFrom constructs a [ContentKey] from an unsafe.Pointer.
+//
+// An object that represents the content key decryptor.
+func ContentKeyFrom(ptr unsafe.Pointer) ContentKey {
+	return ContentKey{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ContentKey *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ContentKey */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ContentKey */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ContentKey */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKey/revoke()
+func (c_ ContentKey) Revoke() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("revoke"))
+}/* debug [instance_methods/method]: Revoke */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ContentKey */
+
+// The content key’s unique identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKey/contentKeySpecifier
+func (c_ ContentKey) ContentKeySpecifier() IAVContentKeySpecifier {
+	rv := objc.Send[ContentKeySpecifier](c_.ID, objc.Sel("contentKeySpecifier"))
+	return rv
+}/* debug [instance_properties/getter]: contentKeySpecifier */
+
+
+// The external protection status for the content key based on all attached displays.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContentKey/externalContentProtectionStatus
+func (c_ ContentKey) ExternalContentProtectionStatus() ExternalContentProtectionStatus {
+	rv := objc.Send[ExternalContentProtectionStatus](c_.ID, objc.Sel("externalContentProtectionStatus"))
+	return rv
+}/* debug [instance_properties/getter]: externalContentProtectionStatus */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVContentKey */
+
+
+

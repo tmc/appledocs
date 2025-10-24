@@ -9,6 +9,9 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class VZVirtioGraphicsDevice */
+
+/* debug [class_header]: Header for VZVirtioGraphicsDevice */
 // The class instance for the [VZVirtioGraphicsDevice] class.
 var (
 	VZVirtioGraphicsDeviceClass     _VZVirtioGraphicsDeviceClass
@@ -26,33 +29,26 @@ type _VZVirtioGraphicsDeviceClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for VZVirtioGraphicsDevice */
 // An interface definition for the [VZVirtioGraphicsDevice] class.
 type IVZVirtioGraphicsDevice interface {
 	IVZGraphicsDevice
+
+	/* debug [class_interface_properties]: Properties for VZVirtioGraphicsDevice */
 	// properties:
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for VZVirtioGraphicsDevice */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// A Virtio graphics device.
+/* debug [class_interface]: End interface */
 
-
-// A Virtio graphics device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDevice
-type VZVirtioGraphicsDevice struct {
-	VZGraphicsDevice
-}
-
-// VZVirtioGraphicsDeviceFrom constructs a [VZVirtioGraphicsDevice] from an unsafe.Pointer.
-//
-// A Virtio graphics device.
-func VZVirtioGraphicsDeviceFrom(ptr unsafe.Pointer) VZVirtioGraphicsDevice {
-	return VZVirtioGraphicsDevice{
-		VZGraphicsDevice: VZGraphicsDeviceFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for VZVirtioGraphicsDevice */
 // Alloc allocates a new instance without initialization.
 func (vc _VZVirtioGraphicsDeviceClass) Alloc() VZVirtioGraphicsDevice {
 	rv := objc.Send[VZVirtioGraphicsDevice](objc.ID(vc.class), objc.Sel("alloc"))
@@ -60,7 +56,6 @@ func (vc _VZVirtioGraphicsDeviceClass) Alloc() VZVirtioGraphicsDevice {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _VZVirtioGraphicsDeviceClass) New() VZVirtioGraphicsDevice {
 	rv := objc.Send[VZVirtioGraphicsDevice](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,6 +79,42 @@ func NewVZVirtioGraphicsDevice() VZVirtioGraphicsDevice {
 	return getVZVirtioGraphicsDeviceClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for VZVirtioGraphicsDevice */
+// A Virtio graphics device.
 
+// A Virtio graphics device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioGraphicsDevice
+type VZVirtioGraphicsDevice struct {
+	VZGraphicsDevice
+}
 
+// VZVirtioGraphicsDeviceFrom constructs a [VZVirtioGraphicsDevice] from an unsafe.Pointer.
+//
+// A Virtio graphics device.
+func VZVirtioGraphicsDeviceFrom(ptr unsafe.Pointer) VZVirtioGraphicsDevice {
+	return VZVirtioGraphicsDevice{
+		VZGraphicsDevice: VZGraphicsDeviceFrom(ptr),
+	}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for VZVirtioGraphicsDevice */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for VZVirtioGraphicsDevice */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for VZVirtioGraphicsDevice */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for VZVirtioGraphicsDevice */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for VZVirtioGraphicsDevice */
+/* debug [instance_properties]: End instance properties */
+
+/* debug [class.gen.go]: End class VZVirtioGraphicsDevice */

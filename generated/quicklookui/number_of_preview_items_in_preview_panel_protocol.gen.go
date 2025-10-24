@@ -15,3 +15,4 @@ var numberOfPreviewItemsInPreviewPanelProtocol *objc.Protocol
 func init() {
 	numberOfPreviewItemsInPreviewPanelProtocol = objc.GetProtocol("numberOfPreviewItemsInPreviewPanel:")
 }
+

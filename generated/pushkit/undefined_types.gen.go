@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	Data = _undefined // referenced in PushKit
 )
-
-

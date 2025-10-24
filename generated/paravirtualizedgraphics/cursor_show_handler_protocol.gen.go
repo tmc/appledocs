@@ -16,3 +16,4 @@ var cursorShowHandlerProtocol *objc.Protocol
 func init() {
 	cursorShowHandlerProtocol = objc.GetProtocol("cursorShowHandler")
 }
+

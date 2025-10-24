@@ -21,3 +21,4 @@ var onNOCChainGenerationNeededProtocol *objc.Protocol
 func init() {
 	onNOCChainGenerationNeededProtocol = objc.GetProtocol("onNOCChainGenerationNeeded:")
 }
+

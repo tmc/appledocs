@@ -21,3 +21,4 @@ var senderProtocol *objc.Protocol
 func init() {
 	senderProtocol = objc.GetProtocol("sender")
 }
+

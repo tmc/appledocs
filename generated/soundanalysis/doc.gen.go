@@ -2,12 +2,8 @@
 
 // Package soundanalysis provides Go bindings for the SoundAnalysis framework.
 //
-// Classify various sounds by analyzing audio files or streams.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to SoundAnalysis without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/SoundAnalysis
 package soundanalysis
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/SoundAnalysis.framework/SoundAnalysis"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class CKDatabaseNotification */
+
+
+/* debug [class_header]: Header for CKDatabaseNotification */
 // The class instance for the [CKDatabaseNotification] class.
 var (
 	CKDatabaseNotificationClass     _CKDatabaseNotificationClass
@@ -25,46 +29,39 @@ func getCKDatabaseNotificationClass() _CKDatabaseNotificationClass {
 type _CKDatabaseNotificationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CKDatabaseNotification */
 // An interface definition for the [CKDatabaseNotification] class.
 type ICKDatabaseNotification interface {
 	ICKNotification
+	
+/* debug [class_interface_properties]: Properties for CKDatabaseNotification */
 	// properties:
-	DatabaseScope() unsafe.Pointer
-	SetDatabaseScope(value unsafe.Pointer)
+	DatabaseScope() CKDatabaseScope
 	IsPruned() bool
 	SetIsPruned(value bool)
-	NotificationType() unsafe.Pointer
-	SetNotificationType(value unsafe.Pointer)
+	NotificationType() objectivec.IObject
+	SetNotificationType(value objectivec.IObject)
 	ShouldSendContentAvailable() bool
 	SetShouldSendContentAvailable(value bool)
-	NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */
-	SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */)
+	NotificationInfo() ICKNotificationInfo
+	SetNotificationInfo(value ICKNotificationInfo)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CKDatabaseNotification */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A notification that triggers when the contents of a database change.
-//
-// Database subscriptions execute when changes happen in any of a database’s record zones, for example, when CloudKit saves a new record. When the subscription registers a change, it sends push notifications to the user’s devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, CloudKit excludes the device where the change originates. You configure a subscription’s notifications by setting it’s property. Do this before you save it to the server. A subscription generates either high-priority or medium-priority push notifications. CloudKit delivers medium-priority notifications to your app in the background. High-priority notifications are visual and the system displays them to the user. Visual notifications need the user’s permission. For more information, see . A subscription uses to configure its notifications. For background delivery, set only its property to . If you set any other property, CloudKit treats the notification as high-priority. Don’t rely on push notifications for specific changes because the system can coalesce them. CloudKit can omit data to keep the notification’s payload size under the APNs size limit. Consider notifications an indication of remote changes. Use to determine which database has changes, and then to fetch those changes. A notification’s property is if CloudKit omits data. You don’t instantiate this class. Instead, implement in your app delegate. Initialize with the dictionary that CloudKit passes to the method. This returns an instance of the appropriate subclass. Use the property to determine the type. Then cast to that type to access type-specific properties and methods.
+/* debug [class_interface]: End interface */
 
 
-// A notification that triggers when the contents of a database change.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseNotification
-type CKDatabaseNotification struct {
-	CKNotification
-}
 
-// CKDatabaseNotificationFrom constructs a [CKDatabaseNotification] from an unsafe.Pointer.
-//
-// A notification that triggers when the contents of a database change.
-func CKDatabaseNotificationFrom(ptr unsafe.Pointer) CKDatabaseNotification {
-	return CKDatabaseNotification{
-		CKNotification: CKNotificationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CKDatabaseNotification */
 // Alloc allocates a new instance without initialization.
 func (cc _CKDatabaseNotificationClass) Alloc() CKDatabaseNotification {
 	rv := objc.Send[CKDatabaseNotification](objc.ID(cc.class), objc.Sel("alloc"))
@@ -72,7 +69,6 @@ func (cc _CKDatabaseNotificationClass) Alloc() CKDatabaseNotification {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CKDatabaseNotificationClass) New() CKDatabaseNotification {
 	rv := objc.Send[CKDatabaseNotification](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,26 +91,65 @@ func (c_ CKDatabaseNotification) Autorelease() CKDatabaseNotification {
 func NewCKDatabaseNotification() CKDatabaseNotification {
 	return getCKDatabaseNotificationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CKDatabaseNotification */
+// A notification that triggers when the contents of a database change.
+//
+// Database subscriptions execute when changes happen in any of a database’s record zones, for example, when CloudKit saves a new record. When the subscription registers a change, it sends push notifications to the user’s devices to inform your app about the change. You can then fetch the changes and cache them on-device. When appropriate, CloudKit excludes the device where the change originates. You configure a subscription’s notifications by setting it’s property. Do this before you save it to the server. A subscription generates either high-priority or medium-priority push notifications. CloudKit delivers medium-priority notifications to your app in the background. High-priority notifications are visual and the system displays them to the user. Visual notifications need the user’s permission. For more information, see . A subscription uses to configure its notifications. For background delivery, set only its property to . If you set any other property, CloudKit treats the notification as high-priority. Don’t rely on push notifications for specific changes because the system can coalesce them. CloudKit can omit data to keep the notification’s payload size under the APNs size limit. Consider notifications an indication of remote changes. Use to determine which database has changes, and then to fetch those changes. A notification’s property is if CloudKit omits data. You don’t instantiate this class. Instead, implement in your app delegate. Initialize with the dictionary that CloudKit passes to the method. This returns an instance of the appropriate subclass. Use the property to determine the type. Then cast to that type to access type-specific properties and methods.
+
+
+// A notification that triggers when the contents of a database change.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseNotification
+type CKDatabaseNotification struct {
+	CKNotification
+}
+
+// CKDatabaseNotificationFrom constructs a [CKDatabaseNotification] from an unsafe.Pointer.
+//
+// A notification that triggers when the contents of a database change.
+func CKDatabaseNotificationFrom(ptr unsafe.Pointer) CKDatabaseNotification {
+	return CKDatabaseNotification{
+		CKNotification: CKNotificationFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CKDatabaseNotification *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CKDatabaseNotification */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CKDatabaseNotification */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CKDatabaseNotification */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CKDatabaseNotification */
 
 // The type of database.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabasenotification/databasescope
-func (c_ CKDatabaseNotification) DatabaseScope() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("databaseScope"))
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabaseNotification/databaseScope
+func (c_ CKDatabaseNotification) DatabaseScope() CKDatabaseScope {
+	rv := objc.Send[CKDatabaseScope](c_.ID, objc.Sel("databaseScope"))
 	return rv
-}
-
-
-// The type of database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckdatabasenotification/databasescope
-func (c_ CKDatabaseNotification) SetDatabaseScope(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabaseScope:"), value)
-}
+}/* debug [instance_properties/getter]: databaseScope */
 
 
 // A Boolean value that indicates whether the system removes some push notification content before delivery.
@@ -124,7 +159,7 @@ func (c_ CKDatabaseNotification) SetDatabaseScope(value unsafe.Pointer) {
 func (c_ CKDatabaseNotification) IsPruned() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPruned"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isPruned */
 
 
 // A Boolean value that indicates whether the system removes some push notification content before delivery.
@@ -133,26 +168,26 @@ func (c_ CKDatabaseNotification) IsPruned() bool {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/ispruned
 func (c_ CKDatabaseNotification) SetIsPruned(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPruned:"), value)
-}
+}/* debug [instance_properties/setter]: isPruned */
 
 
 // The type of event that generates the notification.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-func (c_ CKDatabaseNotification) NotificationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("notificationType"))
+func (c_ CKDatabaseNotification) NotificationType() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("notificationType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: notificationType */
 
 
 // The type of event that generates the notification.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cknotification/notificationtype-swift.property
-func (c_ CKDatabaseNotification) SetNotificationType(value unsafe.Pointer) {
+func (c_ CKDatabaseNotification) SetNotificationType(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationType:"), value)
-}
+}/* debug [instance_properties/setter]: notificationType */
 
 
 // A Boolean value that indicates whether the push notification includes the content available flag.
@@ -162,7 +197,7 @@ func (c_ CKDatabaseNotification) SetNotificationType(value unsafe.Pointer) {
 func (c_ CKDatabaseNotification) ShouldSendContentAvailable() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("shouldSendContentAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shouldSendContentAvailable */
 
 
 // A Boolean value that indicates whether the push notification includes the content available flag.
@@ -171,26 +206,31 @@ func (c_ CKDatabaseNotification) ShouldSendContentAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.class/shouldsendcontentavailable
 func (c_ CKDatabaseNotification) SetShouldSendContentAvailable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setShouldSendContentAvailable:"), value)
-}
+}/* debug [instance_properties/setter]: shouldSendContentAvailable */
 
 
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKDatabaseNotification) NotificationInfo() objc.IObject /* cross-framework: CKNotificationInfo */ {
+func (c_ CKDatabaseNotification) NotificationInfo() ICKNotificationInfo {
 	rv := objc.Send[CKNotificationInfo](c_.ID, objc.Sel("notificationInfo"))
 	return rv
-}
+}/* debug [instance_properties/getter]: notificationInfo */
 
 
 // The configuration for a subscription’s push notifications.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/cloudkit/cksubscription/notificationinfo-swift.property
-func (c_ CKDatabaseNotification) SetNotificationInfo(value objc.IObject /* cross-framework: CKNotificationInfo */) {
+func (c_ CKDatabaseNotification) SetNotificationInfo(value ICKNotificationInfo) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNotificationInfo:"), value)
-}
+}/* debug [instance_properties/setter]: notificationInfo */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CKDatabaseNotification */
 
 
 

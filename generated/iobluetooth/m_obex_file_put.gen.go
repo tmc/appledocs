@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mOBEXFilePut */
+
+
+/* debug [class_header]: Header for mOBEXFilePut */
 // The class instance for the [mOBEXFilePut] class.
 var (
 	MOBEXFilePutClass     _mOBEXFilePutClass
@@ -26,27 +30,30 @@ func getmOBEXFilePutClass() _mOBEXFilePutClass {
 type _mOBEXFilePutClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mOBEXFilePut */
 // An interface definition for the [mOBEXFilePut] class.
 type ImOBEXFilePut interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mOBEXFilePut */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mOBEXFilePut */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mOBEXFilePut
-type mOBEXFilePut struct {
-	objectivec.Object
-}
-
-// mOBEXFilePutFrom constructs a [mOBEXFilePut] from an unsafe.Pointer.
-func mOBEXFilePutFrom(ptr unsafe.Pointer) mOBEXFilePut {
-	return mOBEXFilePut{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mOBEXFilePut */
 // Alloc allocates a new instance without initialization.
 func (mc _mOBEXFilePutClass) Alloc() mOBEXFilePut {
 	rv := objc.Send[mOBEXFilePut](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mOBEXFilePutClass) Alloc() mOBEXFilePut {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mOBEXFilePutClass) New() mOBEXFilePut {
 	rv := objc.Send[mOBEXFilePut](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mOBEXFilePut) Autorelease() mOBEXFilePut {
 func NewmOBEXFilePut() mOBEXFilePut {
 	return getmOBEXFilePutClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mOBEXFilePut */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mOBEXFilePut
+type mOBEXFilePut struct {
+	objectivec.Object
+}
+
+// mOBEXFilePutFrom constructs a [mOBEXFilePut] from an unsafe.Pointer.
+func mOBEXFilePutFrom(ptr unsafe.Pointer) mOBEXFilePut {
+	return mOBEXFilePut{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mOBEXFilePut *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mOBEXFilePut */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mOBEXFilePut */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mOBEXFilePut */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mOBEXFilePut */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mOBEXFilePut */
 
 
 

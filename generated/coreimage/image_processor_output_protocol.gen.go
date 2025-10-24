@@ -20,3 +20,4 @@ var ImageProcessorOutputProtocol *objc.Protocol
 func init() {
 	ImageProcessorOutputProtocol = objc.GetProtocol("CIImageProcessorOutput")
 }
+

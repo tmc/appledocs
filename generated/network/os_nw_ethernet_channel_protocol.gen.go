@@ -21,3 +21,4 @@ var OS_nw_ethernet_channelProtocol *objc.Protocol
 func init() {
 	OS_nw_ethernet_channelProtocol = objc.GetProtocol("OS_nw_ethernet_channel")
 }
+

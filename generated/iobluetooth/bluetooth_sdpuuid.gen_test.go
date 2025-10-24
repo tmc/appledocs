@@ -17,6 +17,7 @@ func ExampleNewBluetoothSDPUUIDWithUUID16() {
 	)
 	// Output:
 }
+
 // ExampleNewBluetoothSDPUUIDWithUUID32 demonstrates how to create a BluetoothSDPUUID instance using NewBluetoothSDPUUIDWithUUID32.
 // Creates a new 32-bit IOBluetoothSDPUUID with the given UUID32
 func ExampleNewBluetoothSDPUUIDWithUUID32() {

@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MESampleCursorChunk */
+
+
+/* debug [class_header]: Header for MESampleCursorChunk */
 // The class instance for the [MESampleCursorChunk] class.
 var (
 	MESampleCursorChunkClass     _MESampleCursorChunkClass
@@ -26,41 +31,34 @@ func getMESampleCursorChunkClass() _MESampleCursorChunkClass {
 type _MESampleCursorChunkClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MESampleCursorChunk */
 // An interface definition for the [MESampleCursorChunk] class.
 type IMESampleCursorChunk interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MESampleCursorChunk */
 	// properties:
 	ByteSource() IMEByteSource
-	ChunkInfo() SampleCursorChunkInfo /* not a class type */
-	SetChunkInfo(value SampleCursorChunkInfo /* not a class type */)
-	ChunkStorageRange() SampleCursorStorageRange /* not a class type */
-	SetChunkStorageRange(value SampleCursorStorageRange /* not a class type */)
+	ChunkInfo() objc.IObject /* cross-framework: SampleCursorChunkInfo */
+	ChunkStorageRange() objc.IObject /* cross-framework: SampleCursorStorageRange */
 	SampleIndexWithinChunk() Index /* not a class type */
-	SetSampleIndexWithinChunk(value Index /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MESampleCursorChunk */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that provides information about the chunk of media at the location of a sample.
-//
-// The method returns an instance of this class.
+/* debug [class_interface]: End interface */
 
 
-// An object that provides information about the chunk of media at the location of a sample.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleCursorChunk
-type MESampleCursorChunk struct {
-	objectivec.Object
-}
 
-// MESampleCursorChunkFrom constructs a [MESampleCursorChunk] from an unsafe.Pointer.
-//
-// An object that provides information about the chunk of media at the location of a sample.
-func MESampleCursorChunkFrom(ptr unsafe.Pointer) MESampleCursorChunk {
-	return MESampleCursorChunk{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MESampleCursorChunk */
 // Alloc allocates a new instance without initialization.
 func (mc _MESampleCursorChunkClass) Alloc() MESampleCursorChunk {
 	rv := objc.Send[MESampleCursorChunk](objc.ID(mc.class), objc.Sel("alloc"))
@@ -68,7 +66,6 @@ func (mc _MESampleCursorChunkClass) Alloc() MESampleCursorChunk {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MESampleCursorChunkClass) New() MESampleCursorChunk {
 	rv := objc.Send[MESampleCursorChunk](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,8 +88,67 @@ func (m_ MESampleCursorChunk) Autorelease() MESampleCursorChunk {
 func NewMESampleCursorChunk() MESampleCursorChunk {
 	return getMESampleCursorChunkClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MESampleCursorChunk */
+// An object that provides information about the chunk of media at the location of a sample.
+//
+// The method returns an instance of this class.
+
+
+// An object that provides information about the chunk of media at the location of a sample.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleCursorChunk
+type MESampleCursorChunk struct {
+	objectivec.Object
+}
+
+// MESampleCursorChunkFrom constructs a [MESampleCursorChunk] from an unsafe.Pointer.
+//
+// An object that provides information about the chunk of media at the location of a sample.
+func MESampleCursorChunkFrom(ptr unsafe.Pointer) MESampleCursorChunk {
+	return MESampleCursorChunk{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MESampleCursorChunk */
+
+// Creates a new sample cursor chunk with byte source and chunk data that you provide.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleCursorChunk/init(byteSource:chunkStorageRange:chunkInfo:sampleIndexWithinChunk:)
+func NewMESampleCursorChunkWithByteSourceChunkStorageRangeChunkInfoSampleIndexWithinChunk(byteSource IMEByteSource, chunkStorageRange objc.IObject /* cross-framework: SampleCursorStorageRange */, chunkInfo objc.IObject /* cross-framework: SampleCursorChunkInfo */, sampleIndexWithinChunk Index /* not a class type */) MESampleCursorChunk {
+	instance := getMESampleCursorChunkClass().Alloc()
+	rv := objc.Send[MESampleCursorChunk](instance.ID, objc.Sel("initWithByteSource:chunkStorageRange:chunkInfo:sampleIndexWithinChunk:"), byteSource, chunkStorageRange, chunkInfo, sampleIndexWithinChunk)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewMESampleCursorChunkWithByteSourceChunkStorageRangeChunkInfoSampleIndexWithinChunk */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MESampleCursorChunk */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MESampleCursorChunk */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MESampleCursorChunk */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MESampleCursorChunk */
 
 // The byte source to use to read the data for the sample.
 //
@@ -101,64 +157,41 @@ func NewMESampleCursorChunk() MESampleCursorChunk {
 func (m_ MESampleCursorChunk) ByteSource() IMEByteSource {
 	rv := objc.Send[MEByteSource](m_.ID, objc.Sel("byteSource"))
 	return rv
-}
+}/* debug [instance_properties/getter]: byteSource */
 
 
 // An object that provides details about the chunk in the media.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/chunkinfo
-func (m_ MESampleCursorChunk) ChunkInfo() SampleCursorChunkInfo /* not a class type */ {
-	rv := objc.Send[SampleCursorChunkInfo](m_.ID, objc.Sel("chunkInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleCursorChunk/chunkInfo
+func (m_ MESampleCursorChunk) ChunkInfo() objc.IObject /* cross-framework: SampleCursorChunkInfo */ {
+	rv := objc.Send[avfoundation.SampleCursorChunkInfo](m_.ID, objc.Sel("chunkInfo"))
 	return rv
-}
-
-
-// An object that provides details about the chunk in the media.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/chunkinfo
-func (m_ MESampleCursorChunk) SetChunkInfo(value SampleCursorChunkInfo /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setChunkInfo:"), value)
-}
+}/* debug [instance_properties/getter]: chunkInfo */
 
 
 // The offset location and length of the sample’s chunk within the byte source.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/chunkstoragerange
-func (m_ MESampleCursorChunk) ChunkStorageRange() SampleCursorStorageRange /* not a class type */ {
-	rv := objc.Send[SampleCursorStorageRange](m_.ID, objc.Sel("chunkStorageRange"))
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleCursorChunk/chunkStorageRange
+func (m_ MESampleCursorChunk) ChunkStorageRange() objc.IObject /* cross-framework: SampleCursorStorageRange */ {
+	rv := objc.Send[avfoundation.SampleCursorStorageRange](m_.ID, objc.Sel("chunkStorageRange"))
 	return rv
-}
-
-
-// The offset location and length of the sample’s chunk within the byte source.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/chunkstoragerange
-func (m_ MESampleCursorChunk) SetChunkStorageRange(value SampleCursorStorageRange /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setChunkStorageRange:"), value)
-}
+}/* debug [instance_properties/getter]: chunkStorageRange */
 
 
 // The offset index of the sample within the chunk, in samples.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/sampleindexwithinchunk
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/MESampleCursorChunk/sampleIndexWithinChunk
 func (m_ MESampleCursorChunk) SampleIndexWithinChunk() Index /* not a class type */ {
 	rv := objc.Send[Index](m_.ID, objc.Sel("sampleIndexWithinChunk"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sampleIndexWithinChunk */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The offset index of the sample within the chunk, in samples.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/mesamplecursorchunk/sampleindexwithinchunk
-func (m_ MESampleCursorChunk) SetSampleIndexWithinChunk(value Index /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSampleIndexWithinChunk:"), value)
-}
-
+/* debug [class.gen.go]: End class MESampleCursorChunk */
 
 

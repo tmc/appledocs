@@ -21,3 +21,4 @@ var CKSyncEngineDelegateProtocol *objc.Protocol
 func init() {
 	CKSyncEngineDelegateProtocol = objc.GetProtocol("CKSyncEngineDelegate")
 }
+

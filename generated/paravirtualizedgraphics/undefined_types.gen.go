@@ -9,19 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	PGAddTraceRange = _undefined // referenced in ParavirtualizedGraphics
-	PGCreateTask = _undefined // referenced in ParavirtualizedGraphics
-	PGDestroyTask = _undefined // referenced in ParavirtualizedGraphics
-	PGDisplayCursorGlyphHandler = _undefined // referenced in ParavirtualizedGraphics
-	PGDisplayCursorMoveHandler = _undefined // referenced in ParavirtualizedGraphics
-	PGDisplayCursorShowHandler = _undefined // referenced in ParavirtualizedGraphics
-	PGDisplayModeChangeHandler = _undefined // referenced in ParavirtualizedGraphics
-	PGDisplayNewFrameEventHandler = _undefined // referenced in ParavirtualizedGraphics
-	PGMapMemory = _undefined // referenced in ParavirtualizedGraphics
-	PGRaiseInterrupt = _undefined // referenced in ParavirtualizedGraphics
-	PGReadMemory = _undefined // referenced in ParavirtualizedGraphics
-	PGRemoveTraceRange = _undefined // referenced in ParavirtualizedGraphics
-	PGUnmapMemory = _undefined // referenced in ParavirtualizedGraphics
+	Size = _undefined // referenced in ParavirtualizedGraphics
 )
 
 

@@ -20,3 +20,4 @@ var layerCountProtocol *objc.Protocol
 func init() {
 	layerCountProtocol = objc.GetProtocol("layerCount")
 }
+

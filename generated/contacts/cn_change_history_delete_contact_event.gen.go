@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class CNChangeHistoryDeleteContactEvent */
+
+
+/* debug [class_header]: Header for CNChangeHistoryDeleteContactEvent */
 // The class instance for the [CNChangeHistoryDeleteContactEvent] class.
 var (
 	CNChangeHistoryDeleteContactEventClass     _CNChangeHistoryDeleteContactEventClass
@@ -26,35 +30,31 @@ func getCNChangeHistoryDeleteContactEventClass() _CNChangeHistoryDeleteContactEv
 type _CNChangeHistoryDeleteContactEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNChangeHistoryDeleteContactEvent */
 // An interface definition for the [CNChangeHistoryDeleteContactEvent] class.
 type ICNChangeHistoryDeleteContactEvent interface {
 	ICNChangeHistoryEvent
+	
+/* debug [class_interface_properties]: Properties for CNChangeHistoryDeleteContactEvent */
 	// properties:
 	ContactIdentifier() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNChangeHistoryDeleteContactEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that represents a user deleting a contact.
 
 
-// An object that represents a user deleting a contact.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteContactEvent
-type CNChangeHistoryDeleteContactEvent struct {
-	CNChangeHistoryEvent
-}
-
-// CNChangeHistoryDeleteContactEventFrom constructs a [CNChangeHistoryDeleteContactEvent] from an unsafe.Pointer.
-//
-// An object that represents a user deleting a contact.
-func CNChangeHistoryDeleteContactEventFrom(ptr unsafe.Pointer) CNChangeHistoryDeleteContactEvent {
-	return CNChangeHistoryDeleteContactEvent{
-		CNChangeHistoryEvent: CNChangeHistoryEventFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CNChangeHistoryDeleteContactEvent */
 // Alloc allocates a new instance without initialization.
 func (cc _CNChangeHistoryDeleteContactEventClass) Alloc() CNChangeHistoryDeleteContactEvent {
 	rv := objc.Send[CNChangeHistoryDeleteContactEvent](objc.ID(cc.class), objc.Sel("alloc"))
@@ -62,7 +62,6 @@ func (cc _CNChangeHistoryDeleteContactEventClass) Alloc() CNChangeHistoryDeleteC
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNChangeHistoryDeleteContactEventClass) New() CNChangeHistoryDeleteContactEvent {
 	rv := objc.Send[CNChangeHistoryDeleteContactEvent](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,8 +84,54 @@ func (c_ CNChangeHistoryDeleteContactEvent) Autorelease() CNChangeHistoryDeleteC
 func NewCNChangeHistoryDeleteContactEvent() CNChangeHistoryDeleteContactEvent {
 	return getCNChangeHistoryDeleteContactEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CNChangeHistoryDeleteContactEvent */
+// An object that represents a user deleting a contact.
+
+
+// An object that represents a user deleting a contact.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryDeleteContactEvent
+type CNChangeHistoryDeleteContactEvent struct {
+	CNChangeHistoryEvent
+}
+
+// CNChangeHistoryDeleteContactEventFrom constructs a [CNChangeHistoryDeleteContactEvent] from an unsafe.Pointer.
+//
+// An object that represents a user deleting a contact.
+func CNChangeHistoryDeleteContactEventFrom(ptr unsafe.Pointer) CNChangeHistoryDeleteContactEvent {
+	return CNChangeHistoryDeleteContactEvent{
+		CNChangeHistoryEvent: CNChangeHistoryEventFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CNChangeHistoryDeleteContactEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CNChangeHistoryDeleteContactEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNChangeHistoryDeleteContactEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNChangeHistoryDeleteContactEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNChangeHistoryDeleteContactEvent */
 
 // A string that uniquely identifies the contact that the user deleted.
 //
@@ -95,7 +140,12 @@ func NewCNChangeHistoryDeleteContactEvent() CNChangeHistoryDeleteContactEvent {
 func (c_ CNChangeHistoryDeleteContactEvent) ContactIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("contactIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: contactIdentifier */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CNChangeHistoryDeleteContactEvent */
 
 
 

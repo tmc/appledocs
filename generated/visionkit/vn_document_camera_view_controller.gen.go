@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class VNDocumentCameraViewController */
+
+/* debug [class_header]: Header for VNDocumentCameraViewController */
 // The class instance for the [DocumentCameraViewController] class.
 var (
 	DocumentCameraViewControllerClass     _DocumentCameraViewControllerClass
@@ -27,35 +29,26 @@ type _DocumentCameraViewControllerClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for DocumentCameraViewController */
 // An interface definition for the [DocumentCameraViewController] class.
 type IDocumentCameraViewController interface {
-	appkit.IViewController
+	IViewController
+
+	/* debug [class_interface_properties]: Properties for DocumentCameraViewController */
 	// properties:
-	Delegate() DocumentCameraViewControllerDelegate /* not a class type */
-	SetDelegate(value DocumentCameraViewControllerDelegate /* not a class type */)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for DocumentCameraViewController */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that presents UI for a camera pass-through that helps people scan physical documents.
+/* debug [class_interface]: End interface */
 
-
-// An object that presents UI for a camera pass-through that helps people scan physical documents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController
-type DocumentCameraViewController struct {
-	appkit.ViewController
-}
-
-// DocumentCameraViewControllerFrom constructs a [DocumentCameraViewController] from an unsafe.Pointer.
-//
-// An object that presents UI for a camera pass-through that helps people scan physical documents.
-func DocumentCameraViewControllerFrom(ptr unsafe.Pointer) DocumentCameraViewController {
-	return DocumentCameraViewController{
-		ViewController: appkit.ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for DocumentCameraViewController */
 // Alloc allocates a new instance without initialization.
 func (dc _DocumentCameraViewControllerClass) Alloc() DocumentCameraViewController {
 	rv := objc.Send[DocumentCameraViewController](objc.ID(dc.class), objc.Sel("alloc"))
@@ -63,7 +56,6 @@ func (dc _DocumentCameraViewControllerClass) Alloc() DocumentCameraViewControlle
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DocumentCameraViewControllerClass) New() DocumentCameraViewController {
 	rv := objc.Send[DocumentCameraViewController](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,7 +79,36 @@ func NewDocumentCameraViewController() DocumentCameraViewController {
 	return getDocumentCameraViewControllerClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for DocumentCameraViewController */
+// An object that presents UI for a camera pass-through that helps people scan physical documents.
+
+// An object that presents UI for a camera pass-through that helps people scan physical documents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraViewController
+type DocumentCameraViewController struct {
+	ViewController
+}
+
+// DocumentCameraViewControllerFrom constructs a [DocumentCameraViewController] from an unsafe.Pointer.
+//
+// An object that presents UI for a camera pass-through that helps people scan physical documents.
+func DocumentCameraViewControllerFrom(ptr unsafe.Pointer) DocumentCameraViewController {
+	return DocumentCameraViewController{
+		ViewController: ViewControllerFrom(ptr),
+	}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for DocumentCameraViewController */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for DocumentCameraViewController */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for DocumentCameraViewController */
 
 // A Boolean variable that indicates whether or not the current device supports document scanning.
 //
@@ -96,24 +117,13 @@ func NewDocumentCameraViewController() DocumentCameraViewController {
 func (dc _DocumentCameraViewControllerClass) Supported() bool {
 	rv := objc.Send[bool](objc.ID(dc.class), objc.Sel("supported"))
 	return rv
-}
+} /* debug [class_properties_class/property]: supported */
+/* debug [class_properties_class]: End class properties */
 
-// The delegate to be notified when the user saves or cancels the document scanner.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcameraviewcontroller/delegate
-func (d_ DocumentCameraViewController) Delegate() DocumentCameraViewControllerDelegate /* not a class type */ {
-	rv := objc.Send[DocumentCameraViewControllerDelegate](d_.ID, objc.Sel("delegate"))
-	return rv
-}
+/* debug [instance_methods]: Instance methods for DocumentCameraViewController */
+/* debug [instance_methods]: End instance methods */
 
+/* debug [instance_properties]: Instance properties for DocumentCameraViewController */
+/* debug [instance_properties]: End instance properties */
 
-// The delegate to be notified when the user saves or cancels the document scanner.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcameraviewcontroller/delegate
-func (d_ DocumentCameraViewController) SetDelegate(value DocumentCameraViewControllerDelegate /* not a class type */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
+/* debug [class.gen.go]: End class VNDocumentCameraViewController */

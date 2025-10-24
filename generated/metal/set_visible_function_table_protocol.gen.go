@@ -20,3 +20,4 @@ var setVisibleFunctionTableProtocol *objc.Protocol
 func init() {
 	setVisibleFunctionTableProtocol = objc.GetProtocol("setVisibleFunctionTable:")
 }
+

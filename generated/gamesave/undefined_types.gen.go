@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	GSSyncedDirectoryVersion = _undefined // referenced in GameSave
 )
-
-

@@ -15,3 +15,4 @@ var processorWithFormatDescriptionProtocol *objc.Protocol
 func init() {
 	processorWithFormatDescriptionProtocol = objc.GetProtocol("processorWithFormatDescription:")
 }
+

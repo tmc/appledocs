@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	Bool = _undefined // referenced in AutomaticAssessmentConfiguration
 )
-
-

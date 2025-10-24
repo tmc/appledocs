@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPMovieAccessLog */
+
+
+/* debug [class_header]: Header for MPMovieAccessLog */
 // The class instance for the [MovieAccessLog] class.
 var (
 	MovieAccessLogClass     _MovieAccessLogClass
@@ -28,46 +32,36 @@ func getMovieAccessLogClass() _MovieAccessLogClass {
 type _MovieAccessLogClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MovieAccessLog */
 // An interface definition for the [MovieAccessLog] class.
 type IMovieAccessLog interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MovieAccessLog */
 	// properties:
-	ImageCropRect() objc.IObject /* cross-framework: Rect */
-	SetImageCropRect(value objc.IObject /* cross-framework: Rect */)
-	Events() unsafe.Pointer
-	SetEvents(value unsafe.Pointer)
-	ExtendedLogData() objc.IObject /* cross-framework: Data */
-	SetExtendedLogData(value objc.IObject /* cross-framework: Data */)
-	ExtendedLogDataStringEncoding() uint
-	SetExtendedLogDataStringEncoding(value uint)
+	ImageCropRect() corefoundation.CGRect
+	SetImageCropRect(value corefoundation.CGRect)
 	AccessLog() IMPMovieAccessLog
 	SetAccessLog(value IMPMovieAccessLog)
 	ShowsRouteButton() bool
 	SetShowsRouteButton(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MovieAccessLog */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Key metrics about network playback for an associated movie player that’s playing streamed content.
-//
-// The log presents these metrics as a collection of instances and also makes it available in a textual format. A movie access log describes one uninterrupted period of playback. A movie player (an instance of the class) can access this log from its property. All movie access log properties are read-only.
+/* debug [class_interface]: End interface */
 
 
-// Key metrics about network playback for an associated movie player that’s playing streamed content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLog
-type MovieAccessLog struct {
-	objectivec.Object
-}
 
-// MovieAccessLogFrom constructs a [MovieAccessLog] from an unsafe.Pointer.
-//
-// Key metrics about network playback for an associated movie player that’s playing streamed content.
-func MovieAccessLogFrom(ptr unsafe.Pointer) MovieAccessLog {
-	return MovieAccessLog{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MovieAccessLog */
 // Alloc allocates a new instance without initialization.
 func (mc _MovieAccessLogClass) Alloc() MovieAccessLog {
 	rv := objc.Send[MovieAccessLog](objc.ID(mc.class), objc.Sel("alloc"))
@@ -75,7 +69,6 @@ func (mc _MovieAccessLogClass) Alloc() MovieAccessLog {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MovieAccessLogClass) New() MovieAccessLog {
 	rv := objc.Send[MovieAccessLog](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -98,83 +91,72 @@ func (m_ MovieAccessLog) Autorelease() MovieAccessLog {
 func NewMovieAccessLog() MovieAccessLog {
 	return getMovieAccessLogClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+/* debug [class_struct]: Struct for MovieAccessLog */
+// Key metrics about network playback for an associated movie player that’s playing streamed content.
+//
+// The log presents these metrics as a collection of instances and also makes it available in a textual format. A movie access log describes one uninterrupted period of playback. A movie player (an instance of the class) can access this log from its property. All movie access log properties are read-only.
+
+
+// Key metrics about network playback for an associated movie player that’s playing streamed content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (m_ MovieAccessLog) ImageCropRect() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("imageCropRect"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMovieAccessLog
+type MovieAccessLog struct {
+	objectivec.Object
 }
 
+// MovieAccessLogFrom constructs a [MovieAccessLog] from an unsafe.Pointer.
+//
+// Key metrics about network playback for an associated movie player that’s playing streamed content.
+func MovieAccessLogFrom(ptr unsafe.Pointer) MovieAccessLog {
+	return MovieAccessLog{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MovieAccessLog *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MovieAccessLog */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MovieAccessLog */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MovieAccessLog */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MovieAccessLog */
 
 // The bounds, in points, of the content area for the full size image associated with the media item artwork.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
-func (m_ MovieAccessLog) SetImageCropRect(value objc.IObject /* cross-framework: Rect */) {
+func (m_ MovieAccessLog) ImageCropRect() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](m_.ID, objc.Sel("imageCropRect"))
+	return rv
+}/* debug [instance_properties/getter]: imageCropRect */
+
+
+// The bounds, in points, of the content area for the full size image associated with the media item artwork.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitemartwork/imagecroprect
+func (m_ MovieAccessLog) SetImageCropRect(value corefoundation.CGRect) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageCropRect:"), value)
-}
-
-
-// The events in the movie access log.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/events
-func (m_ MovieAccessLog) Events() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("events"))
-	return rv
-}
-
-
-// The events in the movie access log.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/events
-func (m_ MovieAccessLog) SetEvents(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEvents:"), value)
-}
-
-
-// A textual version of the web server access log for the associated movie player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdata
-func (m_ MovieAccessLog) ExtendedLogData() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("extendedLogData"))
-	return rv
-}
-
-
-// A textual version of the web server access log for the associated movie player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdata
-func (m_ MovieAccessLog) SetExtendedLogData(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogData:"), value)
-}
-
-
-// The string encoding for the
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdatastringencoding
-func (m_ MovieAccessLog) ExtendedLogDataStringEncoding() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("extendedLogDataStringEncoding"))
-	return rv
-}
-
-
-// The string encoding for the
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieaccesslog/extendedlogdatastringencoding
-func (m_ MovieAccessLog) SetExtendedLogDataStringEncoding(value uint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLogDataStringEncoding:"), value)
-}
+}/* debug [instance_properties/setter]: imageCropRect */
 
 
 // A snapshot of the network playback log for the movie player if it is playing a network stream.
@@ -184,7 +166,7 @@ func (m_ MovieAccessLog) SetExtendedLogDataStringEncoding(value uint) {
 func (m_ MovieAccessLog) AccessLog() IMPMovieAccessLog {
 	rv := objc.Send[MovieAccessLog](m_.ID, objc.Sel("accessLog"))
 	return rv
-}
+}/* debug [instance_properties/getter]: accessLog */
 
 
 // A snapshot of the network playback log for the movie player if it is playing a network stream.
@@ -193,7 +175,7 @@ func (m_ MovieAccessLog) AccessLog() IMPMovieAccessLog {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmovieplayercontroller/accesslog
 func (m_ MovieAccessLog) SetAccessLog(value IMPMovieAccessLog) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessLog:"), value)
-}
+}/* debug [instance_properties/setter]: accessLog */
 
 
 // A Boolean value that indicates whether the route button is visible in the volume view.
@@ -203,7 +185,7 @@ func (m_ MovieAccessLog) SetAccessLog(value IMPMovieAccessLog) {
 func (m_ MovieAccessLog) ShowsRouteButton() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsRouteButton"))
 	return rv
-}
+}/* debug [instance_properties/getter]: showsRouteButton */
 
 
 // A Boolean value that indicates whether the route button is visible in the volume view.
@@ -212,7 +194,11 @@ func (m_ MovieAccessLog) ShowsRouteButton() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpvolumeview/showsroutebutton
 func (m_ MovieAccessLog) SetShowsRouteButton(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsRouteButton:"), value)
-}
+}/* debug [instance_properties/setter]: showsRouteButton */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPMovieAccessLog */
 
 

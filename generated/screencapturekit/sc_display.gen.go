@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SCDisplay */
+
+
+/* debug [class_header]: Header for SCDisplay */
 // The class instance for the [Display] class.
 var (
 	DisplayClass     _DisplayClass
@@ -27,41 +31,34 @@ func getDisplayClass() _DisplayClass {
 type _DisplayClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Display */
 // An interface definition for the [Display] class.
 type IDisplay interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Display */
 	// properties:
 	DisplayID() DirectDisplayID /* not a class type */
-	Frame() objc.IObject /* cross-framework: Rect */
-	SetFrame(value objc.IObject /* cross-framework: Rect */)
+	Frame() corefoundation.CGRect
 	Height() int
-	SetHeight(value int)
 	Width() int
-	SetWidth(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Display */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An instance that represents a display device.
-//
-// A display object represents a physical display connected to a Mac. Query the display to retrieve its unique identifier and onscreen coordinates. Retrieve the available displays from an instance of . Select a display to capture and use it to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+/* debug [class_interface]: End interface */
 
 
-// An instance that represents a display device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay
-type Display struct {
-	objectivec.Object
-}
 
-// DisplayFrom constructs a [Display] from an unsafe.Pointer.
-//
-// An instance that represents a display device.
-func DisplayFrom(ptr unsafe.Pointer) Display {
-	return Display{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Display */
 // Alloc allocates a new instance without initialization.
 func (dc _DisplayClass) Alloc() Display {
 	rv := objc.Send[Display](objc.ID(dc.class), objc.Sel("alloc"))
@@ -69,7 +66,6 @@ func (dc _DisplayClass) Alloc() Display {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DisplayClass) New() Display {
 	rv := objc.Send[Display](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,8 +88,54 @@ func (d_ Display) Autorelease() Display {
 func NewDisplay() Display {
 	return getDisplayClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Display */
+// An instance that represents a display device.
+//
+// A display object represents a physical display connected to a Mac. Query the display to retrieve its unique identifier and onscreen coordinates. Retrieve the available displays from an instance of . Select a display to capture and use it to create an instance of . Apply the filter to an instance of to limit its output to content matching your criteria.
+
+
+// An instance that represents a display device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay
+type Display struct {
+	objectivec.Object
+}
+
+// DisplayFrom constructs a [Display] from an unsafe.Pointer.
+//
+// An instance that represents a display device.
+func DisplayFrom(ptr unsafe.Pointer) Display {
+	return Display{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Display *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for Display */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Display */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Display */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Display */
 
 // The Core Graphics display identifier.
 //
@@ -102,64 +144,42 @@ func NewDisplay() Display {
 func (d_ Display) DisplayID() DirectDisplayID /* not a class type */ {
 	rv := objc.Send[DirectDisplayID](d_.ID, objc.Sel("displayID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: displayID */
 
 
 // The frame of the display.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/frame
-func (d_ Display) Frame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](d_.ID, objc.Sel("frame"))
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/frame
+func (d_ Display) Frame() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](d_.ID, objc.Sel("frame"))
 	return rv
-}
-
-
-// The frame of the display.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/frame
-func (d_ Display) SetFrame(value objc.IObject /* cross-framework: Rect */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setFrame:"), value)
-}
+}/* debug [instance_properties/getter]: frame */
 
 
 // The height of the display in points.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/height
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/height
 func (d_ Display) Height() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("height"))
 	return rv
-}
-
-
-// The height of the display in points.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/height
-func (d_ Display) SetHeight(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setHeight:"), value)
-}
+}/* debug [instance_properties/getter]: height */
 
 
 // The width of the display in points.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCDisplay/width
 func (d_ Display) Width() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("width"))
 	return rv
-}
+}/* debug [instance_properties/getter]: width */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The width of the display in points.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scdisplay/width
-func (d_ Display) SetWidth(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setWidth:"), value)
-}
+/* debug [class.gen.go]: End class SCDisplay */
 
 
 

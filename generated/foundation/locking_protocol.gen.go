@@ -21,3 +21,4 @@ var LockingProtocol *objc.Protocol
 func init() {
 	LockingProtocol = objc.GetProtocol("NSLocking")
 }
+

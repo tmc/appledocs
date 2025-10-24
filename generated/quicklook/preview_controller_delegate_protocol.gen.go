@@ -18,3 +18,4 @@ var PreviewControllerDelegateProtocol *objc.Protocol
 func init() {
 	PreviewControllerDelegateProtocol = objc.GetProtocol("QLPreviewControllerDelegate")
 }
+

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRMessagesClusterMessageStruct */
+
+
+/* debug [class_header]: Header for MTRMessagesClusterMessageStruct */
 // The class instance for the [MTRMessagesClusterMessageStruct] class.
 var (
 	MTRMessagesClusterMessageStructClass     _MTRMessagesClusterMessageStructClass
@@ -27,41 +31,42 @@ func getMTRMessagesClusterMessageStructClass() _MTRMessagesClusterMessageStructC
 type _MTRMessagesClusterMessageStructClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRMessagesClusterMessageStruct */
 // An interface definition for the [MTRMessagesClusterMessageStruct] class.
 type IMTRMessagesClusterMessageStruct interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRMessagesClusterMessageStruct */
 	// properties:
 	Duration() objc.IObject /* cross-framework: NSNumber */
 	SetDuration(value objc.IObject /* cross-framework: NSNumber */)
 	MessageControl() objc.IObject /* cross-framework: NSNumber */
 	SetMessageControl(value objc.IObject /* cross-framework: NSNumber */)
-	MessageID() objc.IObject /* cross-framework: NSData */
-	SetMessageID(value objc.IObject /* cross-framework: NSData */)
+	MessageID() foundation.Data
+	SetMessageID(value foundation.Data)
 	MessageText() objc.IObject /* cross-framework: NSString */
 	SetMessageText(value objc.IObject /* cross-framework: NSString */)
 	Priority() objc.IObject /* cross-framework: NSNumber */
 	SetPriority(value objc.IObject /* cross-framework: NSNumber */)
-	Responses() objc.IObject /* cross-framework: NSArray */
-	SetResponses(value objc.IObject /* cross-framework: NSArray */)
 	StartTime() objc.IObject /* cross-framework: NSNumber */
 	SetStartTime(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRMessagesClusterMessageStruct */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct
-type MTRMessagesClusterMessageStruct struct {
-	objectivec.Object
-}
-
-// MTRMessagesClusterMessageStructFrom constructs a [MTRMessagesClusterMessageStruct] from an unsafe.Pointer.
-func MTRMessagesClusterMessageStructFrom(ptr unsafe.Pointer) MTRMessagesClusterMessageStruct {
-	return MTRMessagesClusterMessageStruct{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRMessagesClusterMessageStruct */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRMessagesClusterMessageStructClass) Alloc() MTRMessagesClusterMessageStruct {
 	rv := objc.Send[MTRMessagesClusterMessageStruct](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +74,6 @@ func (mc _MTRMessagesClusterMessageStructClass) Alloc() MTRMessagesClusterMessag
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRMessagesClusterMessageStructClass) New() MTRMessagesClusterMessageStruct {
 	rv := objc.Send[MTRMessagesClusterMessageStruct](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,112 +96,141 @@ func (m_ MTRMessagesClusterMessageStruct) Autorelease() MTRMessagesClusterMessag
 func NewMTRMessagesClusterMessageStruct() MTRMessagesClusterMessageStruct {
 	return getMTRMessagesClusterMessageStructClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRMessagesClusterMessageStruct */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct
+type MTRMessagesClusterMessageStruct struct {
+	objectivec.Object
+}
+
+// MTRMessagesClusterMessageStructFrom constructs a [MTRMessagesClusterMessageStruct] from an unsafe.Pointer.
+func MTRMessagesClusterMessageStructFrom(ptr unsafe.Pointer) MTRMessagesClusterMessageStruct {
+	return MTRMessagesClusterMessageStruct{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRMessagesClusterMessageStruct *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRMessagesClusterMessageStruct */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRMessagesClusterMessageStruct */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRMessagesClusterMessageStruct */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRMessagesClusterMessageStruct */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/duration
 func (m_ MTRMessagesClusterMessageStruct) Duration() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("duration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: duration */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/duration
 func (m_ MTRMessagesClusterMessageStruct) SetDuration(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
-}
+}/* debug [instance_properties/setter]: duration */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageControl
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/messagecontrol
 func (m_ MTRMessagesClusterMessageStruct) MessageControl() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("messageControl"))
 	return rv
-}
+}/* debug [instance_properties/getter]: messageControl */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageControl
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/messagecontrol
 func (m_ MTRMessagesClusterMessageStruct) SetMessageControl(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageControl:"), value)
-}
+}/* debug [instance_properties/setter]: messageControl */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageID
-func (m_ MTRMessagesClusterMessageStruct) MessageID() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("messageID"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/messageid
+func (m_ MTRMessagesClusterMessageStruct) MessageID() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("messageID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: messageID */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageID
-func (m_ MTRMessagesClusterMessageStruct) SetMessageID(value objc.IObject /* cross-framework: NSData */) {
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/messageid
+func (m_ MTRMessagesClusterMessageStruct) SetMessageID(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
-}
+}/* debug [instance_properties/setter]: messageID */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/messagetext
 func (m_ MTRMessagesClusterMessageStruct) MessageText() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("messageText"))
 	return rv
-}
+}/* debug [instance_properties/getter]: messageText */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/messageText
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/messagetext
 func (m_ MTRMessagesClusterMessageStruct) SetMessageText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageText:"), value)
-}
+}/* debug [instance_properties/setter]: messageText */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/priority
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/priority
 func (m_ MTRMessagesClusterMessageStruct) Priority() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("priority"))
 	return rv
-}
+}/* debug [instance_properties/getter]: priority */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/priority
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/priority
 func (m_ MTRMessagesClusterMessageStruct) SetPriority(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPriority:"), value)
-}
+}/* debug [instance_properties/setter]: priority */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/responses
-func (m_ MTRMessagesClusterMessageStruct) Responses() objc.IObject /* cross-framework: NSArray */ {
-	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("responses"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/responses
-func (m_ MTRMessagesClusterMessageStruct) SetResponses(value objc.IObject /* cross-framework: NSArray */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setResponses:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/startTime
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/starttime
 func (m_ MTRMessagesClusterMessageStruct) StartTime() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("startTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startTime */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageStruct/startTime
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagestruct/starttime
 func (m_ MTRMessagesClusterMessageStruct) SetStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
-}
+}/* debug [instance_properties/setter]: startTime */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRMessagesClusterMessageStruct */
 
 
 

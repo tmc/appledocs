@@ -17,12 +17,13 @@ func ExampleNewToolPickerEraserItemWithEraserType() {
 	)
 	// Output:
 }
+
 // ExampleNewToolPickerEraserItemWithEraserTypeWidth demonstrates how to create a ToolPickerEraserItem instance using NewToolPickerEraserItemWithEraserTypeWidth.
 // Creates a new eraser item with the specified width.
 func ExampleNewToolPickerEraserItemWithEraserTypeWidth() {
 	_ = pencilkit.NewToolPickerEraserItemWithEraserTypeWidth(
 		pencilkit.EraserType{}, // eraserType EraserType
-		0.0, // width float64
+		0.0,                    // width float64
 	)
 	// Output:
 }

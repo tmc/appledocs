@@ -7,9 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSOpenGLView */
+
+
+/* debug [class_header]: Header for NSOpenGLView */
 // The class instance for the [OpenGLView] class.
 var (
 	OpenGLViewClass     _OpenGLViewClass
@@ -26,10 +30,16 @@ func getOpenGLViewClass() _OpenGLViewClass {
 type _OpenGLViewClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for OpenGLView */
 // An interface definition for the [OpenGLView] class.
 type IOpenGLView interface {
 	IView
+	
+/* debug [class_interface_properties]: Properties for OpenGLView */
 	// properties:
 	OpenGLContext() IOpenGLContext
 	SetOpenGLContext(value IOpenGLContext)
@@ -39,31 +49,19 @@ type IOpenGLView interface {
 	SetWantsBestResolutionOpenGLSurface(value bool)
 	WantsExtendedDynamicRangeOpenGLSurface() bool
 	SetWantsExtendedDynamicRangeOpenGLSurface(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for OpenGLView */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A view that displays OpenGL content in a view.
-//
-// An object maintains an and object into which OpenGL calls can be rendered. The view provides methods for accessing and managing the and objects, as well as notifications of visible region changes. An object cannot have subviews. You can, however, divide a single into multiple rendering areas using the function. When creating an object in Interface Builder, you use the inspector window to specify the pixel format attributes you want for the view. Only those attributes listed in the Interface Builder inspector are set when the view is instantiated.
+/* debug [class_interface]: End interface */
 
 
-// A view that displays OpenGL content in a view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView
-type OpenGLView struct {
-	View
-}
 
-// OpenGLViewFrom constructs a [OpenGLView] from an unsafe.Pointer.
-//
-// A view that displays OpenGL content in a view.
-func OpenGLViewFrom(ptr unsafe.Pointer) OpenGLView {
-	return OpenGLView{
-		View: ViewFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for OpenGLView */
 // Alloc allocates a new instance without initialization.
 func (oc _OpenGLViewClass) Alloc() OpenGLView {
 	rv := objc.Send[OpenGLView](objc.ID(oc.class), objc.Sel("alloc"))
@@ -71,7 +69,6 @@ func (oc _OpenGLViewClass) Alloc() OpenGLView {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OpenGLViewClass) New() OpenGLView {
 	rv := objc.Send[OpenGLView](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,21 +91,54 @@ func (o_ OpenGLView) Autorelease() OpenGLView {
 func NewOpenGLView() OpenGLView {
 	return getOpenGLViewClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for OpenGLView */
+// A view that displays OpenGL content in a view.
+//
+// An object maintains an and object into which OpenGL calls can be rendered. The view provides methods for accessing and managing the and objects, as well as notifications of visible region changes. An object cannot have subviews. You can, however, divide a single into multiple rendering areas using the function. When creating an object in Interface Builder, you use the inspector window to specify the pixel format attributes you want for the view. Only those attributes listed in the Interface Builder inspector are set when the view is instantiated.
+
+
+// A view that displays OpenGL content in a view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView
+type OpenGLView struct {
+	View
+}
+
+// OpenGLViewFrom constructs a [OpenGLView] from an unsafe.Pointer.
+//
+// A view that displays OpenGL content in a view.
+func OpenGLViewFrom(ptr unsafe.Pointer) OpenGLView {
+	return OpenGLView{
+		View: ViewFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for OpenGLView */
 
 // Returns an object initialized with the specified frame rectangle and pixel format.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
-func NewOpenGLViewWithFramePixelFormat(frameRect objc.IObject /* cross-framework: Rect */, format IOpenGLPixelFormat) OpenGLView {
+func NewOpenGLViewWithFramePixelFormat(frameRect Rect /* not a class type */, format IOpenGLPixelFormat) OpenGLView {
 	instance := getOpenGLViewClass().Alloc()
 	rv := objc.Send[OpenGLView](instance.ID, objc.Sel("initWithFrame:pixelFormat:"), frameRect, format)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewOpenGLViewWithFramePixelFormat */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for OpenGLView */
 
 // Returns a default object.
 //
@@ -117,8 +147,23 @@ func NewOpenGLViewWithFramePixelFormat(frameRect objc.IObject /* cross-framework
 func (oc _OpenGLViewClass) DefaultPixelFormat() IOpenGLPixelFormat {
 	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("defaultPixelFormat"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DefaultPixelFormat) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for OpenGLView */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for OpenGLView */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for OpenGLView */
 
 // The object associated with the receiver.
 //
@@ -127,7 +172,7 @@ func (oc _OpenGLViewClass) DefaultPixelFormat() IOpenGLPixelFormat {
 func (o_ OpenGLView) OpenGLContext() IOpenGLContext {
 	rv := objc.Send[OpenGLContext](o_.ID, objc.Sel("openGLContext"))
 	return rv
-}
+}/* debug [instance_properties/getter]: openGLContext */
 
 
 // The object associated with the receiver.
@@ -136,7 +181,7 @@ func (o_ OpenGLView) OpenGLContext() IOpenGLContext {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/openGLContext
 func (o_ OpenGLView) SetOpenGLContext(value IOpenGLContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLContext:"), value)
-}
+}/* debug [instance_properties/setter]: openGLContext */
 
 
 // The object associated with the receiver.
@@ -146,7 +191,7 @@ func (o_ OpenGLView) SetOpenGLContext(value IOpenGLContext) {
 func (o_ OpenGLView) PixelFormat() IOpenGLPixelFormat {
 	rv := objc.Send[OpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pixelFormat */
 
 
 // The object associated with the receiver.
@@ -155,7 +200,7 @@ func (o_ OpenGLView) PixelFormat() IOpenGLPixelFormat {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/pixelFormat
 func (o_ OpenGLView) SetPixelFormat(value IOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
-}
+}/* debug [instance_properties/setter]: pixelFormat */
 
 
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
@@ -165,7 +210,7 @@ func (o_ OpenGLView) SetPixelFormat(value IOpenGLPixelFormat) {
 func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsBestResolutionOpenGLSurface"))
 	return rv
-}
+}/* debug [instance_properties/getter]: wantsBestResolutionOpenGLSurface */
 
 
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
@@ -174,7 +219,7 @@ func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
 func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsBestResolutionOpenGLSurface:"), value)
-}
+}/* debug [instance_properties/setter]: wantsBestResolutionOpenGLSurface */
 
 
 // Enables extended dynamic range values on the screen.
@@ -184,7 +229,7 @@ func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
 func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsExtendedDynamicRangeOpenGLSurface"))
 	return rv
-}
+}/* debug [instance_properties/getter]: wantsExtendedDynamicRangeOpenGLSurface */
 
 
 // Enables extended dynamic range values on the screen.
@@ -193,6 +238,11 @@ func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
 func (o_ OpenGLView) SetWantsExtendedDynamicRangeOpenGLSurface(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsExtendedDynamicRangeOpenGLSurface:"), value)
-}
+}/* debug [instance_properties/setter]: wantsExtendedDynamicRangeOpenGLSurface */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSOpenGLView */
 
 

@@ -15,3 +15,4 @@ var QCCompositionRendererProtocol *objc.Protocol
 func init() {
 	QCCompositionRendererProtocol = objc.GetProtocol("QCCompositionRenderer")
 }
+

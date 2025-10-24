@@ -20,3 +20,4 @@ var visitDropEverythingEventProtocol *objc.Protocol
 func init() {
 	visitDropEverythingEventProtocol = objc.GetProtocol("visitDropEverythingEvent:")
 }
+

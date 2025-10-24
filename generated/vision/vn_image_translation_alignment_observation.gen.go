@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
+/* debug [class.gen.go]: Generating class VNImageTranslationAlignmentObservation */
+
+
+/* debug [class_header]: Header for VNImageTranslationAlignmentObservation */
 // The class instance for the [ImageTranslationAlignmentObservation] class.
 var (
 	ImageTranslationAlignmentObservationClass     _ImageTranslationAlignmentObservationClass
@@ -26,39 +30,32 @@ func getImageTranslationAlignmentObservationClass() _ImageTranslationAlignmentOb
 type _ImageTranslationAlignmentObservationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ImageTranslationAlignmentObservation */
 // An interface definition for the [ImageTranslationAlignmentObservation] class.
 type IImageTranslationAlignmentObservation interface {
 	IImageAlignmentObservation
+	
+/* debug [class_interface_properties]: Properties for ImageTranslationAlignmentObservation */
 	// properties:
-	AlignmentTransform() objc.IObject /* cross-framework: AffineTransform */
-	SetAlignmentTransform(value objc.IObject /* cross-framework: AffineTransform */)
+	AlignmentTransform() corefoundation.CGAffineTransform
 	VNTranslationalImageRegistrationRequestRevision1() int
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ImageTranslationAlignmentObservation */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Affine transform information that an image-alignment request produces.
-//
-// This type of observation results from a , informing the performed to align the input images.
+/* debug [class_interface]: End interface */
 
 
-// Affine transform information that an image-alignment request produces.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageTranslationAlignmentObservation
-type ImageTranslationAlignmentObservation struct {
-	ImageAlignmentObservation
-}
 
-// ImageTranslationAlignmentObservationFrom constructs a [ImageTranslationAlignmentObservation] from an unsafe.Pointer.
-//
-// Affine transform information that an image-alignment request produces.
-func ImageTranslationAlignmentObservationFrom(ptr unsafe.Pointer) ImageTranslationAlignmentObservation {
-	return ImageTranslationAlignmentObservation{
-		ImageAlignmentObservation: ImageAlignmentObservationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ImageTranslationAlignmentObservation */
 // Alloc allocates a new instance without initialization.
 func (ic _ImageTranslationAlignmentObservationClass) Alloc() ImageTranslationAlignmentObservation {
 	rv := objc.Send[ImageTranslationAlignmentObservation](objc.ID(ic.class), objc.Sel("alloc"))
@@ -66,7 +63,6 @@ func (ic _ImageTranslationAlignmentObservationClass) Alloc() ImageTranslationAli
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ImageTranslationAlignmentObservationClass) New() ImageTranslationAlignmentObservation {
 	rv := objc.Send[ImageTranslationAlignmentObservation](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,26 +85,65 @@ func (i_ ImageTranslationAlignmentObservation) Autorelease() ImageTranslationAli
 func NewImageTranslationAlignmentObservation() ImageTranslationAlignmentObservation {
 	return getImageTranslationAlignmentObservationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ImageTranslationAlignmentObservation */
+// Affine transform information that an image-alignment request produces.
+//
+// This type of observation results from a , informing the performed to align the input images.
+
+
+// Affine transform information that an image-alignment request produces.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageTranslationAlignmentObservation
+type ImageTranslationAlignmentObservation struct {
+	ImageAlignmentObservation
+}
+
+// ImageTranslationAlignmentObservationFrom constructs a [ImageTranslationAlignmentObservation] from an unsafe.Pointer.
+//
+// Affine transform information that an image-alignment request produces.
+func ImageTranslationAlignmentObservationFrom(ptr unsafe.Pointer) ImageTranslationAlignmentObservation {
+	return ImageTranslationAlignmentObservation{
+		ImageAlignmentObservation: ImageAlignmentObservationFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ImageTranslationAlignmentObservation *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ImageTranslationAlignmentObservation */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ImageTranslationAlignmentObservation */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ImageTranslationAlignmentObservation */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ImageTranslationAlignmentObservation */
 
 // The alignment transform to align the floating image with the reference image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation/alignmenttransform
-func (i_ ImageTranslationAlignmentObservation) AlignmentTransform() objc.IObject /* cross-framework: AffineTransform */ {
-	rv := objc.Send[corefoundation.AffineTransform](i_.ID, objc.Sel("alignmentTransform"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNImageTranslationAlignmentObservation/alignmentTransform
+func (i_ ImageTranslationAlignmentObservation) AlignmentTransform() corefoundation.CGAffineTransform {
+	rv := objc.Send[corefoundation.CGAffineTransform](i_.ID, objc.Sel("alignmentTransform"))
 	return rv
-}
-
-
-// The alignment transform to align the floating image with the reference image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnimagetranslationalignmentobservation/alignmenttransform
-func (i_ ImageTranslationAlignmentObservation) SetAlignmentTransform(value objc.IObject /* cross-framework: AffineTransform */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setAlignmentTransform:"), value)
-}
+}/* debug [instance_properties/getter]: alignmentTransform */
 
 
 // A constant for specifying revision 1 of the translational image registration request.
@@ -118,7 +153,12 @@ func (i_ ImageTranslationAlignmentObservation) SetAlignmentTransform(value objc.
 func (i_ ImageTranslationAlignmentObservation) VNTranslationalImageRegistrationRequestRevision1() int {
 	rv := objc.Send[int](i_.ID, objc.Sel("VNTranslationalImageRegistrationRequestRevision1"))
 	return rv
-}
+}/* debug [instance_properties/getter]: VNTranslationalImageRegistrationRequestRevision1 */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class VNImageTranslationAlignmentObservation */
 
 
 

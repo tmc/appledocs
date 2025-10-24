@@ -9,8 +9,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/avfoundation"
-	"github.com/tmc/appledocs/generated/avrouting"
 )
 
 // iOS-only methods for RoutePickerView
@@ -22,11 +20,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/activeTintColor
-func (r_ RoutePickerView) ActiveTintColor() objc.IObject /* cross-framework: Color */ {
+func (r_ RoutePickerView) ActiveTintColor() appkit.Color {
 	rv := objc.Send[appkit.Color](r_.ID, objc.Sel("activeTintColor"))
 	return rv
 }
-func (r_ RoutePickerView) SetActiveTintColor(value objc.IObject /* cross-framework: Color */) {
+func (r_ RoutePickerView) SetActiveTintColor(value appkit.Color) {
 	r_.ID.Send(objc.RegisterName("setActiveTintColor:"), value)
 }
 
@@ -34,11 +32,11 @@ func (r_ RoutePickerView) SetActiveTintColor(value objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVRoutePickerView/customRoutingController
-func (r_ RoutePickerView) CustomRoutingController() objc.IObject /* cross-framework: CustomRoutingController */ {
+func (r_ RoutePickerView) CustomRoutingController() avrouting.CustomRoutingController {
 	rv := objc.Send[avrouting.CustomRoutingController](r_.ID, objc.Sel("customRoutingController"))
 	return rv
 }
-func (r_ RoutePickerView) SetCustomRoutingController(value objc.IObject /* cross-framework: CustomRoutingController */) {
+func (r_ RoutePickerView) SetCustomRoutingController(value avrouting.CustomRoutingController) {
 	r_.ID.Send(objc.RegisterName("setCustomRoutingController:"), value)
 }
 
@@ -65,7 +63,6 @@ func (r_ RoutePickerView) RoutePickerButtonStyle() RoutePickerViewButtonStyle {
 func (r_ RoutePickerView) SetRoutePickerButtonStyle(value RoutePickerViewButtonStyle) {
 	r_.ID.Send(objc.RegisterName("setRoutePickerButtonStyle:"), value)
 }
-
 
 
 

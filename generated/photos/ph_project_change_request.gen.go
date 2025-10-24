@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHProjectChangeRequest] class.
@@ -41,7 +41,6 @@ type IPHProjectChangeRequest interface {
 // A request to change asset data in a Photos project extension.
 //
 // Make a project change request to alter a project’s title or metadata. Respond to project change requests by updating your user interface as assets are added, modified, or removed.
-
 
 // A request to change asset data in a Photos project extension.
 //
@@ -91,8 +90,6 @@ func NewPHProjectChangeRequest() PHProjectChangeRequest {
 	return getPHProjectChangeRequestClass().New()
 }
 
-
-
 // Compressed project-specific data to use in the change request.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (p_ PHProjectChangeRequest) ProjectExtensionData() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // Compressed project-specific data to use in the change request.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (p_ PHProjectChangeRequest) ProjectExtensionData() objc.IObject /* cross-fr
 func (p_ PHProjectChangeRequest) SetProjectExtensionData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectExtensionData:"), value)
 }
-
 
 // The title of the change request.
 //
@@ -121,7 +116,6 @@ func (p_ PHProjectChangeRequest) Title() objc.IObject /* cross-framework: NSStri
 	return rv
 }
 
-
 // The title of the change request.
 //
 // [Full Topic]
@@ -129,6 +123,3 @@ func (p_ PHProjectChangeRequest) Title() objc.IObject /* cross-framework: NSStri
 func (p_ PHProjectChangeRequest) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
-
-
-

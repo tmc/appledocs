@@ -7,11 +7,11 @@ import "github.com/ebitengine/purego/objc"
 // downloadProtocol is the download: protocol.
 //
 // Availability:
-//   - Mac Catalyst 18.2+
-//   - iOS 18.2+
-//   - iPadOS 18.2+
+//   - Mac Catalyst 14.5+
+//   - iOS 14.5+
+//   - iPadOS 14.5+
 //   - macOS 11.3+
-//   - visionOS 2.2+
+//   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to download:.
 var downloadProtocol *objc.Protocol

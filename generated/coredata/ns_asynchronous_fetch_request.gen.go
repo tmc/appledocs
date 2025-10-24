@@ -39,7 +39,6 @@ type IAsynchronousFetchRequest interface {
 
 // A fetch request that retrieves results asynchronously and supports progress notification.
 
-
 // A fetch request that retrieves results asynchronously and supports progress notification.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewAsynchronousFetchRequest() AsynchronousFetchRequest {
 	return getAsynchronousFetchRequestClass().New()
 }
 
-
-
 // Initializes a new asynchronous fetch request configured with the provided fetch request and completion block.
 //
 // [Full Topic]
@@ -101,8 +98,6 @@ func NewAsynchronousFetchRequestWithFetchRequestCompletionBlock(request unsafe.P
 	return rv
 }
 
-
-
 // The block that is executed when the fetch request has completed.
 //
 // [Full Topic]
@@ -111,7 +106,6 @@ func (a_ AsynchronousFetchRequest) CompletionBlock() PersistentStoreAsynchronous
 	rv := objc.Send[PersistentStoreAsynchronousFetchResultCompletionBlock](a_.ID, objc.Sel("completionBlock"))
 	return rv
 }
-
 
 // A configuration parameter that assists Core Data with scheduling the asynchronous fetch request.
 //
@@ -122,7 +116,6 @@ func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
 	return rv
 }
 
-
 // A configuration parameter that assists Core Data with scheduling the asynchronous fetch request.
 //
 // [Full Topic]
@@ -130,7 +123,6 @@ func (a_ AsynchronousFetchRequest) EstimatedResultCount() int {
 func (a_ AsynchronousFetchRequest) SetEstimatedResultCount(value int) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setEstimatedResultCount:"), value)
 }
-
 
 // The underlying fetch request that is executed asynchronously.
 //
@@ -140,5 +132,3 @@ func (a_ AsynchronousFetchRequest) FetchRequest() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("fetchRequest"))
 	return rv
 }
-
-

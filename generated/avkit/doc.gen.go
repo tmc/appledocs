@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for AVKit. DO NOT EDIT.
 
 // Package avkit provides Go bindings for the AVKit framework.
 //
-// Create user interfaces for media playback, complete with transport controls, chapter navigation, picture-in-picture support, and display of subtitles and closed captions.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AVKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/AVKit
 package avkit
 
 import (

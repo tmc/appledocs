@@ -15,3 +15,4 @@ var MEMessageSecurityHandlerProtocol *objc.Protocol
 func init() {
 	MEMessageSecurityHandlerProtocol = objc.GetProtocol("MEMessageSecurityHandler")
 }
+

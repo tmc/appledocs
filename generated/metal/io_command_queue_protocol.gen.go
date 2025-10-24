@@ -20,3 +20,4 @@ var IOCommandQueueProtocol *objc.Protocol
 func init() {
 	IOCommandQueueProtocol = objc.GetProtocol("MTLIOCommandQueue")
 }
+

@@ -2,41 +2,57 @@
 
 package cloudkit
 
+/* debug [enums.gen.go]: Generating 26 enums for CloudKit */
 // Enum types and constants
-// CKAccountStatus - Constants that indicate the availability of the user’s iCloud account.
+/* debug [enums.gen.go]: Processing enum CKApplicationPermissions (1 cases) */
+// CKApplicationPermissions - Constants that represent the permissions that a user grants.
 //
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus
-type CKAccountStatus uint
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/ApplicationPermissions
+type CKApplicationPermissions uint
 
 const (
-	// CKAccountStatusAvailable - The user’s iCloud account is available.
+	// CKApplicationPermissionUserDiscoverability - The user is discoverable using their email address.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/available
-	CKAccountStatusAvailable CKAccountStatus = 0
-	// CKAccountStatusCouldNotDetermine - CloudKit can’t determine the status of the user’s iCloud account.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/couldNotDetermine
-	CKAccountStatusCouldNotDetermine CKAccountStatus = 0
-	// CKAccountStatusNoAccount - The device doesn’t have an iCloud account.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/noAccount
-	CKAccountStatusNoAccount CKAccountStatus = 0
-	// CKAccountStatusRestricted - The system denies access to the user’s iCloud account.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/restricted
-	CKAccountStatusRestricted CKAccountStatus = 0
-	// CKAccountStatusTemporarilyUnavailable - The user’s iCloud account is temporarily unavailable.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/temporarilyUnavailable
-	CKAccountStatusTemporarilyUnavailable CKAccountStatus = 0
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/ApplicationPermissions/userDiscoverability
+	CKApplicationPermissionUserDiscoverability CKApplicationPermissions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CKApplicationPermissionStatus (4 cases) */
+// CKApplicationPermissionStatus - Constants that represent the status of a permission.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/ApplicationPermissionStatus
+type CKApplicationPermissionStatus uint
+
+const (
+	// CKApplicationPermissionStatusCouldNotComplete - An error that occurs while processing the permission request.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/ApplicationPermissionStatus/couldNotComplete
+	CKApplicationPermissionStatusCouldNotComplete CKApplicationPermissionStatus = 0
+	// CKApplicationPermissionStatusDenied - The user denies the permission.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/ApplicationPermissionStatus/denied
+	CKApplicationPermissionStatusDenied CKApplicationPermissionStatus = 0
+	// CKApplicationPermissionStatusGranted - The user grants the permission.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/ApplicationPermissionStatus/granted
+	CKApplicationPermissionStatusGranted CKApplicationPermissionStatus = 0
+	// CKApplicationPermissionStatusInitialState - The app is yet to request the permission.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKContainer/ApplicationPermissionStatus/initialState
+	CKApplicationPermissionStatusInitialState CKApplicationPermissionStatus = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKDatabaseScope (3 cases) */
 // CKDatabaseScope - Constants that represent the scope of a database.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/Scope
 type CKDatabaseScope uint
 
 const (
+	// CKDatabaseScopePrivate - The private database.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/Scope/private
+	CKDatabaseScopePrivate CKDatabaseScope = 0
 	// CKDatabaseScopePublic - The public database.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKDatabase/Scope/public
@@ -47,6 +63,7 @@ const (
 	CKDatabaseScopeShared CKDatabaseScope = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CKErrorCode (37 cases) */
 // CKErrorCode - The error codes that CloudKit returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKError/Code
@@ -203,11 +220,65 @@ const (
 	CKErrorZoneNotFound CKErrorCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CKOperationGroupTransferSize (8 cases) */
 // CKOperationGroupTransferSize - Constants that represent possible data transfer sizes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize
 type CKOperationGroupTransferSize uint
 
+const (
+	// CKOperationGroupTransferSizeGigabytes - A transfer size that represents 1 or more gigabytes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/gigabytes
+	CKOperationGroupTransferSizeGigabytes CKOperationGroupTransferSize = 0
+	// CKOperationGroupTransferSizeHundredsOfGigabytes - A transfer size that represents hundreds of gigabytes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/hundredsOfGigabytes
+	CKOperationGroupTransferSizeHundredsOfGigabytes CKOperationGroupTransferSize = 0
+	// CKOperationGroupTransferSizeHundredsOfMegabytes - A transfer size that represents hundreds of megabytes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/hundredsOfMegabytes
+	CKOperationGroupTransferSizeHundredsOfMegabytes CKOperationGroupTransferSize = 0
+	// CKOperationGroupTransferSizeKilobytes - A transfer size that represents 1 or more kilobytes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/kilobytes
+	CKOperationGroupTransferSizeKilobytes CKOperationGroupTransferSize = 0
+	// CKOperationGroupTransferSizeMegabytes - A transfer size that represents 1 or more megabytes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/megabytes
+	CKOperationGroupTransferSizeMegabytes CKOperationGroupTransferSize = 0
+	// CKOperationGroupTransferSizeTensOfGigabytes - A transfer size that represents tens of gigabytes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/tensOfGigabytes
+	CKOperationGroupTransferSizeTensOfGigabytes CKOperationGroupTransferSize = 0
+	// CKOperationGroupTransferSizeTensOfMegabytes - A transfer size that represents tens of megabytes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/tensOfMegabytes
+	CKOperationGroupTransferSizeTensOfMegabytes CKOperationGroupTransferSize = 0
+	// CKOperationGroupTransferSizeUnknown - An unknown transfer size.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperationGroup/TransferSize/unknown
+	CKOperationGroupTransferSizeUnknown CKOperationGroupTransferSize = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKReferenceAction (2 cases) */
+// CKReferenceAction - Constants that indicate the behavior when deleting a referenced record.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ReferenceAction
+type CKReferenceAction uint
+
+const (
+	// CKReferenceActionDeleteSelf - A reference action that cascades deletions.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ReferenceAction/deleteSelf
+	CKReferenceActionDeleteSelf CKReferenceAction = 0
+	// CKReferenceActionNone - A reference action that has no cascading behavior.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecord/ReferenceAction/none
+	CKReferenceActionNone CKReferenceAction = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKRecordZoneEncryptionScope (2 cases) */
 // CKRecordZoneEncryptionScope enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/EncryptionScope-swift.enum
@@ -224,9 +295,462 @@ const (
 	CKRecordZoneEncryptionScopePerZone CKRecordZoneEncryptionScope = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CKRecordZoneCapabilities (4 cases) */
+// CKRecordZoneCapabilities - The capabilities that a record zone supports.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct
+type CKRecordZoneCapabilities uint
+
+const (
+	// CKRecordZoneCapabilityAtomic - A capability that allows atomic changes of multiple records.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct/atomic
+	CKRecordZoneCapabilityAtomic CKRecordZoneCapabilities = 0
+	// CKRecordZoneCapabilityFetchChanges - A capability for fetching only the changed records from a zone.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct/fetchChanges
+	CKRecordZoneCapabilityFetchChanges CKRecordZoneCapabilities = 0
+	// CKRecordZoneCapabilitySharing - A capability for sharing a specific hierarchy of records.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct/sharing
+	CKRecordZoneCapabilitySharing CKRecordZoneCapabilities = 0
+	// CKRecordZoneCapabilityZoneWideSharing - A capability for sharing the entire contents of a record zone.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKRecordZone/Capabilities-swift.struct/zoneWideSharing
+	CKRecordZoneCapabilityZoneWideSharing CKRecordZoneCapabilities = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKShareParticipantAcceptanceStatus (4 cases) */
+// CKShareParticipantAcceptanceStatus - Constants that represent the status of a participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus
+type CKShareParticipantAcceptanceStatus uint
+
+const (
+	// CKShareParticipantAcceptanceStatusAccepted - The participant accepted the share request.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus/accepted
+	CKShareParticipantAcceptanceStatusAccepted CKShareParticipantAcceptanceStatus = 0
+	// CKShareParticipantAcceptanceStatusPending - The participant’s acceptance of the share request is pending.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus/pending
+	CKShareParticipantAcceptanceStatusPending CKShareParticipantAcceptanceStatus = 0
+	// CKShareParticipantAcceptanceStatusRemoved - The system removed the participant from the share.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus/removed
+	CKShareParticipantAcceptanceStatusRemoved CKShareParticipantAcceptanceStatus = 0
+	// CKShareParticipantAcceptanceStatusUnknown - The participant’s status is unknown.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantAcceptanceStatus/unknown
+	CKShareParticipantAcceptanceStatusUnknown CKShareParticipantAcceptanceStatus = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKShareParticipantPermission (4 cases) */
+// CKShareParticipantPermission - Constants that represent the permissions to grant to a share participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission
+type CKShareParticipantPermission uint
+
+const (
+	// CKShareParticipantPermissionNone - The participant doesn’t have any permissions for the share.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission/none
+	CKShareParticipantPermissionNone CKShareParticipantPermission = 0
+	// CKShareParticipantPermissionReadOnly - The participant has read-only permissions for the share.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission/readOnly
+	CKShareParticipantPermissionReadOnly CKShareParticipantPermission = 0
+	// CKShareParticipantPermissionReadWrite - The participant has read-and-write permissions for the share.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission/readWrite
+	CKShareParticipantPermissionReadWrite CKShareParticipantPermission = 0
+	// CKShareParticipantPermissionUnknown - The participant’s permissions are unknown.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantPermission/unknown
+	CKShareParticipantPermissionUnknown CKShareParticipantPermission = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKShareParticipantRole (5 cases) */
+// CKShareParticipantRole - Constants that represent the role of a share’s participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole
+type CKShareParticipantRole uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/administrator
+	CKShareParticipantRoleAdministrator CKShareParticipantRole = 0
+	// CKShareParticipantRoleOwner - The participant is the share’s owner.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/owner
+	CKShareParticipantRoleOwner CKShareParticipantRole = 0
+	// CKShareParticipantRolePrivateUser - The participant has the private role.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/privateUser
+	CKShareParticipantRolePrivateUser CKShareParticipantRole = 0
+	// CKShareParticipantRolePublicUser - The participant has the public role.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/publicUser
+	CKShareParticipantRolePublicUser CKShareParticipantRole = 0
+	// CKShareParticipantRoleUnknown - The participant’s role is unknown.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantRole/unknown
+	CKShareParticipantRoleUnknown CKShareParticipantRole = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKShareParticipantType (4 cases) */
+// CKShareParticipantType - The role of a participant.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType
+type CKShareParticipantType uint
+
+const (
+	// CKShareParticipantTypeOwner - The type of an owner.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType/owner
+	CKShareParticipantTypeOwner CKShareParticipantType = 0
+	// CKShareParticipantTypePrivateUser - The type of a private user.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType/privateUser
+	CKShareParticipantTypePrivateUser CKShareParticipantType = 0
+	// CKShareParticipantTypePublicUser - The type of a public owner.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType/publicUser
+	CKShareParticipantTypePublicUser CKShareParticipantType = 0
+	// CKShareParticipantTypeUnknown - An unknown role.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKShare/ParticipantType/unknown
+	CKShareParticipantTypeUnknown CKShareParticipantType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKAccountStatus (5 cases) */
+// CKAccountStatus - Constants that indicate the availability of the user’s iCloud account.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus
+type CKAccountStatus uint
+
+const (
+	// CKAccountStatusAvailable - The user’s iCloud account is available.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/available
+	CKAccountStatusAvailable CKAccountStatus = 0
+	// CKAccountStatusCouldNotDetermine - CloudKit can’t determine the status of the user’s iCloud account.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/couldNotDetermine
+	CKAccountStatusCouldNotDetermine CKAccountStatus = 0
+	// CKAccountStatusNoAccount - The device doesn’t have an iCloud account.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/noAccount
+	CKAccountStatusNoAccount CKAccountStatus = 0
+	// CKAccountStatusRestricted - The system denies access to the user’s iCloud account.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/restricted
+	CKAccountStatusRestricted CKAccountStatus = 0
+	// CKAccountStatusTemporarilyUnavailable - The user’s iCloud account is temporarily unavailable.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKAccountStatus/temporarilyUnavailable
+	CKAccountStatusTemporarilyUnavailable CKAccountStatus = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKRecordSavePolicy (3 cases) */
+// CKRecordSavePolicy - Constants that indicate which policy to apply when saving records.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/RecordSavePolicy
+type CKRecordSavePolicy uint
+
+const (
+	// CKRecordSaveAllKeys - A policy that instructs CloudKit to save all keys of a record, even those without changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/RecordSavePolicy/allKeys
+	CKRecordSaveAllKeys CKRecordSavePolicy = 0
+	// CKRecordSaveChangedKeys - A policy that instructs CloudKit to save only the fields of a record that contain changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/RecordSavePolicy/changedKeys
+	CKRecordSaveChangedKeys CKRecordSavePolicy = 0
+	// CKRecordSaveIfServerRecordUnchanged - A policy that instructs CloudKit to only proceed if the record’s change tag matches that of the server’s copy.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKModifyRecordsOperation/RecordSavePolicy/ifServerRecordUnchanged
+	CKRecordSaveIfServerRecordUnchanged CKRecordSavePolicy = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKNotificationType (4 cases) */
+// CKNotificationType - Constants that indicate the type of event that generates the push notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/NotificationType-swift.enum
+type CKNotificationType uint
+
+const (
+	// CKNotificationTypeDatabase - A notification that CloudKit generates when the contents of a database change.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/NotificationType-swift.enum/database
+	CKNotificationTypeDatabase CKNotificationType = 0
+	// CKNotificationTypeQuery - A notification that CloudKit generates from a query subscription’s predicate.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/NotificationType-swift.enum/query
+	CKNotificationTypeQuery CKNotificationType = 0
+	// CKNotificationTypeReadNotification - A notification that your app marks as read.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/NotificationType-swift.enum/readNotification
+	CKNotificationTypeReadNotification CKNotificationType = 0
+	// CKNotificationTypeRecordZone - A notification that CloudKit generates when the contents of a record zone change.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKNotification/NotificationType-swift.enum/recordZone
+	CKNotificationTypeRecordZone CKNotificationType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKQueryNotificationReason (3 cases) */
+// CKQueryNotificationReason - Constants that indicate the event that triggers the notification.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/Reason
+type CKQueryNotificationReason uint
+
+const (
+	// CKQueryNotificationReasonRecordCreated - A notification that indicates the creation of a record matching the subscription’s predicate.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/Reason/recordCreated
+	CKQueryNotificationReasonRecordCreated CKQueryNotificationReason = 0
+	// CKQueryNotificationReasonRecordDeleted - A notification that indicates the deletion of a record matching the subscription’s predicate.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/Reason/recordDeleted
+	CKQueryNotificationReasonRecordDeleted CKQueryNotificationReason = 0
+	// CKQueryNotificationReasonRecordUpdated - A notification that indicates the update of a record matching the subscription’s predicate.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQueryNotification/Reason/recordUpdated
+	CKQueryNotificationReasonRecordUpdated CKQueryNotificationReason = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKQuerySubscriptionOptions (4 cases) */
+// CKQuerySubscriptionOptions - Configuration options for a query subscription.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options
+type CKQuerySubscriptionOptions uint
+
+const (
+	// CKQuerySubscriptionOptionsFiresOnce - An option that instructs CloudKit to send a push notification only once.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options/firesOnce
+	CKQuerySubscriptionOptionsFiresOnce CKQuerySubscriptionOptions = 0
+	// CKQuerySubscriptionOptionsFiresOnRecordCreation - An option that instructs CloudKit to send a push notification when it creates a record that matches a subscription’s criteria.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options/firesOnRecordCreation
+	CKQuerySubscriptionOptionsFiresOnRecordCreation CKQuerySubscriptionOptions = 0
+	// CKQuerySubscriptionOptionsFiresOnRecordDeletion - An option that instructs CloudKit to send a push notification when it deletes a record that matches a subscription’s criteria.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options/firesOnRecordDeletion
+	CKQuerySubscriptionOptionsFiresOnRecordDeletion CKQuerySubscriptionOptions = 0
+	// CKQuerySubscriptionOptionsFiresOnRecordUpdate - An option that instructs CloudKit to send a push notification when it modifies a record that matches a subscription’s criteria.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKQuerySubscription/Options/firesOnRecordUpdate
+	CKQuerySubscriptionOptionsFiresOnRecordUpdate CKQuerySubscriptionOptions = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSharingParticipantAccessOption (3 cases) */
+// CKSharingParticipantAccessOption - An object that controls participant access options.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantAccessOption
+type CKSharingParticipantAccessOption uint
+
+const (
+	// CKSharingParticipantAccessOptionAny - The permission option the system uses to control whether a user can share publicly or privately.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantAccessOption/any
+	CKSharingParticipantAccessOptionAny CKSharingParticipantAccessOption = 0
+	// CKSharingParticipantAccessOptionAnyoneWithLink - The permission option the system uses to control whether a user can share publicly.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantAccessOption/anyoneWithLink
+	CKSharingParticipantAccessOptionAnyoneWithLink CKSharingParticipantAccessOption = 0
+	// CKSharingParticipantAccessOptionSpecifiedRecipientsOnly - The permission option the system uses to control whether a user can share privately.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantAccessOption/specifiedRecipientsOnly
+	CKSharingParticipantAccessOptionSpecifiedRecipientsOnly CKSharingParticipantAccessOption = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSharingParticipantPermissionOption (3 cases) */
 // CKSharingParticipantPermissionOption - An object that controls participant permission options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantPermissionOption
 type CKSharingParticipantPermissionOption uint
+
+const (
+	// CKSharingParticipantPermissionOptionAny - The permission option the system uses to control whether a user can grant read-only or write access.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantPermissionOption/any
+	CKSharingParticipantPermissionOptionAny CKSharingParticipantPermissionOption = 0
+	// CKSharingParticipantPermissionOptionReadOnly - The permission option the system uses to control whether a user can grant read-only access.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantPermissionOption/readOnly
+	CKSharingParticipantPermissionOptionReadOnly CKSharingParticipantPermissionOption = 0
+	// CKSharingParticipantPermissionOptionReadWrite - The permission option the system uses to control whether a user can grant write access.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSharingParticipantPermissionOption/readWrite
+	CKSharingParticipantPermissionOptionReadWrite CKSharingParticipantPermissionOption = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSubscriptionType (3 cases) */
+// CKSubscriptionType - Constants that identify a subscription’s behavior.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/SubscriptionType-swift.enum
+type CKSubscriptionType uint
+
+const (
+	// CKSubscriptionTypeDatabase - A constant that indicates the subscription is database-based.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/SubscriptionType-swift.enum/database
+	CKSubscriptionTypeDatabase CKSubscriptionType = 0
+	// CKSubscriptionTypeQuery - A constant that indicates the subscription is query-based.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/SubscriptionType-swift.enum/query
+	CKSubscriptionTypeQuery CKSubscriptionType = 0
+	// CKSubscriptionTypeRecordZone - A constant that indicates the subscription is zone-based.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSubscription/SubscriptionType-swift.enum/recordZone
+	CKSubscriptionTypeRecordZone CKSubscriptionType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSyncEngineAccountChangeType (3 cases) */
+// CKSyncEngineAccountChangeType - Describes a change to the device’s iCloud account.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineAccountChangeType
+type CKSyncEngineAccountChangeType uint
+
+const (
+	// CKSyncEngineAccountChangeTypeSignIn - A change indicating a sign-in to an iCloud account.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineAccountChangeType/signIn
+	CKSyncEngineAccountChangeTypeSignIn CKSyncEngineAccountChangeType = 0
+	// CKSyncEngineAccountChangeTypeSignOut - A change indicating a sign-out of an iCloud account.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineAccountChangeType/signOut
+	CKSyncEngineAccountChangeTypeSignOut CKSyncEngineAccountChangeType = 0
+	// CKSyncEngineAccountChangeTypeSwitchAccounts - A change indicating a switch between two iCloud accounts.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineAccountChangeType/switchAccounts
+	CKSyncEngineAccountChangeTypeSwitchAccounts CKSyncEngineAccountChangeType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSyncEngineEventType (12 cases) */
+// CKSyncEngineEventType - Describes an event that occurs during a sync operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType
+type CKSyncEngineEventType uint
+
+const (
+	// CKSyncEngineEventTypeAccountChange - An event indicating a change to the device’s iCloud account.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/accountChange
+	CKSyncEngineEventTypeAccountChange CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeDidFetchChanges - An event that indicates the database fetch is done.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/didFetchChanges
+	CKSyncEngineEventTypeDidFetchChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeDidFetchRecordZoneChanges - An event that indicates the record zone fetch is done.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/didFetchRecordZoneChanges
+	CKSyncEngineEventTypeDidFetchRecordZoneChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeDidSendChanges - An event that indicates a finished send operation.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/didSendChanges
+	CKSyncEngineEventTypeDidSendChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeFetchedDatabaseChanges - An event indicating there are fetched database changes to process.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/fetchedDatabaseChanges
+	CKSyncEngineEventTypeFetchedDatabaseChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeFetchedRecordZoneChanges - An event indicating there are fetched record zone changes to process.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/fetchedRecordZoneChanges
+	CKSyncEngineEventTypeFetchedRecordZoneChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeSentDatabaseChanges - An event indicating a sent batch of database changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/sentDatabaseChanges
+	CKSyncEngineEventTypeSentDatabaseChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeSentRecordZoneChanges - An event indicating a sent batch of record zone changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/sentRecordZoneChanges
+	CKSyncEngineEventTypeSentRecordZoneChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeStateUpdate - An event indicating an update to the sync engine’s state.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/stateUpdate
+	CKSyncEngineEventTypeStateUpdate CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeWillFetchChanges - An event indicating an imminent database fetch.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/willFetchChanges
+	CKSyncEngineEventTypeWillFetchChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeWillFetchRecordZoneChanges - An event indicating an imminent fetch of changes in a record zone.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/willFetchRecordZoneChanges
+	CKSyncEngineEventTypeWillFetchRecordZoneChanges CKSyncEngineEventType = 0
+	// CKSyncEngineEventTypeWillSendChanges - An event indicating an imminent send of local changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineEventType/willSendChanges
+	CKSyncEngineEventTypeWillSendChanges CKSyncEngineEventType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSyncEnginePendingDatabaseChangeType (2 cases) */
+// CKSyncEnginePendingDatabaseChangeType - Describes the type of a pending database change.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChangeType
+type CKSyncEnginePendingDatabaseChangeType uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChangeType/deleteZone
+	CKSyncEnginePendingDatabaseChangeTypeDeleteZone CKSyncEnginePendingDatabaseChangeType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingDatabaseChangeType/saveZone
+	CKSyncEnginePendingDatabaseChangeTypeSaveZone CKSyncEnginePendingDatabaseChangeType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSyncEnginePendingRecordZoneChangeType (2 cases) */
+// CKSyncEnginePendingRecordZoneChangeType - Describes a type of modification a record zone change makes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChangeType
+type CKSyncEnginePendingRecordZoneChangeType uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChangeType/deleteRecord
+	CKSyncEnginePendingRecordZoneChangeTypeDeleteRecord CKSyncEnginePendingRecordZoneChangeType = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChangeType/saveRecord
+	CKSyncEnginePendingRecordZoneChangeTypeSaveRecord CKSyncEnginePendingRecordZoneChangeType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSyncEngineSyncReason (2 cases) */
+// CKSyncEngineSyncReason - Describes the reason for a sync operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSyncReason
+type CKSyncEngineSyncReason uint
+
+const (
+	// CKSyncEngineSyncReasonManual - A manual sync operation.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSyncReason/manual
+	CKSyncEngineSyncReasonManual CKSyncEngineSyncReason = 0
+	// CKSyncEngineSyncReasonScheduled - A scheduled sync operation.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSyncReason/scheduled
+	CKSyncEngineSyncReasonScheduled CKSyncEngineSyncReason = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CKSyncEngineZoneDeletionReason (3 cases) */
+// CKSyncEngineZoneDeletionReason - Describes the reason for a record zone deletion.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineZoneDeletionReason
+type CKSyncEngineZoneDeletionReason uint
+
+const (
+	// CKSyncEngineZoneDeletionReasonDeleted - Your app deleted the record zone.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineZoneDeletionReason/deleted
+	CKSyncEngineZoneDeletionReasonDeleted CKSyncEngineZoneDeletionReason = 0
+	// CKSyncEngineZoneDeletionReasonEncryptedDataReset - The owner of the iCloud account reset their encrypted data.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineZoneDeletionReason/encryptedDataReset
+	CKSyncEngineZoneDeletionReasonEncryptedDataReset CKSyncEngineZoneDeletionReason = 0
+	// CKSyncEngineZoneDeletionReasonPurged - The owner of the iCloud account purged your app’s data using the Settings app.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineZoneDeletionReason/purged
+	CKSyncEngineZoneDeletionReasonPurged CKSyncEngineZoneDeletionReason = 0
+)
 
 

@@ -42,7 +42,6 @@ type IINCallRecordFilter interface {
 //
 // Use this method to create filters contributed by the user to redial a call. The object identifies the person, type of call, and ability to make the call to initiate the user’s request.
 
-
 // Filters a user specifies to redial a call.
 //
 // [Full Topic]
@@ -89,8 +88,6 @@ func NewINCallRecordFilter() INCallRecordFilter {
 	return getINCallRecordFilterClass().New()
 }
 
-
-
 // An indicator of whether the call supports audio or video.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (i_ INCallRecordFilter) CallCapability() INCallCapability {
 	return rv
 }
 
-
 // An indicator of whether the call supports audio or video.
 //
 // [Full Topic]
@@ -108,7 +104,6 @@ func (i_ INCallRecordFilter) CallCapability() INCallCapability {
 func (i_ INCallRecordFilter) SetCallCapability(value INCallCapability) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
 }
-
 
 // The various call options that the user can requests.
 //
@@ -119,7 +114,6 @@ func (i_ INCallRecordFilter) CallTypes() unsafe.Pointer {
 	return rv
 }
 
-
 // The various call options that the user can requests.
 //
 // [Full Topic]
@@ -127,7 +121,6 @@ func (i_ INCallRecordFilter) CallTypes() unsafe.Pointer {
 func (i_ INCallRecordFilter) SetCallTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallTypes:"), value)
 }
-
 
 // The recipient of the user’s call request.
 //
@@ -138,7 +131,6 @@ func (i_ INCallRecordFilter) Participants() INPerson {
 	return rv
 }
 
-
 // The recipient of the user’s call request.
 //
 // [Full Topic]
@@ -146,6 +138,3 @@ func (i_ INCallRecordFilter) Participants() INPerson {
 func (i_ INCallRecordFilter) SetParticipants(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParticipants:"), value)
 }
-
-
-

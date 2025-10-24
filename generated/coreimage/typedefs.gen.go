@@ -8,20 +8,10 @@ package coreimage
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIContextOption
 // CIContextOption is a string typedef
 type ContextOption = string
-// DynamicRangeOption - An enum string type that your code can use to select different System Tone Mapping modes.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDynamicRangeOption
-// CIDynamicRangeOption is a string typedef
-type DynamicRangeOption = string
 // Format - Pixel data formats for image input, output, and processing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat
 type Format int32
-// ImageAutoAdjustmentOption type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAutoAdjustmentOption
-// CIImageAutoAdjustmentOption is a string typedef
-type ImageAutoAdjustmentOption = string
 // ImageOption type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageOption
@@ -37,6 +27,16 @@ type ImageRepresentationOption = string
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWDecoderVersion
 // CIRAWDecoderVersion is a string typedef
 type RAWDecoderVersion = string
+// DynamicRangeOption - An enum string type that your code can use to select different System Tone Mapping modes.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIDynamicRangeOption
+// CIDynamicRangeOption is a string typedef
+type DynamicRangeOption = string
+// ImageAutoAdjustmentOption type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIImageAutoAdjustmentOption
+// CIImageAutoAdjustmentOption is a string typedef
+type ImageAutoAdjustmentOption = string
 // RAWFilterOption type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRAWFilterOption

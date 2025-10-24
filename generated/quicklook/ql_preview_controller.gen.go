@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class QLPreviewController */
+
+
+/* debug [class_header]: Header for QLPreviewController */
 // The class instance for the [PreviewController] class.
 var (
 	PreviewControllerClass     _PreviewControllerClass
@@ -27,46 +30,32 @@ func getPreviewControllerClass() _PreviewControllerClass {
 type _PreviewControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PreviewController */
 // An interface definition for the [PreviewController] class.
 type IPreviewController interface {
-	appkit.IViewController
+	IViewController
+	
+/* debug [class_interface_properties]: Properties for PreviewController */
 	// properties:
-	CurrentPreviewItem() PreviewItem /* not a class type */
-	SetCurrentPreviewItem(value PreviewItem /* not a class type */)
-	CurrentPreviewItemIndex() int
-	SetCurrentPreviewItemIndex(value int)
-	DataSource() PreviewControllerDataSource /* not a class type */
-	SetDataSource(value PreviewControllerDataSource /* not a class type */)
-	Delegate() PreviewControllerDelegate /* not a class type */
-	SetDelegate(value PreviewControllerDelegate /* not a class type */)
 	PreviewItemTitle() objc.IObject /* cross-framework: NSString */
 	SetPreviewItemTitle(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PreviewController */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A specialized view controller for previewing an item.
-//
-// A can display previews for many common file types, including the following: iWork documents Microsoft Office documents Rich text format, or RTF, documents PDF files Images Text files with a uniform type identifier that conforms to the type. To learn more, see . Comma-separated values, or CSV, files 3D models in the USDZ format with both standalone and AR views for viewing the model
+/* debug [class_interface]: End interface */
 
 
-// A specialized view controller for previewing an item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewController
-type PreviewController struct {
-	appkit.ViewController
-}
 
-// PreviewControllerFrom constructs a [PreviewController] from an unsafe.Pointer.
-//
-// A specialized view controller for previewing an item.
-func PreviewControllerFrom(ptr unsafe.Pointer) PreviewController {
-	return PreviewController{
-		ViewController: appkit.ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for PreviewController */
 // Alloc allocates a new instance without initialization.
 func (pc _PreviewControllerClass) Alloc() PreviewController {
 	rv := objc.Send[PreviewController](objc.ID(pc.class), objc.Sel("alloc"))
@@ -74,7 +63,6 @@ func (pc _PreviewControllerClass) Alloc() PreviewController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PreviewControllerClass) New() PreviewController {
 	rv := objc.Send[PreviewController](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,97 +85,84 @@ func (p_ PreviewController) Autorelease() PreviewController {
 func NewPreviewController() PreviewController {
 	return getPreviewControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The item displaying in the Quick Look preview controller.
+/* debug [class_struct]: Struct for PreviewController */
+// A specialized view controller for previewing an item.
+//
+// A can display previews for many common file types, including the following: iWork documents Microsoft Office documents Rich text format, or RTF, documents PDF files Images Text files with a uniform type identifier that conforms to the type. To learn more, see . Comma-separated values, or CSV, files 3D models in the USDZ format with both standalone and AR views for viewing the model
+
+
+// A specialized view controller for previewing an item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/currentpreviewitem
-func (p_ PreviewController) CurrentPreviewItem() PreviewItem /* not a class type */ {
-	rv := objc.Send[PreviewItem](p_.ID, objc.Sel("currentPreviewItem"))
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewController
+type PreviewController struct {
+	ViewController
+}
+
+// PreviewControllerFrom constructs a [PreviewController] from an unsafe.Pointer.
+//
+// A specialized view controller for previewing an item.
+func PreviewControllerFrom(ptr unsafe.Pointer) PreviewController {
+	return PreviewController{
+		ViewController: ViewControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PreviewController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PreviewController */
+
+// Returns a Boolean value that indicates whether the preview controller can display an item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewController/canPreview(_:)
+func (pc _PreviewControllerClass) CanPreviewItem(item unsafe.Pointer) bool {
+	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("canPreviewItem:"), item)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CanPreviewItem) */
+
+/* debug [class_methods]: End class methods */
 
 
-// The item displaying in the Quick Look preview controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/currentpreviewitem
-func (p_ PreviewController) SetCurrentPreviewItem(value PreviewItem /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentPreviewItem:"), value)
-}
+
+/* debug [class_properties_class]: Class properties for PreviewController */
+/* debug [class_properties_class]: End class properties */
 
 
-// The index within the preview item navigation list of the item displaying in the Quick Look preview controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/currentpreviewitemindex
-func (p_ PreviewController) CurrentPreviewItemIndex() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("currentPreviewItemIndex"))
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for PreviewController */
+/* debug [instance_methods]: End instance methods */
 
 
-// The index within the preview item navigation list of the item displaying in the Quick Look preview controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/currentpreviewitemindex
-func (p_ PreviewController) SetCurrentPreviewItemIndex(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentPreviewItemIndex:"), value)
-}
 
-
-// The preview controller’s data source.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/datasource
-func (p_ PreviewController) DataSource() PreviewControllerDataSource /* not a class type */ {
-	rv := objc.Send[PreviewControllerDataSource](p_.ID, objc.Sel("dataSource"))
-	return rv
-}
-
-
-// The preview controller’s data source.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/datasource
-func (p_ PreviewController) SetDataSource(value PreviewControllerDataSource /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDataSource:"), value)
-}
-
-
-// The preview controller’s delegate object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/delegate
-func (p_ PreviewController) Delegate() PreviewControllerDelegate /* not a class type */ {
-	rv := objc.Send[PreviewControllerDelegate](p_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The preview controller’s delegate object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewcontroller/delegate
-func (p_ PreviewController) SetDelegate(value PreviewControllerDelegate /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
-}
-
+/* debug [instance_properties]: Instance properties for PreviewController */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
 func (p_ PreviewController) PreviewItemTitle() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("previewItemTitle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: previewItemTitle */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/quicklook/qlpreviewitem/previewitemtitle
 func (p_ PreviewController) SetPreviewItemTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPreviewItemTitle:"), value)
-}
+}/* debug [instance_properties/setter]: previewItemTitle */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class QLPreviewController */
 
 

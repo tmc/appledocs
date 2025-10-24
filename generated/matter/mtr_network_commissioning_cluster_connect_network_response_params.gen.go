@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRNetworkCommissioningClusterConnectNetworkResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterConnectNetworkResponseParams
@@ -87,8 +85,6 @@ func NewMTRNetworkCommissioningClusterConnectNetworkResponseParams() MTRNetworkC
 	return getMTRNetworkCommissioningClusterConnectNetworkResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/debugtext
 func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) DebugText() objc.IObject /* cross-framework: NSString */ {
@@ -96,13 +92,11 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) DebugText()
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/debugtext
 func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetDebugText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/errorvalue
@@ -111,13 +105,11 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) ErrorValue(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/errorvalue
 func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetErrorValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/networkingstatus
@@ -126,13 +118,11 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) NetworkingS
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/networkingstatus
 func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetNetworkingStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkingStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/timedinvoketimeoutms
@@ -141,12 +131,8 @@ func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) TimedInvoke
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterconnectnetworkresponseparams/timedinvoketimeoutms
 func (m_ MTRNetworkCommissioningClusterConnectNetworkResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

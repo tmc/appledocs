@@ -36,7 +36,6 @@ type IPersistentStoreResult interface {
 
 // The abstract base class for results returned from a persistent store coordinator.
 
-
 // The abstract base class for results returned from a persistent store coordinator.
 //
 // [Full Topic]
@@ -82,7 +81,3 @@ func (p_ PersistentStoreResult) Autorelease() PersistentStoreResult {
 func NewPersistentStoreResult() PersistentStoreResult {
 	return getPersistentStoreResultClass().New()
 }
-
-
-
-

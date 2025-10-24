@@ -9,7 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	XPCConnection = _undefined // referenced in Matter
+	Data = _undefined // referenced in Matter
 )
 
 

@@ -8,4 +8,3 @@ package corelocation
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLHeadingComponentValue
 // CLHeadingComponentValue has base type: double
 type HeadingComponentValue uintptr
-

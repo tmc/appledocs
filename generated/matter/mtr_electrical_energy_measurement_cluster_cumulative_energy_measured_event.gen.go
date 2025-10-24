@@ -38,8 +38,6 @@ type IMTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent interfa
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent
 type MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent struct {
@@ -82,8 +80,6 @@ func NewMTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent() MTR
 	return getMTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergymeasuredevent/energyexported
 func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) EnergyExported() IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct {
@@ -91,13 +87,11 @@ func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) Ene
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergymeasuredevent/energyexported
 func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) SetEnergyExported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyExported:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergymeasuredevent/energyimported
@@ -106,12 +100,8 @@ func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) Ene
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclustercumulativeenergymeasuredevent/energyimported
 func (m_ MTRElectricalEnergyMeasurementClusterCumulativeEnergyMeasuredEvent) SetEnergyImported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyImported:"), value)
 }
-
-
-

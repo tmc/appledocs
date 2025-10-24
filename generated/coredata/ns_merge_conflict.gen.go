@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -49,7 +49,6 @@ type IMergeConflict interface {
 // An encapsulation of conflicts that occur during an attempt to save changes in a managed object context.
 //
 // A conflict can occur in two situations: Between the managed object context and its in-memory cached state at the persistent store coordinator layer. Between the cached state at the persistent store coordinator layer and the external store (file, database, and so forth). In this case, the merge conflict has a cached snapshot and a persisted snapshot. The source object is also provided as a convenience, but it is not directly involved in the conflict. Snapshot dictionaries include values for all attributes and to-one relationships, but not to-many relationships. Relationship values are references. To-many relationships must be pulled from the persistent store as needed.
-
 
 // An encapsulation of conflicts that occur during an attempt to save changes in a managed object context.
 //
@@ -97,8 +96,6 @@ func NewMergeConflict() MergeConflict {
 	return getMergeConflictClass().New()
 }
 
-
-
 // The old version number for the change.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func (m_ MergeConflict) OldVersionNumber() uint {
 	rv := objc.Send[uint](m_.ID, objc.Sel("oldVersionNumber"))
 	return rv
 }
-
 
 // A dictionary containing the values of the source object held in the persistent store coordinator layer.
 //
@@ -118,7 +114,6 @@ func (m_ MergeConflict) CachedSnapshot() objc.IObject /* cross-framework: NSStri
 	return rv
 }
 
-
 // A dictionary containing the values of the source object held in the persistent store coordinator layer.
 //
 // [Full Topic]
@@ -126,7 +121,6 @@ func (m_ MergeConflict) CachedSnapshot() objc.IObject /* cross-framework: NSStri
 func (m_ MergeConflict) SetCachedSnapshot(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCachedSnapshot:"), value)
 }
-
 
 // The new version number for the change.
 //
@@ -137,7 +131,6 @@ func (m_ MergeConflict) NewVersionNumber() int {
 	return rv
 }
 
-
 // The new version number for the change.
 //
 // [Full Topic]
@@ -145,7 +138,6 @@ func (m_ MergeConflict) NewVersionNumber() int {
 func (m_ MergeConflict) SetNewVersionNumber(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewVersionNumber:"), value)
 }
-
 
 // A dictionary containing the values of the source object.
 //
@@ -156,7 +148,6 @@ func (m_ MergeConflict) ObjectSnapshot() objc.IObject /* cross-framework: NSStri
 	return rv
 }
 
-
 // A dictionary containing the values of the source object.
 //
 // [Full Topic]
@@ -164,7 +155,6 @@ func (m_ MergeConflict) ObjectSnapshot() objc.IObject /* cross-framework: NSStri
 func (m_ MergeConflict) SetObjectSnapshot(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObjectSnapshot:"), value)
 }
-
 
 // A dictionary containing the values of the source object held in the persistent store.
 //
@@ -175,7 +165,6 @@ func (m_ MergeConflict) PersistedSnapshot() objc.IObject /* cross-framework: NSS
 	return rv
 }
 
-
 // A dictionary containing the values of the source object held in the persistent store.
 //
 // [Full Topic]
@@ -183,7 +172,6 @@ func (m_ MergeConflict) PersistedSnapshot() objc.IObject /* cross-framework: NSS
 func (m_ MergeConflict) SetPersistedSnapshot(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPersistedSnapshot:"), value)
 }
-
 
 // The source object for the conflict.
 //
@@ -194,7 +182,6 @@ func (m_ MergeConflict) SourceObject() IManagedObject {
 	return rv
 }
 
-
 // The source object for the conflict.
 //
 // [Full Topic]
@@ -202,6 +189,3 @@ func (m_ MergeConflict) SourceObject() IManagedObject {
 func (m_ MergeConflict) SetSourceObject(value IManagedObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceObject:"), value)
 }
-
-
-

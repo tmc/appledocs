@@ -15,3 +15,4 @@ var messageReceivedWithNameProtocol *objc.Protocol
 func init() {
 	messageReceivedWithNameProtocol = objc.GetProtocol("messageReceivedWithName:")
 }
+

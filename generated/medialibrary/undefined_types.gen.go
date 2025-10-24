@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	MediaType = _undefined // referenced in MediaLibrary
 )
-
-

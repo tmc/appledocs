@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSPredicate */
+
+
+/* debug [class_header]: Header for MPSPredicate */
 // The class instance for the [Predicate] class.
 var (
 	PredicateClass     _PredicateClass
@@ -26,31 +30,34 @@ func getPredicateClass() _PredicateClass {
 type _PredicateClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Predicate */
 // An interface definition for the [Predicate] class.
 type IPredicate interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Predicate */
 	// properties:
-	PredicateBuffer() Buffer /* not a class type */
-	SetPredicateBuffer(value Buffer /* not a class type */)
-	PredicateOffset() int
-	SetPredicateOffset(value int)
+	PredicateBuffer() Buffer get /* not a class type */
+	SetPredicateBuffer(value Buffer get /* not a class type */)
+	PredicateOffset() objectivec.IObject
+	SetPredicateOffset(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Predicate */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPredicate
-type Predicate struct {
-	objectivec.Object
-}
-
-// PredicateFrom constructs a [Predicate] from an unsafe.Pointer.
-func PredicateFrom(ptr unsafe.Pointer) Predicate {
-	return Predicate{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Predicate */
 // Alloc allocates a new instance without initialization.
 func (pc _PredicateClass) Alloc() Predicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("alloc"))
@@ -58,7 +65,6 @@ func (pc _PredicateClass) Alloc() Predicate {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PredicateClass) New() Predicate {
 	rv := objc.Send[Predicate](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,47 +87,109 @@ func (p_ Predicate) Autorelease() Predicate {
 func NewPredicate() Predicate {
 	return getPredicateClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for Predicate */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPredicate/init(device:)
-func NewPredicateWithDevice(device objectivec.IObject) Predicate {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSPredicate
+type Predicate struct {
+	objectivec.Object
+}
+
+// PredicateFrom constructs a [Predicate] from an unsafe.Pointer.
+func PredicateFrom(ptr unsafe.Pointer) Predicate {
+	return Predicate{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Predicate */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/3114034-initwithbuffer
+func NewPredicateWithBufferOffset(buffer unsafe.Pointer, offset uint) Predicate {
+	instance := getPredicateClass().Alloc()
+	rv := objc.Send[Predicate](instance.ID, objc.Sel("initWithBuffer:offset:"), buffer, offset)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewPredicateWithBufferOffset */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/3114035-initwithdevice
+func NewPredicateWithDevice(device unsafe.Pointer) Predicate {
 	instance := getPredicateClass().Alloc()
 	rv := objc.Send[Predicate](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPredicateWithDevice */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for Predicate */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicatebuffer
-func (p_ Predicate) PredicateBuffer() Buffer /* not a class type */ {
-	rv := objc.Send[Buffer](p_.ID, objc.Sel("predicateBuffer"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/3114038-predicatewithbuffer
+func (pc _PredicateClass) PredicateWithBufferOffset(buffer unsafe.Pointer, offset uint) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(pc.class), objc.Sel("predicateWithBuffer:offset:"), buffer, offset)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredicateWithBufferOffset) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Predicate */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Predicate */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Predicate */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/3114036-predicatebuffer
+func (p_ Predicate) PredicateBuffer() Buffer get /* not a class type */ {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("predicateBuffer"))
+	return rv
+}/* debug [instance_properties/getter]: predicateBuffer */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicatebuffer
-func (p_ Predicate) SetPredicateBuffer(value Buffer /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/3114036-predicatebuffer
+func (p_ Predicate) SetPredicateBuffer(value Buffer get /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicateBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: predicateBuffer */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicateoffset
-func (p_ Predicate) PredicateOffset() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("predicateOffset"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/3114037-predicateoffset
+func (p_ Predicate) PredicateOffset() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](p_.ID, objc.Sel("predicateOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: predicateOffset */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/predicateoffset
-func (p_ Predicate) SetPredicateOffset(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpspredicate/3114037-predicateoffset
+func (p_ Predicate) SetPredicateOffset(value objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicateOffset:"), value)
-}
+}/* debug [instance_properties/setter]: predicateOffset */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSPredicate */
 
 

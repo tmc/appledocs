@@ -21,3 +21,4 @@ var handleBDXQueryForNodeIDProtocol *objc.Protocol
 func init() {
 	handleBDXQueryForNodeIDProtocol = objc.GetProtocol("handleBDXQueryForNodeID:")
 }
+

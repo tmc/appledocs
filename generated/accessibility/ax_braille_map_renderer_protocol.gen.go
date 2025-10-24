@@ -21,3 +21,4 @@ var AXBrailleMapRendererProtocol *objc.Protocol
 func init() {
 	AXBrailleMapRendererProtocol = objc.GetProtocol("AXBrailleMapRenderer")
 }
+

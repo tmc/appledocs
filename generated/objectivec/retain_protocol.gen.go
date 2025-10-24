@@ -21,3 +21,4 @@ var retainProtocol *objc.Protocol
 func init() {
 	retainProtocol = objc.GetProtocol("retain")
 }
+

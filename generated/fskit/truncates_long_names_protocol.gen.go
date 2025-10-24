@@ -15,3 +15,4 @@ var truncatesLongNamesProtocol *objc.Protocol
 func init() {
 	truncatesLongNamesProtocol = objc.GetProtocol("truncatesLongNames")
 }
+

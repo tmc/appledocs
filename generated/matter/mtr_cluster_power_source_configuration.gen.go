@@ -33,8 +33,6 @@ type IMTRClusterPowerSourceConfiguration interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerSourceConfiguration
 type MTRClusterPowerSourceConfiguration struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterPowerSourceConfiguration) Autorelease() MTRClusterPowerSource
 func NewMTRClusterPowerSourceConfiguration() MTRClusterPowerSourceConfiguration {
 	return getMTRClusterPowerSourceConfigurationClass().New()
 }
-
-
-
-

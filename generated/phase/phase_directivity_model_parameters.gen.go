@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PHASEDirectivityModelParameters */
+
+
+/* debug [class_header]: Header for PHASEDirectivityModelParameters */
 // The class instance for the [PHASEDirectivityModelParameters] class.
 var (
 	PHASEDirectivityModelParametersClass     _PHASEDirectivityModelParametersClass
@@ -26,34 +30,30 @@ func getPHASEDirectivityModelParametersClass() _PHASEDirectivityModelParametersC
 type _PHASEDirectivityModelParametersClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PHASEDirectivityModelParameters */
 // An interface definition for the [PHASEDirectivityModelParameters] class.
 type IPHASEDirectivityModelParameters interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PHASEDirectivityModelParameters */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PHASEDirectivityModelParameters */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A base class for objects that direct sound.
-//
-// Several classes derive from this class that implement a unique strategy to direct sound. Rather than create an instance of this class, instantiate a subclass, such as or .
+/* debug [class_interface]: End interface */
 
 
-// A base class for objects that direct sound.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDirectivityModelParameters
-type PHASEDirectivityModelParameters struct {
-	objectivec.Object
-}
 
-// PHASEDirectivityModelParametersFrom constructs a [PHASEDirectivityModelParameters] from an unsafe.Pointer.
-//
-// A base class for objects that direct sound.
-func PHASEDirectivityModelParametersFrom(ptr unsafe.Pointer) PHASEDirectivityModelParameters {
-	return PHASEDirectivityModelParameters{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PHASEDirectivityModelParameters */
 // Alloc allocates a new instance without initialization.
 func (pc _PHASEDirectivityModelParametersClass) Alloc() PHASEDirectivityModelParameters {
 	rv := objc.Send[PHASEDirectivityModelParameters](objc.ID(pc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (pc _PHASEDirectivityModelParametersClass) Alloc() PHASEDirectivityModelPar
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PHASEDirectivityModelParametersClass) New() PHASEDirectivityModelParameters {
 	rv := objc.Send[PHASEDirectivityModelParameters](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,7 +83,58 @@ func (p_ PHASEDirectivityModelParameters) Autorelease() PHASEDirectivityModelPar
 func NewPHASEDirectivityModelParameters() PHASEDirectivityModelParameters {
 	return getPHASEDirectivityModelParametersClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for PHASEDirectivityModelParameters */
+// A base class for objects that direct sound.
+//
+// Several classes derive from this class that implement a unique strategy to direct sound. Rather than create an instance of this class, instantiate a subclass, such as or .
+
+
+// A base class for objects that direct sound.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEDirectivityModelParameters
+type PHASEDirectivityModelParameters struct {
+	objectivec.Object
+}
+
+// PHASEDirectivityModelParametersFrom constructs a [PHASEDirectivityModelParameters] from an unsafe.Pointer.
+//
+// A base class for objects that direct sound.
+func PHASEDirectivityModelParametersFrom(ptr unsafe.Pointer) PHASEDirectivityModelParameters {
+	return PHASEDirectivityModelParameters{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PHASEDirectivityModelParameters *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PHASEDirectivityModelParameters */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PHASEDirectivityModelParameters */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PHASEDirectivityModelParameters */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PHASEDirectivityModelParameters */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PHASEDirectivityModelParameters */
 
 
 

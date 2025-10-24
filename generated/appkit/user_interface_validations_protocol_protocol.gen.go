@@ -3,8 +3,7 @@
 package appkit
 
 import (
-
-	"github.com/tmc/appledocs/generated/objc"
+	"unsafe"
 )
 
 // PUserInterfaceValidations is the NSUserInterfaceValidations protocol interface.
@@ -17,5 +16,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceValidations
 type PUserInterfaceValidations interface {
 	// Required methods
-	ValidateUserInterfaceItem(item objc.IObject) bool
+	ValidateUserInterfaceItem(item unsafe.Pointer) bool/* debug [protocol_interface/required_method]: ValidateUserInterfaceItem */
 }

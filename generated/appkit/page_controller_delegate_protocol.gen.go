@@ -15,3 +15,4 @@ var PageControllerDelegateProtocol *objc.Protocol
 func init() {
 	PageControllerDelegateProtocol = objc.GetProtocol("NSPageControllerDelegate")
 }
+

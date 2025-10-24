@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for PDFKit. DO NOT EDIT.
 
 // Package pdfkit provides Go bindings for the PDFKit framework.
 //
-// Display and manipulate PDF documents in your apps.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PDFKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/PDFKit
 package pdfkit
 
 import (

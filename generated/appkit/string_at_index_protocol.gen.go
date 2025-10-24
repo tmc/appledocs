@@ -15,3 +15,4 @@ var stringAtIndexProtocol *objc.Protocol
 func init() {
 	stringAtIndexProtocol = objc.GetProtocol("stringAtIndex:")
 }
+

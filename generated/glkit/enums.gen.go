@@ -2,7 +2,9 @@
 
 package glkit
 
+/* debug [enums.gen.go]: Generating 12 enums for GLKit */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum GLKFogMode (3 cases) */
 // GLKFogMode - A mode that describes how the fog component is calculated for the fragment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKFogMode
@@ -23,6 +25,7 @@ const (
 	GLKFogModeLinear GLKFogMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKLightingType (2 cases) */
 // GLKLightingType - A constant that describes how lighting is calculated by an effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKLightingType
@@ -39,6 +42,7 @@ const (
 	GLKLightingTypePerVertex GLKLightingType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKTextureEnvMode (3 cases) */
 // GLKTextureEnvMode - The mode used to combine the texture with other color components.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureEnvMode
@@ -59,26 +63,28 @@ const (
 	GLKTextureEnvModeReplace GLKTextureEnvMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKTextureInfoAlphaState (3 cases) */
 // GLKTextureInfoAlphaState - Values that describe the alpha information stored in a source image’s pixel data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfoAlphaState
 type GLKTextureInfoAlphaState uint
 
 const (
-	// GLKTextureInfoAlphaStateNonPremultiplied - Indicates that the color values in the texture were not premultiplied by the alpha value.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfoAlphaState/nonPremultiplied
-	GLKTextureInfoAlphaStateNonPremultiplied GLKTextureInfoAlphaState = 0
 	// GLKTextureInfoAlphaStateNone - Indicates that the texture has no alpha information.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfoAlphaState/none
 	GLKTextureInfoAlphaStateNone GLKTextureInfoAlphaState = 0
+	// GLKTextureInfoAlphaStateNonPremultiplied - Indicates that the color values in the texture were not premultiplied by the alpha value.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfoAlphaState/nonPremultiplied
+	GLKTextureInfoAlphaStateNonPremultiplied GLKTextureInfoAlphaState = 0
 	// GLKTextureInfoAlphaStatePremultiplied - Indicates that the color values in the texture have already been premultiplied by the alpha value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfoAlphaState/premultiplied
 	GLKTextureInfoAlphaStatePremultiplied GLKTextureInfoAlphaState = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKTextureInfoOrigin (3 cases) */
 // GLKTextureInfoOrigin - The location of the origin in the original source image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfoOrigin
@@ -99,6 +105,7 @@ const (
 	GLKTextureInfoOriginUnknown GLKTextureInfoOrigin = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKTextureLoaderError (20 cases) */
 // GLKTextureLoaderError - Values to be returned when a texture loader encounters an error.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoaderError-swift.struct/Code
@@ -186,6 +193,7 @@ const (
 	GLKTextureLoaderErrorUnsupportedTextureTarget GLKTextureLoaderError = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKTextureTarget (3 cases) */
 // GLKTextureTarget - The kind of texture pointed to by the property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureTarget
@@ -206,6 +214,7 @@ const (
 	GLKTextureTargetCubeMap GLKTextureTarget = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKVertexAttrib (5 cases) */
 // GLKVertexAttrib - Values used as indices in OpenGL code to associate vertex data with an attribute in a named shader effect.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKVertexAttrib
@@ -234,6 +243,7 @@ const (
 	GLKVertexAttribTexCoord1 GLKVertexAttrib = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKViewDrawableColorFormat (3 cases) */
 // GLKViewDrawableColorFormat - The format of the color renderbuffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewDrawableColorFormat
@@ -254,6 +264,7 @@ const (
 	GLKViewDrawableColorFormatSRGBA8888 GLKViewDrawableColorFormat = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKViewDrawableDepthFormat (3 cases) */
 // GLKViewDrawableDepthFormat - The format of the depth renderbuffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewDrawableDepthFormat
@@ -274,6 +285,7 @@ const (
 	GLKViewDrawableDepthFormatNone GLKViewDrawableDepthFormat = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKViewDrawableMultisample (2 cases) */
 // GLKViewDrawableMultisample - The format of the multisampling buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewDrawableMultisample
@@ -290,6 +302,7 @@ const (
 	GLKViewDrawableMultisampleNone GLKViewDrawableMultisample = 0
 )
 
+/* debug [enums.gen.go]: Processing enum GLKViewDrawableStencilFormat (2 cases) */
 // GLKViewDrawableStencilFormat - The format of the stencil renderbuffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewDrawableStencilFormat

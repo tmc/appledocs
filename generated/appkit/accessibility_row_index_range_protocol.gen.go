@@ -15,3 +15,4 @@ var accessibilityRowIndexRangeProtocol *objc.Protocol
 func init() {
 	accessibilityRowIndexRangeProtocol = objc.GetProtocol("accessibilityRowIndexRange")
 }
+

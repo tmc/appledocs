@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
+
+
+/* debug [class_header]: Header for ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
 // The class instance for the [AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest] class.
 var (
 	AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass     _AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass
@@ -25,38 +29,34 @@ func getAuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass() _Auth
 type _AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
 // An interface definition for the [AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest] class.
 type IAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest interface {
 	IAuthorizationRequest
-	AllowedCredentials() ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor
-	SetAllowedCredentials(value IASAuthorizationSecurityKeyPublicKeyCredentialDescriptor)
-	AppID() string
-	SetAppID(value string)
+	
+/* debug [class_interface_properties]: Properties for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
+	// properties:
+	AllowedCredentials() []AuthorizationSecurityKeyPublicKeyCredentialDescriptor
+	SetAllowedCredentials(value []AuthorizationSecurityKeyPublicKeyCredentialDescriptor)
+	AppID() objc.IObject /* cross-framework: NSString */
+	SetAppID(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A class that defines the assertion request type for security key credentials.
-//
-// Use this class to sign in with an existing credential on a security key.
+/* debug [class_interface]: End interface */
 
 
-// A class that defines the assertion request type for security key credentials.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest
-type AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest struct {
-	AuthorizationRequest
-}
 
-// AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestFrom constructs a [AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest] from an unsafe.Pointer.
-//
-// A class that defines the assertion request type for security key credentials.
-func AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestFrom(ptr unsafe.Pointer) AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
-	return AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest{
-		AuthorizationRequest: AuthorizationRequestFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
 // Alloc allocates a new instance without initialization.
 func (ac _AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass) Alloc() AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
 	rv := objc.Send[AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest](objc.ID(ac.class), objc.Sel("alloc"))
@@ -64,7 +64,6 @@ func (ac _AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass) Allo
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass) New() AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
 	rv := objc.Send[AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,41 +86,103 @@ func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) Autoreleas
 func NewAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest() AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
 	return getAuthorizationSecurityKeyPublicKeyCredentialAssertionRequestClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
+// A class that defines the assertion request type for security key credentials.
+//
+// Use this class to sign in with an existing credential on a security key.
+
+
+// A class that defines the assertion request type for security key credentials.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest
+type AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest struct {
+	AuthorizationRequest
+}
+
+// AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestFrom constructs a [AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest] from an unsafe.Pointer.
+//
+// A class that defines the assertion request type for security key credentials.
+func AuthorizationSecurityKeyPublicKeyCredentialAssertionRequestFrom(ptr unsafe.Pointer) AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest {
+	return AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest{
+		AuthorizationRequest: AuthorizationRequestFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
+
+// An array of allowed credentials.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest/allowedCredentials
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AllowedCredentials() []AuthorizationSecurityKeyPublicKeyCredentialDescriptor {
+	rv := objc.Send[[]AuthorizationSecurityKeyPublicKeyCredentialDescriptor](a_.ID, objc.Sel("allowedCredentials"))
+	return rv
+}/* debug [instance_properties/getter]: allowedCredentials */
 
 
 // An array of allowed credentials.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/allowedcredentials
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AllowedCredentials() ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor {
-	rv := objc.Send[ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor](a_.ID, objc.Sel("allowedCredentials"))
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest/allowedCredentials
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAllowedCredentials(value []AuthorizationSecurityKeyPublicKeyCredentialDescriptor) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowedCredentials:"), nsArray)
+}/* debug [instance_properties/setter]: allowedCredentials */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest/appID
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("appID"))
 	return rv
-}
-
-
-// An array of allowed credentials.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/allowedcredentials
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAllowedCredentials(value IASAuthorizationSecurityKeyPublicKeyCredentialDescriptor) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowedCredentials:"), value)
-}
+}/* debug [instance_properties/getter]: appID */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) AppID() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("appID"))
-	return rv
-}
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest/appID
+func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAppID(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAppID:"), value)
+}/* debug [instance_properties/setter]: appID */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationsecuritykeypublickeycredentialassertionrequest/appid
-func (a_ AuthorizationSecurityKeyPublicKeyCredentialAssertionRequest) SetAppID(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAppID:"), objc.String(value))
-}
+/* debug [class.gen.go]: End class ASAuthorizationSecurityKeyPublicKeyCredentialAssertionRequest */
 
 
 

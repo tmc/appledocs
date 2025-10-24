@@ -5,6 +5,12 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/cloudkit"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PCloudSharingServiceDelegate is the NSCloudSharingServiceDelegate protocol interface.

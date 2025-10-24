@@ -41,7 +41,6 @@ type IINRequestPaymentIntent interface {
 //
 // Siri creates an object when the current user requests a payment from another user. A request payment intent object includes the payment amount and the person receiving the request. This intent represents only a request for payment and shouldn’t initiate any payments. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of making the request.
 
-
 // An intent for requesting money from another user’s account.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINRequestPaymentIntent() INRequestPaymentIntent {
 	return getINRequestPaymentIntentClass().New()
 }
 
-
-
 // The amount of the payment.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INRequestPaymentIntent) CurrencyAmount() INCurrencyAmount {
 	return rv
 }
 
-
 // The amount of the payment.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INRequestPaymentIntent) CurrencyAmount() INCurrencyAmount {
 func (i_ INRequestPaymentIntent) SetCurrencyAmount(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyAmount:"), value)
 }
-
 
 // A note associated with the request.
 //
@@ -120,7 +115,6 @@ func (i_ INRequestPaymentIntent) Note() string {
 	return rv
 }
 
-
 // A note associated with the request.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INRequestPaymentIntent) Note() string {
 func (i_ INRequestPaymentIntent) SetNote(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
 }
-
 
 // The recipient of the payment request.
 //
@@ -139,7 +132,6 @@ func (i_ INRequestPaymentIntent) Payer() INPerson {
 	return rv
 }
 
-
 // The recipient of the payment request.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INRequestPaymentIntent) Payer() INPerson {
 func (i_ INRequestPaymentIntent) SetPayer(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPayer:"), value)
 }
-
-
-

@@ -21,3 +21,4 @@ var archiverProtocol *objc.Protocol
 func init() {
 	archiverProtocol = objc.GetProtocol("archiver:")
 }
+

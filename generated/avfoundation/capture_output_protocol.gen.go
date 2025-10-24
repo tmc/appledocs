@@ -12,7 +12,6 @@ import "github.com/ebitengine/purego/objc"
 //   - iPadOS 4.0+
 //   - macOS 10.7+
 //   - tvOS 17.0+
-//   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to captureOutput:.
 var captureOutputProtocol *objc.Protocol
@@ -20,3 +19,4 @@ var captureOutputProtocol *objc.Protocol
 func init() {
 	captureOutputProtocol = objc.GetProtocol("captureOutput:")
 }
+

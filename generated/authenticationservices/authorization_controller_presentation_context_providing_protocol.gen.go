@@ -20,3 +20,4 @@ var AuthorizationControllerPresentationContextProvidingProtocol *objc.Protocol
 func init() {
 	AuthorizationControllerPresentationContextProvidingProtocol = objc.GetProtocol("ASAuthorizationControllerPresentationContextProviding")
 }
+

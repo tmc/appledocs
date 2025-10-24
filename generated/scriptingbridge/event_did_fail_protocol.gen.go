@@ -16,3 +16,4 @@ var eventDidFailProtocol *objc.Protocol
 func init() {
 	eventDidFailProtocol = objc.GetProtocol("eventDidFail:")
 }
+

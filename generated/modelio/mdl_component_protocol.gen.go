@@ -20,3 +20,4 @@ var MDLComponentProtocol *objc.Protocol
 func init() {
 	MDLComponentProtocol = objc.GetProtocol("MDLComponent")
 }
+

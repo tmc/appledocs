@@ -17,14 +17,16 @@ func ExampleNewMenuItemBadgeWithCount() {
 	)
 	// Output:
 }
+
 // ExampleNewMenuItemBadgeWithCountType demonstrates how to create a MenuItemBadge instance using NewMenuItemBadgeWithCountType.
 func ExampleNewMenuItemBadgeWithCountType() {
 	_ = appkit.NewMenuItemBadgeWithCountType(
-		0, // itemCount int
+		0,                          // itemCount int
 		appkit.MenuItemBadgeType{}, // type MenuItemBadgeType
 	)
 	// Output:
 }
+
 // ExampleNewMenuItemBadgeWithString demonstrates how to create a MenuItemBadge instance using NewMenuItemBadgeWithString.
 // Creates a badge with the provided custom string.
 func ExampleNewMenuItemBadgeWithString() {

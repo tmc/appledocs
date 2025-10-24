@@ -15,3 +15,4 @@ var textDidChangeProtocol *objc.Protocol
 func init() {
 	textDidChangeProtocol = objc.GetProtocol("textDidChange:")
 }
+

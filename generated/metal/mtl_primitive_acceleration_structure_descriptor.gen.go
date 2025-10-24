@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTLPrimitiveAccelerationStructureDescriptor */
+
+
+/* debug [class_header]: Header for MTLPrimitiveAccelerationStructureDescriptor */
 // The class instance for the [PrimitiveAccelerationStructureDescriptor] class.
 var (
 	PrimitiveAccelerationStructureDescriptorClass     _PrimitiveAccelerationStructureDescriptorClass
@@ -25,42 +30,42 @@ func getPrimitiveAccelerationStructureDescriptorClass() _PrimitiveAccelerationSt
 type _PrimitiveAccelerationStructureDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PrimitiveAccelerationStructureDescriptor */
 // An interface definition for the [PrimitiveAccelerationStructureDescriptor] class.
 type IPrimitiveAccelerationStructureDescriptor interface {
 	IAccelerationStructureDescriptor
-	GeometryDescriptors() MTLAccelerationStructureGeometryDescriptor
-	SetGeometryDescriptors(value IMTLAccelerationStructureGeometryDescriptor)
-	MotionEndBorderMode() unsafe.Pointer
-	SetMotionEndBorderMode(value unsafe.Pointer)
+	
+/* debug [class_interface_properties]: Properties for PrimitiveAccelerationStructureDescriptor */
+	// properties:
+	GeometryDescriptors() []AccelerationStructureGeometryDescriptor
+	SetGeometryDescriptors(value []AccelerationStructureGeometryDescriptor)
+	MotionEndBorderMode() MotionBorderMode
+	SetMotionEndBorderMode(value MotionBorderMode)
 	MotionEndTime() float32
 	SetMotionEndTime(value float32)
-	MotionKeyframeCount() int
-	SetMotionKeyframeCount(value int)
-	MotionStartBorderMode() unsafe.Pointer
-	SetMotionStartBorderMode(value unsafe.Pointer)
+	MotionKeyframeCount() uint
+	SetMotionKeyframeCount(value uint)
+	MotionStartBorderMode() MotionBorderMode
+	SetMotionStartBorderMode(value MotionBorderMode)
 	MotionStartTime() float32
 	SetMotionStartTime(value float32)
-}
+/* debug [class_interface_properties]: End properties */
 
-// A description of an acceleration structure that contains geometry primitives.
-//
-// Metal provides acceleration structures with a two-level hierarchy. The bottom layer consists of primitive acceleration structures, which instance acceleration structures in the top level reference.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor
-type PrimitiveAccelerationStructureDescriptor struct {
-	AccelerationStructureDescriptor
-}
+	
+/* debug [class_interface_methods]: Methods for PrimitiveAccelerationStructureDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// PrimitiveAccelerationStructureDescriptorFrom constructs a [PrimitiveAccelerationStructureDescriptor] from an unsafe.Pointer.
-//
-// A description of an acceleration structure that contains geometry primitives.
-func PrimitiveAccelerationStructureDescriptorFrom(ptr unsafe.Pointer) PrimitiveAccelerationStructureDescriptor {
-	return PrimitiveAccelerationStructureDescriptor{
-		AccelerationStructureDescriptor: AccelerationStructureDescriptorFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for PrimitiveAccelerationStructureDescriptor */
 // Alloc allocates a new instance without initialization.
 func (pc _PrimitiveAccelerationStructureDescriptorClass) Alloc() PrimitiveAccelerationStructureDescriptor {
 	rv := objc.Send[PrimitiveAccelerationStructureDescriptor](objc.ID(pc.class), objc.Sel("alloc"))
@@ -68,7 +73,6 @@ func (pc _PrimitiveAccelerationStructureDescriptorClass) Alloc() PrimitiveAccele
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PrimitiveAccelerationStructureDescriptorClass) New() PrimitiveAccelerationStructureDescriptor {
 	rv := objc.Send[PrimitiveAccelerationStructureDescriptor](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,115 +95,193 @@ func (p_ PrimitiveAccelerationStructureDescriptor) Autorelease() PrimitiveAccele
 func NewPrimitiveAccelerationStructureDescriptor() PrimitiveAccelerationStructureDescriptor {
 	return getPrimitiveAccelerationStructureDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
+
+
+
+/* debug [class_struct]: Struct for PrimitiveAccelerationStructureDescriptor */
+// A description of an acceleration structure that contains geometry primitives.
+//
+// Metal provides acceleration structures with a two-level hierarchy. The bottom layer consists of primitive acceleration structures, which instance acceleration structures in the top level reference.
+
+
+// A description of an acceleration structure that contains geometry primitives.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor
+type PrimitiveAccelerationStructureDescriptor struct {
+	AccelerationStructureDescriptor
+}
+
+// PrimitiveAccelerationStructureDescriptorFrom constructs a [PrimitiveAccelerationStructureDescriptor] from an unsafe.Pointer.
+//
+// A description of an acceleration structure that contains geometry primitives.
+func PrimitiveAccelerationStructureDescriptorFrom(ptr unsafe.Pointer) PrimitiveAccelerationStructureDescriptor {
+	return PrimitiveAccelerationStructureDescriptor{
+		AccelerationStructureDescriptor: AccelerationStructureDescriptorFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PrimitiveAccelerationStructureDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PrimitiveAccelerationStructureDescriptor */
+
+// Creates a new primitive descriptor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/descriptor
+func (pc _PrimitiveAccelerationStructureDescriptorClass) Descriptor() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(pc.class), objc.Sel("descriptor"))
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Descriptor) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PrimitiveAccelerationStructureDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PrimitiveAccelerationStructureDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PrimitiveAccelerationStructureDescriptor */
+
+// An array that contains the individual pieces of geometry that compose the acceleration structure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/geometryDescriptors
+func (p_ PrimitiveAccelerationStructureDescriptor) GeometryDescriptors() []AccelerationStructureGeometryDescriptor {
+	rv := objc.Send[[]AccelerationStructureGeometryDescriptor](p_.ID, objc.Sel("geometryDescriptors"))
+	return rv
+}/* debug [instance_properties/getter]: geometryDescriptors */
 
 
 // An array that contains the individual pieces of geometry that compose the acceleration structure.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/geometrydescriptors
-func (p_ PrimitiveAccelerationStructureDescriptor) GeometryDescriptors() MTLAccelerationStructureGeometryDescriptor {
-	rv := objc.Send[MTLAccelerationStructureGeometryDescriptor](p_.ID, objc.Sel("geometryDescriptors"))
-	return rv
-}
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/geometryDescriptors
+func (p_ PrimitiveAccelerationStructureDescriptor) SetGeometryDescriptors(value []AccelerationStructureGeometryDescriptor) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setGeometryDescriptors:"), nsArray)
+}/* debug [instance_properties/setter]: geometryDescriptors */
 
-
-// SetGeometryDescriptors sets the value of the geometryDescriptors property.
-// An array that contains the individual pieces of geometry that compose the acceleration structure.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/geometrydescriptors
-func (p_ PrimitiveAccelerationStructureDescriptor) SetGeometryDescriptors(value IMTLAccelerationStructureGeometryDescriptor) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setGeometryDescriptors:"), value)
-}
 
 // The mode to use when handling timestamps after the end time.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendbordermode
-func (p_ PrimitiveAccelerationStructureDescriptor) MotionEndBorderMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("motionEndBorderMode"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionEndBorderMode
+func (p_ PrimitiveAccelerationStructureDescriptor) MotionEndBorderMode() MotionBorderMode {
+	rv := objc.Send[MotionBorderMode](p_.ID, objc.Sel("motionEndBorderMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: motionEndBorderMode */
 
 
-// SetMotionEndBorderMode sets the value of the motionEndBorderMode property.
 // The mode to use when handling timestamps after the end time.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendbordermode
-func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndBorderMode(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionEndBorderMode
+func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndBorderMode(value MotionBorderMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionEndBorderMode:"), value)
-}
+}/* debug [instance_properties/setter]: motionEndBorderMode */
+
 
 // The end time for the range of motion that the keyframe data describes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendtime
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionEndTime
 func (p_ PrimitiveAccelerationStructureDescriptor) MotionEndTime() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("motionEndTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: motionEndTime */
 
 
-// SetMotionEndTime sets the value of the motionEndTime property.
 // The end time for the range of motion that the keyframe data describes.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionendtime
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionEndTime
 func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionEndTime(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionEndTime:"), value)
-}
+}/* debug [instance_properties/setter]: motionEndTime */
+
 
 // The number of keyframes in the geometry data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionkeyframecount
-func (p_ PrimitiveAccelerationStructureDescriptor) MotionKeyframeCount() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("motionKeyframeCount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionKeyframeCount
+func (p_ PrimitiveAccelerationStructureDescriptor) MotionKeyframeCount() uint {
+	rv := objc.Send[uint](p_.ID, objc.Sel("motionKeyframeCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: motionKeyframeCount */
 
 
-// SetMotionKeyframeCount sets the value of the motionKeyframeCount property.
 // The number of keyframes in the geometry data.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionkeyframecount
-func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionKeyframeCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionKeyframeCount
+func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionKeyframeCount(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionKeyframeCount:"), value)
-}
+}/* debug [instance_properties/setter]: motionKeyframeCount */
+
 
 // The mode to use when handling timestamps before the start time.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstartbordermode
-func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartBorderMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("motionStartBorderMode"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionStartBorderMode
+func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartBorderMode() MotionBorderMode {
+	rv := objc.Send[MotionBorderMode](p_.ID, objc.Sel("motionStartBorderMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: motionStartBorderMode */
 
 
-// SetMotionStartBorderMode sets the value of the motionStartBorderMode property.
 // The mode to use when handling timestamps before the start time.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstartbordermode
-func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartBorderMode(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionStartBorderMode
+func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartBorderMode(value MotionBorderMode) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionStartBorderMode:"), value)
-}
+}/* debug [instance_properties/setter]: motionStartBorderMode */
+
 
 // The start time for the range of motion that the keyframe data describes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstarttime
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionStartTime
 func (p_ PrimitiveAccelerationStructureDescriptor) MotionStartTime() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("motionStartTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: motionStartTime */
 
 
-// SetMotionStartTime sets the value of the motionStartTime property.
 // The start time for the range of motion that the keyframe data describes.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlprimitiveaccelerationstructuredescriptor/motionstarttime
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLPrimitiveAccelerationStructureDescriptor/motionStartTime
 func (p_ PrimitiveAccelerationStructureDescriptor) SetMotionStartTime(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMotionStartTime:"), value)
-}
+}/* debug [instance_properties/setter]: motionStartTime */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTLPrimitiveAccelerationStructureDescriptor */
 
 
 

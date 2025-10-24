@@ -11,7 +11,5 @@ type _undefined = int
 type (
 	Data = _undefined // referenced in FinderSync
 	Date = _undefined // referenced in FinderSync
-	URL = _undefined // referenced in FinderSync
+	URL  = _undefined // referenced in FinderSync
 )
-
-

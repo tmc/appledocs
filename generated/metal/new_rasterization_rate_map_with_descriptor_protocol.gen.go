@@ -20,3 +20,4 @@ var newRasterizationRateMapWithDescriptorProtocol *objc.Protocol
 func init() {
 	newRasterizationRateMapWithDescriptorProtocol = objc.GetProtocol("newRasterizationRateMapWithDescriptor:")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRDiagnosticLogsClusterRetrieveLogsRequestParams interface {
 	SetTransferFileDesignator(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDiagnosticLogsClusterRetrieveLogsRequestParams
@@ -89,8 +87,6 @@ func NewMTRDiagnosticLogsClusterRetrieveLogsRequestParams() MTRDiagnosticLogsClu
 	return getMTRDiagnosticLogsClusterRetrieveLogsRequestParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/intent
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) Intent() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) Intent() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/intent
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetIntent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/requestedprotocol
@@ -113,13 +107,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) RequestedProtocol() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/requestedprotocol
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetRequestedProtocol(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequestedProtocol:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/serversideprocessingtimeout
@@ -128,13 +120,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) ServerSideProcessing
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/serversideprocessingtimeout
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/timedinvoketimeoutms
@@ -143,13 +133,11 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TimedInvokeTimeoutMs
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/timedinvoketimeoutms
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/transferfiledesignator
@@ -158,12 +146,8 @@ func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) TransferFileDesignat
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdiagnosticlogsclusterretrievelogsrequestparams/transferfiledesignator
 func (m_ MTRDiagnosticLogsClusterRetrieveLogsRequestParams) SetTransferFileDesignator(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransferFileDesignator:"), value)
 }
-
-
-

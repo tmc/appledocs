@@ -3,8 +3,11 @@
 package appkit
 
 import (
+	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PTextLayoutManagerDelegate is the NSTextLayoutManagerDelegate protocol interface.
@@ -17,11 +20,11 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextLayoutManagerDelegate
 type PTextLayoutManagerDelegate interface {
 	// Optional methods
-	TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(textLayoutManager ITextLayoutManager, link objc.IObject, location objc.IObject, renderingAttributes foundation.IDictionary) foundation.IDictionary
+	TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(textLayoutManager ITextLayoutManager, link objc.IObject, location unsafe.Pointer, renderingAttributes foundation.IDictionary) foundation.IDictionary
 	HasTextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes() bool
-	TextLayoutManagerShouldBreakLineBeforeLocationHyphenating(textLayoutManager ITextLayoutManager, location objc.IObject, hyphenating bool) bool
+	TextLayoutManagerShouldBreakLineBeforeLocationHyphenating(textLayoutManager ITextLayoutManager, location unsafe.Pointer, hyphenating bool) bool
 	HasTextLayoutManagerShouldBreakLineBeforeLocationHyphenating() bool
-	TextLayoutManagerTextLayoutFragmentForLocationInTextElement(textLayoutManager ITextLayoutManager, location objc.IObject, textElement ITextElement) TextLayoutFragment
+	TextLayoutManagerTextLayoutFragmentForLocationInTextElement(textLayoutManager ITextLayoutManager, location unsafe.Pointer, textElement ITextElement) TextLayoutFragment
 	HasTextLayoutManagerTextLayoutFragmentForLocationInTextElement() bool
 }
 
@@ -29,34 +32,34 @@ type PTextLayoutManagerDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type TextLayoutManagerDelegate struct {
-	_TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes func(textLayoutManager ITextLayoutManager, link objc.IObject, location objc.IObject, renderingAttributes foundation.IDictionary) foundation.IDictionary
-	_TextLayoutManagerShouldBreakLineBeforeLocationHyphenating func(textLayoutManager ITextLayoutManager, location objc.IObject, hyphenating bool) bool
-	_TextLayoutManagerTextLayoutFragmentForLocationInTextElement func(textLayoutManager ITextLayoutManager, location objc.IObject, textElement ITextElement) TextLayoutFragment
+	_TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes func(textLayoutManager ITextLayoutManager, link objc.IObject, location unsafe.Pointer, renderingAttributes foundation.IDictionary) foundation.IDictionary
+	_TextLayoutManagerShouldBreakLineBeforeLocationHyphenating func(textLayoutManager ITextLayoutManager, location unsafe.Pointer, hyphenating bool) bool
+	_TextLayoutManagerTextLayoutFragmentForLocationInTextElement func(textLayoutManager ITextLayoutManager, location unsafe.Pointer, textElement ITextElement) TextLayoutFragment
 }
 
 // SetTextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes sets the handler for the TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes delegate method.
 //
 // The method the framework calls to return a dictionary of attributes for rendering a link attribute name.
-func (d *TextLayoutManagerDelegate) SetTextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(f func(textLayoutManager ITextLayoutManager, link objc.IObject, location objc.IObject, renderingAttributes foundation.IDictionary) foundation.IDictionary) {
+func (d *TextLayoutManagerDelegate) SetTextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(f func(textLayoutManager ITextLayoutManager, link objc.IObject, location unsafe.Pointer, renderingAttributes foundation.IDictionary) foundation.IDictionary) {
 	d._TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes = f
 }
 
 // SetTextLayoutManagerShouldBreakLineBeforeLocationHyphenating sets the handler for the TextLayoutManagerShouldBreakLineBeforeLocationHyphenating delegate method.
 //
 // The method the framework calls to determine the soft line break point.
-func (d *TextLayoutManagerDelegate) SetTextLayoutManagerShouldBreakLineBeforeLocationHyphenating(f func(textLayoutManager ITextLayoutManager, location objc.IObject, hyphenating bool) bool) {
+func (d *TextLayoutManagerDelegate) SetTextLayoutManagerShouldBreakLineBeforeLocationHyphenating(f func(textLayoutManager ITextLayoutManager, location unsafe.Pointer, hyphenating bool) bool) {
 	d._TextLayoutManagerShouldBreakLineBeforeLocationHyphenating = f
 }
 
 // SetTextLayoutManagerTextLayoutFragmentForLocationInTextElement sets the handler for the TextLayoutManagerTextLayoutFragmentForLocationInTextElement delegate method.
 //
 // The method the framework calls to give the delegate an opportunity to return a custom text layout fragment.
-func (d *TextLayoutManagerDelegate) SetTextLayoutManagerTextLayoutFragmentForLocationInTextElement(f func(textLayoutManager ITextLayoutManager, location objc.IObject, textElement ITextElement) TextLayoutFragment) {
+func (d *TextLayoutManagerDelegate) SetTextLayoutManagerTextLayoutFragmentForLocationInTextElement(f func(textLayoutManager ITextLayoutManager, location unsafe.Pointer, textElement ITextElement) TextLayoutFragment) {
 	d._TextLayoutManagerTextLayoutFragmentForLocationInTextElement = f
 }
 
 // TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes implements the PTextLayoutManagerDelegate interface.
-func (d *TextLayoutManagerDelegate) TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(textLayoutManager ITextLayoutManager, link objc.IObject, location objc.IObject, renderingAttributes foundation.IDictionary) foundation.IDictionary {
+func (d *TextLayoutManagerDelegate) TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(textLayoutManager ITextLayoutManager, link objc.IObject, location unsafe.Pointer, renderingAttributes foundation.IDictionary) foundation.IDictionary {
 	if d._TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes != nil {
 		return d._TextLayoutManagerRenderingAttributesForLinkAtLocationDefaultAttributes(textLayoutManager, link, location, renderingAttributes)
 	}
@@ -70,7 +73,7 @@ func (d *TextLayoutManagerDelegate) HasTextLayoutManagerRenderingAttributesForLi
 }
 
 // TextLayoutManagerShouldBreakLineBeforeLocationHyphenating implements the PTextLayoutManagerDelegate interface.
-func (d *TextLayoutManagerDelegate) TextLayoutManagerShouldBreakLineBeforeLocationHyphenating(textLayoutManager ITextLayoutManager, location objc.IObject, hyphenating bool) bool {
+func (d *TextLayoutManagerDelegate) TextLayoutManagerShouldBreakLineBeforeLocationHyphenating(textLayoutManager ITextLayoutManager, location unsafe.Pointer, hyphenating bool) bool {
 	if d._TextLayoutManagerShouldBreakLineBeforeLocationHyphenating != nil {
 		return d._TextLayoutManagerShouldBreakLineBeforeLocationHyphenating(textLayoutManager, location, hyphenating)
 	}
@@ -84,7 +87,7 @@ func (d *TextLayoutManagerDelegate) HasTextLayoutManagerShouldBreakLineBeforeLoc
 }
 
 // TextLayoutManagerTextLayoutFragmentForLocationInTextElement implements the PTextLayoutManagerDelegate interface.
-func (d *TextLayoutManagerDelegate) TextLayoutManagerTextLayoutFragmentForLocationInTextElement(textLayoutManager ITextLayoutManager, location objc.IObject, textElement ITextElement) TextLayoutFragment {
+func (d *TextLayoutManagerDelegate) TextLayoutManagerTextLayoutFragmentForLocationInTextElement(textLayoutManager ITextLayoutManager, location unsafe.Pointer, textElement ITextElement) TextLayoutFragment {
 	if d._TextLayoutManagerTextLayoutFragmentForLocationInTextElement != nil {
 		return d._TextLayoutManagerTextLayoutFragmentForLocationInTextElement(textLayoutManager, location, textElement)
 	}

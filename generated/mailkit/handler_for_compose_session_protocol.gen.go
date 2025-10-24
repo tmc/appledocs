@@ -15,3 +15,4 @@ var handlerForComposeSessionProtocol *objc.Protocol
 func init() {
 	handlerForComposeSessionProtocol = objc.GetProtocol("handlerForComposeSession:")
 }
+

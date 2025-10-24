@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,8 +33,6 @@ type IServiceSession interface {
 	// properties:
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd
@@ -79,15 +76,12 @@ func NewServiceSession() ServiceSession {
 	return getServiceSessionClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:
 func (sc _ServiceSessionClass) SessionRequiringAuthorization(authorizationRequirement ServiceSessionAuthorizationRequirement) IServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:"), authorizationRequirement)
 	return rv
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:
@@ -96,7 +90,6 @@ func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeK
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:fullAccuracyPurposeKey:queue:handler:
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeKeyQueueHandler(authorizationRequirement ServiceSessionAuthorizationRequirement, purposeKey objc.IObject /* cross-framework: NSString */, queue unsafe.Pointer, handler unsafe.Pointer) IServiceSession {
@@ -104,12 +97,9 @@ func (sc _ServiceSessionClass) SessionRequiringAuthorizationFullAccuracyPurposeK
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/sessionRequiringAuthorization:queue:handler:
 func (sc _ServiceSessionClass) SessionRequiringAuthorizationQueueHandler(authorizationRequirement ServiceSessionAuthorizationRequirement, queue unsafe.Pointer, handler unsafe.Pointer) IServiceSession {
 	rv := objc.Send[ServiceSession](objc.ID(sc.class), objc.Sel("sessionRequiringAuthorization:queue:handler:"), authorizationRequirement, queue, handler)
 	return rv
 }
-
-

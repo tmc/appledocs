@@ -18,3 +18,4 @@ var initWithDomainProtocol *objc.Protocol
 func init() {
 	initWithDomainProtocol = objc.GetProtocol("initWithDomain:")
 }
+

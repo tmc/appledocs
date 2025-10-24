@@ -20,3 +20,4 @@ var pictureInPictureControllerDidStopPictureInPictureProtocol *objc.Protocol
 func init() {
 	pictureInPictureControllerDidStopPictureInPictureProtocol = objc.GetProtocol("pictureInPictureControllerDidStopPictureInPicture:")
 }
+

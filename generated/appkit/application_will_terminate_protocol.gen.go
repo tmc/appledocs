@@ -15,3 +15,4 @@ var applicationWillTerminateProtocol *objc.Protocol
 func init() {
 	applicationWillTerminateProtocol = objc.GetProtocol("applicationWillTerminate:")
 }
+

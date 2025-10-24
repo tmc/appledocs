@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // roundedDataProtocol is the roundedData protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to roundedData.
 var roundedDataProtocol *objc.Protocol
 
 func init() {
 	roundedDataProtocol = objc.GetProtocol("roundedData")
 }
+

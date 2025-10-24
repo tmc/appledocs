@@ -33,8 +33,6 @@ type IMTRBaseClusterThermostatUserInterfaceConfiguration interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterThermostatUserInterfaceConfiguration
 type MTRBaseClusterThermostatUserInterfaceConfiguration struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterThermostatUserInterfaceConfiguration) Autorelease() MTRBa
 func NewMTRBaseClusterThermostatUserInterfaceConfiguration() MTRBaseClusterThermostatUserInterfaceConfiguration {
 	return getMTRBaseClusterThermostatUserInterfaceConfigurationClass().New()
 }
-
-
-
-

@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
+
+
+/* debug [class_header]: Header for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
 // The class instance for the [MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode] class.
 var (
 	MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass     _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass
@@ -26,51 +29,31 @@ func getMTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass() _MT
 type _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
 // An interface definition for the [MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode] class.
 type IMTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode interface {
 	IMTRGenericBaseCluster
+	
+/* debug [class_interface_properties]: Properties for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
 	// methods:
 	ChangeToModeWithParamsCompletion(params IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer)
-	ReadAttributeCurrentModeWithCompletion(completion unsafe.Pointer)
-	ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer)
-	ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeSupportedModesWithCompletion(completion unsafe.Pointer)
-	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeCurrentModeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeSupportedModesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Cluster Refrigerator And Temperature Controlled Cabinet Mode
-//
-// Attributes and commands for selecting a mode from a list of supported options.
+/* debug [class_interface]: End interface */
 
 
-// Cluster Refrigerator And Temperature Controlled Cabinet Mode
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode
-type MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode struct {
-	MTRGenericBaseCluster
-}
 
-// MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeFrom constructs a [MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode] from an unsafe.Pointer.
-//
-// Cluster Refrigerator And Temperature Controlled Cabinet Mode
-func MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeFrom(ptr unsafe.Pointer) MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode {
-	return MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode{
-		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) Alloc() MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode {
 	rv := objc.Send[MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -78,7 +61,6 @@ func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) Al
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) New() MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode {
 	rv := objc.Send[MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,70 +83,51 @@ func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) Autorele
 func NewMTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode() MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode {
 	return getMTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
+// Cluster Refrigerator And Temperature Controlled Cabinet Mode
+//
+// Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Refrigerator And Temperature Controlled Cabinet Mode
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/init(device:endpointID:queue:)
-func NewMTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode {
-	instance := getMTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass().Alloc()
-	rv := objc.Send[MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode
+type MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode struct {
+	MTRGenericBaseCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
+// MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeFrom constructs a [MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode] from an unsafe.Pointer.
+//
+// Cluster Refrigerator And Temperature Controlled Cabinet Mode
+func MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeFrom(ptr unsafe.Pointer) MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode {
+	return MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode{
+		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [class_init_methods]: Init methods for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [class_methods]: Class methods for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeCurrentMode(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) ReadAttributeCurrentModeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeCurrentModeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [class_properties_class]: Class properties for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeSupportedModes(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) ReadAttributeSupportedModesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedModesWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
+/* debug [instance_methods]: Instance methods for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
 
 // Command ChangeToMode
 //
@@ -172,104 +135,17 @@ func (mc _MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetModeClass) Re
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/changeToMode(with:completion:)
 func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) ChangeToModeWithParamsCompletion(params IMTRRefrigeratorAndTemperatureControlledCabinetModeClusterChangeToModeParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:completion:"), params, completion)
-}
+}/* debug [instance_methods/method]: ChangeToModeWithParamsCompletion */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeAcceptedCommandList(completion:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithCompletion:"), completion)
-}
+
+/* debug [instance_properties]: Instance properties for MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeAttributeList(completion:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAttributeListWithCompletion:"), completion)
-}
+/* debug [class.gen.go]: End class MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeClusterRevision(completion:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClusterRevisionWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeCurrentMode(completion:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeCurrentModeWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeCurrentModeWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeFeatureMap(completion:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeFeatureMapWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeGeneratedCommandList(completion:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/readAttributeSupportedModes(completion:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) ReadAttributeSupportedModesWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeSupportedModesWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/subscribeAttributeCurrentMode(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) SubscribeAttributeCurrentModeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeCurrentModeWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode/subscribeAttributeSupportedModes(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterRefrigeratorAndTemperatureControlledCabinetMode) SubscribeAttributeSupportedModesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeSupportedModesWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
 
 

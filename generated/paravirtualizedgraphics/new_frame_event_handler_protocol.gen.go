@@ -16,3 +16,4 @@ var newFrameEventHandlerProtocol *objc.Protocol
 func init() {
 	newFrameEventHandlerProtocol = objc.GetProtocol("newFrameEventHandler")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -41,7 +41,6 @@ type IStagedMigrationManager interface {
 // An object that handles the migration event loop and provides access to the migrating persistent store.
 //
 // A staged migration manager contains the individual stages of a migration and applies those stages, in the order you specify, when that migration runs. The manager handles the migration’s event loop, and provides access to the migrating store through its property. Stages can be custom, which enables you to perform tasks immediately before and after a stage runs, or lightweight, which supplements custom stages with those that Core Data can invoke automatically because they’re already compatible with lightweight migrations. Use to include an instance of in your persistent store’s options dictionary, as the following example shows:
-
 
 // An object that handles the migration event loop and provides access to the migrating persistent store.
 //
@@ -89,8 +88,6 @@ func NewStagedMigrationManager() StagedMigrationManager {
 	return getStagedMigrationManagerClass().New()
 }
 
-
-
 // The container that provides access to the migrating persistent store.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (s_ StagedMigrationManager) Container() IPersistentContainer {
 	rv := objc.Send[PersistentContainer](s_.ID, objc.Sel("container"))
 	return rv
 }
-
 
 // The migration stages.
 //
@@ -110,7 +106,6 @@ func (s_ StagedMigrationManager) Stages() []IMigrationStage {
 	return rv
 }
 
-
 // The key for specifying your staged migration manager.
 //
 // [Full Topic]
@@ -119,7 +114,3 @@ func (s_ StagedMigrationManager) NSPersistentStoreStagedMigrationManagerOptionKe
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("NSPersistentStoreStagedMigrationManagerOptionKey"))
 	return rv
 }
-
-
-
-

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestStructArrayArgumentResponseParams] class.
@@ -47,8 +47,6 @@ type IMTRTestClusterClusterTestStructArrayArgumentResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestStructArrayArgumentResponseParams
@@ -94,8 +92,6 @@ func NewMTRTestClusterClusterTestStructArrayArgumentResponseParams() MTRTestClus
 	return getMTRTestClusterClusterTestStructArrayArgumentResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg1
 func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg1() unsafe.Pointer {
@@ -103,13 +99,11 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg1() unsa
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg1
 func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg1(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg2
@@ -118,13 +112,11 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg2() unsa
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg2
 func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg2(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg3
@@ -133,13 +125,11 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg3() unsa
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg3
 func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg3(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg4
@@ -148,13 +138,11 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg4() unsa
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg4
 func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg4(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg4:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg5
@@ -163,13 +151,11 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg5() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg5
 func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg5(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg5:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg6
@@ -178,13 +164,11 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) Arg6() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/arg6
 func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetArg6(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg6:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/timedinvoketimeoutms
@@ -193,12 +177,8 @@ func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) TimedInvoke
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusterteststructarrayargumentresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestStructArrayArgumentResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

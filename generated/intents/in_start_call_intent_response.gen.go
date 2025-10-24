@@ -39,7 +39,6 @@ type IINStartCallIntentResponse interface {
 //
 // Use an object to specify whether your app is able to initiate an audio or video call. You create instances of this class when confirming and handling an object. When it’s time to call the user, SiriKit launches your app and delivers the object contained in this object. Use that user activity object to specify any additional information that assists your app in placing the call. You create an object in the and methods of your start call handler object. For more information about implementing your handler object, see .
 
-
 // Your app’s response to a start call intent.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINStartCallIntentResponse() INStartCallIntentResponse {
 	return getINStartCallIntentResponseClass().New()
 }
 
-
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INStartCallIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -107,6 +103,3 @@ func (i_ INStartCallIntentResponse) Code() unsafe.Pointer {
 func (i_ INStartCallIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
-
-

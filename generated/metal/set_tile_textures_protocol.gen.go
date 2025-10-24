@@ -20,3 +20,4 @@ var setTileTexturesProtocol *objc.Protocol
 func init() {
 	setTileTexturesProtocol = objc.GetProtocol("setTileTextures:")
 }
+

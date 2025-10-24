@@ -20,3 +20,4 @@ var beginTimeProtocol *objc.Protocol
 func init() {
 	beginTimeProtocol = objc.GetProtocol("beginTime")
 }
+

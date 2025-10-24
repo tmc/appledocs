@@ -20,3 +20,4 @@ var sparseTextureTierProtocol *objc.Protocol
 func init() {
 	sparseTextureTierProtocol = objc.GetProtocol("sparseTextureTier")
 }
+

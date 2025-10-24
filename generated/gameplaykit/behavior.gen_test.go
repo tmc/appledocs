@@ -14,10 +14,11 @@ var _ = gameplaykit.NewBehavior
 func ExampleNewBehaviorWithGoalWeight() {
 	_ = gameplaykit.NewBehaviorWithGoalWeight(
 		gameplaykit.GKGoal{}, // goal GKGoal
-		0.0, // weight float32
+		0.0,                  // weight float32
 	)
 	// Output:
 }
+
 // ExampleNewBehaviorWithGoals demonstrates how to create a Behavior instance using NewBehaviorWithGoals.
 // Creates a behavior with the specified goals.
 func ExampleNewBehaviorWithGoals() {

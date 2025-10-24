@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class STScreenTimeConfiguration */
+
+
+/* debug [class_header]: Header for STScreenTimeConfiguration */
 // The class instance for the [STScreenTimeConfiguration] class.
 var (
 	STScreenTimeConfigurationClass     _STScreenTimeConfigurationClass
@@ -26,34 +30,31 @@ func getSTScreenTimeConfigurationClass() _STScreenTimeConfigurationClass {
 type _STScreenTimeConfigurationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for STScreenTimeConfiguration */
 // An interface definition for the [STScreenTimeConfiguration] class.
 type ISTScreenTimeConfiguration interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for STScreenTimeConfiguration */
 	// properties:
 	EnforcesChildRestrictions() bool
-	SetEnforcesChildRestrictions(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for STScreenTimeConfiguration */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// The configuration for this device.
 
 
-// The configuration for this device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfiguration
-type STScreenTimeConfiguration struct {
-	objectivec.Object
-}
-
-// STScreenTimeConfigurationFrom constructs a [STScreenTimeConfiguration] from an unsafe.Pointer.
-//
-// The configuration for this device.
-func STScreenTimeConfigurationFrom(ptr unsafe.Pointer) STScreenTimeConfiguration {
-	return STScreenTimeConfiguration{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for STScreenTimeConfiguration */
 // Alloc allocates a new instance without initialization.
 func (sc _STScreenTimeConfigurationClass) Alloc() STScreenTimeConfiguration {
 	rv := objc.Send[STScreenTimeConfiguration](objc.ID(sc.class), objc.Sel("alloc"))
@@ -61,7 +62,6 @@ func (sc _STScreenTimeConfigurationClass) Alloc() STScreenTimeConfiguration {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _STScreenTimeConfigurationClass) New() STScreenTimeConfiguration {
 	rv := objc.Send[STScreenTimeConfiguration](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,26 +84,66 @@ func (s_ STScreenTimeConfiguration) Autorelease() STScreenTimeConfiguration {
 func NewSTScreenTimeConfiguration() STScreenTimeConfiguration {
 	return getSTScreenTimeConfigurationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A Boolean that indicates whether the device is currently enforcing child
+/* debug [class_struct]: Struct for STScreenTimeConfiguration */
+// The configuration for this device.
+
+
+// The configuration for this device.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfiguration
+type STScreenTimeConfiguration struct {
+	objectivec.Object
+}
+
+// STScreenTimeConfigurationFrom constructs a [STScreenTimeConfiguration] from an unsafe.Pointer.
+//
+// The configuration for this device.
+func STScreenTimeConfigurationFrom(ptr unsafe.Pointer) STScreenTimeConfiguration {
+	return STScreenTimeConfiguration{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for STScreenTimeConfiguration *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for STScreenTimeConfiguration */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for STScreenTimeConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for STScreenTimeConfiguration */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for STScreenTimeConfiguration */
+
+// A Boolean that indicates whether the device is currently enforcing child restrictions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfiguration/enforcesChildRestrictions
 func (s_ STScreenTimeConfiguration) EnforcesChildRestrictions() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enforcesChildRestrictions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: enforcesChildRestrictions */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// A Boolean that indicates whether the device is currently enforcing child
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
-func (s_ STScreenTimeConfiguration) SetEnforcesChildRestrictions(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setEnforcesChildRestrictions:"), value)
-}
+/* debug [class.gen.go]: End class STScreenTimeConfiguration */
 
 
 

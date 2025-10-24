@@ -6,9 +6,17 @@ import "github.com/ebitengine/purego/objc"
 
 // PaymentAuthorizationViewControllerDelegateProtocol is the PKPaymentAuthorizationViewControllerDelegate protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to PKPaymentAuthorizationViewControllerDelegate.
 var PaymentAuthorizationViewControllerDelegateProtocol *objc.Protocol
 
 func init() {
 	PaymentAuthorizationViewControllerDelegateProtocol = objc.GetProtocol("PKPaymentAuthorizationViewControllerDelegate")
 }
+

@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSSharingServicePickerToolbarItem */
+
+
+/* debug [class_header]: Header for NSSharingServicePickerToolbarItem */
 // The class instance for the [SharingServicePickerToolbarItem] class.
 var (
 	SharingServicePickerToolbarItemClass     _SharingServicePickerToolbarItemClass
@@ -25,38 +29,32 @@ func getSharingServicePickerToolbarItemClass() _SharingServicePickerToolbarItemC
 type _SharingServicePickerToolbarItemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SharingServicePickerToolbarItem */
 // An interface definition for the [SharingServicePickerToolbarItem] class.
 type ISharingServicePickerToolbarItem interface {
 	IToolbarItem
+	
+/* debug [class_interface_properties]: Properties for SharingServicePickerToolbarItem */
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SharingServicePickerToolbarItem */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A toolbar item that displays the macOS share sheet.
-//
-// An object is a standard item you add to your window’s toolbar. When someone clicks it, the item displays the macOS share sheet. Use this item to share the selected or focal content from the current window. For example, you might share the photo someone is viewing, the currently selected text, or the window’s associated document. Provide the items to share using the associated object. For an app built using Mac Catalyst, provide the items from the object in the property.
+/* debug [class_interface]: End interface */
 
 
-// A toolbar item that displays the macOS share sheet.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem
-type SharingServicePickerToolbarItem struct {
-	ToolbarItem
-}
 
-// SharingServicePickerToolbarItemFrom constructs a [SharingServicePickerToolbarItem] from an unsafe.Pointer.
-//
-// A toolbar item that displays the macOS share sheet.
-func SharingServicePickerToolbarItemFrom(ptr unsafe.Pointer) SharingServicePickerToolbarItem {
-	return SharingServicePickerToolbarItem{
-		ToolbarItem: ToolbarItemFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for SharingServicePickerToolbarItem */
 // Alloc allocates a new instance without initialization.
 func (sc _SharingServicePickerToolbarItemClass) Alloc() SharingServicePickerToolbarItem {
 	rv := objc.Send[SharingServicePickerToolbarItem](objc.ID(sc.class), objc.Sel("alloc"))
@@ -64,7 +62,6 @@ func (sc _SharingServicePickerToolbarItemClass) Alloc() SharingServicePickerTool
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SharingServicePickerToolbarItemClass) New() SharingServicePickerToolbarItem {
 	rv := objc.Send[SharingServicePickerToolbarItem](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,25 +84,78 @@ func (s_ SharingServicePickerToolbarItem) Autorelease() SharingServicePickerTool
 func NewSharingServicePickerToolbarItem() SharingServicePickerToolbarItem {
 	return getSharingServicePickerToolbarItemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SharingServicePickerToolbarItem */
+// A toolbar item that displays the macOS share sheet.
+//
+// An object is a standard item you add to your window’s toolbar. When someone clicks it, the item displays the macOS share sheet. Use this item to share the selected or focal content from the current window. For example, you might share the photo someone is viewing, the currently selected text, or the window’s associated document. Provide the items to share using the associated object. For an app built using Mac Catalyst, provide the items from the object in the property.
+
+
+// A toolbar item that displays the macOS share sheet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem
+type SharingServicePickerToolbarItem struct {
+	ToolbarItem
+}
+
+// SharingServicePickerToolbarItemFrom constructs a [SharingServicePickerToolbarItem] from an unsafe.Pointer.
+//
+// A toolbar item that displays the macOS share sheet.
+func SharingServicePickerToolbarItemFrom(ptr unsafe.Pointer) SharingServicePickerToolbarItem {
+	return SharingServicePickerToolbarItem{
+		ToolbarItem: ToolbarItemFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SharingServicePickerToolbarItem *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SharingServicePickerToolbarItem */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SharingServicePickerToolbarItem */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SharingServicePickerToolbarItem */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SharingServicePickerToolbarItem */
 
 // The custom object from your app that provides the items to share.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/delegate
-func (s_ SharingServicePickerToolbarItem) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+func (s_ SharingServicePickerToolbarItem) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // The custom object from your app that provides the items to share.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/delegate
-func (s_ SharingServicePickerToolbarItem) SetDelegate(value objc.ID) {
+func (s_ SharingServicePickerToolbarItem) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
+}/* debug [instance_properties/setter]: delegate */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSSharingServicePickerToolbarItem */
 
 

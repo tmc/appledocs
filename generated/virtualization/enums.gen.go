@@ -2,7 +2,9 @@
 
 package virtualization
 
+/* debug [enums.gen.go]: Generating 8 enums for Virtualization */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum VZDiskImageCachingMode (3 cases) */
 // VZDiskImageCachingMode - An integer that describes the disk image caching mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZDiskImageCachingMode
@@ -23,6 +25,7 @@ const (
 	VZDiskImageCachingModeUncached VZDiskImageCachingMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum VZDiskImageSynchronizationMode (3 cases) */
 // VZDiskImageSynchronizationMode - An integer that describes the disk image synchronization mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZDiskImageSynchronizationMode
@@ -43,6 +46,7 @@ const (
 	VZDiskImageSynchronizationModeNone VZDiskImageSynchronizationMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum VZDiskSynchronizationMode (2 cases) */
 // VZDiskSynchronizationMode - Values that describe the synchronization modes available to the guest OS.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZDiskSynchronizationMode
@@ -59,6 +63,20 @@ const (
 	VZDiskSynchronizationModeNone VZDiskSynchronizationMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum VZEFIVariableStoreInitializationOptions (1 cases) */
+// VZEFIVariableStoreInitializationOptions - Constants that describe the options available when creating a new Extensible Firmware Interface (EFI) variable store.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/InitializationOptions
+type VZEFIVariableStoreInitializationOptions uint
+
+const (
+	// VZEFIVariableStoreInitializationOptionAllowOverwrite - A Boolean value that indicates whether the framework can overwrite the EFI variable store.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZEFIVariableStore/InitializationOptions/allowOverwrite
+	VZEFIVariableStoreInitializationOptionAllowOverwrite VZEFIVariableStoreInitializationOptions = 0
+)
+
+/* debug [enums.gen.go]: Processing enum VZErrorCode (25 cases) */
 // VZErrorCode - Errors you might encounter when configuring or using a virtual machine.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZError/Code
@@ -167,6 +185,7 @@ const (
 	VZErrorVirtualMachineLimitExceeded VZErrorCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum VZLinuxRosettaAvailability (3 cases) */
 // VZLinuxRosettaAvailability - Constants that describe the availability and installation status of Rosetta.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZLinuxRosettaAvailability
@@ -187,6 +206,7 @@ const (
 	VZLinuxRosettaAvailabilityNotSupported VZLinuxRosettaAvailability = 0
 )
 
+/* debug [enums.gen.go]: Processing enum VZMacAuxiliaryStorageInitializationOptions (1 cases) */
 // VZMacAuxiliaryStorageInitializationOptions - Options you can set when creating new auxiliary storage.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMacAuxiliaryStorage/InitializationOptions
@@ -199,6 +219,7 @@ const (
 	VZMacAuxiliaryStorageInitializationOptionAllowOverwrite VZMacAuxiliaryStorageInitializationOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum VZVirtualMachineState (10 cases) */
 // VZVirtualMachineState - The execution states of the VM.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/State-swift.enum
@@ -246,5 +267,3 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtualMachine/State-swift.enum/stopping
 	VZVirtualMachineStateStopping VZVirtualMachineState = 0
 )
-
-

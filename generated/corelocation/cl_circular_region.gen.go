@@ -30,7 +30,7 @@ type _CircularRegionClass struct {
 type ICircularRegion interface {
 	IRegion
 	// properties:
-	Radius() LocationDistance /* not a class type */
+	Radius() LocationDistance       /* not a class type */
 	Center() CLLocationCoordinate2D /* not a class type */
 	SetCenter(value CLLocationCoordinate2D /* not a class type */)
 	// methods:
@@ -39,7 +39,6 @@ type ICircularRegion interface {
 // A circular geographic region that a center point and radius deine.
 //
 // The class defines the location and boundaries for a circular geographic region. You can use instances of this class to define geofences for a specific location. The crossing of a geofence’s boundary causes the location manager to notify its delegate.
-
 
 // A circular geographic region that a center point and radius deine.
 //
@@ -89,8 +88,6 @@ func NewCircularRegion() CircularRegion {
 	return getCircularRegionClass().New()
 }
 
-
-
 // The radius (measured in meters) that defines the geographic area’s outer boundary.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (c_ CircularRegion) Radius() LocationDistance /* not a class type */ {
 	rv := objc.Send[LocationDistance](c_.ID, objc.Sel("radius"))
 	return rv
 }
-
 
 // The center point of the geographic area.
 //
@@ -110,7 +106,6 @@ func (c_ CircularRegion) Center() CLLocationCoordinate2D /* not a class type */ 
 	return rv
 }
 
-
 // The center point of the geographic area.
 //
 // [Full Topic]
@@ -118,6 +113,3 @@ func (c_ CircularRegion) Center() CLLocationCoordinate2D /* not a class type */ 
 func (c_ CircularRegion) SetCenter(value CLLocationCoordinate2D /* not a class type */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCenter:"), value)
 }
-
-
-

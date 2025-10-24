@@ -18,3 +18,4 @@ var handleCapabilitiesQueryRequestProtocol *objc.Protocol
 func init() {
 	handleCapabilitiesQueryRequestProtocol = objc.GetProtocol("handleCapabilitiesQueryRequest:")
 }
+

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for Network. DO NOT EDIT.
 
 // Package network provides Go bindings for the Network framework.
 //
-// Create network connections to send and receive data using transport and security protocols.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Network without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Network
 package network
 
 import (

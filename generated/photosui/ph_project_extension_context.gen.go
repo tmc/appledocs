@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/photos"
 )
 
@@ -43,7 +43,6 @@ type IPHProjectExtensionContext interface {
 // An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.
 //
 // When a Photos project extension is initialized, it is handed an extension context object. This object provides the extension with access to the underlying project, as well as the photo library from which assets are fetched and edited.
-
 
 // An object that provides Photos project extensions with access to the underlying project, as well as to the user’s photo library for editing.
 //
@@ -93,8 +92,6 @@ func NewPHProjectExtensionContext() PHProjectExtensionContext {
 	return getPHProjectExtensionContextClass().New()
 }
 
-
-
 // Creates an updated instance from existing project information and current assets.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (p_ PHProjectExtensionContext) UpdatedProjectInfoFromProjectInfoCompletion(
 	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("updatedProjectInfoFromProjectInfo:completion:"), existingProjectInfo, completion)
 	return rv
 }
-
 
 // A read-only version of the photo library being modified.
 //
@@ -114,7 +110,6 @@ func (p_ PHProjectExtensionContext) PhotoLibrary() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // A read-only version of the photo library being modified.
 //
 // [Full Topic]
@@ -122,7 +117,6 @@ func (p_ PHProjectExtensionContext) PhotoLibrary() objc.IObject /* cross-framewo
 func (p_ PHProjectExtensionContext) SetPhotoLibrary(value objc.IObject /* cross-framework: PHPhotoLibrary */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPhotoLibrary:"), value)
 }
-
 
 // A read-only version of the project being edited.
 //
@@ -133,7 +127,6 @@ func (p_ PHProjectExtensionContext) Project() objc.IObject /* cross-framework: P
 	return rv
 }
 
-
 // A read-only version of the project being edited.
 //
 // [Full Topic]
@@ -141,6 +134,3 @@ func (p_ PHProjectExtensionContext) Project() objc.IObject /* cross-framework: P
 func (p_ PHProjectExtensionContext) SetProject(value objc.IObject /* cross-framework: PHProject */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProject:"), value)
 }
-
-
-

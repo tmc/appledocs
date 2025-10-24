@@ -15,3 +15,4 @@ var GameSessionSharingViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	GameSessionSharingViewControllerDelegateProtocol = objc.GetProtocol("GKGameSessionSharingViewControllerDelegate")
 }
+

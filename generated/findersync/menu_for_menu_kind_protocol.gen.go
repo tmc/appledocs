@@ -15,3 +15,4 @@ var menuForMenuKindProtocol *objc.Protocol
 func init() {
 	menuForMenuKindProtocol = objc.GetProtocol("menuForMenuKind:")
 }
+

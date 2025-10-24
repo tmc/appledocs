@@ -15,3 +15,4 @@ var validModesForFontPanelProtocol *objc.Protocol
 func init() {
 	validModesForFontPanelProtocol = objc.GetProtocol("validModesForFontPanel:")
 }
+

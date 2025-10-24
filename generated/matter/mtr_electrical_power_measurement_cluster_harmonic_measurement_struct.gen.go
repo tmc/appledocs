@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct interface {
 	SetOrder(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct
@@ -83,8 +81,6 @@ func NewMTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct() MTRElect
 	return getMTRElectricalPowerMeasurementClusterHarmonicMeasurementStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/measurement
 func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Measurement() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Measurem
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/measurement
 func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetMeasurement(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMeasurement:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
@@ -107,12 +101,8 @@ func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) Order() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclusterharmonicmeasurementstruct/order
 func (m_ MTRElectricalPowerMeasurementClusterHarmonicMeasurementStruct) SetOrder(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOrder:"), value)
 }
-
-
-

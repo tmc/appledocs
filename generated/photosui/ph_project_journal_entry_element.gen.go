@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHProjectJournalEntryElement] class.
@@ -82,7 +82,6 @@ func NewPHProjectJournalEntryElement() PHProjectJournalEntryElement {
 	return getPHProjectJournalEntryElementClass().New()
 }
 
-
 // An optional asset to represent the date in the journal entry.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectJournalEntryElement/assetElement
@@ -106,6 +105,3 @@ func (p_ PHProjectJournalEntryElement) TextElement() PHProjectTextElement {
 	rv := objc.Send[PHProjectTextElement](p_.ID, objc.Sel("textElement"))
 	return rv
 }
-
-
-

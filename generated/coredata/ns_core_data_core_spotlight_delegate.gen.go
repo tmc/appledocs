@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,7 +39,6 @@ type ICoreDataCoreSpotlightDelegate interface {
 }
 
 // A set of methods that enable integration with Core Spotlight.
-
 
 // A set of methods that enable integration with Core Spotlight.
 //
@@ -87,8 +86,6 @@ func NewCoreDataCoreSpotlightDelegate() CoreDataCoreSpotlightDelegate {
 	return getCoreDataCoreSpotlightDelegateClass().New()
 }
 
-
-
 // A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
 //
 // [Full Topic]
@@ -98,7 +95,6 @@ func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether Core Data is currently updating the Core Spotlight index with the persistent store’s entities.
 //
 // [Full Topic]
@@ -106,7 +102,6 @@ func (c_ CoreDataCoreSpotlightDelegate) IsIndexingEnabled() bool {
 func (c_ CoreDataCoreSpotlightDelegate) SetIsIndexingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsIndexingEnabled:"), value)
 }
-
 
 // The key you use to specify your Core Spotlight delegate.
 //
@@ -116,6 +111,3 @@ func (c_ CoreDataCoreSpotlightDelegate) NSCoreDataCoreSpotlightExporter() objc.I
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
 	return rv
 }
-
-
-

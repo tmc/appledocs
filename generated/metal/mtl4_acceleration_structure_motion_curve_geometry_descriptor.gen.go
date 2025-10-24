@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MTL4AccelerationStructureMotionCurveGeometryDescriptor */
+
+
+/* debug [class_header]: Header for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
 // The class instance for the [MTL4AccelerationStructureMotionCurveGeometryDescriptor] class.
 var (
 	MTL4AccelerationStructureMotionCurveGeometryDescriptorClass     _MTL4AccelerationStructureMotionCurveGeometryDescriptorClass
@@ -25,58 +29,58 @@ func getMTL4AccelerationStructureMotionCurveGeometryDescriptorClass() _MTL4Accel
 type _MTL4AccelerationStructureMotionCurveGeometryDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
 // An interface definition for the [MTL4AccelerationStructureMotionCurveGeometryDescriptor] class.
 type IMTL4AccelerationStructureMotionCurveGeometryDescriptor interface {
 	IMTL4AccelerationStructureGeometryDescriptor
-	ControlPointBuffers() unsafe.Pointer
-	SetControlPointBuffers(value unsafe.Pointer)
-	ControlPointCount() int
-	SetControlPointCount(value int)
-	ControlPointFormat() unsafe.Pointer
-	SetControlPointFormat(value unsafe.Pointer)
-	ControlPointStride() int
-	SetControlPointStride(value int)
+	
+/* debug [class_interface_properties]: Properties for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
+	// properties:
+	ControlPointBuffers() objc.IObject /* cross-framework: MTL4BufferRange */
+	SetControlPointBuffers(value objc.IObject /* cross-framework: MTL4BufferRange */)
+	ControlPointCount() uint
+	SetControlPointCount(value uint)
+	ControlPointFormat() AttributeFormat
+	SetControlPointFormat(value AttributeFormat)
+	ControlPointStride() uint
+	SetControlPointStride(value uint)
 	CurveBasis() CurveBasis
-	SetCurveBasis(value ICurveBasis)
+	SetCurveBasis(value CurveBasis)
 	CurveEndCaps() CurveEndCaps
-	SetCurveEndCaps(value ICurveEndCaps)
+	SetCurveEndCaps(value CurveEndCaps)
 	CurveType() CurveType
 	SetCurveType(value CurveType)
-	IndexBuffer() unsafe.Pointer
-	SetIndexBuffer(value unsafe.Pointer)
+	IndexBuffer() objc.IObject /* cross-framework: MTL4BufferRange */
+	SetIndexBuffer(value objc.IObject /* cross-framework: MTL4BufferRange */)
 	IndexType() IndexType
 	SetIndexType(value IndexType)
-	RadiusBuffers() unsafe.Pointer
-	SetRadiusBuffers(value unsafe.Pointer)
-	RadiusFormat() unsafe.Pointer
-	SetRadiusFormat(value unsafe.Pointer)
-	RadiusStride() int
-	SetRadiusStride(value int)
-	SegmentControlPointCount() int
-	SetSegmentControlPointCount(value int)
-	SegmentCount() int
-	SetSegmentCount(value int)
-}
+	RadiusBuffers() objc.IObject /* cross-framework: MTL4BufferRange */
+	SetRadiusBuffers(value objc.IObject /* cross-framework: MTL4BufferRange */)
+	RadiusFormat() AttributeFormat
+	SetRadiusFormat(value AttributeFormat)
+	RadiusStride() uint
+	SetRadiusStride(value uint)
+	SegmentControlPointCount() uint
+	SetSegmentControlPointCount(value uint)
+	SegmentCount() uint
+	SetSegmentCount(value uint)
+/* debug [class_interface_properties]: End properties */
 
-// Describes motion curve geometry, suitable for motion ray tracing.
-//
-// Use a to mark residency of all buffers this descriptor references when you build this acceleration structure.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor
-type MTL4AccelerationStructureMotionCurveGeometryDescriptor struct {
-	MTL4AccelerationStructureGeometryDescriptor
-}
+	
+/* debug [class_interface_methods]: Methods for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// MTL4AccelerationStructureMotionCurveGeometryDescriptorFrom constructs a [MTL4AccelerationStructureMotionCurveGeometryDescriptor] from an unsafe.Pointer.
-//
-// Describes motion curve geometry, suitable for motion ray tracing.
-func MTL4AccelerationStructureMotionCurveGeometryDescriptorFrom(ptr unsafe.Pointer) MTL4AccelerationStructureMotionCurveGeometryDescriptor {
-	return MTL4AccelerationStructureMotionCurveGeometryDescriptor{
-		MTL4AccelerationStructureGeometryDescriptor: MTL4AccelerationStructureGeometryDescriptorFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4AccelerationStructureMotionCurveGeometryDescriptorClass) Alloc() MTL4AccelerationStructureMotionCurveGeometryDescriptor {
 	rv := objc.Send[MTL4AccelerationStructureMotionCurveGeometryDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
@@ -84,7 +88,6 @@ func (mc _MTL4AccelerationStructureMotionCurveGeometryDescriptorClass) Alloc() M
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTL4AccelerationStructureMotionCurveGeometryDescriptorClass) New() MTL4AccelerationStructureMotionCurveGeometryDescriptor {
 	rv := objc.Send[MTL4AccelerationStructureMotionCurveGeometryDescriptor](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -107,259 +110,326 @@ func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) Autorelease() M
 func NewMTL4AccelerationStructureMotionCurveGeometryDescriptor() MTL4AccelerationStructureMotionCurveGeometryDescriptor {
 	return getMTL4AccelerationStructureMotionCurveGeometryDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-// Assigns a reference to a buffer where each entry contains a reference to a buffer of control points.
+
+/* debug [class_struct]: Struct for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
+// Describes motion curve geometry, suitable for motion ray tracing.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/controlpointbuffers
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) ControlPointBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("controlPointBuffers"))
-	return rv
+// Use a to mark residency of all buffers this descriptor references when you build this acceleration structure.
+
+
+// Describes motion curve geometry, suitable for motion ray tracing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor
+type MTL4AccelerationStructureMotionCurveGeometryDescriptor struct {
+	MTL4AccelerationStructureGeometryDescriptor
 }
 
-
-// SetControlPointBuffers sets the value of the controlPointBuffers property.
-// Assigns a reference to a buffer where each entry contains a reference to a buffer of control points.
-
+// MTL4AccelerationStructureMotionCurveGeometryDescriptorFrom constructs a [MTL4AccelerationStructureMotionCurveGeometryDescriptor] from an unsafe.Pointer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/controlpointbuffers
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointBuffers(value unsafe.Pointer) {
+// Describes motion curve geometry, suitable for motion ray tracing.
+func MTL4AccelerationStructureMotionCurveGeometryDescriptorFrom(ptr unsafe.Pointer) MTL4AccelerationStructureMotionCurveGeometryDescriptor {
+	return MTL4AccelerationStructureMotionCurveGeometryDescriptor{
+		MTL4AccelerationStructureGeometryDescriptor: MTL4AccelerationStructureGeometryDescriptorFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTL4AccelerationStructureMotionCurveGeometryDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTL4AccelerationStructureMotionCurveGeometryDescriptor */
+
+// Assigns a reference to a buffer where each entry contains a reference to a buffer of control points.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/controlPointBuffers
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) ControlPointBuffers() objc.IObject /* cross-framework: MTL4BufferRange */ {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("controlPointBuffers"))
+	return rv
+}/* debug [instance_properties/getter]: controlPointBuffers */
+
+
+// Assigns a reference to a buffer where each entry contains a reference to a buffer of control points.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/controlPointBuffers
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointBuffers(value objc.IObject /* cross-framework: MTL4BufferRange */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setControlPointBuffers:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointBuffers */
+
 
 // Specifies the number of control points in the buffers the control point buffers reference.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/controlpointcount
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) ControlPointCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("controlPointCount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/controlPointCount
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) ControlPointCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("controlPointCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlPointCount */
 
 
-// SetControlPointCount sets the value of the controlPointCount property.
 // Specifies the number of control points in the buffers the control point buffers reference.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/controlpointcount
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/controlPointCount
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setControlPointCount:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointCount */
+
 
 // Declares the format of the control points in the buffers that the control point buffers reference.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/controlpointformat
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) ControlPointFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("controlPointFormat"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/controlPointFormat
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) ControlPointFormat() AttributeFormat {
+	rv := objc.Send[AttributeFormat](m_.ID, objc.Sel("controlPointFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlPointFormat */
 
 
-// SetControlPointFormat sets the value of the controlPointFormat property.
 // Declares the format of the control points in the buffers that the control point buffers reference.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/controlpointformat
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointFormat(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/controlPointFormat
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointFormat(value AttributeFormat) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setControlPointFormat:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointFormat */
+
 
 // Sets the stride, in bytes, between control points in the control point buffer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/controlpointstride
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) ControlPointStride() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("controlPointStride"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/controlPointStride
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) ControlPointStride() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("controlPointStride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlPointStride */
 
 
-// SetControlPointStride sets the value of the controlPointStride property.
 // Sets the stride, in bytes, between control points in the control point buffer.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/controlpointstride
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointStride(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/controlPointStride
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetControlPointStride(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setControlPointStride:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointStride */
+
 
 // Sets the curve basis function, determining how Metal interpolates the control points.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curvebasis
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/curveBasis
 func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveBasis() CurveBasis {
 	rv := objc.Send[CurveBasis](m_.ID, objc.Sel("curveBasis"))
 	return rv
-}
+}/* debug [instance_properties/getter]: curveBasis */
 
 
-// SetCurveBasis sets the value of the curveBasis property.
 // Sets the curve basis function, determining how Metal interpolates the control points.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curvebasis
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveBasis(value ICurveBasis) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/curveBasis
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveBasis(value CurveBasis) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurveBasis:"), value)
-}
+}/* debug [instance_properties/setter]: curveBasis */
+
 
 // Configures the type of curve end caps.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curveendcaps
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/curveEndCaps
 func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveEndCaps() CurveEndCaps {
 	rv := objc.Send[CurveEndCaps](m_.ID, objc.Sel("curveEndCaps"))
 	return rv
-}
+}/* debug [instance_properties/getter]: curveEndCaps */
 
 
-// SetCurveEndCaps sets the value of the curveEndCaps property.
 // Configures the type of curve end caps.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curveendcaps
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveEndCaps(value ICurveEndCaps) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/curveEndCaps
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveEndCaps(value CurveEndCaps) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurveEndCaps:"), value)
-}
+}/* debug [instance_properties/setter]: curveEndCaps */
+
 
 // Controls the curve type.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curvetype
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/curveType
 func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) CurveType() CurveType {
 	rv := objc.Send[CurveType](m_.ID, objc.Sel("curveType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: curveType */
 
 
-// SetCurveType sets the value of the curveType property.
 // Controls the curve type.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/curvetype
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/curveType
 func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetCurveType(value CurveType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurveType:"), value)
-}
+}/* debug [instance_properties/setter]: curveType */
+
 
 // Assigns an optional index buffer containing references to control points in the control point buffers.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/indexbuffer
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) IndexBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("indexBuffer"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/indexBuffer
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) IndexBuffer() objc.IObject /* cross-framework: MTL4BufferRange */ {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("indexBuffer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indexBuffer */
 
 
-// SetIndexBuffer sets the value of the indexBuffer property.
 // Assigns an optional index buffer containing references to control points in the control point buffers.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/indexbuffer
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetIndexBuffer(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/indexBuffer
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetIndexBuffer(value objc.IObject /* cross-framework: MTL4BufferRange */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndexBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: indexBuffer */
 
-// Configures the size of the indices the
+
+// Configures the size of the indices the contains, which is typically either 16 or 32-bits for each index.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/indextype
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/indexType
 func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) IndexType() IndexType {
 	rv := objc.Send[IndexType](m_.ID, objc.Sel("indexType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indexType */
 
 
-// SetIndexType sets the value of the indexType property.
-// Configures the size of the indices the
-
+// Configures the size of the indices the contains, which is typically either 16 or 32-bits for each index.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/indextype
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/indexType
 func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndexType:"), value)
-}
+}/* debug [instance_properties/setter]: indexType */
+
 
 // Assigns a reference to a buffer containing, in turn, references to curve radii buffers.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/radiusbuffers
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) RadiusBuffers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("radiusBuffers"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/radiusBuffers
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) RadiusBuffers() objc.IObject /* cross-framework: MTL4BufferRange */ {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("radiusBuffers"))
 	return rv
-}
+}/* debug [instance_properties/getter]: radiusBuffers */
 
 
-// SetRadiusBuffers sets the value of the radiusBuffers property.
 // Assigns a reference to a buffer containing, in turn, references to curve radii buffers.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/radiusbuffers
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusBuffers(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/radiusBuffers
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusBuffers(value objc.IObject /* cross-framework: MTL4BufferRange */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRadiusBuffers:"), value)
-}
+}/* debug [instance_properties/setter]: radiusBuffers */
+
 
 // Sets the format of the radii in the radius buffer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/radiusformat
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) RadiusFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("radiusFormat"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/radiusFormat
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) RadiusFormat() AttributeFormat {
+	rv := objc.Send[AttributeFormat](m_.ID, objc.Sel("radiusFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: radiusFormat */
 
 
-// SetRadiusFormat sets the value of the radiusFormat property.
 // Sets the format of the radii in the radius buffer.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/radiusformat
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusFormat(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/radiusFormat
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusFormat(value AttributeFormat) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRadiusFormat:"), value)
-}
+}/* debug [instance_properties/setter]: radiusFormat */
+
 
 // Sets the stride, in bytes, between radii in the radius buffer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/radiusstride
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) RadiusStride() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("radiusStride"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/radiusStride
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) RadiusStride() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("radiusStride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: radiusStride */
 
 
-// SetRadiusStride sets the value of the radiusStride property.
 // Sets the stride, in bytes, between radii in the radius buffer.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/radiusstride
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusStride(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/radiusStride
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetRadiusStride(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRadiusStride:"), value)
-}
+}/* debug [instance_properties/setter]: radiusStride */
+
 
 // Controls the number of control points per curve segment.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/segmentcontrolpointcount
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SegmentControlPointCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("segmentControlPointCount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/segmentControlPointCount
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SegmentControlPointCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("segmentControlPointCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segmentControlPointCount */
 
 
-// SetSegmentControlPointCount sets the value of the segmentControlPointCount property.
 // Controls the number of control points per curve segment.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/segmentcontrolpointcount
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetSegmentControlPointCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/segmentControlPointCount
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetSegmentControlPointCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSegmentControlPointCount:"), value)
-}
+}/* debug [instance_properties/setter]: segmentControlPointCount */
+
 
 // Declares the number of curve segments.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/segmentcount
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SegmentCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("segmentCount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/segmentCount
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SegmentCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("segmentCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segmentCount */
 
 
-// SetSegmentCount sets the value of the segmentCount property.
 // Declares the number of curve segments.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuremotioncurvegeometrydescriptor/segmentcount
-func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetSegmentCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureMotionCurveGeometryDescriptor/segmentCount
+func (m_ MTL4AccelerationStructureMotionCurveGeometryDescriptor) SetSegmentCount(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSegmentCount:"), value)
-}
+}/* debug [instance_properties/setter]: segmentCount */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTL4AccelerationStructureMotionCurveGeometryDescriptor */
 
 
 

@@ -20,3 +20,4 @@ var canResolveAssetNamedProtocol *objc.Protocol
 func init() {
 	canResolveAssetNamedProtocol = objc.GetProtocol("canResolveAssetNamed:")
 }
+

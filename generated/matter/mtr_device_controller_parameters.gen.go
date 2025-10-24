@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRDeviceControllerParameters] class.
@@ -43,8 +43,6 @@ type IMTRDeviceControllerParameters interface {
 	SetStorageBehaviorConfiguration(value IMTRDeviceStorageBehaviorConfiguration)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerParameters
@@ -90,8 +88,6 @@ func NewMTRDeviceControllerParameters() MTRDeviceControllerParameters {
 	return getMTRDeviceControllerParametersClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
 func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() objc.IObject /* cross-framework: Data */ {
@@ -99,13 +95,11 @@ func (m_ MTRDeviceControllerParameters) CertificationDeclarationCertificates() o
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/certificationdeclarationcertificates
 func (m_ MTRDeviceControllerParameters) SetCertificationDeclarationCertificates(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/concurrentsubscriptionestablishmentsallowedonthread
@@ -114,13 +108,11 @@ func (m_ MTRDeviceControllerParameters) ConcurrentSubscriptionEstablishmentsAllo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/concurrentsubscriptionestablishmentsallowedonthread
 func (m_ MTRDeviceControllerParameters) SetConcurrentSubscriptionEstablishmentsAllowedOnThread(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConcurrentSubscriptionEstablishmentsAllowedOnThread:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
@@ -129,13 +121,11 @@ func (m_ MTRDeviceControllerParameters) ProductAttestationAuthorityCertificates(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/productattestationauthoritycertificates
 func (m_ MTRDeviceControllerParameters) SetProductAttestationAuthorityCertificates(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationAuthorityCertificates:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/shouldadvertiseoperational
@@ -144,13 +134,11 @@ func (m_ MTRDeviceControllerParameters) ShouldAdvertiseOperational() bool {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerparameters/shouldadvertiseoperational
 func (m_ MTRDeviceControllerParameters) SetShouldAdvertiseOperational(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldAdvertiseOperational:"), value)
 }
-
 
 // Sets the storage behavior configuration - see MTRDeviceStorageBehaviorConfiguration.h for details
 //
@@ -161,7 +149,6 @@ func (m_ MTRDeviceControllerParameters) StorageBehaviorConfiguration() IMTRDevic
 	return rv
 }
 
-
 // Sets the storage behavior configuration - see MTRDeviceStorageBehaviorConfiguration.h for details
 //
 // [Full Topic]
@@ -169,6 +156,3 @@ func (m_ MTRDeviceControllerParameters) StorageBehaviorConfiguration() IMTRDevic
 func (m_ MTRDeviceControllerParameters) SetStorageBehaviorConfiguration(value IMTRDeviceStorageBehaviorConfiguration) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStorageBehaviorConfiguration:"), value)
 }
-
-
-

@@ -35,6 +35,18 @@ func (t_ TelephonyNetworkInfo) DataServiceIdentifier() objc.IObject /* cross-fra
 	return rv
 }
 
+// An object that the system notifies when the data service identifier changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTTelephonyNetworkInfo/delegate
+func (t_ TelephonyNetworkInfo) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+func (t_ TelephonyNetworkInfo) SetDelegate(value unsafe.Pointer) {
+	t_.ID.Send(objc.RegisterName("setDelegate:"), value)
+}
+
 // A dictionary containing the current radio access technology registered to each service.
 //
 // [Full Topic]
@@ -85,6 +97,7 @@ func (t_ TelephonyNetworkInfo) SubscriberCellularProviderDidUpdateNotifier() fun
 func (t_ TelephonyNetworkInfo) SetSubscriberCellularProviderDidUpdateNotifier(value func(unsafe.Pointer)) {
 	t_.ID.Send(objc.RegisterName("setSubscriberCellularProviderDidUpdateNotifier:"), value)
 }
+
 
 
 

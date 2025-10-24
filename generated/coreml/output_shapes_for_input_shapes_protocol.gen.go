@@ -21,3 +21,4 @@ var outputShapesForInputShapesProtocol *objc.Protocol
 func init() {
 	outputShapesForInputShapesProtocol = objc.GetProtocol("outputShapesForInputShapes:")
 }
+

@@ -34,8 +34,6 @@ type IMTRSmokeCOAlarmClusterAlarmMutedEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterAlarmMutedEvent
 type MTRSmokeCOAlarmClusterAlarmMutedEvent struct {
@@ -77,7 +75,3 @@ func (m_ MTRSmokeCOAlarmClusterAlarmMutedEvent) Autorelease() MTRSmokeCOAlarmClu
 func NewMTRSmokeCOAlarmClusterAlarmMutedEvent() MTRSmokeCOAlarmClusterAlarmMutedEvent {
 	return getMTRSmokeCOAlarmClusterAlarmMutedEventClass().New()
 }
-
-
-
-

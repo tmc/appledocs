@@ -21,3 +21,4 @@ var signMessageECDSA_RAWProtocol *objc.Protocol
 func init() {
 	signMessageECDSA_RAWProtocol = objc.GetProtocol("signMessageECDSA_RAW:")
 }
+

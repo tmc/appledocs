@@ -20,3 +20,4 @@ var newBufferFromZoneProtocol *objc.Protocol
 func init() {
 	newBufferFromZoneProtocol = objc.GetProtocol("newBufferFromZone:")
 }
+

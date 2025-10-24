@@ -20,3 +20,4 @@ var indeterminateProtocol *objc.Protocol
 func init() {
 	indeterminateProtocol = objc.GetProtocol("indeterminate")
 }
+

@@ -20,3 +20,4 @@ var commandBufferWithDescriptorProtocol *objc.Protocol
 func init() {
 	commandBufferWithDescriptorProtocol = objc.GetProtocol("commandBufferWithDescriptor:")
 }
+

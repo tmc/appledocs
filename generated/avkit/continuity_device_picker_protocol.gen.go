@@ -15,3 +15,4 @@ var continuityDevicePickerProtocol *objc.Protocol
 func init() {
 	continuityDevicePickerProtocol = objc.GetProtocol("continuityDevicePicker:")
 }
+

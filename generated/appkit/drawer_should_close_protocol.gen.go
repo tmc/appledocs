@@ -15,3 +15,4 @@ var drawerShouldCloseProtocol *objc.Protocol
 func init() {
 	drawerShouldCloseProtocol = objc.GetProtocol("drawerShouldClose:")
 }
+

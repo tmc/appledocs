@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSQuadrilateralAccelerationStructure */
+
+
+/* debug [class_header]: Header for MPSQuadrilateralAccelerationStructure */
 // The class instance for the [QuadrilateralAccelerationStructure] class.
 var (
 	QuadrilateralAccelerationStructureClass     _QuadrilateralAccelerationStructureClass
@@ -25,31 +30,32 @@ func getQuadrilateralAccelerationStructureClass() _QuadrilateralAccelerationStru
 type _QuadrilateralAccelerationStructureClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for QuadrilateralAccelerationStructure */
 // An interface definition for the [QuadrilateralAccelerationStructure] class.
 type IQuadrilateralAccelerationStructure interface {
 	IPolygonAccelerationStructure
+	
+/* debug [class_interface_properties]: Properties for QuadrilateralAccelerationStructure */
 	// properties:
-	QuadrilateralCount() uint
-	SetQuadrilateralCount(value uint)
+	QuadrilateralCount() objectivec.IObject
+	SetQuadrilateralCount(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for QuadrilateralAccelerationStructure */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure
-type QuadrilateralAccelerationStructure struct {
-	PolygonAccelerationStructure
-}
-
-// QuadrilateralAccelerationStructureFrom constructs a [QuadrilateralAccelerationStructure] from an unsafe.Pointer.
-func QuadrilateralAccelerationStructureFrom(ptr unsafe.Pointer) QuadrilateralAccelerationStructure {
-	return QuadrilateralAccelerationStructure{
-		PolygonAccelerationStructure: PolygonAccelerationStructureFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for QuadrilateralAccelerationStructure */
 // Alloc allocates a new instance without initialization.
 func (qc _QuadrilateralAccelerationStructureClass) Alloc() QuadrilateralAccelerationStructure {
 	rv := objc.Send[QuadrilateralAccelerationStructure](objc.ID(qc.class), objc.Sel("alloc"))
@@ -57,7 +63,6 @@ func (qc _QuadrilateralAccelerationStructureClass) Alloc() QuadrilateralAccelera
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (qc _QuadrilateralAccelerationStructureClass) New() QuadrilateralAccelerationStructure {
 	rv := objc.Send[QuadrilateralAccelerationStructure](objc.ID(qc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -80,22 +85,68 @@ func (q_ QuadrilateralAccelerationStructure) Autorelease() QuadrilateralAccelera
 func NewQuadrilateralAccelerationStructure() QuadrilateralAccelerationStructure {
 	return getQuadrilateralAccelerationStructureClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for QuadrilateralAccelerationStructure */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure/quadrilateralCount
-func (q_ QuadrilateralAccelerationStructure) QuadrilateralCount() uint {
-	rv := objc.Send[uint](q_.ID, objc.Sel("quadrilateralCount"))
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure
+type QuadrilateralAccelerationStructure struct {
+	PolygonAccelerationStructure
+}
+
+// QuadrilateralAccelerationStructureFrom constructs a [QuadrilateralAccelerationStructure] from an unsafe.Pointer.
+func QuadrilateralAccelerationStructureFrom(ptr unsafe.Pointer) QuadrilateralAccelerationStructure {
+	return QuadrilateralAccelerationStructure{
+		PolygonAccelerationStructure: PolygonAccelerationStructureFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for QuadrilateralAccelerationStructure *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for QuadrilateralAccelerationStructure */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for QuadrilateralAccelerationStructure */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for QuadrilateralAccelerationStructure */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for QuadrilateralAccelerationStructure */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsquadrilateralaccelerationstructure/3088909-quadrilateralcount
+func (q_ QuadrilateralAccelerationStructure) QuadrilateralCount() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](q_.ID, objc.Sel("quadrilateralCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: quadrilateralCount */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSQuadrilateralAccelerationStructure/quadrilateralCount
-func (q_ QuadrilateralAccelerationStructure) SetQuadrilateralCount(value uint) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsquadrilateralaccelerationstructure/3088909-quadrilateralcount
+func (q_ QuadrilateralAccelerationStructure) SetQuadrilateralCount(value objectivec.IObject) {
 	objc.Send[objc.ID](q_.ID, objc.Sel("setQuadrilateralCount:"), value)
-}
+}/* debug [instance_properties/setter]: quadrilateralCount */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSQuadrilateralAccelerationStructure */
 
 
 

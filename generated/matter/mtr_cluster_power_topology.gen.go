@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterPowerTopology */
+
+
+/* debug [class_header]: Header for MTRClusterPowerTopology */
 // The class instance for the [MTRClusterPowerTopology] class.
 var (
 	MTRClusterPowerTopologyClass     _MTRClusterPowerTopologyClass
@@ -26,41 +30,31 @@ func getMTRClusterPowerTopologyClass() _MTRClusterPowerTopologyClass {
 type _MTRClusterPowerTopologyClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterPowerTopology */
 // An interface definition for the [MTRClusterPowerTopology] class.
 type IMTRClusterPowerTopology interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterPowerTopology */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterPowerTopology */
 	// methods:
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeActiveEndpointsWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAvailableEndpointsWithParams(params IMTRReadParams) foundation.IDictionary
 	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Power Topology The Power Topology Cluster provides a mechanism for expressing how power is flowing between endpoints.
 
 
-// Cluster Power Topology The Power Topology Cluster provides a mechanism for expressing how power is flowing between endpoints.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology
-type MTRClusterPowerTopology struct {
-	MTRGenericCluster
-}
-
-// MTRClusterPowerTopologyFrom constructs a [MTRClusterPowerTopology] from an unsafe.Pointer.
-//
-// Cluster Power Topology The Power Topology Cluster provides a mechanism for expressing how power is flowing between endpoints.
-func MTRClusterPowerTopologyFrom(ptr unsafe.Pointer) MTRClusterPowerTopology {
-	return MTRClusterPowerTopology{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterPowerTopology */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterPowerTopologyClass) Alloc() MTRClusterPowerTopology {
 	rv := objc.Send[MTRClusterPowerTopology](objc.ID(mc.class), objc.Sel("alloc"))
@@ -68,7 +62,6 @@ func (mc _MTRClusterPowerTopologyClass) Alloc() MTRClusterPowerTopology {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterPowerTopologyClass) New() MTRClusterPowerTopology {
 	rv := objc.Send[MTRClusterPowerTopology](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,75 +84,66 @@ func (m_ MTRClusterPowerTopology) Autorelease() MTRClusterPowerTopology {
 func NewMTRClusterPowerTopology() MTRClusterPowerTopology {
 	return getMTRClusterPowerTopologyClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
+/* debug [class_struct]: Struct for MTRClusterPowerTopology */
+// Cluster Power Topology The Power Topology Cluster provides a mechanism for expressing how power is flowing between endpoints.
+
+
+// Cluster Power Topology The Power Topology Cluster provides a mechanism for expressing how power is flowing between endpoints.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/init(device:endpointID:queue:)
-func NewMTRClusterPowerTopologyWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterPowerTopology {
-	instance := getMTRClusterPowerTopologyClass().Alloc()
-	rv := objc.Send[MTRClusterPowerTopology](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology
+type MTRClusterPowerTopology struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
+// MTRClusterPowerTopologyFrom constructs a [MTRClusterPowerTopology] from an unsafe.Pointer.
+//
+// Cluster Power Topology The Power Topology Cluster provides a mechanism for expressing how power is flowing between endpoints.
+func MTRClusterPowerTopologyFrom(ptr unsafe.Pointer) MTRClusterPowerTopology {
+	return MTRClusterPowerTopology{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeActiveEndpoints(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeActiveEndpointsWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeActiveEndpointsWithParams:"), params)
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRClusterPowerTopology *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeAttributeList(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_methods]: Class methods for MTRClusterPowerTopology */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeAvailableEndpoints(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeAvailableEndpointsWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAvailableEndpointsWithParams:"), params)
-	return rv
-}
 
+/* debug [class_properties_class]: Class properties for MTRClusterPowerTopology */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRClusterPowerTopology */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeClusterRevision(with:)
 func (m_ MTRClusterPowerTopology) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadAttributeClusterRevisionWithParams */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeFeatureMap(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterPowerTopology */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPowerTopology/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterPowerTopology) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterPowerTopology */
+
 
 

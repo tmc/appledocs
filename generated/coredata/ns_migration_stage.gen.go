@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,7 +38,6 @@ type IMigrationStage interface {
 }
 
 // An abstract base class for describing an individual stage of a migration.
-
 
 // An abstract base class for describing an individual stage of a migration.
 //
@@ -86,8 +85,6 @@ func NewMigrationStage() MigrationStage {
 	return getMigrationStageClass().New()
 }
 
-
-
 // The textual description of the migration stage’s purpose.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (m_ MigrationStage) Label() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The textual description of the migration stage’s purpose.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (m_ MigrationStage) Label() objc.IObject /* cross-framework: NSString */ {
 func (m_ MigrationStage) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
-
-
-

@@ -15,3 +15,4 @@ var setMarkedTextProtocol *objc.Protocol
 func init() {
 	setMarkedTextProtocol = objc.GetProtocol("setMarkedText:")
 }
+

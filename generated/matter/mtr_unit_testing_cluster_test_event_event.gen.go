@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -46,8 +46,6 @@ type IMTRUnitTestingClusterTestEventEvent interface {
 	SetArg6(value unsafe.Pointer)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestEventEvent
@@ -91,8 +89,6 @@ func NewMTRUnitTestingClusterTestEventEvent() MTRUnitTestingClusterTestEventEven
 	return getMTRUnitTestingClusterTestEventEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg1
 func (m_ MTRUnitTestingClusterTestEventEvent) Arg1() objc.IObject /* cross-framework: NSNumber */ {
@@ -100,13 +96,11 @@ func (m_ MTRUnitTestingClusterTestEventEvent) Arg1() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg1
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg2
@@ -115,13 +109,11 @@ func (m_ MTRUnitTestingClusterTestEventEvent) Arg2() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg2
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg2(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg3
@@ -130,13 +122,11 @@ func (m_ MTRUnitTestingClusterTestEventEvent) Arg3() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg3
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg3(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg3:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg4
@@ -145,13 +135,11 @@ func (m_ MTRUnitTestingClusterTestEventEvent) Arg4() IMTRUnitTestingClusterSimpl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg4
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg4(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg4:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg5
@@ -160,13 +148,11 @@ func (m_ MTRUnitTestingClusterTestEventEvent) Arg5() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg5
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg5(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg5:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg6
@@ -175,12 +161,8 @@ func (m_ MTRUnitTestingClusterTestEventEvent) Arg6() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertesteventevent/arg6
 func (m_ MTRUnitTestingClusterTestEventEvent) SetArg6(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg6:"), value)
 }
-
-
-

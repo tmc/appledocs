@@ -15,3 +15,4 @@ var PopoverDelegateProtocol *objc.Protocol
 func init() {
 	PopoverDelegateProtocol = objc.GetProtocol("NSPopoverDelegate")
 }
+

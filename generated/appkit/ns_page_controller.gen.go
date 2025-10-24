@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -52,7 +52,6 @@ type IPageController interface {
 // An object that controls swipe navigation and animations between views or view content.
 //
 // is useful for user interfaces which control navigating multiple pages as in a book or a web browser history. Page controller inherits from the class . You must assign the property to a view in your view hierarchy. The class does not vend a view and does insert itself into the responder chain. Conceptually, the page controller manages swiping between an array of pages, the . Using the property, you can determine how many pages forward or backward the user may navigate.
-
 
 // An object that controls swipe navigation and animations between views or view content.
 //
@@ -102,8 +101,6 @@ func NewPageController() PageController {
 	return getPageControllerClass().New()
 }
 
-
-
 // Invoked when the page transition is completed.
 //
 // [Full Topic]
@@ -111,7 +108,6 @@ func NewPageController() PageController {
 func (p_ PageController) CompleteTransition() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("completeTransition"))
 }
-
 
 // Navigates backwards in the page controller’s arranged objects array.
 //
@@ -121,7 +117,6 @@ func (p_ PageController) NavigateBack(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("navigateBack:"), sender)
 }
 
-
 // Navigates to the next object in the page controller’s arranged objects array, if appropriate.
 //
 // [Full Topic]
@@ -129,7 +124,6 @@ func (p_ PageController) NavigateBack(sender objectivec.IObject) {
 func (p_ PageController) NavigateForward(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("navigateForward:"), sender)
 }
-
 
 // Navigates to the specific object.
 //
@@ -139,7 +133,6 @@ func (p_ PageController) NavigateForwardToObject(object objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("navigateForwardToObject:"), object)
 }
 
-
 // Navigates to the selected index, which is taken from the sender.
 //
 // [Full Topic]
@@ -147,7 +140,6 @@ func (p_ PageController) NavigateForwardToObject(object objectivec.IObject) {
 func (p_ PageController) TakeSelectedIndexFrom(sender objectivec.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("takeSelectedIndexFrom:"), sender)
 }
-
 
 // An array containing the objects displayed in the page controller’s view.
 //
@@ -158,7 +150,6 @@ func (p_ PageController) ArrangedObjects() objc.IObject /* cross-framework: NSAr
 	return rv
 }
 
-
 // An array containing the objects displayed in the page controller’s view.
 //
 // [Full Topic]
@@ -166,7 +157,6 @@ func (p_ PageController) ArrangedObjects() objc.IObject /* cross-framework: NSAr
 func (p_ PageController) SetArrangedObjects(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setArrangedObjects:"), value)
 }
-
 
 // The page controller’s delegate object.
 //
@@ -177,7 +167,6 @@ func (p_ PageController) Delegate() objc.ID {
 	return rv
 }
 
-
 // The page controller’s delegate object.
 //
 // [Full Topic]
@@ -185,7 +174,6 @@ func (p_ PageController) Delegate() objc.ID {
 func (p_ PageController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
-
 
 // The currently selected object in the arranged objects array.
 //
@@ -196,7 +184,6 @@ func (p_ PageController) SelectedIndex() int {
 	return rv
 }
 
-
 // The currently selected object in the arranged objects array.
 //
 // [Full Topic]
@@ -204,7 +191,6 @@ func (p_ PageController) SelectedIndex() int {
 func (p_ PageController) SetSelectedIndex(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectedIndex:"), value)
 }
-
 
 // The view controller associated with the selected object..
 //
@@ -215,7 +201,6 @@ func (p_ PageController) SelectedViewController() IViewController {
 	return rv
 }
 
-
 // The transition style the page controller uses when changing pages.
 //
 // [Full Topic]
@@ -225,7 +210,6 @@ func (p_ PageController) TransitionStyle() PageControllerTransitionStyle {
 	return rv
 }
 
-
 // The transition style the page controller uses when changing pages.
 //
 // [Full Topic]
@@ -233,6 +217,3 @@ func (p_ PageController) TransitionStyle() PageControllerTransitionStyle {
 func (p_ PageController) SetTransitionStyle(value PageControllerTransitionStyle) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransitionStyle:"), value)
 }
-
-
-

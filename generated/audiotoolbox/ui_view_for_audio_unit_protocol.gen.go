@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // uiViewForAudioUnitProtocol is the uiViewForAudioUnit: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to uiViewForAudioUnit:.
 var uiViewForAudioUnitProtocol *objc.Protocol
 
 func init() {
 	uiViewForAudioUnitProtocol = objc.GetProtocol("uiViewForAudioUnit:")
 }
+

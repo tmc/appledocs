@@ -74,7 +74,3 @@ func (e_ ExtensionContext) Autorelease() ExtensionContext {
 func NewExtensionContext() ExtensionContext {
 	return getExtensionContextClass().New()
 }
-
-
-
-

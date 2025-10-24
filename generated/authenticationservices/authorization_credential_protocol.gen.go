@@ -21,3 +21,4 @@ var AuthorizationCredentialProtocol *objc.Protocol
 func init() {
 	AuthorizationCredentialProtocol = objc.GetProtocol("ASAuthorizationCredential")
 }
+

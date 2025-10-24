@@ -9,12 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	IndexSet = _undefined // referenced in NaturalLanguage
-	Number = _undefined // referenced in NaturalLanguage
-	Range = _undefined // referenced in NaturalLanguage
 	RangePointer = _undefined // referenced in NaturalLanguage
 	String = _undefined // referenced in NaturalLanguage
-	Value = _undefined // referenced in NaturalLanguage
 )
 
 

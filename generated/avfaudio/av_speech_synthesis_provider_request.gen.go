@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVSpeechSynthesisProviderRequest */
+
+
+/* debug [class_header]: Header for AVSpeechSynthesisProviderRequest */
 // The class instance for the [SpeechSynthesisProviderRequest] class.
 var (
 	SpeechSynthesisProviderRequestClass     _SpeechSynthesisProviderRequestClass
@@ -26,33 +31,32 @@ func getSpeechSynthesisProviderRequestClass() _SpeechSynthesisProviderRequestCla
 type _SpeechSynthesisProviderRequestClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SpeechSynthesisProviderRequest */
 // An interface definition for the [SpeechSynthesisProviderRequest] class.
 type ISpeechSynthesisProviderRequest interface {
 	objectivec.IObject
-	Voice() AVSpeechSynthesisProviderVoice
-	SsmlRepresentation() string
-	SetSsmlRepresentation(value string)
+	
+/* debug [class_interface_properties]: Properties for SpeechSynthesisProviderRequest */
+	// properties:
+	SsmlRepresentation() objc.IObject /* cross-framework: NSString */
+	Voice() IAVSpeechSynthesisProviderVoice
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SpeechSynthesisProviderRequest */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that represents the text to synthesize and the voice to use.
 
 
-// An object that represents the text to synthesize and the voice to use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest
-type SpeechSynthesisProviderRequest struct {
-	objectivec.Object
-}
-
-// SpeechSynthesisProviderRequestFrom constructs a [SpeechSynthesisProviderRequest] from an unsafe.Pointer.
-//
-// An object that represents the text to synthesize and the voice to use.
-func SpeechSynthesisProviderRequestFrom(ptr unsafe.Pointer) SpeechSynthesisProviderRequest {
-	return SpeechSynthesisProviderRequest{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SpeechSynthesisProviderRequest */
 // Alloc allocates a new instance without initialization.
 func (sc _SpeechSynthesisProviderRequestClass) Alloc() SpeechSynthesisProviderRequest {
 	rv := objc.Send[SpeechSynthesisProviderRequest](objc.ID(sc.class), objc.Sel("alloc"))
@@ -60,7 +64,6 @@ func (sc _SpeechSynthesisProviderRequestClass) Alloc() SpeechSynthesisProviderRe
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SpeechSynthesisProviderRequestClass) New() SpeechSynthesisProviderRequest {
 	rv := objc.Send[SpeechSynthesisProviderRequest](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -83,36 +86,88 @@ func (s_ SpeechSynthesisProviderRequest) Autorelease() SpeechSynthesisProviderRe
 func NewSpeechSynthesisProviderRequest() SpeechSynthesisProviderRequest {
 	return getSpeechSynthesisProviderRequestClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for SpeechSynthesisProviderRequest */
+// An object that represents the text to synthesize and the voice to use.
+
+
+// An object that represents the text to synthesize and the voice to use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest
+type SpeechSynthesisProviderRequest struct {
+	objectivec.Object
+}
+
+// SpeechSynthesisProviderRequestFrom constructs a [SpeechSynthesisProviderRequest] from an unsafe.Pointer.
+//
+// An object that represents the text to synthesize and the voice to use.
+func SpeechSynthesisProviderRequestFrom(ptr unsafe.Pointer) SpeechSynthesisProviderRequest {
+	return SpeechSynthesisProviderRequest{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SpeechSynthesisProviderRequest */
+
+// Creates a request with a voice and a description.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest/init(ssmlRepresentation:voice:)
+func NewSpeechSynthesisProviderRequestWithSSMLRepresentationVoice(text objc.IObject /* cross-framework: NSString */, voice IAVSpeechSynthesisProviderVoice) SpeechSynthesisProviderRequest {
+	instance := getSpeechSynthesisProviderRequestClass().Alloc()
+	rv := objc.Send[SpeechSynthesisProviderRequest](instance.ID, objc.Sel("initWithSSMLRepresentation:voice:"), text, voice)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewSpeechSynthesisProviderRequestWithSSMLRepresentationVoice */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SpeechSynthesisProviderRequest */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SpeechSynthesisProviderRequest */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SpeechSynthesisProviderRequest */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SpeechSynthesisProviderRequest */
+
+// The description of the text to synthesize.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest/ssmlRepresentation
+func (s_ SpeechSynthesisProviderRequest) SsmlRepresentation() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("ssmlRepresentation"))
+	return rv
+}/* debug [instance_properties/getter]: ssmlRepresentation */
 
 
 // The voice to use in the speech request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderRequest/voice
-func (s_ SpeechSynthesisProviderRequest) Voice() AVSpeechSynthesisProviderVoice {
-	rv := objc.Send[AVSpeechSynthesisProviderVoice](s_.ID, objc.Sel("voice"))
+func (s_ SpeechSynthesisProviderRequest) Voice() IAVSpeechSynthesisProviderVoice {
+	rv := objc.Send[SpeechSynthesisProviderVoice](s_.ID, objc.Sel("voice"))
 	return rv
-}
+}/* debug [instance_properties/getter]: voice */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The description of the text to synthesize.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest/ssmlrepresentation
-func (s_ SpeechSynthesisProviderRequest) SsmlRepresentation() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("ssmlRepresentation"))
-	return rv
-}
-
-
-// The description of the text to synthesize.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisproviderrequest/ssmlrepresentation
-func (s_ SpeechSynthesisProviderRequest) SetSsmlRepresentation(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSsmlRepresentation:"), objc.String(value))
-}
-
+/* debug [class.gen.go]: End class AVSpeechSynthesisProviderRequest */
 
 

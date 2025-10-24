@@ -15,3 +15,4 @@ var commitEditingAndReturnErrorProtocol *objc.Protocol
 func init() {
 	commitEditingAndReturnErrorProtocol = objc.GetProtocol("commitEditingAndReturnError:")
 }
+

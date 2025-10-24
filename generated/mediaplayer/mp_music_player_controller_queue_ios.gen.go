@@ -20,7 +20,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerControllerQueue/items
-func (m_ MusicPlayerControllerQueue) Items() []IMediaItem {
+func (m_ MusicPlayerControllerQueue) Items() []MediaItem {
 	rv := objc.Send[[]MediaItem](m_.ID, objc.Sel("items"))
 	return rv
 }

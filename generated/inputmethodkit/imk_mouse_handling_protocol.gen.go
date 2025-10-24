@@ -15,3 +15,4 @@ var IMKMouseHandlingProtocol *objc.Protocol
 func init() {
 	IMKMouseHandlingProtocol = objc.GetProtocol("IMKMouseHandling")
 }
+

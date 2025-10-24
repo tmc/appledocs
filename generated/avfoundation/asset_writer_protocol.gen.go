@@ -20,3 +20,4 @@ var assetWriterProtocol *objc.Protocol
 func init() {
 	assetWriterProtocol = objc.GetProtocol("assetWriter:")
 }
+

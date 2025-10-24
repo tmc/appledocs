@@ -15,3 +15,4 @@ var setAccessibilityVisibleColumnsProtocol *objc.Protocol
 func init() {
 	setAccessibilityVisibleColumnsProtocol = objc.GetProtocol("setAccessibilityVisibleColumns")
 }
+

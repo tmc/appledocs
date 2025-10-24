@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSSpellServer */
+
+
+/* debug [class_header]: Header for NSSpellServer */
 // The class instance for the [SpellServer] class.
 var (
 	SpellServerClass     _SpellServerClass
@@ -26,39 +30,35 @@ func getSpellServerClass() _SpellServerClass {
 type _SpellServerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SpellServer */
 // An interface definition for the [SpellServer] class.
 type ISpellServer interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for SpellServer */
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SpellServer */
 	// methods:
 	IsWordInUserDictionariesCaseSensitive(word IString, flag bool) bool
 	RegisterLanguageByVendor(language IString, vendor IString) bool
 	Run()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A server that your app uses to provide a spell checker service to other apps running in the system.
-//
-// A is an application that declares its availability in a standard way, so that any other applications that wish to use it can do so. If you build a spelling checker that makes use of the class and list it as an available service, then users of any application that makes use of or includes a Services menu will see your spelling checker as one of the available dictionaries.
+/* debug [class_interface]: End interface */
 
 
-// A server that your app uses to provide a spell checker service to other apps running in the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer
-type SpellServer struct {
-	objectivec.Object
-}
 
-// SpellServerFrom constructs a [SpellServer] from an unsafe.Pointer.
-//
-// A server that your app uses to provide a spell checker service to other apps running in the system.
-func SpellServerFrom(ptr unsafe.Pointer) SpellServer {
-	return SpellServer{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SpellServer */
 // Alloc allocates a new instance without initialization.
 func (sc _SpellServerClass) Alloc() SpellServer {
 	rv := objc.Send[SpellServer](objc.ID(sc.class), objc.Sel("alloc"))
@@ -66,7 +66,6 @@ func (sc _SpellServerClass) Alloc() SpellServer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SpellServerClass) New() SpellServer {
 	rv := objc.Send[SpellServer](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,8 +88,49 @@ func (s_ SpellServer) Autorelease() SpellServer {
 func NewSpellServer() SpellServer {
 	return getSpellServerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SpellServer */
+// A server that your app uses to provide a spell checker service to other apps running in the system.
+//
+// A is an application that declares its availability in a standard way, so that any other applications that wish to use it can do so. If you build a spelling checker that makes use of the class and list it as an available service, then users of any application that makes use of or includes a Services menu will see your spelling checker as one of the available dictionaries.
+
+
+// A server that your app uses to provide a spell checker service to other apps running in the system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer
+type SpellServer struct {
+	objectivec.Object
+}
+
+// SpellServerFrom constructs a [SpellServer] from an unsafe.Pointer.
+//
+// A server that your app uses to provide a spell checker service to other apps running in the system.
+func SpellServerFrom(ptr unsafe.Pointer) SpellServer {
+	return SpellServer{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SpellServer *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SpellServer */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SpellServer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SpellServer */
 
 // Indicates whether a given word is in the user’s list of learned words or the document’s list of words to ignore.
 //
@@ -99,7 +139,7 @@ func NewSpellServer() SpellServer {
 func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word IString, flag bool) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isWordInUserDictionaries:caseSensitive:"), word, flag)
 	return rv
-}
+}/* debug [instance_methods/method]: IsWordInUserDictionariesCaseSensitive */
 
 
 // Notifies the receiver of a language your spelling checker can check.
@@ -109,7 +149,7 @@ func (s_ SpellServer) IsWordInUserDictionariesCaseSensitive(word IString, flag b
 func (s_ SpellServer) RegisterLanguageByVendor(language IString, vendor IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("registerLanguage:byVendor:"), language, vendor)
 	return rv
-}
+}/* debug [instance_methods/method]: RegisterLanguageByVendor */
 
 
 // Causes the receiver to start listening for spell-checking requests.
@@ -118,26 +158,36 @@ func (s_ SpellServer) RegisterLanguageByVendor(language IString, vendor IString)
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/run()
 func (s_ SpellServer) Run() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("run"))
-}
+}/* debug [instance_methods/method]: Run */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SpellServer */
 
 // Returns the receiver’s delegate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/delegate
-func (s_ SpellServer) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+func (s_ SpellServer) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // Returns the receiver’s delegate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSpellServer/delegate
-func (s_ SpellServer) SetDelegate(value objc.ID) {
+func (s_ SpellServer) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
+}/* debug [instance_properties/setter]: delegate */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSSpellServer */
 
 
 

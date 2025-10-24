@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GLKTextureInfo */
+
+
+/* debug [class_header]: Header for GLKTextureInfo */
 // The class instance for the [GLKTextureInfo] class.
 var (
 	GLKTextureInfoClass     _GLKTextureInfoClass
@@ -26,10 +30,16 @@ func getGLKTextureInfoClass() _GLKTextureInfoClass {
 type _GLKTextureInfoClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GLKTextureInfo */
 // An interface definition for the [GLKTextureInfo] class.
 type IGLKTextureInfo interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GLKTextureInfo */
 	// properties:
 	AlphaState() GLKTextureInfoAlphaState
 	ArrayLength() unsafe.Pointer
@@ -41,29 +51,19 @@ type IGLKTextureInfo interface {
 	Target() unsafe.Pointer
 	TextureOrigin() GLKTextureInfoOrigin
 	Width() unsafe.Pointer
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GLKTextureInfo */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Information about OpenGL textures created by the class.
-//
-// When your app loads textures using the class, the texture loader returns information about the textures using objects. Your app never creates objects directly.
+/* debug [class_interface]: End interface */
 
 
-// Information about OpenGL textures created by the class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo
-type GLKTextureInfo struct {
-	objectivec.Object
-}
 
-// GLKTextureInfoFrom constructs a [GLKTextureInfo] from an unsafe.Pointer.
-//
-// Information about OpenGL textures created by the class.
-func GLKTextureInfoFrom(ptr unsafe.Pointer) GLKTextureInfo {
-	return GLKTextureInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GLKTextureInfo */
 // Alloc allocates a new instance without initialization.
 func (gc _GLKTextureInfoClass) Alloc() GLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("alloc"))
@@ -71,7 +71,6 @@ func (gc _GLKTextureInfoClass) Alloc() GLKTextureInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GLKTextureInfoClass) New() GLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,8 +93,54 @@ func (g_ GLKTextureInfo) Autorelease() GLKTextureInfo {
 func NewGLKTextureInfo() GLKTextureInfo {
 	return getGLKTextureInfoClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GLKTextureInfo */
+// Information about OpenGL textures created by the class.
+//
+// When your app loads textures using the class, the texture loader returns information about the textures using objects. Your app never creates objects directly.
+
+
+// Information about OpenGL textures created by the class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureInfo
+type GLKTextureInfo struct {
+	objectivec.Object
+}
+
+// GLKTextureInfoFrom constructs a [GLKTextureInfo] from an unsafe.Pointer.
+//
+// Information about OpenGL textures created by the class.
+func GLKTextureInfoFrom(ptr unsafe.Pointer) GLKTextureInfo {
+	return GLKTextureInfo{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GLKTextureInfo *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GLKTextureInfo */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GLKTextureInfo */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GLKTextureInfo */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GLKTextureInfo */
 
 // The state of the alpha component in the loaded texture.
 //
@@ -104,7 +149,7 @@ func NewGLKTextureInfo() GLKTextureInfo {
 func (g_ GLKTextureInfo) AlphaState() GLKTextureInfoAlphaState {
 	rv := objc.Send[GLKTextureInfoAlphaState](g_.ID, objc.Sel("alphaState"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alphaState */
 
 
 // [Full Topic]
@@ -112,7 +157,7 @@ func (g_ GLKTextureInfo) AlphaState() GLKTextureInfoAlphaState {
 func (g_ GLKTextureInfo) ArrayLength() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("arrayLength"))
 	return rv
-}
+}/* debug [instance_properties/getter]: arrayLength */
 
 
 // A Boolean value that states whether the loaded texture contains mip maps.
@@ -122,7 +167,7 @@ func (g_ GLKTextureInfo) ArrayLength() unsafe.Pointer {
 func (g_ GLKTextureInfo) ContainsMipmaps() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("containsMipmaps"))
 	return rv
-}
+}/* debug [instance_properties/getter]: containsMipmaps */
 
 
 // [Full Topic]
@@ -130,7 +175,7 @@ func (g_ GLKTextureInfo) ContainsMipmaps() bool {
 func (g_ GLKTextureInfo) Depth() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("depth"))
 	return rv
-}
+}/* debug [instance_properties/getter]: depth */
 
 
 // The height of the loaded texture.
@@ -140,7 +185,7 @@ func (g_ GLKTextureInfo) Depth() unsafe.Pointer {
 func (g_ GLKTextureInfo) Height() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("height"))
 	return rv
-}
+}/* debug [instance_properties/getter]: height */
 
 
 // [Full Topic]
@@ -148,7 +193,7 @@ func (g_ GLKTextureInfo) Height() unsafe.Pointer {
 func (g_ GLKTextureInfo) MimapLevelCount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("mimapLevelCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mimapLevelCount */
 
 
 // The OpenGL context’s name for the texture.
@@ -158,7 +203,7 @@ func (g_ GLKTextureInfo) MimapLevelCount() unsafe.Pointer {
 func (g_ GLKTextureInfo) Name() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("name"))
 	return rv
-}
+}/* debug [instance_properties/getter]: name */
 
 
 // The OpenGL binding target for the texture.
@@ -168,7 +213,7 @@ func (g_ GLKTextureInfo) Name() unsafe.Pointer {
 func (g_ GLKTextureInfo) Target() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("target"))
 	return rv
-}
+}/* debug [instance_properties/getter]: target */
 
 
 // The location of the origin in the loaded texture.
@@ -178,7 +223,7 @@ func (g_ GLKTextureInfo) Target() unsafe.Pointer {
 func (g_ GLKTextureInfo) TextureOrigin() GLKTextureInfoOrigin {
 	rv := objc.Send[GLKTextureInfoOrigin](g_.ID, objc.Sel("textureOrigin"))
 	return rv
-}
+}/* debug [instance_properties/getter]: textureOrigin */
 
 
 // The width of the loaded texture.
@@ -188,7 +233,12 @@ func (g_ GLKTextureInfo) TextureOrigin() GLKTextureInfoOrigin {
 func (g_ GLKTextureInfo) Width() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("width"))
 	return rv
-}
+}/* debug [instance_properties/getter]: width */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GLKTextureInfo */
 
 
 

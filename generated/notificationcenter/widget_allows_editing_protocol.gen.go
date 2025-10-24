@@ -15,3 +15,4 @@ var widgetAllowsEditingProtocol *objc.Protocol
 func init() {
 	widgetAllowsEditingProtocol = objc.GetProtocol("widgetAllowsEditing")
 }
+

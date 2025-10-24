@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -59,7 +59,6 @@ type IPHFetchResultChangeDetails interface {
 //
 // A object provides detailed information about the differences between two fetch results—one that you previously obtained and an updated one that would result if you performed the same fetch again. The change details object provides information useful for updating a UI that lists the contents of a fetch result, such as the indexes of added, removed, and rearranged objects.
 
-
 // A description of changes that occurred in the set of asset or collection objects listed in a fetch result.
 //
 // [Full Topic]
@@ -106,8 +105,6 @@ func NewPHFetchResultChangeDetails() PHFetchResultChangeDetails {
 	return getPHFetchResultChangeDetailsClass().New()
 }
 
-
-
 // The indexes of objects in the fetch result whose content or metadata have been updated.
 //
 // [Full Topic]
@@ -117,7 +114,6 @@ func (p_ PHFetchResultChangeDetails) ChangedIndexes() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // The indexes of objects in the fetch result whose content or metadata have been updated.
 //
 // [Full Topic]
@@ -125,7 +121,6 @@ func (p_ PHFetchResultChangeDetails) ChangedIndexes() objc.IObject /* cross-fram
 func (p_ PHFetchResultChangeDetails) SetChangedIndexes(value objc.IObject /* cross-framework: IndexSet */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedIndexes:"), value)
 }
-
 
 // The objects in the fetch result whose content or metadata have been updated.
 //
@@ -136,7 +131,6 @@ func (p_ PHFetchResultChangeDetails) ChangedObjects() unsafe.Pointer {
 	return rv
 }
 
-
 // The objects in the fetch result whose content or metadata have been updated.
 //
 // [Full Topic]
@@ -144,7 +138,6 @@ func (p_ PHFetchResultChangeDetails) ChangedObjects() unsafe.Pointer {
 func (p_ PHFetchResultChangeDetails) SetChangedObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedObjects:"), value)
 }
-
 
 // The current fetch result, incorporating recent changes.
 //
@@ -155,7 +148,6 @@ func (p_ PHFetchResultChangeDetails) FetchResultAfterChanges() IPHFetchResult {
 	return rv
 }
 
-
 // The current fetch result, incorporating recent changes.
 //
 // [Full Topic]
@@ -163,7 +155,6 @@ func (p_ PHFetchResultChangeDetails) FetchResultAfterChanges() IPHFetchResult {
 func (p_ PHFetchResultChangeDetails) SetFetchResultAfterChanges(value IPHFetchResult) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchResultAfterChanges:"), value)
 }
-
 
 // The original fetch result, without recent changes.
 //
@@ -174,7 +165,6 @@ func (p_ PHFetchResultChangeDetails) FetchResultBeforeChanges() IPHFetchResult {
 	return rv
 }
 
-
 // The original fetch result, without recent changes.
 //
 // [Full Topic]
@@ -182,7 +172,6 @@ func (p_ PHFetchResultChangeDetails) FetchResultBeforeChanges() IPHFetchResult {
 func (p_ PHFetchResultChangeDetails) SetFetchResultBeforeChanges(value IPHFetchResult) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchResultBeforeChanges:"), value)
 }
-
 
 // A Boolean value that indicates whether changes to the fetch result can be described incrementally.
 //
@@ -193,7 +182,6 @@ func (p_ PHFetchResultChangeDetails) HasIncrementalChanges() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether changes to the fetch result can be described incrementally.
 //
 // [Full Topic]
@@ -201,7 +189,6 @@ func (p_ PHFetchResultChangeDetails) HasIncrementalChanges() bool {
 func (p_ PHFetchResultChangeDetails) SetHasIncrementalChanges(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHasIncrementalChanges:"), value)
 }
-
 
 // A Boolean value that indicates whether objects have been rearranged in the fetch result.
 //
@@ -212,7 +199,6 @@ func (p_ PHFetchResultChangeDetails) HasMoves() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether objects have been rearranged in the fetch result.
 //
 // [Full Topic]
@@ -220,7 +206,6 @@ func (p_ PHFetchResultChangeDetails) HasMoves() bool {
 func (p_ PHFetchResultChangeDetails) SetHasMoves(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHasMoves:"), value)
 }
-
 
 // The indexes where new objects have been inserted in the fetch result.
 //
@@ -231,7 +216,6 @@ func (p_ PHFetchResultChangeDetails) InsertedIndexes() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // The indexes where new objects have been inserted in the fetch result.
 //
 // [Full Topic]
@@ -239,7 +223,6 @@ func (p_ PHFetchResultChangeDetails) InsertedIndexes() objc.IObject /* cross-fra
 func (p_ PHFetchResultChangeDetails) SetInsertedIndexes(value objc.IObject /* cross-framework: IndexSet */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertedIndexes:"), value)
 }
-
 
 // The new items that have been inserted in the fetch result.
 //
@@ -250,7 +233,6 @@ func (p_ PHFetchResultChangeDetails) InsertedObjects() unsafe.Pointer {
 	return rv
 }
 
-
 // The new items that have been inserted in the fetch result.
 //
 // [Full Topic]
@@ -258,7 +240,6 @@ func (p_ PHFetchResultChangeDetails) InsertedObjects() unsafe.Pointer {
 func (p_ PHFetchResultChangeDetails) SetInsertedObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertedObjects:"), value)
 }
-
 
 // The indexes from which objects have been removed from the fetch result.
 //
@@ -269,7 +250,6 @@ func (p_ PHFetchResultChangeDetails) RemovedIndexes() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // The indexes from which objects have been removed from the fetch result.
 //
 // [Full Topic]
@@ -277,7 +257,6 @@ func (p_ PHFetchResultChangeDetails) RemovedIndexes() objc.IObject /* cross-fram
 func (p_ PHFetchResultChangeDetails) SetRemovedIndexes(value objc.IObject /* cross-framework: IndexSet */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRemovedIndexes:"), value)
 }
-
 
 // The items that have been removed from the fetch result.
 //
@@ -288,7 +267,6 @@ func (p_ PHFetchResultChangeDetails) RemovedObjects() unsafe.Pointer {
 	return rv
 }
 
-
 // The items that have been removed from the fetch result.
 //
 // [Full Topic]
@@ -296,6 +274,3 @@ func (p_ PHFetchResultChangeDetails) RemovedObjects() unsafe.Pointer {
 func (p_ PHFetchResultChangeDetails) SetRemovedObjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRemovedObjects:"), value)
 }
-
-
-

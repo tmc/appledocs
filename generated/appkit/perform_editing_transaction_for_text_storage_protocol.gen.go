@@ -15,3 +15,4 @@ var performEditingTransactionForTextStorageProtocol *objc.Protocol
 func init() {
 	performEditingTransactionForTextStorageProtocol = objc.GetProtocol("performEditingTransactionForTextStorage:")
 }
+

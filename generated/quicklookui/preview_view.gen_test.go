@@ -3,8 +3,8 @@
 package quicklookui_test
 
 import (
-	"github.com/tmc/appledocs/generated/quicklookui"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/quicklookui"
 )
 
 // Suppress unused import errors
@@ -18,4 +18,3 @@ func ExampleNewPreviewViewWithFrame() {
 	)
 	// Output:
 }
-

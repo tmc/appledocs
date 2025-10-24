@@ -33,8 +33,6 @@ type IMTRClusterGeneralCommissioning interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterGeneralCommissioning
 type MTRClusterGeneralCommissioning struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterGeneralCommissioning) Autorelease() MTRClusterGeneralCommissi
 func NewMTRClusterGeneralCommissioning() MTRClusterGeneralCommissioning {
 	return getMTRClusterGeneralCommissioningClass().New()
 }
-
-
-
-

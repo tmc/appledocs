@@ -2,6 +2,7 @@
 
 package fskit
 
+/* debug [functions.gen.go]: Generating 3 functions for FSKit */
 import (
 	"unsafe"
 
@@ -53,7 +54,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForCocoaError(_:)
 func fs_errorForCocoaError(errorCode int) unsafe.Pointer {
 	return _fs_errorForCocoaError(errorCode)
-}
+}/* debug [functions.gen.go/function]: fs_errorForCocoaError */
 
 // Creates an error object for the given Mach error code.
 //
@@ -64,7 +65,7 @@ func fs_errorForCocoaError(errorCode int) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForMachError(_:)
 func fs_errorForMachError(errorCode int) unsafe.Pointer {
 	return _fs_errorForMachError(errorCode)
-}
+}/* debug [functions.gen.go/function]: fs_errorForMachError */
 
 // Creates an error object for the given POSIX error code.
 //
@@ -75,7 +76,8 @@ func fs_errorForMachError(errorCode int) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/fs_errorForPOSIXError(_:)
 func fs_errorForPOSIXError(p0 int) unsafe.Pointer {
 	return _fs_errorForPOSIXError(p0)
-}
+}/* debug [functions.gen.go/function]: fs_errorForPOSIXError */
+
 
 
 

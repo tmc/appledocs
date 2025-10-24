@@ -2,7 +2,9 @@
 
 package metalfx
 
+/* debug [enums.gen.go]: Generating 1 enums for MetalFX */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum MTLFXSpatialScalerColorProcessingMode (3 cases) */
 // MTLFXSpatialScalerColorProcessingMode - The color space modes for the input and output textures you use with a spatial scaling effect instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetalFX/MTLFXSpatialScalerColorProcessingMode

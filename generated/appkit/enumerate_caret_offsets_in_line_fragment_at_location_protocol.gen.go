@@ -15,3 +15,4 @@ var enumerateCaretOffsetsInLineFragmentAtLocationProtocol *objc.Protocol
 func init() {
 	enumerateCaretOffsetsInLineFragmentAtLocationProtocol = objc.GetProtocol("enumerateCaretOffsetsInLineFragmentAtLocation:")
 }
+

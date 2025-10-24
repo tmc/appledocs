@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRPowerSourceClusterWiredFaultChangeType */
+
+
+/* debug [class_header]: Header for MTRPowerSourceClusterWiredFaultChangeType */
 // The class instance for the [MTRPowerSourceClusterWiredFaultChangeType] class.
 var (
 	MTRPowerSourceClusterWiredFaultChangeTypeClass     _MTRPowerSourceClusterWiredFaultChangeTypeClass
@@ -26,31 +31,34 @@ func getMTRPowerSourceClusterWiredFaultChangeTypeClass() _MTRPowerSourceClusterW
 type _MTRPowerSourceClusterWiredFaultChangeTypeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRPowerSourceClusterWiredFaultChangeType */
 // An interface definition for the [MTRPowerSourceClusterWiredFaultChangeType] class.
 type IMTRPowerSourceClusterWiredFaultChangeType interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRPowerSourceClusterWiredFaultChangeType */
 	// properties:
-	Current() unsafe.Pointer
-	SetCurrent(value unsafe.Pointer)
-	Previous() unsafe.Pointer
-	SetPrevious(value unsafe.Pointer)
+	Current() objc.IObject /* cross-framework: NSArray */
+	SetCurrent(value objc.IObject /* cross-framework: NSArray */)
+	Previous() objc.IObject /* cross-framework: NSArray */
+	SetPrevious(value objc.IObject /* cross-framework: NSArray */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRPowerSourceClusterWiredFaultChangeType */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterWiredFaultChangeType
-type MTRPowerSourceClusterWiredFaultChangeType struct {
-	objectivec.Object
-}
-
-// MTRPowerSourceClusterWiredFaultChangeTypeFrom constructs a [MTRPowerSourceClusterWiredFaultChangeType] from an unsafe.Pointer.
-func MTRPowerSourceClusterWiredFaultChangeTypeFrom(ptr unsafe.Pointer) MTRPowerSourceClusterWiredFaultChangeType {
-	return MTRPowerSourceClusterWiredFaultChangeType{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRPowerSourceClusterWiredFaultChangeType */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRPowerSourceClusterWiredFaultChangeTypeClass) Alloc() MTRPowerSourceClusterWiredFaultChangeType {
 	rv := objc.Send[MTRPowerSourceClusterWiredFaultChangeType](objc.ID(mc.class), objc.Sel("alloc"))
@@ -58,7 +66,6 @@ func (mc _MTRPowerSourceClusterWiredFaultChangeTypeClass) Alloc() MTRPowerSource
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRPowerSourceClusterWiredFaultChangeTypeClass) New() MTRPowerSourceClusterWiredFaultChangeType {
 	rv := objc.Send[MTRPowerSourceClusterWiredFaultChangeType](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,37 +88,81 @@ func (m_ MTRPowerSourceClusterWiredFaultChangeType) Autorelease() MTRPowerSource
 func NewMTRPowerSourceClusterWiredFaultChangeType() MTRPowerSourceClusterWiredFaultChangeType {
 	return getMTRPowerSourceClusterWiredFaultChangeTypeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRPowerSourceClusterWiredFaultChangeType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangetype/current
-func (m_ MTRPowerSourceClusterWiredFaultChangeType) Current() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterWiredFaultChangeType
+type MTRPowerSourceClusterWiredFaultChangeType struct {
+	objectivec.Object
 }
 
+// MTRPowerSourceClusterWiredFaultChangeTypeFrom constructs a [MTRPowerSourceClusterWiredFaultChangeType] from an unsafe.Pointer.
+func MTRPowerSourceClusterWiredFaultChangeTypeFrom(ptr unsafe.Pointer) MTRPowerSourceClusterWiredFaultChangeType {
+	return MTRPowerSourceClusterWiredFaultChangeType{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRPowerSourceClusterWiredFaultChangeType *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRPowerSourceClusterWiredFaultChangeType */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRPowerSourceClusterWiredFaultChangeType */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRPowerSourceClusterWiredFaultChangeType */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRPowerSourceClusterWiredFaultChangeType */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangetype/current
-func (m_ MTRPowerSourceClusterWiredFaultChangeType) SetCurrent(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterWiredFaultChangeType/current
+func (m_ MTRPowerSourceClusterWiredFaultChangeType) Current() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("current"))
+	return rv
+}/* debug [instance_properties/getter]: current */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterWiredFaultChangeType/current
+func (m_ MTRPowerSourceClusterWiredFaultChangeType) SetCurrent(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
-}
+}/* debug [instance_properties/setter]: current */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangetype/previous
-func (m_ MTRPowerSourceClusterWiredFaultChangeType) Previous() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterWiredFaultChangeType/previous
+func (m_ MTRPowerSourceClusterWiredFaultChangeType) Previous() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("previous"))
 	return rv
-}
+}/* debug [instance_properties/getter]: previous */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterwiredfaultchangetype/previous
-func (m_ MTRPowerSourceClusterWiredFaultChangeType) SetPrevious(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterWiredFaultChangeType/previous
+func (m_ MTRPowerSourceClusterWiredFaultChangeType) SetPrevious(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)
-}
+}/* debug [instance_properties/setter]: previous */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRPowerSourceClusterWiredFaultChangeType */
 
 
 

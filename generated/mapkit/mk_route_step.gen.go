@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MKRouteStep */
+
+
+/* debug [class_header]: Header for MKRouteStep */
 // The class instance for the [MKRouteStep] class.
 var (
 	MKRouteStepClass     _MKRouteStepClass
@@ -26,42 +31,35 @@ func getMKRouteStepClass() _MKRouteStepClass {
 type _MKRouteStepClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MKRouteStep */
 // An interface definition for the [MKRouteStep] class.
 type IMKRouteStep interface {
 	objectivec.IObject
-	Distance() unsafe.Pointer
-	SetDistance(value unsafe.Pointer)
-	Instructions() string
-	SetInstructions(value string)
-	Notice() string
-	SetNotice(value string)
-	Polyline() MKPolyline
-	SetPolyline(value IMKPolyline)
-	TransportType() unsafe.Pointer
-	SetTransportType(value unsafe.Pointer)
+	
+/* debug [class_interface_properties]: Properties for MKRouteStep */
+	// properties:
+	Distance() LocationDistance /* not a class type */
+	Instructions() objc.IObject /* cross-framework: NSString */
+	Notice() objc.IObject /* cross-framework: NSString */
+	Polyline() IMKPolyline
+	TransportType() MKDirectionsTransportType
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MKRouteStep */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// One portion of an overall route.
-//
-// Each object corresponds to a single instruction that the person needs to follow when navigating between two points. For example, a step might involve following a single road until continuing along the route requires a turn. You don’t create instances of this class directly. An object contains the objects associated with a route. For more information about requesting directions, see .
+/* debug [class_interface]: End interface */
 
 
-// One portion of an overall route.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKRoute/Step
-type MKRouteStep struct {
-	objectivec.Object
-}
 
-// MKRouteStepFrom constructs a [MKRouteStep] from an unsafe.Pointer.
-//
-// One portion of an overall route.
-func MKRouteStepFrom(ptr unsafe.Pointer) MKRouteStep {
-	return MKRouteStep{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MKRouteStep */
 // Alloc allocates a new instance without initialization.
 func (mc _MKRouteStepClass) Alloc() MKRouteStep {
 	rv := objc.Send[MKRouteStep](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +67,6 @@ func (mc _MKRouteStepClass) Alloc() MKRouteStep {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MKRouteStepClass) New() MKRouteStep {
 	rv := objc.Send[MKRouteStep](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,102 +89,108 @@ func (m_ MKRouteStep) Autorelease() MKRouteStep {
 func NewMKRouteStep() MKRouteStep {
 	return getMKRouteStepClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MKRouteStep */
+// One portion of an overall route.
+//
+// Each object corresponds to a single instruction that the person needs to follow when navigating between two points. For example, a step might involve following a single road until continuing along the route requires a turn. You don’t create instances of this class directly. An object contains the objects associated with a route. For more information about requesting directions, see .
+
+
+// One portion of an overall route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKRoute/Step
+type MKRouteStep struct {
+	objectivec.Object
+}
+
+// MKRouteStepFrom constructs a [MKRouteStep] from an unsafe.Pointer.
+//
+// One portion of an overall route.
+func MKRouteStepFrom(ptr unsafe.Pointer) MKRouteStep {
+	return MKRouteStep{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MKRouteStep *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MKRouteStep */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MKRouteStep */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MKRouteStep */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MKRouteStep */
 
 // The step distance, in meters.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/distance
-func (m_ MKRouteStep) Distance() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("distance"))
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKRoute/Step/distance
+func (m_ MKRouteStep) Distance() LocationDistance /* not a class type */ {
+	rv := objc.Send[LocationDistance](m_.ID, objc.Sel("distance"))
 	return rv
-}
-
-
-// The step distance, in meters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/distance
-func (m_ MKRouteStep) SetDistance(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDistance:"), value)
-}
+}/* debug [instance_properties/getter]: distance */
 
 
 // The written instructions for following the path that the step represents.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
-func (m_ MKRouteStep) Instructions() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("instructions"))
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKRoute/Step/instructions
+func (m_ MKRouteStep) Instructions() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("instructions"))
 	return rv
-}
-
-
-// The written instructions for following the path that the step represents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/instructions
-func (m_ MKRouteStep) SetInstructions(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setInstructions:"), objc.String(value))
-}
+}/* debug [instance_properties/getter]: instructions */
 
 
 // Additional notices that apply to the step.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
-func (m_ MKRouteStep) Notice() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("notice"))
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKRoute/Step/notice
+func (m_ MKRouteStep) Notice() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("notice"))
 	return rv
-}
-
-
-// Additional notices that apply to the step.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/notice
-func (m_ MKRouteStep) SetNotice(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNotice:"), objc.String(value))
-}
+}/* debug [instance_properties/getter]: notice */
 
 
 // The detailed step geometry.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
-func (m_ MKRouteStep) Polyline() MKPolyline {
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKRoute/Step/polyline
+func (m_ MKRouteStep) Polyline() IMKPolyline {
 	rv := objc.Send[MKPolyline](m_.ID, objc.Sel("polyline"))
 	return rv
-}
-
-
-// The detailed step geometry.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/polyline
-func (m_ MKRouteStep) SetPolyline(value IMKPolyline) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPolyline:"), value)
-}
+}/* debug [instance_properties/getter]: polyline */
 
 
 // The transport type of the step.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
-func (m_ MKRouteStep) TransportType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("transportType"))
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKRoute/Step/transportType
+func (m_ MKRouteStep) TransportType() MKDirectionsTransportType {
+	rv := objc.Send[MKDirectionsTransportType](m_.ID, objc.Sel("transportType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transportType */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The transport type of the step.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkroute/step/transporttype
-func (m_ MKRouteStep) SetTransportType(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransportType:"), value)
-}
+/* debug [class.gen.go]: End class MKRouteStep */
 
 
 

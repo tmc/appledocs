@@ -15,3 +15,4 @@ var setAccessibilityHorizontalUnitsProtocol *objc.Protocol
 func init() {
 	setAccessibilityHorizontalUnitsProtocol = objc.GetProtocol("setAccessibilityHorizontalUnits")
 }
+

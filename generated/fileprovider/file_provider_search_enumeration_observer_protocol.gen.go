@@ -15,3 +15,4 @@ var FileProviderSearchEnumerationObserverProtocol *objc.Protocol
 func init() {
 	FileProviderSearchEnumerationObserverProtocol = objc.GetProtocol("NSFileProviderSearchEnumerationObserver")
 }
+

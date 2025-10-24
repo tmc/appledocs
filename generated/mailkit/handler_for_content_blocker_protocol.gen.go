@@ -15,3 +15,4 @@ var handlerForContentBlockerProtocol *objc.Protocol
 func init() {
 	handlerForContentBlockerProtocol = objc.GetProtocol("handlerForContentBlocker")
 }
+

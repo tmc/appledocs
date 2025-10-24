@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -57,7 +57,6 @@ type IManagedObjectModel interface {
 //
 // The model contains one or more objects representing the entities in the schema. Each object has property description objects (instances of subclasses of ) that represent the properties (or fields) of the entity in the schema. The Core Data framework uses this description in several ways: Constraining UI creation in Interface Builder Validating attribute and relationship values at runtime Mapping between your managed objects and a database or file-based schema for object persistence A managed object model maintains a mapping between each of its entity objects and a corresponding managed object class for use with the persistent storage mechanisms in the Core Data framework. You can determine the entity for a particular managed object with the method. You typically create managed object models using the data modeling tool in Xcode, but it’s possible to build a model programmatically if needed.
 
-
 // A programmatic representation of the file describing your objects.
 //
 // [Full Topic]
@@ -104,8 +103,6 @@ func NewManagedObjectModel() ManagedObjectModel {
 	return getManagedObjectModelClass().New()
 }
 
-
-
 // Returns a Boolean value that indicates whether a given configuration in the model is compatible with given metadata from a persistent store.
 //
 // [Full Topic]
@@ -115,7 +112,6 @@ func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configur
 	return rv
 }
 
-
 // Associates the specified fetch request with the receiver using the given name.
 //
 // [Full Topic]
@@ -123,7 +119,6 @@ func (m_ ManagedObjectModel) IsConfigurationCompatibleWithStoreMetadata(configur
 func (m_ ManagedObjectModel) SetFetchRequestTemplateForName(fetchRequestTemplate IFetchRequest, name objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplate:forName:"), fetchRequestTemplate, name)
 }
-
 
 // All the available configuration names of the model.
 //
@@ -134,7 +129,6 @@ func (m_ ManagedObjectModel) Configurations() objc.IObject /* cross-framework: N
 	return rv
 }
 
-
 // All the available configuration names of the model.
 //
 // [Full Topic]
@@ -142,7 +136,6 @@ func (m_ ManagedObjectModel) Configurations() objc.IObject /* cross-framework: N
 func (m_ ManagedObjectModel) SetConfigurations(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConfigurations:"), value)
 }
-
 
 // The entities in the model.
 //
@@ -153,7 +146,6 @@ func (m_ ManagedObjectModel) Entities() IEntityDescription {
 	return rv
 }
 
-
 // The entities in the model.
 //
 // [Full Topic]
@@ -161,7 +153,6 @@ func (m_ ManagedObjectModel) Entities() IEntityDescription {
 func (m_ ManagedObjectModel) SetEntities(value IEntityDescription) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntities:"), value)
 }
-
 
 // The entities of the model, keyed by name.
 //
@@ -172,7 +163,6 @@ func (m_ ManagedObjectModel) EntitiesByName() IEntityDescription {
 	return rv
 }
 
-
 // The entities of the model, keyed by name.
 //
 // [Full Topic]
@@ -180,7 +170,6 @@ func (m_ ManagedObjectModel) EntitiesByName() IEntityDescription {
 func (m_ ManagedObjectModel) SetEntitiesByName(value IEntityDescription) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntitiesByName:"), value)
 }
-
 
 // The dictionary of the model’s entity names and their corresponding version hashes.
 //
@@ -191,7 +180,6 @@ func (m_ ManagedObjectModel) EntityVersionHashesByName() objc.IObject /* cross-f
 	return rv
 }
 
-
 // The dictionary of the model’s entity names and their corresponding version hashes.
 //
 // [Full Topic]
@@ -199,7 +187,6 @@ func (m_ ManagedObjectModel) EntityVersionHashesByName() objc.IObject /* cross-f
 func (m_ ManagedObjectModel) SetEntityVersionHashesByName(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityVersionHashesByName:"), value)
 }
-
 
 // A dictionary of the receiver’s fetch request templates, keyed by name.
 //
@@ -210,7 +197,6 @@ func (m_ ManagedObjectModel) FetchRequestTemplatesByName() FetchRequestResult /*
 	return rv
 }
 
-
 // A dictionary of the receiver’s fetch request templates, keyed by name.
 //
 // [Full Topic]
@@ -218,7 +204,6 @@ func (m_ ManagedObjectModel) FetchRequestTemplatesByName() FetchRequestResult /*
 func (m_ ManagedObjectModel) SetFetchRequestTemplatesByName(value FetchRequestResult /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFetchRequestTemplatesByName:"), value)
 }
-
 
 // The localization dictionary of the model.
 //
@@ -229,7 +214,6 @@ func (m_ ManagedObjectModel) LocalizationDictionary() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // The localization dictionary of the model.
 //
 // [Full Topic]
@@ -237,7 +221,6 @@ func (m_ ManagedObjectModel) LocalizationDictionary() objc.IObject /* cross-fram
 func (m_ ManagedObjectModel) SetLocalizationDictionary(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLocalizationDictionary:"), value)
 }
-
 
 // The Base64-encoded 128-bit model version hash.
 //
@@ -248,7 +231,6 @@ func (m_ ManagedObjectModel) VersionChecksum() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // The Base64-encoded 128-bit model version hash.
 //
 // [Full Topic]
@@ -256,7 +238,6 @@ func (m_ ManagedObjectModel) VersionChecksum() objc.IObject /* cross-framework: 
 func (m_ ManagedObjectModel) SetVersionChecksum(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), value)
 }
-
 
 // The set of developer-defined version identifiers for the object model.
 //
@@ -267,7 +248,6 @@ func (m_ ManagedObjectModel) VersionIdentifiers() unsafe.Pointer {
 	return rv
 }
 
-
 // The set of developer-defined version identifiers for the object model.
 //
 // [Full Topic]
@@ -275,6 +255,3 @@ func (m_ ManagedObjectModel) VersionIdentifiers() unsafe.Pointer {
 func (m_ ManagedObjectModel) SetVersionIdentifiers(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionIdentifiers:"), value)
 }
-
-
-

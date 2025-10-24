@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/intents"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INUIAddVoiceShortcutButton] class.
@@ -46,7 +46,6 @@ type IINUIAddVoiceShortcutButton interface {
 // A button that allows the user to add or edit a shortcut.
 //
 // When the user performs an action such as placing an order for tomato soup, the app should provide the option to add the action to Siri as a shortcut. To present this option in your app, use to display an “Add to Siri” button. Using this button makes your app consistent with other apps that support Siri Shortcuts. Set the property on the button to have it automatically update the status of the shortcut. If the user has already added the shortcut to Siri, the button displays “Added” instead of “Add” and includes the phrase that the user chose when adding the shortcut. The methods in aren’t called unless the property is set. After creating the button, assign its action to a method that displays . This controller guides the user through the process of adding the shortcut to Siri. The code listing below adds an “Add to Siri” button to a view and lets the user record an invocation phrase
-
 
 // A button that allows the user to add or edit a shortcut.
 //
@@ -96,8 +95,6 @@ func NewINUIAddVoiceShortcutButton() INUIAddVoiceShortcutButton {
 	return getINUIAddVoiceShortcutButtonClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton/cornerradius
 func (i_ INUIAddVoiceShortcutButton) CornerRadius() float64 {
@@ -105,13 +102,11 @@ func (i_ INUIAddVoiceShortcutButton) CornerRadius() float64 {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intentsui/inuiaddvoiceshortcutbutton/cornerradius
 func (i_ INUIAddVoiceShortcutButton) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCornerRadius:"), value)
 }
-
 
 // The object that receives presentation requests from the button.
 //
@@ -122,7 +117,6 @@ func (i_ INUIAddVoiceShortcutButton) Delegate() unsafe.Pointer {
 	return rv
 }
 
-
 // The object that receives presentation requests from the button.
 //
 // [Full Topic]
@@ -130,7 +124,6 @@ func (i_ INUIAddVoiceShortcutButton) Delegate() unsafe.Pointer {
 func (i_ INUIAddVoiceShortcutButton) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
-
 
 // The shortcut Siri invokes when the user speaks the invocation phrase.
 //
@@ -141,7 +134,6 @@ func (i_ INUIAddVoiceShortcutButton) Shortcut() intents.INShortcut {
 	return rv
 }
 
-
 // The shortcut Siri invokes when the user speaks the invocation phrase.
 //
 // [Full Topic]
@@ -149,7 +141,6 @@ func (i_ INUIAddVoiceShortcutButton) Shortcut() intents.INShortcut {
 func (i_ INUIAddVoiceShortcutButton) SetShortcut(value intents.INShortcut) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcut:"), value)
 }
-
 
 // The button style.
 //
@@ -160,7 +151,6 @@ func (i_ INUIAddVoiceShortcutButton) Style() unsafe.Pointer {
 	return rv
 }
 
-
 // The button style.
 //
 // [Full Topic]
@@ -168,7 +158,3 @@ func (i_ INUIAddVoiceShortcutButton) Style() unsafe.Pointer {
 func (i_ INUIAddVoiceShortcutButton) SetStyle(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStyle:"), value)
 }
-
-
-
-

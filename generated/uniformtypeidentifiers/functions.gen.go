@@ -2,10 +2,10 @@
 
 package uniformtypeidentifiers
 
+/* debug [functions.gen.go]: Generating 0 functions for UniformTypeIdentifiers */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // UniformTypeIdentifiers Functions (0 total)
 //
@@ -20,8 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-

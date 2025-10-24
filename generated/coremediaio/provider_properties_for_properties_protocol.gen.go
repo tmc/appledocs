@@ -16,3 +16,4 @@ var providerPropertiesForPropertiesProtocol *objc.Protocol
 func init() {
 	providerPropertiesForPropertiesProtocol = objc.GetProtocol("providerPropertiesForProperties:")
 }
+

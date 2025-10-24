@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	Response = _undefined // referenced in SafetyKit
 )
-
-

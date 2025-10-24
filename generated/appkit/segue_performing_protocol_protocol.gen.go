@@ -17,10 +17,10 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSSeguePerforming
 type PSeguePerforming interface {
 	// Optional methods
-	PerformSegueWithIdentifierSender(identifier objc.IObject /* cross-framework: StoryboardSegueIdentifier */, sender objc.IObject)
+	PerformSegueWithIdentifierSender(identifier StoryboardSegueIdentifier /* typedef */, sender objc.IObject)
 	HasPerformSegueWithIdentifierSender() bool
 	PrepareForSegueSender(segue IStoryboardSegue, sender objc.IObject)
 	HasPrepareForSegueSender() bool
-	ShouldPerformSegueWithIdentifierSender(identifier objc.IObject /* cross-framework: StoryboardSegueIdentifier */, sender objc.IObject) bool
+	ShouldPerformSegueWithIdentifierSender(identifier StoryboardSegueIdentifier /* typedef */, sender objc.IObject) bool
 	HasShouldPerformSegueWithIdentifierSender() bool
 }

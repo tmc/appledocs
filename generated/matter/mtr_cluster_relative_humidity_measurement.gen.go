@@ -33,8 +33,6 @@ type IMTRClusterRelativeHumidityMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRelativeHumidityMeasurement
 type MTRClusterRelativeHumidityMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterRelativeHumidityMeasurement) Autorelease() MTRClusterRelative
 func NewMTRClusterRelativeHumidityMeasurement() MTRClusterRelativeHumidityMeasurement {
 	return getMTRClusterRelativeHumidityMeasurementClass().New()
 }
-
-
-
-

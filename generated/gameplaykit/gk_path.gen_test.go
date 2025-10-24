@@ -13,7 +13,7 @@ var _ = gameplaykit.NewPath
 // Initializes a path using the positions of the specified graph nodes.
 func ExampleNewPathWithGraphNodesRadius() {
 	_ = gameplaykit.NewPathWithGraphNodesRadius(
-		[]gameplaykit.IGraphNode{}, // graphNodes []IGraphNode
+		[]gameplaykit.GraphNode{}, // graphNodes []GraphNode
 		0.0, // radius float32
 	)
 	// Output:

@@ -21,3 +21,4 @@ var OS_nw_protocol_stackProtocol *objc.Protocol
 func init() {
 	OS_nw_protocol_stackProtocol = objc.GetProtocol("OS_nw_protocol_stack")
 }
+

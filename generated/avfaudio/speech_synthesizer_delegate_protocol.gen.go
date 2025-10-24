@@ -6,9 +6,19 @@ import "github.com/ebitengine/purego/objc"
 
 // SpeechSynthesizerDelegateProtocol is the AVSpeechSynthesizerDelegate protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//   - watchOS +
+//
 // Use this protocol when registering custom classes that conform to AVSpeechSynthesizerDelegate.
 var SpeechSynthesizerDelegateProtocol *objc.Protocol
 
 func init() {
 	SpeechSynthesizerDelegateProtocol = objc.GetProtocol("AVSpeechSynthesizerDelegate")
 }
+

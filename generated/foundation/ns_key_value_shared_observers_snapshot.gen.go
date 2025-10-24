@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSKeyValueSharedObserversSnapshot */
+
+
+/* debug [class_header]: Header for NSKeyValueSharedObserversSnapshot */
 // The class instance for the [KeyValueSharedObserversSnapshot] class.
 var (
 	KeyValueSharedObserversSnapshotClass     _KeyValueSharedObserversSnapshotClass
@@ -26,27 +30,30 @@ func getKeyValueSharedObserversSnapshotClass() _KeyValueSharedObserversSnapshotC
 type _KeyValueSharedObserversSnapshotClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for KeyValueSharedObserversSnapshot */
 // An interface definition for the [KeyValueSharedObserversSnapshot] class.
 type IKeyValueSharedObserversSnapshot interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for KeyValueSharedObserversSnapshot */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for KeyValueSharedObserversSnapshot */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObserversSnapshot
-type KeyValueSharedObserversSnapshot struct {
-	objectivec.Object
-}
-
-// KeyValueSharedObserversSnapshotFrom constructs a [KeyValueSharedObserversSnapshot] from an unsafe.Pointer.
-func KeyValueSharedObserversSnapshotFrom(ptr unsafe.Pointer) KeyValueSharedObserversSnapshot {
-	return KeyValueSharedObserversSnapshot{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for KeyValueSharedObserversSnapshot */
 // Alloc allocates a new instance without initialization.
 func (kc _KeyValueSharedObserversSnapshotClass) Alloc() KeyValueSharedObserversSnapshot {
 	rv := objc.Send[KeyValueSharedObserversSnapshot](objc.ID(kc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (kc _KeyValueSharedObserversSnapshotClass) Alloc() KeyValueSharedObserversS
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (kc _KeyValueSharedObserversSnapshotClass) New() KeyValueSharedObserversSnapshot {
 	rv := objc.Send[KeyValueSharedObserversSnapshot](objc.ID(kc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (k_ KeyValueSharedObserversSnapshot) Autorelease() KeyValueSharedObserversS
 func NewKeyValueSharedObserversSnapshot() KeyValueSharedObserversSnapshot {
 	return getKeyValueSharedObserversSnapshotClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for KeyValueSharedObserversSnapshot */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSKeyValueSharedObserversSnapshot
+type KeyValueSharedObserversSnapshot struct {
+	objectivec.Object
+}
+
+// KeyValueSharedObserversSnapshotFrom constructs a [KeyValueSharedObserversSnapshot] from an unsafe.Pointer.
+func KeyValueSharedObserversSnapshotFrom(ptr unsafe.Pointer) KeyValueSharedObserversSnapshot {
+	return KeyValueSharedObserversSnapshot{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for KeyValueSharedObserversSnapshot *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for KeyValueSharedObserversSnapshot */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for KeyValueSharedObserversSnapshot */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for KeyValueSharedObserversSnapshot */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for KeyValueSharedObserversSnapshot */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSKeyValueSharedObserversSnapshot */
 
 
 

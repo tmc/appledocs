@@ -20,3 +20,4 @@ var computeCommandEncoderWithDescriptorProtocol *objc.Protocol
 func init() {
 	computeCommandEncoderWithDescriptorProtocol = objc.GetProtocol("computeCommandEncoderWithDescriptor:")
 }
+

@@ -20,3 +20,4 @@ var supportsFunctionPointersProtocol *objc.Protocol
 func init() {
 	supportsFunctionPointersProtocol = objc.GetProtocol("supportsFunctionPointers")
 }
+

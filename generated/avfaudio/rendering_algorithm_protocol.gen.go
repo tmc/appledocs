@@ -11,6 +11,7 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 8.0+
 //   - iPadOS 8.0+
 //   - macOS 10.10+
+//   - tvOS +
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to renderingAlgorithm.
@@ -19,3 +20,4 @@ var renderingAlgorithmProtocol *objc.Protocol
 func init() {
 	renderingAlgorithmProtocol = objc.GetProtocol("renderingAlgorithm")
 }
+

@@ -9,26 +9,15 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AspectRatio = _undefined // referenced in Vision
-	BarcodeSymbology = _undefined // referenced in Vision
-	Chirality = _undefined // referenced in Vision
-	ComputationAccuracy = _undefined // referenced in Vision
 	ComputeDevice = _undefined // referenced in Vision
-	Confidence = _undefined // referenced in Vision
-	Degrees = _undefined // referenced in Vision
-	ElementType = _undefined // referenced in Vision
-	HeightEstimation = _undefined // referenced in Vision
-	ImageCropAndScaleOption = _undefined // referenced in Vision
 	ImagePropertyOrientation = _undefined // referenced in Vision
-	JointName = _undefined // referenced in Vision
-	JointsGroupName = _undefined // referenced in Vision
-	MultiArray = _undefined // referenced in Vision
-	PixelBuffer = _undefined // referenced in Vision
-	QualityLevel = _undefined // referenced in Vision
+	ImageRef = _undefined // referenced in Vision
+	PathRef = _undefined // referenced in Vision
+	PixelBufferRef = _undefined // referenced in Vision
 	RequestCompletionHandler = _undefined // referenced in Vision
-	RequestFaceLandmarksConstellation = _undefined // referenced in Vision
-	RequestTextRecognitionLevel = _undefined // referenced in Vision
-	RequestTrackingLevel = _undefined // referenced in Vision
+	SampleBufferRef = _undefined // referenced in Vision
+	String = _undefined // referenced in Vision
+	TimeRange = _undefined // referenced in Vision
 )
 
 

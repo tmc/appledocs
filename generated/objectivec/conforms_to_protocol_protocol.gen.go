@@ -21,3 +21,4 @@ var conformsToProtocolProtocol *objc.Protocol
 func init() {
 	conformsToProtocolProtocol = objc.GetProtocol("conformsToProtocol:")
 }
+

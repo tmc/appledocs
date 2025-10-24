@@ -17,5 +17,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSIgnoreMisspelledWords
 type PIgnoreMisspelledWords interface {
 	// Required methods
-	IgnoreSpelling(sender objc.IObject)
+	IgnoreSpelling(sender objc.IObject)/* debug [protocol_interface/required_method]: IgnoreSpelling */
 }

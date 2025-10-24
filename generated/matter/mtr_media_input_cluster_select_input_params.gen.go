@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRMediaInputClusterSelectInputParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaInputClusterSelectInputParams
@@ -85,8 +83,6 @@ func NewMTRMediaInputClusterSelectInputParams() MTRMediaInputClusterSelectInputP
 	return getMTRMediaInputClusterSelectInputParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/index
 func (m_ MTRMediaInputClusterSelectInputParams) Index() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRMediaInputClusterSelectInputParams) Index() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/index
 func (m_ MTRMediaInputClusterSelectInputParams) SetIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRMediaInputClusterSelectInputParams) ServerSideProcessingTimeout() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/serversideprocessingtimeout
 func (m_ MTRMediaInputClusterSelectInputParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRMediaInputClusterSelectInputParams) TimedInvokeTimeoutMs() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterselectinputparams/timedinvoketimeoutms
 func (m_ MTRMediaInputClusterSelectInputParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

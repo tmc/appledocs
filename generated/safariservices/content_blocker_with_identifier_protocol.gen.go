@@ -15,3 +15,4 @@ var contentBlockerWithIdentifierProtocol *objc.Protocol
 func init() {
 	contentBlockerWithIdentifierProtocol = objc.GetProtocol("contentBlockerWithIdentifier:")
 }
+

@@ -15,3 +15,4 @@ var numberOfRowsInTableViewProtocol *objc.Protocol
 func init() {
 	numberOfRowsInTableViewProtocol = objc.GetProtocol("numberOfRowsInTableView:")
 }
+

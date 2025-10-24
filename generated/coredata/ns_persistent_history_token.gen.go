@@ -38,7 +38,6 @@ type IPersistentHistoryToken interface {
 //
 // You can save a token to disk and fetch history when your app loads based on that token. See in .
 
-
 // A bookmark for keeping track the most recent history that you’ve processed.
 //
 // [Full Topic]
@@ -84,7 +83,3 @@ func (p_ PersistentHistoryToken) Autorelease() PersistentHistoryToken {
 func NewPersistentHistoryToken() PersistentHistoryToken {
 	return getPersistentHistoryTokenClass().New()
 }
-
-
-
-

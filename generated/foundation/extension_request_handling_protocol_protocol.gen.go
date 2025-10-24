@@ -18,5 +18,5 @@ package foundation
 // See: doc://com.apple.foundation/documentation/Foundation/NSExtensionRequestHandling
 type PExtensionRequestHandling interface {
 	// Required methods
-	BeginRequestWithExtensionContext(context IExtensionContext)
+	BeginRequestWithExtensionContext(context IExtensionContext)/* debug [protocol_interface/required_method]: BeginRequestWithExtensionContext */
 }

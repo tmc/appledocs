@@ -16,6 +16,18 @@ import (
 
 // iOS-only properties
 
+// A closure dispatched when a call changes state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCallCenter/callEventHandler
+func (c_ CallCenter) CallEventHandler() func(unsafe.Pointer) {
+	rv := objc.Send[func(unsafe.Pointer)](c_.ID, objc.Sel("callEventHandler"))
+	return rv
+}
+func (c_ CallCenter) SetCallEventHandler(value func(unsafe.Pointer)) {
+	c_.ID.Send(objc.RegisterName("setCallEventHandler:"), value)
+}
+
 // An array representing the cellular calls in progress.
 //
 // [Full Topic]

@@ -2,10 +2,10 @@
 
 package developertoolssupport
 
+/* debug [functions.gen.go]: Generating 0 functions for DeveloperToolsSupport */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // DeveloperToolsSupport Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

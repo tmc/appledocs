@@ -2,7 +2,9 @@
 
 package quicklook
 
+/* debug [enums.gen.go]: Generating 1 enums for QuickLook */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum QLPreviewItemEditingMode (3 cases) */
 // QLPreviewItemEditingMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewItemEditingMode

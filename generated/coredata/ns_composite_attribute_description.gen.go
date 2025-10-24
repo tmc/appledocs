@@ -39,7 +39,6 @@ type ICompositeAttributeDescription interface {
 //
 // Composite attributes enable you to define and store complex data types, and then query, index, and apply constraints to those types. Model classes use dictionaries to represent those composites in-memory, where each dictionary contains keys corresponding to the names of the underlying attributes. You may use composite attributes anywhere you use standard attributes, including lightweight migrations and CloudKit, through . You can even nest composites inside other composites to create complex object hierarchies without additional model classes. In most scenarios, prefer to use Xcode’s model editor to add composite attributes to your entities and then regenerate your model classes. However, if you need to create composites dynamically at runtime, create an instance of this class and populate its property with the necessary attribute descriptions. You can access a composite’s underlying attributes using namespaced key paths and property-like setters and getters, as the following example demonstrates:
 
-
 // A description of an attribute that derives its value by composing other attributes.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewCompositeAttributeDescription() CompositeAttributeDescription {
 	return getCompositeAttributeDescriptionClass().New()
 }
 
-
-
 // The composed attribute descriptions.
 //
 // [Full Topic]
@@ -98,7 +95,6 @@ func (c_ CompositeAttributeDescription) Elements() []IAttributeDescription {
 	rv := objc.Send[[]AttributeDescription](c_.ID, objc.Sel("elements"))
 	return rv
 }
-
 
 // The composed attribute descriptions.
 //
@@ -117,6 +113,3 @@ func (c_ CompositeAttributeDescription) SetElements(value []IAttributeDescriptio
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setElements:"), nsArray)
 }
-
-
-

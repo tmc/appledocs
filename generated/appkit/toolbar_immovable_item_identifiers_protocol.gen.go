@@ -18,3 +18,4 @@ var toolbarImmovableItemIdentifiersProtocol *objc.Protocol
 func init() {
 	toolbarImmovableItemIdentifiersProtocol = objc.GetProtocol("toolbarImmovableItemIdentifiers:")
 }
+

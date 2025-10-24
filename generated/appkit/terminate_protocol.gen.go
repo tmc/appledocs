@@ -15,3 +15,4 @@ var terminateProtocol *objc.Protocol
 func init() {
 	terminateProtocol = objc.GetProtocol("terminate:")
 }
+

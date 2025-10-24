@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // SignedDistanceGradientFromRedMaskProtocol is the CISignedDistanceGradientFromRedMask protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CISignedDistanceGradientFromRedMask.
 var SignedDistanceGradientFromRedMaskProtocol *objc.Protocol
 
 func init() {
 	SignedDistanceGradientFromRedMaskProtocol = objc.GetProtocol("CISignedDistanceGradientFromRedMask")
 }
+

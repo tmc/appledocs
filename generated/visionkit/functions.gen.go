@@ -2,10 +2,10 @@
 
 package visionkit
 
+/* debug [functions.gen.go]: Generating 0 functions for VisionKit */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // VisionKit Functions (0 total)
 //
@@ -20,8 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-

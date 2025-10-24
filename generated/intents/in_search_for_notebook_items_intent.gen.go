@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INSearchForNotebookItemsIntent] class.
@@ -58,7 +58,6 @@ type IINSearchForNotebookItemsIntent interface {
 //
 // Siri creates an object when the user asks to search for existing notes, tasks, and reminders. The intent object contains search parameters such as the type of items to return, strings to match against the title or content, the completion status of tasks, or the trigger conditions used to generate reminders. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the search results.
 
-
 // A request to search for notes, tasks, and reminders.
 //
 // [Full Topic]
@@ -107,8 +106,6 @@ func NewINSearchForNotebookItemsIntent() INSearchForNotebookItemsIntent {
 	return getINSearchForNotebookItemsIntentClass().New()
 }
 
-
-
 // The text to search for in the body of a note.
 //
 // [Full Topic]
@@ -118,7 +115,6 @@ func (i_ INSearchForNotebookItemsIntent) Content() string {
 	return rv
 }
 
-
 // The text to search for in the body of a note.
 //
 // [Full Topic]
@@ -126,7 +122,6 @@ func (i_ INSearchForNotebookItemsIntent) Content() string {
 func (i_ INSearchForNotebookItemsIntent) SetContent(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), objc.String(value))
 }
-
 
 // An indicator of how to apply date values to your search.
 //
@@ -137,7 +132,6 @@ func (i_ INSearchForNotebookItemsIntent) DateSearchType() unsafe.Pointer {
 	return rv
 }
 
-
 // An indicator of how to apply date values to your search.
 //
 // [Full Topic]
@@ -145,7 +139,6 @@ func (i_ INSearchForNotebookItemsIntent) DateSearchType() unsafe.Pointer {
 func (i_ INSearchForNotebookItemsIntent) SetDateSearchType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateSearchType:"), value)
 }
-
 
 // The value to use when performing date-based searches.
 //
@@ -156,7 +149,6 @@ func (i_ INSearchForNotebookItemsIntent) DateTime() INDateComponentsRange {
 	return rv
 }
 
-
 // The value to use when performing date-based searches.
 //
 // [Full Topic]
@@ -164,7 +156,6 @@ func (i_ INSearchForNotebookItemsIntent) DateTime() INDateComponentsRange {
 func (i_ INSearchForNotebookItemsIntent) SetDateTime(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateTime:"), value)
 }
-
 
 // The type of items to include in your search.
 //
@@ -175,7 +166,6 @@ func (i_ INSearchForNotebookItemsIntent) ItemType() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of items to include in your search.
 //
 // [Full Topic]
@@ -183,7 +173,6 @@ func (i_ INSearchForNotebookItemsIntent) ItemType() unsafe.Pointer {
 func (i_ INSearchForNotebookItemsIntent) SetItemType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setItemType:"), value)
 }
-
 
 // The value to use when searching for location-triggered reminders.
 //
@@ -194,7 +183,6 @@ func (i_ INSearchForNotebookItemsIntent) Location() corelocation.Placemark {
 	return rv
 }
 
-
 // The value to use when searching for location-triggered reminders.
 //
 // [Full Topic]
@@ -202,7 +190,6 @@ func (i_ INSearchForNotebookItemsIntent) Location() corelocation.Placemark {
 func (i_ INSearchForNotebookItemsIntent) SetLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocation:"), value)
 }
-
 
 // An indicator of how to apply location values to your search.
 //
@@ -213,7 +200,6 @@ func (i_ INSearchForNotebookItemsIntent) LocationSearchType() unsafe.Pointer {
 	return rv
 }
 
-
 // An indicator of how to apply location values to your search.
 //
 // [Full Topic]
@@ -221,7 +207,6 @@ func (i_ INSearchForNotebookItemsIntent) LocationSearchType() unsafe.Pointer {
 func (i_ INSearchForNotebookItemsIntent) SetLocationSearchType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocationSearchType:"), value)
 }
-
 
 // The unique identifier that your app assigned to the item.
 //
@@ -232,7 +217,6 @@ func (i_ INSearchForNotebookItemsIntent) NotebookItemIdentifier() string {
 	return rv
 }
 
-
 // The unique identifier that your app assigned to the item.
 //
 // [Full Topic]
@@ -240,7 +224,6 @@ func (i_ INSearchForNotebookItemsIntent) NotebookItemIdentifier() string {
 func (i_ INSearchForNotebookItemsIntent) SetNotebookItemIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNotebookItemIdentifier:"), objc.String(value))
 }
-
 
 // The completion state to look for when searching for tasks.
 //
@@ -251,7 +234,6 @@ func (i_ INSearchForNotebookItemsIntent) Status() unsafe.Pointer {
 	return rv
 }
 
-
 // The completion state to look for when searching for tasks.
 //
 // [Full Topic]
@@ -260,7 +242,6 @@ func (i_ INSearchForNotebookItemsIntent) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/taskpriority
 func (i_ INSearchForNotebookItemsIntent) TaskPriority() unsafe.Pointer {
@@ -268,13 +249,11 @@ func (i_ INSearchForNotebookItemsIntent) TaskPriority() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/taskpriority
 func (i_ INSearchForNotebookItemsIntent) SetTaskPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskPriority:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/temporaleventtriggertypes
@@ -283,13 +262,11 @@ func (i_ INSearchForNotebookItemsIntent) TemporalEventTriggerTypes() unsafe.Poin
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insearchfornotebookitemsintent/temporaleventtriggertypes
 func (i_ INSearchForNotebookItemsIntent) SetTemporalEventTriggerTypes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTemporalEventTriggerTypes:"), value)
 }
-
 
 // The title text to search for in a note, task, or task list.
 //
@@ -300,7 +277,6 @@ func (i_ INSearchForNotebookItemsIntent) Title() INSpeakableString {
 	return rv
 }
 
-
 // The title text to search for in a note, task, or task list.
 //
 // [Full Topic]
@@ -308,6 +284,3 @@ func (i_ INSearchForNotebookItemsIntent) Title() INSpeakableString {
 func (i_ INSearchForNotebookItemsIntent) SetTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)
 }
-
-
-

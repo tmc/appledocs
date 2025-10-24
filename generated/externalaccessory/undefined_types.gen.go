@@ -9,11 +9,9 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in ExternalAccessory
+	Bool                = _undefined // referenced in ExternalAccessory
 	EAAccessoryDelegate = _undefined // referenced in ExternalAccessory
-	InputStream = _undefined // referenced in ExternalAccessory
-	OutputStream = _undefined // referenced in ExternalAccessory
-	Predicate = _undefined // referenced in ExternalAccessory
+	InputStream         = _undefined // referenced in ExternalAccessory
+	OutputStream        = _undefined // referenced in ExternalAccessory
+	Predicate           = _undefined // referenced in ExternalAccessory
 )
-
-

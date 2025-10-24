@@ -11,6 +11,7 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 8.0+ (Deprecated in 10.0)
 //   - iPadOS 8.0+ (Deprecated in 10.0)
 //   - macOS 10.11+ (Deprecated in 10.12)
+//   - tvOS + (Deprecated in 10.0)
 //   - visionOS 1.0+ (Deprecated in 1.0)
 //
 // Use this protocol when registering custom classes that conform to rootResource.
@@ -19,3 +20,4 @@ var rootResourceProtocol *objc.Protocol
 func init() {
 	rootResourceProtocol = objc.GetProtocol("rootResource")
 }
+

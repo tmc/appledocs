@@ -19,3 +19,4 @@ var specularAlbedoTextureProtocol *objc.Protocol
 func init() {
 	specularAlbedoTextureProtocol = objc.GetProtocol("specularAlbedoTexture")
 }
+

@@ -15,3 +15,4 @@ var preparePreviewOfSearchableItemWithIdentifierProtocol *objc.Protocol
 func init() {
 	preparePreviewOfSearchableItemWithIdentifierProtocol = objc.GetProtocol("preparePreviewOfSearchableItemWithIdentifier:")
 }
+

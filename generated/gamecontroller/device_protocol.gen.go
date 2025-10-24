@@ -20,3 +20,4 @@ var deviceProtocol *objc.Protocol
 func init() {
 	deviceProtocol = objc.GetProtocol("device")
 }
+

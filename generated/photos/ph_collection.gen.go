@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHCollection] class.
@@ -41,7 +41,6 @@ type IPHCollection interface {
 // The abstract superclass for Photos asset collections and collection lists.
 //
 // You do not create or work with instances of this class directly. Instead, use one of its two concrete subclasses, or . A object represents a collection of photo or video assets, such as an album, moment, or Shared Photo Stream. A object represents a collection that contains other collections, such as a a folder containing albums or the set of all moments in a calendar year.
-
 
 // The abstract superclass for Photos asset collections and collection lists.
 //
@@ -91,8 +90,6 @@ func NewPHCollection() PHCollection {
 	return getPHCollectionClass().New()
 }
 
-
-
 // Retrieves collections from the specified collection list.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (pc _PHCollectionClass) FetchCollectionsInCollectionListOptions(collectionL
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchCollectionsInCollectionList:options:"), collectionList, options)
 	return rv
 }
-
 
 // Retrieves collections from the root of the photo library’s hierarchy of user-created albums and folders.
 //
@@ -112,7 +108,6 @@ func (pc _PHCollectionClass) FetchTopLevelUserCollectionsWithOptions(options IPH
 	return rv
 }
 
-
 // Returns whether the collection supports the specified editing operation.
 //
 // [Full Topic]
@@ -121,7 +116,6 @@ func (p_ PHCollection) CanPerformEditOperation(anOperation PHCollectionEditOpera
 	rv := objc.Send[bool](p_.ID, objc.Sel("canPerformEditOperation:"), anOperation)
 	return rv
 }
-
 
 // A Boolean value indicating whether the collection can contain assets.
 //
@@ -132,7 +126,6 @@ func (p_ PHCollection) CanContainAssets() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the collection can contain other collections.
 //
 // [Full Topic]
@@ -142,7 +135,6 @@ func (p_ PHCollection) CanContainCollections() bool {
 	return rv
 }
 
-
 // The localized name of the collection.
 //
 // [Full Topic]
@@ -151,6 +143,3 @@ func (p_ PHCollection) LocalizedTitle() objc.IObject /* cross-framework: NSStrin
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("localizedTitle"))
 	return rv
 }
-
-
-

@@ -16,3 +16,4 @@ var IOExtensionStreamSourceProtocol *objc.Protocol
 func init() {
 	IOExtensionStreamSourceProtocol = objc.GetProtocol("CMIOExtensionStreamSource")
 }
+

@@ -5,14 +5,10 @@
 package corelocation
 
 import (
-	"unsafe"
-
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for ServiceSessionDiagnostic
-
 
 // iOS-only properties
 
@@ -71,8 +67,3 @@ func (s_ ServiceSessionDiagnostic) ServiceSessionRequired() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("serviceSessionRequired"))
 	return rv
 }
-
-
-
-
-

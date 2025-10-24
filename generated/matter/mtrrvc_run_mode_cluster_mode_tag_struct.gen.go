@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRRVCRunModeClusterModeTagStruct interface {
 	SetValue(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCRunModeClusterModeTagStruct
@@ -83,8 +81,6 @@ func NewMTRRVCRunModeClusterModeTagStruct() MTRRVCRunModeClusterModeTagStruct {
 	return getMTRRVCRunModeClusterModeTagStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodetagstruct/mfgcode
 func (m_ MTRRVCRunModeClusterModeTagStruct) MfgCode() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRRVCRunModeClusterModeTagStruct) MfgCode() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodetagstruct/mfgcode
 func (m_ MTRRVCRunModeClusterModeTagStruct) SetMfgCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodetagstruct/value
@@ -107,12 +101,8 @@ func (m_ MTRRVCRunModeClusterModeTagStruct) Value() objc.IObject /* cross-framew
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclustermodetagstruct/value
 func (m_ MTRRVCRunModeClusterModeTagStruct) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

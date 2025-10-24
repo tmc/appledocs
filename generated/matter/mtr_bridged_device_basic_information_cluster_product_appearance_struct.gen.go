@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRBridgedDeviceBasicInformationClusterProductAppearanceStruct interface {
 	SetPrimaryColor(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct
@@ -83,8 +81,6 @@ func NewMTRBridgedDeviceBasicInformationClusterProductAppearanceStruct() MTRBrid
 	return getMTRBridgedDeviceBasicInformationClusterProductAppearanceStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/finish
 func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) Finish() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) Finish(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/finish
 func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) SetFinish(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFinish:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/primarycolor
@@ -107,12 +101,8 @@ func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) Primary
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterproductappearancestruct/primarycolor
 func (m_ MTRBridgedDeviceBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
 }
-
-
-

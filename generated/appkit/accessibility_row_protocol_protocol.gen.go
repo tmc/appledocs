@@ -12,7 +12,7 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityRow
 type PAccessibilityRow interface {
 	// Required methods
-	AccessibilityIndex() int
+	AccessibilityIndex() int/* debug [protocol_interface/required_method]: AccessibilityIndex */
 	// Optional methods
 	AccessibilityDisclosureLevel() int
 	HasAccessibilityDisclosureLevel() bool

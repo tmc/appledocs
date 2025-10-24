@@ -9,8 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Data = _undefined // referenced in MetricKit
+	Data       = _undefined // referenced in MetricKit
 	Dictionary = _undefined // referenced in MetricKit
 )
-
-

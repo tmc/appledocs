@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSItemProvider */
+
+
+/* debug [class_header]: Header for NSItemProvider */
 // The class instance for the [ItemProvider] class.
 var (
 	ItemProviderClass     _ItemProviderClass
@@ -26,56 +31,62 @@ func getItemProviderClass() _ItemProviderClass {
 type _ItemProviderClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ItemProvider */
 // An interface definition for the [ItemProvider] class.
 type IItemProvider interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ItemProvider */
 	// properties:
 	Attachments() IItemProvider
 	SetAttachments(value IItemProvider)
-	ContainerFrame() objc.IObject /* cross-framework: Rect */
-	SetContainerFrame(value objc.IObject /* cross-framework: Rect */)
-	PreferredPresentationSize() objc.IObject /* cross-framework: Size */
-	SetPreferredPresentationSize(value objc.IObject /* cross-framework: Size */)
-	PreferredPresentationStyle() unsafe.Pointer
-	SetPreferredPresentationStyle(value unsafe.Pointer)
-	PreviewImageHandler() unsafe.Pointer
-	SetPreviewImageHandler(value unsafe.Pointer)
+	ContainerFrame() Rect /* typedef */
+	SetContainerFrame(value Rect /* typedef */)
+	PreferredPresentationSize() corefoundation.CGSize
+	SetPreferredPresentationSize(value corefoundation.CGSize)
+	PreferredPresentationStyle() objectivec.IObject
+	SetPreferredPresentationStyle(value objectivec.IObject)
+	PreviewImageHandler() objectivec.IObject
+	SetPreviewImageHandler(value objectivec.IObject)
 	RegisteredContentTypes() objc.IObject
 	SetRegisteredContentTypes(value objc.IObject)
 	RegisteredContentTypesForOpenInPlace() objc.IObject
 	SetRegisteredContentTypesForOpenInPlace(value objc.IObject)
 	RegisteredTypeIdentifiers() IString
 	SetRegisteredTypeIdentifiers(value IString)
-	SourceFrame() objc.IObject /* cross-framework: Rect */
-	SetSourceFrame(value objc.IObject /* cross-framework: Rect */)
+	SourceFrame() Rect /* typedef */
+	SetSourceFrame(value Rect /* typedef */)
 	SuggestedName() IString
 	SetSuggestedName(value IString)
 	TeamData() IData
 	SetTeamData(value IData)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ItemProvider */
 	// methods:
+	LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier IString, completionHandler unsafe.Pointer) IProgress
+	LoadDataRepresentationForContentTypeCompletionHandler(contentType objc.IObject, completionHandler unsafe.Pointer) IProgress
+	LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier IString, completionHandler unsafe.Pointer) IProgress
+	LoadFileRepresentationForContentTypeOpenInPlaceCompletionHandler(contentType objc.IObject, openInPlace bool, completionHandler unsafe.Pointer) IProgress
+	LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier IString, completionHandler unsafe.Pointer) IProgress
+	LoadItemForTypeIdentifierOptionsCompletionHandler(typeIdentifier IString, options IDictionary, completionHandler ItemProviderCompletionHandler /* not a class type */)
+	LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) IProgress
+	RegisterDataRepresentationForTypeIdentifierVisibilityLoadHandler(typeIdentifier IString, visibility ItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
+	RegisterDataRepresentationForContentTypeVisibilityLoadHandler(contentType objc.IObject, visibility ItemProviderRepresentationVisibility, loadHandler unsafe.Pointer)
+	RegisterItemForTypeIdentifierLoadHandler(typeIdentifier IString, loadHandler ItemProviderLoadHandler /* not a class type */)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
-//
-// Starting in iOS 11, item providers play a central role in drag and drop, and in copy and paste. They continue to play a role with app extensions. The system uses an internal queue when calling the completion blocks for the class. When using an item provider with drag and drop, ensure that UI updates take place on the main queue as follows:
+/* debug [class_interface]: End interface */
 
 
-// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider
-type ItemProvider struct {
-	objectivec.Object
-}
 
-// ItemProviderFrom constructs a [ItemProvider] from an unsafe.Pointer.
-//
-// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
-func ItemProviderFrom(ptr unsafe.Pointer) ItemProvider {
-	return ItemProvider{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ItemProvider */
 // Alloc allocates a new instance without initialization.
 func (ic _ItemProviderClass) Alloc() ItemProvider {
 	rv := objc.Send[ItemProvider](objc.ID(ic.class), objc.Sel("alloc"))
@@ -83,7 +94,6 @@ func (ic _ItemProviderClass) Alloc() ItemProvider {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ItemProviderClass) New() ItemProvider {
 	rv := objc.Send[ItemProvider](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -106,8 +116,150 @@ func (i_ ItemProvider) Autorelease() ItemProvider {
 func NewItemProvider() ItemProvider {
 	return getItemProviderClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ItemProvider */
+// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
+//
+// Starting in iOS 11, item providers play a central role in drag and drop, and in copy and paste. They continue to play a role with app extensions. The system uses an internal queue when calling the completion blocks for the class. When using an item provider with drag and drop, ensure that UI updates take place on the main queue as follows:
+
+
+// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider
+type ItemProvider struct {
+	objectivec.Object
+}
+
+// ItemProviderFrom constructs a [ItemProvider] from an unsafe.Pointer.
+//
+// An item provider for conveying data or a file between processes during drag-and-drop or copy-and-paste activities, or from a host app to an app extension.
+func ItemProviderFrom(ptr unsafe.Pointer) ItemProvider {
+	return ItemProvider{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ItemProvider *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ItemProvider */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ItemProvider */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ItemProvider */
+
+// Asynchronously copies the provided, typed data into a generic data object, returning a progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadDataRepresentation(forTypeIdentifier:completionHandler:)
+func (i_ ItemProvider) LoadDataRepresentationForTypeIdentifierCompletionHandler(typeIdentifier IString, completionHandler unsafe.Pointer) IProgress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadDataRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
+	return rv
+}/* debug [instance_methods/method]: LoadDataRepresentationForTypeIdentifierCompletionHandler */
+
+
+// Asynchronously copies the provided, typed data into a generic data object, returning a progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadDataRepresentationForContentType:completionHandler:
+func (i_ ItemProvider) LoadDataRepresentationForContentTypeCompletionHandler(contentType objc.IObject, completionHandler unsafe.Pointer) IProgress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadDataRepresentationForContentType:completionHandler:"), contentType, completionHandler)
+	return rv
+}/* debug [instance_methods/method]: LoadDataRepresentationForContentTypeCompletionHandler */
+
+
+// Asynchronously writes a copy of the provided, typed data to a temporary file, returning a progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadFileRepresentation(forTypeIdentifier:completionHandler:)
+func (i_ ItemProvider) LoadFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier IString, completionHandler unsafe.Pointer) IProgress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadFileRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
+	return rv
+}/* debug [instance_methods/method]: LoadFileRepresentationForTypeIdentifierCompletionHandler */
+
+
+// Asynchronously copies the content type data into a generic data object with the specified parameters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadFileRepresentationForContentType:openInPlace:completionHandler:
+func (i_ ItemProvider) LoadFileRepresentationForContentTypeOpenInPlaceCompletionHandler(contentType objc.IObject, openInPlace bool, completionHandler unsafe.Pointer) IProgress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadFileRepresentationForContentType:openInPlace:completionHandler:"), contentType, openInPlace, completionHandler)
+	return rv
+}/* debug [instance_methods/method]: LoadFileRepresentationForContentTypeOpenInPlaceCompletionHandler */
+
+
+// Asynchronously opens a file in place, if possible, returning a progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadInPlaceFileRepresentation(forTypeIdentifier:completionHandler:)
+func (i_ ItemProvider) LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler(typeIdentifier IString, completionHandler unsafe.Pointer) IProgress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadInPlaceFileRepresentationForTypeIdentifier:completionHandler:"), typeIdentifier, completionHandler)
+	return rv
+}/* debug [instance_methods/method]: LoadInPlaceFileRepresentationForTypeIdentifierCompletionHandler */
+
+
+// Loads the item’s data and coerces it to the specified type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadItem(forTypeIdentifier:options:completionHandler:)
+func (i_ ItemProvider) LoadItemForTypeIdentifierOptionsCompletionHandler(typeIdentifier IString, options IDictionary, completionHandler ItemProviderCompletionHandler /* not a class type */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("loadItemForTypeIdentifier:options:completionHandler:"), typeIdentifier, options, completionHandler)
+}/* debug [instance_methods/method]: LoadItemForTypeIdentifierOptionsCompletionHandler */
+
+
+// Asynchronously loads an object of a specified class to an item provider, returning a progress object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/loadObject(ofClass:completionHandler:)-8ak5d
+func (i_ ItemProvider) LoadObjectOfClassCompletionHandler(aClass unsafe.Pointer, completionHandler unsafe.Pointer) IProgress {
+	rv := objc.Send[Progress](i_.ID, objc.Sel("loadObjectOfClass:completionHandler:"), aClass, completionHandler)
+	return rv
+}/* debug [instance_methods/method]: LoadObjectOfClassCompletionHandler */
+
+
+// Registers a data-backed representation for an item, specifiying item visibility and a load handler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerDataRepresentation(forTypeIdentifier:visibility:loadHandler:)
+func (i_ ItemProvider) RegisterDataRepresentationForTypeIdentifierVisibilityLoadHandler(typeIdentifier IString, visibility ItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("registerDataRepresentationForTypeIdentifier:visibility:loadHandler:"), typeIdentifier, visibility, loadHandler)
+}/* debug [instance_methods/method]: RegisterDataRepresentationForTypeIdentifierVisibilityLoadHandler */
+
+
+// Lazily registers an item, according to the item provider type coercion policy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerDataRepresentationForContentType:visibility:loadHandler:
+func (i_ ItemProvider) RegisterDataRepresentationForContentTypeVisibilityLoadHandler(contentType objc.IObject, visibility ItemProviderRepresentationVisibility, loadHandler unsafe.Pointer) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("registerDataRepresentationForContentType:visibility:loadHandler:"), contentType, visibility, loadHandler)
+}/* debug [instance_methods/method]: RegisterDataRepresentationForContentTypeVisibilityLoadHandler */
+
+
+// Lazily registers an item, according to the item provider type coercion policy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSItemProvider/registerItem(forTypeIdentifier:loadHandler:)
+func (i_ ItemProvider) RegisterItemForTypeIdentifierLoadHandler(typeIdentifier IString, loadHandler ItemProviderLoadHandler /* not a class type */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("registerItemForTypeIdentifier:loadHandler:"), typeIdentifier, loadHandler)
+}/* debug [instance_methods/method]: RegisterItemForTypeIdentifierLoadHandler */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ItemProvider */
 
 // An optional array of media data associated with the extension item.
 //
@@ -116,7 +268,7 @@ func NewItemProvider() ItemProvider {
 func (i_ ItemProvider) Attachments() IItemProvider {
 	rv := objc.Send[ItemProvider](i_.ID, objc.Sel("attachments"))
 	return rv
-}
+}/* debug [instance_properties/getter]: attachments */
 
 
 // An optional array of media data associated with the extension item.
@@ -125,83 +277,83 @@ func (i_ ItemProvider) Attachments() IItemProvider {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensionitem/attachments
 func (i_ ItemProvider) SetAttachments(value IItemProvider) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttachments:"), value)
-}
+}/* debug [instance_properties/setter]: attachments */
 
 
 // The rectangle of the item’s visible content.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/containerframe
-func (i_ ItemProvider) ContainerFrame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("containerFrame"))
+func (i_ ItemProvider) ContainerFrame() Rect /* typedef */ {
+	rv := objc.Send[CGRect](i_.ID, objc.Sel("containerFrame"))
 	return rv
-}
+}/* debug [instance_properties/getter]: containerFrame */
 
 
 // The rectangle of the item’s visible content.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/containerframe
-func (i_ ItemProvider) SetContainerFrame(value objc.IObject /* cross-framework: Rect */) {
+func (i_ ItemProvider) SetContainerFrame(value Rect /* typedef */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContainerFrame:"), value)
-}
+}/* debug [instance_properties/setter]: containerFrame */
 
 
 // The ideal presentation size of the item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationsize
-func (i_ ItemProvider) PreferredPresentationSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("preferredPresentationSize"))
+func (i_ ItemProvider) PreferredPresentationSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](i_.ID, objc.Sel("preferredPresentationSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preferredPresentationSize */
 
 
 // The ideal presentation size of the item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationsize
-func (i_ ItemProvider) SetPreferredPresentationSize(value objc.IObject /* cross-framework: Size */) {
+func (i_ ItemProvider) SetPreferredPresentationSize(value corefoundation.CGSize) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationSize:"), value)
-}
+}/* debug [instance_properties/setter]: preferredPresentationSize */
 
 
 // The preferred style for presenting the item provider’s data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationstyle-swift.property
-func (i_ ItemProvider) PreferredPresentationStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("preferredPresentationStyle"))
+func (i_ ItemProvider) PreferredPresentationStyle() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("preferredPresentationStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preferredPresentationStyle */
 
 
 // The preferred style for presenting the item provider’s data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/preferredpresentationstyle-swift.property
-func (i_ ItemProvider) SetPreferredPresentationStyle(value unsafe.Pointer) {
+func (i_ ItemProvider) SetPreferredPresentationStyle(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredPresentationStyle:"), value)
-}
+}/* debug [instance_properties/setter]: preferredPresentationStyle */
 
 
 // The custom preview image handler block for the item provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/previewimagehandler
-func (i_ ItemProvider) PreviewImageHandler() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("previewImageHandler"))
+func (i_ ItemProvider) PreviewImageHandler() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("previewImageHandler"))
 	return rv
-}
+}/* debug [instance_properties/getter]: previewImageHandler */
 
 
 // The custom preview image handler block for the item provider.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/previewimagehandler
-func (i_ ItemProvider) SetPreviewImageHandler(value unsafe.Pointer) {
+func (i_ ItemProvider) SetPreviewImageHandler(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreviewImageHandler:"), value)
-}
+}/* debug [instance_properties/setter]: previewImageHandler */
 
 
 // Registered content types in the order the app registers each type.
@@ -211,7 +363,7 @@ func (i_ ItemProvider) SetPreviewImageHandler(value unsafe.Pointer) {
 func (i_ ItemProvider) RegisteredContentTypes() objc.IObject {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("registeredContentTypes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: registeredContentTypes */
 
 
 // Registered content types in the order the app registers each type.
@@ -220,7 +372,7 @@ func (i_ ItemProvider) RegisteredContentTypes() objc.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypes
 func (i_ ItemProvider) SetRegisteredContentTypes(value objc.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypes:"), value)
-}
+}/* debug [instance_properties/setter]: registeredContentTypes */
 
 
 // Registered content types that the system can load as open-in-place files.
@@ -230,7 +382,7 @@ func (i_ ItemProvider) SetRegisteredContentTypes(value objc.IObject) {
 func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() objc.IObject {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("registeredContentTypesForOpenInPlace"))
 	return rv
-}
+}/* debug [instance_properties/getter]: registeredContentTypesForOpenInPlace */
 
 
 // Registered content types that the system can load as open-in-place files.
@@ -239,7 +391,7 @@ func (i_ ItemProvider) RegisteredContentTypesForOpenInPlace() objc.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredcontenttypesforopeninplace
 func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value objc.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredContentTypesForOpenInPlace:"), value)
-}
+}/* debug [instance_properties/setter]: registeredContentTypesForOpenInPlace */
 
 
 // Returns the array of type identifiers for the item provider, in the same order they were registered.
@@ -249,7 +401,7 @@ func (i_ ItemProvider) SetRegisteredContentTypesForOpenInPlace(value objc.IObjec
 func (i_ ItemProvider) RegisteredTypeIdentifiers() IString {
 	rv := objc.Send[String](i_.ID, objc.Sel("registeredTypeIdentifiers"))
 	return rv
-}
+}/* debug [instance_properties/getter]: registeredTypeIdentifiers */
 
 
 // Returns the array of type identifiers for the item provider, in the same order they were registered.
@@ -258,26 +410,26 @@ func (i_ ItemProvider) RegisteredTypeIdentifiers() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/registeredtypeidentifiers
 func (i_ ItemProvider) SetRegisteredTypeIdentifiers(value IString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegisteredTypeIdentifiers:"), value)
-}
+}/* debug [instance_properties/setter]: registeredTypeIdentifiers */
 
 
 // The rectangle that the item occupies in the host app’s source window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/sourceframe
-func (i_ ItemProvider) SourceFrame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("sourceFrame"))
+func (i_ ItemProvider) SourceFrame() Rect /* typedef */ {
+	rv := objc.Send[CGRect](i_.ID, objc.Sel("sourceFrame"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sourceFrame */
 
 
 // The rectangle that the item occupies in the host app’s source window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/sourceframe
-func (i_ ItemProvider) SetSourceFrame(value objc.IObject /* cross-framework: Rect */) {
+func (i_ ItemProvider) SetSourceFrame(value Rect /* typedef */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSourceFrame:"), value)
-}
+}/* debug [instance_properties/setter]: sourceFrame */
 
 
 // The filename to use when writing the provided data to a file on disk.
@@ -287,7 +439,7 @@ func (i_ ItemProvider) SetSourceFrame(value objc.IObject /* cross-framework: Rec
 func (i_ ItemProvider) SuggestedName() IString {
 	rv := objc.Send[String](i_.ID, objc.Sel("suggestedName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: suggestedName */
 
 
 // The filename to use when writing the provided data to a file on disk.
@@ -296,7 +448,7 @@ func (i_ ItemProvider) SuggestedName() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/suggestedname
 func (i_ ItemProvider) SetSuggestedName(value IString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedName:"), value)
-}
+}/* debug [instance_properties/setter]: suggestedName */
 
 
 // The collection of data an app uses to hold private team information during drag and drop.
@@ -306,7 +458,7 @@ func (i_ ItemProvider) SetSuggestedName(value IString) {
 func (i_ ItemProvider) TeamData() IData {
 	rv := objc.Send[Data](i_.ID, objc.Sel("teamData"))
 	return rv
-}
+}/* debug [instance_properties/getter]: teamData */
 
 
 // The collection of data an app uses to hold private team information during drag and drop.
@@ -315,7 +467,12 @@ func (i_ ItemProvider) TeamData() IData {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsitemprovider/teamdata
 func (i_ ItemProvider) SetTeamData(value IData) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTeamData:"), value)
-}
+}/* debug [instance_properties/setter]: teamData */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSItemProvider */
 
 
 

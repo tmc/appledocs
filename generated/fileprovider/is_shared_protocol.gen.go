@@ -18,3 +18,4 @@ var isSharedProtocol *objc.Protocol
 func init() {
 	isSharedProtocol = objc.GetProtocol("isShared")
 }
+

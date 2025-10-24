@@ -22,7 +22,7 @@ func ExampleNewToolPickerInkingItemWithInkType() {
 func ExampleNewToolPickerInkingItemWithInkTypeWidth() {
 	_ = pencilkit.NewToolPickerInkingItemWithInkTypeWidth(
 		pencilkit.InkType /* not a class type */{}, // inkType InkType /* not a class type */
-		0.0, // width float64
+		100.0, // width float64
 	)
 	// Output:
 }

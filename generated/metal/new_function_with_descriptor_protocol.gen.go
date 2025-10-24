@@ -20,3 +20,4 @@ var newFunctionWithDescriptorProtocol *objc.Protocol
 func init() {
 	newFunctionWithDescriptorProtocol = objc.GetProtocol("newFunctionWithDescriptor:")
 }
+

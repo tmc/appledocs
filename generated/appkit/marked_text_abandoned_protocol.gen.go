@@ -15,3 +15,4 @@ var markedTextAbandonedProtocol *objc.Protocol
 func init() {
 	markedTextAbandonedProtocol = objc.GetProtocol("markedTextAbandoned:")
 }
+

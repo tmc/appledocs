@@ -21,3 +21,4 @@ var exceptionDuringOperationProtocol *objc.Protocol
 func init() {
 	exceptionDuringOperationProtocol = objc.GetProtocol("exceptionDuringOperation:")
 }
+

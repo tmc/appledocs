@@ -21,3 +21,4 @@ var OS_nw_protocol_definitionProtocol *objc.Protocol
 func init() {
 	OS_nw_protocol_definitionProtocol = objc.GetProtocol("OS_nw_protocol_definition")
 }
+

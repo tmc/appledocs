@@ -15,3 +15,4 @@ var collectionViewProtocol *objc.Protocol
 func init() {
 	collectionViewProtocol = objc.GetProtocol("collectionView:")
 }
+

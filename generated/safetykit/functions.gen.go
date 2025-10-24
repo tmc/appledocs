@@ -2,6 +2,7 @@
 
 package safetykit
 
+/* debug [functions.gen.go]: Generating 0 functions for SafetyKit */
 import (
 	"github.com/ebitengine/purego"
 )
@@ -20,6 +21,7 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
+
 
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRDescriptorClusterDeviceTypeStruct interface {
 	SetType(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDescriptorClusterDeviceTypeStruct
@@ -85,8 +83,6 @@ func NewMTRDescriptorClusterDeviceTypeStruct() MTRDescriptorClusterDeviceTypeStr
 	return getMTRDescriptorClusterDeviceTypeStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/devicetype
 func (m_ MTRDescriptorClusterDeviceTypeStruct) DeviceType() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRDescriptorClusterDeviceTypeStruct) DeviceType() objc.IObject /* cros
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/devicetype
 func (m_ MTRDescriptorClusterDeviceTypeStruct) SetDeviceType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/revision
@@ -109,13 +103,11 @@ func (m_ MTRDescriptorClusterDeviceTypeStruct) Revision() objc.IObject /* cross-
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/revision
 func (m_ MTRDescriptorClusterDeviceTypeStruct) SetRevision(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRevision:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
@@ -124,12 +116,8 @@ func (m_ MTRDescriptorClusterDeviceTypeStruct) Type() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdescriptorclusterdevicetypestruct/type
 func (m_ MTRDescriptorClusterDeviceTypeStruct) SetType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
-
-
-

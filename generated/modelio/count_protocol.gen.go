@@ -20,3 +20,4 @@ var countProtocol *objc.Protocol
 func init() {
 	countProtocol = objc.GetProtocol("count")
 }
+

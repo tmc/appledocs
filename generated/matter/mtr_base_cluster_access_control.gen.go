@@ -33,8 +33,6 @@ type IMTRBaseClusterAccessControl interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterAccessControl
 type MTRBaseClusterAccessControl struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterAccessControl) Autorelease() MTRBaseClusterAccessControl 
 func NewMTRBaseClusterAccessControl() MTRBaseClusterAccessControl {
 	return getMTRBaseClusterAccessControlClass().New()
 }
-
-
-
-

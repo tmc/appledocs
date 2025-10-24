@@ -33,8 +33,6 @@ type IMTRBaseClusterRadonConcentrationMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRadonConcentrationMeasurement
 type MTRBaseClusterRadonConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterRadonConcentrationMeasurement) Autorelease() MTRBaseClust
 func NewMTRBaseClusterRadonConcentrationMeasurement() MTRBaseClusterRadonConcentrationMeasurement {
 	return getMTRBaseClusterRadonConcentrationMeasurementClass().New()
 }
-
-
-
-

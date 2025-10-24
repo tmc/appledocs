@@ -8,10 +8,10 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 11.0+
-//   - iPadOS 11.0+
-//   - macOS 10.11+
-//   - tvOS 11.0+
+//   - iOS 8.0+
+//   - iPadOS 8.0+
+//   - macOS 10.13+
+//   - tvOS +
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to newTextureWithDescriptor:.
@@ -20,3 +20,4 @@ var newTextureWithDescriptorProtocol *objc.Protocol
 func init() {
 	newTextureWithDescriptorProtocol = objc.GetProtocol("newTextureWithDescriptor:")
 }
+

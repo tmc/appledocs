@@ -34,8 +34,6 @@ type IMTRBasicInformationClusterShutDownEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicInformationClusterShutDownEvent
 type MTRBasicInformationClusterShutDownEvent struct {
@@ -77,7 +75,3 @@ func (m_ MTRBasicInformationClusterShutDownEvent) Autorelease() MTRBasicInformat
 func NewMTRBasicInformationClusterShutDownEvent() MTRBasicInformationClusterShutDownEvent {
 	return getMTRBasicInformationClusterShutDownEventClass().New()
 }
-
-
-
-

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +36,6 @@ type IMTRBasicInformationClusterReachableChangedEvent interface {
 	SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicInformationClusterReachableChangedEvent
@@ -81,8 +79,6 @@ func NewMTRBasicInformationClusterReachableChangedEvent() MTRBasicInformationClu
 	return getMTRBasicInformationClusterReachableChangedEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterreachablechangedevent/reachablenewvalue
 func (m_ MTRBasicInformationClusterReachableChangedEvent) ReachableNewValue() objc.IObject /* cross-framework: NSNumber */ {
@@ -90,12 +86,8 @@ func (m_ MTRBasicInformationClusterReachableChangedEvent) ReachableNewValue() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterreachablechangedevent/reachablenewvalue
 func (m_ MTRBasicInformationClusterReachableChangedEvent) SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReachableNewValue:"), value)
 }
-
-
-

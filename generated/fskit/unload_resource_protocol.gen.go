@@ -15,3 +15,4 @@ var unloadResourceProtocol *objc.Protocol
 func init() {
 	unloadResourceProtocol = objc.GetProtocol("unloadResource:")
 }
+

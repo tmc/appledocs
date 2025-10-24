@@ -20,3 +20,4 @@ var hazardTrackingModeProtocol *objc.Protocol
 func init() {
 	hazardTrackingModeProtocol = objc.GetProtocol("hazardTrackingMode")
 }
+

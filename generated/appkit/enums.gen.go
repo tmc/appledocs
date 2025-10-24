@@ -2,7 +2,9 @@
 
 package appkit
 
+/* debug [enums.gen.go]: Generating 279 enums for AppKit */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum NSAccessibilityAnnotationPosition (3 cases) */
 // AccessibilityAnnotationPosition - Constants that specify the position where the annotation applies.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityAnnotationPosition
@@ -20,6 +22,7 @@ const (
 	AccessibilityAnnotationPositionStart AccessibilityAnnotationPosition = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSAccessibilityCustomRotorType (22 cases) */
 // AccessibilityCustomRotorType - Constants that indicate the type of content that the rotor represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor/RotorType
@@ -115,6 +118,7 @@ const (
 	AccessibilityCustomRotorTypeVisitedLink AccessibilityCustomRotorType = 20
 )
 
+/* debug [enums.gen.go]: Processing enum NSAccessibilityCustomRotorSearchDirection (2 cases) */
 // AccessibilityCustomRotorSearchDirection - Constants that describe the direction to search for an item result.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomRotor/SearchDirection
@@ -131,6 +135,7 @@ const (
 	AccessibilityCustomRotorSearchDirectionPrevious AccessibilityCustomRotorSearchDirection = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSAccessibilityOrientation (3 cases) */
 // AccessibilityOrientation - Values that indicate the orientation of accessibility elements, such as scroll bars and split views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityOrientation
@@ -151,6 +156,7 @@ const (
 	AccessibilityOrientationVertical AccessibilityOrientation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSAccessibilityPriorityLevel (3 cases) */
 // AccessibilityPriorityLevel - A data type for notification priority levels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityPriorityLevel
@@ -171,6 +177,7 @@ const (
 	AccessibilityPriorityMedium AccessibilityPriorityLevel = 50
 )
 
+/* debug [enums.gen.go]: Processing enum NSAccessibilityRulerMarkerType (8 cases) */
 // AccessibilityRulerMarkerType - Values that indicate the marker type of an accessibility element.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityRulerMarkerType
@@ -211,6 +218,7 @@ const (
 	AccessibilityRulerMarkerTypeUnknown AccessibilityRulerMarkerType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSAccessibilitySortDirection (3 cases) */
 // AccessibilitySortDirection - Values that indicate the sort direction of a column.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilitySortDirection
@@ -231,6 +239,7 @@ const (
 	AccessibilitySortDirectionUnknown AccessibilitySortDirection = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSAccessibilityUnits (5 cases) */
 // AccessibilityUnits - Values that indicate the unit values of a ruler or layout area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityUnits
@@ -259,6 +268,7 @@ const (
 	AccessibilityUnitsUnknown AccessibilityUnits = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSAnimationBlockingMode (3 cases) */
 // AnimationBlockingMode - These constants indicate the blocking mode of an 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/BlockingMode
@@ -279,6 +289,7 @@ const (
 	AnimationNonblockingThreaded AnimationBlockingMode = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSAnimationCurve (4 cases) */
 // AnimationCurve - These constants describe the curve of an animation—that is, the relative speed of an animation from start to finish.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimation/Curve
@@ -303,6 +314,7 @@ const (
 	AnimationLinear AnimationCurve = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSAnimationEffect (2 cases) */
 // AnimationEffect - The type for standard system animation effects, which include both display and sound.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAnimationEffect
@@ -319,6 +331,7 @@ const (
 	AnimationEffectPoof AnimationEffect = 10
 )
 
+/* debug [enums.gen.go]: Processing enum NSApplicationActivationOptions (2 cases) */
 // ApplicationActivationOptions - The following flags are for 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/ActivationOptions
@@ -335,6 +348,7 @@ const (
 	ApplicationActivateIgnoringOtherApps ApplicationActivationOptions = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSApplicationActivationPolicy (3 cases) */
 // ApplicationActivationPolicy - Activation policies (used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/ActivationPolicy-swift.enum
@@ -355,6 +369,7 @@ const (
 	ApplicationActivationPolicyRegular ApplicationActivationPolicy = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSApplicationDelegateReply (3 cases) */
 // ApplicationDelegateReply - Constants that indicate whether a copy or print operation was successful, was canceled, or failed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/DelegateReply
@@ -375,6 +390,7 @@ const (
 	ApplicationDelegateReplySuccess ApplicationDelegateReply = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSApplicationOcclusionState (1 cases) */
 // ApplicationOcclusionState - This constant indicates whether at least part of any window owned by this app is visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/OcclusionState-swift.struct
@@ -387,6 +403,7 @@ const (
 	ApplicationOcclusionStateVisible ApplicationOcclusionState = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSApplicationPresentationOptions (14 cases) */
 // ApplicationPresentationOptions - Constants that control the presentation of the app, typically for fullscreen apps such as games or kiosks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/PresentationOptions-swift.struct
@@ -451,6 +468,7 @@ const (
 	ApplicationPresentationDefault ApplicationPresentationOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSApplicationPrintReply (4 cases) */
 // ApplicationPrintReply - Constants that indicate the outcome of a print request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/PrintReply
@@ -475,6 +493,7 @@ const (
 	PrintingSuccess ApplicationPrintReply = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSRemoteNotificationType (4 cases) */
 // RemoteNotificationType - These constants determine whether apps launched by remote notifications display a badge.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/RemoteNotificationType
@@ -499,6 +518,7 @@ const (
 	RemoteNotificationTypeNone RemoteNotificationType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSRequestUserAttentionType (2 cases) */
 // RequestUserAttentionType - These constants specify the level of severity of a user attention request and are used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/RequestUserAttentionType
@@ -515,6 +535,7 @@ const (
 	InformationalRequest RequestUserAttentionType = 10
 )
 
+/* debug [enums.gen.go]: Processing enum NSApplicationTerminateReply (3 cases) */
 // ApplicationTerminateReply - Constants that determine whether an app should terminate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/TerminateReply
@@ -535,6 +556,7 @@ const (
 	TerminateNow ApplicationTerminateReply = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowListOptions (1 cases) */
 // WindowListOptions - This constant indicates a window ordering.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/WindowListOptions
@@ -547,6 +569,7 @@ const (
 	WindowListOrderedFrontToBack WindowListOptions = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSBitmapImageFileType (6 cases) */
 // BitmapImageFileType - Constants that specify bitmap file types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/FileType
@@ -579,6 +602,7 @@ const (
 	BitmapImageFileTypeTIFF BitmapImageFileType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSBitmapFormat (7 cases) */
 // BitmapFormat - Constants that represent bitmap component formats.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/Format
@@ -615,6 +639,7 @@ const (
 	BitmapFormatThirtyTwoBitLittleEndian BitmapFormat = 6
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageRepLoadStatus (6 cases) */
 // ImageRepLoadStatus - Constants that identify the loading status of the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/LoadStatus
@@ -647,6 +672,7 @@ const (
 	ImageRepLoadStatusWillNeedAllData ImageRepLoadStatus = -3
 )
 
+/* debug [enums.gen.go]: Processing enum NSTIFFCompression (8 cases) */
 // TIFFCompression - Constants that represent the supported TIFF data-compression schemes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBitmapImageRep/TIFFCompression
@@ -687,6 +713,7 @@ const (
 	TIFFCompressionPackBits TIFFCompression = 32773
 )
 
+/* debug [enums.gen.go]: Processing enum NSBorderType (4 cases) */
 // BorderType - These constants specify the type of a view’s border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBorderType
@@ -711,6 +738,7 @@ const (
 	NoBorder BorderType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSBoxType (3 cases) */
 // BoxType - These constants and data type identifies box types, which, in conjunction with a box’s border type, define the appearance of the box.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/BoxType-swift.enum
@@ -731,6 +759,7 @@ const (
 	BoxSeparator BoxType = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSTitlePosition (7 cases) */
 // TitlePosition - Specify the location of a box’s title with respect to its border.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBox/TitlePosition-swift.enum
@@ -767,6 +796,7 @@ const (
 	NoTitle TitlePosition = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSBrowserColumnResizingType (3 cases) */
 // BrowserColumnResizingType - Types of browser column resizing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowser/ColumnResizingType-swift.enum
@@ -787,6 +817,7 @@ const (
 	BrowserUserColumnResizing BrowserColumnResizingType = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSBrowserDropOperation (2 cases) */
 // BrowserDropOperation - The type used to specify the drop type of a drag-and-drop operation. See 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowser/DropOperation
@@ -803,6 +834,7 @@ const (
 	BrowserDropOn BrowserDropOperation = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSBezelStyle (22 cases) */
 // BezelStyle - The set of bezel styles to style buttons in your app.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/BezelStyle-swift.enum
@@ -899,6 +931,7 @@ const (
 	BezelStyleToolbar BezelStyle = 11
 )
 
+/* debug [enums.gen.go]: Processing enum NSButtonType (10 cases) */
 // ButtonType - Button types that you can specify using 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/ButtonType
@@ -947,6 +980,7 @@ const (
 	ButtonTypeToggle ButtonType = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSGradientType (5 cases) */
 // GradientType - Specify the gradients used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSButton/GradientType
@@ -975,6 +1009,7 @@ const (
 	GradientNone GradientType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCellAttribute (17 cases) */
 // CellAttribute - Constants for specifying how a button behaves when pressed and how it displays its state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/Attribute
@@ -1051,6 +1086,7 @@ const (
 	PushInCell CellAttribute = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSCellType (3 cases) */
 // CellType - Constants for specifying how a cell represents its data (as text or as an image).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/CellType
@@ -1071,6 +1107,7 @@ const (
 	TextCellType CellType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSCellHitResult (4 cases) */
 // CellHitResult - Constants used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/HitResult
@@ -1095,6 +1132,7 @@ const (
 	CellHitNone CellHitResult = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCellStyleMask (5 cases) */
 // CellStyleMask - Constants for specifying what happens when a button is pressed or is displaying its alternate state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCell/StyleMask
@@ -1123,6 +1161,7 @@ const (
 	NoCellMask CellStyleMask = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCharacterCollection (6 cases) */
 // CharacterCollection - Values that map character identifiers to glyphs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCharacterCollection
@@ -1155,6 +1194,7 @@ const (
 	IdentityMappingCharacterCollection CharacterCollection = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCollectionElementCategory (4 cases) */
 // CollectionElementCategory - Constants specifying the type of element in the collection view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionElementCategory
@@ -1179,6 +1219,7 @@ const (
 	CollectionElementCategorySupplementaryView CollectionElementCategory = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSCollectionLayoutSectionOrthogonalScrollingBehavior (6 cases) */
 // CollectionLayoutSectionOrthogonalScrollingBehavior - The scrolling behavior of the layout’s sections in relation to the main layout axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutSectionOrthogonalScrollingBehavior
@@ -1211,6 +1252,7 @@ const (
 	CollectionLayoutSectionOrthogonalScrollingBehaviorPaging CollectionLayoutSectionOrthogonalScrollingBehavior = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSCollectionViewDropOperation (2 cases) */
 // CollectionViewDropOperation - These constants specify if acceptance of a drop should be at the item it is dropped on or before the item. These constants are used by the  
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/DropOperation
@@ -1227,6 +1269,7 @@ const (
 	CollectionViewDropOn CollectionViewDropOperation = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCollectionViewScrollDirection (2 cases) */
 // CollectionViewScrollDirection - Constants indicating the scrolling direction for the layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/ScrollDirection
@@ -1243,6 +1286,7 @@ const (
 	CollectionViewScrollDirectionVertical CollectionViewScrollDirection = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCollectionUpdateAction (5 cases) */
 // CollectionUpdateAction - Constants indicating the type of action being performed on an item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/UpdateAction
@@ -1271,6 +1315,7 @@ const (
 	CollectionUpdateActionReload CollectionUpdateAction = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSCollectionViewScrollPosition (11 cases) */
 // CollectionViewScrollPosition - Constants indicating the options for scrolling the collection view’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/ScrollPosition
@@ -1323,6 +1368,7 @@ const (
 	CollectionViewScrollPositionNone CollectionViewScrollPosition = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCollectionViewItemHighlightState (4 cases) */
 // CollectionViewItemHighlightState - Constants indicating the type of highlight applied to an item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewItem/HighlightState-swift.enum
@@ -1347,6 +1393,7 @@ const (
 	CollectionViewItemHighlightNone CollectionViewItemHighlightState = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSColorPanelMode (9 cases) */
 // ColorPanelMode - A type defined for the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/Mode-swift.enum
@@ -1391,6 +1438,7 @@ const (
 	ColorPanelModeWheel ColorPanelMode = 6
 )
 
+/* debug [enums.gen.go]: Processing enum NSColorWellStyle (3 cases) */
 // ColorWellStyle - Constants that specify the appearance and interaction modes for a color well.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorWell/Style
@@ -1411,6 +1459,7 @@ const (
 	ColorWellStyleMinimal ColorWellStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSComboButtonStyle (2 cases) */
 // ComboButtonStyle - Constants that indicate how a combo button presents its menu.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSComboButton/Style-swift.enum
@@ -1427,6 +1476,7 @@ const (
 	ComboButtonStyleUnified ComboButtonStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSCompositingOperation (29 cases) */
 // CompositingOperation - Constants that describe compositing operators in terms of source and destination images, each having an opaque and transparent region.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCompositingOperation
@@ -1551,6 +1601,7 @@ const (
 	CompositingOperationXOR CompositingOperation = 10
 )
 
+/* debug [enums.gen.go]: Processing enum NSControlBorderShape (4 cases) */
 // ControlBorderShape enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/BorderShape
@@ -1575,6 +1626,7 @@ const (
 	ControlBorderShapeRoundedRectangle ControlBorderShape = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSControlSize (5 cases) */
 // ControlSize - A constant for specifying a cell’s size.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/ControlSize-swift.enum
@@ -1602,6 +1654,7 @@ const (
 	ControlSizeSmall ControlSize = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSCellImagePosition (9 cases) */
 // CellImagePosition - A constant for specifying the position of a button’s image relative to its title.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControl/ImagePosition
@@ -1646,6 +1699,7 @@ const (
 	NoImage CellImagePosition = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSControlTint (4 cases) */
 // ControlTint - Constants for specifying a cell’s tint color.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSControlTint
@@ -1670,6 +1724,7 @@ const (
 	GraphiteControlTint ControlTint = 6
 )
 
+/* debug [enums.gen.go]: Processing enum NSCursorFrameResizePosition (8 cases) */
 // CursorFrameResizePosition - The position along the perimeter of a rectangular frame (its edges and corners) from which it’s resized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/FrameResizePosition
@@ -1710,6 +1765,7 @@ const (
 	CursorFrameResizePositionTopRight CursorFrameResizePosition = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCursorFrameResizeDirections (3 cases) */
 // CursorFrameResizeDirections - The directions in which a rectangular frame can be resized.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursorFrameResizeDirections
@@ -1730,6 +1786,7 @@ const (
 	CursorFrameResizeDirectionsOutward CursorFrameResizeDirections = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSDatePickerStyle (3 cases) */
 // DatePickerStyle - Constants that define the visual appearance of the date picker cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/Style
@@ -1747,6 +1804,7 @@ const (
 	DatePickerStyleTextFieldAndStepper DatePickerStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSDatePickerElementFlags (6 cases) */
 // DatePickerElementFlags - Constants that specify the date and time elements displayed by the picker.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/ElementFlags
@@ -1773,6 +1831,7 @@ const (
 	DatePickerElementFlagYearMonthDay DatePickerElementFlags = 224
 )
 
+/* debug [enums.gen.go]: Processing enum NSDatePickerMode (2 cases) */
 // DatePickerMode - Constants that define whether the picker provides a single date, or a range of dates.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDatePicker/Mode
@@ -1787,6 +1846,7 @@ const (
 	DatePickerModeSingle DatePickerMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSDirectionalRectEdge (6 cases) */
 // DirectionalRectEdge enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDirectionalRectEdge
@@ -1813,6 +1873,7 @@ const (
 	DirectionalRectEdgeTrailing DirectionalRectEdge = 8
 )
 
+/* debug [enums.gen.go]: Processing enum NSDisplayGamut (2 cases) */
 // DisplayGamut enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDisplayGamut
@@ -1827,6 +1888,7 @@ const (
 	DisplayGamutSRGB DisplayGamut = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSDocumentChangeType (7 cases) */
 // DocumentChangeType - Values that indicate a document’s edit status.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/ChangeType
@@ -1863,6 +1925,7 @@ const (
 	ChangeUndone DocumentChangeType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSSaveOperationType (7 cases) */
 // SaveOperationType - Constants for specifying the type of document-save operation to perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocument/SaveOperationType
@@ -1899,6 +1962,7 @@ const (
 	AutosaveOperation SaveOperationType = 6
 )
 
+/* debug [enums.gen.go]: Processing enum NSDragOperation (9 cases) */
 // DragOperation - A group of constants that represent which operations the dragging source can perform on dragging items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDragOperation
@@ -1943,6 +2007,7 @@ const (
 	DragOperationPrivate DragOperation = 8
 )
 
+/* debug [enums.gen.go]: Processing enum NSDraggingContext (2 cases) */
 // DraggingContext - Constants that specify whether a drag terminates within or outside the application.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingContext
@@ -1959,6 +2024,7 @@ const (
 	DraggingContextWithinApplication DraggingContext = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSDraggingFormation (5 cases) */
 // DraggingFormation - Constants that control the visual format of multiple dragging items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingFormation
@@ -1987,6 +2053,7 @@ const (
 	DraggingFormationStack DraggingFormation = 4
 )
 
+/* debug [enums.gen.go]: Processing enum NSDraggingItemEnumerationOptions (2 cases) */
 // DraggingItemEnumerationOptions - A group of constants that specify options to use when enumerating dragging items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingItemEnumerationOptions
@@ -2003,6 +2070,7 @@ const (
 	DraggingItemEnumerationConcurrent DraggingItemEnumerationOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSDrawerState (4 cases) */
 // DrawerState - These constants specify the possible states of a drawer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/State-swift.enum
@@ -2027,6 +2095,7 @@ const (
 	DrawerOpeningState DrawerState = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSEventButtonMask (1 cases) */
 // EventButtonMask - Constants you use to identify the activated tablet buttons in an event.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/ButtonMask-swift.struct
@@ -2039,6 +2108,7 @@ const (
 	EventButtonMaskPenUpperSide EventButtonMask = 4
 )
 
+/* debug [enums.gen.go]: Processing enum NSEventSubtype (10 cases) */
 // EventSubtype - Subtypes for various types of events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/EventSubtype
@@ -2087,6 +2157,7 @@ const (
 	EventSubtypeWindowMoved EventSubtype = 4
 )
 
+/* debug [enums.gen.go]: Processing enum NSEventType (35 cases) */
 // EventType - Constants for the types of events that responder objects can handle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/EventType
@@ -2234,6 +2305,7 @@ const (
 	EventTypeTabletProximity EventType = 24
 )
 
+/* debug [enums.gen.go]: Processing enum NSEventMask (12 cases) */
 // EventMask - Constants that you use to filter out specific event types from the stream of incoming events.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/EventTypeMask
@@ -2290,6 +2362,7 @@ const (
 	EventMaskTabletProximity EventMask = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSEventGestureAxis (3 cases) */
 // EventGestureAxis - Constants that specify the direction of travel for a gesture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/GestureAxis
@@ -2310,6 +2383,7 @@ const (
 	EventGestureAxisVertical EventGestureAxis = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSEventModifierFlags (9 cases) */
 // EventModifierFlags - Flags that represent key states in an event object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/ModifierFlags-swift.struct
@@ -2327,6 +2401,7 @@ const (
 	EventModifierFlagDeviceIndependentFlagsMask EventModifierFlags = 4294901760
 )
 
+/* debug [enums.gen.go]: Processing enum NSEventPhase (7 cases) */
 // EventPhase - Constants that represent the possible phases during an event phase.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/Phase-swift.struct
@@ -2363,6 +2438,7 @@ const (
 	EventPhaseNone EventPhase = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSPressureBehavior (7 cases) */
 // PressureBehavior - These constants describe the behavior and progression of a pressure gesture.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/PressureBehavior-swift.enum
@@ -2399,6 +2475,7 @@ const (
 	PressureBehaviorUnknown PressureBehavior = -1
 )
 
+/* debug [enums.gen.go]: Processing enum NSEventSwipeTrackingOptions (2 cases) */
 // EventSwipeTrackingOptions - Constants that specify swipe-tracking options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/SwipeTrackingOptions
@@ -2415,6 +2492,7 @@ const (
 	EventSwipeTrackingLockDirection EventSwipeTrackingOptions = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSFindPanelAction (10 cases) */
 // FindPanelAction - These constants define the tags for 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFindPanelAction
@@ -2463,6 +2541,7 @@ const (
 	FindPanelActionShowFindPanel FindPanelAction = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSFindPanelSubstringMatchType (4 cases) */
 // FindPanelSubstringMatchType - The type of substring matching used by the Find panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFindPanelSubstringMatchType
@@ -2487,6 +2566,7 @@ const (
 	FindPanelSubstringMatchTypeStartsWith FindPanelSubstringMatchType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSFocusRingPlacement (3 cases) */
 // FocusRingPlacement - Constants that indicate how the system draws the focus ring.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFocusRingPlacement
@@ -2507,6 +2587,7 @@ const (
 	FocusRingOnly FocusRingPlacement = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSFocusRingType (3 cases) */
 // FocusRingType - Constants that describe the style of the focus ring.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFocusRingType
@@ -2527,6 +2608,7 @@ const (
 	FocusRingTypeNone FocusRingType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSFontAction (8 cases) */
 // FontAction - Actions that modify a font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAction
@@ -2567,6 +2649,7 @@ const (
 	ViaPanelFontAction FontAction = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSFontAssetRequestOptions (1 cases) */
 // FontAssetRequestOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/Options
@@ -2578,6 +2661,7 @@ const (
 	FontAssetRequestOptionUsesStandardUI FontAssetRequestOptions = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSFontCollectionVisibility (3 cases) */
 // FontCollectionVisibility - Constants that specify the visibility of font collections.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollection/Visibility
@@ -2598,6 +2682,7 @@ const (
 	FontCollectionVisibilityUser FontCollectionVisibility = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSFontCollectionOptions (1 cases) */
 // FontCollectionOptions - Constants that support font collection management.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontCollectionOptions
@@ -2610,6 +2695,7 @@ const (
 	FontCollectionApplicationOnlyMask FontCollectionOptions = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSFontDescriptorSymbolicTraits (22 cases) */
 // FontDescriptorSymbolicTraits - A symbolic description of the stylistic aspects of a font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/SymbolicTraits-swift.struct
@@ -2705,6 +2791,7 @@ const (
 	FontDescriptorTraitEmphasized FontDescriptorSymbolicTraits = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSFontPanelModeMask (1 cases) */
 // FontPanelModeMask enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontPanel/ModeMask
@@ -2716,6 +2803,7 @@ const (
 	FontPanelModeMaskFace FontPanelModeMask = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSFontRenderingMode (4 cases) */
 // FontRenderingMode - The font rendering mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontRenderingMode
@@ -2740,6 +2828,7 @@ const (
 	FontIntegerAdvancementsRenderingMode FontRenderingMode = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSFontTraitMask (12 cases) */
 // FontTraitMask - Constants for isolating specific traits of a font.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontTraitMask
@@ -2796,6 +2885,7 @@ const (
 	UnitalicFontMask FontTraitMask = 16777216
 )
 
+/* debug [enums.gen.go]: Processing enum NSGestureRecognizerState (7 cases) */
 // GestureRecognizerState - The current state of the gesture recognizer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGestureRecognizer/State-swift.enum
@@ -2832,6 +2922,7 @@ const (
 	GestureRecognizerStateRecognized GestureRecognizerState = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSGlassEffectViewStyle (2 cases) */
 // GlassEffectViewStyle enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/Style-swift.enum
@@ -2848,6 +2939,7 @@ const (
 	GlassEffectViewStyleRegular GlassEffectViewStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSGlyphInscription (5 cases) */
 // GlyphInscription - Constants that specify how a glyph is laid out relative to the previous glyph.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlyphInscription
@@ -2876,6 +2968,7 @@ const (
 	GlyphInscribeOverstrike GlyphInscription = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSGridCellPlacement (8 cases) */
 // GridCellPlacement enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridCell/Placement
@@ -2908,6 +3001,7 @@ const (
 	GridCellPlacementTrailing GridCellPlacement = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSGridRowAlignment (4 cases) */
 // GridRowAlignment enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridRow/Alignment
@@ -2928,6 +3022,7 @@ const (
 	GridRowAlignmentNone GridRowAlignment = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSHapticFeedbackPattern (3 cases) */
 // HapticFeedbackPattern - A pattern of haptic feedback to be provided to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager/FeedbackPattern
@@ -2948,6 +3043,7 @@ const (
 	HapticFeedbackPatternLevelChange HapticFeedbackPattern = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSHapticFeedbackPerformanceTime (3 cases) */
 // HapticFeedbackPerformanceTime - A time at which to provide haptic feedback to the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHapticFeedbackManager/PerformanceTime
@@ -2968,6 +3064,7 @@ const (
 	HapticFeedbackPerformanceTimeNow HapticFeedbackPerformanceTime = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSHorizontalDirections (3 cases) */
 // HorizontalDirections - The absolute directions on the horizontal axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHorizontalDirections
@@ -2988,6 +3085,7 @@ const (
 	HorizontalDirectionsRight HorizontalDirections = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageCacheMode (4 cases) */
 // ImageCacheMode - Constants that specify the caching policy on a per-image basis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/CacheMode-swift.enum
@@ -3012,6 +3110,7 @@ const (
 	ImageCacheNever ImageCacheMode = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageDynamicRange (4 cases) */
 // ImageDynamicRange - Describes how High Dynamic Range (HDR) image content displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/DynamicRange
@@ -3036,6 +3135,7 @@ const (
 	ImageDynamicRangeUnspecified ImageDynamicRange = -1
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageLayoutDirection (3 cases) */
 // ImageLayoutDirection - Constants that describe the layout direction for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/LayoutDirection
@@ -3056,6 +3156,7 @@ const (
 	ImageLayoutDirectionUnspecified ImageLayoutDirection = -1
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageLoadStatus (5 cases) */
 // ImageLoadStatus - Status values for incremental image loading.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/LoadStatus
@@ -3084,6 +3185,7 @@ const (
 	ImageLoadStatusUnexpectedEOF ImageLoadStatus = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageResizingMode (2 cases) */
 // ImageResizingMode - Constants that describe the resizing mode for the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/ResizingMode-swift.enum
@@ -3100,6 +3202,7 @@ const (
 	ImageResizingModeTile ImageResizingMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageSymbolColorRenderingMode (3 cases) */
 // ImageSymbolColorRenderingMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolColorRenderingMode
@@ -3120,6 +3223,7 @@ const (
 	ImageSymbolColorRenderingModeGradient ImageSymbolColorRenderingMode = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageSymbolScale (3 cases) */
 // ImageSymbolScale - Constants that specify which scale variant of a symbol image to use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolScale
@@ -3140,6 +3244,7 @@ const (
 	ImageSymbolScaleSmall ImageSymbolScale = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageSymbolVariableValueMode (3 cases) */
 // ImageSymbolVariableValueMode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImage/SymbolVariableValueMode
@@ -3160,6 +3265,7 @@ const (
 	ImageSymbolVariableValueModeDraw ImageSymbolVariableValueMode = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageAlignment (9 cases) */
 // ImageAlignment - Constants used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageAlignment
@@ -3204,6 +3310,7 @@ const (
 	ImageAlignTopRight ImageAlignment = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageInterpolation (5 cases) */
 // ImageInterpolation - Constants that specify the interpolation, or image smoothing, behavior used by the image interpolation property.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageInterpolation
@@ -3232,6 +3339,7 @@ const (
 	ImageInterpolationNone ImageInterpolation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageScaling (7 cases) */
 // ImageScaling - Constants that specify a cell’s image scaling behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageScaling
@@ -3268,6 +3376,7 @@ const (
 	ImageScaleProportionallyUpOrDown ImageScaling = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSImageFrameStyle (5 cases) */
 // ImageFrameStyle - Constants that allow you to specify the kind of frame bordering the image.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/FrameStyle
@@ -3296,6 +3405,7 @@ const (
 	ImageFramePhoto ImageFrameStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSLayoutAttribute (14 cases) */
 // LayoutAttribute - The part of the object’s visual representation that should be used to get the value for the constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/Attribute
@@ -3359,6 +3469,7 @@ const (
 	LayoutAttributeWidth LayoutAttribute = 7
 )
 
+/* debug [enums.gen.go]: Processing enum NSLayoutFormatOptions (16 cases) */
 // LayoutFormatOptions - A bit mask that specifies both a part of an interface element to align and a direction for the alignment between two interface elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/FormatOptions
@@ -3430,6 +3541,7 @@ const (
 	LayoutFormatAlignAllBaseline LayoutFormatOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSLayoutConstraintOrientation (2 cases) */
 // LayoutConstraintOrientation - The layout constraint orientation, either horizontal or vertical, that the constraint uses to enforce layout between objects.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/Orientation
@@ -3446,6 +3558,7 @@ const (
 	LayoutConstraintOrientationVertical LayoutConstraintOrientation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSLayoutRelation (3 cases) */
 // LayoutRelation - The relation between the first attribute and the modified second attribute in a constraint.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/Relation-swift.enum
@@ -3466,6 +3579,7 @@ const (
 	LayoutRelationLessThanOrEqual LayoutRelation = -1
 )
 
+/* debug [enums.gen.go]: Processing enum NSControlCharacterAction (6 cases) */
 // ControlCharacterAction - Constants that describe actions for control characters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/ControlCharacterAction
@@ -3498,6 +3612,7 @@ const (
 	ControlCharacterActionZeroAdvancement ControlCharacterAction = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSGlyphProperty (4 cases) */
 // GlyphProperty - Glyph properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/GlyphProperty
@@ -3522,6 +3637,7 @@ const (
 	GlyphPropertyNull GlyphProperty = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextLayoutOrientation (2 cases) */
 // TextLayoutOrientation - Constants that describe the text layout orientation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/TextLayoutOrientation
@@ -3538,6 +3654,7 @@ const (
 	TextLayoutOrientationVertical TextLayoutOrientation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTypesetterBehavior (6 cases) */
 // TypesetterBehavior - Constants that determine the layout manager’s behavior during layout.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutManager/TypesetterBehavior-swift.enum
@@ -3570,6 +3687,7 @@ const (
 	TypesetterOriginalBehavior TypesetterBehavior = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSLevelIndicatorPlaceholderVisibility (3 cases) */
 // LevelIndicatorPlaceholderVisibility enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/PlaceholderVisibility-swift.enum
@@ -3587,6 +3705,7 @@ const (
 	LevelIndicatorPlaceholderVisibilityWhileEditing LevelIndicatorPlaceholderVisibility = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSLevelIndicatorStyle (4 cases) */
 // LevelIndicatorStyle - Constants that specify a level indicator’s appearance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLevelIndicator/Style
@@ -3611,6 +3730,7 @@ const (
 	LevelIndicatorStyleRelevancy LevelIndicatorStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSLineBreakMode (6 cases) */
 // LineBreakMode - Constants that specify what happens when a line is too long for a container.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLineBreakMode
@@ -3643,6 +3763,7 @@ const (
 	LineBreakByWordWrapping LineBreakMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSLineMovementDirection (5 cases) */
 // LineMovementDirection - The direction in which a line moves.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLineMovementDirection
@@ -3671,6 +3792,7 @@ const (
 	LineMovesUp LineMovementDirection = 4
 )
 
+/* debug [enums.gen.go]: Processing enum NSLineSweepDirection (4 cases) */
 // LineSweepDirection - Values that describe the progression of text on a page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLineSweepDirection
@@ -3695,6 +3817,7 @@ const (
 	LineSweepUp LineSweepDirection = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSMatrixMode (4 cases) */
 // MatrixMode - These constants determine how 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMatrix/Mode-swift.enum
@@ -3719,6 +3842,7 @@ const (
 	TrackModeMatrix MatrixMode = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSMediaLibrary (3 cases) */
 // MediaLibrary - These constants are masks used to configure a Media Library Browser to display specific types of media. Combined masks are not yet supported.  In other words, only one nonzero mask value is supported at a time.  If masks are combined, the lowest mask value is used.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/Library
@@ -3739,6 +3863,7 @@ const (
 	MediaLibraryMovie MediaLibrary = 4
 )
 
+/* debug [enums.gen.go]: Processing enum NSMultibyteGlyphPacking (1 cases) */
 // MultibyteGlyphPacking - A constant for glyph packing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMultibyteGlyphPacking
@@ -3751,6 +3876,7 @@ const (
 	NativeShortGlyphPacking MultibyteGlyphPacking = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSOpenGLContextParameter (15 cases) */
 // OpenGLContextParameter - Constants that specify context parameters.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLContext/Parameter
@@ -3818,6 +3944,7 @@ const (
 	OpenGLContextParameterSwapRectangleEnable OpenGLContextParameter = 11
 )
 
+/* debug [enums.gen.go]: Processing enum NSOpenGLGlobalOption (5 cases) */
 // OpenGLGlobalOption - Constants that specify OpenGL options.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLGlobalOption
@@ -3846,6 +3973,7 @@ const (
 	OpenGLGOUseBuildCache OpenGLGlobalOption = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSPageControllerTransitionStyle (3 cases) */
 // PageControllerTransitionStyle - These constants control the transition style of the page controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageController/TransitionStyle-swift.enum
@@ -3866,6 +3994,7 @@ const (
 	PageControllerTransitionStyleStackHistory PageControllerTransitionStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSPageLayoutResult (2 cases) */
 // PageLayoutResult enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPageLayout/Result
@@ -3880,6 +4009,7 @@ const (
 	PageLayoutResultChanged PageLayoutResult = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSLineBreakStrategy (4 cases) */
 // LineBreakStrategy - Constants that specify how the text system breaks lines while laying out paragraphs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/LineBreakStrategy-swift.struct
@@ -3904,6 +4034,7 @@ const (
 	LineBreakStrategyStandard LineBreakStrategy = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextTabType (4 cases) */
 // TextTabType - Constants that specify the type of tab stop.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/TextTabType
@@ -3928,6 +4059,7 @@ const (
 	RightTabStopType TextTabType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSPasteboardAccessBehavior (4 cases) */
 // PasteboardAccessBehavior - A value indicating pasteboard access behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/AccessBehavior-swift.enum
@@ -3952,6 +4084,7 @@ const (
 	PasteboardAccessBehaviorDefault PasteboardAccessBehavior = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSPasteboardContentsOptions (1 cases) */
 // PasteboardContentsOptions - Options for preparing the pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ContentsOptions
@@ -3964,6 +4097,7 @@ const (
 	PasteboardContentsCurrentHostOnly PasteboardContentsOptions = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSPasteboardReadingOptions (4 cases) */
 // PasteboardReadingOptions - Options that specify how to interpret data on the pasteboard when initializing pasteboard data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/ReadingOptions
@@ -3988,6 +4122,7 @@ const (
 	PasteboardReadingAsString PasteboardReadingOptions = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSPasteboardWritingOptions (1 cases) */
 // PasteboardWritingOptions - Type to specify options for writing to a pasteboard.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/WritingOptions
@@ -4000,6 +4135,7 @@ const (
 	PasteboardWritingPromised PasteboardWritingOptions = 512
 )
 
+/* debug [enums.gen.go]: Processing enum NSPathStyle (3 cases) */
 // PathStyle enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControl/Style
@@ -4020,6 +4156,7 @@ const (
 	PathStyleNavigationBar PathStyle = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSPickerTouchBarItemControlRepresentation (3 cases) */
 // PickerTouchBarItemControlRepresentation - Constants that specify display styles for picker bar items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/ControlRepresentation-swift.enum
@@ -4040,6 +4177,7 @@ const (
 	PickerTouchBarItemControlRepresentationExpanded PickerTouchBarItemControlRepresentation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSPickerTouchBarItemSelectionMode (3 cases) */
 // PickerTouchBarItemSelectionMode - Constants that specify selection modes for picker bar items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPickerTouchBarItem/SelectionMode-swift.enum
@@ -4060,6 +4198,7 @@ const (
 	PickerTouchBarItemSelectionModeSelectOne PickerTouchBarItemSelectionMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSPopUpArrowPosition (3 cases) */
 // PopUpArrowPosition - These constants are defined for use with the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopUpButton/ArrowPosition
@@ -4080,6 +4219,7 @@ const (
 	PopUpNoArrow PopUpArrowPosition = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSPrintingOrientation (2 cases) */
 // PrintingOrientation - Constants that specify page orientations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/Orientation-swift.enum
@@ -4096,6 +4236,7 @@ const (
 	PortraitOrientation PrintingOrientation = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSPrintingPaginationMode (3 cases) */
 // PrintingPaginationMode - Constants that specify the different ways in which an image is divided into pages.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/PaginationMode
@@ -4113,6 +4254,7 @@ const (
 	PrintingPaginationModeFit PrintingPaginationMode = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSPaperOrientation (2 cases) */
 // PaperOrientation - Constants that describe the orientation of printing on a page.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintInfo/PaperOrientation
@@ -4129,6 +4271,7 @@ const (
 	PaperOrientationPortrait PaperOrientation = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSPrintingPageOrder (4 cases) */
 // PrintingPageOrder - Constants that specify the page order.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/PageOrder-swift.enum
@@ -4153,6 +4296,7 @@ const (
 	UnknownPageOrder PrintingPageOrder = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSPrintRenderingQuality (2 cases) */
 // PrintRenderingQuality - Constants that specify the print quality in use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintOperation/RenderingQuality
@@ -4169,6 +4313,7 @@ const (
 	PrintRenderingQualityResponsive PrintRenderingQuality = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSPrintPanelOptions (8 cases) */
 // PrintPanelOptions - Constants that specify options for configuring the contents of the main Print panel.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/Options-swift.struct
@@ -4209,6 +4354,7 @@ const (
 	PrintPanelShowsScaling PrintPanelOptions = 16
 )
 
+/* debug [enums.gen.go]: Processing enum NSPrintPanelResult (2 cases) */
 // PrintPanelResult enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrintPanel/Result
@@ -4223,6 +4369,7 @@ const (
 	PrintPanelResultPrinted PrintPanelResult = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSPrinterTableStatus (3 cases) */
 // PrinterTableStatus - Constants that describe the state of a printer information table stored by a printer object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/TableStatus
@@ -4243,6 +4390,7 @@ const (
 	PrinterTableOK PrinterTableStatus = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSProgressIndicatorStyle (2 cases) */
 // ProgressIndicatorStyle - Constants that specify the progress indicator’s style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/Style-swift.enum
@@ -4259,6 +4407,7 @@ const (
 	ProgressIndicatorStyleSpinning ProgressIndicatorStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSProgressIndicatorThickness (4 cases) */
 // ProgressIndicatorThickness - Specify the height of a progress indicator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicatorThickness
@@ -4283,6 +4432,7 @@ const (
 	ProgressIndicatorPreferredThickness ProgressIndicatorThickness = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSRectAlignment (9 cases) */
 // RectAlignment - Constants that specify alignment to an edge or a set of edges depending on the user interface layout direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRectAlignment
@@ -4327,6 +4477,7 @@ const (
 	RectAlignmentTrailing RectAlignment = 7
 )
 
+/* debug [enums.gen.go]: Processing enum NSRuleEditorNestingMode (4 cases) */
 // RuleEditorNestingMode - Specifies a type for nesting modes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/NestingMode-swift.enum
@@ -4351,6 +4502,7 @@ const (
 	RuleEditorNestingModeSingle RuleEditorNestingMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSRuleEditorRowType (2 cases) */
 // RuleEditorRowType - Specifies a type for row types.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRuleEditor/RowType
@@ -4367,6 +4519,7 @@ const (
 	RuleEditorRowTypeSimple RuleEditorRowType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSRulerOrientation (2 cases) */
 // RulerOrientation - These constants are defined to specify a ruler’s orientation and are used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/Orientation-swift.enum
@@ -4383,6 +4536,7 @@ const (
 	VerticalRuler RulerOrientation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrollElasticity (3 cases) */
 // ScrollElasticity - These constants determine the elasticity behavior for an axis of the scrollview.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/Elasticity
@@ -4403,6 +4557,7 @@ const (
 	ScrollElasticityNone ScrollElasticity = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrollViewFindBarPosition (3 cases) */
 // ScrollViewFindBarPosition - These constants define the position of the find bar in relation to the scroll view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollView/FindBarPosition-swift.enum
@@ -4423,6 +4578,7 @@ const (
 	ScrollViewFindBarPositionBelowContent ScrollViewFindBarPosition = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrollerArrow (2 cases) */
 // ScrollerArrow - These constants describe the two scroller buttons and are used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/Arrow
@@ -4439,6 +4595,7 @@ const (
 	ScrollerIncrementArrow ScrollerArrow = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrollArrowPosition (4 cases) */
 // ScrollArrowPosition - These constants specify where the scroller’s buttons appear and are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/ArrowPosition
@@ -4463,6 +4620,7 @@ const (
 	ScrollerArrowsNone ScrollArrowPosition = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrollerKnobStyle (3 cases) */
 // ScrollerKnobStyle - Specify different knob styles.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/KnobStyle-swift.enum
@@ -4483,6 +4641,7 @@ const (
 	ScrollerKnobStyleLight ScrollerKnobStyle = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrollerPart (7 cases) */
 // ScrollerPart - These constants specify the different parts of the scroller:
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/Part
@@ -4519,6 +4678,7 @@ const (
 	ScrollerNoPart ScrollerPart = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrollerStyle (2 cases) */
 // ScrollerStyle - Constants to specify the scroller style.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/Style
@@ -4535,6 +4695,7 @@ const (
 	ScrollerStyleOverlay ScrollerStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSUsableScrollerParts (3 cases) */
 // UsableScrollerParts - These constants specify which parts of the scroller are visible.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/UsableParts-swift.enum
@@ -4555,6 +4716,7 @@ const (
 	OnlyScrollerArrows UsableScrollerParts = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrubberAlignment (4 cases) */
 // ScrubberAlignment - The specified preferred alignment of items within the scrubber, when they come to rest following a user’s scrolling or paging interaction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/Alignment
@@ -4579,6 +4741,7 @@ const (
 	ScrubberAlignmentTrailing ScrubberAlignment = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSScrubberMode (2 cases) */
 // ScrubberMode - The scrolling behavior for a scrubber.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubber/Mode-swift.enum
@@ -4595,6 +4758,7 @@ const (
 	ScrubberModeFree ScrubberMode = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSSegmentDistribution (4 cases) */
 // SegmentDistribution enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/Distribution
@@ -4615,6 +4779,7 @@ const (
 	SegmentDistributionFit SegmentDistribution = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSSegmentStyle (8 cases) */
 // SegmentStyle - The following constants specify the visual style used to display the segmented control. They are used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/Style
@@ -4655,6 +4820,7 @@ const (
 	SegmentStyleTexturedSquare SegmentStyle = 4
 )
 
+/* debug [enums.gen.go]: Processing enum NSSegmentSwitchTracking (4 cases) */
 // SegmentSwitchTracking - The following constants specify the type of tracking behavior a segmented control exhibits. They are used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/SwitchTracking
@@ -4679,6 +4845,7 @@ const (
 	SegmentSwitchTrackingSelectOne SegmentSwitchTracking = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSSelectionAffinity (2 cases) */
 // SelectionAffinity - These constants specify the preferred direction of selection. They’re used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSelectionAffinity
@@ -4695,6 +4862,7 @@ const (
 	SelectionAffinityUpstream SelectionAffinity = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSSelectionGranularity (3 cases) */
 // SelectionGranularity - These constants specify how much the text view extends the selection when the user drags the mouse. They’re used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSelectionGranularity
@@ -4715,6 +4883,7 @@ const (
 	SelectByWord SelectionGranularity = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSSharingCollaborationMode (2 cases) */
 // SharingCollaborationMode - Represents the types of sharing (collaborating on an item vs. sending a copy of the item)
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingCollaborationMode
@@ -4729,6 +4898,7 @@ const (
 	SharingCollaborationModeSendCopy SharingCollaborationMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSCloudKitSharingServiceOptions (5 cases) */
 // CloudKitSharingServiceOptions - Constants that describe how a participant can configure a CloudKit share.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/CloudKitOptions
@@ -4757,6 +4927,7 @@ const (
 	CloudKitSharingServiceStandard CloudKitSharingServiceOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSSharingContentScope (3 cases) */
 // SharingContentScope - The sharing scope constants specify the nature of the things you are sharing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingService/SharingContentScope
@@ -4777,6 +4948,7 @@ const (
 	SharingContentScopePartial SharingContentScope = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSSliderType (2 cases) */
 // SliderType - The types of sliders, used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/SliderType-swift.enum
@@ -4793,6 +4965,7 @@ const (
 	SliderTypeLinear SliderType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTickMarkPosition (4 cases) */
 // TickMarkPosition - The position where a linear slider’s tick marks appear (above, below, leading, or trailing).
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/TickMarkPosition-swift.enum
@@ -4817,6 +4990,7 @@ const (
 	TickMarkPositionTrailing TickMarkPosition = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSSpeechBoundary (3 cases) */
 // SpeechBoundary - These constants are used to indicate where speech should be stopped and paused. See 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpeechSynthesizer/Boundary
@@ -4837,6 +5011,7 @@ const (
 	SpeechWordBoundary SpeechBoundary = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSSpellingState (2 cases) */
 // SpellingState - Constants for the spelling state attribute key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpellingState
@@ -4853,6 +5028,7 @@ const (
 	SpellingStateSpellingFlag SpellingState = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSSplitViewDividerStyle (3 cases) */
 // SplitViewDividerStyle - Constants that specify the style of the split view’s dividers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/DividerStyle-swift.enum
@@ -4873,6 +5049,7 @@ const (
 	SplitViewDividerStyleThin SplitViewDividerStyle = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSSplitViewItemBehavior (4 cases) */
 // SplitViewItemBehavior - Constants that describe the behavior of the split view item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/Behavior-swift.enum
@@ -4897,6 +5074,7 @@ const (
 	SplitViewItemBehaviorSidebar SplitViewItemBehavior = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSSplitViewItemCollapseBehavior (4 cases) */
 // SplitViewItemCollapseBehavior - Constants that describe the split view item’s collapsing behavior.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItem/CollapseBehavior-swift.enum
@@ -4921,6 +5099,7 @@ const (
 	SplitViewItemCollapseBehaviorUseConstraints SplitViewItemCollapseBehavior = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSSpringLoadingHighlight (3 cases) */
 // SpringLoadingHighlight - A group of constants that indicate a highlighting style for your app’s user interface to display during a spring-loading operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpringLoadingHighlight
@@ -4941,6 +5120,7 @@ const (
 	SpringLoadingHighlightStandard SpringLoadingHighlight = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSSpringLoadingOptions (4 cases) */
 // SpringLoadingOptions - These constants denote the type of spring-loading behavior configured for the destination object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSpringLoadingOptions
@@ -4965,6 +5145,7 @@ const (
 	SpringLoadingNoHover SpringLoadingOptions = 8
 )
 
+/* debug [enums.gen.go]: Processing enum NSStackViewDistribution (6 cases) */
 // StackViewDistribution enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/Distribution-swift.enum
@@ -4991,6 +5172,7 @@ const (
 	StackViewDistributionGravityAreas StackViewDistribution = -1
 )
 
+/* debug [enums.gen.go]: Processing enum NSStackViewGravity (5 cases) */
 // StackViewGravity - The gravity areas available in a stack view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStackView/Gravity
@@ -5019,6 +5201,7 @@ const (
 	StackViewGravityTrailing StackViewGravity = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSStringDrawingOptions (1 cases) */
 // StringDrawingOptions - Constants that specify the rendering options for drawing a string.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingOptions
@@ -5031,6 +5214,7 @@ const (
 	StringDrawingUsesDeviceMetrics StringDrawingOptions = 8
 )
 
+/* debug [enums.gen.go]: Processing enum NSTabPosition (5 cases) */
 // TabPosition enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/TabPosition-swift.enum
@@ -5054,6 +5238,7 @@ const (
 	TabPositionTop TabPosition = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTabViewType (7 cases) */
 // TabViewType - These constants specify the tab view’s type as used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/TabType
@@ -5090,6 +5275,7 @@ const (
 	TopTabsBezelBorder TabViewType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTabViewBorderType (3 cases) */
 // TabViewBorderType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabView/TabViewBorderType-swift.enum
@@ -5107,6 +5293,7 @@ const (
 	TabViewBorderTypeNone TabViewBorderType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTabViewControllerTabStyle (4 cases) */
 // TabViewControllerTabStyle - Tab control style options for a tab view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/TabStyle-swift.enum
@@ -5131,6 +5318,7 @@ const (
 	TabViewControllerTabStyleUnspecified TabViewControllerTabStyle = -1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTabState (3 cases) */
 // TabState - These constants describe the current display state of a tab:
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/State
@@ -5151,6 +5339,7 @@ const (
 	SelectedTab TabState = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableColumnResizingOptions (3 cases) */
 // TableColumnResizingOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableColumn/ResizingOptions
@@ -5171,6 +5360,7 @@ const (
 	TableColumnNoResizing TableColumnResizingOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewAnimationOptions (7 cases) */
 // TableViewAnimationOptions - Specifies the animation effects to apply when inserting or removing rows.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/AnimationOptions
@@ -5207,6 +5397,7 @@ const (
 	TableViewAnimationEffectNone TableViewAnimationOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableRowActionEdge (2 cases) */
 // TableRowActionEdge - These constants define table row edges on which row actions are attached. They are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/RowActionEdge
@@ -5223,6 +5414,7 @@ const (
 	TableRowActionEdgeTrailing TableRowActionEdge = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewSelectionHighlightStyle (3 cases) */
 // TableViewSelectionHighlightStyle - The following constants specify the selection highlight styles. These constants are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/SelectionHighlightStyle-swift.enum
@@ -5243,6 +5435,7 @@ const (
 	TableViewSelectionHighlightStyleSourceList TableViewSelectionHighlightStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewColumnAutoresizingStyle (6 cases) */
 // TableViewColumnAutoresizingStyle - The following constants specify the autoresizing styles. These constants are used by the  
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/ColumnAutoresizingStyle-swift.enum
@@ -5275,6 +5468,7 @@ const (
 	TableViewUniformColumnAutoresizingStyle TableViewColumnAutoresizingStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewDraggingDestinationFeedbackStyle (4 cases) */
 // TableViewDraggingDestinationFeedbackStyle - These constants specify the drag styles displayed by the table view. They’re used by 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/DraggingDestinationFeedbackStyle-swift.enum
@@ -5299,6 +5493,7 @@ const (
 	TableViewDraggingDestinationFeedbackStyleSourceList TableViewDraggingDestinationFeedbackStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewDropOperation (2 cases) */
 // TableViewDropOperation enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/DropOperation
@@ -5315,6 +5510,7 @@ const (
 	TableViewDropOn TableViewDropOperation = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewGridLineStyle (4 cases) */
 // TableViewGridLineStyle enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/GridLineStyle
@@ -5339,6 +5535,7 @@ const (
 	TableViewGridNone TableViewGridLineStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewRowSizeStyle (5 cases) */
 // TableViewRowSizeStyle - The row size style constants define the size of the rows in the table view. They are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/RowSizeStyle-swift.enum
@@ -5367,6 +5564,7 @@ const (
 	TableViewRowSizeStyleSmall TableViewRowSizeStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewStyle (5 cases) */
 // TableViewStyle - Contains the possible style values for a table view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableView/Style-swift.enum
@@ -5395,6 +5593,7 @@ const (
 	TableViewStyleSourceList TableViewStyle = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSTableViewRowActionStyle (2 cases) */
 // TableViewRowActionStyle - Constants that help define the appearance and behavior of action buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/Style-swift.enum
@@ -5411,6 +5610,7 @@ const (
 	TableViewRowActionStyleRegular TableViewRowActionStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextAlignment (5 cases) */
 // TextAlignment - Constants that specify text alignment.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlignment
@@ -5439,6 +5639,7 @@ const (
 	TextAlignmentRight TextAlignment = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextBlockDimension (6 cases) */
 // TextBlockDimension - The following constants specify values used by the methods 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/Dimension
@@ -5471,6 +5672,7 @@ const (
 	TextBlockWidth TextBlockDimension = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextBlockLayer (3 cases) */
 // TextBlockLayer - The following constants specify values used by the properties and methods 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/Layer
@@ -5491,6 +5693,7 @@ const (
 	TextBlockPadding TextBlockLayer = -1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextBlockValueType (2 cases) */
 // TextBlockValueType - The following constants specify values used by the methods 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/ValueType
@@ -5507,6 +5710,7 @@ const (
 	TextBlockPercentageValueType TextBlockValueType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextBlockVerticalAlignment (4 cases) */
 // TextBlockVerticalAlignment - The following constants specify values used by the property 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextBlock/VerticalAlignment-swift.enum
@@ -5531,6 +5735,7 @@ const (
 	TextBlockTopAlignment TextBlockVerticalAlignment = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextContentManagerEnumerationOptions (2 cases) */
 // TextContentManagerEnumerationOptions - Values that control the order in which the framework enumerates text elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextContentManager/EnumerationOptions
@@ -5546,6 +5751,7 @@ const (
 	TextContentManagerEnumerationOptionsNone TextContentManagerEnumerationOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextCursorAccessoryPlacement (9 cases) */
 // TextCursorAccessoryPlacement enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextCursorAccessoryPlacement
@@ -5581,6 +5787,7 @@ const (
 	TextCursorAccessoryPlacementUnspecified TextCursorAccessoryPlacement = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextFieldBezelStyle (2 cases) */
 // TextFieldBezelStyle - The style of bezel the text field displays.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextField/BezelStyle-swift.enum
@@ -5597,6 +5804,7 @@ const (
 	TextFieldSquareBezel TextFieldBezelStyle = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextFinderAction (13 cases) */
 // TextFinderAction - These constants specify the user interface item tags that correspond find action. These constants are passed to the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFinder/Action
@@ -5657,6 +5865,7 @@ const (
 	TextFinderActionShowReplaceInterface TextFinderAction = 12
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextFinderMatchingType (4 cases) */
 // TextFinderMatchingType - The following constants indicate the type of search anchor an action should perform.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextFinder/MatchingType
@@ -5681,6 +5890,7 @@ const (
 	TextFinderMatchingTypeStartsWith TextFinderMatchingType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextInputTraitType (1 cases) */
 // TextInputTraitType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInputTraitType
@@ -5692,6 +5902,7 @@ const (
 	TextInputTraitTypeYes TextInputTraitType = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextInsertionIndicatorAutomaticModeOptions (2 cases) */
 // TextInsertionIndicatorAutomaticModeOptions - Options that affect the automatic display mode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/AutomaticModeOptions-swift.struct
@@ -5702,6 +5913,7 @@ const (
 	TextInsertionIndicatorAutomaticModeOptionsShowWhileTracking TextInsertionIndicatorAutomaticModeOptions = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextInsertionIndicatorDisplayMode (1 cases) */
 // TextInsertionIndicatorDisplayMode - Constants that determine how to display the system text cursor in a custom text UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/DisplayMode-swift.enum
@@ -5713,6 +5925,7 @@ const (
 	TextInsertionIndicatorDisplayModeHidden TextInsertionIndicatorDisplayMode = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextLayoutFragmentEnumerationOptions (5 cases) */
 // TextLayoutFragmentEnumerationOptions - Values that describe options for enumerating text layout fragments.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutFragment/EnumerationOptions
@@ -5740,6 +5953,7 @@ const (
 	TextLayoutFragmentEnumerationOptionsNone TextLayoutFragmentEnumerationOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextLayoutFragmentState (4 cases) */
 // TextLayoutFragmentState - Values that describe the possible layout states.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutFragment/State-swift.enum
@@ -5764,6 +5978,7 @@ const (
 	TextLayoutFragmentStateNone TextLayoutFragmentState = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextLayoutManagerSegmentOptions (6 cases) */
 // TextLayoutManagerSegmentOptions - Values that describe where and how the framework extends segments of a selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/SegmentOptions
@@ -5795,6 +6010,7 @@ const (
 	TextLayoutManagerSegmentOptionsNone TextLayoutManagerSegmentOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextLayoutManagerSegmentType (3 cases) */
 // TextLayoutManagerSegmentType - Values that describe the rendering of selection boundaries.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLayoutManager/SegmentType
@@ -5815,6 +6031,7 @@ const (
 	TextLayoutManagerSegmentTypeStandard TextLayoutManagerSegmentType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextListOptions (1 cases) */
 // TextListOptions - Values that available options for text list items.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextList/Options
@@ -5827,6 +6044,7 @@ const (
 	TextListPrependEnclosingMarker TextListOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextMovement (9 cases) */
 // TextMovement enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextMovement
@@ -5862,6 +6080,7 @@ const (
 	TextMovementUp TextMovement = 21
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextScalingType (2 cases) */
 // TextScalingType - Constants that specify the text scaling.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextScalingType
@@ -5878,6 +6097,7 @@ const (
 	TextScalingStandard TextScalingType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextSelectionAffinity (2 cases) */
 // TextSelectionAffinity - Values that describe the visual location of the text cursor, or the direction of the non-anchored edge of the selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/Affinity-swift.enum
@@ -5894,6 +6114,7 @@ const (
 	TextSelectionAffinityUpstream TextSelectionAffinity = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextSelectionGranularity (5 cases) */
 // TextSelectionGranularity - Values that describe the different granularities available to make a selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/Granularity-swift.enum
@@ -5922,6 +6143,7 @@ const (
 	TextSelectionGranularityWord TextSelectionGranularity = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextSelectionNavigationDestination (7 cases) */
 // TextSelectionNavigationDestination - Values that affect how the framework handles navigation across different textual boundaries during a selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation/Destination
@@ -5958,6 +6180,7 @@ const (
 	TextSelectionNavigationDestinationWord TextSelectionNavigationDestination = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextSelectionNavigationDirection (6 cases) */
 // TextSelectionNavigationDirection - Values that describe the direction of a selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation/Direction
@@ -5990,6 +6213,7 @@ const (
 	TextSelectionNavigationDirectionUp TextSelectionNavigationDirection = 4
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextSelectionNavigationLayoutOrientation (2 cases) */
 // TextSelectionNavigationLayoutOrientation - Values that describe the possible layout orientations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation/LayoutOrientation
@@ -6006,6 +6230,7 @@ const (
 	TextSelectionNavigationLayoutOrientationVertical TextSelectionNavigationLayoutOrientation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextSelectionNavigationModifier (3 cases) */
 // TextSelectionNavigationModifier - Values that describe how the framework handles different kinds of selection modifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation/Modifier
@@ -6026,6 +6251,7 @@ const (
 	TextSelectionNavigationModifierVisual TextSelectionNavigationModifier = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextSelectionNavigationWritingDirection (2 cases) */
 // TextSelectionNavigationWritingDirection - Values that describe the writing direction inside a text selection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelectionNavigation/WritingDirection
@@ -6042,6 +6268,7 @@ const (
 	TextSelectionNavigationWritingDirectionRightToLeft TextSelectionNavigationWritingDirection = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextStorageEditActions (2 cases) */
 // TextStorageEditActions - Constants that indicate the types of changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextStorageEditActions
@@ -6058,6 +6285,7 @@ const (
 	TextStorageEditedCharacters TextStorageEditActions = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTextTableLayoutAlgorithm (2 cases) */
 // TextTableLayoutAlgorithm - These constants, specifying the type of text table layout algorithm, are used with 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/LayoutAlgorithm-swift.enum
@@ -6074,6 +6302,7 @@ const (
 	TextTableFixedLayoutAlgorithm TextTableLayoutAlgorithm = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTintProminence (4 cases) */
 // TintProminence - Controls how strongly the tint color applies in a view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTintProminence
@@ -6094,6 +6323,7 @@ const (
 	TintProminenceSecondary TintProminence = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSTitlebarSeparatorStyle (4 cases) */
 // TitlebarSeparatorStyle - Styles that determine the type of separator displayed between the title bar and content of a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarSeparatorStyle
@@ -6118,6 +6348,7 @@ const (
 	TitlebarSeparatorStyleShadow TitlebarSeparatorStyle = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSTokenStyle (5 cases) */
 // TokenStyle - The NSTokenStyle constants define how tokens are displayed and editable in the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/TokenStyle-swift.enum
@@ -6141,6 +6372,7 @@ const (
 	TokenStyleSquared TokenStyle = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSToolbarDisplayMode (4 cases) */
 // ToolbarDisplayMode - Constants that indicate whether the toolbar displays items using a name, icon, or combination of elements.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/DisplayMode-swift.enum
@@ -6165,6 +6397,7 @@ const (
 	ToolbarDisplayModeLabelOnly ToolbarDisplayMode = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSToolbarSizeMode (3 cases) */
 // ToolbarSizeMode - Constants that specify toolbar display modes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/SizeMode-swift.enum
@@ -6185,6 +6418,7 @@ const (
 	ToolbarSizeModeSmall ToolbarSizeMode = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSToolbarItemStyle (2 cases) */
 // ToolbarItemStyle enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/Style-swift.enum
@@ -6199,6 +6433,7 @@ const (
 	ToolbarItemStyleProminent ToolbarItemStyle = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSToolbarItemGroupControlRepresentation (3 cases) */
 // ToolbarItemGroupControlRepresentation enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/ControlRepresentation-swift.enum
@@ -6216,6 +6451,7 @@ const (
 	ToolbarItemGroupControlRepresentationExpanded ToolbarItemGroupControlRepresentation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSToolbarItemGroupSelectionMode (3 cases) */
 // ToolbarItemGroupSelectionMode - A value that indicates how a grouped toolbar item selects its subitems.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItemGroup/SelectionMode-swift.enum
@@ -6236,6 +6472,7 @@ const (
 	ToolbarItemGroupSelectionModeSelectOne ToolbarItemGroupSelectionMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTouchPhase (7 cases) */
 // TouchPhase - The possible phases of a touch.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/Phase-swift.struct
@@ -6272,6 +6509,7 @@ const (
 	TouchPhaseTouching TouchPhase = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTouchType (2 cases) */
 // TouchType - A bit mask identifying a direct or indirect touch type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/TouchType
@@ -6288,6 +6526,7 @@ const (
 	TouchTypeIndirect TouchType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSTouchTypeMask (2 cases) */
 // TouchTypeMask - A bit mask identifying a direct or indirect touch type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/TouchTypeMask
@@ -6304,6 +6543,7 @@ const (
 	TouchTypeMaskIndirect TouchTypeMask = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSTypesetterControlCharacterAction (6 cases) */
 // TypesetterControlCharacterAction - The following constants are possible values returned by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTypesetterControlCharacterAction
@@ -6336,6 +6576,7 @@ const (
 	TypesetterZeroAdvancementAction TypesetterControlCharacterAction = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSUnderlineStyle (10 cases) */
 // UnderlineStyle - Constants for the underline style and strikethrough style attribute keys.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUnderlineStyle
@@ -6384,6 +6625,7 @@ const (
 	UnderlineStyleThick UnderlineStyle = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSUserInterfaceLayoutDirection (2 cases) */
 // UserInterfaceLayoutDirection - Specifies the directional flow of the user interface.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceLayoutDirection
@@ -6400,6 +6642,7 @@ const (
 	UserInterfaceLayoutDirectionRightToLeft UserInterfaceLayoutDirection = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSUserInterfaceLayoutOrientation (2 cases) */
 // UserInterfaceLayoutOrientation - The stack view layout directions, and user interface axes for hugging priority and clipping resistance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceLayoutOrientation
@@ -6416,6 +6659,7 @@ const (
 	UserInterfaceLayoutOrientationVertical UserInterfaceLayoutOrientation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSVerticalDirections (3 cases) */
 // VerticalDirections - The directions on the vertical axis.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVerticalDirections
@@ -6436,6 +6680,7 @@ const (
 	VerticalDirectionsUp VerticalDirections = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSAutoresizingMaskOptions (7 cases) */
 // AutoresizingMaskOptions - Constants that specify the autoresizing behaviors for views.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/AutoresizingMask-swift.struct
@@ -6472,6 +6717,7 @@ const (
 	ViewWidthSizable AutoresizingMaskOptions = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSBackgroundStyle (4 cases) */
 // BackgroundStyle - Background styles to apply to a view’s cell.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/BackgroundStyle
@@ -6496,6 +6742,7 @@ const (
 	BackgroundStyleRaised BackgroundStyle = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSViewLayerContentsPlacement (12 cases) */
 // ViewLayerContentsPlacement - These constants specify the location of the layer content when the content is not rerendered in response to view resizing. For more information, see the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/LayerContentsPlacement-swift.enum
@@ -6552,6 +6799,7 @@ const (
 	ViewLayerContentsPlacementTopRight ViewLayerContentsPlacement = 5
 )
 
+/* debug [enums.gen.go]: Processing enum NSViewLayerContentsRedrawPolicy (5 cases) */
 // ViewLayerContentsRedrawPolicy - Constants that specify how layer resizing is handled when a view is layer-backed or layer-hosting. For more information, see the  
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSView/LayerContentsRedrawPolicy-swift.enum
@@ -6580,6 +6828,7 @@ const (
 	ViewLayerContentsRedrawOnSetNeedsDisplay ViewLayerContentsRedrawPolicy = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSViewControllerTransitionOptions (9 cases) */
 // ViewControllerTransitionOptions - Animation options for view transitions in a view controller.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/TransitionOptions
@@ -6624,6 +6873,7 @@ const (
 	ViewControllerTransitionNone ViewControllerTransitionOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSViewLayoutRegionAdaptivityAxis (3 cases) */
 // ViewLayoutRegionAdaptivityAxis enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewLayoutRegionAdaptivityAxis
@@ -6641,6 +6891,7 @@ const (
 	ViewLayoutRegionAdaptivityAxisVertical ViewLayoutRegionAdaptivityAxis = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSVisualEffectBlendingMode (2 cases) */
 // VisualEffectBlendingMode - Constants that specify whether the visual effect view blends with what’s either behind or within the window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/BlendingMode-swift.enum
@@ -6657,6 +6908,7 @@ const (
 	VisualEffectBlendingModeWithinWindow VisualEffectBlendingMode = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSVisualEffectMaterial (19 cases) */
 // VisualEffectMaterial - Constants to specify the material shown by the visual effect view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/Material-swift.enum
@@ -6741,6 +6993,7 @@ const (
 	VisualEffectMaterialWindowBackground VisualEffectMaterial = 10
 )
 
+/* debug [enums.gen.go]: Processing enum NSVisualEffectState (3 cases) */
 // VisualEffectState - Constants to specify how the material appearance should reflect window activity state.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSVisualEffectView/State-swift.enum
@@ -6761,6 +7014,7 @@ const (
 	VisualEffectStateInactive VisualEffectState = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowAnimationBehavior (5 cases) */
 // WindowAnimationBehavior - Constants that control the automatic window animation behavior windows use when ordering to the front or out of view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/AnimationBehavior-swift.enum
@@ -6789,6 +7043,7 @@ const (
 	WindowAnimationBehaviorUtilityWindow WindowAnimationBehavior = 4
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowBackingLocation (3 cases) */
 // WindowBackingLocation - The following constants and the related data type represent a window’s possible backing locations.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/BackingLocation-swift.enum
@@ -6809,6 +7064,7 @@ const (
 	WindowBackingLocationVideoMemory WindowBackingLocation = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSBackingStoreType (3 cases) */
 // BackingStoreType - Constants that specify how the window device buffers the drawing done in a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/BackingStoreType
@@ -6829,6 +7085,7 @@ const (
 	BackingStoreRetained BackingStoreType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowButton (6 cases) */
 // WindowButton - Constants that provide a way to access standard title bar buttons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/ButtonType
@@ -6861,6 +7118,7 @@ const (
 	WindowZoomButton WindowButton = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowCollectionBehavior (16 cases) */
 // WindowCollectionBehavior - Window collection behaviors related to Mission Control, Spaces, and Stage Manager.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/CollectionBehavior-swift.struct
@@ -6933,6 +7191,7 @@ const (
 	WindowCollectionBehaviorDefault WindowCollectionBehavior = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowDepth (3 cases) */
 // WindowDepth - A type that represents the depth, or amount of memory, for a single pixel in a window or screen.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth
@@ -6953,6 +7212,7 @@ const (
 	WindowDepthTwentyfourBitRGB WindowDepth = 520
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowNumberListOptions (2 cases) */
 // WindowNumberListOptions - Options to use when retrieving window numbers from the system.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/NumberListOptions
@@ -6969,6 +7229,7 @@ const (
 	WindowNumberListAllSpaces WindowNumberListOptions = 16
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowOcclusionState (1 cases) */
 // WindowOcclusionState - Specifies whether the window is occluded.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/OcclusionState-swift.struct
@@ -6981,6 +7242,7 @@ const (
 	WindowOcclusionStateVisible WindowOcclusionState = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowOrderingMode (3 cases) */
 // WindowOrderingMode - Constants that let you specify how a window is ordered relative to another window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/OrderingMode
@@ -7001,6 +7263,7 @@ const (
 	WindowOut WindowOrderingMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSSelectionDirection (3 cases) */
 // SelectionDirection - Constants that specify the direction a window is currently using to change the key view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/SelectionDirection
@@ -7021,6 +7284,7 @@ const (
 	SelectingPrevious SelectionDirection = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowSharingType (2 cases) */
 // WindowSharingType - Constants that represent the access levels other processes can have to a window’s content.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/SharingType-swift.enum
@@ -7037,6 +7301,7 @@ const (
 	WindowSharingReadOnly WindowSharingType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowStyleMask (13 cases) */
 // WindowStyleMask - Constants that specify the style of a window, and that you can combine with the C bitwise OR operator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/StyleMask-swift.struct
@@ -7097,6 +7362,7 @@ const (
 	WindowStyleMaskUtilityWindow WindowStyleMask = 16
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowTabbingMode (3 cases) */
 // WindowTabbingMode - The preferred tabbing behavior of a window.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/TabbingMode-swift.enum
@@ -7117,6 +7383,7 @@ const (
 	WindowTabbingModePreferred WindowTabbingMode = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowTitleVisibility (2 cases) */
 // WindowTitleVisibility - Specifies the appearance of the window’s title bar area.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/TitleVisibility-swift.enum
@@ -7133,6 +7400,7 @@ const (
 	WindowTitleVisible WindowTitleVisibility = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSWindowUserTabbingPreference (3 cases) */
 // WindowUserTabbingPreference - A value that indicates the user’s preference for window tabbing.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/UserTabbingPreference-swift.enum
@@ -7153,6 +7421,7 @@ const (
 	WindowUserTabbingPreferenceManual WindowUserTabbingPreference = 0
 )
 
+/* debug [enums.gen.go]: Processing enum NSWorkspaceAuthorizationType (3 cases) */
 // WorkspaceAuthorizationType - The types of privileged file operations that can be authorized by the user.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/AuthorizationType
@@ -7173,6 +7442,7 @@ const (
 	WorkspaceAuthorizationTypeSetAttributes WorkspaceAuthorizationType = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWorkspaceIconCreationOptions (2 cases) */
 // WorkspaceIconCreationOptions - Constants that describe options for creating icons.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/IconCreationOptions
@@ -7189,6 +7459,7 @@ const (
 	ExcludeQuickDrawElementsIconCreationOption WorkspaceIconCreationOptions = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSWorkspaceLaunchOptions (12 cases) */
 // WorkspaceLaunchOptions - Constants specifying how you want to launch an app
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/LaunchOptions
@@ -7245,6 +7516,7 @@ const (
 	WorkspaceLaunchWithoutAddingToRecents WorkspaceLaunchOptions = 3
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingDirection (3 cases) */
 // WritingDirection - Constants that specify the writing direction.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingDirection
@@ -7265,6 +7537,7 @@ const (
 	WritingDirectionRightToLeft WritingDirection = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingDirectionFormatType (2 cases) */
 // WritingDirectionFormatType - Constants for the writing direction attribute key.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingDirectionFormatType
@@ -7281,6 +7554,7 @@ const (
 	WritingDirectionOverride WritingDirectionFormatType = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingToolsBehavior (4 cases) */
 // WritingToolsBehavior - Constants that specify the Writing Tools experience for the underlying view.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsBehavior
@@ -7305,6 +7579,7 @@ const (
 	WritingToolsBehaviorNone WritingToolsBehavior = -1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingToolsCoordinatorContextScope (3 cases) */
 // WritingToolsCoordinatorContextScope - Options that indicate how much of your content Writing Tools requested.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/ContextScope
@@ -7325,6 +7600,7 @@ const (
 	WritingToolsCoordinatorContextScopeVisibleArea WritingToolsCoordinatorContextScope = 2
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingToolsCoordinatorState (4 cases) */
 // WritingToolsCoordinatorState - The states that indicate the current activity, if any, Writing Tools
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/State-swift.enum
@@ -7349,6 +7625,7 @@ const (
 	WritingToolsCoordinatorStateNoninteractive WritingToolsCoordinatorState = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingToolsCoordinatorTextAnimation (5 cases) */
 // WritingToolsCoordinatorTextAnimation - The types of animations that Writing Tools performs during an
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/TextAnimation
@@ -7377,6 +7654,7 @@ const (
 	WritingToolsCoordinatorTextAnimationTranslate WritingToolsCoordinatorTextAnimation = 9
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingToolsCoordinatorTextReplacementReason (2 cases) */
 // WritingToolsCoordinatorTextReplacementReason - Options that indicate whether Writing Tools is animating changes to
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/TextReplacementReason
@@ -7393,6 +7671,7 @@ const (
 	WritingToolsCoordinatorTextReplacementReasonNoninteractive WritingToolsCoordinatorTextReplacementReason = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingToolsCoordinatorTextUpdateReason (2 cases) */
 // WritingToolsCoordinatorTextUpdateReason - Constants that specify the reason you updated your view’s content
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsCoordinator/TextUpdateReason
@@ -7409,6 +7688,7 @@ const (
 	WritingToolsCoordinatorTextUpdateReasonUndoRedo WritingToolsCoordinatorTextUpdateReason = 1
 )
 
+/* debug [enums.gen.go]: Processing enum NSWritingToolsResultOptions (6 cases) */
 // WritingToolsResultOptions - Constants to specify what type of content to allow in Writing Tools
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWritingToolsResultOptions

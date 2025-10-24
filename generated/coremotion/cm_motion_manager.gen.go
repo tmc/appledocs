@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CMMotionManager */
+
+
+/* debug [class_header]: Header for CMMotionManager */
 // The class instance for the [MotionManager] class.
 var (
 	MotionManagerClass     _MotionManagerClass
@@ -27,10 +31,16 @@ func getMotionManagerClass() _MotionManagerClass {
 type _MotionManagerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MotionManager */
 // An interface definition for the [MotionManager] class.
 type IMotionManager interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MotionManager */
 	// properties:
 	CMErrorDomain() objc.IObject /* cross-framework: NSString */
 	IsAccelerometerActive() bool
@@ -49,29 +59,19 @@ type IMotionManager interface {
 	SetIsMagnetometerActive(value bool)
 	IsMagnetometerAvailable() bool
 	SetIsMagnetometerAvailable(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MotionManager */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The object for starting and managing motion services.
-//
-// Use a object to start the services that report movement detected by the device’s onboard sensors. Use this object to receive four types of motion data: , indicating the instantaneous acceleration of the device in three dimensional space. , indicating the instantaneous rotation around the device’s three primary axes. , indicating the device’s orientation relative to Earth’s magnetic field. , indicating key motion-related attributes such as the device’s user-initiated acceleration, its attitude, rotation rates, orientation relative to calibrated magnetic fields, and orientation relative to gravity. Core Motion’s sensor fusion algorithms provide this data. The processed device-motion data gives the device’s attitude, rotation rate, calibrated magnetic fields, the direction of gravity, and the amount of acceleration the user contributes to the device. You can receive live sensor data at a specified update interval, or you can let the sensors collect data and store it for retrieval later. With both of these approaches, call the appropriate stop method ( , , , and ) when you no longer need the data.
+/* debug [class_interface]: End interface */
 
 
-// The object for starting and managing motion services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager
-type MotionManager struct {
-	objectivec.Object
-}
 
-// MotionManagerFrom constructs a [MotionManager] from an unsafe.Pointer.
-//
-// The object for starting and managing motion services.
-func MotionManagerFrom(ptr unsafe.Pointer) MotionManager {
-	return MotionManager{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MotionManager */
 // Alloc allocates a new instance without initialization.
 func (mc _MotionManagerClass) Alloc() MotionManager {
 	rv := objc.Send[MotionManager](objc.ID(mc.class), objc.Sel("alloc"))
@@ -79,7 +79,6 @@ func (mc _MotionManagerClass) Alloc() MotionManager {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MotionManagerClass) New() MotionManager {
 	rv := objc.Send[MotionManager](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -102,8 +101,39 @@ func (m_ MotionManager) Autorelease() MotionManager {
 func NewMotionManager() MotionManager {
 	return getMotionManagerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MotionManager */
+// The object for starting and managing motion services.
+//
+// Use a object to start the services that report movement detected by the device’s onboard sensors. Use this object to receive four types of motion data: , indicating the instantaneous acceleration of the device in three dimensional space. , indicating the instantaneous rotation around the device’s three primary axes. , indicating the device’s orientation relative to Earth’s magnetic field. , indicating key motion-related attributes such as the device’s user-initiated acceleration, its attitude, rotation rates, orientation relative to calibrated magnetic fields, and orientation relative to gravity. Core Motion’s sensor fusion algorithms provide this data. The processed device-motion data gives the device’s attitude, rotation rate, calibrated magnetic fields, the direction of gravity, and the amount of acceleration the user contributes to the device. You can receive live sensor data at a specified update interval, or you can let the sensors collect data and store it for retrieval later. With both of these approaches, call the appropriate stop method ( , , , and ) when you no longer need the data.
+
+
+// The object for starting and managing motion services.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager
+type MotionManager struct {
+	objectivec.Object
+}
+
+// MotionManagerFrom constructs a [MotionManager] from an unsafe.Pointer.
+//
+// The object for starting and managing motion services.
+func MotionManagerFrom(ptr unsafe.Pointer) MotionManager {
+	return MotionManager{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MotionManager *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MotionManager */
 
 // Returns a bitmask of the available reference frames for reporting the attitude of the current device.
 //
@@ -112,8 +142,23 @@ func NewMotionManager() MotionManager {
 func (mc _MotionManagerClass) AvailableAttitudeReferenceFrames() AttitudeReferenceFrame {
 	rv := objc.Send[AttitudeReferenceFrame](objc.ID(mc.class), objc.Sel("availableAttitudeReferenceFrames"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AvailableAttitudeReferenceFrames) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MotionManager */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MotionManager */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MotionManager */
 
 // The error domain for Core Motion.
 //
@@ -122,7 +167,7 @@ func (mc _MotionManagerClass) AvailableAttitudeReferenceFrames() AttitudeReferen
 func (m_ MotionManager) CMErrorDomain() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("CMErrorDomain"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CMErrorDomain */
 
 
 // A Boolean value that indicates whether accelerometer updates are currently happening.
@@ -132,7 +177,7 @@ func (m_ MotionManager) CMErrorDomain() objc.IObject /* cross-framework: NSStrin
 func (m_ MotionManager) IsAccelerometerActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isAccelerometerActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAccelerometerActive */
 
 
 // A Boolean value that indicates whether accelerometer updates are currently happening.
@@ -141,7 +186,7 @@ func (m_ MotionManager) IsAccelerometerActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeractive
 func (m_ MotionManager) SetIsAccelerometerActive(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAccelerometerActive:"), value)
-}
+}/* debug [instance_properties/setter]: isAccelerometerActive */
 
 
 // A Boolean value that indicates whether an accelerometer is available on the device.
@@ -151,7 +196,7 @@ func (m_ MotionManager) SetIsAccelerometerActive(value bool) {
 func (m_ MotionManager) IsAccelerometerAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isAccelerometerAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAccelerometerAvailable */
 
 
 // A Boolean value that indicates whether an accelerometer is available on the device.
@@ -160,7 +205,7 @@ func (m_ MotionManager) IsAccelerometerAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isaccelerometeravailable
 func (m_ MotionManager) SetIsAccelerometerAvailable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsAccelerometerAvailable:"), value)
-}
+}/* debug [instance_properties/setter]: isAccelerometerAvailable */
 
 
 // A Boolean value that determines whether the app is receiving updates from the device-motion service.
@@ -170,7 +215,7 @@ func (m_ MotionManager) SetIsAccelerometerAvailable(value bool) {
 func (m_ MotionManager) IsDeviceMotionActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isDeviceMotionActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isDeviceMotionActive */
 
 
 // A Boolean value that determines whether the app is receiving updates from the device-motion service.
@@ -179,7 +224,7 @@ func (m_ MotionManager) IsDeviceMotionActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionactive
 func (m_ MotionManager) SetIsDeviceMotionActive(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeviceMotionActive:"), value)
-}
+}/* debug [instance_properties/setter]: isDeviceMotionActive */
 
 
 // A Boolean value that indicates whether the device-motion service is available on the device.
@@ -189,7 +234,7 @@ func (m_ MotionManager) SetIsDeviceMotionActive(value bool) {
 func (m_ MotionManager) IsDeviceMotionAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isDeviceMotionAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isDeviceMotionAvailable */
 
 
 // A Boolean value that indicates whether the device-motion service is available on the device.
@@ -198,7 +243,7 @@ func (m_ MotionManager) IsDeviceMotionAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isdevicemotionavailable
 func (m_ MotionManager) SetIsDeviceMotionAvailable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsDeviceMotionAvailable:"), value)
-}
+}/* debug [instance_properties/setter]: isDeviceMotionAvailable */
 
 
 // A Boolean value that determines whether gyroscope updates are currently happening.
@@ -208,7 +253,7 @@ func (m_ MotionManager) SetIsDeviceMotionAvailable(value bool) {
 func (m_ MotionManager) IsGyroActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isGyroActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isGyroActive */
 
 
 // A Boolean value that determines whether gyroscope updates are currently happening.
@@ -217,7 +262,7 @@ func (m_ MotionManager) IsGyroActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroactive
 func (m_ MotionManager) SetIsGyroActive(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGyroActive:"), value)
-}
+}/* debug [instance_properties/setter]: isGyroActive */
 
 
 // A Boolean value that indicates whether a gyroscope is available on the device.
@@ -227,7 +272,7 @@ func (m_ MotionManager) SetIsGyroActive(value bool) {
 func (m_ MotionManager) IsGyroAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isGyroAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isGyroAvailable */
 
 
 // A Boolean value that indicates whether a gyroscope is available on the device.
@@ -236,7 +281,7 @@ func (m_ MotionManager) IsGyroAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/isgyroavailable
 func (m_ MotionManager) SetIsGyroAvailable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsGyroAvailable:"), value)
-}
+}/* debug [instance_properties/setter]: isGyroAvailable */
 
 
 // A Boolean value that determines whether magnetometer updates are currently happening.
@@ -246,7 +291,7 @@ func (m_ MotionManager) SetIsGyroAvailable(value bool) {
 func (m_ MotionManager) IsMagnetometerActive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isMagnetometerActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isMagnetometerActive */
 
 
 // A Boolean value that determines whether magnetometer updates are currently happening.
@@ -255,7 +300,7 @@ func (m_ MotionManager) IsMagnetometerActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeractive
 func (m_ MotionManager) SetIsMagnetometerActive(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsMagnetometerActive:"), value)
-}
+}/* debug [instance_properties/setter]: isMagnetometerActive */
 
 
 // A Boolean value that indicates whether a magnetometer is available on the device.
@@ -265,7 +310,7 @@ func (m_ MotionManager) SetIsMagnetometerActive(value bool) {
 func (m_ MotionManager) IsMagnetometerAvailable() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isMagnetometerAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isMagnetometerAvailable */
 
 
 // A Boolean value that indicates whether a magnetometer is available on the device.
@@ -274,6 +319,11 @@ func (m_ MotionManager) IsMagnetometerAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmmotionmanager/ismagnetometeravailable
 func (m_ MotionManager) SetIsMagnetometerAvailable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsMagnetometerAvailable:"), value)
-}
+}/* debug [instance_properties/setter]: isMagnetometerAvailable */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CMMotionManager */
 
 

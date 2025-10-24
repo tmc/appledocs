@@ -20,3 +20,4 @@ var MediaTimingProtocol *objc.Protocol
 func init() {
 	MediaTimingProtocol = objc.GetProtocol("CAMediaTiming")
 }
+

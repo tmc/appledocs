@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/photos"
 )
@@ -90,7 +90,6 @@ func NewPHProjectSectionContent() PHProjectSectionContent {
 	return getPHProjectSectionContentClass().New()
 }
 
-
 // The aspect ratio of the full content layout, defined as width over height.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectSectionContent/aspectRatio
@@ -139,7 +138,6 @@ func (p_ PHProjectSectionContent) SectionContents() PHProjectSectionContent {
 	return rv
 }
 
-
 // SetSectionContents sets the value of the sectionContents property.
 // An array containing PHProjectionSessionContent objects.
 
@@ -157,7 +155,6 @@ func (p_ PHProjectSectionContent) Title() string {
 	return rv
 }
 
-
 // SetTitle sets the value of the title property.
 // The optional section title.
 
@@ -166,6 +163,3 @@ func (p_ PHProjectSectionContent) Title() string {
 func (p_ PHProjectSectionContent) SetTitle(value string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
-
-
-

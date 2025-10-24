@@ -33,8 +33,6 @@ type IMTRClusterMediaInput interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMediaInput
 type MTRClusterMediaInput struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterMediaInput) Autorelease() MTRClusterMediaInput {
 func NewMTRClusterMediaInput() MTRClusterMediaInput {
 	return getMTRClusterMediaInputClass().New()
 }
-
-
-
-

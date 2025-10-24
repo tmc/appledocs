@@ -37,7 +37,6 @@ type IINSendRideFeedbackIntentResponse interface {
 //
 // An object contains your app’s response to a request for feedback about a ride. After creating the response object, specify any feedback using the properties of this object. Siri and Maps display your response information to the user during the confirmation phase. You create an object in the and methods of your handler object. For more information about implementing your handler object, see .
 
-
 // Your app’s response to a send ride feedback intent.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINSendRideFeedbackIntentResponse() INSendRideFeedbackIntentResponse {
 	return getINSendRideFeedbackIntentResponseClass().New()
 }
 
-
-
 // The code indicating whether your app successfully handled the intent.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INSendRideFeedbackIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // The code indicating whether your app successfully handled the intent.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INSendRideFeedbackIntentResponse) Code() unsafe.Pointer {
 func (i_ INSendRideFeedbackIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
-
-

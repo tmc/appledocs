@@ -15,3 +15,4 @@ var accessibilityFrameProtocol *objc.Protocol
 func init() {
 	accessibilityFrameProtocol = objc.GetProtocol("accessibilityFrame")
 }
+

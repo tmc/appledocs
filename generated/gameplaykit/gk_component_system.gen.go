@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GKComponentSystem */
+
+
+/* debug [class_header]: Header for GKComponentSystem */
 // The class instance for the [ComponentSystem] class.
 var (
 	ComponentSystemClass     _ComponentSystemClass
@@ -26,43 +30,39 @@ func getComponentSystemClass() _ComponentSystemClass {
 type _ComponentSystemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ComponentSystem */
 // An interface definition for the [ComponentSystem] class.
 type IComponentSystem interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ComponentSystem */
 	// properties:
 	ComponentClass() objc.Class
-	Components() []IComponent
+	Components() []Component
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ComponentSystem */
 	// methods:
-	AddComponent(component unsafe.Pointer)
+	AddComponent(component objectivec.IObject)
 	AddComponentWithEntity(entity IGKEntity)
 	ClassForGenericArgumentAtIndex(index uint) objc.Class
-	RemoveComponent(component unsafe.Pointer)
+	RemoveComponent(component objectivec.IObject)
 	RemoveComponentWithEntity(entity IGKEntity)
-	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
+	ObjectAtIndexedSubscript(idx uint) objectivec.IObject
 	UpdateWithDeltaTime(seconds float64)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Manages periodic update messages for all component objects of a specified class.
-//
-// A object manages periodic update messages for components in a game that uses Entity-Component architecture. Use a component system to perform per-frame logic for all components of a specific class without traversing your game’s object hierarchy to dispatch update messages. Each object manages components of a specific subclass. You create a component system with the initializer, specifying the component class it will work with. Then, you register the components used by the entities in your game with the or methods. The component system will then forward any component-specific messages it receives to all registered instances of its component class. The most important of the component-specific messages is the method. Call this method from your game’s update/render loop—that is, from a method such as (SpriteKit) or (SceneKit), or from a (iOS) or (macOS) timer in a custom rendering engine. The component system then forwards to the method of all the subclass instances it manages, allowing those objects to perform per-frame update logic. For more information on Entity-Component architecture, read in .
+/* debug [class_interface]: End interface */
 
 
-// Manages periodic update messages for all component objects of a specified class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem
-type ComponentSystem struct {
-	objectivec.Object
-}
 
-// ComponentSystemFrom constructs a [ComponentSystem] from an unsafe.Pointer.
-//
-// Manages periodic update messages for all component objects of a specified class.
-func ComponentSystemFrom(ptr unsafe.Pointer) ComponentSystem {
-	return ComponentSystem{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ComponentSystem */
 // Alloc allocates a new instance without initialization.
 func (cc _ComponentSystemClass) Alloc() ComponentSystem {
 	rv := objc.Send[ComponentSystem](objc.ID(cc.class), objc.Sel("alloc"))
@@ -70,7 +70,6 @@ func (cc _ComponentSystemClass) Alloc() ComponentSystem {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ComponentSystemClass) New() ComponentSystem {
 	rv := objc.Send[ComponentSystem](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +92,35 @@ func (c_ ComponentSystem) Autorelease() ComponentSystem {
 func NewComponentSystem() ComponentSystem {
 	return getComponentSystemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ComponentSystem */
+// Manages periodic update messages for all component objects of a specified class.
+//
+// A object manages periodic update messages for components in a game that uses Entity-Component architecture. Use a component system to perform per-frame logic for all components of a specific class without traversing your game’s object hierarchy to dispatch update messages. Each object manages components of a specific subclass. You create a component system with the initializer, specifying the component class it will work with. Then, you register the components used by the entities in your game with the or methods. The component system will then forward any component-specific messages it receives to all registered instances of its component class. The most important of the component-specific messages is the method. Call this method from your game’s update/render loop—that is, from a method such as (SpriteKit) or (SceneKit), or from a (iOS) or (macOS) timer in a custom rendering engine. The component system then forwards to the method of all the subclass instances it manages, allowing those objects to perform per-frame update logic. For more information on Entity-Component architecture, read in .
+
+
+// Manages periodic update messages for all component objects of a specified class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem
+type ComponentSystem struct {
+	objectivec.Object
+}
+
+// ComponentSystemFrom constructs a [ComponentSystem] from an unsafe.Pointer.
+//
+// Manages periodic update messages for all component objects of a specified class.
+func ComponentSystemFrom(ptr unsafe.Pointer) ComponentSystem {
+	return ComponentSystem{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ComponentSystem */
 
 // Initializes a component system to manage components of the specified class.
 //
@@ -105,17 +131,31 @@ func NewComponentSystemWithComponentClass(cls objc.Class) ComponentSystem {
 	rv := objc.Send[ComponentSystem](instance.ID, objc.Sel("initWithComponentClass:"), cls)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewComponentSystemWithComponentClass */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for ComponentSystem */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ComponentSystem */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ComponentSystem */
 
 // Adds a component instance to the component system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/addComponent(_:)
-func (c_ ComponentSystem) AddComponent(component unsafe.Pointer) {
+func (c_ ComponentSystem) AddComponent(component objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addComponent:"), component)
-}
+}/* debug [instance_methods/method]: AddComponent */
 
 
 // Adds any instances of the component system’s component class in the specified entity to the component system.
@@ -124,7 +164,7 @@ func (c_ ComponentSystem) AddComponent(component unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/addComponent(foundIn:)
 func (c_ ComponentSystem) AddComponentWithEntity(entity IGKEntity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("addComponentWithEntity:"), entity)
-}
+}/* debug [instance_methods/method]: AddComponentWithEntity */
 
 
 // [Full Topic]
@@ -132,16 +172,16 @@ func (c_ ComponentSystem) AddComponentWithEntity(entity IGKEntity) {
 func (c_ ComponentSystem) ClassForGenericArgumentAtIndex(index uint) objc.Class {
 	rv := objc.Send[objc.Class](c_.ID, objc.Sel("classForGenericArgumentAtIndex:"), index)
 	return rv
-}
+}/* debug [instance_methods/method]: ClassForGenericArgumentAtIndex */
 
 
 // Removes the specified component instance from the component system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/removeComponent(_:)
-func (c_ ComponentSystem) RemoveComponent(component unsafe.Pointer) {
+func (c_ ComponentSystem) RemoveComponent(component objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeComponent:"), component)
-}
+}/* debug [instance_methods/method]: RemoveComponent */
 
 
 // Removes any instances of the component system’s component class in the specified entity from the component system.
@@ -150,17 +190,17 @@ func (c_ ComponentSystem) RemoveComponent(component unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/removeComponent(foundIn:)
 func (c_ ComponentSystem) RemoveComponentWithEntity(entity IGKEntity) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("removeComponentWithEntity:"), entity)
-}
+}/* debug [instance_methods/method]: RemoveComponentWithEntity */
 
 
 // Returns the component at the specified index in the system’s list of components.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/subscript(_:)
-func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
+func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("objectAtIndexedSubscript:"), idx)
 	return rv
-}
+}/* debug [instance_methods/method]: ObjectAtIndexedSubscript */
 
 
 // Tells all component instances managed by the system to perform their custom periodic actions.
@@ -169,8 +209,13 @@ func (c_ ComponentSystem) ObjectAtIndexedSubscript(idx uint) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/update(deltaTime:)
 func (c_ ComponentSystem) UpdateWithDeltaTime(seconds float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("updateWithDeltaTime:"), seconds)
-}
+}/* debug [instance_methods/method]: UpdateWithDeltaTime */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ComponentSystem */
 
 // The class of components managed by the component system.
 //
@@ -179,16 +224,21 @@ func (c_ ComponentSystem) UpdateWithDeltaTime(seconds float64) {
 func (c_ ComponentSystem) ComponentClass() objc.Class {
 	rv := objc.Send[objc.Class](c_.ID, objc.Sel("componentClass"))
 	return rv
-}
+}/* debug [instance_properties/getter]: componentClass */
 
 
 // The component system’s list of components.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKComponentSystem/components
-func (c_ ComponentSystem) Components() []IComponent {
+func (c_ ComponentSystem) Components() []Component {
 	rv := objc.Send[[]Component](c_.ID, objc.Sel("components"))
 	return rv
-}
+}/* debug [instance_properties/getter]: components */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GKComponentSystem */
 
 

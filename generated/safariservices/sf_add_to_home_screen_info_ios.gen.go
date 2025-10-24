@@ -26,11 +26,11 @@ func (s_ SFAddToHomeScreenInfo) Manifest() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFAddToHomeScreenInfo/websiteCookies
-func (s_ SFAddToHomeScreenInfo) WebsiteCookies() []objc.IObject /* cross-framework: HTTPCookie */ {
+func (s_ SFAddToHomeScreenInfo) WebsiteCookies() []foundation.HTTPCookie {
 	rv := objc.Send[[]foundation.HTTPCookie](s_.ID, objc.Sel("websiteCookies"))
 	return rv
 }
-func (s_ SFAddToHomeScreenInfo) SetWebsiteCookies(value []objc.IObject /* cross-framework: HTTPCookie */) {
+func (s_ SFAddToHomeScreenInfo) SetWebsiteCookies(value []foundation.HTTPCookie) {
 	s_.ID.Send(objc.RegisterName("setWebsiteCookies:"), value)
 }
 

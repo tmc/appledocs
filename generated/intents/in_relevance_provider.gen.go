@@ -36,7 +36,6 @@ type IINRelevanceProvider interface {
 
 // A parent class referenced by other Intents classes.
 
-
 // A parent class referenced by other Intents classes. [Full Topic]
 type INRelevanceProvider struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (i_ INRelevanceProvider) Autorelease() INRelevanceProvider {
 func NewINRelevanceProvider() INRelevanceProvider {
 	return getINRelevanceProviderClass().New()
 }
-
-
-
-

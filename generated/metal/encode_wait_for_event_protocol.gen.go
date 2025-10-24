@@ -20,3 +20,4 @@ var encodeWaitForEventProtocol *objc.Protocol
 func init() {
 	encodeWaitForEventProtocol = objc.GetProtocol("encodeWaitForEvent:")
 }
+

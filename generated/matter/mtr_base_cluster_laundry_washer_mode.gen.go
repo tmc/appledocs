@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRBaseClusterLaundryWasherMode */
+
+
+/* debug [class_header]: Header for MTRBaseClusterLaundryWasherMode */
 // The class instance for the [MTRBaseClusterLaundryWasherMode] class.
 var (
 	MTRBaseClusterLaundryWasherModeClass     _MTRBaseClusterLaundryWasherModeClass
@@ -26,51 +29,31 @@ func getMTRBaseClusterLaundryWasherModeClass() _MTRBaseClusterLaundryWasherModeC
 type _MTRBaseClusterLaundryWasherModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRBaseClusterLaundryWasherMode */
 // An interface definition for the [MTRBaseClusterLaundryWasherMode] class.
 type IMTRBaseClusterLaundryWasherMode interface {
 	IMTRGenericBaseCluster
+	
+/* debug [class_interface_properties]: Properties for MTRBaseClusterLaundryWasherMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRBaseClusterLaundryWasherMode */
 	// methods:
-	ChangeToModeWithParamsCompletion(params IMTRLaundryWasherModeClusterChangeToModeParams, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer)
 	ReadAttributeCurrentModeWithCompletion(completion unsafe.Pointer)
-	ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer)
-	ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeSupportedModesWithCompletion(completion unsafe.Pointer)
-	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeCurrentModeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeSupportedModesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Cluster Laundry Washer Mode
-//
-// Attributes and commands for selecting a mode from a list of supported options.
+/* debug [class_interface]: End interface */
 
 
-// Cluster Laundry Washer Mode
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode
-type MTRBaseClusterLaundryWasherMode struct {
-	MTRGenericBaseCluster
-}
 
-// MTRBaseClusterLaundryWasherModeFrom constructs a [MTRBaseClusterLaundryWasherMode] from an unsafe.Pointer.
-//
-// Cluster Laundry Washer Mode
-func MTRBaseClusterLaundryWasherModeFrom(ptr unsafe.Pointer) MTRBaseClusterLaundryWasherMode {
-	return MTRBaseClusterLaundryWasherMode{
-		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRBaseClusterLaundryWasherMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRBaseClusterLaundryWasherModeClass) Alloc() MTRBaseClusterLaundryWasherMode {
 	rv := objc.Send[MTRBaseClusterLaundryWasherMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -78,7 +61,6 @@ func (mc _MTRBaseClusterLaundryWasherModeClass) Alloc() MTRBaseClusterLaundryWas
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRBaseClusterLaundryWasherModeClass) New() MTRBaseClusterLaundryWasherMode {
 	rv := objc.Send[MTRBaseClusterLaundryWasherMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,175 +83,67 @@ func (m_ MTRBaseClusterLaundryWasherMode) Autorelease() MTRBaseClusterLaundryWas
 func NewMTRBaseClusterLaundryWasherMode() MTRBaseClusterLaundryWasherMode {
 	return getMTRBaseClusterLaundryWasherModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRBaseClusterLaundryWasherMode */
+// Cluster Laundry Washer Mode
+//
+// Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Laundry Washer Mode
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/init(device:endpointID:queue:)
-func NewMTRBaseClusterLaundryWasherModeWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRBaseClusterLaundryWasherMode {
-	instance := getMTRBaseClusterLaundryWasherModeClass().Alloc()
-	rv := objc.Send[MTRBaseClusterLaundryWasherMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode
+type MTRBaseClusterLaundryWasherMode struct {
+	MTRGenericBaseCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherModeClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherModeClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherModeClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeCurrentMode(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherModeClass) ReadAttributeCurrentModeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeCurrentModeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherModeClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherModeClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeSupportedModes(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterLaundryWasherModeClass) ReadAttributeSupportedModesWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeSupportedModesWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// Command ChangeToMode
+// MTRBaseClusterLaundryWasherModeFrom constructs a [MTRBaseClusterLaundryWasherMode] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/changeToMode(with:completion:)
-func (m_ MTRBaseClusterLaundryWasherMode) ChangeToModeWithParamsCompletion(params IMTRLaundryWasherModeClusterChangeToModeParams, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:completion:"), params, completion)
+// Cluster Laundry Washer Mode
+func MTRBaseClusterLaundryWasherModeFrom(ptr unsafe.Pointer) MTRBaseClusterLaundryWasherMode {
+	return MTRBaseClusterLaundryWasherMode{
+		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeAcceptedCommandList(completion:)
-func (m_ MTRBaseClusterLaundryWasherMode) ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithCompletion:"), completion)
-}
+
+/* debug [class_init_methods]: Init methods for MTRBaseClusterLaundryWasherMode *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeAttributeList(completion:)
-func (m_ MTRBaseClusterLaundryWasherMode) ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAttributeListWithCompletion:"), completion)
-}
+
+/* debug [class_methods]: Class methods for MTRBaseClusterLaundryWasherMode */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeClusterRevision(completion:)
-func (m_ MTRBaseClusterLaundryWasherMode) ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClusterRevisionWithCompletion:"), completion)
-}
 
+/* debug [class_properties_class]: Class properties for MTRBaseClusterLaundryWasherMode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRBaseClusterLaundryWasherMode */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeCurrentMode(completion:)
 func (m_ MTRBaseClusterLaundryWasherMode) ReadAttributeCurrentModeWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeCurrentModeWithCompletion:"), completion)
-}
+}/* debug [instance_methods/method]: ReadAttributeCurrentModeWithCompletion */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeFeatureMap(completion:)
-func (m_ MTRBaseClusterLaundryWasherMode) ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeFeatureMapWithCompletion:"), completion)
-}
+
+/* debug [instance_properties]: Instance properties for MTRBaseClusterLaundryWasherMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeGeneratedCommandList(completion:)
-func (m_ MTRBaseClusterLaundryWasherMode) ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithCompletion:"), completion)
-}
+/* debug [class.gen.go]: End class MTRBaseClusterLaundryWasherMode */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/readAttributeSupportedModes(completion:)
-func (m_ MTRBaseClusterLaundryWasherMode) ReadAttributeSupportedModesWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeSupportedModesWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterLaundryWasherMode) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterLaundryWasherMode) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterLaundryWasherMode) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/subscribeAttributeCurrentMode(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterLaundryWasherMode) SubscribeAttributeCurrentModeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeCurrentModeWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterLaundryWasherMode) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterLaundryWasherMode) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLaundryWasherMode/subscribeAttributeSupportedModes(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterLaundryWasherMode) SubscribeAttributeSupportedModesWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeSupportedModesWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
 
 

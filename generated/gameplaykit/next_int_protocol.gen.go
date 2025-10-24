@@ -20,3 +20,4 @@ var nextIntProtocol *objc.Protocol
 func init() {
 	nextIntProtocol = objc.GetProtocol("nextInt")
 }
+

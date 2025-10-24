@@ -2,6 +2,7 @@
 
 package corewlan
 
+/* debug [functions.gen.go]: Generating 18 functions for CoreWLAN */
 import (
 	"unsafe"
 
@@ -15,23 +16,23 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_CWKeychainCopyEAPIdentity func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainCopyEAPIdentity func(DataRef, unsafe.Pointer) unsafe.Pointer
 	_CWKeychainCopyEAPIdentityList func(unsafe.Pointer) unsafe.Pointer
-	_CWKeychainCopyEAPUsernameAndPassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainCopyPassword func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainCopyWiFiEAPIdentity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainDeleteEAPUsernameAndPassword func(unsafe.Pointer) unsafe.Pointer
-	_CWKeychainDeletePassword func(unsafe.Pointer) unsafe.Pointer
-	_CWKeychainDeleteWiFiEAPUsernameAndPassword func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainDeleteWiFiPassword func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainFindWiFiEAPUsernameAndPassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainFindWiFiPassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainSetEAPIdentity func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainSetEAPUsernameAndPassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainSetPassword func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainSetWiFiEAPIdentity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainSetWiFiEAPUsernameAndPassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CWKeychainSetWiFiPassword func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainCopyEAPUsernameAndPassword func(DataRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainCopyPassword func(DataRef, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainCopyWiFiEAPIdentity func(CWKeychainDomain, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainDeleteEAPUsernameAndPassword func(DataRef) unsafe.Pointer
+	_CWKeychainDeletePassword func(DataRef) unsafe.Pointer
+	_CWKeychainDeleteWiFiEAPUsernameAndPassword func(CWKeychainDomain, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainDeleteWiFiPassword func(CWKeychainDomain, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainFindWiFiEAPUsernameAndPassword func(CWKeychainDomain, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainFindWiFiPassword func(CWKeychainDomain, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainSetEAPIdentity func(DataRef, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainSetEAPUsernameAndPassword func(DataRef, StringRef, StringRef) unsafe.Pointer
+	_CWKeychainSetPassword func(DataRef, StringRef) unsafe.Pointer
+	_CWKeychainSetWiFiEAPIdentity func(CWKeychainDomain, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainSetWiFiEAPUsernameAndPassword func(CWKeychainDomain, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_CWKeychainSetWiFiPassword func(CWKeychainDomain, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_CWMergeNetworks func(unsafe.Pointer) unsafe.Pointer
 )
 
@@ -83,9 +84,9 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyEAPIdentity
-func CWKeychainCopyEAPIdentity(ssidData unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
+func CWKeychainCopyEAPIdentity(ssidData DataRef, identity unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyEAPIdentity(ssidData, identity)
-}
+}/* debug [functions.gen.go/function]: CWKeychainCopyEAPIdentity */
 
 // Finds and returns the available identities stored in the keychain.
 //
@@ -96,7 +97,7 @@ func CWKeychainCopyEAPIdentity(ssidData unsafe.Pointer, identity unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyEAPIdentityList(_:)
 func CWKeychainCopyEAPIdentityList(list unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyEAPIdentityList(list)
-}
+}/* debug [functions.gen.go/function]: CWKeychainCopyEAPIdentityList */
 
 // Finds and returns the username and password stored for corresponding network with the specified SSID.
 //
@@ -107,9 +108,9 @@ func CWKeychainCopyEAPIdentityList(list unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyEAPUsernameAndPassword
-func CWKeychainCopyEAPUsernameAndPassword(ssidData unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
+func CWKeychainCopyEAPUsernameAndPassword(ssidData DataRef, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyEAPUsernameAndPassword(ssidData, username, password)
-}
+}/* debug [functions.gen.go/function]: CWKeychainCopyEAPUsernameAndPassword */
 
 // Finds and returns the keychain password stored for the corresponding network with the specified SSID.
 //
@@ -120,9 +121,9 @@ func CWKeychainCopyEAPUsernameAndPassword(ssidData unsafe.Pointer, username unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyPassword
-func CWKeychainCopyPassword(ssidData unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
+func CWKeychainCopyPassword(ssidData DataRef, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyPassword(ssidData, password)
-}
+}/* debug [functions.gen.go/function]: CWKeychainCopyPassword */
 
 // Finds and returns the identity stored for the SSID and keychain domain you specify.
 //
@@ -131,9 +132,9 @@ func CWKeychainCopyPassword(ssidData unsafe.Pointer, password unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainCopyWiFiEAPIdentity(_:_:_:)
-func CWKeychainCopyWiFiEAPIdentity(domain unsafe.Pointer, ssid unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
+func CWKeychainCopyWiFiEAPIdentity(domain CWKeychainDomain, ssid unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainCopyWiFiEAPIdentity(domain, ssid, identity)
-}
+}/* debug [functions.gen.go/function]: CWKeychainCopyWiFiEAPIdentity */
 
 // Deletes the keychain item containing the 802.1X username and password for the specified SSID.
 //
@@ -144,9 +145,9 @@ func CWKeychainCopyWiFiEAPIdentity(domain unsafe.Pointer, ssid unsafe.Pointer, i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainDeleteEAPUsernameAndPassword
-func CWKeychainDeleteEAPUsernameAndPassword(ssidData unsafe.Pointer) unsafe.Pointer {
+func CWKeychainDeleteEAPUsernameAndPassword(ssidData DataRef) unsafe.Pointer {
 	return _CWKeychainDeleteEAPUsernameAndPassword(ssidData)
-}
+}/* debug [functions.gen.go/function]: CWKeychainDeleteEAPUsernameAndPassword */
 
 // Deletes the network password for the specified SSID from the default keychain.
 //
@@ -157,9 +158,9 @@ func CWKeychainDeleteEAPUsernameAndPassword(ssidData unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainDeletePassword
-func CWKeychainDeletePassword(ssidData unsafe.Pointer) unsafe.Pointer {
+func CWKeychainDeletePassword(ssidData DataRef) unsafe.Pointer {
 	return _CWKeychainDeletePassword(ssidData)
-}
+}/* debug [functions.gen.go/function]: CWKeychainDeletePassword */
 
 // Deletes the 802.1X username and password for the SSID and keychain domain you specify.
 //
@@ -168,9 +169,9 @@ func CWKeychainDeletePassword(ssidData unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainDeleteWiFiEAPUsernameAndPassword(_:_:)
-func CWKeychainDeleteWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe.Pointer) unsafe.Pointer {
+func CWKeychainDeleteWiFiEAPUsernameAndPassword(domain CWKeychainDomain, ssid unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainDeleteWiFiEAPUsernameAndPassword(domain, ssid)
-}
+}/* debug [functions.gen.go/function]: CWKeychainDeleteWiFiEAPUsernameAndPassword */
 
 // Deletes the password for the SSID and keychain domain you specify.
 //
@@ -179,9 +180,9 @@ func CWKeychainDeleteWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainDeleteWiFiPassword(_:_:)
-func CWKeychainDeleteWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer) unsafe.Pointer {
+func CWKeychainDeleteWiFiPassword(domain CWKeychainDomain, ssid unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainDeleteWiFiPassword(domain, ssid)
-}
+}/* debug [functions.gen.go/function]: CWKeychainDeleteWiFiPassword */
 
 // Finds and returns the 802.1X username and password stored for the SSID and keychain domain you specify.
 //
@@ -190,9 +191,9 @@ func CWKeychainDeleteWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainFindWiFiEAPUsernameAndPassword(_:_:_:_:)
-func CWKeychainFindWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
+func CWKeychainFindWiFiEAPUsernameAndPassword(domain CWKeychainDomain, ssid unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainFindWiFiEAPUsernameAndPassword(domain, ssid, username, password)
-}
+}/* debug [functions.gen.go/function]: CWKeychainFindWiFiEAPUsernameAndPassword */
 
 // Finds and returns, by reference, the password for the SSID and keychain domain you specify.
 //
@@ -201,9 +202,9 @@ func CWKeychainFindWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainFindWiFiPassword(_:_:_:)
-func CWKeychainFindWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
+func CWKeychainFindWiFiPassword(domain CWKeychainDomain, ssid unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainFindWiFiPassword(domain, ssid, password)
-}
+}/* debug [functions.gen.go/function]: CWKeychainFindWiFiPassword */
 
 // Associates an exisiting identity item to the specified SSID.
 //
@@ -214,9 +215,9 @@ func CWKeychainFindWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer, pass
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetEAPIdentity
-func CWKeychainSetEAPIdentity(ssidData unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
+func CWKeychainSetEAPIdentity(ssidData DataRef, identity unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetEAPIdentity(ssidData, identity)
-}
+}/* debug [functions.gen.go/function]: CWKeychainSetEAPIdentity */
 
 // Sets the keychain item containing the 802.1X username and password for the specified SSID.
 //
@@ -227,9 +228,9 @@ func CWKeychainSetEAPIdentity(ssidData unsafe.Pointer, identity unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetEAPUsernameAndPassword
-func CWKeychainSetEAPUsernameAndPassword(ssidData unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
+func CWKeychainSetEAPUsernameAndPassword(ssidData DataRef, username StringRef, password StringRef) unsafe.Pointer {
 	return _CWKeychainSetEAPUsernameAndPassword(ssidData, username, password)
-}
+}/* debug [functions.gen.go/function]: CWKeychainSetEAPUsernameAndPassword */
 
 // Sets the network keychain password for the specified SSID.
 //
@@ -240,9 +241,9 @@ func CWKeychainSetEAPUsernameAndPassword(ssidData unsafe.Pointer, username unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetPassword
-func CWKeychainSetPassword(ssidData unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
+func CWKeychainSetPassword(ssidData DataRef, password StringRef) unsafe.Pointer {
 	return _CWKeychainSetPassword(ssidData, password)
-}
+}/* debug [functions.gen.go/function]: CWKeychainSetPassword */
 
 // Associates an identity to the SSID and keychain domain you specify.
 //
@@ -251,9 +252,9 @@ func CWKeychainSetPassword(ssidData unsafe.Pointer, password unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetWiFiEAPIdentity(_:_:_:)
-func CWKeychainSetWiFiEAPIdentity(domain unsafe.Pointer, ssid unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
+func CWKeychainSetWiFiEAPIdentity(domain CWKeychainDomain, ssid unsafe.Pointer, identity unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetWiFiEAPIdentity(domain, ssid, identity)
-}
+}/* debug [functions.gen.go/function]: CWKeychainSetWiFiEAPIdentity */
 
 // Sets the 802.1X username and password for the SSID and keychain domain you specify.
 //
@@ -262,9 +263,9 @@ func CWKeychainSetWiFiEAPIdentity(domain unsafe.Pointer, ssid unsafe.Pointer, id
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetWiFiEAPUsernameAndPassword(_:_:_:_:)
-func CWKeychainSetWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
+func CWKeychainSetWiFiEAPUsernameAndPassword(domain CWKeychainDomain, ssid unsafe.Pointer, username unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetWiFiEAPUsernameAndPassword(domain, ssid, username, password)
-}
+}/* debug [functions.gen.go/function]: CWKeychainSetWiFiEAPUsernameAndPassword */
 
 // Sets the Wi-Fi network keychain password for the SSID and keychain domain you specify.
 //
@@ -273,9 +274,9 @@ func CWKeychainSetWiFiEAPUsernameAndPassword(domain unsafe.Pointer, ssid unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWKeychainSetWiFiPassword(_:_:_:)
-func CWKeychainSetWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
+func CWKeychainSetWiFiPassword(domain CWKeychainDomain, ssid unsafe.Pointer, password unsafe.Pointer) unsafe.Pointer {
 	return _CWKeychainSetWiFiPassword(domain, ssid, password)
-}
+}/* debug [functions.gen.go/function]: CWKeychainSetWiFiPassword */
 
 // Merges the specified set of CWNetwork objects.
 //
@@ -286,7 +287,8 @@ func CWKeychainSetWiFiPassword(domain unsafe.Pointer, ssid unsafe.Pointer, passw
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWMergeNetworks(_:)
 func CWMergeNetworks(networks unsafe.Pointer) unsafe.Pointer {
 	return _CWMergeNetworks(networks)
-}
+}/* debug [functions.gen.go/function]: CWMergeNetworks */
+
 
 
 

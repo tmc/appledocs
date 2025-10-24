@@ -15,3 +15,4 @@ var TextSelectionDataSourceProtocol *objc.Protocol
 func init() {
 	TextSelectionDataSourceProtocol = objc.GetProtocol("NSTextSelectionDataSource")
 }
+

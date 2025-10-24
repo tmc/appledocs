@@ -20,3 +20,4 @@ var newIndirectCommandBufferWithDescriptorProtocol *objc.Protocol
 func init() {
 	newIndirectCommandBufferWithDescriptorProtocol = objc.GetProtocol("newIndirectCommandBufferWithDescriptor:")
 }
+

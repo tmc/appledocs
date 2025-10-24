@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class PDFThumbnailView */
+
+
+/* debug [class_header]: Header for PDFThumbnailView */
 // The class instance for the [PDFThumbnailView] class.
 var (
 	PDFThumbnailViewClass     _PDFThumbnailViewClass
@@ -28,49 +32,45 @@ func getPDFThumbnailViewClass() _PDFThumbnailViewClass {
 type _PDFThumbnailViewClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PDFThumbnailView */
 // An interface definition for the [PDFThumbnailView] class.
 type IPDFThumbnailView interface {
 	appkit.IView
+	
+/* debug [class_interface_properties]: Properties for PDFThumbnailView */
 	// properties:
 	AllowsDragging() bool
 	SetAllowsDragging(value bool)
 	AllowsMultipleSelection() bool
 	SetAllowsMultipleSelection(value bool)
-	BackgroundColor() objc.IObject /* cross-framework: Color */
-	SetBackgroundColor(value objc.IObject /* cross-framework: Color */)
-	LabelFont() objc.IObject /* cross-framework: Font */
-	SetLabelFont(value objc.IObject /* cross-framework: Font */)
+	BackgroundColor() appkit.Color
+	SetBackgroundColor(value appkit.Color)
+	LabelFont() appkit.Font
+	SetLabelFont(value appkit.Font)
 	MaximumNumberOfColumns() uint
 	SetMaximumNumberOfColumns(value uint)
 	PDFView() IPDFView
 	SetPDFView(value IPDFView)
-	SelectedPages() []IPDFPage
-	ThumbnailSize() objc.IObject /* cross-framework: Size */
-	SetThumbnailSize(value objc.IObject /* cross-framework: Size */)
+	SelectedPages() []PDFPage
+	ThumbnailSize() corefoundation.CGSize
+	SetThumbnailSize(value corefoundation.CGSize)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PDFThumbnailView */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that contains a set of thumbnails, each of which represents a page in a PDF document.
 
 
-// An object that contains a set of thumbnails, each of which represents a page in a PDF document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView
-type PDFThumbnailView struct {
-	appkit.View
-}
-
-// PDFThumbnailViewFrom constructs a [PDFThumbnailView] from an unsafe.Pointer.
-//
-// An object that contains a set of thumbnails, each of which represents a page in a PDF document.
-func PDFThumbnailViewFrom(ptr unsafe.Pointer) PDFThumbnailView {
-	return PDFThumbnailView{
-		View: appkit.ViewFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for PDFThumbnailView */
 // Alloc allocates a new instance without initialization.
 func (pc _PDFThumbnailViewClass) Alloc() PDFThumbnailView {
 	rv := objc.Send[PDFThumbnailView](objc.ID(pc.class), objc.Sel("alloc"))
@@ -78,7 +78,6 @@ func (pc _PDFThumbnailViewClass) Alloc() PDFThumbnailView {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PDFThumbnailViewClass) New() PDFThumbnailView {
 	rv := objc.Send[PDFThumbnailView](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,8 +100,54 @@ func (p_ PDFThumbnailView) Autorelease() PDFThumbnailView {
 func NewPDFThumbnailView() PDFThumbnailView {
 	return getPDFThumbnailViewClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PDFThumbnailView */
+// An object that contains a set of thumbnails, each of which represents a page in a PDF document.
+
+
+// An object that contains a set of thumbnails, each of which represents a page in a PDF document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView
+type PDFThumbnailView struct {
+	appkit.View
+}
+
+// PDFThumbnailViewFrom constructs a [PDFThumbnailView] from an unsafe.Pointer.
+//
+// An object that contains a set of thumbnails, each of which represents a page in a PDF document.
+func PDFThumbnailViewFrom(ptr unsafe.Pointer) PDFThumbnailView {
+	return PDFThumbnailView{
+		View: appkit.ViewFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PDFThumbnailView *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PDFThumbnailView */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PDFThumbnailView */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PDFThumbnailView */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PDFThumbnailView */
 
 // Returns a Boolean value indicating whether users can drag thumbnails (that is, re-order pages in the document) within the thumbnail view.
 //
@@ -111,7 +156,7 @@ func NewPDFThumbnailView() PDFThumbnailView {
 func (p_ PDFThumbnailView) AllowsDragging() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsDragging"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allowsDragging */
 
 
 // Returns a Boolean value indicating whether users can drag thumbnails (that is, re-order pages in the document) within the thumbnail view.
@@ -120,7 +165,7 @@ func (p_ PDFThumbnailView) AllowsDragging() bool {
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/allowsDragging
 func (p_ PDFThumbnailView) SetAllowsDragging(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsDragging:"), value)
-}
+}/* debug [instance_properties/setter]: allowsDragging */
 
 
 // Returns a Boolean value indicating whether users can select multiple thumbnails in the thumbnail view at one time.
@@ -130,7 +175,7 @@ func (p_ PDFThumbnailView) SetAllowsDragging(value bool) {
 func (p_ PDFThumbnailView) AllowsMultipleSelection() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsMultipleSelection"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allowsMultipleSelection */
 
 
 // Returns a Boolean value indicating whether users can select multiple thumbnails in the thumbnail view at one time.
@@ -139,45 +184,45 @@ func (p_ PDFThumbnailView) AllowsMultipleSelection() bool {
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/allowsMultipleSelection
 func (p_ PDFThumbnailView) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
-}
+}/* debug [instance_properties/setter]: allowsMultipleSelection */
 
 
 // Returns the color used in the background of the thumbnail view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/backgroundColor
-func (p_ PDFThumbnailView) BackgroundColor() objc.IObject /* cross-framework: Color */ {
+func (p_ PDFThumbnailView) BackgroundColor() appkit.Color {
 	rv := objc.Send[appkit.Color](p_.ID, objc.Sel("backgroundColor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: backgroundColor */
 
 
 // Returns the color used in the background of the thumbnail view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/backgroundColor
-func (p_ PDFThumbnailView) SetBackgroundColor(value objc.IObject /* cross-framework: Color */) {
+func (p_ PDFThumbnailView) SetBackgroundColor(value appkit.Color) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setBackgroundColor:"), value)
-}
+}/* debug [instance_properties/setter]: backgroundColor */
 
 
 // Returns the font used to label the thumbnails.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/labelFont
-func (p_ PDFThumbnailView) LabelFont() objc.IObject /* cross-framework: Font */ {
+func (p_ PDFThumbnailView) LabelFont() appkit.Font {
 	rv := objc.Send[appkit.Font](p_.ID, objc.Sel("labelFont"))
 	return rv
-}
+}/* debug [instance_properties/getter]: labelFont */
 
 
 // Returns the font used to label the thumbnails.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/labelFont
-func (p_ PDFThumbnailView) SetLabelFont(value objc.IObject /* cross-framework: Font */) {
+func (p_ PDFThumbnailView) SetLabelFont(value appkit.Font) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLabelFont:"), value)
-}
+}/* debug [instance_properties/setter]: labelFont */
 
 
 // Returns the maximum number of columns of thumbnails the thumbnail view can display.
@@ -187,7 +232,7 @@ func (p_ PDFThumbnailView) SetLabelFont(value objc.IObject /* cross-framework: F
 func (p_ PDFThumbnailView) MaximumNumberOfColumns() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("maximumNumberOfColumns"))
 	return rv
-}
+}/* debug [instance_properties/getter]: maximumNumberOfColumns */
 
 
 // Returns the maximum number of columns of thumbnails the thumbnail view can display.
@@ -196,7 +241,7 @@ func (p_ PDFThumbnailView) MaximumNumberOfColumns() uint {
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/maximumNumberOfColumns
 func (p_ PDFThumbnailView) SetMaximumNumberOfColumns(value uint) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMaximumNumberOfColumns:"), value)
-}
+}/* debug [instance_properties/setter]: maximumNumberOfColumns */
 
 
 // Returns the object associated with the thumbnail view.
@@ -206,7 +251,7 @@ func (p_ PDFThumbnailView) SetMaximumNumberOfColumns(value uint) {
 func (p_ PDFThumbnailView) PDFView() IPDFView {
 	rv := objc.Send[PDFView](p_.ID, objc.Sel("PDFView"))
 	return rv
-}
+}/* debug [instance_properties/getter]: PDFView */
 
 
 // Returns the object associated with the thumbnail view.
@@ -215,35 +260,40 @@ func (p_ PDFThumbnailView) PDFView() IPDFView {
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/pdfView
 func (p_ PDFThumbnailView) SetPDFView(value IPDFView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPDFView:"), value)
-}
+}/* debug [instance_properties/setter]: PDFView */
 
 
 // Returns an array of PDF pages that correspond to the selected thumbnails in the thumbnail view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/selectedPages
-func (p_ PDFThumbnailView) SelectedPages() []IPDFPage {
+func (p_ PDFThumbnailView) SelectedPages() []PDFPage {
 	rv := objc.Send[[]PDFPage](p_.ID, objc.Sel("selectedPages"))
 	return rv
-}
+}/* debug [instance_properties/getter]: selectedPages */
 
 
 // Returns the maximum width and height of the thumbnails in the thumbnail view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/thumbnailSize
-func (p_ PDFThumbnailView) ThumbnailSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](p_.ID, objc.Sel("thumbnailSize"))
+func (p_ PDFThumbnailView) ThumbnailSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](p_.ID, objc.Sel("thumbnailSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: thumbnailSize */
 
 
 // Returns the maximum width and height of the thumbnails in the thumbnail view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PDFKit/PDFThumbnailView/thumbnailSize
-func (p_ PDFThumbnailView) SetThumbnailSize(value objc.IObject /* cross-framework: Size */) {
+func (p_ PDFThumbnailView) SetThumbnailSize(value corefoundation.CGSize) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setThumbnailSize:"), value)
-}
+}/* debug [instance_properties/setter]: thumbnailSize */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PDFThumbnailView */
 
 

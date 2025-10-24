@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NEHotspotHelperCommand */
+
+
+/* debug [class_header]: Header for NEHotspotHelperCommand */
 // The class instance for the [NEHotspotHelperCommand] class.
 var (
 	NEHotspotHelperCommandClass     _NEHotspotHelperCommandClass
@@ -26,42 +30,30 @@ func getNEHotspotHelperCommandClass() _NEHotspotHelperCommandClass {
 type _NEHotspotHelperCommandClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEHotspotHelperCommand */
 // An interface definition for the [NEHotspotHelperCommand] class.
 type INEHotspotHelperCommand interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NEHotspotHelperCommand */
 	// properties:
-	CommandType() NEHotspotHelperCommandType
-	SetCommandType(value NEHotspotHelperCommandType)
-	Interface() unsafe.Pointer
-	SetInterface(value unsafe.Pointer)
-	Network() INEHotspotNetwork
-	SetNetwork(value INEHotspotNetwork)
-	NetworkList() INEHotspotNetwork
-	SetNetworkList(value INEHotspotNetwork)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NEHotspotHelperCommand */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A command for the hotspot helper to handle.
-//
-// NEHotspostHelperCommand objects are passed to the the Hotspot Helper app’s command handler block. The Hotspot Helper app processes the command, instantiates an object, sets the annotated or ( or commands only), and then delivers the response to the system.
+/* debug [class_interface]: End interface */
 
 
-// A command for the hotspot helper to handle.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelperCommand
-type NEHotspotHelperCommand struct {
-	objectivec.Object
-}
 
-// NEHotspotHelperCommandFrom constructs a [NEHotspotHelperCommand] from an unsafe.Pointer.
-//
-// A command for the hotspot helper to handle.
-func NEHotspotHelperCommandFrom(ptr unsafe.Pointer) NEHotspotHelperCommand {
-	return NEHotspotHelperCommand{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NEHotspotHelperCommand */
 // Alloc allocates a new instance without initialization.
 func (nc _NEHotspotHelperCommandClass) Alloc() NEHotspotHelperCommand {
 	rv := objc.Send[NEHotspotHelperCommand](objc.ID(nc.class), objc.Sel("alloc"))
@@ -69,7 +61,6 @@ func (nc _NEHotspotHelperCommandClass) Alloc() NEHotspotHelperCommand {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEHotspotHelperCommandClass) New() NEHotspotHelperCommand {
 	rv := objc.Send[NEHotspotHelperCommand](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,79 +83,57 @@ func (n_ NEHotspotHelperCommand) Autorelease() NEHotspotHelperCommand {
 func NewNEHotspotHelperCommand() NEHotspotHelperCommand {
 	return getNEHotspotHelperCommandClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The type of the command
+/* debug [class_struct]: Struct for NEHotspotHelperCommand */
+// A command for the hotspot helper to handle.
+//
+// NEHotspostHelperCommand objects are passed to the the Hotspot Helper app’s command handler block. The Hotspot Helper app processes the command, instantiates an object, sets the annotated or ( or commands only), and then delivers the response to the system.
+
+
+// A command for the hotspot helper to handle.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/commandtype
-func (n_ NEHotspotHelperCommand) CommandType() NEHotspotHelperCommandType {
-	rv := objc.Send[NEHotspotHelperCommandType](n_.ID, objc.Sel("commandType"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotHelperCommand
+type NEHotspotHelperCommand struct {
+	objectivec.Object
 }
 
-
-// The type of the command
+// NEHotspotHelperCommandFrom constructs a [NEHotspotHelperCommand] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/commandtype
-func (n_ NEHotspotHelperCommand) SetCommandType(value NEHotspotHelperCommandType) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCommandType:"), value)
+// A command for the hotspot helper to handle.
+func NEHotspotHelperCommandFrom(ptr unsafe.Pointer) NEHotspotHelperCommand {
+	return NEHotspotHelperCommand{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/interface-46dq
-func (n_ NEHotspotHelperCommand) Interface() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interface"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for NEHotspotHelperCommand *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/interface-46dq
-func (n_ NEHotspotHelperCommand) SetInterface(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setInterface:"), value)
-}
+
+/* debug [class_methods]: Class methods for NEHotspotHelperCommand */
+/* debug [class_methods]: End class methods */
 
 
-// The network associated with the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/network
-func (n_ NEHotspotHelperCommand) Network() INEHotspotNetwork {
-	rv := objc.Send[NEHotspotNetwork](n_.ID, objc.Sel("network"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for NEHotspotHelperCommand */
+/* debug [class_properties_class]: End class properties */
 
 
-// The network associated with the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/network
-func (n_ NEHotspotHelperCommand) SetNetwork(value INEHotspotNetwork) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setNetwork:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for NEHotspotHelperCommand */
+/* debug [instance_methods]: End instance methods */
 
 
-// The list of networks associated with the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/networklist
-func (n_ NEHotspotHelperCommand) NetworkList() INEHotspotNetwork {
-	rv := objc.Send[NEHotspotNetwork](n_.ID, objc.Sel("networkList"))
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for NEHotspotHelperCommand */
+/* debug [instance_properties]: End instance properties */
 
 
-// The list of networks associated with the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspothelpercommand/networklist
-func (n_ NEHotspotHelperCommand) SetNetworkList(value INEHotspotNetwork) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setNetworkList:"), value)
-}
-
+/* debug [class.gen.go]: End class NEHotspotHelperCommand */
 
 

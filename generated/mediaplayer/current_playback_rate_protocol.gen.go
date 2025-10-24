@@ -19,3 +19,4 @@ var currentPlaybackRateProtocol *objc.Protocol
 func init() {
 	currentPlaybackRateProtocol = objc.GetProtocol("currentPlaybackRate")
 }
+

@@ -20,3 +20,4 @@ var returnTextureProtocol *objc.Protocol
 func init() {
 	returnTextureProtocol = objc.GetProtocol("returnTexture:")
 }
+

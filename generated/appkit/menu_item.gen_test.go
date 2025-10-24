@@ -13,8 +13,8 @@ var _ = appkit.NewMenuItem
 // Returns an initialized instance of  .
 func ExampleNewMenuItemWithTitleActionKeyEquivalent() {
 	_ = appkit.NewMenuItemWithTitleActionKeyEquivalent(
-		"string", // string string
-		0, // selector objc.SEL
+		"string",   // string string
+		0,          // selector objc.SEL
 		"charCode", // charCode string
 	)
 	// Output:

@@ -7,8 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NEFilterSocketFlow */
+
+
+/* debug [class_header]: Header for NEFilterSocketFlow */
 // The class instance for the [NEFilterSocketFlow] class.
 var (
 	NEFilterSocketFlowClass     _NEFilterSocketFlowClass
@@ -25,44 +31,38 @@ func getNEFilterSocketFlowClass() _NEFilterSocketFlowClass {
 type _NEFilterSocketFlowClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEFilterSocketFlow */
 // An interface definition for the [NEFilterSocketFlow] class.
 type INEFilterSocketFlow interface {
 	INEFilterFlow
-	LocalEndpoint() NWEndpoint
-	SetLocalEndpoint(value INWEndpoint)
-	LocalFlowEndpoint() NWEndpoint
-	SetLocalFlowEndpoint(value INWEndpoint)
-	RemoteEndpoint() NWEndpoint
-	SetRemoteEndpoint(value INWEndpoint)
-	RemoteFlowEndpoint() NWEndpoint
-	SetRemoteFlowEndpoint(value INWEndpoint)
-	RemoteHostname() string
-	SetRemoteHostname(value string)
-	SocketFamily() unsafe.Pointer
-	SetSocketFamily(value unsafe.Pointer)
-	SocketProtocol() unsafe.Pointer
-	SetSocketProtocol(value unsafe.Pointer)
-	SocketType() unsafe.Pointer
-	SetSocketType(value unsafe.Pointer)
-}
+	
+/* debug [class_interface_properties]: Properties for NEFilterSocketFlow */
+	// properties:
+	LocalEndpoint() INWEndpoint
+	LocalFlowEndpoint() objectivec.IObject
+	RemoteEndpoint() INWEndpoint
+	RemoteFlowEndpoint() objectivec.IObject
+	RemoteHostname() objc.IObject /* cross-framework: NSString */
+	SocketFamily() int
+	SocketProtocol() int
+	SocketType() int
+/* debug [class_interface_properties]: End properties */
 
-// A flow of network data that the filter examines.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow
-type NEFilterSocketFlow struct {
-	NEFilterFlow
-}
+	
+/* debug [class_interface_methods]: Methods for NEFilterSocketFlow */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// NEFilterSocketFlowFrom constructs a [NEFilterSocketFlow] from an unsafe.Pointer.
-//
-// A flow of network data that the filter examines.
-func NEFilterSocketFlowFrom(ptr unsafe.Pointer) NEFilterSocketFlow {
-	return NEFilterSocketFlow{
-		NEFilterFlow: NEFilterFlowFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for NEFilterSocketFlow */
 // Alloc allocates a new instance without initialization.
 func (nc _NEFilterSocketFlowClass) Alloc() NEFilterSocketFlow {
 	rv := objc.Send[NEFilterSocketFlow](objc.ID(nc.class), objc.Sel("alloc"))
@@ -70,7 +70,6 @@ func (nc _NEFilterSocketFlowClass) Alloc() NEFilterSocketFlow {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEFilterSocketFlowClass) New() NEFilterSocketFlow {
 	rv := objc.Send[NEFilterSocketFlow](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,145 +92,134 @@ func (n_ NEFilterSocketFlow) Autorelease() NEFilterSocketFlow {
 func NewNEFilterSocketFlow() NEFilterSocketFlow {
 	return getNEFilterSocketFlowClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for NEFilterSocketFlow */
+// A flow of network data that the filter examines.
+
+
+// A flow of network data that the filter examines.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow
+type NEFilterSocketFlow struct {
+	NEFilterFlow
+}
+
+// NEFilterSocketFlowFrom constructs a [NEFilterSocketFlow] from an unsafe.Pointer.
+//
+// A flow of network data that the filter examines.
+func NEFilterSocketFlowFrom(ptr unsafe.Pointer) NEFilterSocketFlow {
+	return NEFilterSocketFlow{
+		NEFilterFlow: NEFilterFlowFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NEFilterSocketFlow *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NEFilterSocketFlow */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NEFilterSocketFlow */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NEFilterSocketFlow */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEFilterSocketFlow */
 
 // An object containing details about the socket’s local endpoint.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localendpoint
-func (n_ NEFilterSocketFlow) LocalEndpoint() NWEndpoint {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow/localEndpoint
+func (n_ NEFilterSocketFlow) LocalEndpoint() INWEndpoint {
 	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("localEndpoint"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localEndpoint */
 
 
-// SetLocalEndpoint sets the value of the localEndpoint property.
-// An object containing details about the socket’s local endpoint.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localendpoint
-func (n_ NEFilterSocketFlow) SetLocalEndpoint(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalEndpoint:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localflowendpoint-89z3l
-func (n_ NEFilterSocketFlow) LocalFlowEndpoint() NWEndpoint {
-	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("localFlowEndpoint"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow/localFlowEndpoint-4nt54
+func (n_ NEFilterSocketFlow) LocalFlowEndpoint() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("localFlowEndpoint"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localFlowEndpoint */
 
-
-// SetLocalFlowEndpoint sets the value of the localFlowEndpoint property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/localflowendpoint-89z3l
-func (n_ NEFilterSocketFlow) SetLocalFlowEndpoint(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalFlowEndpoint:"), value)
-}
 
 // An object containing details about the socket’s remote endpoint.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remoteendpoint
-func (n_ NEFilterSocketFlow) RemoteEndpoint() NWEndpoint {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow/remoteEndpoint
+func (n_ NEFilterSocketFlow) RemoteEndpoint() INWEndpoint {
 	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("remoteEndpoint"))
 	return rv
-}
+}/* debug [instance_properties/getter]: remoteEndpoint */
 
 
-// SetRemoteEndpoint sets the value of the remoteEndpoint property.
-// An object containing details about the socket’s remote endpoint.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remoteendpoint
-func (n_ NEFilterSocketFlow) SetRemoteEndpoint(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteEndpoint:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remoteflowendpoint-6bnas
-func (n_ NEFilterSocketFlow) RemoteFlowEndpoint() NWEndpoint {
-	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("remoteFlowEndpoint"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow/remoteFlowEndpoint-52dxr
+func (n_ NEFilterSocketFlow) RemoteFlowEndpoint() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("remoteFlowEndpoint"))
 	return rv
-}
+}/* debug [instance_properties/getter]: remoteFlowEndpoint */
 
-
-// SetRemoteFlowEndpoint sets the value of the remoteFlowEndpoint property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remoteflowendpoint-6bnas
-func (n_ NEFilterSocketFlow) SetRemoteFlowEndpoint(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteFlowEndpoint:"), value)
-}
 
 // The flow’s remote hostname, if applicable.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remotehostname
-func (n_ NEFilterSocketFlow) RemoteHostname() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("remoteHostname"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow/remoteHostname
+func (n_ NEFilterSocketFlow) RemoteHostname() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("remoteHostname"))
 	return rv
-}
+}/* debug [instance_properties/getter]: remoteHostname */
 
-
-// SetRemoteHostname sets the value of the remoteHostname property.
-// The flow’s remote hostname, if applicable.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/remotehostname
-func (n_ NEFilterSocketFlow) SetRemoteHostname(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteHostname:"), objc.String(value))
-}
 
 // The protocol family of the socket.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/socketfamily
-func (n_ NEFilterSocketFlow) SocketFamily() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("socketFamily"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow/socketFamily
+func (n_ NEFilterSocketFlow) SocketFamily() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("socketFamily"))
 	return rv
-}
+}/* debug [instance_properties/getter]: socketFamily */
 
-
-// SetSocketFamily sets the value of the socketFamily property.
-// The protocol family of the socket.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/socketfamily
-func (n_ NEFilterSocketFlow) SetSocketFamily(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSocketFamily:"), value)
-}
 
 // The protocol of the socket.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/socketprotocol
-func (n_ NEFilterSocketFlow) SocketProtocol() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("socketProtocol"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow/socketProtocol
+func (n_ NEFilterSocketFlow) SocketProtocol() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("socketProtocol"))
 	return rv
-}
+}/* debug [instance_properties/getter]: socketProtocol */
 
-
-// SetSocketProtocol sets the value of the socketProtocol property.
-// The protocol of the socket.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/socketprotocol
-func (n_ NEFilterSocketFlow) SetSocketProtocol(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSocketProtocol:"), value)
-}
 
 // The type of the socket.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/sockettype
-func (n_ NEFilterSocketFlow) SocketType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("socketType"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterSocketFlow/socketType
+func (n_ NEFilterSocketFlow) SocketType() int {
+	rv := objc.Send[int](n_.ID, objc.Sel("socketType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: socketType */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// SetSocketType sets the value of the socketType property.
-// The type of the socket.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltersocketflow/sockettype
-func (n_ NEFilterSocketFlow) SetSocketType(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSocketType:"), value)
-}
+/* debug [class.gen.go]: End class NEFilterSocketFlow */
 
 
 

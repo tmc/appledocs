@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class ASAuthorizationPublicKeyCredentialPRFAssertionInput */
+
+
+/* debug [class_header]: Header for ASAuthorizationPublicKeyCredentialPRFAssertionInput */
 // The class instance for the [AuthorizationPublicKeyCredentialPRFAssertionInput] class.
 var (
 	AuthorizationPublicKeyCredentialPRFAssertionInputClass     _AuthorizationPublicKeyCredentialPRFAssertionInputClass
@@ -27,28 +31,32 @@ func getAuthorizationPublicKeyCredentialPRFAssertionInputClass() _AuthorizationP
 type _AuthorizationPublicKeyCredentialPRFAssertionInputClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AuthorizationPublicKeyCredentialPRFAssertionInput */
 // An interface definition for the [AuthorizationPublicKeyCredentialPRFAssertionInput] class.
 type IAuthorizationPublicKeyCredentialPRFAssertionInput interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AuthorizationPublicKeyCredentialPRFAssertionInput */
 	// properties:
+	InputValues() IASAuthorizationPublicKeyCredentialPRFAssertionInputValues
 	PerCredentialInputValues() foundation.IDictionary
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AuthorizationPublicKeyCredentialPRFAssertionInput */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInput-c.class
-type AuthorizationPublicKeyCredentialPRFAssertionInput struct {
-	objectivec.Object
-}
-
-// AuthorizationPublicKeyCredentialPRFAssertionInputFrom constructs a [AuthorizationPublicKeyCredentialPRFAssertionInput] from an unsafe.Pointer.
-func AuthorizationPublicKeyCredentialPRFAssertionInputFrom(ptr unsafe.Pointer) AuthorizationPublicKeyCredentialPRFAssertionInput {
-	return AuthorizationPublicKeyCredentialPRFAssertionInput{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AuthorizationPublicKeyCredentialPRFAssertionInput */
 // Alloc allocates a new instance without initialization.
 func (ac _AuthorizationPublicKeyCredentialPRFAssertionInputClass) Alloc() AuthorizationPublicKeyCredentialPRFAssertionInput {
 	rv := objc.Send[AuthorizationPublicKeyCredentialPRFAssertionInput](objc.ID(ac.class), objc.Sel("alloc"))
@@ -56,7 +64,6 @@ func (ac _AuthorizationPublicKeyCredentialPRFAssertionInputClass) Alloc() Author
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AuthorizationPublicKeyCredentialPRFAssertionInputClass) New() AuthorizationPublicKeyCredentialPRFAssertionInput {
 	rv := objc.Send[AuthorizationPublicKeyCredentialPRFAssertionInput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,7 +86,65 @@ func (a_ AuthorizationPublicKeyCredentialPRFAssertionInput) Autorelease() Author
 func NewAuthorizationPublicKeyCredentialPRFAssertionInput() AuthorizationPublicKeyCredentialPRFAssertionInput {
 	return getAuthorizationPublicKeyCredentialPRFAssertionInputClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for AuthorizationPublicKeyCredentialPRFAssertionInput */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInput-c.class
+type AuthorizationPublicKeyCredentialPRFAssertionInput struct {
+	objectivec.Object
+}
+
+// AuthorizationPublicKeyCredentialPRFAssertionInputFrom constructs a [AuthorizationPublicKeyCredentialPRFAssertionInput] from an unsafe.Pointer.
+func AuthorizationPublicKeyCredentialPRFAssertionInputFrom(ptr unsafe.Pointer) AuthorizationPublicKeyCredentialPRFAssertionInput {
+	return AuthorizationPublicKeyCredentialPRFAssertionInput{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AuthorizationPublicKeyCredentialPRFAssertionInput */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInput-c.class/initWithInputValues:perCredentialInputValues:
+func NewAuthorizationPublicKeyCredentialPRFAssertionInputWithInputValuesPerCredentialInputValues(inputValues IASAuthorizationPublicKeyCredentialPRFAssertionInputValues, perCredentialInputValues foundation.IDictionary) AuthorizationPublicKeyCredentialPRFAssertionInput {
+	instance := getAuthorizationPublicKeyCredentialPRFAssertionInputClass().Alloc()
+	rv := objc.Send[AuthorizationPublicKeyCredentialPRFAssertionInput](instance.ID, objc.Sel("initWithInputValues:perCredentialInputValues:"), inputValues, perCredentialInputValues)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewAuthorizationPublicKeyCredentialPRFAssertionInputWithInputValuesPerCredentialInputValues */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AuthorizationPublicKeyCredentialPRFAssertionInput */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AuthorizationPublicKeyCredentialPRFAssertionInput */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AuthorizationPublicKeyCredentialPRFAssertionInput */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AuthorizationPublicKeyCredentialPRFAssertionInput */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialPRFAssertionInput-c.class/inputValues
+func (a_ AuthorizationPublicKeyCredentialPRFAssertionInput) InputValues() IASAuthorizationPublicKeyCredentialPRFAssertionInputValues {
+	rv := objc.Send[AuthorizationPublicKeyCredentialPRFAssertionInputValues](a_.ID, objc.Sel("inputValues"))
+	return rv
+}/* debug [instance_properties/getter]: inputValues */
 
 
 // [Full Topic]
@@ -87,7 +152,11 @@ func NewAuthorizationPublicKeyCredentialPRFAssertionInput() AuthorizationPublicK
 func (a_ AuthorizationPublicKeyCredentialPRFAssertionInput) PerCredentialInputValues() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("perCredentialInputValues"))
 	return rv
-}
+}/* debug [instance_properties/getter]: perCredentialInputValues */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class ASAuthorizationPublicKeyCredentialPRFAssertionInput */
 
 

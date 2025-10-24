@@ -17,5 +17,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSPasteboardReading
 type PPasteboardReading interface {
 	// Required methods
-	InitWithPasteboardPropertyListOfType(propertyList objc.IObject, type_ objc.IObject /* cross-framework: PasteboardType */) objc.ID
+	InitWithPasteboardPropertyListOfType(propertyList objc.IObject, type_ PasteboardType /* typedef */) objc.ID/* debug [protocol_interface/required_method]: InitWithPasteboardPropertyListOfType */
 }

@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GLKTextureLoader */
+
+
+/* debug [class_header]: Header for GLKTextureLoader */
 // The class instance for the [GLKTextureLoader] class.
 var (
 	GLKTextureLoaderClass     _GLKTextureLoaderClass
@@ -28,34 +32,30 @@ func getGLKTextureLoaderClass() _GLKTextureLoaderClass {
 type _GLKTextureLoaderClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GLKTextureLoader */
 // An interface definition for the [GLKTextureLoader] class.
 type IGLKTextureLoader interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GLKTextureLoader */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GLKTextureLoader */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.
-//
-// The class can load two-dimensional or cubemap textures in most image formats supported by the Image I/O framework. In iOS, it can also load textures compressed in the PVRTC format. It can load the data synchronously or asynchronously. To load textures synchronously, make a context with the desired sharegroup the current context, and then call one or more of the class methods. The returned texture info object includes details about the loaded texture. To load textures asynchronously, your initialization code allocates and initializes a new object using the sharegroup object that should be the destination for new textures. Then, to load a texture, your app calls one of the texture loader’s instance methods, passing in a completion handler block to be called when the texture has been loaded. The following OpenGL properties are set for a newly created, non-mipmapped texture: : : : : The following OpenGL properties are set for a newly created, mipmapped texture: : : : : The and classes do not manage the OpenGL texture for you. Once the texture is returned to your app, you are responsible for it. This means that after your app is finished using an OpenGL texture, it must explicitly deallocate it by calling the function.
+/* debug [class_interface]: End interface */
 
 
-// A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader
-type GLKTextureLoader struct {
-	objectivec.Object
-}
 
-// GLKTextureLoaderFrom constructs a [GLKTextureLoader] from an unsafe.Pointer.
-//
-// A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.
-func GLKTextureLoaderFrom(ptr unsafe.Pointer) GLKTextureLoader {
-	return GLKTextureLoader{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GLKTextureLoader */
 // Alloc allocates a new instance without initialization.
 func (gc _GLKTextureLoaderClass) Alloc() GLKTextureLoader {
 	rv := objc.Send[GLKTextureLoader](objc.ID(gc.class), objc.Sel("alloc"))
@@ -63,7 +63,6 @@ func (gc _GLKTextureLoaderClass) Alloc() GLKTextureLoader {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GLKTextureLoaderClass) New() GLKTextureLoader {
 	rv := objc.Send[GLKTextureLoader](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,19 +85,46 @@ func (g_ GLKTextureLoader) Autorelease() GLKTextureLoader {
 func NewGLKTextureLoader() GLKTextureLoader {
 	return getGLKTextureLoaderClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GLKTextureLoader */
+// A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.
+//
+// The class can load two-dimensional or cubemap textures in most image formats supported by the Image I/O framework. In iOS, it can also load textures compressed in the PVRTC format. It can load the data synchronously or asynchronously. To load textures synchronously, make a context with the desired sharegroup the current context, and then call one or more of the class methods. The returned texture info object includes details about the loaded texture. To load textures asynchronously, your initialization code allocates and initializes a new object using the sharegroup object that should be the destination for new textures. Then, to load a texture, your app calls one of the texture loader’s instance methods, passing in a completion handler block to be called when the texture has been loaded. The following OpenGL properties are set for a newly created, non-mipmapped texture: : : : : The following OpenGL properties are set for a newly created, mipmapped texture: : : : : The and classes do not manage the OpenGL texture for you. Once the texture is returned to your app, you are responsible for it. This means that after your app is finished using an OpenGL texture, it must explicitly deallocate it by calling the function.
+
+
+// A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader
+type GLKTextureLoader struct {
+	objectivec.Object
+}
+
+// GLKTextureLoaderFrom constructs a [GLKTextureLoader] from an unsafe.Pointer.
+//
+// A utility class that simplifies loading OpenGL or OpenGL ES texture datas from a variety of image file formats.
+func GLKTextureLoaderFrom(ptr unsafe.Pointer) GLKTextureLoader {
+	return GLKTextureLoader{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GLKTextureLoader */
 
 // Initializes a new texture loader object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/init(share:)
-func NewGLKTextureLoaderWithShareContext(context objc.IObject /* cross-framework: OpenGLContext */) GLKTextureLoader {
+func NewGLKTextureLoaderWithShareContext(context appkit.OpenGLContext) GLKTextureLoader {
 	instance := getGLKTextureLoaderClass().Alloc()
 	rv := objc.Send[GLKTextureLoader](instance.ID, objc.Sel("initWithShareContext:"), context)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewGLKTextureLoaderWithShareContext */
 
 
 // Initializes a new texture loader object.
@@ -110,9 +136,13 @@ func NewGLKTextureLoaderWithSharegroup(sharegroup unsafe.Pointer) GLKTextureLoad
 	rv := objc.Send[GLKTextureLoader](instance.ID, objc.Sel("initWithSharegroup:"), sharegroup)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewGLKTextureLoaderWithSharegroup */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for GLKTextureLoader */
 
 // Loads a cube map texture image from a single URL and creates a new texture from the data.
 //
@@ -121,7 +151,7 @@ func NewGLKTextureLoaderWithSharegroup(sharegroup unsafe.Pointer) GLKTextureLoad
 func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfURLOptionsError(url objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfURL:options:error:"), url, options, outError)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CubeMapWithContentsOfURLOptionsError) */
 
 
 // Loads a cube map texture image from a single file and creates a new texture from the data.
@@ -131,7 +161,7 @@ func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfURLOptionsError(url objc.I
 func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFileOptionsError(path objc.IObject /* cross-framework: NSString */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfFile:options:error:"), path, options, outError)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CubeMapWithContentsOfFileOptionsError) */
 
 
 // Loads a cube map texture image from a series of files and creates a new texture from the data.
@@ -141,7 +171,7 @@ func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFileOptionsError(path objc
 func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFilesOptionsError(paths []objc.ID, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("cubeMapWithContentsOfFiles:options:error:"), paths, options, outError)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CubeMapWithContentsOfFilesOptionsError) */
 
 
 // Loads a 2D texture image from a Quartz image and creates a new texture from the data.
@@ -151,7 +181,7 @@ func (gc _GLKTextureLoaderClass) CubeMapWithContentsOfFilesOptionsError(paths []
 func (gc _GLKTextureLoaderClass) TextureWithCGImageOptionsError(cgImage ImageRef /* not a class type */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithCGImage:options:error:"), cgImage, options, outError)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextureWithCGImageOptionsError) */
 
 
 // Loads a 2D texture image from a memory range and creates a new texture from the data.
@@ -161,7 +191,7 @@ func (gc _GLKTextureLoaderClass) TextureWithCGImageOptionsError(cgImage ImageRef
 func (gc _GLKTextureLoaderClass) TextureWithContentsOfDataOptionsError(data objc.IObject /* cross-framework: NSData */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfData:options:error:"), data, options, outError)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextureWithContentsOfDataOptionsError) */
 
 
 // Loads a 2D texture image from a URL and creates a new texture from the data.
@@ -171,7 +201,7 @@ func (gc _GLKTextureLoaderClass) TextureWithContentsOfDataOptionsError(data objc
 func (gc _GLKTextureLoaderClass) TextureWithContentsOfURLOptionsError(url objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfURL:options:error:"), url, options, outError)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextureWithContentsOfURLOptionsError) */
 
 
 // Loads a 2D texture image from a file and creates a new texture from the data.
@@ -181,14 +211,34 @@ func (gc _GLKTextureLoaderClass) TextureWithContentsOfURLOptionsError(url objc.I
 func (gc _GLKTextureLoaderClass) TextureWithContentsOfFileOptionsError(path objc.IObject /* cross-framework: NSString */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithContentsOfFile:options:error:"), path, options, outError)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextureWithContentsOfFileOptionsError) */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKTextureLoader/texture(withName:scaleFactor:bundle:options:)
-func (gc _GLKTextureLoaderClass) TextureWithNameScaleFactorBundleOptionsError(name objc.IObject /* cross-framework: NSString */, scaleFactor float64, bundle objc.IObject /* cross-framework: Bundle */, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
+func (gc _GLKTextureLoaderClass) TextureWithNameScaleFactorBundleOptionsError(name objc.IObject /* cross-framework: NSString */, scaleFactor float64, bundle foundation.Bundle, options foundation.IDictionary, outError unsafe.Pointer) IGLKTextureInfo {
 	rv := objc.Send[GLKTextureInfo](objc.ID(gc.class), objc.Sel("textureWithName:scaleFactor:bundle:options:error:"), name, scaleFactor, bundle, options, outError)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextureWithNameScaleFactorBundleOptionsError) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GLKTextureLoader */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GLKTextureLoader */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GLKTextureLoader */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GLKTextureLoader */
 
 

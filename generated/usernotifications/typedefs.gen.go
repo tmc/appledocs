@@ -8,4 +8,3 @@ package usernotifications
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNNotificationSoundName
 // UNNotificationSoundName is a string typedef
 type UNNotificationSoundName = string
-

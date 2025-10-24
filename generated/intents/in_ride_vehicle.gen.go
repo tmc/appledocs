@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -48,7 +48,6 @@ type IINRideVehicle interface {
 // A specific vehicle used by a ride-booking service.
 //
 // An object provides information about a vehicle in your fleet. Use a vehicle object to convey details about a specific vehicle to the user. Siri and Maps present information about your vehicle’s location on the map and let the user know when the vehicle arrives. You create an object when the user books a ride or when you provide the current status of a ride. You assign the vehicle object to the property of the object that you include with your response.
-
 
 // A specific vehicle used by a ride-booking service.
 //
@@ -96,8 +95,6 @@ func NewINRideVehicle() INRideVehicle {
 	return getINRideVehicleClass().New()
 }
 
-
-
 // The most recent location of the vehicle.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func (i_ INRideVehicle) Location() corelocation.Location {
 	return rv
 }
 
-
 // The most recent location of the vehicle.
 //
 // [Full Topic]
@@ -115,7 +111,6 @@ func (i_ INRideVehicle) Location() corelocation.Location {
 func (i_ INRideVehicle) SetLocation(value corelocation.ILocation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocation:"), value)
 }
-
 
 // The name of the vehicle’s manufacturer.
 //
@@ -126,7 +121,6 @@ func (i_ INRideVehicle) Manufacturer() string {
 	return rv
 }
 
-
 // The name of the vehicle’s manufacturer.
 //
 // [Full Topic]
@@ -134,7 +128,6 @@ func (i_ INRideVehicle) Manufacturer() string {
 func (i_ INRideVehicle) SetManufacturer(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setManufacturer:"), objc.String(value))
 }
-
 
 // The image to use for the vehicle when displaying its position on the map.
 //
@@ -145,7 +138,6 @@ func (i_ INRideVehicle) MapAnnotationImage() INImage {
 	return rv
 }
 
-
 // The image to use for the vehicle when displaying its position on the map.
 //
 // [Full Topic]
@@ -153,7 +145,6 @@ func (i_ INRideVehicle) MapAnnotationImage() INImage {
 func (i_ INRideVehicle) SetMapAnnotationImage(value INImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMapAnnotationImage:"), value)
 }
-
 
 // The model of the vehicle.
 //
@@ -164,7 +155,6 @@ func (i_ INRideVehicle) Model() string {
 	return rv
 }
 
-
 // The model of the vehicle.
 //
 // [Full Topic]
@@ -172,7 +162,6 @@ func (i_ INRideVehicle) Model() string {
 func (i_ INRideVehicle) SetModel(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setModel:"), objc.String(value))
 }
-
 
 // The text on the license plate or registration plate of the vehicle.
 //
@@ -183,7 +172,6 @@ func (i_ INRideVehicle) RegistrationPlate() string {
 	return rv
 }
 
-
 // The text on the license plate or registration plate of the vehicle.
 //
 // [Full Topic]
@@ -191,7 +179,6 @@ func (i_ INRideVehicle) RegistrationPlate() string {
 func (i_ INRideVehicle) SetRegistrationPlate(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRegistrationPlate:"), objc.String(value))
 }
-
 
 // The vehicle assigned to pick up the user.
 //
@@ -202,7 +189,6 @@ func (i_ INRideVehicle) Vehicle() INRideVehicle {
 	return rv
 }
 
-
 // The vehicle assigned to pick up the user.
 //
 // [Full Topic]
@@ -210,6 +196,3 @@ func (i_ INRideVehicle) Vehicle() INRideVehicle {
 func (i_ INRideVehicle) SetVehicle(value INRideVehicle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVehicle:"), value)
 }
-
-
-

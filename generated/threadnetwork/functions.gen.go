@@ -2,10 +2,10 @@
 
 package threadnetwork
 
+/* debug [functions.gen.go]: Generating 0 functions for ThreadNetwork */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // ThreadNetwork Functions (0 total)
 //
@@ -20,8 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-

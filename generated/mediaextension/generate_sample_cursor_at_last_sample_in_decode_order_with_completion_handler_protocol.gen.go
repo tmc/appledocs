@@ -15,3 +15,4 @@ var generateSampleCursorAtLastSampleInDecodeOrderWithCompletionHandlerProtocol *
 func init() {
 	generateSampleCursorAtLastSampleInDecodeOrderWithCompletionHandlerProtocol = objc.GetProtocol("generateSampleCursorAtLastSampleInDecodeOrderWithCompletionHandler:")
 }
+

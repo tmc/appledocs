@@ -33,8 +33,6 @@ type IMTRClusterActions interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterActions
 type MTRClusterActions struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterActions) Autorelease() MTRClusterActions {
 func NewMTRClusterActions() MTRClusterActions {
 	return getMTRClusterActionsClass().New()
 }
-
-
-
-

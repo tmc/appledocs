@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // deviceInquiryUpdatingDeviceNamesStartedProtocol is the deviceInquiryUpdatingDeviceNamesStarted: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to deviceInquiryUpdatingDeviceNamesStarted:.
 var deviceInquiryUpdatingDeviceNamesStartedProtocol *objc.Protocol
 
 func init() {
 	deviceInquiryUpdatingDeviceNamesStartedProtocol = objc.GetProtocol("deviceInquiryUpdatingDeviceNamesStarted:")
 }
+

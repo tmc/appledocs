@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSFileProviderRequest */
+
+
+/* debug [class_header]: Header for NSFileProviderRequest */
 // The class instance for the [FileProviderRequest] class.
 var (
 	FileProviderRequestClass     _FileProviderRequestClass
@@ -27,40 +31,34 @@ func getFileProviderRequestClass() _FileProviderRequestClass {
 type _FileProviderRequestClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FileProviderRequest */
 // An interface definition for the [FileProviderRequest] class.
 type IFileProviderRequest interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for FileProviderRequest */
 	// properties:
 	DomainVersion() IFileProviderDomainVersion
-	SetDomainVersion(value IFileProviderDomainVersion)
 	IsFileViewerRequest() bool
-	SetIsFileViewerRequest(value bool)
 	IsSystemRequest() bool
-	SetIsSystemRequest(value bool)
-	RequestingExecutable() objc.IObject /* cross-framework: URL */
-	SetRequestingExecutable(value objc.IObject /* cross-framework: URL */)
+	RequestingExecutable() objc.IObject /* cross-framework: NSURL */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FileProviderRequest */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that provides information about the application requesting data from the File Provider extension.
 
 
-// An object that provides information about the application requesting data from the File Provider extension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest
-type FileProviderRequest struct {
-	objectivec.Object
-}
-
-// FileProviderRequestFrom constructs a [FileProviderRequest] from an unsafe.Pointer.
-//
-// An object that provides information about the application requesting data from the File Provider extension.
-func FileProviderRequestFrom(ptr unsafe.Pointer) FileProviderRequest {
-	return FileProviderRequest{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for FileProviderRequest */
 // Alloc allocates a new instance without initialization.
 func (fc _FileProviderRequestClass) Alloc() FileProviderRequest {
 	rv := objc.Send[FileProviderRequest](objc.ID(fc.class), objc.Sel("alloc"))
@@ -68,7 +66,6 @@ func (fc _FileProviderRequestClass) Alloc() FileProviderRequest {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileProviderRequestClass) New() FileProviderRequest {
 	rv := objc.Send[FileProviderRequest](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,83 +88,96 @@ func (f_ FileProviderRequest) Autorelease() FileProviderRequest {
 func NewFileProviderRequest() FileProviderRequest {
 	return getFileProviderRequestClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for FileProviderRequest */
+// An object that provides information about the application requesting data from the File Provider extension.
+
+
+// An object that provides information about the application requesting data from the File Provider extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest
+type FileProviderRequest struct {
+	objectivec.Object
+}
+
+// FileProviderRequestFrom constructs a [FileProviderRequest] from an unsafe.Pointer.
+//
+// An object that provides information about the application requesting data from the File Provider extension.
+func FileProviderRequestFrom(ptr unsafe.Pointer) FileProviderRequest {
+	return FileProviderRequest{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FileProviderRequest *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for FileProviderRequest */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FileProviderRequest */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FileProviderRequest */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FileProviderRequest */
 
 // The version of the domain for the request.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/domainversion
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/domainVersion
 func (f_ FileProviderRequest) DomainVersion() IFileProviderDomainVersion {
 	rv := objc.Send[FileProviderDomainVersion](f_.ID, objc.Sel("domainVersion"))
 	return rv
-}
-
-
-// The version of the domain for the request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/domainversion
-func (f_ FileProviderRequest) SetDomainVersion(value IFileProviderDomainVersion) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setDomainVersion:"), value)
-}
+}/* debug [instance_properties/getter]: domainVersion */
 
 
 // A Boolean value that indicates whether the request came from Finder or related system file browsers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/isfileviewerrequest
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/isFileViewerRequest
 func (f_ FileProviderRequest) IsFileViewerRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isFileViewerRequest"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether the request came from Finder or related system file browsers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/isfileviewerrequest
-func (f_ FileProviderRequest) SetIsFileViewerRequest(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsFileViewerRequest:"), value)
-}
+}/* debug [instance_properties/getter]: isFileViewerRequest */
 
 
 // A Boolean value that indicates whether the request came from a system process.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/issystemrequest
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/isSystemRequest
 func (f_ FileProviderRequest) IsSystemRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isSystemRequest"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether the request came from a system process.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/issystemrequest
-func (f_ FileProviderRequest) SetIsSystemRequest(value bool) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setIsSystemRequest:"), value)
-}
+}/* debug [instance_properties/getter]: isSystemRequest */
 
 
 // The URL of the requesting executable.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/requestingexecutable
-func (f_ FileProviderRequest) RequestingExecutable() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](f_.ID, objc.Sel("requestingExecutable"))
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderRequest/requestingExecutable
+func (f_ FileProviderRequest) RequestingExecutable() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](f_.ID, objc.Sel("requestingExecutable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: requestingExecutable */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The URL of the requesting executable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderrequest/requestingexecutable
-func (f_ FileProviderRequest) SetRequestingExecutable(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setRequestingExecutable:"), value)
-}
+/* debug [class.gen.go]: End class NSFileProviderRequest */
 
 
 

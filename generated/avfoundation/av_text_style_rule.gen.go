@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVTextStyleRule */
+
+
+/* debug [class_header]: Header for AVTextStyleRule */
 // The class instance for the [TextStyleRule] class.
 var (
 	TextStyleRuleClass     _TextStyleRuleClass
@@ -27,40 +31,34 @@ func getTextStyleRuleClass() _TextStyleRuleClass {
 type _TextStyleRuleClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TextStyleRule */
 // An interface definition for the [TextStyleRule] class.
 type ITextStyleRule interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for TextStyleRule */
 	// properties:
+	TextMarkupAttributes() foundation.IDictionary
+	TextSelector() objc.IObject /* cross-framework: NSString */
 	TextStyleRules() IAVTextStyleRule
 	SetTextStyleRules(value IAVTextStyleRule)
-	TextMarkupAttributes() objc.IObject /* cross-framework: NSString */
-	SetTextMarkupAttributes(value objc.IObject /* cross-framework: NSString */)
-	TextSelector() objc.IObject /* cross-framework: NSString */
-	SetTextSelector(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TextStyleRule */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents the text styling rules to apply to a media item’s textual content.
-//
-// You use text style objects to format subtitles, closed captions, and other text-related content of the item. The system applies these rules to all or part of the text of the media item.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents the text styling rules to apply to a media item’s textual content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule
-type TextStyleRule struct {
-	objectivec.Object
-}
 
-// TextStyleRuleFrom constructs a [TextStyleRule] from an unsafe.Pointer.
-//
-// An object that represents the text styling rules to apply to a media item’s textual content.
-func TextStyleRuleFrom(ptr unsafe.Pointer) TextStyleRule {
-	return TextStyleRule{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for TextStyleRule */
 // Alloc allocates a new instance without initialization.
 func (tc _TextStyleRuleClass) Alloc() TextStyleRule {
 	rv := objc.Send[TextStyleRule](objc.ID(tc.class), objc.Sel("alloc"))
@@ -68,7 +66,6 @@ func (tc _TextStyleRuleClass) Alloc() TextStyleRule {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TextStyleRuleClass) New() TextStyleRule {
 	rv := objc.Send[TextStyleRule](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,7 +88,138 @@ func (t_ TextStyleRule) Autorelease() TextStyleRule {
 func NewTextStyleRule() TextStyleRule {
 	return getTextStyleRuleClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for TextStyleRule */
+// An object that represents the text styling rules to apply to a media item’s textual content.
+//
+// You use text style objects to format subtitles, closed captions, and other text-related content of the item. The system applies these rules to all or part of the text of the media item.
+
+
+// An object that represents the text styling rules to apply to a media item’s textual content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule
+type TextStyleRule struct {
+	objectivec.Object
+}
+
+// TextStyleRuleFrom constructs a [TextStyleRule] from an unsafe.Pointer.
+//
+// An object that represents the text styling rules to apply to a media item’s textual content.
+func TextStyleRuleFrom(ptr unsafe.Pointer) TextStyleRule {
+	return TextStyleRule{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TextStyleRule */
+
+// Creates a text style rule object with the specified style attributes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule/init(textMarkupAttributes:)
+func NewTextStyleRuleWithTextMarkupAttributes(textMarkupAttributes foundation.IDictionary) TextStyleRule {
+	instance := getTextStyleRuleClass().Alloc()
+	rv := objc.Send[TextStyleRule](instance.ID, objc.Sel("initWithTextMarkupAttributes:"), textMarkupAttributes)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTextStyleRuleWithTextMarkupAttributes */
+
+
+// Creates a text style rule object with the specified style attributes and text range information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule/init(textMarkupAttributes:textSelector:)
+func NewTextStyleRuleWithTextMarkupAttributesTextSelector(textMarkupAttributes foundation.IDictionary, textSelector objc.IObject /* cross-framework: NSString */) TextStyleRule {
+	instance := getTextStyleRuleClass().Alloc()
+	rv := objc.Send[TextStyleRule](instance.ID, objc.Sel("initWithTextMarkupAttributes:textSelector:"), textMarkupAttributes, textSelector)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTextStyleRuleWithTextMarkupAttributesTextSelector */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for TextStyleRule */
+
+// Converts one or more text style rules into a serializable property list object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule/propertyList(for:)
+func (tc _TextStyleRuleClass) PropertyListForTextStyleRules(textStyleRules []TextStyleRule) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("propertyListForTextStyleRules:"), textStyleRules)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PropertyListForTextStyleRules) */
+
+
+// Creates a new text style rule object using the style attributes in the specified dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule/textStyleRuleWithTextMarkupAttributes:
+func (tc _TextStyleRuleClass) TextStyleRuleWithTextMarkupAttributes(textMarkupAttributes foundation.IDictionary) ITextStyleRule {
+	rv := objc.Send[TextStyleRule](objc.ID(tc.class), objc.Sel("textStyleRuleWithTextMarkupAttributes:"), textMarkupAttributes)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextStyleRuleWithTextMarkupAttributes) */
+
+
+// Creates a new text style rule object using the specified style attributes and text range information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule/textStyleRuleWithTextMarkupAttributes:textSelector:
+func (tc _TextStyleRuleClass) TextStyleRuleWithTextMarkupAttributesTextSelector(textMarkupAttributes foundation.IDictionary, textSelector objc.IObject /* cross-framework: NSString */) ITextStyleRule {
+	rv := objc.Send[TextStyleRule](objc.ID(tc.class), objc.Sel("textStyleRuleWithTextMarkupAttributes:textSelector:"), textMarkupAttributes, textSelector)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextStyleRuleWithTextMarkupAttributesTextSelector) */
+
+
+// Creates an array of text style rule objects from the specified property-list object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule/textStyleRules(fromPropertyList:)
+func (tc _TextStyleRuleClass) TextStyleRulesFromPropertyList(plist objc.IObject) []TextStyleRule {
+	rv := objc.Send[[]TextStyleRule](objc.ID(tc.class), objc.Sel("textStyleRulesFromPropertyList:"), plist)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextStyleRulesFromPropertyList) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TextStyleRule */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TextStyleRule */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TextStyleRule */
+
+// A dictionary of text style attributes to apply to the text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule/textMarkupAttributes
+func (t_ TextStyleRule) TextMarkupAttributes() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("textMarkupAttributes"))
+	return rv
+}/* debug [instance_properties/getter]: textMarkupAttributes */
+
+
+// A string that identifies the text to which the attributes should apply.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVTextStyleRule/textSelector
+func (t_ TextStyleRule) TextSelector() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("textSelector"))
+	return rv
+}/* debug [instance_properties/getter]: textSelector */
 
 
 // An array of text style rules that specify the formatting and presentation of Web Video Text Tracks (WebVTT) subtitles.
@@ -101,7 +229,7 @@ func NewTextStyleRule() TextStyleRule {
 func (t_ TextStyleRule) TextStyleRules() IAVTextStyleRule {
 	rv := objc.Send[TextStyleRule](t_.ID, objc.Sel("textStyleRules"))
 	return rv
-}
+}/* debug [instance_properties/getter]: textStyleRules */
 
 
 // An array of text style rules that specify the formatting and presentation of Web Video Text Tracks (WebVTT) subtitles.
@@ -110,45 +238,11 @@ func (t_ TextStyleRule) TextStyleRules() IAVTextStyleRule {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritem/textstylerules
 func (t_ TextStyleRule) SetTextStyleRules(value IAVTextStyleRule) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextStyleRules:"), value)
-}
+}/* debug [instance_properties/setter]: textStyleRules */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// A dictionary of text style attributes to apply to the text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtextstylerule/textmarkupattributes
-func (t_ TextStyleRule) TextMarkupAttributes() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("textMarkupAttributes"))
-	return rv
-}
-
-
-// A dictionary of text style attributes to apply to the text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtextstylerule/textmarkupattributes
-func (t_ TextStyleRule) SetTextMarkupAttributes(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextMarkupAttributes:"), value)
-}
-
-
-// A string that identifies the text to which the attributes should apply.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtextstylerule/textselector
-func (t_ TextStyleRule) TextSelector() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("textSelector"))
-	return rv
-}
-
-
-// A string that identifies the text to which the attributes should apply.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avtextstylerule/textselector
-func (t_ TextStyleRule) SetTextSelector(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextSelector:"), value)
-}
-
+/* debug [class.gen.go]: End class AVTextStyleRule */
 
 

@@ -15,3 +15,4 @@ var draggedImageProtocol *objc.Protocol
 func init() {
 	draggedImageProtocol = objc.GetProtocol("draggedImage")
 }
+

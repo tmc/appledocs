@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureFraming */
+
+
+/* debug [class_header]: Header for AVCaptureFraming */
 // The class instance for the [CaptureFraming] class.
 var (
 	CaptureFramingClass     _CaptureFramingClass
@@ -26,37 +30,32 @@ func getCaptureFramingClass() _CaptureFramingClass {
 type _CaptureFramingClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureFraming */
 // An interface definition for the [CaptureFraming] class.
 type ICaptureFraming interface {
 	objectivec.IObject
-	ZoomFactor() float32
-	SmartFramingMonitor() AVCaptureSmartFramingMonitor
+	
+/* debug [class_interface_properties]: Properties for CaptureFraming */
+	// properties:
+	SmartFramingMonitor() IAVCaptureSmartFramingMonitor
 	SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor)
-	AspectRatio() unsafe.Pointer
-	SetAspectRatio(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureFraming */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A framing, consisting of an aspect ratio and a zoom factor.
-//
-// An provides framing recommendations using this object.
+/* debug [class_interface]: End interface */
 
 
-// A framing, consisting of an aspect ratio and a zoom factor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming
-type CaptureFraming struct {
-	objectivec.Object
-}
 
-// CaptureFramingFrom constructs a [CaptureFraming] from an unsafe.Pointer.
-//
-// A framing, consisting of an aspect ratio and a zoom factor.
-func CaptureFramingFrom(ptr unsafe.Pointer) CaptureFraming {
-	return CaptureFraming{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CaptureFraming */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureFramingClass) Alloc() CaptureFraming {
 	rv := objc.Send[CaptureFraming](objc.ID(cc.class), objc.Sel("alloc"))
@@ -64,7 +63,6 @@ func (cc _CaptureFramingClass) Alloc() CaptureFraming {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureFramingClass) New() CaptureFraming {
 	rv := objc.Send[CaptureFraming](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,27 +85,63 @@ func (c_ CaptureFraming) Autorelease() CaptureFraming {
 func NewCaptureFraming() CaptureFraming {
 	return getCaptureFramingClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A zoom factor.
+/* debug [class_struct]: Struct for CaptureFraming */
+// A framing, consisting of an aspect ratio and a zoom factor.
+//
+// An provides framing recommendations using this object.
+
+
+// A framing, consisting of an aspect ratio and a zoom factor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming/zoomFactor
-func (c_ CaptureFraming) ZoomFactor() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("zoomFactor"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureFraming
+type CaptureFraming struct {
+	objectivec.Object
 }
 
+// CaptureFramingFrom constructs a [CaptureFraming] from an unsafe.Pointer.
+//
+// A framing, consisting of an aspect ratio and a zoom factor.
+func CaptureFramingFrom(ptr unsafe.Pointer) CaptureFraming {
+	return CaptureFraming{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CaptureFraming *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CaptureFraming */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CaptureFraming */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CaptureFraming */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureFraming */
 
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
-func (c_ CaptureFraming) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
-	rv := objc.Send[AVCaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
+func (c_ CaptureFraming) SmartFramingMonitor() IAVCaptureSmartFramingMonitor {
+	rv := objc.Send[CaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: smartFramingMonitor */
 
 
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
@@ -116,26 +150,11 @@ func (c_ CaptureFraming) SmartFramingMonitor() AVCaptureSmartFramingMonitor {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
 func (c_ CaptureFraming) SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSmartFramingMonitor:"), value)
-}
+}/* debug [instance_properties/setter]: smartFramingMonitor */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// An aspect ratio.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureframing/aspectratio
-func (c_ CaptureFraming) AspectRatio() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("aspectRatio"))
-	return rv
-}
-
-
-// An aspect ratio.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureframing/aspectratio
-func (c_ CaptureFraming) SetAspectRatio(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAspectRatio:"), value)
-}
-
+/* debug [class.gen.go]: End class AVCaptureFraming */
 
 

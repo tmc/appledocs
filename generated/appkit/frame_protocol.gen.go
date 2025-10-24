@@ -15,3 +15,4 @@ var frameProtocol *objc.Protocol
 func init() {
 	frameProtocol = objc.GetProtocol("frame")
 }
+

@@ -18,3 +18,4 @@ var NIDeviceCapabilityProtocol *objc.Protocol
 func init() {
 	NIDeviceCapabilityProtocol = objc.GetProtocol("NIDeviceCapability")
 }
+

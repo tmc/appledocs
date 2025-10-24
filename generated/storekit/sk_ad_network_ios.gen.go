@@ -4,19 +4,6 @@
 
 package storekit
 
-import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
-)
-
 // iOS-only methods for AdNetwork
 
-
 // iOS-only properties
-
-
-
-
-

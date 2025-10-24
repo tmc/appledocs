@@ -20,3 +20,4 @@ var beginScopeProtocol *objc.Protocol
 func init() {
 	beginScopeProtocol = objc.GetProtocol("beginScope")
 }
+

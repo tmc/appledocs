@@ -33,8 +33,6 @@ type IMTRClusterTimeFormatLocalization interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTimeFormatLocalization
 type MTRClusterTimeFormatLocalization struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterTimeFormatLocalization) Autorelease() MTRClusterTimeFormatLoc
 func NewMTRClusterTimeFormatLocalization() MTRClusterTimeFormatLocalization {
 	return getMTRClusterTimeFormatLocalizationClass().New()
 }
-
-
-
-

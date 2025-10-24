@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class ASAuthorization */
+
+
+/* debug [class_header]: Header for ASAuthorization */
 // The class instance for the [Authorization] class.
 var (
 	AuthorizationClass     _AuthorizationClass
@@ -26,36 +30,32 @@ func getAuthorizationClass() _AuthorizationClass {
 type _AuthorizationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Authorization */
 // An interface definition for the [Authorization] class.
 type IAuthorization interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Authorization */
 	// properties:
-	Credential() AuthorizationCredential /* not a class type */
-	SetCredential(value AuthorizationCredential /* not a class type */)
-	Provider() AuthorizationProvider /* not a class type */
-	SetProvider(value AuthorizationProvider /* not a class type */)
+	Credential() unsafe.Pointer
+	Provider() unsafe.Pointer
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Authorization */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// The encapsulation of a successful authorization by a controller.
 
 
-// The encapsulation of a successful authorization by a controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization
-type Authorization struct {
-	objectivec.Object
-}
-
-// AuthorizationFrom constructs a [Authorization] from an unsafe.Pointer.
-//
-// The encapsulation of a successful authorization by a controller.
-func AuthorizationFrom(ptr unsafe.Pointer) Authorization {
-	return Authorization{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Authorization */
 // Alloc allocates a new instance without initialization.
 func (ac _AuthorizationClass) Alloc() Authorization {
 	rv := objc.Send[Authorization](objc.ID(ac.class), objc.Sel("alloc"))
@@ -63,7 +63,6 @@ func (ac _AuthorizationClass) Alloc() Authorization {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AuthorizationClass) New() Authorization {
 	rv := objc.Send[Authorization](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,45 +85,76 @@ func (a_ Authorization) Autorelease() Authorization {
 func NewAuthorization() Authorization {
 	return getAuthorizationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Authorization */
+// The encapsulation of a successful authorization by a controller.
+
+
+// The encapsulation of a successful authorization by a controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization
+type Authorization struct {
+	objectivec.Object
+}
+
+// AuthorizationFrom constructs a [Authorization] from an unsafe.Pointer.
+//
+// The encapsulation of a successful authorization by a controller.
+func AuthorizationFrom(ptr unsafe.Pointer) Authorization {
+	return Authorization{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Authorization *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for Authorization */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Authorization */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Authorization */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Authorization */
 
 // Information provided about a user after successful authentication.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/credential
-func (a_ Authorization) Credential() AuthorizationCredential /* not a class type */ {
-	rv := objc.Send[AuthorizationCredential](a_.ID, objc.Sel("credential"))
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization/credential
+func (a_ Authorization) Credential() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("credential"))
 	return rv
-}
-
-
-// Information provided about a user after successful authentication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/credential
-func (a_ Authorization) SetCredential(value AuthorizationCredential /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCredential:"), value)
-}
+}/* debug [instance_properties/getter]: credential */
 
 
 // The provider that created the request that resulted in the successful authorization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/provider
-func (a_ Authorization) Provider() AuthorizationProvider /* not a class type */ {
-	rv := objc.Send[AuthorizationProvider](a_.ID, objc.Sel("provider"))
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorization/provider
+func (a_ Authorization) Provider() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("provider"))
 	return rv
-}
+}/* debug [instance_properties/getter]: provider */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The provider that created the request that resulted in the successful authorization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorization/provider
-func (a_ Authorization) SetProvider(value AuthorizationProvider /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setProvider:"), value)
-}
+/* debug [class.gen.go]: End class ASAuthorization */
 
 
 

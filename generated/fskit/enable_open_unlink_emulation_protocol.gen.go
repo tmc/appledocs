@@ -15,3 +15,4 @@ var enableOpenUnlinkEmulationProtocol *objc.Protocol
 func init() {
 	enableOpenUnlinkEmulationProtocol = objc.GetProtocol("enableOpenUnlinkEmulation")
 }
+

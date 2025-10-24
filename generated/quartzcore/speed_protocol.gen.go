@@ -20,3 +20,4 @@ var speedProtocol *objc.Protocol
 func init() {
 	speedProtocol = objc.GetProtocol("speed")
 }
+

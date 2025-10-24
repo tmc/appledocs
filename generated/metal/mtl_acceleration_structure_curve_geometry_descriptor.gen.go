@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTLAccelerationStructureCurveGeometryDescriptor */
+
+
+/* debug [class_header]: Header for MTLAccelerationStructureCurveGeometryDescriptor */
 // The class instance for the [AccelerationStructureCurveGeometryDescriptor] class.
 var (
 	AccelerationStructureCurveGeometryDescriptorClass     _AccelerationStructureCurveGeometryDescriptorClass
@@ -25,59 +30,64 @@ func getAccelerationStructureCurveGeometryDescriptorClass() _AccelerationStructu
 type _AccelerationStructureCurveGeometryDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AccelerationStructureCurveGeometryDescriptor */
 // An interface definition for the [AccelerationStructureCurveGeometryDescriptor] class.
 type IAccelerationStructureCurveGeometryDescriptor interface {
 	IAccelerationStructureGeometryDescriptor
+	
+/* debug [class_interface_properties]: Properties for AccelerationStructureCurveGeometryDescriptor */
+	// properties:
 	ControlPointBuffer() unsafe.Pointer
 	SetControlPointBuffer(value unsafe.Pointer)
-	ControlPointBufferOffset() int
-	SetControlPointBufferOffset(value int)
-	ControlPointCount() int
-	SetControlPointCount(value int)
-	ControlPointFormat() unsafe.Pointer
-	SetControlPointFormat(value unsafe.Pointer)
-	ControlPointStride() int
-	SetControlPointStride(value int)
+	ControlPointBufferOffset() uint
+	SetControlPointBufferOffset(value uint)
+	ControlPointCount() uint
+	SetControlPointCount(value uint)
+	ControlPointFormat() AttributeFormat
+	SetControlPointFormat(value AttributeFormat)
+	ControlPointStride() uint
+	SetControlPointStride(value uint)
 	CurveBasis() CurveBasis
-	SetCurveBasis(value ICurveBasis)
+	SetCurveBasis(value CurveBasis)
 	CurveEndCaps() CurveEndCaps
-	SetCurveEndCaps(value ICurveEndCaps)
+	SetCurveEndCaps(value CurveEndCaps)
 	CurveType() CurveType
 	SetCurveType(value CurveType)
 	IndexBuffer() unsafe.Pointer
 	SetIndexBuffer(value unsafe.Pointer)
-	IndexBufferOffset() int
-	SetIndexBufferOffset(value int)
+	IndexBufferOffset() uint
+	SetIndexBufferOffset(value uint)
 	IndexType() IndexType
 	SetIndexType(value IndexType)
 	RadiusBuffer() unsafe.Pointer
 	SetRadiusBuffer(value unsafe.Pointer)
-	RadiusBufferOffset() int
-	SetRadiusBufferOffset(value int)
-	RadiusFormat() unsafe.Pointer
-	SetRadiusFormat(value unsafe.Pointer)
-	RadiusStride() int
-	SetRadiusStride(value int)
-	SegmentControlPointCount() int
-	SetSegmentControlPointCount(value int)
-	SegmentCount() int
-	SetSegmentCount(value int)
-}
+	RadiusBufferOffset() uint
+	SetRadiusBufferOffset(value uint)
+	RadiusFormat() AttributeFormat
+	SetRadiusFormat(value AttributeFormat)
+	RadiusStride() uint
+	SetRadiusStride(value uint)
+	SegmentControlPointCount() uint
+	SetSegmentControlPointCount(value uint)
+	SegmentCount() uint
+	SetSegmentCount(value uint)
+/* debug [class_interface_properties]: End properties */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor
-type AccelerationStructureCurveGeometryDescriptor struct {
-	AccelerationStructureGeometryDescriptor
-}
+	
+/* debug [class_interface_methods]: Methods for AccelerationStructureCurveGeometryDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// AccelerationStructureCurveGeometryDescriptorFrom constructs a [AccelerationStructureCurveGeometryDescriptor] from an unsafe.Pointer.
-func AccelerationStructureCurveGeometryDescriptorFrom(ptr unsafe.Pointer) AccelerationStructureCurveGeometryDescriptor {
-	return AccelerationStructureCurveGeometryDescriptor{
-		AccelerationStructureGeometryDescriptor: AccelerationStructureGeometryDescriptorFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for AccelerationStructureCurveGeometryDescriptor */
 // Alloc allocates a new instance without initialization.
 func (ac _AccelerationStructureCurveGeometryDescriptorClass) Alloc() AccelerationStructureCurveGeometryDescriptor {
 	rv := objc.Send[AccelerationStructureCurveGeometryDescriptor](objc.ID(ac.class), objc.Sel("alloc"))
@@ -85,7 +95,6 @@ func (ac _AccelerationStructureCurveGeometryDescriptorClass) Alloc() Acceleratio
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AccelerationStructureCurveGeometryDescriptorClass) New() AccelerationStructureCurveGeometryDescriptor {
 	rv := objc.Send[AccelerationStructureCurveGeometryDescriptor](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -108,262 +117,316 @@ func (a_ AccelerationStructureCurveGeometryDescriptor) Autorelease() Acceleratio
 func NewAccelerationStructureCurveGeometryDescriptor() AccelerationStructureCurveGeometryDescriptor {
 	return getAccelerationStructureCurveGeometryDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointbuffer
+
+/* debug [class_struct]: Struct for AccelerationStructureCurveGeometryDescriptor */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor
+type AccelerationStructureCurveGeometryDescriptor struct {
+	AccelerationStructureGeometryDescriptor
+}
+
+// AccelerationStructureCurveGeometryDescriptorFrom constructs a [AccelerationStructureCurveGeometryDescriptor] from an unsafe.Pointer.
+func AccelerationStructureCurveGeometryDescriptorFrom(ptr unsafe.Pointer) AccelerationStructureCurveGeometryDescriptor {
+	return AccelerationStructureCurveGeometryDescriptor{
+		AccelerationStructureGeometryDescriptor: AccelerationStructureGeometryDescriptorFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AccelerationStructureCurveGeometryDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AccelerationStructureCurveGeometryDescriptor */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/descriptor
+func (ac _AccelerationStructureCurveGeometryDescriptorClass) Descriptor() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("descriptor"))
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Descriptor) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AccelerationStructureCurveGeometryDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AccelerationStructureCurveGeometryDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AccelerationStructureCurveGeometryDescriptor */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointBuffer
 func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointBuffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlPointBuffer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlPointBuffer */
 
 
-// SetControlPointBuffer sets the value of the controlPointBuffer property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointbuffer
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointBuffer
 func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointBuffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointBuffer */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointbufferoffset
-func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointBufferOffset() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("controlPointBufferOffset"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointBufferOffset
+func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointBufferOffset() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("controlPointBufferOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlPointBufferOffset */
 
 
-// SetControlPointBufferOffset sets the value of the controlPointBufferOffset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointbufferoffset
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointBufferOffset(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointBufferOffset
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointBufferOffset(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointBufferOffset:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointBufferOffset */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointcount
-func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointCount() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("controlPointCount"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointCount
+func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointCount() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("controlPointCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlPointCount */
 
 
-// SetControlPointCount sets the value of the controlPointCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointcount
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointCount
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointCount(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointCount:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointCount */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointformat
-func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("controlPointFormat"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointFormat
+func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointFormat() AttributeFormat {
+	rv := objc.Send[AttributeFormat](a_.ID, objc.Sel("controlPointFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlPointFormat */
 
 
-// SetControlPointFormat sets the value of the controlPointFormat property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointformat
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointFormat(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointFormat
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointFormat(value AttributeFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointFormat:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointFormat */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointstride
-func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointStride() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("controlPointStride"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointStride
+func (a_ AccelerationStructureCurveGeometryDescriptor) ControlPointStride() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("controlPointStride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlPointStride */
 
 
-// SetControlPointStride sets the value of the controlPointStride property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/controlpointstride
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointStride(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/controlPointStride
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetControlPointStride(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setControlPointStride:"), value)
-}
+}/* debug [instance_properties/setter]: controlPointStride */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curvebasis
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/curveBasis
 func (a_ AccelerationStructureCurveGeometryDescriptor) CurveBasis() CurveBasis {
 	rv := objc.Send[CurveBasis](a_.ID, objc.Sel("curveBasis"))
 	return rv
-}
+}/* debug [instance_properties/getter]: curveBasis */
 
 
-// SetCurveBasis sets the value of the curveBasis property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curvebasis
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveBasis(value ICurveBasis) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/curveBasis
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveBasis(value CurveBasis) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveBasis:"), value)
-}
+}/* debug [instance_properties/setter]: curveBasis */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curveendcaps
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/curveEndCaps
 func (a_ AccelerationStructureCurveGeometryDescriptor) CurveEndCaps() CurveEndCaps {
 	rv := objc.Send[CurveEndCaps](a_.ID, objc.Sel("curveEndCaps"))
 	return rv
-}
+}/* debug [instance_properties/getter]: curveEndCaps */
 
 
-// SetCurveEndCaps sets the value of the curveEndCaps property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curveendcaps
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveEndCaps(value ICurveEndCaps) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/curveEndCaps
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveEndCaps(value CurveEndCaps) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveEndCaps:"), value)
-}
+}/* debug [instance_properties/setter]: curveEndCaps */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curvetype
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/curveType
 func (a_ AccelerationStructureCurveGeometryDescriptor) CurveType() CurveType {
 	rv := objc.Send[CurveType](a_.ID, objc.Sel("curveType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: curveType */
 
 
-// SetCurveType sets the value of the curveType property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/curvetype
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/curveType
 func (a_ AccelerationStructureCurveGeometryDescriptor) SetCurveType(value CurveType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurveType:"), value)
-}
+}/* debug [instance_properties/setter]: curveType */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/indexbuffer
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/indexBuffer
 func (a_ AccelerationStructureCurveGeometryDescriptor) IndexBuffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("indexBuffer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indexBuffer */
 
 
-// SetIndexBuffer sets the value of the indexBuffer property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/indexbuffer
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/indexBuffer
 func (a_ AccelerationStructureCurveGeometryDescriptor) SetIndexBuffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: indexBuffer */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/indexbufferoffset
-func (a_ AccelerationStructureCurveGeometryDescriptor) IndexBufferOffset() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("indexBufferOffset"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/indexBufferOffset
+func (a_ AccelerationStructureCurveGeometryDescriptor) IndexBufferOffset() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("indexBufferOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indexBufferOffset */
 
 
-// SetIndexBufferOffset sets the value of the indexBufferOffset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/indexbufferoffset
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetIndexBufferOffset(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/indexBufferOffset
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetIndexBufferOffset(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexBufferOffset:"), value)
-}
+}/* debug [instance_properties/setter]: indexBufferOffset */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/indextype
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/indexType
 func (a_ AccelerationStructureCurveGeometryDescriptor) IndexType() IndexType {
 	rv := objc.Send[IndexType](a_.ID, objc.Sel("indexType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indexType */
 
 
-// SetIndexType sets the value of the indexType property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/indextype
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/indexType
 func (a_ AccelerationStructureCurveGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexType:"), value)
-}
+}/* debug [instance_properties/setter]: indexType */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/radiusbuffer
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/radiusBuffer
 func (a_ AccelerationStructureCurveGeometryDescriptor) RadiusBuffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("radiusBuffer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: radiusBuffer */
 
 
-// SetRadiusBuffer sets the value of the radiusBuffer property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/radiusbuffer
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/radiusBuffer
 func (a_ AccelerationStructureCurveGeometryDescriptor) SetRadiusBuffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: radiusBuffer */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/radiusbufferoffset
-func (a_ AccelerationStructureCurveGeometryDescriptor) RadiusBufferOffset() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("radiusBufferOffset"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/radiusBufferOffset
+func (a_ AccelerationStructureCurveGeometryDescriptor) RadiusBufferOffset() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("radiusBufferOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: radiusBufferOffset */
 
 
-// SetRadiusBufferOffset sets the value of the radiusBufferOffset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/radiusbufferoffset
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetRadiusBufferOffset(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/radiusBufferOffset
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetRadiusBufferOffset(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusBufferOffset:"), value)
-}
+}/* debug [instance_properties/setter]: radiusBufferOffset */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/radiusformat
-func (a_ AccelerationStructureCurveGeometryDescriptor) RadiusFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("radiusFormat"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/radiusFormat
+func (a_ AccelerationStructureCurveGeometryDescriptor) RadiusFormat() AttributeFormat {
+	rv := objc.Send[AttributeFormat](a_.ID, objc.Sel("radiusFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: radiusFormat */
 
 
-// SetRadiusFormat sets the value of the radiusFormat property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/radiusformat
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetRadiusFormat(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/radiusFormat
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetRadiusFormat(value AttributeFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusFormat:"), value)
-}
+}/* debug [instance_properties/setter]: radiusFormat */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/radiusstride
-func (a_ AccelerationStructureCurveGeometryDescriptor) RadiusStride() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("radiusStride"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/radiusStride
+func (a_ AccelerationStructureCurveGeometryDescriptor) RadiusStride() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("radiusStride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: radiusStride */
 
 
-// SetRadiusStride sets the value of the radiusStride property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/radiusstride
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetRadiusStride(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/radiusStride
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetRadiusStride(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setRadiusStride:"), value)
-}
+}/* debug [instance_properties/setter]: radiusStride */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/segmentcontrolpointcount
-func (a_ AccelerationStructureCurveGeometryDescriptor) SegmentControlPointCount() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("segmentControlPointCount"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/segmentControlPointCount
+func (a_ AccelerationStructureCurveGeometryDescriptor) SegmentControlPointCount() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("segmentControlPointCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segmentControlPointCount */
 
 
-// SetSegmentControlPointCount sets the value of the segmentControlPointCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/segmentcontrolpointcount
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetSegmentControlPointCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/segmentControlPointCount
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetSegmentControlPointCount(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSegmentControlPointCount:"), value)
-}
+}/* debug [instance_properties/setter]: segmentControlPointCount */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/segmentcount
-func (a_ AccelerationStructureCurveGeometryDescriptor) SegmentCount() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("segmentCount"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/segmentCount
+func (a_ AccelerationStructureCurveGeometryDescriptor) SegmentCount() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("segmentCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segmentCount */
 
 
-// SetSegmentCount sets the value of the segmentCount property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructurecurvegeometrydescriptor/segmentcount
-func (a_ AccelerationStructureCurveGeometryDescriptor) SetSegmentCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureCurveGeometryDescriptor/segmentCount
+func (a_ AccelerationStructureCurveGeometryDescriptor) SetSegmentCount(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSegmentCount:"), value)
-}
+}/* debug [instance_properties/setter]: segmentCount */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTLAccelerationStructureCurveGeometryDescriptor */
 
 
 

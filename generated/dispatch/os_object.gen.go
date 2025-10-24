@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class OS_object */
+
+
+/* debug [class_header]: Header for OS_object */
 // The class instance for the [OS_object] class.
 var (
 	OS_objectClass     _OS_objectClass
@@ -26,29 +30,30 @@ func getOS_objectClass() _OS_objectClass {
 type _OS_objectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for OS_object */
 // An interface definition for the [OS_object] class.
 type IOS_object interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for OS_object */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for OS_object */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A parent class referenced by other Dispatch classes.
 
 
-// A parent class referenced by other Dispatch classes. [Full Topic]
-type OS_object struct {
-	objectivec.Object
-}
-
-// OS_objectFrom constructs a [OS_object] from an unsafe.Pointer.
-//
-// A parent class referenced by other Dispatch classes.
-func OS_objectFrom(ptr unsafe.Pointer) OS_object {
-	return OS_object{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for OS_object */
 // Alloc allocates a new instance without initialization.
 func (oc _OS_objectClass) Alloc() OS_object {
 	rv := objc.Send[OS_object](objc.ID(oc.class), objc.Sel("alloc"))
@@ -56,7 +61,6 @@ func (oc _OS_objectClass) Alloc() OS_object {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OS_objectClass) New() OS_object {
 	rv := objc.Send[OS_object](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,7 +83,53 @@ func (o_ OS_object) Autorelease() OS_object {
 func NewOS_object() OS_object {
 	return getOS_objectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for OS_object */
+// A parent class referenced by other Dispatch classes.
+
+
+// A parent class referenced by other Dispatch classes. [Full Topic]
+type OS_object struct {
+	objectivec.Object
+}
+
+// OS_objectFrom constructs a [OS_object] from an unsafe.Pointer.
+//
+// A parent class referenced by other Dispatch classes.
+func OS_objectFrom(ptr unsafe.Pointer) OS_object {
+	return OS_object{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for OS_object *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for OS_object */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for OS_object */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for OS_object */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for OS_object */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class OS_object */
 
 
 

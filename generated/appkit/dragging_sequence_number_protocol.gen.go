@@ -15,3 +15,4 @@ var draggingSequenceNumberProtocol *objc.Protocol
 func init() {
 	draggingSequenceNumberProtocol = objc.GetProtocol("draggingSequenceNumber")
 }
+

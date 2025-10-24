@@ -16,3 +16,4 @@ var availablePropertiesProtocol *objc.Protocol
 func init() {
 	availablePropertiesProtocol = objc.GetProtocol("availableProperties")
 }
+

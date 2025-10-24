@@ -20,3 +20,4 @@ var StrategistProtocol *objc.Protocol
 func init() {
 	StrategistProtocol = objc.GetProtocol("GKStrategist")
 }
+

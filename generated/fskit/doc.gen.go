@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for FSKit. DO NOT EDIT.
 
 // Package fskit provides Go bindings for the FSKit framework.
 //
-// Implement a file system that runs in user space.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to FSKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/FSKit
 package fskit
 
 import (

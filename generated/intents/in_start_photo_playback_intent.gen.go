@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INStartPhotoPlaybackIntent] class.
@@ -53,7 +53,6 @@ type IINStartPhotoPlaybackIntent interface {
 // A request to search for photos and initiate a slideshow with the results.
 //
 // The system creates an object when the user asks to start a slideshow of a set of photos. This intent object contains the parameters to use when searching for the photos, including the possible name of a photo album, the people in the photos, or the location of the photos. Use this intent object to perform the search and initiate the slideshow in your app. When performing the search, use only the parameters provided and ignore any that have no values. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of the search. After a successful search, Siri launches your app so that it can begin the slideshow. For a list of other intents in the photos domain, see .
-
 
 // A request to search for photos and initiate a slideshow with the results.
 //
@@ -103,8 +102,6 @@ func NewINStartPhotoPlaybackIntent() INStartPhotoPlaybackIntent {
 	return getINStartPhotoPlaybackIntentClass().New()
 }
 
-
-
 // The name of the album that contains the photos.
 //
 // [Full Topic]
@@ -114,7 +111,6 @@ func (i_ INStartPhotoPlaybackIntent) AlbumName() string {
 	return rv
 }
 
-
 // The name of the album that contains the photos.
 //
 // [Full Topic]
@@ -122,7 +118,6 @@ func (i_ INStartPhotoPlaybackIntent) AlbumName() string {
 func (i_ INStartPhotoPlaybackIntent) SetAlbumName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
 }
-
 
 // The range of dates during which someone took the pictures.
 //
@@ -133,7 +128,6 @@ func (i_ INStartPhotoPlaybackIntent) DateCreated() INDateComponentsRange {
 	return rv
 }
 
-
 // The range of dates during which someone took the pictures.
 //
 // [Full Topic]
@@ -141,7 +135,6 @@ func (i_ INStartPhotoPlaybackIntent) DateCreated() INDateComponentsRange {
 func (i_ INStartPhotoPlaybackIntent) SetDateCreated(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
-
 
 // The attributes that must not be present in the photos.
 //
@@ -152,7 +145,6 @@ func (i_ INStartPhotoPlaybackIntent) ExcludedAttributes() unsafe.Pointer {
 	return rv
 }
 
-
 // The attributes that must not be present in the photos.
 //
 // [Full Topic]
@@ -160,7 +152,6 @@ func (i_ INStartPhotoPlaybackIntent) ExcludedAttributes() unsafe.Pointer {
 func (i_ INStartPhotoPlaybackIntent) SetExcludedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setExcludedAttributes:"), value)
 }
-
 
 // The attributes that must be present in the photos.
 //
@@ -171,7 +162,6 @@ func (i_ INStartPhotoPlaybackIntent) IncludedAttributes() unsafe.Pointer {
 	return rv
 }
 
-
 // The attributes that must be present in the photos.
 //
 // [Full Topic]
@@ -179,7 +169,6 @@ func (i_ INStartPhotoPlaybackIntent) IncludedAttributes() unsafe.Pointer {
 func (i_ INStartPhotoPlaybackIntent) SetIncludedAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIncludedAttributes:"), value)
 }
-
 
 // The location where someone took the photos.
 //
@@ -190,7 +179,6 @@ func (i_ INStartPhotoPlaybackIntent) LocationCreated() corelocation.Placemark {
 	return rv
 }
 
-
 // The location where someone took the photos.
 //
 // [Full Topic]
@@ -198,7 +186,6 @@ func (i_ INStartPhotoPlaybackIntent) LocationCreated() corelocation.Placemark {
 func (i_ INStartPhotoPlaybackIntent) SetLocationCreated(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocationCreated:"), value)
 }
-
 
 // The people in the photos.
 //
@@ -209,7 +196,6 @@ func (i_ INStartPhotoPlaybackIntent) PeopleInPhoto() INPerson {
 	return rv
 }
 
-
 // The people in the photos.
 //
 // [Full Topic]
@@ -217,7 +203,6 @@ func (i_ INStartPhotoPlaybackIntent) PeopleInPhoto() INPerson {
 func (i_ INStartPhotoPlaybackIntent) SetPeopleInPhoto(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhoto:"), value)
 }
-
 
 // The operator that defines how to search for people in the photos.
 //
@@ -228,7 +213,6 @@ func (i_ INStartPhotoPlaybackIntent) PeopleInPhotoOperator() INConditionalOperat
 	return rv
 }
 
-
 // The operator that defines how to search for people in the photos.
 //
 // [Full Topic]
@@ -236,7 +220,6 @@ func (i_ INStartPhotoPlaybackIntent) PeopleInPhotoOperator() INConditionalOperat
 func (i_ INStartPhotoPlaybackIntent) SetPeopleInPhotoOperator(value INConditionalOperator) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPeopleInPhotoOperator:"), value)
 }
-
 
 // An array of terms to look for in the photos.
 //
@@ -247,7 +230,6 @@ func (i_ INStartPhotoPlaybackIntent) SearchTerms() string {
 	return rv
 }
 
-
 // An array of terms to look for in the photos.
 //
 // [Full Topic]
@@ -255,7 +237,6 @@ func (i_ INStartPhotoPlaybackIntent) SearchTerms() string {
 func (i_ INStartPhotoPlaybackIntent) SetSearchTerms(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), objc.String(value))
 }
-
 
 // The operator that defines how to incorporate the search terms when performing the search.
 //
@@ -266,7 +247,6 @@ func (i_ INStartPhotoPlaybackIntent) SearchTermsOperator() INConditionalOperator
 	return rv
 }
 
-
 // The operator that defines how to incorporate the search terms when performing the search.
 //
 // [Full Topic]
@@ -274,6 +254,3 @@ func (i_ INStartPhotoPlaybackIntent) SearchTermsOperator() INConditionalOperator
 func (i_ INStartPhotoPlaybackIntent) SetSearchTermsOperator(value INConditionalOperator) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTermsOperator:"), value)
 }
-
-
-

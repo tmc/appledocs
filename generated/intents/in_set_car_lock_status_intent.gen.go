@@ -39,7 +39,6 @@ type IINSetCarLockStatusIntent interface {
 //
 // When the user asks to lock or unlock the car, Siri creates an object. This intent object can contain the name of the user’s car and the requested lock status. Use this object to lock or unlock the car. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results.
 
-
 // A request to lock or unlock the user’s car.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINSetCarLockStatusIntent() INSetCarLockStatusIntent {
 	return getINSetCarLockStatusIntentClass().New()
 }
 
-
-
 // A name that identifies the user’s car.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INSetCarLockStatusIntent) CarName() INSpeakableString {
 	return rv
 }
 
-
 // A name that identifies the user’s car.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (i_ INSetCarLockStatusIntent) CarName() INSpeakableString {
 func (i_ INSetCarLockStatusIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
-
 
 // A Boolean value that indicates whether to lock the car.
 //
@@ -118,7 +113,6 @@ func (i_ INSetCarLockStatusIntent) Locked() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether to lock the car.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (i_ INSetCarLockStatusIntent) Locked() bool {
 func (i_ INSetCarLockStatusIntent) SetLocked(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLocked:"), value)
 }
-
-
-

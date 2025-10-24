@@ -41,7 +41,6 @@ type IINSendPaymentIntent interface {
 //
 // Siri creates an object when the current user asks to transfer money to another user. A send payment intent object includes the payment amount and the recipient of the payment. Use that information to validate the transaction and transfer the funds. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the result of sending the money to the specified user. This intent object represents a financial transaction between two users.
 
-
 // A request to transfer money from the current user’s account to a different user’s account.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINSendPaymentIntent() INSendPaymentIntent {
 	return getINSendPaymentIntentClass().New()
 }
 
-
-
 // The amount of the payment.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INSendPaymentIntent) CurrencyAmount() INCurrencyAmount {
 	return rv
 }
 
-
 // The amount of the payment.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INSendPaymentIntent) CurrencyAmount() INCurrencyAmount {
 func (i_ INSendPaymentIntent) SetCurrencyAmount(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyAmount:"), value)
 }
-
 
 // A note associated with the payment.
 //
@@ -120,7 +115,6 @@ func (i_ INSendPaymentIntent) Note() string {
 	return rv
 }
 
-
 // A note associated with the payment.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INSendPaymentIntent) Note() string {
 func (i_ INSendPaymentIntent) SetNote(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNote:"), objc.String(value))
 }
-
 
 // The recipient of the payment.
 //
@@ -139,7 +132,6 @@ func (i_ INSendPaymentIntent) Payee() INPerson {
 	return rv
 }
 
-
 // The recipient of the payment.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INSendPaymentIntent) Payee() INPerson {
 func (i_ INSendPaymentIntent) SetPayee(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPayee:"), value)
 }
-
-
-

@@ -20,3 +20,4 @@ var RPScreenRecorderDelegateProtocol *objc.Protocol
 func init() {
 	RPScreenRecorderDelegateProtocol = objc.GetProtocol("RPScreenRecorderDelegate")
 }
+

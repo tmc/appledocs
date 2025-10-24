@@ -15,3 +15,4 @@ var ColorPickingDefaultProtocol *objc.Protocol
 func init() {
 	ColorPickingDefaultProtocol = objc.GetProtocol("NSColorPickingDefault")
 }
+

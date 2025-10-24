@@ -15,3 +15,4 @@ var resetSpringLoadingProtocol *objc.Protocol
 func init() {
 	resetSpringLoadingProtocol = objc.GetProtocol("resetSpringLoading")
 }
+

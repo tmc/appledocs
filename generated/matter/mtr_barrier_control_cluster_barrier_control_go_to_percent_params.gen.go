@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRBarrierControlClusterBarrierControlGoToPercentParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBarrierControlClusterBarrierControlGoToPercentParams
@@ -85,8 +83,6 @@ func NewMTRBarrierControlClusterBarrierControlGoToPercentParams() MTRBarrierCont
 	return getMTRBarrierControlClusterBarrierControlGoToPercentParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/percentopen
 func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) PercentOpen() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) PercentOpen() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/percentopen
 func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetPercentOpen(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentOpen:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) ServerSideProc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/serversideprocessingtimeout
 func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) TimedInvokeTim
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolgotopercentparams/timedinvoketimeoutms
 func (m_ MTRBarrierControlClusterBarrierControlGoToPercentParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

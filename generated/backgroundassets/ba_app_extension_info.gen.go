@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class BAAppExtensionInfo */
+
+
+/* debug [class_header]: Header for BAAppExtensionInfo */
 // The class instance for the [BAAppExtensionInfo] class.
 var (
 	BAAppExtensionInfoClass     _BAAppExtensionInfoClass
@@ -27,29 +30,34 @@ func getBAAppExtensionInfoClass() _BAAppExtensionInfoClass {
 type _BAAppExtensionInfoClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for BAAppExtensionInfo */
 // An interface definition for the [BAAppExtensionInfo] class.
 type IBAAppExtensionInfo interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for BAAppExtensionInfo */
 	// properties:
-	RestrictedDownloadSizeRemaining() objc.IObject /* cross-framework: NSNumber */
-	RestrictedEssentialDownloadSizeRemaining() objc.IObject /* cross-framework: NSNumber */
+	RestrictedDownloadSizeRemaining() int
+	SetRestrictedDownloadSizeRemaining(value int)
+	RestrictedEssentialDownloadSizeRemaining() int
+	SetRestrictedEssentialDownloadSizeRemaining(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for BAAppExtensionInfo */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo
-type BAAppExtensionInfo struct {
-	objectivec.Object
-}
-
-// BAAppExtensionInfoFrom constructs a [BAAppExtensionInfo] from an unsafe.Pointer.
-func BAAppExtensionInfoFrom(ptr unsafe.Pointer) BAAppExtensionInfo {
-	return BAAppExtensionInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for BAAppExtensionInfo */
 // Alloc allocates a new instance without initialization.
 func (bc _BAAppExtensionInfoClass) Alloc() BAAppExtensionInfo {
 	rv := objc.Send[BAAppExtensionInfo](objc.ID(bc.class), objc.Sel("alloc"))
@@ -57,7 +65,6 @@ func (bc _BAAppExtensionInfoClass) Alloc() BAAppExtensionInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BAAppExtensionInfoClass) New() BAAppExtensionInfo {
 	rv := objc.Send[BAAppExtensionInfo](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -80,23 +87,83 @@ func (b_ BAAppExtensionInfo) Autorelease() BAAppExtensionInfo {
 func NewBAAppExtensionInfo() BAAppExtensionInfo {
 	return getBAAppExtensionInfoClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo/restrictedDownloadSizeRemaining-9itic
-func (b_ BAAppExtensionInfo) RestrictedDownloadSizeRemaining() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("restrictedDownloadSizeRemaining"))
-	return rv
-}
+/* debug [class_struct]: Struct for BAAppExtensionInfo */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo/restrictedEssentialDownloadSizeRemaining-76av8
-func (b_ BAAppExtensionInfo) RestrictedEssentialDownloadSizeRemaining() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("restrictedEssentialDownloadSizeRemaining"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAppExtensionInfo
+type BAAppExtensionInfo struct {
+	objectivec.Object
 }
+
+// BAAppExtensionInfoFrom constructs a [BAAppExtensionInfo] from an unsafe.Pointer.
+func BAAppExtensionInfoFrom(ptr unsafe.Pointer) BAAppExtensionInfo {
+	return BAAppExtensionInfo{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for BAAppExtensionInfo *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for BAAppExtensionInfo */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for BAAppExtensionInfo */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for BAAppExtensionInfo */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for BAAppExtensionInfo */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/backgroundassets/baappextensioninfo/restricteddownloadsizeremaining-4hea4
+func (b_ BAAppExtensionInfo) RestrictedDownloadSizeRemaining() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("restrictedDownloadSizeRemaining"))
+	return rv
+}/* debug [instance_properties/getter]: restrictedDownloadSizeRemaining */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/backgroundassets/baappextensioninfo/restricteddownloadsizeremaining-4hea4
+func (b_ BAAppExtensionInfo) SetRestrictedDownloadSizeRemaining(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setRestrictedDownloadSizeRemaining:"), value)
+}/* debug [instance_properties/setter]: restrictedDownloadSizeRemaining */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/backgroundassets/baappextensioninfo/restrictedessentialdownloadsizeremaining-5r8v0
+func (b_ BAAppExtensionInfo) RestrictedEssentialDownloadSizeRemaining() int {
+	rv := objc.Send[int](b_.ID, objc.Sel("restrictedEssentialDownloadSizeRemaining"))
+	return rv
+}/* debug [instance_properties/getter]: restrictedEssentialDownloadSizeRemaining */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/backgroundassets/baappextensioninfo/restrictedessentialdownloadsizeremaining-5r8v0
+func (b_ BAAppExtensionInfo) SetRestrictedEssentialDownloadSizeRemaining(value int) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setRestrictedEssentialDownloadSizeRemaining:"), value)
+}/* debug [instance_properties/setter]: restrictedEssentialDownloadSizeRemaining */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class BAAppExtensionInfo */
+
+
 
 
 

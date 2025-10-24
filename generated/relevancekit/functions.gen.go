@@ -2,10 +2,10 @@
 
 package relevancekit
 
+/* debug [functions.gen.go]: Generating 0 functions for RelevanceKit */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // RelevanceKit Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

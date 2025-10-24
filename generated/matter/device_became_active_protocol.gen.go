@@ -7,13 +7,13 @@ import "github.com/ebitengine/purego/objc"
 // deviceBecameActiveProtocol is the deviceBecameActive: protocol.
 //
 // Availability:
-//   - Mac Catalyst 18.2+
-//   - iOS 18.2+
-//   - iPadOS 18.2+
-//   - macOS 15.2+
-//   - tvOS 18.2+
-//   - visionOS 2.2+
-//   - watchOS 11.2+
+//   - Mac Catalyst 16.4+
+//   - iOS 16.4+
+//   - iPadOS 16.4+
+//   - macOS 13.3+
+//   - tvOS 16.4+
+//   - visionOS 1.0+
+//   - watchOS 9.4+
 //
 // Use this protocol when registering custom classes that conform to deviceBecameActive:.
 var deviceBecameActiveProtocol *objc.Protocol
@@ -21,3 +21,4 @@ var deviceBecameActiveProtocol *objc.Protocol
 func init() {
 	deviceBecameActiveProtocol = objc.GetProtocol("deviceBecameActive:")
 }
+

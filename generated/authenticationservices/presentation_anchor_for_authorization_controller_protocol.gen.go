@@ -20,3 +20,4 @@ var presentationAnchorForAuthorizationControllerProtocol *objc.Protocol
 func init() {
 	presentationAnchorForAuthorizationControllerProtocol = objc.GetProtocol("presentationAnchorForAuthorizationController:")
 }
+

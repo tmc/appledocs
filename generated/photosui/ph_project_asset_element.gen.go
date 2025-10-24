@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/photos"
 )
 
@@ -92,7 +92,6 @@ func NewPHProjectAssetElement() PHProjectAssetElement {
 	return getPHProjectAssetElementClass().New()
 }
 
-
 // A string annotation attached to the asset.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectAssetElement/annotation
@@ -149,7 +148,6 @@ func (p_ PHProjectAssetElement) AssetLocalIdentifier() string {
 	return rv
 }
 
-
 // SetAssetLocalIdentifier sets the value of the assetLocalIdentifier property.
 // The unique identifier the system associates for a local asset object.
 
@@ -167,7 +165,6 @@ func (p_ PHProjectAssetElement) CloudAssetIdentifiers() photos.PHCloudIdentifier
 	return rv
 }
 
-
 // SetCloudAssetIdentifiers sets the value of the cloudAssetIdentifiers property.
 // An array containing all cloud asset identifiers referenced in the content.
 
@@ -176,6 +173,3 @@ func (p_ PHProjectAssetElement) CloudAssetIdentifiers() photos.PHCloudIdentifier
 func (p_ PHProjectAssetElement) SetCloudAssetIdentifiers(value photos.IPHCloudIdentifier) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudAssetIdentifiers:"), value)
 }
-
-
-

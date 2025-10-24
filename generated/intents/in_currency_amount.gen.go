@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,7 +40,6 @@ type IINCurrencyAmount interface {
 // An amount of money to transfer during a financial transaction.
 //
 // An object encapsulates a monetary value and the currency used to express that value. You use these objects to specify payment amounts when handling intents that involve the transfer of money.
-
 
 // An amount of money to transfer during a financial transaction.
 //
@@ -88,8 +87,6 @@ func NewINCurrencyAmount() INCurrencyAmount {
 	return getINCurrencyAmountClass().New()
 }
 
-
-
 // The monetary amount associated with the currency.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INCurrencyAmount) Amount() foundation.DecimalNumber {
 	return rv
 }
 
-
 // The monetary amount associated with the currency.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (i_ INCurrencyAmount) Amount() foundation.DecimalNumber {
 func (i_ INCurrencyAmount) SetAmount(value foundation.IDecimalNumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAmount:"), value)
 }
-
 
 // The ISO 4217 currency code that applies to the monetary amount.
 //
@@ -118,7 +113,6 @@ func (i_ INCurrencyAmount) CurrencyCode() string {
 	return rv
 }
 
-
 // The ISO 4217 currency code that applies to the monetary amount.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (i_ INCurrencyAmount) CurrencyCode() string {
 func (i_ INCurrencyAmount) SetCurrencyCode(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCurrencyCode:"), objc.String(value))
 }
-
-
-

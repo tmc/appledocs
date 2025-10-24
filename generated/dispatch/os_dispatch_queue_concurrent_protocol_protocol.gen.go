@@ -1,0 +1,18 @@
+// Code generated from Apple documentation for Dispatch. DO NOT EDIT.
+
+package dispatch
+
+// POS_dispatch_queue_concurrent is the OS_dispatch_queue_concurrent protocol interface.
+//
+// Availability:
+//   - Mac Catalyst 13.1+
+//   - iOS 12.0+
+//   - iPadOS 12.0+
+//   - macOS 10.14+
+//   - tvOS 12.0+
+//   - visionOS 1.0+
+//   - watchOS 5.0+
+//
+// See: doc://com.apple.dispatch/documentation/Dispatch/OS_dispatch_queue_concurrent
+type POS_dispatch_queue_concurrent interface {
+}

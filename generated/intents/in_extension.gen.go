@@ -36,7 +36,6 @@ type IINExtension interface {
 //
 // The class is the principal class of your Intents extension, which provides information to SiriKit. Your extension object acts like a dispatcher, providing SiriKit with the objects it needs to resolve and handle requests. This class defines no methods of its own, but it adopts the protocol, which contains the main method you must implement. You do not create instances of this class directly. When the system needs your Intents extension to handle a request, it automatically instantiates the class specified in the key of the extension’s file. All you have to do is provide the implementation for that class. Your extension object must be able to return handler objects for all of the intents that your app supports. The Intents framework supports the following types of intents: VoIP calling intents support audio and video calls to another user of your app. Workout intents support the starting and stopping of workouts. Message intents support the sending of message data to specific users. Payment intents support financial transactions between users. Photo intents support the searching and displaying of photos. Ride-booking intents support the booking and management of user transportation from Siri or Maps. CarPlay intents support the changing of settings in automobiles that support CarPlay. Restaurant reservation intents support the creating and viewing of restaurant reservations in Maps. For more information about implementing your extension’s main dispatching method, see . For information about how to implement this class in your Intents extension, see .
 
-
 // The entry point for an Intents extension.
 //
 // [Full Topic]
@@ -82,7 +81,3 @@ func (i_ INExtension) Autorelease() INExtension {
 func NewINExtension() INExtension {
 	return getINExtensionClass().New()
 }
-
-
-
-

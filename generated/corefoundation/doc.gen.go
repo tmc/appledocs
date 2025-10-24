@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for CoreFoundation. DO NOT EDIT.
 
 // Package corefoundation provides Go bindings for the CoreFoundation framework.

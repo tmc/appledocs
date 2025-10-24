@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // TorusLensDistortionProtocol is the CITorusLensDistortion protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CITorusLensDistortion.
 var TorusLensDistortionProtocol *objc.Protocol
 
 func init() {
 	TorusLensDistortionProtocol = objc.GetProtocol("CITorusLensDistortion")
 }
+

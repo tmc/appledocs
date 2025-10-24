@@ -7,8 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVFragmentedAsset */
+
+
+/* debug [class_header]: Header for AVFragmentedAsset */
 // The class instance for the [FragmentedAsset] class.
 var (
 	FragmentedAssetClass     _FragmentedAssetClass
@@ -25,40 +31,36 @@ func getFragmentedAssetClass() _FragmentedAssetClass {
 type _FragmentedAssetClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FragmentedAsset */
 // An interface definition for the [FragmentedAsset] class.
 type IFragmentedAsset interface {
 	IURLAsset
+	
+/* debug [class_interface_properties]: Properties for FragmentedAsset */
 	// properties:
+	Tracks() []FragmentedAssetTrack
 	CanContainFragments() bool
 	SetCanContainFragments(value bool)
-	Tracks() objc.IObject /* cross-framework: FragmentedAssetTrack */
-	SetTracks(value objc.IObject /* cross-framework: FragmentedAssetTrack */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FragmentedAsset */
 	// methods:
+	LoadTrackWithTrackIDCompletionHandler(trackID PersistentTrackID /* not a class type */, completionHandler unsafe.Pointer)
+	LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic MediaCharacteristic /* typedef */, completionHandler unsafe.Pointer)
+	LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType /* typedef */, completionHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An asset with a duration that the system can extend without modifying its existing media data.
-//
-// By using an box in their box, QuickTime movie files and MPEG-4 files can indicate that they accommodate additional fragments. To determine whether a fragmented asset can monitor the addition of fragments, check the value of its property. Associate a fragmented asset with an instance of to know when the system appends new fragments. When it has an associated asset minder, posts notifications whenever it detects new fragments. It may also post and , as the documentation of those notifications explains.
+/* debug [class_interface]: End interface */
 
 
-// An asset with a duration that the system can extend without modifying its existing media data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAsset
-type FragmentedAsset struct {
-	URLAsset
-}
 
-// FragmentedAssetFrom constructs a [FragmentedAsset] from an unsafe.Pointer.
-//
-// An asset with a duration that the system can extend without modifying its existing media data.
-func FragmentedAssetFrom(ptr unsafe.Pointer) FragmentedAsset {
-	return FragmentedAsset{
-		URLAsset: URLAssetFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for FragmentedAsset */
 // Alloc allocates a new instance without initialization.
 func (fc _FragmentedAssetClass) Alloc() FragmentedAsset {
 	rv := objc.Send[FragmentedAsset](objc.ID(fc.class), objc.Sel("alloc"))
@@ -66,7 +68,6 @@ func (fc _FragmentedAssetClass) Alloc() FragmentedAsset {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FragmentedAssetClass) New() FragmentedAsset {
 	rv := objc.Send[FragmentedAsset](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,7 +90,102 @@ func (f_ FragmentedAsset) Autorelease() FragmentedAsset {
 func NewFragmentedAsset() FragmentedAsset {
 	return getFragmentedAssetClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for FragmentedAsset */
+// An asset with a duration that the system can extend without modifying its existing media data.
+//
+// By using an box in their box, QuickTime movie files and MPEG-4 files can indicate that they accommodate additional fragments. To determine whether a fragmented asset can monitor the addition of fragments, check the value of its property. Associate a fragmented asset with an instance of to know when the system appends new fragments. When it has an associated asset minder, posts notifications whenever it detects new fragments. It may also post and , as the documentation of those notifications explains.
+
+
+// An asset with a duration that the system can extend without modifying its existing media data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAsset
+type FragmentedAsset struct {
+	URLAsset
+}
+
+// FragmentedAssetFrom constructs a [FragmentedAsset] from an unsafe.Pointer.
+//
+// An asset with a duration that the system can extend without modifying its existing media data.
+func FragmentedAssetFrom(ptr unsafe.Pointer) FragmentedAsset {
+	return FragmentedAsset{
+		URLAsset: URLAssetFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FragmentedAsset *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for FragmentedAsset */
+
+// Creates a fragmented asset for the media at the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAsset/fragmentedAssetWithURL:options:
+func (fc _FragmentedAssetClass) FragmentedAssetWithURLOptions(URL objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(fc.class), objc.Sel("fragmentedAssetWithURL:options:"), URL, options)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=FragmentedAssetWithURLOptions) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FragmentedAsset */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FragmentedAsset */
+
+// Loads a track that contains the specified identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAsset/loadTrack(withTrackID:completionHandler:)
+func (f_ FragmentedAsset) LoadTrackWithTrackIDCompletionHandler(trackID PersistentTrackID /* not a class type */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("loadTrackWithTrackID:completionHandler:"), trackID, completionHandler)
+}/* debug [instance_methods/method]: LoadTrackWithTrackIDCompletionHandler */
+
+
+// Loads tracks that contain media of a specified characteristic.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAsset/loadTracks(withMediaCharacteristic:completionHandler:)
+func (f_ FragmentedAsset) LoadTracksWithMediaCharacteristicCompletionHandler(mediaCharacteristic MediaCharacteristic /* typedef */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("loadTracksWithMediaCharacteristic:completionHandler:"), mediaCharacteristic, completionHandler)
+}/* debug [instance_methods/method]: LoadTracksWithMediaCharacteristicCompletionHandler */
+
+
+// Loads tracks that contain media of a specified type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAsset/loadTracks(withMediaType:completionHandler:)
+func (f_ FragmentedAsset) LoadTracksWithMediaTypeCompletionHandler(mediaType MediaType /* typedef */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("loadTracksWithMediaType:completionHandler:"), mediaType, completionHandler)
+}/* debug [instance_methods/method]: LoadTracksWithMediaTypeCompletionHandler */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FragmentedAsset */
+
+// The tracks an asset contains.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVFragmentedAsset/tracks
+func (f_ FragmentedAsset) Tracks() []FragmentedAssetTrack {
+	rv := objc.Send[[]FragmentedAssetTrack](f_.ID, objc.Sel("tracks"))
+	return rv
+}/* debug [instance_properties/getter]: tracks */
 
 
 // A Boolean value that indicates whether you can extend the asset by fragments.
@@ -99,7 +195,7 @@ func NewFragmentedAsset() FragmentedAsset {
 func (f_ FragmentedAsset) CanContainFragments() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("canContainFragments"))
 	return rv
-}
+}/* debug [instance_properties/getter]: canContainFragments */
 
 
 // A Boolean value that indicates whether you can extend the asset by fragments.
@@ -108,26 +204,12 @@ func (f_ FragmentedAsset) CanContainFragments() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/cancontainfragments
 func (f_ FragmentedAsset) SetCanContainFragments(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setCanContainFragments:"), value)
-}
+}/* debug [instance_properties/setter]: canContainFragments */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The tracks an asset contains.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedasset/tracks
-func (f_ FragmentedAsset) Tracks() objc.IObject /* cross-framework: FragmentedAssetTrack */ {
-	rv := objc.Send[FragmentedAssetTrack](f_.ID, objc.Sel("tracks"))
-	return rv
-}
-
-
-// The tracks an asset contains.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avfragmentedasset/tracks
-func (f_ FragmentedAsset) SetTracks(value objc.IObject /* cross-framework: FragmentedAssetTrack */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setTracks:"), value)
-}
+/* debug [class.gen.go]: End class AVFragmentedAsset */
 
 
 

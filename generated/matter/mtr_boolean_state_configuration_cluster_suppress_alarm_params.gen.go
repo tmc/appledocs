@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRBooleanStateConfigurationClusterSuppressAlarmParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBooleanStateConfigurationClusterSuppressAlarmParams
@@ -85,8 +83,6 @@ func NewMTRBooleanStateConfigurationClusterSuppressAlarmParams() MTRBooleanState
 	return getMTRBooleanStateConfigurationClusterSuppressAlarmParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/alarmstosuppress
 func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) AlarmsToSuppress() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) AlarmsToSuppres
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/alarmstosuppress
 func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetAlarmsToSuppress(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmsToSuppress:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) ServerSideProce
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/serversideprocessingtimeout
 func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) TimedInvokeTime
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersuppressalarmparams/timedinvoketimeoutms
 func (m_ MTRBooleanStateConfigurationClusterSuppressAlarmParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

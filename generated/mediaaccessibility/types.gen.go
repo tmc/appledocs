@@ -12,7 +12,9 @@ import (
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaAccessibility/MAMusicHaptics
 type MAMusicHaptics struct {
-}
+}/* debug [types.gen.go/struct]: MAMusicHaptics */
+
+
 
 
 

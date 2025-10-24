@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class DDDiscoverySession */
+
+
+/* debug [class_header]: Header for DDDiscoverySession */
 // The class instance for the [DDDiscoverySession] class.
 var (
 	DDDiscoverySessionClass     _DDDiscoverySessionClass
@@ -26,35 +30,31 @@ func getDDDiscoverySessionClass() _DDDiscoverySessionClass {
 type _DDDiscoverySessionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DDDiscoverySession */
 // An interface definition for the [DDDiscoverySession] class.
 type IDDDiscoverySession interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for DDDiscoverySession */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DDDiscoverySession */
 	// methods:
 	ReportEvent(inEvent IDDDeviceEvent)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that relays device discovery events from the extension to the system.
-//
-// The system passes the extension an instance of this class when it attempts to discover a device. Device discovery starts when an app displays and the system calls the extension’s implementation.
+/* debug [class_interface]: End interface */
 
 
-// An object that relays device discovery events from the extension to the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDiscoverySession
-type DDDiscoverySession struct {
-	objectivec.Object
-}
 
-// DDDiscoverySessionFrom constructs a [DDDiscoverySession] from an unsafe.Pointer.
-//
-// An object that relays device discovery events from the extension to the system.
-func DDDiscoverySessionFrom(ptr unsafe.Pointer) DDDiscoverySession {
-	return DDDiscoverySession{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for DDDiscoverySession */
 // Alloc allocates a new instance without initialization.
 func (dc _DDDiscoverySessionClass) Alloc() DDDiscoverySession {
 	rv := objc.Send[DDDiscoverySession](objc.ID(dc.class), objc.Sel("alloc"))
@@ -62,7 +62,6 @@ func (dc _DDDiscoverySessionClass) Alloc() DDDiscoverySession {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DDDiscoverySessionClass) New() DDDiscoverySession {
 	rv := objc.Send[DDDiscoverySession](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,8 +84,49 @@ func (d_ DDDiscoverySession) Autorelease() DDDiscoverySession {
 func NewDDDiscoverySession() DDDiscoverySession {
 	return getDDDiscoverySessionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for DDDiscoverySession */
+// An object that relays device discovery events from the extension to the system.
+//
+// The system passes the extension an instance of this class when it attempts to discover a device. Device discovery starts when an app displays and the system calls the extension’s implementation.
+
+
+// An object that relays device discovery events from the extension to the system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDiscoverySession
+type DDDiscoverySession struct {
+	objectivec.Object
+}
+
+// DDDiscoverySessionFrom constructs a [DDDiscoverySession] from an unsafe.Pointer.
+//
+// An object that relays device discovery events from the extension to the system.
+func DDDiscoverySessionFrom(ptr unsafe.Pointer) DDDiscoverySession {
+	return DDDiscoverySession{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DDDiscoverySession *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for DDDiscoverySession */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DDDiscoverySession */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DDDiscoverySession */
 
 // Reports an event to the system.
 //
@@ -94,7 +134,19 @@ func NewDDDiscoverySession() DDDiscoverySession {
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDiscoverySession/report(_:)
 func (d_ DDDiscoverySession) ReportEvent(inEvent IDDDeviceEvent) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("reportEvent:"), inEvent)
-}
+}/* debug [instance_methods/method]: ReportEvent */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DDDiscoverySession */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class DDDiscoverySession */
+
+
 
 
 

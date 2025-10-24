@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CTCellularData */
+
+
+/* debug [class_header]: Header for CTCellularData */
 // The class instance for the [CellularData] class.
 var (
 	CellularDataClass     _CellularDataClass
@@ -26,38 +30,30 @@ func getCellularDataClass() _CellularDataClass {
 type _CellularDataClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CellularData */
 // An interface definition for the [CellularData] class.
 type ICellularData interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CellularData */
 	// properties:
-	CellularDataRestrictionDidUpdateNotifier() unsafe.Pointer
-	SetCellularDataRestrictionDidUpdateNotifier(value unsafe.Pointer)
-	RestrictedState() CellularDataRestrictedState
-	SetRestrictedState(value CellularDataRestrictedState)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CellularData */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object indicating whether the app can access cellular data.
-//
-// This property represents all access to cellular data. If the is , the app cannot use the cellular network.
+/* debug [class_interface]: End interface */
 
 
-// An object indicating whether the app can access cellular data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularData
-type CellularData struct {
-	objectivec.Object
-}
 
-// CellularDataFrom constructs a [CellularData] from an unsafe.Pointer.
-//
-// An object indicating whether the app can access cellular data.
-func CellularDataFrom(ptr unsafe.Pointer) CellularData {
-	return CellularData{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CellularData */
 // Alloc allocates a new instance without initialization.
 func (cc _CellularDataClass) Alloc() CellularData {
 	rv := objc.Send[CellularData](objc.ID(cc.class), objc.Sel("alloc"))
@@ -65,7 +61,6 @@ func (cc _CellularDataClass) Alloc() CellularData {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CellularDataClass) New() CellularData {
 	rv := objc.Send[CellularData](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,45 +83,57 @@ func (c_ CellularData) Autorelease() CellularData {
 func NewCellularData() CellularData {
 	return getCellularDataClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A block that handles cellular data restriction state changes.
+/* debug [class_struct]: Struct for CellularData */
+// An object indicating whether the app can access cellular data.
+//
+// This property represents all access to cellular data. If the is , the app cannot use the cellular network.
+
+
+// An object indicating whether the app can access cellular data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/cellulardatarestrictiondidupdatenotifier
-func (c_ CellularData) CellularDataRestrictionDidUpdateNotifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cellularDataRestrictionDidUpdateNotifier"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularData
+type CellularData struct {
+	objectivec.Object
 }
 
-
-// A block that handles cellular data restriction state changes.
+// CellularDataFrom constructs a [CellularData] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/cellulardatarestrictiondidupdatenotifier
-func (c_ CellularData) SetCellularDataRestrictionDidUpdateNotifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCellularDataRestrictionDidUpdateNotifier:"), value)
+// An object indicating whether the app can access cellular data.
+func CellularDataFrom(ptr unsafe.Pointer) CellularData {
+	return CellularData{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The current state of cellular data restrictions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
-func (c_ CellularData) RestrictedState() CellularDataRestrictedState {
-	rv := objc.Send[CellularDataRestrictedState](c_.ID, objc.Sel("restrictedState"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for CellularData *//* debug [class_init_methods]: End init methods */
 
 
-// The current state of cellular data restrictions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellulardata/restrictedstate
-func (c_ CellularData) SetRestrictedState(value CellularDataRestrictedState) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRestrictedState:"), value)
-}
 
+/* debug [class_methods]: Class methods for CellularData */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CellularData */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CellularData */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CellularData */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CTCellularData */
 
 

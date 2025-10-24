@@ -23,6 +23,15 @@ func (t_ TKSmartCardSlotManager) CreateNFCSlotWithMessageCompletion(message objc
 	objc.Send[objc.ID](t_.ID, objc.Sel("createNFCSlotWithMessage:completion:"), message, completion)
 }
 
+// Determines whether NFC (Near Field Communication) is supported on this device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlotManager/isNFCSupported()
+func (t_ TKSmartCardSlotManager) IsNFCSupported() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("isNFCSupported"))
+	return rv
+}
+
 // iOS-only properties
 
 

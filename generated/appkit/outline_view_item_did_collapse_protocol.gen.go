@@ -15,3 +15,4 @@ var outlineViewItemDidCollapseProtocol *objc.Protocol
 func init() {
 	outlineViewItemDidCollapseProtocol = objc.GetProtocol("outlineViewItemDidCollapse:")
 }
+

@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PCollectionViewDataSource is the NSCollectionViewDataSource protocol interface.
@@ -17,10 +19,10 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDataSource
 type PCollectionViewDataSource interface {
 	// Required methods
-	CollectionViewNumberOfItemsInSection(collectionView objc.IObject /* cross-framework: CollectionView */, section int) int
-	CollectionViewItemForRepresentedObjectAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) CollectionViewItem
+	CollectionViewNumberOfItemsInSection(collectionView objc.IObject /* cross-framework: CollectionView */, section int) int/* debug [protocol_interface/required_method]: CollectionViewNumberOfItemsInSection */
+	CollectionViewItemForRepresentedObjectAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) CollectionViewItem/* debug [protocol_interface/required_method]: CollectionViewItemForRepresentedObjectAtIndexPath */
 	// Optional methods
-	CollectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, kind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath) View
+	CollectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, kind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath) View
 	HasCollectionViewViewForSupplementaryElementOfKindAtIndexPath() bool
 	NumberOfSectionsInCollectionView(collectionView objc.IObject /* cross-framework: CollectionView */) int
 	HasNumberOfSectionsInCollectionView() bool
@@ -30,7 +32,7 @@ type PCollectionViewDataSource interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type CollectionViewDataSource struct {
-	_CollectionViewViewForSupplementaryElementOfKindAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, kind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath) View
+	_CollectionViewViewForSupplementaryElementOfKindAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, kind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath) View
 	_NumberOfSectionsInCollectionView func(collectionView objc.IObject /* cross-framework: CollectionView */) int
 	_CollectionViewNumberOfItemsInSection func(collectionView objc.IObject /* cross-framework: CollectionView */, section int) int
 	_CollectionViewItemForRepresentedObjectAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) CollectionViewItem
@@ -39,7 +41,7 @@ type CollectionViewDataSource struct {
 // SetCollectionViewViewForSupplementaryElementOfKindAtIndexPath sets the handler for the CollectionViewViewForSupplementaryElementOfKindAtIndexPath delegate method.
 //
 // Asks your data source object to provide the supplementary view at the specified location in a section of the collection view.
-func (d *CollectionViewDataSource) SetCollectionViewViewForSupplementaryElementOfKindAtIndexPath(f func(collectionView objc.IObject /* cross-framework: CollectionView */, kind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath) View) {
+func (d *CollectionViewDataSource) SetCollectionViewViewForSupplementaryElementOfKindAtIndexPath(f func(collectionView objc.IObject /* cross-framework: CollectionView */, kind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath) View) {
 	d._CollectionViewViewForSupplementaryElementOfKindAtIndexPath = f
 }
 
@@ -65,7 +67,7 @@ func (d *CollectionViewDataSource) SetCollectionViewItemForRepresentedObjectAtIn
 }
 
 // CollectionViewViewForSupplementaryElementOfKindAtIndexPath implements the PCollectionViewDataSource interface.
-func (d *CollectionViewDataSource) CollectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, kind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath) View {
+func (d *CollectionViewDataSource) CollectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, kind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath) View {
 	if d._CollectionViewViewForSupplementaryElementOfKindAtIndexPath != nil {
 		return d._CollectionViewViewForSupplementaryElementOfKindAtIndexPath(collectionView, kind, indexPath)
 	}

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestListInt8UReverseResponseParams] class.
@@ -37,8 +37,6 @@ type IMTRTestClusterClusterTestListInt8UReverseResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestListInt8UReverseResponseParams
@@ -84,8 +82,6 @@ func NewMTRTestClusterClusterTestListInt8UReverseResponseParams() MTRTestCluster
 	return getMTRTestClusterClusterTestListInt8UReverseResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/arg1
 func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) Arg1() unsafe.Pointer {
@@ -93,13 +89,11 @@ func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) Arg1() unsafe.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/arg1
 func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) SetArg1(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/timedinvoketimeoutms
@@ -108,12 +102,8 @@ func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) TimedInvokeTim
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverseresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestListInt8UReverseResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

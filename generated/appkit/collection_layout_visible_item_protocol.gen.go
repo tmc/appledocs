@@ -15,3 +15,4 @@ var CollectionLayoutVisibleItemProtocol *objc.Protocol
 func init() {
 	CollectionLayoutVisibleItemProtocol = objc.GetProtocol("NSCollectionLayoutVisibleItem")
 }
+

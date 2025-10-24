@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BatchUpdateRequest] class.
@@ -45,7 +45,6 @@ type IBatchUpdateRequest interface {
 }
 
 // A request to Core Data to do a batch update of data in a persistent store without loading any data into memory.
-
 
 // A request to Core Data to do a batch update of data in a persistent store without loading any data into memory.
 //
@@ -95,8 +94,6 @@ func NewBatchUpdateRequest() BatchUpdateRequest {
 	return getBatchUpdateRequestClass().New()
 }
 
-
-
 // Creates a batch-update request for a managed entity.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func NewBatchUpdateRequestWithEntity(entity IEntityDescription) BatchUpdateReque
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates a batch-update request for a named managed entity.
 //
@@ -120,8 +116,6 @@ func NewBatchUpdateRequestWithEntityName(entityName objc.IObject /* cross-framew
 	return rv
 }
 
-
-
 // Creates a batch-update request for a named managed entity.
 //
 // [Full Topic]
@@ -130,7 +124,6 @@ func (bc _BatchUpdateRequestClass) BatchUpdateRequestWithEntityName(entityName o
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchUpdateRequestWithEntityName:"), entityName)
 	return rv
 }
-
 
 // The managed entity to update data for.
 //
@@ -141,7 +134,6 @@ func (b_ BatchUpdateRequest) Entity() IEntityDescription {
 	return rv
 }
 
-
 // The name of the managed entity to update data for.
 //
 // [Full Topic]
@@ -150,7 +142,6 @@ func (b_ BatchUpdateRequest) EntityName() objc.IObject /* cross-framework: NSStr
 	rv := objc.Send[foundation.NSString](b_.ID, objc.Sel("entityName"))
 	return rv
 }
-
 
 // A Boolean value that indicates whether to update subentities.
 //
@@ -161,7 +152,6 @@ func (b_ BatchUpdateRequest) IncludesSubentities() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether to update subentities.
 //
 // [Full Topic]
@@ -169,7 +159,6 @@ func (b_ BatchUpdateRequest) IncludesSubentities() bool {
 func (b_ BatchUpdateRequest) SetIncludesSubentities(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIncludesSubentities:"), value)
 }
-
 
 // A predicate that identifies the objects to update.
 //
@@ -180,7 +169,6 @@ func (b_ BatchUpdateRequest) Predicate() objc.IObject /* cross-framework: Predic
 	return rv
 }
 
-
 // A predicate that identifies the objects to update.
 //
 // [Full Topic]
@@ -188,7 +176,6 @@ func (b_ BatchUpdateRequest) Predicate() objc.IObject /* cross-framework: Predic
 func (b_ BatchUpdateRequest) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPredicate:"), value)
 }
-
 
 // A dictionary of property description pairs that describe the updates.
 //
@@ -199,7 +186,6 @@ func (b_ BatchUpdateRequest) PropertiesToUpdate() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // A dictionary of property description pairs that describe the updates.
 //
 // [Full Topic]
@@ -207,7 +193,6 @@ func (b_ BatchUpdateRequest) PropertiesToUpdate() objc.IObject /* cross-framewor
 func (b_ BatchUpdateRequest) SetPropertiesToUpdate(value objc.IObject /* cross-framework: NSDictionary */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setPropertiesToUpdate:"), value)
 }
-
 
 // The type of result that Core Data returns from the request.
 //
@@ -218,7 +203,6 @@ func (b_ BatchUpdateRequest) ResultType() BatchUpdateRequestResultType /* not a 
 	return rv
 }
 
-
 // The type of result that Core Data returns from the request.
 //
 // [Full Topic]
@@ -226,5 +210,3 @@ func (b_ BatchUpdateRequest) ResultType() BatchUpdateRequestResultType /* not a 
 func (b_ BatchUpdateRequest) SetResultType(value BatchUpdateRequestResultType /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
-
-

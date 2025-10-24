@@ -17,9 +17,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAnimationDelegate
 type PAnimationDelegate interface {
 	// Optional methods
-	AnimationDidReachProgressMark(animation IAnimation, progress objc.IObject /* cross-framework: AnimationProgress */)
+	AnimationDidReachProgressMark(animation IAnimation, progress AnimationProgress /* typedef */)
 	HasAnimationDidReachProgressMark() bool
-	AnimationValueForProgress(animation IAnimation, progress objc.IObject /* cross-framework: AnimationProgress */) float32
+	AnimationValueForProgress(animation IAnimation, progress AnimationProgress /* typedef */) float32
 	HasAnimationValueForProgress() bool
 	AnimationDidEnd(animation IAnimation)
 	HasAnimationDidEnd() bool
@@ -33,8 +33,8 @@ type PAnimationDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type AnimationDelegate struct {
-	_AnimationDidReachProgressMark func(animation IAnimation, progress objc.IObject /* cross-framework: AnimationProgress */)
-	_AnimationValueForProgress func(animation IAnimation, progress objc.IObject /* cross-framework: AnimationProgress */) float32
+	_AnimationDidReachProgressMark func(animation IAnimation, progress AnimationProgress /* typedef */)
+	_AnimationValueForProgress func(animation IAnimation, progress AnimationProgress /* typedef */) float32
 	_AnimationDidEnd func(animation IAnimation)
 	_AnimationDidStop func(animation IAnimation)
 	_AnimationShouldStart func(animation IAnimation) bool
@@ -43,14 +43,14 @@ type AnimationDelegate struct {
 // SetAnimationDidReachProgressMark sets the handler for the AnimationDidReachProgressMark delegate method.
 //
 // Sent to the delegate when an animation reaches a specific progress mark.
-func (d *AnimationDelegate) SetAnimationDidReachProgressMark(f func(animation IAnimation, progress objc.IObject /* cross-framework: AnimationProgress */)) {
+func (d *AnimationDelegate) SetAnimationDidReachProgressMark(f func(animation IAnimation, progress AnimationProgress /* typedef */)) {
 	d._AnimationDidReachProgressMark = f
 }
 
 // SetAnimationValueForProgress sets the handler for the AnimationValueForProgress delegate method.
 //
 // Requests a custom curve value for the current progress value.
-func (d *AnimationDelegate) SetAnimationValueForProgress(f func(animation IAnimation, progress objc.IObject /* cross-framework: AnimationProgress */) float32) {
+func (d *AnimationDelegate) SetAnimationValueForProgress(f func(animation IAnimation, progress AnimationProgress /* typedef */) float32) {
 	d._AnimationValueForProgress = f
 }
 
@@ -76,7 +76,7 @@ func (d *AnimationDelegate) SetAnimationShouldStart(f func(animation IAnimation)
 }
 
 // AnimationDidReachProgressMark implements the PAnimationDelegate interface.
-func (d *AnimationDelegate) AnimationDidReachProgressMark(animation IAnimation, progress objc.IObject /* cross-framework: AnimationProgress */) {
+func (d *AnimationDelegate) AnimationDidReachProgressMark(animation IAnimation, progress AnimationProgress /* typedef */) {
 	if d._AnimationDidReachProgressMark != nil {
 		d._AnimationDidReachProgressMark(animation, progress)
 	}
@@ -88,7 +88,7 @@ func (d *AnimationDelegate) HasAnimationDidReachProgressMark() bool {
 }
 
 // AnimationValueForProgress implements the PAnimationDelegate interface.
-func (d *AnimationDelegate) AnimationValueForProgress(animation IAnimation, progress objc.IObject /* cross-framework: AnimationProgress */) float32 {
+func (d *AnimationDelegate) AnimationValueForProgress(animation IAnimation, progress AnimationProgress /* typedef */) float32 {
 	if d._AnimationValueForProgress != nil {
 		return d._AnimationValueForProgress(animation, progress)
 	}

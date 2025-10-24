@@ -50,7 +50,6 @@ type IINStartCallIntent interface {
 //
 // SiriKit creates objects when the user wants to place a call using your app. A call intent object contains either the users to call or redialing information. It’s up to you to match the information in this object to contacts in your app and initiate the resulting call. Your Intents extension receives this intent when the user tries to initiate a call from the Siri interface. If your app supports CallKit, you may also receive this intent when the user tries to initiate a call from system interfaces, such as the Recents tab of the Phone app. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object that indicates it’s possible to begin the call. Don’t try to initiate calls directly from your Intents extension. Instead, SiriKit launches your app and passes it an object that your app must then use to initiate the call. SiriKit places an object in the user activity object with this intent. For calls initiated through Siri, the interaction object also includes the response provided by your Intents extension.
 
-
 // A request to start an audio or video call with one or more users.
 //
 // [Full Topic]
@@ -99,8 +98,6 @@ func NewINStartCallIntent() INStartCallIntent {
 	return getINStartCallIntentClass().New()
 }
 
-
-
 // Details about a call to redial a missed call.
 //
 // [Full Topic]
@@ -109,7 +106,6 @@ func (i_ INStartCallIntent) CallRecordToCallBack() INCallRecord {
 	rv := objc.Send[INCallRecord](i_.ID, objc.Sel("callRecordToCallBack"))
 	return rv
 }
-
 
 // The audio route the call is using.
 //
@@ -120,7 +116,6 @@ func (i_ INStartCallIntent) AudioRoute() unsafe.Pointer {
 	return rv
 }
 
-
 // The audio route the call is using.
 //
 // [Full Topic]
@@ -128,7 +123,6 @@ func (i_ INStartCallIntent) AudioRoute() unsafe.Pointer {
 func (i_ INStartCallIntent) SetAudioRoute(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioRoute:"), value)
 }
-
 
 // The type of call the user initiated.
 //
@@ -139,7 +133,6 @@ func (i_ INStartCallIntent) CallCapability() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of call the user initiated.
 //
 // [Full Topic]
@@ -147,7 +140,6 @@ func (i_ INStartCallIntent) CallCapability() unsafe.Pointer {
 func (i_ INStartCallIntent) SetCallCapability(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
 }
-
 
 // Filters specified by the user to redial a call.
 //
@@ -158,7 +150,6 @@ func (i_ INStartCallIntent) CallRecordFilter() INCallRecordFilter {
 	return rv
 }
 
-
 // Filters specified by the user to redial a call.
 //
 // [Full Topic]
@@ -166,7 +157,6 @@ func (i_ INStartCallIntent) CallRecordFilter() INCallRecordFilter {
 func (i_ INStartCallIntent) SetCallRecordFilter(value INCallRecordFilter) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallRecordFilter:"), value)
 }
-
 
 // The users to call.
 //
@@ -177,7 +167,6 @@ func (i_ INStartCallIntent) Contacts() INPerson {
 	return rv
 }
 
-
 // The users to call.
 //
 // [Full Topic]
@@ -185,7 +174,6 @@ func (i_ INStartCallIntent) Contacts() INPerson {
 func (i_ INStartCallIntent) SetContacts(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContacts:"), value)
 }
-
 
 // The type of call to place.
 //
@@ -196,7 +184,6 @@ func (i_ INStartCallIntent) DestinationType() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of call to place.
 //
 // [Full Topic]
@@ -204,7 +191,6 @@ func (i_ INStartCallIntent) DestinationType() unsafe.Pointer {
 func (i_ INStartCallIntent) SetDestinationType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDestinationType:"), value)
 }
-
 
 // The category of past call record contact information used for redialing.
 //
@@ -215,7 +201,6 @@ func (i_ INStartCallIntent) RecordTypeForRedialing() unsafe.Pointer {
 	return rv
 }
 
-
 // The category of past call record contact information used for redialing.
 //
 // [Full Topic]
@@ -223,6 +208,3 @@ func (i_ INStartCallIntent) RecordTypeForRedialing() unsafe.Pointer {
 func (i_ INStartCallIntent) SetRecordTypeForRedialing(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecordTypeForRedialing:"), value)
 }
-
-
-

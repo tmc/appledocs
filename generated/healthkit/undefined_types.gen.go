@@ -9,19 +9,14 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Answer = _undefined // referenced in HealthKit
-	Association = _undefined // referenced in HealthKit
-	Classification = _undefined // referenced in HealthKit
+	ComparisonResult = _undefined // referenced in HealthKit
 	Date = _undefined // referenced in HealthKit
-	DateComponents = _undefined // referenced in HealthKit
-	Kind = _undefined // referenced in HealthKit
-	Label = _undefined // referenced in HealthKit
-	LogStatus = _undefined // referenced in HealthKit
-	Risk = _undefined // referenced in HealthKit
-	ScheduleType = _undefined // referenced in HealthKit
-	SymptomsStatus = _undefined // referenced in HealthKit
-	ValenceClassification = _undefined // referenced in HealthKit
-	WorkoutPlan = _undefined // referenced in HealthKit
+	DateInterval = _undefined // referenced in HealthKit
+	EnergyFormatterUnit = _undefined // referenced in HealthKit
+	LengthFormatterUnit = _undefined // referenced in HealthKit
+	MassFormatterUnit = _undefined // referenced in HealthKit
+	Predicate = _undefined // referenced in HealthKit
+	PredicateOperatorType = _undefined // referenced in HealthKit
 )
 
 

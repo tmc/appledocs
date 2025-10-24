@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for AppTrackingTransparency. DO NOT EDIT.
 
 // Package apptrackingtransparency provides Go bindings for the AppTrackingTransparency framework.
 //
-// Request user authorization to access app-related data for tracking the user or the
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AppTrackingTransparency without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/AppTrackingTransparency
 package apptrackingtransparency
 
 import (

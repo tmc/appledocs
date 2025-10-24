@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class FSContainerIdentifier */
+
+
+/* debug [class_header]: Header for FSContainerIdentifier */
 // The class instance for the [FSContainerIdentifier] class.
 var (
 	FSContainerIdentifierClass     _FSContainerIdentifierClass
@@ -25,37 +29,31 @@ func getFSContainerIdentifierClass() _FSContainerIdentifierClass {
 type _FSContainerIdentifierClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FSContainerIdentifier */
 // An interface definition for the [FSContainerIdentifier] class.
 type IFSContainerIdentifier interface {
 	IFSEntityIdentifier
+	
+/* debug [class_interface_properties]: Properties for FSContainerIdentifier */
 	// properties:
-	VolumeIdentifier() objc.IObject /* cross-framework: FSVolumeIdentifier */
+	VolumeIdentifier() IFSVolumeIdentifier
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FSContainerIdentifier */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A type that identifies a container.
-//
-// The identifier is either a UUID or a UUID with additional differentiating bytes. Some network protocols evaluate access based on a user ID when connecting. In this situation, when a file server receives multiple client connections with different user IDs, the server provides different file hierarchies to each. For such systems, represent the container identifier as the UUID associated with the server, followed by four or eight bytes to differentiate connections.
+/* debug [class_interface]: End interface */
 
 
-// A type that identifies a container.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier
-type FSContainerIdentifier struct {
-	FSEntityIdentifier
-}
 
-// FSContainerIdentifierFrom constructs a [FSContainerIdentifier] from an unsafe.Pointer.
-//
-// A type that identifies a container.
-func FSContainerIdentifierFrom(ptr unsafe.Pointer) FSContainerIdentifier {
-	return FSContainerIdentifier{
-		FSEntityIdentifier: FSEntityIdentifierFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for FSContainerIdentifier */
 // Alloc allocates a new instance without initialization.
 func (fc _FSContainerIdentifierClass) Alloc() FSContainerIdentifier {
 	rv := objc.Send[FSContainerIdentifier](objc.ID(fc.class), objc.Sel("alloc"))
@@ -63,7 +61,6 @@ func (fc _FSContainerIdentifierClass) Alloc() FSContainerIdentifier {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FSContainerIdentifierClass) New() FSContainerIdentifier {
 	rv := objc.Send[FSContainerIdentifier](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,17 +83,70 @@ func (f_ FSContainerIdentifier) Autorelease() FSContainerIdentifier {
 func NewFSContainerIdentifier() FSContainerIdentifier {
 	return getFSContainerIdentifierClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for FSContainerIdentifier */
+// A type that identifies a container.
+//
+// The identifier is either a UUID or a UUID with additional differentiating bytes. Some network protocols evaluate access based on a user ID when connecting. In this situation, when a file server receives multiple client connections with different user IDs, the server provides different file hierarchies to each. For such systems, represent the container identifier as the UUID associated with the server, followed by four or eight bytes to differentiate connections.
+
+
+// A type that identifies a container.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier
+type FSContainerIdentifier struct {
+	FSEntityIdentifier
+}
+
+// FSContainerIdentifierFrom constructs a [FSContainerIdentifier] from an unsafe.Pointer.
+//
+// A type that identifies a container.
+func FSContainerIdentifierFrom(ptr unsafe.Pointer) FSContainerIdentifier {
+	return FSContainerIdentifier{
+		FSEntityIdentifier: FSEntityIdentifierFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FSContainerIdentifier *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for FSContainerIdentifier */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FSContainerIdentifier */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FSContainerIdentifier */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FSContainerIdentifier */
 
 // The volume identifier associated with the container.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FSKit/FSContainerIdentifier/volumeIdentifier
-func (f_ FSContainerIdentifier) VolumeIdentifier() objc.IObject /* cross-framework: FSVolumeIdentifier */ {
+func (f_ FSContainerIdentifier) VolumeIdentifier() IFSVolumeIdentifier {
 	rv := objc.Send[FSVolumeIdentifier](f_.ID, objc.Sel("volumeIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: volumeIdentifier */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class FSContainerIdentifier */
 
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,7 +44,6 @@ type IPHProjectSection interface {
 // A collection of content representing curated asset and text elements.
 //
 // Each project section contains at least one object, which represents a suggested curation of the content. The number of sections included in varies depending on the source used to initialize the project: There will be one cover section with a key asset element and title, as well as a section containing multiple levels of curation, mirroring the Show Summary and Show More options of the Memory in Photos. The number of sections depends on the Album size. A small Album yields a single section, but an Album with a large quantity of photos is broken down into sections based on Moments in the user’s Photo Library. The sections will match the pagination in that project; for example, a book will break down into one section per page.
-
 
 // A collection of content representing curated asset and text elements.
 //
@@ -92,8 +91,6 @@ func NewPHProjectSection() PHProjectSection {
 	return getPHProjectSectionClass().New()
 }
 
-
-
 // An array containing PHProjectionSessionContent objects.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (p_ PHProjectSection) SectionContents() objc.IObject /* cross-framework: PH
 	return rv
 }
 
-
 // An array containing PHProjectionSessionContent objects.
 //
 // [Full Topic]
@@ -111,7 +107,6 @@ func (p_ PHProjectSection) SectionContents() objc.IObject /* cross-framework: PH
 func (p_ PHProjectSection) SetSectionContents(value objc.IObject /* cross-framework: PHProjectSectionContent */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSectionContents:"), value)
 }
-
 
 // The intended usage of the section: cover, content, or auxiliary.
 //
@@ -122,7 +117,6 @@ func (p_ PHProjectSection) SectionType() unsafe.Pointer {
 	return rv
 }
 
-
 // The intended usage of the section: cover, content, or auxiliary.
 //
 // [Full Topic]
@@ -130,7 +124,6 @@ func (p_ PHProjectSection) SectionType() unsafe.Pointer {
 func (p_ PHProjectSection) SetSectionType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSectionType:"), value)
 }
-
 
 // The optional section title.
 //
@@ -141,7 +134,6 @@ func (p_ PHProjectSection) Title() objc.IObject /* cross-framework: NSString */ 
 	return rv
 }
 
-
 // The optional section title.
 //
 // [Full Topic]
@@ -149,7 +141,3 @@ func (p_ PHProjectSection) Title() objc.IObject /* cross-framework: NSString */ 
 func (p_ PHProjectSection) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
-
-
-
-

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct interfac
 	SetProductIdentifierValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct
@@ -83,8 +81,6 @@ func NewMTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct() MTRA
 	return getMTRActivatedCarbonFilterMonitoringClusterReplacementProductStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiertype
 func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) ProductIdentifierType() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) Prod
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiertype
 func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiervalue
@@ -107,12 +101,8 @@ func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) Prod
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterreplacementproductstruct/productidentifiervalue
 func (m_ MTRActivatedCarbonFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), value)
 }
-
-
-

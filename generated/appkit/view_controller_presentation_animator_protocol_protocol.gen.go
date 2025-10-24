@@ -12,6 +12,6 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSViewControllerPresentationAnimator
 type PViewControllerPresentationAnimator interface {
 	// Required methods
-	AnimateDismissalOfViewControllerFromViewController(viewController IViewController, fromViewController IViewController)
-	AnimatePresentationOfViewControllerFromViewController(viewController IViewController, fromViewController IViewController)
+	AnimateDismissalOfViewControllerFromViewController(viewController IViewController, fromViewController IViewController)/* debug [protocol_interface/required_method]: AnimateDismissalOfViewControllerFromViewController */
+	AnimatePresentationOfViewControllerFromViewController(viewController IViewController, fromViewController IViewController)/* debug [protocol_interface/required_method]: AnimatePresentationOfViewControllerFromViewController */
 }

@@ -15,5 +15,4 @@ func ExamplePositionalSpecifier_Evaluate() {
 	obj := foundation.NewPositionalSpecifier()
 	obj.Evaluate()
 	// Output:
-	}
-
+}

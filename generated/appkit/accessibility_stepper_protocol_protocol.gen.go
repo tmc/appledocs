@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PAccessibilityStepper is the NSAccessibilityStepper protocol interface.
@@ -17,9 +19,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityStepper
 type PAccessibilityStepper interface {
 	// Required methods
-	AccessibilityLabel() foundation.String
-	AccessibilityPerformDecrement() bool
-	AccessibilityPerformIncrement() bool
+	AccessibilityLabel() foundation.String/* debug [protocol_interface/required_method]: AccessibilityLabel */
+	AccessibilityPerformDecrement() bool/* debug [protocol_interface/required_method]: AccessibilityPerformDecrement */
+	AccessibilityPerformIncrement() bool/* debug [protocol_interface/required_method]: AccessibilityPerformIncrement */
 	// Optional methods
 	AccessibilityValue() objc.ID
 	HasAccessibilityValue() bool

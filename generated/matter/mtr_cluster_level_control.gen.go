@@ -33,8 +33,6 @@ type IMTRClusterLevelControl interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLevelControl
 type MTRClusterLevelControl struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterLevelControl) Autorelease() MTRClusterLevelControl {
 func NewMTRClusterLevelControl() MTRClusterLevelControl {
 	return getMTRClusterLevelControlClass().New()
 }
-
-
-
-

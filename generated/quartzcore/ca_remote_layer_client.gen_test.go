@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = quartzcore.NewRemoteLayerClient
 
+// ExampleRemoteLayerClient_Invalidate demonstrates using Invalidate on a RemoteLayerClient instance.
+// Invalidates a remote layer client.
+func ExampleRemoteLayerClient_Invalidate() {
+	obj := quartzcore.NewRemoteLayerClient()
+	obj.Invalidate()
+	// Output:
+	}
+

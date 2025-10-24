@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for AVFAudio. DO NOT EDIT.
 
 // Package avfaudio provides Go bindings for the AVFAudio framework.
 //
-// Play, record, and process audio; configure your app’s system audio behavior.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to AVFAudio without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/AVFAudio
 package avfaudio
 
 import (

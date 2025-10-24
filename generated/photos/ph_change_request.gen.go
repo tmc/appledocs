@@ -36,7 +36,6 @@ type IPHChangeRequest interface {
 
 // The abstract base class of the framework’s photo library change requests.
 
-
 // The abstract base class of the framework’s photo library change requests.
 //
 // [Full Topic]
@@ -82,7 +81,3 @@ func (p_ PHChangeRequest) Autorelease() PHChangeRequest {
 func NewPHChangeRequest() PHChangeRequest {
 	return getPHChangeRequestClass().New()
 }
-
-
-
-

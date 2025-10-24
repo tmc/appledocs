@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class IOUSBHostCIControllerStateMachine */
+
+
+/* debug [class_header]: Header for IOUSBHostCIControllerStateMachine */
 // The class instance for the [USBHostCIControllerStateMachine] class.
 var (
 	USBHostCIControllerStateMachineClass     _USBHostCIControllerStateMachineClass
@@ -26,31 +30,36 @@ func getUSBHostCIControllerStateMachineClass() _USBHostCIControllerStateMachineC
 type _USBHostCIControllerStateMachineClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for USBHostCIControllerStateMachine */
 // An interface definition for the [USBHostCIControllerStateMachine] class.
 type IUSBHostCIControllerStateMachine interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for USBHostCIControllerStateMachine */
 	// properties:
 	ControllerInterface() IOUSBHostControllerInterface
-	SetControllerInterface(value IOUSBHostControllerInterface)
 	ControllerState() USBHostCIControllerState /* not a class type */
-	SetControllerState(value USBHostCIControllerState /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for USBHostCIControllerStateMachine */
 	// methods:
+	EnqueueUpdatedFrameTimestampError(frame uint64, timestamp uint64, error_ unsafe.Pointer) bool
+	InspectCommandError(command USBHostCIMessage, error_ unsafe.Pointer) bool
+	RespondToCommandStatusError(command USBHostCIMessage, status USBHostCIMessageStatus /* not a class type */, error_ unsafe.Pointer) bool
+	RespondToCommandStatusFrameTimestampError(command USBHostCIMessage, status USBHostCIMessageStatus /* not a class type */, frame uint64, timestamp uint64, error_ unsafe.Pointer) bool
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine
-type USBHostCIControllerStateMachine struct {
-	objectivec.Object
-}
-
-// USBHostCIControllerStateMachineFrom constructs a [USBHostCIControllerStateMachine] from an unsafe.Pointer.
-func USBHostCIControllerStateMachineFrom(ptr unsafe.Pointer) USBHostCIControllerStateMachine {
-	return USBHostCIControllerStateMachine{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for USBHostCIControllerStateMachine */
 // Alloc allocates a new instance without initialization.
 func (uc _USBHostCIControllerStateMachineClass) Alloc() USBHostCIControllerStateMachine {
 	rv := objc.Send[USBHostCIControllerStateMachine](objc.ID(uc.class), objc.Sel("alloc"))
@@ -58,7 +67,6 @@ func (uc _USBHostCIControllerStateMachineClass) Alloc() USBHostCIControllerState
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _USBHostCIControllerStateMachineClass) New() USBHostCIControllerStateMachine {
 	rv := objc.Send[USBHostCIControllerStateMachine](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,8 +89,28 @@ func (u_ USBHostCIControllerStateMachine) Autorelease() USBHostCIControllerState
 func NewUSBHostCIControllerStateMachine() USBHostCIControllerStateMachine {
 	return getUSBHostCIControllerStateMachineClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for USBHostCIControllerStateMachine */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine
+type USBHostCIControllerStateMachine struct {
+	objectivec.Object
+}
+
+// USBHostCIControllerStateMachineFrom constructs a [USBHostCIControllerStateMachine] from an unsafe.Pointer.
+func USBHostCIControllerStateMachineFrom(ptr unsafe.Pointer) USBHostCIControllerStateMachine {
+	return USBHostCIControllerStateMachine{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for USBHostCIControllerStateMachine */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/initWithInterface:error:
@@ -91,37 +119,79 @@ func NewUSBHostCIControllerStateMachineWithInterfaceError(interface_ IOUSBHostCo
 	rv := objc.Send[USBHostCIControllerStateMachine](instance.ID, objc.Sel("initWithInterface:error:"), interface_, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewUSBHostCIControllerStateMachineWithInterfaceError */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for USBHostCIControllerStateMachine */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for USBHostCIControllerStateMachine */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for USBHostCIControllerStateMachine */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerinterface
-func (u_ USBHostCIControllerStateMachine) ControllerInterface() IOUSBHostControllerInterface {
-	rv := objc.Send[USBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/enqueueUpdatedFrame(_:timestamp:)
+func (u_ USBHostCIControllerStateMachine) EnqueueUpdatedFrameTimestampError(frame uint64, timestamp uint64, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("enqueueUpdatedFrame:timestamp:error:"), frame, timestamp, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: EnqueueUpdatedFrameTimestampError */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerinterface
-func (u_ USBHostCIControllerStateMachine) SetControllerInterface(value IOUSBHostControllerInterface) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerInterface:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/inspectCommand(_:)
+func (u_ USBHostCIControllerStateMachine) InspectCommandError(command USBHostCIMessage, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("inspectCommand:error:"), command, error_)
+	return rv
+}/* debug [instance_methods/method]: InspectCommandError */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerstate
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/respond(toCommand:status:)
+func (u_ USBHostCIControllerStateMachine) RespondToCommandStatusError(command USBHostCIMessage, status USBHostCIMessageStatus /* not a class type */, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("respondToCommand:status:error:"), command, status, error_)
+	return rv
+}/* debug [instance_methods/method]: RespondToCommandStatusError */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/respond(toCommand:status:frame:timestamp:)
+func (u_ USBHostCIControllerStateMachine) RespondToCommandStatusFrameTimestampError(command USBHostCIMessage, status USBHostCIMessageStatus /* not a class type */, frame uint64, timestamp uint64, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("respondToCommand:status:frame:timestamp:error:"), command, status, frame, timestamp, error_)
+	return rv
+}/* debug [instance_methods/method]: RespondToCommandStatusFrameTimestampError */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for USBHostCIControllerStateMachine */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/controllerInterface
+func (u_ USBHostCIControllerStateMachine) ControllerInterface() IOUSBHostControllerInterface {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("controllerInterface"))
+	return rv
+}/* debug [instance_properties/getter]: controllerInterface */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIControllerStateMachine/controllerState
 func (u_ USBHostCIControllerStateMachine) ControllerState() USBHostCIControllerState /* not a class type */ {
 	rv := objc.Send[USBHostCIControllerState](u_.ID, objc.Sel("controllerState"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controllerState */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcicontrollerstatemachine/controllerstate
-func (u_ USBHostCIControllerStateMachine) SetControllerState(value USBHostCIControllerState /* not a class type */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setControllerState:"), value)
-}
+/* debug [class.gen.go]: End class IOUSBHostCIControllerStateMachine */
 
 

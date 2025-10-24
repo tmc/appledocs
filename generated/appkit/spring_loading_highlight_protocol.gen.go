@@ -15,3 +15,4 @@ var springLoadingHighlightProtocol *objc.Protocol
 func init() {
 	springLoadingHighlightProtocol = objc.GetProtocol("springLoadingHighlight")
 }
+

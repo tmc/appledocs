@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTL4AccelerationStructureGeometryDescriptor */
+
+
+/* debug [class_header]: Header for MTL4AccelerationStructureGeometryDescriptor */
 // The class instance for the [MTL4AccelerationStructureGeometryDescriptor] class.
 var (
 	MTL4AccelerationStructureGeometryDescriptorClass     _MTL4AccelerationStructureGeometryDescriptorClass
@@ -26,42 +31,44 @@ func getMTL4AccelerationStructureGeometryDescriptorClass() _MTL4AccelerationStru
 type _MTL4AccelerationStructureGeometryDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTL4AccelerationStructureGeometryDescriptor */
 // An interface definition for the [MTL4AccelerationStructureGeometryDescriptor] class.
 type IMTL4AccelerationStructureGeometryDescriptor interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTL4AccelerationStructureGeometryDescriptor */
+	// properties:
 	AllowDuplicateIntersectionFunctionInvocation() bool
 	SetAllowDuplicateIntersectionFunctionInvocation(value bool)
-	IntersectionFunctionTableOffset() int
-	SetIntersectionFunctionTableOffset(value int)
-	Label() string
-	SetLabel(value string)
+	IntersectionFunctionTableOffset() uint
+	SetIntersectionFunctionTableOffset(value uint)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	Opaque() bool
 	SetOpaque(value bool)
-	PrimitiveDataBuffer() unsafe.Pointer
-	SetPrimitiveDataBuffer(value unsafe.Pointer)
-	PrimitiveDataElementSize() int
-	SetPrimitiveDataElementSize(value int)
-	PrimitiveDataStride() int
-	SetPrimitiveDataStride(value int)
-}
+	PrimitiveDataBuffer() objc.IObject /* cross-framework: MTL4BufferRange */
+	SetPrimitiveDataBuffer(value objc.IObject /* cross-framework: MTL4BufferRange */)
+	PrimitiveDataElementSize() uint
+	SetPrimitiveDataElementSize(value uint)
+	PrimitiveDataStride() uint
+	SetPrimitiveDataStride(value uint)
+/* debug [class_interface_properties]: End properties */
 
-// Base class for all Metal 4 acceleration structure geometry descriptors.
-//
-// Don’t use this class directly. Use one of the derived classes instead.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor
-type MTL4AccelerationStructureGeometryDescriptor struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for MTL4AccelerationStructureGeometryDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// MTL4AccelerationStructureGeometryDescriptorFrom constructs a [MTL4AccelerationStructureGeometryDescriptor] from an unsafe.Pointer.
-//
-// Base class for all Metal 4 acceleration structure geometry descriptors.
-func MTL4AccelerationStructureGeometryDescriptorFrom(ptr unsafe.Pointer) MTL4AccelerationStructureGeometryDescriptor {
-	return MTL4AccelerationStructureGeometryDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for MTL4AccelerationStructureGeometryDescriptor */
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4AccelerationStructureGeometryDescriptorClass) Alloc() MTL4AccelerationStructureGeometryDescriptor {
 	rv := objc.Send[MTL4AccelerationStructureGeometryDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +76,6 @@ func (mc _MTL4AccelerationStructureGeometryDescriptorClass) Alloc() MTL4Accelera
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTL4AccelerationStructureGeometryDescriptorClass) New() MTL4AccelerationStructureGeometryDescriptor {
 	rv := objc.Send[MTL4AccelerationStructureGeometryDescriptor](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,133 +98,191 @@ func (m_ MTL4AccelerationStructureGeometryDescriptor) Autorelease() MTL4Accelera
 func NewMTL4AccelerationStructureGeometryDescriptor() MTL4AccelerationStructureGeometryDescriptor {
 	return getMTL4AccelerationStructureGeometryDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-// A boolean value that indicates whether the ray-tracing system in Metal allows the invocation of intersection functions
+
+/* debug [class_struct]: Struct for MTL4AccelerationStructureGeometryDescriptor */
+// Base class for all Metal 4 acceleration structure geometry descriptors.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/allowduplicateintersectionfunctioninvocation
+// Don’t use this class directly. Use one of the derived classes instead.
+
+
+// Base class for all Metal 4 acceleration structure geometry descriptors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor
+type MTL4AccelerationStructureGeometryDescriptor struct {
+	objectivec.Object
+}
+
+// MTL4AccelerationStructureGeometryDescriptorFrom constructs a [MTL4AccelerationStructureGeometryDescriptor] from an unsafe.Pointer.
+//
+// Base class for all Metal 4 acceleration structure geometry descriptors.
+func MTL4AccelerationStructureGeometryDescriptorFrom(ptr unsafe.Pointer) MTL4AccelerationStructureGeometryDescriptor {
+	return MTL4AccelerationStructureGeometryDescriptor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTL4AccelerationStructureGeometryDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTL4AccelerationStructureGeometryDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTL4AccelerationStructureGeometryDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTL4AccelerationStructureGeometryDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTL4AccelerationStructureGeometryDescriptor */
+
+// A boolean value that indicates whether the ray-tracing system in Metal allows the invocation of intersection functions more than once per ray-primitive intersection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/allowDuplicateIntersectionFunctionInvocation
 func (m_ MTL4AccelerationStructureGeometryDescriptor) AllowDuplicateIntersectionFunctionInvocation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("allowDuplicateIntersectionFunctionInvocation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allowDuplicateIntersectionFunctionInvocation */
 
 
-// SetAllowDuplicateIntersectionFunctionInvocation sets the value of the allowDuplicateIntersectionFunctionInvocation property.
-// A boolean value that indicates whether the ray-tracing system in Metal allows the invocation of intersection functions
-
+// A boolean value that indicates whether the ray-tracing system in Metal allows the invocation of intersection functions more than once per ray-primitive intersection.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/allowduplicateintersectionfunctioninvocation
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/allowDuplicateIntersectionFunctionInvocation
 func (m_ MTL4AccelerationStructureGeometryDescriptor) SetAllowDuplicateIntersectionFunctionInvocation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllowDuplicateIntersectionFunctionInvocation:"), value)
-}
+}/* debug [instance_properties/setter]: allowDuplicateIntersectionFunctionInvocation */
+
 
 // Sets the offset that this geometry contributes to determining the intersection function to invoke when a ray intersects it.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/intersectionfunctiontableoffset
-func (m_ MTL4AccelerationStructureGeometryDescriptor) IntersectionFunctionTableOffset() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("intersectionFunctionTableOffset"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/intersectionFunctionTableOffset
+func (m_ MTL4AccelerationStructureGeometryDescriptor) IntersectionFunctionTableOffset() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("intersectionFunctionTableOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: intersectionFunctionTableOffset */
 
 
-// SetIntersectionFunctionTableOffset sets the value of the intersectionFunctionTableOffset property.
 // Sets the offset that this geometry contributes to determining the intersection function to invoke when a ray intersects it.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/intersectionfunctiontableoffset
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetIntersectionFunctionTableOffset(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/intersectionFunctionTableOffset
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetIntersectionFunctionTableOffset(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntersectionFunctionTableOffset:"), value)
-}
+}/* debug [instance_properties/setter]: intersectionFunctionTableOffset */
+
 
 // Assigns an optional label you can assign to this geometry for debugging purposes.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
-func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("label"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/label
+func (m_ MTL4AccelerationStructureGeometryDescriptor) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
-}
+}/* debug [instance_properties/getter]: label */
 
 
-// SetLabel sets the value of the label property.
 // Assigns an optional label you can assign to this geometry for debugging purposes.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/label
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), objc.String(value))
-}
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/label
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
+}/* debug [instance_properties/setter]: label */
+
 
 // Provides a hint to Metal that this geometry is opaque, potentially accelerating the ray/primitive intersection process.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/opaque
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/opaque
 func (m_ MTL4AccelerationStructureGeometryDescriptor) Opaque() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("opaque"))
 	return rv
-}
+}/* debug [instance_properties/getter]: opaque */
 
 
-// SetOpaque sets the value of the opaque property.
 // Provides a hint to Metal that this geometry is opaque, potentially accelerating the ray/primitive intersection process.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/opaque
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/opaque
 func (m_ MTL4AccelerationStructureGeometryDescriptor) SetOpaque(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOpaque:"), value)
-}
+}/* debug [instance_properties/setter]: opaque */
+
 
 // Assigns optional buffer containing data to associate with each primitive in this geometry.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedatabuffer
-func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataBuffer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("primitiveDataBuffer"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/primitiveDataBuffer
+func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataBuffer() objc.IObject /* cross-framework: MTL4BufferRange */ {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("primitiveDataBuffer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: primitiveDataBuffer */
 
 
-// SetPrimitiveDataBuffer sets the value of the primitiveDataBuffer property.
 // Assigns optional buffer containing data to associate with each primitive in this geometry.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedatabuffer
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataBuffer(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/primitiveDataBuffer
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataBuffer(value objc.IObject /* cross-framework: MTL4BufferRange */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveDataBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: primitiveDataBuffer */
 
-// Sets the size, in bytes, of the data for each primitive in the primitive data buffer
+
+// Sets the size, in bytes, of the data for each primitive in the primitive data buffer references.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedataelementsize
-func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataElementSize() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("primitiveDataElementSize"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/primitiveDataElementSize
+func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataElementSize() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("primitiveDataElementSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: primitiveDataElementSize */
 
 
-// SetPrimitiveDataElementSize sets the value of the primitiveDataElementSize property.
-// Sets the size, in bytes, of the data for each primitive in the primitive data buffer
-
+// Sets the size, in bytes, of the data for each primitive in the primitive data buffer references.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedataelementsize
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataElementSize(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/primitiveDataElementSize
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataElementSize(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveDataElementSize:"), value)
-}
+}/* debug [instance_properties/setter]: primitiveDataElementSize */
 
-// Defines the stride, in bytes, between each primitive’s data in the primitive data buffer
+
+// Defines the stride, in bytes, between each primitive’s data in the primitive data buffer references.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedatastride
-func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataStride() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("primitiveDataStride"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/primitiveDataStride
+func (m_ MTL4AccelerationStructureGeometryDescriptor) PrimitiveDataStride() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("primitiveDataStride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: primitiveDataStride */
 
 
-// SetPrimitiveDataStride sets the value of the primitiveDataStride property.
-// Defines the stride, in bytes, between each primitive’s data in the primitive data buffer
-
+// Defines the stride, in bytes, between each primitive’s data in the primitive data buffer references.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtl4accelerationstructuregeometrydescriptor/primitivedatastride
-func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataStride(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4AccelerationStructureGeometryDescriptor/primitiveDataStride
+func (m_ MTL4AccelerationStructureGeometryDescriptor) SetPrimitiveDataStride(value uint) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimitiveDataStride:"), value)
-}
+}/* debug [instance_properties/setter]: primitiveDataStride */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTL4AccelerationStructureGeometryDescriptor */
 
 
 

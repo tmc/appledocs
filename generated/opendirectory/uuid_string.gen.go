@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class uuidString */
+
+
+/* debug [class_header]: Header for uuidString */
 // The class instance for the [uuidString] class.
 var (
 	UuidStringClass     _uuidStringClass
@@ -26,27 +30,30 @@ func getuuidStringClass() _uuidStringClass {
 type _uuidStringClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for uuidString */
 // An interface definition for the [uuidString] class.
 type IuuidString interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for uuidString */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for uuidString */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/uuidString-c.ivar
-type uuidString struct {
-	objectivec.Object
-}
-
-// uuidStringFrom constructs a [uuidString] from an unsafe.Pointer.
-func uuidStringFrom(ptr unsafe.Pointer) uuidString {
-	return uuidString{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for uuidString */
 // Alloc allocates a new instance without initialization.
 func (uc _uuidStringClass) Alloc() uuidString {
 	rv := objc.Send[uuidString](objc.ID(uc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (uc _uuidStringClass) Alloc() uuidString {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _uuidStringClass) New() uuidString {
 	rv := objc.Send[uuidString](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (u_ uuidString) Autorelease() uuidString {
 func NewuuidString() uuidString {
 	return getuuidStringClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for uuidString */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODModuleEntry/uuidString-c.ivar
+type uuidString struct {
+	objectivec.Object
+}
+
+// uuidStringFrom constructs a [uuidString] from an unsafe.Pointer.
+func uuidStringFrom(ptr unsafe.Pointer) uuidString {
+	return uuidString{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for uuidString *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for uuidString */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for uuidString */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for uuidString */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for uuidString */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class uuidString */
 
 
 

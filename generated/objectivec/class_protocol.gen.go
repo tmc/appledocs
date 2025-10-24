@@ -21,3 +21,4 @@ var classProtocol *objc.Protocol
 func init() {
 	classProtocol = objc.GetProtocol("class")
 }
+

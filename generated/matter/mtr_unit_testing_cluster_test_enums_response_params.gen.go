@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRUnitTestingClusterTestEnumsResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestEnumsResponseParams
@@ -85,8 +83,6 @@ func NewMTRUnitTestingClusterTestEnumsResponseParams() MTRUnitTestingClusterTest
 	return getMTRUnitTestingClusterTestEnumsResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/arg1
 func (m_ MTRUnitTestingClusterTestEnumsResponseParams) Arg1() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRUnitTestingClusterTestEnumsResponseParams) Arg1() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/arg1
 func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/arg2
@@ -109,13 +103,11 @@ func (m_ MTRUnitTestingClusterTestEnumsResponseParams) Arg2() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/arg2
 func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetArg2(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg2:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRUnitTestingClusterTestEnumsResponseParams) TimedInvokeTimeoutMs() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestenumsresponseparams/timedinvoketimeoutms
 func (m_ MTRUnitTestingClusterTestEnumsResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

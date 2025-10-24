@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
@@ -49,7 +49,6 @@ type IPHContentEditingOutput interface {
 // A container to which you provide the results of editing the photo, video, or Live Photo content of a Photos asset.
 //
 // To edit an asset’s photo or video content: Fetch a object that represents the photo or video to be edited. Call the asset’s method to retrieve a object. This object provides information about the asset, the asset data to be edited, and a preview image for display. Apply your edits to the asset. To allow a user to continue working with the edit later (for example, to adjust the parameters of a photo filter), create a object describing the changes. Initialize a object. For photo- or video-only assets, provide the edited content with the property. For Live Photo assets, create a object to edit the Live Photo content and pass your content editing output to the method. For all asset types, provide your adjustment data with the property of the content editing output. 5. Use a photo library change block to commit the edit. (For details, see .) In the block, create a object and set its property to the editing output that you created. Each call prompts the user for permission to edit the contents of the photo library—to edit multiple assets in one batch, create multiple objects within the same change block, each with its own corresponding object. You can also edit assets from photo editing extensions. In this case, instead of working with a object, you implement methods in the protocol. Photos provides a object when your extension begins editing. When editing is complete, Photos requests a object that contains the edited asset content.
-
 
 // A container to which you provide the results of editing the photo, video, or Live Photo content of a Photos asset.
 //
@@ -97,8 +96,6 @@ func NewPHContentEditingOutput() PHContentEditingOutput {
 	return getPHContentEditingOutputClass().New()
 }
 
-
-
 // The output of an asset content editing session.
 //
 // [Full Topic]
@@ -108,7 +105,6 @@ func (p_ PHContentEditingOutput) ContentEditingOutput() IPHContentEditingOutput 
 	return rv
 }
 
-
 // The output of an asset content editing session.
 //
 // [Full Topic]
@@ -116,7 +112,6 @@ func (p_ PHContentEditingOutput) ContentEditingOutput() IPHContentEditingOutput 
 func (p_ PHContentEditingOutput) SetContentEditingOutput(value IPHContentEditingOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
-
 
 // An object describing the changes made to the asset.
 //
@@ -127,7 +122,6 @@ func (p_ PHContentEditingOutput) AdjustmentData() IPHAdjustmentData {
 	return rv
 }
 
-
 // An object describing the changes made to the asset.
 //
 // [Full Topic]
@@ -136,7 +130,6 @@ func (p_ PHContentEditingOutput) SetAdjustmentData(value IPHAdjustmentData) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAdjustmentData:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/defaultrenderedcontenttype
 func (p_ PHContentEditingOutput) DefaultRenderedContentType() objc.IObject /* cross-framework: UTType */ {
@@ -144,13 +137,11 @@ func (p_ PHContentEditingOutput) DefaultRenderedContentType() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/defaultrenderedcontenttype
 func (p_ PHContentEditingOutput) SetDefaultRenderedContentType(value objc.IObject /* cross-framework: UTType */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultRenderedContentType:"), value)
 }
-
 
 // The URL at which to write a file containing edited asset content.
 //
@@ -161,7 +152,6 @@ func (p_ PHContentEditingOutput) RenderedContentURL() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // The URL at which to write a file containing edited asset content.
 //
 // [Full Topic]
@@ -170,7 +160,6 @@ func (p_ PHContentEditingOutput) SetRenderedContentURL(value objc.IObject /* cro
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRenderedContentURL:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/supportedrenderedcontenttypes
 func (p_ PHContentEditingOutput) SupportedRenderedContentTypes() objc.IObject /* cross-framework: UTType */ {
@@ -178,12 +167,8 @@ func (p_ PHContentEditingOutput) SupportedRenderedContentTypes() objc.IObject /*
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photos/phcontenteditingoutput/supportedrenderedcontenttypes
 func (p_ PHContentEditingOutput) SetSupportedRenderedContentTypes(value objc.IObject /* cross-framework: UTType */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSupportedRenderedContentTypes:"), value)
 }
-
-
-

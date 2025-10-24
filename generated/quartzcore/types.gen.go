@@ -4,6 +4,16 @@ package quartzcore
 
 
 // C struct types
+// CAFrameRateRange
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAFrameRateRange
+type CAFrameRateRange struct {
+	Maximum float32
+	Minimum float32
+	Preferred float32
+}/* debug [types.gen.go/struct]: CAFrameRateRange */
+
 // CATransform3D - The standard transform matrix used throughout Core Animation.
 //
 // [Full Topic]
@@ -25,7 +35,9 @@ type CATransform3D struct {
 	M42 float64 // The entry at position 4,2 in the matrix.
 	M43 float64 // The entry at position 4,3 in the matrix.
 	M44 float64 // The entry at position 4,4 in the matrix.
-}
+}/* debug [types.gen.go/struct]: CATransform3D */
+
+
 
 
 

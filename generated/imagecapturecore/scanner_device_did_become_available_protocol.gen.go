@@ -15,3 +15,4 @@ var scannerDeviceDidBecomeAvailableProtocol *objc.Protocol
 func init() {
 	scannerDeviceDidBecomeAvailableProtocol = objc.GetProtocol("scannerDeviceDidBecomeAvailable:")
 }
+

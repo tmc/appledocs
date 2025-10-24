@@ -2,6 +2,7 @@
 
 package healthkit
 
+/* debug [functions.gen.go]: Generating 11 functions for HealthKit */
 import (
 	"unsafe"
 
@@ -9,21 +10,22 @@ import (
 )
 
 
-// HealthKit Functions (10 total)
+// HealthKit Functions (11 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
+	_HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification func(HKAppleSleepingBreathingDisturbancesClassification) unsafe.Pointer
 	_HKAppleSleepingBreathingDisturbancesClassificationForQuantity func(unsafe.Pointer) unsafe.Pointer
 	_HKAppleWalkingSteadinessClassificationForQuantity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_HKAppleWalkingSteadinessMaximumQuantityForClassification func(unsafe.Pointer) unsafe.Pointer
-	_HKAppleWalkingSteadinessMinimumQuantityForClassification func(unsafe.Pointer) unsafe.Pointer
+	_HKAppleWalkingSteadinessMaximumQuantityForClassification func(HKAppleWalkingSteadinessClassification) unsafe.Pointer
+	_HKAppleWalkingSteadinessMinimumQuantityForClassification func(HKAppleWalkingSteadinessClassification) unsafe.Pointer
 	_HKCategoryValueSleepAnalysisAsleepValues func() unsafe.Pointer
-	_HKMaximumScoreForGAD7AssessmentRisk func(unsafe.Pointer) int64
-	_HKMaximumScoreForPHQ9AssessmentRisk func(unsafe.Pointer) int64
-	_HKMinimumScoreForGAD7AssessmentRisk func(unsafe.Pointer) int64
-	_HKMinimumScoreForPHQ9AssessmentRisk func(unsafe.Pointer) int64
+	_HKMaximumScoreForGAD7AssessmentRisk func(HKGAD7AssessmentRisk) int
+	_HKMaximumScoreForPHQ9AssessmentRisk func(HKPHQ9AssessmentRisk) int
+	_HKMinimumScoreForGAD7AssessmentRisk func(HKGAD7AssessmentRisk) int
+	_HKMinimumScoreForPHQ9AssessmentRisk func(HKPHQ9AssessmentRisk) int
 	_HKStateOfMindValenceClassificationForValence func(float64) unsafe.Pointer
 )
 
@@ -32,6 +34,7 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	tryRegister(&_HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification, lib, "HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification")
 	tryRegister(&_HKAppleSleepingBreathingDisturbancesClassificationForQuantity, lib, "HKAppleSleepingBreathingDisturbancesClassificationForQuantity")
 	tryRegister(&_HKAppleWalkingSteadinessClassificationForQuantity, lib, "HKAppleWalkingSteadinessClassificationForQuantity")
 	tryRegister(&_HKAppleWalkingSteadinessMaximumQuantityForClassification, lib, "HKAppleWalkingSteadinessMaximumQuantityForClassification")
@@ -58,6 +61,15 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
+// HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification is a HealthKit function.
+//
+// Added in macOS 15.0.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleSleepingBreathingDisturbancesClassification/minimum
+func HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification HKAppleSleepingBreathingDisturbancesClassification) unsafe.Pointer {
+	return _HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification(classification)
+}/* debug [functions.gen.go/function]: HKAppleSleepingBreathingDisturbancesMinimumQuantityForClassification */
+
 // HKAppleSleepingBreathingDisturbancesClassificationForQuantity is a HealthKit function.
 //
 // Added in macOS 15.0.
@@ -65,7 +77,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleSleepingBreathingDisturbancesClassificationForQuantity
 func HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value unsafe.Pointer) unsafe.Pointer {
 	return _HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value)
-}
+}/* debug [functions.gen.go/function]: HKAppleSleepingBreathingDisturbancesClassificationForQuantity */
 
 // Provides a classification for a score that measures the steadiness of the user’s gait.
 //
@@ -76,7 +88,7 @@ func HKAppleSleepingBreathingDisturbancesClassificationForQuantity(value unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessClassificationForQuantity
 func HKAppleWalkingSteadinessClassificationForQuantity(value unsafe.Pointer, classificationOut unsafe.Pointer, errorOut unsafe.Pointer) bool {
 	return _HKAppleWalkingSteadinessClassificationForQuantity(value, classificationOut, errorOut)
-}
+}/* debug [functions.gen.go/function]: HKAppleWalkingSteadinessClassificationForQuantity */
 
 // Returns the maximum score for the steadiness of the user’s gait based on the provided classification.
 //
@@ -85,9 +97,9 @@ func HKAppleWalkingSteadinessClassificationForQuantity(value unsafe.Pointer, cla
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessMaximumQuantityForClassification
-func HKAppleWalkingSteadinessMaximumQuantityForClassification(classification unsafe.Pointer) unsafe.Pointer {
+func HKAppleWalkingSteadinessMaximumQuantityForClassification(classification HKAppleWalkingSteadinessClassification) unsafe.Pointer {
 	return _HKAppleWalkingSteadinessMaximumQuantityForClassification(classification)
-}
+}/* debug [functions.gen.go/function]: HKAppleWalkingSteadinessMaximumQuantityForClassification */
 
 // Returns the minimum score for the steadiness of the user’s gait based on the provided classification.
 //
@@ -96,9 +108,9 @@ func HKAppleWalkingSteadinessMaximumQuantityForClassification(classification uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKAppleWalkingSteadinessMinimumQuantityForClassification
-func HKAppleWalkingSteadinessMinimumQuantityForClassification(classification unsafe.Pointer) unsafe.Pointer {
+func HKAppleWalkingSteadinessMinimumQuantityForClassification(classification HKAppleWalkingSteadinessClassification) unsafe.Pointer {
 	return _HKAppleWalkingSteadinessMinimumQuantityForClassification(classification)
-}
+}/* debug [functions.gen.go/function]: HKAppleWalkingSteadinessMinimumQuantityForClassification */
 
 // HKCategoryValueSleepAnalysisAsleepValues is a HealthKit function.
 //
@@ -107,7 +119,7 @@ func HKAppleWalkingSteadinessMinimumQuantityForClassification(classification uns
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKCategoryValueSleepAnalysisAsleepValues
 func HKCategoryValueSleepAnalysisAsleepValues() unsafe.Pointer {
 	return _HKCategoryValueSleepAnalysisAsleepValues()
-}
+}/* debug [functions.gen.go/function]: HKCategoryValueSleepAnalysisAsleepValues */
 
 // Returns the upper bound of the score range for the given GAD-7 risk classification.
 
@@ -115,9 +127,9 @@ func HKCategoryValueSleepAnalysisAsleepValues() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMaximumScoreForGAD7AssessmentRisk
-func HKMaximumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) int64 {
+func HKMaximumScoreForGAD7AssessmentRisk(risk HKGAD7AssessmentRisk) int {
 	return _HKMaximumScoreForGAD7AssessmentRisk(risk)
-}
+}/* debug [functions.gen.go/function]: HKMaximumScoreForGAD7AssessmentRisk */
 
 // Returns the upper bound of the score range for the given PHQ-9 risk classification.
 
@@ -125,9 +137,9 @@ func HKMaximumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) int64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMaximumScoreForPHQ9AssessmentRisk
-func HKMaximumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) int64 {
+func HKMaximumScoreForPHQ9AssessmentRisk(risk HKPHQ9AssessmentRisk) int {
 	return _HKMaximumScoreForPHQ9AssessmentRisk(risk)
-}
+}/* debug [functions.gen.go/function]: HKMaximumScoreForPHQ9AssessmentRisk */
 
 // Returns the lower bound of the score range for the given GAD-7 risk classification.
 
@@ -135,9 +147,9 @@ func HKMaximumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) int64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMinimumScoreForGAD7AssessmentRisk
-func HKMinimumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) int64 {
+func HKMinimumScoreForGAD7AssessmentRisk(risk HKGAD7AssessmentRisk) int {
 	return _HKMinimumScoreForGAD7AssessmentRisk(risk)
-}
+}/* debug [functions.gen.go/function]: HKMinimumScoreForGAD7AssessmentRisk */
 
 // Returns the lower bound of the score range for the given PHQ-9 risk classification.
 
@@ -145,17 +157,19 @@ func HKMinimumScoreForGAD7AssessmentRisk(risk unsafe.Pointer) int64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMinimumScoreForPHQ9AssessmentRisk
-func HKMinimumScoreForPHQ9AssessmentRisk(risk unsafe.Pointer) int64 {
+func HKMinimumScoreForPHQ9AssessmentRisk(risk HKPHQ9AssessmentRisk) int {
 	return _HKMinimumScoreForPHQ9AssessmentRisk(risk)
-}
+}/* debug [functions.gen.go/function]: HKMinimumScoreForPHQ9AssessmentRisk */
 
 // HKStateOfMindValenceClassificationForValence is a HealthKit function.
-
+//
+// Added in macOS .
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKStateOfMindValenceClassificationForValence
 func HKStateOfMindValenceClassificationForValence(valence float64) unsafe.Pointer {
 	return _HKStateOfMindValenceClassificationForValence(valence)
-}
+}/* debug [functions.gen.go/function]: HKStateOfMindValenceClassificationForValence */
+
 
 
 

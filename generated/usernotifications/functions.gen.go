@@ -2,10 +2,10 @@
 
 package usernotifications
 
+/* debug [functions.gen.go]: Generating 0 functions for UserNotifications */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // UserNotifications Functions (0 total)
 //
@@ -20,8 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-

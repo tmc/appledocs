@@ -2,12 +2,9 @@
 
 package accounts
 
+/* debug [enums.gen.go]: Generating 2 enums for Accounts */
 // Enum types and constants
-// ACAccountCredentialRenewResult - Status codes of credential renewal requests.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredentialRenewResult
-type ACAccountCredentialRenewResult uint
-
+/* debug [enums.gen.go]: Processing enum ACErrorCode (23 cases) */
 // ACErrorCode - Codes for errors that may occur.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Accounts/ACErrorCode
@@ -106,6 +103,27 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACErrorUpdatingNonexistentAccount
 	ACErrorUpdatingNonexistentAccount ACErrorCode = 0
+)
+
+/* debug [enums.gen.go]: Processing enum ACAccountCredentialRenewResult (3 cases) */
+// ACAccountCredentialRenewResult - Status codes of credential renewal requests.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredentialRenewResult
+type ACAccountCredentialRenewResult uint
+
+const (
+	// ACAccountCredentialRenewResultFailed - A non-user-initiated cancel of the prompt.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredentialRenewResult/failed
+	ACAccountCredentialRenewResultFailed ACAccountCredentialRenewResult = 0
+	// ACAccountCredentialRenewResultRejected - Renewal failed because the user revoked your access to their account.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredentialRenewResult/rejected
+	ACAccountCredentialRenewResultRejected ACAccountCredentialRenewResult = 0
+	// ACAccountCredentialRenewResultRenewed - The account’s credentials have been renewed and are now associated with the account.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Accounts/ACAccountCredentialRenewResult/renewed
+	ACAccountCredentialRenewResultRenewed ACAccountCredentialRenewResult = 0
 )
 
 

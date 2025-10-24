@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class CNContactPickerViewController */
+
+
+/* debug [class_header]: Header for CNContactPickerViewController */
 // The class instance for the [CNContactPickerViewController] class.
 var (
 	CNContactPickerViewControllerClass     _CNContactPickerViewControllerClass
@@ -27,36 +30,30 @@ func getCNContactPickerViewControllerClass() _CNContactPickerViewControllerClass
 type _CNContactPickerViewControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNContactPickerViewController */
 // An interface definition for the [CNContactPickerViewController] class.
 type ICNContactPickerViewController interface {
-	appkit.IViewController
+	IViewController
+	
+/* debug [class_interface_properties]: Properties for CNContactPickerViewController */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNContactPickerViewController */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A view controller that displays an interface for picking contacts.
-//
-// A allows the user to select one or more contacts (or their properties) from the list of contacts displayed in the contact view controller ( ). The picker supports both single selection and multiselection of the contacts. The app using contact picker view does not need access to the user’s contacts and the user will not be prompted for “grant permission” access. The app has access only to the user’s final selection. There are predefined predicates in this class that let you control the user selection of the contact. Changing the predicates only take effect before the view is presented.
+/* debug [class_interface]: End interface */
 
 
-// A view controller that displays an interface for picking contacts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController
-type CNContactPickerViewController struct {
-	appkit.ViewController
-}
 
-// CNContactPickerViewControllerFrom constructs a [CNContactPickerViewController] from an unsafe.Pointer.
-//
-// A view controller that displays an interface for picking contacts.
-func CNContactPickerViewControllerFrom(ptr unsafe.Pointer) CNContactPickerViewController {
-	return CNContactPickerViewController{
-		ViewController: appkit.ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CNContactPickerViewController */
 // Alloc allocates a new instance without initialization.
 func (cc _CNContactPickerViewControllerClass) Alloc() CNContactPickerViewController {
 	rv := objc.Send[CNContactPickerViewController](objc.ID(cc.class), objc.Sel("alloc"))
@@ -64,7 +61,6 @@ func (cc _CNContactPickerViewControllerClass) Alloc() CNContactPickerViewControl
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNContactPickerViewControllerClass) New() CNContactPickerViewController {
 	rv := objc.Send[CNContactPickerViewController](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,6 +83,59 @@ func (c_ CNContactPickerViewController) Autorelease() CNContactPickerViewControl
 func NewCNContactPickerViewController() CNContactPickerViewController {
 	return getCNContactPickerViewControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for CNContactPickerViewController */
+// A view controller that displays an interface for picking contacts.
+//
+// A allows the user to select one or more contacts (or their properties) from the list of contacts displayed in the contact view controller ( ). The picker supports both single selection and multiselection of the contacts. The app using contact picker view does not need access to the user’s contacts and the user will not be prompted for “grant permission” access. The app has access only to the user’s final selection. There are predefined predicates in this class that let you control the user selection of the contact. Changing the predicates only take effect before the view is presented.
+
+
+// A view controller that displays an interface for picking contacts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController
+type CNContactPickerViewController struct {
+	ViewController
+}
+
+// CNContactPickerViewControllerFrom constructs a [CNContactPickerViewController] from an unsafe.Pointer.
+//
+// A view controller that displays an interface for picking contacts.
+func CNContactPickerViewControllerFrom(ptr unsafe.Pointer) CNContactPickerViewController {
+	return CNContactPickerViewController{
+		ViewController: ViewControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CNContactPickerViewController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CNContactPickerViewController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNContactPickerViewController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNContactPickerViewController */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNContactPickerViewController */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CNContactPickerViewController */
 
 

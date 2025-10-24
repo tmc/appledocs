@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRMediaPlaybackClusterPlaybackResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterPlaybackResponseParams
@@ -85,8 +83,6 @@ func NewMTRMediaPlaybackClusterPlaybackResponseParams() MTRMediaPlaybackClusterP
 	return getMTRMediaPlaybackClusterPlaybackResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
 func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() objc.IObject /* cross-framework: NSString */ {
@@ -94,13 +90,11 @@ func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Data() objc.IObject /* c
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/data
 func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetData(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
@@ -109,13 +103,11 @@ func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) Status() objc.IObject /*
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/status
 func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) TimedInvokeTimeoutMs() o
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackresponseparams/timedinvoketimeoutms
 func (m_ MTRMediaPlaybackClusterPlaybackResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

@@ -9,10 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in Automator
-	Bundle = _undefined // referenced in Automator
+	Bool              = _undefined // referenced in Automator
+	Bundle            = _undefined // referenced in Automator
 	MutableDictionary = _undefined // referenced in Automator
-	OSAScript = _undefined // referenced in Automator
+	OSAScript         = _undefined // referenced in Automator
 )
-
-

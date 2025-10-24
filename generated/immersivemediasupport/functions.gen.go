@@ -2,10 +2,10 @@
 
 package immersivemediasupport
 
+/* debug [functions.gen.go]: Generating 0 functions for ImmersiveMediaSupport */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // ImmersiveMediaSupport Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

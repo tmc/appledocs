@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CMWaterSubmersionManager */
+
+
+/* debug [class_header]: Header for CMWaterSubmersionManager */
 // The class instance for the [WaterSubmersionManager] class.
 var (
 	WaterSubmersionManagerClass     _WaterSubmersionManagerClass
@@ -26,34 +30,30 @@ func getWaterSubmersionManagerClass() _WaterSubmersionManagerClass {
 type _WaterSubmersionManagerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for WaterSubmersionManager */
 // An interface definition for the [WaterSubmersionManager] class.
 type IWaterSubmersionManager interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for WaterSubmersionManager */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for WaterSubmersionManager */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object for managing the collection of pressure and temperature data during submersion.
-//
-// Use this class to receive live depth, water pressure, and water temperature data on Apple Watch Ultra. Start by assigning a usage description using the key in your app target’s information property list. You also need to include an entitlement to access the live submersion data. To access data for dives with a maximum depth of 6 m, add the Shallow Depth and Pressure capability to your app. For more information, see . To enable a maximum depth of 40 m, you must apply for the full Submerged Depth and Pressure entitlement. For more information, see . Next, check whether submersion data is available. If the property is , instantiate a object and assign a delegate. Your delegate then begins receiving updates from the system. For more information, see .
+/* debug [class_interface]: End interface */
 
 
-// An object for managing the collection of pressure and temperature data during submersion.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager
-type WaterSubmersionManager struct {
-	objectivec.Object
-}
 
-// WaterSubmersionManagerFrom constructs a [WaterSubmersionManager] from an unsafe.Pointer.
-//
-// An object for managing the collection of pressure and temperature data during submersion.
-func WaterSubmersionManagerFrom(ptr unsafe.Pointer) WaterSubmersionManager {
-	return WaterSubmersionManager{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for WaterSubmersionManager */
 // Alloc allocates a new instance without initialization.
 func (wc _WaterSubmersionManagerClass) Alloc() WaterSubmersionManager {
 	rv := objc.Send[WaterSubmersionManager](objc.ID(wc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (wc _WaterSubmersionManagerClass) Alloc() WaterSubmersionManager {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (wc _WaterSubmersionManagerClass) New() WaterSubmersionManager {
 	rv := objc.Send[WaterSubmersionManager](objc.ID(wc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,8 +83,44 @@ func (w_ WaterSubmersionManager) Autorelease() WaterSubmersionManager {
 func NewWaterSubmersionManager() WaterSubmersionManager {
 	return getWaterSubmersionManagerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for WaterSubmersionManager */
+// An object for managing the collection of pressure and temperature data during submersion.
+//
+// Use this class to receive live depth, water pressure, and water temperature data on Apple Watch Ultra. Start by assigning a usage description using the key in your app target’s information property list. You also need to include an entitlement to access the live submersion data. To access data for dives with a maximum depth of 6 m, add the Shallow Depth and Pressure capability to your app. For more information, see . To enable a maximum depth of 40 m, you must apply for the full Submerged Depth and Pressure entitlement. For more information, see . Next, check whether submersion data is available. If the property is , instantiate a object and assign a delegate. Your delegate then begins receiving updates from the system. For more information, see .
+
+
+// An object for managing the collection of pressure and temperature data during submersion.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager
+type WaterSubmersionManager struct {
+	objectivec.Object
+}
+
+// WaterSubmersionManagerFrom constructs a [WaterSubmersionManager] from an unsafe.Pointer.
+//
+// An object for managing the collection of pressure and temperature data during submersion.
+func WaterSubmersionManagerFrom(ptr unsafe.Pointer) WaterSubmersionManager {
+	return WaterSubmersionManager{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for WaterSubmersionManager *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for WaterSubmersionManager */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for WaterSubmersionManager */
 
 // A value indicating whether the app has user authorization to receive submersion data.
 //
@@ -94,7 +129,7 @@ func NewWaterSubmersionManager() WaterSubmersionManager {
 func (wc _WaterSubmersionManagerClass) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(wc.class), objc.Sel("authorizationStatus"))
 	return rv
-}
+}/* debug [class_properties_class/property]: authorizationStatus */
 
 // A Boolean value indicating whether the current device supports the submersion manager.
 //
@@ -103,5 +138,20 @@ func (wc _WaterSubmersionManagerClass) AuthorizationStatus() AuthorizationStatus
 func (wc _WaterSubmersionManagerClass) WaterSubmersionAvailable() bool {
 	rv := objc.Send[bool](objc.ID(wc.class), objc.Sel("waterSubmersionAvailable"))
 	return rv
-}
+}/* debug [class_properties_class/property]: waterSubmersionAvailable */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for WaterSubmersionManager */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for WaterSubmersionManager */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CMWaterSubmersionManager */
+
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRGeneralDiagnosticsClusterTestEventTriggerParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterTestEventTriggerParams
@@ -87,8 +85,6 @@ func NewMTRGeneralDiagnosticsClusterTestEventTriggerParams() MTRGeneralDiagnosti
 	return getMTRGeneralDiagnosticsClusterTestEventTriggerParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/enablekey
 func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EnableKey() objc.IObject /* cross-framework: Data */ {
@@ -96,13 +92,11 @@ func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EnableKey() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/enablekey
 func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEnableKey(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnableKey:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/eventtrigger
@@ -111,13 +105,11 @@ func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) EventTrigger() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/eventtrigger
 func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetEventTrigger(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEventTrigger:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/serversideprocessingtimeout
@@ -126,13 +118,11 @@ func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) ServerSideProcessin
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/serversideprocessingtimeout
 func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/timedinvoketimeoutms
@@ -141,12 +131,8 @@ func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) TimedInvokeTimeoutM
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclustertesteventtriggerparams/timedinvoketimeoutms
 func (m_ MTRGeneralDiagnosticsClusterTestEventTriggerParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

@@ -11,6 +11,7 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 4.0+
 //   - iPadOS 4.0+
 //   - macOS 10.9+
+//   - tvOS +
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 //
@@ -20,3 +21,4 @@ var setCoordinateProtocol *objc.Protocol
 func init() {
 	setCoordinateProtocol = objc.GetProtocol("setCoordinate:")
 }
+

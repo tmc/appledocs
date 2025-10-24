@@ -20,3 +20,4 @@ var FunctionLogProtocol *objc.Protocol
 func init() {
 	FunctionLogProtocol = objc.GetProtocol("MTLFunctionLog")
 }
+

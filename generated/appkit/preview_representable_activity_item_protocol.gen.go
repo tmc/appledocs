@@ -15,3 +15,4 @@ var PreviewRepresentableActivityItemProtocol *objc.Protocol
 func init() {
 	PreviewRepresentableActivityItemProtocol = objc.GetProtocol("NSPreviewRepresentableActivityItem")
 }
+

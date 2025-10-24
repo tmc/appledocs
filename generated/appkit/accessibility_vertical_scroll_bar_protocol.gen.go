@@ -15,3 +15,4 @@ var accessibilityVerticalScrollBarProtocol *objc.Protocol
 func init() {
 	accessibilityVerticalScrollBarProtocol = objc.GetProtocol("accessibilityVerticalScrollBar")
 }
+

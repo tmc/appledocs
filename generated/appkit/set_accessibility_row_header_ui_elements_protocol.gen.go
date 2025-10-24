@@ -15,3 +15,4 @@ var setAccessibilityRowHeaderUIElementsProtocol *objc.Protocol
 func init() {
 	setAccessibilityRowHeaderUIElementsProtocol = objc.GetProtocol("setAccessibilityRowHeaderUIElements")
 }
+

@@ -25,6 +25,13 @@ func (s_ SFSafariViewControllerActivityButton) ExtensionIdentifier() objc.IObjec
 	return rv
 }
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/templateImage
+func (s_ SFSafariViewControllerActivityButton) TemplateImage() appkit.Image {
+	rv := objc.Send[appkit.Image](s_.ID, objc.Sel("templateImage"))
+	return rv
+}
+
 
 
 

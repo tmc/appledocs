@@ -10,8 +10,4 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	CellularDataRestrictionDidUpdateNotifier = _undefined // referenced in CoreTelephony
-	SubscriberDelegate = _undefined // referenced in CoreTelephony
-	TelephonyNetworkInfoDelegate = _undefined // referenced in CoreTelephony
 )
-
-

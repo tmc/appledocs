@@ -15,3 +15,4 @@ var accessibilityRowCountProtocol *objc.Protocol
 func init() {
 	accessibilityRowCountProtocol = objc.GetProtocol("accessibilityRowCount")
 }
+

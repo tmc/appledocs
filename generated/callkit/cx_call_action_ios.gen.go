@@ -20,7 +20,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallAction/callUUID
-func (c_ CXCallAction) CallUUID() objc.IObject /* cross-framework: UUID */ {
+func (c_ CXCallAction) CallUUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("callUUID"))
 	return rv
 }

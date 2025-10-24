@@ -18,3 +18,4 @@ var toolPickerIsRulerActiveDidChangeProtocol *objc.Protocol
 func init() {
 	toolPickerIsRulerActiveDidChangeProtocol = objc.GetProtocol("toolPickerIsRulerActiveDidChange:")
 }
+

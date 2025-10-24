@@ -15,3 +15,4 @@ var FSVolumeXattrOperationsProtocol *objc.Protocol
 func init() {
 	FSVolumeXattrOperationsProtocol = objc.GetProtocol("FSVolumeXattrOperations")
 }
+

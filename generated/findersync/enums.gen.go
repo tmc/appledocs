@@ -2,7 +2,9 @@
 
 package findersync
 
+/* debug [enums.gen.go]: Generating 1 enums for FinderSync */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum FIMenuKind (4 cases) */
 // FIMenuKind - The different kinds of custom menus that the Finder Sync extension can
 //
 // [Full Topic]: https://developer.apple.com/documentation/FinderSync/FIMenuKind

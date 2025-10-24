@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRValveConfigurationAndControlClusterValveStateChangedEvent interface {
 	SetValveState(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRValveConfigurationAndControlClusterValveStateChangedEvent
@@ -83,8 +81,6 @@ func NewMTRValveConfigurationAndControlClusterValveStateChangedEvent() MTRValveC
 	return getMTRValveConfigurationAndControlClusterValveStateChangedEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvelevel
 func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveLevel() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveLeve
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvelevel
 func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveLevel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveLevel:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
@@ -107,12 +101,8 @@ func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) ValveStat
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvestatechangedevent/valvestate
 func (m_ MTRValveConfigurationAndControlClusterValveStateChangedEvent) SetValveState(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveState:"), value)
 }
-
-
-

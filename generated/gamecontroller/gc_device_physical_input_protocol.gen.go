@@ -20,3 +20,4 @@ var GCDevicePhysicalInputProtocol *objc.Protocol
 func init() {
 	GCDevicePhysicalInputProtocol = objc.GetProtocol("GCDevicePhysicalInput")
 }
+

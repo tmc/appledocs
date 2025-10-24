@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,7 +37,6 @@ type IINFocusStatus interface {
 // The user’s preference for receiving notifications.
 //
 // When a user wants to focus, they can choose to prevent or delay notifications from most apps. Use this information to display that the user is in a focus to other people in your communication service.
-
 
 // The user’s preference for receiving notifications.
 //
@@ -85,8 +84,6 @@ func NewINFocusStatus() INFocusStatus {
 	return getINFocusStatusClass().New()
 }
 
-
-
 // Creates an object that indicates the user’s ability to receive communication notifications.
 //
 // [Full Topic]
@@ -98,8 +95,6 @@ func NewINFocusStatusWithIsFocused(isFocused foundation.INumber) INFocusStatus {
 	return rv
 }
 
-
-
 // The user’s preference for receiving communication notifications.
 //
 // [Full Topic]
@@ -108,5 +103,3 @@ func (i_ INFocusStatus) IsFocused() foundation.Number {
 	rv := objc.Send[foundation.Number](i_.ID, objc.Sel("isFocused"))
 	return rv
 }
-
-

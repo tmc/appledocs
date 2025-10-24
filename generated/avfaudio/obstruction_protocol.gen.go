@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // obstructionProtocol is the obstruction protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to obstruction.
 var obstructionProtocol *objc.Protocol
 
 func init() {
 	obstructionProtocol = objc.GetProtocol("obstruction")
 }
+

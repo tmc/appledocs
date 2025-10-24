@@ -2,17 +2,9 @@
 
 package replaykit
 
+/* debug [enums.gen.go]: Generating 4 enums for ReplayKit */
 // Enum types and constants
-// RPCameraPosition - The position of the camera being accessed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPCameraPosition
-type RPCameraPosition uint
-
-// RPPreviewViewControllerMode - The modes used to determine whether the preview view controller or the share screen appears when editing a replay.
-//
-// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewControllerMode
-type RPPreviewViewControllerMode uint
-
+/* debug [enums.gen.go]: Processing enum RPRecordingErrorCode (38 cases) */
 // RPRecordingErrorCode - The ReplayKit error domain codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPRecordingErrorCode
@@ -172,9 +164,59 @@ const (
 	RPRecordingErrorVideoMixingFailure RPRecordingErrorCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum RPCameraPosition (2 cases) */
+// RPCameraPosition - The position of the camera being accessed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPCameraPosition
+type RPCameraPosition uint
+
+const (
+	// RPCameraPositionBack - The back camera is used.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPCameraPosition/back
+	RPCameraPositionBack RPCameraPosition = 0
+	// RPCameraPositionFront - The front camera is used.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPCameraPosition/front
+	RPCameraPositionFront RPCameraPosition = 0
+)
+
+/* debug [enums.gen.go]: Processing enum RPPreviewViewControllerMode (2 cases) */
+// RPPreviewViewControllerMode - The modes used to determine whether the preview view controller or the share screen appears when editing a replay.
+//
+// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewControllerMode
+type RPPreviewViewControllerMode uint
+
+const (
+	// RPPreviewViewControllerModePreview - Preview screen displayed when editing a replay.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewControllerMode/preview
+	RPPreviewViewControllerModePreview RPPreviewViewControllerMode = 0
+	// RPPreviewViewControllerModeShare - Share/AirDrop screen displayed when editing a replay.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPPreviewViewControllerMode/share
+	RPPreviewViewControllerModeShare RPPreviewViewControllerMode = 0
+)
+
+/* debug [enums.gen.go]: Processing enum RPSampleBufferType (3 cases) */
 // RPSampleBufferType - The type of media clip sample being buffered.
 //
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSampleBufferType
 type RPSampleBufferType uint
+
+const (
+	// RPSampleBufferTypeAudioApp - The sample audio that originates from the app.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSampleBufferType/audioApp
+	RPSampleBufferTypeAudioApp RPSampleBufferType = 0
+	// RPSampleBufferTypeAudioMic - The sample audio that originates from the microphone.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSampleBufferType/audioMic
+	RPSampleBufferTypeAudioMic RPSampleBufferType = 0
+	// RPSampleBufferTypeVideo - The sample that contains a video clip.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPSampleBufferType/video
+	RPSampleBufferTypeVideo RPSampleBufferType = 0
+)
 
 

@@ -38,8 +38,6 @@ type IMTRGeneralDiagnosticsClusterRadioFaultChangeEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterRadioFaultChangeEvent
 type MTRGeneralDiagnosticsClusterRadioFaultChangeEvent struct {
@@ -82,8 +80,6 @@ func NewMTRGeneralDiagnosticsClusterRadioFaultChangeEvent() MTRGeneralDiagnostic
 	return getMTRGeneralDiagnosticsClusterRadioFaultChangeEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterradiofaultchangeevent/current
 func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) Current() unsafe.Pointer {
@@ -91,13 +87,11 @@ func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) Current() unsafe.Poi
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterradiofaultchangeevent/current
 func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) SetCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterradiofaultchangeevent/previous
@@ -106,12 +100,8 @@ func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) Previous() unsafe.Po
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterradiofaultchangeevent/previous
 func (m_ MTRGeneralDiagnosticsClusterRadioFaultChangeEvent) SetPrevious(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)
 }
-
-
-

@@ -15,3 +15,4 @@ var draggingSourceOperationMaskProtocol *objc.Protocol
 func init() {
 	draggingSourceOperationMaskProtocol = objc.GetProtocol("draggingSourceOperationMask")
 }
+

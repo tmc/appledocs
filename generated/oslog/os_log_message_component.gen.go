@@ -8,9 +8,14 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/metal"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class OSLogMessageComponent */
+
+
+/* debug [class_header]: Header for OSLogMessageComponent */
 // The class instance for the [OSLogMessageComponent] class.
 var (
 	OSLogMessageComponentClass     _OSLogMessageComponentClass
@@ -27,54 +32,41 @@ func getOSLogMessageComponentClass() _OSLogMessageComponentClass {
 type _OSLogMessageComponentClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for OSLogMessageComponent */
 // An interface definition for the [OSLogMessageComponent] class.
 type IOSLogMessageComponent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for OSLogMessageComponent */
 	// properties:
-	Argument() unsafe.Pointer
-	SetArgument(value unsafe.Pointer)
-	ArgumentCategory() unsafe.Pointer
-	SetArgumentCategory(value unsafe.Pointer)
-	ArgumentDataValue() objc.IObject /* cross-framework: Data */
-	SetArgumentDataValue(value objc.IObject /* cross-framework: Data */)
+	ArgumentCategory() OSLogMessageComponentArgumentCategory
+	ArgumentDataValue() objc.IObject /* cross-framework: NSData */
 	ArgumentDoubleValue() float64
-	SetArgumentDoubleValue(value float64)
-	ArgumentInt64Value() unsafe.Pointer
-	SetArgumentInt64Value(value unsafe.Pointer)
+	ArgumentInt64Value() int64
 	ArgumentNumberValue() objc.IObject /* cross-framework: NSNumber */
-	SetArgumentNumberValue(value objc.IObject /* cross-framework: NSNumber */)
 	ArgumentStringValue() objc.IObject /* cross-framework: NSString */
-	SetArgumentStringValue(value objc.IObject /* cross-framework: NSString */)
 	ArgumentUInt64Value() uint64
-	SetArgumentUInt64Value(value uint64)
 	FormatSubstring() objc.IObject /* cross-framework: NSString */
-	SetFormatSubstring(value objc.IObject /* cross-framework: NSString */)
 	Placeholder() objc.IObject /* cross-framework: NSString */
-	SetPlaceholder(value objc.IObject /* cross-framework: NSString */)
+	Argument() metal.Argument
+	SetArgument(value metal.Argument)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for OSLogMessageComponent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The message arguments for a particular entry.
-//
-// There is one component for each placeholder in the formatString plus one component for any text after the last placeholder.
+/* debug [class_interface]: End interface */
 
 
-// The message arguments for a particular entry.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent
-type OSLogMessageComponent struct {
-	objectivec.Object
-}
 
-// OSLogMessageComponentFrom constructs a [OSLogMessageComponent] from an unsafe.Pointer.
-//
-// The message arguments for a particular entry.
-func OSLogMessageComponentFrom(ptr unsafe.Pointer) OSLogMessageComponent {
-	return OSLogMessageComponent{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for OSLogMessageComponent */
 // Alloc allocates a new instance without initialization.
 func (oc _OSLogMessageComponentClass) Alloc() OSLogMessageComponent {
 	rv := objc.Send[OSLogMessageComponent](objc.ID(oc.class), objc.Sel("alloc"))
@@ -82,7 +74,6 @@ func (oc _OSLogMessageComponentClass) Alloc() OSLogMessageComponent {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSLogMessageComponentClass) New() OSLogMessageComponent {
 	rv := objc.Send[OSLogMessageComponent](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -105,197 +96,167 @@ func (o_ OSLogMessageComponent) Autorelease() OSLogMessageComponent {
 func NewOSLogMessageComponent() OSLogMessageComponent {
 	return getOSLogMessageComponentClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The argument passed into the message component.
+/* debug [class_struct]: Struct for OSLogMessageComponent */
+// The message arguments for a particular entry.
+//
+// There is one component for each placeholder in the formatString plus one component for any text after the last placeholder.
+
+
+// The message arguments for a particular entry.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argument-swift.property
-func (o_ OSLogMessageComponent) Argument() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("argument"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent
+type OSLogMessageComponent struct {
+	objectivec.Object
 }
 
-
-// The argument passed into the message component.
+// OSLogMessageComponentFrom constructs a [OSLogMessageComponent] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argument-swift.property
-func (o_ OSLogMessageComponent) SetArgument(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setArgument:"), value)
+// The message arguments for a particular entry.
+func OSLogMessageComponentFrom(ptr unsafe.Pointer) OSLogMessageComponent {
+	return OSLogMessageComponent{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
+
+
+/* debug [class_init_methods]: Init methods for OSLogMessageComponent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for OSLogMessageComponent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for OSLogMessageComponent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for OSLogMessageComponent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for OSLogMessageComponent */
 
 // The type of argument that corresponds to the placeholder.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.property
-func (o_ OSLogMessageComponent) ArgumentCategory() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("argumentCategory"))
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentCategory-swift.property
+func (o_ OSLogMessageComponent) ArgumentCategory() OSLogMessageComponentArgumentCategory {
+	rv := objc.Send[OSLogMessageComponentArgumentCategory](o_.ID, objc.Sel("argumentCategory"))
 	return rv
-}
-
-
-// The type of argument that corresponds to the placeholder.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentcategory-swift.property
-func (o_ OSLogMessageComponent) SetArgumentCategory(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setArgumentCategory:"), value)
-}
+}/* debug [instance_properties/getter]: argumentCategory */
 
 
 // The argument formatted as a sequence of bytes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentdatavalue
-func (o_ OSLogMessageComponent) ArgumentDataValue() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](o_.ID, objc.Sel("argumentDataValue"))
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentDataValue
+func (o_ OSLogMessageComponent) ArgumentDataValue() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](o_.ID, objc.Sel("argumentDataValue"))
 	return rv
-}
-
-
-// The argument formatted as a sequence of bytes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentdatavalue
-func (o_ OSLogMessageComponent) SetArgumentDataValue(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setArgumentDataValue:"), value)
-}
+}/* debug [instance_properties/getter]: argumentDataValue */
 
 
 // The argument formatted as a double.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentdoublevalue
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentDoubleValue
 func (o_ OSLogMessageComponent) ArgumentDoubleValue() float64 {
 	rv := objc.Send[float64](o_.ID, objc.Sel("argumentDoubleValue"))
 	return rv
-}
-
-
-// The argument formatted as a double.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentdoublevalue
-func (o_ OSLogMessageComponent) SetArgumentDoubleValue(value float64) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setArgumentDoubleValue:"), value)
-}
+}/* debug [instance_properties/getter]: argumentDoubleValue */
 
 
 // The argument formatted as a signed 64-bit integer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentint64value
-func (o_ OSLogMessageComponent) ArgumentInt64Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("argumentInt64Value"))
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentInt64Value
+func (o_ OSLogMessageComponent) ArgumentInt64Value() int64 {
+	rv := objc.Send[int64](o_.ID, objc.Sel("argumentInt64Value"))
 	return rv
-}
-
-
-// The argument formatted as a signed 64-bit integer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentint64value
-func (o_ OSLogMessageComponent) SetArgumentInt64Value(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setArgumentInt64Value:"), value)
-}
+}/* debug [instance_properties/getter]: argumentInt64Value */
 
 
 // The argument formatted as a number.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentnumbervalue
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentNumberValue
 func (o_ OSLogMessageComponent) ArgumentNumberValue() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](o_.ID, objc.Sel("argumentNumberValue"))
 	return rv
-}
-
-
-// The argument formatted as a number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentnumbervalue
-func (o_ OSLogMessageComponent) SetArgumentNumberValue(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setArgumentNumberValue:"), value)
-}
+}/* debug [instance_properties/getter]: argumentNumberValue */
 
 
 // The argument formatted as a string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentstringvalue
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentStringValue
 func (o_ OSLogMessageComponent) ArgumentStringValue() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("argumentStringValue"))
 	return rv
-}
-
-
-// The argument formatted as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentstringvalue
-func (o_ OSLogMessageComponent) SetArgumentStringValue(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setArgumentStringValue:"), value)
-}
+}/* debug [instance_properties/getter]: argumentStringValue */
 
 
 // The argument formatted as an unsigned 64-bit integer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentuint64value
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/argumentUInt64Value
 func (o_ OSLogMessageComponent) ArgumentUInt64Value() uint64 {
 	rv := objc.Send[uint64](o_.ID, objc.Sel("argumentUInt64Value"))
 	return rv
-}
-
-
-// The argument formatted as an unsigned 64-bit integer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argumentuint64value
-func (o_ OSLogMessageComponent) SetArgumentUInt64Value(value uint64) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setArgumentUInt64Value:"), value)
-}
+}/* debug [instance_properties/getter]: argumentUInt64Value */
 
 
 // The text immediately preceding a placeholder.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/formatsubstring
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/formatSubstring
 func (o_ OSLogMessageComponent) FormatSubstring() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("formatSubstring"))
 	return rv
-}
-
-
-// The text immediately preceding a placeholder.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/formatsubstring
-func (o_ OSLogMessageComponent) SetFormatSubstring(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setFormatSubstring:"), value)
-}
+}/* debug [instance_properties/getter]: formatSubstring */
 
 
 // The placeholder text for the message component.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/placeholder
+// [Full Topic]: https://developer.apple.com/documentation/OSLog/OSLogMessageComponent/placeholder
 func (o_ OSLogMessageComponent) Placeholder() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("placeholder"))
 	return rv
-}
+}/* debug [instance_properties/getter]: placeholder */
 
 
-// The placeholder text for the message component.
+// The argument passed into the message component.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/placeholder
-func (o_ OSLogMessageComponent) SetPlaceholder(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setPlaceholder:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argument-swift.property
+func (o_ OSLogMessageComponent) Argument() metal.Argument {
+	rv := objc.Send[metal.Argument](o_.ID, objc.Sel("argument"))
+	return rv
+}/* debug [instance_properties/getter]: argument */
+
+
+// The argument passed into the message component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/oslog/oslogmessagecomponent/argument-swift.property
+func (o_ OSLogMessageComponent) SetArgument(value metal.Argument) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setArgument:"), value)
+}/* debug [instance_properties/setter]: argument */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class OSLogMessageComponent */
 
 
 

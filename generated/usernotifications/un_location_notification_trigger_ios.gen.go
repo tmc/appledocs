@@ -5,14 +5,11 @@
 package usernotifications
 
 import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // iOS-only methods for UNLocationNotificationTrigger
-
 
 // iOS-only properties
 
@@ -20,11 +17,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/UserNotifications/UNLocationNotificationTrigger/region
-func (u_ UNLocationNotificationTrigger) Region() objc.IObject /* cross-framework: Region */ {
+func (u_ UNLocationNotificationTrigger) Region() corelocation.Region {
 	rv := objc.Send[corelocation.Region](u_.ID, objc.Sel("region"))
 	return rv
 }
-
-
-
-

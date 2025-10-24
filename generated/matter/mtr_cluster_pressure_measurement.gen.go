@@ -33,8 +33,6 @@ type IMTRClusterPressureMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPressureMeasurement
 type MTRClusterPressureMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterPressureMeasurement) Autorelease() MTRClusterPressureMeasurem
 func NewMTRClusterPressureMeasurement() MTRClusterPressureMeasurement {
 	return getMTRClusterPressureMeasurementClass().New()
 }
-
-
-
-

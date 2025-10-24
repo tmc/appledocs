@@ -18,3 +18,4 @@ var canvasViewDidBeginUsingToolProtocol *objc.Protocol
 func init() {
 	canvasViewDidBeginUsingToolProtocol = objc.GetProtocol("canvasViewDidBeginUsingTool:")
 }
+

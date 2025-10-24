@@ -20,3 +20,4 @@ var newAccelerationStructureWithDescriptorProtocol *objc.Protocol
 func init() {
 	newAccelerationStructureWithDescriptorProtocol = objc.GetProtocol("newAccelerationStructureWithDescriptor:")
 }
+

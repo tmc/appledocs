@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CTCellularPlanProvisioningRequest */
+
+
+/* debug [class_header]: Header for CTCellularPlanProvisioningRequest */
 // The class instance for the [CellularPlanProvisioningRequest] class.
 var (
 	CellularPlanProvisioningRequestClass     _CellularPlanProvisioningRequestClass
@@ -27,44 +31,30 @@ func getCellularPlanProvisioningRequestClass() _CellularPlanProvisioningRequestC
 type _CellularPlanProvisioningRequestClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CellularPlanProvisioningRequest */
 // An interface definition for the [CellularPlanProvisioningRequest] class.
 type ICellularPlanProvisioningRequest interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CellularPlanProvisioningRequest */
 	// properties:
-	ConfirmationCode() objc.IObject /* cross-framework: NSString */
-	SetConfirmationCode(value objc.IObject /* cross-framework: NSString */)
-	Eid() objc.IObject /* cross-framework: NSString */
-	SetEid(value objc.IObject /* cross-framework: NSString */)
-	Iccid() objc.IObject /* cross-framework: NSString */
-	SetIccid(value objc.IObject /* cross-framework: NSString */)
-	MatchingID() objc.IObject /* cross-framework: NSString */
-	SetMatchingID(value objc.IObject /* cross-framework: NSString */)
-	Oid() objc.IObject /* cross-framework: NSString */
-	SetOid(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CellularPlanProvisioningRequest */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A request specifying an eSIM to download and install.
-//
-// You must set the property for the request to be valid. All other properties are optional. This class is only available to carrier apps with suitable entitlements.
+/* debug [class_interface]: End interface */
 
 
-// A request specifying an eSIM to download and install.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioningRequest
-type CellularPlanProvisioningRequest struct {
-	objectivec.Object
-}
 
-// CellularPlanProvisioningRequestFrom constructs a [CellularPlanProvisioningRequest] from an unsafe.Pointer.
-//
-// A request specifying an eSIM to download and install.
-func CellularPlanProvisioningRequestFrom(ptr unsafe.Pointer) CellularPlanProvisioningRequest {
-	return CellularPlanProvisioningRequest{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CellularPlanProvisioningRequest */
 // Alloc allocates a new instance without initialization.
 func (cc _CellularPlanProvisioningRequestClass) Alloc() CellularPlanProvisioningRequest {
 	rv := objc.Send[CellularPlanProvisioningRequest](objc.ID(cc.class), objc.Sel("alloc"))
@@ -72,7 +62,6 @@ func (cc _CellularPlanProvisioningRequestClass) Alloc() CellularPlanProvisioning
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CellularPlanProvisioningRequestClass) New() CellularPlanProvisioningRequest {
 	rv := objc.Send[CellularPlanProvisioningRequest](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,101 +84,57 @@ func (c_ CellularPlanProvisioningRequest) Autorelease() CellularPlanProvisioning
 func NewCellularPlanProvisioningRequest() CellularPlanProvisioningRequest {
 	return getCellularPlanProvisioningRequestClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The provisioning request’s confirmation code, provided by the network operator when initiating an eSIM download.
+/* debug [class_struct]: Struct for CellularPlanProvisioningRequest */
+// A request specifying an eSIM to download and install.
+//
+// You must set the property for the request to be valid. All other properties are optional. This class is only available to carrier apps with suitable entitlements.
+
+
+// A request specifying an eSIM to download and install.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/confirmationcode
-func (c_ CellularPlanProvisioningRequest) ConfirmationCode() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("confirmationCode"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProvisioningRequest
+type CellularPlanProvisioningRequest struct {
+	objectivec.Object
 }
 
-
-// The provisioning request’s confirmation code, provided by the network operator when initiating an eSIM download.
+// CellularPlanProvisioningRequestFrom constructs a [CellularPlanProvisioningRequest] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/confirmationcode
-func (c_ CellularPlanProvisioningRequest) SetConfirmationCode(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConfirmationCode:"), value)
+// A request specifying an eSIM to download and install.
+func CellularPlanProvisioningRequestFrom(ptr unsafe.Pointer) CellularPlanProvisioningRequest {
+	return CellularPlanProvisioningRequest{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The provisioning request’s eUICC identifier (EID).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/eid
-func (c_ CellularPlanProvisioningRequest) Eid() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("eid"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for CellularPlanProvisioningRequest *//* debug [class_init_methods]: End init methods */
 
 
-// The provisioning request’s eUICC identifier (EID).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/eid
-func (c_ CellularPlanProvisioningRequest) SetEid(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEid:"), value)
-}
+
+/* debug [class_methods]: Class methods for CellularPlanProvisioningRequest */
+/* debug [class_methods]: End class methods */
 
 
-// The provisioning request’s Integrated Circuit Card Identifier (ICCID).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/iccid
-func (c_ CellularPlanProvisioningRequest) Iccid() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("iccid"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for CellularPlanProvisioningRequest */
+/* debug [class_properties_class]: End class properties */
 
 
-// The provisioning request’s Integrated Circuit Card Identifier (ICCID).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/iccid
-func (c_ CellularPlanProvisioningRequest) SetIccid(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIccid:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for CellularPlanProvisioningRequest */
+/* debug [instance_methods]: End instance methods */
 
 
-// The provisioning request’s matching identifier (MatchingID).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/matchingid
-func (c_ CellularPlanProvisioningRequest) MatchingID() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("matchingID"))
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for CellularPlanProvisioningRequest */
+/* debug [instance_properties]: End instance properties */
 
 
-// The provisioning request’s matching identifier (MatchingID).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/matchingid
-func (c_ CellularPlanProvisioningRequest) SetMatchingID(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMatchingID:"), value)
-}
-
-
-// The provisioning request’s Object Identifier (OID).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/oid
-func (c_ CellularPlanProvisioningRequest) Oid() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("oid"))
-	return rv
-}
-
-
-// The provisioning request’s Object Identifier (OID).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanprovisioningrequest/oid
-func (c_ CellularPlanProvisioningRequest) SetOid(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOid:"), value)
-}
+/* debug [class.gen.go]: End class CTCellularPlanProvisioningRequest */
 
 

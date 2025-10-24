@@ -21,3 +21,4 @@ var parserProtocol *objc.Protocol
 func init() {
 	parserProtocol = objc.GetProtocol("parser:")
 }
+

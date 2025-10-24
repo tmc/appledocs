@@ -7,12 +7,12 @@ import "github.com/ebitengine/purego/objc"
 // bufferOffsetProtocol is the bufferOffset protocol.
 //
 // Availability:
-//   - Mac Catalyst 13.1+
-//   - iOS 9.0+
-//   - iPadOS 9.0+
-//   - macOS 10.12+
-//   - tvOS 9.0+
-//   - visionOS 1.0+
+//   - Mac Catalyst 26.0+
+//   - iOS 26.0+
+//   - iPadOS 26.0+
+//   - macOS 26.0+
+//   - tvOS 26.0+
+//   - visionOS 26.0+
 //
 // Use this protocol when registering custom classes that conform to bufferOffset.
 var bufferOffsetProtocol *objc.Protocol
@@ -20,3 +20,4 @@ var bufferOffsetProtocol *objc.Protocol
 func init() {
 	bufferOffsetProtocol = objc.GetProtocol("bufferOffset")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRMediaPlaybackClusterPlaybackPositionStruct interface {
 	SetUpdatedAt(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterPlaybackPositionStruct
@@ -83,8 +81,6 @@ func NewMTRMediaPlaybackClusterPlaybackPositionStruct() MTRMediaPlaybackClusterP
 	return getMTRMediaPlaybackClusterPlaybackPositionStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackpositionstruct/position
 func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) Position() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) Position() objc.IObject 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackpositionstruct/position
 func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) SetPosition(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPosition:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackpositionstruct/updatedat
@@ -107,12 +101,8 @@ func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) UpdatedAt() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterplaybackpositionstruct/updatedat
 func (m_ MTRMediaPlaybackClusterPlaybackPositionStruct) SetUpdatedAt(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUpdatedAt:"), value)
 }
-
-
-

@@ -21,3 +21,4 @@ var roundingModeProtocol *objc.Protocol
 func init() {
 	roundingModeProtocol = objc.GetProtocol("roundingMode")
 }
+

@@ -15,3 +15,4 @@ var objectDidEndEditingProtocol *objc.Protocol
 func init() {
 	objectDidEndEditingProtocol = objc.GetProtocol("objectDidEndEditing:")
 }
+

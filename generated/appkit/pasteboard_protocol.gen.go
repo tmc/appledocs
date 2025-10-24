@@ -15,3 +15,4 @@ var pasteboardProtocol *objc.Protocol
 func init() {
 	pasteboardProtocol = objc.GetProtocol("pasteboard:")
 }
+

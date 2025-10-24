@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class value */
+
+
+/* debug [class_header]: Header for value */
 // The class instance for the [value] class.
 var (
 	ValueClass     _valueClass
@@ -26,27 +30,30 @@ func getvalueClass() _valueClass {
 type _valueClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for value */
 // An interface definition for the [value] class.
 type Ivalue interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for value */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for value */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/value-c.ivar
-type value struct {
-	objectivec.Object
-}
-
-// valueFrom constructs a [value] from an unsafe.Pointer.
-func valueFrom(ptr unsafe.Pointer) value {
-	return value{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for value */
 // Alloc allocates a new instance without initialization.
 func (vc _valueClass) Alloc() value {
 	rv := objc.Send[value](objc.ID(vc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (vc _valueClass) Alloc() value {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _valueClass) New() value {
 	rv := objc.Send[value](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (v_ value) Autorelease() value {
 func Newvalue() value {
 	return getvalueClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for value */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODAttributeMap/value-c.ivar
+type value struct {
+	objectivec.Object
+}
+
+// valueFrom constructs a [value] from an unsafe.Pointer.
+func valueFrom(ptr unsafe.Pointer) value {
+	return value{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for value *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for value */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for value */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for value */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for value */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class value */
 
 
 

@@ -34,8 +34,6 @@ type IMTRCertificates interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRCertificates
 type MTRCertificates struct {
@@ -77,7 +75,3 @@ func (m_ MTRCertificates) Autorelease() MTRCertificates {
 func NewMTRCertificates() MTRCertificates {
 	return getMTRCertificatesClass().New()
 }
-
-
-
-

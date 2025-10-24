@@ -37,7 +37,6 @@ type IPersistentCloudKitContainerEventResult interface {
 
 // The result of a request to fetch persistent CloudKit container events.
 
-
 // The result of a request to fetch persistent CloudKit container events.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewPersistentCloudKitContainerEventResult() PersistentCloudKitContainerEven
 	return getPersistentCloudKitContainerEventResultClass().New()
 }
 
-
-
 // The result of the persistent CloudKit container event request, which the result type determines.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (p_ PersistentCloudKitContainerEventResult) Result() objc.ID {
 	return rv
 }
 
-
 // The type of result that the CloudKit container event fetch request returns.
 //
 // [Full Topic]
@@ -106,6 +102,3 @@ func (p_ PersistentCloudKitContainerEventResult) ResultType() PersistentCloudKit
 	rv := objc.Send[PersistentCloudKitContainerEventResultType](p_.ID, objc.Sel("resultType"))
 	return rv
 }
-
-
-

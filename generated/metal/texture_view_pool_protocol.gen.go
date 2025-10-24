@@ -20,3 +20,4 @@ var TextureViewPoolProtocol *objc.Protocol
 func init() {
 	TextureViewPoolProtocol = objc.GetProtocol("MTLTextureViewPool")
 }
+

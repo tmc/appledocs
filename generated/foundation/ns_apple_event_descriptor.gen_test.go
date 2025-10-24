@@ -15,12 +15,14 @@ func ExampleNewAppleEventDescriptorListDescriptor() {
 	_ = foundation.NewAppleEventDescriptorListDescriptor()
 	// Output:
 }
+
 // ExampleNewAppleEventDescriptorRecordDescriptor demonstrates how to create a AppleEventDescriptor instance using NewAppleEventDescriptorRecordDescriptor.
 // Initializes a newly allocated instance as a descriptor that is an Apple event record.
 func ExampleNewAppleEventDescriptorRecordDescriptor() {
 	_ = foundation.NewAppleEventDescriptorRecordDescriptor()
 	// Output:
 }
+
 // ExampleNewAppleEventDescriptorWithDouble demonstrates how to create a AppleEventDescriptor instance using NewAppleEventDescriptorWithDouble.
 func ExampleNewAppleEventDescriptorWithDouble() {
 	_ = foundation.NewAppleEventDescriptorWithDouble(
@@ -28,19 +30,21 @@ func ExampleNewAppleEventDescriptorWithDouble() {
 	)
 	// Output:
 }
+
 // ExampleNewAppleEventDescriptorWithEnumCode demonstrates how to create a AppleEventDescriptor instance using NewAppleEventDescriptorWithEnumCode.
 // Creates a descriptor initialized with type   that stores the specified enumerator data type value.
 func ExampleNewAppleEventDescriptorWithEnumCode() {
 	_ = foundation.NewAppleEventDescriptorWithEnumCode(
-		foundation.uint32 /* not a class type */{}, // enumerator uint32 /* not a class type */
+		foundation.uint32 /* not a class type */ {}, // enumerator uint32 /* not a class type */
 	)
 	// Output:
 }
+
 // ExampleNewAppleEventDescriptorWithTypeCode demonstrates how to create a AppleEventDescriptor instance using NewAppleEventDescriptorWithTypeCode.
 // Creates a descriptor initialized with type   that stores the specified type value.
 func ExampleNewAppleEventDescriptorWithTypeCode() {
 	_ = foundation.NewAppleEventDescriptorWithTypeCode(
-		foundation.uint32 /* not a class type */{}, // typeCode uint32 /* not a class type */
+		foundation.uint32 /* not a class type */ {}, // typeCode uint32 /* not a class type */
 	)
 	// Output:
 }

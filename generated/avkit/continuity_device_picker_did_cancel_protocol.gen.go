@@ -15,3 +15,4 @@ var continuityDevicePickerDidCancelProtocol *objc.Protocol
 func init() {
 	continuityDevicePickerDidCancelProtocol = objc.GetProtocol("continuityDevicePickerDidCancel:")
 }
+

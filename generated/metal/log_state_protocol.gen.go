@@ -20,3 +20,4 @@ var LogStateProtocol *objc.Protocol
 func init() {
 	LogStateProtocol = objc.GetProtocol("MTLLogState")
 }
+

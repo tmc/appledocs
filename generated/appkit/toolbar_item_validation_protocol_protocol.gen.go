@@ -12,5 +12,5 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSToolbarItemValidation
 type PToolbarItemValidation interface {
 	// Required methods
-	ValidateToolbarItem(item IToolbarItem) bool
+	ValidateToolbarItem(item IToolbarItem) bool/* debug [protocol_interface/required_method]: ValidateToolbarItem */
 }

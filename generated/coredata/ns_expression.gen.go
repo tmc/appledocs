@@ -36,7 +36,6 @@ type IExpression interface {
 
 // A parent class referenced by other CoreData classes.
 
-
 // A parent class referenced by other CoreData classes. [Full Topic]
 type Expression struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (e_ Expression) Autorelease() Expression {
 func NewExpression() Expression {
 	return getExpressionClass().New()
 }
-
-
-
-

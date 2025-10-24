@@ -20,3 +20,4 @@ var setAccelerationStructureProtocol *objc.Protocol
 func init() {
 	setAccelerationStructureProtocol = objc.GetProtocol("setAccelerationStructure:")
 }
+

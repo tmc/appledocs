@@ -33,8 +33,6 @@ type IMTRBaseClusterGeneralDiagnostics interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterGeneralDiagnostics
 type MTRBaseClusterGeneralDiagnostics struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterGeneralDiagnostics) Autorelease() MTRBaseClusterGeneralDi
 func NewMTRBaseClusterGeneralDiagnostics() MTRBaseClusterGeneralDiagnostics {
 	return getMTRBaseClusterGeneralDiagnosticsClass().New()
 }
-
-
-
-

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CIRenderTask */
+
+
+/* debug [class_header]: Header for CIRenderTask */
 // The class instance for the [RenderTask] class.
 var (
 	RenderTaskClass     _RenderTaskClass
@@ -26,35 +30,31 @@ func getRenderTaskClass() _RenderTaskClass {
 type _RenderTaskClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for RenderTask */
 // An interface definition for the [RenderTask] class.
 type IRenderTask interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for RenderTask */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for RenderTask */
 	// methods:
-	WaitUntilCompletedAndReturnError(error_ unsafe.Pointer) IRenderInfo
+	WaitUntilCompletedAndReturnError(error_ objectivec.IObject) IRenderInfo
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A single render task.
-//
-// A single render task issued in conjunction with . A object appears in Xcode Quick Look as a graph.
+/* debug [class_interface]: End interface */
 
 
-// A single render task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderTask
-type RenderTask struct {
-	objectivec.Object
-}
 
-// RenderTaskFrom constructs a [RenderTask] from an unsafe.Pointer.
-//
-// A single render task.
-func RenderTaskFrom(ptr unsafe.Pointer) RenderTask {
-	return RenderTask{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for RenderTask */
 // Alloc allocates a new instance without initialization.
 func (rc _RenderTaskClass) Alloc() RenderTask {
 	rv := objc.Send[RenderTask](objc.ID(rc.class), objc.Sel("alloc"))
@@ -62,7 +62,6 @@ func (rc _RenderTaskClass) Alloc() RenderTask {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RenderTaskClass) New() RenderTask {
 	rv := objc.Send[RenderTask](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,17 +84,68 @@ func (r_ RenderTask) Autorelease() RenderTask {
 func NewRenderTask() RenderTask {
 	return getRenderTaskClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for RenderTask */
+// A single render task.
+//
+// A single render task issued in conjunction with . A object appears in Xcode Quick Look as a graph.
+
+
+// A single render task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderTask
+type RenderTask struct {
+	objectivec.Object
+}
+
+// RenderTaskFrom constructs a [RenderTask] from an unsafe.Pointer.
+//
+// A single render task.
+func RenderTaskFrom(ptr unsafe.Pointer) RenderTask {
+	return RenderTask{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for RenderTask *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for RenderTask */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for RenderTask */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for RenderTask */
 
 // Waits until the finishes and returns.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIRenderTask/waitUntilCompleted()
-func (r_ RenderTask) WaitUntilCompletedAndReturnError(error_ unsafe.Pointer) IRenderInfo {
+func (r_ RenderTask) WaitUntilCompletedAndReturnError(error_ objectivec.IObject) IRenderInfo {
 	rv := objc.Send[RenderInfo](r_.ID, objc.Sel("waitUntilCompletedAndReturnError:"), error_)
 	return rv
-}
+}/* debug [instance_methods/method]: WaitUntilCompletedAndReturnError */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for RenderTask */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CIRenderTask */
 
 
 

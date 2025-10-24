@@ -2,12 +2,12 @@
 
 package systemconfiguration
 
+/* debug [functions.gen.go]: Generating 178 functions for SystemConfiguration */
 import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
 )
-
 
 // SystemConfiguration Functions (178 total)
 //
@@ -15,184 +15,184 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_CNCopyCurrentNetworkInfo func(unsafe.Pointer) unsafe.Pointer
-	_CNCopySupportedInterfaces func() unsafe.Pointer
-	_CNMarkPortalOffline func(unsafe.Pointer) unsafe.Pointer
-	_CNMarkPortalOnline func(unsafe.Pointer) unsafe.Pointer
-	_CNSetSupportedSSIDs func(unsafe.Pointer) unsafe.Pointer
-	_DHCPClientPreferencesCopyApplicationOptions func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_DHCPClientPreferencesSetApplicationOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_DHCPInfoGetLeaseExpirationTime func(unsafe.Pointer) unsafe.Pointer
-	_DHCPInfoGetLeaseStartTime func(unsafe.Pointer) unsafe.Pointer
-	_DHCPInfoGetOptionData func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCBondInterfaceCopyAll func(PreferencesRef) unsafe.Pointer
-	_SCBondInterfaceCopyAvailableMemberInterfaces func(PreferencesRef) unsafe.Pointer
-	_SCBondInterfaceCopyStatus func(BondInterfaceRef) BondStatusRef
-	_SCBondInterfaceCreate func(PreferencesRef) BondInterfaceRef
-	_SCBondInterfaceGetMemberInterfaces func(BondInterfaceRef) unsafe.Pointer
-	_SCBondInterfaceGetOptions func(BondInterfaceRef) unsafe.Pointer
-	_SCBondInterfaceRemove func(BondInterfaceRef) unsafe.Pointer
-	_SCBondInterfaceSetLocalizedDisplayName func(BondInterfaceRef, unsafe.Pointer) unsafe.Pointer
-	_SCBondInterfaceSetMemberInterfaces func(BondInterfaceRef, unsafe.Pointer) unsafe.Pointer
-	_SCBondInterfaceSetOptions func(BondInterfaceRef, unsafe.Pointer) unsafe.Pointer
-	_SCBondStatusGetInterfaceStatus func(BondStatusRef, NetworkInterfaceRef) unsafe.Pointer
-	_SCBondStatusGetMemberInterfaces func(BondStatusRef) unsafe.Pointer
-	_SCBondStatusGetTypeID func() unsafe.Pointer
-	_SCCopyLastError func() unsafe.Pointer
-	_SCDynamicStoreAddTemporaryValue func(DynamicStoreRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreAddValue func(DynamicStoreRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreCopyComputerName func(DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreCopyConsoleUser func(DynamicStoreRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreCopyDHCPInfo func(DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreCopyKeyList func(DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreCopyLocalHostName func(DynamicStoreRef) unsafe.Pointer
-	_SCDynamicStoreCopyLocation func(DynamicStoreRef) unsafe.Pointer
-	_SCDynamicStoreCopyMultiple func(DynamicStoreRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreCopyNotifiedKeys func(DynamicStoreRef) unsafe.Pointer
-	_SCDynamicStoreCopyProxies func(DynamicStoreRef) unsafe.Pointer
-	_SCDynamicStoreCopyValue func(DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreCreate func(unsafe.Pointer, unsafe.Pointer, DynamicStoreCallBack, unsafe.Pointer) DynamicStoreRef
-	_SCDynamicStoreCreateRunLoopSource func(unsafe.Pointer, DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreCreateWithOptions func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, DynamicStoreCallBack, unsafe.Pointer) DynamicStoreRef
-	_SCDynamicStoreGetTypeID func() unsafe.Pointer
-	_SCDynamicStoreKeyCreate func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateComputerName func(unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateConsoleUser func(unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateHostNames func(unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateLocation func(unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateNetworkGlobalEntity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateNetworkInterface func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateNetworkInterfaceEntity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateNetworkServiceEntity func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreKeyCreateProxies func(unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreNotifyValue func(DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreRemoveValue func(DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreSetDispatchQueue func(DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreSetMultiple func(DynamicStoreRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreSetNotificationKeys func(DynamicStoreRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCDynamicStoreSetValue func(DynamicStoreRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCError func() int
-	_SCErrorString func(int) unsafe.Pointer
-	_SCNetworkCheckReachabilityByAddress func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkCheckReachabilityByName func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkConnectionCopyExtendedStatus func(NetworkConnectionRef) unsafe.Pointer
-	_SCNetworkConnectionCopyServiceID func(NetworkConnectionRef) unsafe.Pointer
-	_SCNetworkConnectionCopyStatistics func(NetworkConnectionRef) unsafe.Pointer
-	_SCNetworkConnectionCopyUserOptions func(NetworkConnectionRef) unsafe.Pointer
-	_SCNetworkConnectionCopyUserPreferences func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkConnectionCreateWithServiceID func(unsafe.Pointer, unsafe.Pointer, NetworkConnectionCallBack, unsafe.Pointer) NetworkConnectionRef
-	_SCNetworkConnectionGetStatus func(NetworkConnectionRef) unsafe.Pointer
-	_SCNetworkConnectionGetTypeID func() unsafe.Pointer
-	_SCNetworkConnectionScheduleWithRunLoop func(NetworkConnectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkConnectionSetDispatchQueue func(NetworkConnectionRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkConnectionStart func(NetworkConnectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkConnectionStop func(NetworkConnectionRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkConnectionUnscheduleFromRunLoop func(NetworkConnectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceCopyAll func() unsafe.Pointer
-	_SCNetworkInterfaceCopyMTU func(NetworkInterfaceRef, []int, []int, []int) unsafe.Pointer
-	_SCNetworkInterfaceCopyMediaOptions func(NetworkInterfaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceCopyMediaSubTypeOptions func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceCopyMediaSubTypes func(unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceCreateWithInterface func(NetworkInterfaceRef, unsafe.Pointer) NetworkInterfaceRef
-	_SCNetworkInterfaceForceConfigurationRefresh func(NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkInterfaceGetBSDName func(NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkInterfaceGetConfiguration func(NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkInterfaceGetExtendedConfiguration func(NetworkInterfaceRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceGetHardwareAddressString func(NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkInterfaceGetInterface func(NetworkInterfaceRef) NetworkInterfaceRef
-	_SCNetworkInterfaceGetInterfaceType func(NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkInterfaceGetLocalizedDisplayName func(NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkInterfaceGetSupportedInterfaceTypes func(NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkInterfaceGetSupportedProtocolTypes func(NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkInterfaceGetTypeID func() unsafe.Pointer
-	_SCNetworkInterfaceRefreshConfiguration func(unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceSetConfiguration func(NetworkInterfaceRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceSetExtendedConfiguration func(NetworkInterfaceRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkInterfaceSetMTU func(NetworkInterfaceRef, int) unsafe.Pointer
-	_SCNetworkInterfaceSetMediaOptions func(NetworkInterfaceRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkProtocolGetConfiguration func(NetworkProtocolRef) unsafe.Pointer
-	_SCNetworkProtocolGetEnabled func(NetworkProtocolRef) unsafe.Pointer
-	_SCNetworkProtocolGetProtocolType func(NetworkProtocolRef) unsafe.Pointer
-	_SCNetworkProtocolGetTypeID func() unsafe.Pointer
-	_SCNetworkProtocolSetConfiguration func(NetworkProtocolRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkProtocolSetEnabled func(NetworkProtocolRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkReachabilityCreateWithAddress func(unsafe.Pointer, unsafe.Pointer) NetworkReachabilityRef
-	_SCNetworkReachabilityCreateWithAddressPair func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) NetworkReachabilityRef
-	_SCNetworkReachabilityCreateWithName func(unsafe.Pointer, unsafe.Pointer) NetworkReachabilityRef
-	_SCNetworkReachabilityGetFlags func(NetworkReachabilityRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkReachabilityGetTypeID func() unsafe.Pointer
-	_SCNetworkReachabilityScheduleWithRunLoop func(NetworkReachabilityRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkReachabilitySetCallback func(NetworkReachabilityRef, NetworkReachabilityCallBack, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkReachabilitySetDispatchQueue func(NetworkReachabilityRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkReachabilityUnscheduleFromRunLoop func(NetworkReachabilityRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkServiceAddProtocolType func(NetworkServiceRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkServiceCopy func(PreferencesRef, unsafe.Pointer) NetworkServiceRef
-	_SCNetworkServiceCopyAll func(PreferencesRef) unsafe.Pointer
-	_SCNetworkServiceCopyProtocol func(NetworkServiceRef, unsafe.Pointer) NetworkProtocolRef
-	_SCNetworkServiceCopyProtocols func(NetworkServiceRef) unsafe.Pointer
-	_SCNetworkServiceCreate func(PreferencesRef, NetworkInterfaceRef) NetworkServiceRef
-	_SCNetworkServiceEstablishDefaultConfiguration func(NetworkServiceRef) unsafe.Pointer
-	_SCNetworkServiceGetEnabled func(NetworkServiceRef) unsafe.Pointer
-	_SCNetworkServiceGetInterface func(NetworkServiceRef) NetworkInterfaceRef
-	_SCNetworkServiceGetName func(NetworkServiceRef) unsafe.Pointer
-	_SCNetworkServiceGetServiceID func(NetworkServiceRef) unsafe.Pointer
-	_SCNetworkServiceGetTypeID func() unsafe.Pointer
-	_SCNetworkServiceRemove func(NetworkServiceRef) unsafe.Pointer
-	_SCNetworkServiceRemoveProtocolType func(NetworkServiceRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkServiceSetEnabled func(NetworkServiceRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkServiceSetName func(NetworkServiceRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkSetAddService func(NetworkSetRef, NetworkServiceRef) unsafe.Pointer
-	_SCNetworkSetContainsInterface func(NetworkSetRef, NetworkInterfaceRef) unsafe.Pointer
-	_SCNetworkSetCopy func(PreferencesRef, unsafe.Pointer) NetworkSetRef
-	_SCNetworkSetCopyAll func(PreferencesRef) unsafe.Pointer
-	_SCNetworkSetCopyCurrent func(PreferencesRef) NetworkSetRef
-	_SCNetworkSetCopyServices func(NetworkSetRef) unsafe.Pointer
-	_SCNetworkSetCreate func(PreferencesRef) NetworkSetRef
-	_SCNetworkSetGetName func(NetworkSetRef) unsafe.Pointer
-	_SCNetworkSetGetServiceOrder func(NetworkSetRef) unsafe.Pointer
-	_SCNetworkSetGetSetID func(NetworkSetRef) unsafe.Pointer
-	_SCNetworkSetGetTypeID func() unsafe.Pointer
-	_SCNetworkSetRemove func(NetworkSetRef) unsafe.Pointer
-	_SCNetworkSetRemoveService func(NetworkSetRef, NetworkServiceRef) unsafe.Pointer
-	_SCNetworkSetSetCurrent func(NetworkSetRef) unsafe.Pointer
-	_SCNetworkSetSetName func(NetworkSetRef, unsafe.Pointer) unsafe.Pointer
-	_SCNetworkSetSetServiceOrder func(NetworkSetRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesAddValue func(PreferencesRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesApplyChanges func(PreferencesRef) unsafe.Pointer
-	_SCPreferencesCommitChanges func(PreferencesRef) unsafe.Pointer
-	_SCPreferencesCopyKeyList func(PreferencesRef) unsafe.Pointer
-	_SCPreferencesCreate func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) PreferencesRef
-	_SCPreferencesCreateWithAuthorization func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, AuthorizationRef) PreferencesRef
-	_SCPreferencesGetSignature func(PreferencesRef) unsafe.Pointer
-	_SCPreferencesGetTypeID func() unsafe.Pointer
-	_SCPreferencesGetValue func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesLock func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesPathCreateUniqueChild func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesPathGetLink func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesPathGetValue func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesPathRemoveValue func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesPathSetLink func(PreferencesRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesPathSetValue func(PreferencesRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesRemoveValue func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesScheduleWithRunLoop func(PreferencesRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesSetCallback func(PreferencesRef, PreferencesCallBack, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesSetComputerName func(PreferencesRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesSetDispatchQueue func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesSetLocalHostName func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesSetValue func(PreferencesRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCPreferencesSynchronize func(PreferencesRef)
-	_SCPreferencesUnlock func(PreferencesRef) unsafe.Pointer
-	_SCPreferencesUnscheduleFromRunLoop func(PreferencesRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_SCVLANInterfaceCopyAll func(PreferencesRef) unsafe.Pointer
-	_SCVLANInterfaceCopyAvailablePhysicalInterfaces func() unsafe.Pointer
-	_SCVLANInterfaceCreate func(PreferencesRef, NetworkInterfaceRef, unsafe.Pointer) VLANInterfaceRef
-	_SCVLANInterfaceGetOptions func(VLANInterfaceRef) unsafe.Pointer
-	_SCVLANInterfaceGetPhysicalInterface func(VLANInterfaceRef) NetworkInterfaceRef
-	_SCVLANInterfaceGetTag func(VLANInterfaceRef) unsafe.Pointer
-	_SCVLANInterfaceRemove func(VLANInterfaceRef) unsafe.Pointer
-	_SCVLANInterfaceSetLocalizedDisplayName func(VLANInterfaceRef, unsafe.Pointer) unsafe.Pointer
-	_SCVLANInterfaceSetOptions func(VLANInterfaceRef, unsafe.Pointer) unsafe.Pointer
-	_SCVLANInterfaceSetPhysicalInterfaceAndTag func(VLANInterfaceRef, NetworkInterfaceRef, unsafe.Pointer) unsafe.Pointer
+	_CNCopyCurrentNetworkInfo                       func(StringRef) DictionaryRef
+	_CNCopySupportedInterfaces                      func() ArrayRef
+	_CNMarkPortalOffline                            func(StringRef) unsafe.Pointer
+	_CNMarkPortalOnline                             func(StringRef) unsafe.Pointer
+	_CNSetSupportedSSIDs                            func(ArrayRef) unsafe.Pointer
+	_DHCPClientPreferencesCopyApplicationOptions    func(StringRef, unsafe.Pointer) unsafe.Pointer
+	_DHCPClientPreferencesSetApplicationOptions     func(StringRef, unsafe.Pointer, Index) unsafe.Pointer
+	_DHCPInfoGetLeaseExpirationTime                 func(DictionaryRef) DateRef
+	_DHCPInfoGetLeaseStartTime                      func(DictionaryRef) DateRef
+	_DHCPInfoGetOptionData                          func(DictionaryRef, unsafe.Pointer) DataRef
+	_SCBondInterfaceCopyAll                         func(PreferencesRef) ArrayRef
+	_SCBondInterfaceCopyAvailableMemberInterfaces   func(PreferencesRef) ArrayRef
+	_SCBondInterfaceCopyStatus                      func(BondInterfaceRef) BondStatusRef
+	_SCBondInterfaceCreate                          func(PreferencesRef) BondInterfaceRef
+	_SCBondInterfaceGetMemberInterfaces             func(BondInterfaceRef) ArrayRef
+	_SCBondInterfaceGetOptions                      func(BondInterfaceRef) DictionaryRef
+	_SCBondInterfaceRemove                          func(BondInterfaceRef) unsafe.Pointer
+	_SCBondInterfaceSetLocalizedDisplayName         func(BondInterfaceRef, StringRef) unsafe.Pointer
+	_SCBondInterfaceSetMemberInterfaces             func(BondInterfaceRef, ArrayRef) unsafe.Pointer
+	_SCBondInterfaceSetOptions                      func(BondInterfaceRef, DictionaryRef) unsafe.Pointer
+	_SCBondStatusGetInterfaceStatus                 func(BondStatusRef, NetworkInterfaceRef) DictionaryRef
+	_SCBondStatusGetMemberInterfaces                func(BondStatusRef) ArrayRef
+	_SCBondStatusGetTypeID                          func() TypeID
+	_SCCopyLastError                                func() ErrorRef
+	_SCDynamicStoreAddTemporaryValue                func(DynamicStoreRef, StringRef, PropertyListRef) unsafe.Pointer
+	_SCDynamicStoreAddValue                         func(DynamicStoreRef, StringRef, PropertyListRef) unsafe.Pointer
+	_SCDynamicStoreCopyComputerName                 func(DynamicStoreRef, unsafe.Pointer) StringRef
+	_SCDynamicStoreCopyConsoleUser                  func(DynamicStoreRef, unsafe.Pointer, unsafe.Pointer) StringRef
+	_SCDynamicStoreCopyDHCPInfo                     func(DynamicStoreRef, StringRef) DictionaryRef
+	_SCDynamicStoreCopyKeyList                      func(DynamicStoreRef, StringRef) ArrayRef
+	_SCDynamicStoreCopyLocalHostName                func(DynamicStoreRef) StringRef
+	_SCDynamicStoreCopyLocation                     func(DynamicStoreRef) StringRef
+	_SCDynamicStoreCopyMultiple                     func(DynamicStoreRef, ArrayRef, ArrayRef) DictionaryRef
+	_SCDynamicStoreCopyNotifiedKeys                 func(DynamicStoreRef) ArrayRef
+	_SCDynamicStoreCopyProxies                      func(DynamicStoreRef) DictionaryRef
+	_SCDynamicStoreCopyValue                        func(DynamicStoreRef, StringRef) PropertyListRef
+	_SCDynamicStoreCreate                           func(AllocatorRef, StringRef, DynamicStoreCallBack, unsafe.Pointer) DynamicStoreRef
+	_SCDynamicStoreCreateRunLoopSource              func(AllocatorRef, DynamicStoreRef, Index) RunLoopSourceRef
+	_SCDynamicStoreCreateWithOptions                func(AllocatorRef, StringRef, DictionaryRef, DynamicStoreCallBack, unsafe.Pointer) DynamicStoreRef
+	_SCDynamicStoreGetTypeID                        func() TypeID
+	_SCDynamicStoreKeyCreate                        func(AllocatorRef, StringRef) StringRef
+	_SCDynamicStoreKeyCreateComputerName            func(AllocatorRef) StringRef
+	_SCDynamicStoreKeyCreateConsoleUser             func(AllocatorRef) StringRef
+	_SCDynamicStoreKeyCreateHostNames               func(AllocatorRef) StringRef
+	_SCDynamicStoreKeyCreateLocation                func(AllocatorRef) StringRef
+	_SCDynamicStoreKeyCreateNetworkGlobalEntity     func(AllocatorRef, StringRef, StringRef) StringRef
+	_SCDynamicStoreKeyCreateNetworkInterface        func(AllocatorRef, StringRef) StringRef
+	_SCDynamicStoreKeyCreateNetworkInterfaceEntity  func(AllocatorRef, StringRef, StringRef, StringRef) StringRef
+	_SCDynamicStoreKeyCreateNetworkServiceEntity    func(AllocatorRef, StringRef, StringRef, StringRef) StringRef
+	_SCDynamicStoreKeyCreateProxies                 func(AllocatorRef) StringRef
+	_SCDynamicStoreNotifyValue                      func(DynamicStoreRef, StringRef) unsafe.Pointer
+	_SCDynamicStoreRemoveValue                      func(DynamicStoreRef, StringRef) unsafe.Pointer
+	_SCDynamicStoreSetDispatchQueue                 func(DynamicStoreRef, unsafe.Pointer) unsafe.Pointer
+	_SCDynamicStoreSetMultiple                      func(DynamicStoreRef, DictionaryRef, ArrayRef, ArrayRef) unsafe.Pointer
+	_SCDynamicStoreSetNotificationKeys              func(DynamicStoreRef, ArrayRef, ArrayRef) unsafe.Pointer
+	_SCDynamicStoreSetValue                         func(DynamicStoreRef, StringRef, PropertyListRef) unsafe.Pointer
+	_SCError                                        func() int
+	_SCErrorString                                  func(int) unsafe.Pointer
+	_SCNetworkCheckReachabilityByAddress            func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkCheckReachabilityByName               func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkConnectionCopyExtendedStatus          func(NetworkConnectionRef) DictionaryRef
+	_SCNetworkConnectionCopyServiceID               func(NetworkConnectionRef) StringRef
+	_SCNetworkConnectionCopyStatistics              func(NetworkConnectionRef) DictionaryRef
+	_SCNetworkConnectionCopyUserOptions             func(NetworkConnectionRef) DictionaryRef
+	_SCNetworkConnectionCopyUserPreferences         func(DictionaryRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkConnectionCreateWithServiceID         func(AllocatorRef, StringRef, NetworkConnectionCallBack, unsafe.Pointer) NetworkConnectionRef
+	_SCNetworkConnectionGetStatus                   func(NetworkConnectionRef) NetworkConnectionStatus
+	_SCNetworkConnectionGetTypeID                   func() TypeID
+	_SCNetworkConnectionScheduleWithRunLoop         func(NetworkConnectionRef, RunLoopRef, StringRef) unsafe.Pointer
+	_SCNetworkConnectionSetDispatchQueue            func(NetworkConnectionRef, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkConnectionStart                       func(NetworkConnectionRef, DictionaryRef, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkConnectionStop                        func(NetworkConnectionRef, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkConnectionUnscheduleFromRunLoop       func(NetworkConnectionRef, RunLoopRef, StringRef) unsafe.Pointer
+	_SCNetworkInterfaceCopyAll                      func() ArrayRef
+	_SCNetworkInterfaceCopyMediaOptions             func(NetworkInterfaceRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkInterfaceCopyMediaSubTypeOptions      func(ArrayRef, StringRef) ArrayRef
+	_SCNetworkInterfaceCopyMediaSubTypes            func(ArrayRef) ArrayRef
+	_SCNetworkInterfaceCopyMTU                      func(NetworkInterfaceRef, []int, []int, []int) unsafe.Pointer
+	_SCNetworkInterfaceCreateWithInterface          func(NetworkInterfaceRef, StringRef) NetworkInterfaceRef
+	_SCNetworkInterfaceForceConfigurationRefresh    func(NetworkInterfaceRef) unsafe.Pointer
+	_SCNetworkInterfaceGetBSDName                   func(NetworkInterfaceRef) StringRef
+	_SCNetworkInterfaceGetConfiguration             func(NetworkInterfaceRef) DictionaryRef
+	_SCNetworkInterfaceGetExtendedConfiguration     func(NetworkInterfaceRef, StringRef) DictionaryRef
+	_SCNetworkInterfaceGetHardwareAddressString     func(NetworkInterfaceRef) StringRef
+	_SCNetworkInterfaceGetInterface                 func(NetworkInterfaceRef) NetworkInterfaceRef
+	_SCNetworkInterfaceGetInterfaceType             func(NetworkInterfaceRef) StringRef
+	_SCNetworkInterfaceGetLocalizedDisplayName      func(NetworkInterfaceRef) StringRef
+	_SCNetworkInterfaceGetSupportedInterfaceTypes   func(NetworkInterfaceRef) ArrayRef
+	_SCNetworkInterfaceGetSupportedProtocolTypes    func(NetworkInterfaceRef) ArrayRef
+	_SCNetworkInterfaceGetTypeID                    func() TypeID
+	_SCNetworkInterfaceRefreshConfiguration         func(StringRef) unsafe.Pointer
+	_SCNetworkInterfaceSetConfiguration             func(NetworkInterfaceRef, DictionaryRef) unsafe.Pointer
+	_SCNetworkInterfaceSetExtendedConfiguration     func(NetworkInterfaceRef, StringRef, DictionaryRef) unsafe.Pointer
+	_SCNetworkInterfaceSetMediaOptions              func(NetworkInterfaceRef, StringRef, ArrayRef) unsafe.Pointer
+	_SCNetworkInterfaceSetMTU                       func(NetworkInterfaceRef, int) unsafe.Pointer
+	_SCNetworkProtocolGetConfiguration              func(NetworkProtocolRef) DictionaryRef
+	_SCNetworkProtocolGetEnabled                    func(NetworkProtocolRef) unsafe.Pointer
+	_SCNetworkProtocolGetProtocolType               func(NetworkProtocolRef) StringRef
+	_SCNetworkProtocolGetTypeID                     func() TypeID
+	_SCNetworkProtocolSetConfiguration              func(NetworkProtocolRef, DictionaryRef) unsafe.Pointer
+	_SCNetworkProtocolSetEnabled                    func(NetworkProtocolRef, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkReachabilityCreateWithAddress         func(AllocatorRef, unsafe.Pointer) NetworkReachabilityRef
+	_SCNetworkReachabilityCreateWithAddressPair     func(AllocatorRef, unsafe.Pointer, unsafe.Pointer) NetworkReachabilityRef
+	_SCNetworkReachabilityCreateWithName            func(AllocatorRef, unsafe.Pointer) NetworkReachabilityRef
+	_SCNetworkReachabilityGetFlags                  func(NetworkReachabilityRef, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkReachabilityGetTypeID                 func() TypeID
+	_SCNetworkReachabilityScheduleWithRunLoop       func(NetworkReachabilityRef, RunLoopRef, StringRef) unsafe.Pointer
+	_SCNetworkReachabilitySetCallback               func(NetworkReachabilityRef, NetworkReachabilityCallBack, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkReachabilitySetDispatchQueue          func(NetworkReachabilityRef, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkReachabilityUnscheduleFromRunLoop     func(NetworkReachabilityRef, RunLoopRef, StringRef) unsafe.Pointer
+	_SCNetworkServiceAddProtocolType                func(NetworkServiceRef, StringRef) unsafe.Pointer
+	_SCNetworkServiceCopy                           func(PreferencesRef, StringRef) NetworkServiceRef
+	_SCNetworkServiceCopyAll                        func(PreferencesRef) ArrayRef
+	_SCNetworkServiceCopyProtocol                   func(NetworkServiceRef, StringRef) NetworkProtocolRef
+	_SCNetworkServiceCopyProtocols                  func(NetworkServiceRef) ArrayRef
+	_SCNetworkServiceCreate                         func(PreferencesRef, NetworkInterfaceRef) NetworkServiceRef
+	_SCNetworkServiceEstablishDefaultConfiguration  func(NetworkServiceRef) unsafe.Pointer
+	_SCNetworkServiceGetEnabled                     func(NetworkServiceRef) unsafe.Pointer
+	_SCNetworkServiceGetInterface                   func(NetworkServiceRef) NetworkInterfaceRef
+	_SCNetworkServiceGetName                        func(NetworkServiceRef) StringRef
+	_SCNetworkServiceGetServiceID                   func(NetworkServiceRef) StringRef
+	_SCNetworkServiceGetTypeID                      func() TypeID
+	_SCNetworkServiceRemove                         func(NetworkServiceRef) unsafe.Pointer
+	_SCNetworkServiceRemoveProtocolType             func(NetworkServiceRef, StringRef) unsafe.Pointer
+	_SCNetworkServiceSetEnabled                     func(NetworkServiceRef, unsafe.Pointer) unsafe.Pointer
+	_SCNetworkServiceSetName                        func(NetworkServiceRef, StringRef) unsafe.Pointer
+	_SCNetworkSetAddService                         func(NetworkSetRef, NetworkServiceRef) unsafe.Pointer
+	_SCNetworkSetContainsInterface                  func(NetworkSetRef, NetworkInterfaceRef) unsafe.Pointer
+	_SCNetworkSetCopy                               func(PreferencesRef, StringRef) NetworkSetRef
+	_SCNetworkSetCopyAll                            func(PreferencesRef) ArrayRef
+	_SCNetworkSetCopyCurrent                        func(PreferencesRef) NetworkSetRef
+	_SCNetworkSetCopyServices                       func(NetworkSetRef) ArrayRef
+	_SCNetworkSetCreate                             func(PreferencesRef) NetworkSetRef
+	_SCNetworkSetGetName                            func(NetworkSetRef) StringRef
+	_SCNetworkSetGetServiceOrder                    func(NetworkSetRef) ArrayRef
+	_SCNetworkSetGetSetID                           func(NetworkSetRef) StringRef
+	_SCNetworkSetGetTypeID                          func() TypeID
+	_SCNetworkSetRemove                             func(NetworkSetRef) unsafe.Pointer
+	_SCNetworkSetRemoveService                      func(NetworkSetRef, NetworkServiceRef) unsafe.Pointer
+	_SCNetworkSetSetCurrent                         func(NetworkSetRef) unsafe.Pointer
+	_SCNetworkSetSetName                            func(NetworkSetRef, StringRef) unsafe.Pointer
+	_SCNetworkSetSetServiceOrder                    func(NetworkSetRef, ArrayRef) unsafe.Pointer
+	_SCPreferencesAddValue                          func(PreferencesRef, StringRef, PropertyListRef) unsafe.Pointer
+	_SCPreferencesApplyChanges                      func(PreferencesRef) unsafe.Pointer
+	_SCPreferencesCommitChanges                     func(PreferencesRef) unsafe.Pointer
+	_SCPreferencesCopyKeyList                       func(PreferencesRef) ArrayRef
+	_SCPreferencesCreate                            func(AllocatorRef, StringRef, StringRef) PreferencesRef
+	_SCPreferencesCreateWithAuthorization           func(AllocatorRef, StringRef, StringRef, AuthorizationRef) PreferencesRef
+	_SCPreferencesGetSignature                      func(PreferencesRef) DataRef
+	_SCPreferencesGetTypeID                         func() TypeID
+	_SCPreferencesGetValue                          func(PreferencesRef, StringRef) PropertyListRef
+	_SCPreferencesLock                              func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
+	_SCPreferencesPathCreateUniqueChild             func(PreferencesRef, StringRef) StringRef
+	_SCPreferencesPathGetLink                       func(PreferencesRef, StringRef) StringRef
+	_SCPreferencesPathGetValue                      func(PreferencesRef, StringRef) DictionaryRef
+	_SCPreferencesPathRemoveValue                   func(PreferencesRef, StringRef) unsafe.Pointer
+	_SCPreferencesPathSetLink                       func(PreferencesRef, StringRef, StringRef) unsafe.Pointer
+	_SCPreferencesPathSetValue                      func(PreferencesRef, StringRef, DictionaryRef) unsafe.Pointer
+	_SCPreferencesRemoveValue                       func(PreferencesRef, StringRef) unsafe.Pointer
+	_SCPreferencesScheduleWithRunLoop               func(PreferencesRef, RunLoopRef, StringRef) unsafe.Pointer
+	_SCPreferencesSetCallback                       func(PreferencesRef, PreferencesCallBack, unsafe.Pointer) unsafe.Pointer
+	_SCPreferencesSetComputerName                   func(PreferencesRef, StringRef, StringEncoding) unsafe.Pointer
+	_SCPreferencesSetDispatchQueue                  func(PreferencesRef, unsafe.Pointer) unsafe.Pointer
+	_SCPreferencesSetLocalHostName                  func(PreferencesRef, StringRef) unsafe.Pointer
+	_SCPreferencesSetValue                          func(PreferencesRef, StringRef, PropertyListRef) unsafe.Pointer
+	_SCPreferencesSynchronize                       func(PreferencesRef)
+	_SCPreferencesUnlock                            func(PreferencesRef) unsafe.Pointer
+	_SCPreferencesUnscheduleFromRunLoop             func(PreferencesRef, RunLoopRef, StringRef) unsafe.Pointer
+	_SCVLANInterfaceCopyAll                         func(PreferencesRef) ArrayRef
+	_SCVLANInterfaceCopyAvailablePhysicalInterfaces func() ArrayRef
+	_SCVLANInterfaceCreate                          func(PreferencesRef, NetworkInterfaceRef, NumberRef) VLANInterfaceRef
+	_SCVLANInterfaceGetOptions                      func(VLANInterfaceRef) DictionaryRef
+	_SCVLANInterfaceGetPhysicalInterface            func(VLANInterfaceRef) NetworkInterfaceRef
+	_SCVLANInterfaceGetTag                          func(VLANInterfaceRef) NumberRef
+	_SCVLANInterfaceRemove                          func(VLANInterfaceRef) unsafe.Pointer
+	_SCVLANInterfaceSetLocalizedDisplayName         func(VLANInterfaceRef, StringRef) unsafe.Pointer
+	_SCVLANInterfaceSetOptions                      func(VLANInterfaceRef, DictionaryRef) unsafe.Pointer
+	_SCVLANInterfaceSetPhysicalInterfaceAndTag      func(VLANInterfaceRef, NetworkInterfaceRef, NumberRef) unsafe.Pointer
 )
 
 func init() {
@@ -274,10 +274,10 @@ func init() {
 	tryRegister(&_SCNetworkConnectionStop, lib, "SCNetworkConnectionStop")
 	tryRegister(&_SCNetworkConnectionUnscheduleFromRunLoop, lib, "SCNetworkConnectionUnscheduleFromRunLoop")
 	tryRegister(&_SCNetworkInterfaceCopyAll, lib, "SCNetworkInterfaceCopyAll")
-	tryRegister(&_SCNetworkInterfaceCopyMTU, lib, "SCNetworkInterfaceCopyMTU")
 	tryRegister(&_SCNetworkInterfaceCopyMediaOptions, lib, "SCNetworkInterfaceCopyMediaOptions")
 	tryRegister(&_SCNetworkInterfaceCopyMediaSubTypeOptions, lib, "SCNetworkInterfaceCopyMediaSubTypeOptions")
 	tryRegister(&_SCNetworkInterfaceCopyMediaSubTypes, lib, "SCNetworkInterfaceCopyMediaSubTypes")
+	tryRegister(&_SCNetworkInterfaceCopyMTU, lib, "SCNetworkInterfaceCopyMTU")
 	tryRegister(&_SCNetworkInterfaceCreateWithInterface, lib, "SCNetworkInterfaceCreateWithInterface")
 	tryRegister(&_SCNetworkInterfaceForceConfigurationRefresh, lib, "SCNetworkInterfaceForceConfigurationRefresh")
 	tryRegister(&_SCNetworkInterfaceGetBSDName, lib, "SCNetworkInterfaceGetBSDName")
@@ -293,8 +293,8 @@ func init() {
 	tryRegister(&_SCNetworkInterfaceRefreshConfiguration, lib, "SCNetworkInterfaceRefreshConfiguration")
 	tryRegister(&_SCNetworkInterfaceSetConfiguration, lib, "SCNetworkInterfaceSetConfiguration")
 	tryRegister(&_SCNetworkInterfaceSetExtendedConfiguration, lib, "SCNetworkInterfaceSetExtendedConfiguration")
-	tryRegister(&_SCNetworkInterfaceSetMTU, lib, "SCNetworkInterfaceSetMTU")
 	tryRegister(&_SCNetworkInterfaceSetMediaOptions, lib, "SCNetworkInterfaceSetMediaOptions")
+	tryRegister(&_SCNetworkInterfaceSetMTU, lib, "SCNetworkInterfaceSetMTU")
 	tryRegister(&_SCNetworkProtocolGetConfiguration, lib, "SCNetworkProtocolGetConfiguration")
 	tryRegister(&_SCNetworkProtocolGetEnabled, lib, "SCNetworkProtocolGetEnabled")
 	tryRegister(&_SCNetworkProtocolGetProtocolType, lib, "SCNetworkProtocolGetProtocolType")
@@ -392,17 +392,15 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 	purego.RegisterLibFunc(fn, lib, name)
 }
 
-
-
 // Returns the current network information for a given network interface.
 
 // Returns the current network information for a given network interface.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/systemconfiguration/1614126-cncopycurrentnetworkinfo
-func CNCopyCurrentNetworkInfo(p0 unsafe.Pointer) unsafe.Pointer {
-	return _CNCopyCurrentNetworkInfo(p0)
-}
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/CNCopyCurrentNetworkInfo
+func CNCopyCurrentNetworkInfo(interfaceName StringRef) DictionaryRef {
+	return _CNCopyCurrentNetworkInfo(interfaceName)
+} /* debug [functions.gen.go/function]: CNCopyCurrentNetworkInfo */
 
 // Returns the names of all network interfaces Captive Network Support is monitoring.
 //
@@ -411,9 +409,9 @@ func CNCopyCurrentNetworkInfo(p0 unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/CNCopySupportedInterfaces
-func CNCopySupportedInterfaces() unsafe.Pointer {
+func CNCopySupportedInterfaces() ArrayRef {
 	return _CNCopySupportedInterfaces()
-}
+} /* debug [functions.gen.go/function]: CNCopySupportedInterfaces */
 
 // Informs Captive Network Support that the device is not authenticated on a captive network.
 //
@@ -422,9 +420,9 @@ func CNCopySupportedInterfaces() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/CNMarkPortalOffline
-func CNMarkPortalOffline(interfaceName unsafe.Pointer) unsafe.Pointer {
+func CNMarkPortalOffline(interfaceName StringRef) unsafe.Pointer {
 	return _CNMarkPortalOffline(interfaceName)
-}
+} /* debug [functions.gen.go/function]: CNMarkPortalOffline */
 
 // Informs Captive Network Support that the application has successfully authenticated the device to a captive network. Captive Network Support notifies the rest of the system that WiFi is a viable interface.
 //
@@ -433,9 +431,9 @@ func CNMarkPortalOffline(interfaceName unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/CNMarkPortalOnline
-func CNMarkPortalOnline(interfaceName unsafe.Pointer) unsafe.Pointer {
+func CNMarkPortalOnline(interfaceName StringRef) unsafe.Pointer {
 	return _CNMarkPortalOnline(interfaceName)
-}
+} /* debug [functions.gen.go/function]: CNMarkPortalOnline */
 
 // Specifies an updated list of captive network SSIDs that the application performs authentication on.
 //
@@ -444,9 +442,9 @@ func CNMarkPortalOnline(interfaceName unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/CNSetSupportedSSIDs
-func CNSetSupportedSSIDs(ssidArray unsafe.Pointer) unsafe.Pointer {
+func CNSetSupportedSSIDs(ssidArray ArrayRef) unsafe.Pointer {
 	return _CNSetSupportedSSIDs(ssidArray)
-}
+} /* debug [functions.gen.go/function]: CNSetSupportedSSIDs */
 
 // Returns the list of options for the specified application ID.
 //
@@ -455,9 +453,9 @@ func CNSetSupportedSSIDs(ssidArray unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/DHCPClientPreferencesCopyApplicationOptions
-func DHCPClientPreferencesCopyApplicationOptions(applicationID unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+func DHCPClientPreferencesCopyApplicationOptions(applicationID StringRef, count unsafe.Pointer) unsafe.Pointer {
 	return _DHCPClientPreferencesCopyApplicationOptions(applicationID, count)
-}
+} /* debug [functions.gen.go/function]: DHCPClientPreferencesCopyApplicationOptions */
 
 // Updates the DHCP client preferences to include the specified list of options for the specified application ID.
 //
@@ -466,9 +464,9 @@ func DHCPClientPreferencesCopyApplicationOptions(applicationID unsafe.Pointer, c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/DHCPClientPreferencesSetApplicationOptions
-func DHCPClientPreferencesSetApplicationOptions(applicationID unsafe.Pointer, options unsafe.Pointer, count unsafe.Pointer) unsafe.Pointer {
+func DHCPClientPreferencesSetApplicationOptions(applicationID StringRef, options unsafe.Pointer, count Index) unsafe.Pointer {
 	return _DHCPClientPreferencesSetApplicationOptions(applicationID, options, count)
-}
+} /* debug [functions.gen.go/function]: DHCPClientPreferencesSetApplicationOptions */
 
 // Returns the lease expiration time data.
 //
@@ -477,9 +475,9 @@ func DHCPClientPreferencesSetApplicationOptions(applicationID unsafe.Pointer, op
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/DHCPInfoGetLeaseExpirationTime
-func DHCPInfoGetLeaseExpirationTime(info unsafe.Pointer) unsafe.Pointer {
+func DHCPInfoGetLeaseExpirationTime(info DictionaryRef) DateRef {
 	return _DHCPInfoGetLeaseExpirationTime(info)
-}
+} /* debug [functions.gen.go/function]: DHCPInfoGetLeaseExpirationTime */
 
 // Returns the lease start time data.
 //
@@ -488,9 +486,9 @@ func DHCPInfoGetLeaseExpirationTime(info unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/DHCPInfoGetLeaseStartTime
-func DHCPInfoGetLeaseStartTime(info unsafe.Pointer) unsafe.Pointer {
+func DHCPInfoGetLeaseStartTime(info DictionaryRef) DateRef {
 	return _DHCPInfoGetLeaseStartTime(info)
-}
+} /* debug [functions.gen.go/function]: DHCPInfoGetLeaseStartTime */
 
 // Returns DHCP option data, if present.
 //
@@ -499,9 +497,9 @@ func DHCPInfoGetLeaseStartTime(info unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/DHCPInfoGetOptionData
-func DHCPInfoGetOptionData(info unsafe.Pointer, code unsafe.Pointer) unsafe.Pointer {
+func DHCPInfoGetOptionData(info DictionaryRef, code unsafe.Pointer) DataRef {
 	return _DHCPInfoGetOptionData(info, code)
-}
+} /* debug [functions.gen.go/function]: DHCPInfoGetOptionData */
 
 // Returns all Ethernet bond interfaces on the system.
 //
@@ -510,9 +508,9 @@ func DHCPInfoGetOptionData(info unsafe.Pointer, code unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceCopyAll(_:)
-func SCBondInterfaceCopyAll(prefs PreferencesRef) unsafe.Pointer {
+func SCBondInterfaceCopyAll(prefs PreferencesRef) ArrayRef {
 	return _SCBondInterfaceCopyAll(prefs)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceCopyAll */
 
 // Returns all network capable devices on the system that can be added to an Ethernet bond interface.
 //
@@ -521,9 +519,9 @@ func SCBondInterfaceCopyAll(prefs PreferencesRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceCopyAvailableMemberInterfaces(_:)
-func SCBondInterfaceCopyAvailableMemberInterfaces(prefs PreferencesRef) unsafe.Pointer {
+func SCBondInterfaceCopyAvailableMemberInterfaces(prefs PreferencesRef) ArrayRef {
 	return _SCBondInterfaceCopyAvailableMemberInterfaces(prefs)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceCopyAvailableMemberInterfaces */
 
 // Returns the status of the specified Ethernet bond interface.
 //
@@ -534,7 +532,7 @@ func SCBondInterfaceCopyAvailableMemberInterfaces(prefs PreferencesRef) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceCopyStatus(_:)
 func SCBondInterfaceCopyStatus(bond BondInterfaceRef) BondStatusRef {
 	return _SCBondInterfaceCopyStatus(bond)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceCopyStatus */
 
 // Creates a new Ethernet bond interface.
 //
@@ -545,7 +543,7 @@ func SCBondInterfaceCopyStatus(bond BondInterfaceRef) BondStatusRef {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceCreate(_:)
 func SCBondInterfaceCreate(prefs PreferencesRef) BondInterfaceRef {
 	return _SCBondInterfaceCreate(prefs)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceCreate */
 
 // Returns the member interfaces for the specified Ethernet bond interface.
 //
@@ -554,9 +552,9 @@ func SCBondInterfaceCreate(prefs PreferencesRef) BondInterfaceRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceGetMemberInterfaces(_:)
-func SCBondInterfaceGetMemberInterfaces(bond BondInterfaceRef) unsafe.Pointer {
+func SCBondInterfaceGetMemberInterfaces(bond BondInterfaceRef) ArrayRef {
 	return _SCBondInterfaceGetMemberInterfaces(bond)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceGetMemberInterfaces */
 
 // Returns the configuration settings associated with the specified Ethernet bond interface.
 //
@@ -565,9 +563,9 @@ func SCBondInterfaceGetMemberInterfaces(bond BondInterfaceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceGetOptions(_:)
-func SCBondInterfaceGetOptions(bond BondInterfaceRef) unsafe.Pointer {
+func SCBondInterfaceGetOptions(bond BondInterfaceRef) DictionaryRef {
 	return _SCBondInterfaceGetOptions(bond)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceGetOptions */
 
 // Removes the Ethernet bond interface from the configuration.
 //
@@ -578,7 +576,7 @@ func SCBondInterfaceGetOptions(bond BondInterfaceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceRemove(_:)
 func SCBondInterfaceRemove(bond BondInterfaceRef) unsafe.Pointer {
 	return _SCBondInterfaceRemove(bond)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceRemove */
 
 // Sets the localized display name for the specified Ethernet bond interface.
 //
@@ -587,9 +585,9 @@ func SCBondInterfaceRemove(bond BondInterfaceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceSetLocalizedDisplayName(_:_:)
-func SCBondInterfaceSetLocalizedDisplayName(bond BondInterfaceRef, newName unsafe.Pointer) unsafe.Pointer {
+func SCBondInterfaceSetLocalizedDisplayName(bond BondInterfaceRef, newName StringRef) unsafe.Pointer {
 	return _SCBondInterfaceSetLocalizedDisplayName(bond, newName)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceSetLocalizedDisplayName */
 
 // Sets the member interfaces for the specified Ethernet bond interface.
 //
@@ -598,9 +596,9 @@ func SCBondInterfaceSetLocalizedDisplayName(bond BondInterfaceRef, newName unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceSetMemberInterfaces(_:_:)
-func SCBondInterfaceSetMemberInterfaces(bond BondInterfaceRef, members unsafe.Pointer) unsafe.Pointer {
+func SCBondInterfaceSetMemberInterfaces(bond BondInterfaceRef, members ArrayRef) unsafe.Pointer {
 	return _SCBondInterfaceSetMemberInterfaces(bond, members)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceSetMemberInterfaces */
 
 // Sets the configuration settings for the specified Ethernet bond interface.
 //
@@ -609,9 +607,9 @@ func SCBondInterfaceSetMemberInterfaces(bond BondInterfaceRef, members unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondInterfaceSetOptions(_:_:)
-func SCBondInterfaceSetOptions(bond BondInterfaceRef, newOptions unsafe.Pointer) unsafe.Pointer {
+func SCBondInterfaceSetOptions(bond BondInterfaceRef, newOptions DictionaryRef) unsafe.Pointer {
 	return _SCBondInterfaceSetOptions(bond, newOptions)
-}
+} /* debug [functions.gen.go/function]: SCBondInterfaceSetOptions */
 
 // Returns the status of the specified member interface of an Ethernet bond or the status of the bond as a whole.
 //
@@ -620,9 +618,9 @@ func SCBondInterfaceSetOptions(bond BondInterfaceRef, newOptions unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondStatusGetInterfaceStatus(_:_:)
-func SCBondStatusGetInterfaceStatus(bondStatus BondStatusRef, interface_ NetworkInterfaceRef) unsafe.Pointer {
+func SCBondStatusGetInterfaceStatus(bondStatus BondStatusRef, interface_ NetworkInterfaceRef) DictionaryRef {
 	return _SCBondStatusGetInterfaceStatus(bondStatus, interface_)
-}
+} /* debug [functions.gen.go/function]: SCBondStatusGetInterfaceStatus */
 
 // Returns the member interfaces that are represented with the Ethernet bond interface.
 //
@@ -631,9 +629,9 @@ func SCBondStatusGetInterfaceStatus(bondStatus BondStatusRef, interface_ Network
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondStatusGetMemberInterfaces(_:)
-func SCBondStatusGetMemberInterfaces(bondStatus BondStatusRef) unsafe.Pointer {
+func SCBondStatusGetMemberInterfaces(bondStatus BondStatusRef) ArrayRef {
 	return _SCBondStatusGetMemberInterfaces(bondStatus)
-}
+} /* debug [functions.gen.go/function]: SCBondStatusGetMemberInterfaces */
 
 // Returns the type identifier of all instances.
 //
@@ -642,9 +640,9 @@ func SCBondStatusGetMemberInterfaces(bondStatus BondStatusRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCBondStatusGetTypeID()
-func SCBondStatusGetTypeID() unsafe.Pointer {
+func SCBondStatusGetTypeID() TypeID {
 	return _SCBondStatusGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCBondStatusGetTypeID */
 
 // Returns an error or status code associated with the most recent function call.
 //
@@ -653,9 +651,9 @@ func SCBondStatusGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCCopyLastError()
-func SCCopyLastError() unsafe.Pointer {
+func SCCopyLastError() ErrorRef {
 	return _SCCopyLastError()
-}
+} /* debug [functions.gen.go/function]: SCCopyLastError */
 
 // Temporarily adds the specified key-value pair to the dynamic store, if no such key already exists.
 //
@@ -664,9 +662,9 @@ func SCCopyLastError() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreAddTemporaryValue(_:_:_:)
-func SCDynamicStoreAddTemporaryValue(store DynamicStoreRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreAddTemporaryValue(store DynamicStoreRef, key StringRef, value PropertyListRef) unsafe.Pointer {
 	return _SCDynamicStoreAddTemporaryValue(store, key, value)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreAddTemporaryValue */
 
 // Adds the specified key-value pair to the dynamic store, if no such key already exists.
 //
@@ -675,9 +673,9 @@ func SCDynamicStoreAddTemporaryValue(store DynamicStoreRef, key unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreAddValue(_:_:_:)
-func SCDynamicStoreAddValue(store DynamicStoreRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreAddValue(store DynamicStoreRef, key StringRef, value PropertyListRef) unsafe.Pointer {
 	return _SCDynamicStoreAddValue(store, key, value)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreAddValue */
 
 // Returns the current computer name.
 //
@@ -686,9 +684,9 @@ func SCDynamicStoreAddValue(store DynamicStoreRef, key unsafe.Pointer, value uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyComputerName(_:_:)
-func SCDynamicStoreCopyComputerName(store DynamicStoreRef, nameEncoding unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreCopyComputerName(store DynamicStoreRef, nameEncoding unsafe.Pointer) StringRef {
 	return _SCDynamicStoreCopyComputerName(store, nameEncoding)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyComputerName */
 
 // Returns information about the user currently logged into the system.
 //
@@ -697,9 +695,9 @@ func SCDynamicStoreCopyComputerName(store DynamicStoreRef, nameEncoding unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyConsoleUser(_:_:_:)
-func SCDynamicStoreCopyConsoleUser(store DynamicStoreRef, uid unsafe.Pointer, gid unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreCopyConsoleUser(store DynamicStoreRef, uid unsafe.Pointer, gid unsafe.Pointer) StringRef {
 	return _SCDynamicStoreCopyConsoleUser(store, uid, gid)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyConsoleUser */
 
 // Returns the DHCP information for the specified service.
 //
@@ -708,9 +706,9 @@ func SCDynamicStoreCopyConsoleUser(store DynamicStoreRef, uid unsafe.Pointer, gi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyDHCPInfo
-func SCDynamicStoreCopyDHCPInfo(store DynamicStoreRef, serviceID unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreCopyDHCPInfo(store DynamicStoreRef, serviceID StringRef) DictionaryRef {
 	return _SCDynamicStoreCopyDHCPInfo(store, serviceID)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyDHCPInfo */
 
 // Returns the keys that represent the current dynamic store entries that match the specified pattern.
 //
@@ -719,9 +717,9 @@ func SCDynamicStoreCopyDHCPInfo(store DynamicStoreRef, serviceID unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyKeyList(_:_:)
-func SCDynamicStoreCopyKeyList(store DynamicStoreRef, pattern unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreCopyKeyList(store DynamicStoreRef, pattern StringRef) ArrayRef {
 	return _SCDynamicStoreCopyKeyList(store, pattern)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyKeyList */
 
 // Returns the current local host name.
 //
@@ -730,9 +728,9 @@ func SCDynamicStoreCopyKeyList(store DynamicStoreRef, pattern unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyLocalHostName(_:)
-func SCDynamicStoreCopyLocalHostName(store DynamicStoreRef) unsafe.Pointer {
+func SCDynamicStoreCopyLocalHostName(store DynamicStoreRef) StringRef {
 	return _SCDynamicStoreCopyLocalHostName(store)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyLocalHostName */
 
 // Returns the current location identifier.
 //
@@ -741,9 +739,9 @@ func SCDynamicStoreCopyLocalHostName(store DynamicStoreRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyLocation(_:)
-func SCDynamicStoreCopyLocation(store DynamicStoreRef) unsafe.Pointer {
+func SCDynamicStoreCopyLocation(store DynamicStoreRef) StringRef {
 	return _SCDynamicStoreCopyLocation(store)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyLocation */
 
 // Returns the key-value pairs that match the specified keys and key patterns.
 //
@@ -752,9 +750,9 @@ func SCDynamicStoreCopyLocation(store DynamicStoreRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyMultiple(_:_:_:)
-func SCDynamicStoreCopyMultiple(store DynamicStoreRef, keys unsafe.Pointer, patterns unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreCopyMultiple(store DynamicStoreRef, keys ArrayRef, patterns ArrayRef) DictionaryRef {
 	return _SCDynamicStoreCopyMultiple(store, keys, patterns)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyMultiple */
 
 // Returns the keys that have changed since the last call to this function.
 //
@@ -763,9 +761,9 @@ func SCDynamicStoreCopyMultiple(store DynamicStoreRef, keys unsafe.Pointer, patt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyNotifiedKeys(_:)
-func SCDynamicStoreCopyNotifiedKeys(store DynamicStoreRef) unsafe.Pointer {
+func SCDynamicStoreCopyNotifiedKeys(store DynamicStoreRef) ArrayRef {
 	return _SCDynamicStoreCopyNotifiedKeys(store)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyNotifiedKeys */
 
 // Returns the key-value pairs that represent the current internet proxy settings.
 //
@@ -774,9 +772,9 @@ func SCDynamicStoreCopyNotifiedKeys(store DynamicStoreRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyProxies(_:)
-func SCDynamicStoreCopyProxies(store DynamicStoreRef) unsafe.Pointer {
+func SCDynamicStoreCopyProxies(store DynamicStoreRef) DictionaryRef {
 	return _SCDynamicStoreCopyProxies(store)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyProxies */
 
 // Returns the value associated with the specified key.
 //
@@ -785,9 +783,9 @@ func SCDynamicStoreCopyProxies(store DynamicStoreRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCopyValue(_:_:)
-func SCDynamicStoreCopyValue(store DynamicStoreRef, key unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreCopyValue(store DynamicStoreRef, key StringRef) PropertyListRef {
 	return _SCDynamicStoreCopyValue(store, key)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCopyValue */
 
 // Creates a new session used to interact with the dynamic store maintained by the System Configuration server.
 //
@@ -796,9 +794,9 @@ func SCDynamicStoreCopyValue(store DynamicStoreRef, key unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCreate(_:_:_:_:)
-func SCDynamicStoreCreate(allocator unsafe.Pointer, name unsafe.Pointer, callout DynamicStoreCallBack, context unsafe.Pointer) DynamicStoreRef {
+func SCDynamicStoreCreate(allocator AllocatorRef, name StringRef, callout DynamicStoreCallBack, context unsafe.Pointer) DynamicStoreRef {
 	return _SCDynamicStoreCreate(allocator, name, callout, context)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCreate */
 
 // Creates a run loop source object that can be added to the application’s run loop.
 //
@@ -807,9 +805,9 @@ func SCDynamicStoreCreate(allocator unsafe.Pointer, name unsafe.Pointer, callout
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCreateRunLoopSource(_:_:_:)
-func SCDynamicStoreCreateRunLoopSource(allocator unsafe.Pointer, store DynamicStoreRef, order unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreCreateRunLoopSource(allocator AllocatorRef, store DynamicStoreRef, order Index) RunLoopSourceRef {
 	return _SCDynamicStoreCreateRunLoopSource(allocator, store, order)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCreateRunLoopSource */
 
 // Creates a new session used to interact with the dynamic store maintained by the System Configuration server.
 //
@@ -818,9 +816,9 @@ func SCDynamicStoreCreateRunLoopSource(allocator unsafe.Pointer, store DynamicSt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreCreateWithOptions(_:_:_:_:_:)
-func SCDynamicStoreCreateWithOptions(allocator unsafe.Pointer, name unsafe.Pointer, storeOptions unsafe.Pointer, callout DynamicStoreCallBack, context unsafe.Pointer) DynamicStoreRef {
+func SCDynamicStoreCreateWithOptions(allocator AllocatorRef, name StringRef, storeOptions DictionaryRef, callout DynamicStoreCallBack, context unsafe.Pointer) DynamicStoreRef {
 	return _SCDynamicStoreCreateWithOptions(allocator, name, storeOptions, callout, context)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreCreateWithOptions */
 
 // Returns the type identifier of all instances.
 //
@@ -829,9 +827,9 @@ func SCDynamicStoreCreateWithOptions(allocator unsafe.Pointer, name unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreGetTypeID()
-func SCDynamicStoreGetTypeID() unsafe.Pointer {
+func SCDynamicStoreGetTypeID() TypeID {
 	return _SCDynamicStoreGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreGetTypeID */
 
 // Creates a dynamic store key using the specified format.
 //
@@ -840,9 +838,9 @@ func SCDynamicStoreGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreate
-func SCDynamicStoreKeyCreate(allocator unsafe.Pointer, fmt unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreate(allocator AllocatorRef, fmt StringRef) StringRef {
 	return _SCDynamicStoreKeyCreate(allocator, fmt)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreate */
 
 // Creates a key that can be used to receive notifications when the current computer name changes.
 //
@@ -851,9 +849,9 @@ func SCDynamicStoreKeyCreate(allocator unsafe.Pointer, fmt unsafe.Pointer) unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateComputerName(_:)
-func SCDynamicStoreKeyCreateComputerName(allocator unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateComputerName(allocator AllocatorRef) StringRef {
 	return _SCDynamicStoreKeyCreateComputerName(allocator)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateComputerName */
 
 // Creates a key that can be used to receive notifications when the current console user changes.
 //
@@ -862,9 +860,9 @@ func SCDynamicStoreKeyCreateComputerName(allocator unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateConsoleUser(_:)
-func SCDynamicStoreKeyCreateConsoleUser(allocator unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateConsoleUser(allocator AllocatorRef) StringRef {
 	return _SCDynamicStoreKeyCreateConsoleUser(allocator)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateConsoleUser */
 
 // Creates a key that can be used to receive notifications when the entity changes.
 //
@@ -873,9 +871,9 @@ func SCDynamicStoreKeyCreateConsoleUser(allocator unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateHostNames(_:)
-func SCDynamicStoreKeyCreateHostNames(allocator unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateHostNames(allocator AllocatorRef) StringRef {
 	return _SCDynamicStoreKeyCreateHostNames(allocator)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateHostNames */
 
 // Creates a key that can be used to receive notifications when the location identifier changes.
 //
@@ -884,9 +882,9 @@ func SCDynamicStoreKeyCreateHostNames(allocator unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateLocation(_:)
-func SCDynamicStoreKeyCreateLocation(allocator unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateLocation(allocator AllocatorRef) StringRef {
 	return _SCDynamicStoreKeyCreateLocation(allocator)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateLocation */
 
 // Creates a dynamic store key that can be used to access a specific global (as opposed to a per-service or per-interface) network configuration entity.
 //
@@ -895,9 +893,9 @@ func SCDynamicStoreKeyCreateLocation(allocator unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateNetworkGlobalEntity(_:_:_:)
-func SCDynamicStoreKeyCreateNetworkGlobalEntity(allocator unsafe.Pointer, domain unsafe.Pointer, entity unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateNetworkGlobalEntity(allocator AllocatorRef, domain StringRef, entity StringRef) StringRef {
 	return _SCDynamicStoreKeyCreateNetworkGlobalEntity(allocator, domain, entity)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateNetworkGlobalEntity */
 
 // Creates a dynamic store key that can be used to access the network interface configuration information in the dynamic store.
 //
@@ -906,9 +904,9 @@ func SCDynamicStoreKeyCreateNetworkGlobalEntity(allocator unsafe.Pointer, domain
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateNetworkInterface(_:_:)
-func SCDynamicStoreKeyCreateNetworkInterface(allocator unsafe.Pointer, domain unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateNetworkInterface(allocator AllocatorRef, domain StringRef) StringRef {
 	return _SCDynamicStoreKeyCreateNetworkInterface(allocator, domain)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateNetworkInterface */
 
 // Creates a dynamic store key that can be used to access the per-interface network configuration information in the dynamic store.
 //
@@ -917,9 +915,9 @@ func SCDynamicStoreKeyCreateNetworkInterface(allocator unsafe.Pointer, domain un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateNetworkInterfaceEntity(_:_:_:_:)
-func SCDynamicStoreKeyCreateNetworkInterfaceEntity(allocator unsafe.Pointer, domain unsafe.Pointer, ifname unsafe.Pointer, entity unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateNetworkInterfaceEntity(allocator AllocatorRef, domain StringRef, ifname StringRef, entity StringRef) StringRef {
 	return _SCDynamicStoreKeyCreateNetworkInterfaceEntity(allocator, domain, ifname, entity)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateNetworkInterfaceEntity */
 
 // Creates a dynamic store key that can be used to access the per-service network configuration information.
 //
@@ -928,9 +926,9 @@ func SCDynamicStoreKeyCreateNetworkInterfaceEntity(allocator unsafe.Pointer, dom
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateNetworkServiceEntity(_:_:_:_:)
-func SCDynamicStoreKeyCreateNetworkServiceEntity(allocator unsafe.Pointer, domain unsafe.Pointer, serviceID unsafe.Pointer, entity unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateNetworkServiceEntity(allocator AllocatorRef, domain StringRef, serviceID StringRef, entity StringRef) StringRef {
 	return _SCDynamicStoreKeyCreateNetworkServiceEntity(allocator, domain, serviceID, entity)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateNetworkServiceEntity */
 
 // Creates a key that can be used to receive notifications when the current network proxy settings are changed.
 //
@@ -939,9 +937,9 @@ func SCDynamicStoreKeyCreateNetworkServiceEntity(allocator unsafe.Pointer, domai
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreKeyCreateProxies(_:)
-func SCDynamicStoreKeyCreateProxies(allocator unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreKeyCreateProxies(allocator AllocatorRef) StringRef {
 	return _SCDynamicStoreKeyCreateProxies(allocator)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreKeyCreateProxies */
 
 // Causes a notification to be delivered for the specified key in the dynamic store.
 //
@@ -950,9 +948,9 @@ func SCDynamicStoreKeyCreateProxies(allocator unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreNotifyValue(_:_:)
-func SCDynamicStoreNotifyValue(store DynamicStoreRef, key unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreNotifyValue(store DynamicStoreRef, key StringRef) unsafe.Pointer {
 	return _SCDynamicStoreNotifyValue(store, key)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreNotifyValue */
 
 // Removes the value of the specified key from the dynamic store.
 //
@@ -961,9 +959,9 @@ func SCDynamicStoreNotifyValue(store DynamicStoreRef, key unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreRemoveValue(_:_:)
-func SCDynamicStoreRemoveValue(store DynamicStoreRef, key unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreRemoveValue(store DynamicStoreRef, key StringRef) unsafe.Pointer {
 	return _SCDynamicStoreRemoveValue(store, key)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreRemoveValue */
 
 // Initiates notifications for the notification keys, using the specified dispatch queue for the callback.
 //
@@ -974,7 +972,7 @@ func SCDynamicStoreRemoveValue(store DynamicStoreRef, key unsafe.Pointer) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreSetDispatchQueue(_:_:)
 func SCDynamicStoreSetDispatchQueue(store DynamicStoreRef, queue unsafe.Pointer) unsafe.Pointer {
 	return _SCDynamicStoreSetDispatchQueue(store, queue)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreSetDispatchQueue */
 
 // Updates multiple values in the dynamic store.
 //
@@ -983,9 +981,9 @@ func SCDynamicStoreSetDispatchQueue(store DynamicStoreRef, queue unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreSetMultiple(_:_:_:_:)
-func SCDynamicStoreSetMultiple(store DynamicStoreRef, keysToSet unsafe.Pointer, keysToRemove unsafe.Pointer, keysToNotify unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreSetMultiple(store DynamicStoreRef, keysToSet DictionaryRef, keysToRemove ArrayRef, keysToNotify ArrayRef) unsafe.Pointer {
 	return _SCDynamicStoreSetMultiple(store, keysToSet, keysToRemove, keysToNotify)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreSetMultiple */
 
 // Specifies a set of keys and key patterns that should be monitored for changes.
 //
@@ -994,9 +992,9 @@ func SCDynamicStoreSetMultiple(store DynamicStoreRef, keysToSet unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreSetNotificationKeys(_:_:_:)
-func SCDynamicStoreSetNotificationKeys(store DynamicStoreRef, keys unsafe.Pointer, patterns unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreSetNotificationKeys(store DynamicStoreRef, keys ArrayRef, patterns ArrayRef) unsafe.Pointer {
 	return _SCDynamicStoreSetNotificationKeys(store, keys, patterns)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreSetNotificationKeys */
 
 // Adds or replaces a value in the dynamic store for the specified key.
 //
@@ -1005,9 +1003,9 @@ func SCDynamicStoreSetNotificationKeys(store DynamicStoreRef, keys unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCDynamicStoreSetValue(_:_:_:)
-func SCDynamicStoreSetValue(store DynamicStoreRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func SCDynamicStoreSetValue(store DynamicStoreRef, key StringRef, value PropertyListRef) unsafe.Pointer {
 	return _SCDynamicStoreSetValue(store, key, value)
-}
+} /* debug [functions.gen.go/function]: SCDynamicStoreSetValue */
 
 // Returns an error or status code associated with the most recent function call.
 //
@@ -1018,7 +1016,7 @@ func SCDynamicStoreSetValue(store DynamicStoreRef, key unsafe.Pointer, value uns
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCError()
 func SCError() int {
 	return _SCError()
-}
+} /* debug [functions.gen.go/function]: SCError */
 
 // Returns a string describing the specified status code or error code.
 //
@@ -1029,7 +1027,7 @@ func SCError() int {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCErrorString(_:)
 func SCErrorString(status int) unsafe.Pointer {
 	return _SCErrorString(status)
-}
+} /* debug [functions.gen.go/function]: SCErrorString */
 
 // Determines whether the specified network address is reachable using the current network configuration.
 //
@@ -1042,7 +1040,7 @@ func SCErrorString(status int) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkCheckReachabilityByAddress
 func SCNetworkCheckReachabilityByAddress(address unsafe.Pointer, addrlen unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkCheckReachabilityByAddress(address, addrlen, flags)
-}
+} /* debug [functions.gen.go/function]: SCNetworkCheckReachabilityByAddress */
 
 // Determines whether the specified network host or node name is reachable using the current network configuration.
 //
@@ -1055,7 +1053,7 @@ func SCNetworkCheckReachabilityByAddress(address unsafe.Pointer, addrlen unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkCheckReachabilityByName
 func SCNetworkCheckReachabilityByName(nodename unsafe.Pointer, flags unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkCheckReachabilityByName(nodename, flags)
-}
+} /* debug [functions.gen.go/function]: SCNetworkCheckReachabilityByName */
 
 // Returns the extended status of the connection.
 //
@@ -1064,9 +1062,9 @@ func SCNetworkCheckReachabilityByName(nodename unsafe.Pointer, flags unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionCopyExtendedStatus(_:)
-func SCNetworkConnectionCopyExtendedStatus(connection NetworkConnectionRef) unsafe.Pointer {
+func SCNetworkConnectionCopyExtendedStatus(connection NetworkConnectionRef) DictionaryRef {
 	return _SCNetworkConnectionCopyExtendedStatus(connection)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionCopyExtendedStatus */
 
 // Returns the service ID associated with the specified network connection.
 //
@@ -1075,9 +1073,9 @@ func SCNetworkConnectionCopyExtendedStatus(connection NetworkConnectionRef) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionCopyServiceID(_:)
-func SCNetworkConnectionCopyServiceID(connection NetworkConnectionRef) unsafe.Pointer {
+func SCNetworkConnectionCopyServiceID(connection NetworkConnectionRef) StringRef {
 	return _SCNetworkConnectionCopyServiceID(connection)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionCopyServiceID */
 
 // Returns the statistics of the specified connection.
 //
@@ -1086,9 +1084,9 @@ func SCNetworkConnectionCopyServiceID(connection NetworkConnectionRef) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionCopyStatistics(_:)
-func SCNetworkConnectionCopyStatistics(connection NetworkConnectionRef) unsafe.Pointer {
+func SCNetworkConnectionCopyStatistics(connection NetworkConnectionRef) DictionaryRef {
 	return _SCNetworkConnectionCopyStatistics(connection)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionCopyStatistics */
 
 // Gets the user options used to start the specified connection.
 //
@@ -1097,9 +1095,9 @@ func SCNetworkConnectionCopyStatistics(connection NetworkConnectionRef) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionCopyUserOptions(_:)
-func SCNetworkConnectionCopyUserOptions(connection NetworkConnectionRef) unsafe.Pointer {
+func SCNetworkConnectionCopyUserOptions(connection NetworkConnectionRef) DictionaryRef {
 	return _SCNetworkConnectionCopyUserOptions(connection)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionCopyUserOptions */
 
 // Provides the default service ID and a dictionary of user options for the specified connection.
 //
@@ -1108,9 +1106,9 @@ func SCNetworkConnectionCopyUserOptions(connection NetworkConnectionRef) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionCopyUserPreferences(_:_:_:)
-func SCNetworkConnectionCopyUserPreferences(selectionOptions unsafe.Pointer, serviceID unsafe.Pointer, userOptions unsafe.Pointer) unsafe.Pointer {
+func SCNetworkConnectionCopyUserPreferences(selectionOptions DictionaryRef, serviceID unsafe.Pointer, userOptions unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkConnectionCopyUserPreferences(selectionOptions, serviceID, userOptions)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionCopyUserPreferences */
 
 // Creates a new connection reference to use for getting the status or for connecting or disconnecting the associated service.
 //
@@ -1119,9 +1117,9 @@ func SCNetworkConnectionCopyUserPreferences(selectionOptions unsafe.Pointer, ser
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionCreateWithServiceID(_:_:_:_:)
-func SCNetworkConnectionCreateWithServiceID(allocator unsafe.Pointer, serviceID unsafe.Pointer, callout NetworkConnectionCallBack, context unsafe.Pointer) NetworkConnectionRef {
+func SCNetworkConnectionCreateWithServiceID(allocator AllocatorRef, serviceID StringRef, callout NetworkConnectionCallBack, context unsafe.Pointer) NetworkConnectionRef {
 	return _SCNetworkConnectionCreateWithServiceID(allocator, serviceID, callout, context)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionCreateWithServiceID */
 
 // Returns the status of the specified network connection.
 //
@@ -1130,9 +1128,9 @@ func SCNetworkConnectionCreateWithServiceID(allocator unsafe.Pointer, serviceID 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionGetStatus(_:)
-func SCNetworkConnectionGetStatus(connection NetworkConnectionRef) unsafe.Pointer {
+func SCNetworkConnectionGetStatus(connection NetworkConnectionRef) NetworkConnectionStatus {
 	return _SCNetworkConnectionGetStatus(connection)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionGetStatus */
 
 // Returns the type identifier of all instances.
 //
@@ -1141,9 +1139,9 @@ func SCNetworkConnectionGetStatus(connection NetworkConnectionRef) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionGetTypeID()
-func SCNetworkConnectionGetTypeID() unsafe.Pointer {
+func SCNetworkConnectionGetTypeID() TypeID {
 	return _SCNetworkConnectionGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionGetTypeID */
 
 // Schedules the specified connection with the specified run loop.
 //
@@ -1152,9 +1150,9 @@ func SCNetworkConnectionGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionScheduleWithRunLoop(_:_:_:)
-func SCNetworkConnectionScheduleWithRunLoop(connection NetworkConnectionRef, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) unsafe.Pointer {
+func SCNetworkConnectionScheduleWithRunLoop(connection NetworkConnectionRef, runLoop RunLoopRef, runLoopMode StringRef) unsafe.Pointer {
 	return _SCNetworkConnectionScheduleWithRunLoop(connection, runLoop, runLoopMode)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionScheduleWithRunLoop */
 
 // Specifies a dispatch queue to use for the connection’s callback function and enables notifications.
 //
@@ -1165,7 +1163,7 @@ func SCNetworkConnectionScheduleWithRunLoop(connection NetworkConnectionRef, run
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionSetDispatchQueue(_:_:)
 func SCNetworkConnectionSetDispatchQueue(connection NetworkConnectionRef, queue unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkConnectionSetDispatchQueue(connection, queue)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionSetDispatchQueue */
 
 // Starts the connection process for the specified network connection.
 //
@@ -1174,9 +1172,9 @@ func SCNetworkConnectionSetDispatchQueue(connection NetworkConnectionRef, queue 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionStart(_:_:_:)
-func SCNetworkConnectionStart(connection NetworkConnectionRef, userOptions unsafe.Pointer, linger unsafe.Pointer) unsafe.Pointer {
+func SCNetworkConnectionStart(connection NetworkConnectionRef, userOptions DictionaryRef, linger unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkConnectionStart(connection, userOptions, linger)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionStart */
 
 // Stops the connection process for the specified network connection.
 //
@@ -1187,7 +1185,7 @@ func SCNetworkConnectionStart(connection NetworkConnectionRef, userOptions unsaf
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionStop(_:_:)
 func SCNetworkConnectionStop(connection NetworkConnectionRef, forceDisconnect unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkConnectionStop(connection, forceDisconnect)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionStop */
 
 // Unschedules the specified connection from the specified run loop.
 //
@@ -1196,9 +1194,9 @@ func SCNetworkConnectionStop(connection NetworkConnectionRef, forceDisconnect un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkConnectionUnscheduleFromRunLoop(_:_:_:)
-func SCNetworkConnectionUnscheduleFromRunLoop(connection NetworkConnectionRef, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) unsafe.Pointer {
+func SCNetworkConnectionUnscheduleFromRunLoop(connection NetworkConnectionRef, runLoop RunLoopRef, runLoopMode StringRef) unsafe.Pointer {
 	return _SCNetworkConnectionUnscheduleFromRunLoop(connection, runLoop, runLoopMode)
-}
+} /* debug [functions.gen.go/function]: SCNetworkConnectionUnscheduleFromRunLoop */
 
 // Returns all network-capable interfaces on the system.
 //
@@ -1207,20 +1205,9 @@ func SCNetworkConnectionUnscheduleFromRunLoop(connection NetworkConnectionRef, r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceCopyAll()
-func SCNetworkInterfaceCopyAll() unsafe.Pointer {
+func SCNetworkInterfaceCopyAll() ArrayRef {
 	return _SCNetworkInterfaceCopyAll()
-}
-
-// Returns the current MTU setting and the range of allowable values for the specified network interface.
-//
-// Added in macOS 10.5.
-// Returns the current MTU setting and the range of allowable values for the specified network interface.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceCopyMTU(_:_:_:_:)
-func SCNetworkInterfaceCopyMTU(interface_ NetworkInterfaceRef, mtu_cur []int, mtu_min []int, mtu_max []int) unsafe.Pointer {
-	return _SCNetworkInterfaceCopyMTU(interface_, mtu_cur, mtu_min, mtu_max)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceCopyAll */
 
 // Returns information media options for the specified network interface.
 //
@@ -1231,7 +1218,7 @@ func SCNetworkInterfaceCopyMTU(interface_ NetworkInterfaceRef, mtu_cur []int, mt
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceCopyMediaOptions(_:_:_:_:_:)
 func SCNetworkInterfaceCopyMediaOptions(interface_ NetworkInterfaceRef, current unsafe.Pointer, active unsafe.Pointer, available unsafe.Pointer, filter unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkInterfaceCopyMediaOptions(interface_, current, active, available, filter)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceCopyMediaOptions */
 
 // Returns a list of available media options for the specified interface configuration options and subtype.
 //
@@ -1240,9 +1227,9 @@ func SCNetworkInterfaceCopyMediaOptions(interface_ NetworkInterfaceRef, current 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceCopyMediaSubTypeOptions(_:_:)
-func SCNetworkInterfaceCopyMediaSubTypeOptions(available unsafe.Pointer, subType unsafe.Pointer) unsafe.Pointer {
+func SCNetworkInterfaceCopyMediaSubTypeOptions(available ArrayRef, subType StringRef) ArrayRef {
 	return _SCNetworkInterfaceCopyMediaSubTypeOptions(available, subType)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceCopyMediaSubTypeOptions */
 
 // Returns a list of available media subtypes for the specified interface configuration options.
 //
@@ -1251,9 +1238,20 @@ func SCNetworkInterfaceCopyMediaSubTypeOptions(available unsafe.Pointer, subType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceCopyMediaSubTypes(_:)
-func SCNetworkInterfaceCopyMediaSubTypes(available unsafe.Pointer) unsafe.Pointer {
+func SCNetworkInterfaceCopyMediaSubTypes(available ArrayRef) ArrayRef {
 	return _SCNetworkInterfaceCopyMediaSubTypes(available)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceCopyMediaSubTypes */
+
+// Returns the current MTU setting and the range of allowable values for the specified network interface.
+//
+// Added in macOS 10.5.
+// Returns the current MTU setting and the range of allowable values for the specified network interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceCopyMTU(_:_:_:_:)
+func SCNetworkInterfaceCopyMTU(interface_ NetworkInterfaceRef, mtu_cur []int, mtu_min []int, mtu_max []int) unsafe.Pointer {
+	return _SCNetworkInterfaceCopyMTU(interface_, mtu_cur, mtu_min, mtu_max)
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceCopyMTU */
 
 // Creates a new network interface layered on top of the specified interface.
 //
@@ -1262,9 +1260,9 @@ func SCNetworkInterfaceCopyMediaSubTypes(available unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceCreateWithInterface(_:_:)
-func SCNetworkInterfaceCreateWithInterface(interface_ NetworkInterfaceRef, interfaceType unsafe.Pointer) NetworkInterfaceRef {
+func SCNetworkInterfaceCreateWithInterface(interface_ NetworkInterfaceRef, interfaceType StringRef) NetworkInterfaceRef {
 	return _SCNetworkInterfaceCreateWithInterface(interface_, interfaceType)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceCreateWithInterface */
 
 // Sends a notification to interested network configuration agents to immediately retry their configuration.
 //
@@ -1275,7 +1273,7 @@ func SCNetworkInterfaceCreateWithInterface(interface_ NetworkInterfaceRef, inter
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceForceConfigurationRefresh(_:)
 func SCNetworkInterfaceForceConfigurationRefresh(interface_ NetworkInterfaceRef) unsafe.Pointer {
 	return _SCNetworkInterfaceForceConfigurationRefresh(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceForceConfigurationRefresh */
 
 // Returns the BSD interface or device name for the specified interface.
 //
@@ -1284,9 +1282,9 @@ func SCNetworkInterfaceForceConfigurationRefresh(interface_ NetworkInterfaceRef)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetBSDName(_:)
-func SCNetworkInterfaceGetBSDName(interface_ NetworkInterfaceRef) unsafe.Pointer {
+func SCNetworkInterfaceGetBSDName(interface_ NetworkInterfaceRef) StringRef {
 	return _SCNetworkInterfaceGetBSDName(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetBSDName */
 
 // Returns the configuration settings associated with the specified interface.
 //
@@ -1295,9 +1293,9 @@ func SCNetworkInterfaceGetBSDName(interface_ NetworkInterfaceRef) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetConfiguration(_:)
-func SCNetworkInterfaceGetConfiguration(interface_ NetworkInterfaceRef) unsafe.Pointer {
+func SCNetworkInterfaceGetConfiguration(interface_ NetworkInterfaceRef) DictionaryRef {
 	return _SCNetworkInterfaceGetConfiguration(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetConfiguration */
 
 // Returns the extended configuration settings associated with the specified interface.
 //
@@ -1306,9 +1304,9 @@ func SCNetworkInterfaceGetConfiguration(interface_ NetworkInterfaceRef) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetExtendedConfiguration(_:_:)
-func SCNetworkInterfaceGetExtendedConfiguration(interface_ NetworkInterfaceRef, extendedType unsafe.Pointer) unsafe.Pointer {
+func SCNetworkInterfaceGetExtendedConfiguration(interface_ NetworkInterfaceRef, extendedType StringRef) DictionaryRef {
 	return _SCNetworkInterfaceGetExtendedConfiguration(interface_, extendedType)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetExtendedConfiguration */
 
 // Returns a displayable link layer address for the specified interface.
 //
@@ -1317,9 +1315,9 @@ func SCNetworkInterfaceGetExtendedConfiguration(interface_ NetworkInterfaceRef, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetHardwareAddressString(_:)
-func SCNetworkInterfaceGetHardwareAddressString(interface_ NetworkInterfaceRef) unsafe.Pointer {
+func SCNetworkInterfaceGetHardwareAddressString(interface_ NetworkInterfaceRef) StringRef {
 	return _SCNetworkInterfaceGetHardwareAddressString(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetHardwareAddressString */
 
 // Returns the underlying interface, for layered network interfaces.
 //
@@ -1330,7 +1328,7 @@ func SCNetworkInterfaceGetHardwareAddressString(interface_ NetworkInterfaceRef) 
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetInterface(_:)
 func SCNetworkInterfaceGetInterface(interface_ NetworkInterfaceRef) NetworkInterfaceRef {
 	return _SCNetworkInterfaceGetInterface(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetInterface */
 
 // Returns the network interface type of the specified interface.
 //
@@ -1339,9 +1337,9 @@ func SCNetworkInterfaceGetInterface(interface_ NetworkInterfaceRef) NetworkInter
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetInterfaceType(_:)
-func SCNetworkInterfaceGetInterfaceType(interface_ NetworkInterfaceRef) unsafe.Pointer {
+func SCNetworkInterfaceGetInterfaceType(interface_ NetworkInterfaceRef) StringRef {
 	return _SCNetworkInterfaceGetInterfaceType(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetInterfaceType */
 
 // Returns the localized display name, such as “Ethernet” or “FireWire”, for the specified interface.
 //
@@ -1350,9 +1348,9 @@ func SCNetworkInterfaceGetInterfaceType(interface_ NetworkInterfaceRef) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetLocalizedDisplayName(_:)
-func SCNetworkInterfaceGetLocalizedDisplayName(interface_ NetworkInterfaceRef) unsafe.Pointer {
+func SCNetworkInterfaceGetLocalizedDisplayName(interface_ NetworkInterfaceRef) StringRef {
 	return _SCNetworkInterfaceGetLocalizedDisplayName(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetLocalizedDisplayName */
 
 // Identifies all of the network interface types, such as PPP, that can be layered on top of the specified interface.
 //
@@ -1361,9 +1359,9 @@ func SCNetworkInterfaceGetLocalizedDisplayName(interface_ NetworkInterfaceRef) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetSupportedInterfaceTypes(_:)
-func SCNetworkInterfaceGetSupportedInterfaceTypes(interface_ NetworkInterfaceRef) unsafe.Pointer {
+func SCNetworkInterfaceGetSupportedInterfaceTypes(interface_ NetworkInterfaceRef) ArrayRef {
 	return _SCNetworkInterfaceGetSupportedInterfaceTypes(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetSupportedInterfaceTypes */
 
 // Identifies all of the network protocol types, such as IPv4 and IPv6, that can be layered on top of the specified interface.
 //
@@ -1372,9 +1370,9 @@ func SCNetworkInterfaceGetSupportedInterfaceTypes(interface_ NetworkInterfaceRef
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetSupportedProtocolTypes(_:)
-func SCNetworkInterfaceGetSupportedProtocolTypes(interface_ NetworkInterfaceRef) unsafe.Pointer {
+func SCNetworkInterfaceGetSupportedProtocolTypes(interface_ NetworkInterfaceRef) ArrayRef {
 	return _SCNetworkInterfaceGetSupportedProtocolTypes(interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetSupportedProtocolTypes */
 
 // Returns the type identifier of all instances.
 //
@@ -1383,9 +1381,9 @@ func SCNetworkInterfaceGetSupportedProtocolTypes(interface_ NetworkInterfaceRef)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceGetTypeID()
-func SCNetworkInterfaceGetTypeID() unsafe.Pointer {
+func SCNetworkInterfaceGetTypeID() TypeID {
 	return _SCNetworkInterfaceGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceGetTypeID */
 
 // Sends a notification to interested configuration agents to have them immediately retry their configuration over a particular network interface.
 //
@@ -1396,9 +1394,9 @@ func SCNetworkInterfaceGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceRefreshConfiguration
-func SCNetworkInterfaceRefreshConfiguration(ifName unsafe.Pointer) unsafe.Pointer {
+func SCNetworkInterfaceRefreshConfiguration(ifName StringRef) unsafe.Pointer {
 	return _SCNetworkInterfaceRefreshConfiguration(ifName)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceRefreshConfiguration */
 
 // Stores the configuration settings for the specified interface.
 //
@@ -1407,9 +1405,9 @@ func SCNetworkInterfaceRefreshConfiguration(ifName unsafe.Pointer) unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceSetConfiguration(_:_:)
-func SCNetworkInterfaceSetConfiguration(interface_ NetworkInterfaceRef, config unsafe.Pointer) unsafe.Pointer {
+func SCNetworkInterfaceSetConfiguration(interface_ NetworkInterfaceRef, config DictionaryRef) unsafe.Pointer {
 	return _SCNetworkInterfaceSetConfiguration(interface_, config)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceSetConfiguration */
 
 // Stores the extended configuration settings for the specified interface.
 //
@@ -1418,9 +1416,20 @@ func SCNetworkInterfaceSetConfiguration(interface_ NetworkInterfaceRef, config u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceSetExtendedConfiguration(_:_:_:)
-func SCNetworkInterfaceSetExtendedConfiguration(interface_ NetworkInterfaceRef, extendedType unsafe.Pointer, config unsafe.Pointer) unsafe.Pointer {
+func SCNetworkInterfaceSetExtendedConfiguration(interface_ NetworkInterfaceRef, extendedType StringRef, config DictionaryRef) unsafe.Pointer {
 	return _SCNetworkInterfaceSetExtendedConfiguration(interface_, extendedType, config)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceSetExtendedConfiguration */
+
+// Sets the requested media subtype and options for the specified network interface.
+//
+// Added in macOS 10.5.
+// Sets the requested media subtype and options for the specified network interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceSetMediaOptions(_:_:_:)
+func SCNetworkInterfaceSetMediaOptions(interface_ NetworkInterfaceRef, subtype StringRef, options ArrayRef) unsafe.Pointer {
+	return _SCNetworkInterfaceSetMediaOptions(interface_, subtype, options)
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceSetMediaOptions */
 
 // Sets the requested MTU setting for the specified network interface.
 //
@@ -1431,18 +1440,7 @@ func SCNetworkInterfaceSetExtendedConfiguration(interface_ NetworkInterfaceRef, 
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceSetMTU(_:_:)
 func SCNetworkInterfaceSetMTU(interface_ NetworkInterfaceRef, mtu int) unsafe.Pointer {
 	return _SCNetworkInterfaceSetMTU(interface_, mtu)
-}
-
-// Sets the requested media subtype and options for the specified network interface.
-//
-// Added in macOS 10.5.
-// Sets the requested media subtype and options for the specified network interface.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkInterfaceSetMediaOptions(_:_:_:)
-func SCNetworkInterfaceSetMediaOptions(interface_ NetworkInterfaceRef, subtype unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
-	return _SCNetworkInterfaceSetMediaOptions(interface_, subtype, options)
-}
+} /* debug [functions.gen.go/function]: SCNetworkInterfaceSetMTU */
 
 // Returns the configuration settings associated with the specified protocol.
 //
@@ -1451,9 +1449,9 @@ func SCNetworkInterfaceSetMediaOptions(interface_ NetworkInterfaceRef, subtype u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolGetConfiguration(_:)
-func SCNetworkProtocolGetConfiguration(protocol_ NetworkProtocolRef) unsafe.Pointer {
+func SCNetworkProtocolGetConfiguration(protocol_ NetworkProtocolRef) DictionaryRef {
 	return _SCNetworkProtocolGetConfiguration(protocol_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkProtocolGetConfiguration */
 
 // Returns a Boolean value indicating whether the specified protocol is enabled.
 //
@@ -1464,7 +1462,7 @@ func SCNetworkProtocolGetConfiguration(protocol_ NetworkProtocolRef) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolGetEnabled(_:)
 func SCNetworkProtocolGetEnabled(protocol_ NetworkProtocolRef) unsafe.Pointer {
 	return _SCNetworkProtocolGetEnabled(protocol_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkProtocolGetEnabled */
 
 // Returns the type of the specified network protocol.
 //
@@ -1473,9 +1471,9 @@ func SCNetworkProtocolGetEnabled(protocol_ NetworkProtocolRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolGetProtocolType(_:)
-func SCNetworkProtocolGetProtocolType(protocol_ NetworkProtocolRef) unsafe.Pointer {
+func SCNetworkProtocolGetProtocolType(protocol_ NetworkProtocolRef) StringRef {
 	return _SCNetworkProtocolGetProtocolType(protocol_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkProtocolGetProtocolType */
 
 // Returns the type identifier of all instances.
 //
@@ -1484,9 +1482,9 @@ func SCNetworkProtocolGetProtocolType(protocol_ NetworkProtocolRef) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolGetTypeID()
-func SCNetworkProtocolGetTypeID() unsafe.Pointer {
+func SCNetworkProtocolGetTypeID() TypeID {
 	return _SCNetworkProtocolGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCNetworkProtocolGetTypeID */
 
 // Stores the configuration settings for the specified network protocol.
 //
@@ -1495,9 +1493,9 @@ func SCNetworkProtocolGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolSetConfiguration(_:_:)
-func SCNetworkProtocolSetConfiguration(protocol_ NetworkProtocolRef, config unsafe.Pointer) unsafe.Pointer {
+func SCNetworkProtocolSetConfiguration(protocol_ NetworkProtocolRef, config DictionaryRef) unsafe.Pointer {
 	return _SCNetworkProtocolSetConfiguration(protocol_, config)
-}
+} /* debug [functions.gen.go/function]: SCNetworkProtocolSetConfiguration */
 
 // Enables or disables the specified protocol.
 //
@@ -1508,7 +1506,7 @@ func SCNetworkProtocolSetConfiguration(protocol_ NetworkProtocolRef, config unsa
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkProtocolSetEnabled(_:_:)
 func SCNetworkProtocolSetEnabled(protocol_ NetworkProtocolRef, enabled unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkProtocolSetEnabled(protocol_, enabled)
-}
+} /* debug [functions.gen.go/function]: SCNetworkProtocolSetEnabled */
 
 // Creates a reachability reference to the specified network address.
 //
@@ -1519,9 +1517,9 @@ func SCNetworkProtocolSetEnabled(protocol_ NetworkProtocolRef, enabled unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddress(_:_:)
-func SCNetworkReachabilityCreateWithAddress(allocator unsafe.Pointer, address unsafe.Pointer) NetworkReachabilityRef {
+func SCNetworkReachabilityCreateWithAddress(allocator AllocatorRef, address unsafe.Pointer) NetworkReachabilityRef {
 	return _SCNetworkReachabilityCreateWithAddress(allocator, address)
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilityCreateWithAddress */
 
 // Creates a reachability reference to the specified network address.
 //
@@ -1532,9 +1530,9 @@ func SCNetworkReachabilityCreateWithAddress(allocator unsafe.Pointer, address un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithAddressPair(_:_:_:)
-func SCNetworkReachabilityCreateWithAddressPair(allocator unsafe.Pointer, localAddress unsafe.Pointer, remoteAddress unsafe.Pointer) NetworkReachabilityRef {
+func SCNetworkReachabilityCreateWithAddressPair(allocator AllocatorRef, localAddress unsafe.Pointer, remoteAddress unsafe.Pointer) NetworkReachabilityRef {
 	return _SCNetworkReachabilityCreateWithAddressPair(allocator, localAddress, remoteAddress)
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilityCreateWithAddressPair */
 
 // Creates a reachability reference to the specified network host or node name.
 //
@@ -1545,9 +1543,9 @@ func SCNetworkReachabilityCreateWithAddressPair(allocator unsafe.Pointer, localA
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityCreateWithName(_:_:)
-func SCNetworkReachabilityCreateWithName(allocator unsafe.Pointer, nodename unsafe.Pointer) NetworkReachabilityRef {
+func SCNetworkReachabilityCreateWithName(allocator AllocatorRef, nodename unsafe.Pointer) NetworkReachabilityRef {
 	return _SCNetworkReachabilityCreateWithName(allocator, nodename)
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilityCreateWithName */
 
 // Determines if the specified network target is reachable using the current network configuration.
 //
@@ -1560,7 +1558,7 @@ func SCNetworkReachabilityCreateWithName(allocator unsafe.Pointer, nodename unsa
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityGetFlags(_:_:)
 func SCNetworkReachabilityGetFlags(target NetworkReachabilityRef, flags unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkReachabilityGetFlags(target, flags)
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilityGetFlags */
 
 // Returns the type identifier of all instances.
 //
@@ -1571,9 +1569,9 @@ func SCNetworkReachabilityGetFlags(target NetworkReachabilityRef, flags unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityGetTypeID()
-func SCNetworkReachabilityGetTypeID() unsafe.Pointer {
+func SCNetworkReachabilityGetTypeID() TypeID {
 	return _SCNetworkReachabilityGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilityGetTypeID */
 
 // Schedules the specified network target with the specified run loop and mode.
 //
@@ -1584,9 +1582,9 @@ func SCNetworkReachabilityGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityScheduleWithRunLoop(_:_:_:)
-func SCNetworkReachabilityScheduleWithRunLoop(target NetworkReachabilityRef, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) unsafe.Pointer {
+func SCNetworkReachabilityScheduleWithRunLoop(target NetworkReachabilityRef, runLoop RunLoopRef, runLoopMode StringRef) unsafe.Pointer {
 	return _SCNetworkReachabilityScheduleWithRunLoop(target, runLoop, runLoopMode)
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilityScheduleWithRunLoop */
 
 // Assigns a client to the specified target, which receives callbacks when the reachability of the target changes.
 //
@@ -1599,7 +1597,7 @@ func SCNetworkReachabilityScheduleWithRunLoop(target NetworkReachabilityRef, run
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilitySetCallback(_:_:_:)
 func SCNetworkReachabilitySetCallback(target NetworkReachabilityRef, callout NetworkReachabilityCallBack, context unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkReachabilitySetCallback(target, callout, context)
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilitySetCallback */
 
 // Schedules callbacks for the specified target on the specified dispatch queue.
 //
@@ -1612,7 +1610,7 @@ func SCNetworkReachabilitySetCallback(target NetworkReachabilityRef, callout Net
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilitySetDispatchQueue(_:_:)
 func SCNetworkReachabilitySetDispatchQueue(target NetworkReachabilityRef, queue unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkReachabilitySetDispatchQueue(target, queue)
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilitySetDispatchQueue */
 
 // Unschedules the specified target from the specified run loop and mode.
 //
@@ -1623,9 +1621,9 @@ func SCNetworkReachabilitySetDispatchQueue(target NetworkReachabilityRef, queue 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkReachabilityUnscheduleFromRunLoop(_:_:_:)
-func SCNetworkReachabilityUnscheduleFromRunLoop(target NetworkReachabilityRef, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) unsafe.Pointer {
+func SCNetworkReachabilityUnscheduleFromRunLoop(target NetworkReachabilityRef, runLoop RunLoopRef, runLoopMode StringRef) unsafe.Pointer {
 	return _SCNetworkReachabilityUnscheduleFromRunLoop(target, runLoop, runLoopMode)
-}
+} /* debug [functions.gen.go/function]: SCNetworkReachabilityUnscheduleFromRunLoop */
 
 // Adds the network protocol of the specified type to the specified service.
 //
@@ -1634,9 +1632,9 @@ func SCNetworkReachabilityUnscheduleFromRunLoop(target NetworkReachabilityRef, r
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceAddProtocolType(_:_:)
-func SCNetworkServiceAddProtocolType(service NetworkServiceRef, protocolType unsafe.Pointer) unsafe.Pointer {
+func SCNetworkServiceAddProtocolType(service NetworkServiceRef, protocolType StringRef) unsafe.Pointer {
 	return _SCNetworkServiceAddProtocolType(service, protocolType)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceAddProtocolType */
 
 // Returns the network service with the specified identifier.
 //
@@ -1645,9 +1643,9 @@ func SCNetworkServiceAddProtocolType(service NetworkServiceRef, protocolType uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceCopy(_:_:)
-func SCNetworkServiceCopy(prefs PreferencesRef, serviceID unsafe.Pointer) NetworkServiceRef {
+func SCNetworkServiceCopy(prefs PreferencesRef, serviceID StringRef) NetworkServiceRef {
 	return _SCNetworkServiceCopy(prefs, serviceID)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceCopy */
 
 // Returns all available network services for the specified preferences.
 //
@@ -1656,9 +1654,9 @@ func SCNetworkServiceCopy(prefs PreferencesRef, serviceID unsafe.Pointer) Networ
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceCopyAll(_:)
-func SCNetworkServiceCopyAll(prefs PreferencesRef) unsafe.Pointer {
+func SCNetworkServiceCopyAll(prefs PreferencesRef) ArrayRef {
 	return _SCNetworkServiceCopyAll(prefs)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceCopyAll */
 
 // Returns the network protocol of the specified type for the specified service.
 //
@@ -1667,9 +1665,9 @@ func SCNetworkServiceCopyAll(prefs PreferencesRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceCopyProtocol(_:_:)
-func SCNetworkServiceCopyProtocol(service NetworkServiceRef, protocolType unsafe.Pointer) NetworkProtocolRef {
+func SCNetworkServiceCopyProtocol(service NetworkServiceRef, protocolType StringRef) NetworkProtocolRef {
 	return _SCNetworkServiceCopyProtocol(service, protocolType)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceCopyProtocol */
 
 // Returns all network protocols associated with the specified service.
 //
@@ -1678,9 +1676,9 @@ func SCNetworkServiceCopyProtocol(service NetworkServiceRef, protocolType unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceCopyProtocols(_:)
-func SCNetworkServiceCopyProtocols(service NetworkServiceRef) unsafe.Pointer {
+func SCNetworkServiceCopyProtocols(service NetworkServiceRef) ArrayRef {
 	return _SCNetworkServiceCopyProtocols(service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceCopyProtocols */
 
 // Creates a new network service for the specified interface in the configuration.
 //
@@ -1691,7 +1689,7 @@ func SCNetworkServiceCopyProtocols(service NetworkServiceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceCreate(_:_:)
 func SCNetworkServiceCreate(prefs PreferencesRef, interface_ NetworkInterfaceRef) NetworkServiceRef {
 	return _SCNetworkServiceCreate(prefs, interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceCreate */
 
 // Establishes the default configuration for the specified network service.
 //
@@ -1702,7 +1700,7 @@ func SCNetworkServiceCreate(prefs PreferencesRef, interface_ NetworkInterfaceRef
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceEstablishDefaultConfiguration(_:)
 func SCNetworkServiceEstablishDefaultConfiguration(service NetworkServiceRef) unsafe.Pointer {
 	return _SCNetworkServiceEstablishDefaultConfiguration(service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceEstablishDefaultConfiguration */
 
 // Returns a Boolean value indicating whether the specified service is enabled.
 //
@@ -1713,7 +1711,7 @@ func SCNetworkServiceEstablishDefaultConfiguration(service NetworkServiceRef) un
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceGetEnabled(_:)
 func SCNetworkServiceGetEnabled(service NetworkServiceRef) unsafe.Pointer {
 	return _SCNetworkServiceGetEnabled(service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceGetEnabled */
 
 // Returns the network interface associated with the specified service.
 //
@@ -1724,7 +1722,7 @@ func SCNetworkServiceGetEnabled(service NetworkServiceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceGetInterface(_:)
 func SCNetworkServiceGetInterface(service NetworkServiceRef) NetworkInterfaceRef {
 	return _SCNetworkServiceGetInterface(service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceGetInterface */
 
 // Returns the user-specified name associated with the specified service.
 //
@@ -1733,9 +1731,9 @@ func SCNetworkServiceGetInterface(service NetworkServiceRef) NetworkInterfaceRef
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceGetName(_:)
-func SCNetworkServiceGetName(service NetworkServiceRef) unsafe.Pointer {
+func SCNetworkServiceGetName(service NetworkServiceRef) StringRef {
 	return _SCNetworkServiceGetName(service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceGetName */
 
 // Returns the identifier for the specified service.
 //
@@ -1744,9 +1742,9 @@ func SCNetworkServiceGetName(service NetworkServiceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceGetServiceID(_:)
-func SCNetworkServiceGetServiceID(service NetworkServiceRef) unsafe.Pointer {
+func SCNetworkServiceGetServiceID(service NetworkServiceRef) StringRef {
 	return _SCNetworkServiceGetServiceID(service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceGetServiceID */
 
 // Returns the type identifier of all instances.
 //
@@ -1755,9 +1753,9 @@ func SCNetworkServiceGetServiceID(service NetworkServiceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceGetTypeID()
-func SCNetworkServiceGetTypeID() unsafe.Pointer {
+func SCNetworkServiceGetTypeID() TypeID {
 	return _SCNetworkServiceGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceGetTypeID */
 
 // Removes the specified network service from the configuration.
 //
@@ -1768,7 +1766,7 @@ func SCNetworkServiceGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceRemove(_:)
 func SCNetworkServiceRemove(service NetworkServiceRef) unsafe.Pointer {
 	return _SCNetworkServiceRemove(service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceRemove */
 
 // Removes the network protocol of the specified type from the specified service.
 //
@@ -1777,9 +1775,9 @@ func SCNetworkServiceRemove(service NetworkServiceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceRemoveProtocolType(_:_:)
-func SCNetworkServiceRemoveProtocolType(service NetworkServiceRef, protocolType unsafe.Pointer) unsafe.Pointer {
+func SCNetworkServiceRemoveProtocolType(service NetworkServiceRef, protocolType StringRef) unsafe.Pointer {
 	return _SCNetworkServiceRemoveProtocolType(service, protocolType)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceRemoveProtocolType */
 
 // Enables or disables the specified service.
 //
@@ -1790,7 +1788,7 @@ func SCNetworkServiceRemoveProtocolType(service NetworkServiceRef, protocolType 
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceSetEnabled(_:_:)
 func SCNetworkServiceSetEnabled(service NetworkServiceRef, enabled unsafe.Pointer) unsafe.Pointer {
 	return _SCNetworkServiceSetEnabled(service, enabled)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceSetEnabled */
 
 // Stores the user-specified name for the specified service.
 //
@@ -1799,9 +1797,9 @@ func SCNetworkServiceSetEnabled(service NetworkServiceRef, enabled unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkServiceSetName(_:_:)
-func SCNetworkServiceSetName(service NetworkServiceRef, name unsafe.Pointer) unsafe.Pointer {
+func SCNetworkServiceSetName(service NetworkServiceRef, name StringRef) unsafe.Pointer {
 	return _SCNetworkServiceSetName(service, name)
-}
+} /* debug [functions.gen.go/function]: SCNetworkServiceSetName */
 
 // Adds the specified network service to the specified set.
 //
@@ -1812,7 +1810,7 @@ func SCNetworkServiceSetName(service NetworkServiceRef, name unsafe.Pointer) uns
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetAddService(_:_:)
 func SCNetworkSetAddService(set NetworkSetRef, service NetworkServiceRef) unsafe.Pointer {
 	return _SCNetworkSetAddService(set, service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetAddService */
 
 // Returns a Boolean value indicating whether the specified interface is represented by at least one network service in the specified set.
 //
@@ -1823,7 +1821,7 @@ func SCNetworkSetAddService(set NetworkSetRef, service NetworkServiceRef) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetContainsInterface(_:_:)
 func SCNetworkSetContainsInterface(set NetworkSetRef, interface_ NetworkInterfaceRef) unsafe.Pointer {
 	return _SCNetworkSetContainsInterface(set, interface_)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetContainsInterface */
 
 // Returns the set with the specified identifier.
 //
@@ -1832,9 +1830,9 @@ func SCNetworkSetContainsInterface(set NetworkSetRef, interface_ NetworkInterfac
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetCopy(_:_:)
-func SCNetworkSetCopy(prefs PreferencesRef, setID unsafe.Pointer) NetworkSetRef {
+func SCNetworkSetCopy(prefs PreferencesRef, setID StringRef) NetworkSetRef {
 	return _SCNetworkSetCopy(prefs, setID)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetCopy */
 
 // Returns all available sets for the specified preferences session.
 //
@@ -1843,9 +1841,9 @@ func SCNetworkSetCopy(prefs PreferencesRef, setID unsafe.Pointer) NetworkSetRef 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetCopyAll(_:)
-func SCNetworkSetCopyAll(prefs PreferencesRef) unsafe.Pointer {
+func SCNetworkSetCopyAll(prefs PreferencesRef) ArrayRef {
 	return _SCNetworkSetCopyAll(prefs)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetCopyAll */
 
 // Returns the current set.
 //
@@ -1856,7 +1854,7 @@ func SCNetworkSetCopyAll(prefs PreferencesRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetCopyCurrent(_:)
 func SCNetworkSetCopyCurrent(prefs PreferencesRef) NetworkSetRef {
 	return _SCNetworkSetCopyCurrent(prefs)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetCopyCurrent */
 
 // Returns all network services associated with the specified set.
 //
@@ -1865,9 +1863,9 @@ func SCNetworkSetCopyCurrent(prefs PreferencesRef) NetworkSetRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetCopyServices(_:)
-func SCNetworkSetCopyServices(set NetworkSetRef) unsafe.Pointer {
+func SCNetworkSetCopyServices(set NetworkSetRef) ArrayRef {
 	return _SCNetworkSetCopyServices(set)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetCopyServices */
 
 // Creates a new set in the configuration.
 //
@@ -1878,7 +1876,7 @@ func SCNetworkSetCopyServices(set NetworkSetRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetCreate(_:)
 func SCNetworkSetCreate(prefs PreferencesRef) NetworkSetRef {
 	return _SCNetworkSetCreate(prefs)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetCreate */
 
 // Returns the user-specified name associated with the specified set.
 //
@@ -1887,9 +1885,9 @@ func SCNetworkSetCreate(prefs PreferencesRef) NetworkSetRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetGetName(_:)
-func SCNetworkSetGetName(set NetworkSetRef) unsafe.Pointer {
+func SCNetworkSetGetName(set NetworkSetRef) StringRef {
 	return _SCNetworkSetGetName(set)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetGetName */
 
 // Returns the user-specified ordering of network services within the specified set.
 //
@@ -1898,9 +1896,9 @@ func SCNetworkSetGetName(set NetworkSetRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetGetServiceOrder(_:)
-func SCNetworkSetGetServiceOrder(set NetworkSetRef) unsafe.Pointer {
+func SCNetworkSetGetServiceOrder(set NetworkSetRef) ArrayRef {
 	return _SCNetworkSetGetServiceOrder(set)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetGetServiceOrder */
 
 // Returns the identifier for the specified set.
 //
@@ -1909,9 +1907,9 @@ func SCNetworkSetGetServiceOrder(set NetworkSetRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetGetSetID(_:)
-func SCNetworkSetGetSetID(set NetworkSetRef) unsafe.Pointer {
+func SCNetworkSetGetSetID(set NetworkSetRef) StringRef {
 	return _SCNetworkSetGetSetID(set)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetGetSetID */
 
 // Returns the type identifier of all instances.
 //
@@ -1920,9 +1918,9 @@ func SCNetworkSetGetSetID(set NetworkSetRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetGetTypeID()
-func SCNetworkSetGetTypeID() unsafe.Pointer {
+func SCNetworkSetGetTypeID() TypeID {
 	return _SCNetworkSetGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetGetTypeID */
 
 // Removes the specified set from the configuration.
 //
@@ -1933,7 +1931,7 @@ func SCNetworkSetGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetRemove(_:)
 func SCNetworkSetRemove(set NetworkSetRef) unsafe.Pointer {
 	return _SCNetworkSetRemove(set)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetRemove */
 
 // Removes the specified network service from the specified set.
 //
@@ -1944,7 +1942,7 @@ func SCNetworkSetRemove(set NetworkSetRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetRemoveService(_:_:)
 func SCNetworkSetRemoveService(set NetworkSetRef, service NetworkServiceRef) unsafe.Pointer {
 	return _SCNetworkSetRemoveService(set, service)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetRemoveService */
 
 // Specifies the set that should be the current set.
 //
@@ -1955,7 +1953,7 @@ func SCNetworkSetRemoveService(set NetworkSetRef, service NetworkServiceRef) uns
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetSetCurrent(_:)
 func SCNetworkSetSetCurrent(set NetworkSetRef) unsafe.Pointer {
 	return _SCNetworkSetSetCurrent(set)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetSetCurrent */
 
 // Stores the user-specified name for the specified set.
 //
@@ -1964,9 +1962,9 @@ func SCNetworkSetSetCurrent(set NetworkSetRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetSetName(_:_:)
-func SCNetworkSetSetName(set NetworkSetRef, name unsafe.Pointer) unsafe.Pointer {
+func SCNetworkSetSetName(set NetworkSetRef, name StringRef) unsafe.Pointer {
 	return _SCNetworkSetSetName(set, name)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetSetName */
 
 // Stores the user-specified ordering of network services for the specified set.
 //
@@ -1975,9 +1973,9 @@ func SCNetworkSetSetName(set NetworkSetRef, name unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCNetworkSetSetServiceOrder(_:_:)
-func SCNetworkSetSetServiceOrder(set NetworkSetRef, newOrder unsafe.Pointer) unsafe.Pointer {
+func SCNetworkSetSetServiceOrder(set NetworkSetRef, newOrder ArrayRef) unsafe.Pointer {
 	return _SCNetworkSetSetServiceOrder(set, newOrder)
-}
+} /* debug [functions.gen.go/function]: SCNetworkSetSetServiceOrder */
 
 // Associates the specified value with the specified preference key.
 //
@@ -1986,9 +1984,9 @@ func SCNetworkSetSetServiceOrder(set NetworkSetRef, newOrder unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesAddValue(_:_:_:)
-func SCPreferencesAddValue(prefs PreferencesRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesAddValue(prefs PreferencesRef, key StringRef, value PropertyListRef) unsafe.Pointer {
 	return _SCPreferencesAddValue(prefs, key, value)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesAddValue */
 
 // Requests that the currently stored configuration preferences be applied to the active configuration.
 //
@@ -1999,7 +1997,7 @@ func SCPreferencesAddValue(prefs PreferencesRef, key unsafe.Pointer, value unsaf
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesApplyChanges(_:)
 func SCPreferencesApplyChanges(prefs PreferencesRef) unsafe.Pointer {
 	return _SCPreferencesApplyChanges(prefs)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesApplyChanges */
 
 // Commits changes made to the configuration preferences to persistent storage.
 //
@@ -2010,7 +2008,7 @@ func SCPreferencesApplyChanges(prefs PreferencesRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesCommitChanges(_:)
 func SCPreferencesCommitChanges(prefs PreferencesRef) unsafe.Pointer {
 	return _SCPreferencesCommitChanges(prefs)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesCommitChanges */
 
 // Returns the currently defined preference keys.
 //
@@ -2019,9 +2017,9 @@ func SCPreferencesCommitChanges(prefs PreferencesRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesCopyKeyList(_:)
-func SCPreferencesCopyKeyList(prefs PreferencesRef) unsafe.Pointer {
+func SCPreferencesCopyKeyList(prefs PreferencesRef) ArrayRef {
 	return _SCPreferencesCopyKeyList(prefs)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesCopyKeyList */
 
 // Initiates access to the per-system set of configuration preferences.
 //
@@ -2030,9 +2028,9 @@ func SCPreferencesCopyKeyList(prefs PreferencesRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesCreate(_:_:_:)
-func SCPreferencesCreate(allocator unsafe.Pointer, name unsafe.Pointer, prefsID unsafe.Pointer) PreferencesRef {
+func SCPreferencesCreate(allocator AllocatorRef, name StringRef, prefsID StringRef) PreferencesRef {
 	return _SCPreferencesCreate(allocator, name, prefsID)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesCreate */
 
 // Initiates access to the per-system set of configuration preferences with the specified authorization.
 //
@@ -2041,9 +2039,9 @@ func SCPreferencesCreate(allocator unsafe.Pointer, name unsafe.Pointer, prefsID 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesCreateWithAuthorization(_:_:_:_:)
-func SCPreferencesCreateWithAuthorization(allocator unsafe.Pointer, name unsafe.Pointer, prefsID unsafe.Pointer, authorization AuthorizationRef) PreferencesRef {
+func SCPreferencesCreateWithAuthorization(allocator AllocatorRef, name StringRef, prefsID StringRef, authorization AuthorizationRef) PreferencesRef {
 	return _SCPreferencesCreateWithAuthorization(allocator, name, prefsID, authorization)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesCreateWithAuthorization */
 
 // Returns a value that can be used to determine if the saved configuration preferences have changed.
 //
@@ -2052,9 +2050,9 @@ func SCPreferencesCreateWithAuthorization(allocator unsafe.Pointer, name unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesGetSignature(_:)
-func SCPreferencesGetSignature(prefs PreferencesRef) unsafe.Pointer {
+func SCPreferencesGetSignature(prefs PreferencesRef) DataRef {
 	return _SCPreferencesGetSignature(prefs)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesGetSignature */
 
 // Returns the type identifier of all instances.
 //
@@ -2063,9 +2061,9 @@ func SCPreferencesGetSignature(prefs PreferencesRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesGetTypeID()
-func SCPreferencesGetTypeID() unsafe.Pointer {
+func SCPreferencesGetTypeID() TypeID {
 	return _SCPreferencesGetTypeID()
-}
+} /* debug [functions.gen.go/function]: SCPreferencesGetTypeID */
 
 // Retrieves the value associated with the specified preference key.
 //
@@ -2074,9 +2072,9 @@ func SCPreferencesGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesGetValue(_:_:)
-func SCPreferencesGetValue(prefs PreferencesRef, key unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesGetValue(prefs PreferencesRef, key StringRef) PropertyListRef {
 	return _SCPreferencesGetValue(prefs, key)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesGetValue */
 
 // Locks access to the configuration preferences.
 //
@@ -2087,7 +2085,7 @@ func SCPreferencesGetValue(prefs PreferencesRef, key unsafe.Pointer) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesLock(_:_:)
 func SCPreferencesLock(prefs PreferencesRef, wait unsafe.Pointer) unsafe.Pointer {
 	return _SCPreferencesLock(prefs, wait)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesLock */
 
 // Creates a new path component rooted at the specified path in the dictionary hierarchy.
 //
@@ -2096,9 +2094,9 @@ func SCPreferencesLock(prefs PreferencesRef, wait unsafe.Pointer) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesPathCreateUniqueChild(_:_:)
-func SCPreferencesPathCreateUniqueChild(prefs PreferencesRef, prefix unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesPathCreateUniqueChild(prefs PreferencesRef, prefix StringRef) StringRef {
 	return _SCPreferencesPathCreateUniqueChild(prefs, prefix)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesPathCreateUniqueChild */
 
 // Returns the link associated with the specified path.
 //
@@ -2107,9 +2105,9 @@ func SCPreferencesPathCreateUniqueChild(prefs PreferencesRef, prefix unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesPathGetLink(_:_:)
-func SCPreferencesPathGetLink(prefs PreferencesRef, path unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesPathGetLink(prefs PreferencesRef, path StringRef) StringRef {
 	return _SCPreferencesPathGetLink(prefs, path)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesPathGetLink */
 
 // Returns the dictionary associated with the specified path.
 //
@@ -2118,9 +2116,9 @@ func SCPreferencesPathGetLink(prefs PreferencesRef, path unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesPathGetValue(_:_:)
-func SCPreferencesPathGetValue(prefs PreferencesRef, path unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesPathGetValue(prefs PreferencesRef, path StringRef) DictionaryRef {
 	return _SCPreferencesPathGetValue(prefs, path)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesPathGetValue */
 
 // Removes the data associated with the specified path.
 //
@@ -2129,9 +2127,9 @@ func SCPreferencesPathGetValue(prefs PreferencesRef, path unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesPathRemoveValue(_:_:)
-func SCPreferencesPathRemoveValue(prefs PreferencesRef, path unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesPathRemoveValue(prefs PreferencesRef, path StringRef) unsafe.Pointer {
 	return _SCPreferencesPathRemoveValue(prefs, path)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesPathRemoveValue */
 
 // Associates a link to a second dictionary at the specified path.
 //
@@ -2140,9 +2138,9 @@ func SCPreferencesPathRemoveValue(prefs PreferencesRef, path unsafe.Pointer) uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesPathSetLink(_:_:_:)
-func SCPreferencesPathSetLink(prefs PreferencesRef, path unsafe.Pointer, link unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesPathSetLink(prefs PreferencesRef, path StringRef, link StringRef) unsafe.Pointer {
 	return _SCPreferencesPathSetLink(prefs, path, link)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesPathSetLink */
 
 // Associates the specified dictionary with the specified path.
 //
@@ -2151,9 +2149,9 @@ func SCPreferencesPathSetLink(prefs PreferencesRef, path unsafe.Pointer, link un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesPathSetValue(_:_:_:)
-func SCPreferencesPathSetValue(prefs PreferencesRef, path unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesPathSetValue(prefs PreferencesRef, path StringRef, value DictionaryRef) unsafe.Pointer {
 	return _SCPreferencesPathSetValue(prefs, path, value)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesPathSetValue */
 
 // Removes the data associated with the specified preference key.
 //
@@ -2162,9 +2160,9 @@ func SCPreferencesPathSetValue(prefs PreferencesRef, path unsafe.Pointer, value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesRemoveValue(_:_:)
-func SCPreferencesRemoveValue(prefs PreferencesRef, key unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesRemoveValue(prefs PreferencesRef, key StringRef) unsafe.Pointer {
 	return _SCPreferencesRemoveValue(prefs, key)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesRemoveValue */
 
 // Schedules commit and apply notifications for the specified preferences session using the specified run loop and mode.
 //
@@ -2173,9 +2171,9 @@ func SCPreferencesRemoveValue(prefs PreferencesRef, key unsafe.Pointer) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesScheduleWithRunLoop(_:_:_:)
-func SCPreferencesScheduleWithRunLoop(prefs PreferencesRef, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesScheduleWithRunLoop(prefs PreferencesRef, runLoop RunLoopRef, runLoopMode StringRef) unsafe.Pointer {
 	return _SCPreferencesScheduleWithRunLoop(prefs, runLoop, runLoopMode)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesScheduleWithRunLoop */
 
 // Assigns the specified callback to the specified preferences session.
 //
@@ -2186,7 +2184,7 @@ func SCPreferencesScheduleWithRunLoop(prefs PreferencesRef, runLoop unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesSetCallback(_:_:_:)
 func SCPreferencesSetCallback(prefs PreferencesRef, callout PreferencesCallBack, context unsafe.Pointer) unsafe.Pointer {
 	return _SCPreferencesSetCallback(prefs, callout, context)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesSetCallback */
 
 // Sets the computer name preference to the specified name.
 //
@@ -2195,9 +2193,9 @@ func SCPreferencesSetCallback(prefs PreferencesRef, callout PreferencesCallBack,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesSetComputerName(_:_:_:)
-func SCPreferencesSetComputerName(prefs PreferencesRef, name unsafe.Pointer, nameEncoding unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesSetComputerName(prefs PreferencesRef, name StringRef, nameEncoding StringEncoding) unsafe.Pointer {
 	return _SCPreferencesSetComputerName(prefs, name, nameEncoding)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesSetComputerName */
 
 // Schedules commit and apply notifications for the specified preferences session using the specified dispatch queue.
 //
@@ -2208,7 +2206,7 @@ func SCPreferencesSetComputerName(prefs PreferencesRef, name unsafe.Pointer, nam
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesSetDispatchQueue(_:_:)
 func SCPreferencesSetDispatchQueue(prefs PreferencesRef, queue unsafe.Pointer) unsafe.Pointer {
 	return _SCPreferencesSetDispatchQueue(prefs, queue)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesSetDispatchQueue */
 
 // Sets the local host name to the specified name.
 //
@@ -2217,9 +2215,9 @@ func SCPreferencesSetDispatchQueue(prefs PreferencesRef, queue unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesSetLocalHostName(_:_:)
-func SCPreferencesSetLocalHostName(prefs PreferencesRef, name unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesSetLocalHostName(prefs PreferencesRef, name StringRef) unsafe.Pointer {
 	return _SCPreferencesSetLocalHostName(prefs, name)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesSetLocalHostName */
 
 // Updates the data associated with the specified preference key with the specified value.
 //
@@ -2228,9 +2226,9 @@ func SCPreferencesSetLocalHostName(prefs PreferencesRef, name unsafe.Pointer) un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesSetValue(_:_:_:)
-func SCPreferencesSetValue(prefs PreferencesRef, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesSetValue(prefs PreferencesRef, key StringRef, value PropertyListRef) unsafe.Pointer {
 	return _SCPreferencesSetValue(prefs, key, value)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesSetValue */
 
 // Synchronizes accessed preferences with committed changes.
 //
@@ -2241,7 +2239,7 @@ func SCPreferencesSetValue(prefs PreferencesRef, key unsafe.Pointer, value unsaf
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesSynchronize(_:)
 func SCPreferencesSynchronize(prefs PreferencesRef) {
 	_SCPreferencesSynchronize(prefs)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesSynchronize */
 
 // Releases exclusive access to the configuration preferences.
 //
@@ -2252,7 +2250,7 @@ func SCPreferencesSynchronize(prefs PreferencesRef) {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesUnlock(_:)
 func SCPreferencesUnlock(prefs PreferencesRef) unsafe.Pointer {
 	return _SCPreferencesUnlock(prefs)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesUnlock */
 
 // Unschedules commit and apply notifications for the specified preferences session from the specified run loop and mode.
 //
@@ -2261,9 +2259,9 @@ func SCPreferencesUnlock(prefs PreferencesRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCPreferencesUnscheduleFromRunLoop(_:_:_:)
-func SCPreferencesUnscheduleFromRunLoop(prefs PreferencesRef, runLoop unsafe.Pointer, runLoopMode unsafe.Pointer) unsafe.Pointer {
+func SCPreferencesUnscheduleFromRunLoop(prefs PreferencesRef, runLoop RunLoopRef, runLoopMode StringRef) unsafe.Pointer {
 	return _SCPreferencesUnscheduleFromRunLoop(prefs, runLoop, runLoopMode)
-}
+} /* debug [functions.gen.go/function]: SCPreferencesUnscheduleFromRunLoop */
 
 // Returns all virtual LAN (VLAN) interfaces on the system.
 //
@@ -2272,9 +2270,9 @@ func SCPreferencesUnscheduleFromRunLoop(prefs PreferencesRef, runLoop unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceCopyAll(_:)
-func SCVLANInterfaceCopyAll(prefs PreferencesRef) unsafe.Pointer {
+func SCVLANInterfaceCopyAll(prefs PreferencesRef) ArrayRef {
 	return _SCVLANInterfaceCopyAll(prefs)
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceCopyAll */
 
 // Returns the network capable devices on the system that can be associated with a virtual LAN (VLAN) interface.
 //
@@ -2283,9 +2281,9 @@ func SCVLANInterfaceCopyAll(prefs PreferencesRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceCopyAvailablePhysicalInterfaces()
-func SCVLANInterfaceCopyAvailablePhysicalInterfaces() unsafe.Pointer {
+func SCVLANInterfaceCopyAvailablePhysicalInterfaces() ArrayRef {
 	return _SCVLANInterfaceCopyAvailablePhysicalInterfaces()
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceCopyAvailablePhysicalInterfaces */
 
 // Creates a new virtual LAN (VLAN) interface.
 //
@@ -2294,9 +2292,9 @@ func SCVLANInterfaceCopyAvailablePhysicalInterfaces() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceCreate(_:_:_:)
-func SCVLANInterfaceCreate(prefs PreferencesRef, physical NetworkInterfaceRef, tag unsafe.Pointer) VLANInterfaceRef {
+func SCVLANInterfaceCreate(prefs PreferencesRef, physical NetworkInterfaceRef, tag NumberRef) VLANInterfaceRef {
 	return _SCVLANInterfaceCreate(prefs, physical, tag)
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceCreate */
 
 // Returns the configuration settings associated with the virtual LAN (VLAN) interface.
 //
@@ -2305,9 +2303,9 @@ func SCVLANInterfaceCreate(prefs PreferencesRef, physical NetworkInterfaceRef, t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceGetOptions(_:)
-func SCVLANInterfaceGetOptions(vlan VLANInterfaceRef) unsafe.Pointer {
+func SCVLANInterfaceGetOptions(vlan VLANInterfaceRef) DictionaryRef {
 	return _SCVLANInterfaceGetOptions(vlan)
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceGetOptions */
 
 // Returns the physical interface for the specified virtual LAN (VLAN) interface.
 //
@@ -2318,7 +2316,7 @@ func SCVLANInterfaceGetOptions(vlan VLANInterfaceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceGetPhysicalInterface(_:)
 func SCVLANInterfaceGetPhysicalInterface(vlan VLANInterfaceRef) NetworkInterfaceRef {
 	return _SCVLANInterfaceGetPhysicalInterface(vlan)
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceGetPhysicalInterface */
 
 // Returns the tag for the specified virtual LAN (VLAN) interface.
 //
@@ -2327,9 +2325,9 @@ func SCVLANInterfaceGetPhysicalInterface(vlan VLANInterfaceRef) NetworkInterface
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceGetTag(_:)
-func SCVLANInterfaceGetTag(vlan VLANInterfaceRef) unsafe.Pointer {
+func SCVLANInterfaceGetTag(vlan VLANInterfaceRef) NumberRef {
 	return _SCVLANInterfaceGetTag(vlan)
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceGetTag */
 
 // Removes the virtual LAN (VLAN) interface from the configuration.
 //
@@ -2340,7 +2338,7 @@ func SCVLANInterfaceGetTag(vlan VLANInterfaceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceRemove(_:)
 func SCVLANInterfaceRemove(vlan VLANInterfaceRef) unsafe.Pointer {
 	return _SCVLANInterfaceRemove(vlan)
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceRemove */
 
 // Sets the localized display name for the specified virtual LAN (VLAN) interface.
 //
@@ -2349,9 +2347,9 @@ func SCVLANInterfaceRemove(vlan VLANInterfaceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceSetLocalizedDisplayName(_:_:)
-func SCVLANInterfaceSetLocalizedDisplayName(vlan VLANInterfaceRef, newName unsafe.Pointer) unsafe.Pointer {
+func SCVLANInterfaceSetLocalizedDisplayName(vlan VLANInterfaceRef, newName StringRef) unsafe.Pointer {
 	return _SCVLANInterfaceSetLocalizedDisplayName(vlan, newName)
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceSetLocalizedDisplayName */
 
 // Sets the specified configuration settings for the specified virtual LAN (VLAN) interface.
 //
@@ -2360,9 +2358,9 @@ func SCVLANInterfaceSetLocalizedDisplayName(vlan VLANInterfaceRef, newName unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceSetOptions(_:_:)
-func SCVLANInterfaceSetOptions(vlan VLANInterfaceRef, newOptions unsafe.Pointer) unsafe.Pointer {
+func SCVLANInterfaceSetOptions(vlan VLANInterfaceRef, newOptions DictionaryRef) unsafe.Pointer {
 	return _SCVLANInterfaceSetOptions(vlan, newOptions)
-}
+} /* debug [functions.gen.go/function]: SCVLANInterfaceSetOptions */
 
 // Updates the specified virtual LAN (VLAN) interface with the specified information.
 //
@@ -2371,9 +2369,6 @@ func SCVLANInterfaceSetOptions(vlan VLANInterfaceRef, newOptions unsafe.Pointer)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemConfiguration/SCVLANInterfaceSetPhysicalInterfaceAndTag(_:_:_:)
-func SCVLANInterfaceSetPhysicalInterfaceAndTag(vlan VLANInterfaceRef, physical NetworkInterfaceRef, tag unsafe.Pointer) unsafe.Pointer {
+func SCVLANInterfaceSetPhysicalInterfaceAndTag(vlan VLANInterfaceRef, physical NetworkInterfaceRef, tag NumberRef) unsafe.Pointer {
 	return _SCVLANInterfaceSetPhysicalInterfaceAndTag(vlan, physical, tag)
-}
-
-
-
+} /* debug [functions.gen.go/function]: SCVLANInterfaceSetPhysicalInterfaceAndTag */

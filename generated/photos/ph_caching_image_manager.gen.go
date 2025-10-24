@@ -39,7 +39,6 @@ type IPHCachingImageManager interface {
 //
 // For quick performance when you are working with many assets, a caching image manager can prepare asset images in the background in order to eliminate delays when you later request individual images. For example, use a caching image manager when you want to populate a collection view or similar UI with thumbnails of photo or video assets. Much of the key functionality of the class is defined by its superclass, . For details, see . To use a caching image manager: Create a instance. (This step replaces using the shared instance.) Use class methods to fetch the assets you’re interested in. To prepare images for those assets, call the method with the target size, content mode, and options you plan to use when later requesting images for each individual asset. When you need an image for an individual asset, call the method, and pass the same parameters you used when preparing that asset. If the image you request is among those already prepared, the object immediately returns that image. Otherwise, Photos prepares the image on demand and caches it for later use.
 
-
 // An object that facilitates retrieving or generating preview thumbnails, optimized for batch preloading large numbers of assets.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewPHCachingImageManager() PHCachingImageManager {
 	return getPHCachingImageManagerClass().New()
 }
 
-
-
 // A Boolean value that determines whether the image manager prepares high-quality images.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (p_ PHCachingImageManager) AllowsCachingHighQualityImages() bool {
 	return rv
 }
 
-
 // A Boolean value that determines whether the image manager prepares high-quality images.
 //
 // [Full Topic]
@@ -107,6 +103,3 @@ func (p_ PHCachingImageManager) AllowsCachingHighQualityImages() bool {
 func (p_ PHCachingImageManager) SetAllowsCachingHighQualityImages(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAllowsCachingHighQualityImages:"), value)
 }
-
-
-

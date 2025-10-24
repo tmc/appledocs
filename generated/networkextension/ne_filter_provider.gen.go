@@ -7,9 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class NEFilterProvider */
+
+
+/* debug [class_header]: Header for NEFilterProvider */
 // The class instance for the [NEFilterProvider] class.
 var (
 	NEFilterProviderClass     _NEFilterProviderClass
@@ -26,29 +30,35 @@ func getNEFilterProviderClass() _NEFilterProviderClass {
 type _NEFilterProviderClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEFilterProvider */
 // An interface definition for the [NEFilterProvider] class.
 type INEFilterProvider interface {
-	objectivec.IObject
+	INEProvider
+	
+/* debug [class_interface_properties]: Properties for NEFilterProvider */
 	// properties:
+	FilterConfiguration() INEFilterProviderConfiguration
+	NEFilterErrorDomain() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NEFilterProvider */
 	// methods:
+	HandleReport(report INEFilterReport)
+	StartFilterWithCompletionHandler(completionHandler unsafe.Pointer)
+	StopFilterWithReasonCompletionHandler(reason NEProviderStopReason, completionHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A parent class referenced by other NetworkExtension classes.
 
 
-// A parent class referenced by other NetworkExtension classes. [Full Topic]
-type NEFilterProvider struct {
-	objectivec.Object
-}
-
-// NEFilterProviderFrom constructs a [NEFilterProvider] from an unsafe.Pointer.
-//
-// A parent class referenced by other NetworkExtension classes.
-func NEFilterProviderFrom(ptr unsafe.Pointer) NEFilterProvider {
-	return NEFilterProvider{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NEFilterProvider */
 // Alloc allocates a new instance without initialization.
 func (nc _NEFilterProviderClass) Alloc() NEFilterProvider {
 	rv := objc.Send[NEFilterProvider](objc.ID(nc.class), objc.Sel("alloc"))
@@ -56,7 +66,6 @@ func (nc _NEFilterProviderClass) Alloc() NEFilterProvider {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEFilterProviderClass) New() NEFilterProvider {
 	rv := objc.Send[NEFilterProvider](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,7 +88,107 @@ func (n_ NEFilterProvider) Autorelease() NEFilterProvider {
 func NewNEFilterProvider() NEFilterProvider {
 	return getNEFilterProviderClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for NEFilterProvider */
+// An abstract base class shared by content filters.
+//
+// A Network Content Filter is made up of two Filter Provider extensions: The examines network content as it passes through the network stack on the device and decides if the network content should be blocked or allowed to pass on to its final destination. Because the Filter Data Provider extension has access to all of the network content flowing through the device, it runs in a very restrictive sandbox. The sandbox prevents the Filter Data Provider extension from moving network content outside of its address space by blocking all network access, IPC, and disk write operations. The Filter Data Provider extension is implemented by creating a custom subclass of the class. The is responsible for feeding information to the Filter Data Provider extension so that the Filter Data Provider extension can do its job. For example, the Filter Control Provider extension can be notified by the Filter Data Provider extension that it does not have enough information to make a decision about a particular flow of network content. The Filter Control Provider extension can then download more filtering rules from a server and write the rules to a location where the Filter Data Provider can access them. The Filter Control Provider extension is implemented by creating a custom subclass of the class.
+
+
+// An abstract base class shared by content filters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProvider
+type NEFilterProvider struct {
+	NEProvider
+}
+
+// NEFilterProviderFrom constructs a [NEFilterProvider] from an unsafe.Pointer.
+//
+// An abstract base class shared by content filters.
+func NEFilterProviderFrom(ptr unsafe.Pointer) NEFilterProvider {
+	return NEFilterProvider{
+		NEProvider: NEProviderFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NEFilterProvider *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NEFilterProvider */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NEFilterProvider */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NEFilterProvider */
+
+// Receives a report from the framework.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProvider/handle(_:)
+func (n_ NEFilterProvider) HandleReport(report INEFilterReport) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("handleReport:"), report)
+}/* debug [instance_methods/method]: HandleReport */
+
+
+// Start the filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProvider/startFilter(completionHandler:)
+func (n_ NEFilterProvider) StartFilterWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("startFilterWithCompletionHandler:"), completionHandler)
+}/* debug [instance_methods/method]: StartFilterWithCompletionHandler */
+
+
+// Stop the filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProvider/stopFilter(with:completionHandler:)
+func (n_ NEFilterProvider) StopFilterWithReasonCompletionHandler(reason NEProviderStopReason, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("stopFilterWithReason:completionHandler:"), reason, completionHandler)
+}/* debug [instance_methods/method]: StopFilterWithReasonCompletionHandler */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEFilterProvider */
+
+// An object containing the current filter configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterProvider/filterConfiguration
+func (n_ NEFilterProvider) FilterConfiguration() INEFilterProviderConfiguration {
+	rv := objc.Send[NEFilterProviderConfiguration](n_.ID, objc.Sel("filterConfiguration"))
+	return rv
+}/* debug [instance_properties/getter]: filterConfiguration */
+
+
+// The domain for errors resulting from calls to the filter manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefiltererrordomain
+func (n_ NEFilterProvider) NEFilterErrorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("NEFilterErrorDomain"))
+	return rv
+}/* debug [instance_properties/getter]: NEFilterErrorDomain */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NEFilterProvider */
 
 
 

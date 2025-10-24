@@ -15,3 +15,4 @@ var applicationShouldTerminateAfterLastWindowClosedProtocol *objc.Protocol
 func init() {
 	applicationShouldTerminateAfterLastWindowClosedProtocol = objc.GetProtocol("applicationShouldTerminateAfterLastWindowClosed:")
 }
+

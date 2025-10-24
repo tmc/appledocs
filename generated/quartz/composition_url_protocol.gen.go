@@ -15,3 +15,4 @@ var compositionURLProtocol *objc.Protocol
 func init() {
 	compositionURLProtocol = objc.GetProtocol("compositionURL")
 }
+

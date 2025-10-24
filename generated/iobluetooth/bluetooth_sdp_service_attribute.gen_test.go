@@ -14,7 +14,7 @@ var _ = iobluetooth.NewBluetoothSDPServiceAttribute
 func ExampleNewBluetoothSDPServiceAttributeWithIDAttributeElement() {
 	_ = iobluetooth.NewBluetoothSDPServiceAttributeWithIDAttributeElement(
 		iobluetooth.BluetoothSDPServiceAttributeID{}, // newAttributeID BluetoothSDPServiceAttributeID
-		iobluetooth.IOBluetoothSDPDataElement{}, // attributeElement IOBluetoothSDPDataElement
+		iobluetooth.IOBluetoothSDPDataElement{},      // attributeElement IOBluetoothSDPDataElement
 	)
 	// Output:
 }

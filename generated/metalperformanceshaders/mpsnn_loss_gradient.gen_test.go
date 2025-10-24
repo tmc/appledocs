@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewLossGradient
 
+// ExampleLossGradient_EncodeBatch demonstrates using EncodeBatch on a LossGradient instance.
+func ExampleLossGradient_EncodeBatch() {
+	obj := metalperformanceshaders.NewLossGradient()
+	obj.EncodeBatch()
+	// Output:
+	}
+

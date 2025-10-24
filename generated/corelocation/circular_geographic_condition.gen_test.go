@@ -14,7 +14,7 @@ var _ = corelocation.NewCircularGeographicCondition
 func ExampleNewCircularGeographicConditionWithCenterRadius() {
 	_ = corelocation.NewCircularGeographicConditionWithCenterRadius(
 		corelocation.LocationCoordinate2D{}, // center LocationCoordinate2D
-		corelocation.LocationDistance{}, // radius LocationDistance
+		corelocation.LocationDistance{},     // radius LocationDistance
 	)
 	// Output:
 }

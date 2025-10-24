@@ -20,3 +20,4 @@ var minimumTimeProtocol *objc.Protocol
 func init() {
 	minimumTimeProtocol = objc.GetProtocol("minimumTime")
 }
+

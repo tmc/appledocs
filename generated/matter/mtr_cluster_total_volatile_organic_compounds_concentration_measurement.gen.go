@@ -33,8 +33,6 @@ type IMTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement interface 
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement
 type MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement) Autore
 func NewMTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement() MTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurement {
 	return getMTRClusterTotalVolatileOrganicCompoundsConcentrationMeasurementClass().New()
 }
-
-
-
-

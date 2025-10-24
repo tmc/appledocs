@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRAccessControlClusterAccessControlEntryStruct interface {
 	SetTargets(value unsafe.Pointer)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessControlEntryStruct
@@ -89,8 +87,6 @@ func NewMTRAccessControlClusterAccessControlEntryStruct() MTRAccessControlCluste
 	return getMTRAccessControlClusterAccessControlEntryStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/authmode
 func (m_ MTRAccessControlClusterAccessControlEntryStruct) AuthMode() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRAccessControlClusterAccessControlEntryStruct) AuthMode() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/authmode
 func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetAuthMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthMode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/fabricindex
@@ -113,13 +107,11 @@ func (m_ MTRAccessControlClusterAccessControlEntryStruct) FabricIndex() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/fabricindex
 func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/privilege
@@ -128,13 +120,11 @@ func (m_ MTRAccessControlClusterAccessControlEntryStruct) Privilege() objc.IObje
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/privilege
 func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetPrivilege(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrivilege:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/subjects
@@ -143,13 +133,11 @@ func (m_ MTRAccessControlClusterAccessControlEntryStruct) Subjects() unsafe.Poin
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/subjects
 func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetSubjects(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubjects:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/targets
@@ -158,12 +146,8 @@ func (m_ MTRAccessControlClusterAccessControlEntryStruct) Targets() unsafe.Point
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrystruct/targets
 func (m_ MTRAccessControlClusterAccessControlEntryStruct) SetTargets(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTargets:"), value)
 }
-
-
-

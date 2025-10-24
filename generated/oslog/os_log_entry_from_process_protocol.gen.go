@@ -21,3 +21,4 @@ var OSLogEntryFromProcessProtocol *objc.Protocol
 func init() {
 	OSLogEntryFromProcessProtocol = objc.GetProtocol("OSLogEntryFromProcess")
 }
+

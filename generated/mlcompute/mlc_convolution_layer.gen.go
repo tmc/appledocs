@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MLCConvolutionLayer */
+
+
+/* debug [class_header]: Header for MLCConvolutionLayer */
 // The class instance for the [CConvolutionLayer] class.
 var (
 	CConvolutionLayerClass     _CConvolutionLayerClass
@@ -25,44 +29,35 @@ func getCConvolutionLayerClass() _CConvolutionLayerClass {
 type _CConvolutionLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CConvolutionLayer */
 // An interface definition for the [CConvolutionLayer] class.
 type ICConvolutionLayer interface {
 	ICLayer
+	
+/* debug [class_interface_properties]: Properties for CConvolutionLayer */
 	// properties:
 	Biases() IMLCTensor
-	SetBiases(value IMLCTensor)
-	BiasesParameter() objc.IObject /* cross-framework: CTensorParameter */
-	SetBiasesParameter(value objc.IObject /* cross-framework: CTensorParameter */)
-	Descriptor() CConvolutionDescriptor /* not a class type */
-	SetDescriptor(value CConvolutionDescriptor /* not a class type */)
+	BiasesParameter() IMLCTensorParameter
+	Descriptor() IMLCConvolutionDescriptor
 	Weights() IMLCTensor
-	SetWeights(value IMLCTensor)
-	WeightsParameter() objc.IObject /* cross-framework: CTensorParameter */
-	SetWeightsParameter(value objc.IObject /* cross-framework: CTensorParameter */)
+	WeightsParameter() IMLCTensorParameter
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CConvolutionLayer */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A layer that applies a convolution over a signal.
 
 
-// A layer that applies a convolution over a signal.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer
-type CConvolutionLayer struct {
-	CLayer
-}
-
-// CConvolutionLayerFrom constructs a [CConvolutionLayer] from an unsafe.Pointer.
-//
-// A layer that applies a convolution over a signal.
-func CConvolutionLayerFrom(ptr unsafe.Pointer) CConvolutionLayer {
-	return CConvolutionLayer{
-		CLayer: CLayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CConvolutionLayer */
 // Alloc allocates a new instance without initialization.
 func (cc _CConvolutionLayerClass) Alloc() CConvolutionLayer {
 	rv := objc.Send[CConvolutionLayer](objc.ID(cc.class), objc.Sel("alloc"))
@@ -70,7 +65,6 @@ func (cc _CConvolutionLayerClass) Alloc() CConvolutionLayer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CConvolutionLayerClass) New() CConvolutionLayer {
 	rv := objc.Send[CConvolutionLayer](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,102 +87,128 @@ func (c_ CConvolutionLayer) Autorelease() CConvolutionLayer {
 func NewCConvolutionLayer() CConvolutionLayer {
 	return getCConvolutionLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CConvolutionLayer */
+// A layer that applies a convolution over a signal.
+
+
+// A layer that applies a convolution over a signal.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer
+type CConvolutionLayer struct {
+	CLayer
+}
+
+// CConvolutionLayerFrom constructs a [CConvolutionLayer] from an unsafe.Pointer.
+//
+// A layer that applies a convolution over a signal.
+func CConvolutionLayerFrom(ptr unsafe.Pointer) CConvolutionLayer {
+	return CConvolutionLayer{
+		CLayer: CLayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CConvolutionLayer */
+
+// Creates a convolution layer with the weights, biases, and descriptor you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer/init(weights:biases:descriptor:)
+func NewCConvolutionLayerWithWeightsBiasesDescriptor(weights IMLCTensor, biases IMLCTensor, descriptor IMLCConvolutionDescriptor) CConvolutionLayer {
+	rv := objc.Send[CConvolutionLayer](objc.ID(getCConvolutionLayerClass().class), objc.Sel("layerWithWeights:biases:descriptor:"), weights, biases, descriptor)
+	return rv
+}/* debug [class_init_methods/constructor]: NewCConvolutionLayerWithWeightsBiasesDescriptor */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CConvolutionLayer */
+
+// Creates a convolution layer with the weights, biases, and descriptor you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer/init(weights:biases:descriptor:)
+func (cc _CConvolutionLayerClass) LayerWithWeightsBiasesDescriptor(weights IMLCTensor, biases IMLCTensor, descriptor IMLCConvolutionDescriptor) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithWeights:biases:descriptor:"), weights, biases, descriptor)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithWeightsBiasesDescriptor) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CConvolutionLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CConvolutionLayer */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CConvolutionLayer */
 
 // The biases tensor you use for the convolution layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/biases
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer/biases
 func (c_ CConvolutionLayer) Biases() IMLCTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("biases"))
 	return rv
-}
-
-
-// The biases tensor you use for the convolution layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/biases
-func (c_ CConvolutionLayer) SetBiases(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBiases:"), value)
-}
+}/* debug [instance_properties/getter]: biases */
 
 
 // The biases tensor parameter you use for optimizer updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/biasesparameter
-func (c_ CConvolutionLayer) BiasesParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer/biasesParameter
+func (c_ CConvolutionLayer) BiasesParameter() IMLCTensorParameter {
 	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("biasesParameter"))
 	return rv
-}
-
-
-// The biases tensor parameter you use for optimizer updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/biasesparameter
-func (c_ CConvolutionLayer) SetBiasesParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBiasesParameter:"), value)
-}
+}/* debug [instance_properties/getter]: biasesParameter */
 
 
 // The configuration object you use to create the convolution layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/descriptor
-func (c_ CConvolutionLayer) Descriptor() CConvolutionDescriptor /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer/descriptor
+func (c_ CConvolutionLayer) Descriptor() IMLCConvolutionDescriptor {
 	rv := objc.Send[CConvolutionDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
-}
-
-
-// The configuration object you use to create the convolution layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/descriptor
-func (c_ CConvolutionLayer) SetDescriptor(value CConvolutionDescriptor /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
-}
+}/* debug [instance_properties/getter]: descriptor */
 
 
 // The weights tensor you use for the convolution layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/weights
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer/weights
 func (c_ CConvolutionLayer) Weights() IMLCTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("weights"))
 	return rv
-}
-
-
-// The weights tensor you use for the convolution layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/weights
-func (c_ CConvolutionLayer) SetWeights(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
-}
+}/* debug [instance_properties/getter]: weights */
 
 
 // The weights tensor parameter you use for optimizer updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/weightsparameter
-func (c_ CConvolutionLayer) WeightsParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCConvolutionLayer/weightsParameter
+func (c_ CConvolutionLayer) WeightsParameter() IMLCTensorParameter {
 	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("weightsParameter"))
 	return rv
-}
+}/* debug [instance_properties/getter]: weightsParameter */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The weights tensor parameter you use for optimizer updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcconvolutionlayer/weightsparameter
-func (c_ CConvolutionLayer) SetWeightsParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameter:"), value)
-}
-
+/* debug [class.gen.go]: End class MLCConvolutionLayer */
 
 

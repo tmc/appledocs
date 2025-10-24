@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,7 +44,6 @@ type IPHProjectRegionOfInterest interface {
 // A representation of a region of interest in a photo asset.
 //
 // A region of interest defines a rectangular portion of a photo corresponding to a face. Use a region of interest to determine where to focus, zoom, or crop your image in your project extension; for example, you can customize your slideshow’s transitions based on each photo’s highest-quality region of interest, as shown in .
-
 
 // A representation of a region of interest in a photo asset.
 //
@@ -92,8 +91,6 @@ func NewPHProjectRegionOfInterest() PHProjectRegionOfInterest {
 	return getPHProjectRegionOfInterestClass().New()
 }
 
-
-
 // The region’s quality.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (p_ PHProjectRegionOfInterest) Quality() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("quality"))
 	return rv
 }
-
 
 // The face region’s weight.
 //
@@ -113,7 +109,6 @@ func (p_ PHProjectRegionOfInterest) Weight() float64 {
 	return rv
 }
 
-
 // The region’s unique identifier.
 //
 // [Full Topic]
@@ -123,7 +118,6 @@ func (p_ PHProjectRegionOfInterest) Identifier() unsafe.Pointer {
 	return rv
 }
 
-
 // The region’s unique identifier.
 //
 // [Full Topic]
@@ -131,7 +125,6 @@ func (p_ PHProjectRegionOfInterest) Identifier() unsafe.Pointer {
 func (p_ PHProjectRegionOfInterest) SetIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 // The rectangle representing the region’s location.
 //
@@ -142,7 +135,6 @@ func (p_ PHProjectRegionOfInterest) Rect() objc.IObject /* cross-framework: Rect
 	return rv
 }
 
-
 // The rectangle representing the region’s location.
 //
 // [Full Topic]
@@ -150,6 +142,3 @@ func (p_ PHProjectRegionOfInterest) Rect() objc.IObject /* cross-framework: Rect
 func (p_ PHProjectRegionOfInterest) SetRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRect:"), value)
 }
-
-
-

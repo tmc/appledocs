@@ -13,7 +13,7 @@ var _ = gameplaykit.NewGraph
 // Initializes a graph with the specified list of nodes.
 func ExampleNewGraphWithNodes() {
 	_ = gameplaykit.NewGraphWithNodes(
-		[]gameplaykit.IGraphNode{}, // nodes []IGraphNode
+		[]gameplaykit.GraphNode{}, // nodes []GraphNode
 	)
 	// Output:
 }

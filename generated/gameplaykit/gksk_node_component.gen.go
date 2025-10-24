@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GKSKNodeComponent */
+
+
+/* debug [class_header]: Header for GKSKNodeComponent */
 // The class instance for the [SKNodeComponent] class.
 var (
 	SKNodeComponentClass     _SKNodeComponentClass
@@ -25,38 +30,32 @@ func getSKNodeComponentClass() _SKNodeComponentClass {
 type _SKNodeComponentClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SKNodeComponent */
 // An interface definition for the [SKNodeComponent] class.
 type ISKNodeComponent interface {
 	IComponent
+	
+/* debug [class_interface_properties]: Properties for SKNodeComponent */
 	// properties:
 	Node() Node /* not a class type */
 	SetNode(value Node /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SKNodeComponent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A component that manages a SpriteKit node.
-//
-// Adding a object to an entity automatically updates the property of the component’s SpriteKit node (an object) to point to that entity. When you add entities and components to a node in the Xcode SpriteKit scene editor, Xcode automatically creates a object to manage the relationship between that SpriteKit node and the object that node represents. Load the scene file with the class to access these entities and components. For more information on Entity-Component architecture, read in .
+/* debug [class_interface]: End interface */
 
 
-// A component that manages a SpriteKit node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent
-type SKNodeComponent struct {
-	Component
-}
 
-// SKNodeComponentFrom constructs a [SKNodeComponent] from an unsafe.Pointer.
-//
-// A component that manages a SpriteKit node.
-func SKNodeComponentFrom(ptr unsafe.Pointer) SKNodeComponent {
-	return SKNodeComponent{
-		Component: ComponentFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for SKNodeComponent */
 // Alloc allocates a new instance without initialization.
 func (nc _SKNodeComponentClass) Alloc() SKNodeComponent {
 	rv := objc.Send[SKNodeComponent](objc.ID(nc.class), objc.Sel("alloc"))
@@ -64,7 +63,6 @@ func (nc _SKNodeComponentClass) Alloc() SKNodeComponent {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _SKNodeComponentClass) New() SKNodeComponent {
 	rv := objc.Send[SKNodeComponent](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,8 +85,37 @@ func (n_ SKNodeComponent) Autorelease() SKNodeComponent {
 func NewSKNodeComponent() SKNodeComponent {
 	return getSKNodeComponentClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SKNodeComponent */
+// A component that manages a SpriteKit node.
+//
+// Adding a object to an entity automatically updates the property of the component’s SpriteKit node (an object) to point to that entity. When you add entities and components to a node in the Xcode SpriteKit scene editor, Xcode automatically creates a object to manage the relationship between that SpriteKit node and the object that node represents. Load the scene file with the class to access these entities and components. For more information on Entity-Component architecture, read in .
+
+
+// A component that manages a SpriteKit node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent
+type SKNodeComponent struct {
+	Component
+}
+
+// SKNodeComponentFrom constructs a [SKNodeComponent] from an unsafe.Pointer.
+//
+// A component that manages a SpriteKit node.
+func SKNodeComponentFrom(ptr unsafe.Pointer) SKNodeComponent {
+	return SKNodeComponent{
+		Component: ComponentFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SKNodeComponent */
 
 // Initializes a component to manage the specified SpriteKit node.
 //
@@ -99,19 +126,38 @@ func NewSKNodeComponentWithNode(node Node /* not a class type */) SKNodeComponen
 	rv := objc.Send[SKNodeComponent](instance.ID, objc.Sel("initWithNode:"), node)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewSKNodeComponentWithNode */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for SKNodeComponent */
 
 // Creates a component to manage the specified SpriteKit node.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/componentWithNode:
-func (nc _SKNodeComponentClass) ComponentWithNode(node Node /* not a class type */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("componentWithNode:"), node)
+func (nc _SKNodeComponentClass) ComponentWithNode(node Node /* not a class type */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(nc.class), objc.Sel("componentWithNode:"), node)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ComponentWithNode) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SKNodeComponent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SKNodeComponent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SKNodeComponent */
 
 // The SpriteKit node managed by the component.
 //
@@ -120,7 +166,7 @@ func (nc _SKNodeComponentClass) ComponentWithNode(node Node /* not a class type 
 func (n_ SKNodeComponent) Node() Node /* not a class type */ {
 	rv := objc.Send[Node](n_.ID, objc.Sel("node"))
 	return rv
-}
+}/* debug [instance_properties/getter]: node */
 
 
 // The SpriteKit node managed by the component.
@@ -129,6 +175,11 @@ func (n_ SKNodeComponent) Node() Node /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/GameplayKit/GKSKNodeComponent/node
 func (n_ SKNodeComponent) SetNode(value Node /* not a class type */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNode:"), value)
-}
+}/* debug [instance_properties/setter]: node */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GKSKNodeComponent */
 
 

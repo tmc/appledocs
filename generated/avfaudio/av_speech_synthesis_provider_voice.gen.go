@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVSpeechSynthesisProviderVoice */
+
+
+/* debug [class_header]: Header for AVSpeechSynthesisProviderVoice */
 // The class instance for the [SpeechSynthesisProviderVoice] class.
 var (
 	SpeechSynthesisProviderVoiceClass     _SpeechSynthesisProviderVoiceClass
@@ -27,52 +31,44 @@ func getSpeechSynthesisProviderVoiceClass() _SpeechSynthesisProviderVoiceClass {
 type _SpeechSynthesisProviderVoiceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SpeechSynthesisProviderVoice */
 // An interface definition for the [SpeechSynthesisProviderVoice] class.
 type ISpeechSynthesisProviderVoice interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for SpeechSynthesisProviderVoice */
 	// properties:
-	SpeechVoices() IAVSpeechSynthesisProviderVoice
-	SetSpeechVoices(value IAVSpeechSynthesisProviderVoice)
 	Age() int
 	SetAge(value int)
-	Gender() SpeechSynthesisVoiceGender /* not a class type */
-	SetGender(value SpeechSynthesisVoiceGender /* not a class type */)
+	Gender() SpeechSynthesisVoiceGender
+	SetGender(value SpeechSynthesisVoiceGender)
 	Identifier() objc.IObject /* cross-framework: NSString */
-	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
 	Name() objc.IObject /* cross-framework: NSString */
-	SetName(value objc.IObject /* cross-framework: NSString */)
-	PrimaryLanguages() objc.IObject /* cross-framework: NSString */
-	SetPrimaryLanguages(value objc.IObject /* cross-framework: NSString */)
-	SupportedLanguages() objc.IObject /* cross-framework: NSString */
-	SetSupportedLanguages(value objc.IObject /* cross-framework: NSString */)
+	PrimaryLanguages() []string
+	SupportedLanguages() []string
 	Version() objc.IObject /* cross-framework: NSString */
 	SetVersion(value objc.IObject /* cross-framework: NSString */)
-	VoiceSize() unsafe.Pointer
-	SetVoiceSize(value unsafe.Pointer)
+	VoiceSize() int64
+	SetVoiceSize(value int64)
+	SpeechVoices() IAVSpeechSynthesisProviderVoice
+	SetSpeechVoices(value IAVSpeechSynthesisProviderVoice)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SpeechSynthesisProviderVoice */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents a voice that an audio unit provides to its host.
-//
-// This is a voice that an provides to the system, distinct from . Use to access the underlying in the voice quality .
+/* debug [class_interface]: End interface */
 
 
-// An object that represents a voice that an audio unit provides to its host.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice
-type SpeechSynthesisProviderVoice struct {
-	objectivec.Object
-}
 
-// SpeechSynthesisProviderVoiceFrom constructs a [SpeechSynthesisProviderVoice] from an unsafe.Pointer.
-//
-// An object that represents a voice that an audio unit provides to its host.
-func SpeechSynthesisProviderVoiceFrom(ptr unsafe.Pointer) SpeechSynthesisProviderVoice {
-	return SpeechSynthesisProviderVoice{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SpeechSynthesisProviderVoice */
 // Alloc allocates a new instance without initialization.
 func (sc _SpeechSynthesisProviderVoiceClass) Alloc() SpeechSynthesisProviderVoice {
 	rv := objc.Send[SpeechSynthesisProviderVoice](objc.ID(sc.class), objc.Sel("alloc"))
@@ -80,7 +76,6 @@ func (sc _SpeechSynthesisProviderVoiceClass) Alloc() SpeechSynthesisProviderVoic
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SpeechSynthesisProviderVoiceClass) New() SpeechSynthesisProviderVoice {
 	rv := objc.Send[SpeechSynthesisProviderVoice](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -103,8 +98,52 @@ func (s_ SpeechSynthesisProviderVoice) Autorelease() SpeechSynthesisProviderVoic
 func NewSpeechSynthesisProviderVoice() SpeechSynthesisProviderVoice {
 	return getSpeechSynthesisProviderVoiceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SpeechSynthesisProviderVoice */
+// An object that represents a voice that an audio unit provides to its host.
+//
+// This is a voice that an provides to the system, distinct from . Use to access the underlying in the voice quality .
+
+
+// An object that represents a voice that an audio unit provides to its host.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice
+type SpeechSynthesisProviderVoice struct {
+	objectivec.Object
+}
+
+// SpeechSynthesisProviderVoiceFrom constructs a [SpeechSynthesisProviderVoice] from an unsafe.Pointer.
+//
+// An object that represents a voice that an audio unit provides to its host.
+func SpeechSynthesisProviderVoiceFrom(ptr unsafe.Pointer) SpeechSynthesisProviderVoice {
+	return SpeechSynthesisProviderVoice{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SpeechSynthesisProviderVoice */
+
+// Creates a voice with a name, an identifier, and language information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/init(name:identifier:primaryLanguages:supportedLanguages:)
+func NewSpeechSynthesisProviderVoiceWithNameIdentifierPrimaryLanguagesSupportedLanguages(name objc.IObject /* cross-framework: NSString */, identifier objc.IObject /* cross-framework: NSString */, primaryLanguages []string, supportedLanguages []string) SpeechSynthesisProviderVoice {
+	instance := getSpeechSynthesisProviderVoiceClass().Alloc()
+	rv := objc.Send[SpeechSynthesisProviderVoice](instance.ID, objc.Sel("initWithName:identifier:primaryLanguages:supportedLanguages:"), name, identifier, primaryLanguages, supportedLanguages)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewSpeechSynthesisProviderVoiceWithNameIdentifierPrimaryLanguagesSupportedLanguages */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SpeechSynthesisProviderVoice */
 
 // Updates the voices your app provides to the system.
 //
@@ -112,7 +151,138 @@ func NewSpeechSynthesisProviderVoice() SpeechSynthesisProviderVoice {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/updateSpeechVoices()
 func (sc _SpeechSynthesisProviderVoiceClass) UpdateSpeechVoices() {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("updateSpeechVoices"))
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=UpdateSpeechVoices) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SpeechSynthesisProviderVoice */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SpeechSynthesisProviderVoice */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SpeechSynthesisProviderVoice */
+
+// The age of the voice, in years.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/age
+func (s_ SpeechSynthesisProviderVoice) Age() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("age"))
+	return rv
+}/* debug [instance_properties/getter]: age */
+
+
+// The age of the voice, in years.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/age
+func (s_ SpeechSynthesisProviderVoice) SetAge(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAge:"), value)
+}/* debug [instance_properties/setter]: age */
+
+
+// The gender of the voice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/gender
+func (s_ SpeechSynthesisProviderVoice) Gender() SpeechSynthesisVoiceGender {
+	rv := objc.Send[SpeechSynthesisVoiceGender](s_.ID, objc.Sel("gender"))
+	return rv
+}/* debug [instance_properties/getter]: gender */
+
+
+// The gender of the voice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/gender
+func (s_ SpeechSynthesisProviderVoice) SetGender(value SpeechSynthesisVoiceGender) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setGender:"), value)
+}/* debug [instance_properties/setter]: gender */
+
+
+// The unique identifier for the voice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/identifier
+func (s_ SpeechSynthesisProviderVoice) Identifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("identifier"))
+	return rv
+}/* debug [instance_properties/getter]: identifier */
+
+
+// The localized name of the voice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/name
+func (s_ SpeechSynthesisProviderVoice) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("name"))
+	return rv
+}/* debug [instance_properties/getter]: name */
+
+
+// A list of BCP 47 codes that identify the languages the synthesizer uses.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/primaryLanguages
+func (s_ SpeechSynthesisProviderVoice) PrimaryLanguages() []string {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("primaryLanguages"))
+	return rv
+}/* debug [instance_properties/getter]: primaryLanguages */
+
+
+// A list of BCP 47 codes that identify the languages a voice supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/supportedLanguages
+func (s_ SpeechSynthesisProviderVoice) SupportedLanguages() []string {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("supportedLanguages"))
+	return rv
+}/* debug [instance_properties/getter]: supportedLanguages */
+
+
+// The version of the voice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/version
+func (s_ SpeechSynthesisProviderVoice) Version() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("version"))
+	return rv
+}/* debug [instance_properties/getter]: version */
+
+
+// The version of the voice.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/version
+func (s_ SpeechSynthesisProviderVoice) SetVersion(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVersion:"), value)
+}/* debug [instance_properties/setter]: version */
+
+
+// The size of the voice package on disk, in bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/voiceSize
+func (s_ SpeechSynthesisProviderVoice) VoiceSize() int64 {
+	rv := objc.Send[int64](s_.ID, objc.Sel("voiceSize"))
+	return rv
+}/* debug [instance_properties/getter]: voiceSize */
+
+
+// The size of the voice package on disk, in bytes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesisProviderVoice/voiceSize
+func (s_ SpeechSynthesisProviderVoice) SetVoiceSize(value int64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceSize:"), value)
+}/* debug [instance_properties/setter]: voiceSize */
 
 
 // A list of voices the audio unit provides to the system.
@@ -122,7 +292,7 @@ func (sc _SpeechSynthesisProviderVoiceClass) UpdateSpeechVoices() {
 func (s_ SpeechSynthesisProviderVoice) SpeechVoices() IAVSpeechSynthesisProviderVoice {
 	rv := objc.Send[SpeechSynthesisProviderVoice](s_.ID, objc.Sel("speechVoices"))
 	return rv
-}
+}/* debug [instance_properties/getter]: speechVoices */
 
 
 // A list of voices the audio unit provides to the system.
@@ -131,159 +301,11 @@ func (s_ SpeechSynthesisProviderVoice) SpeechVoices() IAVSpeechSynthesisProvider
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovideraudiounit/speechvoices
 func (s_ SpeechSynthesisProviderVoice) SetSpeechVoices(value IAVSpeechSynthesisProviderVoice) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSpeechVoices:"), value)
-}
+}/* debug [instance_properties/setter]: speechVoices */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The age of the voice, in years.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/age
-func (s_ SpeechSynthesisProviderVoice) Age() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("age"))
-	return rv
-}
-
-
-// The age of the voice, in years.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/age
-func (s_ SpeechSynthesisProviderVoice) SetAge(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAge:"), value)
-}
-
-
-// The gender of the voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/gender
-func (s_ SpeechSynthesisProviderVoice) Gender() SpeechSynthesisVoiceGender /* not a class type */ {
-	rv := objc.Send[SpeechSynthesisVoiceGender](s_.ID, objc.Sel("gender"))
-	return rv
-}
-
-
-// The gender of the voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/gender
-func (s_ SpeechSynthesisProviderVoice) SetGender(value SpeechSynthesisVoiceGender /* not a class type */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setGender:"), value)
-}
-
-
-// The unique identifier for the voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/identifier
-func (s_ SpeechSynthesisProviderVoice) Identifier() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// The unique identifier for the voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/identifier
-func (s_ SpeechSynthesisProviderVoice) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
-}
-
-
-// The localized name of the voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/name
-func (s_ SpeechSynthesisProviderVoice) Name() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("name"))
-	return rv
-}
-
-
-// The localized name of the voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/name
-func (s_ SpeechSynthesisProviderVoice) SetName(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setName:"), value)
-}
-
-
-// A list of BCP 47 codes that identify the languages the synthesizer uses.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/primarylanguages
-func (s_ SpeechSynthesisProviderVoice) PrimaryLanguages() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("primaryLanguages"))
-	return rv
-}
-
-
-// A list of BCP 47 codes that identify the languages the synthesizer uses.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/primarylanguages
-func (s_ SpeechSynthesisProviderVoice) SetPrimaryLanguages(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPrimaryLanguages:"), value)
-}
-
-
-// A list of BCP 47 codes that identify the languages a voice supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/supportedlanguages
-func (s_ SpeechSynthesisProviderVoice) SupportedLanguages() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("supportedLanguages"))
-	return rv
-}
-
-
-// A list of BCP 47 codes that identify the languages a voice supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/supportedlanguages
-func (s_ SpeechSynthesisProviderVoice) SetSupportedLanguages(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportedLanguages:"), value)
-}
-
-
-// The version of the voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/version
-func (s_ SpeechSynthesisProviderVoice) Version() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("version"))
-	return rv
-}
-
-
-// The version of the voice.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/version
-func (s_ SpeechSynthesisProviderVoice) SetVersion(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setVersion:"), value)
-}
-
-
-// The size of the voice package on disk, in bytes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/voicesize
-func (s_ SpeechSynthesisProviderVoice) VoiceSize() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("voiceSize"))
-	return rv
-}
-
-
-// The size of the voice package on disk, in bytes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avspeechsynthesisprovidervoice/voicesize
-func (s_ SpeechSynthesisProviderVoice) SetVoiceSize(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setVoiceSize:"), value)
-}
-
+/* debug [class.gen.go]: End class AVSpeechSynthesisProviderVoice */
 
 

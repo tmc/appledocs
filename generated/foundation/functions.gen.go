@@ -2,6 +2,7 @@
 
 package foundation
 
+/* debug [functions.gen.go]: Generating 123 functions for Foundation */
 import (
 	"unsafe"
 
@@ -10,7 +11,7 @@ import (
 )
 
 
-// Foundation Functions (117 total)
+// Foundation Functions (123 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -67,12 +68,15 @@ var (
 	_NSFrameAddress func(uint) unsafe.Pointer
 	_NSFreeHashTable func(unsafe.Pointer)
 	_NSFreeMapTable func(unsafe.Pointer)
+	_NSFullUserName func() unsafe.Pointer
 	_NSGetSizeAndAlignment func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSHashGet func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSHashInsert func(unsafe.Pointer, unsafe.Pointer)
 	_NSHashInsertIfAbsent func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
 	_NSHashInsertKnownAbsent func(unsafe.Pointer, unsafe.Pointer)
 	_NSHashRemove func(unsafe.Pointer, unsafe.Pointer)
+	_NSHomeDirectory func() unsafe.Pointer
+	_NSHomeDirectoryForUser func(unsafe.Pointer) unsafe.Pointer
 	_NSIncrementExtraRefCount func(objc.ID)
 	_NSInsetRect func(Rect, float64, float64) Rect
 	_NSIntegralRect func(Rect) Rect
@@ -95,6 +99,7 @@ var (
 	_NSNextHashEnumeratorItem func(unsafe.Pointer) unsafe.Pointer
 	_NSNextMapEnumeratorPair func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
 	_NSOffsetRect func(Rect, float64, float64) Rect
+	_NSOpenStepRootDirectory func() unsafe.Pointer
 	_NSPageSize func() uint
 	_NSPointFromString func(unsafe.Pointer) Point
 	_NSPointInRect func(Point, Rect) bool
@@ -124,8 +129,10 @@ var (
 	_NSStringFromRect func(Rect) unsafe.Pointer
 	_NSStringFromSelector func(objc.SEL) unsafe.Pointer
 	_NSStringFromSize func(Size) unsafe.Pointer
+	_NSTemporaryDirectory func() unsafe.Pointer
 	_NSUnionRange func(Range, Range) Range
 	_NSUnionRect func(Rect, Rect) Rect
+	_NSUserName func() unsafe.Pointer
 	_NSZoneCalloc func(unsafe.Pointer, uint, uint) unsafe.Pointer
 	_NSZoneFree func(unsafe.Pointer, unsafe.Pointer)
 	_NSZoneFromPointer func(unsafe.Pointer) unsafe.Pointer
@@ -191,12 +198,15 @@ func init() {
 	tryRegister(&_NSFrameAddress, lib, "NSFrameAddress")
 	tryRegister(&_NSFreeHashTable, lib, "NSFreeHashTable")
 	tryRegister(&_NSFreeMapTable, lib, "NSFreeMapTable")
+	tryRegister(&_NSFullUserName, lib, "NSFullUserName")
 	tryRegister(&_NSGetSizeAndAlignment, lib, "NSGetSizeAndAlignment")
 	tryRegister(&_NSHashGet, lib, "NSHashGet")
 	tryRegister(&_NSHashInsert, lib, "NSHashInsert")
 	tryRegister(&_NSHashInsertIfAbsent, lib, "NSHashInsertIfAbsent")
 	tryRegister(&_NSHashInsertKnownAbsent, lib, "NSHashInsertKnownAbsent")
 	tryRegister(&_NSHashRemove, lib, "NSHashRemove")
+	tryRegister(&_NSHomeDirectory, lib, "NSHomeDirectory")
+	tryRegister(&_NSHomeDirectoryForUser, lib, "NSHomeDirectoryForUser")
 	tryRegister(&_NSIncrementExtraRefCount, lib, "NSIncrementExtraRefCount")
 	tryRegister(&_NSInsetRect, lib, "NSInsetRect")
 	tryRegister(&_NSIntegralRect, lib, "NSIntegralRect")
@@ -219,6 +229,7 @@ func init() {
 	tryRegister(&_NSNextHashEnumeratorItem, lib, "NSNextHashEnumeratorItem")
 	tryRegister(&_NSNextMapEnumeratorPair, lib, "NSNextMapEnumeratorPair")
 	tryRegister(&_NSOffsetRect, lib, "NSOffsetRect")
+	tryRegister(&_NSOpenStepRootDirectory, lib, "NSOpenStepRootDirectory")
 	tryRegister(&_NSPageSize, lib, "NSPageSize")
 	tryRegister(&_NSPointFromString, lib, "NSPointFromString")
 	tryRegister(&_NSPointInRect, lib, "NSPointInRect")
@@ -248,8 +259,10 @@ func init() {
 	tryRegister(&_NSStringFromRect, lib, "NSStringFromRect")
 	tryRegister(&_NSStringFromSelector, lib, "NSStringFromSelector")
 	tryRegister(&_NSStringFromSize, lib, "NSStringFromSize")
+	tryRegister(&_NSTemporaryDirectory, lib, "NSTemporaryDirectory")
 	tryRegister(&_NSUnionRange, lib, "NSUnionRange")
 	tryRegister(&_NSUnionRect, lib, "NSUnionRect")
+	tryRegister(&_NSUserName, lib, "NSUserName")
 	tryRegister(&_NSZoneCalloc, lib, "NSZoneCalloc")
 	tryRegister(&_NSZoneFree, lib, "NSZoneFree")
 	tryRegister(&_NSZoneFromPointer, lib, "NSZoneFromPointer")
@@ -282,7 +295,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllHashTableObjects(_:)
 func NSAllHashTableObjects(table unsafe.Pointer) unsafe.Pointer {
 	return _NSAllHashTableObjects(table)
-}
+}/* debug [functions.gen.go/function]: NSAllHashTableObjects */
 
 // Returns all of the keys in the specified map table.
 //
@@ -293,7 +306,7 @@ func NSAllHashTableObjects(table unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllMapTableKeys(_:)
 func NSAllMapTableKeys(table unsafe.Pointer) unsafe.Pointer {
 	return _NSAllMapTableKeys(table)
-}
+}/* debug [functions.gen.go/function]: NSAllMapTableKeys */
 
 // Returns all of the values in the specified table.
 //
@@ -304,7 +317,7 @@ func NSAllMapTableKeys(table unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllMapTableValues(_:)
 func NSAllMapTableValues(table unsafe.Pointer) unsafe.Pointer {
 	return _NSAllMapTableValues(table)
-}
+}/* debug [functions.gen.go/function]: NSAllMapTableValues */
 
 // Allocates collectable memory.
 //
@@ -315,7 +328,7 @@ func NSAllMapTableValues(table unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateCollectable
 func NSAllocateCollectable(size uint, options uint) unsafe.Pointer {
 	return _NSAllocateCollectable(size, options)
-}
+}/* debug [functions.gen.go/function]: NSAllocateCollectable */
 
 // Allocates a new block of memory.
 //
@@ -326,7 +339,7 @@ func NSAllocateCollectable(size uint, options uint) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateMemoryPages(_:)
 func NSAllocateMemoryPages(bytes uint) unsafe.Pointer {
 	return _NSAllocateMemoryPages(bytes)
-}
+}/* debug [functions.gen.go/function]: NSAllocateMemoryPages */
 
 // Creates and returns a new instance of a given class.
 //
@@ -337,7 +350,7 @@ func NSAllocateMemoryPages(bytes uint) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAllocateObject
 func NSAllocateObject(aClass objc.Class, extraBytes uint, zone unsafe.Pointer) objc.ID {
 	return _NSAllocateObject(aClass, extraBytes, zone)
-}
+}/* debug [functions.gen.go/function]: NSAllocateObject */
 
 // Obtains a class by name.
 //
@@ -348,7 +361,7 @@ func NSAllocateObject(aClass objc.Class, extraBytes uint, zone unsafe.Pointer) o
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassFromString(_:)
 func NSClassFromString(aClassName unsafe.Pointer) objc.Class {
 	return _NSClassFromString(aClassName)
-}
+}/* debug [functions.gen.go/function]: NSClassFromString */
 
 // Returns a Boolean value that indicates whether the elements of two hash tables are equal.
 //
@@ -359,7 +372,7 @@ func NSClassFromString(aClassName unsafe.Pointer) objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompareHashTables(_:_:)
 func NSCompareHashTables(table1 unsafe.Pointer, table2 unsafe.Pointer) bool {
 	return _NSCompareHashTables(table1, table2)
-}
+}/* debug [functions.gen.go/function]: NSCompareHashTables */
 
 // Compares the elements of two map tables for equality.
 //
@@ -370,7 +383,7 @@ func NSCompareHashTables(table1 unsafe.Pointer, table2 unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCompareMapTables(_:_:)
 func NSCompareMapTables(table1 unsafe.Pointer, table2 unsafe.Pointer) bool {
 	return _NSCompareMapTables(table1, table2)
-}
+}/* debug [functions.gen.go/function]: NSCompareMapTables */
 
 // Returns a Boolean value that indicates whether one rectangle completely encloses another.
 //
@@ -381,7 +394,7 @@ func NSCompareMapTables(table1 unsafe.Pointer, table2 unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSContainsRect(_:_:)
 func NSContainsRect(aRect Rect, bRect Rect) bool {
 	return _NSContainsRect(aRect, bRect)
-}
+}/* debug [functions.gen.go/function]: NSContainsRect */
 
 // Performs a shallow copy of the specified hash table.
 //
@@ -392,7 +405,7 @@ func NSContainsRect(aRect Rect, bRect Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyHashTableWithZone(_:_:)
 func NSCopyHashTableWithZone(table unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCopyHashTableWithZone(table, zone)
-}
+}/* debug [functions.gen.go/function]: NSCopyHashTableWithZone */
 
 // Performs a shallow copy of the specified map table.
 //
@@ -403,7 +416,7 @@ func NSCopyHashTableWithZone(table unsafe.Pointer, zone unsafe.Pointer) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyMapTableWithZone(_:_:)
 func NSCopyMapTableWithZone(table unsafe.Pointer, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCopyMapTableWithZone(table, zone)
-}
+}/* debug [functions.gen.go/function]: NSCopyMapTableWithZone */
 
 // Copies a block of memory.
 //
@@ -414,7 +427,7 @@ func NSCopyMapTableWithZone(table unsafe.Pointer, zone unsafe.Pointer) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyMemoryPages(_:_:_:)
 func NSCopyMemoryPages(source unsafe.Pointer, dest unsafe.Pointer, bytes uint) {
 	_NSCopyMemoryPages(source, dest, bytes)
-}
+}/* debug [functions.gen.go/function]: NSCopyMemoryPages */
 
 // Creates an exact copy of an object.
 //
@@ -427,7 +440,7 @@ func NSCopyMemoryPages(source unsafe.Pointer, dest unsafe.Pointer, bytes uint) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCopyObject
 func NSCopyObject(object objc.ID, extraBytes uint, zone unsafe.Pointer) objc.ID {
 	return _NSCopyObject(object, extraBytes, zone)
-}
+}/* debug [functions.gen.go/function]: NSCopyObject */
 
 // Returns the number of call frames on the stack.
 //
@@ -438,7 +451,7 @@ func NSCopyObject(object objc.ID, extraBytes uint, zone unsafe.Pointer) objc.ID 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountFrames
 func NSCountFrames() uint {
 	return _NSCountFrames()
-}
+}/* debug [functions.gen.go/function]: NSCountFrames */
 
 // Returns the number of elements in a hash table.
 //
@@ -449,7 +462,7 @@ func NSCountFrames() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountHashTable(_:)
 func NSCountHashTable(table unsafe.Pointer) uint {
 	return _NSCountHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NSCountHashTable */
 
 // Returns the number of elements in a map table.
 //
@@ -460,7 +473,7 @@ func NSCountHashTable(table unsafe.Pointer) uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCountMapTable(_:)
 func NSCountMapTable(table unsafe.Pointer) uint {
 	return _NSCountMapTable(table)
-}
+}/* debug [functions.gen.go/function]: NSCountMapTable */
 
 // Creates and returns a new hash table.
 //
@@ -471,7 +484,7 @@ func NSCountMapTable(table unsafe.Pointer) uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateHashTable(_:_:)
 func NSCreateHashTable(callBacks HashTableCallBacks, capacity uint) unsafe.Pointer {
 	return _NSCreateHashTable(callBacks, capacity)
-}
+}/* debug [functions.gen.go/function]: NSCreateHashTable */
 
 // Creates a new hash table in a given zone.
 //
@@ -482,7 +495,7 @@ func NSCreateHashTable(callBacks HashTableCallBacks, capacity uint) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateHashTableWithZone(_:_:_:)
 func NSCreateHashTableWithZone(callBacks HashTableCallBacks, capacity uint, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCreateHashTableWithZone(callBacks, capacity, zone)
-}
+}/* debug [functions.gen.go/function]: NSCreateHashTableWithZone */
 
 // Creates a new map table in the default zone.
 //
@@ -493,7 +506,7 @@ func NSCreateHashTableWithZone(callBacks HashTableCallBacks, capacity uint, zone
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateMapTable(_:_:_:)
 func NSCreateMapTable(keyCallBacks MapTableKeyCallBacks, valueCallBacks MapTableValueCallBacks, capacity uint) unsafe.Pointer {
 	return _NSCreateMapTable(keyCallBacks, valueCallBacks, capacity)
-}
+}/* debug [functions.gen.go/function]: NSCreateMapTable */
 
 // Creates a new map table in the specified zone.
 //
@@ -504,7 +517,7 @@ func NSCreateMapTable(keyCallBacks MapTableKeyCallBacks, valueCallBacks MapTable
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateMapTableWithZone(_:_:_:_:)
 func NSCreateMapTableWithZone(keyCallBacks MapTableKeyCallBacks, valueCallBacks MapTableValueCallBacks, capacity uint, zone unsafe.Pointer) unsafe.Pointer {
 	return _NSCreateMapTableWithZone(keyCallBacks, valueCallBacks, capacity, zone)
-}
+}/* debug [functions.gen.go/function]: NSCreateMapTableWithZone */
 
 // Creates a new zone.
 //
@@ -515,7 +528,7 @@ func NSCreateMapTableWithZone(keyCallBacks MapTableKeyCallBacks, valueCallBacks 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCreateZone
 func NSCreateZone(startSize uint, granularity uint, canFree bool) unsafe.Pointer {
 	return _NSCreateZone(startSize, granularity, canFree)
-}
+}/* debug [functions.gen.go/function]: NSCreateZone */
 
 // Deallocates the specified block of memory.
 //
@@ -526,7 +539,7 @@ func NSCreateZone(startSize uint, granularity uint, canFree bool) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeallocateMemoryPages(_:_:)
 func NSDeallocateMemoryPages(ptr unsafe.Pointer, bytes uint) {
 	_NSDeallocateMemoryPages(ptr, bytes)
-}
+}/* debug [functions.gen.go/function]: NSDeallocateMemoryPages */
 
 // Destroys an existing object.
 //
@@ -537,7 +550,7 @@ func NSDeallocateMemoryPages(ptr unsafe.Pointer, bytes uint) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDeallocateObject
 func NSDeallocateObject(object objc.ID) {
 	_NSDeallocateObject(object)
-}
+}/* debug [functions.gen.go/function]: NSDeallocateObject */
 
 // Adds two decimal values.
 //
@@ -548,7 +561,7 @@ func NSDeallocateObject(object objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalAdd(_:_:_:_:)
 func NSDecimalAdd(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalAdd(result, leftOperand, rightOperand, roundingMode)
-}
+}/* debug [functions.gen.go/function]: NSDecimalAdd */
 
 // Compacts the decimal structure for efficiency.
 //
@@ -559,7 +572,7 @@ func NSDecimalAdd(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperan
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCompact(_:)
 func NSDecimalCompact(number unsafe.Pointer) {
 	_NSDecimalCompact(number)
-}
+}/* debug [functions.gen.go/function]: NSDecimalCompact */
 
 // Compares two decimal values.
 //
@@ -570,7 +583,7 @@ func NSDecimalCompact(number unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCompare(_:_:)
 func NSDecimalCompare(leftOperand unsafe.Pointer, rightOperand unsafe.Pointer) ComparisonResult {
 	return _NSDecimalCompare(leftOperand, rightOperand)
-}
+}/* debug [functions.gen.go/function]: NSDecimalCompare */
 
 // Copies the value of a decimal number.
 //
@@ -581,7 +594,7 @@ func NSDecimalCompare(leftOperand unsafe.Pointer, rightOperand unsafe.Pointer) C
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalCopy(_:_:)
 func NSDecimalCopy(destination unsafe.Pointer, source unsafe.Pointer) {
 	_NSDecimalCopy(destination, source)
-}
+}/* debug [functions.gen.go/function]: NSDecimalCopy */
 
 // Divides one decimal value by another.
 //
@@ -592,7 +605,7 @@ func NSDecimalCopy(destination unsafe.Pointer, source unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalDivide(_:_:_:_:)
 func NSDecimalDivide(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalDivide(result, leftOperand, rightOperand, roundingMode)
-}
+}/* debug [functions.gen.go/function]: NSDecimalDivide */
 
 // Multiplies two decimal numbers together.
 //
@@ -603,7 +616,7 @@ func NSDecimalDivide(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOpe
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalMultiply(_:_:_:_:)
 func NSDecimalMultiply(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalMultiply(result, leftOperand, rightOperand, roundingMode)
-}
+}/* debug [functions.gen.go/function]: NSDecimalMultiply */
 
 // Multiplies a decimal by the specified power of 10.
 //
@@ -614,7 +627,7 @@ func NSDecimalMultiply(result unsafe.Pointer, leftOperand unsafe.Pointer, rightO
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalMultiplyByPowerOf10(_:_:_:_:)
 func NSDecimalMultiplyByPowerOf10(result unsafe.Pointer, number unsafe.Pointer, power unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalMultiplyByPowerOf10(result, number, power, roundingMode)
-}
+}/* debug [functions.gen.go/function]: NSDecimalMultiplyByPowerOf10 */
 
 // Normalizes the internal format of two decimal numbers to simplify later operations.
 //
@@ -625,7 +638,7 @@ func NSDecimalMultiplyByPowerOf10(result unsafe.Pointer, number unsafe.Pointer, 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNormalize(_:_:_:)
 func NSDecimalNormalize(number1 unsafe.Pointer, number2 unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalNormalize(number1, number2, roundingMode)
-}
+}/* debug [functions.gen.go/function]: NSDecimalNormalize */
 
 // Raises the decimal value to the specified power.
 //
@@ -636,7 +649,7 @@ func NSDecimalNormalize(number1 unsafe.Pointer, number2 unsafe.Pointer, rounding
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalPower(_:_:_:_:)
 func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power uint, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalPower(result, number, power, roundingMode)
-}
+}/* debug [functions.gen.go/function]: NSDecimalPower */
 
 // Rounds off the decimal value.
 //
@@ -647,7 +660,7 @@ func NSDecimalPower(result unsafe.Pointer, number unsafe.Pointer, power uint, ro
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalRound(_:_:_:_:)
 func NSDecimalRound(result unsafe.Pointer, number unsafe.Pointer, scale int, roundingMode RoundingMode) {
 	_NSDecimalRound(result, number, scale, roundingMode)
-}
+}/* debug [functions.gen.go/function]: NSDecimalRound */
 
 // Returns a string representation of the decimal value appropriate for the specified locale.
 //
@@ -658,7 +671,7 @@ func NSDecimalRound(result unsafe.Pointer, number unsafe.Pointer, scale int, rou
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalString(_:_:)
 func NSDecimalString(dcm unsafe.Pointer, locale objc.ID) unsafe.Pointer {
 	return _NSDecimalString(dcm, locale)
-}
+}/* debug [functions.gen.go/function]: NSDecimalString */
 
 // Subtracts one decimal value from another.
 //
@@ -669,7 +682,7 @@ func NSDecimalString(dcm unsafe.Pointer, locale objc.ID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalSubtract(_:_:_:_:)
 func NSDecimalSubtract(result unsafe.Pointer, leftOperand unsafe.Pointer, rightOperand unsafe.Pointer, roundingMode RoundingMode) CalculationError {
 	return _NSDecimalSubtract(result, leftOperand, rightOperand, roundingMode)
-}
+}/* debug [functions.gen.go/function]: NSDecimalSubtract */
 
 // Decrements the specified object’s reference count.
 //
@@ -680,7 +693,7 @@ func NSDecimalSubtract(result unsafe.Pointer, leftOperand unsafe.Pointer, rightO
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecrementExtraRefCountWasZero
 func NSDecrementExtraRefCountWasZero(object objc.ID) bool {
 	return _NSDecrementExtraRefCountWasZero(object)
-}
+}/* debug [functions.gen.go/function]: NSDecrementExtraRefCountWasZero */
 
 // Returns the default zone.
 //
@@ -691,7 +704,7 @@ func NSDecrementExtraRefCountWasZero(object objc.ID) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDefaultMallocZone
 func NSDefaultMallocZone() unsafe.Pointer {
 	return _NSDefaultMallocZone()
-}
+}/* debug [functions.gen.go/function]: NSDefaultMallocZone */
 
 // Divides a rectangle into two new rectangles.
 //
@@ -702,7 +715,7 @@ func NSDefaultMallocZone() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDivideRect(_:_:_:_:_:)
 func NSDivideRect(inRect Rect, slice unsafe.Pointer, rem unsafe.Pointer, amount float64, edge RectEdge) {
 	_NSDivideRect(inRect, slice, rem, amount, edge)
-}
+}/* debug [functions.gen.go/function]: NSDivideRect */
 
 // Returns a Boolean value that indicates whether two edge insets structures are equal.
 //
@@ -713,7 +726,7 @@ func NSDivideRect(inRect Rect, slice unsafe.Pointer, rem unsafe.Pointer, amount 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEdgeInsetsEqual(_:_:)
 func NSEdgeInsetsEqual(aInsets EdgeInsets, bInsets EdgeInsets) bool {
 	return _NSEdgeInsetsEqual(aInsets, bInsets)
-}
+}/* debug [functions.gen.go/function]: NSEdgeInsetsEqual */
 
 // Used when finished with an enumerator.
 //
@@ -724,7 +737,7 @@ func NSEdgeInsetsEqual(aInsets EdgeInsets, bInsets EdgeInsets) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEndHashTableEnumeration(_:)
 func NSEndHashTableEnumeration(enumerator unsafe.Pointer) {
 	_NSEndHashTableEnumeration(enumerator)
-}
+}/* debug [functions.gen.go/function]: NSEndHashTableEnumeration */
 
 // Used when finished with an enumerator.
 //
@@ -735,7 +748,7 @@ func NSEndHashTableEnumeration(enumerator unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEndMapTableEnumeration(_:)
 func NSEndMapTableEnumeration(enumerator unsafe.Pointer) {
 	_NSEndMapTableEnumeration(enumerator)
-}
+}/* debug [functions.gen.go/function]: NSEndMapTableEnumeration */
 
 // Creates an enumerator for the specified hash table.
 //
@@ -746,7 +759,7 @@ func NSEndMapTableEnumeration(enumerator unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerateHashTable(_:)
 func NSEnumerateHashTable(table unsafe.Pointer) HashEnumerator {
 	return _NSEnumerateHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NSEnumerateHashTable */
 
 // Creates an enumerator for the specified map table.
 //
@@ -757,7 +770,7 @@ func NSEnumerateHashTable(table unsafe.Pointer) HashEnumerator {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEnumerateMapTable(_:)
 func NSEnumerateMapTable(table unsafe.Pointer) MapEnumerator {
 	return _NSEnumerateMapTable(table)
-}
+}/* debug [functions.gen.go/function]: NSEnumerateMapTable */
 
 // Returns a Boolean value that indicates whether two points are equal.
 //
@@ -768,7 +781,7 @@ func NSEnumerateMapTable(table unsafe.Pointer) MapEnumerator {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEqualPoints(_:_:)
 func NSEqualPoints(aPoint Point, bPoint Point) bool {
 	return _NSEqualPoints(aPoint, bPoint)
-}
+}/* debug [functions.gen.go/function]: NSEqualPoints */
 
 // Returns a Boolean value that indicates whether the two rectangles are equal.
 //
@@ -779,7 +792,7 @@ func NSEqualPoints(aPoint Point, bPoint Point) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEqualRects(_:_:)
 func NSEqualRects(aRect Rect, bRect Rect) bool {
 	return _NSEqualRects(aRect, bRect)
-}
+}/* debug [functions.gen.go/function]: NSEqualRects */
 
 // Returns a Boolean that indicates whether two size values are equal.
 //
@@ -790,7 +803,7 @@ func NSEqualRects(aRect Rect, bRect Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSEqualSizes(_:_:)
 func NSEqualSizes(aSize Size, bSize Size) bool {
 	return _NSEqualSizes(aSize, bSize)
-}
+}/* debug [functions.gen.go/function]: NSEqualSizes */
 
 // Returns the specified object’s reference count.
 //
@@ -801,7 +814,7 @@ func NSEqualSizes(aSize Size, bSize Size) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtraRefCount
 func NSExtraRefCount(object objc.ID) uint {
 	return _NSExtraRefCount(object)
-}
+}/* debug [functions.gen.go/function]: NSExtraRefCount */
 
 // Returns the value of the frame pointer of the specified frame.
 //
@@ -812,7 +825,7 @@ func NSExtraRefCount(object objc.ID) uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFrameAddress
 func NSFrameAddress(frame uint) unsafe.Pointer {
 	return _NSFrameAddress(frame)
-}
+}/* debug [functions.gen.go/function]: NSFrameAddress */
 
 // Deletes the specified hash table.
 //
@@ -823,7 +836,7 @@ func NSFrameAddress(frame uint) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFreeHashTable(_:)
 func NSFreeHashTable(table unsafe.Pointer) {
 	_NSFreeHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NSFreeHashTable */
 
 // Deletes the specified map table.
 //
@@ -834,7 +847,18 @@ func NSFreeHashTable(table unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFreeMapTable(_:)
 func NSFreeMapTable(table unsafe.Pointer) {
 	_NSFreeMapTable(table)
-}
+}/* debug [functions.gen.go/function]: NSFreeMapTable */
+
+// Returns a string containing the full name of the current user.
+//
+// Added in macOS 10.0.
+// Returns a string containing the full name of the current user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFullUserName()
+func NSFullUserName() unsafe.Pointer {
+	return _NSFullUserName()
+}/* debug [functions.gen.go/function]: NSFullUserName */
 
 // Obtains the actual size and the aligned size of an encoded type.
 //
@@ -845,7 +869,7 @@ func NSFreeMapTable(table unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGetSizeAndAlignment(_:_:_:)
 func NSGetSizeAndAlignment(typePtr unsafe.Pointer, sizep unsafe.Pointer, alignp unsafe.Pointer) unsafe.Pointer {
 	return _NSGetSizeAndAlignment(typePtr, sizep, alignp)
-}
+}/* debug [functions.gen.go/function]: NSGetSizeAndAlignment */
 
 // Returns an element of the hash table.
 //
@@ -856,7 +880,7 @@ func NSGetSizeAndAlignment(typePtr unsafe.Pointer, sizep unsafe.Pointer, alignp 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashGet(_:_:)
 func NSHashGet(table unsafe.Pointer, pointer unsafe.Pointer) unsafe.Pointer {
 	return _NSHashGet(table, pointer)
-}
+}/* debug [functions.gen.go/function]: NSHashGet */
 
 // Adds an element to the specified hash table.
 //
@@ -867,7 +891,7 @@ func NSHashGet(table unsafe.Pointer, pointer unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashInsert(_:_:)
 func NSHashInsert(table unsafe.Pointer, pointer unsafe.Pointer) {
 	_NSHashInsert(table, pointer)
-}
+}/* debug [functions.gen.go/function]: NSHashInsert */
 
 // Adds an element to the specified hash table only if the table does not already contain the element.
 //
@@ -878,7 +902,7 @@ func NSHashInsert(table unsafe.Pointer, pointer unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashInsertIfAbsent(_:_:)
 func NSHashInsertIfAbsent(table unsafe.Pointer, pointer unsafe.Pointer) unsafe.Pointer {
 	return _NSHashInsertIfAbsent(table, pointer)
-}
+}/* debug [functions.gen.go/function]: NSHashInsertIfAbsent */
 
 // Adds an element to the specified hash table.
 //
@@ -889,7 +913,7 @@ func NSHashInsertIfAbsent(table unsafe.Pointer, pointer unsafe.Pointer) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashInsertKnownAbsent(_:_:)
 func NSHashInsertKnownAbsent(table unsafe.Pointer, pointer unsafe.Pointer) {
 	_NSHashInsertKnownAbsent(table, pointer)
-}
+}/* debug [functions.gen.go/function]: NSHashInsertKnownAbsent */
 
 // Removes an element from the specified hash table.
 //
@@ -900,7 +924,29 @@ func NSHashInsertKnownAbsent(table unsafe.Pointer, pointer unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashRemove(_:_:)
 func NSHashRemove(table unsafe.Pointer, pointer unsafe.Pointer) {
 	_NSHashRemove(table, pointer)
-}
+}/* debug [functions.gen.go/function]: NSHashRemove */
+
+// Returns the path to either the user’s or application’s home directory, depending on the platform.
+//
+// Added in macOS 10.0.
+// Returns the path to either the user’s or application’s home directory, depending on the platform.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHomeDirectory()
+func NSHomeDirectory() unsafe.Pointer {
+	return _NSHomeDirectory()
+}/* debug [functions.gen.go/function]: NSHomeDirectory */
+
+// Returns the path to a given user’s home directory.
+//
+// Added in macOS 10.0.
+// Returns the path to a given user’s home directory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHomeDirectoryForUser(_:)
+func NSHomeDirectoryForUser(userName unsafe.Pointer) unsafe.Pointer {
+	return _NSHomeDirectoryForUser(userName)
+}/* debug [functions.gen.go/function]: NSHomeDirectoryForUser */
 
 // Increments the specified object’s reference count.
 //
@@ -911,7 +957,7 @@ func NSHashRemove(table unsafe.Pointer, pointer unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIncrementExtraRefCount
 func NSIncrementExtraRefCount(object objc.ID) {
 	_NSIncrementExtraRefCount(object)
-}
+}/* debug [functions.gen.go/function]: NSIncrementExtraRefCount */
 
 // Insets a rectangle by a specified amount.
 //
@@ -922,7 +968,7 @@ func NSIncrementExtraRefCount(object objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInsetRect(_:_:_:)
 func NSInsetRect(aRect Rect, dX float64, dY float64) Rect {
 	return _NSInsetRect(aRect, dX, dY)
-}
+}/* debug [functions.gen.go/function]: NSInsetRect */
 
 // Adjusts the sides of a rectangle to integer values.
 //
@@ -933,7 +979,7 @@ func NSInsetRect(aRect Rect, dX float64, dY float64) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntegralRect(_:)
 func NSIntegralRect(aRect Rect) Rect {
 	return _NSIntegralRect(aRect)
-}
+}/* debug [functions.gen.go/function]: NSIntegralRect */
 
 // Adjusts the sides of a rectangle to integral values using the specified options.
 //
@@ -944,7 +990,7 @@ func NSIntegralRect(aRect Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntegralRectWithOptions(_:_:)
 func NSIntegralRectWithOptions(aRect Rect, opts AlignmentOptions) Rect {
 	return _NSIntegralRectWithOptions(aRect, opts)
-}
+}/* debug [functions.gen.go/function]: NSIntegralRectWithOptions */
 
 // Returns the intersection of the specified ranges.
 //
@@ -955,7 +1001,7 @@ func NSIntegralRectWithOptions(aRect Rect, opts AlignmentOptions) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntersectionRange(_:_:)
 func NSIntersectionRange(range1 Range, range2 Range) Range {
 	return _NSIntersectionRange(range1, range2)
-}
+}/* debug [functions.gen.go/function]: NSIntersectionRange */
 
 // Calculates the intersection of two rectangles.
 //
@@ -966,7 +1012,7 @@ func NSIntersectionRange(range1 Range, range2 Range) Range {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntersectionRect(_:_:)
 func NSIntersectionRect(aRect Rect, bRect Rect) Rect {
 	return _NSIntersectionRect(aRect, bRect)
-}
+}/* debug [functions.gen.go/function]: NSIntersectionRect */
 
 // Returns a Boolean value that indicates whether two rectangles intersect.
 //
@@ -977,7 +1023,7 @@ func NSIntersectionRect(aRect Rect, bRect Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIntersectsRect(_:_:)
 func NSIntersectsRect(aRect Rect, bRect Rect) bool {
 	return _NSIntersectsRect(aRect, bRect)
-}
+}/* debug [functions.gen.go/function]: NSIntersectsRect */
 
 // Returns a Boolean value that indicates whether a given rectangle is empty.
 //
@@ -988,7 +1034,7 @@ func NSIntersectsRect(aRect Rect, bRect Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIsEmptyRect(_:)
 func NSIsEmptyRect(aRect Rect) bool {
 	return _NSIsEmptyRect(aRect)
-}
+}/* debug [functions.gen.go/function]: NSIsEmptyRect */
 
 // Returns a Boolean indicating whether the specified object has been freed.
 //
@@ -999,7 +1045,7 @@ func NSIsEmptyRect(aRect Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIsFreedObject
 func NSIsFreedObject(anObject objc.ID) bool {
 	return _NSIsFreedObject(anObject)
-}
+}/* debug [functions.gen.go/function]: NSIsFreedObject */
 
 // Logs an error message to the Apple System Log facility.
 //
@@ -1010,7 +1056,7 @@ func NSIsFreedObject(anObject objc.ID) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLog
 func NSLog(format unsafe.Pointer) {
 	_NSLog(format)
-}
+}/* debug [functions.gen.go/function]: NSLog */
 
 // Returns the binary log of the page size.
 //
@@ -1021,7 +1067,7 @@ func NSLog(format unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogPageSize()
 func NSLogPageSize() uint {
 	return _NSLogPageSize()
-}
+}/* debug [functions.gen.go/function]: NSLogPageSize */
 
 // Logs an error message to the Apple System Log facility.
 //
@@ -1032,7 +1078,7 @@ func NSLogPageSize() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLogv(_:_:)
 func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 	_NSLogv(format, args)
-}
+}/* debug [functions.gen.go/function]: NSLogv */
 
 // Returns a map table value for the specified key.
 //
@@ -1043,7 +1089,7 @@ func NSLogv(format unsafe.Pointer, args unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapGet(_:_:)
 func NSMapGet(table unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
 	return _NSMapGet(table, key)
-}
+}/* debug [functions.gen.go/function]: NSMapGet */
 
 // Inserts a key-value pair into the specified table.
 //
@@ -1054,7 +1100,7 @@ func NSMapGet(table unsafe.Pointer, key unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapInsert(_:_:_:)
 func NSMapInsert(table unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
 	_NSMapInsert(table, key, value)
-}
+}/* debug [functions.gen.go/function]: NSMapInsert */
 
 // Inserts a key-value pair into the specified table.
 //
@@ -1065,7 +1111,7 @@ func NSMapInsert(table unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapInsertIfAbsent(_:_:_:)
 func NSMapInsertIfAbsent(table unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) unsafe.Pointer {
 	return _NSMapInsertIfAbsent(table, key, value)
-}
+}/* debug [functions.gen.go/function]: NSMapInsertIfAbsent */
 
 // Inserts a key-value pair into the specified table if the pair had not been previously added.
 //
@@ -1076,7 +1122,7 @@ func NSMapInsertIfAbsent(table unsafe.Pointer, key unsafe.Pointer, value unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapInsertKnownAbsent(_:_:_:)
 func NSMapInsertKnownAbsent(table unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) {
 	_NSMapInsertKnownAbsent(table, key, value)
-}
+}/* debug [functions.gen.go/function]: NSMapInsertKnownAbsent */
 
 // Indicates whether a given table contains a given key.
 //
@@ -1087,7 +1133,7 @@ func NSMapInsertKnownAbsent(table unsafe.Pointer, key unsafe.Pointer, value unsa
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapMember(_:_:_:_:)
 func NSMapMember(table unsafe.Pointer, key unsafe.Pointer, originalKey unsafe.Pointer, value unsafe.Pointer) bool {
 	return _NSMapMember(table, key, originalKey, value)
-}
+}/* debug [functions.gen.go/function]: NSMapMember */
 
 // Removes a key and corresponding value from the specified table.
 //
@@ -1098,7 +1144,7 @@ func NSMapMember(table unsafe.Pointer, key unsafe.Pointer, originalKey unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMapRemove(_:_:)
 func NSMapRemove(table unsafe.Pointer, key unsafe.Pointer) {
 	_NSMapRemove(table, key)
-}
+}/* debug [functions.gen.go/function]: NSMapRemove */
 
 // Returns a Boolean value that indicates whether the point is in the specified rectangle.
 //
@@ -1109,7 +1155,7 @@ func NSMapRemove(table unsafe.Pointer, key unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMouseInRect(_:_:_:)
 func NSMouseInRect(aPoint Point, aRect Rect, flipped bool) bool {
 	return _NSMouseInRect(aPoint, aRect, flipped)
-}
+}/* debug [functions.gen.go/function]: NSMouseInRect */
 
 // Returns the next hash-table element in the enumeration.
 //
@@ -1120,7 +1166,7 @@ func NSMouseInRect(aPoint Point, aRect Rect, flipped bool) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNextHashEnumeratorItem(_:)
 func NSNextHashEnumeratorItem(enumerator unsafe.Pointer) unsafe.Pointer {
 	return _NSNextHashEnumeratorItem(enumerator)
-}
+}/* debug [functions.gen.go/function]: NSNextHashEnumeratorItem */
 
 // Returns a Boolean value that indicates whether the next map-table pair in the enumeration are set.
 //
@@ -1131,7 +1177,7 @@ func NSNextHashEnumeratorItem(enumerator unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNextMapEnumeratorPair(_:_:_:)
 func NSNextMapEnumeratorPair(enumerator unsafe.Pointer, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _NSNextMapEnumeratorPair(enumerator, key, value)
-}
+}/* debug [functions.gen.go/function]: NSNextMapEnumeratorPair */
 
 // Offsets the rectangle by the specified amount.
 //
@@ -1142,7 +1188,18 @@ func NSNextMapEnumeratorPair(enumerator unsafe.Pointer, key unsafe.Pointer, valu
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOffsetRect(_:_:_:)
 func NSOffsetRect(aRect Rect, dX float64, dY float64) Rect {
 	return _NSOffsetRect(aRect, dX, dY)
-}
+}/* debug [functions.gen.go/function]: NSOffsetRect */
+
+// Returns the root directory of the user’s system.
+//
+// Added in macOS 10.0.
+// Returns the root directory of the user’s system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOpenStepRootDirectory()
+func NSOpenStepRootDirectory() unsafe.Pointer {
+	return _NSOpenStepRootDirectory()
+}/* debug [functions.gen.go/function]: NSOpenStepRootDirectory */
 
 // Returns the number of bytes in a page.
 //
@@ -1153,7 +1210,7 @@ func NSOffsetRect(aRect Rect, dX float64, dY float64) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPageSize()
 func NSPageSize() uint {
 	return _NSPageSize()
-}
+}/* debug [functions.gen.go/function]: NSPageSize */
 
 // Returns a point from a text-based representation.
 //
@@ -1164,7 +1221,7 @@ func NSPageSize() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointFromString(_:)
 func NSPointFromString(aString unsafe.Pointer) Point {
 	return _NSPointFromString(aString)
-}
+}/* debug [functions.gen.go/function]: NSPointFromString */
 
 // Returns a Boolean value that indicates whether a given point is in a given rectangle.
 //
@@ -1175,7 +1232,7 @@ func NSPointFromString(aString unsafe.Pointer) Point {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPointInRect(_:_:)
 func NSPointInRect(aPoint Point, aRect Rect) bool {
 	return _NSPointInRect(aPoint, aRect)
-}
+}/* debug [functions.gen.go/function]: NSPointInRect */
 
 // Returns a the protocol with a given name.
 //
@@ -1186,7 +1243,7 @@ func NSPointInRect(aPoint Point, aRect Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProtocolFromString(_:)
 func NSProtocolFromString(namestr unsafe.Pointer) unsafe.Pointer {
 	return _NSProtocolFromString(namestr)
-}
+}/* debug [functions.gen.go/function]: NSProtocolFromString */
 
 // Returns a range from a textual representation.
 //
@@ -1197,7 +1254,7 @@ func NSProtocolFromString(namestr unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRangeFromString(_:)
 func NSRangeFromString(aString unsafe.Pointer) Range {
 	return _NSRangeFromString(aString)
-}
+}/* debug [functions.gen.go/function]: NSRangeFromString */
 
 // Returns information about the user’s system.
 
@@ -1207,7 +1264,7 @@ func NSRangeFromString(aString unsafe.Pointer) Range {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRealMemoryAvailable()
 func NSRealMemoryAvailable() uint {
 	return _NSRealMemoryAvailable()
-}
+}/* debug [functions.gen.go/function]: NSRealMemoryAvailable */
 
 // Reallocates collectable memory.
 //
@@ -1218,7 +1275,7 @@ func NSRealMemoryAvailable() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReallocateCollectable
 func NSReallocateCollectable(ptr unsafe.Pointer, size uint, options uint) unsafe.Pointer {
 	return _NSReallocateCollectable(ptr, size, options)
-}
+}/* debug [functions.gen.go/function]: NSReallocateCollectable */
 
 // Notes an object or zone allocation event and various other statistics, such as the time and current thread.
 //
@@ -1229,7 +1286,7 @@ func NSReallocateCollectable(ptr unsafe.Pointer, size uint, options uint) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecordAllocationEvent
 func NSRecordAllocationEvent(eventType int, object objc.ID) {
 	_NSRecordAllocationEvent(eventType, object)
-}
+}/* debug [functions.gen.go/function]: NSRecordAllocationEvent */
 
 // Returns a rectangle from a text-based representation.
 //
@@ -1240,7 +1297,7 @@ func NSRecordAllocationEvent(eventType int, object objc.ID) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRectFromString(_:)
 func NSRectFromString(aString unsafe.Pointer) Rect {
 	return _NSRectFromString(aString)
-}
+}/* debug [functions.gen.go/function]: NSRectFromString */
 
 // Frees memory in a zone.
 //
@@ -1251,7 +1308,7 @@ func NSRectFromString(aString unsafe.Pointer) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRecycleZone
 func NSRecycleZone(zone unsafe.Pointer) {
 	_NSRecycleZone(zone)
-}
+}/* debug [functions.gen.go/function]: NSRecycleZone */
 
 // Deletes the elements of the specified hash table.
 //
@@ -1262,7 +1319,7 @@ func NSRecycleZone(zone unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSResetHashTable(_:)
 func NSResetHashTable(table unsafe.Pointer) {
 	_NSResetHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NSResetHashTable */
 
 // Deletes the elements of the specified map table.
 //
@@ -1273,7 +1330,7 @@ func NSResetHashTable(table unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSResetMapTable(_:)
 func NSResetMapTable(table unsafe.Pointer) {
 	_NSResetMapTable(table)
-}
+}/* debug [functions.gen.go/function]: NSResetMapTable */
 
 // Returns the value of the return address of the specified frame.
 //
@@ -1284,7 +1341,7 @@ func NSResetMapTable(table unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSReturnAddress
 func NSReturnAddress(frame uint) unsafe.Pointer {
 	return _NSReturnAddress(frame)
-}
+}/* debug [functions.gen.go/function]: NSReturnAddress */
 
 // Returns the specified number of bytes rounded down to a multiple of the page size.
 //
@@ -1295,7 +1352,7 @@ func NSReturnAddress(frame uint) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRoundDownToMultipleOfPageSize(_:)
 func NSRoundDownToMultipleOfPageSize(bytes uint) uint {
 	return _NSRoundDownToMultipleOfPageSize(bytes)
-}
+}/* debug [functions.gen.go/function]: NSRoundDownToMultipleOfPageSize */
 
 // Returns the specified number of bytes rounded up to a multiple of the page size.
 //
@@ -1306,7 +1363,7 @@ func NSRoundDownToMultipleOfPageSize(bytes uint) uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRoundUpToMultipleOfPageSize(_:)
 func NSRoundUpToMultipleOfPageSize(bytes uint) uint {
 	return _NSRoundUpToMultipleOfPageSize(bytes)
-}
+}/* debug [functions.gen.go/function]: NSRoundUpToMultipleOfPageSize */
 
 // Creates a list of directory search paths.
 //
@@ -1317,7 +1374,7 @@ func NSRoundUpToMultipleOfPageSize(bytes uint) uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSearchPathForDirectoriesInDomains(_:_:_:)
 func NSSearchPathForDirectoriesInDomains(directory SearchPathDirectory, domainMask SearchPathDomainMask, expandTilde bool) []unsafe.Pointer {
 	return _NSSearchPathForDirectoriesInDomains(directory, domainMask, expandTilde)
-}
+}/* debug [functions.gen.go/function]: NSSearchPathForDirectoriesInDomains */
 
 // Returns the selector with a given name.
 //
@@ -1328,7 +1385,7 @@ func NSSearchPathForDirectoriesInDomains(directory SearchPathDirectory, domainMa
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSelectorFromString(_:)
 func NSSelectorFromString(aSelectorName unsafe.Pointer) objc.SEL {
 	return _NSSelectorFromString(aSelectorName)
-}
+}/* debug [functions.gen.go/function]: NSSelectorFromString */
 
 // Sets the name of the specified zone.
 //
@@ -1339,7 +1396,7 @@ func NSSelectorFromString(aSelectorName unsafe.Pointer) objc.SEL {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetZoneName
 func NSSetZoneName(zone unsafe.Pointer, name unsafe.Pointer) {
 	_NSSetZoneName(zone, name)
-}
+}/* debug [functions.gen.go/function]: NSSetZoneName */
 
 // Indicates whether an object should be retained.
 //
@@ -1350,7 +1407,7 @@ func NSSetZoneName(zone unsafe.Pointer, name unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSShouldRetainWithZone
 func NSShouldRetainWithZone(anObject objc.ID, requestedZone unsafe.Pointer) bool {
 	return _NSShouldRetainWithZone(anObject, requestedZone)
-}
+}/* debug [functions.gen.go/function]: NSShouldRetainWithZone */
 
 // Returns an from a text-based representation.
 //
@@ -1361,7 +1418,7 @@ func NSShouldRetainWithZone(anObject objc.ID, requestedZone unsafe.Pointer) bool
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSizeFromString(_:)
 func NSSizeFromString(aString unsafe.Pointer) Size {
 	return _NSSizeFromString(aString)
-}
+}/* debug [functions.gen.go/function]: NSSizeFromString */
 
 // Returns the name of a class as a string.
 //
@@ -1372,7 +1429,7 @@ func NSSizeFromString(aString unsafe.Pointer) Size {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromClass(_:)
 func NSStringFromClass(aClass objc.Class) unsafe.Pointer {
 	return _NSStringFromClass(aClass)
-}
+}/* debug [functions.gen.go/function]: NSStringFromClass */
 
 // Returns a string describing the hash table’s contents.
 //
@@ -1383,7 +1440,7 @@ func NSStringFromClass(aClass objc.Class) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromHashTable(_:)
 func NSStringFromHashTable(table unsafe.Pointer) unsafe.Pointer {
 	return _NSStringFromHashTable(table)
-}
+}/* debug [functions.gen.go/function]: NSStringFromHashTable */
 
 // Returns a string describing the map table’s contents.
 //
@@ -1394,7 +1451,7 @@ func NSStringFromHashTable(table unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromMapTable(_:)
 func NSStringFromMapTable(table unsafe.Pointer) unsafe.Pointer {
 	return _NSStringFromMapTable(table)
-}
+}/* debug [functions.gen.go/function]: NSStringFromMapTable */
 
 // Returns a string representation of a point.
 //
@@ -1405,7 +1462,7 @@ func NSStringFromMapTable(table unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromPoint(_:)
 func NSStringFromPoint(aPoint Point) unsafe.Pointer {
 	return _NSStringFromPoint(aPoint)
-}
+}/* debug [functions.gen.go/function]: NSStringFromPoint */
 
 // Returns the name of a protocol as a string.
 //
@@ -1416,7 +1473,7 @@ func NSStringFromPoint(aPoint Point) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromProtocol(_:)
 func NSStringFromProtocol(proto unsafe.Pointer) unsafe.Pointer {
 	return _NSStringFromProtocol(proto)
-}
+}/* debug [functions.gen.go/function]: NSStringFromProtocol */
 
 // Returns a string representation of a range.
 //
@@ -1427,7 +1484,7 @@ func NSStringFromProtocol(proto unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromRange(_:)
 func NSStringFromRange(range_ Range) unsafe.Pointer {
 	return _NSStringFromRange(range_)
-}
+}/* debug [functions.gen.go/function]: NSStringFromRange */
 
 // Returns a string representation of a rectangle.
 //
@@ -1438,7 +1495,7 @@ func NSStringFromRange(range_ Range) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromRect(_:)
 func NSStringFromRect(aRect Rect) unsafe.Pointer {
 	return _NSStringFromRect(aRect)
-}
+}/* debug [functions.gen.go/function]: NSStringFromRect */
 
 // Returns a string representation of a given selector.
 //
@@ -1449,7 +1506,7 @@ func NSStringFromRect(aRect Rect) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromSelector(_:)
 func NSStringFromSelector(aSelector objc.SEL) unsafe.Pointer {
 	return _NSStringFromSelector(aSelector)
-}
+}/* debug [functions.gen.go/function]: NSStringFromSelector */
 
 // Returns a string representation of a size.
 //
@@ -1460,7 +1517,18 @@ func NSStringFromSelector(aSelector objc.SEL) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSStringFromSize(_:)
 func NSStringFromSize(aSize Size) unsafe.Pointer {
 	return _NSStringFromSize(aSize)
-}
+}/* debug [functions.gen.go/function]: NSStringFromSize */
+
+// Returns the path of the temporary directory for the current user.
+//
+// Added in macOS 10.0.
+// Returns the path of the temporary directory for the current user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTemporaryDirectory()
+func NSTemporaryDirectory() unsafe.Pointer {
+	return _NSTemporaryDirectory()
+}/* debug [functions.gen.go/function]: NSTemporaryDirectory */
 
 // Returns the union of the specified ranges.
 //
@@ -1471,7 +1539,7 @@ func NSStringFromSize(aSize Size) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnionRange(_:_:)
 func NSUnionRange(range1 Range, range2 Range) Range {
 	return _NSUnionRange(range1, range2)
-}
+}/* debug [functions.gen.go/function]: NSUnionRange */
 
 // Calculates the union of two rectangles.
 //
@@ -1482,7 +1550,18 @@ func NSUnionRange(range1 Range, range2 Range) Range {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUnionRect(_:_:)
 func NSUnionRect(aRect Rect, bRect Rect) Rect {
 	return _NSUnionRect(aRect, bRect)
-}
+}/* debug [functions.gen.go/function]: NSUnionRect */
+
+// Returns the logon name of the current user.
+//
+// Added in macOS 10.0.
+// Returns the logon name of the current user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserName()
+func NSUserName() unsafe.Pointer {
+	return _NSUserName()
+}/* debug [functions.gen.go/function]: NSUserName */
 
 // Allocates memory in a zone.
 //
@@ -1493,7 +1572,7 @@ func NSUnionRect(aRect Rect, bRect Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneCalloc
 func NSZoneCalloc(zone unsafe.Pointer, numElems uint, byteSize uint) unsafe.Pointer {
 	return _NSZoneCalloc(zone, numElems, byteSize)
-}
+}/* debug [functions.gen.go/function]: NSZoneCalloc */
 
 // Deallocates a block of memory in the specified zone.
 //
@@ -1504,7 +1583,7 @@ func NSZoneCalloc(zone unsafe.Pointer, numElems uint, byteSize uint) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneFree
 func NSZoneFree(zone unsafe.Pointer, ptr unsafe.Pointer) {
 	_NSZoneFree(zone, ptr)
-}
+}/* debug [functions.gen.go/function]: NSZoneFree */
 
 // Gets the zone for a given block of memory.
 //
@@ -1515,7 +1594,7 @@ func NSZoneFree(zone unsafe.Pointer, ptr unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneFromPointer
 func NSZoneFromPointer(ptr unsafe.Pointer) unsafe.Pointer {
 	return _NSZoneFromPointer(ptr)
-}
+}/* debug [functions.gen.go/function]: NSZoneFromPointer */
 
 // Allocates memory in a zone.
 //
@@ -1526,7 +1605,7 @@ func NSZoneFromPointer(ptr unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneMalloc
 func NSZoneMalloc(zone unsafe.Pointer, size uint) unsafe.Pointer {
 	return _NSZoneMalloc(zone, size)
-}
+}/* debug [functions.gen.go/function]: NSZoneMalloc */
 
 // Returns the name of the specified zone.
 //
@@ -1537,7 +1616,7 @@ func NSZoneMalloc(zone unsafe.Pointer, size uint) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneName
 func NSZoneName(zone unsafe.Pointer) unsafe.Pointer {
 	return _NSZoneName(zone)
-}
+}/* debug [functions.gen.go/function]: NSZoneName */
 
 // Allocates memory in a zone.
 //
@@ -1548,7 +1627,7 @@ func NSZoneName(zone unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSZoneRealloc
 func NSZoneRealloc(zone unsafe.Pointer, ptr unsafe.Pointer, size uint) unsafe.Pointer {
 	return _NSZoneRealloc(zone, ptr, size)
-}
+}/* debug [functions.gen.go/function]: NSZoneRealloc */
 
 // Returns the next object from the coder.
 //
@@ -1561,7 +1640,8 @@ func NSZoneRealloc(zone unsafe.Pointer, ptr unsafe.Pointer, size uint) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NXReadNSObjectFromCoder
 func NXReadNSObjectFromCoder(decoder unsafe.Pointer) unsafe.Pointer {
 	return _NXReadNSObjectFromCoder(decoder)
-}
+}/* debug [functions.gen.go/function]: NXReadNSObjectFromCoder */
+
 
 
 

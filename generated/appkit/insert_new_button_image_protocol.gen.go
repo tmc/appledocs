@@ -15,3 +15,4 @@ var insertNewButtonImageProtocol *objc.Protocol
 func init() {
 	insertNewButtonImageProtocol = objc.GetProtocol("insertNewButtonImage:")
 }
+

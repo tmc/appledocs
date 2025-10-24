@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // KeystoneCorrectionVerticalProtocol is the CIKeystoneCorrectionVertical protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIKeystoneCorrectionVertical.
 var KeystoneCorrectionVerticalProtocol *objc.Protocol
 
 func init() {
 	KeystoneCorrectionVerticalProtocol = objc.GetProtocol("CIKeystoneCorrectionVertical")
 }
+

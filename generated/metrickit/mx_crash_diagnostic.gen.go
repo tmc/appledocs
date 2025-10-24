@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MXCrashDiagnostic */
+
+
+/* debug [class_header]: Header for MXCrashDiagnostic */
 // The class instance for the [MXCrashDiagnostic] class.
 var (
 	MXCrashDiagnosticClass     _MXCrashDiagnosticClass
@@ -26,10 +30,16 @@ func getMXCrashDiagnosticClass() _MXCrashDiagnosticClass {
 type _MXCrashDiagnosticClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MXCrashDiagnostic */
 // An interface definition for the [MXCrashDiagnostic] class.
 type IMXCrashDiagnostic interface {
 	IMXDiagnostic
+	
+/* debug [class_interface_properties]: Properties for MXCrashDiagnostic */
 	// properties:
 	CallStackTree() IMXCallStackTree
 	ExceptionCode() objc.IObject /* cross-framework: NSNumber */
@@ -38,29 +48,19 @@ type IMXCrashDiagnostic interface {
 	Signal() objc.IObject /* cross-framework: NSNumber */
 	TerminationReason() objc.IObject /* cross-framework: NSString */
 	VirtualMemoryRegionInfo() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MXCrashDiagnostic */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object representing a diagnostic report for an app crash.
 
 
-// An object representing a diagnostic report for an app crash.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic
-type MXCrashDiagnostic struct {
-	MXDiagnostic
-}
-
-// MXCrashDiagnosticFrom constructs a [MXCrashDiagnostic] from an unsafe.Pointer.
-//
-// An object representing a diagnostic report for an app crash.
-func MXCrashDiagnosticFrom(ptr unsafe.Pointer) MXCrashDiagnostic {
-	return MXCrashDiagnostic{
-		MXDiagnostic: MXDiagnosticFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MXCrashDiagnostic */
 // Alloc allocates a new instance without initialization.
 func (mc _MXCrashDiagnosticClass) Alloc() MXCrashDiagnostic {
 	rv := objc.Send[MXCrashDiagnostic](objc.ID(mc.class), objc.Sel("alloc"))
@@ -68,7 +68,6 @@ func (mc _MXCrashDiagnosticClass) Alloc() MXCrashDiagnostic {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MXCrashDiagnosticClass) New() MXCrashDiagnostic {
 	rv := objc.Send[MXCrashDiagnostic](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,8 +90,54 @@ func (m_ MXCrashDiagnostic) Autorelease() MXCrashDiagnostic {
 func NewMXCrashDiagnostic() MXCrashDiagnostic {
 	return getMXCrashDiagnosticClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MXCrashDiagnostic */
+// An object representing a diagnostic report for an app crash.
+
+
+// An object representing a diagnostic report for an app crash.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXCrashDiagnostic
+type MXCrashDiagnostic struct {
+	MXDiagnostic
+}
+
+// MXCrashDiagnosticFrom constructs a [MXCrashDiagnostic] from an unsafe.Pointer.
+//
+// An object representing a diagnostic report for an app crash.
+func MXCrashDiagnosticFrom(ptr unsafe.Pointer) MXCrashDiagnostic {
+	return MXCrashDiagnostic{
+		MXDiagnostic: MXDiagnosticFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MXCrashDiagnostic *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MXCrashDiagnostic */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MXCrashDiagnostic */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MXCrashDiagnostic */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MXCrashDiagnostic */
 
 // The call stack for the crash.
 //
@@ -101,7 +146,7 @@ func NewMXCrashDiagnostic() MXCrashDiagnostic {
 func (m_ MXCrashDiagnostic) CallStackTree() IMXCallStackTree {
 	rv := objc.Send[MXCallStackTree](m_.ID, objc.Sel("callStackTree"))
 	return rv
-}
+}/* debug [instance_properties/getter]: callStackTree */
 
 
 // The encoded processor-specific information for the crash.
@@ -111,7 +156,7 @@ func (m_ MXCrashDiagnostic) CallStackTree() IMXCallStackTree {
 func (m_ MXCrashDiagnostic) ExceptionCode() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("exceptionCode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: exceptionCode */
 
 
 // [Full Topic]
@@ -119,7 +164,7 @@ func (m_ MXCrashDiagnostic) ExceptionCode() objc.IObject /* cross-framework: NSN
 func (m_ MXCrashDiagnostic) ExceptionReason() IMXCrashDiagnosticObjectiveCExceptionReason {
 	rv := objc.Send[MXCrashDiagnosticObjectiveCExceptionReason](m_.ID, objc.Sel("exceptionReason"))
 	return rv
-}
+}/* debug [instance_properties/getter]: exceptionReason */
 
 
 // The Mach exception type of the crash.
@@ -129,7 +174,7 @@ func (m_ MXCrashDiagnostic) ExceptionReason() IMXCrashDiagnosticObjectiveCExcept
 func (m_ MXCrashDiagnostic) ExceptionType() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("exceptionType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: exceptionType */
 
 
 // The signal associated with the crash.
@@ -139,7 +184,7 @@ func (m_ MXCrashDiagnostic) ExceptionType() objc.IObject /* cross-framework: NSN
 func (m_ MXCrashDiagnostic) Signal() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("signal"))
 	return rv
-}
+}/* debug [instance_properties/getter]: signal */
 
 
 // The reason the app was terminated as a human-readable string.
@@ -149,7 +194,7 @@ func (m_ MXCrashDiagnostic) Signal() objc.IObject /* cross-framework: NSNumber *
 func (m_ MXCrashDiagnostic) TerminationReason() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("terminationReason"))
 	return rv
-}
+}/* debug [instance_properties/getter]: terminationReason */
 
 
 // Information about the region of memory an app accessed incorrectly, resulting in a bad-access crash.
@@ -159,7 +204,12 @@ func (m_ MXCrashDiagnostic) TerminationReason() objc.IObject /* cross-framework:
 func (m_ MXCrashDiagnostic) VirtualMemoryRegionInfo() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("virtualMemoryRegionInfo"))
 	return rv
-}
+}/* debug [instance_properties/getter]: virtualMemoryRegionInfo */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MXCrashDiagnostic */
 
 
 

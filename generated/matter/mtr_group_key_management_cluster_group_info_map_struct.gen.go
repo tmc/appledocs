@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRGroupKeyManagementClusterGroupInfoMapStruct interface {
 	SetGroupName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterGroupInfoMapStruct
@@ -87,8 +85,6 @@ func NewMTRGroupKeyManagementClusterGroupInfoMapStruct() MTRGroupKeyManagementCl
 	return getMTRGroupKeyManagementClusterGroupInfoMapStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/endpoints
 func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) Endpoints() unsafe.Pointer {
@@ -96,13 +92,11 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) Endpoints() unsafe.Poin
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/endpoints
 func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetEndpoints(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoints:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/fabricindex
@@ -111,13 +105,11 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) FabricIndex() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/fabricindex
 func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupid
@@ -126,13 +118,11 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupId() objc.IObject 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupid
 func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
@@ -141,12 +131,8 @@ func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) GroupName() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupinfomapstruct/groupname
 func (m_ MTRGroupKeyManagementClusterGroupInfoMapStruct) SetGroupName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), value)
 }
-
-
-

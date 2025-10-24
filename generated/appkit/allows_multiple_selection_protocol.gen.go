@@ -15,3 +15,4 @@ var allowsMultipleSelectionProtocol *objc.Protocol
 func init() {
 	allowsMultipleSelectionProtocol = objc.GetProtocol("allowsMultipleSelection")
 }
+

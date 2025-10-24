@@ -2,6 +2,7 @@
 
 package network
 
+/* debug [functions.gen.go]: Generating 417 functions for Network */
 import (
 	"unsafe"
 
@@ -10,7 +11,7 @@ import (
 )
 
 
-// Network Functions (413 total)
+// Network Functions (417 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -59,7 +60,6 @@ var (
 	_nw_connection_get_maximum_datagram_size func(Nw_connection_t) uint32
 	_nw_connection_group_cancel func(Nw_connection_group_t)
 	_nw_connection_group_copy_descriptor func(Nw_connection_group_t) Nw_group_descriptor_t
-	_nw_connection_group_copy_local_endpoint_for_message func(Nw_connection_group_t, Nw_content_context_t) Nw_endpoint_t
 	_nw_connection_group_copy_parameters func(Nw_connection_group_t) Nw_parameters_t
 	_nw_connection_group_copy_path_for_message func(Nw_connection_group_t, Nw_content_context_t) Nw_path_t
 	_nw_connection_group_copy_protocol_metadata func(Nw_connection_group_t, Nw_protocol_definition_t) Nw_protocol_metadata_t
@@ -133,7 +133,7 @@ var (
 	_nw_endpoint_get_signature func(Nw_endpoint_t, unsafe.Pointer) unsafe.Pointer
 	_nw_endpoint_get_type func(Nw_endpoint_t) unsafe.Pointer
 	_nw_endpoint_get_url func(Nw_endpoint_t) unsafe.Pointer
-	_nw_error_copy_cf_error func(Nw_error_t) unsafe.Pointer
+	_nw_error_copy_cf_error func(Nw_error_t) ErrorRef
 	_nw_error_get_error_code func(Nw_error_t) int
 	_nw_error_get_error_domain func(Nw_error_t) unsafe.Pointer
 	_nw_establishment_report_copy_proxy_endpoint func(Nw_establishment_report_t) Nw_endpoint_t
@@ -155,7 +155,6 @@ var (
 	_nw_ethernet_channel_set_state_changed_handler func(Nw_ethernet_channel_t, unsafe.Pointer)
 	_nw_ethernet_channel_start func(Nw_ethernet_channel_t)
 	_nw_framer_async func(Nw_framer_t, unsafe.Pointer)
-	_nw_framer_copy_local_endpoint func(Nw_framer_t) Nw_endpoint_t
 	_nw_framer_copy_options func(Nw_framer_t) Nw_protocol_options_t
 	_nw_framer_copy_parameters func(Nw_framer_t) Nw_parameters_t
 	_nw_framer_copy_remote_endpoint func(Nw_framer_t) Nw_endpoint_t
@@ -204,9 +203,7 @@ var (
 	_nw_ip_options_set_disable_fragmentation func(Nw_protocol_options_t, bool)
 	_nw_ip_options_set_disable_multicast_loopback func(Nw_protocol_options_t, bool)
 	_nw_ip_options_set_hop_limit func(Nw_protocol_options_t, uint8)
-	_nw_ip_options_set_local_address_preference func(Nw_protocol_options_t, unsafe.Pointer)
 	_nw_ip_options_set_use_minimum_mtu func(Nw_protocol_options_t, bool)
-	_nw_ip_options_set_version func(Nw_protocol_options_t, unsafe.Pointer)
 	_nw_listener_cancel func(Nw_listener_t)
 	_nw_listener_create func(Nw_parameters_t) Nw_listener_t
 	_nw_listener_create_with_connection func(Nw_connection_t, Nw_parameters_t) Nw_listener_t
@@ -229,7 +226,6 @@ var (
 	_nw_parameters_clear_prohibited_interfaces func(Nw_parameters_t)
 	_nw_parameters_copy func(Nw_parameters_t) Nw_parameters_t
 	_nw_parameters_copy_default_protocol_stack func(Nw_parameters_t) Nw_protocol_stack_t
-	_nw_parameters_copy_local_endpoint func(Nw_parameters_t) Nw_endpoint_t
 	_nw_parameters_copy_required_interface func(Nw_parameters_t) Nw_interface_t
 	_nw_parameters_create func() Nw_parameters_t
 	_nw_parameters_create_application_service func() Nw_parameters_t
@@ -238,17 +234,15 @@ var (
 	_nw_parameters_create_secure_tcp func(unsafe.Pointer, unsafe.Pointer) Nw_parameters_t
 	_nw_parameters_create_secure_udp func(unsafe.Pointer, unsafe.Pointer) Nw_parameters_t
 	_nw_parameters_get_allow_ultra_constrained func(Nw_parameters_t) bool
-	_nw_parameters_get_attribution func(Nw_parameters_t) unsafe.Pointer
+	_nw_parameters_get_attribution func(Nw_parameters_t) nw_parameters_attribution_t
 	_nw_parameters_get_expired_dns_behavior func(Nw_parameters_t) unsafe.Pointer
 	_nw_parameters_get_fast_open_enabled func(Nw_parameters_t) bool
 	_nw_parameters_get_include_peer_to_peer func(Nw_parameters_t) bool
-	_nw_parameters_get_local_only func(Nw_parameters_t) bool
 	_nw_parameters_get_multipath_service func(Nw_parameters_t) unsafe.Pointer
 	_nw_parameters_get_prefer_no_proxy func(Nw_parameters_t) bool
 	_nw_parameters_get_prohibit_constrained func(Nw_parameters_t) bool
 	_nw_parameters_get_prohibit_expensive func(Nw_parameters_t) bool
 	_nw_parameters_get_required_interface_type func(Nw_parameters_t) unsafe.Pointer
-	_nw_parameters_get_reuse_local_address func(Nw_parameters_t) bool
 	_nw_parameters_get_service_class func(Nw_parameters_t) unsafe.Pointer
 	_nw_parameters_iterate_prohibited_interface_types func(Nw_parameters_t, unsafe.Pointer)
 	_nw_parameters_iterate_prohibited_interfaces func(Nw_parameters_t, unsafe.Pointer)
@@ -257,12 +251,10 @@ var (
 	_nw_parameters_require_interface func(Nw_parameters_t, Nw_interface_t)
 	_nw_parameters_requires_dnssec_validation func(Nw_parameters_t) bool
 	_nw_parameters_set_allow_ultra_constrained func(Nw_parameters_t, bool)
-	_nw_parameters_set_attribution func(Nw_parameters_t, unsafe.Pointer)
+	_nw_parameters_set_attribution func(Nw_parameters_t, nw_parameters_attribution_t)
 	_nw_parameters_set_expired_dns_behavior func(Nw_parameters_t, unsafe.Pointer)
 	_nw_parameters_set_fast_open_enabled func(Nw_parameters_t, bool)
 	_nw_parameters_set_include_peer_to_peer func(Nw_parameters_t, bool)
-	_nw_parameters_set_local_endpoint func(Nw_parameters_t, Nw_endpoint_t)
-	_nw_parameters_set_local_only func(Nw_parameters_t, bool)
 	_nw_parameters_set_multipath_service func(Nw_parameters_t, unsafe.Pointer)
 	_nw_parameters_set_prefer_no_proxy func(Nw_parameters_t, bool)
 	_nw_parameters_set_privacy_context func(Nw_parameters_t, Nw_privacy_context_t)
@@ -270,9 +262,7 @@ var (
 	_nw_parameters_set_prohibit_expensive func(Nw_parameters_t, bool)
 	_nw_parameters_set_required_interface_type func(Nw_parameters_t, unsafe.Pointer)
 	_nw_parameters_set_requires_dnssec_validation func(Nw_parameters_t, bool)
-	_nw_parameters_set_reuse_local_address func(Nw_parameters_t, bool)
 	_nw_parameters_set_service_class func(Nw_parameters_t, unsafe.Pointer)
-	_nw_path_copy_effective_local_endpoint func(Nw_path_t) Nw_endpoint_t
 	_nw_path_copy_effective_remote_endpoint func(Nw_path_t) Nw_endpoint_t
 	_nw_path_enumerate_gateways func(Nw_path_t, unsafe.Pointer)
 	_nw_path_enumerate_interfaces func(Nw_path_t, unsafe.Pointer)
@@ -296,6 +286,12 @@ var (
 	_nw_path_monitor_set_update_handler func(Nw_path_monitor_t, unsafe.Pointer)
 	_nw_path_monitor_start func(Nw_path_monitor_t)
 	_nw_path_uses_interface_type func(Nw_path_t, unsafe.Pointer) bool
+	_nw_privacy_context_add_proxy func(Nw_privacy_context_t, Nw_proxy_config_t)
+	_nw_privacy_context_clear_proxies func(Nw_privacy_context_t)
+	_nw_privacy_context_create func(unsafe.Pointer) Nw_privacy_context_t
+	_nw_privacy_context_disable_logging func(Nw_privacy_context_t)
+	_nw_privacy_context_flush_cache func(Nw_privacy_context_t)
+	_nw_privacy_context_require_encrypted_name_resolution func(Nw_privacy_context_t, bool, Nw_resolver_config_t)
 	_nw_protocol_copy_ip_definition func() Nw_protocol_definition_t
 	_nw_protocol_copy_quic_definition func() Nw_protocol_definition_t
 	_nw_protocol_copy_tcp_definition func() Nw_protocol_definition_t
@@ -311,16 +307,27 @@ var (
 	_nw_protocol_metadata_is_tls func(Nw_protocol_metadata_t) bool
 	_nw_protocol_metadata_is_udp func(Nw_protocol_metadata_t) bool
 	_nw_protocol_metadata_is_ws func(Nw_protocol_metadata_t) bool
+	_nw_protocol_options_copy_definition func(Nw_protocol_options_t) Nw_protocol_definition_t
 	_nw_protocol_options_is_quic func(Nw_protocol_options_t) bool
+	_nw_protocol_stack_clear_application_protocols func(Nw_protocol_stack_t)
+	_nw_protocol_stack_copy_internet_protocol func(Nw_protocol_stack_t) Nw_protocol_options_t
 	_nw_protocol_stack_copy_transport_protocol func(Nw_protocol_stack_t) Nw_protocol_options_t
+	_nw_protocol_stack_iterate_application_protocols func(Nw_protocol_stack_t, unsafe.Pointer)
 	_nw_protocol_stack_prepend_application_protocol func(Nw_protocol_stack_t, Nw_protocol_options_t)
 	_nw_protocol_stack_set_transport_protocol func(Nw_protocol_stack_t, Nw_protocol_options_t)
-	_nw_proxy_config_add_excluded_domain func(unsafe.Pointer, unsafe.Pointer)
-	_nw_proxy_config_add_match_domain func(unsafe.Pointer, unsafe.Pointer)
-	_nw_proxy_config_clear_excluded_domains func(unsafe.Pointer)
-	_nw_proxy_config_clear_match_domains func(unsafe.Pointer)
-	_nw_proxy_config_enumerate_excluded_domains func(unsafe.Pointer, unsafe.Pointer)
-	_nw_proxy_config_enumerate_match_domains func(unsafe.Pointer, unsafe.Pointer)
+	_nw_proxy_config_add_excluded_domain func(Nw_proxy_config_t, unsafe.Pointer)
+	_nw_proxy_config_add_match_domain func(Nw_proxy_config_t, unsafe.Pointer)
+	_nw_proxy_config_clear_excluded_domains func(Nw_proxy_config_t)
+	_nw_proxy_config_clear_match_domains func(Nw_proxy_config_t)
+	_nw_proxy_config_create_http_connect func(Nw_endpoint_t, Nw_protocol_options_t) Nw_proxy_config_t
+	_nw_proxy_config_create_oblivious_http func(Nw_relay_hop_t, unsafe.Pointer, unsafe.Pointer, uintptr) Nw_proxy_config_t
+	_nw_proxy_config_create_relay func(Nw_relay_hop_t, Nw_relay_hop_t) Nw_proxy_config_t
+	_nw_proxy_config_create_socksv5 func(Nw_endpoint_t) Nw_proxy_config_t
+	_nw_proxy_config_enumerate_excluded_domains func(Nw_proxy_config_t, unsafe.Pointer)
+	_nw_proxy_config_enumerate_match_domains func(Nw_proxy_config_t, unsafe.Pointer)
+	_nw_proxy_config_get_failover_allowed func(Nw_proxy_config_t) bool
+	_nw_proxy_config_set_failover_allowed func(Nw_proxy_config_t, bool)
+	_nw_proxy_config_set_username_and_password func(Nw_proxy_config_t, unsafe.Pointer, unsafe.Pointer)
 	_nw_quic_add_tls_application_protocol func(Nw_protocol_options_t, unsafe.Pointer)
 	_nw_quic_copy_sec_protocol_metadata func(Nw_protocol_metadata_t) unsafe.Pointer
 	_nw_quic_copy_sec_protocol_options func(Nw_protocol_options_t) unsafe.Pointer
@@ -329,14 +336,11 @@ var (
 	_nw_quic_get_application_error_reason func(Nw_protocol_metadata_t) unsafe.Pointer
 	_nw_quic_get_idle_timeout func(Nw_protocol_options_t) uint32
 	_nw_quic_get_initial_max_data func(Nw_protocol_options_t) uint64
-	_nw_quic_get_initial_max_stream_data_bidirectional_local func(Nw_protocol_options_t) uint64
 	_nw_quic_get_initial_max_stream_data_bidirectional_remote func(Nw_protocol_options_t) uint64
 	_nw_quic_get_initial_max_stream_data_unidirectional func(Nw_protocol_options_t) uint64
 	_nw_quic_get_initial_max_streams_bidirectional func(Nw_protocol_options_t) uint64
 	_nw_quic_get_initial_max_streams_unidirectional func(Nw_protocol_options_t) uint64
 	_nw_quic_get_keepalive_interval func(Nw_protocol_metadata_t) uint16
-	_nw_quic_get_local_max_streams_bidirectional func(Nw_protocol_metadata_t) uint64
-	_nw_quic_get_local_max_streams_unidirectional func(Nw_protocol_metadata_t) uint64
 	_nw_quic_get_max_datagram_frame_size func(Nw_protocol_options_t) uint16
 	_nw_quic_get_max_udp_payload_size func(Nw_protocol_options_t) uint16
 	_nw_quic_get_remote_idle_timeout func(Nw_protocol_metadata_t) uint64
@@ -351,19 +355,18 @@ var (
 	_nw_quic_set_application_error func(Nw_protocol_metadata_t, uint64, unsafe.Pointer)
 	_nw_quic_set_idle_timeout func(Nw_protocol_options_t, uint32)
 	_nw_quic_set_initial_max_data func(Nw_protocol_options_t, uint64)
-	_nw_quic_set_initial_max_stream_data_bidirectional_local func(Nw_protocol_options_t, uint64)
 	_nw_quic_set_initial_max_stream_data_bidirectional_remote func(Nw_protocol_options_t, uint64)
 	_nw_quic_set_initial_max_stream_data_unidirectional func(Nw_protocol_options_t, uint64)
 	_nw_quic_set_initial_max_streams_bidirectional func(Nw_protocol_options_t, uint64)
 	_nw_quic_set_initial_max_streams_unidirectional func(Nw_protocol_options_t, uint64)
 	_nw_quic_set_keepalive_interval func(Nw_protocol_metadata_t, uint16)
-	_nw_quic_set_local_max_streams_bidirectional func(Nw_protocol_metadata_t, uint64)
-	_nw_quic_set_local_max_streams_unidirectional func(Nw_protocol_metadata_t, uint64)
 	_nw_quic_set_max_datagram_frame_size func(Nw_protocol_options_t, uint16)
 	_nw_quic_set_max_udp_payload_size func(Nw_protocol_options_t, uint16)
 	_nw_quic_set_stream_application_error func(Nw_protocol_metadata_t, uint64)
 	_nw_quic_set_stream_is_datagram func(Nw_protocol_options_t, bool)
 	_nw_quic_set_stream_is_unidirectional func(Nw_protocol_options_t, bool)
+	_nw_relay_hop_add_additional_http_header_field func(Nw_relay_hop_t, unsafe.Pointer, unsafe.Pointer)
+	_nw_relay_hop_create func(Nw_endpoint_t, Nw_endpoint_t, Nw_protocol_options_t) Nw_relay_hop_t
 	_nw_release func(unsafe.Pointer)
 	_nw_resolution_report_copy_preferred_endpoint func(Nw_resolution_report_t) Nw_endpoint_t
 	_nw_resolution_report_copy_successful_endpoint func(Nw_resolution_report_t) Nw_endpoint_t
@@ -371,6 +374,9 @@ var (
 	_nw_resolution_report_get_milliseconds func(Nw_resolution_report_t) uint64
 	_nw_resolution_report_get_protocol func(Nw_resolution_report_t) unsafe.Pointer
 	_nw_resolution_report_get_source func(Nw_resolution_report_t) unsafe.Pointer
+	_nw_resolver_config_add_server_address func(Nw_resolver_config_t, Nw_endpoint_t)
+	_nw_resolver_config_create_https func(Nw_endpoint_t) Nw_resolver_config_t
+	_nw_resolver_config_create_tls func(Nw_endpoint_t) Nw_resolver_config_t
 	_nw_retain func(unsafe.Pointer) unsafe.Pointer
 	_nw_tcp_create_options func() Nw_protocol_options_t
 	_nw_tcp_get_available_receive_buffer func(Nw_protocol_metadata_t) uint32
@@ -384,7 +390,6 @@ var (
 	_nw_tcp_options_set_keepalive_idle_time func(Nw_protocol_options_t, uint32)
 	_nw_tcp_options_set_keepalive_interval func(Nw_protocol_options_t, uint32)
 	_nw_tcp_options_set_maximum_segment_size func(Nw_protocol_options_t, uint32)
-	_nw_tcp_options_set_multipath_force_version func(Nw_protocol_options_t, unsafe.Pointer)
 	_nw_tcp_options_set_no_delay func(Nw_protocol_options_t, bool)
 	_nw_tcp_options_set_no_options func(Nw_protocol_options_t, bool)
 	_nw_tcp_options_set_no_push func(Nw_protocol_options_t, bool)
@@ -479,7 +484,6 @@ func init() {
 	tryRegister(&_nw_connection_get_maximum_datagram_size, lib, "nw_connection_get_maximum_datagram_size")
 	tryRegister(&_nw_connection_group_cancel, lib, "nw_connection_group_cancel")
 	tryRegister(&_nw_connection_group_copy_descriptor, lib, "nw_connection_group_copy_descriptor")
-	tryRegister(&_nw_connection_group_copy_local_endpoint_for_message, lib, "nw_connection_group_copy_local_endpoint_for_message")
 	tryRegister(&_nw_connection_group_copy_parameters, lib, "nw_connection_group_copy_parameters")
 	tryRegister(&_nw_connection_group_copy_path_for_message, lib, "nw_connection_group_copy_path_for_message")
 	tryRegister(&_nw_connection_group_copy_protocol_metadata, lib, "nw_connection_group_copy_protocol_metadata")
@@ -575,7 +579,6 @@ func init() {
 	tryRegister(&_nw_ethernet_channel_set_state_changed_handler, lib, "nw_ethernet_channel_set_state_changed_handler")
 	tryRegister(&_nw_ethernet_channel_start, lib, "nw_ethernet_channel_start")
 	tryRegister(&_nw_framer_async, lib, "nw_framer_async")
-	tryRegister(&_nw_framer_copy_local_endpoint, lib, "nw_framer_copy_local_endpoint")
 	tryRegister(&_nw_framer_copy_options, lib, "nw_framer_copy_options")
 	tryRegister(&_nw_framer_copy_parameters, lib, "nw_framer_copy_parameters")
 	tryRegister(&_nw_framer_copy_remote_endpoint, lib, "nw_framer_copy_remote_endpoint")
@@ -624,9 +627,7 @@ func init() {
 	tryRegister(&_nw_ip_options_set_disable_fragmentation, lib, "nw_ip_options_set_disable_fragmentation")
 	tryRegister(&_nw_ip_options_set_disable_multicast_loopback, lib, "nw_ip_options_set_disable_multicast_loopback")
 	tryRegister(&_nw_ip_options_set_hop_limit, lib, "nw_ip_options_set_hop_limit")
-	tryRegister(&_nw_ip_options_set_local_address_preference, lib, "nw_ip_options_set_local_address_preference")
 	tryRegister(&_nw_ip_options_set_use_minimum_mtu, lib, "nw_ip_options_set_use_minimum_mtu")
-	tryRegister(&_nw_ip_options_set_version, lib, "nw_ip_options_set_version")
 	tryRegister(&_nw_listener_cancel, lib, "nw_listener_cancel")
 	tryRegister(&_nw_listener_create, lib, "nw_listener_create")
 	tryRegister(&_nw_listener_create_with_connection, lib, "nw_listener_create_with_connection")
@@ -649,7 +650,6 @@ func init() {
 	tryRegister(&_nw_parameters_clear_prohibited_interfaces, lib, "nw_parameters_clear_prohibited_interfaces")
 	tryRegister(&_nw_parameters_copy, lib, "nw_parameters_copy")
 	tryRegister(&_nw_parameters_copy_default_protocol_stack, lib, "nw_parameters_copy_default_protocol_stack")
-	tryRegister(&_nw_parameters_copy_local_endpoint, lib, "nw_parameters_copy_local_endpoint")
 	tryRegister(&_nw_parameters_copy_required_interface, lib, "nw_parameters_copy_required_interface")
 	tryRegister(&_nw_parameters_create, lib, "nw_parameters_create")
 	tryRegister(&_nw_parameters_create_application_service, lib, "nw_parameters_create_application_service")
@@ -662,13 +662,11 @@ func init() {
 	tryRegister(&_nw_parameters_get_expired_dns_behavior, lib, "nw_parameters_get_expired_dns_behavior")
 	tryRegister(&_nw_parameters_get_fast_open_enabled, lib, "nw_parameters_get_fast_open_enabled")
 	tryRegister(&_nw_parameters_get_include_peer_to_peer, lib, "nw_parameters_get_include_peer_to_peer")
-	tryRegister(&_nw_parameters_get_local_only, lib, "nw_parameters_get_local_only")
 	tryRegister(&_nw_parameters_get_multipath_service, lib, "nw_parameters_get_multipath_service")
 	tryRegister(&_nw_parameters_get_prefer_no_proxy, lib, "nw_parameters_get_prefer_no_proxy")
 	tryRegister(&_nw_parameters_get_prohibit_constrained, lib, "nw_parameters_get_prohibit_constrained")
 	tryRegister(&_nw_parameters_get_prohibit_expensive, lib, "nw_parameters_get_prohibit_expensive")
 	tryRegister(&_nw_parameters_get_required_interface_type, lib, "nw_parameters_get_required_interface_type")
-	tryRegister(&_nw_parameters_get_reuse_local_address, lib, "nw_parameters_get_reuse_local_address")
 	tryRegister(&_nw_parameters_get_service_class, lib, "nw_parameters_get_service_class")
 	tryRegister(&_nw_parameters_iterate_prohibited_interface_types, lib, "nw_parameters_iterate_prohibited_interface_types")
 	tryRegister(&_nw_parameters_iterate_prohibited_interfaces, lib, "nw_parameters_iterate_prohibited_interfaces")
@@ -681,8 +679,6 @@ func init() {
 	tryRegister(&_nw_parameters_set_expired_dns_behavior, lib, "nw_parameters_set_expired_dns_behavior")
 	tryRegister(&_nw_parameters_set_fast_open_enabled, lib, "nw_parameters_set_fast_open_enabled")
 	tryRegister(&_nw_parameters_set_include_peer_to_peer, lib, "nw_parameters_set_include_peer_to_peer")
-	tryRegister(&_nw_parameters_set_local_endpoint, lib, "nw_parameters_set_local_endpoint")
-	tryRegister(&_nw_parameters_set_local_only, lib, "nw_parameters_set_local_only")
 	tryRegister(&_nw_parameters_set_multipath_service, lib, "nw_parameters_set_multipath_service")
 	tryRegister(&_nw_parameters_set_prefer_no_proxy, lib, "nw_parameters_set_prefer_no_proxy")
 	tryRegister(&_nw_parameters_set_privacy_context, lib, "nw_parameters_set_privacy_context")
@@ -690,9 +686,7 @@ func init() {
 	tryRegister(&_nw_parameters_set_prohibit_expensive, lib, "nw_parameters_set_prohibit_expensive")
 	tryRegister(&_nw_parameters_set_required_interface_type, lib, "nw_parameters_set_required_interface_type")
 	tryRegister(&_nw_parameters_set_requires_dnssec_validation, lib, "nw_parameters_set_requires_dnssec_validation")
-	tryRegister(&_nw_parameters_set_reuse_local_address, lib, "nw_parameters_set_reuse_local_address")
 	tryRegister(&_nw_parameters_set_service_class, lib, "nw_parameters_set_service_class")
-	tryRegister(&_nw_path_copy_effective_local_endpoint, lib, "nw_path_copy_effective_local_endpoint")
 	tryRegister(&_nw_path_copy_effective_remote_endpoint, lib, "nw_path_copy_effective_remote_endpoint")
 	tryRegister(&_nw_path_enumerate_gateways, lib, "nw_path_enumerate_gateways")
 	tryRegister(&_nw_path_enumerate_interfaces, lib, "nw_path_enumerate_interfaces")
@@ -716,6 +710,12 @@ func init() {
 	tryRegister(&_nw_path_monitor_set_update_handler, lib, "nw_path_monitor_set_update_handler")
 	tryRegister(&_nw_path_monitor_start, lib, "nw_path_monitor_start")
 	tryRegister(&_nw_path_uses_interface_type, lib, "nw_path_uses_interface_type")
+	tryRegister(&_nw_privacy_context_add_proxy, lib, "nw_privacy_context_add_proxy")
+	tryRegister(&_nw_privacy_context_clear_proxies, lib, "nw_privacy_context_clear_proxies")
+	tryRegister(&_nw_privacy_context_create, lib, "nw_privacy_context_create")
+	tryRegister(&_nw_privacy_context_disable_logging, lib, "nw_privacy_context_disable_logging")
+	tryRegister(&_nw_privacy_context_flush_cache, lib, "nw_privacy_context_flush_cache")
+	tryRegister(&_nw_privacy_context_require_encrypted_name_resolution, lib, "nw_privacy_context_require_encrypted_name_resolution")
 	tryRegister(&_nw_protocol_copy_ip_definition, lib, "nw_protocol_copy_ip_definition")
 	tryRegister(&_nw_protocol_copy_quic_definition, lib, "nw_protocol_copy_quic_definition")
 	tryRegister(&_nw_protocol_copy_tcp_definition, lib, "nw_protocol_copy_tcp_definition")
@@ -731,16 +731,27 @@ func init() {
 	tryRegister(&_nw_protocol_metadata_is_tls, lib, "nw_protocol_metadata_is_tls")
 	tryRegister(&_nw_protocol_metadata_is_udp, lib, "nw_protocol_metadata_is_udp")
 	tryRegister(&_nw_protocol_metadata_is_ws, lib, "nw_protocol_metadata_is_ws")
+	tryRegister(&_nw_protocol_options_copy_definition, lib, "nw_protocol_options_copy_definition")
 	tryRegister(&_nw_protocol_options_is_quic, lib, "nw_protocol_options_is_quic")
+	tryRegister(&_nw_protocol_stack_clear_application_protocols, lib, "nw_protocol_stack_clear_application_protocols")
+	tryRegister(&_nw_protocol_stack_copy_internet_protocol, lib, "nw_protocol_stack_copy_internet_protocol")
 	tryRegister(&_nw_protocol_stack_copy_transport_protocol, lib, "nw_protocol_stack_copy_transport_protocol")
+	tryRegister(&_nw_protocol_stack_iterate_application_protocols, lib, "nw_protocol_stack_iterate_application_protocols")
 	tryRegister(&_nw_protocol_stack_prepend_application_protocol, lib, "nw_protocol_stack_prepend_application_protocol")
 	tryRegister(&_nw_protocol_stack_set_transport_protocol, lib, "nw_protocol_stack_set_transport_protocol")
 	tryRegister(&_nw_proxy_config_add_excluded_domain, lib, "nw_proxy_config_add_excluded_domain")
 	tryRegister(&_nw_proxy_config_add_match_domain, lib, "nw_proxy_config_add_match_domain")
 	tryRegister(&_nw_proxy_config_clear_excluded_domains, lib, "nw_proxy_config_clear_excluded_domains")
 	tryRegister(&_nw_proxy_config_clear_match_domains, lib, "nw_proxy_config_clear_match_domains")
+	tryRegister(&_nw_proxy_config_create_http_connect, lib, "nw_proxy_config_create_http_connect")
+	tryRegister(&_nw_proxy_config_create_oblivious_http, lib, "nw_proxy_config_create_oblivious_http")
+	tryRegister(&_nw_proxy_config_create_relay, lib, "nw_proxy_config_create_relay")
+	tryRegister(&_nw_proxy_config_create_socksv5, lib, "nw_proxy_config_create_socksv5")
 	tryRegister(&_nw_proxy_config_enumerate_excluded_domains, lib, "nw_proxy_config_enumerate_excluded_domains")
 	tryRegister(&_nw_proxy_config_enumerate_match_domains, lib, "nw_proxy_config_enumerate_match_domains")
+	tryRegister(&_nw_proxy_config_get_failover_allowed, lib, "nw_proxy_config_get_failover_allowed")
+	tryRegister(&_nw_proxy_config_set_failover_allowed, lib, "nw_proxy_config_set_failover_allowed")
+	tryRegister(&_nw_proxy_config_set_username_and_password, lib, "nw_proxy_config_set_username_and_password")
 	tryRegister(&_nw_quic_add_tls_application_protocol, lib, "nw_quic_add_tls_application_protocol")
 	tryRegister(&_nw_quic_copy_sec_protocol_metadata, lib, "nw_quic_copy_sec_protocol_metadata")
 	tryRegister(&_nw_quic_copy_sec_protocol_options, lib, "nw_quic_copy_sec_protocol_options")
@@ -749,14 +760,11 @@ func init() {
 	tryRegister(&_nw_quic_get_application_error_reason, lib, "nw_quic_get_application_error_reason")
 	tryRegister(&_nw_quic_get_idle_timeout, lib, "nw_quic_get_idle_timeout")
 	tryRegister(&_nw_quic_get_initial_max_data, lib, "nw_quic_get_initial_max_data")
-	tryRegister(&_nw_quic_get_initial_max_stream_data_bidirectional_local, lib, "nw_quic_get_initial_max_stream_data_bidirectional_local")
 	tryRegister(&_nw_quic_get_initial_max_stream_data_bidirectional_remote, lib, "nw_quic_get_initial_max_stream_data_bidirectional_remote")
 	tryRegister(&_nw_quic_get_initial_max_stream_data_unidirectional, lib, "nw_quic_get_initial_max_stream_data_unidirectional")
 	tryRegister(&_nw_quic_get_initial_max_streams_bidirectional, lib, "nw_quic_get_initial_max_streams_bidirectional")
 	tryRegister(&_nw_quic_get_initial_max_streams_unidirectional, lib, "nw_quic_get_initial_max_streams_unidirectional")
 	tryRegister(&_nw_quic_get_keepalive_interval, lib, "nw_quic_get_keepalive_interval")
-	tryRegister(&_nw_quic_get_local_max_streams_bidirectional, lib, "nw_quic_get_local_max_streams_bidirectional")
-	tryRegister(&_nw_quic_get_local_max_streams_unidirectional, lib, "nw_quic_get_local_max_streams_unidirectional")
 	tryRegister(&_nw_quic_get_max_datagram_frame_size, lib, "nw_quic_get_max_datagram_frame_size")
 	tryRegister(&_nw_quic_get_max_udp_payload_size, lib, "nw_quic_get_max_udp_payload_size")
 	tryRegister(&_nw_quic_get_remote_idle_timeout, lib, "nw_quic_get_remote_idle_timeout")
@@ -771,19 +779,18 @@ func init() {
 	tryRegister(&_nw_quic_set_application_error, lib, "nw_quic_set_application_error")
 	tryRegister(&_nw_quic_set_idle_timeout, lib, "nw_quic_set_idle_timeout")
 	tryRegister(&_nw_quic_set_initial_max_data, lib, "nw_quic_set_initial_max_data")
-	tryRegister(&_nw_quic_set_initial_max_stream_data_bidirectional_local, lib, "nw_quic_set_initial_max_stream_data_bidirectional_local")
 	tryRegister(&_nw_quic_set_initial_max_stream_data_bidirectional_remote, lib, "nw_quic_set_initial_max_stream_data_bidirectional_remote")
 	tryRegister(&_nw_quic_set_initial_max_stream_data_unidirectional, lib, "nw_quic_set_initial_max_stream_data_unidirectional")
 	tryRegister(&_nw_quic_set_initial_max_streams_bidirectional, lib, "nw_quic_set_initial_max_streams_bidirectional")
 	tryRegister(&_nw_quic_set_initial_max_streams_unidirectional, lib, "nw_quic_set_initial_max_streams_unidirectional")
 	tryRegister(&_nw_quic_set_keepalive_interval, lib, "nw_quic_set_keepalive_interval")
-	tryRegister(&_nw_quic_set_local_max_streams_bidirectional, lib, "nw_quic_set_local_max_streams_bidirectional")
-	tryRegister(&_nw_quic_set_local_max_streams_unidirectional, lib, "nw_quic_set_local_max_streams_unidirectional")
 	tryRegister(&_nw_quic_set_max_datagram_frame_size, lib, "nw_quic_set_max_datagram_frame_size")
 	tryRegister(&_nw_quic_set_max_udp_payload_size, lib, "nw_quic_set_max_udp_payload_size")
 	tryRegister(&_nw_quic_set_stream_application_error, lib, "nw_quic_set_stream_application_error")
 	tryRegister(&_nw_quic_set_stream_is_datagram, lib, "nw_quic_set_stream_is_datagram")
 	tryRegister(&_nw_quic_set_stream_is_unidirectional, lib, "nw_quic_set_stream_is_unidirectional")
+	tryRegister(&_nw_relay_hop_add_additional_http_header_field, lib, "nw_relay_hop_add_additional_http_header_field")
+	tryRegister(&_nw_relay_hop_create, lib, "nw_relay_hop_create")
 	tryRegister(&_nw_release, lib, "nw_release")
 	tryRegister(&_nw_resolution_report_copy_preferred_endpoint, lib, "nw_resolution_report_copy_preferred_endpoint")
 	tryRegister(&_nw_resolution_report_copy_successful_endpoint, lib, "nw_resolution_report_copy_successful_endpoint")
@@ -791,6 +798,9 @@ func init() {
 	tryRegister(&_nw_resolution_report_get_milliseconds, lib, "nw_resolution_report_get_milliseconds")
 	tryRegister(&_nw_resolution_report_get_protocol, lib, "nw_resolution_report_get_protocol")
 	tryRegister(&_nw_resolution_report_get_source, lib, "nw_resolution_report_get_source")
+	tryRegister(&_nw_resolver_config_add_server_address, lib, "nw_resolver_config_add_server_address")
+	tryRegister(&_nw_resolver_config_create_https, lib, "nw_resolver_config_create_https")
+	tryRegister(&_nw_resolver_config_create_tls, lib, "nw_resolver_config_create_tls")
 	tryRegister(&_nw_retain, lib, "nw_retain")
 	tryRegister(&_nw_tcp_create_options, lib, "nw_tcp_create_options")
 	tryRegister(&_nw_tcp_get_available_receive_buffer, lib, "nw_tcp_get_available_receive_buffer")
@@ -804,7 +814,6 @@ func init() {
 	tryRegister(&_nw_tcp_options_set_keepalive_idle_time, lib, "nw_tcp_options_set_keepalive_idle_time")
 	tryRegister(&_nw_tcp_options_set_keepalive_interval, lib, "nw_tcp_options_set_keepalive_interval")
 	tryRegister(&_nw_tcp_options_set_maximum_segment_size, lib, "nw_tcp_options_set_maximum_segment_size")
-	tryRegister(&_nw_tcp_options_set_multipath_force_version, lib, "nw_tcp_options_set_multipath_force_version")
 	tryRegister(&_nw_tcp_options_set_no_delay, lib, "nw_tcp_options_set_no_delay")
 	tryRegister(&_nw_tcp_options_set_no_options, lib, "nw_tcp_options_set_no_options")
 	tryRegister(&_nw_tcp_options_set_no_push, lib, "nw_tcp_options_set_no_push")
@@ -874,7 +883,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_copy_txt_record_object(_:)
 func nw_advertise_descriptor_copy_txt_record_object(advertise_descriptor Nw_advertise_descriptor_t) Nw_txt_record_t {
 	return _nw_advertise_descriptor_copy_txt_record_object(advertise_descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_advertise_descriptor_copy_txt_record_object */
 
 // nw_advertise_descriptor_create_application_service is a Network function.
 //
@@ -883,7 +892,7 @@ func nw_advertise_descriptor_copy_txt_record_object(advertise_descriptor Nw_adve
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_create_application_service(_:)
 func nw_advertise_descriptor_create_application_service(application_service_name unsafe.Pointer) Nw_advertise_descriptor_t {
 	return _nw_advertise_descriptor_create_application_service(application_service_name)
-}
+}/* debug [functions.gen.go/function]: nw_advertise_descriptor_create_application_service */
 
 // Initializes a Bonjour service to advertise.
 //
@@ -894,7 +903,7 @@ func nw_advertise_descriptor_create_application_service(application_service_name
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_create_bonjour_service(_:_:_:)
 func nw_advertise_descriptor_create_bonjour_service(name unsafe.Pointer, type_ unsafe.Pointer, domain unsafe.Pointer) Nw_advertise_descriptor_t {
 	return _nw_advertise_descriptor_create_bonjour_service(name, type_, domain)
-}
+}/* debug [functions.gen.go/function]: nw_advertise_descriptor_create_bonjour_service */
 
 // nw_advertise_descriptor_get_application_service_name is a Network function.
 //
@@ -903,7 +912,7 @@ func nw_advertise_descriptor_create_bonjour_service(name unsafe.Pointer, type_ u
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_get_application_service_name(_:)
 func nw_advertise_descriptor_get_application_service_name(advertise_descriptor Nw_advertise_descriptor_t) unsafe.Pointer {
 	return _nw_advertise_descriptor_get_application_service_name(advertise_descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_advertise_descriptor_get_application_service_name */
 
 // Checks whether the service prohibits automatic renaming in the event of a name conflict.
 //
@@ -914,7 +923,7 @@ func nw_advertise_descriptor_get_application_service_name(advertise_descriptor N
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_get_no_auto_rename(_:)
 func nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor Nw_advertise_descriptor_t) bool {
 	return _nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_advertise_descriptor_get_no_auto_rename */
 
 // Sets a Boolean to indicate whether the service prohibits automatic renaming in the event of a name conflict.
 //
@@ -925,7 +934,7 @@ func nw_advertise_descriptor_get_no_auto_rename(advertise_descriptor Nw_advertis
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_set_no_auto_rename(_:_:)
 func nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor Nw_advertise_descriptor_t, no_auto_rename bool) {
 	_nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor, no_auto_rename)
-}
+}/* debug [functions.gen.go/function]: nw_advertise_descriptor_set_no_auto_rename */
 
 // Sets the TXT record as a raw buffer to advertise with the service.
 //
@@ -936,7 +945,7 @@ func nw_advertise_descriptor_set_no_auto_rename(advertise_descriptor Nw_advertis
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_set_txt_record(_:_:_:)
 func nw_advertise_descriptor_set_txt_record(advertise_descriptor Nw_advertise_descriptor_t, txt_record unsafe.Pointer, txt_length uintptr) {
 	_nw_advertise_descriptor_set_txt_record(advertise_descriptor, txt_record, txt_length)
-}
+}/* debug [functions.gen.go/function]: nw_advertise_descriptor_set_txt_record */
 
 // Sets the TXT record to advertise with the service.
 //
@@ -947,7 +956,7 @@ func nw_advertise_descriptor_set_txt_record(advertise_descriptor Nw_advertise_de
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_advertise_descriptor_set_txt_record_object(_:_:)
 func nw_advertise_descriptor_set_txt_record_object(advertise_descriptor Nw_advertise_descriptor_t, txt_record Nw_txt_record_t) {
 	_nw_advertise_descriptor_set_txt_record_object(advertise_descriptor, txt_record)
-}
+}/* debug [functions.gen.go/function]: nw_advertise_descriptor_set_txt_record_object */
 
 // nw_browse_descriptor_create_application_service is a Network function.
 //
@@ -956,7 +965,7 @@ func nw_advertise_descriptor_set_txt_record_object(advertise_descriptor Nw_adver
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_create_application_service(_:)
 func nw_browse_descriptor_create_application_service(application_service_name unsafe.Pointer) Nw_browse_descriptor_t {
 	return _nw_browse_descriptor_create_application_service(application_service_name)
-}
+}/* debug [functions.gen.go/function]: nw_browse_descriptor_create_application_service */
 
 // Initializes a service descriptor used to discover a Bonjour service.
 //
@@ -967,7 +976,7 @@ func nw_browse_descriptor_create_application_service(application_service_name un
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_create_bonjour_service(_:_:)
 func nw_browse_descriptor_create_bonjour_service(type_ unsafe.Pointer, domain unsafe.Pointer) Nw_browse_descriptor_t {
 	return _nw_browse_descriptor_create_bonjour_service(type_, domain)
-}
+}/* debug [functions.gen.go/function]: nw_browse_descriptor_create_bonjour_service */
 
 // nw_browse_descriptor_get_application_service_name is a Network function.
 //
@@ -976,7 +985,7 @@ func nw_browse_descriptor_create_bonjour_service(type_ unsafe.Pointer, domain un
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_get_application_service_name(_:)
 func nw_browse_descriptor_get_application_service_name(descriptor Nw_browse_descriptor_t) unsafe.Pointer {
 	return _nw_browse_descriptor_get_application_service_name(descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_browse_descriptor_get_application_service_name */
 
 // Accesses the Bonjour service domain set on a browse descriptor.
 //
@@ -987,7 +996,7 @@ func nw_browse_descriptor_get_application_service_name(descriptor Nw_browse_desc
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_get_bonjour_service_domain(_:)
 func nw_browse_descriptor_get_bonjour_service_domain(descriptor Nw_browse_descriptor_t) unsafe.Pointer {
 	return _nw_browse_descriptor_get_bonjour_service_domain(descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_browse_descriptor_get_bonjour_service_domain */
 
 // Accesses the Bonjour service type set on a browse descriptor.
 //
@@ -998,7 +1007,7 @@ func nw_browse_descriptor_get_bonjour_service_domain(descriptor Nw_browse_descri
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_get_bonjour_service_type(_:)
 func nw_browse_descriptor_get_bonjour_service_type(descriptor Nw_browse_descriptor_t) unsafe.Pointer {
 	return _nw_browse_descriptor_get_bonjour_service_type(descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_browse_descriptor_get_bonjour_service_type */
 
 // Checks if the browse descriptor requires including associated TXT records with all results.
 //
@@ -1009,7 +1018,7 @@ func nw_browse_descriptor_get_bonjour_service_type(descriptor Nw_browse_descript
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_get_include_txt_record(_:)
 func nw_browse_descriptor_get_include_txt_record(descriptor Nw_browse_descriptor_t) bool {
 	return _nw_browse_descriptor_get_include_txt_record(descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_browse_descriptor_get_include_txt_record */
 
 // Requires including associated TXT records with all results generated for this service descriptor.
 //
@@ -1020,7 +1029,7 @@ func nw_browse_descriptor_get_include_txt_record(descriptor Nw_browse_descriptor
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_descriptor_set_include_txt_record(_:_:)
 func nw_browse_descriptor_set_include_txt_record(descriptor Nw_browse_descriptor_t, include_txt_record bool) {
 	_nw_browse_descriptor_set_include_txt_record(descriptor, include_txt_record)
-}
+}/* debug [functions.gen.go/function]: nw_browse_descriptor_set_include_txt_record */
 
 // The discovered service endpoint.
 //
@@ -1031,7 +1040,7 @@ func nw_browse_descriptor_set_include_txt_record(descriptor Nw_browse_descriptor
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_result_copy_endpoint(_:)
 func nw_browse_result_copy_endpoint(result Nw_browse_result_t) Nw_endpoint_t {
 	return _nw_browse_result_copy_endpoint(result)
-}
+}/* debug [functions.gen.go/function]: nw_browse_result_copy_endpoint */
 
 // Accesses the TXT record associated with a discovered service.
 //
@@ -1042,7 +1051,7 @@ func nw_browse_result_copy_endpoint(result Nw_browse_result_t) Nw_endpoint_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_result_copy_txt_record_object(_:)
 func nw_browse_result_copy_txt_record_object(result Nw_browse_result_t) Nw_txt_record_t {
 	return _nw_browse_result_copy_txt_record_object(result)
-}
+}/* debug [functions.gen.go/function]: nw_browse_result_copy_txt_record_object */
 
 // Enumerates the list of interfaces on which the service was discovered.
 //
@@ -1053,7 +1062,7 @@ func nw_browse_result_copy_txt_record_object(result Nw_browse_result_t) Nw_txt_r
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_result_enumerate_interfaces(_:_:)
 func nw_browse_result_enumerate_interfaces(result Nw_browse_result_t, enumerator unsafe.Pointer) {
 	_nw_browse_result_enumerate_interfaces(result, enumerator)
-}
+}/* debug [functions.gen.go/function]: nw_browse_result_enumerate_interfaces */
 
 // Compares two discovered services and calculates changes between them.
 //
@@ -1064,7 +1073,7 @@ func nw_browse_result_enumerate_interfaces(result Nw_browse_result_t, enumerator
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_result_get_changes(_:_:)
 func nw_browse_result_get_changes(old_result Nw_browse_result_t, new_result Nw_browse_result_t) Nw_browse_result_change_t {
 	return _nw_browse_result_get_changes(old_result, new_result)
-}
+}/* debug [functions.gen.go/function]: nw_browse_result_get_changes */
 
 // Accesses the number of interfaces associated with a discovered service.
 //
@@ -1075,7 +1084,7 @@ func nw_browse_result_get_changes(old_result Nw_browse_result_t, new_result Nw_b
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browse_result_get_interfaces_count(_:)
 func nw_browse_result_get_interfaces_count(result Nw_browse_result_t) uintptr {
 	return _nw_browse_result_get_interfaces_count(result)
-}
+}/* debug [functions.gen.go/function]: nw_browse_result_get_interfaces_count */
 
 // Stops browsing for services.
 //
@@ -1086,7 +1095,7 @@ func nw_browse_result_get_interfaces_count(result Nw_browse_result_t) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browser_cancel(_:)
 func nw_browser_cancel(browser Nw_browser_t) {
 	_nw_browser_cancel(browser)
-}
+}/* debug [functions.gen.go/function]: nw_browser_cancel */
 
 // Accesses the service descriptor with which the browser was created.
 //
@@ -1097,7 +1106,7 @@ func nw_browser_cancel(browser Nw_browser_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browser_copy_browse_descriptor(_:)
 func nw_browser_copy_browse_descriptor(browser Nw_browser_t) Nw_browse_descriptor_t {
 	return _nw_browser_copy_browse_descriptor(browser)
-}
+}/* debug [functions.gen.go/function]: nw_browser_copy_browse_descriptor */
 
 // Accesses the parameters with which the browser was created.
 //
@@ -1108,7 +1117,7 @@ func nw_browser_copy_browse_descriptor(browser Nw_browser_t) Nw_browse_descripto
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browser_copy_parameters(_:)
 func nw_browser_copy_parameters(browser Nw_browser_t) Nw_parameters_t {
 	return _nw_browser_copy_parameters(browser)
-}
+}/* debug [functions.gen.go/function]: nw_browser_copy_parameters */
 
 // Initializes a browser with a type of service to discover.
 //
@@ -1119,7 +1128,7 @@ func nw_browser_copy_parameters(browser Nw_browser_t) Nw_parameters_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browser_create(_:_:)
 func nw_browser_create(descriptor Nw_browse_descriptor_t, parameters Nw_parameters_t) Nw_browser_t {
 	return _nw_browser_create(descriptor, parameters)
-}
+}/* debug [functions.gen.go/function]: nw_browser_create */
 
 // Sets the handler to receive updates about discovered services.
 //
@@ -1130,7 +1139,7 @@ func nw_browser_create(descriptor Nw_browse_descriptor_t, parameters Nw_paramete
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browser_set_browse_results_changed_handler(_:_:)
 func nw_browser_set_browse_results_changed_handler(browser Nw_browser_t, handler unsafe.Pointer) {
 	_nw_browser_set_browse_results_changed_handler(browser, handler)
-}
+}/* debug [functions.gen.go/function]: nw_browser_set_browse_results_changed_handler */
 
 // Sets the queue on which all browser events will be delivered.
 //
@@ -1141,7 +1150,7 @@ func nw_browser_set_browse_results_changed_handler(browser Nw_browser_t, handler
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browser_set_queue(_:_:)
 func nw_browser_set_queue(browser Nw_browser_t, queue unsafe.Pointer) {
 	_nw_browser_set_queue(browser, queue)
-}
+}/* debug [functions.gen.go/function]: nw_browser_set_queue */
 
 // Sets a handler to receive browser state updates.
 //
@@ -1152,7 +1161,7 @@ func nw_browser_set_queue(browser Nw_browser_t, queue unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browser_set_state_changed_handler(_:_:)
 func nw_browser_set_state_changed_handler(browser Nw_browser_t, state_changed_handler unsafe.Pointer) {
 	_nw_browser_set_state_changed_handler(browser, state_changed_handler)
-}
+}/* debug [functions.gen.go/function]: nw_browser_set_state_changed_handler */
 
 // Starts browsing for services.
 //
@@ -1163,7 +1172,7 @@ func nw_browser_set_state_changed_handler(browser Nw_browser_t, state_changed_ha
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_browser_start(_:)
 func nw_browser_start(browser Nw_browser_t) {
 	_nw_browser_start(browser)
-}
+}/* debug [functions.gen.go/function]: nw_browser_start */
 
 // Requests a copy of the connection’s establishment report once the connection is in the ready state.
 //
@@ -1174,7 +1183,7 @@ func nw_browser_start(browser Nw_browser_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_access_establishment_report(_:_:_:)
 func nw_connection_access_establishment_report(connection Nw_connection_t, queue unsafe.Pointer, access_block unsafe.Pointer) {
 	_nw_connection_access_establishment_report(connection, queue, access_block)
-}
+}/* debug [functions.gen.go/function]: nw_connection_access_establishment_report */
 
 // Defines a block in which calls to send and receive are processed as a batch to improve performance.
 //
@@ -1185,7 +1194,7 @@ func nw_connection_access_establishment_report(connection Nw_connection_t, queue
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_batch(_:_:)
 func nw_connection_batch(connection Nw_connection_t, batch_block unsafe.Pointer) {
 	_nw_connection_batch(connection, batch_block)
-}
+}/* debug [functions.gen.go/function]: nw_connection_batch */
 
 // Cancels the connection and gracefully disconnects any established network protocols.
 //
@@ -1196,7 +1205,7 @@ func nw_connection_batch(connection Nw_connection_t, batch_block unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_cancel(_:)
 func nw_connection_cancel(connection Nw_connection_t) {
 	_nw_connection_cancel(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_cancel */
 
 // Causes the current endpoint to be rejected, allowing the connection to try another resolved address.
 //
@@ -1207,7 +1216,7 @@ func nw_connection_cancel(connection Nw_connection_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_cancel_current_endpoint(_:)
 func nw_connection_cancel_current_endpoint(connection Nw_connection_t) {
 	_nw_connection_cancel_current_endpoint(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_cancel_current_endpoint */
 
 // Accesses the network path the connection is using.
 //
@@ -1218,7 +1227,7 @@ func nw_connection_cancel_current_endpoint(connection Nw_connection_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_copy_current_path(_:)
 func nw_connection_copy_current_path(connection Nw_connection_t) Nw_path_t {
 	return _nw_connection_copy_current_path(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_copy_current_path */
 
 // Copies the description of the connection as a string.
 //
@@ -1229,7 +1238,7 @@ func nw_connection_copy_current_path(connection Nw_connection_t) Nw_path_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_copy_description(_:)
 func nw_connection_copy_description(connection Nw_connection_t) unsafe.Pointer {
 	return _nw_connection_copy_description(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_copy_description */
 
 // Accesses the endpoint with which the connection was created.
 //
@@ -1240,7 +1249,7 @@ func nw_connection_copy_description(connection Nw_connection_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_copy_endpoint(_:)
 func nw_connection_copy_endpoint(connection Nw_connection_t) Nw_endpoint_t {
 	return _nw_connection_copy_endpoint(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_copy_endpoint */
 
 // Accesses the parameters with which the connection was created.
 //
@@ -1251,7 +1260,7 @@ func nw_connection_copy_endpoint(connection Nw_connection_t) Nw_endpoint_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_copy_parameters(_:)
 func nw_connection_copy_parameters(connection Nw_connection_t) Nw_parameters_t {
 	return _nw_connection_copy_parameters(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_copy_parameters */
 
 // Retrieves the connection-wide metadata for a specific protocol.
 //
@@ -1262,7 +1271,7 @@ func nw_connection_copy_parameters(connection Nw_connection_t) Nw_parameters_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_copy_protocol_metadata(_:_:)
 func nw_connection_copy_protocol_metadata(connection Nw_connection_t, definition Nw_protocol_definition_t) Nw_protocol_metadata_t {
 	return _nw_connection_copy_protocol_metadata(connection, definition)
-}
+}/* debug [functions.gen.go/function]: nw_connection_copy_protocol_metadata */
 
 // Initializes a new connection to a remote endpoint.
 //
@@ -1273,7 +1282,7 @@ func nw_connection_copy_protocol_metadata(connection Nw_connection_t, definition
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_create(_:_:)
 func nw_connection_create(endpoint Nw_endpoint_t, parameters Nw_parameters_t) Nw_connection_t {
 	return _nw_connection_create(endpoint, parameters)
-}
+}/* debug [functions.gen.go/function]: nw_connection_create */
 
 // Begins a new data transfer report, which can later be collected.
 //
@@ -1284,7 +1293,7 @@ func nw_connection_create(endpoint Nw_endpoint_t, parameters Nw_parameters_t) Nw
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_create_new_data_transfer_report(_:)
 func nw_connection_create_new_data_transfer_report(connection Nw_connection_t) Nw_data_transfer_report_t {
 	return _nw_connection_create_new_data_transfer_report(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_create_new_data_transfer_report */
 
 // Cancels the connection and immediately disconnects any established network protocols.
 //
@@ -1295,7 +1304,7 @@ func nw_connection_create_new_data_transfer_report(connection Nw_connection_t) N
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_force_cancel(_:)
 func nw_connection_force_cancel(connection Nw_connection_t) {
 	_nw_connection_force_cancel(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_force_cancel */
 
 // Accesses the maximum size of a datagram message that can be sent on a connection.
 //
@@ -1306,7 +1315,7 @@ func nw_connection_force_cancel(connection Nw_connection_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_get_maximum_datagram_size(_:)
 func nw_connection_get_maximum_datagram_size(connection Nw_connection_t) uint32 {
 	return _nw_connection_get_maximum_datagram_size(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_get_maximum_datagram_size */
 
 // Cancels the connection group object and leaves the network group.
 //
@@ -1317,7 +1326,7 @@ func nw_connection_get_maximum_datagram_size(connection Nw_connection_t) uint32 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_cancel(_:)
 func nw_connection_group_cancel(group Nw_connection_group_t) {
 	_nw_connection_group_cancel(group)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_cancel */
 
 // Accesses the descriptor of the group you use to initialize the connection group.
 //
@@ -1328,18 +1337,7 @@ func nw_connection_group_cancel(group Nw_connection_group_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_copy_descriptor(_:)
 func nw_connection_group_copy_descriptor(group Nw_connection_group_t) Nw_group_descriptor_t {
 	return _nw_connection_group_copy_descriptor(group)
-}
-
-// Accesses the local address and port you use to receive the message.
-//
-// Added in macOS 11.0.
-// Accesses the local address and port you use to receive the message.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_copy_local_endpoint_for_message(_:_:)
-func nw_connection_group_copy_local_endpoint_for_message(group Nw_connection_group_t, context Nw_content_context_t) Nw_endpoint_t {
-	return _nw_connection_group_copy_local_endpoint_for_message(group, context)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_copy_descriptor */
 
 // Accesses the parameters with which you initialize the connection group.
 //
@@ -1350,7 +1348,7 @@ func nw_connection_group_copy_local_endpoint_for_message(group Nw_connection_gro
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_copy_parameters(_:)
 func nw_connection_group_copy_parameters(group Nw_connection_group_t) Nw_parameters_t {
 	return _nw_connection_group_copy_parameters(group)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_copy_parameters */
 
 // Accesses the network path on which you receive the message.
 //
@@ -1361,7 +1359,7 @@ func nw_connection_group_copy_parameters(group Nw_connection_group_t) Nw_paramet
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_copy_path_for_message(_:_:)
 func nw_connection_group_copy_path_for_message(group Nw_connection_group_t, context Nw_content_context_t) Nw_path_t {
 	return _nw_connection_group_copy_path_for_message(group, context)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_copy_path_for_message */
 
 // nw_connection_group_copy_protocol_metadata is a Network function.
 //
@@ -1370,7 +1368,7 @@ func nw_connection_group_copy_path_for_message(group Nw_connection_group_t, cont
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_copy_protocol_metadata(_:_:)
 func nw_connection_group_copy_protocol_metadata(group Nw_connection_group_t, definition Nw_protocol_definition_t) Nw_protocol_metadata_t {
 	return _nw_connection_group_copy_protocol_metadata(group, definition)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_copy_protocol_metadata */
 
 // nw_connection_group_copy_protocol_metadata_for_message is a Network function.
 //
@@ -1379,7 +1377,7 @@ func nw_connection_group_copy_protocol_metadata(group Nw_connection_group_t, def
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_copy_protocol_metadata_for_message(_:_:_:)
 func nw_connection_group_copy_protocol_metadata_for_message(group Nw_connection_group_t, context Nw_content_context_t, definition Nw_protocol_definition_t) Nw_protocol_metadata_t {
 	return _nw_connection_group_copy_protocol_metadata_for_message(group, context, definition)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_copy_protocol_metadata_for_message */
 
 // Accesses the endpoint that originates the message you receive.
 //
@@ -1390,7 +1388,7 @@ func nw_connection_group_copy_protocol_metadata_for_message(group Nw_connection_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_copy_remote_endpoint_for_message(_:_:)
 func nw_connection_group_copy_remote_endpoint_for_message(group Nw_connection_group_t, context Nw_content_context_t) Nw_endpoint_t {
 	return _nw_connection_group_copy_remote_endpoint_for_message(group, context)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_copy_remote_endpoint_for_message */
 
 // Initializes a new connection group with a group identifier.
 //
@@ -1401,7 +1399,7 @@ func nw_connection_group_copy_remote_endpoint_for_message(group Nw_connection_gr
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_create(_:_:)
 func nw_connection_group_create(group_descriptor Nw_group_descriptor_t, parameters Nw_parameters_t) Nw_connection_group_t {
 	return _nw_connection_group_create(group_descriptor, parameters)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_create */
 
 // nw_connection_group_extract_connection is a Network function.
 //
@@ -1410,7 +1408,7 @@ func nw_connection_group_create(group_descriptor Nw_group_descriptor_t, paramete
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_extract_connection(_:_:_:)
 func nw_connection_group_extract_connection(group Nw_connection_group_t, endpoint Nw_endpoint_t, protocol_options Nw_protocol_options_t) Nw_connection_t {
 	return _nw_connection_group_extract_connection(group, endpoint, protocol_options)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_extract_connection */
 
 // Converts a message you receive from an endpoint into a connection object that you use for long-term communication with that endpoint.
 //
@@ -1421,7 +1419,7 @@ func nw_connection_group_extract_connection(group Nw_connection_group_t, endpoin
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_extract_connection_for_message(_:_:)
 func nw_connection_group_extract_connection_for_message(group Nw_connection_group_t, context Nw_content_context_t) Nw_connection_t {
 	return _nw_connection_group_extract_connection_for_message(group, context)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_extract_connection_for_message */
 
 // nw_connection_group_reinsert_extracted_connection is a Network function.
 //
@@ -1430,7 +1428,7 @@ func nw_connection_group_extract_connection_for_message(group Nw_connection_grou
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_reinsert_extracted_connection(_:_:)
 func nw_connection_group_reinsert_extracted_connection(group Nw_connection_group_t, connection Nw_connection_t) bool {
 	return _nw_connection_group_reinsert_extracted_connection(group, connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_reinsert_extracted_connection */
 
 // Sends a reply to the specific endpoint that originates a group message you receive.
 //
@@ -1441,7 +1439,7 @@ func nw_connection_group_reinsert_extracted_connection(group Nw_connection_group
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_reply(_:_:_:_:)
 func nw_connection_group_reply(group Nw_connection_group_t, inbound_message Nw_content_context_t, outbound_message Nw_content_context_t, content unsafe.Pointer) {
 	_nw_connection_group_reply(group, inbound_message, outbound_message, content)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_reply */
 
 // Sends data to the entire group, or to a specific member of the group.
 //
@@ -1452,7 +1450,7 @@ func nw_connection_group_reply(group Nw_connection_group_t, inbound_message Nw_c
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_send_message(_:_:_:_:_:)
 func nw_connection_group_send_message(group Nw_connection_group_t, content unsafe.Pointer, endpoint Nw_endpoint_t, context Nw_content_context_t, completion unsafe.Pointer) {
 	_nw_connection_group_send_message(group, content, endpoint, context, completion)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_send_message */
 
 // nw_connection_group_set_new_connection_handler is a Network function.
 //
@@ -1461,7 +1459,7 @@ func nw_connection_group_send_message(group Nw_connection_group_t, content unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_set_new_connection_handler(_:_:)
 func nw_connection_group_set_new_connection_handler(group Nw_connection_group_t, new_connection_handler unsafe.Pointer) {
 	_nw_connection_group_set_new_connection_handler(group, new_connection_handler)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_set_new_connection_handler */
 
 // Sets the queue on which you handle connection group events.
 //
@@ -1472,7 +1470,7 @@ func nw_connection_group_set_new_connection_handler(group Nw_connection_group_t,
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_set_queue(_:_:)
 func nw_connection_group_set_queue(group Nw_connection_group_t, queue unsafe.Pointer) {
 	_nw_connection_group_set_queue(group, queue)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_set_queue */
 
 // Sets a handler that receives inbound messages from members of the group.
 //
@@ -1483,7 +1481,7 @@ func nw_connection_group_set_queue(group Nw_connection_group_t, queue unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_set_receive_handler(_:_:_:_:)
 func nw_connection_group_set_receive_handler(group Nw_connection_group_t, maximum_message_size uint32, reject_oversized_messages bool, receive_handler unsafe.Pointer) {
 	_nw_connection_group_set_receive_handler(group, maximum_message_size, reject_oversized_messages, receive_handler)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_set_receive_handler */
 
 // Sets a handler that receives connection group state updates.
 //
@@ -1494,7 +1492,7 @@ func nw_connection_group_set_receive_handler(group Nw_connection_group_t, maximu
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_set_state_changed_handler(_:_:)
 func nw_connection_group_set_state_changed_handler(group Nw_connection_group_t, state_changed_handler unsafe.Pointer) {
 	_nw_connection_group_set_state_changed_handler(group, state_changed_handler)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_set_state_changed_handler */
 
 // Joins the group and registers to receive messages.
 //
@@ -1505,7 +1503,7 @@ func nw_connection_group_set_state_changed_handler(group Nw_connection_group_t, 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_group_start(_:)
 func nw_connection_group_start(group Nw_connection_group_t) {
 	_nw_connection_group_start(group)
-}
+}/* debug [functions.gen.go/function]: nw_connection_group_start */
 
 // Schedules a single receive completion handler, with a range indicating how many bytes the handler can receive at one time.
 //
@@ -1516,7 +1514,7 @@ func nw_connection_group_start(group Nw_connection_group_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_receive(_:_:_:_:)
 func nw_connection_receive(connection Nw_connection_t, minimum_incomplete_length uint32, maximum_length uint32, completion unsafe.Pointer) {
 	_nw_connection_receive(connection, minimum_incomplete_length, maximum_length, completion)
-}
+}/* debug [functions.gen.go/function]: nw_connection_receive */
 
 // Schedules a single receive completion handler for a complete message, as opposed to a range of bytes.
 //
@@ -1527,7 +1525,7 @@ func nw_connection_receive(connection Nw_connection_t, minimum_incomplete_length
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_receive_message(_:_:)
 func nw_connection_receive_message(connection Nw_connection_t, completion unsafe.Pointer) {
 	_nw_connection_receive_message(connection, completion)
-}
+}/* debug [functions.gen.go/function]: nw_connection_receive_message */
 
 // Restarts a connection that is in the waiting state.
 //
@@ -1538,7 +1536,7 @@ func nw_connection_receive_message(connection Nw_connection_t, completion unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_restart(_:)
 func nw_connection_restart(connection Nw_connection_t) {
 	_nw_connection_restart(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_restart */
 
 // Sends data on a connection.
 //
@@ -1549,7 +1547,7 @@ func nw_connection_restart(connection Nw_connection_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_send(_:_:_:_:_:)
 func nw_connection_send(connection Nw_connection_t, content unsafe.Pointer, context Nw_content_context_t, is_complete bool, completion unsafe.Pointer) {
 	_nw_connection_send(connection, content, context, is_complete, completion)
-}
+}/* debug [functions.gen.go/function]: nw_connection_send */
 
 // Sets a handler that receives updates when an alternative network path is preferred over the current path.
 //
@@ -1560,7 +1558,7 @@ func nw_connection_send(connection Nw_connection_t, content unsafe.Pointer, cont
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_set_better_path_available_handler(_:_:)
 func nw_connection_set_better_path_available_handler(connection Nw_connection_t, handler unsafe.Pointer) {
 	_nw_connection_set_better_path_available_handler(connection, handler)
-}
+}/* debug [functions.gen.go/function]: nw_connection_set_better_path_available_handler */
 
 // Sets a handler that receives network path updates.
 //
@@ -1571,7 +1569,7 @@ func nw_connection_set_better_path_available_handler(connection Nw_connection_t,
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_set_path_changed_handler(_:_:)
 func nw_connection_set_path_changed_handler(connection Nw_connection_t, handler unsafe.Pointer) {
 	_nw_connection_set_path_changed_handler(connection, handler)
-}
+}/* debug [functions.gen.go/function]: nw_connection_set_path_changed_handler */
 
 // Sets the queue on which all connection events are delivered.
 //
@@ -1582,7 +1580,7 @@ func nw_connection_set_path_changed_handler(connection Nw_connection_t, handler 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_set_queue(_:_:)
 func nw_connection_set_queue(connection Nw_connection_t, queue unsafe.Pointer) {
 	_nw_connection_set_queue(connection, queue)
-}
+}/* debug [functions.gen.go/function]: nw_connection_set_queue */
 
 // Sets a handler to receive connection state updates.
 //
@@ -1593,7 +1591,7 @@ func nw_connection_set_queue(connection Nw_connection_t, queue unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_set_state_changed_handler(_:_:)
 func nw_connection_set_state_changed_handler(connection Nw_connection_t, handler unsafe.Pointer) {
 	_nw_connection_set_state_changed_handler(connection, handler)
-}
+}/* debug [functions.gen.go/function]: nw_connection_set_state_changed_handler */
 
 // Sets a handler that receives updates when data can be sent and received.
 //
@@ -1604,7 +1602,7 @@ func nw_connection_set_state_changed_handler(connection Nw_connection_t, handler
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_set_viability_changed_handler(_:_:)
 func nw_connection_set_viability_changed_handler(connection Nw_connection_t, handler unsafe.Pointer) {
 	_nw_connection_set_viability_changed_handler(connection, handler)
-}
+}/* debug [functions.gen.go/function]: nw_connection_set_viability_changed_handler */
 
 // Starts establishing a connection.
 //
@@ -1615,7 +1613,7 @@ func nw_connection_set_viability_changed_handler(connection Nw_connection_t, han
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_connection_start(_:)
 func nw_connection_start(connection Nw_connection_t) {
 	_nw_connection_start(connection)
-}
+}/* debug [functions.gen.go/function]: nw_connection_start */
 
 // Accesses the optional message context that must be sent before the context you are sending.
 //
@@ -1626,7 +1624,7 @@ func nw_connection_start(connection Nw_connection_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_copy_antecedent(_:)
 func nw_content_context_copy_antecedent(context Nw_content_context_t) Nw_content_context_t {
 	return _nw_content_context_copy_antecedent(context)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_copy_antecedent */
 
 // Retreives the metadata associated with a specific protocol.
 //
@@ -1637,7 +1635,7 @@ func nw_content_context_copy_antecedent(context Nw_content_context_t) Nw_content
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_copy_protocol_metadata(_:_:)
 func nw_content_context_copy_protocol_metadata(context Nw_content_context_t, protocol_ Nw_protocol_definition_t) Nw_protocol_metadata_t {
 	return _nw_content_context_copy_protocol_metadata(context, protocol_)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_copy_protocol_metadata */
 
 // Initializes a custom message context.
 //
@@ -1648,7 +1646,7 @@ func nw_content_context_copy_protocol_metadata(context Nw_content_context_t, pro
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_create(_:)
 func nw_content_context_create(context_identifier unsafe.Pointer) Nw_content_context_t {
 	return _nw_content_context_create(context_identifier)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_create */
 
 // Iterates through all protocol metadata associated with the message context.
 //
@@ -1659,7 +1657,7 @@ func nw_content_context_create(context_identifier unsafe.Pointer) Nw_content_con
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_foreach_protocol_metadata(_:_:)
 func nw_content_context_foreach_protocol_metadata(context Nw_content_context_t) {
 	_nw_content_context_foreach_protocol_metadata(context)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_foreach_protocol_metadata */
 
 // Accesses the expiration set for this message context.
 //
@@ -1670,7 +1668,7 @@ func nw_content_context_foreach_protocol_metadata(context Nw_content_context_t) 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_get_expiration_milliseconds(_:)
 func nw_content_context_get_expiration_milliseconds(context Nw_content_context_t) uint64 {
 	return _nw_content_context_get_expiration_milliseconds(context)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_get_expiration_milliseconds */
 
 // Accesses the identifier used to create this message context.
 //
@@ -1681,7 +1679,7 @@ func nw_content_context_get_expiration_milliseconds(context Nw_content_context_t
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_get_identifier(_:)
 func nw_content_context_get_identifier(context Nw_content_context_t) unsafe.Pointer {
 	return _nw_content_context_get_identifier(context)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_get_identifier */
 
 // Checks whether this context represents the final message being received.
 //
@@ -1692,7 +1690,7 @@ func nw_content_context_get_identifier(context Nw_content_context_t) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_get_is_final(_:)
 func nw_content_context_get_is_final(context Nw_content_context_t) bool {
 	return _nw_content_context_get_is_final(context)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_get_is_final */
 
 // Accesses the relative value of priority used to reorder contexts when sending.
 //
@@ -1703,7 +1701,7 @@ func nw_content_context_get_is_final(context Nw_content_context_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_get_relative_priority(_:)
 func nw_content_context_get_relative_priority(context Nw_content_context_t) float64 {
 	return _nw_content_context_get_relative_priority(context)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_get_relative_priority */
 
 // Set an optional message context that must be sent before the context you are sending.
 //
@@ -1714,7 +1712,7 @@ func nw_content_context_get_relative_priority(context Nw_content_context_t) floa
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_set_antecedent(_:_:)
 func nw_content_context_set_antecedent(context Nw_content_context_t, antecedent_context Nw_content_context_t) {
 	_nw_content_context_set_antecedent(context, antecedent_context)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_set_antecedent */
 
 // Sets the number of milliseconds after which sending the data associated with this context must begin, otherwise the data is discarded.
 //
@@ -1725,7 +1723,7 @@ func nw_content_context_set_antecedent(context Nw_content_context_t, antecedent_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_set_expiration_milliseconds(_:_:)
 func nw_content_context_set_expiration_milliseconds(context Nw_content_context_t, expiration_milliseconds uint64) {
 	_nw_content_context_set_expiration_milliseconds(context, expiration_milliseconds)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_set_expiration_milliseconds */
 
 // Sets a Boolean indicating if this context represents the final message being sent.
 //
@@ -1736,7 +1734,7 @@ func nw_content_context_set_expiration_milliseconds(context Nw_content_context_t
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_set_is_final(_:_:)
 func nw_content_context_set_is_final(context Nw_content_context_t, is_final bool) {
 	_nw_content_context_set_is_final(context, is_final)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_set_is_final */
 
 // Sets protocol metadata to configure per-message or per-packet properties.
 //
@@ -1747,7 +1745,7 @@ func nw_content_context_set_is_final(context Nw_content_context_t, is_final bool
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_set_metadata_for_protocol(_:_:)
 func nw_content_context_set_metadata_for_protocol(context Nw_content_context_t, protocol_metadata Nw_protocol_metadata_t) {
 	_nw_content_context_set_metadata_for_protocol(context, protocol_metadata)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_set_metadata_for_protocol */
 
 // Sets the relative value of priority used to reorder contexts when sending.
 //
@@ -1758,7 +1756,7 @@ func nw_content_context_set_metadata_for_protocol(context Nw_content_context_t, 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_content_context_set_relative_priority(_:_:)
 func nw_content_context_set_relative_priority(context Nw_content_context_t, relative_priority float64) {
 	_nw_content_context_set_relative_priority(context, relative_priority)
-}
+}/* debug [functions.gen.go/function]: nw_content_context_set_relative_priority */
 
 // Stops an outstanding data transfer report and calculates the results.
 //
@@ -1769,7 +1767,7 @@ func nw_content_context_set_relative_priority(context Nw_content_context_t, rela
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_collect(_:_:_:)
 func nw_data_transfer_report_collect(report Nw_data_transfer_report_t, queue unsafe.Pointer, collect_block unsafe.Pointer) {
 	_nw_data_transfer_report_collect(report, queue, collect_block)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_collect */
 
 // Accesses the network interface the path used.
 //
@@ -1780,7 +1778,7 @@ func nw_data_transfer_report_collect(report Nw_data_transfer_report_t, queue uns
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_copy_path_interface(_:_:)
 func nw_data_transfer_report_copy_path_interface(report Nw_data_transfer_report_t, path_index uint32) Nw_interface_t {
 	return _nw_data_transfer_report_copy_path_interface(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_copy_path_interface */
 
 // Checks the duration of the data transfer report, from when it was started to when it was collected.
 //
@@ -1791,7 +1789,7 @@ func nw_data_transfer_report_copy_path_interface(report Nw_data_transfer_report_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_duration_milliseconds(_:)
 func nw_data_transfer_report_get_duration_milliseconds(report Nw_data_transfer_report_t) uint64 {
 	return _nw_data_transfer_report_get_duration_milliseconds(report)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_duration_milliseconds */
 
 // Checks the number of valid paths in the report.
 //
@@ -1802,7 +1800,7 @@ func nw_data_transfer_report_get_duration_milliseconds(report Nw_data_transfer_r
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_path_count(_:)
 func nw_data_transfer_report_get_path_count(report Nw_data_transfer_report_t) uint32 {
 	return _nw_data_transfer_report_get_path_count(report)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_path_count */
 
 // nw_data_transfer_report_get_path_radio_type is a Network function.
 //
@@ -1811,7 +1809,7 @@ func nw_data_transfer_report_get_path_count(report Nw_data_transfer_report_t) ui
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_path_radio_type(_:_:)
 func nw_data_transfer_report_get_path_radio_type(report Nw_data_transfer_report_t, path_index uint32) unsafe.Pointer {
 	return _nw_data_transfer_report_get_path_radio_type(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_path_radio_type */
 
 // Accesses the number of bytes the connection delivered.
 //
@@ -1822,7 +1820,7 @@ func nw_data_transfer_report_get_path_radio_type(report Nw_data_transfer_report_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_received_application_byte_count(_:_:)
 func nw_data_transfer_report_get_received_application_byte_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_received_application_byte_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_received_application_byte_count */
 
 // Accesses the number of IP packets the connection received.
 //
@@ -1833,7 +1831,7 @@ func nw_data_transfer_report_get_received_application_byte_count(report Nw_data_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_received_ip_packet_count(_:_:)
 func nw_data_transfer_report_get_received_ip_packet_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_received_ip_packet_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_received_ip_packet_count */
 
 // Accesses the number of bytes the transport protocol delivered.
 //
@@ -1844,7 +1842,7 @@ func nw_data_transfer_report_get_received_ip_packet_count(report Nw_data_transfe
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_received_transport_byte_count(_:_:)
 func nw_data_transfer_report_get_received_transport_byte_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_received_transport_byte_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_received_transport_byte_count */
 
 // Accesses the number of duplicated bytes the transport protocol detected.
 //
@@ -1855,7 +1853,7 @@ func nw_data_transfer_report_get_received_transport_byte_count(report Nw_data_tr
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_received_transport_duplicate_byte_count(_:_:)
 func nw_data_transfer_report_get_received_transport_duplicate_byte_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_received_transport_duplicate_byte_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_received_transport_duplicate_byte_count */
 
 // Accesses the number of bytes the transport protocol received out of order.
 //
@@ -1866,7 +1864,7 @@ func nw_data_transfer_report_get_received_transport_duplicate_byte_count(report 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_received_transport_out_of_order_byte_count(_:_:)
 func nw_data_transfer_report_get_received_transport_out_of_order_byte_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_received_transport_out_of_order_byte_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_received_transport_out_of_order_byte_count */
 
 // Accesses the number of bytes sent on the connection.
 //
@@ -1877,7 +1875,7 @@ func nw_data_transfer_report_get_received_transport_out_of_order_byte_count(repo
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_sent_application_byte_count(_:_:)
 func nw_data_transfer_report_get_sent_application_byte_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_sent_application_byte_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_sent_application_byte_count */
 
 // Accesses the number of IP packets the connection sent.
 //
@@ -1888,7 +1886,7 @@ func nw_data_transfer_report_get_sent_application_byte_count(report Nw_data_tran
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_sent_ip_packet_count(_:_:)
 func nw_data_transfer_report_get_sent_ip_packet_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_sent_ip_packet_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_sent_ip_packet_count */
 
 // Accesses the number of bytes sent into the transport protocol.
 //
@@ -1899,7 +1897,7 @@ func nw_data_transfer_report_get_sent_ip_packet_count(report Nw_data_transfer_re
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_sent_transport_byte_count(_:_:)
 func nw_data_transfer_report_get_sent_transport_byte_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_sent_transport_byte_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_sent_transport_byte_count */
 
 // Accesses the number of bytes the transport protocol retransmitted.
 //
@@ -1910,7 +1908,7 @@ func nw_data_transfer_report_get_sent_transport_byte_count(report Nw_data_transf
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(_:_:)
 func nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_sent_transport_retransmitted_byte_count */
 
 // Checks whether a data transfer report is collected.
 //
@@ -1921,7 +1919,7 @@ func nw_data_transfer_report_get_sent_transport_retransmitted_byte_count(report 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_state(_:)
 func nw_data_transfer_report_get_state(report Nw_data_transfer_report_t) unsafe.Pointer {
 	return _nw_data_transfer_report_get_state(report)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_state */
 
 // Accesses the minimum round-trip time the transport protocol measured, in milliseconds.
 //
@@ -1932,7 +1930,7 @@ func nw_data_transfer_report_get_state(report Nw_data_transfer_report_t) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(_:_:)
 func nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_transport_minimum_rtt_milliseconds */
 
 // Accesses the variance of the round-trip time the transport protocol measured.
 //
@@ -1943,7 +1941,7 @@ func nw_data_transfer_report_get_transport_minimum_rtt_milliseconds(report Nw_da
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_transport_rtt_variance(_:_:)
 func nw_data_transfer_report_get_transport_rtt_variance(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_transport_rtt_variance(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_transport_rtt_variance */
 
 // Accesses the smoothed round-trip time the transport protocol measured, in milliseconds.
 //
@@ -1954,7 +1952,7 @@ func nw_data_transfer_report_get_transport_rtt_variance(report Nw_data_transfer_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(_:_:)
 func nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(report Nw_data_transfer_report_t, path_index uint32) uint64 {
 	return _nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(report, path_index)
-}
+}/* debug [functions.gen.go/function]: nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds */
 
 // Copies the address of an endpoint as a string.
 //
@@ -1965,7 +1963,7 @@ func nw_data_transfer_report_get_transport_smoothed_rtt_milliseconds(report Nw_d
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_copy_address_string(_:)
 func nw_endpoint_copy_address_string(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_copy_address_string(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_copy_address_string */
 
 // Copies the port of an endpoint as a string.
 //
@@ -1976,7 +1974,7 @@ func nw_endpoint_copy_address_string(endpoint Nw_endpoint_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_copy_port_string(_:)
 func nw_endpoint_copy_port_string(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_copy_port_string(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_copy_port_string */
 
 // nw_endpoint_copy_txt_record is a Network function.
 //
@@ -1985,7 +1983,7 @@ func nw_endpoint_copy_port_string(endpoint Nw_endpoint_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_copy_txt_record(_:)
 func nw_endpoint_copy_txt_record(endpoint Nw_endpoint_t) Nw_txt_record_t {
 	return _nw_endpoint_copy_txt_record(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_copy_txt_record */
 
 // Creates a network endpoint with an address structure.
 //
@@ -1996,7 +1994,7 @@ func nw_endpoint_copy_txt_record(endpoint Nw_endpoint_t) Nw_txt_record_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_create_address(_:)
 func nw_endpoint_create_address(address unsafe.Pointer) Nw_endpoint_t {
 	return _nw_endpoint_create_address(address)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_create_address */
 
 // Creates a network endpoint with a Bonjour service name, type, and domain.
 //
@@ -2007,7 +2005,7 @@ func nw_endpoint_create_address(address unsafe.Pointer) Nw_endpoint_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_create_bonjour_service(_:_:_:)
 func nw_endpoint_create_bonjour_service(name unsafe.Pointer, type_ unsafe.Pointer, domain unsafe.Pointer) Nw_endpoint_t {
 	return _nw_endpoint_create_bonjour_service(name, type_, domain)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_create_bonjour_service */
 
 // Creates a network endpoint with a hostname and port, where the hostname may be interpreted as an IP address.
 //
@@ -2018,7 +2016,7 @@ func nw_endpoint_create_bonjour_service(name unsafe.Pointer, type_ unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_create_host(_:_:)
 func nw_endpoint_create_host(hostname unsafe.Pointer, port unsafe.Pointer) Nw_endpoint_t {
 	return _nw_endpoint_create_host(hostname, port)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_create_host */
 
 // Creates a network endpoint with a URL string.
 //
@@ -2029,7 +2027,7 @@ func nw_endpoint_create_host(hostname unsafe.Pointer, port unsafe.Pointer) Nw_en
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_create_url(_:)
 func nw_endpoint_create_url(url unsafe.Pointer) Nw_endpoint_t {
 	return _nw_endpoint_create_url(url)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_create_url */
 
 // Accesses the address structure stored in an address endpoint.
 //
@@ -2040,7 +2038,7 @@ func nw_endpoint_create_url(url unsafe.Pointer) Nw_endpoint_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_address(_:)
 func nw_endpoint_get_address(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_get_address(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_address */
 
 // Accesses the Bonjour service domain stored in an endpoint.
 //
@@ -2051,7 +2049,7 @@ func nw_endpoint_get_address(endpoint Nw_endpoint_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_bonjour_service_domain(_:)
 func nw_endpoint_get_bonjour_service_domain(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_get_bonjour_service_domain(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_bonjour_service_domain */
 
 // Accesses the Bonjour service name stored in an endpoint.
 //
@@ -2062,7 +2060,7 @@ func nw_endpoint_get_bonjour_service_domain(endpoint Nw_endpoint_t) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_bonjour_service_name(_:)
 func nw_endpoint_get_bonjour_service_name(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_get_bonjour_service_name(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_bonjour_service_name */
 
 // Accesses the Bonjour service type stored in an endpoint.
 //
@@ -2073,7 +2071,7 @@ func nw_endpoint_get_bonjour_service_name(endpoint Nw_endpoint_t) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_bonjour_service_type(_:)
 func nw_endpoint_get_bonjour_service_type(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_get_bonjour_service_type(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_bonjour_service_type */
 
 // Accesses the hostname stored in an endpoint.
 //
@@ -2084,7 +2082,7 @@ func nw_endpoint_get_bonjour_service_type(endpoint Nw_endpoint_t) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_hostname(_:)
 func nw_endpoint_get_hostname(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_get_hostname(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_hostname */
 
 // Accesses the port stored in an endpoint, in host-byte order.
 //
@@ -2095,7 +2093,7 @@ func nw_endpoint_get_hostname(endpoint Nw_endpoint_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_port(_:)
 func nw_endpoint_get_port(endpoint Nw_endpoint_t) uint16 {
 	return _nw_endpoint_get_port(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_port */
 
 // nw_endpoint_get_signature is a Network function.
 //
@@ -2104,7 +2102,7 @@ func nw_endpoint_get_port(endpoint Nw_endpoint_t) uint16 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_signature(_:_:)
 func nw_endpoint_get_signature(endpoint Nw_endpoint_t, out_signature_length unsafe.Pointer) unsafe.Pointer {
 	return _nw_endpoint_get_signature(endpoint, out_signature_length)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_signature */
 
 // Accesses the type of a endpoint.
 //
@@ -2115,7 +2113,7 @@ func nw_endpoint_get_signature(endpoint Nw_endpoint_t, out_signature_length unsa
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_type(_:)
 func nw_endpoint_get_type(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_get_type(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_type */
 
 // Accesses the URL string stored in an endpoint.
 //
@@ -2126,7 +2124,7 @@ func nw_endpoint_get_type(endpoint Nw_endpoint_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_endpoint_get_url(_:)
 func nw_endpoint_get_url(endpoint Nw_endpoint_t) unsafe.Pointer {
 	return _nw_endpoint_get_url(endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_endpoint_get_url */
 
 // Returns a copy of a network error.
 //
@@ -2135,9 +2133,9 @@ func nw_endpoint_get_url(endpoint Nw_endpoint_t) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_error_copy_cf_error(_:)
-func nw_error_copy_cf_error(error_ Nw_error_t) unsafe.Pointer {
+func nw_error_copy_cf_error(error_ Nw_error_t) ErrorRef {
 	return _nw_error_copy_cf_error(error_)
-}
+}/* debug [functions.gen.go/function]: nw_error_copy_cf_error */
 
 // Accesses the specific code of the network error.
 //
@@ -2148,7 +2146,7 @@ func nw_error_copy_cf_error(error_ Nw_error_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_error_get_error_code(_:)
 func nw_error_get_error_code(error_ Nw_error_t) int {
 	return _nw_error_get_error_code(error_)
-}
+}/* debug [functions.gen.go/function]: nw_error_get_error_code */
 
 // Accesses the domain of the network error.
 //
@@ -2159,7 +2157,7 @@ func nw_error_get_error_code(error_ Nw_error_t) int {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_error_get_error_domain(_:)
 func nw_error_get_error_domain(error_ Nw_error_t) unsafe.Pointer {
 	return _nw_error_get_error_domain(error_)
-}
+}/* debug [functions.gen.go/function]: nw_error_get_error_domain */
 
 // Accesses the endpoint of the proxy the connection used.
 //
@@ -2170,7 +2168,7 @@ func nw_error_get_error_domain(error_ Nw_error_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_copy_proxy_endpoint(_:)
 func nw_establishment_report_copy_proxy_endpoint(report Nw_establishment_report_t) Nw_endpoint_t {
 	return _nw_establishment_report_copy_proxy_endpoint(report)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_copy_proxy_endpoint */
 
 // Iterates a list of protocol handshakes in order from first completed to last completed.
 //
@@ -2181,7 +2179,7 @@ func nw_establishment_report_copy_proxy_endpoint(report Nw_establishment_report_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_enumerate_protocols(_:_:)
 func nw_establishment_report_enumerate_protocols(report Nw_establishment_report_t, enumerate_block unsafe.Pointer) {
 	_nw_establishment_report_enumerate_protocols(report, enumerate_block)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_enumerate_protocols */
 
 // nw_establishment_report_enumerate_resolution_reports is a Network function.
 //
@@ -2190,7 +2188,7 @@ func nw_establishment_report_enumerate_protocols(report Nw_establishment_report_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_enumerate_resolution_reports(_:_:)
 func nw_establishment_report_enumerate_resolution_reports(report Nw_establishment_report_t, enumerate_block unsafe.Pointer) {
 	_nw_establishment_report_enumerate_resolution_reports(report, enumerate_block)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_enumerate_resolution_reports */
 
 // Iterates a list of resolution steps performed during connection establishment, in order from first resolved to last resolved.
 //
@@ -2201,7 +2199,7 @@ func nw_establishment_report_enumerate_resolution_reports(report Nw_establishmen
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_enumerate_resolutions(_:_:)
 func nw_establishment_report_enumerate_resolutions(report Nw_establishment_report_t, enumerate_block unsafe.Pointer) {
 	_nw_establishment_report_enumerate_resolutions(report, enumerate_block)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_enumerate_resolutions */
 
 // Accesses the time between the call to start and the beginning of the successful connection attempt, in milliseconds.
 //
@@ -2212,7 +2210,7 @@ func nw_establishment_report_enumerate_resolutions(report Nw_establishment_repor
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_get_attempt_started_after_milliseconds(_:)
 func nw_establishment_report_get_attempt_started_after_milliseconds(report Nw_establishment_report_t) uint64 {
 	return _nw_establishment_report_get_attempt_started_after_milliseconds(report)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_get_attempt_started_after_milliseconds */
 
 // Checks the total duration of the successful connection establishment attempt, from the preparing state to the ready state.
 //
@@ -2223,7 +2221,7 @@ func nw_establishment_report_get_attempt_started_after_milliseconds(report Nw_es
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_get_duration_milliseconds(_:)
 func nw_establishment_report_get_duration_milliseconds(report Nw_establishment_report_t) uint64 {
 	return _nw_establishment_report_get_duration_milliseconds(report)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_get_duration_milliseconds */
 
 // Checks the number of attempts made before the successful attempt, when the connection moved from the preparing state back to the waiting state.
 //
@@ -2234,7 +2232,7 @@ func nw_establishment_report_get_duration_milliseconds(report Nw_establishment_r
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_get_previous_attempt_count(_:)
 func nw_establishment_report_get_previous_attempt_count(report Nw_establishment_report_t) uint32 {
 	return _nw_establishment_report_get_previous_attempt_count(report)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_get_previous_attempt_count */
 
 // Checks whether a proxy was configured on the connection.
 //
@@ -2245,7 +2243,7 @@ func nw_establishment_report_get_previous_attempt_count(report Nw_establishment_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_get_proxy_configured(_:)
 func nw_establishment_report_get_proxy_configured(report Nw_establishment_report_t) bool {
 	return _nw_establishment_report_get_proxy_configured(report)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_get_proxy_configured */
 
 // Checks whether the connection used a proxy.
 //
@@ -2256,7 +2254,7 @@ func nw_establishment_report_get_proxy_configured(report Nw_establishment_report
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_establishment_report_get_used_proxy(_:)
 func nw_establishment_report_get_used_proxy(report Nw_establishment_report_t) bool {
 	return _nw_establishment_report_get_used_proxy(report)
-}
+}/* debug [functions.gen.go/function]: nw_establishment_report_get_used_proxy */
 
 // Unregisters the channel from the interface.
 //
@@ -2267,7 +2265,7 @@ func nw_establishment_report_get_used_proxy(report Nw_establishment_report_t) bo
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_cancel(_:)
 func nw_ethernet_channel_cancel(ethernet_channel Nw_ethernet_channel_t) {
 	_nw_ethernet_channel_cancel(ethernet_channel)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_cancel */
 
 // Initializes an Ethernet channel on a specific interface with a custom Ethernet type.
 //
@@ -2278,7 +2276,7 @@ func nw_ethernet_channel_cancel(ethernet_channel Nw_ethernet_channel_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_create(_:_:)
 func nw_ethernet_channel_create(ether_type uint16, interface_ Nw_interface_t) Nw_ethernet_channel_t {
 	return _nw_ethernet_channel_create(ether_type, interface_)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_create */
 
 // nw_ethernet_channel_create_with_parameters is a Network function.
 //
@@ -2287,7 +2285,7 @@ func nw_ethernet_channel_create(ether_type uint16, interface_ Nw_interface_t) Nw
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_create_with_parameters(_:_:_:)
 func nw_ethernet_channel_create_with_parameters(ether_type uint16, interface_ Nw_interface_t, parameters Nw_parameters_t) Nw_ethernet_channel_t {
 	return _nw_ethernet_channel_create_with_parameters(ether_type, interface_, parameters)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_create_with_parameters */
 
 // nw_ethernet_channel_get_maximum_payload_size is a Network function.
 //
@@ -2296,7 +2294,7 @@ func nw_ethernet_channel_create_with_parameters(ether_type uint16, interface_ Nw
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_get_maximum_payload_size(_:)
 func nw_ethernet_channel_get_maximum_payload_size(ethernet_channel Nw_ethernet_channel_t) uint32 {
 	return _nw_ethernet_channel_get_maximum_payload_size(ethernet_channel)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_get_maximum_payload_size */
 
 // Sends a single Ethernet frame over a channel to a specific Ethernet address.
 //
@@ -2307,7 +2305,7 @@ func nw_ethernet_channel_get_maximum_payload_size(ethernet_channel Nw_ethernet_c
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_send(_:_:_:_:_:)
 func nw_ethernet_channel_send(ethernet_channel Nw_ethernet_channel_t, content unsafe.Pointer, vlan_tag uint16, remote_address Nw_ethernet_address_t, completion unsafe.Pointer) {
 	_nw_ethernet_channel_send(ethernet_channel, content, vlan_tag, remote_address, completion)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_send */
 
 // Sets the queue on which all channel events are delivered.
 //
@@ -2318,7 +2316,7 @@ func nw_ethernet_channel_send(ethernet_channel Nw_ethernet_channel_t, content un
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_set_queue(_:_:)
 func nw_ethernet_channel_set_queue(ethernet_channel Nw_ethernet_channel_t, queue unsafe.Pointer) {
 	_nw_ethernet_channel_set_queue(ethernet_channel, queue)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_set_queue */
 
 // Sets a handler to receive inbound Ethernet frames.
 //
@@ -2329,7 +2327,7 @@ func nw_ethernet_channel_set_queue(ethernet_channel Nw_ethernet_channel_t, queue
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_set_receive_handler(_:_:)
 func nw_ethernet_channel_set_receive_handler(ethernet_channel Nw_ethernet_channel_t, handler unsafe.Pointer) {
 	_nw_ethernet_channel_set_receive_handler(ethernet_channel, handler)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_set_receive_handler */
 
 // Sets a handler to receive channel state updates.
 //
@@ -2340,7 +2338,7 @@ func nw_ethernet_channel_set_receive_handler(ethernet_channel Nw_ethernet_channe
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_set_state_changed_handler(_:_:)
 func nw_ethernet_channel_set_state_changed_handler(ethernet_channel Nw_ethernet_channel_t, handler unsafe.Pointer) {
 	_nw_ethernet_channel_set_state_changed_handler(ethernet_channel, handler)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_set_state_changed_handler */
 
 // Starts the process of registering the channel.
 //
@@ -2351,7 +2349,7 @@ func nw_ethernet_channel_set_state_changed_handler(ethernet_channel Nw_ethernet_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ethernet_channel_start(_:)
 func nw_ethernet_channel_start(ethernet_channel Nw_ethernet_channel_t) {
 	_nw_ethernet_channel_start(ethernet_channel)
-}
+}/* debug [functions.gen.go/function]: nw_ethernet_channel_start */
 
 // Requests that a block be executed on the connection’s internal scheduling context.
 //
@@ -2362,18 +2360,7 @@ func nw_ethernet_channel_start(ethernet_channel Nw_ethernet_channel_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_async(_:_:)
 func nw_framer_async(framer Nw_framer_t, async_block unsafe.Pointer) {
 	_nw_framer_async(framer, async_block)
-}
-
-// Accesses the local endpoint of the connection in which your protocol is running.
-//
-// Added in macOS 10.15.
-// Accesses the local endpoint of the connection in which your protocol is running.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_copy_local_endpoint(_:)
-func nw_framer_copy_local_endpoint(framer Nw_framer_t) Nw_endpoint_t {
-	return _nw_framer_copy_local_endpoint(framer)
-}
+}/* debug [functions.gen.go/function]: nw_framer_async */
 
 // nw_framer_copy_options is a Network function.
 //
@@ -2382,7 +2369,7 @@ func nw_framer_copy_local_endpoint(framer Nw_framer_t) Nw_endpoint_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_copy_options(_:)
 func nw_framer_copy_options(framer Nw_framer_t) Nw_protocol_options_t {
 	return _nw_framer_copy_options(framer)
-}
+}/* debug [functions.gen.go/function]: nw_framer_copy_options */
 
 // Accesses the parameters of the connection in which your protocol is running.
 //
@@ -2393,7 +2380,7 @@ func nw_framer_copy_options(framer Nw_framer_t) Nw_protocol_options_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_copy_parameters(_:)
 func nw_framer_copy_parameters(framer Nw_framer_t) Nw_parameters_t {
 	return _nw_framer_copy_parameters(framer)
-}
+}/* debug [functions.gen.go/function]: nw_framer_copy_parameters */
 
 // Accesses the remote endpoint of the connection in which your protocol is running.
 //
@@ -2404,7 +2391,7 @@ func nw_framer_copy_parameters(framer Nw_framer_t) Nw_parameters_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_copy_remote_endpoint(_:)
 func nw_framer_copy_remote_endpoint(framer Nw_framer_t) Nw_endpoint_t {
 	return _nw_framer_copy_remote_endpoint(framer)
-}
+}/* debug [functions.gen.go/function]: nw_framer_copy_remote_endpoint */
 
 // Initializes a new protocol definition based on your protocol implementation.
 //
@@ -2415,7 +2402,7 @@ func nw_framer_copy_remote_endpoint(framer Nw_framer_t) Nw_endpoint_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_create_definition(_:_:_:)
 func nw_framer_create_definition(identifier unsafe.Pointer, flags uint32, start_handler unsafe.Pointer) Nw_protocol_definition_t {
 	return _nw_framer_create_definition(identifier, flags, start_handler)
-}
+}/* debug [functions.gen.go/function]: nw_framer_create_definition */
 
 // Initializes a set of protocol options with a custom framer definition.
 //
@@ -2426,7 +2413,7 @@ func nw_framer_create_definition(identifier unsafe.Pointer, flags uint32, start_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_create_options(_:)
 func nw_framer_create_options(framer_definition Nw_protocol_definition_t) Nw_protocol_options_t {
 	return _nw_framer_create_options(framer_definition)
-}
+}/* debug [functions.gen.go/function]: nw_framer_create_options */
 
 // Delivers an inbound message containing arbitrary data from your protocol to the application.
 //
@@ -2437,7 +2424,7 @@ func nw_framer_create_options(framer_definition Nw_protocol_definition_t) Nw_pro
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_deliver_input(_:_:_:_:_:)
 func nw_framer_deliver_input(framer Nw_framer_t, input_buffer unsafe.Pointer, input_length uintptr, message Nw_framer_message_t, is_complete bool) {
 	_nw_framer_deliver_input(framer, input_buffer, input_length, message, is_complete)
-}
+}/* debug [functions.gen.go/function]: nw_framer_deliver_input */
 
 // Delivers an inbound message containing a specific number of next received bytes.
 //
@@ -2448,7 +2435,7 @@ func nw_framer_deliver_input(framer Nw_framer_t, input_buffer unsafe.Pointer, in
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_deliver_input_no_copy(_:_:_:_:)
 func nw_framer_deliver_input_no_copy(framer Nw_framer_t, input_length uintptr, message Nw_framer_message_t, is_complete bool) bool {
 	return _nw_framer_deliver_input_no_copy(framer, input_length, message, is_complete)
-}
+}/* debug [functions.gen.go/function]: nw_framer_deliver_input_no_copy */
 
 // Indicates to a connection that your protocol has encountered an error, or has gracefully closed.
 //
@@ -2459,7 +2446,7 @@ func nw_framer_deliver_input_no_copy(framer Nw_framer_t, input_length uintptr, m
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_mark_failed_with_error(_:_:)
 func nw_framer_mark_failed_with_error(framer Nw_framer_t, error_code int) {
 	_nw_framer_mark_failed_with_error(framer, error_code)
-}
+}/* debug [functions.gen.go/function]: nw_framer_mark_failed_with_error */
 
 // Indicates to a connection that your protocol’s handshake is complete.
 //
@@ -2470,7 +2457,7 @@ func nw_framer_mark_failed_with_error(framer Nw_framer_t, error_code int) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_mark_ready(_:)
 func nw_framer_mark_ready(framer Nw_framer_t) {
 	_nw_framer_mark_ready(framer)
-}
+}/* debug [functions.gen.go/function]: nw_framer_mark_ready */
 
 // Accesses a custom value stored in a framer message.
 //
@@ -2481,7 +2468,7 @@ func nw_framer_mark_ready(framer Nw_framer_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_message_access_value(_:_:_:)
 func nw_framer_message_access_value(message Nw_framer_message_t, key unsafe.Pointer, access_value bool) bool {
 	return _nw_framer_message_access_value(message, key, access_value)
-}
+}/* debug [functions.gen.go/function]: nw_framer_message_access_value */
 
 // Accesses an NSObject value stored in a framer message.
 //
@@ -2492,7 +2479,7 @@ func nw_framer_message_access_value(message Nw_framer_message_t, key unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_message_copy_object_value(_:_:)
 func nw_framer_message_copy_object_value(message Nw_framer_message_t, key unsafe.Pointer) objc.ID {
 	return _nw_framer_message_copy_object_value(message, key)
-}
+}/* debug [functions.gen.go/function]: nw_framer_message_copy_object_value */
 
 // Initializes an empty message from within a framer implementation.
 //
@@ -2503,7 +2490,7 @@ func nw_framer_message_copy_object_value(message Nw_framer_message_t, key unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_message_create(_:)
 func nw_framer_message_create(framer Nw_framer_t) Nw_framer_message_t {
 	return _nw_framer_message_create(framer)
-}
+}/* debug [functions.gen.go/function]: nw_framer_message_create */
 
 // Sets an NSObject value to be stored in a framer message.
 //
@@ -2514,7 +2501,7 @@ func nw_framer_message_create(framer Nw_framer_t) Nw_framer_message_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_message_set_object_value(_:_:_:)
 func nw_framer_message_set_object_value(message Nw_framer_message_t, key unsafe.Pointer, value objc.ID) {
 	_nw_framer_message_set_object_value(message, key, value)
-}
+}/* debug [functions.gen.go/function]: nw_framer_message_set_object_value */
 
 // Sets a value to be stored in a framer message, with a completion to call to disposed the stored value when the message is released.
 //
@@ -2525,7 +2512,7 @@ func nw_framer_message_set_object_value(message Nw_framer_message_t, key unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_message_set_value(_:_:_:_:)
 func nw_framer_message_set_value(message Nw_framer_message_t, key unsafe.Pointer, value unsafe.Pointer, dispose_value unsafe.Pointer) {
 	_nw_framer_message_set_value(message, key, value, dispose_value)
-}
+}/* debug [functions.gen.go/function]: nw_framer_message_set_value */
 
 // nw_framer_options_copy_object_value is a Network function.
 //
@@ -2534,7 +2521,7 @@ func nw_framer_message_set_value(message Nw_framer_message_t, key unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_options_copy_object_value(_:_:)
 func nw_framer_options_copy_object_value(options Nw_protocol_options_t, key unsafe.Pointer) objc.ID {
 	return _nw_framer_options_copy_object_value(options, key)
-}
+}/* debug [functions.gen.go/function]: nw_framer_options_copy_object_value */
 
 // nw_framer_options_set_object_value is a Network function.
 //
@@ -2543,7 +2530,7 @@ func nw_framer_options_copy_object_value(options Nw_protocol_options_t, key unsa
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_options_set_object_value(_:_:_:)
 func nw_framer_options_set_object_value(options Nw_protocol_options_t, key unsafe.Pointer, value objc.ID) {
 	_nw_framer_options_set_object_value(options, key, value)
-}
+}/* debug [functions.gen.go/function]: nw_framer_options_set_object_value */
 
 // Examines the content of input data while inside your input handler block.
 //
@@ -2554,7 +2541,7 @@ func nw_framer_options_set_object_value(options Nw_protocol_options_t, key unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_parse_input(_:_:_:_:_:)
 func nw_framer_parse_input(framer Nw_framer_t, minimum_incomplete_length uintptr, maximum_length uintptr, temp_buffer unsafe.Pointer, parse unsafe.Pointer) bool {
 	return _nw_framer_parse_input(framer, minimum_incomplete_length, maximum_length, temp_buffer, parse)
-}
+}/* debug [functions.gen.go/function]: nw_framer_parse_input */
 
 // Examines the content of output data while inside your output handler.
 //
@@ -2565,7 +2552,7 @@ func nw_framer_parse_input(framer Nw_framer_t, minimum_incomplete_length uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_parse_output(_:_:_:_:_:)
 func nw_framer_parse_output(framer Nw_framer_t, minimum_incomplete_length uintptr, maximum_length uintptr, temp_buffer unsafe.Pointer, parse unsafe.Pointer) bool {
 	return _nw_framer_parse_output(framer, minimum_incomplete_length, maximum_length, temp_buffer, parse)
-}
+}/* debug [functions.gen.go/function]: nw_framer_parse_output */
 
 // Indicates that your protocol no longer needs to handle input data.
 //
@@ -2576,7 +2563,7 @@ func nw_framer_parse_output(framer Nw_framer_t, minimum_incomplete_length uintpt
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_pass_through_input(_:)
 func nw_framer_pass_through_input(framer Nw_framer_t) {
 	_nw_framer_pass_through_input(framer)
-}
+}/* debug [functions.gen.go/function]: nw_framer_pass_through_input */
 
 // Indicates that your protocol no longer needs to handle output data.
 //
@@ -2587,7 +2574,7 @@ func nw_framer_pass_through_input(framer Nw_framer_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_pass_through_output(_:)
 func nw_framer_pass_through_output(framer Nw_framer_t) {
 	_nw_framer_pass_through_output(framer)
-}
+}/* debug [functions.gen.go/function]: nw_framer_pass_through_output */
 
 // Dynamically adds another protocol that will run above your protocol after your protocol calls .
 //
@@ -2598,7 +2585,7 @@ func nw_framer_pass_through_output(framer Nw_framer_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_prepend_application_protocol(_:_:)
 func nw_framer_prepend_application_protocol(framer Nw_framer_t, protocol_options Nw_protocol_options_t) bool {
 	return _nw_framer_prepend_application_protocol(framer, protocol_options)
-}
+}/* debug [functions.gen.go/function]: nw_framer_prepend_application_protocol */
 
 // Initializes an empty message for a custom framer definition.
 //
@@ -2609,7 +2596,7 @@ func nw_framer_prepend_application_protocol(framer Nw_framer_t, protocol_options
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_protocol_create_message(_:)
 func nw_framer_protocol_create_message(definition Nw_protocol_definition_t) Nw_framer_message_t {
 	return _nw_framer_protocol_create_message(definition)
-}
+}/* debug [functions.gen.go/function]: nw_framer_protocol_create_message */
 
 // Requests that the be called on your protocol at a specific time in the future.
 //
@@ -2620,7 +2607,7 @@ func nw_framer_protocol_create_message(definition Nw_protocol_definition_t) Nw_f
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_schedule_wakeup(_:_:)
 func nw_framer_schedule_wakeup(framer Nw_framer_t, milliseconds uint64) {
 	_nw_framer_schedule_wakeup(framer, milliseconds)
-}
+}/* debug [functions.gen.go/function]: nw_framer_schedule_wakeup */
 
 // Sets a block to handle the final cleanup of allocations made by your protocol instance.
 //
@@ -2631,7 +2618,7 @@ func nw_framer_schedule_wakeup(framer Nw_framer_t, milliseconds uint64) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_set_cleanup_handler(_:_:)
 func nw_framer_set_cleanup_handler(framer Nw_framer_t, cleanup_handler unsafe.Pointer) {
 	_nw_framer_set_cleanup_handler(framer, cleanup_handler)
-}
+}/* debug [functions.gen.go/function]: nw_framer_set_cleanup_handler */
 
 // Sets a block to handle new inbound data.
 //
@@ -2642,7 +2629,7 @@ func nw_framer_set_cleanup_handler(framer Nw_framer_t, cleanup_handler unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_set_input_handler(_:_:)
 func nw_framer_set_input_handler(framer Nw_framer_t, input_handler unsafe.Pointer) {
 	_nw_framer_set_input_handler(framer, input_handler)
-}
+}/* debug [functions.gen.go/function]: nw_framer_set_input_handler */
 
 // Sets a block to handle new outbound messages.
 //
@@ -2653,7 +2640,7 @@ func nw_framer_set_input_handler(framer Nw_framer_t, input_handler unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_set_output_handler(_:_:)
 func nw_framer_set_output_handler(framer Nw_framer_t, output_handler unsafe.Pointer) {
 	_nw_framer_set_output_handler(framer, output_handler)
-}
+}/* debug [functions.gen.go/function]: nw_framer_set_output_handler */
 
 // Sets a block to handle when the connection is being closed.
 //
@@ -2664,7 +2651,7 @@ func nw_framer_set_output_handler(framer Nw_framer_t, output_handler unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_set_stop_handler(_:_:)
 func nw_framer_set_stop_handler(framer Nw_framer_t, stop_handler unsafe.Pointer) {
 	_nw_framer_set_stop_handler(framer, stop_handler)
-}
+}/* debug [functions.gen.go/function]: nw_framer_set_stop_handler */
 
 // Sets a handler to receive scheduled wakeup events.
 //
@@ -2675,7 +2662,7 @@ func nw_framer_set_stop_handler(framer Nw_framer_t, stop_handler unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_set_wakeup_handler(_:_:)
 func nw_framer_set_wakeup_handler(framer Nw_framer_t, wakeup_handler unsafe.Pointer) {
 	_nw_framer_set_wakeup_handler(framer, wakeup_handler)
-}
+}/* debug [functions.gen.go/function]: nw_framer_set_wakeup_handler */
 
 // Sends arbitrary output data in a buffer from your protocol to the next protocol.
 //
@@ -2686,7 +2673,7 @@ func nw_framer_set_wakeup_handler(framer Nw_framer_t, wakeup_handler unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_write_output(_:_:_:)
 func nw_framer_write_output(framer Nw_framer_t, output_buffer unsafe.Pointer, output_length uintptr) {
 	_nw_framer_write_output(framer, output_buffer, output_length)
-}
+}/* debug [functions.gen.go/function]: nw_framer_write_output */
 
 // Sends arbitrary output data from your protocol to the next protocol.
 //
@@ -2697,7 +2684,7 @@ func nw_framer_write_output(framer Nw_framer_t, output_buffer unsafe.Pointer, ou
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_write_output_data(_:_:)
 func nw_framer_write_output_data(framer Nw_framer_t, output_data unsafe.Pointer) {
 	_nw_framer_write_output_data(framer, output_data)
-}
+}/* debug [functions.gen.go/function]: nw_framer_write_output_data */
 
 // Sends a specific number of bytes from a message while inside your output handler.
 //
@@ -2708,7 +2695,7 @@ func nw_framer_write_output_data(framer Nw_framer_t, output_data unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_framer_write_output_no_copy(_:_:)
 func nw_framer_write_output_no_copy(framer Nw_framer_t, output_length uintptr) bool {
 	return _nw_framer_write_output_no_copy(framer, output_length)
-}
+}/* debug [functions.gen.go/function]: nw_framer_write_output_no_copy */
 
 // Adds a multicast address endpoint you specify to define an extra IP multicast group to join.
 //
@@ -2719,7 +2706,7 @@ func nw_framer_write_output_no_copy(framer Nw_framer_t, output_length uintptr) b
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_group_descriptor_add_endpoint(_:_:)
 func nw_group_descriptor_add_endpoint(descriptor Nw_group_descriptor_t, endpoint Nw_endpoint_t) bool {
 	return _nw_group_descriptor_add_endpoint(descriptor, endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_group_descriptor_add_endpoint */
 
 // Creates group descriptor you use to join an IP multicast group on a local network.
 //
@@ -2730,7 +2717,7 @@ func nw_group_descriptor_add_endpoint(descriptor Nw_group_descriptor_t, endpoint
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_group_descriptor_create_multicast(_:)
 func nw_group_descriptor_create_multicast(multicast_group Nw_endpoint_t) Nw_group_descriptor_t {
 	return _nw_group_descriptor_create_multicast(multicast_group)
-}
+}/* debug [functions.gen.go/function]: nw_group_descriptor_create_multicast */
 
 // nw_group_descriptor_create_multiplex is a Network function.
 //
@@ -2739,7 +2726,7 @@ func nw_group_descriptor_create_multicast(multicast_group Nw_endpoint_t) Nw_grou
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_group_descriptor_create_multiplex(_:)
 func nw_group_descriptor_create_multiplex(remote_endpoint Nw_endpoint_t) Nw_group_descriptor_t {
 	return _nw_group_descriptor_create_multiplex(remote_endpoint)
-}
+}/* debug [functions.gen.go/function]: nw_group_descriptor_create_multiplex */
 
 // Sets a handler to list all endpoints added to the group descriptor.
 //
@@ -2750,7 +2737,7 @@ func nw_group_descriptor_create_multiplex(remote_endpoint Nw_endpoint_t) Nw_grou
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_group_descriptor_enumerate_endpoints(_:_:)
 func nw_group_descriptor_enumerate_endpoints(descriptor Nw_group_descriptor_t, enumerate_block unsafe.Pointer) {
 	_nw_group_descriptor_enumerate_endpoints(descriptor, enumerate_block)
-}
+}/* debug [functions.gen.go/function]: nw_group_descriptor_enumerate_endpoints */
 
 // Accesses the system interface index associated with the interface.
 //
@@ -2761,7 +2748,7 @@ func nw_group_descriptor_enumerate_endpoints(descriptor Nw_group_descriptor_t, e
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_interface_get_index(_:)
 func nw_interface_get_index(interface_ Nw_interface_t) uint32 {
 	return _nw_interface_get_index(interface_)
-}
+}/* debug [functions.gen.go/function]: nw_interface_get_index */
 
 // Accesses the name of the interface.
 //
@@ -2772,7 +2759,7 @@ func nw_interface_get_index(interface_ Nw_interface_t) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_interface_get_name(_:)
 func nw_interface_get_name(interface_ Nw_interface_t) unsafe.Pointer {
 	return _nw_interface_get_name(interface_)
-}
+}/* debug [functions.gen.go/function]: nw_interface_get_name */
 
 // Accesses the type of the interface, such as Wi-Fi or Loopback.
 //
@@ -2783,7 +2770,7 @@ func nw_interface_get_name(interface_ Nw_interface_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_interface_get_type(_:)
 func nw_interface_get_type(interface_ Nw_interface_t) unsafe.Pointer {
 	return _nw_interface_get_type(interface_)
-}
+}/* debug [functions.gen.go/function]: nw_interface_get_type */
 
 // Initializes an IP packet configuration with default settings.
 //
@@ -2794,7 +2781,7 @@ func nw_interface_get_type(interface_ Nw_interface_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_create_metadata()
 func nw_ip_create_metadata() Nw_protocol_metadata_t {
 	return _nw_ip_create_metadata()
-}
+}/* debug [functions.gen.go/function]: nw_ip_create_metadata */
 
 // Checks the Explicit Congestion Notification flag value received on an IP packet.
 //
@@ -2805,7 +2792,7 @@ func nw_ip_create_metadata() Nw_protocol_metadata_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_metadata_get_ecn_flag(_:)
 func nw_ip_metadata_get_ecn_flag(metadata Nw_protocol_metadata_t) unsafe.Pointer {
 	return _nw_ip_metadata_get_ecn_flag(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_ip_metadata_get_ecn_flag */
 
 // Access the time at which a packet was received, in nanoseconds, based on .
 //
@@ -2816,7 +2803,7 @@ func nw_ip_metadata_get_ecn_flag(metadata Nw_protocol_metadata_t) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_metadata_get_receive_time(_:)
 func nw_ip_metadata_get_receive_time(metadata Nw_protocol_metadata_t) uint64 {
 	return _nw_ip_metadata_get_receive_time(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_ip_metadata_get_receive_time */
 
 // Accesses a specific service class to mark on an IP packet.
 //
@@ -2827,7 +2814,7 @@ func nw_ip_metadata_get_receive_time(metadata Nw_protocol_metadata_t) uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_metadata_get_service_class(_:)
 func nw_ip_metadata_get_service_class(metadata Nw_protocol_metadata_t) unsafe.Pointer {
 	return _nw_ip_metadata_get_service_class(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_ip_metadata_get_service_class */
 
 // Sets a specific Explicit Congestion Notification flag value to set on an IP packet.
 //
@@ -2838,7 +2825,7 @@ func nw_ip_metadata_get_service_class(metadata Nw_protocol_metadata_t) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_metadata_set_ecn_flag(_:_:)
 func nw_ip_metadata_set_ecn_flag(metadata Nw_protocol_metadata_t, ecn_flag unsafe.Pointer) {
 	_nw_ip_metadata_set_ecn_flag(metadata, ecn_flag)
-}
+}/* debug [functions.gen.go/function]: nw_ip_metadata_set_ecn_flag */
 
 // Sets a specific service class to mark on an IP packet.
 //
@@ -2849,7 +2836,7 @@ func nw_ip_metadata_set_ecn_flag(metadata Nw_protocol_metadata_t, ecn_flag unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_metadata_set_service_class(_:_:)
 func nw_ip_metadata_set_service_class(metadata Nw_protocol_metadata_t, service_class unsafe.Pointer) {
 	_nw_ip_metadata_set_service_class(metadata, service_class)
-}
+}/* debug [functions.gen.go/function]: nw_ip_metadata_set_service_class */
 
 // Configures a connection to deliver receive timestamps for IP packets.
 //
@@ -2860,7 +2847,7 @@ func nw_ip_metadata_set_service_class(metadata Nw_protocol_metadata_t, service_c
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_calculate_receive_time(_:_:)
 func nw_ip_options_set_calculate_receive_time(options Nw_protocol_options_t, calculate_receive_time bool) {
 	_nw_ip_options_set_calculate_receive_time(options, calculate_receive_time)
-}
+}/* debug [functions.gen.go/function]: nw_ip_options_set_calculate_receive_time */
 
 // Configures a connection to disable fragmentation on outbound packets.
 //
@@ -2871,7 +2858,7 @@ func nw_ip_options_set_calculate_receive_time(options Nw_protocol_options_t, cal
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_disable_fragmentation(_:_:)
 func nw_ip_options_set_disable_fragmentation(options Nw_protocol_options_t, disable_fragmentation bool) {
 	_nw_ip_options_set_disable_fragmentation(options, disable_fragmentation)
-}
+}/* debug [functions.gen.go/function]: nw_ip_options_set_disable_fragmentation */
 
 // nw_ip_options_set_disable_multicast_loopback is a Network function.
 //
@@ -2880,7 +2867,7 @@ func nw_ip_options_set_disable_fragmentation(options Nw_protocol_options_t, disa
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_disable_multicast_loopback(_:_:)
 func nw_ip_options_set_disable_multicast_loopback(options Nw_protocol_options_t, disable_multicast_loopback bool) {
 	_nw_ip_options_set_disable_multicast_loopback(options, disable_multicast_loopback)
-}
+}/* debug [functions.gen.go/function]: nw_ip_options_set_disable_multicast_loopback */
 
 // Configures the default hop limit for packets generated by a connection.
 //
@@ -2891,18 +2878,7 @@ func nw_ip_options_set_disable_multicast_loopback(options Nw_protocol_options_t,
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_hop_limit(_:_:)
 func nw_ip_options_set_hop_limit(options Nw_protocol_options_t, hop_limit uint8) {
 	_nw_ip_options_set_hop_limit(options, hop_limit)
-}
-
-// Configures a connection to prefer certain types of local addresses, such as temporary or stable.
-//
-// Added in macOS 10.15.
-// Configures a connection to prefer certain types of local addresses, such as temporary or stable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_local_address_preference(_:_:)
-func nw_ip_options_set_local_address_preference(options Nw_protocol_options_t, preference unsafe.Pointer) {
-	_nw_ip_options_set_local_address_preference(options, preference)
-}
+}/* debug [functions.gen.go/function]: nw_ip_options_set_hop_limit */
 
 // Configures a connection to use the minimum MTU value, which is 1280 bytes for IPv6.
 //
@@ -2913,18 +2889,7 @@ func nw_ip_options_set_local_address_preference(options Nw_protocol_options_t, p
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_use_minimum_mtu(_:_:)
 func nw_ip_options_set_use_minimum_mtu(options Nw_protocol_options_t, use_minimum_mtu bool) {
 	_nw_ip_options_set_use_minimum_mtu(options, use_minimum_mtu)
-}
-
-// Sets a required IP version to disable all other versions for a connection.
-//
-// Added in macOS 10.14.
-// Sets a required IP version to disable all other versions for a connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_ip_options_set_version(_:_:)
-func nw_ip_options_set_version(options Nw_protocol_options_t, version unsafe.Pointer) {
-	_nw_ip_options_set_version(options, version)
-}
+}/* debug [functions.gen.go/function]: nw_ip_options_set_use_minimum_mtu */
 
 // Stops listening for inbound connections.
 //
@@ -2935,7 +2900,7 @@ func nw_ip_options_set_version(options Nw_protocol_options_t, version unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_cancel(_:)
 func nw_listener_cancel(listener Nw_listener_t) {
 	_nw_listener_cancel(listener)
-}
+}/* debug [functions.gen.go/function]: nw_listener_cancel */
 
 // Initializes a network listener, which will select a random port.
 //
@@ -2946,7 +2911,7 @@ func nw_listener_cancel(listener Nw_listener_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_create(_:)
 func nw_listener_create(parameters Nw_parameters_t) Nw_listener_t {
 	return _nw_listener_create(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_listener_create */
 
 // Initializes a network listener to receive new streams on a multiplexed connection.
 //
@@ -2957,7 +2922,7 @@ func nw_listener_create(parameters Nw_parameters_t) Nw_listener_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_create_with_connection(_:_:)
 func nw_listener_create_with_connection(connection Nw_connection_t, parameters Nw_parameters_t) Nw_listener_t {
 	return _nw_listener_create_with_connection(connection, parameters)
-}
+}/* debug [functions.gen.go/function]: nw_listener_create_with_connection */
 
 // nw_listener_create_with_launchd_key is a Network function.
 //
@@ -2966,7 +2931,7 @@ func nw_listener_create_with_connection(connection Nw_connection_t, parameters N
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_create_with_launchd_key(_:_:)
 func nw_listener_create_with_launchd_key(parameters Nw_parameters_t, launchd_key unsafe.Pointer) Nw_listener_t {
 	return _nw_listener_create_with_launchd_key(parameters, launchd_key)
-}
+}/* debug [functions.gen.go/function]: nw_listener_create_with_launchd_key */
 
 // Initializes a network listener with a specified local port.
 //
@@ -2977,7 +2942,7 @@ func nw_listener_create_with_launchd_key(parameters Nw_parameters_t, launchd_key
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_create_with_port(_:_:)
 func nw_listener_create_with_port(port unsafe.Pointer, parameters Nw_parameters_t) Nw_listener_t {
 	return _nw_listener_create_with_port(port, parameters)
-}
+}/* debug [functions.gen.go/function]: nw_listener_create_with_port */
 
 // Checks the remaining number of inbound connections to deliver before rejecting connections.
 //
@@ -2988,7 +2953,7 @@ func nw_listener_create_with_port(port unsafe.Pointer, parameters Nw_parameters_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_get_new_connection_limit(_:)
 func nw_listener_get_new_connection_limit(listener Nw_listener_t) uint32 {
 	return _nw_listener_get_new_connection_limit(listener)
-}
+}/* debug [functions.gen.go/function]: nw_listener_get_new_connection_limit */
 
 // The port on which the listener can accept connections.
 //
@@ -2999,7 +2964,7 @@ func nw_listener_get_new_connection_limit(listener Nw_listener_t) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_get_port(_:)
 func nw_listener_get_port(listener Nw_listener_t) uint16 {
 	return _nw_listener_get_port(listener)
-}
+}/* debug [functions.gen.go/function]: nw_listener_get_port */
 
 // Sets a Bonjour service that advertises the listener on the local network.
 //
@@ -3010,7 +2975,7 @@ func nw_listener_get_port(listener Nw_listener_t) uint16 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_set_advertise_descriptor(_:_:)
 func nw_listener_set_advertise_descriptor(listener Nw_listener_t, advertise_descriptor Nw_advertise_descriptor_t) {
 	_nw_listener_set_advertise_descriptor(listener, advertise_descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_listener_set_advertise_descriptor */
 
 // Sets a handler that receives updates for the service endpoint being advertised.
 //
@@ -3021,7 +2986,7 @@ func nw_listener_set_advertise_descriptor(listener Nw_listener_t, advertise_desc
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_set_advertised_endpoint_changed_handler(_:_:)
 func nw_listener_set_advertised_endpoint_changed_handler(listener Nw_listener_t, handler unsafe.Pointer) {
 	_nw_listener_set_advertised_endpoint_changed_handler(listener, handler)
-}
+}/* debug [functions.gen.go/function]: nw_listener_set_advertised_endpoint_changed_handler */
 
 // nw_listener_set_new_connection_group_handler is a Network function.
 //
@@ -3030,7 +2995,7 @@ func nw_listener_set_advertised_endpoint_changed_handler(listener Nw_listener_t,
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_set_new_connection_group_handler(_:_:)
 func nw_listener_set_new_connection_group_handler(listener Nw_listener_t, handler unsafe.Pointer) {
 	_nw_listener_set_new_connection_group_handler(listener, handler)
-}
+}/* debug [functions.gen.go/function]: nw_listener_set_new_connection_group_handler */
 
 // Sets a handler that receives inbound connections.
 //
@@ -3041,7 +3006,7 @@ func nw_listener_set_new_connection_group_handler(listener Nw_listener_t, handle
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_set_new_connection_handler(_:_:)
 func nw_listener_set_new_connection_handler(listener Nw_listener_t, handler unsafe.Pointer) {
 	_nw_listener_set_new_connection_handler(listener, handler)
-}
+}/* debug [functions.gen.go/function]: nw_listener_set_new_connection_handler */
 
 // Resets the number of inbound connections to deliver before rejecting connections.
 //
@@ -3052,7 +3017,7 @@ func nw_listener_set_new_connection_handler(listener Nw_listener_t, handler unsa
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_set_new_connection_limit(_:_:)
 func nw_listener_set_new_connection_limit(listener Nw_listener_t, new_connection_limit uint32) {
 	_nw_listener_set_new_connection_limit(listener, new_connection_limit)
-}
+}/* debug [functions.gen.go/function]: nw_listener_set_new_connection_limit */
 
 // Sets the queue on which all listener events are delivered.
 //
@@ -3063,7 +3028,7 @@ func nw_listener_set_new_connection_limit(listener Nw_listener_t, new_connection
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_set_queue(_:_:)
 func nw_listener_set_queue(listener Nw_listener_t, queue unsafe.Pointer) {
 	_nw_listener_set_queue(listener, queue)
-}
+}/* debug [functions.gen.go/function]: nw_listener_set_queue */
 
 // Sets a handler to receive listener state updates.
 //
@@ -3074,7 +3039,7 @@ func nw_listener_set_queue(listener Nw_listener_t, queue unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_set_state_changed_handler(_:_:)
 func nw_listener_set_state_changed_handler(listener Nw_listener_t, handler unsafe.Pointer) {
 	_nw_listener_set_state_changed_handler(listener, handler)
-}
+}/* debug [functions.gen.go/function]: nw_listener_set_state_changed_handler */
 
 // Registers for listening for inbound connections.
 //
@@ -3085,7 +3050,7 @@ func nw_listener_set_state_changed_handler(listener Nw_listener_t, handler unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_listener_start(_:)
 func nw_listener_start(listener Nw_listener_t) {
 	_nw_listener_start(listener)
-}
+}/* debug [functions.gen.go/function]: nw_listener_start */
 
 // Checks a Boolean that indicates whether a connection group should reject unicast traffic.
 //
@@ -3096,7 +3061,7 @@ func nw_listener_start(listener Nw_listener_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_multicast_group_descriptor_get_disable_unicast_traffic(_:)
 func nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor Nw_group_descriptor_t) bool {
 	return _nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descriptor)
-}
+}/* debug [functions.gen.go/function]: nw_multicast_group_descriptor_get_disable_unicast_traffic */
 
 // Sets a Boolean that indicates whether a connection group should reject unicast traffic.
 //
@@ -3107,7 +3072,7 @@ func nw_multicast_group_descriptor_get_disable_unicast_traffic(multicast_descrip
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_multicast_group_descriptor_set_disable_unicast_traffic(_:_:)
 func nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor Nw_group_descriptor_t, disable_unicast_traffic bool) {
 	_nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descriptor, disable_unicast_traffic)
-}
+}/* debug [functions.gen.go/function]: nw_multicast_group_descriptor_set_disable_unicast_traffic */
 
 // Sets an optional address endpoint used to filter received multicast packets.
 //
@@ -3118,7 +3083,7 @@ func nw_multicast_group_descriptor_set_disable_unicast_traffic(multicast_descrip
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_multicast_group_descriptor_set_specific_source(_:_:)
 func nw_multicast_group_descriptor_set_specific_source(multicast_descriptor Nw_group_descriptor_t, source Nw_endpoint_t) {
 	_nw_multicast_group_descriptor_set_specific_source(multicast_descriptor, source)
-}
+}/* debug [functions.gen.go/function]: nw_multicast_group_descriptor_set_specific_source */
 
 // Removes all prohibited interface types.
 //
@@ -3129,7 +3094,7 @@ func nw_multicast_group_descriptor_set_specific_source(multicast_descriptor Nw_g
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_clear_prohibited_interface_types(_:)
 func nw_parameters_clear_prohibited_interface_types(parameters Nw_parameters_t) {
 	_nw_parameters_clear_prohibited_interface_types(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_clear_prohibited_interface_types */
 
 // Removes all prohibited interface types.
 //
@@ -3140,7 +3105,7 @@ func nw_parameters_clear_prohibited_interface_types(parameters Nw_parameters_t) 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_clear_prohibited_interfaces(_:)
 func nw_parameters_clear_prohibited_interfaces(parameters Nw_parameters_t) {
 	_nw_parameters_clear_prohibited_interfaces(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_clear_prohibited_interfaces */
 
 // Peforms a deep copy of a parameters object.
 //
@@ -3151,7 +3116,7 @@ func nw_parameters_clear_prohibited_interfaces(parameters Nw_parameters_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_copy(_:)
 func nw_parameters_copy(parameters Nw_parameters_t) Nw_parameters_t {
 	return _nw_parameters_copy(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_copy */
 
 // Accesses the protocol stack used by connections and listeners.
 //
@@ -3162,18 +3127,7 @@ func nw_parameters_copy(parameters Nw_parameters_t) Nw_parameters_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_copy_default_protocol_stack(_:)
 func nw_parameters_copy_default_protocol_stack(parameters Nw_parameters_t) Nw_protocol_stack_t {
 	return _nw_parameters_copy_default_protocol_stack(parameters)
-}
-
-// Accesses the local IP address and port used for connections and listeners.
-//
-// Added in macOS 10.14.
-// Accesses the local IP address and port used for connections and listeners.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_copy_local_endpoint(_:)
-func nw_parameters_copy_local_endpoint(parameters Nw_parameters_t) Nw_endpoint_t {
-	return _nw_parameters_copy_local_endpoint(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_copy_default_protocol_stack */
 
 // Accesses the interface required on connections, listeners, and browsers.
 //
@@ -3184,7 +3138,7 @@ func nw_parameters_copy_local_endpoint(parameters Nw_parameters_t) Nw_endpoint_t
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_copy_required_interface(_:)
 func nw_parameters_copy_required_interface(parameters Nw_parameters_t) Nw_interface_t {
 	return _nw_parameters_copy_required_interface(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_copy_required_interface */
 
 // Initializes parameters for connections, listeners, and browsers with no protocols specified.
 //
@@ -3195,7 +3149,7 @@ func nw_parameters_copy_required_interface(parameters Nw_parameters_t) Nw_interf
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_create()
 func nw_parameters_create() Nw_parameters_t {
 	return _nw_parameters_create()
-}
+}/* debug [functions.gen.go/function]: nw_parameters_create */
 
 // nw_parameters_create_application_service is a Network function.
 //
@@ -3204,7 +3158,7 @@ func nw_parameters_create() Nw_parameters_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_create_application_service()
 func nw_parameters_create_application_service() Nw_parameters_t {
 	return _nw_parameters_create_application_service()
-}
+}/* debug [functions.gen.go/function]: nw_parameters_create_application_service */
 
 // Initializes parameters for connections and listeners using a custom IP protocol.
 //
@@ -3215,7 +3169,7 @@ func nw_parameters_create_application_service() Nw_parameters_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_create_custom_ip(_:_:)
 func nw_parameters_create_custom_ip(custom_ip_protocol_number uint8, configure_ip unsafe.Pointer) Nw_parameters_t {
 	return _nw_parameters_create_custom_ip(custom_ip_protocol_number, configure_ip)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_create_custom_ip */
 
 // Initializes parameters for QUIC connections and listeners.
 //
@@ -3226,7 +3180,7 @@ func nw_parameters_create_custom_ip(custom_ip_protocol_number uint8, configure_i
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_create_quic(_:)
 func nw_parameters_create_quic(configure_quic unsafe.Pointer) Nw_parameters_t {
 	return _nw_parameters_create_quic(configure_quic)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_create_quic */
 
 // Initializes parameters for TLS or TCP connections and listeners.
 //
@@ -3237,7 +3191,7 @@ func nw_parameters_create_quic(configure_quic unsafe.Pointer) Nw_parameters_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_create_secure_tcp(_:_:)
 func nw_parameters_create_secure_tcp(configure_tls unsafe.Pointer, configure_tcp unsafe.Pointer) Nw_parameters_t {
 	return _nw_parameters_create_secure_tcp(configure_tls, configure_tcp)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_create_secure_tcp */
 
 // Initializes parameters for DTLS or UDP connections and listeners.
 //
@@ -3248,7 +3202,7 @@ func nw_parameters_create_secure_tcp(configure_tls unsafe.Pointer, configure_tcp
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_create_secure_udp(_:_:)
 func nw_parameters_create_secure_udp(configure_dtls unsafe.Pointer, configure_udp unsafe.Pointer) Nw_parameters_t {
 	return _nw_parameters_create_secure_udp(configure_dtls, configure_udp)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_create_secure_udp */
 
 // nw_parameters_get_allow_ultra_constrained is a Network function.
 //
@@ -3257,7 +3211,7 @@ func nw_parameters_create_secure_udp(configure_dtls unsafe.Pointer, configure_ud
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_allow_ultra_constrained(_:)
 func nw_parameters_get_allow_ultra_constrained(parameters Nw_parameters_t) bool {
 	return _nw_parameters_get_allow_ultra_constrained(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_allow_ultra_constrained */
 
 // Gets a flag that indicates whether the network request originates from the developer or the user.
 //
@@ -3266,9 +3220,9 @@ func nw_parameters_get_allow_ultra_constrained(parameters Nw_parameters_t) bool 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_attribution(_:)
-func nw_parameters_get_attribution(parameters Nw_parameters_t) unsafe.Pointer {
+func nw_parameters_get_attribution(parameters Nw_parameters_t) nw_parameters_attribution_t {
 	return _nw_parameters_get_attribution(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_attribution */
 
 // Checks the behavior for how expired DNS answers should be used.
 //
@@ -3279,7 +3233,7 @@ func nw_parameters_get_attribution(parameters Nw_parameters_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_expired_dns_behavior(_:)
 func nw_parameters_get_expired_dns_behavior(parameters Nw_parameters_t) unsafe.Pointer {
 	return _nw_parameters_get_expired_dns_behavior(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_expired_dns_behavior */
 
 // Checks if sending application data with protocol handshakes is enabled.
 //
@@ -3290,7 +3244,7 @@ func nw_parameters_get_expired_dns_behavior(parameters Nw_parameters_t) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_fast_open_enabled(_:)
 func nw_parameters_get_fast_open_enabled(parameters Nw_parameters_t) bool {
 	return _nw_parameters_get_fast_open_enabled(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_fast_open_enabled */
 
 // Checks whether a connection is allowed to use peer-to-peer link technologies.
 //
@@ -3301,18 +3255,7 @@ func nw_parameters_get_fast_open_enabled(parameters Nw_parameters_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_include_peer_to_peer(_:)
 func nw_parameters_get_include_peer_to_peer(parameters Nw_parameters_t) bool {
 	return _nw_parameters_get_include_peer_to_peer(parameters)
-}
-
-// Checks if a listener is restricted to accepting connections from the local link.
-//
-// Added in macOS 10.14.
-// Checks if a listener is restricted to accepting connections from the local link.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_local_only(_:)
-func nw_parameters_get_local_only(parameters Nw_parameters_t) bool {
-	return _nw_parameters_get_local_only(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_include_peer_to_peer */
 
 // Checks if multipath is enabled on a connection.
 //
@@ -3323,7 +3266,7 @@ func nw_parameters_get_local_only(parameters Nw_parameters_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_multipath_service(_:)
 func nw_parameters_get_multipath_service(parameters Nw_parameters_t) unsafe.Pointer {
 	return _nw_parameters_get_multipath_service(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_multipath_service */
 
 // Checks if proxies are ignored by default.
 //
@@ -3334,7 +3277,7 @@ func nw_parameters_get_multipath_service(parameters Nw_parameters_t) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_prefer_no_proxy(_:)
 func nw_parameters_get_prefer_no_proxy(parameters Nw_parameters_t) bool {
 	return _nw_parameters_get_prefer_no_proxy(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_prefer_no_proxy */
 
 // Checks if connections, listeners, and browsers are prevented from using network paths marked as constrained by Low Data Mode.
 //
@@ -3345,7 +3288,7 @@ func nw_parameters_get_prefer_no_proxy(parameters Nw_parameters_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_prohibit_constrained(_:)
 func nw_parameters_get_prohibit_constrained(parameters Nw_parameters_t) bool {
 	return _nw_parameters_get_prohibit_constrained(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_prohibit_constrained */
 
 // Checks if connections, listeners, and browsers are prevented from using network paths marked as expensive.
 //
@@ -3356,7 +3299,7 @@ func nw_parameters_get_prohibit_constrained(parameters Nw_parameters_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_prohibit_expensive(_:)
 func nw_parameters_get_prohibit_expensive(parameters Nw_parameters_t) bool {
 	return _nw_parameters_get_prohibit_expensive(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_prohibit_expensive */
 
 // Accesses the interface type required on connections and listeners.
 //
@@ -3367,18 +3310,7 @@ func nw_parameters_get_prohibit_expensive(parameters Nw_parameters_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_required_interface_type(_:)
 func nw_parameters_get_required_interface_type(parameters Nw_parameters_t) unsafe.Pointer {
 	return _nw_parameters_get_required_interface_type(parameters)
-}
-
-// Checks whether a connection allows reusing local addresses and ports.
-//
-// Added in macOS 10.14.
-// Checks whether a connection allows reusing local addresses and ports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_reuse_local_address(_:)
-func nw_parameters_get_reuse_local_address(parameters Nw_parameters_t) bool {
-	return _nw_parameters_get_reuse_local_address(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_required_interface_type */
 
 // Checks the level of service quality used for connections.
 //
@@ -3389,7 +3321,7 @@ func nw_parameters_get_reuse_local_address(parameters Nw_parameters_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_get_service_class(_:)
 func nw_parameters_get_service_class(parameters Nw_parameters_t) unsafe.Pointer {
 	return _nw_parameters_get_service_class(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_get_service_class */
 
 // Examines the list of prohibited interface types.
 //
@@ -3400,7 +3332,7 @@ func nw_parameters_get_service_class(parameters Nw_parameters_t) unsafe.Pointer 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_iterate_prohibited_interface_types(_:_:)
 func nw_parameters_iterate_prohibited_interface_types(parameters Nw_parameters_t, iterate_block unsafe.Pointer) {
 	_nw_parameters_iterate_prohibited_interface_types(parameters, iterate_block)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_iterate_prohibited_interface_types */
 
 // Examines the list of prohibited interfaces.
 //
@@ -3411,7 +3343,7 @@ func nw_parameters_iterate_prohibited_interface_types(parameters Nw_parameters_t
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_iterate_prohibited_interfaces(_:_:)
 func nw_parameters_iterate_prohibited_interfaces(parameters Nw_parameters_t, iterate_block unsafe.Pointer) {
 	_nw_parameters_iterate_prohibited_interfaces(parameters, iterate_block)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_iterate_prohibited_interfaces */
 
 // Prevents connections and listeners from using a specific interface.
 //
@@ -3422,7 +3354,7 @@ func nw_parameters_iterate_prohibited_interfaces(parameters Nw_parameters_t, ite
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_prohibit_interface(_:_:)
 func nw_parameters_prohibit_interface(parameters Nw_parameters_t, interface_ Nw_interface_t) {
 	_nw_parameters_prohibit_interface(parameters, interface_)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_prohibit_interface */
 
 // Prevents connections, listeners, and browsers from using a specific interface type.
 //
@@ -3433,7 +3365,7 @@ func nw_parameters_prohibit_interface(parameters Nw_parameters_t, interface_ Nw_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_prohibit_interface_type(_:_:)
 func nw_parameters_prohibit_interface_type(parameters Nw_parameters_t, interface_type unsafe.Pointer) {
 	_nw_parameters_prohibit_interface_type(parameters, interface_type)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_prohibit_interface_type */
 
 // Sets a specific interface to require on connections, listeners, and browsers.
 //
@@ -3444,7 +3376,7 @@ func nw_parameters_prohibit_interface_type(parameters Nw_parameters_t, interface
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_require_interface(_:_:)
 func nw_parameters_require_interface(parameters Nw_parameters_t, interface_ Nw_interface_t) {
 	_nw_parameters_require_interface(parameters, interface_)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_require_interface */
 
 // Checks whether a connection requires DNSSEC validation when resolving endpoints.
 //
@@ -3455,7 +3387,7 @@ func nw_parameters_require_interface(parameters Nw_parameters_t, interface_ Nw_i
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_requires_dnssec_validation(_:)
 func nw_parameters_requires_dnssec_validation(parameters Nw_parameters_t) bool {
 	return _nw_parameters_requires_dnssec_validation(parameters)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_requires_dnssec_validation */
 
 // nw_parameters_set_allow_ultra_constrained is a Network function.
 //
@@ -3464,7 +3396,7 @@ func nw_parameters_requires_dnssec_validation(parameters Nw_parameters_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_allow_ultra_constrained(_:_:)
 func nw_parameters_set_allow_ultra_constrained(parameters Nw_parameters_t, allow_ultra_constrained bool) {
 	_nw_parameters_set_allow_ultra_constrained(parameters, allow_ultra_constrained)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_allow_ultra_constrained */
 
 // Sets a flag that indicates whether the network request originates from the developer or the user.
 //
@@ -3473,9 +3405,9 @@ func nw_parameters_set_allow_ultra_constrained(parameters Nw_parameters_t, allow
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_attribution(_:_:)
-func nw_parameters_set_attribution(parameters Nw_parameters_t, attribution unsafe.Pointer) {
+func nw_parameters_set_attribution(parameters Nw_parameters_t, attribution nw_parameters_attribution_t) {
 	_nw_parameters_set_attribution(parameters, attribution)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_attribution */
 
 // Sets the behavior for how expired DNS answers should be used.
 //
@@ -3486,7 +3418,7 @@ func nw_parameters_set_attribution(parameters Nw_parameters_t, attribution unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_expired_dns_behavior(_:_:)
 func nw_parameters_set_expired_dns_behavior(parameters Nw_parameters_t, expired_dns_behavior unsafe.Pointer) {
 	_nw_parameters_set_expired_dns_behavior(parameters, expired_dns_behavior)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_expired_dns_behavior */
 
 // Enables sending application data with protocol handshakes.
 //
@@ -3497,7 +3429,7 @@ func nw_parameters_set_expired_dns_behavior(parameters Nw_parameters_t, expired_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_fast_open_enabled(_:_:)
 func nw_parameters_set_fast_open_enabled(parameters Nw_parameters_t, fast_open_enabled bool) {
 	_nw_parameters_set_fast_open_enabled(parameters, fast_open_enabled)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_fast_open_enabled */
 
 // Enables peer-to-peer link technologies for connections and listeners.
 //
@@ -3508,29 +3440,7 @@ func nw_parameters_set_fast_open_enabled(parameters Nw_parameters_t, fast_open_e
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_include_peer_to_peer(_:_:)
 func nw_parameters_set_include_peer_to_peer(parameters Nw_parameters_t, include_peer_to_peer bool) {
 	_nw_parameters_set_include_peer_to_peer(parameters, include_peer_to_peer)
-}
-
-// Sets a specific local IP address and port to use for connections and listeners.
-//
-// Added in macOS 10.14.
-// Sets a specific local IP address and port to use for connections and listeners.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_local_endpoint(_:_:)
-func nw_parameters_set_local_endpoint(parameters Nw_parameters_t, local_endpoint Nw_endpoint_t) {
-	_nw_parameters_set_local_endpoint(parameters, local_endpoint)
-}
-
-// Restricts listeners to only accepting connections from the local link.
-//
-// Added in macOS 10.14.
-// Restricts listeners to only accepting connections from the local link.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_local_only(_:_:)
-func nw_parameters_set_local_only(parameters Nw_parameters_t, local_only bool) {
-	_nw_parameters_set_local_only(parameters, local_only)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_include_peer_to_peer */
 
 // Enables multipath protocols to allow connections to use multiple interfaces.
 //
@@ -3541,7 +3451,7 @@ func nw_parameters_set_local_only(parameters Nw_parameters_t, local_only bool) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_multipath_service(_:_:)
 func nw_parameters_set_multipath_service(parameters Nw_parameters_t, multipath_service unsafe.Pointer) {
 	_nw_parameters_set_multipath_service(parameters, multipath_service)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_multipath_service */
 
 // Sets a Boolean that indicates that connections should ignore proxies when they are enabled on the system.
 //
@@ -3552,7 +3462,7 @@ func nw_parameters_set_multipath_service(parameters Nw_parameters_t, multipath_s
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_prefer_no_proxy(_:_:)
 func nw_parameters_set_prefer_no_proxy(parameters Nw_parameters_t, prefer_no_proxy bool) {
 	_nw_parameters_set_prefer_no_proxy(parameters, prefer_no_proxy)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_prefer_no_proxy */
 
 // Associates a privacy context with any connections or listeners that use the parameters.
 //
@@ -3563,7 +3473,7 @@ func nw_parameters_set_prefer_no_proxy(parameters Nw_parameters_t, prefer_no_pro
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_privacy_context(_:_:)
 func nw_parameters_set_privacy_context(parameters Nw_parameters_t, privacy_context Nw_privacy_context_t) {
 	_nw_parameters_set_privacy_context(parameters, privacy_context)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_privacy_context */
 
 // Prevents connections, listeners, and browsers from using network paths marked as constrained by Low Data Mode.
 //
@@ -3574,7 +3484,7 @@ func nw_parameters_set_privacy_context(parameters Nw_parameters_t, privacy_conte
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_prohibit_constrained(_:_:)
 func nw_parameters_set_prohibit_constrained(parameters Nw_parameters_t, prohibit_constrained bool) {
 	_nw_parameters_set_prohibit_constrained(parameters, prohibit_constrained)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_prohibit_constrained */
 
 // Prevents connections, listeners, and browsers from using network paths marked as expensive.
 //
@@ -3585,7 +3495,7 @@ func nw_parameters_set_prohibit_constrained(parameters Nw_parameters_t, prohibit
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_prohibit_expensive(_:_:)
 func nw_parameters_set_prohibit_expensive(parameters Nw_parameters_t, prohibit_expensive bool) {
 	_nw_parameters_set_prohibit_expensive(parameters, prohibit_expensive)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_prohibit_expensive */
 
 // Sets an interface type to require on connections and listeners.
 //
@@ -3596,7 +3506,7 @@ func nw_parameters_set_prohibit_expensive(parameters Nw_parameters_t, prohibit_e
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_required_interface_type(_:_:)
 func nw_parameters_set_required_interface_type(parameters Nw_parameters_t, interface_type unsafe.Pointer) {
 	_nw_parameters_set_required_interface_type(parameters, interface_type)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_required_interface_type */
 
 // Determines whether a connection requires DNSSEC validation when resolving endpoints.
 //
@@ -3607,18 +3517,7 @@ func nw_parameters_set_required_interface_type(parameters Nw_parameters_t, inter
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_requires_dnssec_validation(_:_:)
 func nw_parameters_set_requires_dnssec_validation(parameters Nw_parameters_t, requires_dnssec_validation bool) {
 	_nw_parameters_set_requires_dnssec_validation(parameters, requires_dnssec_validation)
-}
-
-// Allows reusing local addresses and ports across connections.
-//
-// Added in macOS 10.14.
-// Allows reusing local addresses and ports across connections.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_reuse_local_address(_:_:)
-func nw_parameters_set_reuse_local_address(parameters Nw_parameters_t, reuse_local_address bool) {
-	_nw_parameters_set_reuse_local_address(parameters, reuse_local_address)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_requires_dnssec_validation */
 
 // Sets a level of service quality to use for connections.
 //
@@ -3629,18 +3528,7 @@ func nw_parameters_set_reuse_local_address(parameters Nw_parameters_t, reuse_loc
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_parameters_set_service_class(_:_:)
 func nw_parameters_set_service_class(parameters Nw_parameters_t, service_class unsafe.Pointer) {
 	_nw_parameters_set_service_class(parameters, service_class)
-}
-
-// Accesses the local endpoint in use by a connection’s network path.
-//
-// Added in macOS 10.14.
-// Accesses the local endpoint in use by a connection’s network path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_copy_effective_local_endpoint(_:)
-func nw_path_copy_effective_local_endpoint(path Nw_path_t) Nw_endpoint_t {
-	return _nw_path_copy_effective_local_endpoint(path)
-}
+}/* debug [functions.gen.go/function]: nw_parameters_set_service_class */
 
 // Accesses the remote endpoint in use by a connection’s network path.
 //
@@ -3651,7 +3539,7 @@ func nw_path_copy_effective_local_endpoint(path Nw_path_t) Nw_endpoint_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_copy_effective_remote_endpoint(_:)
 func nw_path_copy_effective_remote_endpoint(path Nw_path_t) Nw_endpoint_t {
 	return _nw_path_copy_effective_remote_endpoint(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_copy_effective_remote_endpoint */
 
 // Enumerates the list of gateways configured on the interfaces available to a path.
 //
@@ -3662,7 +3550,7 @@ func nw_path_copy_effective_remote_endpoint(path Nw_path_t) Nw_endpoint_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_enumerate_gateways(_:_:)
 func nw_path_enumerate_gateways(path Nw_path_t, enumerate_block unsafe.Pointer) {
 	_nw_path_enumerate_gateways(path, enumerate_block)
-}
+}/* debug [functions.gen.go/function]: nw_path_enumerate_gateways */
 
 // Enumerates the list of all interfaces available to the path, in order of preference.
 //
@@ -3673,7 +3561,7 @@ func nw_path_enumerate_gateways(path Nw_path_t, enumerate_block unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_enumerate_interfaces(_:_:)
 func nw_path_enumerate_interfaces(path Nw_path_t, enumerate_block unsafe.Pointer) {
 	_nw_path_enumerate_interfaces(path, enumerate_block)
-}
+}/* debug [functions.gen.go/function]: nw_path_enumerate_interfaces */
 
 // nw_path_get_link_quality is a Network function.
 //
@@ -3682,7 +3570,7 @@ func nw_path_enumerate_interfaces(path Nw_path_t, enumerate_block unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_get_link_quality(_:)
 func nw_path_get_link_quality(path Nw_path_t) unsafe.Pointer {
 	return _nw_path_get_link_quality(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_get_link_quality */
 
 // Checks whether a path can be used by connections.
 //
@@ -3693,7 +3581,7 @@ func nw_path_get_link_quality(path Nw_path_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_get_status(_:)
 func nw_path_get_status(path Nw_path_t) unsafe.Pointer {
 	return _nw_path_get_status(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_get_status */
 
 // nw_path_get_unsatisfied_reason is a Network function.
 //
@@ -3702,7 +3590,7 @@ func nw_path_get_status(path Nw_path_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_get_unsatisfied_reason(_:)
 func nw_path_get_unsatisfied_reason(path Nw_path_t) unsafe.Pointer {
 	return _nw_path_get_unsatisfied_reason(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_get_unsatisfied_reason */
 
 // Checks whether the path has a DNS server configured.
 //
@@ -3713,7 +3601,7 @@ func nw_path_get_unsatisfied_reason(path Nw_path_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_has_dns(_:)
 func nw_path_has_dns(path Nw_path_t) bool {
 	return _nw_path_has_dns(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_has_dns */
 
 // Checks whether the path can route IPv4 traffic.
 //
@@ -3724,7 +3612,7 @@ func nw_path_has_dns(path Nw_path_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_has_ipv4(_:)
 func nw_path_has_ipv4(path Nw_path_t) bool {
 	return _nw_path_has_ipv4(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_has_ipv4 */
 
 // Checks whether the path can route IPv6 traffic.
 //
@@ -3735,7 +3623,7 @@ func nw_path_has_ipv4(path Nw_path_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_has_ipv6(_:)
 func nw_path_has_ipv6(path Nw_path_t) bool {
 	return _nw_path_has_ipv6(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_has_ipv6 */
 
 // Checks whether the path uses an interface in Low Data Mode.
 //
@@ -3746,7 +3634,7 @@ func nw_path_has_ipv6(path Nw_path_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_is_constrained(_:)
 func nw_path_is_constrained(path Nw_path_t) bool {
 	return _nw_path_is_constrained(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_is_constrained */
 
 // Compares if two paths are identical.
 //
@@ -3757,7 +3645,7 @@ func nw_path_is_constrained(path Nw_path_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_is_equal(_:_:)
 func nw_path_is_equal(path Nw_path_t, other_path Nw_path_t) bool {
 	return _nw_path_is_equal(path, other_path)
-}
+}/* debug [functions.gen.go/function]: nw_path_is_equal */
 
 // Checks whether the path uses an interface that is considered expensive, such as Cellular or a Personal Hotspot.
 //
@@ -3768,7 +3656,7 @@ func nw_path_is_equal(path Nw_path_t, other_path Nw_path_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_is_expensive(_:)
 func nw_path_is_expensive(path Nw_path_t) bool {
 	return _nw_path_is_expensive(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_is_expensive */
 
 // nw_path_is_ultra_constrained is a Network function.
 //
@@ -3777,7 +3665,7 @@ func nw_path_is_expensive(path Nw_path_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_is_ultra_constrained(_:)
 func nw_path_is_ultra_constrained(path Nw_path_t) bool {
 	return _nw_path_is_ultra_constrained(path)
-}
+}/* debug [functions.gen.go/function]: nw_path_is_ultra_constrained */
 
 // Stops receiving network path updates.
 //
@@ -3788,7 +3676,7 @@ func nw_path_is_ultra_constrained(path Nw_path_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_cancel(_:)
 func nw_path_monitor_cancel(monitor Nw_path_monitor_t) {
 	_nw_path_monitor_cancel(monitor)
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_cancel */
 
 // Initializes a path monitor to observe all available interface types.
 //
@@ -3799,7 +3687,7 @@ func nw_path_monitor_cancel(monitor Nw_path_monitor_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_create()
 func nw_path_monitor_create() Nw_path_monitor_t {
 	return _nw_path_monitor_create()
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_create */
 
 // nw_path_monitor_create_for_ethernet_channel is a Network function.
 //
@@ -3808,7 +3696,7 @@ func nw_path_monitor_create() Nw_path_monitor_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_create_for_ethernet_channel()
 func nw_path_monitor_create_for_ethernet_channel() Nw_path_monitor_t {
 	return _nw_path_monitor_create_for_ethernet_channel()
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_create_for_ethernet_channel */
 
 // Initializes a path monitor to observe a specific interface type.
 //
@@ -3819,7 +3707,7 @@ func nw_path_monitor_create_for_ethernet_channel() Nw_path_monitor_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_create_with_type(_:)
 func nw_path_monitor_create_with_type(required_interface_type unsafe.Pointer) Nw_path_monitor_t {
 	return _nw_path_monitor_create_with_type(required_interface_type)
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_create_with_type */
 
 // Prohibit a path monitor from using a specific interface type.
 //
@@ -3830,7 +3718,7 @@ func nw_path_monitor_create_with_type(required_interface_type unsafe.Pointer) Nw
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_prohibit_interface_type(_:_:)
 func nw_path_monitor_prohibit_interface_type(monitor Nw_path_monitor_t, interface_type unsafe.Pointer) {
 	_nw_path_monitor_prohibit_interface_type(monitor, interface_type)
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_prohibit_interface_type */
 
 // Sets a handler to determine when a monitor is fully cancelled and will no longer deliver events.
 //
@@ -3841,7 +3729,7 @@ func nw_path_monitor_prohibit_interface_type(monitor Nw_path_monitor_t, interfac
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_set_cancel_handler(_:_:)
 func nw_path_monitor_set_cancel_handler(monitor Nw_path_monitor_t, cancel_handler unsafe.Pointer) {
 	_nw_path_monitor_set_cancel_handler(monitor, cancel_handler)
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_set_cancel_handler */
 
 // Sets a queue on which to deliver path events.
 //
@@ -3852,7 +3740,7 @@ func nw_path_monitor_set_cancel_handler(monitor Nw_path_monitor_t, cancel_handle
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_set_queue(_:_:)
 func nw_path_monitor_set_queue(monitor Nw_path_monitor_t, queue unsafe.Pointer) {
 	_nw_path_monitor_set_queue(monitor, queue)
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_set_queue */
 
 // Sets a handler to receive network path updates.
 //
@@ -3863,7 +3751,7 @@ func nw_path_monitor_set_queue(monitor Nw_path_monitor_t, queue unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_set_update_handler(_:_:)
 func nw_path_monitor_set_update_handler(monitor Nw_path_monitor_t, update_handler unsafe.Pointer) {
 	_nw_path_monitor_set_update_handler(monitor, update_handler)
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_set_update_handler */
 
 // Starts monitoring path changes.
 //
@@ -3874,7 +3762,7 @@ func nw_path_monitor_set_update_handler(monitor Nw_path_monitor_t, update_handle
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_monitor_start(_:)
 func nw_path_monitor_start(monitor Nw_path_monitor_t) {
 	_nw_path_monitor_start(monitor)
-}
+}/* debug [functions.gen.go/function]: nw_path_monitor_start */
 
 // Checks if connections using the path may send traffic over a specific interface type.
 //
@@ -3885,7 +3773,73 @@ func nw_path_monitor_start(monitor Nw_path_monitor_t) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_path_uses_interface_type(_:_:)
 func nw_path_uses_interface_type(path Nw_path_t, interface_type unsafe.Pointer) bool {
 	return _nw_path_uses_interface_type(path, interface_type)
-}
+}/* debug [functions.gen.go/function]: nw_path_uses_interface_type */
+
+// Applies a proxy configuration to all connections associated with this context.
+//
+// Added in macOS 14.0.
+// Applies a proxy configuration to all connections associated with this context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_privacy_context_add_proxy(_:_:)
+func nw_privacy_context_add_proxy(privacy_context Nw_privacy_context_t, proxy_config Nw_proxy_config_t) {
+	_nw_privacy_context_add_proxy(privacy_context, proxy_config)
+}/* debug [functions.gen.go/function]: nw_privacy_context_add_proxy */
+
+// Clears out any proxies added using
+//
+// Added in macOS 14.0.
+// Clears out any proxies added using
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_privacy_context_clear_proxies(_:)
+func nw_privacy_context_clear_proxies(privacy_context Nw_privacy_context_t) {
+	_nw_privacy_context_clear_proxies(privacy_context)
+}/* debug [functions.gen.go/function]: nw_privacy_context_clear_proxies */
+
+// Initializes a privacy context with a description string.
+//
+// Added in macOS 11.0.
+// Initializes a privacy context with a description string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_privacy_context_create(_:)
+func nw_privacy_context_create(description unsafe.Pointer) Nw_privacy_context_t {
+	return _nw_privacy_context_create(description)
+}/* debug [functions.gen.go/function]: nw_privacy_context_create */
+
+// Disables system logging of connection activity.
+//
+// Added in macOS 11.0.
+// Disables system logging of connection activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_privacy_context_disable_logging(_:)
+func nw_privacy_context_disable_logging(privacy_context Nw_privacy_context_t) {
+	_nw_privacy_context_disable_logging(privacy_context)
+}/* debug [functions.gen.go/function]: nw_privacy_context_disable_logging */
+
+// Flushes all cached data, such as TLS session state, created by connections associated with the privacy context.
+//
+// Added in macOS 11.0.
+// Flushes all cached data, such as TLS session state, created by connections associated with the privacy context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_privacy_context_flush_cache(_:)
+func nw_privacy_context_flush_cache(privacy_context Nw_privacy_context_t) {
+	_nw_privacy_context_flush_cache(privacy_context)
+}/* debug [functions.gen.go/function]: nw_privacy_context_flush_cache */
+
+// Requires that any DNS name resolution for connections associated with this context use encrypted transports, such as TLS or HTTPS.
+//
+// Added in macOS 11.0.
+// Requires that any DNS name resolution for connections associated with this context use encrypted transports, such as TLS or HTTPS.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_privacy_context_require_encrypted_name_resolution(_:_:_:)
+func nw_privacy_context_require_encrypted_name_resolution(privacy_context Nw_privacy_context_t, require_encrypted_name_resolution bool, fallback_resolver_config Nw_resolver_config_t) {
+	_nw_privacy_context_require_encrypted_name_resolution(privacy_context, require_encrypted_name_resolution, fallback_resolver_config)
+}/* debug [functions.gen.go/function]: nw_privacy_context_require_encrypted_name_resolution */
 
 // Accesses the system definition of the Internet Protocol.
 //
@@ -3896,7 +3850,7 @@ func nw_path_uses_interface_type(path Nw_path_t, interface_type unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_copy_ip_definition()
 func nw_protocol_copy_ip_definition() Nw_protocol_definition_t {
 	return _nw_protocol_copy_ip_definition()
-}
+}/* debug [functions.gen.go/function]: nw_protocol_copy_ip_definition */
 
 // Accesses the system definition of the QUIC transport protocol.
 //
@@ -3907,7 +3861,7 @@ func nw_protocol_copy_ip_definition() Nw_protocol_definition_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_copy_quic_definition()
 func nw_protocol_copy_quic_definition() Nw_protocol_definition_t {
 	return _nw_protocol_copy_quic_definition()
-}
+}/* debug [functions.gen.go/function]: nw_protocol_copy_quic_definition */
 
 // Accesses the system definition of the Transport Control Protocol.
 //
@@ -3918,7 +3872,7 @@ func nw_protocol_copy_quic_definition() Nw_protocol_definition_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_copy_tcp_definition()
 func nw_protocol_copy_tcp_definition() Nw_protocol_definition_t {
 	return _nw_protocol_copy_tcp_definition()
-}
+}/* debug [functions.gen.go/function]: nw_protocol_copy_tcp_definition */
 
 // Accesses the system definition of the Transport Layer Security protocol.
 //
@@ -3929,7 +3883,7 @@ func nw_protocol_copy_tcp_definition() Nw_protocol_definition_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_copy_tls_definition()
 func nw_protocol_copy_tls_definition() Nw_protocol_definition_t {
 	return _nw_protocol_copy_tls_definition()
-}
+}/* debug [functions.gen.go/function]: nw_protocol_copy_tls_definition */
 
 // Accesses the system definition of the User Datagram Protocol.
 //
@@ -3940,7 +3894,7 @@ func nw_protocol_copy_tls_definition() Nw_protocol_definition_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_copy_udp_definition()
 func nw_protocol_copy_udp_definition() Nw_protocol_definition_t {
 	return _nw_protocol_copy_udp_definition()
-}
+}/* debug [functions.gen.go/function]: nw_protocol_copy_udp_definition */
 
 // Accesses the system definition of the WebSocket protocol.
 //
@@ -3951,7 +3905,7 @@ func nw_protocol_copy_udp_definition() Nw_protocol_definition_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_copy_ws_definition()
 func nw_protocol_copy_ws_definition() Nw_protocol_definition_t {
 	return _nw_protocol_copy_ws_definition()
-}
+}/* debug [functions.gen.go/function]: nw_protocol_copy_ws_definition */
 
 // Compares two protocol definitions, and returns true if they represent the same protocol implementation.
 //
@@ -3962,7 +3916,7 @@ func nw_protocol_copy_ws_definition() Nw_protocol_definition_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_definition_is_equal(_:_:)
 func nw_protocol_definition_is_equal(definition1 Nw_protocol_definition_t, definition2 Nw_protocol_definition_t) bool {
 	return _nw_protocol_definition_is_equal(definition1, definition2)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_definition_is_equal */
 
 // Accesses the protocol definition associated with the metadata object.
 //
@@ -3973,7 +3927,7 @@ func nw_protocol_definition_is_equal(definition1 Nw_protocol_definition_t, defin
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_copy_definition(_:)
 func nw_protocol_metadata_copy_definition(metadata Nw_protocol_metadata_t) Nw_protocol_definition_t {
 	return _nw_protocol_metadata_copy_definition(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_metadata_copy_definition */
 
 // Checks if a metadata object represents a custom framer protocol message.
 //
@@ -3984,7 +3938,7 @@ func nw_protocol_metadata_copy_definition(metadata Nw_protocol_metadata_t) Nw_pr
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_framer_message(_:)
 func nw_protocol_metadata_is_framer_message(metadata Nw_protocol_metadata_t) bool {
 	return _nw_protocol_metadata_is_framer_message(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_metadata_is_framer_message */
 
 // Checks whether a metadata object represents an IP packet.
 //
@@ -3995,7 +3949,7 @@ func nw_protocol_metadata_is_framer_message(metadata Nw_protocol_metadata_t) boo
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_ip(_:)
 func nw_protocol_metadata_is_ip(metadata Nw_protocol_metadata_t) bool {
 	return _nw_protocol_metadata_is_ip(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_metadata_is_ip */
 
 // Checks whether a metadata object contains QUIC connection state.
 //
@@ -4006,7 +3960,7 @@ func nw_protocol_metadata_is_ip(metadata Nw_protocol_metadata_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_quic(_:)
 func nw_protocol_metadata_is_quic(metadata Nw_protocol_metadata_t) bool {
 	return _nw_protocol_metadata_is_quic(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_metadata_is_quic */
 
 // Checks whether a metadata object contains TCP connection state.
 //
@@ -4017,7 +3971,7 @@ func nw_protocol_metadata_is_quic(metadata Nw_protocol_metadata_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_tcp(_:)
 func nw_protocol_metadata_is_tcp(metadata Nw_protocol_metadata_t) bool {
 	return _nw_protocol_metadata_is_tcp(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_metadata_is_tcp */
 
 // Checks whether a metadata object contains TLS connection state.
 //
@@ -4028,7 +3982,7 @@ func nw_protocol_metadata_is_tcp(metadata Nw_protocol_metadata_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_tls(_:)
 func nw_protocol_metadata_is_tls(metadata Nw_protocol_metadata_t) bool {
 	return _nw_protocol_metadata_is_tls(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_metadata_is_tls */
 
 // Checks whether a metadata object represents a UDP datagram.
 //
@@ -4039,7 +3993,7 @@ func nw_protocol_metadata_is_tls(metadata Nw_protocol_metadata_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_udp(_:)
 func nw_protocol_metadata_is_udp(metadata Nw_protocol_metadata_t) bool {
 	return _nw_protocol_metadata_is_udp(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_metadata_is_udp */
 
 // Checks whether a metadata object represents a WebSocket message.
 //
@@ -4050,7 +4004,18 @@ func nw_protocol_metadata_is_udp(metadata Nw_protocol_metadata_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_metadata_is_ws(_:)
 func nw_protocol_metadata_is_ws(metadata Nw_protocol_metadata_t) bool {
 	return _nw_protocol_metadata_is_ws(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_metadata_is_ws */
+
+// Accesses the protocol definition associated with the options object.
+//
+// Added in macOS 10.14.
+// Accesses the protocol definition associated with the options object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_options_copy_definition(_:)
+func nw_protocol_options_copy_definition(options Nw_protocol_options_t) Nw_protocol_definition_t {
+	return _nw_protocol_options_copy_definition(options)
+}/* debug [functions.gen.go/function]: nw_protocol_options_copy_definition */
 
 // Checks whether an options object uses the QUIC protocol.
 //
@@ -4061,7 +4026,29 @@ func nw_protocol_metadata_is_ws(metadata Nw_protocol_metadata_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_options_is_quic(_:)
 func nw_protocol_options_is_quic(options Nw_protocol_options_t) bool {
 	return _nw_protocol_options_is_quic(options)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_options_is_quic */
+
+// Removes all application protocols from the protocol stack.
+//
+// Added in macOS 10.14.
+// Removes all application protocols from the protocol stack.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_clear_application_protocols(_:)
+func nw_protocol_stack_clear_application_protocols(stack Nw_protocol_stack_t) {
+	_nw_protocol_stack_clear_application_protocols(stack)
+}/* debug [functions.gen.go/function]: nw_protocol_stack_clear_application_protocols */
+
+// Accesses the protocol stack’s Internet Protocol options.
+//
+// Added in macOS 10.14.
+// Accesses the protocol stack’s Internet Protocol options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_copy_internet_protocol(_:)
+func nw_protocol_stack_copy_internet_protocol(stack Nw_protocol_stack_t) Nw_protocol_options_t {
+	return _nw_protocol_stack_copy_internet_protocol(stack)
+}/* debug [functions.gen.go/function]: nw_protocol_stack_copy_internet_protocol */
 
 // Accesses the options for the protocol stack’s transport protocol.
 //
@@ -4072,7 +4059,18 @@ func nw_protocol_options_is_quic(options Nw_protocol_options_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_copy_transport_protocol(_:)
 func nw_protocol_stack_copy_transport_protocol(stack Nw_protocol_stack_t) Nw_protocol_options_t {
 	return _nw_protocol_stack_copy_transport_protocol(stack)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_stack_copy_transport_protocol */
+
+// Iterates through the array of application protocol options that will be used by connections and listeners.
+//
+// Added in macOS 10.14.
+// Iterates through the array of application protocol options that will be used by connections and listeners.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_iterate_application_protocols(_:_:)
+func nw_protocol_stack_iterate_application_protocols(stack Nw_protocol_stack_t, iterate_block unsafe.Pointer) {
+	_nw_protocol_stack_iterate_application_protocols(stack, iterate_block)
+}/* debug [functions.gen.go/function]: nw_protocol_stack_iterate_application_protocols */
 
 // Adds a protocol onto the top of the protocol stack.
 //
@@ -4083,7 +4081,7 @@ func nw_protocol_stack_copy_transport_protocol(stack Nw_protocol_stack_t) Nw_pro
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_prepend_application_protocol(_:_:)
 func nw_protocol_stack_prepend_application_protocol(stack Nw_protocol_stack_t, protocol_ Nw_protocol_options_t) {
 	_nw_protocol_stack_prepend_application_protocol(stack, protocol_)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_stack_prepend_application_protocol */
 
 // Replaces the protocol stack’s transport protocol with a new set of options.
 //
@@ -4094,61 +4092,138 @@ func nw_protocol_stack_prepend_application_protocol(stack Nw_protocol_stack_t, p
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_set_transport_protocol(_:_:)
 func nw_protocol_stack_set_transport_protocol(stack Nw_protocol_stack_t, protocol_ Nw_protocol_options_t) {
 	_nw_protocol_stack_set_transport_protocol(stack, protocol_)
-}
+}/* debug [functions.gen.go/function]: nw_protocol_stack_set_transport_protocol */
 
 // nw_proxy_config_add_excluded_domain is a Network function.
 //
 // Added in macOS 14.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_add_excluded_domain(_:_:)
-func nw_proxy_config_add_excluded_domain(config unsafe.Pointer, excluded_domain unsafe.Pointer) {
+func nw_proxy_config_add_excluded_domain(config Nw_proxy_config_t, excluded_domain unsafe.Pointer) {
 	_nw_proxy_config_add_excluded_domain(config, excluded_domain)
-}
+}/* debug [functions.gen.go/function]: nw_proxy_config_add_excluded_domain */
 
 // nw_proxy_config_add_match_domain is a Network function.
 //
 // Added in macOS 14.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_add_match_domain(_:_:)
-func nw_proxy_config_add_match_domain(config unsafe.Pointer, match_domain unsafe.Pointer) {
+func nw_proxy_config_add_match_domain(config Nw_proxy_config_t, match_domain unsafe.Pointer) {
 	_nw_proxy_config_add_match_domain(config, match_domain)
-}
+}/* debug [functions.gen.go/function]: nw_proxy_config_add_match_domain */
 
 // nw_proxy_config_clear_excluded_domains is a Network function.
 //
 // Added in macOS 14.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_clear_excluded_domains(_:)
-func nw_proxy_config_clear_excluded_domains(config unsafe.Pointer) {
+func nw_proxy_config_clear_excluded_domains(config Nw_proxy_config_t) {
 	_nw_proxy_config_clear_excluded_domains(config)
-}
+}/* debug [functions.gen.go/function]: nw_proxy_config_clear_excluded_domains */
 
 // nw_proxy_config_clear_match_domains is a Network function.
 //
 // Added in macOS 14.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_clear_match_domains(_:)
-func nw_proxy_config_clear_match_domains(config unsafe.Pointer) {
+func nw_proxy_config_clear_match_domains(config Nw_proxy_config_t) {
 	_nw_proxy_config_clear_match_domains(config)
-}
+}/* debug [functions.gen.go/function]: nw_proxy_config_clear_match_domains */
+
+// Initializes a legacy HTTP CONNECT configuration for a proxy server accessible using HTTP/1.1.
+//
+// Added in macOS 14.0.
+// Initializes a legacy HTTP CONNECT configuration for a proxy server accessible using HTTP/1.1.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_create_http_connect(_:_:)
+func nw_proxy_config_create_http_connect(proxy_endpoint Nw_endpoint_t, proxy_tls_options Nw_protocol_options_t) Nw_proxy_config_t {
+	return _nw_proxy_config_create_http_connect(proxy_endpoint, proxy_tls_options)
+}/* debug [functions.gen.go/function]: nw_proxy_config_create_http_connect */
+
+// Initializes an Oblivious HTTP proxy configuration using a relay and a gateway.
+//
+// Added in macOS 14.0.
+// Initializes an Oblivious HTTP proxy configuration using a relay and a gateway.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_create_oblivious_http(_:_:_:_:)
+func nw_proxy_config_create_oblivious_http(relay Nw_relay_hop_t, relay_resource_path unsafe.Pointer, gateway_key_config unsafe.Pointer, gateway_key_config_length uintptr) Nw_proxy_config_t {
+	return _nw_proxy_config_create_oblivious_http(relay, relay_resource_path, gateway_key_config, gateway_key_config_length)
+}/* debug [functions.gen.go/function]: nw_proxy_config_create_oblivious_http */
+
+// Initializes a proxy configuration with one or two relay hops.
+//
+// Added in macOS 14.0.
+// Initializes a proxy configuration with one or two relay hops.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_create_relay(_:_:)
+func nw_proxy_config_create_relay(first_hop Nw_relay_hop_t, second_hop Nw_relay_hop_t) Nw_proxy_config_t {
+	return _nw_proxy_config_create_relay(first_hop, second_hop)
+}/* debug [functions.gen.go/function]: nw_proxy_config_create_relay */
+
+// Initializes a SOCKSv5 proxy configuration.
+//
+// Added in macOS 14.0.
+// Initializes a SOCKSv5 proxy configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_create_socksv5(_:)
+func nw_proxy_config_create_socksv5(proxy_endpoint Nw_endpoint_t) Nw_proxy_config_t {
+	return _nw_proxy_config_create_socksv5(proxy_endpoint)
+}/* debug [functions.gen.go/function]: nw_proxy_config_create_socksv5 */
 
 // nw_proxy_config_enumerate_excluded_domains is a Network function.
 //
 // Added in macOS 14.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_enumerate_excluded_domains(_:_:)
-func nw_proxy_config_enumerate_excluded_domains(config unsafe.Pointer, enumerator unsafe.Pointer) {
+func nw_proxy_config_enumerate_excluded_domains(config Nw_proxy_config_t, enumerator unsafe.Pointer) {
 	_nw_proxy_config_enumerate_excluded_domains(config, enumerator)
-}
+}/* debug [functions.gen.go/function]: nw_proxy_config_enumerate_excluded_domains */
 
 // nw_proxy_config_enumerate_match_domains is a Network function.
 //
 // Added in macOS 14.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_enumerate_match_domains(_:_:)
-func nw_proxy_config_enumerate_match_domains(config unsafe.Pointer, enumerator unsafe.Pointer) {
+func nw_proxy_config_enumerate_match_domains(config Nw_proxy_config_t, enumerator unsafe.Pointer) {
 	_nw_proxy_config_enumerate_match_domains(config, enumerator)
-}
+}/* debug [functions.gen.go/function]: nw_proxy_config_enumerate_match_domains */
+
+// Checks if a proxy configuration allows failover to non-proxied connections.
+//
+// Added in macOS 14.0.
+// Checks if a proxy configuration allows failover to non-proxied connections.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_get_failover_allowed(_:)
+func nw_proxy_config_get_failover_allowed(proxy_config Nw_proxy_config_t) bool {
+	return _nw_proxy_config_get_failover_allowed(proxy_config)
+}/* debug [functions.gen.go/function]: nw_proxy_config_get_failover_allowed */
+
+// Configures whether or not a proxy configuration allows failover to non-proxied connections. Failover isn’t allowed by default.
+//
+// Added in macOS 14.0.
+// Configures whether or not a proxy configuration allows failover to non-proxied connections. Failover isn’t allowed by default.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_set_failover_allowed(_:_:)
+func nw_proxy_config_set_failover_allowed(proxy_config Nw_proxy_config_t, failover_allowed bool) {
+	_nw_proxy_config_set_failover_allowed(proxy_config, failover_allowed)
+}/* debug [functions.gen.go/function]: nw_proxy_config_set_failover_allowed */
+
+// Sets a username and password to use as authentication for a proxy configuration.
+//
+// Added in macOS 14.0.
+// Sets a username and password to use as authentication for a proxy configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_set_username_and_password(_:_:_:)
+func nw_proxy_config_set_username_and_password(proxy_config Nw_proxy_config_t, username unsafe.Pointer, password unsafe.Pointer) {
+	_nw_proxy_config_set_username_and_password(proxy_config, username, password)
+}/* debug [functions.gen.go/function]: nw_proxy_config_set_username_and_password */
 
 // Adds a supported Application-Layer Protocol Negotiation value.
 //
@@ -4159,7 +4234,7 @@ func nw_proxy_config_enumerate_match_domains(config unsafe.Pointer, enumerator u
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_add_tls_application_protocol(_:_:)
 func nw_quic_add_tls_application_protocol(options Nw_protocol_options_t, application_protocol unsafe.Pointer) {
 	_nw_quic_add_tls_application_protocol(options, application_protocol)
-}
+}/* debug [functions.gen.go/function]: nw_quic_add_tls_application_protocol */
 
 // Accesses the result of the QUIC handshake.
 //
@@ -4170,7 +4245,7 @@ func nw_quic_add_tls_application_protocol(options Nw_protocol_options_t, applica
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_copy_sec_protocol_metadata(_:)
 func nw_quic_copy_sec_protocol_metadata(metadata Nw_protocol_metadata_t) unsafe.Pointer {
 	return _nw_quic_copy_sec_protocol_metadata(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_copy_sec_protocol_metadata */
 
 // Accesses the handshake security options QUIC will use.
 //
@@ -4181,7 +4256,7 @@ func nw_quic_copy_sec_protocol_metadata(metadata Nw_protocol_metadata_t) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_copy_sec_protocol_options(_:)
 func nw_quic_copy_sec_protocol_options(options Nw_protocol_options_t) unsafe.Pointer {
 	return _nw_quic_copy_sec_protocol_options(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_copy_sec_protocol_options */
 
 // Initializes a default set of QUIC connection options.
 //
@@ -4192,7 +4267,7 @@ func nw_quic_copy_sec_protocol_options(options Nw_protocol_options_t) unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_create_options()
 func nw_quic_create_options() Nw_protocol_options_t {
 	return _nw_quic_create_options()
-}
+}/* debug [functions.gen.go/function]: nw_quic_create_options */
 
 // Accesses the QUIC application error code received from the peer.
 //
@@ -4203,7 +4278,7 @@ func nw_quic_create_options() Nw_protocol_options_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_application_error(_:)
 func nw_quic_get_application_error(metadata Nw_protocol_metadata_t) uint64 {
 	return _nw_quic_get_application_error(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_application_error */
 
 // Accesses the QUIC application error reason received from the peer.
 //
@@ -4214,7 +4289,7 @@ func nw_quic_get_application_error(metadata Nw_protocol_metadata_t) uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_application_error_reason(_:)
 func nw_quic_get_application_error_reason(metadata Nw_protocol_metadata_t) unsafe.Pointer {
 	return _nw_quic_get_application_error_reason(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_application_error_reason */
 
 // Accesses the idle timeout for the QUIC connection, in milliseconds.
 //
@@ -4225,7 +4300,7 @@ func nw_quic_get_application_error_reason(metadata Nw_protocol_metadata_t) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_idle_timeout(_:)
 func nw_quic_get_idle_timeout(options Nw_protocol_options_t) uint32 {
 	return _nw_quic_get_idle_timeout(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_idle_timeout */
 
 // Accesses a QUIC connection’s initial maximum data transport parameter.
 //
@@ -4236,18 +4311,7 @@ func nw_quic_get_idle_timeout(options Nw_protocol_options_t) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_initial_max_data(_:)
 func nw_quic_get_initial_max_data(options Nw_protocol_options_t) uint64 {
 	return _nw_quic_get_initial_max_data(options)
-}
-
-// Accesses a QUIC connection’s initial maximum stream data limit for locally-initiated bidirectional streams.
-//
-// Added in macOS 12.0.
-// Accesses a QUIC connection’s initial maximum stream data limit for locally-initiated bidirectional streams.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_initial_max_stream_data_bidirectional_local(_:)
-func nw_quic_get_initial_max_stream_data_bidirectional_local(options Nw_protocol_options_t) uint64 {
-	return _nw_quic_get_initial_max_stream_data_bidirectional_local(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_initial_max_data */
 
 // Accesses a QUIC connection’s initial maximum stream data limit for remote-initiated bidirectional streams.
 //
@@ -4258,7 +4322,7 @@ func nw_quic_get_initial_max_stream_data_bidirectional_local(options Nw_protocol
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_initial_max_stream_data_bidirectional_remote(_:)
 func nw_quic_get_initial_max_stream_data_bidirectional_remote(options Nw_protocol_options_t) uint64 {
 	return _nw_quic_get_initial_max_stream_data_bidirectional_remote(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_initial_max_stream_data_bidirectional_remote */
 
 // Accesses a QUIC connection’s initial maximum stream data limit for unidirectional streams.
 //
@@ -4269,7 +4333,7 @@ func nw_quic_get_initial_max_stream_data_bidirectional_remote(options Nw_protoco
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_initial_max_stream_data_unidirectional(_:)
 func nw_quic_get_initial_max_stream_data_unidirectional(options Nw_protocol_options_t) uint64 {
 	return _nw_quic_get_initial_max_stream_data_unidirectional(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_initial_max_stream_data_unidirectional */
 
 // Accesses a QUIC connection’s initial maximum number of bidirectional streams.
 //
@@ -4280,7 +4344,7 @@ func nw_quic_get_initial_max_stream_data_unidirectional(options Nw_protocol_opti
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_initial_max_streams_bidirectional(_:)
 func nw_quic_get_initial_max_streams_bidirectional(options Nw_protocol_options_t) uint64 {
 	return _nw_quic_get_initial_max_streams_bidirectional(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_initial_max_streams_bidirectional */
 
 // Accesses a QUIC connection’s initial maximum number of unidirectional streams.
 //
@@ -4291,7 +4355,7 @@ func nw_quic_get_initial_max_streams_bidirectional(options Nw_protocol_options_t
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_initial_max_streams_unidirectional(_:)
 func nw_quic_get_initial_max_streams_unidirectional(options Nw_protocol_options_t) uint64 {
 	return _nw_quic_get_initial_max_streams_unidirectional(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_initial_max_streams_unidirectional */
 
 // Accesses the keepalive interval for the QUIC connection, in seconds.
 //
@@ -4302,29 +4366,7 @@ func nw_quic_get_initial_max_streams_unidirectional(options Nw_protocol_options_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_keepalive_interval(_:)
 func nw_quic_get_keepalive_interval(metadata Nw_protocol_metadata_t) uint16 {
 	return _nw_quic_get_keepalive_interval(metadata)
-}
-
-// Accesses the maximum number of bidirectional streams that the peer can create on a QUIC connection.
-//
-// Added in macOS 12.0.
-// Accesses the maximum number of bidirectional streams that the peer can create on a QUIC connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_local_max_streams_bidirectional(_:)
-func nw_quic_get_local_max_streams_bidirectional(metadata Nw_protocol_metadata_t) uint64 {
-	return _nw_quic_get_local_max_streams_bidirectional(metadata)
-}
-
-// Accesses the maximum number of unidirectional streams that the peer can create on a QUIC connection.
-//
-// Added in macOS 12.0.
-// Accesses the maximum number of unidirectional streams that the peer can create on a QUIC connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_local_max_streams_unidirectional(_:)
-func nw_quic_get_local_max_streams_unidirectional(metadata Nw_protocol_metadata_t) uint64 {
-	return _nw_quic_get_local_max_streams_unidirectional(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_keepalive_interval */
 
 // Accesses a QUIC connection’s maximum DATAGRAM frame size.
 //
@@ -4335,7 +4377,7 @@ func nw_quic_get_local_max_streams_unidirectional(metadata Nw_protocol_metadata_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_max_datagram_frame_size(_:)
 func nw_quic_get_max_datagram_frame_size(options Nw_protocol_options_t) uint16 {
 	return _nw_quic_get_max_datagram_frame_size(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_max_datagram_frame_size */
 
 // Accesses the maximum length of a QUIC packet that can be received on a connection, in bytes.
 //
@@ -4346,7 +4388,7 @@ func nw_quic_get_max_datagram_frame_size(options Nw_protocol_options_t) uint16 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_max_udp_payload_size(_:)
 func nw_quic_get_max_udp_payload_size(options Nw_protocol_options_t) uint16 {
 	return _nw_quic_get_max_udp_payload_size(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_max_udp_payload_size */
 
 // Accesses the idle timeout value from the peer’s transport parameters, in milliseconds.
 //
@@ -4357,7 +4399,7 @@ func nw_quic_get_max_udp_payload_size(options Nw_protocol_options_t) uint16 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_remote_idle_timeout(_:)
 func nw_quic_get_remote_idle_timeout(metadata Nw_protocol_metadata_t) uint64 {
 	return _nw_quic_get_remote_idle_timeout(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_remote_idle_timeout */
 
 // Accesses the maximum number of bidirectional streams advertised by peer that the connection is allowed to create.
 //
@@ -4368,7 +4410,7 @@ func nw_quic_get_remote_idle_timeout(metadata Nw_protocol_metadata_t) uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_remote_max_streams_bidirectional(_:)
 func nw_quic_get_remote_max_streams_bidirectional(metadata Nw_protocol_metadata_t) uint64 {
 	return _nw_quic_get_remote_max_streams_bidirectional(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_remote_max_streams_bidirectional */
 
 // Accesses the maximum number of unidirectional streams advertised by peer that the connection is allowed to create.
 //
@@ -4379,7 +4421,7 @@ func nw_quic_get_remote_max_streams_bidirectional(metadata Nw_protocol_metadata_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_remote_max_streams_unidirectional(_:)
 func nw_quic_get_remote_max_streams_unidirectional(metadata Nw_protocol_metadata_t) uint64 {
 	return _nw_quic_get_remote_max_streams_unidirectional(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_remote_max_streams_unidirectional */
 
 // Accesses the QUIC application error code received from the peer for the stream.
 //
@@ -4390,7 +4432,7 @@ func nw_quic_get_remote_max_streams_unidirectional(metadata Nw_protocol_metadata
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_stream_application_error(_:)
 func nw_quic_get_stream_application_error(metadata Nw_protocol_metadata_t) uint64 {
 	return _nw_quic_get_stream_application_error(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_stream_application_error */
 
 // Accesses the QUIC stream identifier.
 //
@@ -4401,7 +4443,7 @@ func nw_quic_get_stream_application_error(metadata Nw_protocol_metadata_t) uint6
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_stream_id(_:)
 func nw_quic_get_stream_id(metadata Nw_protocol_metadata_t) uint64 {
 	return _nw_quic_get_stream_id(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_stream_id */
 
 // Checks if a QUIC stream is a datagram flow, instead of a byte stream.
 //
@@ -4412,7 +4454,7 @@ func nw_quic_get_stream_id(metadata Nw_protocol_metadata_t) uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_stream_is_datagram(_:)
 func nw_quic_get_stream_is_datagram(options Nw_protocol_options_t) bool {
 	return _nw_quic_get_stream_is_datagram(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_stream_is_datagram */
 
 // Checks if a QUIC stream is unidirectional, instead of bidirectional.
 //
@@ -4423,7 +4465,7 @@ func nw_quic_get_stream_is_datagram(options Nw_protocol_options_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_stream_is_unidirectional(_:)
 func nw_quic_get_stream_is_unidirectional(options Nw_protocol_options_t) bool {
 	return _nw_quic_get_stream_is_unidirectional(options)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_stream_is_unidirectional */
 
 // Accesses the stream type of the QUIC stream.
 //
@@ -4434,7 +4476,7 @@ func nw_quic_get_stream_is_unidirectional(options Nw_protocol_options_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_stream_type(_:)
 func nw_quic_get_stream_type(stream_metadata Nw_protocol_metadata_t) uint8 {
 	return _nw_quic_get_stream_type(stream_metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_stream_type */
 
 // Accesses the maximum usable size of a datagram frame on a QUIC datagram flow.
 //
@@ -4445,7 +4487,7 @@ func nw_quic_get_stream_type(stream_metadata Nw_protocol_metadata_t) uint8 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_get_stream_usable_datagram_frame_size(_:)
 func nw_quic_get_stream_usable_datagram_frame_size(metadata Nw_protocol_metadata_t) uint16 {
 	return _nw_quic_get_stream_usable_datagram_frame_size(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_quic_get_stream_usable_datagram_frame_size */
 
 // Sets the QUIC application error code to send for the connection.
 //
@@ -4456,7 +4498,7 @@ func nw_quic_get_stream_usable_datagram_frame_size(metadata Nw_protocol_metadata
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_application_error(_:_:_:)
 func nw_quic_set_application_error(metadata Nw_protocol_metadata_t, application_error uint64, reason unsafe.Pointer) {
 	_nw_quic_set_application_error(metadata, application_error, reason)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_application_error */
 
 // Sets the idle timeout for the QUIC connection, in milliseconds.
 //
@@ -4467,7 +4509,7 @@ func nw_quic_set_application_error(metadata Nw_protocol_metadata_t, application_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_idle_timeout(_:_:)
 func nw_quic_set_idle_timeout(options Nw_protocol_options_t, idle_timeout uint32) {
 	_nw_quic_set_idle_timeout(options, idle_timeout)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_idle_timeout */
 
 // Sets a QUIC connection’s initial maximum data transport parameter.
 //
@@ -4478,18 +4520,7 @@ func nw_quic_set_idle_timeout(options Nw_protocol_options_t, idle_timeout uint32
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_initial_max_data(_:_:)
 func nw_quic_set_initial_max_data(options Nw_protocol_options_t, initial_max_data uint64) {
 	_nw_quic_set_initial_max_data(options, initial_max_data)
-}
-
-// Sets a QUIC connection’s initial maximum stream data limit for locally-initiated bidirectional streams.
-//
-// Added in macOS 12.0.
-// Sets a QUIC connection’s initial maximum stream data limit for locally-initiated bidirectional streams.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_initial_max_stream_data_bidirectional_local(_:_:)
-func nw_quic_set_initial_max_stream_data_bidirectional_local(options Nw_protocol_options_t, initial_max_stream_data_bidirectional_local uint64) {
-	_nw_quic_set_initial_max_stream_data_bidirectional_local(options, initial_max_stream_data_bidirectional_local)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_initial_max_data */
 
 // Sets a QUIC connection’s initial maximum stream data limit for remote-initiated bidirectional streams.
 //
@@ -4500,7 +4531,7 @@ func nw_quic_set_initial_max_stream_data_bidirectional_local(options Nw_protocol
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_initial_max_stream_data_bidirectional_remote(_:_:)
 func nw_quic_set_initial_max_stream_data_bidirectional_remote(options Nw_protocol_options_t, initial_max_stream_data_bidirectional_remote uint64) {
 	_nw_quic_set_initial_max_stream_data_bidirectional_remote(options, initial_max_stream_data_bidirectional_remote)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_initial_max_stream_data_bidirectional_remote */
 
 // Sets a QUIC connection’s initial maximum stream data limit for unidirectional streams.
 //
@@ -4511,7 +4542,7 @@ func nw_quic_set_initial_max_stream_data_bidirectional_remote(options Nw_protoco
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_initial_max_stream_data_unidirectional(_:_:)
 func nw_quic_set_initial_max_stream_data_unidirectional(options Nw_protocol_options_t, initial_max_stream_data_unidirectional uint64) {
 	_nw_quic_set_initial_max_stream_data_unidirectional(options, initial_max_stream_data_unidirectional)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_initial_max_stream_data_unidirectional */
 
 // Sets a QUIC connection’s initial maximum number of bidirectional streams.
 //
@@ -4522,7 +4553,7 @@ func nw_quic_set_initial_max_stream_data_unidirectional(options Nw_protocol_opti
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_initial_max_streams_bidirectional(_:_:)
 func nw_quic_set_initial_max_streams_bidirectional(options Nw_protocol_options_t, initial_max_streams_bidirectional uint64) {
 	_nw_quic_set_initial_max_streams_bidirectional(options, initial_max_streams_bidirectional)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_initial_max_streams_bidirectional */
 
 // Sets a QUIC connection’s initial maximum number of unidirectional streams.
 //
@@ -4533,7 +4564,7 @@ func nw_quic_set_initial_max_streams_bidirectional(options Nw_protocol_options_t
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_initial_max_streams_unidirectional(_:_:)
 func nw_quic_set_initial_max_streams_unidirectional(options Nw_protocol_options_t, initial_max_streams_unidirectional uint64) {
 	_nw_quic_set_initial_max_streams_unidirectional(options, initial_max_streams_unidirectional)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_initial_max_streams_unidirectional */
 
 // Sets the keepalive interval for the QUIC connection, in seconds.
 //
@@ -4544,29 +4575,7 @@ func nw_quic_set_initial_max_streams_unidirectional(options Nw_protocol_options_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_keepalive_interval(_:_:)
 func nw_quic_set_keepalive_interval(metadata Nw_protocol_metadata_t, keepalive_interval uint16) {
 	_nw_quic_set_keepalive_interval(metadata, keepalive_interval)
-}
-
-// Sets the maximum number of bidirectional streams that the peer can create on a QUIC connection.
-//
-// Added in macOS 12.0.
-// Sets the maximum number of bidirectional streams that the peer can create on a QUIC connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_local_max_streams_bidirectional(_:_:)
-func nw_quic_set_local_max_streams_bidirectional(metadata Nw_protocol_metadata_t, max_streams_bidirectional uint64) {
-	_nw_quic_set_local_max_streams_bidirectional(metadata, max_streams_bidirectional)
-}
-
-// Sets the maximum number of unidirectional streams that the peer can create on a QUIC connection.
-//
-// Added in macOS 12.0.
-// Sets the maximum number of unidirectional streams that the peer can create on a QUIC connection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_local_max_streams_unidirectional(_:_:)
-func nw_quic_set_local_max_streams_unidirectional(metadata Nw_protocol_metadata_t, max_streams_unidirectional uint64) {
-	_nw_quic_set_local_max_streams_unidirectional(metadata, max_streams_unidirectional)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_keepalive_interval */
 
 // Sets a QUIC connection’s maximum DATAGRAM frame size.
 //
@@ -4577,7 +4586,7 @@ func nw_quic_set_local_max_streams_unidirectional(metadata Nw_protocol_metadata_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_max_datagram_frame_size(_:_:)
 func nw_quic_set_max_datagram_frame_size(options Nw_protocol_options_t, max_datagram_frame_size uint16) {
 	_nw_quic_set_max_datagram_frame_size(options, max_datagram_frame_size)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_max_datagram_frame_size */
 
 // Sets the maximum length of a QUIC packet that can be received on a connection, in bytes.
 //
@@ -4588,7 +4597,7 @@ func nw_quic_set_max_datagram_frame_size(options Nw_protocol_options_t, max_data
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_max_udp_payload_size(_:_:)
 func nw_quic_set_max_udp_payload_size(options Nw_protocol_options_t, max_udp_payload_size uint16) {
 	_nw_quic_set_max_udp_payload_size(options, max_udp_payload_size)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_max_udp_payload_size */
 
 // Sets the QUIC application error code to send for the stream.
 //
@@ -4599,7 +4608,7 @@ func nw_quic_set_max_udp_payload_size(options Nw_protocol_options_t, max_udp_pay
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_stream_application_error(_:_:)
 func nw_quic_set_stream_application_error(metadata Nw_protocol_metadata_t, application_error uint64) {
 	_nw_quic_set_stream_application_error(metadata, application_error)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_stream_application_error */
 
 // Configures a QUIC stream as a datagram flow, instead of a byte stream.
 //
@@ -4610,7 +4619,7 @@ func nw_quic_set_stream_application_error(metadata Nw_protocol_metadata_t, appli
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_stream_is_datagram(_:_:)
 func nw_quic_set_stream_is_datagram(options Nw_protocol_options_t, is_datagram bool) {
 	_nw_quic_set_stream_is_datagram(options, is_datagram)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_stream_is_datagram */
 
 // Configures a QUIC stream as unidirectional, instead of bidirectional.
 //
@@ -4621,7 +4630,29 @@ func nw_quic_set_stream_is_datagram(options Nw_protocol_options_t, is_datagram b
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_quic_set_stream_is_unidirectional(_:_:)
 func nw_quic_set_stream_is_unidirectional(options Nw_protocol_options_t, is_unidirectional bool) {
 	_nw_quic_set_stream_is_unidirectional(options, is_unidirectional)
-}
+}/* debug [functions.gen.go/function]: nw_quic_set_stream_is_unidirectional */
+
+// Adds an HTTP header name and value pair to send as part of requests to the relay.
+//
+// Added in macOS 14.0.
+// Adds an HTTP header name and value pair to send as part of requests to the relay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_relay_hop_add_additional_http_header_field(_:_:_:)
+func nw_relay_hop_add_additional_http_header_field(relay_hop Nw_relay_hop_t, field_name unsafe.Pointer, field_value unsafe.Pointer) {
+	_nw_relay_hop_add_additional_http_header_field(relay_hop, field_name, field_value)
+}/* debug [functions.gen.go/function]: nw_relay_hop_add_additional_http_header_field */
+
+// Creates a configuration for a secure relay accessible using HTTP/3, with an optional HTTP/2 fallback.
+//
+// Added in macOS 14.0.
+// Creates a configuration for a secure relay accessible using HTTP/3, with an optional HTTP/2 fallback.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_relay_hop_create(_:_:_:)
+func nw_relay_hop_create(http3_relay_endpoint Nw_endpoint_t, http2_relay_endpoint Nw_endpoint_t, relay_tls_options Nw_protocol_options_t) Nw_relay_hop_t {
+	return _nw_relay_hop_create(http3_relay_endpoint, http2_relay_endpoint, relay_tls_options)
+}/* debug [functions.gen.go/function]: nw_relay_hop_create */
 
 // Releases a reference count on a Network.framework object.
 //
@@ -4632,7 +4663,7 @@ func nw_quic_set_stream_is_unidirectional(options Nw_protocol_options_t, is_unid
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_release
 func nw_release(obj unsafe.Pointer) {
 	_nw_release(obj)
-}
+}/* debug [functions.gen.go/function]: nw_release */
 
 // Accesses the resolved endpoint that the connection used for its first connection attempt.
 //
@@ -4643,7 +4674,7 @@ func nw_release(obj unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolution_report_copy_preferred_endpoint(_:)
 func nw_resolution_report_copy_preferred_endpoint(resolution_report Nw_resolution_report_t) Nw_endpoint_t {
 	return _nw_resolution_report_copy_preferred_endpoint(resolution_report)
-}
+}/* debug [functions.gen.go/function]: nw_resolution_report_copy_preferred_endpoint */
 
 // Accesses the resolved endpoint that led to the established connection.
 //
@@ -4654,7 +4685,7 @@ func nw_resolution_report_copy_preferred_endpoint(resolution_report Nw_resolutio
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolution_report_copy_successful_endpoint(_:)
 func nw_resolution_report_copy_successful_endpoint(resolution_report Nw_resolution_report_t) Nw_endpoint_t {
 	return _nw_resolution_report_copy_successful_endpoint(resolution_report)
-}
+}/* debug [functions.gen.go/function]: nw_resolution_report_copy_successful_endpoint */
 
 // Accesses the number of endpoints resolved in this step.
 //
@@ -4665,7 +4696,7 @@ func nw_resolution_report_copy_successful_endpoint(resolution_report Nw_resoluti
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolution_report_get_endpoint_count(_:)
 func nw_resolution_report_get_endpoint_count(resolution_report Nw_resolution_report_t) uint32 {
 	return _nw_resolution_report_get_endpoint_count(resolution_report)
-}
+}/* debug [functions.gen.go/function]: nw_resolution_report_get_endpoint_count */
 
 // Accesses the duration of this resolution step, from when the query was issued to when the response was complete.
 //
@@ -4676,7 +4707,7 @@ func nw_resolution_report_get_endpoint_count(resolution_report Nw_resolution_rep
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolution_report_get_milliseconds(_:)
 func nw_resolution_report_get_milliseconds(resolution_report Nw_resolution_report_t) uint64 {
 	return _nw_resolution_report_get_milliseconds(resolution_report)
-}
+}/* debug [functions.gen.go/function]: nw_resolution_report_get_milliseconds */
 
 // Accesses the transport protocol your connection used for DNS resolution.
 //
@@ -4687,7 +4718,7 @@ func nw_resolution_report_get_milliseconds(resolution_report Nw_resolution_repor
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolution_report_get_protocol(_:)
 func nw_resolution_report_get_protocol(resolution_report Nw_resolution_report_t) unsafe.Pointer {
 	return _nw_resolution_report_get_protocol(resolution_report)
-}
+}/* debug [functions.gen.go/function]: nw_resolution_report_get_protocol */
 
 // Accesses the source of the DNS response.
 //
@@ -4698,7 +4729,40 @@ func nw_resolution_report_get_protocol(resolution_report Nw_resolution_report_t)
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolution_report_get_source(_:)
 func nw_resolution_report_get_source(resolution_report Nw_resolution_report_t) unsafe.Pointer {
 	return _nw_resolution_report_get_source(resolution_report)
-}
+}/* debug [functions.gen.go/function]: nw_resolution_report_get_source */
+
+// Provides a well-known DNS server address to use instead of looking up the address dynamically.
+//
+// Added in macOS 11.0.
+// Provides a well-known DNS server address to use instead of looking up the address dynamically.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolver_config_add_server_address(_:_:)
+func nw_resolver_config_add_server_address(config Nw_resolver_config_t, server_address Nw_endpoint_t) {
+	_nw_resolver_config_add_server_address(config, server_address)
+}/* debug [functions.gen.go/function]: nw_resolver_config_add_server_address */
+
+// Initializes a DNS-over-HTTPS resolver configuration.
+//
+// Added in macOS 11.0.
+// Initializes a DNS-over-HTTPS resolver configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolver_config_create_https(_:)
+func nw_resolver_config_create_https(url_endpoint Nw_endpoint_t) Nw_resolver_config_t {
+	return _nw_resolver_config_create_https(url_endpoint)
+}/* debug [functions.gen.go/function]: nw_resolver_config_create_https */
+
+// Initializes a DNS-over-TLS resolver configuration.
+//
+// Added in macOS 11.0.
+// Initializes a DNS-over-TLS resolver configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolver_config_create_tls(_:)
+func nw_resolver_config_create_tls(server_endpoint Nw_endpoint_t) Nw_resolver_config_t {
+	return _nw_resolver_config_create_tls(server_endpoint)
+}/* debug [functions.gen.go/function]: nw_resolver_config_create_tls */
 
 // Adds a reference count to a Network.framework object.
 //
@@ -4709,7 +4773,7 @@ func nw_resolution_report_get_source(resolution_report Nw_resolution_report_t) u
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_retain
 func nw_retain(obj unsafe.Pointer) unsafe.Pointer {
 	return _nw_retain(obj)
-}
+}/* debug [functions.gen.go/function]: nw_retain */
 
 // Initializes a default set of TCP connection options.
 //
@@ -4720,7 +4784,7 @@ func nw_retain(obj unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_create_options()
 func nw_tcp_create_options() Nw_protocol_options_t {
 	return _nw_tcp_create_options()
-}
+}/* debug [functions.gen.go/function]: nw_tcp_create_options */
 
 // Accesses the number of available bytes in the TCP receive buffer.
 //
@@ -4731,7 +4795,7 @@ func nw_tcp_create_options() Nw_protocol_options_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_get_available_receive_buffer(_:)
 func nw_tcp_get_available_receive_buffer(metadata Nw_protocol_metadata_t) uint32 {
 	return _nw_tcp_get_available_receive_buffer(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_get_available_receive_buffer */
 
 // Accesses the number of available bytes in the TCP send buffer.
 //
@@ -4742,7 +4806,7 @@ func nw_tcp_get_available_receive_buffer(metadata Nw_protocol_metadata_t) uint32
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_get_available_send_buffer(_:)
 func nw_tcp_get_available_send_buffer(metadata Nw_protocol_metadata_t) uint32 {
 	return _nw_tcp_get_available_send_buffer(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_get_available_send_buffer */
 
 // Sets the number of seconds that TCP waits before timing out its handshake.
 //
@@ -4753,7 +4817,7 @@ func nw_tcp_get_available_send_buffer(metadata Nw_protocol_metadata_t) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_connection_timeout(_:_:)
 func nw_tcp_options_set_connection_timeout(options Nw_protocol_options_t, connection_timeout uint32) {
 	_nw_tcp_options_set_connection_timeout(options, connection_timeout)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_connection_timeout */
 
 // Disables TCP acknowledgment stretching.
 //
@@ -4764,7 +4828,7 @@ func nw_tcp_options_set_connection_timeout(options Nw_protocol_options_t, connec
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_disable_ack_stretching(_:_:)
 func nw_tcp_options_set_disable_ack_stretching(options Nw_protocol_options_t, disable_ack_stretching bool) {
 	_nw_tcp_options_set_disable_ack_stretching(options, disable_ack_stretching)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_disable_ack_stretching */
 
 // Disables negotiation of Explicit Congestion Notification markings.
 //
@@ -4775,7 +4839,7 @@ func nw_tcp_options_set_disable_ack_stretching(options Nw_protocol_options_t, di
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_disable_ecn(_:_:)
 func nw_tcp_options_set_disable_ecn(options Nw_protocol_options_t, disable_ecn bool) {
 	_nw_tcp_options_set_disable_ecn(options, disable_ecn)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_disable_ecn */
 
 // Enables TCP Fast Open on a connection.
 //
@@ -4786,7 +4850,7 @@ func nw_tcp_options_set_disable_ecn(options Nw_protocol_options_t, disable_ecn b
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_enable_fast_open(_:_:)
 func nw_tcp_options_set_enable_fast_open(options Nw_protocol_options_t, enable_fast_open bool) {
 	_nw_tcp_options_set_enable_fast_open(options, enable_fast_open)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_enable_fast_open */
 
 // Enables TCP keepalives.
 //
@@ -4797,7 +4861,7 @@ func nw_tcp_options_set_enable_fast_open(options Nw_protocol_options_t, enable_f
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_enable_keepalive(_:_:)
 func nw_tcp_options_set_enable_keepalive(options Nw_protocol_options_t, enable_keepalive bool) {
 	_nw_tcp_options_set_enable_keepalive(options, enable_keepalive)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_enable_keepalive */
 
 // Sets the number of keepalive probes that TCP sends before terminating the connection.
 //
@@ -4808,7 +4872,7 @@ func nw_tcp_options_set_enable_keepalive(options Nw_protocol_options_t, enable_k
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_keepalive_count(_:_:)
 func nw_tcp_options_set_keepalive_count(options Nw_protocol_options_t, keepalive_count uint32) {
 	_nw_tcp_options_set_keepalive_count(options, keepalive_count)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_keepalive_count */
 
 // Sets the number of seconds of idleness that TCP waits before sending keepalive probes.
 //
@@ -4819,7 +4883,7 @@ func nw_tcp_options_set_keepalive_count(options Nw_protocol_options_t, keepalive
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_keepalive_idle_time(_:_:)
 func nw_tcp_options_set_keepalive_idle_time(options Nw_protocol_options_t, keepalive_idle_time uint32) {
 	_nw_tcp_options_set_keepalive_idle_time(options, keepalive_idle_time)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_keepalive_idle_time */
 
 // Sets the number of seconds that TCP waits between sending keepalive probes.
 //
@@ -4830,7 +4894,7 @@ func nw_tcp_options_set_keepalive_idle_time(options Nw_protocol_options_t, keepa
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_keepalive_interval(_:_:)
 func nw_tcp_options_set_keepalive_interval(options Nw_protocol_options_t, keepalive_interval uint32) {
 	_nw_tcp_options_set_keepalive_interval(options, keepalive_interval)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_keepalive_interval */
 
 // Sets TCP’s maximum segment size in bytes.
 //
@@ -4841,16 +4905,7 @@ func nw_tcp_options_set_keepalive_interval(options Nw_protocol_options_t, keepal
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_maximum_segment_size(_:_:)
 func nw_tcp_options_set_maximum_segment_size(options Nw_protocol_options_t, maximum_segment_size uint32) {
 	_nw_tcp_options_set_maximum_segment_size(options, maximum_segment_size)
-}
-
-// nw_tcp_options_set_multipath_force_version is a Network function.
-//
-// Added in macOS 12.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_multipath_force_version(_:_:)
-func nw_tcp_options_set_multipath_force_version(options Nw_protocol_options_t, multipath_force_version unsafe.Pointer) {
-	_nw_tcp_options_set_multipath_force_version(options, multipath_force_version)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_maximum_segment_size */
 
 // Disables Nagle’s algorithm for TCP.
 //
@@ -4861,7 +4916,7 @@ func nw_tcp_options_set_multipath_force_version(options Nw_protocol_options_t, m
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_no_delay(_:_:)
 func nw_tcp_options_set_no_delay(options Nw_protocol_options_t, no_delay bool) {
 	_nw_tcp_options_set_no_delay(options, no_delay)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_no_delay */
 
 // Sets TCP into no-options mode.
 //
@@ -4872,7 +4927,7 @@ func nw_tcp_options_set_no_delay(options Nw_protocol_options_t, no_delay bool) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_no_options(_:_:)
 func nw_tcp_options_set_no_options(options Nw_protocol_options_t, no_options bool) {
 	_nw_tcp_options_set_no_options(options, no_options)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_no_options */
 
 // Sets TCP into no-push mode.
 //
@@ -4883,7 +4938,7 @@ func nw_tcp_options_set_no_options(options Nw_protocol_options_t, no_options boo
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_no_push(_:_:)
 func nw_tcp_options_set_no_push(options Nw_protocol_options_t, no_push bool) {
 	_nw_tcp_options_set_no_push(options, no_push)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_no_push */
 
 // Sets the TCP persist timeout in seconds, as defined by RFC 6429.
 //
@@ -4894,7 +4949,7 @@ func nw_tcp_options_set_no_push(options Nw_protocol_options_t, no_push bool) {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_persist_timeout(_:_:)
 func nw_tcp_options_set_persist_timeout(options Nw_protocol_options_t, persist_timeout uint32) {
 	_nw_tcp_options_set_persist_timeout(options, persist_timeout)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_persist_timeout */
 
 // Sets the number of seconds that TCP waits between retransmission attempts.
 //
@@ -4905,7 +4960,7 @@ func nw_tcp_options_set_persist_timeout(options Nw_protocol_options_t, persist_t
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_retransmit_connection_drop_time(_:_:)
 func nw_tcp_options_set_retransmit_connection_drop_time(options Nw_protocol_options_t, retransmit_connection_drop_time uint32) {
 	_nw_tcp_options_set_retransmit_connection_drop_time(options, retransmit_connection_drop_time)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_retransmit_connection_drop_time */
 
 // Causes TCP to drop its connection after not receiving an ACK after a FIN.
 //
@@ -4916,7 +4971,7 @@ func nw_tcp_options_set_retransmit_connection_drop_time(options Nw_protocol_opti
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tcp_options_set_retransmit_fin_drop(_:_:)
 func nw_tcp_options_set_retransmit_fin_drop(options Nw_protocol_options_t, retransmit_fin_drop bool) {
 	_nw_tcp_options_set_retransmit_fin_drop(options, retransmit_fin_drop)
-}
+}/* debug [functions.gen.go/function]: nw_tcp_options_set_retransmit_fin_drop */
 
 // Accesses the result of the TLS handshake.
 //
@@ -4927,7 +4982,7 @@ func nw_tcp_options_set_retransmit_fin_drop(options Nw_protocol_options_t, retra
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tls_copy_sec_protocol_metadata(_:)
 func nw_tls_copy_sec_protocol_metadata(metadata Nw_protocol_metadata_t) unsafe.Pointer {
 	return _nw_tls_copy_sec_protocol_metadata(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_tls_copy_sec_protocol_metadata */
 
 // Accesses the handshake security options TLS will use.
 //
@@ -4938,7 +4993,7 @@ func nw_tls_copy_sec_protocol_metadata(metadata Nw_protocol_metadata_t) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tls_copy_sec_protocol_options(_:)
 func nw_tls_copy_sec_protocol_options(options Nw_protocol_options_t) unsafe.Pointer {
 	return _nw_tls_copy_sec_protocol_options(options)
-}
+}/* debug [functions.gen.go/function]: nw_tls_copy_sec_protocol_options */
 
 // Initializes a default set of TLS connection options.
 //
@@ -4949,7 +5004,7 @@ func nw_tls_copy_sec_protocol_options(options Nw_protocol_options_t) unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_tls_create_options()
 func nw_tls_create_options() Nw_protocol_options_t {
 	return _nw_tls_create_options()
-}
+}/* debug [functions.gen.go/function]: nw_tls_create_options */
 
 // Accesses the raw bytes contained within a TXT record.
 //
@@ -4960,7 +5015,7 @@ func nw_tls_create_options() Nw_protocol_options_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_access_bytes(_:_:)
 func nw_txt_record_access_bytes(txt_record Nw_txt_record_t, access_bytes unsafe.Pointer) bool {
 	return _nw_txt_record_access_bytes(txt_record, access_bytes)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_access_bytes */
 
 // Accesses the value for a specific key in a TXT record dictionary.
 //
@@ -4971,7 +5026,7 @@ func nw_txt_record_access_bytes(txt_record Nw_txt_record_t, access_bytes unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_access_key(_:_:_:)
 func nw_txt_record_access_key(txt_record Nw_txt_record_t, key unsafe.Pointer, access_value unsafe.Pointer) bool {
 	return _nw_txt_record_access_key(txt_record, key, access_value)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_access_key */
 
 // Iterates through all keys in a TXT record dictionary.
 //
@@ -4982,7 +5037,7 @@ func nw_txt_record_access_key(txt_record Nw_txt_record_t, key unsafe.Pointer, ac
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_apply(_:_:)
 func nw_txt_record_apply(txt_record Nw_txt_record_t, applier unsafe.Pointer) bool {
 	return _nw_txt_record_apply(txt_record, applier)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_apply */
 
 // Performs a deep copy of a TXT record.
 //
@@ -4993,7 +5048,7 @@ func nw_txt_record_apply(txt_record Nw_txt_record_t, applier unsafe.Pointer) boo
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_copy(_:)
 func nw_txt_record_copy(txt_record Nw_txt_record_t) Nw_txt_record_t {
 	return _nw_txt_record_copy(txt_record)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_copy */
 
 // Initializes a TXT record as a dictionary of strings.
 //
@@ -5004,7 +5059,7 @@ func nw_txt_record_copy(txt_record Nw_txt_record_t) Nw_txt_record_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_create_dictionary()
 func nw_txt_record_create_dictionary() Nw_txt_record_t {
 	return _nw_txt_record_create_dictionary()
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_create_dictionary */
 
 // Initializes a TXT record with raw bytes.
 //
@@ -5015,7 +5070,7 @@ func nw_txt_record_create_dictionary() Nw_txt_record_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_create_with_bytes(_:_:)
 func nw_txt_record_create_with_bytes(txt_bytes unsafe.Pointer, txt_len uintptr) Nw_txt_record_t {
 	return _nw_txt_record_create_with_bytes(txt_bytes, txt_len)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_create_with_bytes */
 
 // Checks the status of value associated with a key in a TXT record dictionary.
 //
@@ -5026,7 +5081,7 @@ func nw_txt_record_create_with_bytes(txt_bytes unsafe.Pointer, txt_len uintptr) 
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_find_key(_:_:)
 func nw_txt_record_find_key(txt_record Nw_txt_record_t, key unsafe.Pointer) unsafe.Pointer {
 	return _nw_txt_record_find_key(txt_record, key)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_find_key */
 
 // Accesses the number of keys stored in the TXT record dictionary.
 //
@@ -5037,7 +5092,7 @@ func nw_txt_record_find_key(txt_record Nw_txt_record_t, key unsafe.Pointer) unsa
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_get_key_count(_:)
 func nw_txt_record_get_key_count(txt_record Nw_txt_record_t) uintptr {
 	return _nw_txt_record_get_key_count(txt_record)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_get_key_count */
 
 // Checks whether a TXT record conforms to a dictionary format.
 //
@@ -5048,7 +5103,7 @@ func nw_txt_record_get_key_count(txt_record Nw_txt_record_t) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_is_dictionary(_:)
 func nw_txt_record_is_dictionary(txt_record Nw_txt_record_t) bool {
 	return _nw_txt_record_is_dictionary(txt_record)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_is_dictionary */
 
 // Checks whether two TXT records are equivalent.
 //
@@ -5059,7 +5114,7 @@ func nw_txt_record_is_dictionary(txt_record Nw_txt_record_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_is_equal(_:_:)
 func nw_txt_record_is_equal(left Nw_txt_record_t, right Nw_txt_record_t) bool {
 	return _nw_txt_record_is_equal(left, right)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_is_equal */
 
 // Removes a data value in a TXT record dictionary.
 //
@@ -5070,7 +5125,7 @@ func nw_txt_record_is_equal(left Nw_txt_record_t, right Nw_txt_record_t) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_remove_key(_:_:)
 func nw_txt_record_remove_key(txt_record Nw_txt_record_t, key unsafe.Pointer) bool {
 	return _nw_txt_record_remove_key(txt_record, key)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_remove_key */
 
 // Sets a data value in a TXT record dictionary.
 //
@@ -5081,7 +5136,7 @@ func nw_txt_record_remove_key(txt_record Nw_txt_record_t, key unsafe.Pointer) bo
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_set_key(_:_:_:_:)
 func nw_txt_record_set_key(txt_record Nw_txt_record_t, key unsafe.Pointer, value unsafe.Pointer, value_len uintptr) bool {
 	return _nw_txt_record_set_key(txt_record, key, value, value_len)
-}
+}/* debug [functions.gen.go/function]: nw_txt_record_set_key */
 
 // Initializes a default UDP message.
 //
@@ -5092,7 +5147,7 @@ func nw_txt_record_set_key(txt_record Nw_txt_record_t, key unsafe.Pointer, value
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_udp_create_metadata()
 func nw_udp_create_metadata() Nw_protocol_metadata_t {
 	return _nw_udp_create_metadata()
-}
+}/* debug [functions.gen.go/function]: nw_udp_create_metadata */
 
 // Initializes a default set of UDP connection options.
 //
@@ -5103,7 +5158,7 @@ func nw_udp_create_metadata() Nw_protocol_metadata_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_udp_create_options()
 func nw_udp_create_options() Nw_protocol_options_t {
 	return _nw_udp_create_options()
-}
+}/* debug [functions.gen.go/function]: nw_udp_create_options */
 
 // Configures the connection to not send UDP checksums.
 //
@@ -5114,7 +5169,7 @@ func nw_udp_create_options() Nw_protocol_options_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_udp_options_set_prefer_no_checksum(_:_:)
 func nw_udp_options_set_prefer_no_checksum(options Nw_protocol_options_t, prefer_no_checksum bool) {
 	_nw_udp_options_set_prefer_no_checksum(options, prefer_no_checksum)
-}
+}/* debug [functions.gen.go/function]: nw_udp_options_set_prefer_no_checksum */
 
 // Initializes a WebSocket message with a specific type code.
 //
@@ -5125,7 +5180,7 @@ func nw_udp_options_set_prefer_no_checksum(options Nw_protocol_options_t, prefer
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_create_metadata(_:)
 func nw_ws_create_metadata(opcode unsafe.Pointer) Nw_protocol_metadata_t {
 	return _nw_ws_create_metadata(opcode)
-}
+}/* debug [functions.gen.go/function]: nw_ws_create_metadata */
 
 // Initializes a default set of WebSocket connection options.
 //
@@ -5136,7 +5191,7 @@ func nw_ws_create_metadata(opcode unsafe.Pointer) Nw_protocol_metadata_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_create_options(_:)
 func nw_ws_create_options(version unsafe.Pointer) Nw_protocol_options_t {
 	return _nw_ws_create_options(version)
-}
+}/* debug [functions.gen.go/function]: nw_ws_create_options */
 
 // Accesses the WebSocket server’s response sent during the handshake.
 //
@@ -5147,7 +5202,7 @@ func nw_ws_create_options(version unsafe.Pointer) Nw_protocol_options_t {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_metadata_copy_server_response(_:)
 func nw_ws_metadata_copy_server_response(metadata Nw_protocol_metadata_t) Nw_ws_response_t {
 	return _nw_ws_metadata_copy_server_response(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_ws_metadata_copy_server_response */
 
 // Accesses the close code on a WebSocket message.
 //
@@ -5158,7 +5213,7 @@ func nw_ws_metadata_copy_server_response(metadata Nw_protocol_metadata_t) Nw_ws_
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_metadata_get_close_code(_:)
 func nw_ws_metadata_get_close_code(metadata Nw_protocol_metadata_t) unsafe.Pointer {
 	return _nw_ws_metadata_get_close_code(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_ws_metadata_get_close_code */
 
 // Checks the type code on a WebSocket message.
 //
@@ -5169,7 +5224,7 @@ func nw_ws_metadata_get_close_code(metadata Nw_protocol_metadata_t) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_metadata_get_opcode(_:)
 func nw_ws_metadata_get_opcode(metadata Nw_protocol_metadata_t) unsafe.Pointer {
 	return _nw_ws_metadata_get_opcode(metadata)
-}
+}/* debug [functions.gen.go/function]: nw_ws_metadata_get_opcode */
 
 // Sets a close code on a WebSocket message.
 //
@@ -5180,7 +5235,7 @@ func nw_ws_metadata_get_opcode(metadata Nw_protocol_metadata_t) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_metadata_set_close_code(_:_:)
 func nw_ws_metadata_set_close_code(metadata Nw_protocol_metadata_t, close_code unsafe.Pointer) {
 	_nw_ws_metadata_set_close_code(metadata, close_code)
-}
+}/* debug [functions.gen.go/function]: nw_ws_metadata_set_close_code */
 
 // Sets a handler on a Ping message to be invoked when the corresponding Pong message is received.
 //
@@ -5191,7 +5246,7 @@ func nw_ws_metadata_set_close_code(metadata Nw_protocol_metadata_t, close_code u
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_metadata_set_pong_handler(_:_:_:)
 func nw_ws_metadata_set_pong_handler(metadata Nw_protocol_metadata_t, client_queue unsafe.Pointer, pong_handler unsafe.Pointer) {
 	_nw_ws_metadata_set_pong_handler(metadata, client_queue, pong_handler)
-}
+}/* debug [functions.gen.go/function]: nw_ws_metadata_set_pong_handler */
 
 // Adds additional HTTP header fields to be sent by the client during the WebSocket handshake.
 //
@@ -5202,7 +5257,7 @@ func nw_ws_metadata_set_pong_handler(metadata Nw_protocol_metadata_t, client_que
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_options_add_additional_header(_:_:_:)
 func nw_ws_options_add_additional_header(options Nw_protocol_options_t, name unsafe.Pointer, value unsafe.Pointer) {
 	_nw_ws_options_add_additional_header(options, name, value)
-}
+}/* debug [functions.gen.go/function]: nw_ws_options_add_additional_header */
 
 // Adds to the list of supported application protocols that will be presented to a WebSocket server during connection establishment.
 //
@@ -5213,7 +5268,7 @@ func nw_ws_options_add_additional_header(options Nw_protocol_options_t, name uns
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_options_add_subprotocol(_:_:)
 func nw_ws_options_add_subprotocol(options Nw_protocol_options_t, subprotocol unsafe.Pointer) {
 	_nw_ws_options_add_subprotocol(options, subprotocol)
-}
+}/* debug [functions.gen.go/function]: nw_ws_options_add_subprotocol */
 
 // Configures the connection to automatically reply to Ping messages instead of delivering them to you.
 //
@@ -5224,7 +5279,7 @@ func nw_ws_options_add_subprotocol(options Nw_protocol_options_t, subprotocol un
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_options_set_auto_reply_ping(_:_:)
 func nw_ws_options_set_auto_reply_ping(options Nw_protocol_options_t, auto_reply_ping bool) {
 	_nw_ws_options_set_auto_reply_ping(options, auto_reply_ping)
-}
+}/* debug [functions.gen.go/function]: nw_ws_options_set_auto_reply_ping */
 
 // Sets a handler to react to as a server to inbound WebSocket client handshakes.
 //
@@ -5235,7 +5290,7 @@ func nw_ws_options_set_auto_reply_ping(options Nw_protocol_options_t, auto_reply
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_options_set_client_request_handler(_:_:_:)
 func nw_ws_options_set_client_request_handler(options Nw_protocol_options_t, client_queue unsafe.Pointer, handler unsafe.Pointer) {
 	_nw_ws_options_set_client_request_handler(options, client_queue, handler)
-}
+}/* debug [functions.gen.go/function]: nw_ws_options_set_client_request_handler */
 
 // Sets the maximum allowed message size, in bytes, to be received by the WebSocket connection.
 //
@@ -5246,7 +5301,7 @@ func nw_ws_options_set_client_request_handler(options Nw_protocol_options_t, cli
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_options_set_maximum_message_size(_:_:)
 func nw_ws_options_set_maximum_message_size(options Nw_protocol_options_t, maximum_message_size uintptr) {
 	_nw_ws_options_set_maximum_message_size(options, maximum_message_size)
-}
+}/* debug [functions.gen.go/function]: nw_ws_options_set_maximum_message_size */
 
 // Specifies whether the WebSocket protocol skips its handshake and begins framing data once the underlying connection is established.
 //
@@ -5257,7 +5312,7 @@ func nw_ws_options_set_maximum_message_size(options Nw_protocol_options_t, maxim
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_options_set_skip_handshake(_:_:)
 func nw_ws_options_set_skip_handshake(options Nw_protocol_options_t, skip_handshake bool) {
 	_nw_ws_options_set_skip_handshake(options, skip_handshake)
-}
+}/* debug [functions.gen.go/function]: nw_ws_options_set_skip_handshake */
 
 // Enumerates additional HTTP headers in a WebSocket message.
 //
@@ -5268,7 +5323,7 @@ func nw_ws_options_set_skip_handshake(options Nw_protocol_options_t, skip_handsh
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_request_enumerate_additional_headers(_:_:)
 func nw_ws_request_enumerate_additional_headers(request Nw_ws_request_t, enumerator unsafe.Pointer) bool {
 	return _nw_ws_request_enumerate_additional_headers(request, enumerator)
-}
+}/* debug [functions.gen.go/function]: nw_ws_request_enumerate_additional_headers */
 
 // Enumerates the supported subprotocols in a WebSocket message.
 //
@@ -5279,7 +5334,7 @@ func nw_ws_request_enumerate_additional_headers(request Nw_ws_request_t, enumera
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_request_enumerate_subprotocols(_:_:)
 func nw_ws_request_enumerate_subprotocols(request Nw_ws_request_t, enumerator unsafe.Pointer) bool {
 	return _nw_ws_request_enumerate_subprotocols(request, enumerator)
-}
+}/* debug [functions.gen.go/function]: nw_ws_request_enumerate_subprotocols */
 
 // Adds an additional HTTP header to a WebSocket server response.
 //
@@ -5290,7 +5345,7 @@ func nw_ws_request_enumerate_subprotocols(request Nw_ws_request_t, enumerator un
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_response_add_additional_header(_:_:_:)
 func nw_ws_response_add_additional_header(response Nw_ws_response_t, name unsafe.Pointer, value unsafe.Pointer) {
 	_nw_ws_response_add_additional_header(response, name, value)
-}
+}/* debug [functions.gen.go/function]: nw_ws_response_add_additional_header */
 
 // Initializes a WebSocket server response with a status and selected subprotocol.
 //
@@ -5301,7 +5356,7 @@ func nw_ws_response_add_additional_header(response Nw_ws_response_t, name unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_response_create(_:_:)
 func nw_ws_response_create(status unsafe.Pointer, selected_subprotocol unsafe.Pointer) Nw_ws_response_t {
 	return _nw_ws_response_create(status, selected_subprotocol)
-}
+}/* debug [functions.gen.go/function]: nw_ws_response_create */
 
 // Enumerates the additional HTTP headers in a WebSocket server response.
 //
@@ -5312,7 +5367,7 @@ func nw_ws_response_create(status unsafe.Pointer, selected_subprotocol unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_response_enumerate_additional_headers(_:_:)
 func nw_ws_response_enumerate_additional_headers(response Nw_ws_response_t, enumerator unsafe.Pointer) bool {
 	return _nw_ws_response_enumerate_additional_headers(response, enumerator)
-}
+}/* debug [functions.gen.go/function]: nw_ws_response_enumerate_additional_headers */
 
 // Accesses the selected subprotocol in a WebSocket server response.
 //
@@ -5323,7 +5378,7 @@ func nw_ws_response_enumerate_additional_headers(response Nw_ws_response_t, enum
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_response_get_selected_subprotocol(_:)
 func nw_ws_response_get_selected_subprotocol(response Nw_ws_response_t) unsafe.Pointer {
 	return _nw_ws_response_get_selected_subprotocol(response)
-}
+}/* debug [functions.gen.go/function]: nw_ws_response_get_selected_subprotocol */
 
 // Accesses the status of a WebSocket server response.
 //
@@ -5334,7 +5389,8 @@ func nw_ws_response_get_selected_subprotocol(response Nw_ws_response_t) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_ws_response_get_status(_:)
 func nw_ws_response_get_status(response Nw_ws_response_t) unsafe.Pointer {
 	return _nw_ws_response_get_status(response)
-}
+}/* debug [functions.gen.go/function]: nw_ws_response_get_status */
+
 
 
 

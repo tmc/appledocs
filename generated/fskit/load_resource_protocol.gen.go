@@ -15,3 +15,4 @@ var loadResourceProtocol *objc.Protocol
 func init() {
 	loadResourceProtocol = objc.GetProtocol("loadResource:")
 }
+

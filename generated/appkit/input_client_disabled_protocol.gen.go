@@ -15,3 +15,4 @@ var inputClientDisabledProtocol *objc.Protocol
 func init() {
 	inputClientDisabledProtocol = objc.GetProtocol("inputClientDisabled:")
 }
+

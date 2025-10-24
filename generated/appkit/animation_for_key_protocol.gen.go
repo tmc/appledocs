@@ -15,3 +15,4 @@ var animationForKeyProtocol *objc.Protocol
 func init() {
 	animationForKeyProtocol = objc.GetProtocol("animationForKey:")
 }
+

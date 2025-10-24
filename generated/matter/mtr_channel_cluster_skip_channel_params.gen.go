@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRChannelClusterSkipChannelParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterSkipChannelParams
@@ -85,8 +83,6 @@ func NewMTRChannelClusterSkipChannelParams() MTRChannelClusterSkipChannelParams 
 	return getMTRChannelClusterSkipChannelParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/count
 func (m_ MTRChannelClusterSkipChannelParams) Count() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRChannelClusterSkipChannelParams) Count() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/count
 func (m_ MTRChannelClusterSkipChannelParams) SetCount(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRChannelClusterSkipChannelParams) ServerSideProcessingTimeout() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/serversideprocessingtimeout
 func (m_ MTRChannelClusterSkipChannelParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRChannelClusterSkipChannelParams) TimedInvokeTimeoutMs() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterskipchannelparams/timedinvoketimeoutms
 func (m_ MTRChannelClusterSkipChannelParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

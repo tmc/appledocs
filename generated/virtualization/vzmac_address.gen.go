@@ -6,11 +6,14 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VZMACAddress */
+
+/* debug [class_header]: Header for VZMACAddress */
 // The class instance for the [VZMACAddress] class.
 var (
 	VZMACAddressClass     _VZMACAddressClass
@@ -28,9 +31,14 @@ type _VZMACAddressClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for VZMACAddress */
 // An interface definition for the [VZMACAddress] class.
 type IVZMACAddress interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for VZMACAddress */
 	// properties:
 	EthernetAddress() unsafe.Pointer
 	IsBroadcastAddress() bool
@@ -39,29 +47,17 @@ type IVZMACAddress interface {
 	IsUnicastAddress() bool
 	IsUniversallyAdministeredAddress() bool
 	String() objc.IObject /* cross-framework: NSString */
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for VZMACAddress */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// The media access control (MAC) address for a network interface in your virtual machine.
-//
-// A object contains the hardware address of your network interface. Every network device has a unique 48-bit MAC address that the system uses to route network packets to that device. Call the method to get a local MAC address suitable for use with your network interfaces. Alternatively, you can create a object yourself from a string or structure.
+/* debug [class_interface]: End interface */
 
-
-// The media access control (MAC) address for a network interface in your virtual machine.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMACAddress
-type VZMACAddress struct {
-	objectivec.Object
-}
-
-// VZMACAddressFrom constructs a [VZMACAddress] from an unsafe.Pointer.
-//
-// The media access control (MAC) address for a network interface in your virtual machine.
-func VZMACAddressFrom(ptr unsafe.Pointer) VZMACAddress {
-	return VZMACAddress{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for VZMACAddress */
 // Alloc allocates a new instance without initialization.
 func (vc _VZMACAddressClass) Alloc() VZMACAddress {
 	rv := objc.Send[VZMACAddress](objc.ID(vc.class), objc.Sel("alloc"))
@@ -69,7 +65,6 @@ func (vc _VZMACAddressClass) Alloc() VZMACAddress {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _VZMACAddressClass) New() VZMACAddress {
 	rv := objc.Send[VZMACAddress](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,7 +88,31 @@ func NewVZMACAddress() VZMACAddress {
 	return getVZMACAddressClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for VZMACAddress */
+// The media access control (MAC) address for a network interface in your virtual machine.
+//
+// A object contains the hardware address of your network interface. Every network device has a unique 48-bit MAC address that the system uses to route network packets to that device. Call the method to get a local MAC address suitable for use with your network interfaces. Alternatively, you can create a object yourself from a string or structure.
+
+// The media access control (MAC) address for a network interface in your virtual machine.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZMACAddress
+type VZMACAddress struct {
+	objectivec.Object
+}
+
+// VZMACAddressFrom constructs a [VZMACAddress] from an unsafe.Pointer.
+//
+// The media access control (MAC) address for a network interface in your virtual machine.
+func VZMACAddressFrom(ptr unsafe.Pointer) VZMACAddress {
+	return VZMACAddress{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for VZMACAddress */
 
 // Creates a MAC address from the specified 48-bit Ethernet address.
 //
@@ -104,8 +123,7 @@ func NewVZMACAddressWithEthernetAddress(ethernetAddress unsafe.Pointer) VZMACAdd
 	rv := objc.Send[VZMACAddress](instance.ID, objc.Sel("initWithEthernetAddress:"), ethernetAddress)
 	rv.Autorelease()
 	return rv
-}
-
+} /* debug [class_init_methods/constructor]: NewVZMACAddressWithEthernetAddress */
 
 // Creates a MAC address object from a specially formatted string.
 //
@@ -116,9 +134,11 @@ func NewVZMACAddressWithString(string_ objc.IObject /* cross-framework: NSString
 	rv := objc.Send[VZMACAddress](instance.ID, objc.Sel("initWithString:"), string_)
 	rv.Autorelease()
 	return rv
-}
+} /* debug [class_init_methods/constructor]: NewVZMACAddressWithString */
 
+/* debug [class_init_methods]: End init methods */
 
+/* debug [class_methods]: Class methods for VZMACAddress */
 
 // Returns a valid, random, locally administered, unicast MAC address.
 //
@@ -127,8 +147,17 @@ func NewVZMACAddressWithString(string_ objc.IObject /* cross-framework: NSString
 func (vc _VZMACAddressClass) RandomLocallyAdministeredAddress() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(vc.class), objc.Sel("randomLocallyAdministeredAddress"))
 	return rv
-}
+} /* debug [class_methods/method]: Class method for%!(EXTRA string=RandomLocallyAdministeredAddress) */
 
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for VZMACAddress */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for VZMACAddress */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for VZMACAddress */
 
 // The MAC address as an Ethernet data structure.
 //
@@ -137,8 +166,7 @@ func (vc _VZMACAddressClass) RandomLocallyAdministeredAddress() unsafe.Pointer {
 func (v_ VZMACAddress) EthernetAddress() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("ethernetAddress"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: ethernetAddress */
 
 // A Boolean value that indicates whether the address is a broadcast address.
 //
@@ -147,8 +175,7 @@ func (v_ VZMACAddress) EthernetAddress() unsafe.Pointer {
 func (v_ VZMACAddress) IsBroadcastAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isBroadcastAddress"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: isBroadcastAddress */
 
 // A Boolean value that indicates whether the address is a locally administered address (LAA).
 //
@@ -157,8 +184,7 @@ func (v_ VZMACAddress) IsBroadcastAddress() bool {
 func (v_ VZMACAddress) IsLocallyAdministeredAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isLocallyAdministeredAddress"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: isLocallyAdministeredAddress */
 
 // A Boolean value that indicates whether the address is a multicast address.
 //
@@ -167,8 +193,7 @@ func (v_ VZMACAddress) IsLocallyAdministeredAddress() bool {
 func (v_ VZMACAddress) IsMulticastAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isMulticastAddress"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: isMulticastAddress */
 
 // A Boolean value that indicates whether the address is a unicast address.
 //
@@ -177,8 +202,7 @@ func (v_ VZMACAddress) IsMulticastAddress() bool {
 func (v_ VZMACAddress) IsUnicastAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isUnicastAddress"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: isUnicastAddress */
 
 // A Boolean value that indicates whether the address is a universally adminstered address (UAA).
 //
@@ -187,8 +211,7 @@ func (v_ VZMACAddress) IsUnicastAddress() bool {
 func (v_ VZMACAddress) IsUniversallyAdministeredAddress() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isUniversallyAdministeredAddress"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: isUniversallyAdministeredAddress */
 
 // The MAC address as a formatted string.
 //
@@ -197,6 +220,8 @@ func (v_ VZMACAddress) IsUniversallyAdministeredAddress() bool {
 func (v_ VZMACAddress) String() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("string"))
 	return rv
-}
+} /* debug [instance_properties/getter]: string */
 
+/* debug [instance_properties]: End instance properties */
 
+/* debug [class.gen.go]: End class VZMACAddress */

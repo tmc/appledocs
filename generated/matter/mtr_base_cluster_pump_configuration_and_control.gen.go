@@ -33,8 +33,6 @@ type IMTRBaseClusterPumpConfigurationAndControl interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterPumpConfigurationAndControl
 type MTRBaseClusterPumpConfigurationAndControl struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterPumpConfigurationAndControl) Autorelease() MTRBaseCluster
 func NewMTRBaseClusterPumpConfigurationAndControl() MTRBaseClusterPumpConfigurationAndControl {
 	return getMTRBaseClusterPumpConfigurationAndControlClass().New()
 }
-
-
-
-

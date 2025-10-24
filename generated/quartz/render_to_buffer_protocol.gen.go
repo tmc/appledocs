@@ -15,3 +15,4 @@ var renderToBufferProtocol *objc.Protocol
 func init() {
 	renderToBufferProtocol = objc.GetProtocol("renderToBuffer:")
 }
+

@@ -42,7 +42,6 @@ type IINSeat interface {
 
 // An object containing seat information associated with a reservation.
 
-
 // An object containing seat information associated with a reservation.
 //
 // [Full Topic]
@@ -89,8 +88,6 @@ func NewINSeat() INSeat {
 	return getINSeatClass().New()
 }
 
-
-
 // The seat’s number.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (i_ INSeat) SeatNumber() string {
 	return rv
 }
 
-
 // The seat’s number.
 //
 // [Full Topic]
@@ -108,7 +104,6 @@ func (i_ INSeat) SeatNumber() string {
 func (i_ INSeat) SetSeatNumber(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatNumber:"), objc.String(value))
 }
-
 
 // The seat’s row.
 //
@@ -119,7 +114,6 @@ func (i_ INSeat) SeatRow() string {
 	return rv
 }
 
-
 // The seat’s row.
 //
 // [Full Topic]
@@ -127,7 +121,6 @@ func (i_ INSeat) SeatRow() string {
 func (i_ INSeat) SetSeatRow(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatRow:"), objc.String(value))
 }
-
 
 // The seat’s section.
 //
@@ -138,7 +131,6 @@ func (i_ INSeat) SeatSection() string {
 	return rv
 }
 
-
 // The seat’s section.
 //
 // [Full Topic]
@@ -146,7 +138,6 @@ func (i_ INSeat) SeatSection() string {
 func (i_ INSeat) SetSeatSection(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatSection:"), objc.String(value))
 }
-
 
 // The seat’s type.
 //
@@ -157,7 +148,6 @@ func (i_ INSeat) SeatingType() string {
 	return rv
 }
 
-
 // The seat’s type.
 //
 // [Full Topic]
@@ -165,6 +155,3 @@ func (i_ INSeat) SeatingType() string {
 func (i_ INSeat) SetSeatingType(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSeatingType:"), objc.String(value))
 }
-
-
-

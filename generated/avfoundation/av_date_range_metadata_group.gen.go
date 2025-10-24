@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVDateRangeMetadataGroup */
+
+
+/* debug [class_header]: Header for AVDateRangeMetadataGroup */
 // The class instance for the [DateRangeMetadataGroup] class.
 var (
 	DateRangeMetadataGroupClass     _DateRangeMetadataGroupClass
@@ -27,36 +31,33 @@ func getDateRangeMetadataGroupClass() _DateRangeMetadataGroupClass {
 type _DateRangeMetadataGroupClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DateRangeMetadataGroup */
 // An interface definition for the [DateRangeMetadataGroup] class.
 type IDateRangeMetadataGroup interface {
-	objectivec.IObject
-	EndDate() foundation.Date
-	SetEndDate(value foundation.IDate)
-	Items() AVMetadataItem
-	SetItems(value IAVMetadataItem)
-	StartDate() foundation.Date
-	SetStartDate(value foundation.IDate)
+	IMetadataGroup
+	
+/* debug [class_interface_properties]: Properties for DateRangeMetadataGroup */
+	// properties:
+	EndDate() objc.IObject /* cross-framework: NSDate */
+	Items() []MetadataItem
+	StartDate() objc.IObject /* cross-framework: NSDate */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DateRangeMetadataGroup */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A collection of metadata items that are valid for use within a specific date range.
 
 
-// A collection of metadata items that are valid for use within a specific date range.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDateRangeMetadataGroup
-type DateRangeMetadataGroup struct {
-	objectivec.Object
-}
-
-// DateRangeMetadataGroupFrom constructs a [DateRangeMetadataGroup] from an unsafe.Pointer.
-//
-// A collection of metadata items that are valid for use within a specific date range.
-func DateRangeMetadataGroupFrom(ptr unsafe.Pointer) DateRangeMetadataGroup {
-	return DateRangeMetadataGroup{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for DateRangeMetadataGroup */
 // Alloc allocates a new instance without initialization.
 func (dc _DateRangeMetadataGroupClass) Alloc() DateRangeMetadataGroup {
 	rv := objc.Send[DateRangeMetadataGroup](objc.ID(dc.class), objc.Sel("alloc"))
@@ -64,7 +65,6 @@ func (dc _DateRangeMetadataGroupClass) Alloc() DateRangeMetadataGroup {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DateRangeMetadataGroupClass) New() DateRangeMetadataGroup {
 	rv := objc.Send[DateRangeMetadataGroup](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,64 +87,100 @@ func (d_ DateRangeMetadataGroup) Autorelease() DateRangeMetadataGroup {
 func NewDateRangeMetadataGroup() DateRangeMetadataGroup {
 	return getDateRangeMetadataGroupClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The end date for the metadata date range group.
+/* debug [class_struct]: Struct for DateRangeMetadataGroup */
+// A collection of metadata items that are valid for use within a specific date range.
+
+
+// A collection of metadata items that are valid for use within a specific date range.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
-func (d_ DateRangeMetadataGroup) EndDate() foundation.Date {
-	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("endDate"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDateRangeMetadataGroup
+type DateRangeMetadataGroup struct {
+	MetadataGroup
+}
+
+// DateRangeMetadataGroupFrom constructs a [DateRangeMetadataGroup] from an unsafe.Pointer.
+//
+// A collection of metadata items that are valid for use within a specific date range.
+func DateRangeMetadataGroupFrom(ptr unsafe.Pointer) DateRangeMetadataGroup {
+	return DateRangeMetadataGroup{
+		MetadataGroup: MetadataGroupFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DateRangeMetadataGroup */
+
+// Initializes an instance of with a collection of metadata items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDateRangeMetadataGroup/init(items:start:end:)
+func NewDateRangeMetadataGroupWithItemsStartDateEndDate(items []MetadataItem, startDate objc.IObject /* cross-framework: NSDate */, endDate objc.IObject /* cross-framework: NSDate */) DateRangeMetadataGroup {
+	instance := getDateRangeMetadataGroupClass().Alloc()
+	rv := objc.Send[DateRangeMetadataGroup](instance.ID, objc.Sel("initWithItems:startDate:endDate:"), items, startDate, endDate)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDateRangeMetadataGroupWithItemsStartDateEndDate */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for DateRangeMetadataGroup */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DateRangeMetadataGroup */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DateRangeMetadataGroup */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DateRangeMetadataGroup */
 
 // The end date for the metadata date range group.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/enddate
-func (d_ DateRangeMetadataGroup) SetEndDate(value foundation.IDate) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setEndDate:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDateRangeMetadataGroup/endDate
+func (d_ DateRangeMetadataGroup) EndDate() objc.IObject /* cross-framework: NSDate */ {
+	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
+	return rv
+}/* debug [instance_properties/getter]: endDate */
 
 
 // An array of associated metadata items.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
-func (d_ DateRangeMetadataGroup) Items() AVMetadataItem {
-	rv := objc.Send[AVMetadataItem](d_.ID, objc.Sel("items"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDateRangeMetadataGroup/items
+func (d_ DateRangeMetadataGroup) Items() []MetadataItem {
+	rv := objc.Send[[]MetadataItem](d_.ID, objc.Sel("items"))
 	return rv
-}
-
-
-// An array of associated metadata items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/items
-func (d_ DateRangeMetadataGroup) SetItems(value IAVMetadataItem) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setItems:"), value)
-}
+}/* debug [instance_properties/getter]: items */
 
 
 // The start date for the metadata date range group.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
-func (d_ DateRangeMetadataGroup) StartDate() foundation.Date {
-	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("startDate"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDateRangeMetadataGroup/startDate
+func (d_ DateRangeMetadataGroup) StartDate() objc.IObject /* cross-framework: NSDate */ {
+	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startDate */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The start date for the metadata date range group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdaterangemetadatagroup/startdate
-func (d_ DateRangeMetadataGroup) SetStartDate(value foundation.IDate) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setStartDate:"), value)
-}
-
+/* debug [class.gen.go]: End class AVDateRangeMetadataGroup */
 
 

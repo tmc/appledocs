@@ -20,3 +20,4 @@ var loadTextureProtocol *objc.Protocol
 func init() {
 	loadTextureProtocol = objc.GetProtocol("loadTexture:")
 }
+

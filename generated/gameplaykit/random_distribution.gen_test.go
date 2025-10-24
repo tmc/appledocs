@@ -17,6 +17,7 @@ func ExampleNewRandomDistributionForDieWithSideCount() {
 	)
 	// Output:
 }
+
 // ExampleNewRandomDistributionWithLowestValueHighestValue demonstrates how to create a RandomDistribution instance using NewRandomDistributionWithLowestValueHighestValue.
 // Creates a random distribution with the specified lower and upper bounds, using the Arc4 randomizer.
 func ExampleNewRandomDistributionWithLowestValueHighestValue() {

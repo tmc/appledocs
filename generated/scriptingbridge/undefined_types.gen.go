@@ -12,5 +12,3 @@ type (
 	Class = _undefined // referenced in ScriptingBridge
 	Error = _undefined // referenced in ScriptingBridge
 )
-
-

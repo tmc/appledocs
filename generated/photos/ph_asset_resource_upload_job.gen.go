@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHAssetResourceUploadJob] class.
@@ -84,7 +84,6 @@ func NewPHAssetResourceUploadJob() PHAssetResourceUploadJob {
 	return getPHAssetResourceUploadJobClass().New()
 }
 
-
 // Returns all asset resource upload jobs applicable for a given action.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/fetchJobs(action:options:)
@@ -99,6 +98,7 @@ func (pc _PHAssetResourceUploadJobClass) JobLimit() int {
 	rv := objc.Send[int](objc.ID(pc.class), objc.Sel("jobLimit"))
 	return rv
 }
+
 // The asset resource this upload job represents.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJob/destination
@@ -129,6 +129,3 @@ func (p_ PHAssetResourceUploadJob) State() PHAssetResourceUploadJobState {
 	rv := objc.Send[PHAssetResourceUploadJobState](p_.ID, objc.Sel("state"))
 	return rv
 }
-
-
-

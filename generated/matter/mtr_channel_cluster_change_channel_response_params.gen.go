@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRChannelClusterChangeChannelResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChangeChannelResponseParams
@@ -85,8 +83,6 @@ func NewMTRChannelClusterChangeChannelResponseParams() MTRChannelClusterChangeCh
 	return getMTRChannelClusterChangeChannelResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/data
 func (m_ MTRChannelClusterChangeChannelResponseParams) Data() objc.IObject /* cross-framework: NSString */ {
@@ -94,13 +90,11 @@ func (m_ MTRChannelClusterChangeChannelResponseParams) Data() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/data
 func (m_ MTRChannelClusterChangeChannelResponseParams) SetData(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/status
@@ -109,13 +103,11 @@ func (m_ MTRChannelClusterChangeChannelResponseParams) Status() objc.IObject /* 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/status
 func (m_ MTRChannelClusterChangeChannelResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRChannelClusterChangeChannelResponseParams) TimedInvokeTimeoutMs() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelresponseparams/timedinvoketimeoutms
 func (m_ MTRChannelClusterChangeChannelResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

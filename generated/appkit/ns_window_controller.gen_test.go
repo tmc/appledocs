@@ -9,6 +9,14 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewWindowController
 
+// ExampleNewWindowControllerWithWindowNibName demonstrates how to create a WindowController instance using NewWindowControllerWithWindowNibName.
+// Returns a window controller initialized with a nib file.
+func ExampleNewWindowControllerWithWindowNibName() {
+	_ = appkit.NewWindowControllerWithWindowNibName(
+		appkit.NibName /* typedef */{}, // windowNibName NibName /* typedef */
+	)
+	// Output:
+}
 // ExampleWindowController_Close demonstrates using Close on a WindowController instance.
 // Closes the window if it was loaded.
 func ExampleWindowController_Close() {

@@ -17,3 +17,4 @@ var safariViewControllerWillOpenInBrowserProtocol *objc.Protocol
 func init() {
 	safariViewControllerWillOpenInBrowserProtocol = objc.GetProtocol("safariViewControllerWillOpenInBrowser:")
 }
+

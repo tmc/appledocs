@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterTemperatureControl */
+
+
+/* debug [class_header]: Header for MTRClusterTemperatureControl */
 // The class instance for the [MTRClusterTemperatureControl] class.
 var (
 	MTRClusterTemperatureControlClass     _MTRClusterTemperatureControlClass
@@ -26,47 +30,30 @@ func getMTRClusterTemperatureControlClass() _MTRClusterTemperatureControlClass {
 type _MTRClusterTemperatureControlClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterTemperatureControl */
 // An interface definition for the [MTRClusterTemperatureControl] class.
 type IMTRClusterTemperatureControl interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterTemperatureControl */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterTemperatureControl */
 	// methods:
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeMaxTemperatureWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeMinTemperatureWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSelectedTemperatureLevelWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeStepWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedTemperatureLevelsWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeTemperatureSetpointWithParams(params IMTRReadParams) foundation.IDictionary
-	SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRTemperatureControlClusterSetTemperatureParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Temperature Control Attributes and commands for configuring the temperature control, and reporting temperature.
 
 
-// Cluster Temperature Control Attributes and commands for configuring the temperature control, and reporting temperature.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl
-type MTRClusterTemperatureControl struct {
-	MTRGenericCluster
-}
-
-// MTRClusterTemperatureControlFrom constructs a [MTRClusterTemperatureControl] from an unsafe.Pointer.
-//
-// Cluster Temperature Control Attributes and commands for configuring the temperature control, and reporting temperature.
-func MTRClusterTemperatureControlFrom(ptr unsafe.Pointer) MTRClusterTemperatureControl {
-	return MTRClusterTemperatureControl{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterTemperatureControl */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterTemperatureControlClass) Alloc() MTRClusterTemperatureControl {
 	rv := objc.Send[MTRClusterTemperatureControl](objc.ID(mc.class), objc.Sel("alloc"))
@@ -74,7 +61,6 @@ func (mc _MTRClusterTemperatureControlClass) Alloc() MTRClusterTemperatureContro
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterTemperatureControlClass) New() MTRClusterTemperatureControl {
 	rv := objc.Send[MTRClusterTemperatureControl](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,8 +83,35 @@ func (m_ MTRClusterTemperatureControl) Autorelease() MTRClusterTemperatureContro
 func NewMTRClusterTemperatureControl() MTRClusterTemperatureControl {
 	return getMTRClusterTemperatureControlClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterTemperatureControl */
+// Cluster Temperature Control Attributes and commands for configuring the temperature control, and reporting temperature.
+
+
+// Cluster Temperature Control Attributes and commands for configuring the temperature control, and reporting temperature.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl
+type MTRClusterTemperatureControl struct {
+	MTRGenericCluster
+}
+
+// MTRClusterTemperatureControlFrom constructs a [MTRClusterTemperatureControl] from an unsafe.Pointer.
+//
+// Cluster Temperature Control Attributes and commands for configuring the temperature control, and reporting temperature.
+func MTRClusterTemperatureControlFrom(ptr unsafe.Pointer) MTRClusterTemperatureControl {
+	return MTRClusterTemperatureControl{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterTemperatureControl */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -109,109 +122,31 @@ func NewMTRClusterTemperatureControlWithDeviceEndpointIDQueue(device IMTRDevice,
 	rv := objc.Send[MTRClusterTemperatureControl](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterTemperatureControlWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+/* debug [class_methods]: Class methods for MTRClusterTemperatureControl */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeAttributeList(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterTemperatureControl */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeClusterRevision(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterTemperatureControl */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeFeatureMap(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterTemperatureControl */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeMaxTemperature(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeMaxTemperatureWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeMaxTemperatureWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeMinTemperature(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeMinTemperatureWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeMinTemperatureWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeSelectedTemperatureLevel(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeSelectedTemperatureLevelWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSelectedTemperatureLevelWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeStep(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeStepWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeStepWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeSupportedTemperatureLevels(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeSupportedTemperatureLevelsWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedTemperatureLevelsWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/readAttributeTemperatureSetpoint(with:)
-func (m_ MTRClusterTemperatureControl) ReadAttributeTemperatureSetpointWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeTemperatureSetpointWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/setTemperatureWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterTemperatureControl) SetTemperatureWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRTemperatureControlClusterSetTemperatureParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTemperatureWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureControl/setTemperatureWithExpectedValues(_:expectedValueInterval:completion:)
-func (m_ MTRClusterTemperatureControl) SetTemperatureWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTemperatureWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
+/* debug [class.gen.go]: End class MTRClusterTemperatureControl */
 
 

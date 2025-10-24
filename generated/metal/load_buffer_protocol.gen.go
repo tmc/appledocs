@@ -20,3 +20,4 @@ var loadBufferProtocol *objc.Protocol
 func init() {
 	loadBufferProtocol = objc.GetProtocol("loadBuffer:")
 }
+

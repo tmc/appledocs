@@ -6,6 +6,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/vision"
 )
 
 // PWritingToolsCoordinatorDelegate is the NSWritingToolsCoordinatorDelegate protocol interface.
@@ -18,19 +24,19 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSWritingToolsCoordinator/Delegate-swift.protocol
 type PWritingToolsCoordinatorDelegate interface {
 	// Required methods
-	WritingToolsCoordinatorFinishTextAnimationForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, textAnimation WritingToolsCoordinatorTextAnimation, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
-	WritingToolsCoordinatorPrepareForTextAnimationForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, textAnimation WritingToolsCoordinatorTextAnimation, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
-	WritingToolsCoordinatorReplaceRangeInContextProposedTextReasonAnimationParametersCompletion(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, replacementText foundation.AttributedString, reason WritingToolsCoordinatorTextReplacementReason, animationParameters IWritingToolsCoordinatorAnimationParameters, completion unsafe.Pointer)
-	WritingToolsCoordinatorRequestsBoundingBezierPathsForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
-	WritingToolsCoordinatorRequestsContextsForScopeCompletion(writingToolsCoordinator IWritingToolsCoordinator, scope WritingToolsCoordinatorContextScope, completion unsafe.Pointer)
-	WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, rect objc.IObject /* cross-framework: Rect */, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
-	WritingToolsCoordinatorRequestsPreviewForTextAnimationOfRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, textAnimation WritingToolsCoordinatorTextAnimation, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
-	WritingToolsCoordinatorRequestsUnderlinePathsForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
-	WritingToolsCoordinatorSelectRangesInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, ranges []foundation.Value, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
+	WritingToolsCoordinatorFinishTextAnimationForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, textAnimation WritingToolsCoordinatorTextAnimation, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorFinishTextAnimationForRangeInContextCompletion */
+	WritingToolsCoordinatorPrepareForTextAnimationForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, textAnimation WritingToolsCoordinatorTextAnimation, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorPrepareForTextAnimationForRangeInContextCompletion */
+	WritingToolsCoordinatorReplaceRangeInContextProposedTextReasonAnimationParametersCompletion(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, replacementText foundation.AttributedString, reason WritingToolsCoordinatorTextReplacementReason, animationParameters IWritingToolsCoordinatorAnimationParameters, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorReplaceRangeInContextProposedTextReasonAnimationParametersCompletion */
+	WritingToolsCoordinatorRequestsBoundingBezierPathsForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorRequestsBoundingBezierPathsForRangeInContextCompletion */
+	WritingToolsCoordinatorRequestsContextsForScopeCompletion(writingToolsCoordinator IWritingToolsCoordinator, scope WritingToolsCoordinatorContextScope, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorRequestsContextsForScopeCompletion */
+	WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, rect Rect /* not a class type */, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion */
+	WritingToolsCoordinatorRequestsPreviewForTextAnimationOfRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, textAnimation WritingToolsCoordinatorTextAnimation, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorRequestsPreviewForTextAnimationOfRangeInContextCompletion */
+	WritingToolsCoordinatorRequestsUnderlinePathsForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorRequestsUnderlinePathsForRangeInContextCompletion */
+	WritingToolsCoordinatorSelectRangesInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, ranges []foundation.Value, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)/* debug [protocol_interface/required_method]: WritingToolsCoordinatorSelectRangesInContextCompletion */
 	// Optional methods
 	WritingToolsCoordinatorRequestsDecorationContainerViewForRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
 	HasWritingToolsCoordinatorRequestsDecorationContainerViewForRangeInContextCompletion() bool
-	WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion(writingToolsCoordinator IWritingToolsCoordinator, point objc.IObject /* cross-framework: Point */, completion unsafe.Pointer)
+	WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion(writingToolsCoordinator IWritingToolsCoordinator, point vision.Point, completion unsafe.Pointer)
 	HasWritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion() bool
 	WritingToolsCoordinatorRequestsSingleContainerSubrangesOfRangeInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
 	HasWritingToolsCoordinatorRequestsSingleContainerSubrangesOfRangeInContextCompletion() bool
@@ -43,7 +49,7 @@ type PWritingToolsCoordinatorDelegate interface {
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type WritingToolsCoordinatorDelegate struct {
 	_WritingToolsCoordinatorRequestsDecorationContainerViewForRangeInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
-	_WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion func(writingToolsCoordinator IWritingToolsCoordinator, point objc.IObject /* cross-framework: Point */, completion unsafe.Pointer)
+	_WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion func(writingToolsCoordinator IWritingToolsCoordinator, point vision.Point, completion unsafe.Pointer)
 	_WritingToolsCoordinatorRequestsSingleContainerSubrangesOfRangeInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
 	_WritingToolsCoordinatorWillChangeToStateCompletion func(writingToolsCoordinator IWritingToolsCoordinator, newState WritingToolsCoordinatorState, completion unsafe.Pointer)
 	_WritingToolsCoordinatorFinishTextAnimationForRangeInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, textAnimation WritingToolsCoordinatorTextAnimation, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
@@ -51,7 +57,7 @@ type WritingToolsCoordinatorDelegate struct {
 	_WritingToolsCoordinatorReplaceRangeInContextProposedTextReasonAnimationParametersCompletion func(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, replacementText foundation.AttributedString, reason WritingToolsCoordinatorTextReplacementReason, animationParameters IWritingToolsCoordinatorAnimationParameters, completion unsafe.Pointer)
 	_WritingToolsCoordinatorRequestsBoundingBezierPathsForRangeInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
 	_WritingToolsCoordinatorRequestsContextsForScopeCompletion func(writingToolsCoordinator IWritingToolsCoordinator, scope WritingToolsCoordinatorContextScope, completion unsafe.Pointer)
-	_WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, rect objc.IObject /* cross-framework: Rect */, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
+	_WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, rect Rect /* not a class type */, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
 	_WritingToolsCoordinatorRequestsPreviewForTextAnimationOfRangeInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, textAnimation WritingToolsCoordinatorTextAnimation, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
 	_WritingToolsCoordinatorRequestsUnderlinePathsForRangeInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, range_ corefoundation.Range, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
 	_WritingToolsCoordinatorSelectRangesInContextCompletion func(writingToolsCoordinator IWritingToolsCoordinator, ranges []foundation.Value, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)
@@ -67,7 +73,7 @@ func (d *WritingToolsCoordinatorDelegate) SetWritingToolsCoordinatorRequestsDeco
 // SetWritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion sets the handler for the WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion delegate method.
 //
 // Asks the delegate to provide the location of the character at the   specified point in your view’s coordinate system.
-func (d *WritingToolsCoordinatorDelegate) SetWritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion(f func(writingToolsCoordinator IWritingToolsCoordinator, point objc.IObject /* cross-framework: Point */, completion unsafe.Pointer)) {
+func (d *WritingToolsCoordinatorDelegate) SetWritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion(f func(writingToolsCoordinator IWritingToolsCoordinator, point vision.Point, completion unsafe.Pointer)) {
 	d._WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion = f
 }
 
@@ -123,7 +129,7 @@ func (d *WritingToolsCoordinatorDelegate) SetWritingToolsCoordinatorRequestsCont
 // SetWritingToolsCoordinatorRequestsPreviewForRectInContextCompletion sets the handler for the WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion delegate method.
 //
 // Asks the delegate for a preview image and layout information for the   specified text.
-func (d *WritingToolsCoordinatorDelegate) SetWritingToolsCoordinatorRequestsPreviewForRectInContextCompletion(f func(writingToolsCoordinator IWritingToolsCoordinator, rect objc.IObject /* cross-framework: Rect */, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)) {
+func (d *WritingToolsCoordinatorDelegate) SetWritingToolsCoordinatorRequestsPreviewForRectInContextCompletion(f func(writingToolsCoordinator IWritingToolsCoordinator, rect Rect /* not a class type */, context IWritingToolsCoordinatorContext, completion unsafe.Pointer)) {
 	d._WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion = f
 }
 
@@ -161,7 +167,7 @@ func (d *WritingToolsCoordinatorDelegate) HasWritingToolsCoordinatorRequestsDeco
 }
 
 // WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion implements the PWritingToolsCoordinatorDelegate interface.
-func (d *WritingToolsCoordinatorDelegate) WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion(writingToolsCoordinator IWritingToolsCoordinator, point objc.IObject /* cross-framework: Point */, completion unsafe.Pointer) {
+func (d *WritingToolsCoordinatorDelegate) WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion(writingToolsCoordinator IWritingToolsCoordinator, point vision.Point, completion unsafe.Pointer) {
 	if d._WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion != nil {
 		d._WritingToolsCoordinatorRequestsRangeInContextWithIdentifierForPointCompletion(writingToolsCoordinator, point, completion)
 	}
@@ -257,7 +263,7 @@ func (d *WritingToolsCoordinatorDelegate) HasWritingToolsCoordinatorRequestsCont
 }
 
 // WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion implements the PWritingToolsCoordinatorDelegate interface.
-func (d *WritingToolsCoordinatorDelegate) WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, rect objc.IObject /* cross-framework: Rect */, context IWritingToolsCoordinatorContext, completion unsafe.Pointer) {
+func (d *WritingToolsCoordinatorDelegate) WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion(writingToolsCoordinator IWritingToolsCoordinator, rect Rect /* not a class type */, context IWritingToolsCoordinatorContext, completion unsafe.Pointer) {
 	if d._WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion != nil {
 		d._WritingToolsCoordinatorRequestsPreviewForRectInContextCompletion(writingToolsCoordinator, rect, context, completion)
 	}

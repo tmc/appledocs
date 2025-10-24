@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTL4RenderPipelineColorAttachmentDescriptor */
+
+
+/* debug [class_header]: Header for MTL4RenderPipelineColorAttachmentDescriptor */
 // The class instance for the [MTL4RenderPipelineColorAttachmentDescriptor] class.
 var (
 	MTL4RenderPipelineColorAttachmentDescriptorClass     _MTL4RenderPipelineColorAttachmentDescriptorClass
@@ -26,42 +30,49 @@ func getMTL4RenderPipelineColorAttachmentDescriptorClass() _MTL4RenderPipelineCo
 type _MTL4RenderPipelineColorAttachmentDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTL4RenderPipelineColorAttachmentDescriptor */
 // An interface definition for the [MTL4RenderPipelineColorAttachmentDescriptor] class.
 type IMTL4RenderPipelineColorAttachmentDescriptor interface {
 	objectivec.IObject
-	Reset()
+	
+/* debug [class_interface_properties]: Properties for MTL4RenderPipelineColorAttachmentDescriptor */
+	// properties:
 	AlphaBlendOperation() BlendOperation
-	SetAlphaBlendOperation(value IBlendOperation)
-	BlendingState() unsafe.Pointer
-	SetBlendingState(value unsafe.Pointer)
+	SetAlphaBlendOperation(value BlendOperation)
+	BlendingState() MTL4BlendState
+	SetBlendingState(value MTL4BlendState)
 	DestinationAlphaBlendFactor() BlendFactor
-	SetDestinationAlphaBlendFactor(value IBlendFactor)
+	SetDestinationAlphaBlendFactor(value BlendFactor)
 	DestinationRGBBlendFactor() BlendFactor
-	SetDestinationRGBBlendFactor(value IBlendFactor)
+	SetDestinationRGBBlendFactor(value BlendFactor)
 	PixelFormat() PixelFormat
 	SetPixelFormat(value PixelFormat)
 	RgbBlendOperation() BlendOperation
-	SetRgbBlendOperation(value IBlendOperation)
+	SetRgbBlendOperation(value BlendOperation)
 	SourceAlphaBlendFactor() BlendFactor
-	SetSourceAlphaBlendFactor(value IBlendFactor)
+	SetSourceAlphaBlendFactor(value BlendFactor)
 	SourceRGBBlendFactor() BlendFactor
-	SetSourceRGBBlendFactor(value IBlendFactor)
+	SetSourceRGBBlendFactor(value BlendFactor)
 	WriteMask() ColorWriteMask
 	SetWriteMask(value ColorWriteMask)
-}
+/* debug [class_interface_properties]: End properties */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor
-type MTL4RenderPipelineColorAttachmentDescriptor struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for MTL4RenderPipelineColorAttachmentDescriptor */
+	// methods:
+	Reset()
+/* debug [class_interface_methods]: End methods */
 
-// MTL4RenderPipelineColorAttachmentDescriptorFrom constructs a [MTL4RenderPipelineColorAttachmentDescriptor] from an unsafe.Pointer.
-func MTL4RenderPipelineColorAttachmentDescriptorFrom(ptr unsafe.Pointer) MTL4RenderPipelineColorAttachmentDescriptor {
-	return MTL4RenderPipelineColorAttachmentDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for MTL4RenderPipelineColorAttachmentDescriptor */
 // Alloc allocates a new instance without initialization.
 func (mc _MTL4RenderPipelineColorAttachmentDescriptorClass) Alloc() MTL4RenderPipelineColorAttachmentDescriptor {
 	rv := objc.Send[MTL4RenderPipelineColorAttachmentDescriptor](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +80,6 @@ func (mc _MTL4RenderPipelineColorAttachmentDescriptorClass) Alloc() MTL4RenderPi
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTL4RenderPipelineColorAttachmentDescriptorClass) New() MTL4RenderPipelineColorAttachmentDescriptor {
 	rv := objc.Send[MTL4RenderPipelineColorAttachmentDescriptor](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,176 +102,231 @@ func (m_ MTL4RenderPipelineColorAttachmentDescriptor) Autorelease() MTL4RenderPi
 func NewMTL4RenderPipelineColorAttachmentDescriptor() MTL4RenderPipelineColorAttachmentDescriptor {
 	return getMTL4RenderPipelineColorAttachmentDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTL4RenderPipelineColorAttachmentDescriptor */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor
+type MTL4RenderPipelineColorAttachmentDescriptor struct {
+	objectivec.Object
+}
+
+// MTL4RenderPipelineColorAttachmentDescriptorFrom constructs a [MTL4RenderPipelineColorAttachmentDescriptor] from an unsafe.Pointer.
+func MTL4RenderPipelineColorAttachmentDescriptorFrom(ptr unsafe.Pointer) MTL4RenderPipelineColorAttachmentDescriptor {
+	return MTL4RenderPipelineColorAttachmentDescriptor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTL4RenderPipelineColorAttachmentDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTL4RenderPipelineColorAttachmentDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTL4RenderPipelineColorAttachmentDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTL4RenderPipelineColorAttachmentDescriptor */
 
 // Resets this descriptor to its default state.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/reset()
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) Reset() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("reset"))
-}
+}/* debug [instance_methods/method]: Reset */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTL4RenderPipelineColorAttachmentDescriptor */
 
 // Configures the alpha blending operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/alphaBlendOperation
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) AlphaBlendOperation() BlendOperation {
 	rv := objc.Send[BlendOperation](m_.ID, objc.Sel("alphaBlendOperation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alphaBlendOperation */
 
 
-// SetAlphaBlendOperation sets the value of the alphaBlendOperation property.
 // Configures the alpha blending operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/alphaBlendOperation
-func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetAlphaBlendOperation(value IBlendOperation) {
+func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetAlphaBlendOperation(value BlendOperation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlphaBlendOperation:"), value)
-}
+}/* debug [instance_properties/setter]: alphaBlendOperation */
+
 
 // Configure the blend state for color attachments the pipeline state uses.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/blendingState
-func (m_ MTL4RenderPipelineColorAttachmentDescriptor) BlendingState() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("blendingState"))
+func (m_ MTL4RenderPipelineColorAttachmentDescriptor) BlendingState() MTL4BlendState {
+	rv := objc.Send[MTL4BlendState](m_.ID, objc.Sel("blendingState"))
 	return rv
-}
+}/* debug [instance_properties/getter]: blendingState */
 
 
-// SetBlendingState sets the value of the blendingState property.
 // Configure the blend state for color attachments the pipeline state uses.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/blendingState
-func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetBlendingState(value unsafe.Pointer) {
+func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetBlendingState(value MTL4BlendState) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBlendingState:"), value)
-}
+}/* debug [instance_properties/setter]: blendingState */
+
 
 // Configures the destination-alpha blend factor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/destinationAlphaBlendFactor
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) DestinationAlphaBlendFactor() BlendFactor {
 	rv := objc.Send[BlendFactor](m_.ID, objc.Sel("destinationAlphaBlendFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: destinationAlphaBlendFactor */
 
 
-// SetDestinationAlphaBlendFactor sets the value of the destinationAlphaBlendFactor property.
 // Configures the destination-alpha blend factor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/destinationAlphaBlendFactor
-func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetDestinationAlphaBlendFactor(value IBlendFactor) {
+func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetDestinationAlphaBlendFactor(value BlendFactor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDestinationAlphaBlendFactor:"), value)
-}
+}/* debug [instance_properties/setter]: destinationAlphaBlendFactor */
+
 
 // Configures the destination RGB blend factor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/destinationRGBBlendFactor
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) DestinationRGBBlendFactor() BlendFactor {
 	rv := objc.Send[BlendFactor](m_.ID, objc.Sel("destinationRGBBlendFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: destinationRGBBlendFactor */
 
 
-// SetDestinationRGBBlendFactor sets the value of the destinationRGBBlendFactor property.
 // Configures the destination RGB blend factor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/destinationRGBBlendFactor
-func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetDestinationRGBBlendFactor(value IBlendFactor) {
+func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetDestinationRGBBlendFactor(value BlendFactor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDestinationRGBBlendFactor:"), value)
-}
+}/* debug [instance_properties/setter]: destinationRGBBlendFactor */
+
 
 // Configures the pixel format.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/pixelFormat
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) PixelFormat() PixelFormat {
 	rv := objc.Send[PixelFormat](m_.ID, objc.Sel("pixelFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pixelFormat */
 
 
-// SetPixelFormat sets the value of the pixelFormat property.
 // Configures the pixel format.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/pixelFormat
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetPixelFormat(value PixelFormat) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPixelFormat:"), value)
-}
+}/* debug [instance_properties/setter]: pixelFormat */
+
 
 // Configures the RGB blend operation.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/rgbBlendOperation
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) RgbBlendOperation() BlendOperation {
 	rv := objc.Send[BlendOperation](m_.ID, objc.Sel("rgbBlendOperation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rgbBlendOperation */
 
 
-// SetRgbBlendOperation sets the value of the rgbBlendOperation property.
 // Configures the RGB blend operation.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/rgbBlendOperation
-func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetRgbBlendOperation(value IBlendOperation) {
+func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetRgbBlendOperation(value BlendOperation) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRgbBlendOperation:"), value)
-}
+}/* debug [instance_properties/setter]: rgbBlendOperation */
+
 
 // Configures the source-alpha blend factor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/sourceAlphaBlendFactor
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SourceAlphaBlendFactor() BlendFactor {
 	rv := objc.Send[BlendFactor](m_.ID, objc.Sel("sourceAlphaBlendFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sourceAlphaBlendFactor */
 
 
-// SetSourceAlphaBlendFactor sets the value of the sourceAlphaBlendFactor property.
 // Configures the source-alpha blend factor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/sourceAlphaBlendFactor
-func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetSourceAlphaBlendFactor(value IBlendFactor) {
+func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetSourceAlphaBlendFactor(value BlendFactor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceAlphaBlendFactor:"), value)
-}
+}/* debug [instance_properties/setter]: sourceAlphaBlendFactor */
+
 
 // Configures the source RGB blend factor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/sourceRGBBlendFactor
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SourceRGBBlendFactor() BlendFactor {
 	rv := objc.Send[BlendFactor](m_.ID, objc.Sel("sourceRGBBlendFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sourceRGBBlendFactor */
 
 
-// SetSourceRGBBlendFactor sets the value of the sourceRGBBlendFactor property.
 // Configures the source RGB blend factor.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/sourceRGBBlendFactor
-func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetSourceRGBBlendFactor(value IBlendFactor) {
+func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetSourceRGBBlendFactor(value BlendFactor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceRGBBlendFactor:"), value)
-}
+}/* debug [instance_properties/setter]: sourceRGBBlendFactor */
+
 
 // Configures the color write mask.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/writeMask
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) WriteMask() ColorWriteMask {
 	rv := objc.Send[ColorWriteMask](m_.ID, objc.Sel("writeMask"))
 	return rv
-}
+}/* debug [instance_properties/getter]: writeMask */
 
 
-// SetWriteMask sets the value of the writeMask property.
 // Configures the color write mask.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTL4RenderPipelineColorAttachmentDescriptor/writeMask
 func (m_ MTL4RenderPipelineColorAttachmentDescriptor) SetWriteMask(value ColorWriteMask) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWriteMask:"), value)
-}
+}/* debug [instance_properties/setter]: writeMask */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTL4RenderPipelineColorAttachmentDescriptor */
 
 
 

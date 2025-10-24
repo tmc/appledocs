@@ -20,3 +20,4 @@ var visitRemoveSubgroupFromGroupEventProtocol *objc.Protocol
 func init() {
 	visitRemoveSubgroupFromGroupEventProtocol = objc.GetProtocol("visitRemoveSubgroupFromGroupEvent:")
 }
+

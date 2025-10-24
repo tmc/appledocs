@@ -15,5 +15,4 @@ func ExamplePersistentContainer_NewBackgroundContext() {
 	obj := coredata.NewPersistentContainer()
 	_ = obj.NewBackgroundContext()
 	// Output:
-	}
-
+}

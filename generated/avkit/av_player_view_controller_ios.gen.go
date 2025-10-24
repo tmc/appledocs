@@ -9,9 +9,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/avfoundation"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // iOS-only methods for PlayerViewController
@@ -108,7 +105,7 @@ func (p_ PlayerViewController) SetCanStartPictureInPictureAutomaticallyFromInlin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contentOverlayView
-func (p_ PlayerViewController) ContentOverlayView() objc.IObject /* cross-framework: View */ {
+func (p_ PlayerViewController) ContentOverlayView() appkit.View {
 	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contentOverlayView"))
 	return rv
 }
@@ -141,7 +138,7 @@ func (p_ PlayerViewController) SetContextualActions(value []Action /* not a clas
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActionsInfoView
-func (p_ PlayerViewController) ContextualActionsInfoView() objc.IObject /* cross-framework: View */ {
+func (p_ PlayerViewController) ContextualActionsInfoView() appkit.View {
 	rv := objc.Send[appkit.View](p_.ID, objc.Sel("contextualActionsInfoView"))
 	return rv
 }
@@ -150,11 +147,11 @@ func (p_ PlayerViewController) ContextualActionsInfoView() objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/contextualActionsPreviewImage
-func (p_ PlayerViewController) ContextualActionsPreviewImage() objc.IObject /* cross-framework: Image */ {
+func (p_ PlayerViewController) ContextualActionsPreviewImage() appkit.Image {
 	rv := objc.Send[appkit.Image](p_.ID, objc.Sel("contextualActionsPreviewImage"))
 	return rv
 }
-func (p_ PlayerViewController) SetContextualActionsPreviewImage(value objc.IObject /* cross-framework: Image */) {
+func (p_ PlayerViewController) SetContextualActionsPreviewImage(value appkit.Image) {
 	p_.ID.Send(objc.RegisterName("setContextualActionsPreviewImage:"), value)
 }
 
@@ -163,7 +160,7 @@ func (p_ PlayerViewController) SetContextualActionsPreviewImage(value objc.IObje
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewController
 func (p_ PlayerViewController) CustomInfoViewController() objc.IObject /* cross-framework: ViewController */ {
-	rv := objc.Send[appkit.ViewController](p_.ID, objc.Sel("customInfoViewController"))
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("customInfoViewController"))
 	return rv
 }
 func (p_ PlayerViewController) SetCustomInfoViewController(value objc.IObject /* cross-framework: ViewController */) {
@@ -175,7 +172,7 @@ func (p_ PlayerViewController) SetCustomInfoViewController(value objc.IObject /*
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customInfoViewControllers
 func (p_ PlayerViewController) CustomInfoViewControllers() []objc.IObject /* cross-framework: ViewController */ {
-	rv := objc.Send[[]appkit.ViewController](p_.ID, objc.Sel("customInfoViewControllers"))
+	rv := objc.Send[[]ViewController](p_.ID, objc.Sel("customInfoViewControllers"))
 	return rv
 }
 func (p_ PlayerViewController) SetCustomInfoViewControllers(value []objc.IObject /* cross-framework: ViewController */) {
@@ -187,7 +184,7 @@ func (p_ PlayerViewController) SetCustomInfoViewControllers(value []objc.IObject
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/customOverlayViewController
 func (p_ PlayerViewController) CustomOverlayViewController() objc.IObject /* cross-framework: ViewController */ {
-	rv := objc.Send[appkit.ViewController](p_.ID, objc.Sel("customOverlayViewController"))
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("customOverlayViewController"))
 	return rv
 }
 func (p_ PlayerViewController) SetCustomOverlayViewController(value objc.IObject /* cross-framework: ViewController */) {
@@ -198,11 +195,11 @@ func (p_ PlayerViewController) SetCustomOverlayViewController(value objc.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/delegate
-func (p_ PlayerViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
+func (p_ PlayerViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (p_ PlayerViewController) SetDelegate(value objc.ID) {
+func (p_ PlayerViewController) SetDelegate(value unsafe.Pointer) {
 	p_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -325,7 +322,7 @@ func (p_ PlayerViewController) SetPlaybackControlsIncludeTransportBar(value bool
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/player
 func (p_ PlayerViewController) Player() objc.IObject /* cross-framework: Player */ {
-	rv := objc.Send[avfoundation.Player](p_.ID, objc.Sel("player"))
+	rv := objc.Send[appkit.Player](p_.ID, objc.Sel("player"))
 	return rv
 }
 func (p_ PlayerViewController) SetPlayer(value objc.IObject /* cross-framework: Player */) {
@@ -429,11 +426,11 @@ func (p_ PlayerViewController) SetSkippingBehavior(value PlayerViewControllerSki
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/speeds
-func (p_ PlayerViewController) Speeds() []IPlaybackSpeed {
+func (p_ PlayerViewController) Speeds() []PlaybackSpeed {
 	rv := objc.Send[[]PlaybackSpeed](p_.ID, objc.Sel("speeds"))
 	return rv
 }
-func (p_ PlayerViewController) SetSpeeds(value []IPlaybackSpeed) {
+func (p_ PlayerViewController) SetSpeeds(value []PlaybackSpeed) {
 	p_.ID.Send(objc.RegisterName("setSpeeds:"), value)
 }
 
@@ -474,7 +471,7 @@ func (p_ PlayerViewController) SetTransportBarIncludesTitleView(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/unobscuredContentGuide
-func (p_ PlayerViewController) UnobscuredContentGuide() objc.IObject /* cross-framework: LayoutGuide */ {
+func (p_ PlayerViewController) UnobscuredContentGuide() appkit.LayoutGuide {
 	rv := objc.Send[appkit.LayoutGuide](p_.ID, objc.Sel("unobscuredContentGuide"))
 	return rv
 }
@@ -495,8 +492,8 @@ func (p_ PlayerViewController) SetUpdatesNowPlayingInfoCenter(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPlayerViewController/videoBounds
-func (p_ PlayerViewController) VideoBounds() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("videoBounds"))
+func (p_ PlayerViewController) VideoBounds() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](p_.ID, objc.Sel("videoBounds"))
 	return rv
 }
 

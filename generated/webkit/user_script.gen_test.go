@@ -13,20 +13,21 @@ var _ = webkit.NewUserScript
 // Creates a user script object that contains the specified source code and attributes.
 func ExampleNewUserScriptWithSourceInjectionTimeForMainFrameOnly() {
 	_ = webkit.NewUserScriptWithSourceInjectionTimeForMainFrameOnly(
-		"source", // source string
+		"source",                         // source string
 		webkit.UserScriptInjectionTime{}, // injectionTime UserScriptInjectionTime
-		false, // forMainFrameOnly bool
+		false,                            // forMainFrameOnly bool
 	)
 	// Output:
 }
+
 // ExampleNewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld demonstrates how to create a UserScript instance using NewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld.
 // Creates a user script object that is scoped to a particular content world.
 func ExampleNewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld() {
 	_ = webkit.NewUserScriptWithSourceInjectionTimeForMainFrameOnlyInContentWorld(
-		"source", // source string
+		"source",                         // source string
 		webkit.UserScriptInjectionTime{}, // injectionTime UserScriptInjectionTime
-		false, // forMainFrameOnly bool
-		webkit.WKContentWorld{}, // contentWorld WKContentWorld
+		false,                            // forMainFrameOnly bool
+		webkit.WKContentWorld{},          // contentWorld WKContentWorld
 	)
 	// Output:
 }

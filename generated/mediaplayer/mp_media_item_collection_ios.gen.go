@@ -28,7 +28,7 @@ func (m_ MediaItemCollection) Count() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItemCollection/items
-func (m_ MediaItemCollection) Items() []IMediaItem {
+func (m_ MediaItemCollection) Items() []MediaItem {
 	rv := objc.Send[[]MediaItem](m_.ID, objc.Sel("items"))
 	return rv
 }

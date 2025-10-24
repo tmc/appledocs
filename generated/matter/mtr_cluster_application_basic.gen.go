@@ -33,8 +33,6 @@ type IMTRClusterApplicationBasic interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterApplicationBasic
 type MTRClusterApplicationBasic struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterApplicationBasic) Autorelease() MTRClusterApplicationBasic {
 func NewMTRClusterApplicationBasic() MTRClusterApplicationBasic {
 	return getMTRClusterApplicationBasicClass().New()
 }
-
-
-
-

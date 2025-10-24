@@ -14,6 +14,14 @@ import (
 // iOS-only methods for AuthorizationController
 
 
+// Initiates the authorization flows for requests that support AutoFill presentation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationController/performAutoFillAssistedRequests()
+func (a_ AuthorizationController) PerformAutoFillAssistedRequests() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("performAutoFillAssistedRequests"))
+}
+
 // iOS-only properties
 
 // An array of custom authorization methods for the user to choose.
@@ -27,7 +35,6 @@ func (a_ AuthorizationController) CustomAuthorizationMethods() []string {
 func (a_ AuthorizationController) SetCustomAuthorizationMethods(value []string) {
 	a_.ID.Send(objc.RegisterName("setCustomAuthorizationMethods:"), value)
 }
-
 
 
 

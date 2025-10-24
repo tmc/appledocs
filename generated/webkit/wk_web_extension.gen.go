@@ -6,12 +6,17 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class WKWebExtension */
+
+/* debug [class_header]: Header for WKWebExtension */
 // The class instance for the [WebExtension] class.
 var (
 	WebExtensionClass     _WebExtensionClass
@@ -29,77 +34,51 @@ type _WebExtensionClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for WebExtension */
 // An interface definition for the [WebExtension] class.
 type IWebExtension interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for WebExtension */
 	// properties:
-	AllRequestedMatchPatterns() WebExtensionMatchPattern /* not a class type */
-	SetAllRequestedMatchPatterns(value WebExtensionMatchPattern /* not a class type */)
-	DefaultLocale() objc.IObject /* cross-framework: Locale */
-	SetDefaultLocale(value objc.IObject /* cross-framework: Locale */)
+	AllRequestedMatchPatterns() unsafe.Pointer
+	DefaultLocale() foundation.Locale
 	DisplayActionLabel() objc.IObject /* cross-framework: NSString */
-	SetDisplayActionLabel(value objc.IObject /* cross-framework: NSString */)
 	DisplayDescription() objc.IObject /* cross-framework: NSString */
-	SetDisplayDescription(value objc.IObject /* cross-framework: NSString */)
-	DisplayName() objc.IObject /* cross-framework: NSString */
-	SetDisplayName(value objc.IObject /* cross-framework: NSString */)
-	DisplayShortName() objc.IObject /* cross-framework: NSString */
-	SetDisplayShortName(value objc.IObject /* cross-framework: NSString */)
-	DisplayVersion() objc.IObject /* cross-framework: NSString */
-	SetDisplayVersion(value objc.IObject /* cross-framework: NSString */)
-	Errors() objc.IObject /* cross-framework: Error */
-	SetErrors(value objc.IObject /* cross-framework: Error */)
+	DisplayName() objc.IObject        /* cross-framework: NSString */
+	DisplayShortName() objc.IObject   /* cross-framework: NSString */
+	DisplayVersion() objc.IObject     /* cross-framework: NSString */
+	Errors() []objc.IObject           /* cross-framework: Error */
 	HasBackgroundContent() bool
-	SetHasBackgroundContent(value bool)
 	HasCommands() bool
-	SetHasCommands(value bool)
 	HasContentModificationRules() bool
-	SetHasContentModificationRules(value bool)
 	HasInjectedContent() bool
-	SetHasInjectedContent(value bool)
 	HasOptionsPage() bool
-	SetHasOptionsPage(value bool)
 	HasOverrideNewTabPage() bool
-	SetHasOverrideNewTabPage(value bool)
 	HasPersistentBackgroundContent() bool
-	SetHasPersistentBackgroundContent(value bool)
-	Manifest() objc.IObject /* cross-framework: NSString */
-	SetManifest(value objc.IObject /* cross-framework: NSString */)
+	Manifest() foundation.IDictionary
 	ManifestVersion() float64
-	SetManifestVersion(value float64)
-	OptionalPermissionMatchPatterns() WebExtensionMatchPattern /* not a class type */
-	SetOptionalPermissionMatchPatterns(value WebExtensionMatchPattern /* not a class type */)
+	OptionalPermissionMatchPatterns() unsafe.Pointer
 	OptionalPermissions() unsafe.Pointer
-	SetOptionalPermissions(value unsafe.Pointer)
-	RequestedPermissionMatchPatterns() WebExtensionMatchPattern /* not a class type */
-	SetRequestedPermissionMatchPatterns(value WebExtensionMatchPattern /* not a class type */)
+	RequestedPermissionMatchPatterns() unsafe.Pointer
 	RequestedPermissions() unsafe.Pointer
-	SetRequestedPermissions(value unsafe.Pointer)
 	Version() objc.IObject /* cross-framework: NSString */
-	SetVersion(value objc.IObject /* cross-framework: NSString */)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for WebExtension */
 	// methods:
+	ActionIconForSize(size corefoundation.CGSize) appkit.Image
+	IconForSize(size corefoundation.CGSize) appkit.Image
+	SupportsManifestVersion(manifestVersion float64) bool
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that encapsulates a web extension’s resources that the manifest file defines.
-//
-// This class reads and parses the file along with the supporting resources like icons and localizations.
+/* debug [class_interface]: End interface */
 
-
-// An object that encapsulates a web extension’s resources that the manifest file defines.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension
-type WebExtension struct {
-	objectivec.Object
-}
-
-// WebExtensionFrom constructs a [WebExtension] from an unsafe.Pointer.
-//
-// An object that encapsulates a web extension’s resources that the manifest file defines.
-func WebExtensionFrom(ptr unsafe.Pointer) WebExtension {
-	return WebExtension{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for WebExtension */
 // Alloc allocates a new instance without initialization.
 func (wc _WebExtensionClass) Alloc() WebExtension {
 	rv := objc.Send[WebExtension](objc.ID(wc.class), objc.Sel("alloc"))
@@ -107,7 +86,6 @@ func (wc _WebExtensionClass) Alloc() WebExtension {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (wc _WebExtensionClass) New() WebExtension {
 	rv := objc.Send[WebExtension](objc.ID(wc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -131,424 +109,269 @@ func NewWebExtension() WebExtension {
 	return getWebExtensionClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for WebExtension */
+// An object that encapsulates a web extension’s resources that the manifest file defines.
+//
+// This class reads and parses the file along with the supporting resources like icons and localizations.
 
-// The set of websites that the extension requires access to for injected content and for receiving messages from websites.
+// An object that encapsulates a web extension’s resources that the manifest file defines.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/allrequestedmatchpatterns
-func (w_ WebExtension) AllRequestedMatchPatterns() WebExtensionMatchPattern /* not a class type */ {
-	rv := objc.Send[WebExtensionMatchPattern](w_.ID, objc.Sel("allRequestedMatchPatterns"))
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension
+type WebExtension struct {
+	objectivec.Object
+}
+
+// WebExtensionFrom constructs a [WebExtension] from an unsafe.Pointer.
+//
+// An object that encapsulates a web extension’s resources that the manifest file defines.
+func WebExtensionFrom(ptr unsafe.Pointer) WebExtension {
+	return WebExtension{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for WebExtension */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for WebExtension */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for WebExtension */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for WebExtension */
+
+// Returns the default action icon for the specified size.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/actionIcon(for:)
+func (w_ WebExtension) ActionIconForSize(size corefoundation.CGSize) appkit.Image {
+	rv := objc.Send[appkit.Image](w_.ID, objc.Sel("actionIconForSize:"), size)
 	return rv
-}
+} /* debug [instance_methods/method]: ActionIconForSize */
 
+// Returns the extension’s icon image for the specified size.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/icon(for:)
+func (w_ WebExtension) IconForSize(size corefoundation.CGSize) appkit.Image {
+	rv := objc.Send[appkit.Image](w_.ID, objc.Sel("iconForSize:"), size)
+	return rv
+} /* debug [instance_methods/method]: IconForSize */
+
+// Checks if a manifest version is supported by the extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/supportsManifestVersion(_:)
+func (w_ WebExtension) SupportsManifestVersion(manifestVersion float64) bool {
+	rv := objc.Send[bool](w_.ID, objc.Sel("supportsManifestVersion:"), manifestVersion)
+	return rv
+} /* debug [instance_methods/method]: SupportsManifestVersion */
+
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for WebExtension */
 
 // The set of websites that the extension requires access to for injected content and for receiving messages from websites.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/allrequestedmatchpatterns
-func (w_ WebExtension) SetAllRequestedMatchPatterns(value WebExtensionMatchPattern /* not a class type */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setAllRequestedMatchPatterns:"), value)
-}
-
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/allRequestedMatchPatterns
+func (w_ WebExtension) AllRequestedMatchPatterns() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("allRequestedMatchPatterns"))
+	return rv
+} /* debug [instance_properties/getter]: allRequestedMatchPatterns */
 
 // The default locale for the extension.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/defaultlocale
-func (w_ WebExtension) DefaultLocale() objc.IObject /* cross-framework: Locale */ {
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/defaultLocale
+func (w_ WebExtension) DefaultLocale() foundation.Locale {
 	rv := objc.Send[foundation.Locale](w_.ID, objc.Sel("defaultLocale"))
 	return rv
-}
-
-
-// The default locale for the extension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/defaultlocale
-func (w_ WebExtension) SetDefaultLocale(value objc.IObject /* cross-framework: Locale */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDefaultLocale:"), value)
-}
-
+} /* debug [instance_properties/getter]: defaultLocale */
 
 // The default localized extension action label.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayactionlabel
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/displayActionLabel
 func (w_ WebExtension) DisplayActionLabel() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("displayActionLabel"))
 	return rv
-}
-
-
-// The default localized extension action label.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayactionlabel
-func (w_ WebExtension) SetDisplayActionLabel(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayActionLabel:"), value)
-}
-
+} /* debug [instance_properties/getter]: displayActionLabel */
 
 // The localized extension description.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displaydescription
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/displayDescription
 func (w_ WebExtension) DisplayDescription() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("displayDescription"))
 	return rv
-}
-
-
-// The localized extension description.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displaydescription
-func (w_ WebExtension) SetDisplayDescription(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayDescription:"), value)
-}
-
+} /* debug [instance_properties/getter]: displayDescription */
 
 // The localized extension name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayname
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/displayName
 func (w_ WebExtension) DisplayName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("displayName"))
 	return rv
-}
-
-
-// The localized extension name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayname
-func (w_ WebExtension) SetDisplayName(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayName:"), value)
-}
-
+} /* debug [instance_properties/getter]: displayName */
 
 // The localized extension short name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayshortname
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/displayShortName
 func (w_ WebExtension) DisplayShortName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("displayShortName"))
 	return rv
-}
-
-
-// The localized extension short name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayshortname
-func (w_ WebExtension) SetDisplayShortName(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayShortName:"), value)
-}
-
+} /* debug [instance_properties/getter]: displayShortName */
 
 // The localized extension display version.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayversion
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/displayVersion
 func (w_ WebExtension) DisplayVersion() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("displayVersion"))
 	return rv
-}
-
-
-// The localized extension display version.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/displayversion
-func (w_ WebExtension) SetDisplayVersion(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setDisplayVersion:"), value)
-}
-
+} /* debug [instance_properties/getter]: displayVersion */
 
 // An array of all errors that occurred during the processing of the extension.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/errors
-func (w_ WebExtension) Errors() objc.IObject /* cross-framework: Error */ {
-	rv := objc.Send[coretelephony.Error](w_.ID, objc.Sel("errors"))
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/errors
+func (w_ WebExtension) Errors() []objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[[]coretelephony.Error](w_.ID, objc.Sel("errors"))
 	return rv
-}
-
-
-// An array of all errors that occurred during the processing of the extension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/errors
-func (w_ WebExtension) SetErrors(value objc.IObject /* cross-framework: Error */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setErrors:"), value)
-}
-
+} /* debug [instance_properties/getter]: errors */
 
 // A Boolean value indicating whether the extension has background content that can run when needed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hasbackgroundcontent
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/hasBackgroundContent
 func (w_ WebExtension) HasBackgroundContent() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasBackgroundContent"))
 	return rv
-}
-
-
-// A Boolean value indicating whether the extension has background content that can run when needed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hasbackgroundcontent
-func (w_ WebExtension) SetHasBackgroundContent(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setHasBackgroundContent:"), value)
-}
-
+} /* debug [instance_properties/getter]: hasBackgroundContent */
 
 // A Boolean value indicating whether the extension includes commands that users can invoke.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hascommands
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/hasCommands
 func (w_ WebExtension) HasCommands() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasCommands"))
 	return rv
-}
-
-
-// A Boolean value indicating whether the extension includes commands that users can invoke.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hascommands
-func (w_ WebExtension) SetHasCommands(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setHasCommands:"), value)
-}
-
+} /* debug [instance_properties/getter]: hasCommands */
 
 // A Boolean value indicating whether the extension includes rules used for content modification or blocking.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hascontentmodificationrules
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/hasContentModificationRules
 func (w_ WebExtension) HasContentModificationRules() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasContentModificationRules"))
 	return rv
-}
-
-
-// A Boolean value indicating whether the extension includes rules used for content modification or blocking.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hascontentmodificationrules
-func (w_ WebExtension) SetHasContentModificationRules(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setHasContentModificationRules:"), value)
-}
-
+} /* debug [instance_properties/getter]: hasContentModificationRules */
 
 // A Boolean value indicating whether the extension has script or stylesheet content that can be injected into webpages.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hasinjectedcontent
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/hasInjectedContent
 func (w_ WebExtension) HasInjectedContent() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasInjectedContent"))
 	return rv
-}
-
-
-// A Boolean value indicating whether the extension has script or stylesheet content that can be injected into webpages.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hasinjectedcontent
-func (w_ WebExtension) SetHasInjectedContent(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setHasInjectedContent:"), value)
-}
-
+} /* debug [instance_properties/getter]: hasInjectedContent */
 
 // A Boolean value indicating whether the extension has an options page.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hasoptionspage
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/hasOptionsPage
 func (w_ WebExtension) HasOptionsPage() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasOptionsPage"))
 	return rv
-}
-
-
-// A Boolean value indicating whether the extension has an options page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hasoptionspage
-func (w_ WebExtension) SetHasOptionsPage(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setHasOptionsPage:"), value)
-}
-
+} /* debug [instance_properties/getter]: hasOptionsPage */
 
 // A Boolean value indicating whether the extension provides an alternative to the default new tab page.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hasoverridenewtabpage
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/hasOverrideNewTabPage
 func (w_ WebExtension) HasOverrideNewTabPage() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasOverrideNewTabPage"))
 	return rv
-}
-
-
-// A Boolean value indicating whether the extension provides an alternative to the default new tab page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/hasoverridenewtabpage
-func (w_ WebExtension) SetHasOverrideNewTabPage(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setHasOverrideNewTabPage:"), value)
-}
-
+} /* debug [instance_properties/getter]: hasOverrideNewTabPage */
 
 // A Boolean value indicating whether the extension has background content that stays in memory as long as the extension is loaded.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/haspersistentbackgroundcontent
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/hasPersistentBackgroundContent
 func (w_ WebExtension) HasPersistentBackgroundContent() bool {
 	rv := objc.Send[bool](w_.ID, objc.Sel("hasPersistentBackgroundContent"))
 	return rv
-}
-
-
-// A Boolean value indicating whether the extension has background content that stays in memory as long as the extension is loaded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/haspersistentbackgroundcontent
-func (w_ WebExtension) SetHasPersistentBackgroundContent(value bool) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setHasPersistentBackgroundContent:"), value)
-}
-
+} /* debug [instance_properties/getter]: hasPersistentBackgroundContent */
 
 // The parsed manifest as a dictionary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/manifest
-func (w_ WebExtension) Manifest() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("manifest"))
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/manifest
+func (w_ WebExtension) Manifest() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](w_.ID, objc.Sel("manifest"))
 	return rv
-}
+} /* debug [instance_properties/getter]: manifest */
 
-
-// The parsed manifest as a dictionary.
+// The parsed manifest version, or if there is no version specified in the manifest.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/manifest
-func (w_ WebExtension) SetManifest(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setManifest:"), value)
-}
-
-
-// The parsed manifest version, or
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/manifestversion
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/manifestVersion
 func (w_ WebExtension) ManifestVersion() float64 {
 	rv := objc.Send[float64](w_.ID, objc.Sel("manifestVersion"))
 	return rv
-}
-
-
-// The parsed manifest version, or
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/manifestversion
-func (w_ WebExtension) SetManifestVersion(value float64) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setManifestVersion:"), value)
-}
-
+} /* debug [instance_properties/getter]: manifestVersion */
 
 // The set of websites that the extension may need access to for optional functionality.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/optionalpermissionmatchpatterns
-func (w_ WebExtension) OptionalPermissionMatchPatterns() WebExtensionMatchPattern /* not a class type */ {
-	rv := objc.Send[WebExtensionMatchPattern](w_.ID, objc.Sel("optionalPermissionMatchPatterns"))
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/optionalPermissionMatchPatterns
+func (w_ WebExtension) OptionalPermissionMatchPatterns() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("optionalPermissionMatchPatterns"))
 	return rv
-}
-
-
-// The set of websites that the extension may need access to for optional functionality.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/optionalpermissionmatchpatterns
-func (w_ WebExtension) SetOptionalPermissionMatchPatterns(value WebExtensionMatchPattern /* not a class type */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setOptionalPermissionMatchPatterns:"), value)
-}
-
+} /* debug [instance_properties/getter]: optionalPermissionMatchPatterns */
 
 // The set of permissions that the extension may need for optional functionality.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/optionalpermissions
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/optionalPermissions
 func (w_ WebExtension) OptionalPermissions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("optionalPermissions"))
 	return rv
-}
-
-
-// The set of permissions that the extension may need for optional functionality.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/optionalpermissions
-func (w_ WebExtension) SetOptionalPermissions(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setOptionalPermissions:"), value)
-}
-
+} /* debug [instance_properties/getter]: optionalPermissions */
 
 // The set of websites that the extension requires access to for its base functionality.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/requestedpermissionmatchpatterns
-func (w_ WebExtension) RequestedPermissionMatchPatterns() WebExtensionMatchPattern /* not a class type */ {
-	rv := objc.Send[WebExtensionMatchPattern](w_.ID, objc.Sel("requestedPermissionMatchPatterns"))
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/requestedPermissionMatchPatterns
+func (w_ WebExtension) RequestedPermissionMatchPatterns() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("requestedPermissionMatchPatterns"))
 	return rv
-}
-
-
-// The set of websites that the extension requires access to for its base functionality.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/requestedpermissionmatchpatterns
-func (w_ WebExtension) SetRequestedPermissionMatchPatterns(value WebExtensionMatchPattern /* not a class type */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setRequestedPermissionMatchPatterns:"), value)
-}
-
+} /* debug [instance_properties/getter]: requestedPermissionMatchPatterns */
 
 // The set of permissions that the extension requires for its base functionality.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/requestedpermissions
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/requestedPermissions
 func (w_ WebExtension) RequestedPermissions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("requestedPermissions"))
 	return rv
-}
-
-
-// The set of permissions that the extension requires for its base functionality.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/requestedpermissions
-func (w_ WebExtension) SetRequestedPermissions(value unsafe.Pointer) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setRequestedPermissions:"), value)
-}
-
+} /* debug [instance_properties/getter]: requestedPermissions */
 
 // The extension version.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/version
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKWebExtension/version
 func (w_ WebExtension) Version() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("version"))
 	return rv
-}
+} /* debug [instance_properties/getter]: version */
 
+/* debug [instance_properties]: End instance properties */
 
-// The extension version.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkwebextension/version
-func (w_ WebExtension) SetVersion(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setVersion:"), value)
-}
-
-
-
+/* debug [class.gen.go]: End class WKWebExtension */

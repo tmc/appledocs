@@ -15,3 +15,4 @@ var TextLayoutManagerDelegateProtocol *objc.Protocol
 func init() {
 	TextLayoutManagerDelegateProtocol = objc.GetProtocol("NSTextLayoutManagerDelegate")
 }
+

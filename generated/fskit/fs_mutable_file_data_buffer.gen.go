@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class FSMutableFileDataBuffer */
+
+
+/* debug [class_header]: Header for FSMutableFileDataBuffer */
 // The class instance for the [FSMutableFileDataBuffer] class.
 var (
 	FSMutableFileDataBufferClass     _FSMutableFileDataBufferClass
@@ -26,34 +30,32 @@ func getFSMutableFileDataBufferClass() _FSMutableFileDataBufferClass {
 type _FSMutableFileDataBufferClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FSMutableFileDataBuffer */
 // An interface definition for the [FSMutableFileDataBuffer] class.
 type IFSMutableFileDataBuffer interface {
 	objectivec.IObject
-	Length() int
-	SetLength(value int)
+	
+/* debug [class_interface_properties]: Properties for FSMutableFileDataBuffer */
+	// properties:
+	Length() uint
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FSMutableFileDataBuffer */
+	// methods:
+	MutableBytes()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A wrapper object for a data buffer.
-//
-// This object provides a “zero-copy” buffer, for use when reading data from files. By not requiring additional buffer copying, this object reduces the extension’s memory footprint and improves performance. The behaves similarly to a in the kernel.
+/* debug [class_interface]: End interface */
 
 
-// A wrapper object for a data buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMutableFileDataBuffer
-type FSMutableFileDataBuffer struct {
-	objectivec.Object
-}
 
-// FSMutableFileDataBufferFrom constructs a [FSMutableFileDataBuffer] from an unsafe.Pointer.
-//
-// A wrapper object for a data buffer.
-func FSMutableFileDataBufferFrom(ptr unsafe.Pointer) FSMutableFileDataBuffer {
-	return FSMutableFileDataBuffer{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for FSMutableFileDataBuffer */
 // Alloc allocates a new instance without initialization.
 func (fc _FSMutableFileDataBufferClass) Alloc() FSMutableFileDataBuffer {
 	rv := objc.Send[FSMutableFileDataBuffer](objc.ID(fc.class), objc.Sel("alloc"))
@@ -61,7 +63,6 @@ func (fc _FSMutableFileDataBufferClass) Alloc() FSMutableFileDataBuffer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FSMutableFileDataBufferClass) New() FSMutableFileDataBuffer {
 	rv := objc.Send[FSMutableFileDataBuffer](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,26 +85,77 @@ func (f_ FSMutableFileDataBuffer) Autorelease() FSMutableFileDataBuffer {
 func NewFSMutableFileDataBuffer() FSMutableFileDataBuffer {
 	return getFSMutableFileDataBufferClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for FSMutableFileDataBuffer */
+// A wrapper object for a data buffer.
+//
+// This object provides a “zero-copy” buffer, for use when reading data from files. By not requiring additional buffer copying, this object reduces the extension’s memory footprint and improves performance. The behaves similarly to a in the kernel.
+
+
+// A wrapper object for a data buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMutableFileDataBuffer
+type FSMutableFileDataBuffer struct {
+	objectivec.Object
+}
+
+// FSMutableFileDataBufferFrom constructs a [FSMutableFileDataBuffer] from an unsafe.Pointer.
+//
+// A wrapper object for a data buffer.
+func FSMutableFileDataBufferFrom(ptr unsafe.Pointer) FSMutableFileDataBuffer {
+	return FSMutableFileDataBuffer{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FSMutableFileDataBuffer *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for FSMutableFileDataBuffer */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FSMutableFileDataBuffer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FSMutableFileDataBuffer */
+
+// The byte data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMutableFileDataBuffer/mutableBytes
+func (f_ FSMutableFileDataBuffer) MutableBytes() {
+	objc.Send[objc.ID](f_.ID, objc.Sel("mutableBytes"))
+}/* debug [instance_methods/method]: MutableBytes */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FSMutableFileDataBuffer */
 
 // The data length of the buffer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer/length
-func (f_ FSMutableFileDataBuffer) Length() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("length"))
+// [Full Topic]: https://developer.apple.com/documentation/FSKit/FSMutableFileDataBuffer/length
+func (f_ FSMutableFileDataBuffer) Length() uint {
+	rv := objc.Send[uint](f_.ID, objc.Sel("length"))
 	return rv
-}
+}/* debug [instance_properties/getter]: length */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The data length of the buffer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fskit/fsmutablefiledatabuffer/length
-func (f_ FSMutableFileDataBuffer) SetLength(value int) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setLength:"), value)
-}
+/* debug [class.gen.go]: End class FSMutableFileDataBuffer */
 
 
 

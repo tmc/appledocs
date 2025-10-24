@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams] class.
@@ -39,8 +39,6 @@ type IMTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams interface 
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams
@@ -86,8 +84,6 @@ func NewMTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams() MTRTes
 	return getMTRTestClusterClusterTestEmitTestFabricScopedEventRequestParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/arg1
 func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) Arg1() objc.IObject /* cross-framework: NSNumber */ {
@@ -95,13 +91,11 @@ func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) Arg1()
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/arg1
 func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/serversideprocessingtimeout
@@ -110,13 +104,11 @@ func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) Server
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/serversideprocessingtimeout
 func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/timedinvoketimeoutms
@@ -125,12 +117,8 @@ func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) TimedI
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestemittestfabricscopedeventrequestparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestEmitTestFabricScopedEventRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

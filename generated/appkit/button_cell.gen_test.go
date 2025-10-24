@@ -16,6 +16,7 @@ func ExampleNewButtonCellImageCell() {
 	)
 	// Output:
 }
+
 // ExampleNewButtonCellTextCell demonstrates how to create a ButtonCell instance using NewButtonCellTextCell.
 func ExampleNewButtonCellTextCell() {
 	_ = appkit.NewButtonCellTextCell(

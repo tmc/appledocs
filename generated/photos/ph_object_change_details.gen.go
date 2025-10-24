@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -48,7 +48,6 @@ type IPHObjectChangeDetails interface {
 // A description of changes that occurred in an asset or collection object.
 //
 // A object provides detailed information about differences between two states of an asset or collection object—one that you previously obtained and an updated state that would result if you fetched that entity again. You observe changes by adopting the protocol and registering your observer with the shared object. When Photos notifies your observer of a change, you get change details by passing the object you’re interested in to the method. For an asset collection or collection list, a object describe changes only to the collection’s properties. If you’re instead interested in changes to the collection’s membership, fetch the collection’s contents and use the method to track changes to the fetch result.
-
 
 // A description of changes that occurred in an asset or collection object.
 //
@@ -96,8 +95,6 @@ func NewPHObjectChangeDetails() PHObjectChangeDetails {
 	return getPHObjectChangeDetailsClass().New()
 }
 
-
-
 // The indexes of objects in the fetch result whose content or metadata have been updated.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func (p_ PHObjectChangeDetails) ChangedIndexes() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The indexes of objects in the fetch result whose content or metadata have been updated.
 //
 // [Full Topic]
@@ -115,7 +111,6 @@ func (p_ PHObjectChangeDetails) ChangedIndexes() objc.IObject /* cross-framework
 func (p_ PHObjectChangeDetails) SetChangedIndexes(value objc.IObject /* cross-framework: IndexSet */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedIndexes:"), value)
 }
-
 
 // A Boolean value that indicates whether the asset’s photo or video content has changed.
 //
@@ -126,7 +121,6 @@ func (p_ PHObjectChangeDetails) AssetContentChanged() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the asset’s photo or video content has changed.
 //
 // [Full Topic]
@@ -134,7 +128,6 @@ func (p_ PHObjectChangeDetails) AssetContentChanged() bool {
 func (p_ PHObjectChangeDetails) SetAssetContentChanged(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetContentChanged:"), value)
 }
-
 
 // An object that reflects the current state of the asset or collection it represents.
 //
@@ -145,7 +138,6 @@ func (p_ PHObjectChangeDetails) ObjectAfterChanges() unsafe.Pointer {
 	return rv
 }
 
-
 // An object that reflects the current state of the asset or collection it represents.
 //
 // [Full Topic]
@@ -153,7 +145,6 @@ func (p_ PHObjectChangeDetails) ObjectAfterChanges() unsafe.Pointer {
 func (p_ PHObjectChangeDetails) SetObjectAfterChanges(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectAfterChanges:"), value)
 }
-
 
 // An object that reflects the original state of the asset or collection it represents.
 //
@@ -164,7 +155,6 @@ func (p_ PHObjectChangeDetails) ObjectBeforeChanges() unsafe.Pointer {
 	return rv
 }
 
-
 // An object that reflects the original state of the asset or collection it represents.
 //
 // [Full Topic]
@@ -172,7 +162,6 @@ func (p_ PHObjectChangeDetails) ObjectBeforeChanges() unsafe.Pointer {
 func (p_ PHObjectChangeDetails) SetObjectBeforeChanges(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectBeforeChanges:"), value)
 }
-
 
 // A Boolean value that indicates whether the object has been deleted from the Photos library.
 //
@@ -183,7 +172,6 @@ func (p_ PHObjectChangeDetails) ObjectWasDeleted() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the object has been deleted from the Photos library.
 //
 // [Full Topic]
@@ -191,6 +179,3 @@ func (p_ PHObjectChangeDetails) ObjectWasDeleted() bool {
 func (p_ PHObjectChangeDetails) SetObjectWasDeleted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectWasDeleted:"), value)
 }
-
-
-

@@ -20,3 +20,4 @@ var architectureProtocol *objc.Protocol
 func init() {
 	architectureProtocol = objc.GetProtocol("architecture")
 }
+

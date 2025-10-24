@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PAccessibilityElement is the NSAccessibilityElement protocol interface.
@@ -17,8 +19,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementProtocol
 type PAccessibilityElement interface {
 	// Required methods
-	AccessibilityFrame() corefoundation.Rect
-	AccessibilityParent() objc.ID
+	AccessibilityFrame() Rect/* debug [protocol_interface/required_method]: AccessibilityFrame */
+	AccessibilityParent() objc.ID/* debug [protocol_interface/required_method]: AccessibilityParent */
 	// Optional methods
 	AccessibilityIdentifier() foundation.String
 	HasAccessibilityIdentifier() bool

@@ -16,3 +16,4 @@ var workflowControllerWillStopProtocol *objc.Protocol
 func init() {
 	workflowControllerWillStopProtocol = objc.GetProtocol("workflowControllerWillStop:")
 }
+

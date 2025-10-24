@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Configuration = _undefined // referenced in Speech
+	Locale          = _undefined // referenced in Speech
+	SampleBufferRef = _undefined // referenced in Speech
 )
-
-

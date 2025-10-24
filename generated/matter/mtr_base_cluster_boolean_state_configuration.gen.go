@@ -33,8 +33,6 @@ type IMTRBaseClusterBooleanStateConfiguration interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterBooleanStateConfiguration
 type MTRBaseClusterBooleanStateConfiguration struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterBooleanStateConfiguration) Autorelease() MTRBaseClusterBo
 func NewMTRBaseClusterBooleanStateConfiguration() MTRBaseClusterBooleanStateConfiguration {
 	return getMTRBaseClusterBooleanStateConfigurationClass().New()
 }
-
-
-
-

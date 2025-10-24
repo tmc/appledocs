@@ -7,6 +7,12 @@ import "github.com/ebitengine/purego/objc"
 // AudioPlayerDelegateProtocol is the AVAudioPlayerDelegate protocol.
 //
 // Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
 //   - watchOS 3.0+
 //
 // Use this protocol when registering custom classes that conform to AVAudioPlayerDelegate.
@@ -15,3 +21,4 @@ var AudioPlayerDelegateProtocol *objc.Protocol
 func init() {
 	AudioPlayerDelegateProtocol = objc.GetProtocol("AVAudioPlayerDelegate")
 }
+

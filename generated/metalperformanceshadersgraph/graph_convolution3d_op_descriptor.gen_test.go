@@ -26,7 +26,7 @@ func ExampleNewGraphConvolution3DOpDescriptorWithStrideInXStrideInYStrideInZDila
 		0, // paddingBottom uint
 		0, // paddingFront uint
 		0, // paddingBack uint
-		metalperformanceshadersgraph.GraphPaddingStyle{}, // paddingStyle GraphPaddingStyle
+		metalperformanceshadersgraph.GraphPaddingStyle{},          // paddingStyle GraphPaddingStyle
 		metalperformanceshadersgraph.GraphTensorNamedDataLayout{}, // dataLayout GraphTensorNamedDataLayout
 		metalperformanceshadersgraph.GraphTensorNamedDataLayout{}, // weightsLayout GraphTensorNamedDataLayout
 	)

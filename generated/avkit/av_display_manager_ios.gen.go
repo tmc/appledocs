@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,11 +38,11 @@ func (d_ DisplayManager) DisplayModeSwitchInProgress() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVDisplayManager/preferredDisplayCriteria
-func (d_ DisplayManager) PreferredDisplayCriteria() objc.IObject /* cross-framework: DisplayCriteria */ {
+func (d_ DisplayManager) PreferredDisplayCriteria() avfoundation.DisplayCriteria {
 	rv := objc.Send[avfoundation.DisplayCriteria](d_.ID, objc.Sel("preferredDisplayCriteria"))
 	return rv
 }
-func (d_ DisplayManager) SetPreferredDisplayCriteria(value objc.IObject /* cross-framework: DisplayCriteria */) {
+func (d_ DisplayManager) SetPreferredDisplayCriteria(value avfoundation.DisplayCriteria) {
 	d_.ID.Send(objc.RegisterName("setPreferredDisplayCriteria:"), value)
 }
 

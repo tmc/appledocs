@@ -3,6 +3,7 @@
 package appkit
 
 import (
+	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
 )
@@ -17,13 +18,13 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSPathControlDelegate
 type PPathControlDelegate interface {
 	// Optional methods
-	PathControlAcceptDrop(pathControl IPathControl, info objc.IObject) bool
+	PathControlAcceptDrop(pathControl IPathControl, info unsafe.Pointer) bool
 	HasPathControlAcceptDrop() bool
 	PathControlShouldDragPathComponentCellWithPasteboard(pathControl IPathControl, pathComponentCell IPathComponentCell, pasteboard IPasteboard) bool
 	HasPathControlShouldDragPathComponentCellWithPasteboard() bool
 	PathControlShouldDragItemWithPasteboard(pathControl IPathControl, pathItem IPathControlItem, pasteboard IPasteboard) bool
 	HasPathControlShouldDragItemWithPasteboard() bool
-	PathControlValidateDrop(pathControl IPathControl, info objc.IObject) DragOperation
+	PathControlValidateDrop(pathControl IPathControl, info unsafe.Pointer) DragOperation
 	HasPathControlValidateDrop() bool
 	PathControlWillDisplayOpenPanel(pathControl IPathControl, openPanel IOpenPanel)
 	HasPathControlWillDisplayOpenPanel() bool
@@ -35,10 +36,10 @@ type PPathControlDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type PathControlDelegate struct {
-	_PathControlAcceptDrop func(pathControl IPathControl, info objc.IObject) bool
+	_PathControlAcceptDrop func(pathControl IPathControl, info unsafe.Pointer) bool
 	_PathControlShouldDragPathComponentCellWithPasteboard func(pathControl IPathControl, pathComponentCell IPathComponentCell, pasteboard IPasteboard) bool
 	_PathControlShouldDragItemWithPasteboard func(pathControl IPathControl, pathItem IPathControlItem, pasteboard IPasteboard) bool
-	_PathControlValidateDrop func(pathControl IPathControl, info objc.IObject) DragOperation
+	_PathControlValidateDrop func(pathControl IPathControl, info unsafe.Pointer) DragOperation
 	_PathControlWillDisplayOpenPanel func(pathControl IPathControl, openPanel IOpenPanel)
 	_PathControlWillPopUpMenu func(pathControl IPathControl, menu IMenu)
 }
@@ -46,7 +47,7 @@ type PathControlDelegate struct {
 // SetPathControlAcceptDrop sets the handler for the PathControlAcceptDrop delegate method.
 //
 // Implement this method to accept previously validated contents dropped onto the control.
-func (d *PathControlDelegate) SetPathControlAcceptDrop(f func(pathControl IPathControl, info objc.IObject) bool) {
+func (d *PathControlDelegate) SetPathControlAcceptDrop(f func(pathControl IPathControl, info unsafe.Pointer) bool) {
 	d._PathControlAcceptDrop = f
 }
 
@@ -65,7 +66,7 @@ func (d *PathControlDelegate) SetPathControlShouldDragItemWithPasteboard(f func(
 // SetPathControlValidateDrop sets the handler for the PathControlValidateDrop delegate method.
 //
 // Implement this method to enable dragging onto the control.
-func (d *PathControlDelegate) SetPathControlValidateDrop(f func(pathControl IPathControl, info objc.IObject) DragOperation) {
+func (d *PathControlDelegate) SetPathControlValidateDrop(f func(pathControl IPathControl, info unsafe.Pointer) DragOperation) {
 	d._PathControlValidateDrop = f
 }
 
@@ -84,7 +85,7 @@ func (d *PathControlDelegate) SetPathControlWillPopUpMenu(f func(pathControl IPa
 }
 
 // PathControlAcceptDrop implements the PPathControlDelegate interface.
-func (d *PathControlDelegate) PathControlAcceptDrop(pathControl IPathControl, info objc.IObject) bool {
+func (d *PathControlDelegate) PathControlAcceptDrop(pathControl IPathControl, info unsafe.Pointer) bool {
 	if d._PathControlAcceptDrop != nil {
 		return d._PathControlAcceptDrop(pathControl, info)
 	}
@@ -126,7 +127,7 @@ func (d *PathControlDelegate) HasPathControlShouldDragItemWithPasteboard() bool 
 }
 
 // PathControlValidateDrop implements the PPathControlDelegate interface.
-func (d *PathControlDelegate) PathControlValidateDrop(pathControl IPathControl, info objc.IObject) DragOperation {
+func (d *PathControlDelegate) PathControlValidateDrop(pathControl IPathControl, info unsafe.Pointer) DragOperation {
 	if d._PathControlValidateDrop != nil {
 		return d._PathControlValidateDrop(pathControl, info)
 	}

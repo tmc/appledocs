@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INUIAddVoiceShortcutViewController] class.
@@ -37,7 +37,6 @@ type IINUIAddVoiceShortcutViewController interface {
 // A view controller that guides the user through the steps for adding a shortcut to Siri.
 //
 // When the user performs an action such as placing an order for tomato soup, the app should provide the option to add the action to Siri as a shortcut. To present this option in your app, use to display an button. Using this button makes your app consistent with other apps that support Siri Shortcuts. After creating the button, assign its action to a method that displays . This controller steps the user through the process of adding the shortcut to Siri. To receive notifications of events from the view controller, set the delegate to an object that conforms to the protocol. The listing below adds an button to a view and let the user record an invocation phrase.
-
 
 // A view controller that guides the user through the steps for adding a shortcut to Siri.
 //
@@ -87,8 +86,6 @@ func NewINUIAddVoiceShortcutViewController() INUIAddVoiceShortcutViewController 
 	return getINUIAddVoiceShortcutViewControllerClass().New()
 }
 
-
-
 // The object that retrieves notifications from the view controller.
 //
 // [Full Topic]
@@ -98,7 +95,6 @@ func (i_ INUIAddVoiceShortcutViewController) Delegate() unsafe.Pointer {
 	return rv
 }
 
-
 // The object that retrieves notifications from the view controller.
 //
 // [Full Topic]
@@ -106,6 +102,3 @@ func (i_ INUIAddVoiceShortcutViewController) Delegate() unsafe.Pointer {
 func (i_ INUIAddVoiceShortcutViewController) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
-
-
-

@@ -18,3 +18,4 @@ var supportedServiceSourcesForItemIdentifierProtocol *objc.Protocol
 func init() {
 	supportedServiceSourcesForItemIdentifierProtocol = objc.GetProtocol("supportedServiceSourcesForItemIdentifier:")
 }
+

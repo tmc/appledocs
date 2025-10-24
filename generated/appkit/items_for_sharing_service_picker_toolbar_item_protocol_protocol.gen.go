@@ -12,3 +12,4 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerToolbarItemDelegate/items(for:)
 type PitemsForSharingServicePickerToolbarItem interface {
 }
+

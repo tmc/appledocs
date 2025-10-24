@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -61,7 +61,6 @@ type IPersistentStoreDescription interface {
 
 // A description object used to create and load a persistent store.
 
-
 // A description object used to create and load a persistent store.
 //
 // [Full Topic]
@@ -108,8 +107,6 @@ func NewPersistentStoreDescription() PersistentStoreDescription {
 	return getPersistentStoreDescriptionClass().New()
 }
 
-
-
 // Initializes the receiver with a URL for the store.
 //
 // [Full Topic]
@@ -121,8 +118,6 @@ func NewPersistentStoreDescriptionWithURL(url objc.IObject /* cross-framework: N
 	return rv
 }
 
-
-
 // Initializes and returns a persistent store description with the given URL.
 //
 // [Full Topic]
@@ -132,7 +127,6 @@ func (pc _PersistentStoreDescriptionClass) PersistentStoreDescriptionWithURL(URL
 	return rv
 }
 
-
 // Sets an option on the store.
 //
 // [Full Topic]
@@ -141,7 +135,6 @@ func (p_ PersistentStoreDescription) SetOptionForKey(option objc.IObject /* cros
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOption:forKey:"), option, key)
 }
 
-
 // Allows you to set pragmas for the SQLite store.
 //
 // [Full Topic]
@@ -149,7 +142,6 @@ func (p_ PersistentStoreDescription) SetOptionForKey(option objc.IObject /* cros
 func (p_ PersistentStoreDescription) SetValueForPragmaNamed(value objc.IObject /* cross-framework: NSObject */, name objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValue:forPragmaNamed:"), value, name)
 }
-
 
 // The name of the configuration used by this store.
 //
@@ -160,7 +152,6 @@ func (p_ PersistentStoreDescription) Configuration() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // The name of the configuration used by this store.
 //
 // [Full Topic]
@@ -168,7 +159,6 @@ func (p_ PersistentStoreDescription) Configuration() objc.IObject /* cross-frame
 func (p_ PersistentStoreDescription) SetConfiguration(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfiguration:"), value)
 }
-
 
 // A flag that indicates whether this store will be read-only.
 //
@@ -179,7 +169,6 @@ func (p_ PersistentStoreDescription) ReadOnly() bool {
 	return rv
 }
 
-
 // A flag that indicates whether this store will be read-only.
 //
 // [Full Topic]
@@ -187,7 +176,6 @@ func (p_ PersistentStoreDescription) ReadOnly() bool {
 func (p_ PersistentStoreDescription) SetReadOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setReadOnly:"), value)
 }
-
 
 // A dictionary representation of the options set on the associated persistent store.
 //
@@ -198,7 +186,6 @@ func (p_ PersistentStoreDescription) Options() foundation.IDictionary {
 	return rv
 }
 
-
 // A flag that determines whether the store is added asynchronously.
 //
 // [Full Topic]
@@ -208,7 +195,6 @@ func (p_ PersistentStoreDescription) ShouldAddStoreAsynchronously() bool {
 	return rv
 }
 
-
 // A flag that determines whether the store is added asynchronously.
 //
 // [Full Topic]
@@ -216,7 +202,6 @@ func (p_ PersistentStoreDescription) ShouldAddStoreAsynchronously() bool {
 func (p_ PersistentStoreDescription) SetShouldAddStoreAsynchronously(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldAddStoreAsynchronously:"), value)
 }
-
 
 // A flag indicating whether a mapping model should be created automatically.
 //
@@ -227,7 +212,6 @@ func (p_ PersistentStoreDescription) ShouldInferMappingModelAutomatically() bool
 	return rv
 }
 
-
 // A flag indicating whether a mapping model should be created automatically.
 //
 // [Full Topic]
@@ -235,7 +219,6 @@ func (p_ PersistentStoreDescription) ShouldInferMappingModelAutomatically() bool
 func (p_ PersistentStoreDescription) SetShouldInferMappingModelAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldInferMappingModelAutomatically:"), value)
 }
-
 
 // A flag indicating whether the associated persistent store should be migrated automatically.
 //
@@ -246,7 +229,6 @@ func (p_ PersistentStoreDescription) ShouldMigrateStoreAutomatically() bool {
 	return rv
 }
 
-
 // A flag indicating whether the associated persistent store should be migrated automatically.
 //
 // [Full Topic]
@@ -254,7 +236,6 @@ func (p_ PersistentStoreDescription) ShouldMigrateStoreAutomatically() bool {
 func (p_ PersistentStoreDescription) SetShouldMigrateStoreAutomatically(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldMigrateStoreAutomatically:"), value)
 }
-
 
 // The SQLite pragmas set for the associated persistent store. (read-only)
 //
@@ -265,7 +246,6 @@ func (p_ PersistentStoreDescription) SqlitePragmas() foundation.IDictionary {
 	return rv
 }
 
-
 // The connection timeout for the associated store.
 //
 // [Full Topic]
@@ -275,7 +255,6 @@ func (p_ PersistentStoreDescription) Timeout() float64 {
 	return rv
 }
 
-
 // The connection timeout for the associated store.
 //
 // [Full Topic]
@@ -283,7 +262,6 @@ func (p_ PersistentStoreDescription) Timeout() float64 {
 func (p_ PersistentStoreDescription) SetTimeout(value float64) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimeout:"), value)
 }
-
 
 // Options that customize how this store description aligns with a CloudKit database.
 //
@@ -294,7 +272,6 @@ func (p_ PersistentStoreDescription) CloudKitContainerOptions() IPersistentCloud
 	return rv
 }
 
-
 // Options that customize how this store description aligns with a CloudKit database.
 //
 // [Full Topic]
@@ -302,7 +279,6 @@ func (p_ PersistentStoreDescription) CloudKitContainerOptions() IPersistentCloud
 func (p_ PersistentStoreDescription) SetCloudKitContainerOptions(value IPersistentCloudKitContainerOptions) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCloudKitContainerOptions:"), value)
 }
-
 
 // A flag that indicates whether this store will be read-only.
 //
@@ -313,7 +289,6 @@ func (p_ PersistentStoreDescription) IsReadOnly() bool {
 	return rv
 }
 
-
 // A flag that indicates whether this store will be read-only.
 //
 // [Full Topic]
@@ -321,7 +296,6 @@ func (p_ PersistentStoreDescription) IsReadOnly() bool {
 func (p_ PersistentStoreDescription) SetIsReadOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
 }
-
 
 // The type of store this description represents.
 //
@@ -332,7 +306,6 @@ func (p_ PersistentStoreDescription) Type() objc.IObject /* cross-framework: NSS
 	return rv
 }
 
-
 // The type of store this description represents.
 //
 // [Full Topic]
@@ -340,7 +313,6 @@ func (p_ PersistentStoreDescription) Type() objc.IObject /* cross-framework: NSS
 func (p_ PersistentStoreDescription) SetType(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }
-
 
 // The URL that the store will use for its location.
 //
@@ -351,7 +323,6 @@ func (p_ PersistentStoreDescription) Url() objc.IObject /* cross-framework: URL 
 	return rv
 }
 
-
 // The URL that the store will use for its location.
 //
 // [Full Topic]
@@ -359,5 +330,3 @@ func (p_ PersistentStoreDescription) Url() objc.IObject /* cross-framework: URL 
 func (p_ PersistentStoreDescription) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
-
-

@@ -19,7 +19,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/startAbsoluteAltitudeUpdates(to:withHandler:)
-func (a_ Altimeter) StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler AbsoluteAltitudeHandler /* not a class type */) {
+func (a_ Altimeter) StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler AbsoluteAltitudeHandler /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startAbsoluteAltitudeUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -27,7 +27,7 @@ func (a_ Altimeter) StartAbsoluteAltitudeUpdatesToQueueWithHandler(queue objc.IO
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltimeter/startRelativeAltitudeUpdates(to:withHandler:)
-func (a_ Altimeter) StartRelativeAltitudeUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler AltitudeHandler /* not a class type */) {
+func (a_ Altimeter) StartRelativeAltitudeUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler AltitudeHandler /* not a class type */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("startRelativeAltitudeUpdatesToQueue:withHandler:"), queue, handler)
 }
 

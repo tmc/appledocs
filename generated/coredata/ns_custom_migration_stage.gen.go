@@ -45,7 +45,6 @@ type ICustomMigrationStage interface {
 //
 // Use when you have two versions of a model that Core Data can’t automatically migrate. Custom migration stages enable you to participate in the migration process by assigning handlers that the stage invokes before and after it runs. The handlers provide an opportunity to prepare the persistent store’s data for the upcoming changes before the stage runs, and perform any cleanup tasks afterward. For example, to support a migration that changes an optional attribute to be nonoptional, you might assign a handler to the stage’s property that sets any instances of that attribute to a default value, thereby ensuring the migration succeeds. To access the store you’re migrating, use the property of the migration manager that Core Data provides to every handler.
 
-
 // An object that enables you to participate in the migration between two versions of the same model.
 //
 // [Full Topic]
@@ -94,8 +93,6 @@ func NewCustomMigrationStage() CustomMigrationStage {
 	return getCustomMigrationStageClass().New()
 }
 
-
-
 // Creates a custom migration stage with the specified source and destination model references.
 //
 // [Full Topic]
@@ -107,8 +104,6 @@ func NewCustomMigrationStageWithCurrentModelReferenceNextModelReference(currentM
 	return rv
 }
 
-
-
 // The reference that represents the migration’s source model.
 //
 // [Full Topic]
@@ -117,7 +112,6 @@ func (c_ CustomMigrationStage) CurrentModel() IManagedObjectModelReference {
 	rv := objc.Send[ManagedObjectModelReference](c_.ID, objc.Sel("currentModel"))
 	return rv
 }
-
 
 // The handler to execute after the stage runs.
 //
@@ -128,7 +122,6 @@ func (c_ CustomMigrationStage) DidMigrateHandler() func(unsafe.Pointer, unsafe.P
 	return rv
 }
 
-
 // The handler to execute after the stage runs.
 //
 // [Full Topic]
@@ -136,7 +129,6 @@ func (c_ CustomMigrationStage) DidMigrateHandler() func(unsafe.Pointer, unsafe.P
 func (c_ CustomMigrationStage) SetDidMigrateHandler(value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDidMigrateHandler:"), value)
 }
-
 
 // The reference that represents the migration’s destination model.
 //
@@ -147,7 +139,6 @@ func (c_ CustomMigrationStage) NextModel() IManagedObjectModelReference {
 	return rv
 }
 
-
 // The handler to execute before the stage runs.
 //
 // [Full Topic]
@@ -157,7 +148,6 @@ func (c_ CustomMigrationStage) WillMigrateHandler() func(unsafe.Pointer, unsafe.
 	return rv
 }
 
-
 // The handler to execute before the stage runs.
 //
 // [Full Topic]
@@ -165,7 +155,6 @@ func (c_ CustomMigrationStage) WillMigrateHandler() func(unsafe.Pointer, unsafe.
 func (c_ CustomMigrationStage) SetWillMigrateHandler(value func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setWillMigrateHandler:"), value)
 }
-
 
 // The container that provides access to the migrating persistent store.
 //
@@ -176,7 +165,6 @@ func (c_ CustomMigrationStage) Container() IPersistentContainer {
 	return rv
 }
 
-
 // The container that provides access to the migrating persistent store.
 //
 // [Full Topic]
@@ -184,5 +172,3 @@ func (c_ CustomMigrationStage) Container() IPersistentContainer {
 func (c_ CustomMigrationStage) SetContainer(value IPersistentContainer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContainer:"), value)
 }
-
-

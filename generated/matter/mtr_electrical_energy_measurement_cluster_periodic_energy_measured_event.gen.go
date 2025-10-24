@@ -38,8 +38,6 @@ type IMTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent interface
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent
 type MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent struct {
@@ -82,8 +80,6 @@ func NewMTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent() MTREl
 	return getMTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterperiodicenergymeasuredevent/energyexported
 func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) EnergyExported() IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct {
@@ -91,13 +87,11 @@ func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) Energ
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterperiodicenergymeasuredevent/energyexported
 func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) SetEnergyExported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyExported:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterperiodicenergymeasuredevent/energyimported
@@ -106,12 +100,8 @@ func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) Energ
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterperiodicenergymeasuredevent/energyimported
 func (m_ MTRElectricalEnergyMeasurementClusterPeriodicEnergyMeasuredEvent) SetEnergyImported(value IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergyImported:"), value)
 }
-
-
-

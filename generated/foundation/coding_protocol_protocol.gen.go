@@ -3,7 +3,8 @@
 package foundation
 
 import (
-	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PCoding is the NSCoding protocol interface.
@@ -22,6 +23,6 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSCoding
 type PCoding interface {
 	// Required methods
-	EncodeWithCoder(coder ICoder)
-	InitWithCoder(coder ICoder) unsafe.Pointer
+	EncodeWithCoder(coder ICoder)/* debug [protocol_interface/required_method]: EncodeWithCoder */
+	InitWithCoder(coder ICoder) objectivec.IObject/* debug [protocol_interface/required_method]: InitWithCoder */
 }

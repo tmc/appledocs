@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mRFCOMMConnection */
+
+
+/* debug [class_header]: Header for mRFCOMMConnection */
 // The class instance for the [mRFCOMMConnection] class.
 var (
 	MRFCOMMConnectionClass     _mRFCOMMConnectionClass
@@ -26,27 +30,30 @@ func getmRFCOMMConnectionClass() _mRFCOMMConnectionClass {
 type _mRFCOMMConnectionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mRFCOMMConnection */
 // An interface definition for the [mRFCOMMConnection] class.
 type ImRFCOMMConnection interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mRFCOMMConnection */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mRFCOMMConnection */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mRFCOMMConnection
-type mRFCOMMConnection struct {
-	objectivec.Object
-}
-
-// mRFCOMMConnectionFrom constructs a [mRFCOMMConnection] from an unsafe.Pointer.
-func mRFCOMMConnectionFrom(ptr unsafe.Pointer) mRFCOMMConnection {
-	return mRFCOMMConnection{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mRFCOMMConnection */
 // Alloc allocates a new instance without initialization.
 func (mc _mRFCOMMConnectionClass) Alloc() mRFCOMMConnection {
 	rv := objc.Send[mRFCOMMConnection](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mRFCOMMConnectionClass) Alloc() mRFCOMMConnection {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mRFCOMMConnectionClass) New() mRFCOMMConnection {
 	rv := objc.Send[mRFCOMMConnection](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mRFCOMMConnection) Autorelease() mRFCOMMConnection {
 func NewmRFCOMMConnection() mRFCOMMConnection {
 	return getmRFCOMMConnectionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mRFCOMMConnection */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mRFCOMMConnection
+type mRFCOMMConnection struct {
+	objectivec.Object
+}
+
+// mRFCOMMConnectionFrom constructs a [mRFCOMMConnection] from an unsafe.Pointer.
+func mRFCOMMConnectionFrom(ptr unsafe.Pointer) mRFCOMMConnection {
+	return mRFCOMMConnection{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mRFCOMMConnection *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mRFCOMMConnection */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mRFCOMMConnection */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mRFCOMMConnection */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mRFCOMMConnection */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mRFCOMMConnection */
 
 
 

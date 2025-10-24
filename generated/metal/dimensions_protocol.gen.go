@@ -20,3 +20,4 @@ var dimensionsProtocol *objc.Protocol
 func init() {
 	dimensionsProtocol = objc.GetProtocol("dimensions")
 }
+

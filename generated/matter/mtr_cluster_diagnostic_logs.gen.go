@@ -33,8 +33,6 @@ type IMTRClusterDiagnosticLogs interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDiagnosticLogs
 type MTRClusterDiagnosticLogs struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterDiagnosticLogs) Autorelease() MTRClusterDiagnosticLogs {
 func NewMTRClusterDiagnosticLogs() MTRClusterDiagnosticLogs {
 	return getMTRClusterDiagnosticLogsClass().New()
 }
-
-
-
-

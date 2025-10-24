@@ -15,3 +15,4 @@ var supportedXattrNamesForItemProtocol *objc.Protocol
 func init() {
 	supportedXattrNamesForItemProtocol = objc.GetProtocol("supportedXattrNamesForItem:")
 }
+

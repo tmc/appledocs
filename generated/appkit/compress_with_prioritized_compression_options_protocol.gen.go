@@ -15,3 +15,4 @@ var compressWithPrioritizedCompressionOptionsProtocol *objc.Protocol
 func init() {
 	compressWithPrioritizedCompressionOptionsProtocol = objc.GetProtocol("compressWithPrioritizedCompressionOptions:")
 }
+

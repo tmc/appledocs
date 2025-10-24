@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for CoreSpotlight. DO NOT EDIT.
 
 // Package corespotlight provides Go bindings for the CoreSpotlight framework.
 //
-// Add search capabilities to your app, and index your content so
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreSpotlight without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CoreSpotlight
 package corespotlight
 
 import (

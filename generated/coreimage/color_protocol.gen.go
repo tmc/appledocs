@@ -11,6 +11,7 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 5.0+
 //   - iPadOS 5.0+
 //   - macOS 10.4+
+//   - tvOS +
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to color.
@@ -19,3 +20,4 @@ var colorProtocol *objc.Protocol
 func init() {
 	colorProtocol = objc.GetProtocol("color")
 }
+

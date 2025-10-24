@@ -13,7 +13,7 @@ var _ = avfaudio.NewAudioPCMBuffer
 // Creates a PCM audio buffer instance for PCM audio data.
 func ExampleNewAudioPCMBufferWithPCMFormatFrameCapacity() {
 	_ = avfaudio.NewAudioPCMBufferWithPCMFormatFrameCapacity(
-		avfaudio.AVAudioFormat{}, // format AVAudioFormat
+		avfaudio.AVAudioFormat{},   // format AVAudioFormat
 		avfaudio.AudioFrameCount{}, // frameCapacity AudioFrameCount
 	)
 	// Output:

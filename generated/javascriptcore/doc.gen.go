@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for JavaScriptCore. DO NOT EDIT.
 
 // Package javascriptcore provides Go bindings for the JavaScriptCore framework.
 //
-// Evaluate JavaScript programs from within an app, and support JavaScript scripting of your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to JavaScriptCore without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/JavaScriptCore
 package javascriptcore
 
 import (

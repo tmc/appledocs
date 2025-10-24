@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // PageCurlWithShadowTransitionProtocol is the CIPageCurlWithShadowTransition protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIPageCurlWithShadowTransition.
 var PageCurlWithShadowTransitionProtocol *objc.Protocol
 
 func init() {
 	PageCurlWithShadowTransitionProtocol = objc.GetProtocol("CIPageCurlWithShadowTransition")
 }
+

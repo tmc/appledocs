@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRAudioOutputClusterSelectOutputParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAudioOutputClusterSelectOutputParams
@@ -85,8 +83,6 @@ func NewMTRAudioOutputClusterSelectOutputParams() MTRAudioOutputClusterSelectOut
 	return getMTRAudioOutputClusterSelectOutputParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/index
 func (m_ MTRAudioOutputClusterSelectOutputParams) Index() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRAudioOutputClusterSelectOutputParams) Index() objc.IObject /* cross-
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/index
 func (m_ MTRAudioOutputClusterSelectOutputParams) SetIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRAudioOutputClusterSelectOutputParams) ServerSideProcessingTimeout() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/serversideprocessingtimeout
 func (m_ MTRAudioOutputClusterSelectOutputParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRAudioOutputClusterSelectOutputParams) TimedInvokeTimeoutMs() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusterselectoutputparams/timedinvoketimeoutms
 func (m_ MTRAudioOutputClusterSelectOutputParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

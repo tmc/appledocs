@@ -19,3 +19,4 @@ var updateDescendantsOfContextProtocol *objc.Protocol
 func init() {
 	updateDescendantsOfContextProtocol = objc.GetProtocol("updateDescendantsOfContext:")
 }
+

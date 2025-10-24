@@ -76,11 +76,11 @@ func (c_ CXCallDirectoryExtensionContext) RemoveIdentificationEntryWithPhoneNumb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryExtensionContext/delegate
-func (c_ CXCallDirectoryExtensionContext) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
+func (c_ CXCallDirectoryExtensionContext) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (c_ CXCallDirectoryExtensionContext) SetDelegate(value objc.ID) {
+func (c_ CXCallDirectoryExtensionContext) SetDelegate(value unsafe.Pointer) {
 	c_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 

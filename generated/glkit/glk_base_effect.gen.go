@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GLKBaseEffect */
+
+
+/* debug [class_header]: Header for GLKBaseEffect */
 // The class instance for the [GLKBaseEffect] class.
 var (
 	GLKBaseEffectClass     _GLKBaseEffectClass
@@ -27,10 +31,16 @@ func getGLKBaseEffectClass() _GLKBaseEffectClass {
 type _GLKBaseEffectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GLKBaseEffect */
 // An interface definition for the [GLKBaseEffect] class.
 type IGLKBaseEffect interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GLKBaseEffect */
 	// properties:
 	ColorMaterialEnabled() unsafe.Pointer
 	SetColorMaterialEnabled(value unsafe.Pointer)
@@ -42,43 +52,33 @@ type IGLKBaseEffect interface {
 	Light0() IGLKEffectPropertyLight
 	Light1() IGLKEffectPropertyLight
 	Light2() IGLKEffectPropertyLight
+	LightingType() GLKLightingType
+	SetLightingType(value GLKLightingType)
 	LightModelAmbientColor() GLKVector4 /* typedef */
 	SetLightModelAmbientColor(value GLKVector4 /* typedef */)
 	LightModelTwoSided() unsafe.Pointer
 	SetLightModelTwoSided(value unsafe.Pointer)
-	LightingType() GLKLightingType
-	SetLightingType(value GLKLightingType)
 	Material() IGLKEffectPropertyMaterial
 	Texture2d0() IGLKEffectPropertyTexture
 	Texture2d1() IGLKEffectPropertyTexture
-	TextureOrder() []IGLKEffectPropertyTexture
-	SetTextureOrder(value []IGLKEffectPropertyTexture)
+	TextureOrder() []GLKEffectPropertyTexture
+	SetTextureOrder(value []GLKEffectPropertyTexture)
 	Transform() IGLKEffectPropertyTransform
 	UseConstantColor() unsafe.Pointer
 	SetUseConstantColor(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GLKBaseEffect */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A simple lighting and shading system for use in shader-based OpenGL rendering.
-//
-// The class provides shaders that mimic many of the behaviors provided by the OpenGL ES 1.1 lighting and shading model, including materials, lighting and texturing. The base effect allows up to three lights and two textures to be applied to a scene. At initialization time, your application first creates a compatible OpenGL or OpenGL ES context and makes it current. Then, it allocates and initializes a new effect object, configures its properties, and calls its method. Binding an effect causes a shader to be compiled and bound to the current context. The base effect also requires vertex data to be supplied by your application. To supply vertex data, create one or more vertex array objects. For each attribute required by the shader, the vertex array object should enable the attribute and point to data stored in a vertex buffer object. At rendering time, your application calls the effect’s method to prepare the effect. Then, it binds a vertex array object and submits one or more drawing commands. Lighting calculations for the base effect are done in eye-space coordinates.  The , and properties hold the position and spot direction of the base effect’s lights. The property contains the model view matrix assigned to the scene. When a light is assigned a new position or spot direction, those values are immediately modified by the current model view matrix. Thus, it is important to sequence changes to the model view matrix and changes to the lights to achieve the desired light positioning.  Light positions that need to be transformed in a manner similar to scene geometry should be set after the model view matrix is updated.
+/* debug [class_interface]: End interface */
 
 
-// A simple lighting and shading system for use in shader-based OpenGL rendering.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect
-type GLKBaseEffect struct {
-	objectivec.Object
-}
 
-// GLKBaseEffectFrom constructs a [GLKBaseEffect] from an unsafe.Pointer.
-//
-// A simple lighting and shading system for use in shader-based OpenGL rendering.
-func GLKBaseEffectFrom(ptr unsafe.Pointer) GLKBaseEffect {
-	return GLKBaseEffect{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GLKBaseEffect */
 // Alloc allocates a new instance without initialization.
 func (gc _GLKBaseEffectClass) Alloc() GLKBaseEffect {
 	rv := objc.Send[GLKBaseEffect](objc.ID(gc.class), objc.Sel("alloc"))
@@ -86,7 +86,6 @@ func (gc _GLKBaseEffectClass) Alloc() GLKBaseEffect {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GLKBaseEffectClass) New() GLKBaseEffect {
 	rv := objc.Send[GLKBaseEffect](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -109,8 +108,54 @@ func (g_ GLKBaseEffect) Autorelease() GLKBaseEffect {
 func NewGLKBaseEffect() GLKBaseEffect {
 	return getGLKBaseEffectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GLKBaseEffect */
+// A simple lighting and shading system for use in shader-based OpenGL rendering.
+//
+// The class provides shaders that mimic many of the behaviors provided by the OpenGL ES 1.1 lighting and shading model, including materials, lighting and texturing. The base effect allows up to three lights and two textures to be applied to a scene. At initialization time, your application first creates a compatible OpenGL or OpenGL ES context and makes it current. Then, it allocates and initializes a new effect object, configures its properties, and calls its method. Binding an effect causes a shader to be compiled and bound to the current context. The base effect also requires vertex data to be supplied by your application. To supply vertex data, create one or more vertex array objects. For each attribute required by the shader, the vertex array object should enable the attribute and point to data stored in a vertex buffer object. At rendering time, your application calls the effect’s method to prepare the effect. Then, it binds a vertex array object and submits one or more drawing commands. Lighting calculations for the base effect are done in eye-space coordinates.  The , and properties hold the position and spot direction of the base effect’s lights. The property contains the model view matrix assigned to the scene. When a light is assigned a new position or spot direction, those values are immediately modified by the current model view matrix. Thus, it is important to sequence changes to the model view matrix and changes to the lights to achieve the desired light positioning.  Light positions that need to be transformed in a manner similar to scene geometry should be set after the model view matrix is updated.
+
+
+// A simple lighting and shading system for use in shader-based OpenGL rendering.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect
+type GLKBaseEffect struct {
+	objectivec.Object
+}
+
+// GLKBaseEffectFrom constructs a [GLKBaseEffect] from an unsafe.Pointer.
+//
+// A simple lighting and shading system for use in shader-based OpenGL rendering.
+func GLKBaseEffectFrom(ptr unsafe.Pointer) GLKBaseEffect {
+	return GLKBaseEffect{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GLKBaseEffect *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GLKBaseEffect */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GLKBaseEffect */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GLKBaseEffect */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GLKBaseEffect */
 
 // A Boolean value that indicates whether or not to use the color vertex attribute when calculating the light’s interaction with the material.
 //
@@ -119,7 +164,7 @@ func NewGLKBaseEffect() GLKBaseEffect {
 func (g_ GLKBaseEffect) ColorMaterialEnabled() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("colorMaterialEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: colorMaterialEnabled */
 
 
 // A Boolean value that indicates whether or not to use the color vertex attribute when calculating the light’s interaction with the material.
@@ -128,7 +173,7 @@ func (g_ GLKBaseEffect) ColorMaterialEnabled() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/colorMaterialEnabled
 func (g_ GLKBaseEffect) SetColorMaterialEnabled(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setColorMaterialEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: colorMaterialEnabled */
 
 
 // A constant color, used when per-vertex color data is not provided.
@@ -136,9 +181,9 @@ func (g_ GLKBaseEffect) SetColorMaterialEnabled(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/constantColor
 func (g_ GLKBaseEffect) ConstantColor() GLKVector4 /* typedef */ {
-	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("constantColor"))
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("constantColor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: constantColor */
 
 
 // A constant color, used when per-vertex color data is not provided.
@@ -147,7 +192,7 @@ func (g_ GLKBaseEffect) ConstantColor() GLKVector4 /* typedef */ {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/constantColor
 func (g_ GLKBaseEffect) SetConstantColor(value GLKVector4 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setConstantColor:"), value)
-}
+}/* debug [instance_properties/setter]: constantColor */
 
 
 // The fog properties to apply to the scene.
@@ -157,7 +202,7 @@ func (g_ GLKBaseEffect) SetConstantColor(value GLKVector4 /* typedef */) {
 func (g_ GLKBaseEffect) Fog() IGLKEffectPropertyFog {
 	rv := objc.Send[GLKEffectPropertyFog](g_.ID, objc.Sel("fog"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fog */
 
 
 // A string used to name your effect.
@@ -167,7 +212,7 @@ func (g_ GLKBaseEffect) Fog() IGLKEffectPropertyFog {
 func (g_ GLKBaseEffect) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("label"))
 	return rv
-}
+}/* debug [instance_properties/getter]: label */
 
 
 // A string used to name your effect.
@@ -176,7 +221,7 @@ func (g_ GLKBaseEffect) Label() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/label
 func (g_ GLKBaseEffect) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
-}
+}/* debug [instance_properties/setter]: label */
 
 
 // The lighting properties for the first light in the scene.
@@ -186,7 +231,7 @@ func (g_ GLKBaseEffect) SetLabel(value objc.IObject /* cross-framework: NSString
 func (g_ GLKBaseEffect) Light0() IGLKEffectPropertyLight {
 	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light0"))
 	return rv
-}
+}/* debug [instance_properties/getter]: light0 */
 
 
 // The lighting properties for the second light in the scene.
@@ -196,7 +241,7 @@ func (g_ GLKBaseEffect) Light0() IGLKEffectPropertyLight {
 func (g_ GLKBaseEffect) Light1() IGLKEffectPropertyLight {
 	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light1"))
 	return rv
-}
+}/* debug [instance_properties/getter]: light1 */
 
 
 // The lighting properties for the third light in the scene.
@@ -206,45 +251,7 @@ func (g_ GLKBaseEffect) Light1() IGLKEffectPropertyLight {
 func (g_ GLKBaseEffect) Light2() IGLKEffectPropertyLight {
 	rv := objc.Send[GLKEffectPropertyLight](g_.ID, objc.Sel("light2"))
 	return rv
-}
-
-
-// The ambient color applied to all primitives rendered by the effect.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor
-func (g_ GLKBaseEffect) LightModelAmbientColor() GLKVector4 /* typedef */ {
-	rv := objc.Send[GLKVector4](g_.ID, objc.Sel("lightModelAmbientColor"))
-	return rv
-}
-
-
-// The ambient color applied to all primitives rendered by the effect.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor
-func (g_ GLKBaseEffect) SetLightModelAmbientColor(value GLKVector4 /* typedef */) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLightModelAmbientColor:"), value)
-}
-
-
-// A Boolean value that indicates whether lighting is calculated for both sides of a primitive.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelTwoSided
-func (g_ GLKBaseEffect) LightModelTwoSided() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("lightModelTwoSided"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether lighting is calculated for both sides of a primitive.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelTwoSided
-func (g_ GLKBaseEffect) SetLightModelTwoSided(value unsafe.Pointer) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setLightModelTwoSided:"), value)
-}
+}/* debug [instance_properties/getter]: light2 */
 
 
 // The strategy the effect uses to calculate light values at each fragment. See .
@@ -254,7 +261,7 @@ func (g_ GLKBaseEffect) SetLightModelTwoSided(value unsafe.Pointer) {
 func (g_ GLKBaseEffect) LightingType() GLKLightingType {
 	rv := objc.Send[GLKLightingType](g_.ID, objc.Sel("lightingType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lightingType */
 
 
 // The strategy the effect uses to calculate light values at each fragment. See .
@@ -263,7 +270,45 @@ func (g_ GLKBaseEffect) LightingType() GLKLightingType {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightingType
 func (g_ GLKBaseEffect) SetLightingType(value GLKLightingType) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLightingType:"), value)
-}
+}/* debug [instance_properties/setter]: lightingType */
+
+
+// The ambient color applied to all primitives rendered by the effect.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor
+func (g_ GLKBaseEffect) LightModelAmbientColor() GLKVector4 /* typedef */ {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("lightModelAmbientColor"))
+	return rv
+}/* debug [instance_properties/getter]: lightModelAmbientColor */
+
+
+// The ambient color applied to all primitives rendered by the effect.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelAmbientColor
+func (g_ GLKBaseEffect) SetLightModelAmbientColor(value GLKVector4 /* typedef */) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLightModelAmbientColor:"), value)
+}/* debug [instance_properties/setter]: lightModelAmbientColor */
+
+
+// A Boolean value that indicates whether lighting is calculated for both sides of a primitive.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelTwoSided
+func (g_ GLKBaseEffect) LightModelTwoSided() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("lightModelTwoSided"))
+	return rv
+}/* debug [instance_properties/getter]: lightModelTwoSided */
+
+
+// A Boolean value that indicates whether lighting is calculated for both sides of a primitive.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/lightModelTwoSided
+func (g_ GLKBaseEffect) SetLightModelTwoSided(value unsafe.Pointer) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setLightModelTwoSided:"), value)
+}/* debug [instance_properties/setter]: lightModelTwoSided */
 
 
 // The material properties used when calculating the light values for a rendered primitive.
@@ -273,7 +318,7 @@ func (g_ GLKBaseEffect) SetLightingType(value GLKLightingType) {
 func (g_ GLKBaseEffect) Material() IGLKEffectPropertyMaterial {
 	rv := objc.Send[GLKEffectPropertyMaterial](g_.ID, objc.Sel("material"))
 	return rv
-}
+}/* debug [instance_properties/getter]: material */
 
 
 // The properties for the first texture.
@@ -283,7 +328,7 @@ func (g_ GLKBaseEffect) Material() IGLKEffectPropertyMaterial {
 func (g_ GLKBaseEffect) Texture2d0() IGLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("texture2d0"))
 	return rv
-}
+}/* debug [instance_properties/getter]: texture2d0 */
 
 
 // The properties for the second texture.
@@ -293,25 +338,24 @@ func (g_ GLKBaseEffect) Texture2d0() IGLKEffectPropertyTexture {
 func (g_ GLKBaseEffect) Texture2d1() IGLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("texture2d1"))
 	return rv
-}
+}/* debug [instance_properties/getter]: texture2d1 */
 
 
 // The order in which textures are applied to rendered primitives.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/textureOrder
-func (g_ GLKBaseEffect) TextureOrder() []IGLKEffectPropertyTexture {
+func (g_ GLKBaseEffect) TextureOrder() []GLKEffectPropertyTexture {
 	rv := objc.Send[[]GLKEffectPropertyTexture](g_.ID, objc.Sel("textureOrder"))
 	return rv
-}
+}/* debug [instance_properties/getter]: textureOrder */
 
 
 // The order in which textures are applied to rendered primitives.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/textureOrder
-func (g_ GLKBaseEffect) SetTextureOrder(value []IGLKEffectPropertyTexture) {
-	// Convert Go slice to NSArray
+func (g_ GLKBaseEffect) SetTextureOrder(value []GLKEffectPropertyTexture) {
 	var nsArray objc.ID
 	if len(value) > 0 {
 		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
@@ -322,7 +366,7 @@ func (g_ GLKBaseEffect) SetTextureOrder(value []IGLKEffectPropertyTexture) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTextureOrder:"), nsArray)
-}
+}/* debug [instance_properties/setter]: textureOrder */
 
 
 // The modelview, projection and texture transformations applied to the vertex data when the effect is bound.
@@ -332,7 +376,7 @@ func (g_ GLKBaseEffect) SetTextureOrder(value []IGLKEffectPropertyTexture) {
 func (g_ GLKBaseEffect) Transform() IGLKEffectPropertyTransform {
 	rv := objc.Send[GLKEffectPropertyTransform](g_.ID, objc.Sel("transform"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transform */
 
 
 // A Boolean value that indicates whether or not to use the constant color.
@@ -342,7 +386,7 @@ func (g_ GLKBaseEffect) Transform() IGLKEffectPropertyTransform {
 func (g_ GLKBaseEffect) UseConstantColor() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("useConstantColor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: useConstantColor */
 
 
 // A Boolean value that indicates whether or not to use the constant color.
@@ -351,7 +395,12 @@ func (g_ GLKBaseEffect) UseConstantColor() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKBaseEffect/useConstantColor
 func (g_ GLKBaseEffect) SetUseConstantColor(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setUseConstantColor:"), value)
-}
+}/* debug [instance_properties/setter]: useConstantColor */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GLKBaseEffect */
 
 
 

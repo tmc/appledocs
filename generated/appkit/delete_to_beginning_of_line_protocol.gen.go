@@ -15,3 +15,4 @@ var deleteToBeginningOfLineProtocol *objc.Protocol
 func init() {
 	deleteToBeginningOfLineProtocol = objc.GetProtocol("deleteToBeginningOfLine:")
 }
+

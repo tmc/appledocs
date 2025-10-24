@@ -9,8 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Data = _undefined // referenced in CoreWLAN
-	String = _undefined // referenced in CoreWLAN
+	DataRef = _undefined // referenced in CoreWLAN
+	StringRef = _undefined // referenced in CoreWLAN
 )
 
 

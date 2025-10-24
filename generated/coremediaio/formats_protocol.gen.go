@@ -16,3 +16,4 @@ var formatsProtocol *objc.Protocol
 func init() {
 	formatsProtocol = objc.GetProtocol("formats")
 }
+

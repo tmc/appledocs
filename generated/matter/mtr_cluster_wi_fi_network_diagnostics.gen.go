@@ -33,8 +33,6 @@ type IMTRClusterWiFiNetworkDiagnostics interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkDiagnostics
 type MTRClusterWiFiNetworkDiagnostics struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterWiFiNetworkDiagnostics) Autorelease() MTRClusterWiFiNetworkDi
 func NewMTRClusterWiFiNetworkDiagnostics() MTRClusterWiFiNetworkDiagnostics {
 	return getMTRClusterWiFiNetworkDiagnosticsClass().New()
 }
-
-
-
-

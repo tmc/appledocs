@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CMPedometerEvent */
+
+
+/* debug [class_header]: Header for CMPedometerEvent */
 // The class instance for the [PedometerEvent] class.
 var (
 	PedometerEventClass     _PedometerEventClass
@@ -27,34 +31,32 @@ func getPedometerEventClass() _PedometerEventClass {
 type _PedometerEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PedometerEvent */
 // An interface definition for the [PedometerEvent] class.
 type IPedometerEvent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PedometerEvent */
 	// properties:
 	Date() objc.IObject /* cross-framework: NSDate */
 	Type() PedometerEventType
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PedometerEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A change in the user’s pedestrian activity.
 
 
-// A change in the user’s pedestrian activity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent
-type PedometerEvent struct {
-	objectivec.Object
-}
-
-// PedometerEventFrom constructs a [PedometerEvent] from an unsafe.Pointer.
-//
-// A change in the user’s pedestrian activity.
-func PedometerEventFrom(ptr unsafe.Pointer) PedometerEvent {
-	return PedometerEvent{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PedometerEvent */
 // Alloc allocates a new instance without initialization.
 func (pc _PedometerEventClass) Alloc() PedometerEvent {
 	rv := objc.Send[PedometerEvent](objc.ID(pc.class), objc.Sel("alloc"))
@@ -62,7 +64,6 @@ func (pc _PedometerEventClass) Alloc() PedometerEvent {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PedometerEventClass) New() PedometerEvent {
 	rv := objc.Send[PedometerEvent](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,8 +86,52 @@ func (p_ PedometerEvent) Autorelease() PedometerEvent {
 func NewPedometerEvent() PedometerEvent {
 	return getPedometerEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PedometerEvent */
+// A change in the user’s pedestrian activity.
+
+
+// A change in the user’s pedestrian activity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMPedometerEvent
+type PedometerEvent struct {
+	objectivec.Object
+}
+
+// PedometerEventFrom constructs a [PedometerEvent] from an unsafe.Pointer.
+//
+// A change in the user’s pedestrian activity.
+func PedometerEventFrom(ptr unsafe.Pointer) PedometerEvent {
+	return PedometerEvent{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PedometerEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PedometerEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PedometerEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PedometerEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PedometerEvent */
 
 // The date on which the pedometer event was recorded.
 //
@@ -95,7 +140,7 @@ func NewPedometerEvent() PedometerEvent {
 func (p_ PedometerEvent) Date() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("date"))
 	return rv
-}
+}/* debug [instance_properties/getter]: date */
 
 
 // The type of change that occurred.
@@ -105,7 +150,12 @@ func (p_ PedometerEvent) Date() objc.IObject /* cross-framework: NSDate */ {
 func (p_ PedometerEvent) Type() PedometerEventType {
 	rv := objc.Send[PedometerEventType](p_.ID, objc.Sel("type"))
 	return rv
-}
+}/* debug [instance_properties/getter]: type */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CMPedometerEvent */
 
 
 

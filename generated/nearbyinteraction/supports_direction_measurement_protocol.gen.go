@@ -18,3 +18,4 @@ var supportsDirectionMeasurementProtocol *objc.Protocol
 func init() {
 	supportsDirectionMeasurementProtocol = objc.GetProtocol("supportsDirectionMeasurement")
 }
+

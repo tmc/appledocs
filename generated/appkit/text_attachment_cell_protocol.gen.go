@@ -15,3 +15,4 @@ var TextAttachmentCellProtocol *objc.Protocol
 func init() {
 	TextAttachmentCellProtocol = objc.GetProtocol("NSTextAttachmentCell")
 }
+

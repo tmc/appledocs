@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSSharingCollaborationModeRestriction */
+
+
+/* debug [class_header]: Header for NSSharingCollaborationModeRestriction */
 // The class instance for the [SharingCollaborationModeRestriction] class.
 var (
 	SharingCollaborationModeRestrictionClass     _SharingCollaborationModeRestrictionClass
@@ -27,10 +31,16 @@ func getSharingCollaborationModeRestrictionClass() _SharingCollaborationModeRest
 type _SharingCollaborationModeRestrictionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SharingCollaborationModeRestriction */
 // An interface definition for the [SharingCollaborationModeRestriction] class.
 type ISharingCollaborationModeRestriction interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for SharingCollaborationModeRestriction */
 	// properties:
 	AlertDismissButtonTitle() objc.IObject /* cross-framework: NSString */
 	AlertMessage() objc.IObject /* cross-framework: NSString */
@@ -38,22 +48,19 @@ type ISharingCollaborationModeRestriction interface {
 	AlertRecoverySuggestionButtonTitle() objc.IObject /* cross-framework: NSString */
 	AlertTitle() objc.IObject /* cross-framework: NSString */
 	DisabledMode() SharingCollaborationMode
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SharingCollaborationModeRestriction */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/CollaborationModeRestriction
-type SharingCollaborationModeRestriction struct {
-	objectivec.Object
-}
-
-// SharingCollaborationModeRestrictionFrom constructs a [SharingCollaborationModeRestriction] from an unsafe.Pointer.
-func SharingCollaborationModeRestrictionFrom(ptr unsafe.Pointer) SharingCollaborationModeRestriction {
-	return SharingCollaborationModeRestriction{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SharingCollaborationModeRestriction */
 // Alloc allocates a new instance without initialization.
 func (sc _SharingCollaborationModeRestrictionClass) Alloc() SharingCollaborationModeRestriction {
 	rv := objc.Send[SharingCollaborationModeRestriction](objc.ID(sc.class), objc.Sel("alloc"))
@@ -61,7 +68,6 @@ func (sc _SharingCollaborationModeRestrictionClass) Alloc() SharingCollaboration
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SharingCollaborationModeRestrictionClass) New() SharingCollaborationModeRestriction {
 	rv := objc.Send[SharingCollaborationModeRestriction](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,8 +90,28 @@ func (s_ SharingCollaborationModeRestriction) Autorelease() SharingCollaboration
 func NewSharingCollaborationModeRestriction() SharingCollaborationModeRestriction {
 	return getSharingCollaborationModeRestrictionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SharingCollaborationModeRestriction */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/CollaborationModeRestriction
+type SharingCollaborationModeRestriction struct {
+	objectivec.Object
+}
+
+// SharingCollaborationModeRestrictionFrom constructs a [SharingCollaborationModeRestriction] from an unsafe.Pointer.
+func SharingCollaborationModeRestrictionFrom(ptr unsafe.Pointer) SharingCollaborationModeRestriction {
+	return SharingCollaborationModeRestriction{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SharingCollaborationModeRestriction */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/CollaborationModeRestriction/init(disabledMode:)
@@ -94,7 +120,7 @@ func NewSharingCollaborationModeRestrictionWithDisabledMode(disabledMode Sharing
 	rv := objc.Send[SharingCollaborationModeRestriction](instance.ID, objc.Sel("initWithDisabledMode:"), disabledMode)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewSharingCollaborationModeRestrictionWithDisabledMode */
 
 
 // [Full Topic]
@@ -104,7 +130,7 @@ func NewSharingCollaborationModeRestrictionWithDisabledModeAlertTitleAlertMessag
 	rv := objc.Send[SharingCollaborationModeRestriction](instance.ID, objc.Sel("initWithDisabledMode:alertTitle:alertMessage:"), disabledMode, alertTitle, alertMessage)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewSharingCollaborationModeRestrictionWithDisabledModeAlertTitleAlertMessage */
 
 
 // [Full Topic]
@@ -114,7 +140,7 @@ func NewSharingCollaborationModeRestrictionWithDisabledModeAlertTitleAlertMessag
 	rv := objc.Send[SharingCollaborationModeRestriction](instance.ID, objc.Sel("initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:"), disabledMode, alertTitle, alertMessage, alertDismissButtonTitle)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewSharingCollaborationModeRestrictionWithDisabledModeAlertTitleAlertMessageAlertDismissButtonTitle */
 
 
 // [Full Topic]
@@ -124,9 +150,28 @@ func NewSharingCollaborationModeRestrictionWithDisabledModeAlertTitleAlertMessag
 	rv := objc.Send[SharingCollaborationModeRestriction](instance.ID, objc.Sel("initWithDisabledMode:alertTitle:alertMessage:alertDismissButtonTitle:alertRecoverySuggestionButtonTitle:alertRecoverySuggestionButtonLaunchURL:"), disabledMode, alertTitle, alertMessage, alertDismissButtonTitle, alertRecoverySuggestionButtonTitle, alertRecoverySuggestionButtonLaunchURL)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewSharingCollaborationModeRestrictionWithDisabledModeAlertTitleAlertMessageAlertDismissButtonTitleAlertRecoverySuggestionButtonTitleAlertRecoverySuggestionButtonLaunchURL */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for SharingCollaborationModeRestriction */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SharingCollaborationModeRestriction */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SharingCollaborationModeRestriction */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SharingCollaborationModeRestriction */
 
 // The label on the alert button which will simply confirm that the alert was viewed and dismiss it Defaults to “OK”
 //
@@ -135,7 +180,7 @@ func NewSharingCollaborationModeRestrictionWithDisabledModeAlertTitleAlertMessag
 func (s_ SharingCollaborationModeRestriction) AlertDismissButtonTitle() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("alertDismissButtonTitle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alertDismissButtonTitle */
 
 
 // The message of the alert if a reason for disabling is provided
@@ -145,7 +190,7 @@ func (s_ SharingCollaborationModeRestriction) AlertDismissButtonTitle() objc.IOb
 func (s_ SharingCollaborationModeRestriction) AlertMessage() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("alertMessage"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alertMessage */
 
 
 // The URL that is opened when the user selects the recovery suggestion, if any
@@ -155,7 +200,7 @@ func (s_ SharingCollaborationModeRestriction) AlertMessage() objc.IObject /* cro
 func (s_ SharingCollaborationModeRestriction) AlertRecoverySuggestionButtonLaunchURL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](s_.ID, objc.Sel("alertRecoverySuggestionButtonLaunchURL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alertRecoverySuggestionButtonLaunchURL */
 
 
 // The label on the recovery suggestion button if it is provided
@@ -165,7 +210,7 @@ func (s_ SharingCollaborationModeRestriction) AlertRecoverySuggestionButtonLaunc
 func (s_ SharingCollaborationModeRestriction) AlertRecoverySuggestionButtonTitle() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("alertRecoverySuggestionButtonTitle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alertRecoverySuggestionButtonTitle */
 
 
 // The title of the alert if a reason for disabling is provided
@@ -175,7 +220,7 @@ func (s_ SharingCollaborationModeRestriction) AlertRecoverySuggestionButtonTitle
 func (s_ SharingCollaborationModeRestriction) AlertTitle() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("alertTitle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alertTitle */
 
 
 // The type of sharing which should be disabled
@@ -185,6 +230,11 @@ func (s_ SharingCollaborationModeRestriction) AlertTitle() objc.IObject /* cross
 func (s_ SharingCollaborationModeRestriction) DisabledMode() SharingCollaborationMode {
 	rv := objc.Send[SharingCollaborationMode](s_.ID, objc.Sel("disabledMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: disabledMode */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSSharingCollaborationModeRestriction */
 
 

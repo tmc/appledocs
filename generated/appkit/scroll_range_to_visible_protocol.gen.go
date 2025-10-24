@@ -15,3 +15,4 @@ var scrollRangeToVisibleProtocol *objc.Protocol
 func init() {
 	scrollRangeToVisibleProtocol = objc.GetProtocol("scrollRangeToVisible:")
 }
+

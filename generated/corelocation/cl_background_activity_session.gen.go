@@ -38,7 +38,6 @@ type IBackgroundActivitySession interface {
 //
 // Use to start a background activity session that allows a when-in-use authorized app to receive location updates or monitoring events.
 
-
 // An object that manages a visual indicator that keeps your app in use in the background, allowing it to receive updates or events.
 //
 // [Full Topic]
@@ -85,8 +84,6 @@ func NewBackgroundActivitySession() BackgroundActivitySession {
 	return getBackgroundActivitySessionClass().New()
 }
 
-
-
 // Creates a new background activity session.
 //
 // [Full Topic]
@@ -96,12 +93,9 @@ func (bc _BackgroundActivitySessionClass) BackgroundActivitySession() unsafe.Poi
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySession-4nl4y/backgroundActivitySessionWithQueue:handler:
 func (bc _BackgroundActivitySessionClass) BackgroundActivitySessionWithQueueHandler(queue unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("backgroundActivitySessionWithQueue:handler:"), queue, handler)
 	return rv
 }
-
-

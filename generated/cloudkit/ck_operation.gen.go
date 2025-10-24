@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CKOperation */
+
+
+/* debug [class_header]: Header for CKOperation */
 // The class instance for the [CKOperation] class.
 var (
 	CKOperationClass     _CKOperationClass
@@ -25,48 +30,30 @@ func getCKOperationClass() _CKOperationClass {
 type _CKOperationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CKOperation */
 // An interface definition for the [CKOperation] class.
 type ICKOperation interface {
-	IOperation
+	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CKOperation */
 	// properties:
-	Group() ICKOperationGroup
-	SetGroup(value ICKOperationGroup)
-	Configuration() ICKOperationConfiguration
-	SetConfiguration(value ICKOperationConfiguration)
-	IsLongLived() bool
-	SetIsLongLived(value bool)
-	LongLivedOperationWasPersistedBlock() unsafe.Pointer
-	SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer)
-	OperationID() unsafe.Pointer
-	SetOperationID(value unsafe.Pointer)
-	QualityOfService() unsafe.Pointer
-	SetQualityOfService(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CKOperation */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The abstract base class for all operations that execute in a database.
-//
-// All CloudKit operations descend from , which provides the infrastructure for executing tasks in one of your app’s containers. Don’t subclass or create instances of this class directly. Instead, create instances of one of its concrete subclasses. Use the properties of this class to configure the behavior of the operation before submitting it to a queue or executing it directly. CloudKit operations involve communicating with the iCloud servers to send and receive data. You can use the properties of this class to configure the behavior of those network requests to ensure the best performance for your app.
+/* debug [class_interface]: End interface */
 
 
-// The abstract base class for all operations that execute in a database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation
-type CKOperation struct {
-	Operation
-}
 
-// CKOperationFrom constructs a [CKOperation] from an unsafe.Pointer.
-//
-// The abstract base class for all operations that execute in a database.
-func CKOperationFrom(ptr unsafe.Pointer) CKOperation {
-	return CKOperation{
-		Operation: OperationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CKOperation */
 // Alloc allocates a new instance without initialization.
 func (cc _CKOperationClass) Alloc() CKOperation {
 	rv := objc.Send[CKOperation](objc.ID(cc.class), objc.Sel("alloc"))
@@ -74,7 +61,6 @@ func (cc _CKOperationClass) Alloc() CKOperation {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CKOperationClass) New() CKOperation {
 	rv := objc.Send[CKOperation](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,121 +83,53 @@ func (c_ CKOperation) Autorelease() CKOperation {
 func NewCKOperation() CKOperation {
 	return getCKOperationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The operation’s group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/group
-func (c_ CKOperation) Group() ICKOperationGroup {
-	rv := objc.Send[CKOperationGroup](c_.ID, objc.Sel("group"))
-	return rv
+/* debug [class_struct]: Struct for CKOperation */
+// A parent class referenced by other CloudKit classes.
+
+
+// A parent class referenced by other CloudKit classes. [Full Topic]
+type CKOperation struct {
+	objectivec.Object
 }
 
-
-// The operation’s group.
+// CKOperationFrom constructs a [CKOperation] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKOperation/group
-func (c_ CKOperation) SetGroup(value ICKOperationGroup) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setGroup:"), value)
+// A parent class referenced by other CloudKit classes.
+func CKOperationFrom(ptr unsafe.Pointer) CKOperation {
+	return CKOperation{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The operation’s configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.property
-func (c_ CKOperation) Configuration() ICKOperationConfiguration {
-	rv := objc.Send[CKOperationConfiguration](c_.ID, objc.Sel("configuration"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for CKOperation *//* debug [class_init_methods]: End init methods */
 
 
-// The operation’s configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/configuration-swift.property
-func (c_ CKOperation) SetConfiguration(value ICKOperationConfiguration) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConfiguration:"), value)
-}
+
+/* debug [class_methods]: Class methods for CKOperation */
+/* debug [class_methods]: End class methods */
 
 
-// A Boolean value that indicates whether the operation is long-lived.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
-func (c_ CKOperation) IsLongLived() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isLongLived"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for CKOperation */
+/* debug [class_properties_class]: End class properties */
 
 
-// A Boolean value that indicates whether the operation is long-lived.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/islonglived
-func (c_ CKOperation) SetIsLongLived(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLongLived:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for CKOperation */
+/* debug [instance_methods]: End instance methods */
 
 
-// The closure to execute when the server begins to store callbacks for the long-lived operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/longlivedoperationwaspersistedblock
-func (c_ CKOperation) LongLivedOperationWasPersistedBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("longLivedOperationWasPersistedBlock"))
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for CKOperation */
+/* debug [instance_properties]: End instance properties */
 
 
-// The closure to execute when the server begins to store callbacks for the long-lived operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/longlivedoperationwaspersistedblock
-func (c_ CKOperation) SetLongLivedOperationWasPersistedBlock(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLongLivedOperationWasPersistedBlock:"), value)
-}
-
-
-// A unique identifier for a long-lived operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/operationid-8auuc
-func (c_ CKOperation) OperationID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("operationID"))
-	return rv
-}
-
-
-// A unique identifier for a long-lived operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cloudkit/ckoperation/operationid-8auuc
-func (c_ CKOperation) SetOperationID(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOperationID:"), value)
-}
-
-
-// The relative amount of importance for granting system resources to the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (c_ CKOperation) QualityOfService() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("qualityOfService"))
-	return rv
-}
-
-
-// The relative amount of importance for granting system resources to the operation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Operation/qualityOfService
-func (c_ CKOperation) SetQualityOfService(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setQualityOfService:"), value)
-}
+/* debug [class.gen.go]: End class CKOperation */
 
 
 

@@ -33,8 +33,6 @@ type IMTRBaseClusterPM10ConcentrationMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterPM10ConcentrationMeasurement
 type MTRBaseClusterPM10ConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterPM10ConcentrationMeasurement) Autorelease() MTRBaseCluste
 func NewMTRBaseClusterPM10ConcentrationMeasurement() MTRBaseClusterPM10ConcentrationMeasurement {
 	return getMTRBaseClusterPM10ConcentrationMeasurementClass().New()
 }
-
-
-
-

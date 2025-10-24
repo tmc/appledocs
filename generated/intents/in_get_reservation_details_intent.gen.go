@@ -40,7 +40,6 @@ type IINGetReservationDetailsIntent interface {
 //
 // Create an object when the user makes a request to see the details about one or more reservations in your app. The app creates a new object containing the and object and donates it to the system.
 
-
 // A request for details about one or more reservations.
 //
 // [Full Topic]
@@ -89,8 +88,6 @@ func NewINGetReservationDetailsIntent() INGetReservationDetailsIntent {
 	return getINGetReservationDetailsIntentClass().New()
 }
 
-
-
 // A unique identifier for the array containing the reservation objects.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INGetReservationDetailsIntent) ReservationContainerReference() INSpeaka
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("reservationContainerReference"))
 	return rv
 }
-
 
 // An array of unique identifiers for previously created reservations.
 //
@@ -110,7 +106,6 @@ func (i_ INGetReservationDetailsIntent) ReservationItemReferences() INSpeakableS
 	return rv
 }
 
-
 // An array of unique identifiers for previously created reservations.
 //
 // [Full Topic]
@@ -118,6 +113,3 @@ func (i_ INGetReservationDetailsIntent) ReservationItemReferences() INSpeakableS
 func (i_ INGetReservationDetailsIntent) SetReservationItemReferences(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationItemReferences:"), value)
 }
-
-
-

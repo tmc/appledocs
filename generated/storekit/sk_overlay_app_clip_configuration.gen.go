@@ -7,10 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SKOverlayAppClipConfiguration */
+
+/* debug [class_header]: Header for SKOverlayAppClipConfiguration */
 // The class instance for the [OverlayAppClipConfiguration] class.
 var (
 	OverlayAppClipConfigurationClass     _OverlayAppClipConfigurationClass
@@ -28,39 +29,28 @@ type _OverlayAppClipConfigurationClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for OverlayAppClipConfiguration */
 // An interface definition for the [OverlayAppClipConfiguration] class.
 type IOverlayAppClipConfiguration interface {
 	IOverlayConfiguration
+
+	/* debug [class_interface_properties]: Properties for OverlayAppClipConfiguration */
 	// properties:
-	CampaignToken() objc.IObject /* cross-framework: NSString */
-	SetCampaignToken(value objc.IObject /* cross-framework: NSString */)
-	CustomProductPageIdentifier() objc.IObject /* cross-framework: NSString */
-	SetCustomProductPageIdentifier(value objc.IObject /* cross-framework: NSString */)
-	Configuration() objc.IObject /* cross-framework: OverlayConfiguration */
-	SetConfiguration(value objc.IObject /* cross-framework: OverlayConfiguration */)
+	Configuration() ISKOverlayConfiguration
+	SetConfiguration(value ISKOverlayConfiguration)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for OverlayAppClipConfiguration */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
+/* debug [class_interface]: End interface */
 
-
-// An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration
-type OverlayAppClipConfiguration struct {
-	OverlayConfiguration
-}
-
-// OverlayAppClipConfigurationFrom constructs a [OverlayAppClipConfiguration] from an unsafe.Pointer.
-//
-// An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
-func OverlayAppClipConfigurationFrom(ptr unsafe.Pointer) OverlayAppClipConfiguration {
-	return OverlayAppClipConfiguration{
-		OverlayConfiguration: OverlayConfigurationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for OverlayAppClipConfiguration */
 // Alloc allocates a new instance without initialization.
 func (oc _OverlayAppClipConfigurationClass) Alloc() OverlayAppClipConfiguration {
 	rv := objc.Send[OverlayAppClipConfiguration](objc.ID(oc.class), objc.Sel("alloc"))
@@ -68,7 +58,6 @@ func (oc _OverlayAppClipConfigurationClass) Alloc() OverlayAppClipConfiguration 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OverlayAppClipConfigurationClass) New() OverlayAppClipConfiguration {
 	rv := objc.Send[OverlayAppClipConfiguration](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,7 +81,31 @@ func NewOverlayAppClipConfiguration() OverlayAppClipConfiguration {
 	return getOverlayAppClipConfigurationClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for OverlayAppClipConfiguration */
+// An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
+
+// An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration
+type OverlayAppClipConfiguration struct {
+	OverlayConfiguration
+}
+
+// OverlayAppClipConfigurationFrom constructs a [OverlayAppClipConfiguration] from an unsafe.Pointer.
+//
+// An object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding full app.
+func OverlayAppClipConfigurationFrom(ptr unsafe.Pointer) OverlayAppClipConfiguration {
+	return OverlayAppClipConfiguration{
+		OverlayConfiguration: OverlayConfigurationFrom(ptr),
+	}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for OverlayAppClipConfiguration */
 
 // Creates an object that represents the attributes of an overlay you use to recommend an App Clip’s corresponding app.
 //
@@ -103,64 +116,38 @@ func NewOverlayAppClipConfigurationWithPosition(position OverlayPosition) Overla
 	rv := objc.Send[OverlayAppClipConfiguration](instance.ID, objc.Sel("initWithPosition:"), position)
 	rv.Autorelease()
 	return rv
-}
+} /* debug [class_init_methods/constructor]: NewOverlayAppClipConfigurationWithPosition */
 
+/* debug [class_init_methods]: End init methods */
 
+/* debug [class_methods]: Class methods for OverlayAppClipConfiguration */
+/* debug [class_methods]: End class methods */
 
-// A token you use to represent an ad campaign and measure its effectiveness.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appclipconfiguration/campaigntoken
-func (o_ OverlayAppClipConfiguration) CampaignToken() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("campaignToken"))
-	return rv
-}
+/* debug [class_properties_class]: Class properties for OverlayAppClipConfiguration */
+/* debug [class_properties_class]: End class properties */
 
+/* debug [instance_methods]: Instance methods for OverlayAppClipConfiguration */
+/* debug [instance_methods]: End instance methods */
 
-// A token you use to represent an ad campaign and measure its effectiveness.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appclipconfiguration/campaigntoken
-func (o_ OverlayAppClipConfiguration) SetCampaignToken(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), value)
-}
-
-
-// An identifier for a parent app’s custom product page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appclipconfiguration/customproductpageidentifier
-func (o_ OverlayAppClipConfiguration) CustomProductPageIdentifier() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("customProductPageIdentifier"))
-	return rv
-}
-
-
-// An identifier for a parent app’s custom product page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appclipconfiguration/customproductpageidentifier
-func (o_ OverlayAppClipConfiguration) SetCustomProductPageIdentifier(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), value)
-}
-
+/* debug [instance_properties]: Instance properties for OverlayAppClipConfiguration */
 
 // An overlay’s attributes; for example, its position on the screen.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppClipConfiguration) Configuration() objc.IObject /* cross-framework: OverlayConfiguration */ {
+func (o_ OverlayAppClipConfiguration) Configuration() ISKOverlayConfiguration {
 	rv := objc.Send[OverlayConfiguration](o_.ID, objc.Sel("configuration"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: configuration */
 
 // An overlay’s attributes; for example, its position on the screen.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppClipConfiguration) SetConfiguration(value objc.IObject /* cross-framework: OverlayConfiguration */) {
+func (o_ OverlayAppClipConfiguration) SetConfiguration(value ISKOverlayConfiguration) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
-}
+} /* debug [instance_properties/setter]: configuration */
 
+/* debug [instance_properties]: End instance properties */
 
+/* debug [class.gen.go]: End class SKOverlayAppClipConfiguration */

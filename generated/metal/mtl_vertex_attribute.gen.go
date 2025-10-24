@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTLVertexAttribute */
+
+
+/* debug [class_header]: Header for MTLVertexAttribute */
 // The class instance for the [VertexAttribute] class.
 var (
 	VertexAttributeClass     _VertexAttributeClass
@@ -26,42 +31,44 @@ func getVertexAttributeClass() _VertexAttributeClass {
 type _VertexAttributeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for VertexAttribute */
 // An interface definition for the [VertexAttribute] class.
 type IVertexAttribute interface {
 	objectivec.IObject
-	VertexAttributes() MTLVertexAttribute
-	SetVertexAttributes(value MTLVertexAttribute)
-	AttributeIndex() int
-	SetAttributeIndex(value int)
-	AttributeType() unsafe.Pointer
-	SetAttributeType(value unsafe.Pointer)
+	
+/* debug [class_interface_properties]: Properties for VertexAttribute */
+	// properties:
+	AttributeIndex() uint
+	AttributeType() DataType
+	Active() bool
+	PatchControlPointData() bool
+	PatchData() bool
+	Name() objc.IObject /* cross-framework: NSString */
+	VertexAttributes() IMTLVertexAttribute
+	SetVertexAttributes(value IMTLVertexAttribute)
 	IsActive() bool
 	SetIsActive(value bool)
 	IsPatchControlPointData() bool
 	SetIsPatchControlPointData(value bool)
 	IsPatchData() bool
 	SetIsPatchData(value bool)
-	Name() string
-	SetName(value string)
-}
+/* debug [class_interface_properties]: End properties */
 
-// An instance that represents an attribute of a vertex function.
-//
-// An instance represents an attribute for per-vertex input in a vertex function. You use vertex attribute instances to inspect the inputs of a vertex function by examining the property of the corresponding instance.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttribute
-type VertexAttribute struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for VertexAttribute */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// VertexAttributeFrom constructs a [VertexAttribute] from an unsafe.Pointer.
-//
-// An instance that represents an attribute of a vertex function.
-func VertexAttributeFrom(ptr unsafe.Pointer) VertexAttribute {
-	return VertexAttribute{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for VertexAttribute */
 // Alloc allocates a new instance without initialization.
 func (vc _VertexAttributeClass) Alloc() VertexAttribute {
 	rv := objc.Send[VertexAttribute](objc.ID(vc.class), objc.Sel("alloc"))
@@ -69,7 +76,6 @@ func (vc _VertexAttributeClass) Alloc() VertexAttribute {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _VertexAttributeClass) New() VertexAttribute {
 	rv := objc.Send[VertexAttribute](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,133 +98,194 @@ func (v_ VertexAttribute) Autorelease() VertexAttribute {
 func NewVertexAttribute() VertexAttribute {
 	return getVertexAttributeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-// An array that describes the vertex input attributes to a vertex function.
+
+/* debug [class_struct]: Struct for VertexAttribute */
+// An instance that represents an attribute of a vertex function.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunction/vertexattributes
-func (v_ VertexAttribute) VertexAttributes() MTLVertexAttribute {
-	rv := objc.Send[MTLVertexAttribute](v_.ID, objc.Sel("vertexAttributes"))
-	return rv
+// An instance represents an attribute for per-vertex input in a vertex function. You use vertex attribute instances to inspect the inputs of a vertex function by examining the property of the corresponding instance.
+
+
+// An instance that represents an attribute of a vertex function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttribute
+type VertexAttribute struct {
+	objectivec.Object
 }
 
-
-// SetVertexAttributes sets the value of the vertexAttributes property.
-// An array that describes the vertex input attributes to a vertex function.
-
+// VertexAttributeFrom constructs a [VertexAttribute] from an unsafe.Pointer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunction/vertexattributes
-func (v_ VertexAttribute) SetVertexAttributes(value MTLVertexAttribute) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setVertexAttributes:"), value)
+// An instance that represents an attribute of a vertex function.
+func VertexAttributeFrom(ptr unsafe.Pointer) VertexAttribute {
+	return VertexAttribute{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for VertexAttribute *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for VertexAttribute */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for VertexAttribute */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for VertexAttribute */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for VertexAttribute */
 
 // The index of the attribute, as declared in Metal shader source code.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/attributeindex
-func (v_ VertexAttribute) AttributeIndex() int {
-	rv := objc.Send[int](v_.ID, objc.Sel("attributeIndex"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttribute/attributeIndex
+func (v_ VertexAttribute) AttributeIndex() uint {
+	rv := objc.Send[uint](v_.ID, objc.Sel("attributeIndex"))
 	return rv
-}
+}/* debug [instance_properties/getter]: attributeIndex */
 
-
-// SetAttributeIndex sets the value of the attributeIndex property.
-// The index of the attribute, as declared in Metal shader source code.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/attributeindex
-func (v_ VertexAttribute) SetAttributeIndex(value int) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAttributeIndex:"), value)
-}
 
 // The data type for the attribute, as declared in Metal shader source code.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/attributetype
-func (v_ VertexAttribute) AttributeType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](v_.ID, objc.Sel("attributeType"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttribute/attributeType
+func (v_ VertexAttribute) AttributeType() DataType {
+	rv := objc.Send[DataType](v_.ID, objc.Sel("attributeType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: attributeType */
 
-
-// SetAttributeType sets the value of the attributeType property.
-// The data type for the attribute, as declared in Metal shader source code.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/attributetype
-func (v_ VertexAttribute) SetAttributeType(value unsafe.Pointer) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setAttributeType:"), value)
-}
 
 // A Boolean value that indicates whether this vertex attribute is active.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttribute/isActive
+func (v_ VertexAttribute) Active() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("active"))
+	return rv
+}/* debug [instance_properties/getter]: active */
+
+
+// A Boolean value that indicates whether this vertex attribute represents control point data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttribute/isPatchControlPointData
+func (v_ VertexAttribute) PatchControlPointData() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("patchControlPointData"))
+	return rv
+}/* debug [instance_properties/getter]: patchControlPointData */
+
+
+// A Boolean value that indicates whether this vertex attribute represents patch data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttribute/isPatchData
+func (v_ VertexAttribute) PatchData() bool {
+	rv := objc.Send[bool](v_.ID, objc.Sel("patchData"))
+	return rv
+}/* debug [instance_properties/getter]: patchData */
+
+
+// The name of the attribute.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLVertexAttribute/name
+func (v_ VertexAttribute) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](v_.ID, objc.Sel("name"))
+	return rv
+}/* debug [instance_properties/getter]: name */
+
+
+// An array that describes the vertex input attributes to a vertex function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunction/vertexattributes
+func (v_ VertexAttribute) VertexAttributes() IMTLVertexAttribute {
+	rv := objc.Send[VertexAttribute](v_.ID, objc.Sel("vertexAttributes"))
+	return rv
+}/* debug [instance_properties/getter]: vertexAttributes */
+
+
+// An array that describes the vertex input attributes to a vertex function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metal/mtlfunction/vertexattributes
+func (v_ VertexAttribute) SetVertexAttributes(value IMTLVertexAttribute) {
+	objc.Send[objc.ID](v_.ID, objc.Sel("setVertexAttributes:"), value)
+}/* debug [instance_properties/setter]: vertexAttributes */
+
+
+// A Boolean value that indicates whether this vertex attribute is active.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/isactive
 func (v_ VertexAttribute) IsActive() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isActive */
 
 
-// SetIsActive sets the value of the isActive property.
 // A Boolean value that indicates whether this vertex attribute is active.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/isactive
 func (v_ VertexAttribute) SetIsActive(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsActive:"), value)
-}
+}/* debug [instance_properties/setter]: isActive */
+
 
 // A Boolean value that indicates whether this vertex attribute represents control point data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchcontrolpointdata
 func (v_ VertexAttribute) IsPatchControlPointData() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isPatchControlPointData"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isPatchControlPointData */
 
 
-// SetIsPatchControlPointData sets the value of the isPatchControlPointData property.
 // A Boolean value that indicates whether this vertex attribute represents control point data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchcontrolpointdata
 func (v_ VertexAttribute) SetIsPatchControlPointData(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsPatchControlPointData:"), value)
-}
+}/* debug [instance_properties/setter]: isPatchControlPointData */
+
 
 // A Boolean value that indicates whether this vertex attribute represents patch data.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchdata
 func (v_ VertexAttribute) IsPatchData() bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isPatchData"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isPatchData */
 
 
-// SetIsPatchData sets the value of the isPatchData property.
 // A Boolean value that indicates whether this vertex attribute represents patch data.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/ispatchdata
 func (v_ VertexAttribute) SetIsPatchData(value bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setIsPatchData:"), value)
-}
+}/* debug [instance_properties/setter]: isPatchData */
 
-// The name of the attribute.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
-func (v_ VertexAttribute) Name() string {
-	rv := objc.Send[string](v_.ID, objc.Sel("name"))
-	return rv
-}
+/* debug [instance_properties]: End instance properties */
 
 
-// SetName sets the value of the name property.
-// The name of the attribute.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlvertexattribute/name
-func (v_ VertexAttribute) SetName(value string) {
-	objc.Send[objc.ID](v_.ID, objc.Sel("setName:"), objc.String(value))
-}
+/* debug [class.gen.go]: End class MTLVertexAttribute */
 
 
 

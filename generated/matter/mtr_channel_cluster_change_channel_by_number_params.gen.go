@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRChannelClusterChangeChannelByNumberParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChangeChannelByNumberParams
@@ -87,8 +85,6 @@ func NewMTRChannelClusterChangeChannelByNumberParams() MTRChannelClusterChangeCh
 	return getMTRChannelClusterChangeChannelByNumberParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
 func (m_ MTRChannelClusterChangeChannelByNumberParams) MajorNumber() objc.IObject /* cross-framework: NSNumber */ {
@@ -96,13 +92,11 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) MajorNumber() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/majornumber
 func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMajorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/minornumber
@@ -111,13 +105,11 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) MinorNumber() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/minornumber
 func (m_ MTRChannelClusterChangeChannelByNumberParams) SetMinorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinorNumber:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/serversideprocessingtimeout
@@ -126,13 +118,11 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) ServerSideProcessingTimeo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/serversideprocessingtimeout
 func (m_ MTRChannelClusterChangeChannelByNumberParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
@@ -141,12 +131,8 @@ func (m_ MTRChannelClusterChangeChannelByNumberParams) TimedInvokeTimeoutMs() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchangechannelbynumberparams/timedinvoketimeoutms
 func (m_ MTRChannelClusterChangeChannelByNumberParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

@@ -20,3 +20,4 @@ var ResourceStateCommandEncoderProtocol *objc.Protocol
 func init() {
 	ResourceStateCommandEncoderProtocol = objc.GetProtocol("MTLResourceStateCommandEncoder")
 }
+

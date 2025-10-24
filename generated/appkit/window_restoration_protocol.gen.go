@@ -15,3 +15,4 @@ var WindowRestorationProtocol *objc.Protocol
 func init() {
 	WindowRestorationProtocol = objc.GetProtocol("NSWindowRestoration")
 }
+

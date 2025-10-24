@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNImageNode */
+
+
+/* debug [class_header]: Header for MPSNNImageNode */
 // The class instance for the [ImageNode] class.
 var (
 	ImageNodeClass     _ImageNodeClass
@@ -26,44 +30,42 @@ func getImageNodeClass() _ImageNodeClass {
 type _ImageNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ImageNode */
 // An interface definition for the [ImageNode] class.
 type IImageNode interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ImageNode */
 	// properties:
-	ExportFromGraph() bool
-	SetExportFromGraph(value bool)
-	Format() ImageFeatureChannelFormat /* not a class type */
-	SetFormat(value ImageFeatureChannelFormat /* not a class type */)
-	Handle() Handle /* not a class type */
-	SetHandle(value Handle /* not a class type */)
-	ImageAllocator() ImageAllocator /* not a class type */
-	SetImageAllocator(value ImageAllocator /* not a class type */)
-	StopGradient() bool
-	SetStopGradient(value bool)
-	SynchronizeResource() bool
-	SetSynchronizeResource(value bool)
+	Handle() Handle get set /* not a class type */
+	SetHandle(value Handle get set /* not a class type */)
+	ExportFromGraph() objectivec.IObject
+	SetExportFromGraph(value objectivec.IObject)
+	ImageAllocator() ImageAllocator get set /* not a class type */
+	SetImageAllocator(value ImageAllocator get set /* not a class type */)
+	Format() ImageFeatureChannelFormat get set /* not a class type */
+	SetFormat(value ImageFeatureChannelFormat get set /* not a class type */)
+	SynchronizeResource() objectivec.IObject
+	SetSynchronizeResource(value objectivec.IObject)
+	StopGradient() objectivec.IObject
+	SetStopGradient(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ImageNode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A placeholder node denoting the position of a neural network image in a graph.
 
 
-// A placeholder node denoting the position of a neural network image in a graph.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNImageNode
-type ImageNode struct {
-	objectivec.Object
-}
-
-// ImageNodeFrom constructs a [ImageNode] from an unsafe.Pointer.
-//
-// A placeholder node denoting the position of a neural network image in a graph.
-func ImageNodeFrom(ptr unsafe.Pointer) ImageNode {
-	return ImageNode{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ImageNode */
 // Alloc allocates a new instance without initialization.
 func (ic _ImageNodeClass) Alloc() ImageNode {
 	rv := objc.Send[ImageNode](objc.ID(ic.class), objc.Sel("alloc"))
@@ -71,7 +73,6 @@ func (ic _ImageNodeClass) Alloc() ImageNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ImageNodeClass) New() ImageNode {
 	rv := objc.Send[ImageNode](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,97 +95,179 @@ func (i_ ImageNode) Autorelease() ImageNode {
 func NewImageNode() ImageNode {
 	return getImageNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ImageNode */
+// A placeholder node denoting the position of a neural network image in a graph.
+
+
+// A placeholder node denoting the position of a neural network image in a graph.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNImageNode
+type ImageNode struct {
+	objectivec.Object
+}
+
+// ImageNodeFrom constructs a [ImageNode] from an unsafe.Pointer.
+//
+// A placeholder node denoting the position of a neural network image in a graph.
+func ImageNodeFrom(ptr unsafe.Pointer) ImageNode {
+	return ImageNode{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ImageNode */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
-func (i_ ImageNode) ExportFromGraph() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("exportFromGraph"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866483-initwithhandle
+func NewImageNodeWithHandle(handle unsafe.Pointer) ImageNode {
+	instance := getImageNodeClass().Alloc()
+	rv := objc.Send[ImageNode](instance.ID, objc.Sel("initWithHandle:"), handle)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewImageNodeWithHandle */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ImageNode */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866440-exportednode
+func (ic _ImageNodeClass) ExportedNode() {
+	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("exportedNode"))
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ExportedNode) */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/exportfromgraph
-func (i_ ImageNode) SetExportFromGraph(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setExportFromGraph:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
-func (i_ ImageNode) Format() ImageFeatureChannelFormat /* not a class type */ {
-	rv := objc.Send[ImageFeatureChannelFormat](i_.ID, objc.Sel("format"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866440-exportednodewithhandle
+func (ic _ImageNodeClass) ExportedNodeWithHandle(handle unsafe.Pointer) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(ic.class), objc.Sel("exportedNodeWithHandle:"), handle)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ExportedNodeWithHandle) */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/format
-func (i_ ImageNode) SetFormat(value ImageFeatureChannelFormat /* not a class type */) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setFormat:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/handle
-func (i_ ImageNode) Handle() Handle /* not a class type */ {
-	rv := objc.Send[Handle](i_.ID, objc.Sel("handle"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866447-nodewithhandle
+func (ic _ImageNodeClass) NodeWithHandle(handle unsafe.Pointer) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(ic.class), objc.Sel("nodeWithHandle:"), handle)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithHandle) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ImageNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ImageNode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ImageNode */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866406-handle
+func (i_ ImageNode) Handle() Handle get set /* not a class type */ {
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("handle"))
+	return rv
+}/* debug [instance_properties/getter]: handle */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/handle
-func (i_ ImageNode) SetHandle(value Handle /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866406-handle
+func (i_ ImageNode) SetHandle(value Handle get set /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), value)
-}
+}/* debug [instance_properties/setter]: handle */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
-func (i_ ImageNode) ImageAllocator() ImageAllocator /* not a class type */ {
-	rv := objc.Send[ImageAllocator](i_.ID, objc.Sel("imageAllocator"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866478-exportfromgraph
+func (i_ ImageNode) ExportFromGraph() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("exportFromGraph"))
 	return rv
-}
+}/* debug [instance_properties/getter]: exportFromGraph */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/imageallocator
-func (i_ ImageNode) SetImageAllocator(value ImageAllocator /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866478-exportfromgraph
+func (i_ ImageNode) SetExportFromGraph(value objectivec.IObject) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setExportFromGraph:"), value)
+}/* debug [instance_properties/setter]: exportFromGraph */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866490-imageallocator
+func (i_ ImageNode) ImageAllocator() ImageAllocator get set /* not a class type */ {
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("imageAllocator"))
+	return rv
+}/* debug [instance_properties/getter]: imageAllocator */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866490-imageallocator
+func (i_ ImageNode) SetImageAllocator(value ImageAllocator get set /* not a class type */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageAllocator:"), value)
-}
+}/* debug [instance_properties/setter]: imageAllocator */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/stopgradient
-func (i_ ImageNode) StopGradient() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("stopGradient"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866498-format
+func (i_ ImageNode) Format() ImageFeatureChannelFormat get set /* not a class type */ {
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("format"))
 	return rv
-}
+}/* debug [instance_properties/getter]: format */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/stopgradient
-func (i_ ImageNode) SetStopGradient(value bool) {
-	objc.Send[objc.ID](i_.ID, objc.Sel("setStopGradient:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2866498-format
+func (i_ ImageNode) SetFormat(value ImageFeatureChannelFormat get set /* not a class type */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setFormat:"), value)
+}/* debug [instance_properties/setter]: format */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/synchronizeresource
-func (i_ ImageNode) SynchronizeResource() bool {
-	rv := objc.Send[bool](i_.ID, objc.Sel("synchronizeResource"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2942638-synchronizeresource
+func (i_ ImageNode) SynchronizeResource() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("synchronizeResource"))
 	return rv
-}
+}/* debug [instance_properties/getter]: synchronizeResource */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/synchronizeresource
-func (i_ ImageNode) SetSynchronizeResource(value bool) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/2942638-synchronizeresource
+func (i_ ImageNode) SetSynchronizeResource(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSynchronizeResource:"), value)
-}
+}/* debug [instance_properties/setter]: synchronizeResource */
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/3020689-stopgradient
+func (i_ ImageNode) StopGradient() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("stopGradient"))
+	return rv
+}/* debug [instance_properties/getter]: stopGradient */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnimagenode/3020689-stopgradient
+func (i_ ImageNode) SetStopGradient(value objectivec.IObject) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setStopGradient:"), value)
+}/* debug [instance_properties/setter]: stopGradient */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNNImageNode */
 
 

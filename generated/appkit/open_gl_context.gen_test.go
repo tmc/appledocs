@@ -13,7 +13,7 @@ var _ = appkit.NewOpenGLContext
 // Initializes and returns an OpenGL context object using an existing CGL context.
 func ExampleNewOpenGLContextWithCGLContextObj() {
 	_ = appkit.NewOpenGLContextWithCGLContextObj(
-		appkit.LContextObj /* not a class type */{}, // context LContextObj /* not a class type */
+		appkit.LContextObj /* not a class type */ {}, // context LContextObj /* not a class type */
 	)
 	// Output:
 }

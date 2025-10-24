@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRMessagesClusterMessageCompleteEvent */
+
+
+/* debug [class_header]: Header for MTRMessagesClusterMessageCompleteEvent */
 // The class instance for the [MTRMessagesClusterMessageCompleteEvent] class.
 var (
 	MTRMessagesClusterMessageCompleteEventClass     _MTRMessagesClusterMessageCompleteEventClass
@@ -27,35 +31,38 @@ func getMTRMessagesClusterMessageCompleteEventClass() _MTRMessagesClusterMessage
 type _MTRMessagesClusterMessageCompleteEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRMessagesClusterMessageCompleteEvent */
 // An interface definition for the [MTRMessagesClusterMessageCompleteEvent] class.
 type IMTRMessagesClusterMessageCompleteEvent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRMessagesClusterMessageCompleteEvent */
 	// properties:
-	FutureMessagesPreference() objc.IObject /* cross-framework: NSNumber */
-	SetFutureMessagesPreference(value objc.IObject /* cross-framework: NSNumber */)
-	MessageID() objc.IObject /* cross-framework: NSData */
-	SetMessageID(value objc.IObject /* cross-framework: NSData */)
-	Reply() objc.IObject /* cross-framework: NSString */
-	SetReply(value objc.IObject /* cross-framework: NSString */)
 	ResponseID() objc.IObject /* cross-framework: NSNumber */
 	SetResponseID(value objc.IObject /* cross-framework: NSNumber */)
+	FutureMessagesPreference() objc.IObject /* cross-framework: NSNumber */
+	SetFutureMessagesPreference(value objc.IObject /* cross-framework: NSNumber */)
+	MessageID() foundation.Data
+	SetMessageID(value foundation.Data)
+	Reply() objc.IObject /* cross-framework: NSString */
+	SetReply(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRMessagesClusterMessageCompleteEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent
-type MTRMessagesClusterMessageCompleteEvent struct {
-	objectivec.Object
-}
-
-// MTRMessagesClusterMessageCompleteEventFrom constructs a [MTRMessagesClusterMessageCompleteEvent] from an unsafe.Pointer.
-func MTRMessagesClusterMessageCompleteEventFrom(ptr unsafe.Pointer) MTRMessagesClusterMessageCompleteEvent {
-	return MTRMessagesClusterMessageCompleteEvent{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRMessagesClusterMessageCompleteEvent */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRMessagesClusterMessageCompleteEventClass) Alloc() MTRMessagesClusterMessageCompleteEvent {
 	rv := objc.Send[MTRMessagesClusterMessageCompleteEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -63,7 +70,6 @@ func (mc _MTRMessagesClusterMessageCompleteEventClass) Alloc() MTRMessagesCluste
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRMessagesClusterMessageCompleteEventClass) New() MTRMessagesClusterMessageCompleteEvent {
 	rv := objc.Send[MTRMessagesClusterMessageCompleteEvent](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,67 +92,111 @@ func (m_ MTRMessagesClusterMessageCompleteEvent) Autorelease() MTRMessagesCluste
 func NewMTRMessagesClusterMessageCompleteEvent() MTRMessagesClusterMessageCompleteEvent {
 	return getMTRMessagesClusterMessageCompleteEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/futureMessagesPreference
-func (m_ MTRMessagesClusterMessageCompleteEvent) FutureMessagesPreference() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("futureMessagesPreference"))
-	return rv
-}
+/* debug [class_struct]: Struct for MTRMessagesClusterMessageCompleteEvent */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/futureMessagesPreference
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetFutureMessagesPreference(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFutureMessagesPreference:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent
+type MTRMessagesClusterMessageCompleteEvent struct {
+	objectivec.Object
 }
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/messageID
-func (m_ MTRMessagesClusterMessageCompleteEvent) MessageID() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("messageID"))
-	return rv
+// MTRMessagesClusterMessageCompleteEventFrom constructs a [MTRMessagesClusterMessageCompleteEvent] from an unsafe.Pointer.
+func MTRMessagesClusterMessageCompleteEventFrom(ptr unsafe.Pointer) MTRMessagesClusterMessageCompleteEvent {
+	return MTRMessagesClusterMessageCompleteEvent{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/messageID
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetMessageID(value objc.IObject /* cross-framework: NSData */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
-}
+
+/* debug [class_init_methods]: Init methods for MTRMessagesClusterMessageCompleteEvent *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
-func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("reply"))
-	return rv
-}
+
+/* debug [class_methods]: Class methods for MTRMessagesClusterMessageCompleteEvent */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/reply
-func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), value)
-}
 
+/* debug [class_properties_class]: Class properties for MTRMessagesClusterMessageCompleteEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRMessagesClusterMessageCompleteEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRMessagesClusterMessageCompleteEvent */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/responseID
 func (m_ MTRMessagesClusterMessageCompleteEvent) ResponseID() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("responseID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: responseID */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMessagesClusterMessageCompleteEvent/responseID
 func (m_ MTRMessagesClusterMessageCompleteEvent) SetResponseID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResponseID:"), value)
-}
+}/* debug [instance_properties/setter]: responseID */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagecompleteevent/futuremessagespreference
+func (m_ MTRMessagesClusterMessageCompleteEvent) FutureMessagesPreference() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("futureMessagesPreference"))
+	return rv
+}/* debug [instance_properties/getter]: futureMessagesPreference */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagecompleteevent/futuremessagespreference
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetFutureMessagesPreference(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setFutureMessagesPreference:"), value)
+}/* debug [instance_properties/setter]: futureMessagesPreference */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagecompleteevent/messageid
+func (m_ MTRMessagesClusterMessageCompleteEvent) MessageID() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("messageID"))
+	return rv
+}/* debug [instance_properties/getter]: messageID */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagecompleteevent/messageid
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetMessageID(value foundation.Data) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageID:"), value)
+}/* debug [instance_properties/setter]: messageID */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagecompleteevent/reply
+func (m_ MTRMessagesClusterMessageCompleteEvent) Reply() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("reply"))
+	return rv
+}/* debug [instance_properties/getter]: reply */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmessagesclustermessagecompleteevent/reply
+func (m_ MTRMessagesClusterMessageCompleteEvent) SetReply(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setReply:"), value)
+}/* debug [instance_properties/setter]: reply */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRMessagesClusterMessageCompleteEvent */
 
 
 

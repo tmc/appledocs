@@ -15,3 +15,4 @@ var imageForBoundsProtocol *objc.Protocol
 func init() {
 	imageForBoundsProtocol = objc.GetProtocol("imageForBounds:")
 }
+

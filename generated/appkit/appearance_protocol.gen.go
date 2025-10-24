@@ -15,3 +15,4 @@ var appearanceProtocol *objc.Protocol
 func init() {
 	appearanceProtocol = objc.GetProtocol("appearance")
 }
+

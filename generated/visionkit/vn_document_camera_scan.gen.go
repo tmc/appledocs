@@ -7,10 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VNDocumentCameraScan */
+
+/* debug [class_header]: Header for VNDocumentCameraScan */
 // The class instance for the [DocumentCameraScan] class.
 var (
 	DocumentCameraScanClass     _DocumentCameraScanClass
@@ -28,33 +30,26 @@ type _DocumentCameraScanClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for DocumentCameraScan */
 // An interface definition for the [DocumentCameraScan] class.
 type IDocumentCameraScan interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for DocumentCameraScan */
 	// properties:
-	PageCount() int
-	SetPageCount(value int)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for DocumentCameraScan */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// A single document scanned in the document camera.
+/* debug [class_interface]: End interface */
 
-
-// A single document scanned in the document camera.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan
-type DocumentCameraScan struct {
-	objectivec.Object
-}
-
-// DocumentCameraScanFrom constructs a [DocumentCameraScan] from an unsafe.Pointer.
-//
-// A single document scanned in the document camera.
-func DocumentCameraScanFrom(ptr unsafe.Pointer) DocumentCameraScan {
-	return DocumentCameraScan{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for DocumentCameraScan */
 // Alloc allocates a new instance without initialization.
 func (dc _DocumentCameraScanClass) Alloc() DocumentCameraScan {
 	rv := objc.Send[DocumentCameraScan](objc.ID(dc.class), objc.Sel("alloc"))
@@ -62,7 +57,6 @@ func (dc _DocumentCameraScanClass) Alloc() DocumentCameraScan {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DocumentCameraScanClass) New() DocumentCameraScan {
 	rv := objc.Send[DocumentCameraScan](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,24 +80,40 @@ func NewDocumentCameraScan() DocumentCameraScan {
 	return getDocumentCameraScanClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for DocumentCameraScan */
+// A single document scanned in the document camera.
 
-// The number of pages in the scanned document.
+// A single document scanned in the document camera.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcamerascan/pagecount
-func (d_ DocumentCameraScan) PageCount() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("pageCount"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/VisionKit/VNDocumentCameraScan
+type DocumentCameraScan struct {
+	objectivec.Object
 }
 
-
-// The number of pages in the scanned document.
+// DocumentCameraScanFrom constructs a [DocumentCameraScan] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/visionkit/vndocumentcamerascan/pagecount
-func (d_ DocumentCameraScan) SetPageCount(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setPageCount:"), value)
+// A single document scanned in the document camera.
+func DocumentCameraScanFrom(ptr unsafe.Pointer) DocumentCameraScan {
+	return DocumentCameraScan{objectivec.Object{objc.ID(ptr)}}
 }
 
+/* debug [class_struct]: End struct */
 
+/* debug [class_init_methods]: Init methods for DocumentCameraScan */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for DocumentCameraScan */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for DocumentCameraScan */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for DocumentCameraScan */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for DocumentCameraScan */
+/* debug [instance_properties]: End instance properties */
+
+/* debug [class.gen.go]: End class VNDocumentCameraScan */

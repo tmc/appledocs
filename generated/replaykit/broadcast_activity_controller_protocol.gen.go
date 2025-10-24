@@ -15,3 +15,4 @@ var broadcastActivityControllerProtocol *objc.Protocol
 func init() {
 	broadcastActivityControllerProtocol = objc.GetProtocol("broadcastActivityController:")
 }
+

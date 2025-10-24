@@ -10,8 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	ImagePropertyOrientation = _undefined // referenced in Photos
-	PHAssetResourceType = _undefined // referenced in Photos
-	PlaybackStyle = _undefined // referenced in Photos
+	PHAssetResourceType      = _undefined // referenced in Photos
+	PlaybackStyle            = _undefined // referenced in Photos
 )
-
-

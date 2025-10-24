@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRContentLauncherClusterStyleInformation] class.
@@ -37,8 +37,6 @@ type IMTRContentLauncherClusterStyleInformation interface {
 	SetSize(value IMTRContentLauncherClusterDimensionStruct)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterStyleInformation
@@ -84,8 +82,6 @@ func NewMTRContentLauncherClusterStyleInformation() MTRContentLauncherClusterSty
 	return getMTRContentLauncherClusterStyleInformationClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/color
 func (m_ MTRContentLauncherClusterStyleInformation) Color() objc.IObject /* cross-framework: NSString */ {
@@ -93,13 +89,11 @@ func (m_ MTRContentLauncherClusterStyleInformation) Color() objc.IObject /* cros
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/color
 func (m_ MTRContentLauncherClusterStyleInformation) SetColor(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/size
@@ -108,12 +102,8 @@ func (m_ MTRContentLauncherClusterStyleInformation) Size() IMTRContentLauncherCl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformation/size
 func (m_ MTRContentLauncherClusterStyleInformation) SetSize(value IMTRContentLauncherClusterDimensionStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)
 }
-
-
-

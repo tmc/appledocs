@@ -22,8 +22,8 @@ type NSBatchDeleteRequestResultType uint
 
 const (
 	NSBatchDeleteResultTypeStatusOnly NSBatchDeleteRequestResultType = 0
-	NSBatchDeleteResultTypeObjectIDs NSBatchDeleteRequestResultType = 1
-	NSBatchDeleteResultTypeCount NSBatchDeleteRequestResultType = 2
+	NSBatchDeleteResultTypeObjectIDs  NSBatchDeleteRequestResultType = 1
+	NSBatchDeleteResultTypeCount      NSBatchDeleteRequestResultType = 2
 )
 
 // NSBatchInsertRequestResultType - Result types for a batch-insertion request.
@@ -33,8 +33,8 @@ type NSBatchInsertRequestResultType uint
 
 const (
 	NSBatchInsertRequestResultTypeStatusOnly NSBatchInsertRequestResultType = 0
-	NSBatchInsertRequestResultTypeObjectIDs NSBatchInsertRequestResultType = 1
-	NSBatchInsertRequestResultTypeCount NSBatchInsertRequestResultType = 2
+	NSBatchInsertRequestResultTypeObjectIDs  NSBatchInsertRequestResultType = 1
+	NSBatchInsertRequestResultTypeCount      NSBatchInsertRequestResultType = 2
 )
 
 // NSEntityMappingType - The types for mapping an entity between a source model and a destination model.
@@ -119,7 +119,7 @@ const (
 type NSPersistentCloudKitContainerEventResultType uint
 
 const (
-	NSPersistentCloudKitContainerEventResultTypeEvents NSPersistentCloudKitContainerEventResultType = 0
+	NSPersistentCloudKitContainerEventResultTypeEvents      NSPersistentCloudKitContainerEventResultType = 0
 	NSPersistentCloudKitContainerEventResultTypeCountEvents NSPersistentCloudKitContainerEventResultType = 1
 )
 
@@ -149,11 +149,11 @@ const (
 type NSPersistentHistoryResultType uint
 
 const (
-	NSPersistentHistoryResultTypeStatusOnly NSPersistentHistoryResultType = 0
-	NSPersistentHistoryResultTypeObjectIDs NSPersistentHistoryResultType = 1
-	NSPersistentHistoryResultTypeCount NSPersistentHistoryResultType = 2
-	NSPersistentHistoryResultTypeTransactionsOnly NSPersistentHistoryResultType = 3
-	NSPersistentHistoryResultTypeChangesOnly NSPersistentHistoryResultType = 4
+	NSPersistentHistoryResultTypeStatusOnly             NSPersistentHistoryResultType = 0
+	NSPersistentHistoryResultTypeObjectIDs              NSPersistentHistoryResultType = 1
+	NSPersistentHistoryResultTypeCount                  NSPersistentHistoryResultType = 2
+	NSPersistentHistoryResultTypeTransactionsOnly       NSPersistentHistoryResultType = 3
+	NSPersistentHistoryResultTypeChangesOnly            NSPersistentHistoryResultType = 4
 	NSPersistentHistoryResultTypeTransactionsAndChanges NSPersistentHistoryResultType = 5
 )
 
@@ -163,11 +163,9 @@ const (
 type NSPersistentStoreRequestType uint
 
 const (
-	NSFetchRequestType NSPersistentStoreRequestType = 1
-	NSSaveRequestType NSPersistentStoreRequestType = 2
+	NSFetchRequestType       NSPersistentStoreRequestType = 1
+	NSSaveRequestType        NSPersistentStoreRequestType = 2
 	NSBatchInsertRequestType NSPersistentStoreRequestType = 3
 	NSBatchUpdateRequestType NSPersistentStoreRequestType = 4
 	NSBatchDeleteRequestType NSPersistentStoreRequestType = 5
 )
-
-

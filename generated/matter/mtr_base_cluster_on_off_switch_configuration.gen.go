@@ -33,8 +33,6 @@ type IMTRBaseClusterOnOffSwitchConfiguration interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOnOffSwitchConfiguration
 type MTRBaseClusterOnOffSwitchConfiguration struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterOnOffSwitchConfiguration) Autorelease() MTRBaseClusterOnO
 func NewMTRBaseClusterOnOffSwitchConfiguration() MTRBaseClusterOnOffSwitchConfiguration {
 	return getMTRBaseClusterOnOffSwitchConfigurationClass().New()
 }
-
-
-
-

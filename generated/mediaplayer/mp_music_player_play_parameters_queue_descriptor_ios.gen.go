@@ -35,11 +35,11 @@ func (m_ MusicPlayerPlayParametersQueueDescriptor) SetStartTimeForItemWithPlayPa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParametersQueueDescriptor/playParametersQueue
-func (m_ MusicPlayerPlayParametersQueueDescriptor) PlayParametersQueue() []IMusicPlayerPlayParameters {
+func (m_ MusicPlayerPlayParametersQueueDescriptor) PlayParametersQueue() []MusicPlayerPlayParameters {
 	rv := objc.Send[[]MusicPlayerPlayParameters](m_.ID, objc.Sel("playParametersQueue"))
 	return rv
 }
-func (m_ MusicPlayerPlayParametersQueueDescriptor) SetPlayParametersQueue(value []IMusicPlayerPlayParameters) {
+func (m_ MusicPlayerPlayParametersQueueDescriptor) SetPlayParametersQueue(value []MusicPlayerPlayParameters) {
 	m_.ID.Send(objc.RegisterName("setPlayParametersQueue:"), value)
 }
 

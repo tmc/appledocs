@@ -20,3 +20,4 @@ var mapViewWillStartRenderingMapProtocol *objc.Protocol
 func init() {
 	mapViewWillStartRenderingMapProtocol = objc.GetProtocol("mapViewWillStartRenderingMap:")
 }
+

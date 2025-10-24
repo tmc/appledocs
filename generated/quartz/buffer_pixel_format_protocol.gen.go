@@ -15,3 +15,4 @@ var bufferPixelFormatProtocol *objc.Protocol
 func init() {
 	bufferPixelFormatProtocol = objc.GetProtocol("bufferPixelFormat")
 }
+

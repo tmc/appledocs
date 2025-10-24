@@ -9,6 +9,9 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
+
+/* debug [class_header]: Header for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
 // The class instance for the [VZVirtioTraditionalMemoryBalloonDeviceConfiguration] class.
 var (
 	VZVirtioTraditionalMemoryBalloonDeviceConfigurationClass     _VZVirtioTraditionalMemoryBalloonDeviceConfigurationClass
@@ -26,37 +29,28 @@ type _VZVirtioTraditionalMemoryBalloonDeviceConfigurationClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
 // An interface definition for the [VZVirtioTraditionalMemoryBalloonDeviceConfiguration] class.
 type IVZVirtioTraditionalMemoryBalloonDeviceConfiguration interface {
 	IVZMemoryBalloonDeviceConfiguration
+
+	/* debug [class_interface_properties]: Properties for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
 	// properties:
 	MemoryBalloonDevices() IVZMemoryBalloonDevice
 	SetMemoryBalloonDevices(value IVZMemoryBalloonDevice)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// A configuration object that provides a way to reclaim memory from the guest system.
-//
-// Create a object when you want the ability to reclaim memory from the guest operating system. After creating this object, add it to the property of your object. In response, the virtual machine provides a object, which you use to initiate memory-related requests with the guest system. Access that object from the property of .
+/* debug [class_interface]: End interface */
 
-
-// A configuration object that provides a way to reclaim memory from the guest system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDeviceConfiguration
-type VZVirtioTraditionalMemoryBalloonDeviceConfiguration struct {
-	VZMemoryBalloonDeviceConfiguration
-}
-
-// VZVirtioTraditionalMemoryBalloonDeviceConfigurationFrom constructs a [VZVirtioTraditionalMemoryBalloonDeviceConfiguration] from an unsafe.Pointer.
-//
-// A configuration object that provides a way to reclaim memory from the guest system.
-func VZVirtioTraditionalMemoryBalloonDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
-	return VZVirtioTraditionalMemoryBalloonDeviceConfiguration{
-		VZMemoryBalloonDeviceConfiguration: VZMemoryBalloonDeviceConfigurationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
 // Alloc allocates a new instance without initialization.
 func (vc _VZVirtioTraditionalMemoryBalloonDeviceConfigurationClass) Alloc() VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
 	rv := objc.Send[VZVirtioTraditionalMemoryBalloonDeviceConfiguration](objc.ID(vc.class), objc.Sel("alloc"))
@@ -64,7 +58,6 @@ func (vc _VZVirtioTraditionalMemoryBalloonDeviceConfigurationClass) Alloc() VZVi
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _VZVirtioTraditionalMemoryBalloonDeviceConfigurationClass) New() VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
 	rv := objc.Send[VZVirtioTraditionalMemoryBalloonDeviceConfiguration](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +81,45 @@ func NewVZVirtioTraditionalMemoryBalloonDeviceConfiguration() VZVirtioTraditiona
 	return getVZVirtioTraditionalMemoryBalloonDeviceConfigurationClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
+// A configuration object that provides a way to reclaim memory from the guest system.
+//
+// Create a object when you want the ability to reclaim memory from the guest operating system. After creating this object, add it to the property of your object. In response, the virtual machine provides a object, which you use to initiate memory-related requests with the guest system. Access that object from the property of .
 
+// A configuration object that provides a way to reclaim memory from the guest system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioTraditionalMemoryBalloonDeviceConfiguration
+type VZVirtioTraditionalMemoryBalloonDeviceConfiguration struct {
+	VZMemoryBalloonDeviceConfiguration
+}
+
+// VZVirtioTraditionalMemoryBalloonDeviceConfigurationFrom constructs a [VZVirtioTraditionalMemoryBalloonDeviceConfiguration] from an unsafe.Pointer.
+//
+// A configuration object that provides a way to reclaim memory from the guest system.
+func VZVirtioTraditionalMemoryBalloonDeviceConfigurationFrom(ptr unsafe.Pointer) VZVirtioTraditionalMemoryBalloonDeviceConfiguration {
+	return VZVirtioTraditionalMemoryBalloonDeviceConfiguration{
+		VZMemoryBalloonDeviceConfiguration: VZMemoryBalloonDeviceConfigurationFrom(ptr),
+	}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
+/* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for VZVirtioTraditionalMemoryBalloonDeviceConfiguration */
 
 // The array of devices that you use to adjust the amount of memory available to the guest system.
 //
@@ -98,8 +128,7 @@ func NewVZVirtioTraditionalMemoryBalloonDeviceConfiguration() VZVirtioTraditiona
 func (v_ VZVirtioTraditionalMemoryBalloonDeviceConfiguration) MemoryBalloonDevices() IVZMemoryBalloonDevice {
 	rv := objc.Send[VZMemoryBalloonDevice](v_.ID, objc.Sel("memoryBalloonDevices"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: memoryBalloonDevices */
 
 // The array of devices that you use to adjust the amount of memory available to the guest system.
 //
@@ -107,6 +136,8 @@ func (v_ VZVirtioTraditionalMemoryBalloonDeviceConfiguration) MemoryBalloonDevic
 // [Full Topic]: https://developer.apple.com/documentation/virtualization/vzvirtualmachine/memoryballoondevices
 func (v_ VZVirtioTraditionalMemoryBalloonDeviceConfiguration) SetMemoryBalloonDevices(value IVZMemoryBalloonDevice) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMemoryBalloonDevices:"), value)
-}
+} /* debug [instance_properties/setter]: memoryBalloonDevices */
 
+/* debug [instance_properties]: End instance properties */
 
+/* debug [class.gen.go]: End class VZVirtioTraditionalMemoryBalloonDeviceConfiguration */

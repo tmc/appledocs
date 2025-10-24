@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSDistributedLock */
+
+
+/* debug [class_header]: Header for NSDistributedLock */
 // The class instance for the [DistributedLock] class.
 var (
 	DistributedLockClass     _DistributedLockClass
@@ -26,38 +30,34 @@ func getDistributedLockClass() _DistributedLockClass {
 type _DistributedLockClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DistributedLock */
 // An interface definition for the [DistributedLock] class.
 type IDistributedLock interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for DistributedLock */
 	// properties:
 	LockDate() IDate
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DistributedLock */
 	// methods:
 	BreakLock()
 	TryLock() bool
 	Unlock()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
-//
-// The lock is implemented by an entry (such as a file or directory) in the file system. For multiple applications to use an object to coordinate their activities, the lock must be writable on a file system accessible to all hosts on which the applications might be running. Use the method to attempt to acquire a lock. You should generally use the method to release the lock rather than . doesn’t conform to the protocol, nor does it have a method. The protocol’s method is intended to block the execution of the thread until successful. For an object, this could mean polling the file system at some predetermined rate. A better solution is to provide the method and let you determine the polling frequency that makes sense for your application.
+/* debug [class_interface]: End interface */
 
 
-// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock
-type DistributedLock struct {
-	objectivec.Object
-}
 
-// DistributedLockFrom constructs a [DistributedLock] from an unsafe.Pointer.
-//
-// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
-func DistributedLockFrom(ptr unsafe.Pointer) DistributedLock {
-	return DistributedLock{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for DistributedLock */
 // Alloc allocates a new instance without initialization.
 func (dc _DistributedLockClass) Alloc() DistributedLock {
 	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("alloc"))
@@ -65,7 +65,6 @@ func (dc _DistributedLockClass) Alloc() DistributedLock {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DistributedLockClass) New() DistributedLock {
 	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +87,35 @@ func (d_ DistributedLock) Autorelease() DistributedLock {
 func NewDistributedLock() DistributedLock {
 	return getDistributedLockClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for DistributedLock */
+// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
+//
+// The lock is implemented by an entry (such as a file or directory) in the file system. For multiple applications to use an object to coordinate their activities, the lock must be writable on a file system accessible to all hosts on which the applications might be running. Use the method to attempt to acquire a lock. You should generally use the method to release the lock rather than . doesn’t conform to the protocol, nor does it have a method. The protocol’s method is intended to block the execution of the thread until successful. For an object, this could mean polling the file system at some predetermined rate. A better solution is to provide the method and let you determine the polling frequency that makes sense for your application.
+
+
+// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock
+type DistributedLock struct {
+	objectivec.Object
+}
+
+// DistributedLockFrom constructs a [DistributedLock] from an unsafe.Pointer.
+//
+// A lock that multiple applications on multiple hosts can use to restrict access to some shared resource, such as a file.
+func DistributedLockFrom(ptr unsafe.Pointer) DistributedLock {
+	return DistributedLock{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DistributedLock */
 
 // Initializes an object to use as the lock the file-system entry specified by a given path.
 //
@@ -100,9 +126,13 @@ func NewDistributedLockWithPath(path IString) DistributedLock {
 	rv := objc.Send[DistributedLock](instance.ID, objc.Sel("initWithPath:"), path)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDistributedLockWithPath */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for DistributedLock */
 
 // Returns an object initialized to use as the locking object the file-system entry specified by a given path.
 //
@@ -111,8 +141,18 @@ func NewDistributedLockWithPath(path IString) DistributedLock {
 func (dc _DistributedLockClass) LockWithPath(path IString) IDistributedLock {
 	rv := objc.Send[DistributedLock](objc.ID(dc.class), objc.Sel("lockWithPath:"), path)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LockWithPath) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DistributedLock */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DistributedLock */
 
 // Forces the lock to be relinquished.
 //
@@ -120,7 +160,7 @@ func (dc _DistributedLockClass) LockWithPath(path IString) IDistributedLock {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/break()
 func (d_ DistributedLock) BreakLock() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("breakLock"))
-}
+}/* debug [instance_methods/method]: BreakLock */
 
 
 // Attempts to acquire the receiver and immediately returns a Boolean value that indicates whether the attempt was successful.
@@ -130,7 +170,7 @@ func (d_ DistributedLock) BreakLock() {
 func (d_ DistributedLock) TryLock() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("tryLock"))
 	return rv
-}
+}/* debug [instance_methods/method]: TryLock */
 
 
 // Relinquishes the receiver.
@@ -139,8 +179,13 @@ func (d_ DistributedLock) TryLock() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistributedLock/unlock()
 func (d_ DistributedLock) Unlock() {
 	objc.Send[objc.ID](d_.ID, objc.Sel("unlock"))
-}
+}/* debug [instance_methods/method]: Unlock */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DistributedLock */
 
 // Returns the time the receiver was acquired by any of the objects using the same path.
 //
@@ -149,6 +194,11 @@ func (d_ DistributedLock) Unlock() {
 func (d_ DistributedLock) LockDate() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("lockDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lockDate */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSDistributedLock */
 
 

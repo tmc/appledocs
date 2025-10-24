@@ -23,6 +23,15 @@ func (a_ AudioSession) ActivateWithOptionsCompletionHandler(options AudioSession
 	objc.Send[objc.ID](a_.ID, objc.Sel("activateWithOptions:completionHandler:"), options, handler)
 }
 
+// Temporarily changes the current audio route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/overrideOutputAudioPort(_:)
+func (a_ AudioSession) OverrideOutputAudioPortError(portOverride AudioSessionPortOverride, outError objectivec.IObject) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("overrideOutputAudioPort:error:"), portOverride, outError)
+	return rv
+}
+
 // Prepares the route selection for long-form video playback.
 //
 // [Full Topic]
@@ -35,7 +44,7 @@ func (a_ AudioSession) PrepareRouteSelectionForPlaybackWithCompletionHandler(com
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setActive(_:options:)
-func (a_ AudioSession) SetActiveWithOptionsError(active bool, options AudioSessionSetActiveOptions, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetActiveWithOptionsError(active bool, options AudioSessionSetActiveOptions, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setActive:withOptions:error:"), active, options, outError)
 	return rv
 }
@@ -44,7 +53,7 @@ func (a_ AudioSession) SetActiveWithOptionsError(active bool, options AudioSessi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setActive:error:
-func (a_ AudioSession) SetActiveError(active bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetActiveError(active bool, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setActive:error:"), active, outError)
 	return rv
 }
@@ -53,7 +62,7 @@ func (a_ AudioSession) SetActiveError(active bool, outError unsafe.Pointer) bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setAggregatedIOPreference(_:)
-func (a_ AudioSession) SetAggregatedIOPreferenceError(inIOType AudioSessionIOType, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetAggregatedIOPreferenceError(inIOType AudioSessionIOType, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setAggregatedIOPreference:error:"), inIOType, outError)
 	return rv
 }
@@ -62,7 +71,7 @@ func (a_ AudioSession) SetAggregatedIOPreferenceError(inIOType AudioSessionIOTyp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setAllowHapticsAndSystemSoundsDuringRecording(_:)
-func (a_ AudioSession) SetAllowHapticsAndSystemSoundsDuringRecordingError(inValue bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetAllowHapticsAndSystemSoundsDuringRecordingError(inValue bool, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setAllowHapticsAndSystemSoundsDuringRecording:error:"), inValue, outError)
 	return rv
 }
@@ -71,7 +80,7 @@ func (a_ AudioSession) SetAllowHapticsAndSystemSoundsDuringRecordingError(inValu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setCategory(_:)
-func (a_ AudioSession) SetCategoryError(category objc.IObject /* cross-framework: AudioSessionCategory */, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetCategoryError(category AudioSessionCategory /* typedef */, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCategory:error:"), category, outError)
 	return rv
 }
@@ -80,7 +89,7 @@ func (a_ AudioSession) SetCategoryError(category objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setCategory(_:mode:options:)
-func (a_ AudioSession) SetCategoryModeOptionsError(category objc.IObject /* cross-framework: AudioSessionCategory */, mode objc.IObject /* cross-framework: AudioSessionMode */, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetCategoryModeOptionsError(category AudioSessionCategory /* typedef */, mode AudioSessionMode /* typedef */, options AudioSessionCategoryOptions, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCategory:mode:options:error:"), category, mode, options, outError)
 	return rv
 }
@@ -89,7 +98,7 @@ func (a_ AudioSession) SetCategoryModeOptionsError(category objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setCategory(_:mode:policy:options:)
-func (a_ AudioSession) SetCategoryModeRouteSharingPolicyOptionsError(category objc.IObject /* cross-framework: AudioSessionCategory */, mode objc.IObject /* cross-framework: AudioSessionMode */, policy AudioSessionRouteSharingPolicy, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetCategoryModeRouteSharingPolicyOptionsError(category AudioSessionCategory /* typedef */, mode AudioSessionMode /* typedef */, policy AudioSessionRouteSharingPolicy, options AudioSessionCategoryOptions, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCategory:mode:routeSharingPolicy:options:error:"), category, mode, policy, options, outError)
 	return rv
 }
@@ -98,7 +107,7 @@ func (a_ AudioSession) SetCategoryModeRouteSharingPolicyOptionsError(category ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setCategory(_:options:)
-func (a_ AudioSession) SetCategoryWithOptionsError(category objc.IObject /* cross-framework: AudioSessionCategory */, options AudioSessionCategoryOptions, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetCategoryWithOptionsError(category AudioSessionCategory /* typedef */, options AudioSessionCategoryOptions, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setCategory:withOptions:error:"), category, options, outError)
 	return rv
 }
@@ -107,8 +116,17 @@ func (a_ AudioSession) SetCategoryWithOptionsError(category objc.IObject /* cros
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setInputDataSource(_:)
-func (a_ AudioSession) SetInputDataSourceError(dataSource IAVAudioSessionDataSourceDescription, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetInputDataSourceError(dataSource IAVAudioSessionDataSourceDescription, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setInputDataSource:error:"), dataSource, outError)
+	return rv
+}
+
+// Changes the input gain to the specified value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setInputGain(_:)
+func (a_ AudioSession) SetInputGainError(gain float32, outError objectivec.IObject) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setInputGain:error:"), gain, outError)
 	return rv
 }
 
@@ -116,7 +134,7 @@ func (a_ AudioSession) SetInputDataSourceError(dataSource IAVAudioSessionDataSou
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setIntendedSpatialExperience:options:error:
-func (a_ AudioSession) SetIntendedSpatialExperienceOptionsError(intendedSpatialExperience AudioSessionSpatialExperience, options foundation.IDictionary, error_ unsafe.Pointer) bool {
+func (a_ AudioSession) SetIntendedSpatialExperienceOptionsError(intendedSpatialExperience AudioSessionSpatialExperience, options foundation.IDictionary, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setIntendedSpatialExperience:options:error:"), intendedSpatialExperience, options, error_)
 	return rv
 }
@@ -125,7 +143,7 @@ func (a_ AudioSession) SetIntendedSpatialExperienceOptionsError(intendedSpatialE
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setIsNowPlayingCandidate(_:)
-func (a_ AudioSession) SetIsNowPlayingCandidateError(inValue bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetIsNowPlayingCandidateError(inValue bool, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setIsNowPlayingCandidate:error:"), inValue, outError)
 	return rv
 }
@@ -134,8 +152,17 @@ func (a_ AudioSession) SetIsNowPlayingCandidateError(inValue bool, outError unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setMode(_:)
-func (a_ AudioSession) SetModeError(mode objc.IObject /* cross-framework: AudioSessionMode */, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetModeError(mode AudioSessionMode /* typedef */, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setMode:error:"), mode, outError)
+	return rv
+}
+
+// Sets the output data source for an audio session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setOutputDataSource(_:)
+func (a_ AudioSession) SetOutputDataSourceError(dataSource IAVAudioSessionDataSourceDescription, outError objectivec.IObject) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setOutputDataSource:error:"), dataSource, outError)
 	return rv
 }
 
@@ -143,7 +170,7 @@ func (a_ AudioSession) SetModeError(mode objc.IObject /* cross-framework: AudioS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setOutputMuted(_:)
-func (a_ AudioSession) SetOutputMutedError(muted bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetOutputMutedError(muted bool, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setOutputMuted:error:"), muted, outError)
 	return rv
 }
@@ -152,8 +179,17 @@ func (a_ AudioSession) SetOutputMutedError(muted bool, outError unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredInput(_:)
-func (a_ AudioSession) SetPreferredInputError(inPort IAVAudioSessionPortDescription, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPreferredInputError(inPort IAVAudioSessionPortDescription, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredInput:error:"), inPort, outError)
+	return rv
+}
+
+// Sets the preferred number of input channels for the current route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredInputNumberOfChannels(_:)
+func (a_ AudioSession) SetPreferredInputNumberOfChannelsError(count int, outError objectivec.IObject) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredInputNumberOfChannels:error:"), count, outError)
 	return rv
 }
 
@@ -161,8 +197,17 @@ func (a_ AudioSession) SetPreferredInputError(inPort IAVAudioSessionPortDescript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredInputOrientation(_:)
-func (a_ AudioSession) SetPreferredInputOrientationError(orientation AudioStereoOrientation, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPreferredInputOrientationError(orientation AudioStereoOrientation, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredInputOrientation:error:"), orientation, outError)
+	return rv
+}
+
+// Sets the preferred audio I/O buffer duration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredIOBufferDuration(_:)
+func (a_ AudioSession) SetPreferredIOBufferDurationError(duration float64, outError objectivec.IObject) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredIOBufferDuration:error:"), duration, outError)
 	return rv
 }
 
@@ -170,8 +215,26 @@ func (a_ AudioSession) SetPreferredInputOrientationError(orientation AudioStereo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredMicrophoneInjectionMode(_:)
-func (a_ AudioSession) SetPreferredMicrophoneInjectionModeError(inValue AudioSessionMicrophoneInjectionMode, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPreferredMicrophoneInjectionModeError(inValue AudioSessionMicrophoneInjectionMode, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredMicrophoneInjectionMode:error:"), inValue, outError)
+	return rv
+}
+
+// Sets the preferred number of output channels for the current route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredOutputNumberOfChannels(_:)
+func (a_ AudioSession) SetPreferredOutputNumberOfChannelsError(count int, outError objectivec.IObject) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredOutputNumberOfChannels:error:"), count, outError)
+	return rv
+}
+
+// Sets the preferred sample rate for audio input and output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPreferredSampleRate(_:)
+func (a_ AudioSession) SetPreferredSampleRateError(sampleRate float64, outError objectivec.IObject) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setPreferredSampleRate:error:"), sampleRate, outError)
 	return rv
 }
 
@@ -179,7 +242,7 @@ func (a_ AudioSession) SetPreferredMicrophoneInjectionModeError(inValue AudioSes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPrefersEchoCancelledInput(_:)
-func (a_ AudioSession) SetPrefersEchoCancelledInputError(value bool, error_ unsafe.Pointer) bool {
+func (a_ AudioSession) SetPrefersEchoCancelledInputError(value bool, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPrefersEchoCancelledInput:error:"), value, error_)
 	return rv
 }
@@ -188,7 +251,7 @@ func (a_ AudioSession) SetPrefersEchoCancelledInputError(value bool, error_ unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPrefersInterruptionOnRouteDisconnect(_:)
-func (a_ AudioSession) SetPrefersInterruptionOnRouteDisconnectError(inValue bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPrefersInterruptionOnRouteDisconnectError(inValue bool, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPrefersInterruptionOnRouteDisconnect:error:"), inValue, outError)
 	return rv
 }
@@ -197,8 +260,17 @@ func (a_ AudioSession) SetPrefersInterruptionOnRouteDisconnectError(inValue bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setPrefersNoInterruptionsFromSystemAlerts(_:)
-func (a_ AudioSession) SetPrefersNoInterruptionsFromSystemAlertsError(inValue bool, outError unsafe.Pointer) bool {
+func (a_ AudioSession) SetPrefersNoInterruptionsFromSystemAlertsError(inValue bool, outError objectivec.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("setPrefersNoInterruptionsFromSystemAlerts:error:"), inValue, outError)
+	return rv
+}
+
+// Sets whether your app supplies multichannel audio content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/setSupportsMultichannelContent(_:)
+func (a_ AudioSession) SetSupportsMultichannelContentError(inValue bool, outError objectivec.IObject) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("setSupportsMultichannelContent:error:"), inValue, outError)
 	return rv
 }
 
@@ -226,7 +298,7 @@ func (a_ AudioSession) AvailableCategories() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/availableInputs
-func (a_ AudioSession) AvailableInputs() []IAudioSessionPortDescription {
+func (a_ AudioSession) AvailableInputs() []AudioSessionPortDescription {
 	rv := objc.Send[[]AudioSessionPortDescription](a_.ID, objc.Sel("availableInputs"))
 	return rv
 }
@@ -244,8 +316,8 @@ func (a_ AudioSession) AvailableModes() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/category-swift.property
-func (a_ AudioSession) Category() objc.IObject /* cross-framework: AudioSessionCategory */ {
-	rv := objc.Send[AudioSessionCategory](a_.ID, objc.Sel("category"))
+func (a_ AudioSession) Category() AudioSessionCategory /* typedef */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("category"))
 	return rv
 }
 
@@ -258,6 +330,33 @@ func (a_ AudioSession) CategoryOptions() AudioSessionCategoryOptions {
 	return rv
 }
 
+// The number of audio hardware input channels.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/currentHardwareInputNumberOfChannels
+func (a_ AudioSession) CurrentHardwareInputNumberOfChannels() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("currentHardwareInputNumberOfChannels"))
+	return rv
+}
+
+// The number of audio hardware output channels.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/currentHardwareOutputNumberOfChannels
+func (a_ AudioSession) CurrentHardwareOutputNumberOfChannels() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("currentHardwareOutputNumberOfChannels"))
+	return rv
+}
+
+// The audio hardware sample rate, in hertz.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/currentHardwareSampleRate
+func (a_ AudioSession) CurrentHardwareSampleRate() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("currentHardwareSampleRate"))
+	return rv
+}
+
 // A description of the current audio route’s input and output ports.
 //
 // [Full Topic]
@@ -265,6 +364,18 @@ func (a_ AudioSession) CategoryOptions() AudioSessionCategoryOptions {
 func (a_ AudioSession) CurrentRoute() IAVAudioSessionRouteDescription {
 	rv := objc.Send[AudioSessionRouteDescription](a_.ID, objc.Sel("currentRoute"))
 	return rv
+}
+
+// The delegate object for the audio session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/delegate
+func (a_ AudioSession) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+	return rv
+}
+func (a_ AudioSession) SetDelegate(value unsafe.Pointer) {
+	a_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
 // The currently selected input data source.
@@ -280,8 +391,44 @@ func (a_ AudioSession) InputDataSource() IAVAudioSessionDataSourceDescription {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/inputDataSources
-func (a_ AudioSession) InputDataSources() []IAudioSessionDataSourceDescription {
+func (a_ AudioSession) InputDataSources() []AudioSessionDataSourceDescription {
 	rv := objc.Send[[]AudioSessionDataSourceDescription](a_.ID, objc.Sel("inputDataSources"))
+	return rv
+}
+
+// The gain applied to inputs associated with the session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/inputGain
+func (a_ AudioSession) InputGain() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("inputGain"))
+	return rv
+}
+
+// A Boolean value that indicates whether a hardware audio input path is available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/inputIsAvailable
+func (a_ AudioSession) InputIsAvailable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("inputIsAvailable"))
+	return rv
+}
+
+// The latency for audio input, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/inputLatency
+func (a_ AudioSession) InputLatency() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("inputLatency"))
+	return rv
+}
+
+// The number of audio input channels for the current route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/inputNumberOfChannels
+func (a_ AudioSession) InputNumberOfChannels() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("inputNumberOfChannels"))
 	return rv
 }
 
@@ -312,6 +459,15 @@ func (a_ AudioSession) IntendedSpatialExperienceOptions() foundation.IDictionary
 	return rv
 }
 
+// The current I/O buffer duration, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/ioBufferDuration
+func (a_ AudioSession) IOBufferDuration() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("IOBufferDuration"))
+	return rv
+}
+
 // A Boolean value that indicates whether the built-in microphone and speaker route supports echo cancellation.
 //
 // [Full Topic]
@@ -336,6 +492,15 @@ func (a_ AudioSession) IsEchoCancelledInputEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isInputAvailable
 func (a_ AudioSession) InputAvailable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("inputAvailable"))
+	return rv
+}
+
+// A Boolean value that indicates whether you can set the input gain.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/isInputGainSettable
+func (a_ AudioSession) InputGainSettable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("inputGainSettable"))
 	return rv
 }
 
@@ -375,12 +540,84 @@ func (a_ AudioSession) OutputMuted() bool {
 	return rv
 }
 
+// The maximum number of input channels available for the current audio route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/maximumInputNumberOfChannels
+func (a_ AudioSession) MaximumInputNumberOfChannels() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("maximumInputNumberOfChannels"))
+	return rv
+}
+
+// The maximum number of output channels available for the current audio route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/maximumOutputNumberOfChannels
+func (a_ AudioSession) MaximumOutputNumberOfChannels() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("maximumOutputNumberOfChannels"))
+	return rv
+}
+
 // The current audio session’s mode.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/mode-swift.property
-func (a_ AudioSession) Mode() objc.IObject /* cross-framework: AudioSessionMode */ {
-	rv := objc.Send[AudioSessionMode](a_.ID, objc.Sel("mode"))
+func (a_ AudioSession) Mode() AudioSessionMode /* typedef */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("mode"))
+	return rv
+}
+
+// The currently selected output data source.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/outputDataSource
+func (a_ AudioSession) OutputDataSource() IAVAudioSessionDataSourceDescription {
+	rv := objc.Send[AudioSessionDataSourceDescription](a_.ID, objc.Sel("outputDataSource"))
+	return rv
+}
+
+// An array of available output data sources for the current audio route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/outputDataSources
+func (a_ AudioSession) OutputDataSources() []AudioSessionDataSourceDescription {
+	rv := objc.Send[[]AudioSessionDataSourceDescription](a_.ID, objc.Sel("outputDataSources"))
+	return rv
+}
+
+// The latency for audio output, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/outputLatency
+func (a_ AudioSession) OutputLatency() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("outputLatency"))
+	return rv
+}
+
+// The number of audio output channels.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/outputNumberOfChannels
+func (a_ AudioSession) OutputNumberOfChannels() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("outputNumberOfChannels"))
+	return rv
+}
+
+// The systemwide output volume set by the user.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/outputVolume
+func (a_ AudioSession) OutputVolume() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("outputVolume"))
+	return rv
+}
+
+// The preferred hardware sample rate, in hertz.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/preferredHardwareSampleRate
+func (a_ AudioSession) PreferredHardwareSampleRate() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("preferredHardwareSampleRate"))
 	return rv
 }
 
@@ -393,6 +630,15 @@ func (a_ AudioSession) PreferredInput() IAVAudioSessionPortDescription {
 	return rv
 }
 
+// The preferred number of input channels for the current route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/preferredInputNumberOfChannels
+func (a_ AudioSession) PreferredInputNumberOfChannels() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("preferredInputNumberOfChannels"))
+	return rv
+}
+
 // The audio session’s preferred stereo input orientation.
 //
 // [Full Topic]
@@ -402,12 +648,39 @@ func (a_ AudioSession) PreferredInputOrientation() AudioStereoOrientation {
 	return rv
 }
 
+// The preferred I/O buffer duration, in seconds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/preferredIOBufferDuration
+func (a_ AudioSession) PreferredIOBufferDuration() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("preferredIOBufferDuration"))
+	return rv
+}
+
 // The preferred mode of injecting audio into another app’s input stream.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/preferredMicrophoneInjectionMode
 func (a_ AudioSession) PreferredMicrophoneInjectionMode() AudioSessionMicrophoneInjectionMode {
 	rv := objc.Send[AudioSessionMicrophoneInjectionMode](a_.ID, objc.Sel("preferredMicrophoneInjectionMode"))
+	return rv
+}
+
+// The preferred number of output channels for the current route.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/preferredOutputNumberOfChannels
+func (a_ AudioSession) PreferredOutputNumberOfChannels() int {
+	rv := objc.Send[int](a_.ID, objc.Sel("preferredOutputNumberOfChannels"))
+	return rv
+}
+
+// The preferred sample rate, in hertz.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/preferredSampleRate
+func (a_ AudioSession) PreferredSampleRate() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("preferredSampleRate"))
 	return rv
 }
 
@@ -447,6 +720,15 @@ func (a_ AudioSession) PromptStyle() AudioSessionPromptStyle {
 	return rv
 }
 
+// The current recording permission status.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/recordPermission-swift.property
+func (a_ AudioSession) RecordPermission() AudioSessionRecordPermission {
+	rv := objc.Send[AudioSessionRecordPermission](a_.ID, objc.Sel("recordPermission"))
+	return rv
+}
+
 // The current audio session’s rendering mode.
 //
 // [Full Topic]
@@ -465,6 +747,15 @@ func (a_ AudioSession) RouteSharingPolicy() AudioSessionRouteSharingPolicy {
 	return rv
 }
 
+// The current audio sample rate, in hertz.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/sampleRate
+func (a_ AudioSession) SampleRate() float64 {
+	rv := objc.Send[float64](a_.ID, objc.Sel("sampleRate"))
+	return rv
+}
+
 // A Boolean value that indicates whether another app, with a nonmixable audio session, is playing audio.
 //
 // [Full Topic]
@@ -478,11 +769,19 @@ func (a_ AudioSession) SecondaryAudioShouldBeSilencedHint() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/supportedOutputChannelLayouts
-func (a_ AudioSession) SupportedOutputChannelLayouts() []objc.IObject /* cross-framework: AudioChannelLayout */ {
+func (a_ AudioSession) SupportedOutputChannelLayouts() []AudioChannelLayout {
 	rv := objc.Send[[]AudioChannelLayout](a_.ID, objc.Sel("supportedOutputChannelLayouts"))
 	return rv
 }
 
+// A Boolean value that indicates whether your app supplies multichannel audio content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioSession/supportsMultichannelContent
+func (a_ AudioSession) SupportsMultichannelContent() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("supportsMultichannelContent"))
+	return rv
+}
 
 
 

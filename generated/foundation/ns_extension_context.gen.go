@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSExtensionContext */
+
+
+/* debug [class_header]: Header for NSExtensionContext */
 // The class instance for the [ExtensionContext] class.
 var (
 	ExtensionContextClass     _ExtensionContextClass
@@ -26,41 +31,37 @@ func getExtensionContextClass() _ExtensionContextClass {
 type _ExtensionContextClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ExtensionContext */
 // An interface definition for the [ExtensionContext] class.
 type IExtensionContext interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ExtensionContext */
 	// properties:
-	HostedViewMaximumAllowedSize() objc.IObject /* cross-framework: Size */
-	SetHostedViewMaximumAllowedSize(value objc.IObject /* cross-framework: Size */)
-	WidgetActiveDisplayMode() unsafe.Pointer
-	SetWidgetActiveDisplayMode(value unsafe.Pointer)
-	WidgetLargestAvailableDisplayMode() unsafe.Pointer
-	SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer)
+	HostedViewMaximumAllowedSize() corefoundation.CGSize
+	SetHostedViewMaximumAllowedSize(value corefoundation.CGSize)
+	WidgetActiveDisplayMode() objectivec.IObject
+	SetWidgetActiveDisplayMode(value objectivec.IObject)
+	WidgetLargestAvailableDisplayMode() objectivec.IObject
+	SetWidgetLargestAvailableDisplayMode(value objectivec.IObject)
 	NSExtensionItemsAndErrorsKey() IString
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ExtensionContext */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The host app context from which an app extension is invoked.
-//
-// When a host app sends a request to an app extension, it provides an extension context. For many app extensions, the most important part of the context is the data the user wants to work with, which is contained in the property.
+/* debug [class_interface]: End interface */
 
 
-// The host app context from which an app extension is invoked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext
-type ExtensionContext struct {
-	objectivec.Object
-}
 
-// ExtensionContextFrom constructs a [ExtensionContext] from an unsafe.Pointer.
-//
-// The host app context from which an app extension is invoked.
-func ExtensionContextFrom(ptr unsafe.Pointer) ExtensionContext {
-	return ExtensionContext{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ExtensionContext */
 // Alloc allocates a new instance without initialization.
 func (ec _ExtensionContextClass) Alloc() ExtensionContext {
 	rv := objc.Send[ExtensionContext](objc.ID(ec.class), objc.Sel("alloc"))
@@ -68,7 +69,6 @@ func (ec _ExtensionContextClass) Alloc() ExtensionContext {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _ExtensionContextClass) New() ExtensionContext {
 	rv := objc.Send[ExtensionContext](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,64 +91,110 @@ func (e_ ExtensionContext) Autorelease() ExtensionContext {
 func NewExtensionContext() ExtensionContext {
 	return getExtensionContextClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The maximum size for a Siri hosted view.
+/* debug [class_struct]: Struct for ExtensionContext */
+// The host app context from which an app extension is invoked.
+//
+// When a host app sends a request to an app extension, it provides an extension context. For many app extensions, the most important part of the context is the data the user wants to work with, which is contained in the property.
+
+
+// The host app context from which an app extension is invoked.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/hostedviewmaximumallowedsize
-func (e_ ExtensionContext) HostedViewMaximumAllowedSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[objc.ID](e_.ID, objc.Sel("hostedViewMaximumAllowedSize"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext
+type ExtensionContext struct {
+	objectivec.Object
 }
 
+// ExtensionContextFrom constructs a [ExtensionContext] from an unsafe.Pointer.
+//
+// The host app context from which an app extension is invoked.
+func ExtensionContextFrom(ptr unsafe.Pointer) ExtensionContext {
+	return ExtensionContext{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ExtensionContext *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ExtensionContext */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ExtensionContext */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ExtensionContext */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ExtensionContext */
 
 // The maximum size for a Siri hosted view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/hostedviewmaximumallowedsize
-func (e_ ExtensionContext) SetHostedViewMaximumAllowedSize(value objc.IObject /* cross-framework: Size */) {
+func (e_ ExtensionContext) HostedViewMaximumAllowedSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](e_.ID, objc.Sel("hostedViewMaximumAllowedSize"))
+	return rv
+}/* debug [instance_properties/getter]: hostedViewMaximumAllowedSize */
+
+
+// The maximum size for a Siri hosted view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/hostedviewmaximumallowedsize
+func (e_ ExtensionContext) SetHostedViewMaximumAllowedSize(value corefoundation.CGSize) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setHostedViewMaximumAllowedSize:"), value)
-}
+}/* debug [instance_properties/setter]: hostedViewMaximumAllowedSize */
 
 
 // The active display mode of the widget.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/widgetactivedisplaymode
-func (e_ ExtensionContext) WidgetActiveDisplayMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("widgetActiveDisplayMode"))
+func (e_ ExtensionContext) WidgetActiveDisplayMode() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("widgetActiveDisplayMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: widgetActiveDisplayMode */
 
 
 // The active display mode of the widget.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/widgetactivedisplaymode
-func (e_ ExtensionContext) SetWidgetActiveDisplayMode(value unsafe.Pointer) {
+func (e_ ExtensionContext) SetWidgetActiveDisplayMode(value objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setWidgetActiveDisplayMode:"), value)
-}
+}/* debug [instance_properties/setter]: widgetActiveDisplayMode */
 
 
 // The largest display mode the widget supports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/widgetlargestavailabledisplaymode
-func (e_ ExtensionContext) WidgetLargestAvailableDisplayMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("widgetLargestAvailableDisplayMode"))
+func (e_ ExtensionContext) WidgetLargestAvailableDisplayMode() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](e_.ID, objc.Sel("widgetLargestAvailableDisplayMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: widgetLargestAvailableDisplayMode */
 
 
 // The largest display mode the widget supports.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsextensioncontext/widgetlargestavailabledisplaymode
-func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value unsafe.Pointer) {
+func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value objectivec.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setWidgetLargestAvailableDisplayMode:"), value)
-}
+}/* debug [instance_properties/setter]: widgetLargestAvailableDisplayMode */
 
 
 // The extension items and errors key.
@@ -158,6 +204,11 @@ func (e_ ExtensionContext) SetWidgetLargestAvailableDisplayMode(value unsafe.Poi
 func (e_ ExtensionContext) NSExtensionItemsAndErrorsKey() IString {
 	rv := objc.Send[String](e_.ID, objc.Sel("NSExtensionItemsAndErrorsKey"))
 	return rv
-}
+}/* debug [instance_properties/getter]: NSExtensionItemsAndErrorsKey */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSExtensionContext */
 
 

@@ -15,3 +15,4 @@ var writingToolsBehaviorProtocol *objc.Protocol
 func init() {
 	writingToolsBehaviorProtocol = objc.GetProtocol("writingToolsBehavior")
 }
+

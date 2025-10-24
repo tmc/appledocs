@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRDeviceTypeRevision interface {
 	SetTypeInformation(value IMTRDeviceType)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceTypeRevision
@@ -85,8 +83,6 @@ func NewMTRDeviceTypeRevision() MTRDeviceTypeRevision {
 	return getMTRDeviceTypeRevisionClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetypeid
 func (m_ MTRDeviceTypeRevision) DeviceTypeID() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRDeviceTypeRevision) DeviceTypeID() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetypeid
 func (m_ MTRDeviceTypeRevision) SetDeviceTypeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypeID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetyperevision
@@ -109,13 +103,11 @@ func (m_ MTRDeviceTypeRevision) DeviceTypeRevision() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicetyperevision/devicetyperevision
 func (m_ MTRDeviceTypeRevision) SetDeviceTypeRevision(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypeRevision:"), value)
 }
-
 
 // Returns the MTRDeviceType corresponding to deviceTypeID,
 //
@@ -126,7 +118,6 @@ func (m_ MTRDeviceTypeRevision) TypeInformation() IMTRDeviceType {
 	return rv
 }
 
-
 // Returns the MTRDeviceType corresponding to deviceTypeID,
 //
 // [Full Topic]
@@ -134,6 +125,3 @@ func (m_ MTRDeviceTypeRevision) TypeInformation() IMTRDeviceType {
 func (m_ MTRDeviceTypeRevision) SetTypeInformation(value IMTRDeviceType) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTypeInformation:"), value)
 }
-
-
-

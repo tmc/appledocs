@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRNetworkCommissioningClusterScanNetworksParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterScanNetworksParams
@@ -87,8 +85,6 @@ func NewMTRNetworkCommissioningClusterScanNetworksParams() MTRNetworkCommissioni
 	return getMTRNetworkCommissioningClusterScanNetworksParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/breadcrumb
 func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
@@ -96,13 +92,11 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Breadcrumb() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/breadcrumb
 func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/serversideprocessingtimeout
@@ -111,13 +105,11 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksParams) ServerSideProcessingT
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/serversideprocessingtimeout
 func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/ssid
@@ -126,13 +118,11 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksParams) Ssid() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/ssid
 func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetSsid(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSsid:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/timedinvoketimeoutms
@@ -141,12 +131,8 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksParams) TimedInvokeTimeoutMs(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksparams/timedinvoketimeoutms
 func (m_ MTRNetworkCommissioningClusterScanNetworksParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

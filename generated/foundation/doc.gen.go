@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for Foundation. DO NOT EDIT.
 
 // Package foundation provides Go bindings for the Foundation framework.

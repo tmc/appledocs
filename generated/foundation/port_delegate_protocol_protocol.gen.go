@@ -22,10 +22,33 @@ import (
 //
 // See: doc://com.apple.foundation/documentation/Foundation/PortDelegate
 type PPortDelegate interface {
+	// Optional methods
+	HandlePortMessage(message IPortMessage)
+	HasHandlePortMessage() bool
 }
 
 // PortDelegate is a delegate implementation builder for the PPortDelegate protocol.
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type PortDelegate struct {
+	_HandlePortMessage func(message IPortMessage)
+}
+
+// SetHandlePortMessage sets the handler for the HandlePortMessage delegate method.
+//
+// Processes a given incoming message on the port.
+func (d *PortDelegate) SetHandlePortMessage(f func(message IPortMessage)) {
+	d._HandlePortMessage = f
+}
+
+// HandlePortMessage implements the PPortDelegate interface.
+func (d *PortDelegate) HandlePortMessage(message IPortMessage) {
+	if d._HandlePortMessage != nil {
+		d._HandlePortMessage(message)
+	}
+}
+
+// HasHandlePortMessage returns true if a handler for HandlePortMessage has been set.
+func (d *PortDelegate) HasHandlePortMessage() bool {
+	return d._HandlePortMessage != nil
 }

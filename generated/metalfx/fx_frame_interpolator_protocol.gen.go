@@ -19,3 +19,4 @@ var FXFrameInterpolatorProtocol *objc.Protocol
 func init() {
 	FXFrameInterpolatorProtocol = objc.GetProtocol("MTLFXFrameInterpolator")
 }
+

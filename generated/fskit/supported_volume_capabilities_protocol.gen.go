@@ -15,3 +15,4 @@ var supportedVolumeCapabilitiesProtocol *objc.Protocol
 func init() {
 	supportedVolumeCapabilitiesProtocol = objc.GetProtocol("supportedVolumeCapabilities")
 }
+

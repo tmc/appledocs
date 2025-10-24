@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRBaseClusterMicrowaveOvenControl */
+
+
+/* debug [class_header]: Header for MTRBaseClusterMicrowaveOvenControl */
 // The class instance for the [MTRBaseClusterMicrowaveOvenControl] class.
 var (
 	MTRBaseClusterMicrowaveOvenControlClass     _MTRBaseClusterMicrowaveOvenControlClass
@@ -26,63 +29,31 @@ func getMTRBaseClusterMicrowaveOvenControlClass() _MTRBaseClusterMicrowaveOvenCo
 type _MTRBaseClusterMicrowaveOvenControlClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRBaseClusterMicrowaveOvenControl */
 // An interface definition for the [MTRBaseClusterMicrowaveOvenControl] class.
 type IMTRBaseClusterMicrowaveOvenControl interface {
 	IMTRGenericBaseCluster
+	
+/* debug [class_interface_properties]: Properties for MTRBaseClusterMicrowaveOvenControl */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRBaseClusterMicrowaveOvenControl */
 	// methods:
 	AddMoreTimeWithParamsCompletion(params IMTRMicrowaveOvenControlClusterAddMoreTimeParams, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer)
-	ReadAttributeCookTimeWithCompletion(completion unsafe.Pointer)
-	ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer)
-	ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer)
-	ReadAttributeMaxCookTimeWithCompletion(completion unsafe.Pointer)
-	ReadAttributeMaxPowerWithCompletion(completion unsafe.Pointer)
-	ReadAttributeMinPowerWithCompletion(completion unsafe.Pointer)
-	ReadAttributePowerSettingWithCompletion(completion unsafe.Pointer)
-	ReadAttributePowerStepWithCompletion(completion unsafe.Pointer)
-	ReadAttributeWattRatingWithCompletion(completion unsafe.Pointer)
-	SetCookingParametersWithParamsCompletion(params IMTRMicrowaveOvenControlClusterSetCookingParametersParams, completion unsafe.Pointer)
-	SetCookingParametersWithCompletion(completion unsafe.Pointer)
-	SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeCookTimeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeMaxCookTimeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeMaxPowerWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeMinPowerWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributePowerSettingWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributePowerStepWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
-	SubscribeAttributeWattRatingWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Cluster Microwave Oven Control
-//
-// Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
+/* debug [class_interface]: End interface */
 
 
-// Cluster Microwave Oven Control
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl
-type MTRBaseClusterMicrowaveOvenControl struct {
-	MTRGenericBaseCluster
-}
 
-// MTRBaseClusterMicrowaveOvenControlFrom constructs a [MTRBaseClusterMicrowaveOvenControl] from an unsafe.Pointer.
-//
-// Cluster Microwave Oven Control
-func MTRBaseClusterMicrowaveOvenControlFrom(ptr unsafe.Pointer) MTRBaseClusterMicrowaveOvenControl {
-	return MTRBaseClusterMicrowaveOvenControl{
-		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRBaseClusterMicrowaveOvenControl */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRBaseClusterMicrowaveOvenControlClass) Alloc() MTRBaseClusterMicrowaveOvenControl {
 	rv := objc.Send[MTRBaseClusterMicrowaveOvenControl](objc.ID(mc.class), objc.Sel("alloc"))
@@ -90,7 +61,6 @@ func (mc _MTRBaseClusterMicrowaveOvenControlClass) Alloc() MTRBaseClusterMicrowa
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRBaseClusterMicrowaveOvenControlClass) New() MTRBaseClusterMicrowaveOvenControl {
 	rv := objc.Send[MTRBaseClusterMicrowaveOvenControl](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -113,105 +83,51 @@ func (m_ MTRBaseClusterMicrowaveOvenControl) Autorelease() MTRBaseClusterMicrowa
 func NewMTRBaseClusterMicrowaveOvenControl() MTRBaseClusterMicrowaveOvenControl {
 	return getMTRBaseClusterMicrowaveOvenControlClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods (reads, writes, commands) that take a completion, the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRBaseClusterMicrowaveOvenControl */
+// Cluster Microwave Oven Control
+//
+// Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
+
+
+// Cluster Microwave Oven Control
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/init(device:endpointID:queue:)
-func NewMTRBaseClusterMicrowaveOvenControlWithDeviceEndpointIDQueue(device IMTRBaseDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRBaseClusterMicrowaveOvenControl {
-	instance := getMTRBaseClusterMicrowaveOvenControlClass().Alloc()
-	rv := objc.Send[MTRBaseClusterMicrowaveOvenControl](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl
+type MTRBaseClusterMicrowaveOvenControl struct {
+	MTRGenericBaseCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeAcceptedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeAcceptedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAcceptedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
+// MTRBaseClusterMicrowaveOvenControlFrom constructs a [MTRBaseClusterMicrowaveOvenControl] from an unsafe.Pointer.
+//
+// Cluster Microwave Oven Control
+func MTRBaseClusterMicrowaveOvenControlFrom(ptr unsafe.Pointer) MTRBaseClusterMicrowaveOvenControl {
+	return MTRBaseClusterMicrowaveOvenControl{
+		MTRGenericBaseCluster: MTRGenericBaseClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeAttributeList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeAttributeListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeAttributeListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [class_init_methods]: Init methods for MTRBaseClusterMicrowaveOvenControl *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeClusterRevision(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeClusterRevisionWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeClusterRevisionWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [class_methods]: Class methods for MTRBaseClusterMicrowaveOvenControl */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeCookTime(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeCookTimeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeCookTimeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
+
+/* debug [class_properties_class]: Class properties for MTRBaseClusterMicrowaveOvenControl */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeFeatureMap(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeFeatureMapWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeFeatureMapWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeGeneratedCommandList(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeGeneratedCommandListWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeGeneratedCommandListWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeMaxCookTime(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeMaxCookTimeWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeMaxCookTimeWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeMaxPower(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeMaxPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeMaxPowerWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeMinPower(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeMinPowerWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeMinPowerWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributePowerSetting(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributePowerSettingWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributePowerSettingWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributePowerStep(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributePowerStepWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributePowerStepWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeWattRating(withClusterStateCache:endpoint:queue:completion:)
-func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeWattRatingWithClusterStateCacheEndpointQueueCompletion(clusterStateCacheContainer IMTRClusterStateCacheContainer, endpoint objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer, completion unsafe.Pointer) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("readAttributeWattRatingWithClusterStateCache:endpoint:queue:completion:"), clusterStateCacheContainer, endpoint, queue, completion)
-}
-
+/* debug [instance_methods]: Instance methods for MTRBaseClusterMicrowaveOvenControl */
 
 // Command AddMoreTime
 //
@@ -219,190 +135,17 @@ func (mc _MTRBaseClusterMicrowaveOvenControlClass) ReadAttributeWattRatingWithCl
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/addMoreTime(with:completion:)
 func (m_ MTRBaseClusterMicrowaveOvenControl) AddMoreTimeWithParamsCompletion(params IMTRMicrowaveOvenControlClusterAddMoreTimeParams, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addMoreTimeWithParams:completion:"), params, completion)
-}
+}/* debug [instance_methods/method]: AddMoreTimeWithParamsCompletion */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeAcceptedCommandList(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeAcceptedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithCompletion:"), completion)
-}
+
+/* debug [instance_properties]: Instance properties for MTRBaseClusterMicrowaveOvenControl */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeAttributeList(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeAttributeListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeAttributeListWithCompletion:"), completion)
-}
+/* debug [class.gen.go]: End class MTRBaseClusterMicrowaveOvenControl */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeClusterRevision(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeClusterRevisionWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeClusterRevisionWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeCookTime(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeCookTimeWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeCookTimeWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeFeatureMap(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeFeatureMapWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeFeatureMapWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeGeneratedCommandList(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeGeneratedCommandListWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeMaxCookTime(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeMaxCookTimeWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeMaxCookTimeWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeMaxPower(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeMaxPowerWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeMaxPowerWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeMinPower(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeMinPowerWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeMinPowerWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributePowerSetting(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributePowerSettingWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributePowerSettingWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributePowerStep(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributePowerStepWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributePowerStepWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/readAttributeWattRating(completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) ReadAttributeWattRatingWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("readAttributeWattRatingWithCompletion:"), completion)
-}
-
-
-// Command SetCookingParameters
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/setCookingParametersWith(_:completion:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SetCookingParametersWithParamsCompletion(params IMTRMicrowaveOvenControlClusterSetCookingParametersParams, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCookingParametersWithParams:completion:"), params, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/setCookingParametersWithCompletion(_:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SetCookingParametersWithCompletion(completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCookingParametersWithCompletion:"), completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeAcceptedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeAcceptedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAcceptedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeAttributeList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeAttributeListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeAttributeListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeClusterRevision(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeClusterRevisionWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeClusterRevisionWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeCookTime(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeCookTimeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeCookTimeWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeFeatureMap(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeFeatureMapWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeFeatureMapWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeGeneratedCommandList(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeGeneratedCommandListWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeGeneratedCommandListWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeMaxCookTime(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeMaxCookTimeWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeMaxCookTimeWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeMaxPower(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeMaxPowerWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeMaxPowerWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeMinPower(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeMinPowerWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeMinPowerWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributePowerSetting(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributePowerSettingWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributePowerSettingWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributePowerStep(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributePowerStepWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributePowerStepWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMicrowaveOvenControl/subscribeAttributeWattRating(with:subscriptionEstablished:reportHandler:)
-func (m_ MTRBaseClusterMicrowaveOvenControl) SubscribeAttributeWattRatingWithParamsSubscriptionEstablishedReportHandler(params IMTRSubscribeParams, subscriptionEstablished unsafe.Pointer, reportHandler unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("subscribeAttributeWattRatingWithParams:subscriptionEstablished:reportHandler:"), params, subscriptionEstablished, reportHandler)
-}
 
 

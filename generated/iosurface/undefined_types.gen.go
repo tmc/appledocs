@@ -9,11 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in IOSurface
-	Dictionary = _undefined // referenced in IOSurface
 	DictionaryRef = _undefined // referenced in IOSurface
-	OSType = _undefined // referenced in IOSurface
-	String = _undefined // referenced in IOSurface
 	StringRef = _undefined // referenced in IOSurface
 	TypeID = _undefined // referenced in IOSurface
 	TypeRef = _undefined // referenced in IOSurface

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,7 +33,7 @@ type IRegion interface {
 	objectivec.IObject
 	// properties:
 	Center() CLLocationCoordinate2D /* not a class type */
-	Identifier() objc.IObject /* cross-framework: NSString */
+	Identifier() objc.IObject       /* cross-framework: NSString */
 	NotifyOnEntry() bool
 	SetNotifyOnEntry(value bool)
 	NotifyOnExit() bool
@@ -45,7 +45,6 @@ type IRegion interface {
 // A base class representing an area that can be monitored.
 //
 // This is an abstract base class. Instantiate one of the provided subclasses that define specific types of regions. After you create a region, register it with a object with the method. The location manager generates appropriate events whenever the user crosses the boundaries of the region.
-
 
 // A base class representing an area that can be monitored.
 //
@@ -93,8 +92,6 @@ func NewRegion() Region {
 	return getRegionClass().New()
 }
 
-
-
 // Initializes and returns a region object defining a circular area.
 //
 // [Full Topic]
@@ -106,8 +103,6 @@ func NewRegionCircularRegionWithCenterRadiusIdentifier(center LocationCoordinate
 	return rv
 }
 
-
-
 // The center point of the region.
 //
 // [Full Topic]
@@ -116,7 +111,6 @@ func (r_ Region) Center() CLLocationCoordinate2D /* not a class type */ {
 	rv := objc.Send[LocationCoordinate2D](r_.ID, objc.Sel("center"))
 	return rv
 }
-
 
 // The identifier for the region object.
 //
@@ -127,7 +121,6 @@ func (r_ Region) Identifier() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // A Boolean indicating that notifications are generated upon entry into the region.
 //
 // [Full Topic]
@@ -137,7 +130,6 @@ func (r_ Region) NotifyOnEntry() bool {
 	return rv
 }
 
-
 // A Boolean indicating that notifications are generated upon entry into the region.
 //
 // [Full Topic]
@@ -145,7 +137,6 @@ func (r_ Region) NotifyOnEntry() bool {
 func (r_ Region) SetNotifyOnEntry(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnEntry:"), value)
 }
-
 
 // A Boolean indicating that notifications are generated upon exit from the region.
 //
@@ -156,7 +147,6 @@ func (r_ Region) NotifyOnExit() bool {
 	return rv
 }
 
-
 // A Boolean indicating that notifications are generated upon exit from the region.
 //
 // [Full Topic]
@@ -164,7 +154,6 @@ func (r_ Region) NotifyOnExit() bool {
 func (r_ Region) SetNotifyOnExit(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setNotifyOnExit:"), value)
 }
-
 
 // The radius (measured in meters) that defines the region’s outer boundary.
 //
@@ -174,5 +163,3 @@ func (r_ Region) Radius() LocationDistance /* not a class type */ {
 	rv := objc.Send[LocationDistance](r_.ID, objc.Sel("radius"))
 	return rv
 }
-
-

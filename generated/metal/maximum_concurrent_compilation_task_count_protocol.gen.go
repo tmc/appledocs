@@ -11,6 +11,8 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 26.0+
 //   - iPadOS 26.0+
 //   - macOS 13.3+
+//   - tvOS 26.0+
+//   - visionOS 26.0+
 //
 // Use this protocol when registering custom classes that conform to maximumConcurrentCompilationTaskCount.
 var maximumConcurrentCompilationTaskCountProtocol *objc.Protocol
@@ -18,3 +20,4 @@ var maximumConcurrentCompilationTaskCountProtocol *objc.Protocol
 func init() {
 	maximumConcurrentCompilationTaskCountProtocol = objc.GetProtocol("maximumConcurrentCompilationTaskCount")
 }
+

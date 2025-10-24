@@ -3,6 +3,11 @@
 package glkit
 
 // Type aliases and typedefs
+// GLKMatrixStackRef - An opaque type that represents a stack of 4 x 4 matrices, providing support for hierarchical transform modeling and similar tasks.
+//
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStack
+// GLKMatrixStackRef has base type: struct _GLKMatrixStack *
+type GLKMatrixStackRef uintptr
 // GLKEffectPropertyPrvPtr type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyPrvPtr
@@ -23,11 +28,6 @@ type GLKMatrix3 uintptr
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix4
 // GLKMatrix4 has base type: union _GLKMatrix4
 type GLKMatrix4 uintptr
-// GLKMatrixStackRef - An opaque type that represents a stack of 4 x 4 matrices, providing support for hierarchical transform modeling and similar tasks.
-//
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStack
-// GLKMatrixStackRef has base type: struct _GLKMatrixStack *
-type GLKMatrixStackRef uintptr
 // GLKQuaternion - A representation of a quaternion.
 //
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternion

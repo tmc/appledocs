@@ -86,5 +86,3 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/CoreMedia/CMTaggedBufferGroupError/kCMTaggedBufferGroupError_ParamErr
 	kCMTaggedBufferGroupError_ParamErr CMTaggedBufferGroupError = 0
 )
-
-

@@ -19,3 +19,4 @@ var searchableIndexDidThrottleProtocol *objc.Protocol
 func init() {
 	searchableIndexDidThrottleProtocol = objc.GetProtocol("searchableIndexDidThrottle:")
 }
+

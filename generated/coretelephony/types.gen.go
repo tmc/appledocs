@@ -14,7 +14,9 @@ import (
 type CTError struct {
 	Domain unsafe.Pointer // A numeric indication of the error domain.
 	Error unsafe.Pointer // A code indicating the specific error.
-}
+}/* debug [types.gen.go/struct]: CTError */
+
+
 
 
 

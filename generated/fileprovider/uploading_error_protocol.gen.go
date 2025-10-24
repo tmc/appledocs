@@ -18,3 +18,4 @@ var uploadingErrorProtocol *objc.Protocol
 func init() {
 	uploadingErrorProtocol = objc.GetProtocol("uploadingError")
 }
+

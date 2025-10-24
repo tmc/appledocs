@@ -18,3 +18,4 @@ var NCWidgetProvidingProtocol *objc.Protocol
 func init() {
 	NCWidgetProvidingProtocol = objc.GetProtocol("NCWidgetProviding")
 }
+

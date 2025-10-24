@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	ProfileIdentifier = _undefined // referenced in ScreenTime
 )
-
-

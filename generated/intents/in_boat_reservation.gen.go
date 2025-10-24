@@ -37,7 +37,6 @@ type IINBoatReservation interface {
 
 // The information that describes a boat reservation.
 
-
 // The information that describes a boat reservation.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINBoatReservation() INBoatReservation {
 	return getINBoatReservationClass().New()
 }
 
-
-
 // Information describing a voyage.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INBoatReservation) BoatTrip() unsafe.Pointer {
 	return rv
 }
 
-
 // Information describing a voyage.
 //
 // [Full Topic]
@@ -105,7 +101,6 @@ func (i_ INBoatReservation) BoatTrip() unsafe.Pointer {
 func (i_ INBoatReservation) SetBoatTrip(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBoatTrip:"), value)
 }
-
 
 // The passenger’s seat on a boat reservation.
 //
@@ -116,7 +111,6 @@ func (i_ INBoatReservation) ReservedSeat() INSeat {
 	return rv
 }
 
-
 // The passenger’s seat on a boat reservation.
 //
 // [Full Topic]
@@ -124,6 +118,3 @@ func (i_ INBoatReservation) ReservedSeat() INSeat {
 func (i_ INBoatReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
 }
-
-
-

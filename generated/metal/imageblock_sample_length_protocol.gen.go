@@ -20,3 +20,4 @@ var imageblockSampleLengthProtocol *objc.Protocol
 func init() {
 	imageblockSampleLengthProtocol = objc.GetProtocol("imageblockSampleLength")
 }
+

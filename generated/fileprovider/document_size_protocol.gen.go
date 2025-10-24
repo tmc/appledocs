@@ -18,3 +18,4 @@ var documentSizeProtocol *objc.Protocol
 func init() {
 	documentSizeProtocol = objc.GetProtocol("documentSize")
 }
+

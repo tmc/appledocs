@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterLaundryWasherControls */
+
+
+/* debug [class_header]: Header for MTRClusterLaundryWasherControls */
 // The class instance for the [MTRClusterLaundryWasherControls] class.
 var (
 	MTRClusterLaundryWasherControlsClass     _MTRClusterLaundryWasherControlsClass
@@ -26,47 +30,31 @@ func getMTRClusterLaundryWasherControlsClass() _MTRClusterLaundryWasherControlsC
 type _MTRClusterLaundryWasherControlsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterLaundryWasherControls */
 // An interface definition for the [MTRClusterLaundryWasherControls] class.
 type IMTRClusterLaundryWasherControls interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterLaundryWasherControls */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterLaundryWasherControls */
 	// methods:
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeNumberOfRinsesWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSpinSpeedCurrentWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSpinSpeedsWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedRinsesWithParams(params IMTRReadParams) foundation.IDictionary
-	WriteAttributeNumberOfRinsesWithValueExpectedValueInterval(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */)
-	WriteAttributeNumberOfRinsesWithValueExpectedValueIntervalParams(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, params IMTRWriteParams)
 	WriteAttributeSpinSpeedCurrentWithValueExpectedValueInterval(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */)
-	WriteAttributeSpinSpeedCurrentWithValueExpectedValueIntervalParams(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, params IMTRWriteParams)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Laundry Washer Controls This cluster supports remotely monitoring and controlling the different types of functionality available to a washing device, such as a washing machine.
 
 
-// Cluster Laundry Washer Controls This cluster supports remotely monitoring and controlling the different types of functionality available to a washing device, such as a washing machine.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls
-type MTRClusterLaundryWasherControls struct {
-	MTRGenericCluster
-}
-
-// MTRClusterLaundryWasherControlsFrom constructs a [MTRClusterLaundryWasherControls] from an unsafe.Pointer.
-//
-// Cluster Laundry Washer Controls This cluster supports remotely monitoring and controlling the different types of functionality available to a washing device, such as a washing machine.
-func MTRClusterLaundryWasherControlsFrom(ptr unsafe.Pointer) MTRClusterLaundryWasherControls {
-	return MTRClusterLaundryWasherControls{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterLaundryWasherControls */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterLaundryWasherControlsClass) Alloc() MTRClusterLaundryWasherControls {
 	rv := objc.Send[MTRClusterLaundryWasherControls](objc.ID(mc.class), objc.Sel("alloc"))
@@ -74,7 +62,6 @@ func (mc _MTRClusterLaundryWasherControlsClass) Alloc() MTRClusterLaundryWasherC
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterLaundryWasherControlsClass) New() MTRClusterLaundryWasherControls {
 	rv := objc.Send[MTRClusterLaundryWasherControls](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,119 +84,65 @@ func (m_ MTRClusterLaundryWasherControls) Autorelease() MTRClusterLaundryWasherC
 func NewMTRClusterLaundryWasherControls() MTRClusterLaundryWasherControls {
 	return getMTRClusterLaundryWasherControlsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
+/* debug [class_struct]: Struct for MTRClusterLaundryWasherControls */
+// Cluster Laundry Washer Controls This cluster supports remotely monitoring and controlling the different types of functionality available to a washing device, such as a washing machine.
+
+
+// Cluster Laundry Washer Controls This cluster supports remotely monitoring and controlling the different types of functionality available to a washing device, such as a washing machine.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/init(device:endpointID:queue:)
-func NewMTRClusterLaundryWasherControlsWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterLaundryWasherControls {
-	instance := getMTRClusterLaundryWasherControlsClass().Alloc()
-	rv := objc.Send[MTRClusterLaundryWasherControls](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls
+type MTRClusterLaundryWasherControls struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
+// MTRClusterLaundryWasherControlsFrom constructs a [MTRClusterLaundryWasherControls] from an unsafe.Pointer.
+//
+// Cluster Laundry Washer Controls This cluster supports remotely monitoring and controlling the different types of functionality available to a washing device, such as a washing machine.
+func MTRClusterLaundryWasherControlsFrom(ptr unsafe.Pointer) MTRClusterLaundryWasherControls {
+	return MTRClusterLaundryWasherControls{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeAttributeList(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRClusterLaundryWasherControls *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeClusterRevision(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [class_methods]: Class methods for MTRClusterLaundryWasherControls */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeFeatureMap(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterLaundryWasherControls */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeNumberOfRinses(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeNumberOfRinsesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeNumberOfRinsesWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeSpinSpeedCurrent(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeSpinSpeedCurrentWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSpinSpeedCurrentWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeSpinSpeeds(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeSpinSpeedsWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSpinSpeedsWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/readAttributeSupportedRinses(with:)
-func (m_ MTRClusterLaundryWasherControls) ReadAttributeSupportedRinsesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedRinsesWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/writeAttributeNumberOfRinses(withValue:expectedValueInterval:)
-func (m_ MTRClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueExpectedValueInterval(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeNumberOfRinsesWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/writeAttributeNumberOfRinses(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterLaundryWasherControls) WriteAttributeNumberOfRinsesWithValueExpectedValueIntervalParams(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, params IMTRWriteParams) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeNumberOfRinsesWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
-}
-
+/* debug [instance_methods]: Instance methods for MTRClusterLaundryWasherControls */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/writeAttributeSpinSpeedCurrent(withValue:expectedValueInterval:)
 func (m_ MTRClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueExpectedValueInterval(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSpinSpeedCurrentWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
-}
+}/* debug [instance_methods/method]: WriteAttributeSpinSpeedCurrentWithValueExpectedValueInterval */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherControls/writeAttributeSpinSpeedCurrent(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterLaundryWasherControls) WriteAttributeSpinSpeedCurrentWithValueExpectedValueIntervalParams(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, params IMTRWriteParams) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSpinSpeedCurrentWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterLaundryWasherControls */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRClusterLaundryWasherControls */
+
 
 

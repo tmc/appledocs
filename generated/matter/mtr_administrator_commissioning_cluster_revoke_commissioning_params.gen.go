@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRAdministratorCommissioningClusterRevokeCommissioningParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAdministratorCommissioningClusterRevokeCommissioningParams
@@ -83,8 +81,6 @@ func NewMTRAdministratorCommissioningClusterRevokeCommissioningParams() MTRAdmin
 	return getMTRAdministratorCommissioningClusterRevokeCommissioningParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusterrevokecommissioningparams/serversideprocessingtimeout
 func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) ServerSi
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusterrevokecommissioningparams/serversideprocessingtimeout
 func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusterrevokecommissioningparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) TimedInv
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusterrevokecommissioningparams/timedinvoketimeoutms
 func (m_ MTRAdministratorCommissioningClusterRevokeCommissioningParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

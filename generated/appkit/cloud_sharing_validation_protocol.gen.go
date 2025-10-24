@@ -15,3 +15,4 @@ var CloudSharingValidationProtocol *objc.Protocol
 func init() {
 	CloudSharingValidationProtocol = objc.GetProtocol("NSCloudSharingValidation")
 }
+

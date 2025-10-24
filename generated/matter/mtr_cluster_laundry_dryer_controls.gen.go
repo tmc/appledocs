@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterLaundryDryerControls */
+
+
+/* debug [class_header]: Header for MTRClusterLaundryDryerControls */
 // The class instance for the [MTRClusterLaundryDryerControls] class.
 var (
 	MTRClusterLaundryDryerControlsClass     _MTRClusterLaundryDryerControlsClass
@@ -26,43 +30,30 @@ func getMTRClusterLaundryDryerControlsClass() _MTRClusterLaundryDryerControlsCla
 type _MTRClusterLaundryDryerControlsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterLaundryDryerControls */
 // An interface definition for the [MTRClusterLaundryDryerControls] class.
 type IMTRClusterLaundryDryerControls interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterLaundryDryerControls */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterLaundryDryerControls */
 	// methods:
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSelectedDrynessLevelWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedDrynessLevelsWithParams(params IMTRReadParams) foundation.IDictionary
-	WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */)
-	WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, params IMTRWriteParams)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Laundry Dryer Controls This cluster provides a way to access options associated with the operation of a laundry dryer device type.
 
 
-// Cluster Laundry Dryer Controls This cluster provides a way to access options associated with the operation of a laundry dryer device type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls
-type MTRClusterLaundryDryerControls struct {
-	MTRGenericCluster
-}
-
-// MTRClusterLaundryDryerControlsFrom constructs a [MTRClusterLaundryDryerControls] from an unsafe.Pointer.
-//
-// Cluster Laundry Dryer Controls This cluster provides a way to access options associated with the operation of a laundry dryer device type.
-func MTRClusterLaundryDryerControlsFrom(ptr unsafe.Pointer) MTRClusterLaundryDryerControls {
-	return MTRClusterLaundryDryerControls{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterLaundryDryerControls */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterLaundryDryerControlsClass) Alloc() MTRClusterLaundryDryerControls {
 	rv := objc.Send[MTRClusterLaundryDryerControls](objc.ID(mc.class), objc.Sel("alloc"))
@@ -70,7 +61,6 @@ func (mc _MTRClusterLaundryDryerControlsClass) Alloc() MTRClusterLaundryDryerCon
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterLaundryDryerControlsClass) New() MTRClusterLaundryDryerControls {
 	rv := objc.Send[MTRClusterLaundryDryerControls](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +83,35 @@ func (m_ MTRClusterLaundryDryerControls) Autorelease() MTRClusterLaundryDryerCon
 func NewMTRClusterLaundryDryerControls() MTRClusterLaundryDryerControls {
 	return getMTRClusterLaundryDryerControlsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterLaundryDryerControls */
+// Cluster Laundry Dryer Controls This cluster provides a way to access options associated with the operation of a laundry dryer device type.
+
+
+// Cluster Laundry Dryer Controls This cluster provides a way to access options associated with the operation of a laundry dryer device type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls
+type MTRClusterLaundryDryerControls struct {
+	MTRGenericCluster
+}
+
+// MTRClusterLaundryDryerControlsFrom constructs a [MTRClusterLaundryDryerControls] from an unsafe.Pointer.
+//
+// Cluster Laundry Dryer Controls This cluster provides a way to access options associated with the operation of a laundry dryer device type.
+func MTRClusterLaundryDryerControlsFrom(ptr unsafe.Pointer) MTRClusterLaundryDryerControls {
+	return MTRClusterLaundryDryerControls{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterLaundryDryerControls */
 
 // The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
 //
@@ -105,77 +122,31 @@ func NewMTRClusterLaundryDryerControlsWithDeviceEndpointIDQueue(device IMTRDevic
 	rv := objc.Send[MTRClusterLaundryDryerControls](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterLaundryDryerControlsWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+/* debug [class_methods]: Class methods for MTRClusterLaundryDryerControls */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeAttributeList(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterLaundryDryerControls */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeClusterRevision(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterLaundryDryerControls */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeFeatureMap(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterLaundryDryerControls */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeSelectedDrynessLevel(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeSelectedDrynessLevelWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSelectedDrynessLevelWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/readAttributeSupportedDrynessLevels(with:)
-func (m_ MTRClusterLaundryDryerControls) ReadAttributeSupportedDrynessLevelsWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedDrynessLevelsWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/writeAttributeSelectedDrynessLevel(withValue:expectedValueInterval:)
-func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueInterval(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSelectedDrynessLevelWithValue:expectedValueInterval:"), dataValueDictionary, expectedValueIntervalMs)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryDryerControls/writeAttributeSelectedDrynessLevel(withValue:expectedValueInterval:params:)
-func (m_ MTRClusterLaundryDryerControls) WriteAttributeSelectedDrynessLevelWithValueExpectedValueIntervalParams(dataValueDictionary foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, params IMTRWriteParams) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("writeAttributeSelectedDrynessLevelWithValue:expectedValueInterval:params:"), dataValueDictionary, expectedValueIntervalMs, params)
-}
+/* debug [class.gen.go]: End class MTRClusterLaundryDryerControls */
 
 

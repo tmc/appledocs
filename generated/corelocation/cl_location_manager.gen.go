@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -61,7 +60,7 @@ type ILocationManager interface {
 	SetIsAuthorizedForWidgetUpdates(value bool)
 	CLTimeIntervalMax() float64
 	KCLDistanceFilterNone() LocationDistance /* not a class type */
-	KCLHeadingFilterNone() LocationDegrees /* not a class type */
+	KCLHeadingFilterNone() LocationDegrees   /* not a class type */
 	// methods:
 	DismissHeadingCalibrationDisplay()
 	RequestAlwaysAuthorization()
@@ -83,7 +82,6 @@ type ILocationManager interface {
 // The object you use to start and stop the delivery of location-related events to your app.
 //
 // A object is the central place to manage your app’s location-related behaviors. Use a location-manager object to configure, start, and stop location services. You might use these services to: Track large or small changes in the user’s current location with a configurable degree of accuracy. Report heading changes from the onboard compass. Monitor geographical regions of interest and generate events when someone enters or leaves those regions. Report the range to nearby Bluetooth beacons. Create one or more location-manager objects in your app and use them where you need location data. After you create a location-manager object, configure it so that Core Location knows how often to report location changes. In particular, configure the and properties with values that reflect your app’s needs. A object reports all location-related updates to its object, which is an object that conforms to the protocol. Assign the delegate immediately when you configure your location manager, because the system reports the app’s authorization status to the delegate’s method after the location manager finishes initializing itself. Core Location calls the methods of your delegate object using the of the thread on which you initialized the object. That thread must itself have an active , like the one found in your app’s main thread. For more information, see .
-
 
 // The object you use to start and stop the delivery of location-related events to your app.
 //
@@ -131,8 +129,6 @@ func NewLocationManager() LocationManager {
 	return getLocationManagerClass().New()
 }
 
-
-
 // Returns a Boolean value indicating whether the location manager is able to generate heading-related events.
 //
 // [Full Topic]
@@ -141,7 +137,6 @@ func (lc _LocationManagerClass) HeadingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("headingAvailable"))
 	return rv
 }
-
 
 // Returns a Boolean value indicating whether the device supports region monitoring using the specified class.
 //
@@ -152,7 +147,6 @@ func (lc _LocationManagerClass) IsMonitoringAvailableForClass(regionClass objc.C
 	return rv
 }
 
-
 // Returns a Boolean value indicating whether the device supports ranging of beacons that use the iBeacon protocol.
 //
 // [Full Topic]
@@ -161,7 +155,6 @@ func (lc _LocationManagerClass) IsRangingAvailable() bool {
 	rv := objc.Send[bool](objc.ID(lc.class), objc.Sel("isRangingAvailable"))
 	return rv
 }
-
 
 // Returns a Boolean value indicating whether location services are enabled on the device.
 //
@@ -172,7 +165,6 @@ func (lc _LocationManagerClass) LocationServicesEnabled() bool {
 	return rv
 }
 
-
 // Returns a Boolean value indicating whether the significant-change location service is available on the device.
 //
 // [Full Topic]
@@ -182,7 +174,6 @@ func (lc _LocationManagerClass) SignificantLocationChangeMonitoringAvailable() b
 	return rv
 }
 
-
 // Dismisses the heading calibration view from the screen immediately.
 //
 // [Full Topic]
@@ -190,7 +181,6 @@ func (lc _LocationManagerClass) SignificantLocationChangeMonitoringAvailable() b
 func (l_ LocationManager) DismissHeadingCalibrationDisplay() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("dismissHeadingCalibrationDisplay"))
 }
-
 
 // Requests the user’s permission to use location services regardless of whether the app is in use.
 //
@@ -200,7 +190,6 @@ func (l_ LocationManager) RequestAlwaysAuthorization() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestAlwaysAuthorization"))
 }
 
-
 // Requests the one-time delivery of the user’s current location.
 //
 // [Full Topic]
@@ -208,7 +197,6 @@ func (l_ LocationManager) RequestAlwaysAuthorization() {
 func (l_ LocationManager) RequestLocation() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestLocation"))
 }
-
 
 // Requests permission to temporarily use location services with full accuracy.
 //
@@ -218,7 +206,6 @@ func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKe
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:"), purposeKey)
 }
 
-
 // Requests permission to temporarily use location services with full accuracy and reports the results to the provided completion handler.
 //
 // [Full Topic]
@@ -226,7 +213,6 @@ func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKe
 func (l_ LocationManager) RequestTemporaryFullAccuracyAuthorizationWithPurposeKeyCompletion(purposeKey objc.IObject /* cross-framework: NSString */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestTemporaryFullAccuracyAuthorizationWithPurposeKey:completion:"), purposeKey, completion)
 }
-
 
 // Requests the user’s permission to use location services while the app is in use.
 //
@@ -236,7 +222,6 @@ func (l_ LocationManager) RequestWhenInUseAuthorization() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("requestWhenInUseAuthorization"))
 }
 
-
 // Starts the generation of updates based on significant location changes.
 //
 // [Full Topic]
@@ -244,7 +229,6 @@ func (l_ LocationManager) RequestWhenInUseAuthorization() {
 func (l_ LocationManager) StartMonitoringSignificantLocationChanges() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startMonitoringSignificantLocationChanges"))
 }
-
 
 // Starts the delivery of visit-related events.
 //
@@ -254,7 +238,6 @@ func (l_ LocationManager) StartMonitoringVisits() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startMonitoringVisits"))
 }
 
-
 // Starts the delivery of notifications for the specified beacon constraints.
 //
 // [Full Topic]
@@ -262,7 +245,6 @@ func (l_ LocationManager) StartMonitoringVisits() {
 func (l_ LocationManager) StartRangingBeaconsSatisfyingConstraint(constraint ICLBeaconIdentityConstraint) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startRangingBeaconsSatisfyingConstraint:"), constraint)
 }
-
 
 // Starts the generation of updates that report the user’s current heading.
 //
@@ -272,7 +254,6 @@ func (l_ LocationManager) StartUpdatingHeading() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startUpdatingHeading"))
 }
 
-
 // Starts the generation of updates that report the user’s current location.
 //
 // [Full Topic]
@@ -280,7 +261,6 @@ func (l_ LocationManager) StartUpdatingHeading() {
 func (l_ LocationManager) StartUpdatingLocation() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("startUpdatingLocation"))
 }
-
 
 // Stops the delivery of location events based on significant location changes.
 //
@@ -290,7 +270,6 @@ func (l_ LocationManager) StopMonitoringSignificantLocationChanges() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("stopMonitoringSignificantLocationChanges"))
 }
 
-
 // Stops the delivery of visit-related events.
 //
 // [Full Topic]
@@ -298,7 +277,6 @@ func (l_ LocationManager) StopMonitoringSignificantLocationChanges() {
 func (l_ LocationManager) StopMonitoringVisits() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("stopMonitoringVisits"))
 }
-
 
 // Stops the delivery of notifications for the specified beacon constraints.
 //
@@ -308,7 +286,6 @@ func (l_ LocationManager) StopRangingBeaconsSatisfyingConstraint(constraint ICLB
 	objc.Send[objc.ID](l_.ID, objc.Sel("stopRangingBeaconsSatisfyingConstraint:"), constraint)
 }
 
-
 // Stops the generation of location updates.
 //
 // [Full Topic]
@@ -316,7 +293,6 @@ func (l_ LocationManager) StopRangingBeaconsSatisfyingConstraint(constraint ICLB
 func (l_ LocationManager) StopUpdatingLocation() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("stopUpdatingLocation"))
 }
-
 
 // A value that indicates the level of location accuracy the app has permission to use.
 //
@@ -327,7 +303,6 @@ func (l_ LocationManager) AccuracyAuthorization() AccuracyAuthorization {
 	return rv
 }
 
-
 // The type of activity the app expects the user to typically perform while in the app’s location session.
 //
 // [Full Topic]
@@ -337,7 +312,6 @@ func (l_ LocationManager) ActivityType() ActivityType {
 	return rv
 }
 
-
 // The type of activity the app expects the user to typically perform while in the app’s location session.
 //
 // [Full Topic]
@@ -345,7 +319,6 @@ func (l_ LocationManager) ActivityType() ActivityType {
 func (l_ LocationManager) SetActivityType(value ActivityType) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActivityType:"), value)
 }
-
 
 // A Boolean value that indicates whether the app receives location updates when running in the background.
 //
@@ -356,7 +329,6 @@ func (l_ LocationManager) AllowsBackgroundLocationUpdates() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the app receives location updates when running in the background.
 //
 // [Full Topic]
@@ -364,7 +336,6 @@ func (l_ LocationManager) AllowsBackgroundLocationUpdates() bool {
 func (l_ LocationManager) SetAllowsBackgroundLocationUpdates(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setAllowsBackgroundLocationUpdates:"), value)
 }
-
 
 // The current authorization status for the app.
 //
@@ -375,7 +346,6 @@ func (l_ LocationManager) AuthorizationStatus() AuthorizationStatus {
 	return rv
 }
 
-
 // The delegate object to receive update events.
 //
 // [Full Topic]
@@ -385,7 +355,6 @@ func (l_ LocationManager) Delegate() objc.ID {
 	return rv
 }
 
-
 // The delegate object to receive update events.
 //
 // [Full Topic]
@@ -393,7 +362,6 @@ func (l_ LocationManager) Delegate() objc.ID {
 func (l_ LocationManager) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDelegate:"), value)
 }
-
 
 // The accuracy of the location data that your app wants to receive.
 //
@@ -404,7 +372,6 @@ func (l_ LocationManager) DesiredAccuracy() LocationAccuracy /* not a class type
 	return rv
 }
 
-
 // The accuracy of the location data that your app wants to receive.
 //
 // [Full Topic]
@@ -412,7 +379,6 @@ func (l_ LocationManager) DesiredAccuracy() LocationAccuracy /* not a class type
 func (l_ LocationManager) SetDesiredAccuracy(value LocationAccuracy /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDesiredAccuracy:"), value)
 }
-
 
 // The minimum distance in meters the device must move horizontally before an update event is generated.
 //
@@ -423,7 +389,6 @@ func (l_ LocationManager) DistanceFilter() LocationDistance /* not a class type 
 	return rv
 }
 
-
 // The minimum distance in meters the device must move horizontally before an update event is generated.
 //
 // [Full Topic]
@@ -431,7 +396,6 @@ func (l_ LocationManager) DistanceFilter() LocationDistance /* not a class type 
 func (l_ LocationManager) SetDistanceFilter(value LocationDistance /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDistanceFilter:"), value)
 }
-
 
 // The most recently reported heading.
 //
@@ -442,7 +406,6 @@ func (l_ LocationManager) Heading() ICLHeading {
 	return rv
 }
 
-
 // The minimum angular change in degrees required to generate new heading events.
 //
 // [Full Topic]
@@ -452,7 +415,6 @@ func (l_ LocationManager) HeadingFilter() LocationDegrees /* not a class type */
 	return rv
 }
 
-
 // The minimum angular change in degrees required to generate new heading events.
 //
 // [Full Topic]
@@ -460,7 +422,6 @@ func (l_ LocationManager) HeadingFilter() LocationDegrees /* not a class type */
 func (l_ LocationManager) SetHeadingFilter(value LocationDegrees /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHeadingFilter:"), value)
 }
-
 
 // The device orientation to use when computing heading values.
 //
@@ -471,7 +432,6 @@ func (l_ LocationManager) HeadingOrientation() DeviceOrientation {
 	return rv
 }
 
-
 // The device orientation to use when computing heading values.
 //
 // [Full Topic]
@@ -479,7 +439,6 @@ func (l_ LocationManager) HeadingOrientation() DeviceOrientation {
 func (l_ LocationManager) SetHeadingOrientation(value DeviceOrientation) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setHeadingOrientation:"), value)
 }
-
 
 // A Boolean value that indicates whether a widget is eligible to receive location updates.
 //
@@ -490,7 +449,6 @@ func (l_ LocationManager) AuthorizedForWidgetUpdates() bool {
 	return rv
 }
 
-
 // The most recently retrieved user location.
 //
 // [Full Topic]
@@ -499,7 +457,6 @@ func (l_ LocationManager) Location() ICLLocation {
 	rv := objc.Send[Location](l_.ID, objc.Sel("location"))
 	return rv
 }
-
 
 // The largest boundary distance that can be assigned to a region.
 //
@@ -510,7 +467,6 @@ func (l_ LocationManager) MaximumRegionMonitoringDistance() LocationDistance /* 
 	return rv
 }
 
-
 // The set of shared regions monitored by all location-manager objects.
 //
 // [Full Topic]
@@ -519,7 +475,6 @@ func (l_ LocationManager) MonitoredRegions() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](l_.ID, objc.Sel("monitoredRegions"))
 	return rv
 }
-
 
 // A Boolean value that indicates whether the location-manager object may pause location updates.
 //
@@ -530,7 +485,6 @@ func (l_ LocationManager) PausesLocationUpdatesAutomatically() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the location-manager object may pause location updates.
 //
 // [Full Topic]
@@ -538,7 +492,6 @@ func (l_ LocationManager) PausesLocationUpdatesAutomatically() bool {
 func (l_ LocationManager) SetPausesLocationUpdatesAutomatically(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPausesLocationUpdatesAutomatically:"), value)
 }
-
 
 // The set of beacon constraints currently being tracked using ranging.
 //
@@ -549,7 +502,6 @@ func (l_ LocationManager) RangedBeaconConstraints() unsafe.Pointer {
 	return rv
 }
 
-
 // A constant indicating the maximum distance.
 //
 // [Full Topic]
@@ -558,7 +510,6 @@ func (l_ LocationManager) CLLocationDistanceMax() LocationDistance /* not a clas
 	rv := objc.Send[LocationDistance](l_.ID, objc.Sel("CLLocationDistanceMax"))
 	return rv
 }
-
 
 // A Boolean value that indicates whether a widget is eligible to receive location updates.
 //
@@ -569,7 +520,6 @@ func (l_ LocationManager) IsAuthorizedForWidgetUpdates() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether a widget is eligible to receive location updates.
 //
 // [Full Topic]
@@ -577,7 +527,6 @@ func (l_ LocationManager) IsAuthorizedForWidgetUpdates() bool {
 func (l_ LocationManager) SetIsAuthorizedForWidgetUpdates(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsAuthorizedForWidgetUpdates:"), value)
 }
-
 
 // A value representing an unlimited amount of time.
 //
@@ -588,7 +537,6 @@ func (l_ LocationManager) CLTimeIntervalMax() float64 {
 	return rv
 }
 
-
 // A constant indicating that all movement should be reported.
 //
 // [Full Topic]
@@ -598,7 +546,6 @@ func (l_ LocationManager) KCLDistanceFilterNone() LocationDistance /* not a clas
 	return rv
 }
 
-
 // A constant indicating that all header values should be reported.
 //
 // [Full Topic]
@@ -607,5 +554,3 @@ func (l_ LocationManager) KCLHeadingFilterNone() LocationDegrees /* not a class 
 	rv := objc.Send[LocationDegrees](l_.ID, objc.Sel("kCLHeadingFilterNone"))
 	return rv
 }
-
-

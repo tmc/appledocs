@@ -3,8 +3,11 @@
 package appkit
 
 import (
+	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PSharingServicePickerDelegate is the NSSharingServicePickerDelegate protocol interface.
@@ -17,7 +20,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerDelegate
 type PSharingServicePickerDelegate interface {
 	// Optional methods
-	SharingServicePickerDelegateForSharingService(sharingServicePicker ISharingServicePicker, sharingService ISharingService) objc.ID
+	SharingServicePickerDelegateForSharingService(sharingServicePicker ISharingServicePicker, sharingService ISharingService) unsafe.Pointer
 	HasSharingServicePickerDelegateForSharingService() bool
 	SharingServicePickerDidChooseSharingService(sharingServicePicker ISharingServicePicker, service ISharingService)
 	HasSharingServicePickerDidChooseSharingService() bool
@@ -31,7 +34,7 @@ type PSharingServicePickerDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type SharingServicePickerDelegate struct {
-	_SharingServicePickerDelegateForSharingService func(sharingServicePicker ISharingServicePicker, sharingService ISharingService) objc.ID
+	_SharingServicePickerDelegateForSharingService func(sharingServicePicker ISharingServicePicker, sharingService ISharingService) unsafe.Pointer
 	_SharingServicePickerDidChooseSharingService func(sharingServicePicker ISharingServicePicker, service ISharingService)
 	_SharingServicePickerSharingServicesForItemsProposedSharingServices func(sharingServicePicker ISharingServicePicker, items objc.IObject /* cross-framework: NSArray */, proposedServices []SharingService) []SharingService
 	_SharingServicePickerCollaborationModeRestrictions func(sharingServicePicker ISharingServicePicker) []SharingCollaborationModeRestriction
@@ -40,7 +43,7 @@ type SharingServicePickerDelegate struct {
 // SetSharingServicePickerDelegateForSharingService sets the handler for the SharingServicePickerDelegateForSharingService delegate method.
 //
 // Asks your delegate to provide an object that the selected sharing service can use as its delegate.
-func (d *SharingServicePickerDelegate) SetSharingServicePickerDelegateForSharingService(f func(sharingServicePicker ISharingServicePicker, sharingService ISharingService) objc.ID) {
+func (d *SharingServicePickerDelegate) SetSharingServicePickerDelegateForSharingService(f func(sharingServicePicker ISharingServicePicker, sharingService ISharingService) unsafe.Pointer) {
 	d._SharingServicePickerDelegateForSharingService = f
 }
 
@@ -66,11 +69,11 @@ func (d *SharingServicePickerDelegate) SetSharingServicePickerCollaborationModeR
 }
 
 // SharingServicePickerDelegateForSharingService implements the PSharingServicePickerDelegate interface.
-func (d *SharingServicePickerDelegate) SharingServicePickerDelegateForSharingService(sharingServicePicker ISharingServicePicker, sharingService ISharingService) objc.ID {
+func (d *SharingServicePickerDelegate) SharingServicePickerDelegateForSharingService(sharingServicePicker ISharingServicePicker, sharingService ISharingService) unsafe.Pointer {
 	if d._SharingServicePickerDelegateForSharingService != nil {
 		return d._SharingServicePickerDelegateForSharingService(sharingServicePicker, sharingService)
 	}
-	var zero objc.ID
+	var zero unsafe.Pointer
 	return zero
 }
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INCancelRideIntent] class.
@@ -38,7 +38,6 @@ type IINCancelRideIntent interface {
 // An intent requesting the cancellation of a previously booked ride.
 //
 // When the user cancels a ride that was previously booked through Siri or Maps, SiriKit sends an object to your handler. SiriKit populates this intent object with the ride identifier that you provided when originally booking the ride. Upon receiving this intent, verify the ride information and cancel the ride accordingly. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the status of the ride. SiriKit prefers sending this intent object to your extension over canceling a ride by other means. So when responding to an object, you can continue to set the property of your response’s object to allow cancellation of the ride in your app. SiriKit uses that object only on systems where this intent is unavailable or not supported by your extension.
-
 
 // An intent requesting the cancellation of a previously booked ride.
 //
@@ -88,8 +87,6 @@ func NewINCancelRideIntent() INCancelRideIntent {
 	return getINCancelRideIntentClass().New()
 }
 
-
-
 // Initializes the intent object with the specified ride identifier.
 //
 // [Full Topic]
@@ -101,8 +98,6 @@ func NewINCancelRideIntentWithRideIdentifier(rideIdentifier string) INCancelRide
 	return rv
 }
 
-
-
 // The unique identifier that you assigned to the ride.
 //
 // [Full Topic]
@@ -111,7 +106,6 @@ func (i_ INCancelRideIntent) RideIdentifier() string {
 	rv := objc.Send[string](i_.ID, objc.Sel("rideIdentifier"))
 	return rv
 }
-
 
 // A user activity object for canceling the ride request.
 //
@@ -122,7 +116,6 @@ func (i_ INCancelRideIntent) UserActivityForCancelingInApplication() foundation.
 	return rv
 }
 
-
 // A user activity object for canceling the ride request.
 //
 // [Full Topic]
@@ -130,5 +123,3 @@ func (i_ INCancelRideIntent) UserActivityForCancelingInApplication() foundation.
 func (i_ INCancelRideIntent) SetUserActivityForCancelingInApplication(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivityForCancelingInApplication:"), value)
 }
-
-

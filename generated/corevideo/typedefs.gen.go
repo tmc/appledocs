@@ -6,6 +6,16 @@ import (
 )
 
 // Type aliases and typedefs
+// MetalBufferRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBuffer
+// CVMetalBufferRef has base type: CVBufferRef
+type MetalBufferRef uintptr
+// MetalBufferCacheRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBufferCache
+// CVMetalBufferCacheRef has base type: struct __CVMetalBufferCache *
+type MetalBufferCacheRef uintptr
 // BufferRef - A reference to a Core Video buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVBuffer
@@ -27,21 +37,17 @@ type DisplayLinkOutputCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVEAGLContext
 // CVEAGLContext has base type: void *
 type EAGLContext uintptr
+// FillExtendedPixelsCallBack - Defines a pointer to a custom extended pixel-fill function, which is called whenever the system needs to pad a buffer holding your custom pixel format.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVFillExtendedPixelsCallBack
+// CVFillExtendedPixelsCallBack is a callback function
+// C type: unsigned char (*)(struct __CVBuffer *, void *)
+type FillExtendedPixelsCallBack = func(unsafe.Pointer, unsafe.Pointer) uint8
 // ImageBufferRef - A reference to a Core Video image buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVImageBuffer
 // CVImageBufferRef has base type: CVBufferRef
 type ImageBufferRef uintptr
-// MetalBufferRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBuffer
-// CVMetalBufferRef has base type: CVBufferRef
-type MetalBufferRef uintptr
-// MetalBufferCacheRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalBufferCache
-// CVMetalBufferCacheRef has base type: struct __CVMetalBufferCache *
-type MetalBufferCacheRef uintptr
 // MetalTextureRef - A reference to a CoreVideo Metal texture-based image buffer.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreVideo/CVMetalTexture

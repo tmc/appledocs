@@ -9,7 +9,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/avfaudio"
-	"github.com/tmc/appledocs/generated/coreaudiokit"
 	"github.com/tmc/appledocs/generated/coremidi"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"

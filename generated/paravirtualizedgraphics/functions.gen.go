@@ -2,6 +2,7 @@
 
 package paravirtualizedgraphics
 
+/* debug [functions.gen.go]: Generating 4 functions for ParavirtualizedGraphics */
 import (
 	"unsafe"
 
@@ -17,8 +18,8 @@ import (
 var (
 	_PGCopyOptionROMURL func() unsafe.Pointer
 	_PGCreateDeviceWithDescriptor func(unsafe.Pointer) unsafe.Pointer
-	_PGMaxDisplayPortCount func() uint32
 	_PGNewDeviceWithDescriptor func(unsafe.Pointer) unsafe.Pointer
+	_PGMaxDisplayPortCount func() uint32
 )
 
 func init() {
@@ -28,8 +29,8 @@ func init() {
 	}
 	tryRegister(&_PGCopyOptionROMURL, lib, "PGCopyOptionROMURL")
 	tryRegister(&_PGCreateDeviceWithDescriptor, lib, "PGCreateDeviceWithDescriptor")
-	tryRegister(&_PGMaxDisplayPortCount, lib, "PGMaxDisplayPortCount")
 	tryRegister(&_PGNewDeviceWithDescriptor, lib, "PGNewDeviceWithDescriptor")
+	tryRegister(&_PGMaxDisplayPortCount, lib, "PGMaxDisplayPortCount")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -55,7 +56,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGCopyOptionROMURL()
 func PGCopyOptionROMURL() unsafe.Pointer {
 	return _PGCopyOptionROMURL()
-}
+}/* debug [functions.gen.go/function]: PGCopyOptionROMURL */
 
 // PGCreateDeviceWithDescriptor is a ParavirtualizedGraphics function.
 //
@@ -64,16 +65,7 @@ func PGCopyOptionROMURL() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGCreateDeviceWithDescriptor(_:)
 func PGCreateDeviceWithDescriptor(descriptor unsafe.Pointer) unsafe.Pointer {
 	return _PGCreateDeviceWithDescriptor(descriptor)
-}
-
-// PGMaxDisplayPortCount is a ParavirtualizedGraphics function.
-//
-// Added in macOS 13.0.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGMaxDisplayPortCount()
-func PGMaxDisplayPortCount() uint32 {
-	return _PGMaxDisplayPortCount()
-}
+}/* debug [functions.gen.go/function]: PGCreateDeviceWithDescriptor */
 
 // Creates a new paravirtualized graphics device.
 //
@@ -84,7 +76,17 @@ func PGMaxDisplayPortCount() uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGNewDeviceWithDescriptor(_:)
 func PGNewDeviceWithDescriptor(descriptor unsafe.Pointer) unsafe.Pointer {
 	return _PGNewDeviceWithDescriptor(descriptor)
-}
+}/* debug [functions.gen.go/function]: PGNewDeviceWithDescriptor */
+
+// PGMaxDisplayPortCount is a ParavirtualizedGraphics function.
+//
+// Added in macOS 13.0.
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGMaxDisplayPortCount()
+func PGMaxDisplayPortCount() uint32 {
+	return _PGMaxDisplayPortCount()
+}/* debug [functions.gen.go/function]: PGMaxDisplayPortCount */
+
 
 
 

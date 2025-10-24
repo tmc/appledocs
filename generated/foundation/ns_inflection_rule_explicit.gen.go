@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSInflectionRuleExplicit */
+
+
+/* debug [class_header]: Header for NSInflectionRuleExplicit */
 // The class instance for the [InflectionRuleExplicit] class.
 var (
 	InflectionRuleExplicitClass     _InflectionRuleExplicitClass
@@ -25,35 +30,31 @@ func getInflectionRuleExplicitClass() _InflectionRuleExplicitClass {
 type _InflectionRuleExplicitClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for InflectionRuleExplicit */
 // An interface definition for the [InflectionRuleExplicit] class.
 type IInflectionRuleExplicit interface {
 	IInflectionRule
+	
+/* debug [class_interface_properties]: Properties for InflectionRuleExplicit */
 	// properties:
 	Morphology() IMorphology
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for InflectionRuleExplicit */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
 
 
-// An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit
-type InflectionRuleExplicit struct {
-	InflectionRule
-}
-
-// InflectionRuleExplicitFrom constructs a [InflectionRuleExplicit] from an unsafe.Pointer.
-//
-// An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
-func InflectionRuleExplicitFrom(ptr unsafe.Pointer) InflectionRuleExplicit {
-	return InflectionRuleExplicit{
-		InflectionRule: InflectionRuleFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for InflectionRuleExplicit */
 // Alloc allocates a new instance without initialization.
 func (ic _InflectionRuleExplicitClass) Alloc() InflectionRuleExplicit {
 	rv := objc.Send[InflectionRuleExplicit](objc.ID(ic.class), objc.Sel("alloc"))
@@ -61,7 +62,6 @@ func (ic _InflectionRuleExplicitClass) Alloc() InflectionRuleExplicit {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _InflectionRuleExplicitClass) New() InflectionRuleExplicit {
 	rv := objc.Send[InflectionRuleExplicit](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,8 +84,35 @@ func (i_ InflectionRuleExplicit) Autorelease() InflectionRuleExplicit {
 func NewInflectionRuleExplicit() InflectionRuleExplicit {
 	return getInflectionRuleExplicitClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for InflectionRuleExplicit */
+// An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
+
+
+// An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInflectionRuleExplicit
+type InflectionRuleExplicit struct {
+	InflectionRule
+}
+
+// InflectionRuleExplicitFrom constructs a [InflectionRuleExplicit] from an unsafe.Pointer.
+//
+// An inflection rule that uses a morphology instance to determine how to inflect attribued strings.
+func InflectionRuleExplicitFrom(ptr unsafe.Pointer) InflectionRuleExplicit {
+	return InflectionRuleExplicit{
+		InflectionRule: InflectionRuleFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for InflectionRuleExplicit */
 
 // Creates an inflection rule with the given morphology.
 //
@@ -96,9 +123,28 @@ func NewInflectionRuleExplicitWithMorphology(morphology IMorphology) InflectionR
 	rv := objc.Send[InflectionRuleExplicit](instance.ID, objc.Sel("initWithMorphology:"), morphology)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewInflectionRuleExplicitWithMorphology */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for InflectionRuleExplicit */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for InflectionRuleExplicit */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for InflectionRuleExplicit */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for InflectionRuleExplicit */
 
 // The morphology used by this inflection rule.
 //
@@ -107,6 +153,11 @@ func NewInflectionRuleExplicitWithMorphology(morphology IMorphology) InflectionR
 func (i_ InflectionRuleExplicit) Morphology() IMorphology {
 	rv := objc.Send[Morphology](i_.ID, objc.Sel("morphology"))
 	return rv
-}
+}/* debug [instance_properties/getter]: morphology */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSInflectionRuleExplicit */
 
 

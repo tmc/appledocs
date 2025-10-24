@@ -15,3 +15,4 @@ var drawerWillOpenProtocol *objc.Protocol
 func init() {
 	drawerWillOpenProtocol = objc.GetProtocol("drawerWillOpen:")
 }
+

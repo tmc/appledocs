@@ -33,8 +33,6 @@ type IMTRBaseClusterChannel interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterChannel
 type MTRBaseClusterChannel struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterChannel) Autorelease() MTRBaseClusterChannel {
 func NewMTRBaseClusterChannel() MTRBaseClusterChannel {
 	return getMTRBaseClusterChannelClass().New()
 }
-
-
-
-

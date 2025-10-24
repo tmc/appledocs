@@ -2,6 +2,7 @@
 
 package glkit
 
+/* debug [functions.gen.go]: Generating 48 functions for GLKit */
 import (
 	"unsafe"
 
@@ -21,7 +22,7 @@ var (
 	_GLKMatrix3InvertAndTranspose func(GLKMatrix3, unsafe.Pointer) GLKMatrix3
 	_GLKMatrix4Invert func(GLKMatrix4, unsafe.Pointer) GLKMatrix4
 	_GLKMatrix4InvertAndTranspose func(GLKMatrix4, unsafe.Pointer) GLKMatrix4
-	_GLKMatrixStackCreate func(unsafe.Pointer) GLKMatrixStackRef
+	_GLKMatrixStackCreate func(AllocatorRef) GLKMatrixStackRef
 	_GLKMatrixStackGetMatrix2 func(GLKMatrixStackRef) GLKMatrix2
 	_GLKMatrixStackGetMatrix3 func(GLKMatrixStackRef) GLKMatrix3
 	_GLKMatrixStackGetMatrix3Inverse func(GLKMatrixStackRef) GLKMatrix3
@@ -29,7 +30,7 @@ var (
 	_GLKMatrixStackGetMatrix4 func(GLKMatrixStackRef) GLKMatrix4
 	_GLKMatrixStackGetMatrix4Inverse func(GLKMatrixStackRef) GLKMatrix4
 	_GLKMatrixStackGetMatrix4InverseTranspose func(GLKMatrixStackRef) GLKMatrix4
-	_GLKMatrixStackGetTypeID func() unsafe.Pointer
+	_GLKMatrixStackGetTypeID func() TypeID
 	_GLKMatrixStackLoadMatrix4 func(GLKMatrixStackRef, GLKMatrix4)
 	_GLKMatrixStackMultiplyMatrix4 func(GLKMatrixStackRef, GLKMatrix4)
 	_GLKMatrixStackMultiplyMatrixStack func(GLKMatrixStackRef, GLKMatrixStackRef)
@@ -143,7 +144,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMathProject(_:_:_:_:)
 func GLKMathProject(object GLKVector3, model GLKMatrix4, projection GLKMatrix4, viewport []int) GLKVector3 {
 	return _GLKMathProject(object, model, projection, viewport)
-}
+}/* debug [functions.gen.go/function]: GLKMathProject */
 
 // Projects a point in view space into object space.
 //
@@ -154,7 +155,7 @@ func GLKMathProject(object GLKVector3, model GLKMatrix4, projection GLKMatrix4, 
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMathUnproject(_:_:_:_:_:)
 func GLKMathUnproject(window GLKVector3, model GLKMatrix4, projection GLKMatrix4, viewport []int, success unsafe.Pointer) GLKVector3 {
 	return _GLKMathUnproject(window, model, projection, viewport, success)
-}
+}/* debug [functions.gen.go/function]: GLKMathUnproject */
 
 // Returns the inverse of a matrix.
 //
@@ -165,7 +166,7 @@ func GLKMathUnproject(window GLKVector3, model GLKMatrix4, projection GLKMatrix4
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix3Invert(_:_:)
 func GLKMatrix3Invert(matrix GLKMatrix3, isInvertible unsafe.Pointer) GLKMatrix3 {
 	return _GLKMatrix3Invert(matrix, isInvertible)
-}
+}/* debug [functions.gen.go/function]: GLKMatrix3Invert */
 
 // Returns the inverse transpose of a matrix.
 //
@@ -176,7 +177,7 @@ func GLKMatrix3Invert(matrix GLKMatrix3, isInvertible unsafe.Pointer) GLKMatrix3
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix3InvertAndTranspose(_:_:)
 func GLKMatrix3InvertAndTranspose(matrix GLKMatrix3, isInvertible unsafe.Pointer) GLKMatrix3 {
 	return _GLKMatrix3InvertAndTranspose(matrix, isInvertible)
-}
+}/* debug [functions.gen.go/function]: GLKMatrix3InvertAndTranspose */
 
 // Returns the inverse of a matrix.
 //
@@ -187,7 +188,7 @@ func GLKMatrix3InvertAndTranspose(matrix GLKMatrix3, isInvertible unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix4Invert(_:_:)
 func GLKMatrix4Invert(matrix GLKMatrix4, isInvertible unsafe.Pointer) GLKMatrix4 {
 	return _GLKMatrix4Invert(matrix, isInvertible)
-}
+}/* debug [functions.gen.go/function]: GLKMatrix4Invert */
 
 // Returns the inverse transpose of a matrix.
 //
@@ -198,7 +199,7 @@ func GLKMatrix4Invert(matrix GLKMatrix4, isInvertible unsafe.Pointer) GLKMatrix4
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrix4InvertAndTranspose(_:_:)
 func GLKMatrix4InvertAndTranspose(matrix GLKMatrix4, isInvertible unsafe.Pointer) GLKMatrix4 {
 	return _GLKMatrix4InvertAndTranspose(matrix, isInvertible)
-}
+}/* debug [functions.gen.go/function]: GLKMatrix4InvertAndTranspose */
 
 // Allocates and returns a new matrix stack.
 //
@@ -207,9 +208,9 @@ func GLKMatrix4InvertAndTranspose(matrix GLKMatrix4, isInvertible unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackCreate(_:)
-func GLKMatrixStackCreate(alloc unsafe.Pointer) GLKMatrixStackRef {
+func GLKMatrixStackCreate(alloc AllocatorRef) GLKMatrixStackRef {
 	return _GLKMatrixStackCreate(alloc)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackCreate */
 
 // Returns the top-left corner of the top matrix.
 //
@@ -220,7 +221,7 @@ func GLKMatrixStackCreate(alloc unsafe.Pointer) GLKMatrixStackRef {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix2(_:)
 func GLKMatrixStackGetMatrix2(stack GLKMatrixStackRef) GLKMatrix2 {
 	return _GLKMatrixStackGetMatrix2(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackGetMatrix2 */
 
 // Returns the top-left corner of the top matrix.
 //
@@ -231,7 +232,7 @@ func GLKMatrixStackGetMatrix2(stack GLKMatrixStackRef) GLKMatrix2 {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix3(_:)
 func GLKMatrixStackGetMatrix3(stack GLKMatrixStackRef) GLKMatrix3 {
 	return _GLKMatrixStackGetMatrix3(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackGetMatrix3 */
 
 // Fetches the top-left corner of the top matrix and returns its inverse.
 //
@@ -242,7 +243,7 @@ func GLKMatrixStackGetMatrix3(stack GLKMatrixStackRef) GLKMatrix3 {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix3Inverse(_:)
 func GLKMatrixStackGetMatrix3Inverse(stack GLKMatrixStackRef) GLKMatrix3 {
 	return _GLKMatrixStackGetMatrix3Inverse(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackGetMatrix3Inverse */
 
 // Fetches the top-left corner of the top matrix and returns its inverse transpose.
 //
@@ -253,7 +254,7 @@ func GLKMatrixStackGetMatrix3Inverse(stack GLKMatrixStackRef) GLKMatrix3 {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix3InverseTranspose(_:)
 func GLKMatrixStackGetMatrix3InverseTranspose(stack GLKMatrixStackRef) GLKMatrix3 {
 	return _GLKMatrixStackGetMatrix3InverseTranspose(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackGetMatrix3InverseTranspose */
 
 // Returns a copy of the top matrix on the stack.
 //
@@ -264,7 +265,7 @@ func GLKMatrixStackGetMatrix3InverseTranspose(stack GLKMatrixStackRef) GLKMatrix
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix4(_:)
 func GLKMatrixStackGetMatrix4(stack GLKMatrixStackRef) GLKMatrix4 {
 	return _GLKMatrixStackGetMatrix4(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackGetMatrix4 */
 
 // Returns the inverse of the top matrix.
 //
@@ -275,7 +276,7 @@ func GLKMatrixStackGetMatrix4(stack GLKMatrixStackRef) GLKMatrix4 {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix4Inverse(_:)
 func GLKMatrixStackGetMatrix4Inverse(stack GLKMatrixStackRef) GLKMatrix4 {
 	return _GLKMatrixStackGetMatrix4Inverse(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackGetMatrix4Inverse */
 
 // Returns the inverse transpose of the top matrix.
 //
@@ -286,7 +287,7 @@ func GLKMatrixStackGetMatrix4Inverse(stack GLKMatrixStackRef) GLKMatrix4 {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetMatrix4InverseTranspose(_:)
 func GLKMatrixStackGetMatrix4InverseTranspose(stack GLKMatrixStackRef) GLKMatrix4 {
 	return _GLKMatrixStackGetMatrix4InverseTranspose(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackGetMatrix4InverseTranspose */
 
 // Returns the Core Foundation type for a matrix stack.
 //
@@ -295,9 +296,9 @@ func GLKMatrixStackGetMatrix4InverseTranspose(stack GLKMatrixStackRef) GLKMatrix
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackGetTypeID()
-func GLKMatrixStackGetTypeID() unsafe.Pointer {
+func GLKMatrixStackGetTypeID() TypeID {
 	return _GLKMatrixStackGetTypeID()
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackGetTypeID */
 
 // Replaces the contents of the top matrix with a new matrix.
 //
@@ -308,7 +309,7 @@ func GLKMatrixStackGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackLoadMatrix4(_:_:)
 func GLKMatrixStackLoadMatrix4(stack GLKMatrixStackRef, matrix GLKMatrix4) {
 	_GLKMatrixStackLoadMatrix4(stack, matrix)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackLoadMatrix4 */
 
 // Replaces the contents of the top matrix with a matrix calculated by multiplying the contents of the top matrix by another matrix.
 //
@@ -319,7 +320,7 @@ func GLKMatrixStackLoadMatrix4(stack GLKMatrixStackRef, matrix GLKMatrix4) {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackMultiplyMatrix4(_:_:)
 func GLKMatrixStackMultiplyMatrix4(stack GLKMatrixStackRef, matrix GLKMatrix4) {
 	_GLKMatrixStackMultiplyMatrix4(stack, matrix)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackMultiplyMatrix4 */
 
 // Replaces the contents of the top matrix with a matrix calculated by multiplying the contents of the top matrix by the top matrix of another matrix stack.
 //
@@ -330,7 +331,7 @@ func GLKMatrixStackMultiplyMatrix4(stack GLKMatrixStackRef, matrix GLKMatrix4) {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackMultiplyMatrixStack(_:_:)
 func GLKMatrixStackMultiplyMatrixStack(stackLeft GLKMatrixStackRef, stackRight GLKMatrixStackRef) {
 	_GLKMatrixStackMultiplyMatrixStack(stackLeft, stackRight)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackMultiplyMatrixStack */
 
 // Removes the topmost entry from the stack.
 //
@@ -341,7 +342,7 @@ func GLKMatrixStackMultiplyMatrixStack(stackLeft GLKMatrixStackRef, stackRight G
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackPop(_:)
 func GLKMatrixStackPop(stack GLKMatrixStackRef) {
 	_GLKMatrixStackPop(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackPop */
 
 // Push a copy of the topmost matrix onto the top of the stack.
 //
@@ -352,7 +353,7 @@ func GLKMatrixStackPop(stack GLKMatrixStackRef) {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackPush(_:)
 func GLKMatrixStackPush(stack GLKMatrixStackRef) {
 	_GLKMatrixStackPush(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackPush */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around an arbitrary axis.
 //
@@ -363,7 +364,7 @@ func GLKMatrixStackPush(stack GLKMatrixStackRef) {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotate(_:_:_:_:_:)
 func GLKMatrixStackRotate(stack GLKMatrixStackRef, radians float32, x float32, y float32, z float32) {
 	_GLKMatrixStackRotate(stack, radians, x, y, z)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackRotate */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around an arbitrary axis.
 //
@@ -374,7 +375,7 @@ func GLKMatrixStackRotate(stack GLKMatrixStackRef, radians float32, x float32, y
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateWithVector3(_:_:_:)
 func GLKMatrixStackRotateWithVector3(stack GLKMatrixStackRef, radians float32, axisVector GLKVector3) {
 	_GLKMatrixStackRotateWithVector3(stack, radians, axisVector)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackRotateWithVector3 */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around an arbitrary axis.
 //
@@ -385,7 +386,7 @@ func GLKMatrixStackRotateWithVector3(stack GLKMatrixStackRef, radians float32, a
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateWithVector4(_:_:_:)
 func GLKMatrixStackRotateWithVector4(stack GLKMatrixStackRef, radians float32, axisVector GLKVector4) {
 	_GLKMatrixStackRotateWithVector4(stack, radians, axisVector)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackRotateWithVector4 */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around the positive-x axis.
 //
@@ -396,7 +397,7 @@ func GLKMatrixStackRotateWithVector4(stack GLKMatrixStackRef, radians float32, a
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateX(_:_:)
 func GLKMatrixStackRotateX(stack GLKMatrixStackRef, radians float32) {
 	_GLKMatrixStackRotateX(stack, radians)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackRotateX */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around the positive-y axis.
 //
@@ -407,7 +408,7 @@ func GLKMatrixStackRotateX(stack GLKMatrixStackRef, radians float32) {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateY(_:_:)
 func GLKMatrixStackRotateY(stack GLKMatrixStackRef, radians float32) {
 	_GLKMatrixStackRotateY(stack, radians)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackRotateY */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a rotation around the positive-z axis.
 //
@@ -418,7 +419,7 @@ func GLKMatrixStackRotateY(stack GLKMatrixStackRef, radians float32) {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackRotateZ(_:_:)
 func GLKMatrixStackRotateZ(stack GLKMatrixStackRef, radians float32) {
 	_GLKMatrixStackRotateZ(stack, radians)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackRotateZ */
 
 // Replaces the contents of the top matrix with a matrix calculated by scaling the contents of the top matrix.
 //
@@ -429,7 +430,7 @@ func GLKMatrixStackRotateZ(stack GLKMatrixStackRef, radians float32) {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackScale(_:_:_:_:)
 func GLKMatrixStackScale(stack GLKMatrixStackRef, sx float32, sy float32, sz float32) {
 	_GLKMatrixStackScale(stack, sx, sy, sz)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackScale */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a scaling operation.
 //
@@ -440,7 +441,7 @@ func GLKMatrixStackScale(stack GLKMatrixStackRef, sx float32, sy float32, sz flo
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackScaleWithVector3(_:_:)
 func GLKMatrixStackScaleWithVector3(stack GLKMatrixStackRef, scaleVector GLKVector3) {
 	_GLKMatrixStackScaleWithVector3(stack, scaleVector)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackScaleWithVector3 */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a scaling operation defined by a vector.
 //
@@ -451,7 +452,7 @@ func GLKMatrixStackScaleWithVector3(stack GLKMatrixStackRef, scaleVector GLKVect
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackScaleWithVector4(_:_:)
 func GLKMatrixStackScaleWithVector4(stack GLKMatrixStackRef, scaleVector GLKVector4) {
 	_GLKMatrixStackScaleWithVector4(stack, scaleVector)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackScaleWithVector4 */
 
 // Returns the number of matrices present on the matrix stack.
 //
@@ -462,7 +463,7 @@ func GLKMatrixStackScaleWithVector4(stack GLKMatrixStackRef, scaleVector GLKVect
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackSize(_:)
 func GLKMatrixStackSize(stack GLKMatrixStackRef) int {
 	return _GLKMatrixStackSize(stack)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackSize */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a translation operation.
 //
@@ -473,7 +474,7 @@ func GLKMatrixStackSize(stack GLKMatrixStackRef) int {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackTranslate(_:_:_:_:)
 func GLKMatrixStackTranslate(stack GLKMatrixStackRef, tx float32, ty float32, tz float32) {
 	_GLKMatrixStackTranslate(stack, tx, ty, tz)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackTranslate */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a translation defined by a vector.
 //
@@ -484,7 +485,7 @@ func GLKMatrixStackTranslate(stack GLKMatrixStackRef, tx float32, ty float32, tz
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackTranslateWithVector3(_:_:)
 func GLKMatrixStackTranslateWithVector3(stack GLKMatrixStackRef, translationVector GLKVector3) {
 	_GLKMatrixStackTranslateWithVector3(stack, translationVector)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackTranslateWithVector3 */
 
 // Replaces the contents of the top matrix with a matrix calculated by composing the top matrix with a translation defined by a vector.
 //
@@ -495,7 +496,7 @@ func GLKMatrixStackTranslateWithVector3(stack GLKMatrixStackRef, translationVect
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKMatrixStackTranslateWithVector4(_:_:)
 func GLKMatrixStackTranslateWithVector4(stack GLKMatrixStackRef, translationVector GLKVector4) {
 	_GLKMatrixStackTranslateWithVector4(stack, translationVector)
-}
+}/* debug [functions.gen.go/function]: GLKMatrixStackTranslateWithVector4 */
 
 // Returns the rotation angle of a quaternion.
 //
@@ -506,7 +507,7 @@ func GLKMatrixStackTranslateWithVector4(stack GLKMatrixStackRef, translationVect
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionAngle(_:)
 func GLKQuaternionAngle(quaternion GLKQuaternion) float32 {
 	return _GLKQuaternionAngle(quaternion)
-}
+}/* debug [functions.gen.go/function]: GLKQuaternionAngle */
 
 // Returns the axis of rotation of a quaternion.
 //
@@ -517,7 +518,7 @@ func GLKQuaternionAngle(quaternion GLKQuaternion) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionAxis(_:)
 func GLKQuaternionAxis(quaternion GLKQuaternion) GLKVector3 {
 	return _GLKQuaternionAxis(quaternion)
-}
+}/* debug [functions.gen.go/function]: GLKQuaternionAxis */
 
 // Creates a quaternion from a rotation matrix.
 //
@@ -528,7 +529,7 @@ func GLKQuaternionAxis(quaternion GLKQuaternion) GLKVector3 {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionMakeWithMatrix3(_:)
 func GLKQuaternionMakeWithMatrix3(matrix GLKMatrix3) GLKQuaternion {
 	return _GLKQuaternionMakeWithMatrix3(matrix)
-}
+}/* debug [functions.gen.go/function]: GLKQuaternionMakeWithMatrix3 */
 
 // Creates a quaternion from a rotation matrix.
 //
@@ -539,7 +540,7 @@ func GLKQuaternionMakeWithMatrix3(matrix GLKMatrix3) GLKQuaternion {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionMakeWithMatrix4(_:)
 func GLKQuaternionMakeWithMatrix4(matrix GLKMatrix4) GLKQuaternion {
 	return _GLKQuaternionMakeWithMatrix4(matrix)
-}
+}/* debug [functions.gen.go/function]: GLKQuaternionMakeWithMatrix4 */
 
 // Applies a quaternion rotation to an array of vectors.
 //
@@ -550,7 +551,7 @@ func GLKQuaternionMakeWithMatrix4(matrix GLKMatrix4) GLKQuaternion {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionRotateVector3Array(_:_:_:)
 func GLKQuaternionRotateVector3Array(quaternion GLKQuaternion, vectors unsafe.Pointer, vectorCount uintptr) {
 	_GLKQuaternionRotateVector3Array(quaternion, vectors, vectorCount)
-}
+}/* debug [functions.gen.go/function]: GLKQuaternionRotateVector3Array */
 
 // Applies a quaternion rotation to an array of vectors.
 //
@@ -561,7 +562,7 @@ func GLKQuaternionRotateVector3Array(quaternion GLKQuaternion, vectors unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionRotateVector4Array(_:_:_:)
 func GLKQuaternionRotateVector4Array(quaternion GLKQuaternion, vectors unsafe.Pointer, vectorCount uintptr) {
 	_GLKQuaternionRotateVector4Array(quaternion, vectors, vectorCount)
-}
+}/* debug [functions.gen.go/function]: GLKQuaternionRotateVector4Array */
 
 // Returns the spherical linear interpolation of two quaternions.
 //
@@ -572,7 +573,7 @@ func GLKQuaternionRotateVector4Array(quaternion GLKQuaternion, vectors unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKQuaternionSlerp(_:_:_:)
 func GLKQuaternionSlerp(quaternionStart GLKQuaternion, quaternionEnd GLKQuaternion, t float32) GLKQuaternion {
 	return _GLKQuaternionSlerp(quaternionStart, quaternionEnd, t)
-}
+}/* debug [functions.gen.go/function]: GLKQuaternionSlerp */
 
 // GLKVertexAttributeParametersFromModelIO is a GLKit function.
 //
@@ -581,7 +582,7 @@ func GLKQuaternionSlerp(quaternionStart GLKQuaternion, quaternionEnd GLKQuaterni
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKVertexAttributeParametersFromModelIO(_:)
 func GLKVertexAttributeParametersFromModelIO(vertexFormat unsafe.Pointer) GLKVertexAttributeParameters {
 	return _GLKVertexAttributeParametersFromModelIO(vertexFormat)
-}
+}/* debug [functions.gen.go/function]: GLKVertexAttributeParametersFromModelIO */
 
 // Returns a string that represents the contents of a matrix.
 //
@@ -592,7 +593,7 @@ func GLKVertexAttributeParametersFromModelIO(vertexFormat unsafe.Pointer) GLKVer
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKMatrix2(_:)
 func NSStringFromGLKMatrix2(matrix GLKMatrix2) unsafe.Pointer {
 	return _NSStringFromGLKMatrix2(matrix)
-}
+}/* debug [functions.gen.go/function]: NSStringFromGLKMatrix2 */
 
 // Returns a string that represents the contents of a matrix.
 //
@@ -603,7 +604,7 @@ func NSStringFromGLKMatrix2(matrix GLKMatrix2) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKMatrix3(_:)
 func NSStringFromGLKMatrix3(matrix GLKMatrix3) unsafe.Pointer {
 	return _NSStringFromGLKMatrix3(matrix)
-}
+}/* debug [functions.gen.go/function]: NSStringFromGLKMatrix3 */
 
 // Returns a string that represents the contents of a matrix.
 //
@@ -614,7 +615,7 @@ func NSStringFromGLKMatrix3(matrix GLKMatrix3) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKMatrix4(_:)
 func NSStringFromGLKMatrix4(matrix GLKMatrix4) unsafe.Pointer {
 	return _NSStringFromGLKMatrix4(matrix)
-}
+}/* debug [functions.gen.go/function]: NSStringFromGLKMatrix4 */
 
 // Returns a string that represents the contents of a quaternion.
 //
@@ -625,7 +626,7 @@ func NSStringFromGLKMatrix4(matrix GLKMatrix4) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKQuaternion(_:)
 func NSStringFromGLKQuaternion(quaternion GLKQuaternion) unsafe.Pointer {
 	return _NSStringFromGLKQuaternion(quaternion)
-}
+}/* debug [functions.gen.go/function]: NSStringFromGLKQuaternion */
 
 // Returns a string that represents the contents of a vector.
 //
@@ -636,7 +637,7 @@ func NSStringFromGLKQuaternion(quaternion GLKQuaternion) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKVector2(_:)
 func NSStringFromGLKVector2(vector GLKVector2) unsafe.Pointer {
 	return _NSStringFromGLKVector2(vector)
-}
+}/* debug [functions.gen.go/function]: NSStringFromGLKVector2 */
 
 // Returns a string that represents the contents of a vector.
 //
@@ -647,7 +648,7 @@ func NSStringFromGLKVector2(vector GLKVector2) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKVector3(_:)
 func NSStringFromGLKVector3(vector GLKVector3) unsafe.Pointer {
 	return _NSStringFromGLKVector3(vector)
-}
+}/* debug [functions.gen.go/function]: NSStringFromGLKVector3 */
 
 // Returns a string that represents the contents of a vector.
 //
@@ -658,7 +659,8 @@ func NSStringFromGLKVector3(vector GLKVector3) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/NSStringFromGLKVector4(_:)
 func NSStringFromGLKVector4(vector GLKVector4) unsafe.Pointer {
 	return _NSStringFromGLKVector4(vector)
-}
+}/* debug [functions.gen.go/function]: NSStringFromGLKVector4 */
+
 
 
 

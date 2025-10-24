@@ -15,6 +15,7 @@ func ExampleNewRandomSource() {
 	_ = gameplaykit.NewRandomSource()
 	// Output:
 }
+
 // ExampleNewRandomSourceWithCoder demonstrates how to create a RandomSource instance using NewRandomSourceWithCoder.
 func ExampleNewRandomSourceWithCoder() {
 	_ = gameplaykit.NewRandomSourceWithCoder(

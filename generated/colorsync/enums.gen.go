@@ -2,7 +2,9 @@
 
 package colorsync
 
+/* debug [enums.gen.go]: Generating 2 enums for ColorSync */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum ColorSyncAlphaInfo (7 cases) */
 // ColorSyncAlphaInfo enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncAlphaInfo
@@ -32,6 +34,7 @@ const (
 	kColorSyncAlphaPremultipliedLast ColorSyncAlphaInfo = 0
 )
 
+/* debug [enums.gen.go]: Processing enum ColorSyncDataDepth (8 cases) */
 // ColorSyncDataDepth enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncDataDepth

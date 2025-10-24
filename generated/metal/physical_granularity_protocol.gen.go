@@ -20,3 +20,4 @@ var physicalGranularityProtocol *objc.Protocol
 func init() {
 	physicalGranularityProtocol = objc.GetProtocol("physicalGranularity")
 }
+

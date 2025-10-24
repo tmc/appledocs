@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -76,7 +76,6 @@ type IEntityDescription interface {
 //
 // Entities are to managed objects what is to , or — to use a database analogy — what tables are to rows. An instance specifies the entity’s name, its attributes and relationships (as instances of and ) and the class that represents it. Instances of that class correspond to entries in the associated persistent store. As a minimum, an entity description requires: A name. The class name of the corresponding managed object. If you don’t specify a class name, the framework uses . You define entities in a managed object model (an instance of ) using Xcode’s data modeling tool. Core Data uses to map entries in the persistent store to managed objects in your app. It’s unlikely you’ll interact with entity descriptions directly unless you’re specifically working with models. provides a user dictionary for you to store any related, app-specific information.
 
-
 // A description of a Core Data entity.
 //
 // [Full Topic]
@@ -123,8 +122,6 @@ func NewEntityDescription() EntityDescription {
 	return getEntityDescriptionClass().New()
 }
 
-
-
 // The version hash for the receiver.
 //
 // [Full Topic]
@@ -133,7 +130,6 @@ func (e_ EntityDescription) VersionHash() objc.IObject /* cross-framework: NSDat
 	rv := objc.Send[foundation.NSData](e_.ID, objc.Sel("versionHash"))
 	return rv
 }
-
 
 // The attributes of the receiver in a dictionary.
 //
@@ -144,7 +140,6 @@ func (e_ EntityDescription) AttributesByName() IAttributeDescription {
 	return rv
 }
 
-
 // The attributes of the receiver in a dictionary.
 //
 // [Full Topic]
@@ -152,7 +147,6 @@ func (e_ EntityDescription) AttributesByName() IAttributeDescription {
 func (e_ EntityDescription) SetAttributesByName(value IAttributeDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributesByName:"), value)
 }
-
 
 // The compound indexes for the entity as an array of arrays.
 //
@@ -163,7 +157,6 @@ func (e_ EntityDescription) CompoundIndexes() unsafe.Pointer {
 	return rv
 }
 
-
 // The compound indexes for the entity as an array of arrays.
 //
 // [Full Topic]
@@ -171,7 +164,6 @@ func (e_ EntityDescription) CompoundIndexes() unsafe.Pointer {
 func (e_ EntityDescription) SetCompoundIndexes(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCompoundIndexes:"), value)
 }
-
 
 // The expression that computes the CoreSpotlight display name for instances of the entity.
 //
@@ -182,7 +174,6 @@ func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() objc.IObject /*
 	return rv
 }
 
-
 // The expression that computes the CoreSpotlight display name for instances of the entity.
 //
 // [Full Topic]
@@ -190,7 +181,6 @@ func (e_ EntityDescription) CoreSpotlightDisplayNameExpression() objc.IObject /*
 func (e_ EntityDescription) SetCoreSpotlightDisplayNameExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setCoreSpotlightDisplayNameExpression:"), value)
 }
-
 
 // An array of fetch index descriptions for the entity.
 //
@@ -201,7 +191,6 @@ func (e_ EntityDescription) Indexes() FetchIndexDescription /* not a class type 
 	return rv
 }
 
-
 // An array of fetch index descriptions for the entity.
 //
 // [Full Topic]
@@ -209,7 +198,6 @@ func (e_ EntityDescription) Indexes() FetchIndexDescription /* not a class type 
 func (e_ EntityDescription) SetIndexes(value FetchIndexDescription /* not a class type */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIndexes:"), value)
 }
-
 
 // A Boolean value that indicates whether the receiver represents an abstract entity.
 //
@@ -220,7 +208,6 @@ func (e_ EntityDescription) IsAbstract() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the receiver represents an abstract entity.
 //
 // [Full Topic]
@@ -228,7 +215,6 @@ func (e_ EntityDescription) IsAbstract() bool {
 func (e_ EntityDescription) SetIsAbstract(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsAbstract:"), value)
 }
-
 
 // The name of the class that represents the receiver’s entity.
 //
@@ -239,7 +225,6 @@ func (e_ EntityDescription) ManagedObjectClassName() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // The name of the class that represents the receiver’s entity.
 //
 // [Full Topic]
@@ -247,7 +232,6 @@ func (e_ EntityDescription) ManagedObjectClassName() objc.IObject /* cross-frame
 func (e_ EntityDescription) SetManagedObjectClassName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setManagedObjectClassName:"), value)
 }
-
 
 // The managed object model with which the receiver is associated.
 //
@@ -258,7 +242,6 @@ func (e_ EntityDescription) ManagedObjectModel() IManagedObjectModel {
 	return rv
 }
 
-
 // The managed object model with which the receiver is associated.
 //
 // [Full Topic]
@@ -266,7 +249,6 @@ func (e_ EntityDescription) ManagedObjectModel() IManagedObjectModel {
 func (e_ EntityDescription) SetManagedObjectModel(value IManagedObjectModel) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setManagedObjectModel:"), value)
 }
-
 
 // The entity name of the receiver.
 //
@@ -277,7 +259,6 @@ func (e_ EntityDescription) Name() objc.IObject /* cross-framework: NSString */ 
 	return rv
 }
 
-
 // The entity name of the receiver.
 //
 // [Full Topic]
@@ -285,7 +266,6 @@ func (e_ EntityDescription) Name() objc.IObject /* cross-framework: NSString */ 
 func (e_ EntityDescription) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
-
 
 // An array containing the properties of the receiver.
 //
@@ -296,7 +276,6 @@ func (e_ EntityDescription) Properties() IPropertyDescription {
 	return rv
 }
 
-
 // An array containing the properties of the receiver.
 //
 // [Full Topic]
@@ -304,7 +283,6 @@ func (e_ EntityDescription) Properties() IPropertyDescription {
 func (e_ EntityDescription) SetProperties(value IPropertyDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setProperties:"), value)
 }
-
 
 // A dictionary containing the properties of the receiver.
 //
@@ -315,7 +293,6 @@ func (e_ EntityDescription) PropertiesByName() IPropertyDescription {
 	return rv
 }
 
-
 // A dictionary containing the properties of the receiver.
 //
 // [Full Topic]
@@ -323,7 +300,6 @@ func (e_ EntityDescription) PropertiesByName() IPropertyDescription {
 func (e_ EntityDescription) SetPropertiesByName(value IPropertyDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPropertiesByName:"), value)
 }
-
 
 // The relationships of the receiver in a dictionary.
 //
@@ -334,7 +310,6 @@ func (e_ EntityDescription) RelationshipsByName() IRelationshipDescription {
 	return rv
 }
 
-
 // The relationships of the receiver in a dictionary.
 //
 // [Full Topic]
@@ -342,7 +317,6 @@ func (e_ EntityDescription) RelationshipsByName() IRelationshipDescription {
 func (e_ EntityDescription) SetRelationshipsByName(value IRelationshipDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRelationshipsByName:"), value)
 }
-
 
 // The renaming identifier for the receiver.
 //
@@ -353,7 +327,6 @@ func (e_ EntityDescription) RenamingIdentifier() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The renaming identifier for the receiver.
 //
 // [Full Topic]
@@ -361,7 +334,6 @@ func (e_ EntityDescription) RenamingIdentifier() objc.IObject /* cross-framework
 func (e_ EntityDescription) SetRenamingIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRenamingIdentifier:"), value)
 }
-
 
 // An array containing the sub-entities of the receiver.
 //
@@ -372,7 +344,6 @@ func (e_ EntityDescription) Subentities() IEntityDescription {
 	return rv
 }
 
-
 // An array containing the sub-entities of the receiver.
 //
 // [Full Topic]
@@ -380,7 +351,6 @@ func (e_ EntityDescription) Subentities() IEntityDescription {
 func (e_ EntityDescription) SetSubentities(value IEntityDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSubentities:"), value)
 }
-
 
 // A dictionary containing the receiver’s sub-entities.
 //
@@ -391,7 +361,6 @@ func (e_ EntityDescription) SubentitiesByName() IEntityDescription {
 	return rv
 }
 
-
 // A dictionary containing the receiver’s sub-entities.
 //
 // [Full Topic]
@@ -399,7 +368,6 @@ func (e_ EntityDescription) SubentitiesByName() IEntityDescription {
 func (e_ EntityDescription) SetSubentitiesByName(value IEntityDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSubentitiesByName:"), value)
 }
-
 
 // The super-entity of the receiver.
 //
@@ -410,7 +378,6 @@ func (e_ EntityDescription) Superentity() IEntityDescription {
 	return rv
 }
 
-
 // The super-entity of the receiver.
 //
 // [Full Topic]
@@ -418,7 +385,6 @@ func (e_ EntityDescription) Superentity() IEntityDescription {
 func (e_ EntityDescription) SetSuperentity(value IEntityDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSuperentity:"), value)
 }
-
 
 // An array of arrays that contains one or more attributes with a value that must be unique over the instances of that entity.
 //
@@ -429,7 +395,6 @@ func (e_ EntityDescription) UniquenessConstraints() unsafe.Pointer {
 	return rv
 }
 
-
 // An array of arrays that contains one or more attributes with a value that must be unique over the instances of that entity.
 //
 // [Full Topic]
@@ -437,7 +402,6 @@ func (e_ EntityDescription) UniquenessConstraints() unsafe.Pointer {
 func (e_ EntityDescription) SetUniquenessConstraints(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUniquenessConstraints:"), value)
 }
-
 
 // The user info dictionary of the receiver.
 //
@@ -448,7 +412,6 @@ func (e_ EntityDescription) UserInfo() unsafe.Pointer {
 	return rv
 }
 
-
 // The user info dictionary of the receiver.
 //
 // [Full Topic]
@@ -456,7 +419,6 @@ func (e_ EntityDescription) UserInfo() unsafe.Pointer {
 func (e_ EntityDescription) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUserInfo:"), value)
 }
-
 
 // The version hash modifier for the receiver.
 //
@@ -467,7 +429,6 @@ func (e_ EntityDescription) VersionHashModifier() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The version hash modifier for the receiver.
 //
 // [Full Topic]
@@ -475,6 +436,3 @@ func (e_ EntityDescription) VersionHashModifier() objc.IObject /* cross-framewor
 func (e_ EntityDescription) SetVersionHashModifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setVersionHashModifier:"), value)
 }
-
-
-

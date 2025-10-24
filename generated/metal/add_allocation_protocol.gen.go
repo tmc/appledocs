@@ -20,3 +20,4 @@ var addAllocationProtocol *objc.Protocol
 func init() {
 	addAllocationProtocol = objc.GetProtocol("addAllocation:")
 }
+

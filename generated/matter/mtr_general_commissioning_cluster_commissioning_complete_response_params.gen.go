@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRGeneralCommissioningClusterCommissioningCompleteResponseParams interfac
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterCommissioningCompleteResponseParams
@@ -85,8 +83,6 @@ func NewMTRGeneralCommissioningClusterCommissioningCompleteResponseParams() MTRG
 	return getMTRGeneralCommissioningClusterCommissioningCompleteResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
 func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) DebugText() objc.IObject /* cross-framework: NSString */ {
@@ -94,13 +90,11 @@ func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) Debu
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/debugtext
 func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetDebugText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/errorcode
@@ -109,13 +103,11 @@ func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) Erro
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/errorcode
 func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetErrorCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) Time
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustercommissioningcompleteresponseparams/timedinvoketimeoutms
 func (m_ MTRGeneralCommissioningClusterCommissioningCompleteResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

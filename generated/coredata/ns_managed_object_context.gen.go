@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -41,10 +41,10 @@ type IManagedObjectContext interface {
 	UndoManager() objc.IObject /* cross-framework: UndoManager */
 	SetUndoManager(value objc.IObject /* cross-framework: UndoManager */)
 	UpdatedObjects() unsafe.Pointer
-	NSDeletedObjectsKey() objc.IObject /* cross-framework: NSString */
-	NSInsertedObjectsKey() objc.IObject /* cross-framework: NSString */
+	NSDeletedObjectsKey() objc.IObject        /* cross-framework: NSString */
+	NSInsertedObjectsKey() objc.IObject       /* cross-framework: NSString */
 	NSInvalidatedAllObjectsKey() objc.IObject /* cross-framework: NSString */
-	NSInvalidatedObjectsKey() objc.IObject /* cross-framework: NSString */
+	NSInvalidatedObjectsKey() objc.IObject    /* cross-framework: NSString */
 	AutomaticallyMergesChangesFromParent() bool
 	SetAutomaticallyMergesChangesFromParent(value bool)
 	ConcurrencyType() ManagedObjectContextConcurrencyType /* not a class type */
@@ -72,8 +72,8 @@ type IManagedObjectContext interface {
 	UserInfo() objc.IObject /* cross-framework: MutableDictionary */
 	SetUserInfo(value objc.IObject /* cross-framework: MutableDictionary */)
 	NSManagedObjectContextQueryGenerationKey() objc.IObject /* cross-framework: NSString */
-	NSRefreshedObjectsKey() objc.IObject /* cross-framework: NSString */
-	NSUpdatedObjectsKey() objc.IObject /* cross-framework: NSString */
+	NSRefreshedObjectsKey() objc.IObject                    /* cross-framework: NSString */
+	NSUpdatedObjectsKey() objc.IObject                      /* cross-framework: NSString */
 	// methods:
 	AssignObjectToPersistentStore(object objectivec.IObject, store IPersistentStore)
 	DeleteObject(object IManagedObject)
@@ -97,7 +97,6 @@ type IManagedObjectContext interface {
 // An object space to manipulate and track changes to managed objects.
 //
 // A context consists of a group of related model objects that represent an internally consistent view of one or more persistent stores. Changes to managed objects remain in memory in the associated context until Core Data saves that context to one or more persistent stores. A single managed object instance exists in one and only one context, but multiple copies of an object can exist in different contexts. Therefore, an object is unique to a particular context.
-
 
 // An object space to manipulate and track changes to managed objects.
 //
@@ -145,8 +144,6 @@ func NewManagedObjectContext() ManagedObjectContext {
 	return getManagedObjectContextClass().New()
 }
 
-
-
 // Specifies the store in which a newly inserted object will be saved.
 //
 // [Full Topic]
@@ -154,7 +151,6 @@ func NewManagedObjectContext() ManagedObjectContext {
 func (m_ ManagedObjectContext) AssignObjectToPersistentStore(object objectivec.IObject, store IPersistentStore) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("assignObject:toPersistentStore:"), object, store)
 }
-
 
 // Specifies an object that should be removed from its persistent store when changes are committed.
 //
@@ -164,7 +160,6 @@ func (m_ ManagedObjectContext) DeleteObject(object IManagedObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("deleteObject:"), object)
 }
 
-
 // Marks an object for conflict detection.
 //
 // [Full Topic]
@@ -172,7 +167,6 @@ func (m_ ManagedObjectContext) DeleteObject(object IManagedObject) {
 func (m_ ManagedObjectContext) DetectConflictsForObject(object IManagedObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("detectConflictsForObject:"), object)
 }
-
 
 // Returns an array of objects that meet the criteria of the specified fetch request.
 //
@@ -183,7 +177,6 @@ func (m_ ManagedObjectContext) ExecuteFetchRequestError(request IFetchRequest, e
 	return rv
 }
 
-
 // Registers an object to be inserted in the context’s persistent store the next time changes are saved.
 //
 // [Full Topic]
@@ -192,7 +185,6 @@ func (m_ ManagedObjectContext) InsertObject(object IManagedObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("insertObject:"), object)
 }
 
-
 // Merges the changes specified in a given notification.
 //
 // [Full Topic]
@@ -200,7 +192,6 @@ func (m_ ManagedObjectContext) InsertObject(object IManagedObject) {
 func (m_ ManagedObjectContext) MergeChangesFromContextDidSaveNotification(notification objc.IObject /* cross-framework: Notification */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("mergeChangesFromContextDidSaveNotification:"), notification)
 }
-
 
 // Returns either an existing object from the context or a fault that represents that object.
 //
@@ -211,7 +202,6 @@ func (m_ ManagedObjectContext) ObjectWithID(objectID IManagedObjectID) IManagedO
 	return rv
 }
 
-
 // Allows a context that has registered as an observer of a value to be notified of a change to that value.
 //
 // [Full Topic]
@@ -219,7 +209,6 @@ func (m_ ManagedObjectContext) ObjectWithID(objectID IManagedObjectID) IManagedO
 func (m_ ManagedObjectContext) ObserveValueForKeyPathOfObjectChangeContext(keyPath objc.IObject /* cross-framework: NSString */, object objectivec.IObject, change foundation.IDictionary, context unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("observeValueForKeyPath:ofObject:change:context:"), keyPath, object, change, context)
 }
-
 
 // Converts to permanent IDs the object IDs of the objects in a given array.
 //
@@ -230,7 +219,6 @@ func (m_ ManagedObjectContext) ObtainPermanentIDsForObjectsError(objects []IMana
 	return rv
 }
 
-
 // Asynchronously performs the specified closure on the context’s queue.
 //
 // [Full Topic]
@@ -238,7 +226,6 @@ func (m_ ManagedObjectContext) ObtainPermanentIDsForObjectsError(objects []IMana
 func (m_ ManagedObjectContext) PerformBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("performBlock:"), block)
 }
-
 
 // Forces the context to process changes to the object graph.
 //
@@ -248,7 +235,6 @@ func (m_ ManagedObjectContext) ProcessPendingChanges() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("processPendingChanges"))
 }
 
-
 // Sends a redo message to the context’s undo manager, asking it to reverse the latest undo operation applied to objects in the object graph.
 //
 // [Full Topic]
@@ -256,7 +242,6 @@ func (m_ ManagedObjectContext) ProcessPendingChanges() {
 func (m_ ManagedObjectContext) Redo() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("redo"))
 }
-
 
 // Updates the persistent properties of a managed object to use the latest values from the persistent store.
 //
@@ -266,7 +251,6 @@ func (m_ ManagedObjectContext) RefreshObjectMergeChanges(object IManagedObject, 
 	objc.Send[objc.ID](m_.ID, objc.Sel("refreshObject:mergeChanges:"), object, flag)
 }
 
-
 // Returns the context to its base state.
 //
 // [Full Topic]
@@ -275,7 +259,6 @@ func (m_ ManagedObjectContext) Reset() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("reset"))
 }
 
-
 // Removes everything from the undo stack, discards all insertions and deletions, and restores updated objects to their last committed values.
 //
 // [Full Topic]
@@ -283,7 +266,6 @@ func (m_ ManagedObjectContext) Reset() {
 func (m_ ManagedObjectContext) Rollback() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("rollback"))
 }
-
 
 // Attempts to commit unsaved changes to registered objects to the context’s parent store.
 //
@@ -294,7 +276,6 @@ func (m_ ManagedObjectContext) Save(error_ unsafe.Pointer) bool {
 	return rv
 }
 
-
 // Creates a log of the inaccessible fault.
 //
 // [Full Topic]
@@ -304,7 +285,6 @@ func (m_ ManagedObjectContext) ShouldHandleInaccessibleFaultForObjectIDTriggered
 	return rv
 }
 
-
 // Sends an undo message to the context’s undo manager, asking it to reverse the latest uncommitted changes applied to objects in the object graph.
 //
 // [Full Topic]
@@ -312,7 +292,6 @@ func (m_ ManagedObjectContext) ShouldHandleInaccessibleFaultForObjectIDTriggered
 func (m_ ManagedObjectContext) Undo() {
 	objc.Send[objc.ID](m_.ID, objc.Sel("undo"))
 }
-
 
 // The set of objects that will be removed from their persistent store during the next save operation.
 //
@@ -323,7 +302,6 @@ func (m_ ManagedObjectContext) DeletedObjects() unsafe.Pointer {
 	return rv
 }
 
-
 // The set of objects that have been inserted into the context but not yet saved in a persistent store.
 //
 // [Full Topic]
@@ -332,7 +310,6 @@ func (m_ ManagedObjectContext) InsertedObjects() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("insertedObjects"))
 	return rv
 }
-
 
 // A Boolean value that determines whether the context turns inaccessible faults into deleted objects.
 //
@@ -343,7 +320,6 @@ func (m_ ManagedObjectContext) ShouldDeleteInaccessibleFaults() bool {
 	return rv
 }
 
-
 // A Boolean value that determines whether the context turns inaccessible faults into deleted objects.
 //
 // [Full Topic]
@@ -351,7 +327,6 @@ func (m_ ManagedObjectContext) ShouldDeleteInaccessibleFaults() bool {
 func (m_ ManagedObjectContext) SetShouldDeleteInaccessibleFaults(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldDeleteInaccessibleFaults:"), value)
 }
-
 
 // The maximum length of time that may have elapsed since the store previously fetched data before fulfilling a fault issues a new fetch.
 //
@@ -362,7 +337,6 @@ func (m_ ManagedObjectContext) StalenessInterval() float64 {
 	return rv
 }
 
-
 // The maximum length of time that may have elapsed since the store previously fetched data before fulfilling a fault issues a new fetch.
 //
 // [Full Topic]
@@ -370,7 +344,6 @@ func (m_ ManagedObjectContext) StalenessInterval() float64 {
 func (m_ ManagedObjectContext) SetStalenessInterval(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStalenessInterval:"), value)
 }
-
 
 // The object that provides undo support for the context.
 //
@@ -381,7 +354,6 @@ func (m_ ManagedObjectContext) UndoManager() objc.IObject /* cross-framework: Un
 	return rv
 }
 
-
 // The object that provides undo support for the context.
 //
 // [Full Topic]
@@ -389,7 +361,6 @@ func (m_ ManagedObjectContext) UndoManager() objc.IObject /* cross-framework: Un
 func (m_ ManagedObjectContext) SetUndoManager(value objc.IObject /* cross-framework: UndoManager */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUndoManager:"), value)
 }
-
 
 // The set of objects registered with the context that have uncommitted changes.
 //
@@ -400,7 +371,6 @@ func (m_ ManagedObjectContext) UpdatedObjects() unsafe.Pointer {
 	return rv
 }
 
-
 // A key for the set of objects that were marked for deletion during the previous event.
 //
 // [Full Topic]
@@ -409,7 +379,6 @@ func (m_ ManagedObjectContext) NSDeletedObjectsKey() objc.IObject /* cross-frame
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSDeletedObjectsKey"))
 	return rv
 }
-
 
 // A key for the set of objects that were inserted into the context.
 //
@@ -420,7 +389,6 @@ func (m_ ManagedObjectContext) NSInsertedObjectsKey() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // A key that specifies that all objects in the context have been invalidated.
 //
 // [Full Topic]
@@ -429,7 +397,6 @@ func (m_ ManagedObjectContext) NSInvalidatedAllObjectsKey() objc.IObject /* cros
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSInvalidatedAllObjectsKey"))
 	return rv
 }
-
 
 // A key for the set of objects that were invalidated.
 //
@@ -440,7 +407,6 @@ func (m_ ManagedObjectContext) NSInvalidatedObjectsKey() objc.IObject /* cross-f
 	return rv
 }
 
-
 // A Boolean value that indicates whether the context automatically merges changes saved to its persistent store coordinator or parent context.
 //
 // [Full Topic]
@@ -450,7 +416,6 @@ func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the context automatically merges changes saved to its persistent store coordinator or parent context.
 //
 // [Full Topic]
@@ -458,7 +423,6 @@ func (m_ ManagedObjectContext) AutomaticallyMergesChangesFromParent() bool {
 func (m_ ManagedObjectContext) SetAutomaticallyMergesChangesFromParent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyMergesChangesFromParent:"), value)
 }
-
 
 // The concurrency type for the context.
 //
@@ -469,7 +433,6 @@ func (m_ ManagedObjectContext) ConcurrencyType() ManagedObjectContextConcurrency
 	return rv
 }
 
-
 // The concurrency type for the context.
 //
 // [Full Topic]
@@ -477,7 +440,6 @@ func (m_ ManagedObjectContext) ConcurrencyType() ManagedObjectContextConcurrency
 func (m_ ManagedObjectContext) SetConcurrencyType(value ManagedObjectContextConcurrencyType /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConcurrencyType:"), value)
 }
-
 
 // A Boolean value that indicates whether the context has uncommitted changes.
 //
@@ -488,7 +450,6 @@ func (m_ ManagedObjectContext) HasChanges() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the context has uncommitted changes.
 //
 // [Full Topic]
@@ -496,7 +457,6 @@ func (m_ ManagedObjectContext) HasChanges() bool {
 func (m_ ManagedObjectContext) SetHasChanges(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasChanges:"), value)
 }
-
 
 // The merge policy of the context.
 //
@@ -507,7 +467,6 @@ func (m_ ManagedObjectContext) MergePolicy() unsafe.Pointer {
 	return rv
 }
 
-
 // The merge policy of the context.
 //
 // [Full Topic]
@@ -515,7 +474,6 @@ func (m_ ManagedObjectContext) MergePolicy() unsafe.Pointer {
 func (m_ ManagedObjectContext) SetMergePolicy(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMergePolicy:"), value)
 }
-
 
 // The developer-provided name of the context.
 //
@@ -526,7 +484,6 @@ func (m_ ManagedObjectContext) Name() objc.IObject /* cross-framework: NSString 
 	return rv
 }
 
-
 // The developer-provided name of the context.
 //
 // [Full Topic]
@@ -534,7 +491,6 @@ func (m_ ManagedObjectContext) Name() objc.IObject /* cross-framework: NSString 
 func (m_ ManagedObjectContext) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
-
 
 // The parent of the context.
 //
@@ -545,7 +501,6 @@ func (m_ ManagedObjectContext) Parent() IManagedObjectContext {
 	return rv
 }
 
-
 // The parent of the context.
 //
 // [Full Topic]
@@ -553,7 +508,6 @@ func (m_ ManagedObjectContext) Parent() IManagedObjectContext {
 func (m_ ManagedObjectContext) SetParent(value IManagedObjectContext) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParent:"), value)
 }
-
 
 // The persistent store coordinator of the context.
 //
@@ -564,7 +518,6 @@ func (m_ ManagedObjectContext) PersistentStoreCoordinator() IPersistentStoreCoor
 	return rv
 }
 
-
 // The persistent store coordinator of the context.
 //
 // [Full Topic]
@@ -572,7 +525,6 @@ func (m_ ManagedObjectContext) PersistentStoreCoordinator() IPersistentStoreCoor
 func (m_ ManagedObjectContext) SetPersistentStoreCoordinator(value IPersistentStoreCoordinator) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPersistentStoreCoordinator:"), value)
 }
-
 
 // A Boolean value that indicates whether the context propagates deletes at the end of the event in which a change was made.
 //
@@ -583,7 +535,6 @@ func (m_ ManagedObjectContext) PropagatesDeletesAtEndOfEvent() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the context propagates deletes at the end of the event in which a change was made.
 //
 // [Full Topic]
@@ -591,7 +542,6 @@ func (m_ ManagedObjectContext) PropagatesDeletesAtEndOfEvent() bool {
 func (m_ ManagedObjectContext) SetPropagatesDeletesAtEndOfEvent(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPropagatesDeletesAtEndOfEvent:"), value)
 }
-
 
 // Returns the token associated with the query generation currently in use by this context.
 //
@@ -602,7 +552,6 @@ func (m_ ManagedObjectContext) QueryGenerationToken() IQueryGenerationToken {
 	return rv
 }
 
-
 // Returns the token associated with the query generation currently in use by this context.
 //
 // [Full Topic]
@@ -610,7 +559,6 @@ func (m_ ManagedObjectContext) QueryGenerationToken() IQueryGenerationToken {
 func (m_ ManagedObjectContext) SetQueryGenerationToken(value IQueryGenerationToken) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setQueryGenerationToken:"), value)
 }
-
 
 // The set of registered managed objects in the context.
 //
@@ -621,7 +569,6 @@ func (m_ ManagedObjectContext) RegisteredObjects() IManagedObject {
 	return rv
 }
 
-
 // The set of registered managed objects in the context.
 //
 // [Full Topic]
@@ -629,7 +576,6 @@ func (m_ ManagedObjectContext) RegisteredObjects() IManagedObject {
 func (m_ ManagedObjectContext) SetRegisteredObjects(value IManagedObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRegisteredObjects:"), value)
 }
-
 
 // A Boolean value that indicates whether the context keeps strong references to all registered managed objects.
 //
@@ -640,7 +586,6 @@ func (m_ ManagedObjectContext) RetainsRegisteredObjects() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the context keeps strong references to all registered managed objects.
 //
 // [Full Topic]
@@ -648,7 +593,6 @@ func (m_ ManagedObjectContext) RetainsRegisteredObjects() bool {
 func (m_ ManagedObjectContext) SetRetainsRegisteredObjects(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRetainsRegisteredObjects:"), value)
 }
-
 
 // The author for the context that is used as an identifier in persistent history transactions.
 //
@@ -659,7 +603,6 @@ func (m_ ManagedObjectContext) TransactionAuthor() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // The author for the context that is used as an identifier in persistent history transactions.
 //
 // [Full Topic]
@@ -667,7 +610,6 @@ func (m_ ManagedObjectContext) TransactionAuthor() objc.IObject /* cross-framewo
 func (m_ ManagedObjectContext) SetTransactionAuthor(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransactionAuthor:"), value)
 }
-
 
 // The user information for the context.
 //
@@ -678,7 +620,6 @@ func (m_ ManagedObjectContext) UserInfo() objc.IObject /* cross-framework: Mutab
 	return rv
 }
 
-
 // The user information for the context.
 //
 // [Full Topic]
@@ -686,7 +627,6 @@ func (m_ ManagedObjectContext) UserInfo() objc.IObject /* cross-framework: Mutab
 func (m_ ManagedObjectContext) SetUserInfo(value objc.IObject /* cross-framework: MutableDictionary */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserInfo:"), value)
 }
-
 
 // Constant used to reference the query generation token.
 //
@@ -697,7 +637,6 @@ func (m_ ManagedObjectContext) NSManagedObjectContextQueryGenerationKey() objc.I
 	return rv
 }
 
-
 // A key for the set of objects that were refreshed but were not dirtied in the scope of this context.
 //
 // [Full Topic]
@@ -707,7 +646,6 @@ func (m_ ManagedObjectContext) NSRefreshedObjectsKey() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // A key for the set of objects that were updated.
 //
 // [Full Topic]
@@ -716,6 +654,3 @@ func (m_ ManagedObjectContext) NSUpdatedObjectsKey() objc.IObject /* cross-frame
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("NSUpdatedObjectsKey"))
 	return rv
 }
-
-
-

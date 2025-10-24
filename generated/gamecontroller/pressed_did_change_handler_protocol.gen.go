@@ -20,3 +20,4 @@ var pressedDidChangeHandlerProtocol *objc.Protocol
 func init() {
 	pressedDidChangeHandlerProtocol = objc.GetProtocol("pressedDidChangeHandler")
 }
+

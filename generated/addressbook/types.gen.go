@@ -12,7 +12,14 @@ import (
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABActionCallbacks
 type ABActionCallbacks struct {
-}
+	Enabled unsafe.Pointer
+	Property unsafe.Pointer
+	Selected unsafe.Pointer
+	Title unsafe.Pointer
+	Version Index
+}/* debug [types.gen.go/struct]: ABActionCallbacks */
+
+
 
 
 

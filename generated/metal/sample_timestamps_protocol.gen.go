@@ -20,3 +20,4 @@ var sampleTimestampsProtocol *objc.Protocol
 func init() {
 	sampleTimestampsProtocol = objc.GetProtocol("sampleTimestamps:")
 }
+

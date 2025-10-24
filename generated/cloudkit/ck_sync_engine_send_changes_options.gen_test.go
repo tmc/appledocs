@@ -9,10 +9,3 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKSyncEngineSendChangesOptions
 
-// ExampleNewCKSyncEngineSendChangesOptionsWithScope demonstrates how to create a CKSyncEngineSendChangesOptions instance using NewCKSyncEngineSendChangesOptionsWithScope.
-func ExampleNewCKSyncEngineSendChangesOptionsWithScope() {
-	_ = cloudkit.NewCKSyncEngineSendChangesOptionsWithScope(
-		cloudkit.CKSyncEngineSendChangesScope{}, // scope CKSyncEngineSendChangesScope
-	)
-	// Output:
-}

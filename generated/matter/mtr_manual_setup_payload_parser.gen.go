@@ -34,8 +34,6 @@ type IMTRManualSetupPayloadParser interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRManualSetupPayloadParser
 type MTRManualSetupPayloadParser struct {
@@ -77,7 +75,3 @@ func (m_ MTRManualSetupPayloadParser) Autorelease() MTRManualSetupPayloadParser 
 func NewMTRManualSetupPayloadParser() MTRManualSetupPayloadParser {
 	return getMTRManualSetupPayloadParserClass().New()
 }
-
-
-
-

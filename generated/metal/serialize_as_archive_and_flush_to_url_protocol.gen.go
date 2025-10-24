@@ -20,3 +20,4 @@ var serializeAsArchiveAndFlushToURLProtocol *objc.Protocol
 func init() {
 	serializeAsArchiveAndFlushToURLProtocol = objc.GetProtocol("serializeAsArchiveAndFlushToURL:")
 }
+

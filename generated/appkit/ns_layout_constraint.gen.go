@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSLayoutConstraint */
+
+
+/* debug [class_header]: Header for NSLayoutConstraint */
 // The class instance for the [LayoutConstraint] class.
 var (
 	LayoutConstraintClass     _LayoutConstraintClass
@@ -27,10 +31,16 @@ func getLayoutConstraintClass() _LayoutConstraintClass {
 type _LayoutConstraintClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for LayoutConstraint */
 // An interface definition for the [LayoutConstraint] class.
 type ILayoutConstraint interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for LayoutConstraint */
 	// properties:
 	Constant() float64
 	SetConstant(value float64)
@@ -42,8 +52,8 @@ type ILayoutConstraint interface {
 	Active() bool
 	SetActive(value bool)
 	Multiplier() float64
-	Priority() objc.IObject /* cross-framework: LayoutPriority */
-	SetPriority(value objc.IObject /* cross-framework: LayoutPriority */)
+	Priority() LayoutPriority /* typedef */
+	SetPriority(value LayoutPriority /* typedef */)
 	Relation() LayoutRelation
 	SecondAnchor() ILayoutAnchor
 	SecondAttribute() LayoutAttribute
@@ -52,29 +62,19 @@ type ILayoutConstraint interface {
 	SetShouldBeArchived(value bool)
 	IsActive() bool
 	SetIsActive(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for LayoutConstraint */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
-//
-// Each constraint is a linear equation with the following format: In this equation, and are the variables that Auto Layout can adjust when solving these constraints. The other values are defined when you create the constraint. For example, If you’re defining the relative position of two buttons, you might say “the leading edge of the second button should be 8 points after the trailing edge of the first button.” The linear equation for this relationship is shown below: Auto Layout then modifies the values of the specified leading and trailing edges until both sides of the equation are equal. Note that Auto Layout does not simply assign the value of the right side of this equation to the left side. Instead, the system can modify either attribute or both attributes as needed to solve for this constraint. The fact that constraints are equations (and not assignment operators) means that you can switch the order of the items in the equation as needed to more clearly express the desired relationship. However, if you switch the order, you must also invert the multiplier and constant. For example, the following two equations produce identical constraints: A valid layout is defined as a set constraints with one and only one possible solution. Valid layouts are also referred to as a nonambiguous, nonconflicting layouts. Constraints with more than one solution are ambiguous. Constraints with no valid solutions are conflicting. For more information on resolving ambiguous and conflicting constraints, see in . Additionally, constraints are not limited to equality relationships. They can also use greater than or equal to (>=) or less than or equal to (<=) to describe the relationship between the two attributes. Constraints also have priorities between 1 and 1,000. Constraints with a priority of 1,000 are required. All priorities less than 1,000 are optional. By default, all constraints are required (priority = 1,000). After solving for the required constraints, Auto Layout tries to solve all the optional constraints in priority order from highest to lowest. If it cannot solve for an optional constraint, it tries to come as close as possible to the desired result, and then moves on to the next constraint. This combination of inequalities, equalities, and priorities gives you a great amount of flexibility and power. By combining multiple constraints, you can define layouts that dynamically adapt as the size and location of the elements in your user interface change. For some example layouts, see in .
+/* debug [class_interface]: End interface */
 
 
-// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint
-type LayoutConstraint struct {
-	objectivec.Object
-}
 
-// LayoutConstraintFrom constructs a [LayoutConstraint] from an unsafe.Pointer.
-//
-// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
-func LayoutConstraintFrom(ptr unsafe.Pointer) LayoutConstraint {
-	return LayoutConstraint{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for LayoutConstraint */
 // Alloc allocates a new instance without initialization.
 func (lc _LayoutConstraintClass) Alloc() LayoutConstraint {
 	rv := objc.Send[LayoutConstraint](objc.ID(lc.class), objc.Sel("alloc"))
@@ -82,7 +82,6 @@ func (lc _LayoutConstraintClass) Alloc() LayoutConstraint {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LayoutConstraintClass) New() LayoutConstraint {
 	rv := objc.Send[LayoutConstraint](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -105,8 +104,35 @@ func (l_ LayoutConstraint) Autorelease() LayoutConstraint {
 func NewLayoutConstraint() LayoutConstraint {
 	return getLayoutConstraintClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for LayoutConstraint */
+// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
+//
+// Each constraint is a linear equation with the following format: In this equation, and are the variables that Auto Layout can adjust when solving these constraints. The other values are defined when you create the constraint. For example, If you’re defining the relative position of two buttons, you might say “the leading edge of the second button should be 8 points after the trailing edge of the first button.” The linear equation for this relationship is shown below: Auto Layout then modifies the values of the specified leading and trailing edges until both sides of the equation are equal. Note that Auto Layout does not simply assign the value of the right side of this equation to the left side. Instead, the system can modify either attribute or both attributes as needed to solve for this constraint. The fact that constraints are equations (and not assignment operators) means that you can switch the order of the items in the equation as needed to more clearly express the desired relationship. However, if you switch the order, you must also invert the multiplier and constant. For example, the following two equations produce identical constraints: A valid layout is defined as a set constraints with one and only one possible solution. Valid layouts are also referred to as a nonambiguous, nonconflicting layouts. Constraints with more than one solution are ambiguous. Constraints with no valid solutions are conflicting. For more information on resolving ambiguous and conflicting constraints, see in . Additionally, constraints are not limited to equality relationships. They can also use greater than or equal to (>=) or less than or equal to (<=) to describe the relationship between the two attributes. Constraints also have priorities between 1 and 1,000. Constraints with a priority of 1,000 are required. All priorities less than 1,000 are optional. By default, all constraints are required (priority = 1,000). After solving for the required constraints, Auto Layout tries to solve all the optional constraints in priority order from highest to lowest. If it cannot solve for an optional constraint, it tries to come as close as possible to the desired result, and then moves on to the next constraint. This combination of inequalities, equalities, and priorities gives you a great amount of flexibility and power. By combining multiple constraints, you can define layouts that dynamically adapt as the size and location of the elements in your user interface change. For some example layouts, see in .
+
+
+// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint
+type LayoutConstraint struct {
+	objectivec.Object
+}
+
+// LayoutConstraintFrom constructs a [LayoutConstraint] from an unsafe.Pointer.
+//
+// The relationship between two user interface objects that must be satisfied by the constraint-based layout system.
+func LayoutConstraintFrom(ptr unsafe.Pointer) LayoutConstraint {
+	return LayoutConstraint{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for LayoutConstraint */
 
 // Creates a constraint that defines the relationship between the specified attributes of the given views.
 //
@@ -115,9 +141,13 @@ func NewLayoutConstraint() LayoutConstraint {
 func NewLayoutConstraintWithItemAttributeRelatedByToItemAttributeMultiplierConstant(view1 objc.IObject, attr1 LayoutAttribute, relation LayoutRelation, view2 objc.IObject, attr2 LayoutAttribute, multiplier float64, c float64) LayoutConstraint {
 	rv := objc.Send[LayoutConstraint](objc.ID(getLayoutConstraintClass().class), objc.Sel("constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:"), view1, attr1, relation, view2, attr2, multiplier, c)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewLayoutConstraintWithItemAttributeRelatedByToItemAttributeMultiplierConstant */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for LayoutConstraint */
 
 // Activates each constraint in the specified array.
 //
@@ -125,7 +155,7 @@ func NewLayoutConstraintWithItemAttributeRelatedByToItemAttributeMultiplierConst
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/activate(_:)
 func (lc _LayoutConstraintClass) ActivateConstraints(constraints []LayoutConstraint) {
 	objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("activateConstraints:"), constraints)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ActivateConstraints) */
 
 
 // Creates constraints described by an ASCII art-like visual format string.
@@ -135,7 +165,7 @@ func (lc _LayoutConstraintClass) ActivateConstraints(constraints []LayoutConstra
 func (lc _LayoutConstraintClass) ConstraintsWithVisualFormatOptionsMetricsViews(format objc.IObject /* cross-framework: NSString */, opts LayoutFormatOptions, metrics foundation.IDictionary, views foundation.IDictionary) []LayoutConstraint {
 	rv := objc.Send[[]LayoutConstraint](objc.ID(lc.class), objc.Sel("constraintsWithVisualFormat:options:metrics:views:"), format, opts, metrics, views)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConstraintsWithVisualFormatOptionsMetricsViews) */
 
 
 // Deactivates each constraint in the specified array.
@@ -144,18 +174,33 @@ func (lc _LayoutConstraintClass) ConstraintsWithVisualFormatOptionsMetricsViews(
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/deactivate(_:)
 func (lc _LayoutConstraintClass) DeactivateConstraints(constraints []LayoutConstraint) {
 	objc.Send[objc.ID](objc.ID(lc.class), objc.Sel("deactivateConstraints:"), constraints)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DeactivateConstraints) */
 
 
 // Creates a constraint that defines the relationship between the specified attributes of the given views.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/init(item:attribute:relatedBy:toItem:attribute:multiplier:constant:)
-func (lc _LayoutConstraintClass) ConstraintWithItemAttributeRelatedByToItemAttributeMultiplierConstant(view1 objc.IObject, attr1 LayoutAttribute, relation LayoutRelation, view2 objc.IObject, attr2 LayoutAttribute, multiplier float64, c float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:"), view1, attr1, relation, view2, attr2, multiplier, c)
+func (lc _LayoutConstraintClass) ConstraintWithItemAttributeRelatedByToItemAttributeMultiplierConstant(view1 objc.IObject, attr1 LayoutAttribute, relation LayoutRelation, view2 objc.IObject, attr2 LayoutAttribute, multiplier float64, c float64) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(lc.class), objc.Sel("constraintWithItem:attribute:relatedBy:toItem:attribute:multiplier:constant:"), view1, attr1, relation, view2, attr2, multiplier, c)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConstraintWithItemAttributeRelatedByToItemAttributeMultiplierConstant) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for LayoutConstraint */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for LayoutConstraint */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for LayoutConstraint */
 
 // The constant added to the multiplied second attribute participating in the constraint.
 //
@@ -164,7 +209,7 @@ func (lc _LayoutConstraintClass) ConstraintWithItemAttributeRelatedByToItemAttri
 func (l_ LayoutConstraint) Constant() float64 {
 	rv := objc.Send[float64](l_.ID, objc.Sel("constant"))
 	return rv
-}
+}/* debug [instance_properties/getter]: constant */
 
 
 // The constant added to the multiplied second attribute participating in the constraint.
@@ -173,7 +218,7 @@ func (l_ LayoutConstraint) Constant() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/constant
 func (l_ LayoutConstraint) SetConstant(value float64) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setConstant:"), value)
-}
+}/* debug [instance_properties/setter]: constant */
 
 
 // The first anchor that defines the constraint.
@@ -183,7 +228,7 @@ func (l_ LayoutConstraint) SetConstant(value float64) {
 func (l_ LayoutConstraint) FirstAnchor() ILayoutAnchor {
 	rv := objc.Send[LayoutAnchor](l_.ID, objc.Sel("firstAnchor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: firstAnchor */
 
 
 // The attribute of the first object participating in the constraint.
@@ -193,7 +238,7 @@ func (l_ LayoutConstraint) FirstAnchor() ILayoutAnchor {
 func (l_ LayoutConstraint) FirstAttribute() LayoutAttribute {
 	rv := objc.Send[LayoutAttribute](l_.ID, objc.Sel("firstAttribute"))
 	return rv
-}
+}/* debug [instance_properties/getter]: firstAttribute */
 
 
 // The first object participating in the constraint.
@@ -203,7 +248,7 @@ func (l_ LayoutConstraint) FirstAttribute() LayoutAttribute {
 func (l_ LayoutConstraint) FirstItem() objc.ID {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("firstItem"))
 	return rv
-}
+}/* debug [instance_properties/getter]: firstItem */
 
 
 // The name that identifies the constraint.
@@ -213,7 +258,7 @@ func (l_ LayoutConstraint) FirstItem() objc.ID {
 func (l_ LayoutConstraint) Identifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](l_.ID, objc.Sel("identifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: identifier */
 
 
 // The name that identifies the constraint.
@@ -222,7 +267,7 @@ func (l_ LayoutConstraint) Identifier() objc.IObject /* cross-framework: NSStrin
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/identifier
 func (l_ LayoutConstraint) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIdentifier:"), value)
-}
+}/* debug [instance_properties/setter]: identifier */
 
 
 // The active state of the constraint.
@@ -232,7 +277,7 @@ func (l_ LayoutConstraint) SetIdentifier(value objc.IObject /* cross-framework: 
 func (l_ LayoutConstraint) Active() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("active"))
 	return rv
-}
+}/* debug [instance_properties/getter]: active */
 
 
 // The active state of the constraint.
@@ -241,7 +286,7 @@ func (l_ LayoutConstraint) Active() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/isActive
 func (l_ LayoutConstraint) SetActive(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setActive:"), value)
-}
+}/* debug [instance_properties/setter]: active */
 
 
 // The multiplier applied to the second attribute participating in the constraint.
@@ -251,26 +296,26 @@ func (l_ LayoutConstraint) SetActive(value bool) {
 func (l_ LayoutConstraint) Multiplier() float64 {
 	rv := objc.Send[float64](l_.ID, objc.Sel("multiplier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: multiplier */
 
 
 // The priority of the constraint.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/priority-swift.property
-func (l_ LayoutConstraint) Priority() objc.IObject /* cross-framework: LayoutPriority */ {
-	rv := objc.Send[objc.ID](l_.ID, objc.Sel("priority"))
+func (l_ LayoutConstraint) Priority() LayoutPriority /* typedef */ {
+	rv := objc.Send[float32](l_.ID, objc.Sel("priority"))
 	return rv
-}
+}/* debug [instance_properties/getter]: priority */
 
 
 // The priority of the constraint.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/priority-swift.property
-func (l_ LayoutConstraint) SetPriority(value objc.IObject /* cross-framework: LayoutPriority */) {
+func (l_ LayoutConstraint) SetPriority(value LayoutPriority /* typedef */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPriority:"), value)
-}
+}/* debug [instance_properties/setter]: priority */
 
 
 // The relation between the two attributes in the constraint.
@@ -280,7 +325,7 @@ func (l_ LayoutConstraint) SetPriority(value objc.IObject /* cross-framework: La
 func (l_ LayoutConstraint) Relation() LayoutRelation {
 	rv := objc.Send[LayoutRelation](l_.ID, objc.Sel("relation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: relation */
 
 
 // The second anchor that defines the constraint.
@@ -290,7 +335,7 @@ func (l_ LayoutConstraint) Relation() LayoutRelation {
 func (l_ LayoutConstraint) SecondAnchor() ILayoutAnchor {
 	rv := objc.Send[LayoutAnchor](l_.ID, objc.Sel("secondAnchor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: secondAnchor */
 
 
 // The attribute of the second object participating in the constraint.
@@ -300,7 +345,7 @@ func (l_ LayoutConstraint) SecondAnchor() ILayoutAnchor {
 func (l_ LayoutConstraint) SecondAttribute() LayoutAttribute {
 	rv := objc.Send[LayoutAttribute](l_.ID, objc.Sel("secondAttribute"))
 	return rv
-}
+}/* debug [instance_properties/getter]: secondAttribute */
 
 
 // The second object participating in the constraint.
@@ -310,7 +355,7 @@ func (l_ LayoutConstraint) SecondAttribute() LayoutAttribute {
 func (l_ LayoutConstraint) SecondItem() objc.ID {
 	rv := objc.Send[objc.ID](l_.ID, objc.Sel("secondItem"))
 	return rv
-}
+}/* debug [instance_properties/getter]: secondItem */
 
 
 // A Boolean value that determines whether the constraint should be archived by its owning view.
@@ -320,7 +365,7 @@ func (l_ LayoutConstraint) SecondItem() objc.ID {
 func (l_ LayoutConstraint) ShouldBeArchived() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("shouldBeArchived"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shouldBeArchived */
 
 
 // A Boolean value that determines whether the constraint should be archived by its owning view.
@@ -329,7 +374,7 @@ func (l_ LayoutConstraint) ShouldBeArchived() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutConstraint/shouldBeArchived
 func (l_ LayoutConstraint) SetShouldBeArchived(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setShouldBeArchived:"), value)
-}
+}/* debug [instance_properties/setter]: shouldBeArchived */
 
 
 // The active state of the constraint.
@@ -339,7 +384,7 @@ func (l_ LayoutConstraint) SetShouldBeArchived(value bool) {
 func (l_ LayoutConstraint) IsActive() bool {
 	rv := objc.Send[bool](l_.ID, objc.Sel("isActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isActive */
 
 
 // The active state of the constraint.
@@ -348,6 +393,11 @@ func (l_ LayoutConstraint) IsActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nslayoutconstraint/isactive
 func (l_ LayoutConstraint) SetIsActive(value bool) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsActive:"), value)
-}
+}/* debug [instance_properties/setter]: isActive */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSLayoutConstraint */
 
 

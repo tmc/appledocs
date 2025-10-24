@@ -2,10 +2,10 @@
 
 package virtualization
 
+/* debug [functions.gen.go]: Generating 0 functions for Virtualization */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // Virtualization Functions (0 total)
 //
@@ -20,8 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-

@@ -41,7 +41,6 @@ type IINGetReservationDetailsIntentResponse interface {
 //
 // Use an object to specify the results of a user requesting reservation details in your app. After getting the reservation details action using the criteria specified in the object, create an instance of this class with the results of the action. Siri can then use this information for system integrations, such as populating the calendar with an event.
 
-
 // Your app’s response to a request for reservation details.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINGetReservationDetailsIntentResponse() INGetReservationDetailsIntentRes
 	return getINGetReservationDetailsIntentResponseClass().New()
 }
 
-
-
 // The code that indicates whether your app successfully handled the intent.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INGetReservationDetailsIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // The code that indicates whether your app successfully handled the intent.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INGetReservationDetailsIntentResponse) Code() unsafe.Pointer {
 func (i_ INGetReservationDetailsIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
 
 // An array containing reservations reqeusted by the user.
 //
@@ -120,7 +115,6 @@ func (i_ INGetReservationDetailsIntentResponse) Reservations() INReservation {
 	return rv
 }
 
-
 // An array containing reservations reqeusted by the user.
 //
 // [Full Topic]
@@ -128,6 +122,3 @@ func (i_ INGetReservationDetailsIntentResponse) Reservations() INReservation {
 func (i_ INGetReservationDetailsIntentResponse) SetReservations(value INReservation) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservations:"), value)
 }
-
-
-

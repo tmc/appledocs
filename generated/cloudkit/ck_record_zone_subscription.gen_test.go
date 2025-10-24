@@ -9,11 +9,3 @@ import (
 // Suppress unused import errors
 var _ = cloudkit.NewCKRecordZoneSubscription
 
-// ExampleNewCKRecordZoneSubscriptionWithZoneID demonstrates how to create a CKRecordZoneSubscription instance using NewCKRecordZoneSubscriptionWithZoneID.
-// Creates a subscription for all records in the specified record zone.
-func ExampleNewCKRecordZoneSubscriptionWithZoneID() {
-	_ = cloudkit.NewCKRecordZoneSubscriptionWithZoneID(
-		cloudkit.CKRecordZoneID{}, // zoneID CKRecordZoneID
-	)
-	// Output:
-}

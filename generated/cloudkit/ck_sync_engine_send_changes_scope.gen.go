@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CKSyncEngineSendChangesScope */
+
+
+/* debug [class_header]: Header for CKSyncEngineSendChangesScope */
 // The class instance for the [CKSyncEngineSendChangesScope] class.
 var (
 	CKSyncEngineSendChangesScopeClass     _CKSyncEngineSendChangesScopeClass
@@ -26,32 +30,35 @@ func getCKSyncEngineSendChangesScopeClass() _CKSyncEngineSendChangesScopeClass {
 type _CKSyncEngineSendChangesScopeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CKSyncEngineSendChangesScope */
 // An interface definition for the [CKSyncEngineSendChangesScope] class.
 type ICKSyncEngineSendChangesScope interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CKSyncEngineSendChangesScope */
 	// properties:
 	ExcludedZoneIDs() unsafe.Pointer
 	RecordIDs() unsafe.Pointer
 	ZoneIDs() unsafe.Pointer
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CKSyncEngineSendChangesScope */
 	// methods:
-	ContainsPendingRecordZoneChange(pendingRecordZoneChange objc.IObject /* cross-framework: CKSyncEnginePendingRecordZoneChange */) bool
-	ContainsRecordID(recordID objc.IObject /* cross-framework: CKRecordID */) bool
+	ContainsPendingRecordZoneChange(pendingRecordZoneChange ICKSyncEnginePendingRecordZoneChange) bool
+	ContainsRecordID(recordID ICKRecordID) bool
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope
-type CKSyncEngineSendChangesScope struct {
-	objectivec.Object
-}
-
-// CKSyncEngineSendChangesScopeFrom constructs a [CKSyncEngineSendChangesScope] from an unsafe.Pointer.
-func CKSyncEngineSendChangesScopeFrom(ptr unsafe.Pointer) CKSyncEngineSendChangesScope {
-	return CKSyncEngineSendChangesScope{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CKSyncEngineSendChangesScope */
 // Alloc allocates a new instance without initialization.
 func (cc _CKSyncEngineSendChangesScopeClass) Alloc() CKSyncEngineSendChangesScope {
 	rv := objc.Send[CKSyncEngineSendChangesScope](objc.ID(cc.class), objc.Sel("alloc"))
@@ -59,7 +66,6 @@ func (cc _CKSyncEngineSendChangesScopeClass) Alloc() CKSyncEngineSendChangesScop
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CKSyncEngineSendChangesScopeClass) New() CKSyncEngineSendChangesScope {
 	rv := objc.Send[CKSyncEngineSendChangesScope](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,8 +88,28 @@ func (c_ CKSyncEngineSendChangesScope) Autorelease() CKSyncEngineSendChangesScop
 func NewCKSyncEngineSendChangesScope() CKSyncEngineSendChangesScope {
 	return getCKSyncEngineSendChangesScopeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CKSyncEngineSendChangesScope */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope
+type CKSyncEngineSendChangesScope struct {
+	objectivec.Object
+}
+
+// CKSyncEngineSendChangesScopeFrom constructs a [CKSyncEngineSendChangesScope] from an unsafe.Pointer.
+func CKSyncEngineSendChangesScopeFrom(ptr unsafe.Pointer) CKSyncEngineSendChangesScope {
+	return CKSyncEngineSendChangesScope{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CKSyncEngineSendChangesScope */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/initWithExcludedZoneIDs:
@@ -92,7 +118,7 @@ func NewCKSyncEngineSendChangesScopeWithExcludedZoneIDs(excludedZoneIDs unsafe.P
 	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithExcludedZoneIDs:"), excludedZoneIDs)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCKSyncEngineSendChangesScopeWithExcludedZoneIDs */
 
 
 // [Full Topic]
@@ -102,7 +128,7 @@ func NewCKSyncEngineSendChangesScopeWithRecordIDs(recordIDs unsafe.Pointer) CKSy
 	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithRecordIDs:"), recordIDs)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCKSyncEngineSendChangesScopeWithRecordIDs */
 
 
 // [Full Topic]
@@ -112,32 +138,51 @@ func NewCKSyncEngineSendChangesScopeWithZoneIDs(zoneIDs unsafe.Pointer) CKSyncEn
 	rv := objc.Send[CKSyncEngineSendChangesScope](instance.ID, objc.Sel("initWithZoneIDs:"), zoneIDs)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCKSyncEngineSendChangesScopeWithZoneIDs */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for CKSyncEngineSendChangesScope */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CKSyncEngineSendChangesScope */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CKSyncEngineSendChangesScope */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/containsPendingRecordZoneChange:
-func (c_ CKSyncEngineSendChangesScope) ContainsPendingRecordZoneChange(pendingRecordZoneChange objc.IObject /* cross-framework: CKSyncEnginePendingRecordZoneChange */) bool {
+func (c_ CKSyncEngineSendChangesScope) ContainsPendingRecordZoneChange(pendingRecordZoneChange ICKSyncEnginePendingRecordZoneChange) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsPendingRecordZoneChange:"), pendingRecordZoneChange)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainsPendingRecordZoneChange */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/containsRecordID:
-func (c_ CKSyncEngineSendChangesScope) ContainsRecordID(recordID objc.IObject /* cross-framework: CKRecordID */) bool {
+func (c_ CKSyncEngineSendChangesScope) ContainsRecordID(recordID ICKRecordID) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("containsRecordID:"), recordID)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainsRecordID */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CKSyncEngineSendChangesScope */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineSendChangesScope/excludedZoneIDs
 func (c_ CKSyncEngineSendChangesScope) ExcludedZoneIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("excludedZoneIDs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: excludedZoneIDs */
 
 
 // [Full Topic]
@@ -145,7 +190,7 @@ func (c_ CKSyncEngineSendChangesScope) ExcludedZoneIDs() unsafe.Pointer {
 func (c_ CKSyncEngineSendChangesScope) RecordIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("recordIDs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: recordIDs */
 
 
 // [Full Topic]
@@ -153,6 +198,11 @@ func (c_ CKSyncEngineSendChangesScope) RecordIDs() unsafe.Pointer {
 func (c_ CKSyncEngineSendChangesScope) ZoneIDs() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("zoneIDs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: zoneIDs */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CKSyncEngineSendChangesScope */
 
 

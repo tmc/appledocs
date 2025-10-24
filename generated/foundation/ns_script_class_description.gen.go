@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSScriptClassDescription */
+
+
+/* debug [class_header]: Header for NSScriptClassDescription */
 // The class instance for the [ScriptClassDescription] class.
 var (
 	ScriptClassDescriptionClass     _ScriptClassDescriptionClass
@@ -25,11 +29,18 @@ func getScriptClassDescriptionClass() _ScriptClassDescriptionClass {
 type _ScriptClassDescriptionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ScriptClassDescription */
 // An interface definition for the [ScriptClassDescription] class.
 type IScriptClassDescription interface {
 	IClassDescription
+	
+/* debug [class_interface_properties]: Properties for ScriptClassDescription */
 	// properties:
+	SuperclassDescription() IScriptClassDescription
 	AppleEventCode() uint32 /* not a class type */
 	SetAppleEventCode(value uint32 /* not a class type */)
 	ClassName() IString
@@ -42,32 +53,21 @@ type IScriptClassDescription interface {
 	SetSuiteName(value IString)
 	Superclass() IScriptClassDescription
 	SetSuperclass(value IScriptClassDescription)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ScriptClassDescription */
 	// methods:
+	ClassDescriptionForKey(key IString) IScriptClassDescription
 	HasPropertyForKey(key IString) bool
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A scriptable class that a macOS app supports.
-//
-// A scriptable application provides scriptability information that describes the commands and objects scripters can use in scripts that target the application. That includes information about the classes those scriptable objects are created from. An application’s scriptability information is collected automatically by an instance of . The registry object creates an for each class it finds and caches these objects in memory. Cocoa scripting uses registry information in handling scripting requests that target the application. A class description instance stores the name, attributes, relationships, and supported commands for a class. For example, a scriptable class for a drawing application might support attributes such as and , relationships such as collections of , , and , and commands such as and . As with many of the classes in Cocoa’s built-in scripting support, your application may never need to directly work with instances of . However, one case where you might need access to a class description is if you override in a scriptable class. For information on how to do this, see in . Another case where your application may need access to class description information is if you override in a specifier class. Although you can subclass , it is unlikely that you would need to do so, or even to create instances of it.
+/* debug [class_interface]: End interface */
 
 
-// A scriptable class that a macOS app supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription
-type ScriptClassDescription struct {
-	ClassDescription
-}
 
-// ScriptClassDescriptionFrom constructs a [ScriptClassDescription] from an unsafe.Pointer.
-//
-// A scriptable class that a macOS app supports.
-func ScriptClassDescriptionFrom(ptr unsafe.Pointer) ScriptClassDescription {
-	return ScriptClassDescription{
-		ClassDescription: ClassDescriptionFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ScriptClassDescription */
 // Alloc allocates a new instance without initialization.
 func (sc _ScriptClassDescriptionClass) Alloc() ScriptClassDescription {
 	rv := objc.Send[ScriptClassDescription](objc.ID(sc.class), objc.Sel("alloc"))
@@ -75,7 +75,6 @@ func (sc _ScriptClassDescriptionClass) Alloc() ScriptClassDescription {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScriptClassDescriptionClass) New() ScriptClassDescription {
 	rv := objc.Send[ScriptClassDescription](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -98,7 +97,81 @@ func (s_ ScriptClassDescription) Autorelease() ScriptClassDescription {
 func NewScriptClassDescription() ScriptClassDescription {
 	return getScriptClassDescriptionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for ScriptClassDescription */
+// A scriptable class that a macOS app supports.
+//
+// A scriptable application provides scriptability information that describes the commands and objects scripters can use in scripts that target the application. That includes information about the classes those scriptable objects are created from. An application’s scriptability information is collected automatically by an instance of . The registry object creates an for each class it finds and caches these objects in memory. Cocoa scripting uses registry information in handling scripting requests that target the application. A class description instance stores the name, attributes, relationships, and supported commands for a class. For example, a scriptable class for a drawing application might support attributes such as and , relationships such as collections of , , and , and commands such as and . As with many of the classes in Cocoa’s built-in scripting support, your application may never need to directly work with instances of . However, one case where you might need access to a class description is if you override in a scriptable class. For information on how to do this, see in . Another case where your application may need access to class description information is if you override in a specifier class. Although you can subclass , it is unlikely that you would need to do so, or even to create instances of it.
+
+
+// A scriptable class that a macOS app supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription
+type ScriptClassDescription struct {
+	ClassDescription
+}
+
+// ScriptClassDescriptionFrom constructs a [ScriptClassDescription] from an unsafe.Pointer.
+//
+// A scriptable class that a macOS app supports.
+func ScriptClassDescriptionFrom(ptr unsafe.Pointer) ScriptClassDescription {
+	return ScriptClassDescription{
+		ClassDescription: ClassDescriptionFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ScriptClassDescription */
+
+// Returns the class description for the specified class or, if it is not scriptable, for the first superclass that is.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/init(for:)
+func NewScriptClassDescriptionForClass(aClass objc.Class) ScriptClassDescription {
+	rv := objc.Send[ScriptClassDescription](objc.ID(getScriptClassDescriptionClass().class), objc.Sel("classDescriptionForClass:"), aClass)
+	return rv
+}/* debug [class_init_methods/constructor]: NewScriptClassDescriptionForClass */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ScriptClassDescription */
+
+// Returns the class description for the specified class or, if it is not scriptable, for the first superclass that is.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/init(for:)
+func (sc _ScriptClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) IScriptClassDescription {
+	rv := objc.Send[ScriptClassDescription](objc.ID(sc.class), objc.Sel("classDescriptionForClass:"), aClass)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ClassDescriptionForClass) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ScriptClassDescription */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ScriptClassDescription */
+
+// Returns the class description instance for the class type of the specified attribute or relationship.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/forKey(_:)
+func (s_ ScriptClassDescription) ClassDescriptionForKey(key IString) IScriptClassDescription {
+	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("classDescriptionForKey:"), key)
+	return rv
+}/* debug [instance_methods/method]: ClassDescriptionForKey */
 
 
 // Returns a Boolean value indicating whether the described class has a property identified by the specified key.
@@ -108,7 +181,22 @@ func NewScriptClassDescription() ScriptClassDescription {
 func (s_ ScriptClassDescription) HasPropertyForKey(key IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasPropertyForKey:"), key)
 	return rv
-}
+}/* debug [instance_methods/method]: HasPropertyForKey */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ScriptClassDescription */
+
+// Returns the class description instance for the superclass of the receiver’s class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptClassDescription/superclass
+func (s_ ScriptClassDescription) SuperclassDescription() IScriptClassDescription {
+	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("superclassDescription"))
+	return rv
+}/* debug [instance_properties/getter]: superclassDescription */
 
 
 // Returns the Apple event code associated with the receiver’s class.
@@ -118,7 +206,7 @@ func (s_ ScriptClassDescription) HasPropertyForKey(key IString) bool {
 func (s_ ScriptClassDescription) AppleEventCode() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](s_.ID, objc.Sel("appleEventCode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: appleEventCode */
 
 
 // Returns the Apple event code associated with the receiver’s class.
@@ -127,7 +215,7 @@ func (s_ ScriptClassDescription) AppleEventCode() uint32 /* not a class type */ 
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/appleeventcode
 func (s_ ScriptClassDescription) SetAppleEventCode(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAppleEventCode:"), value)
-}
+}/* debug [instance_properties/setter]: appleEventCode */
 
 
 // Returns the name of the class the receiver describes, as provided at initialization time.
@@ -137,7 +225,7 @@ func (s_ ScriptClassDescription) SetAppleEventCode(value uint32 /* not a class t
 func (s_ ScriptClassDescription) ClassName() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("className"))
 	return rv
-}
+}/* debug [instance_properties/getter]: className */
 
 
 // Returns the name of the class the receiver describes, as provided at initialization time.
@@ -146,7 +234,7 @@ func (s_ ScriptClassDescription) ClassName() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/classname
 func (s_ ScriptClassDescription) SetClassName(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setClassName:"), value)
-}
+}/* debug [instance_properties/setter]: className */
 
 
 // Returns the value of the
@@ -156,7 +244,7 @@ func (s_ ScriptClassDescription) SetClassName(value IString) {
 func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("defaultSubcontainerAttributeKey"))
 	return rv
-}
+}/* debug [instance_properties/getter]: defaultSubcontainerAttributeKey */
 
 
 // Returns the value of the
@@ -165,7 +253,7 @@ func (s_ ScriptClassDescription) DefaultSubcontainerAttributeKey() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/defaultsubcontainerattributekey
 func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDefaultSubcontainerAttributeKey:"), value)
-}
+}/* debug [instance_properties/setter]: defaultSubcontainerAttributeKey */
 
 
 // Returns the name of the Objective-C class instantiated to implement the scripting class.
@@ -175,7 +263,7 @@ func (s_ ScriptClassDescription) SetDefaultSubcontainerAttributeKey(value IStrin
 func (s_ ScriptClassDescription) ImplementationClassName() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("implementationClassName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: implementationClassName */
 
 
 // Returns the name of the Objective-C class instantiated to implement the scripting class.
@@ -184,7 +272,7 @@ func (s_ ScriptClassDescription) ImplementationClassName() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/implementationclassname
 func (s_ ScriptClassDescription) SetImplementationClassName(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImplementationClassName:"), value)
-}
+}/* debug [instance_properties/setter]: implementationClassName */
 
 
 // Returns the name of the receiver’s suite.
@@ -194,7 +282,7 @@ func (s_ ScriptClassDescription) SetImplementationClassName(value IString) {
 func (s_ ScriptClassDescription) SuiteName() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("suiteName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: suiteName */
 
 
 // Returns the name of the receiver’s suite.
@@ -203,7 +291,7 @@ func (s_ ScriptClassDescription) SuiteName() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/suitename
 func (s_ ScriptClassDescription) SetSuiteName(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuiteName:"), value)
-}
+}/* debug [instance_properties/setter]: suiteName */
 
 
 // Returns the class description instance for the superclass of the receiver’s class.
@@ -213,7 +301,7 @@ func (s_ ScriptClassDescription) SetSuiteName(value IString) {
 func (s_ ScriptClassDescription) Superclass() IScriptClassDescription {
 	rv := objc.Send[ScriptClassDescription](s_.ID, objc.Sel("superclass"))
 	return rv
-}
+}/* debug [instance_properties/getter]: superclass */
 
 
 // Returns the class description instance for the superclass of the receiver’s class.
@@ -222,7 +310,11 @@ func (s_ ScriptClassDescription) Superclass() IScriptClassDescription {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptclassdescription/superclass
 func (s_ ScriptClassDescription) SetSuperclass(value IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSuperclass:"), value)
-}
+}/* debug [instance_properties/setter]: superclass */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSScriptClassDescription */
 
 

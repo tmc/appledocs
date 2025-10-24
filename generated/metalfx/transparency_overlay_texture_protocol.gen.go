@@ -19,3 +19,4 @@ var transparencyOverlayTextureProtocol *objc.Protocol
 func init() {
 	transparencyOverlayTextureProtocol = objc.GetProtocol("transparencyOverlayTexture")
 }
+

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mConnectionHandle */
+
+
+/* debug [class_header]: Header for mConnectionHandle */
 // The class instance for the [mConnectionHandle] class.
 var (
 	MConnectionHandleClass     _mConnectionHandleClass
@@ -26,27 +30,30 @@ func getmConnectionHandleClass() _mConnectionHandleClass {
 type _mConnectionHandleClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mConnectionHandle */
 // An interface definition for the [mConnectionHandle] class.
 type ImConnectionHandle interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mConnectionHandle */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mConnectionHandle */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mConnectionHandle
-type mConnectionHandle struct {
-	objectivec.Object
-}
-
-// mConnectionHandleFrom constructs a [mConnectionHandle] from an unsafe.Pointer.
-func mConnectionHandleFrom(ptr unsafe.Pointer) mConnectionHandle {
-	return mConnectionHandle{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mConnectionHandle */
 // Alloc allocates a new instance without initialization.
 func (mc _mConnectionHandleClass) Alloc() mConnectionHandle {
 	rv := objc.Send[mConnectionHandle](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mConnectionHandleClass) Alloc() mConnectionHandle {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mConnectionHandleClass) New() mConnectionHandle {
 	rv := objc.Send[mConnectionHandle](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mConnectionHandle) Autorelease() mConnectionHandle {
 func NewmConnectionHandle() mConnectionHandle {
 	return getmConnectionHandleClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mConnectionHandle */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mConnectionHandle
+type mConnectionHandle struct {
+	objectivec.Object
+}
+
+// mConnectionHandleFrom constructs a [mConnectionHandle] from an unsafe.Pointer.
+func mConnectionHandleFrom(ptr unsafe.Pointer) mConnectionHandle {
+	return mConnectionHandle{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mConnectionHandle *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mConnectionHandle */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mConnectionHandle */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mConnectionHandle */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mConnectionHandle */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mConnectionHandle */
 
 
 

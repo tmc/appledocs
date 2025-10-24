@@ -18,3 +18,4 @@ var addPassesViewControllerDidFinishProtocol *objc.Protocol
 func init() {
 	addPassesViewControllerDidFinishProtocol = objc.GetProtocol("addPassesViewControllerDidFinish:")
 }
+

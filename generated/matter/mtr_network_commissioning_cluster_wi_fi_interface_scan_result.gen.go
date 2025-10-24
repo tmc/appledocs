@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRNetworkCommissioningClusterWiFiInterfaceScanResult] class.
@@ -45,8 +45,6 @@ type IMTRNetworkCommissioningClusterWiFiInterfaceScanResult interface {
 	SetWiFiBand(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterWiFiInterfaceScanResult
@@ -92,8 +90,6 @@ func NewMTRNetworkCommissioningClusterWiFiInterfaceScanResult() MTRNetworkCommis
 	return getMTRNetworkCommissioningClusterWiFiInterfaceScanResultClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/bssid
 func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Bssid() objc.IObject /* cross-framework: Data */ {
@@ -101,13 +97,11 @@ func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Bssid() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/bssid
 func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetBssid(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBssid:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/channel
@@ -116,13 +110,11 @@ func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Channel() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/channel
 func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetChannel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChannel:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/rssi
@@ -131,13 +123,11 @@ func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Rssi() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/rssi
 func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetRssi(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRssi:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/security
@@ -146,13 +136,11 @@ func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Security() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/security
 func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetSecurity(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSecurity:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/ssid
@@ -161,13 +149,11 @@ func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) Ssid() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/ssid
 func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetSsid(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSsid:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/wifiband
@@ -176,12 +162,8 @@ func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) WiFiBand() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterwifiinterfacescanresult/wifiband
 func (m_ MTRNetworkCommissioningClusterWiFiInterfaceScanResult) SetWiFiBand(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWiFiBand:"), value)
 }
-
-
-

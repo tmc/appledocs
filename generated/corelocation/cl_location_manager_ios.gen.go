@@ -8,12 +8,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for LocationManager
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLLocationManager/requestHistoricalLocations(purposeKey:sampleCount:completionHandler:)
@@ -58,8 +55,3 @@ func (l_ LocationManager) ShowsBackgroundLocationIndicator() bool {
 func (l_ LocationManager) SetShowsBackgroundLocationIndicator(value bool) {
 	l_.ID.Send(objc.RegisterName("setShowsBackgroundLocationIndicator:"), value)
 }
-
-
-
-
-

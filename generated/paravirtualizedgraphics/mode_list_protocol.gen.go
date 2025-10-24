@@ -16,3 +16,4 @@ var modeListProtocol *objc.Protocol
 func init() {
 	modeListProtocol = objc.GetProtocol("modeList")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -48,8 +48,6 @@ type IMTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams 
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams
@@ -93,8 +91,6 @@ func NewMTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParam
 	return getMTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/attributeid
 func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) AttributeId() objc.IObject /* cross-framework: NSNumber */ {
@@ -102,13 +98,11 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/attributeid
 func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetAttributeId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeId:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/intervals
@@ -117,13 +111,11 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/intervals
 func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetIntervals(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIntervals:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/numberofintervalsdelivered
@@ -132,13 +124,11 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/numberofintervalsdelivered
 func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetNumberOfIntervalsDelivered(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfIntervalsDelivered:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/profileintervalperiod
@@ -147,13 +137,11 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/profileintervalperiod
 func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetProfileIntervalPeriod(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProfileIntervalPeriod:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/starttime
@@ -162,13 +150,11 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/starttime
 func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetStartTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTime:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/status
@@ -177,13 +163,11 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/status
 func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/timedinvoketimeoutms
@@ -192,12 +176,8 @@ func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandPara
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetmeasurementprofileresponsecommandparams/timedinvoketimeoutms
 func (m_ MTRElectricalMeasurementClusterGetMeasurementProfileResponseCommandParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

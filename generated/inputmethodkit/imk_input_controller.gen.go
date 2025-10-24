@@ -13,6 +13,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class IMKInputController */
+
+
+/* debug [class_header]: Header for IMKInputController */
 // The class instance for the [IMKInputController] class.
 var (
 	IMKInputControllerClass     _IMKInputControllerClass
@@ -29,51 +33,47 @@ func getIMKInputControllerClass() _IMKInputControllerClass {
 type _IMKInputControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for IMKInputController */
 // An interface definition for the [IMKInputController] class.
 type IIMKInputController interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for IMKInputController */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for IMKInputController */
 	// methods:
-	AnnotationSelectedForCandidate(annotationString objc.IObject /* cross-framework: AttributedString */, candidateString objc.IObject /* cross-framework: AttributedString */)
+	AnnotationSelectedForCandidate(annotationString foundation.AttributedString, candidateString foundation.AttributedString)
 	CancelComposition()
-	CandidateSelected(candidateString objc.IObject /* cross-framework: AttributedString */)
-	CandidateSelectionChanged(candidateString objc.IObject /* cross-framework: AttributedString */)
-	Client() objc.ID
-	CompositionAttributesAtRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: MutableDictionary */
+	CandidateSelected(candidateString foundation.AttributedString)
+	CandidateSelectionChanged(candidateString foundation.AttributedString)
+	Client() unsafe.Pointer
+	CompositionAttributesAtRange(range_ corefoundation.Range) foundation.MutableDictionary
 	Delegate() objc.ID
 	DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objc.IObject /* cross-framework: NSDictionary */)
 	HidePalettes()
 	InputControllerWillClose()
-	MarkForStyleAtRange(style int, range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Dictionary */
-	Menu() objc.IObject /* cross-framework: Menu */
-	ReplacementRange() objc.IObject /* cross-framework: Range */
-	SelectionRange() objc.IObject /* cross-framework: Range */
+	MarkForStyleAtRange(style int, range_ corefoundation.Range) foundation.Dictionary
+	Menu() appkit.Menu
+	ReplacementRange() corefoundation.Range
+	SelectionRange() corefoundation.Range
 	Server() IMKServer
-	SetDelegate(newDelegate objectivec.IObject)
+	SetDelegate(newDelegate objc.IObject)
 	UpdateComposition()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The class provides a base class for custom input controller classes. The class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding object.
-//
-// An object controls text input on the input method side. It manages events and text from the applications and converted text from the input method engine. implements fully the and protocols. Typically you do not need to override this class, but you do need to provide a delegate object that implements the methods that your are interested in. The versions of the protocol methods check whether the delegate object implements a method, and calls the delegate version if it exists.
+/* debug [class_interface]: End interface */
 
 
-// The class provides a base class for custom input controller classes. The class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController
-type IMKInputController struct {
-	objectivec.Object
-}
 
-// IMKInputControllerFrom constructs a [IMKInputController] from an unsafe.Pointer.
-//
-// The class provides a base class for custom input controller classes. The class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding object.
-func IMKInputControllerFrom(ptr unsafe.Pointer) IMKInputController {
-	return IMKInputController{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for IMKInputController */
 // Alloc allocates a new instance without initialization.
 func (ic _IMKInputControllerClass) Alloc() IMKInputController {
 	rv := objc.Send[IMKInputController](objc.ID(ic.class), objc.Sel("alloc"))
@@ -81,7 +81,6 @@ func (ic _IMKInputControllerClass) Alloc() IMKInputController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _IMKInputControllerClass) New() IMKInputController {
 	rv := objc.Send[IMKInputController](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -104,29 +103,70 @@ func (i_ IMKInputController) Autorelease() IMKInputController {
 func NewIMKInputController() IMKInputController {
 	return getIMKInputControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for IMKInputController */
+// The class provides a base class for custom input controller classes. The class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding object.
+//
+// An object controls text input on the input method side. It manages events and text from the applications and converted text from the input method engine. implements fully the and protocols. Typically you do not need to override this class, but you do need to provide a delegate object that implements the methods that your are interested in. The versions of the protocol methods check whether the delegate object implements a method, and calls the delegate version if it exists.
+
+
+// The class provides a base class for custom input controller classes. The class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController
+type IMKInputController struct {
+	objectivec.Object
+}
+
+// IMKInputControllerFrom constructs a [IMKInputController] from an unsafe.Pointer.
+//
+// The class provides a base class for custom input controller classes. The class, which is allocated in the main function of an input method, creates an input controller object for each input session created by a client application. For every input session there is a corresponding object.
+func IMKInputControllerFrom(ptr unsafe.Pointer) IMKInputController {
+	return IMKInputController{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for IMKInputController */
 
 // Initializes the input control by setting the delegate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/init(server:delegate:client:)
-func NewIMKInputControllerWithServerDelegateClient(server IMKServer, delegate objectivec.IObject, inputClient objectivec.IObject) IMKInputController {
+func NewIMKInputControllerWithServerDelegateClient(server IMKServer, delegate objc.IObject, inputClient objc.IObject) IMKInputController {
 	instance := getIMKInputControllerClass().Alloc()
 	rv := objc.Send[IMKInputController](instance.ID, objc.Sel("initWithServer:delegate:client:"), server, delegate, inputClient)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewIMKInputControllerWithServerDelegateClient */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for IMKInputController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for IMKInputController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for IMKInputController */
 
 // Sends the selected candidate string and annotation string to the input controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/annotationSelected(_:forCandidate:)
-func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString objc.IObject /* cross-framework: AttributedString */, candidateString objc.IObject /* cross-framework: AttributedString */) {
+func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString foundation.AttributedString, candidateString foundation.AttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("annotationSelected:forCandidate:"), annotationString, candidateString)
-}
+}/* debug [instance_methods/method]: AnnotationSelectedForCandidate */
 
 
 // Stops the current composition and replaces marked text with the original text.
@@ -135,45 +175,45 @@ func (i_ IMKInputController) AnnotationSelectedForCandidate(annotationString obj
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/cancelComposition()
 func (i_ IMKInputController) CancelComposition() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("cancelComposition"))
-}
+}/* debug [instance_methods/method]: CancelComposition */
 
 
 // Informs an input controller that a new candidate is selected.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/candidateSelected(_:)
-func (i_ IMKInputController) CandidateSelected(candidateString objc.IObject /* cross-framework: AttributedString */) {
+func (i_ IMKInputController) CandidateSelected(candidateString foundation.AttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("candidateSelected:"), candidateString)
-}
+}/* debug [instance_methods/method]: CandidateSelected */
 
 
 // Informs an input controller that the current candidate selection in the candidate window has changed.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/candidateSelectionChanged(_:)
-func (i_ IMKInputController) CandidateSelectionChanged(candidateString objc.IObject /* cross-framework: AttributedString */) {
+func (i_ IMKInputController) CandidateSelectionChanged(candidateString foundation.AttributedString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("candidateSelectionChanged:"), candidateString)
-}
+}/* debug [instance_methods/method]: CandidateSelectionChanged */
 
 
 // Returns the client object associated with the input controller.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/client()
-func (i_ IMKInputController) Client() objc.ID {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("client"))
+func (i_ IMKInputController) Client() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("client"))
 	return rv
-}
+}/* debug [instance_methods/method]: Client */
 
 
 // Returns a dictionary of text attributes.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/compositionAttributes(at:)
-func (i_ IMKInputController) CompositionAttributesAtRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: MutableDictionary */ {
+func (i_ IMKInputController) CompositionAttributesAtRange(range_ corefoundation.Range) foundation.MutableDictionary {
 	rv := objc.Send[foundation.MutableDictionary](i_.ID, objc.Sel("compositionAttributesAtRange:"), range_)
 	return rv
-}
+}/* debug [instance_methods/method]: CompositionAttributesAtRange */
 
 
 // Returns the delegate for input controller object.
@@ -183,7 +223,7 @@ func (i_ IMKInputController) CompositionAttributesAtRange(range_ objc.IObject /*
 func (i_ IMKInputController) Delegate() objc.ID {
 	rv := objc.Send[objc.ID](i_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_methods/method]: Delegate */
 
 
 // Passes commands that are not generated as part of the text input process.
@@ -192,7 +232,7 @@ func (i_ IMKInputController) Delegate() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/doCommand(by:command:)
 func (i_ IMKInputController) DoCommandBySelectorCommandDictionary(aSelector objc.SEL, infoDictionary objc.IObject /* cross-framework: NSDictionary */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("doCommandBySelector:commandDictionary:"), aSelector, infoDictionary)
-}
+}/* debug [instance_methods/method]: DoCommandBySelectorCommandDictionary */
 
 
 // Informs an input method that it should close any visible user interface.
@@ -201,54 +241,54 @@ func (i_ IMKInputController) DoCommandBySelectorCommandDictionary(aSelector objc
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/hidePalettes()
 func (i_ IMKInputController) HidePalettes() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("hidePalettes"))
-}
+}/* debug [instance_methods/method]: HidePalettes */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/inputControllerWillClose()
 func (i_ IMKInputController) InputControllerWillClose() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("inputControllerWillClose"))
-}
+}/* debug [instance_methods/method]: InputControllerWillClose */
 
 
 // Returns a dictionary of text attributes that can mark a range of an attributed string to send to a client.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/mark(forStyle:at:)
-func (i_ IMKInputController) MarkForStyleAtRange(style int, range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Dictionary */ {
+func (i_ IMKInputController) MarkForStyleAtRange(style int, range_ corefoundation.Range) foundation.Dictionary {
 	rv := objc.Send[foundation.Dictionary](i_.ID, objc.Sel("markForStyle:atRange:"), style, range_)
 	return rv
-}
+}/* debug [instance_methods/method]: MarkForStyleAtRange */
 
 
 // Returns a menu of commands that are specific to an input method.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/menu()
-func (i_ IMKInputController) Menu() objc.IObject /* cross-framework: Menu */ {
+func (i_ IMKInputController) Menu() appkit.Menu {
 	rv := objc.Send[appkit.Menu](i_.ID, objc.Sel("menu"))
 	return rv
-}
+}/* debug [instance_methods/method]: Menu */
 
 
 // Returns the range in the client document that the text should replace.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/replacementRange()
-func (i_ IMKInputController) ReplacementRange() objc.IObject /* cross-framework: Range */ {
+func (i_ IMKInputController) ReplacementRange() corefoundation.Range {
 	rv := objc.Send[corefoundation.Range](i_.ID, objc.Sel("replacementRange"))
 	return rv
-}
+}/* debug [instance_methods/method]: ReplacementRange */
 
 
 // Returns where the range of the selection that should be placed inside marked text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/selectionRange()
-func (i_ IMKInputController) SelectionRange() objc.IObject /* cross-framework: Range */ {
+func (i_ IMKInputController) SelectionRange() corefoundation.Range {
 	rv := objc.Send[corefoundation.Range](i_.ID, objc.Sel("selectionRange"))
 	return rv
-}
+}/* debug [instance_methods/method]: SelectionRange */
 
 
 // Returns the server object that manages the input controller.
@@ -256,18 +296,18 @@ func (i_ IMKInputController) SelectionRange() objc.IObject /* cross-framework: R
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/server()
 func (i_ IMKInputController) Server() IMKServer {
-	rv := objc.Send[IMKServer](i_.ID, objc.Sel("server"))
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("server"))
 	return rv
-}
+}/* debug [instance_methods/method]: Server */
 
 
 // Sets the delegate for input controller object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/setDelegate(_:)
-func (i_ IMKInputController) SetDelegate(newDelegate objectivec.IObject) {
+func (i_ IMKInputController) SetDelegate(newDelegate objc.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), newDelegate)
-}
+}/* debug [instance_methods/method]: SetDelegate */
 
 
 // Informs the input controller that the composition has changed.
@@ -276,6 +316,16 @@ func (i_ IMKInputController) SetDelegate(newDelegate objectivec.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKInputController/updateComposition()
 func (i_ IMKInputController) UpdateComposition() {
 	objc.Send[objc.ID](i_.ID, objc.Sel("updateComposition"))
-}
+}/* debug [instance_methods/method]: UpdateComposition */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for IMKInputController */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class IMKInputController */
 
 

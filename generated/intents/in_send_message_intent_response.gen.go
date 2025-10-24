@@ -41,7 +41,6 @@ type IINSendMessageIntentResponse interface {
 //
 // Use an object to specify the results of sending a message to another user. You create instances of this class when confirming or handling a send message intent. Use this object to communicate whether the message was successfully sent or whether an error occurred. You create an object in the and methods of your send message handler object. For more information about implementing your handler object, see .
 
-
 // Your app’s response to a send message intent.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINSendMessageIntentResponse() INSendMessageIntentResponse {
 	return getINSendMessageIntentResponseClass().New()
 }
 
-
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INSendMessageIntentResponse) Code() INSendMessageIntentResponseCode {
 	return rv
 }
 
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INSendMessageIntentResponse) Code() INSendMessageIntentResponseCode {
 func (i_ INSendMessageIntentResponse) SetCode(value INSendMessageIntentResponseCode) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
 
 // The message sent by the intent.
 //
@@ -120,7 +115,6 @@ func (i_ INSendMessageIntentResponse) SentMessage() INMessage {
 	return rv
 }
 
-
 // The message sent by the intent.
 //
 // [Full Topic]
@@ -129,7 +123,6 @@ func (i_ INSendMessageIntentResponse) SetSentMessage(value INMessage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSentMessage:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentresponse/sentmessages
 func (i_ INSendMessageIntentResponse) SentMessages() INMessage {
@@ -137,12 +130,8 @@ func (i_ INSendMessageIntentResponse) SentMessages() INMessage {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insendmessageintentresponse/sentmessages
 func (i_ INSendMessageIntentResponse) SetSentMessages(value INMessage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSentMessages:"), value)
 }
-
-
-

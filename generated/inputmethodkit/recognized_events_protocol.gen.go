@@ -15,3 +15,4 @@ var recognizedEventsProtocol *objc.Protocol
 func init() {
 	recognizedEventsProtocol = objc.GetProtocol("recognizedEvents:")
 }
+

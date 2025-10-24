@@ -15,3 +15,4 @@ var replaceContentsInRangeProtocol *objc.Protocol
 func init() {
 	replaceContentsInRangeProtocol = objc.GetProtocol("replaceContentsInRange:")
 }
+

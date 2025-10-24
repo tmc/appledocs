@@ -27,6 +27,8 @@ type PURLSessionDataDelegate interface {
 	HasURLSessionDataTaskDidBecomeDownloadTask() bool
 	URLSessionDataTaskDidBecomeStreamTask(session IURLSession, dataTask IURLSessionDataTask, streamTask IURLSessionStreamTask)
 	HasURLSessionDataTaskDidBecomeStreamTask() bool
+	URLSessionDataTaskDidReceiveData(session IURLSession, dataTask IURLSessionDataTask, data IData)
+	HasURLSessionDataTaskDidReceiveData() bool
 }
 
 // URLSessionDataDelegate is a delegate implementation builder for the PURLSessionDataDelegate protocol.
@@ -35,6 +37,7 @@ type PURLSessionDataDelegate interface {
 type URLSessionDataDelegate struct {
 	_URLSessionDataTaskDidBecomeDownloadTask func(session IURLSession, dataTask IURLSessionDataTask, downloadTask IURLSessionDownloadTask)
 	_URLSessionDataTaskDidBecomeStreamTask func(session IURLSession, dataTask IURLSessionDataTask, streamTask IURLSessionStreamTask)
+	_URLSessionDataTaskDidReceiveData func(session IURLSession, dataTask IURLSessionDataTask, data IData)
 }
 
 // SetURLSessionDataTaskDidBecomeDownloadTask sets the handler for the URLSessionDataTaskDidBecomeDownloadTask delegate method.
@@ -49,6 +52,13 @@ func (d *URLSessionDataDelegate) SetURLSessionDataTaskDidBecomeDownloadTask(f fu
 // Tells the delegate that the data task was changed to a stream task.
 func (d *URLSessionDataDelegate) SetURLSessionDataTaskDidBecomeStreamTask(f func(session IURLSession, dataTask IURLSessionDataTask, streamTask IURLSessionStreamTask)) {
 	d._URLSessionDataTaskDidBecomeStreamTask = f
+}
+
+// SetURLSessionDataTaskDidReceiveData sets the handler for the URLSessionDataTaskDidReceiveData delegate method.
+//
+// Tells the delegate that the data task has received some of the expected data.
+func (d *URLSessionDataDelegate) SetURLSessionDataTaskDidReceiveData(f func(session IURLSession, dataTask IURLSessionDataTask, data IData)) {
+	d._URLSessionDataTaskDidReceiveData = f
 }
 
 // URLSessionDataTaskDidBecomeDownloadTask implements the PURLSessionDataDelegate interface.
@@ -73,4 +83,16 @@ func (d *URLSessionDataDelegate) URLSessionDataTaskDidBecomeStreamTask(session I
 // HasURLSessionDataTaskDidBecomeStreamTask returns true if a handler for URLSessionDataTaskDidBecomeStreamTask has been set.
 func (d *URLSessionDataDelegate) HasURLSessionDataTaskDidBecomeStreamTask() bool {
 	return d._URLSessionDataTaskDidBecomeStreamTask != nil
+}
+
+// URLSessionDataTaskDidReceiveData implements the PURLSessionDataDelegate interface.
+func (d *URLSessionDataDelegate) URLSessionDataTaskDidReceiveData(session IURLSession, dataTask IURLSessionDataTask, data IData) {
+	if d._URLSessionDataTaskDidReceiveData != nil {
+		d._URLSessionDataTaskDidReceiveData(session, dataTask, data)
+	}
+}
+
+// HasURLSessionDataTaskDidReceiveData returns true if a handler for URLSessionDataTaskDidReceiveData has been set.
+func (d *URLSessionDataDelegate) HasURLSessionDataTaskDidReceiveData() bool {
+	return d._URLSessionDataTaskDidReceiveData != nil
 }

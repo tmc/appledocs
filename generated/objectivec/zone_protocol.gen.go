@@ -21,3 +21,4 @@ var zoneProtocol *objc.Protocol
 func init() {
 	zoneProtocol = objc.GetProtocol("zone")
 }
+

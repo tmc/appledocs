@@ -15,3 +15,4 @@ var FSFileSystemBaseProtocol *objc.Protocol
 func init() {
 	FSFileSystemBaseProtocol = objc.GetProtocol("FSFileSystemBase")
 }
+

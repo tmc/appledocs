@@ -21,3 +21,4 @@ var MTRPersistentStorageDelegateProtocol *objc.Protocol
 func init() {
 	MTRPersistentStorageDelegateProtocol = objc.GetProtocol("MTRPersistentStorageDelegate")
 }
+

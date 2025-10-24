@@ -9,7 +9,9 @@ package compression
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Compression/compression_stream
 type compression_stream struct {
-}
+}/* debug [types.gen.go/struct]: compression_stream */
+
+
 
 
 

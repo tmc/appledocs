@@ -20,3 +20,4 @@ var lastPressedStateTimestampProtocol *objc.Protocol
 func init() {
 	lastPressedStateTimestampProtocol = objc.GetProtocol("lastPressedStateTimestamp")
 }
+

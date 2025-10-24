@@ -18,6 +18,7 @@ type (
 	DictionaryRef = _undefined // referenced in Security
 	ErrorRef = _undefined // referenced in Security
 	Index = _undefined // referenced in Security
+	OptionFlags = _undefined // referenced in Security
 	ReadStreamRef = _undefined // referenced in Security
 	StringRef = _undefined // referenced in Security
 	TypeID = _undefined // referenced in Security

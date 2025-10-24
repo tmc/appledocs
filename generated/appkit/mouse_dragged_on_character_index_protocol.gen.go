@@ -15,3 +15,4 @@ var mouseDraggedOnCharacterIndexProtocol *objc.Protocol
 func init() {
 	mouseDraggedOnCharacterIndexProtocol = objc.GetProtocol("mouseDraggedOnCharacterIndex:")
 }
+

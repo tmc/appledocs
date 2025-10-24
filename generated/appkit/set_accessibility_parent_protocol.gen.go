@@ -15,3 +15,4 @@ var setAccessibilityParentProtocol *objc.Protocol
 func init() {
 	setAccessibilityParentProtocol = objc.GetProtocol("setAccessibilityParent")
 }
+

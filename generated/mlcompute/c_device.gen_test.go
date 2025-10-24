@@ -17,12 +17,13 @@ func ExampleNewCDeviceWithType() {
 	)
 	// Output:
 }
+
 // ExampleNewCDeviceWithTypeSelectsMultipleComputeDevices demonstrates how to create a CDevice instance using NewCDeviceWithTypeSelectsMultipleComputeDevices.
 // Creates a device that you can configure to use multiple compute devices.
 func ExampleNewCDeviceWithTypeSelectsMultipleComputeDevices() {
 	_ = mlcompute.NewCDeviceWithTypeSelectsMultipleComputeDevices(
 		mlcompute.CDeviceType{}, // type CDeviceType
-		false, // selectsMultipleComputeDevices bool
+		false,                   // selectsMultipleComputeDevices bool
 	)
 	// Output:
 }

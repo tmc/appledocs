@@ -15,3 +15,4 @@ var setAccessibilitySharedFocusElementsProtocol *objc.Protocol
 func init() {
 	setAccessibilitySharedFocusElementsProtocol = objc.GetProtocol("setAccessibilitySharedFocusElements")
 }
+

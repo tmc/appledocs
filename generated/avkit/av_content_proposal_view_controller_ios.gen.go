@@ -8,9 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // iOS-only methods for ContentProposalViewController
@@ -51,7 +48,7 @@ func (c_ ContentProposalViewController) SetDateOfAutomaticAcceptance(value objc.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/playerLayoutGuide
-func (c_ ContentProposalViewController) PlayerLayoutGuide() objc.IObject /* cross-framework: LayoutGuide */ {
+func (c_ ContentProposalViewController) PlayerLayoutGuide() appkit.LayoutGuide {
 	rv := objc.Send[appkit.LayoutGuide](c_.ID, objc.Sel("playerLayoutGuide"))
 	return rv
 }
@@ -69,8 +66,8 @@ func (c_ ContentProposalViewController) PlayerViewController() IAVPlayerViewCont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposalViewController/preferredPlayerViewFrame
-func (c_ ContentProposalViewController) PreferredPlayerViewFrame() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("preferredPlayerViewFrame"))
+func (c_ ContentProposalViewController) PreferredPlayerViewFrame() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](c_.ID, objc.Sel("preferredPlayerViewFrame"))
 	return rv
 }
 

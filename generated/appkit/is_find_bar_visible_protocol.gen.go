@@ -15,3 +15,4 @@ var isFindBarVisibleProtocol *objc.Protocol
 func init() {
 	isFindBarVisibleProtocol = objc.GetProtocol("isFindBarVisible")
 }
+

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRMediaPlaybackClusterActivateTextTrackParams */
+
+
+/* debug [class_header]: Header for MTRMediaPlaybackClusterActivateTextTrackParams */
 // The class instance for the [MTRMediaPlaybackClusterActivateTextTrackParams] class.
 var (
 	MTRMediaPlaybackClusterActivateTextTrackParamsClass     _MTRMediaPlaybackClusterActivateTextTrackParamsClass
@@ -27,10 +31,16 @@ func getMTRMediaPlaybackClusterActivateTextTrackParamsClass() _MTRMediaPlaybackC
 type _MTRMediaPlaybackClusterActivateTextTrackParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRMediaPlaybackClusterActivateTextTrackParams */
 // An interface definition for the [MTRMediaPlaybackClusterActivateTextTrackParams] class.
 type IMTRMediaPlaybackClusterActivateTextTrackParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRMediaPlaybackClusterActivateTextTrackParams */
 	// properties:
 	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
 	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
@@ -38,22 +48,19 @@ type IMTRMediaPlaybackClusterActivateTextTrackParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	TrackID() objc.IObject /* cross-framework: NSString */
 	SetTrackID(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRMediaPlaybackClusterActivateTextTrackParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams
-type MTRMediaPlaybackClusterActivateTextTrackParams struct {
-	objectivec.Object
-}
-
-// MTRMediaPlaybackClusterActivateTextTrackParamsFrom constructs a [MTRMediaPlaybackClusterActivateTextTrackParams] from an unsafe.Pointer.
-func MTRMediaPlaybackClusterActivateTextTrackParamsFrom(ptr unsafe.Pointer) MTRMediaPlaybackClusterActivateTextTrackParams {
-	return MTRMediaPlaybackClusterActivateTextTrackParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRMediaPlaybackClusterActivateTextTrackParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRMediaPlaybackClusterActivateTextTrackParamsClass) Alloc() MTRMediaPlaybackClusterActivateTextTrackParams {
 	rv := objc.Send[MTRMediaPlaybackClusterActivateTextTrackParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -61,7 +68,6 @@ func (mc _MTRMediaPlaybackClusterActivateTextTrackParamsClass) Alloc() MTRMediaP
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRMediaPlaybackClusterActivateTextTrackParamsClass) New() MTRMediaPlaybackClusterActivateTextTrackParams {
 	rv := objc.Send[MTRMediaPlaybackClusterActivateTextTrackParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,8 +90,47 @@ func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) Autorelease() MTRMediaP
 func NewMTRMediaPlaybackClusterActivateTextTrackParams() MTRMediaPlaybackClusterActivateTextTrackParams {
 	return getMTRMediaPlaybackClusterActivateTextTrackParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRMediaPlaybackClusterActivateTextTrackParams */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams
+type MTRMediaPlaybackClusterActivateTextTrackParams struct {
+	objectivec.Object
+}
+
+// MTRMediaPlaybackClusterActivateTextTrackParamsFrom constructs a [MTRMediaPlaybackClusterActivateTextTrackParams] from an unsafe.Pointer.
+func MTRMediaPlaybackClusterActivateTextTrackParamsFrom(ptr unsafe.Pointer) MTRMediaPlaybackClusterActivateTextTrackParams {
+	return MTRMediaPlaybackClusterActivateTextTrackParams{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRMediaPlaybackClusterActivateTextTrackParams *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRMediaPlaybackClusterActivateTextTrackParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRMediaPlaybackClusterActivateTextTrackParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRMediaPlaybackClusterActivateTextTrackParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRMediaPlaybackClusterActivateTextTrackParams */
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
@@ -94,7 +139,7 @@ func NewMTRMediaPlaybackClusterActivateTextTrackParams() MTRMediaPlaybackCluster
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
-}
+}/* debug [instance_properties/getter]: serverSideProcessingTimeout */
 
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
@@ -103,41 +148,46 @@ func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) ServerSideProcessingTim
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/serverSideProcessingTimeout
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
+}/* debug [instance_properties/setter]: serverSideProcessingTimeout */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/timedInvokeTimeoutMs
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusteractivatetexttrackparams/timedinvoketimeoutms
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timedInvokeTimeoutMs */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/timedInvokeTimeoutMs
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusteractivatetexttrackparams/timedinvoketimeoutms
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
+}/* debug [instance_properties/setter]: timedInvokeTimeoutMs */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/trackID
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusteractivatetexttrackparams/trackid
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) TrackID() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("trackID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trackID */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterActivateTextTrackParams/trackID
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusteractivatetexttrackparams/trackid
 func (m_ MTRMediaPlaybackClusterActivateTextTrackParams) SetTrackID(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), value)
-}
+}/* debug [instance_properties/setter]: trackID */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRMediaPlaybackClusterActivateTextTrackParams */
 
 
 

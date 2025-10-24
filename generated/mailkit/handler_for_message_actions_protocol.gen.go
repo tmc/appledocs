@@ -15,3 +15,4 @@ var handlerForMessageActionsProtocol *objc.Protocol
 func init() {
 	handlerForMessageActionsProtocol = objc.GetProtocol("handlerForMessageActions")
 }
+

@@ -22,7 +22,7 @@ import (
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastConfiguration/clipDuration
 func (r_ RPBroadcastConfiguration) ClipDuration() float64 {
-	rv := objc.Send[TimeInterval](r_.ID, objc.Sel("clipDuration"))
+	rv := objc.Send[float64](r_.ID, objc.Sel("clipDuration"))
 	return rv
 }
 func (r_ RPBroadcastConfiguration) SetClipDuration(value float64) {

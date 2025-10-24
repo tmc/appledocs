@@ -13,7 +13,7 @@ var _ = appkit.NewColorSpace
 // Initializes and returns a color space object initialized from a Core Graphics color-space object.
 func ExampleNewColorSpaceWithCGColorSpace() {
 	_ = appkit.NewColorSpaceWithCGColorSpace(
-		appkit.ColorSpaceRef /* not a class type */{}, // cgColorSpace ColorSpaceRef /* not a class type */
+		appkit.ColorSpaceRef /* not a class type */ {}, // cgColorSpace ColorSpaceRef /* not a class type */
 	)
 	// Output:
 }

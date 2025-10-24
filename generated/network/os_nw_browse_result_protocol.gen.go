@@ -21,3 +21,4 @@ var OS_nw_browse_resultProtocol *objc.Protocol
 func init() {
 	OS_nw_browse_resultProtocol = objc.GetProtocol("OS_nw_browse_result")
 }
+

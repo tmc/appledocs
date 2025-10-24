@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class METrackInfo */
+
+
+/* debug [class_header]: Header for METrackInfo */
 // The class instance for the [METrackInfo] class.
 var (
 	METrackInfoClass     _METrackInfoClass
@@ -28,52 +32,51 @@ func getMETrackInfoClass() _METrackInfoClass {
 type _METrackInfoClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for METrackInfo */
 // An interface definition for the [METrackInfo] class.
 type IMETrackInfo interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for METrackInfo */
 	// properties:
+	ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */
+	SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */)
+	FormatDescriptions() objc.IObject /* cross-framework: NSArray */
+	Enabled() bool
+	SetEnabled(value bool)
+	MediaType() MediaType /* not a class type */
+	NaturalSize() corefoundation.CGSize
+	SetNaturalSize(value corefoundation.CGSize)
 	NaturalTimescale() TimeScale /* not a class type */
 	SetNaturalTimescale(value TimeScale /* not a class type */)
 	NominalFrameRate() unsafe.Pointer
 	SetNominalFrameRate(value unsafe.Pointer)
-	TrackEdits() []objc.IObject /* cross-framework: Value */
-	SetTrackEdits(value []objc.IObject /* cross-framework: Value */)
-	ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */
-	SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */)
-	IsEnabled() bool
-	SetIsEnabled(value bool)
-	MediaType() MediaType /* not a class type */
-	SetMediaType(value MediaType /* not a class type */)
-	NaturalSize() objc.IObject /* cross-framework: Size */
-	SetNaturalSize(value objc.IObject /* cross-framework: Size */)
-	PreferredTransform() objc.IObject /* cross-framework: AffineTransform */
-	SetPreferredTransform(value objc.IObject /* cross-framework: AffineTransform */)
+	PreferredTransform() corefoundation.CGAffineTransform
+	SetPreferredTransform(value corefoundation.CGAffineTransform)
 	RequiresFrameReordering() bool
 	SetRequiresFrameReordering(value bool)
+	TrackEdits() []foundation.Value
+	SetTrackEdits(value []foundation.Value)
 	TrackID() PersistentTrackID /* not a class type */
-	SetTrackID(value PersistentTrackID /* not a class type */)
+	IsEnabled() bool
+	SetIsEnabled(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for METrackInfo */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that includes track properties parsed from the media asset.
 
 
-// An object that includes track properties parsed from the media asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo
-type METrackInfo struct {
-	objectivec.Object
-}
-
-// METrackInfoFrom constructs a [METrackInfo] from an unsafe.Pointer.
-//
-// An object that includes track properties parsed from the media asset.
-func METrackInfoFrom(ptr unsafe.Pointer) METrackInfo {
-	return METrackInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for METrackInfo */
 // Alloc allocates a new instance without initialization.
 func (mc _METrackInfoClass) Alloc() METrackInfo {
 	rv := objc.Send[METrackInfo](objc.ID(mc.class), objc.Sel("alloc"))
@@ -81,7 +84,6 @@ func (mc _METrackInfoClass) Alloc() METrackInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _METrackInfoClass) New() METrackInfo {
 	rv := objc.Send[METrackInfo](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -104,8 +106,33 @@ func (m_ METrackInfo) Autorelease() METrackInfo {
 func NewMETrackInfo() METrackInfo {
 	return getMETrackInfoClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for METrackInfo */
+// An object that includes track properties parsed from the media asset.
+
+
+// An object that includes track properties parsed from the media asset.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo
+type METrackInfo struct {
+	objectivec.Object
+}
+
+// METrackInfoFrom constructs a [METrackInfo] from an unsafe.Pointer.
+//
+// An object that includes track properties parsed from the media asset.
+func METrackInfoFrom(ptr unsafe.Pointer) METrackInfo {
+	return METrackInfo{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for METrackInfo */
 
 // Creates a new track info object with the media type, track ID, and format descriptions that you specify.
 //
@@ -116,8 +143,104 @@ func NewMETrackInfoWithMediaTypeTrackIDFormatDescriptions(mediaType MediaType /*
 	rv := objc.Send[METrackInfo](instance.ID, objc.Sel("initWithMediaType:trackID:formatDescriptions:"), mediaType, trackID, formatDescriptions)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMETrackInfoWithMediaTypeTrackIDFormatDescriptions */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for METrackInfo */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for METrackInfo */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for METrackInfo */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for METrackInfo */
+
+// A string that indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/extendedLanguageTag
+func (m_ METrackInfo) ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("extendedLanguageTag"))
+	return rv
+}/* debug [instance_properties/getter]: extendedLanguageTag */
+
+
+// A string that indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/extendedLanguageTag
+func (m_ METrackInfo) SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
+}/* debug [instance_properties/setter]: extendedLanguageTag */
+
+
+// An array of format descriptions for the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/formatDescriptions
+func (m_ METrackInfo) FormatDescriptions() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("formatDescriptions"))
+	return rv
+}/* debug [instance_properties/getter]: formatDescriptions */
+
+
+// A Boolean value that indicates whether the track is enabled by default.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/isEnabled
+func (m_ METrackInfo) Enabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
+	return rv
+}/* debug [instance_properties/getter]: enabled */
+
+
+// A Boolean value that indicates whether the track is enabled by default.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/isEnabled
+func (m_ METrackInfo) SetEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
+}/* debug [instance_properties/setter]: enabled */
+
+
+// The media type of the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/mediaType
+func (m_ METrackInfo) MediaType() MediaType /* not a class type */ {
+	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaType"))
+	return rv
+}/* debug [instance_properties/getter]: mediaType */
+
+
+// Indicates the natural dimensions of the media data referenced by the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/naturalSize
+func (m_ METrackInfo) NaturalSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](m_.ID, objc.Sel("naturalSize"))
+	return rv
+}/* debug [instance_properties/getter]: naturalSize */
+
+
+// Indicates the natural dimensions of the media data referenced by the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/naturalSize
+func (m_ METrackInfo) SetNaturalSize(value corefoundation.CGSize) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalSize:"), value)
+}/* debug [instance_properties/setter]: naturalSize */
 
 
 // The natural timescale of the track.
@@ -127,7 +250,7 @@ func NewMETrackInfoWithMediaTypeTrackIDFormatDescriptions(mediaType MediaType /*
 func (m_ METrackInfo) NaturalTimescale() TimeScale /* not a class type */ {
 	rv := objc.Send[TimeScale](m_.ID, objc.Sel("naturalTimescale"))
 	return rv
-}
+}/* debug [instance_properties/getter]: naturalTimescale */
 
 
 // The natural timescale of the track.
@@ -136,7 +259,7 @@ func (m_ METrackInfo) NaturalTimescale() TimeScale /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/naturalTimescale
 func (m_ METrackInfo) SetNaturalTimescale(value TimeScale /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalTimescale:"), value)
-}
+}/* debug [instance_properties/setter]: naturalTimescale */
 
 
 // The frame rate of the track in frames per second, as a 32-bit floating point number.
@@ -146,7 +269,7 @@ func (m_ METrackInfo) SetNaturalTimescale(value TimeScale /* not a class type */
 func (m_ METrackInfo) NominalFrameRate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("nominalFrameRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nominalFrameRate */
 
 
 // The frame rate of the track in frames per second, as a 32-bit floating point number.
@@ -155,25 +278,62 @@ func (m_ METrackInfo) NominalFrameRate() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/nominalFrameRate
 func (m_ METrackInfo) SetNominalFrameRate(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNominalFrameRate:"), value)
-}
+}/* debug [instance_properties/setter]: nominalFrameRate */
+
+
+// Indicates the preferred affine display transform of the track media for visual display.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/preferredTransform
+func (m_ METrackInfo) PreferredTransform() corefoundation.CGAffineTransform {
+	rv := objc.Send[corefoundation.CGAffineTransform](m_.ID, objc.Sel("preferredTransform"))
+	return rv
+}/* debug [instance_properties/getter]: preferredTransform */
+
+
+// Indicates the preferred affine display transform of the track media for visual display.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/preferredTransform
+func (m_ METrackInfo) SetPreferredTransform(value corefoundation.CGAffineTransform) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredTransform:"), value)
+}/* debug [instance_properties/setter]: preferredTransform */
+
+
+// A Boolean value that indicates whether frame reordering occurs in the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/requiresFrameReordering
+func (m_ METrackInfo) RequiresFrameReordering() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("requiresFrameReordering"))
+	return rv
+}/* debug [instance_properties/getter]: requiresFrameReordering */
+
+
+// A Boolean value that indicates whether frame reordering occurs in the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/requiresFrameReordering
+func (m_ METrackInfo) SetRequiresFrameReordering(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiresFrameReordering:"), value)
+}/* debug [instance_properties/setter]: requiresFrameReordering */
 
 
 // An array of edit segments for the given track.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
-func (m_ METrackInfo) TrackEdits() []objc.IObject /* cross-framework: Value */ {
+func (m_ METrackInfo) TrackEdits() []foundation.Value {
 	rv := objc.Send[[]foundation.Value](m_.ID, objc.Sel("trackEdits"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trackEdits */
 
 
 // An array of edit segments for the given track.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackEdits
-func (m_ METrackInfo) SetTrackEdits(value []objc.IObject /* cross-framework: Value */) {
-	// Convert Go slice to NSArray
+func (m_ METrackInfo) SetTrackEdits(value []foundation.Value) {
 	var nsArray objc.ID
 	if len(value) > 0 {
 		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
@@ -184,26 +344,17 @@ func (m_ METrackInfo) SetTrackEdits(value []objc.IObject /* cross-framework: Val
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackEdits:"), nsArray)
-}
+}/* debug [instance_properties/setter]: trackEdits */
 
 
-// A string that indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
+// An integer that identifies the track within the media asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/extendedlanguagetag
-func (m_ METrackInfo) ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("extendedLanguageTag"))
+// [Full Topic]: https://developer.apple.com/documentation/MediaExtension/METrackInfo/trackID
+func (m_ METrackInfo) TrackID() PersistentTrackID /* not a class type */ {
+	rv := objc.Send[PersistentTrackID](m_.ID, objc.Sel("trackID"))
 	return rv
-}
-
-
-// A string that indicates the language tag associated with the track, as an IETF BCP 47 (RFC 4646) language identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/extendedlanguagetag
-func (m_ METrackInfo) SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
-}
+}/* debug [instance_properties/getter]: trackID */
 
 
 // A Boolean value that indicates whether the track is enabled by default.
@@ -213,7 +364,7 @@ func (m_ METrackInfo) SetExtendedLanguageTag(value objc.IObject /* cross-framewo
 func (m_ METrackInfo) IsEnabled() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isEnabled */
 
 
 // A Boolean value that indicates whether the track is enabled by default.
@@ -222,101 +373,11 @@ func (m_ METrackInfo) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/isenabled
 func (m_ METrackInfo) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isEnabled */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The media type of the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/mediatype
-func (m_ METrackInfo) MediaType() MediaType /* not a class type */ {
-	rv := objc.Send[MediaType](m_.ID, objc.Sel("mediaType"))
-	return rv
-}
-
-
-// The media type of the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/mediatype
-func (m_ METrackInfo) SetMediaType(value MediaType /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaType:"), value)
-}
-
-
-// Indicates the natural dimensions of the media data referenced by the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/naturalsize
-func (m_ METrackInfo) NaturalSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](m_.ID, objc.Sel("naturalSize"))
-	return rv
-}
-
-
-// Indicates the natural dimensions of the media data referenced by the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/naturalsize
-func (m_ METrackInfo) SetNaturalSize(value objc.IObject /* cross-framework: Size */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNaturalSize:"), value)
-}
-
-
-// Indicates the preferred affine display transform of the track media for visual display.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/preferredtransform
-func (m_ METrackInfo) PreferredTransform() objc.IObject /* cross-framework: AffineTransform */ {
-	rv := objc.Send[corefoundation.AffineTransform](m_.ID, objc.Sel("preferredTransform"))
-	return rv
-}
-
-
-// Indicates the preferred affine display transform of the track media for visual display.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/preferredtransform
-func (m_ METrackInfo) SetPreferredTransform(value objc.IObject /* cross-framework: AffineTransform */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPreferredTransform:"), value)
-}
-
-
-// A Boolean value that indicates whether frame reordering occurs in the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/requiresframereordering
-func (m_ METrackInfo) RequiresFrameReordering() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("requiresFrameReordering"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether frame reordering occurs in the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/requiresframereordering
-func (m_ METrackInfo) SetRequiresFrameReordering(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiresFrameReordering:"), value)
-}
-
-
-// An integer that identifies the track within the media asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/trackid
-func (m_ METrackInfo) TrackID() PersistentTrackID /* not a class type */ {
-	rv := objc.Send[PersistentTrackID](m_.ID, objc.Sel("trackID"))
-	return rv
-}
-
-
-// An integer that identifies the track within the media asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaextension/metrackinfo/trackid
-func (m_ METrackInfo) SetTrackID(value PersistentTrackID /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTrackID:"), value)
-}
+/* debug [class.gen.go]: End class METrackInfo */
 
 

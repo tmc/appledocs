@@ -20,3 +20,4 @@ var setArgumentTableProtocol *objc.Protocol
 func init() {
 	setArgumentTableProtocol = objc.GetProtocol("setArgumentTable:")
 }
+

@@ -18,3 +18,4 @@ var getWebAppManifestWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	getWebAppManifestWithCompletionHandlerProtocol = objc.GetProtocol("getWebAppManifestWithCompletionHandler:")
 }
+

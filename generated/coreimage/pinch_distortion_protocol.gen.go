@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // PinchDistortionProtocol is the CIPinchDistortion protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIPinchDistortion.
 var PinchDistortionProtocol *objc.Protocol
 
 func init() {
 	PinchDistortionProtocol = objc.GetProtocol("CIPinchDistortion")
 }
+

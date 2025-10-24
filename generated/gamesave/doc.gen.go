@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for GameSave. DO NOT EDIT.
 
 // Package gamesave provides Go bindings for the GameSave framework.
 //
-// Store and sync your application’s save files in iCloud.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GameSave without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/GameSave
 package gamesave
 
 import (

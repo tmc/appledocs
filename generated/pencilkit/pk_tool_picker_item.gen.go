@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PKToolPickerItem */
+
+
+/* debug [class_header]: Header for PKToolPickerItem */
 // The class instance for the [ToolPickerItem] class.
 var (
 	ToolPickerItemClass     _ToolPickerItemClass
@@ -27,34 +31,32 @@ func getToolPickerItemClass() _ToolPickerItemClass {
 type _ToolPickerItemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ToolPickerItem */
 // An interface definition for the [ToolPickerItem] class.
 type IToolPickerItem interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ToolPickerItem */
 	// properties:
 	Identifier() objc.IObject /* cross-framework: NSString */
 	Tool() IPKTool
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ToolPickerItem */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// The base class for an item in the tool picker.
 
 
-// The base class for an item in the tool picker.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem
-type ToolPickerItem struct {
-	objectivec.Object
-}
-
-// ToolPickerItemFrom constructs a [ToolPickerItem] from an unsafe.Pointer.
-//
-// The base class for an item in the tool picker.
-func ToolPickerItemFrom(ptr unsafe.Pointer) ToolPickerItem {
-	return ToolPickerItem{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ToolPickerItem */
 // Alloc allocates a new instance without initialization.
 func (tc _ToolPickerItemClass) Alloc() ToolPickerItem {
 	rv := objc.Send[ToolPickerItem](objc.ID(tc.class), objc.Sel("alloc"))
@@ -62,7 +64,6 @@ func (tc _ToolPickerItemClass) Alloc() ToolPickerItem {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _ToolPickerItemClass) New() ToolPickerItem {
 	rv := objc.Send[ToolPickerItem](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,8 +86,52 @@ func (t_ ToolPickerItem) Autorelease() ToolPickerItem {
 func NewToolPickerItem() ToolPickerItem {
 	return getToolPickerItemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ToolPickerItem */
+// The base class for an item in the tool picker.
+
+
+// The base class for an item in the tool picker.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKToolPickerItem
+type ToolPickerItem struct {
+	objectivec.Object
+}
+
+// ToolPickerItemFrom constructs a [ToolPickerItem] from an unsafe.Pointer.
+//
+// The base class for an item in the tool picker.
+func ToolPickerItemFrom(ptr unsafe.Pointer) ToolPickerItem {
+	return ToolPickerItem{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ToolPickerItem *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ToolPickerItem */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ToolPickerItem */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ToolPickerItem */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ToolPickerItem */
 
 // A string that identifies the item in the tool picker.
 //
@@ -95,7 +140,7 @@ func NewToolPickerItem() ToolPickerItem {
 func (t_ ToolPickerItem) Identifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("identifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: identifier */
 
 
 // The this tool picker item represents.
@@ -105,7 +150,12 @@ func (t_ ToolPickerItem) Identifier() objc.IObject /* cross-framework: NSString 
 func (t_ ToolPickerItem) Tool() IPKTool {
 	rv := objc.Send[Tool](t_.ID, objc.Sel("tool"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tool */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PKToolPickerItem */
 
 
 

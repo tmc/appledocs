@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRPowerSourceClusterBatChargeFaultChangeType */
+
+
+/* debug [class_header]: Header for MTRPowerSourceClusterBatChargeFaultChangeType */
 // The class instance for the [MTRPowerSourceClusterBatChargeFaultChangeType] class.
 var (
 	MTRPowerSourceClusterBatChargeFaultChangeTypeClass     _MTRPowerSourceClusterBatChargeFaultChangeTypeClass
@@ -26,31 +31,34 @@ func getMTRPowerSourceClusterBatChargeFaultChangeTypeClass() _MTRPowerSourceClus
 type _MTRPowerSourceClusterBatChargeFaultChangeTypeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRPowerSourceClusterBatChargeFaultChangeType */
 // An interface definition for the [MTRPowerSourceClusterBatChargeFaultChangeType] class.
 type IMTRPowerSourceClusterBatChargeFaultChangeType interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRPowerSourceClusterBatChargeFaultChangeType */
 	// properties:
-	Current() unsafe.Pointer
-	SetCurrent(value unsafe.Pointer)
-	Previous() unsafe.Pointer
-	SetPrevious(value unsafe.Pointer)
+	Current() objc.IObject /* cross-framework: NSArray */
+	SetCurrent(value objc.IObject /* cross-framework: NSArray */)
+	Previous() objc.IObject /* cross-framework: NSArray */
+	SetPrevious(value objc.IObject /* cross-framework: NSArray */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRPowerSourceClusterBatChargeFaultChangeType */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterBatChargeFaultChangeType
-type MTRPowerSourceClusterBatChargeFaultChangeType struct {
-	objectivec.Object
-}
-
-// MTRPowerSourceClusterBatChargeFaultChangeTypeFrom constructs a [MTRPowerSourceClusterBatChargeFaultChangeType] from an unsafe.Pointer.
-func MTRPowerSourceClusterBatChargeFaultChangeTypeFrom(ptr unsafe.Pointer) MTRPowerSourceClusterBatChargeFaultChangeType {
-	return MTRPowerSourceClusterBatChargeFaultChangeType{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRPowerSourceClusterBatChargeFaultChangeType */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRPowerSourceClusterBatChargeFaultChangeTypeClass) Alloc() MTRPowerSourceClusterBatChargeFaultChangeType {
 	rv := objc.Send[MTRPowerSourceClusterBatChargeFaultChangeType](objc.ID(mc.class), objc.Sel("alloc"))
@@ -58,7 +66,6 @@ func (mc _MTRPowerSourceClusterBatChargeFaultChangeTypeClass) Alloc() MTRPowerSo
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRPowerSourceClusterBatChargeFaultChangeTypeClass) New() MTRPowerSourceClusterBatChargeFaultChangeType {
 	rv := objc.Send[MTRPowerSourceClusterBatChargeFaultChangeType](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,37 +88,81 @@ func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) Autorelease() MTRPowerSo
 func NewMTRPowerSourceClusterBatChargeFaultChangeType() MTRPowerSourceClusterBatChargeFaultChangeType {
 	return getMTRPowerSourceClusterBatChargeFaultChangeTypeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRPowerSourceClusterBatChargeFaultChangeType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatchargefaultchangetype/current
-func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) Current() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("current"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterBatChargeFaultChangeType
+type MTRPowerSourceClusterBatChargeFaultChangeType struct {
+	objectivec.Object
 }
 
+// MTRPowerSourceClusterBatChargeFaultChangeTypeFrom constructs a [MTRPowerSourceClusterBatChargeFaultChangeType] from an unsafe.Pointer.
+func MTRPowerSourceClusterBatChargeFaultChangeTypeFrom(ptr unsafe.Pointer) MTRPowerSourceClusterBatChargeFaultChangeType {
+	return MTRPowerSourceClusterBatChargeFaultChangeType{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRPowerSourceClusterBatChargeFaultChangeType *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRPowerSourceClusterBatChargeFaultChangeType */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRPowerSourceClusterBatChargeFaultChangeType */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRPowerSourceClusterBatChargeFaultChangeType */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRPowerSourceClusterBatChargeFaultChangeType */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatchargefaultchangetype/current
-func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) SetCurrent(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterBatChargeFaultChangeType/current
+func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) Current() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("current"))
+	return rv
+}/* debug [instance_properties/getter]: current */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterBatChargeFaultChangeType/current
+func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) SetCurrent(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
-}
+}/* debug [instance_properties/setter]: current */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatchargefaultchangetype/previous
-func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) Previous() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("previous"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterBatChargeFaultChangeType/previous
+func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) Previous() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("previous"))
 	return rv
-}
+}/* debug [instance_properties/getter]: previous */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrpowersourceclusterbatchargefaultchangetype/previous
-func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) SetPrevious(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPowerSourceClusterBatChargeFaultChangeType/previous
+func (m_ MTRPowerSourceClusterBatChargeFaultChangeType) SetPrevious(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)
-}
+}/* debug [instance_properties/setter]: previous */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRPowerSourceClusterBatChargeFaultChangeType */
 
 
 

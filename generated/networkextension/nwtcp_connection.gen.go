@@ -7,10 +7,15 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NWTCPConnection */
+
+
+/* debug [class_header]: Header for NWTCPConnection */
 // The class instance for the [NWTCPConnection] class.
 var (
 	NWTCPConnectionClass     _NWTCPConnectionClass
@@ -27,44 +32,41 @@ func getNWTCPConnectionClass() _NWTCPConnectionClass {
 type _NWTCPConnectionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NWTCPConnection */
 // An interface definition for the [NWTCPConnection] class.
 type INWTCPConnection interface {
 	objectivec.IObject
-	ConnectedPath() NWPath
-	SetConnectedPath(value INWPath)
-	Endpoint() NWEndpoint
-	SetEndpoint(value INWEndpoint)
-	Error() foundation.Error
-	SetError(value foundation.IError)
+	
+/* debug [class_interface_properties]: Properties for NWTCPConnection */
+	// properties:
+	ConnectedPath() INWPath
+	Endpoint() INWEndpoint
+	Error() objc.IObject /* cross-framework: Error */
 	HasBetterPath() bool
-	SetHasBetterPath(value bool)
+	Viable() bool
+	LocalAddress() INWEndpoint
+	RemoteAddress() INWEndpoint
+	State() NWTCPConnectionState
+	TxtRecord() objc.IObject /* cross-framework: NSData */
 	IsViable() bool
 	SetIsViable(value bool)
-	LocalAddress() NWEndpoint
-	SetLocalAddress(value INWEndpoint)
-	RemoteAddress() NWEndpoint
-	SetRemoteAddress(value INWEndpoint)
-	State() unsafe.Pointer
-	SetState(value unsafe.Pointer)
-	TxtRecord() foundation.Data
-	SetTxtRecord(value foundation.IData)
-}
+/* debug [class_interface_properties]: End properties */
 
-// An object to manage a TCP connection, with or without TLS.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection
-type NWTCPConnection struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for NWTCPConnection */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// NWTCPConnectionFrom constructs a [NWTCPConnection] from an unsafe.Pointer.
-//
-// An object to manage a TCP connection, with or without TLS.
-func NWTCPConnectionFrom(ptr unsafe.Pointer) NWTCPConnection {
-	return NWTCPConnection{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for NWTCPConnection */
 // Alloc allocates a new instance without initialization.
 func (nc _NWTCPConnectionClass) Alloc() NWTCPConnection {
 	rv := objc.Send[NWTCPConnection](objc.ID(nc.class), objc.Sel("alloc"))
@@ -72,7 +74,6 @@ func (nc _NWTCPConnectionClass) Alloc() NWTCPConnection {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NWTCPConnectionClass) New() NWTCPConnection {
 	rv := objc.Send[NWTCPConnection](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,169 +96,177 @@ func (n_ NWTCPConnection) Autorelease() NWTCPConnection {
 func NewNWTCPConnection() NWTCPConnection {
 	return getNWTCPConnectionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for NWTCPConnection */
+// An object to manage a TCP connection, with or without TLS.
+
+
+// An object to manage a TCP connection, with or without TLS.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection
+type NWTCPConnection struct {
+	objectivec.Object
+}
+
+// NWTCPConnectionFrom constructs a [NWTCPConnection] from an unsafe.Pointer.
+//
+// An object to manage a TCP connection, with or without TLS.
+func NWTCPConnectionFrom(ptr unsafe.Pointer) NWTCPConnection {
+	return NWTCPConnection{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NWTCPConnection */
+
+// This convenience initializer can be used to create a new connection that will only be connected if there exists a better path (as determined by the system) to the remote endpoint of the original connection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/init(upgradeFor:)
+func NewNWTCPConnectionWithUpgradeForConnection(connection INWTCPConnection) NWTCPConnection {
+	instance := getNWTCPConnectionClass().Alloc()
+	rv := objc.Send[NWTCPConnection](instance.ID, objc.Sel("initWithUpgradeForConnection:"), connection)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewNWTCPConnectionWithUpgradeForConnection */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NWTCPConnection */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NWTCPConnection */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NWTCPConnection */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NWTCPConnection */
 
 // The network path over which the connection was established.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/connectedpath
-func (n_ NWTCPConnection) ConnectedPath() NWPath {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/connectedPath
+func (n_ NWTCPConnection) ConnectedPath() INWPath {
 	rv := objc.Send[NWPath](n_.ID, objc.Sel("connectedPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: connectedPath */
 
-
-// SetConnectedPath sets the value of the connectedPath property.
-// The network path over which the connection was established.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/connectedpath
-func (n_ NWTCPConnection) SetConnectedPath(value INWPath) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setConnectedPath:"), value)
-}
 
 // The destination endpoint with which this connection was created.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/endpoint
-func (n_ NWTCPConnection) Endpoint() NWEndpoint {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/endpoint
+func (n_ NWTCPConnection) Endpoint() INWEndpoint {
 	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("endpoint"))
 	return rv
-}
+}/* debug [instance_properties/getter]: endpoint */
 
-
-// SetEndpoint sets the value of the endpoint property.
-// The destination endpoint with which this connection was created.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/endpoint
-func (n_ NWTCPConnection) SetEndpoint(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setEndpoint:"), value)
-}
 
 // The connection-wide error property.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/error
-func (n_ NWTCPConnection) Error() foundation.Error {
-	rv := objc.Send[foundation.Error](n_.ID, objc.Sel("error"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/error
+func (n_ NWTCPConnection) Error() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](n_.ID, objc.Sel("error"))
 	return rv
-}
+}/* debug [instance_properties/getter]: error */
 
-
-// SetError sets the value of the error property.
-// The connection-wide error property.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/error
-func (n_ NWTCPConnection) SetError(value foundation.IError) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setError:"), value)
-}
 
 // If a connection has a better path, new connections would use a different interface.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/hasbetterpath
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/hasBetterPath
 func (n_ NWTCPConnection) HasBetterPath() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("hasBetterPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hasBetterPath */
 
-
-// SetHasBetterPath sets the value of the hasBetterPath property.
-// If a connection has a better path, new connections would use a different interface.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/hasbetterpath
-func (n_ NWTCPConnection) SetHasBetterPath(value bool) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setHasBetterPath:"), value)
-}
 
 // The viability of a TCP connection indicates whether or not data can be transferred.
 //
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/isViable
+func (n_ NWTCPConnection) Viable() bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("viable"))
+	return rv
+}/* debug [instance_properties/getter]: viable */
+
+
+// The IP address endpoint from which the connection was established.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/localAddress
+func (n_ NWTCPConnection) LocalAddress() INWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("localAddress"))
+	return rv
+}/* debug [instance_properties/getter]: localAddress */
+
+
+// The IP address endpoint to which the connection was established.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/remoteAddress
+func (n_ NWTCPConnection) RemoteAddress() INWEndpoint {
+	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("remoteAddress"))
+	return rv
+}/* debug [instance_properties/getter]: remoteAddress */
+
+
+// The status of the connection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/state
+func (n_ NWTCPConnection) State() NWTCPConnectionState {
+	rv := objc.Send[NWTCPConnectionState](n_.ID, objc.Sel("state"))
+	return rv
+}/* debug [instance_properties/getter]: state */
+
+
+// The TXT record associated with a connected Bonjour service endpoint.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NWTCPConnection/txtRecord
+func (n_ NWTCPConnection) TxtRecord() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("txtRecord"))
+	return rv
+}/* debug [instance_properties/getter]: txtRecord */
+
+
+// The viability of a TCP connection indicates whether or not data can be transferred.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/isviable
 func (n_ NWTCPConnection) IsViable() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isViable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isViable */
 
 
-// SetIsViable sets the value of the isViable property.
 // The viability of a TCP connection indicates whether or not data can be transferred.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/isviable
 func (n_ NWTCPConnection) SetIsViable(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsViable:"), value)
-}
+}/* debug [instance_properties/setter]: isViable */
 
-// The IP address endpoint from which the connection was established.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/localaddress
-func (n_ NWTCPConnection) LocalAddress() NWEndpoint {
-	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("localAddress"))
-	return rv
-}
+/* debug [instance_properties]: End instance properties */
 
 
-// SetLocalAddress sets the value of the localAddress property.
-// The IP address endpoint from which the connection was established.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/localaddress
-func (n_ NWTCPConnection) SetLocalAddress(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setLocalAddress:"), value)
-}
-
-// The IP address endpoint to which the connection was established.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/remoteaddress
-func (n_ NWTCPConnection) RemoteAddress() NWEndpoint {
-	rv := objc.Send[NWEndpoint](n_.ID, objc.Sel("remoteAddress"))
-	return rv
-}
-
-
-// SetRemoteAddress sets the value of the remoteAddress property.
-// The IP address endpoint to which the connection was established.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/remoteaddress
-func (n_ NWTCPConnection) SetRemoteAddress(value INWEndpoint) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRemoteAddress:"), value)
-}
-
-// The status of the connection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/state
-func (n_ NWTCPConnection) State() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("state"))
-	return rv
-}
-
-
-// SetState sets the value of the state property.
-// The status of the connection.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/state
-func (n_ NWTCPConnection) SetState(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setState:"), value)
-}
-
-// The TXT record associated with a connected Bonjour service endpoint.
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/txtrecord
-func (n_ NWTCPConnection) TxtRecord() foundation.Data {
-	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("txtRecord"))
-	return rv
-}
-
-
-// SetTxtRecord sets the value of the txtRecord property.
-// The TXT record associated with a connected Bonjour service endpoint.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nwtcpconnection/txtrecord
-func (n_ NWTCPConnection) SetTxtRecord(value foundation.IData) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTxtRecord:"), value)
-}
-
+/* debug [class.gen.go]: End class NWTCPConnection */
 
 

@@ -15,3 +15,4 @@ var stringProtocol *objc.Protocol
 func init() {
 	stringProtocol = objc.GetProtocol("string")
 }
+

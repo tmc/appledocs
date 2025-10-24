@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +36,6 @@ type IMTRSmokeCOAlarmClusterCOAlarmEvent interface {
 	SetAlarmSeverityLevel(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterCOAlarmEvent
@@ -81,8 +79,6 @@ func NewMTRSmokeCOAlarmClusterCOAlarmEvent() MTRSmokeCOAlarmClusterCOAlarmEvent 
 	return getMTRSmokeCOAlarmClusterCOAlarmEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclustercoalarmevent/alarmseveritylevel
 func (m_ MTRSmokeCOAlarmClusterCOAlarmEvent) AlarmSeverityLevel() objc.IObject /* cross-framework: NSNumber */ {
@@ -90,12 +86,8 @@ func (m_ MTRSmokeCOAlarmClusterCOAlarmEvent) AlarmSeverityLevel() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclustercoalarmevent/alarmseveritylevel
 func (m_ MTRSmokeCOAlarmClusterCOAlarmEvent) SetAlarmSeverityLevel(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAlarmSeverityLevel:"), value)
 }
-
-
-

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class identifier */
+
+
+/* debug [class_header]: Header for identifier */
 // The class instance for the [identifier] class.
 var (
 	IdentifierClass     _identifierClass
@@ -26,27 +30,30 @@ func getidentifierClass() _identifierClass {
 type _identifierClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for identifier */
 // An interface definition for the [identifier] class.
 type Iidentifier interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for identifier */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for identifier */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-c.ivar
-type identifier struct {
-	objectivec.Object
-}
-
-// identifierFrom constructs a [identifier] from an unsafe.Pointer.
-func identifierFrom(ptr unsafe.Pointer) identifier {
-	return identifier{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for identifier */
 // Alloc allocates a new instance without initialization.
 func (ic _identifierClass) Alloc() identifier {
 	rv := objc.Send[identifier](objc.ID(ic.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (ic _identifierClass) Alloc() identifier {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _identifierClass) New() identifier {
 	rv := objc.Send[identifier](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (i_ identifier) Autorelease() identifier {
 func Newidentifier() identifier {
 	return getidentifierClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for identifier */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODMappings/identifier-c.ivar
+type identifier struct {
+	objectivec.Object
+}
+
+// identifierFrom constructs a [identifier] from an unsafe.Pointer.
+func identifierFrom(ptr unsafe.Pointer) identifier {
+	return identifier{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for identifier *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for identifier */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for identifier */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for identifier */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for identifier */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class identifier */
 
 
 

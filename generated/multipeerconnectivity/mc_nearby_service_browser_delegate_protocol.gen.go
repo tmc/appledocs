@@ -20,3 +20,4 @@ var MCNearbyServiceBrowserDelegateProtocol *objc.Protocol
 func init() {
 	MCNearbyServiceBrowserDelegateProtocol = objc.GetProtocol("MCNearbyServiceBrowserDelegate")
 }
+

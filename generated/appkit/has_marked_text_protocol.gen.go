@@ -15,3 +15,4 @@ var hasMarkedTextProtocol *objc.Protocol
 func init() {
 	hasMarkedTextProtocol = objc.GetProtocol("hasMarkedText")
 }
+

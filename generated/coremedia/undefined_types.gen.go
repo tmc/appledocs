@@ -9,9 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	CMBlockBuffer = _undefined // referenced in CoreMedia
-	CMClock = _undefined // referenced in CoreMedia
+	CMBlockBuffer  = _undefined // referenced in CoreMedia
+	CMClock        = _undefined // referenced in CoreMedia
 	CMSampleBuffer = _undefined // referenced in CoreMedia
 )
-
-

@@ -34,7 +34,6 @@ type IExtensionContext interface {
 
 // A parent class referenced by other CallKit classes.
 
-
 // A parent class referenced by other CallKit classes. [Full Topic]
 type ExtensionContext struct {
 	objectivec.Object
@@ -77,7 +76,3 @@ func (e_ ExtensionContext) Autorelease() ExtensionContext {
 func NewExtensionContext() ExtensionContext {
 	return getExtensionContextClass().New()
 }
-
-
-
-

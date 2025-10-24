@@ -18,3 +18,4 @@ var toolPickerFramesObscuredDidChangeProtocol *objc.Protocol
 func init() {
 	toolPickerFramesObscuredDidChangeProtocol = objc.GetProtocol("toolPickerFramesObscuredDidChange:")
 }
+

@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class VNGenerateForegroundInstanceMaskRequest */
+
+
+/* debug [class_header]: Header for VNGenerateForegroundInstanceMaskRequest */
 // The class instance for the [GenerateForegroundInstanceMaskRequest] class.
 var (
 	GenerateForegroundInstanceMaskRequestClass     _GenerateForegroundInstanceMaskRequestClass
@@ -25,37 +29,32 @@ func getGenerateForegroundInstanceMaskRequestClass() _GenerateForegroundInstance
 type _GenerateForegroundInstanceMaskRequestClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GenerateForegroundInstanceMaskRequest */
 // An interface definition for the [GenerateForegroundInstanceMaskRequest] class.
 type IGenerateForegroundInstanceMaskRequest interface {
 	IImageBasedRequest
+	
+/* debug [class_interface_properties]: Properties for GenerateForegroundInstanceMaskRequest */
 	// properties:
-	Results() IVNInstanceMaskObservation
-	SetResults(value IVNInstanceMaskObservation)
+	Results() []InstanceMaskObservation
 	VNGenerateForegroundInstanceMaskRequestRevision1() int
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GenerateForegroundInstanceMaskRequest */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A request that generates an instance mask of noticable objects to separate from the background.
 
 
-// A request that generates an instance mask of noticable objects to separate from the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateForegroundInstanceMaskRequest
-type GenerateForegroundInstanceMaskRequest struct {
-	ImageBasedRequest
-}
-
-// GenerateForegroundInstanceMaskRequestFrom constructs a [GenerateForegroundInstanceMaskRequest] from an unsafe.Pointer.
-//
-// A request that generates an instance mask of noticable objects to separate from the background.
-func GenerateForegroundInstanceMaskRequestFrom(ptr unsafe.Pointer) GenerateForegroundInstanceMaskRequest {
-	return GenerateForegroundInstanceMaskRequest{
-		ImageBasedRequest: ImageBasedRequestFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GenerateForegroundInstanceMaskRequest */
 // Alloc allocates a new instance without initialization.
 func (gc _GenerateForegroundInstanceMaskRequestClass) Alloc() GenerateForegroundInstanceMaskRequest {
 	rv := objc.Send[GenerateForegroundInstanceMaskRequest](objc.ID(gc.class), objc.Sel("alloc"))
@@ -63,7 +62,6 @@ func (gc _GenerateForegroundInstanceMaskRequestClass) Alloc() GenerateForeground
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GenerateForegroundInstanceMaskRequestClass) New() GenerateForegroundInstanceMaskRequest {
 	rv := objc.Send[GenerateForegroundInstanceMaskRequest](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,26 +84,63 @@ func (g_ GenerateForegroundInstanceMaskRequest) Autorelease() GenerateForeground
 func NewGenerateForegroundInstanceMaskRequest() GenerateForegroundInstanceMaskRequest {
 	return getGenerateForegroundInstanceMaskRequestClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GenerateForegroundInstanceMaskRequest */
+// A request that generates an instance mask of noticable objects to separate from the background.
+
+
+// A request that generates an instance mask of noticable objects to separate from the background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateForegroundInstanceMaskRequest
+type GenerateForegroundInstanceMaskRequest struct {
+	ImageBasedRequest
+}
+
+// GenerateForegroundInstanceMaskRequestFrom constructs a [GenerateForegroundInstanceMaskRequest] from an unsafe.Pointer.
+//
+// A request that generates an instance mask of noticable objects to separate from the background.
+func GenerateForegroundInstanceMaskRequestFrom(ptr unsafe.Pointer) GenerateForegroundInstanceMaskRequest {
+	return GenerateForegroundInstanceMaskRequest{
+		ImageBasedRequest: ImageBasedRequestFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GenerateForegroundInstanceMaskRequest *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GenerateForegroundInstanceMaskRequest */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GenerateForegroundInstanceMaskRequest */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GenerateForegroundInstanceMaskRequest */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GenerateForegroundInstanceMaskRequest */
 
 // The instance masks the request observes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest/results
-func (g_ GenerateForegroundInstanceMaskRequest) Results() IVNInstanceMaskObservation {
-	rv := objc.Send[InstanceMaskObservation](g_.ID, objc.Sel("results"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGenerateForegroundInstanceMaskRequest/results
+func (g_ GenerateForegroundInstanceMaskRequest) Results() []InstanceMaskObservation {
+	rv := objc.Send[[]InstanceMaskObservation](g_.ID, objc.Sel("results"))
 	return rv
-}
-
-
-// The instance masks the request observes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vngenerateforegroundinstancemaskrequest/results
-func (g_ GenerateForegroundInstanceMaskRequest) SetResults(value IVNInstanceMaskObservation) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setResults:"), value)
-}
+}/* debug [instance_properties/getter]: results */
 
 
 // A constant for specifying the first revision of the foreground instance mask request.
@@ -115,7 +150,12 @@ func (g_ GenerateForegroundInstanceMaskRequest) SetResults(value IVNInstanceMask
 func (g_ GenerateForegroundInstanceMaskRequest) VNGenerateForegroundInstanceMaskRequestRevision1() int {
 	rv := objc.Send[int](g_.ID, objc.Sel("VNGenerateForegroundInstanceMaskRequestRevision1"))
 	return rv
-}
+}/* debug [instance_properties/getter]: VNGenerateForegroundInstanceMaskRequestRevision1 */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class VNGenerateForegroundInstanceMaskRequest */
 
 
 

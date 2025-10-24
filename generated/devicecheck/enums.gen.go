@@ -2,7 +2,9 @@
 
 package devicecheck
 
+/* debug [enums.gen.go]: Generating 1 enums for DeviceCheck */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum DCError (5 cases) */
 // DCError - DeviceCheck error codes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceCheck/DCError-swift.struct/Code

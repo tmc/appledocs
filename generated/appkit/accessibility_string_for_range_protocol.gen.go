@@ -15,3 +15,4 @@ var accessibilityStringForRangeProtocol *objc.Protocol
 func init() {
 	accessibilityStringForRangeProtocol = objc.GetProtocol("accessibilityStringForRange:")
 }
+

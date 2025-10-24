@@ -20,3 +20,4 @@ var newCommandQueueWithDescriptorProtocol *objc.Protocol
 func init() {
 	newCommandQueueWithDescriptorProtocol = objc.GetProtocol("newCommandQueueWithDescriptor:")
 }
+

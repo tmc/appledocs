@@ -15,3 +15,4 @@ var deactivateWithOptionsProtocol *objc.Protocol
 func init() {
 	deactivateWithOptionsProtocol = objc.GetProtocol("deactivateWithOptions:")
 }
+

@@ -7,12 +7,11 @@ package intents
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // iOS-only methods for INStartWorkoutIntent
-
 
 // iOS-only properties
 
@@ -33,8 +32,3 @@ func (i_ INStartWorkoutIntent) WorkoutGoalUnitType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("workoutGoalUnitType"))
 	return rv
 }
-
-
-
-
-

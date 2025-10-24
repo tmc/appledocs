@@ -15,6 +15,7 @@ func ExampleNewAppleEventDescriptorListDescriptor() {
 	_ = foundation.NewAppleEventDescriptorListDescriptor()
 	// Output:
 }
+
 // ExampleNewAppleEventDescriptorRecordDescriptor demonstrates how to create a AppleEventDescriptor instance using NewAppleEventDescriptorRecordDescriptor.
 // Initializes a newly allocated instance as a descriptor that is an Apple event record.
 func ExampleNewAppleEventDescriptorRecordDescriptor() {

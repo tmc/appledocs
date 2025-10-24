@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRHEPAFilterMonitoringClusterReplacementProductStruct interface {
 	SetProductIdentifierValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRHEPAFilterMonitoringClusterReplacementProductStruct
@@ -83,8 +81,6 @@ func NewMTRHEPAFilterMonitoringClusterReplacementProductStruct() MTRHEPAFilterMo
 	return getMTRHEPAFilterMonitoringClusterReplacementProductStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiertype
 func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifierType() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifi
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiertype
 func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiervalue
@@ -107,12 +101,8 @@ func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) ProductIdentifi
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterreplacementproductstruct/productidentifiervalue
 func (m_ MTRHEPAFilterMonitoringClusterReplacementProductStruct) SetProductIdentifierValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductIdentifierValue:"), value)
 }
-
-
-

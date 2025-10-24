@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PHASEAssetRegistry */
+
+
+/* debug [class_header]: Header for PHASEAssetRegistry */
 // The class instance for the [PHASEAssetRegistry] class.
 var (
 	PHASEAssetRegistryClass     _PHASEAssetRegistryClass
@@ -28,41 +32,37 @@ func getPHASEAssetRegistryClass() _PHASEAssetRegistryClass {
 type _PHASEAssetRegistryClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PHASEAssetRegistry */
 // An interface definition for the [PHASEAssetRegistry] class.
 type IPHASEAssetRegistry interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PHASEAssetRegistry */
 	// properties:
 	GlobalMetaParameters() foundation.IDictionary
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PHASEAssetRegistry */
 	// methods:
 	AssetForIdentifier(identifier objc.IObject /* cross-framework: NSString */) IPHASEAsset
 	RegisterGlobalMetaParameterError(metaParameterDefinition IPHASEMetaParameterDefinition, error_ unsafe.Pointer) IPHASEGlobalMetaParameterAsset
-	RegisterSoundAssetWithDataIdentifierFormatNormalizationModeError(data objc.IObject /* cross-framework: NSData */, identifier objc.IObject /* cross-framework: NSString */, format objc.IObject /* cross-framework: AudioFormat */, normalizationMode PHASENormalizationMode, error_ unsafe.Pointer) IPHASESoundAsset
-	RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError(url objc.IObject /* cross-framework: NSURL */, identifier objc.IObject /* cross-framework: NSString */, assetType PHASEAssetType, channelLayout objc.IObject /* cross-framework: AudioChannelLayout */, normalizationMode PHASENormalizationMode, error_ unsafe.Pointer) IPHASESoundAsset
+	RegisterSoundAssetWithDataIdentifierFormatNormalizationModeError(data objc.IObject /* cross-framework: NSData */, identifier objc.IObject /* cross-framework: NSString */, format avfaudio.AudioFormat, normalizationMode PHASENormalizationMode, error_ unsafe.Pointer) IPHASESoundAsset
+	RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError(url objc.IObject /* cross-framework: NSURL */, identifier objc.IObject /* cross-framework: NSString */, assetType PHASEAssetType, channelLayout avfaudio.AudioChannelLayout, normalizationMode PHASENormalizationMode, error_ unsafe.Pointer) IPHASESoundAsset
 	RegisterSoundEventAssetWithRootNodeIdentifierError(rootNode IPHASESoundEventNodeDefinition, identifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) IPHASESoundEventNodeAsset
 	UnregisterAssetWithIdentifierCompletion(identifier objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A central repository of audio assets.
-//
-// This class manages audio by registering two types of assets throughout the app’s life cycle: When you’re done with a sound asset, call to free up its system resources.
+/* debug [class_interface]: End interface */
 
 
-// A central repository of audio assets.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAssetRegistry
-type PHASEAssetRegistry struct {
-	objectivec.Object
-}
 
-// PHASEAssetRegistryFrom constructs a [PHASEAssetRegistry] from an unsafe.Pointer.
-//
-// A central repository of audio assets.
-func PHASEAssetRegistryFrom(ptr unsafe.Pointer) PHASEAssetRegistry {
-	return PHASEAssetRegistry{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PHASEAssetRegistry */
 // Alloc allocates a new instance without initialization.
 func (pc _PHASEAssetRegistryClass) Alloc() PHASEAssetRegistry {
 	rv := objc.Send[PHASEAssetRegistry](objc.ID(pc.class), objc.Sel("alloc"))
@@ -70,7 +70,6 @@ func (pc _PHASEAssetRegistryClass) Alloc() PHASEAssetRegistry {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PHASEAssetRegistryClass) New() PHASEAssetRegistry {
 	rv := objc.Send[PHASEAssetRegistry](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +92,49 @@ func (p_ PHASEAssetRegistry) Autorelease() PHASEAssetRegistry {
 func NewPHASEAssetRegistry() PHASEAssetRegistry {
 	return getPHASEAssetRegistryClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PHASEAssetRegistry */
+// A central repository of audio assets.
+//
+// This class manages audio by registering two types of assets throughout the app’s life cycle: When you’re done with a sound asset, call to free up its system resources.
+
+
+// A central repository of audio assets.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAssetRegistry
+type PHASEAssetRegistry struct {
+	objectivec.Object
+}
+
+// PHASEAssetRegistryFrom constructs a [PHASEAssetRegistry] from an unsafe.Pointer.
+//
+// A central repository of audio assets.
+func PHASEAssetRegistryFrom(ptr unsafe.Pointer) PHASEAssetRegistry {
+	return PHASEAssetRegistry{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PHASEAssetRegistry *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PHASEAssetRegistry */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PHASEAssetRegistry */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PHASEAssetRegistry */
 
 // Provides the asset named with the designated identifier.
 //
@@ -103,7 +143,7 @@ func NewPHASEAssetRegistry() PHASEAssetRegistry {
 func (p_ PHASEAssetRegistry) AssetForIdentifier(identifier objc.IObject /* cross-framework: NSString */) IPHASEAsset {
 	rv := objc.Send[PHASEAsset](p_.ID, objc.Sel("assetForIdentifier:"), identifier)
 	return rv
-}
+}/* debug [instance_methods/method]: AssetForIdentifier */
 
 
 // Registers a global metaparameter with the asset registry.
@@ -113,27 +153,27 @@ func (p_ PHASEAssetRegistry) AssetForIdentifier(identifier objc.IObject /* cross
 func (p_ PHASEAssetRegistry) RegisterGlobalMetaParameterError(metaParameterDefinition IPHASEMetaParameterDefinition, error_ unsafe.Pointer) IPHASEGlobalMetaParameterAsset {
 	rv := objc.Send[PHASEGlobalMetaParameterAsset](p_.ID, objc.Sel("registerGlobalMetaParameter:error:"), metaParameterDefinition, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: RegisterGlobalMetaParameterError */
 
 
 // Loads a sound asset from memory and adds it to the engine’s list of registered assets.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAssetRegistry/registerSoundAsset(data:identifier:format:normalizationMode:)
-func (p_ PHASEAssetRegistry) RegisterSoundAssetWithDataIdentifierFormatNormalizationModeError(data objc.IObject /* cross-framework: NSData */, identifier objc.IObject /* cross-framework: NSString */, format objc.IObject /* cross-framework: AudioFormat */, normalizationMode PHASENormalizationMode, error_ unsafe.Pointer) IPHASESoundAsset {
+func (p_ PHASEAssetRegistry) RegisterSoundAssetWithDataIdentifierFormatNormalizationModeError(data objc.IObject /* cross-framework: NSData */, identifier objc.IObject /* cross-framework: NSString */, format avfaudio.AudioFormat, normalizationMode PHASENormalizationMode, error_ unsafe.Pointer) IPHASESoundAsset {
 	rv := objc.Send[PHASESoundAsset](p_.ID, objc.Sel("registerSoundAssetWithData:identifier:format:normalizationMode:error:"), data, identifier, format, normalizationMode, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: RegisterSoundAssetWithDataIdentifierFormatNormalizationModeError */
 
 
 // Loads a sound asset from the argument URL and adds it to the engine’s list of registered assets.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAssetRegistry/registerSoundAsset(url:identifier:assetType:channelLayout:normalizationMode:)
-func (p_ PHASEAssetRegistry) RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError(url objc.IObject /* cross-framework: NSURL */, identifier objc.IObject /* cross-framework: NSString */, assetType PHASEAssetType, channelLayout objc.IObject /* cross-framework: AudioChannelLayout */, normalizationMode PHASENormalizationMode, error_ unsafe.Pointer) IPHASESoundAsset {
+func (p_ PHASEAssetRegistry) RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError(url objc.IObject /* cross-framework: NSURL */, identifier objc.IObject /* cross-framework: NSString */, assetType PHASEAssetType, channelLayout avfaudio.AudioChannelLayout, normalizationMode PHASENormalizationMode, error_ unsafe.Pointer) IPHASESoundAsset {
 	rv := objc.Send[PHASESoundAsset](p_.ID, objc.Sel("registerSoundAssetAtURL:identifier:assetType:channelLayout:normalizationMode:error:"), url, identifier, assetType, channelLayout, normalizationMode, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: RegisterSoundAssetAtURLIdentifierAssetTypeChannelLayoutNormalizationModeError */
 
 
 // Registers the root node of the sound event asset.
@@ -143,7 +183,7 @@ func (p_ PHASEAssetRegistry) RegisterSoundAssetAtURLIdentifierAssetTypeChannelLa
 func (p_ PHASEAssetRegistry) RegisterSoundEventAssetWithRootNodeIdentifierError(rootNode IPHASESoundEventNodeDefinition, identifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) IPHASESoundEventNodeAsset {
 	rv := objc.Send[PHASESoundEventNodeAsset](p_.ID, objc.Sel("registerSoundEventAssetWithRootNode:identifier:error:"), rootNode, identifier, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: RegisterSoundEventAssetWithRootNodeIdentifierError */
 
 
 // Deallocates system memory for a given asset and removes it from the engine’s list of registered assets.
@@ -152,8 +192,13 @@ func (p_ PHASEAssetRegistry) RegisterSoundEventAssetWithRootNodeIdentifierError(
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEAssetRegistry/unregisterAsset(identifier:completion:)
 func (p_ PHASEAssetRegistry) UnregisterAssetWithIdentifierCompletion(identifier objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("unregisterAssetWithIdentifier:completion:"), identifier, handler)
-}
+}/* debug [instance_methods/method]: UnregisterAssetWithIdentifierCompletion */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PHASEAssetRegistry */
 
 // A dictionary of metaparameters that all sound event assets share.
 //
@@ -162,7 +207,12 @@ func (p_ PHASEAssetRegistry) UnregisterAssetWithIdentifierCompletion(identifier 
 func (p_ PHASEAssetRegistry) GlobalMetaParameters() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("globalMetaParameters"))
 	return rv
-}
+}/* debug [instance_properties/getter]: globalMetaParameters */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PHASEAssetRegistry */
 
 
 

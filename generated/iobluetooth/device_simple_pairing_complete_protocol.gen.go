@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // deviceSimplePairingCompleteProtocol is the deviceSimplePairingComplete: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to deviceSimplePairingComplete:.
 var deviceSimplePairingCompleteProtocol *objc.Protocol
 
 func init() {
 	deviceSimplePairingCompleteProtocol = objc.GetProtocol("deviceSimplePairingComplete:")
 }
+

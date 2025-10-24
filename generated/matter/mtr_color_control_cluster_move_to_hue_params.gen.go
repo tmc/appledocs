@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRColorControlClusterMoveToHueParams */
+
+
+/* debug [class_header]: Header for MTRColorControlClusterMoveToHueParams */
 // The class instance for the [MTRColorControlClusterMoveToHueParams] class.
 var (
 	MTRColorControlClusterMoveToHueParamsClass     _MTRColorControlClusterMoveToHueParamsClass
@@ -27,10 +31,16 @@ func getMTRColorControlClusterMoveToHueParamsClass() _MTRColorControlClusterMove
 type _MTRColorControlClusterMoveToHueParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRColorControlClusterMoveToHueParams */
 // An interface definition for the [MTRColorControlClusterMoveToHueParams] class.
 type IMTRColorControlClusterMoveToHueParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRColorControlClusterMoveToHueParams */
 	// properties:
 	Direction() objc.IObject /* cross-framework: NSNumber */
 	SetDirection(value objc.IObject /* cross-framework: NSNumber */)
@@ -46,22 +56,19 @@ type IMTRColorControlClusterMoveToHueParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	TransitionTime() objc.IObject /* cross-framework: NSNumber */
 	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRColorControlClusterMoveToHueParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams
-type MTRColorControlClusterMoveToHueParams struct {
-	objectivec.Object
-}
-
-// MTRColorControlClusterMoveToHueParamsFrom constructs a [MTRColorControlClusterMoveToHueParams] from an unsafe.Pointer.
-func MTRColorControlClusterMoveToHueParamsFrom(ptr unsafe.Pointer) MTRColorControlClusterMoveToHueParams {
-	return MTRColorControlClusterMoveToHueParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRColorControlClusterMoveToHueParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRColorControlClusterMoveToHueParamsClass) Alloc() MTRColorControlClusterMoveToHueParams {
 	rv := objc.Send[MTRColorControlClusterMoveToHueParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +76,6 @@ func (mc _MTRColorControlClusterMoveToHueParamsClass) Alloc() MTRColorControlClu
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRColorControlClusterMoveToHueParamsClass) New() MTRColorControlClusterMoveToHueParams {
 	rv := objc.Send[MTRColorControlClusterMoveToHueParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,112 +98,156 @@ func (m_ MTRColorControlClusterMoveToHueParams) Autorelease() MTRColorControlClu
 func NewMTRColorControlClusterMoveToHueParams() MTRColorControlClusterMoveToHueParams {
 	return getMTRColorControlClusterMoveToHueParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRColorControlClusterMoveToHueParams */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/direction
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams
+type MTRColorControlClusterMoveToHueParams struct {
+	objectivec.Object
+}
+
+// MTRColorControlClusterMoveToHueParamsFrom constructs a [MTRColorControlClusterMoveToHueParams] from an unsafe.Pointer.
+func MTRColorControlClusterMoveToHueParamsFrom(ptr unsafe.Pointer) MTRColorControlClusterMoveToHueParams {
+	return MTRColorControlClusterMoveToHueParams{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRColorControlClusterMoveToHueParams *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRColorControlClusterMoveToHueParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRColorControlClusterMoveToHueParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRColorControlClusterMoveToHueParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRColorControlClusterMoveToHueParams */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/direction
 func (m_ MTRColorControlClusterMoveToHueParams) Direction() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("direction"))
 	return rv
-}
+}/* debug [instance_properties/getter]: direction */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/direction
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/direction
 func (m_ MTRColorControlClusterMoveToHueParams) SetDirection(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDirection:"), value)
-}
+}/* debug [instance_properties/setter]: direction */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/hue
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/hue
 func (m_ MTRColorControlClusterMoveToHueParams) Hue() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("hue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hue */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/hue
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/hue
 func (m_ MTRColorControlClusterMoveToHueParams) SetHue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHue:"), value)
-}
+}/* debug [instance_properties/setter]: hue */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/optionsmask
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/optionsMask
 func (m_ MTRColorControlClusterMoveToHueParams) OptionsMask() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsMask"))
 	return rv
-}
+}/* debug [instance_properties/getter]: optionsMask */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/optionsmask
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/optionsMask
 func (m_ MTRColorControlClusterMoveToHueParams) SetOptionsMask(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsMask:"), value)
-}
+}/* debug [instance_properties/setter]: optionsMask */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/optionsoverride
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/optionsOverride
 func (m_ MTRColorControlClusterMoveToHueParams) OptionsOverride() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("optionsOverride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: optionsOverride */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/optionsoverride
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/optionsOverride
 func (m_ MTRColorControlClusterMoveToHueParams) SetOptionsOverride(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionsOverride:"), value)
-}
+}/* debug [instance_properties/setter]: optionsOverride */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/serversideprocessingtimeout
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/serverSideProcessingTimeout
 func (m_ MTRColorControlClusterMoveToHueParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
-}
+}/* debug [instance_properties/getter]: serverSideProcessingTimeout */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/serversideprocessingtimeout
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/serverSideProcessingTimeout
 func (m_ MTRColorControlClusterMoveToHueParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
+}/* debug [instance_properties/setter]: serverSideProcessingTimeout */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/timedinvoketimeoutms
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/timedInvokeTimeoutMs
 func (m_ MTRColorControlClusterMoveToHueParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timedInvokeTimeoutMs */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/timedinvoketimeoutms
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/timedInvokeTimeoutMs
 func (m_ MTRColorControlClusterMoveToHueParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
+}/* debug [instance_properties/setter]: timedInvokeTimeoutMs */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/transitiontime
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/transitionTime
 func (m_ MTRColorControlClusterMoveToHueParams) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transitionTime */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcolorcontrolclustermovetohueparams/transitiontime
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRColorControlClusterMoveToHueParams/transitionTime
 func (m_ MTRColorControlClusterMoveToHueParams) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
-}
+}/* debug [instance_properties/setter]: transitionTime */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRColorControlClusterMoveToHueParams */
 
 
 

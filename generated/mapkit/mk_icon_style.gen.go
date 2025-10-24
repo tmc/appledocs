@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MKIconStyle */
+
+
+/* debug [class_header]: Header for MKIconStyle */
 // The class instance for the [MKIconStyle] class.
 var (
 	MKIconStyleClass     _MKIconStyleClass
@@ -27,36 +31,30 @@ func getMKIconStyleClass() _MKIconStyleClass {
 type _MKIconStyleClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MKIconStyle */
 // An interface definition for the [MKIconStyle] class.
 type IMKIconStyle interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MKIconStyle */
 	// properties:
-	BackgroundColor() objc.IObject /* cross-framework: Color */
-	SetBackgroundColor(value objc.IObject /* cross-framework: Color */)
-	Image() objc.IObject /* cross-framework: Image */
-	SetImage(value objc.IObject /* cross-framework: Image */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MKIconStyle */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A class you use to customize the annotation view icon of a point of interest (POI) on the map.
 
 
-// A class you use to customize the annotation view icon of a point of interest (POI) on the map.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKIconStyle
-type MKIconStyle struct {
-	objectivec.Object
-}
-
-// MKIconStyleFrom constructs a [MKIconStyle] from an unsafe.Pointer.
-//
-// A class you use to customize the annotation view icon of a point of interest (POI) on the map.
-func MKIconStyleFrom(ptr unsafe.Pointer) MKIconStyle {
-	return MKIconStyle{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MKIconStyle */
 // Alloc allocates a new instance without initialization.
 func (mc _MKIconStyleClass) Alloc() MKIconStyle {
 	rv := objc.Send[MKIconStyle](objc.ID(mc.class), objc.Sel("alloc"))
@@ -64,7 +62,6 @@ func (mc _MKIconStyleClass) Alloc() MKIconStyle {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MKIconStyleClass) New() MKIconStyle {
 	rv := objc.Send[MKIconStyle](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,45 +84,55 @@ func (m_ MKIconStyle) Autorelease() MKIconStyle {
 func NewMKIconStyle() MKIconStyle {
 	return getMKIconStyleClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The background color of the icon.
+/* debug [class_struct]: Struct for MKIconStyle */
+// A class you use to customize the annotation view icon of a point of interest (POI) on the map.
+
+
+// A class you use to customize the annotation view icon of a point of interest (POI) on the map.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkiconstyle/backgroundcolor
-func (m_ MKIconStyle) BackgroundColor() objc.IObject /* cross-framework: Color */ {
-	rv := objc.Send[appkit.Color](m_.ID, objc.Sel("backgroundColor"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/MapKit/MKIconStyle
+type MKIconStyle struct {
+	objectivec.Object
 }
 
-
-// The background color of the icon.
+// MKIconStyleFrom constructs a [MKIconStyle] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkiconstyle/backgroundcolor
-func (m_ MKIconStyle) SetBackgroundColor(value objc.IObject /* cross-framework: Color */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBackgroundColor:"), value)
+// A class you use to customize the annotation view icon of a point of interest (POI) on the map.
+func MKIconStyleFrom(ptr unsafe.Pointer) MKIconStyle {
+	return MKIconStyle{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The icon image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkiconstyle/image
-func (m_ MKIconStyle) Image() objc.IObject /* cross-framework: Image */ {
-	rv := objc.Send[appkit.Image](m_.ID, objc.Sel("image"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MKIconStyle *//* debug [class_init_methods]: End init methods */
 
 
-// The icon image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mapkit/mkiconstyle/image
-func (m_ MKIconStyle) SetImage(value objc.IObject /* cross-framework: Image */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
-}
 
+/* debug [class_methods]: Class methods for MKIconStyle */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MKIconStyle */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MKIconStyle */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MKIconStyle */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MKIconStyle */
 
 

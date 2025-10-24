@@ -10,7 +10,5 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	OutputStream = _undefined // referenced in MultipeerConnectivity
-	Progress = _undefined // referenced in MultipeerConnectivity
+	Progress     = _undefined // referenced in MultipeerConnectivity
 )
-
-

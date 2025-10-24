@@ -33,8 +33,6 @@ type IMTRClusterElectricalEnergyMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterElectricalEnergyMeasurement
 type MTRClusterElectricalEnergyMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterElectricalEnergyMeasurement) Autorelease() MTRClusterElectric
 func NewMTRClusterElectricalEnergyMeasurement() MTRClusterElectricalEnergyMeasurement {
 	return getMTRClusterElectricalEnergyMeasurementClass().New()
 }
-
-
-
-

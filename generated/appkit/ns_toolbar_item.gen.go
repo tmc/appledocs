@@ -7,11 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSToolbarItem */
+
+
+/* debug [class_header]: Header for NSToolbarItem */
 // The class instance for the [ToolbarItem] class.
 var (
 	ToolbarItemClass     _ToolbarItemClass
@@ -28,10 +30,16 @@ func getToolbarItemClass() _ToolbarItemClass {
 type _ToolbarItemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ToolbarItem */
 // An interface definition for the [ToolbarItem] class.
 type IToolbarItem interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ToolbarItem */
 	// properties:
 	Action() objc.SEL
 	SetAction(value objc.SEL)
@@ -53,15 +61,15 @@ type IToolbarItem interface {
 	Navigational() bool
 	SetNavigational(value bool)
 	Visible() bool
-	ItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */
+	ItemIdentifier() ToolbarItemIdentifier /* typedef */
 	Label() objc.IObject /* cross-framework: NSString */
 	SetLabel(value objc.IObject /* cross-framework: NSString */)
-	MaxSize() objc.IObject /* cross-framework: Size */
-	SetMaxSize(value objc.IObject /* cross-framework: Size */)
+	MaxSize() Size /* not a class type */
+	SetMaxSize(value Size /* not a class type */)
 	MenuFormRepresentation() IMenuItem
 	SetMenuFormRepresentation(value IMenuItem)
-	MinSize() objc.IObject /* cross-framework: Size */
-	SetMinSize(value objc.IObject /* cross-framework: Size */)
+	MinSize() Size /* not a class type */
+	SetMinSize(value Size /* not a class type */)
 	PaletteLabel() objc.IObject /* cross-framework: NSString */
 	SetPaletteLabel(value objc.IObject /* cross-framework: NSString */)
 	PossibleLabels() unsafe.Pointer
@@ -79,8 +87,8 @@ type IToolbarItem interface {
 	Toolbar() IToolbar
 	View() IView
 	SetView(value IView)
-	VisibilityPriority() objc.IObject /* cross-framework: ToolbarItemVisibilityPriority */
-	SetVisibilityPriority(value objc.IObject /* cross-framework: ToolbarItemVisibilityPriority */)
+	VisibilityPriority() ToolbarItemVisibilityPriority /* typedef */
+	SetVisibilityPriority(value ToolbarItemVisibilityPriority /* typedef */)
 	IsBordered() bool
 	SetIsBordered(value bool)
 	IsEnabled() bool
@@ -91,30 +99,20 @@ type IToolbarItem interface {
 	SetIsNavigational(value bool)
 	IsVisible() bool
 	SetIsVisible(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ToolbarItem */
 	// methods:
 	Validate()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A single item that appears in a window’s toolbar.
-//
-// An object displays an image and text string in the toolbar area of a window. You can also create toolbar items that display custom views you provide. Toolbar items provide fast access to common commands or features in the window. For example, the Finder window uses toolbar items to help someone navigate the file system. You typically create toolbar items at the same time you create your window’s toolbar. The system provides some standard items like spacers you can include in your toolbar. It also provides items that display standard interfaces like the color panel or font panel. For any custom toolbar items you create, provide an action method to call when someone clicks the item. You can display your toolbar item’s content using a custom view if you prefer, rather than an image and text label. If you specify an object for the view, the system automatically adjusts the minimum and maximum size of the search field to the system-standard values.
+/* debug [class_interface]: End interface */
 
 
-// A single item that appears in a window’s toolbar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem
-type ToolbarItem struct {
-	objectivec.Object
-}
 
-// ToolbarItemFrom constructs a [ToolbarItem] from an unsafe.Pointer.
-//
-// A single item that appears in a window’s toolbar.
-func ToolbarItemFrom(ptr unsafe.Pointer) ToolbarItem {
-	return ToolbarItem{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ToolbarItem */
 // Alloc allocates a new instance without initialization.
 func (tc _ToolbarItemClass) Alloc() ToolbarItem {
 	rv := objc.Send[ToolbarItem](objc.ID(tc.class), objc.Sel("alloc"))
@@ -122,7 +120,6 @@ func (tc _ToolbarItemClass) Alloc() ToolbarItem {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _ToolbarItemClass) New() ToolbarItem {
 	rv := objc.Send[ToolbarItem](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -145,41 +142,82 @@ func (t_ ToolbarItem) Autorelease() ToolbarItem {
 func NewToolbarItem() ToolbarItem {
 	return getToolbarItemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ToolbarItem */
+// A single item that appears in a window’s toolbar.
+//
+// An object displays an image and text string in the toolbar area of a window. You can also create toolbar items that display custom views you provide. Toolbar items provide fast access to common commands or features in the window. For example, the Finder window uses toolbar items to help someone navigate the file system. You typically create toolbar items at the same time you create your window’s toolbar. The system provides some standard items like spacers you can include in your toolbar. It also provides items that display standard interfaces like the color panel or font panel. For any custom toolbar items you create, provide an action method to call when someone clicks the item. You can display your toolbar item’s content using a custom view if you prefer, rather than an image and text label. If you specify an object for the view, the system automatically adjusts the minimum and maximum size of the search field to the system-standard values.
+
+
+// A single item that appears in a window’s toolbar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem
+type ToolbarItem struct {
+	objectivec.Object
+}
+
+// ToolbarItemFrom constructs a [ToolbarItem] from an unsafe.Pointer.
+//
+// A single item that appears in a window’s toolbar.
+func ToolbarItemFrom(ptr unsafe.Pointer) ToolbarItem {
+	return ToolbarItem{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ToolbarItem */
 
 // Creates a toolbar item with the specified identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:)
-func NewToolbarItemWithItemIdentifier(itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */) ToolbarItem {
+func NewToolbarItemWithItemIdentifier(itemIdentifier ToolbarItemIdentifier /* typedef */) ToolbarItem {
 	instance := getToolbarItemClass().Alloc()
 	rv := objc.Send[ToolbarItem](instance.ID, objc.Sel("initWithItemIdentifier:"), itemIdentifier)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewToolbarItemWithItemIdentifier */
 
 
 // Creates a toolbar item with property values from the specified bar button item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:barButtonItem:)
-func NewToolbarItemWithItemIdentifierBarButtonItem(itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, barButtonItem BarButtonItem /* not a class type */) ToolbarItem {
+func NewToolbarItemWithItemIdentifierBarButtonItem(itemIdentifier ToolbarItemIdentifier /* typedef */, barButtonItem objectivec.IObject) ToolbarItem {
 	rv := objc.Send[ToolbarItem](objc.ID(getToolbarItemClass().class), objc.Sel("itemWithItemIdentifier:barButtonItem:"), itemIdentifier, barButtonItem)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewToolbarItemWithItemIdentifierBarButtonItem */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for ToolbarItem */
 
 // Creates a toolbar item with property values from the specified bar button item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/init(itemIdentifier:barButtonItem:)
-func (tc _ToolbarItemClass) ItemWithItemIdentifierBarButtonItem(itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, barButtonItem BarButtonItem /* not a class type */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("itemWithItemIdentifier:barButtonItem:"), itemIdentifier, barButtonItem)
+func (tc _ToolbarItemClass) ItemWithItemIdentifierBarButtonItem(itemIdentifier ToolbarItemIdentifier /* typedef */, barButtonItem objectivec.IObject) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(tc.class), objc.Sel("itemWithItemIdentifier:barButtonItem:"), itemIdentifier, barButtonItem)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ItemWithItemIdentifierBarButtonItem) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ToolbarItem */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ToolbarItem */
 
 // Validates the toolbar item’s menu and its ability to perfrom its action.
 //
@@ -187,8 +225,13 @@ func (tc _ToolbarItemClass) ItemWithItemIdentifierBarButtonItem(itemIdentifier o
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/validate()
 func (t_ ToolbarItem) Validate() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("validate"))
-}
+}/* debug [instance_methods/method]: Validate */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ToolbarItem */
 
 // The action method to call when someone clicks on the toolbar item.
 //
@@ -197,7 +240,7 @@ func (t_ ToolbarItem) Validate() {
 func (t_ ToolbarItem) Action() objc.SEL {
 	rv := objc.Send[objc.SEL](t_.ID, objc.Sel("action"))
 	return rv
-}
+}/* debug [instance_properties/getter]: action */
 
 
 // The action method to call when someone clicks on the toolbar item.
@@ -206,7 +249,7 @@ func (t_ ToolbarItem) Action() objc.SEL {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/action
 func (t_ ToolbarItem) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAction:"), value)
-}
+}/* debug [instance_properties/setter]: action */
 
 
 // A Boolean value that indicates whether the toolbar item can appear more than once in a toolbar.
@@ -216,7 +259,7 @@ func (t_ ToolbarItem) SetAction(value objc.SEL) {
 func (t_ ToolbarItem) AllowsDuplicatesInToolbar() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsDuplicatesInToolbar"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allowsDuplicatesInToolbar */
 
 
 // A Boolean value that indicates whether the toolbar automatically validates the item.
@@ -226,7 +269,7 @@ func (t_ ToolbarItem) AllowsDuplicatesInToolbar() bool {
 func (t_ ToolbarItem) Autovalidates() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("autovalidates"))
 	return rv
-}
+}/* debug [instance_properties/getter]: autovalidates */
 
 
 // A Boolean value that indicates whether the toolbar automatically validates the item.
@@ -235,7 +278,7 @@ func (t_ ToolbarItem) Autovalidates() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/autovalidates
 func (t_ ToolbarItem) SetAutovalidates(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAutovalidates:"), value)
-}
+}/* debug [instance_properties/setter]: autovalidates */
 
 
 // [Full Topic]
@@ -243,14 +286,14 @@ func (t_ ToolbarItem) SetAutovalidates(value bool) {
 func (t_ ToolbarItem) BackgroundTintColor() IColor {
 	rv := objc.Send[Color](t_.ID, objc.Sel("backgroundTintColor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: backgroundTintColor */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
 func (t_ ToolbarItem) SetBackgroundTintColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundTintColor:"), value)
-}
+}/* debug [instance_properties/setter]: backgroundTintColor */
 
 
 // A badge that can be attached to an NSToolbarItem. This provides a way to display small visual indicators that can be used to highlight important information, such as unread notifications or status indicators.
@@ -260,7 +303,7 @@ func (t_ ToolbarItem) SetBackgroundTintColor(value IColor) {
 func (t_ ToolbarItem) Badge() IItemBadge {
 	rv := objc.Send[ItemBadge](t_.ID, objc.Sel("badge"))
 	return rv
-}
+}/* debug [instance_properties/getter]: badge */
 
 
 // A badge that can be attached to an NSToolbarItem. This provides a way to display small visual indicators that can be used to highlight important information, such as unread notifications or status indicators.
@@ -269,7 +312,7 @@ func (t_ ToolbarItem) Badge() IItemBadge {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/badge-2b38p
 func (t_ ToolbarItem) SetBadge(value IItemBadge) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBadge:"), value)
-}
+}/* debug [instance_properties/setter]: badge */
 
 
 // The image to display for the toolbar item.
@@ -279,7 +322,7 @@ func (t_ ToolbarItem) SetBadge(value IItemBadge) {
 func (t_ ToolbarItem) Image() IImage {
 	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
-}
+}/* debug [instance_properties/getter]: image */
 
 
 // The image to display for the toolbar item.
@@ -288,7 +331,7 @@ func (t_ ToolbarItem) Image() IImage {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/image
 func (t_ ToolbarItem) SetImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
-}
+}/* debug [instance_properties/setter]: image */
 
 
 // A Boolean value that indicates whether the toolbar item has a bordered style.
@@ -298,7 +341,7 @@ func (t_ ToolbarItem) SetImage(value IImage) {
 func (t_ ToolbarItem) Bordered() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("bordered"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bordered */
 
 
 // A Boolean value that indicates whether the toolbar item has a bordered style.
@@ -307,7 +350,7 @@ func (t_ ToolbarItem) Bordered() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isBordered
 func (t_ ToolbarItem) SetBordered(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBordered:"), value)
-}
+}/* debug [instance_properties/setter]: bordered */
 
 
 // A Boolean value that indicates whether the item is enabled.
@@ -317,7 +360,7 @@ func (t_ ToolbarItem) SetBordered(value bool) {
 func (t_ ToolbarItem) Enabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("enabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: enabled */
 
 
 // A Boolean value that indicates whether the item is enabled.
@@ -326,7 +369,7 @@ func (t_ ToolbarItem) Enabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isEnabled
 func (t_ ToolbarItem) SetEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: enabled */
 
 
 // [Full Topic]
@@ -334,14 +377,14 @@ func (t_ ToolbarItem) SetEnabled(value bool) {
 func (t_ ToolbarItem) Hidden() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("hidden"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hidden */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isHidden
 func (t_ ToolbarItem) SetHidden(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHidden:"), value)
-}
+}/* debug [instance_properties/setter]: hidden */
 
 
 // A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
@@ -351,7 +394,7 @@ func (t_ ToolbarItem) SetHidden(value bool) {
 func (t_ ToolbarItem) Navigational() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("navigational"))
 	return rv
-}
+}/* debug [instance_properties/getter]: navigational */
 
 
 // A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
@@ -360,7 +403,7 @@ func (t_ ToolbarItem) Navigational() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isNavigational
 func (t_ ToolbarItem) SetNavigational(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNavigational:"), value)
-}
+}/* debug [instance_properties/setter]: navigational */
 
 
 // A Boolean value that indicates whether the item is currently visible in the toolbar, and not in the overflow menu.
@@ -370,17 +413,17 @@ func (t_ ToolbarItem) SetNavigational(value bool) {
 func (t_ ToolbarItem) Visible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("visible"))
 	return rv
-}
+}/* debug [instance_properties/getter]: visible */
 
 
 // The value you use to identify the toolbar item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/itemIdentifier
-func (t_ ToolbarItem) ItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */ {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("itemIdentifier"))
+func (t_ ToolbarItem) ItemIdentifier() ToolbarItemIdentifier /* typedef */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("itemIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: itemIdentifier */
 
 
 // The label that appears for this item in the toolbar.
@@ -390,7 +433,7 @@ func (t_ ToolbarItem) ItemIdentifier() objc.IObject /* cross-framework: ToolbarI
 func (t_ ToolbarItem) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("label"))
 	return rv
-}
+}/* debug [instance_properties/getter]: label */
 
 
 // The label that appears for this item in the toolbar.
@@ -399,26 +442,26 @@ func (t_ ToolbarItem) Label() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
 func (t_ ToolbarItem) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
-}
+}/* debug [instance_properties/setter]: label */
 
 
 // The toolbar item’s maximum size.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/maxSize
-func (t_ ToolbarItem) MaxSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](t_.ID, objc.Sel("maxSize"))
+func (t_ ToolbarItem) MaxSize() Size /* not a class type */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("maxSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: maxSize */
 
 
 // The toolbar item’s maximum size.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/maxSize
-func (t_ ToolbarItem) SetMaxSize(value objc.IObject /* cross-framework: Size */) {
+func (t_ ToolbarItem) SetMaxSize(value Size /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxSize:"), value)
-}
+}/* debug [instance_properties/setter]: maxSize */
 
 
 // The menu item to use when the toolbar item is in the overflow menu.
@@ -428,7 +471,7 @@ func (t_ ToolbarItem) SetMaxSize(value objc.IObject /* cross-framework: Size */)
 func (t_ ToolbarItem) MenuFormRepresentation() IMenuItem {
 	rv := objc.Send[MenuItem](t_.ID, objc.Sel("menuFormRepresentation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: menuFormRepresentation */
 
 
 // The menu item to use when the toolbar item is in the overflow menu.
@@ -437,26 +480,26 @@ func (t_ ToolbarItem) MenuFormRepresentation() IMenuItem {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/menuFormRepresentation
 func (t_ ToolbarItem) SetMenuFormRepresentation(value IMenuItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMenuFormRepresentation:"), value)
-}
+}/* debug [instance_properties/setter]: menuFormRepresentation */
 
 
 // The toolbar item’s minimum size.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/minSize
-func (t_ ToolbarItem) MinSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](t_.ID, objc.Sel("minSize"))
+func (t_ ToolbarItem) MinSize() Size /* not a class type */ {
+	rv := objc.Send[Size](t_.ID, objc.Sel("minSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: minSize */
 
 
 // The toolbar item’s minimum size.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/minSize
-func (t_ ToolbarItem) SetMinSize(value objc.IObject /* cross-framework: Size */) {
+func (t_ ToolbarItem) SetMinSize(value Size /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinSize:"), value)
-}
+}/* debug [instance_properties/setter]: minSize */
 
 
 // The label that appears when the toolbar item is in the customization palette.
@@ -466,7 +509,7 @@ func (t_ ToolbarItem) SetMinSize(value objc.IObject /* cross-framework: Size */)
 func (t_ ToolbarItem) PaletteLabel() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("paletteLabel"))
 	return rv
-}
+}/* debug [instance_properties/getter]: paletteLabel */
 
 
 // The label that appears when the toolbar item is in the customization palette.
@@ -475,7 +518,7 @@ func (t_ ToolbarItem) PaletteLabel() objc.IObject /* cross-framework: NSString *
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
 func (t_ ToolbarItem) SetPaletteLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPaletteLabel:"), value)
-}
+}/* debug [instance_properties/setter]: paletteLabel */
 
 
 // The set of labels that the item might display.
@@ -485,7 +528,7 @@ func (t_ ToolbarItem) SetPaletteLabel(value objc.IObject /* cross-framework: NSS
 func (t_ ToolbarItem) PossibleLabels() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("possibleLabels"))
 	return rv
-}
+}/* debug [instance_properties/getter]: possibleLabels */
 
 
 // The set of labels that the item might display.
@@ -494,7 +537,7 @@ func (t_ ToolbarItem) PossibleLabels() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/possibleLabels
 func (t_ ToolbarItem) SetPossibleLabels(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPossibleLabels:"), value)
-}
+}/* debug [instance_properties/setter]: possibleLabels */
 
 
 // Defines the toolbar item’s appearance. The default style is plain. Prominent style tints the background. If a background tint color is set, it uses it; otherwise, it uses the app’s or system’s accent color. If grouped with other items, it moves to its own to avoid tinting other items’ background.
@@ -504,7 +547,7 @@ func (t_ ToolbarItem) SetPossibleLabels(value unsafe.Pointer) {
 func (t_ ToolbarItem) Style() ToolbarItemStyle {
 	rv := objc.Send[ToolbarItemStyle](t_.ID, objc.Sel("style"))
 	return rv
-}
+}/* debug [instance_properties/getter]: style */
 
 
 // Defines the toolbar item’s appearance. The default style is plain. Prominent style tints the background. If a background tint color is set, it uses it; otherwise, it uses the app’s or system’s accent color. If grouped with other items, it moves to its own to avoid tinting other items’ background.
@@ -513,7 +556,7 @@ func (t_ ToolbarItem) Style() ToolbarItemStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/style-swift.property
 func (t_ ToolbarItem) SetStyle(value ToolbarItemStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStyle:"), value)
-}
+}/* debug [instance_properties/setter]: style */
 
 
 // An integer tag you can use to identify the toolbar item.
@@ -523,7 +566,7 @@ func (t_ ToolbarItem) SetStyle(value ToolbarItemStyle) {
 func (t_ ToolbarItem) Tag() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("tag"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tag */
 
 
 // An integer tag you can use to identify the toolbar item.
@@ -532,7 +575,7 @@ func (t_ ToolbarItem) Tag() int {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/tag
 func (t_ ToolbarItem) SetTag(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTag:"), value)
-}
+}/* debug [instance_properties/setter]: tag */
 
 
 // The object that defines the action method the toolbar item calls when clicked.
@@ -542,7 +585,7 @@ func (t_ ToolbarItem) SetTag(value int) {
 func (t_ ToolbarItem) Target() objc.ID {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("target"))
 	return rv
-}
+}/* debug [instance_properties/getter]: target */
 
 
 // The object that defines the action method the toolbar item calls when clicked.
@@ -551,7 +594,7 @@ func (t_ ToolbarItem) Target() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/target
 func (t_ ToolbarItem) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTarget:"), value)
-}
+}/* debug [instance_properties/setter]: target */
 
 
 // The title of the toolbar item.
@@ -561,7 +604,7 @@ func (t_ ToolbarItem) SetTarget(value objc.ID) {
 func (t_ ToolbarItem) Title() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("title"))
 	return rv
-}
+}/* debug [instance_properties/getter]: title */
 
 
 // The title of the toolbar item.
@@ -570,7 +613,7 @@ func (t_ ToolbarItem) Title() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/title
 func (t_ ToolbarItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), value)
-}
+}/* debug [instance_properties/setter]: title */
 
 
 // The tooltip to display when someone hovers over the item in the toolbar.
@@ -580,7 +623,7 @@ func (t_ ToolbarItem) SetTitle(value objc.IObject /* cross-framework: NSString *
 func (t_ ToolbarItem) ToolTip() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("toolTip"))
 	return rv
-}
+}/* debug [instance_properties/getter]: toolTip */
 
 
 // The tooltip to display when someone hovers over the item in the toolbar.
@@ -589,7 +632,7 @@ func (t_ ToolbarItem) ToolTip() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
 func (t_ ToolbarItem) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), value)
-}
+}/* debug [instance_properties/setter]: toolTip */
 
 
 // The toolbar that currently includes the item.
@@ -599,7 +642,7 @@ func (t_ ToolbarItem) SetToolTip(value objc.IObject /* cross-framework: NSString
 func (t_ ToolbarItem) Toolbar() IToolbar {
 	rv := objc.Send[Toolbar](t_.ID, objc.Sel("toolbar"))
 	return rv
-}
+}/* debug [instance_properties/getter]: toolbar */
 
 
 // The custom view you use to draw the toolbar item.
@@ -609,7 +652,7 @@ func (t_ ToolbarItem) Toolbar() IToolbar {
 func (t_ ToolbarItem) View() IView {
 	rv := objc.Send[View](t_.ID, objc.Sel("view"))
 	return rv
-}
+}/* debug [instance_properties/getter]: view */
 
 
 // The custom view you use to draw the toolbar item.
@@ -618,26 +661,26 @@ func (t_ ToolbarItem) View() IView {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/view
 func (t_ ToolbarItem) SetView(value IView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
-}
+}/* debug [instance_properties/setter]: view */
 
 
 // The display priority associated with the toolbar item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/visibilityPriority-swift.property
-func (t_ ToolbarItem) VisibilityPriority() objc.IObject /* cross-framework: ToolbarItemVisibilityPriority */ {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("visibilityPriority"))
+func (t_ ToolbarItem) VisibilityPriority() ToolbarItemVisibilityPriority /* typedef */ {
+	rv := objc.Send[int](t_.ID, objc.Sel("visibilityPriority"))
 	return rv
-}
+}/* debug [instance_properties/getter]: visibilityPriority */
 
 
 // The display priority associated with the toolbar item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/visibilityPriority-swift.property
-func (t_ ToolbarItem) SetVisibilityPriority(value objc.IObject /* cross-framework: ToolbarItemVisibilityPriority */) {
+func (t_ ToolbarItem) SetVisibilityPriority(value ToolbarItemVisibilityPriority /* typedef */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
-}
+}/* debug [instance_properties/setter]: visibilityPriority */
 
 
 // A Boolean value that indicates whether the toolbar item has a bordered style.
@@ -647,7 +690,7 @@ func (t_ ToolbarItem) SetVisibilityPriority(value objc.IObject /* cross-framewor
 func (t_ ToolbarItem) IsBordered() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isBordered"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isBordered */
 
 
 // A Boolean value that indicates whether the toolbar item has a bordered style.
@@ -656,7 +699,7 @@ func (t_ ToolbarItem) IsBordered() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isbordered
 func (t_ ToolbarItem) SetIsBordered(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsBordered:"), value)
-}
+}/* debug [instance_properties/setter]: isBordered */
 
 
 // A Boolean value that indicates whether the item is enabled.
@@ -666,7 +709,7 @@ func (t_ ToolbarItem) SetIsBordered(value bool) {
 func (t_ ToolbarItem) IsEnabled() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isEnabled */
 
 
 // A Boolean value that indicates whether the item is enabled.
@@ -675,7 +718,7 @@ func (t_ ToolbarItem) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isenabled
 func (t_ ToolbarItem) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isEnabled */
 
 
 // [Full Topic]
@@ -683,14 +726,14 @@ func (t_ ToolbarItem) SetIsEnabled(value bool) {
 func (t_ ToolbarItem) IsHidden() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isHidden"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isHidden */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/ishidden
 func (t_ ToolbarItem) SetIsHidden(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
-}
+}/* debug [instance_properties/setter]: isHidden */
 
 
 // A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
@@ -700,7 +743,7 @@ func (t_ ToolbarItem) SetIsHidden(value bool) {
 func (t_ ToolbarItem) IsNavigational() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isNavigational"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isNavigational */
 
 
 // A Boolean value that indicates whether the item behaves as a navigation item in the toolbar.
@@ -709,7 +752,7 @@ func (t_ ToolbarItem) IsNavigational() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isnavigational
 func (t_ ToolbarItem) SetIsNavigational(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsNavigational:"), value)
-}
+}/* debug [instance_properties/setter]: isNavigational */
 
 
 // A Boolean value that indicates whether the item is currently visible in the toolbar, and not in the overflow menu.
@@ -719,7 +762,7 @@ func (t_ ToolbarItem) SetIsNavigational(value bool) {
 func (t_ ToolbarItem) IsVisible() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("isVisible"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isVisible */
 
 
 // A Boolean value that indicates whether the item is currently visible in the toolbar, and not in the overflow menu.
@@ -728,6 +771,11 @@ func (t_ ToolbarItem) IsVisible() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/isvisible
 func (t_ ToolbarItem) SetIsVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
-}
+}/* debug [instance_properties/setter]: isVisible */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSToolbarItem */
 
 

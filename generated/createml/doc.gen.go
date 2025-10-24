@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for CreateML. DO NOT EDIT.
 
 // Package createml provides Go bindings for the CreateML framework.
 //
-// Create machine learning models for use in your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CreateML without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CreateML
 package createml
 
 import (

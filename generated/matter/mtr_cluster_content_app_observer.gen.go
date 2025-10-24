@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterContentAppObserver */
+
+
+/* debug [class_header]: Header for MTRClusterContentAppObserver */
 // The class instance for the [MTRClusterContentAppObserver] class.
 var (
 	MTRClusterContentAppObserverClass     _MTRClusterContentAppObserverClass
@@ -26,40 +30,31 @@ func getMTRClusterContentAppObserverClass() _MTRClusterContentAppObserverClass {
 type _MTRClusterContentAppObserverClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterContentAppObserver */
 // An interface definition for the [MTRClusterContentAppObserver] class.
 type IMTRClusterContentAppObserver interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterContentAppObserver */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterContentAppObserver */
 	// methods:
-	ContentAppMessageWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRContentAppObserverClusterContentAppMessageParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Content App Observer This cluster provides an interface for sending targeted commands to an Observer of a Content App on a Video Player device such as a Streaming Media Player, Smart TV or Smart Screen. The cluster server for Content App Observer is implemented by an endpoint that communicates with a Content App, such as a Casting Video Client. The cluster client for Content App Observer is implemented by a Content App endpoint. A Content App is informed of the NodeId of an Observer when a binding is set on the Content App. The Content App can then send the ContentAppMessage to the Observer (server cluster), and the Observer responds with a ContentAppMessageResponse.
 
 
-// Cluster Content App Observer This cluster provides an interface for sending targeted commands to an Observer of a Content App on a Video Player device such as a Streaming Media Player, Smart TV or Smart Screen. The cluster server for Content App Observer is implemented by an endpoint that communicates with a Content App, such as a Casting Video Client. The cluster client for Content App Observer is implemented by a Content App endpoint. A Content App is informed of the NodeId of an Observer when a binding is set on the Content App. The Content App can then send the ContentAppMessage to the Observer (server cluster), and the Observer responds with a ContentAppMessageResponse.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver
-type MTRClusterContentAppObserver struct {
-	MTRGenericCluster
-}
-
-// MTRClusterContentAppObserverFrom constructs a [MTRClusterContentAppObserver] from an unsafe.Pointer.
-//
-// Cluster Content App Observer This cluster provides an interface for sending targeted commands to an Observer of a Content App on a Video Player device such as a Streaming Media Player, Smart TV or Smart Screen. The cluster server for Content App Observer is implemented by an endpoint that communicates with a Content App, such as a Casting Video Client. The cluster client for Content App Observer is implemented by a Content App endpoint. A Content App is informed of the NodeId of an Observer when a binding is set on the Content App. The Content App can then send the ContentAppMessage to the Observer (server cluster), and the Observer responds with a ContentAppMessageResponse.
-func MTRClusterContentAppObserverFrom(ptr unsafe.Pointer) MTRClusterContentAppObserver {
-	return MTRClusterContentAppObserver{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterContentAppObserver */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterContentAppObserverClass) Alloc() MTRClusterContentAppObserver {
 	rv := objc.Send[MTRClusterContentAppObserver](objc.ID(mc.class), objc.Sel("alloc"))
@@ -67,7 +62,6 @@ func (mc _MTRClusterContentAppObserverClass) Alloc() MTRClusterContentAppObserve
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterContentAppObserverClass) New() MTRClusterContentAppObserver {
 	rv := objc.Send[MTRClusterContentAppObserver](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,66 +84,66 @@ func (m_ MTRClusterContentAppObserver) Autorelease() MTRClusterContentAppObserve
 func NewMTRClusterContentAppObserver() MTRClusterContentAppObserver {
 	return getMTRClusterContentAppObserverClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRClusterContentAppObserver */
+// Cluster Content App Observer This cluster provides an interface for sending targeted commands to an Observer of a Content App on a Video Player device such as a Streaming Media Player, Smart TV or Smart Screen. The cluster server for Content App Observer is implemented by an endpoint that communicates with a Content App, such as a Casting Video Client. The cluster client for Content App Observer is implemented by a Content App endpoint. A Content App is informed of the NodeId of an Observer when a binding is set on the Content App. The Content App can then send the ContentAppMessage to the Observer (server cluster), and the Observer responds with a ContentAppMessageResponse.
+
+
+// Cluster Content App Observer This cluster provides an interface for sending targeted commands to an Observer of a Content App on a Video Player device such as a Streaming Media Player, Smart TV or Smart Screen. The cluster server for Content App Observer is implemented by an endpoint that communicates with a Content App, such as a Casting Video Client. The cluster client for Content App Observer is implemented by a Content App endpoint. A Content App is informed of the NodeId of an Observer when a binding is set on the Content App. The Content App can then send the ContentAppMessage to the Observer (server cluster), and the Observer responds with a ContentAppMessageResponse.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/init(device:endpointID:queue:)
-func NewMTRClusterContentAppObserverWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterContentAppObserver {
-	instance := getMTRClusterContentAppObserverClass().Alloc()
-	rv := objc.Send[MTRClusterContentAppObserver](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver
+type MTRClusterContentAppObserver struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/contentAppMessage(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterContentAppObserver) ContentAppMessageWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRContentAppObserverClusterContentAppMessageParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("contentAppMessageWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
+// MTRClusterContentAppObserverFrom constructs a [MTRClusterContentAppObserver] from an unsafe.Pointer.
+//
+// Cluster Content App Observer This cluster provides an interface for sending targeted commands to an Observer of a Content App on a Video Player device such as a Streaming Media Player, Smart TV or Smart Screen. The cluster server for Content App Observer is implemented by an endpoint that communicates with a Content App, such as a Casting Video Client. The cluster client for Content App Observer is implemented by a Content App endpoint. A Content App is informed of the NodeId of an Observer when a binding is set on the Content App. The Content App can then send the ContentAppMessage to the Observer (server cluster), and the Observer responds with a ContentAppMessageResponse.
+func MTRClusterContentAppObserverFrom(ptr unsafe.Pointer) MTRClusterContentAppObserver {
+	return MTRClusterContentAppObserver{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterContentAppObserver *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRClusterContentAppObserver */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRClusterContentAppObserver */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRClusterContentAppObserver */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/readAttributeAcceptedCommandList(with:)
 func (m_ MTRClusterContentAppObserver) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadAttributeAcceptedCommandListWithParams */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/readAttributeAttributeList(with:)
-func (m_ MTRClusterContentAppObserver) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterContentAppObserver */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/readAttributeClusterRevision(with:)
-func (m_ MTRClusterContentAppObserver) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterContentAppObserver */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/readAttributeFeatureMap(with:)
-func (m_ MTRClusterContentAppObserver) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentAppObserver/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterContentAppObserver) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
 
 

@@ -21,3 +21,4 @@ var OS_nw_relay_hopProtocol *objc.Protocol
 func init() {
 	OS_nw_relay_hopProtocol = objc.GetProtocol("OS_nw_relay_hop")
 }
+

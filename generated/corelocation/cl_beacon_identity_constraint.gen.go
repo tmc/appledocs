@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BeaconIdentityConstraint] class.
@@ -43,7 +43,6 @@ type IBeaconIdentityConstraint interface {
 // Identity characteristics that can match one or more beacons.
 //
 // A constraint specifies beacon identity characteristics. Use constraints to check for matching beacons by comparing the beacon’s identity characteristics ( , , and ) to those in the constraint. Constraints always specify a UUID value, but the major and minor values are optional. A beacon satisfies the constraint if all three identity characteristics of the beacon match the same characteristic of the constraint. Major and minor characteristics are wildcards if they have no value. A major or minor wildcard value matches any value in the beacon’s corresponding characteristic.
-
 
 // Identity characteristics that can match one or more beacons.
 //
@@ -93,8 +92,6 @@ func NewBeaconIdentityConstraint() BeaconIdentityConstraint {
 	return getBeaconIdentityConstraintClass().New()
 }
 
-
-
 // The major value that the observed beacon transmitted.
 //
 // [Full Topic]
@@ -104,7 +101,6 @@ func (b_ BeaconIdentityConstraint) Major() objc.IObject /* cross-framework: NSNu
 	return rv
 }
 
-
 // The major value that the observed beacon transmitted.
 //
 // [Full Topic]
@@ -112,7 +108,6 @@ func (b_ BeaconIdentityConstraint) Major() objc.IObject /* cross-framework: NSNu
 func (b_ BeaconIdentityConstraint) SetMajor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMajor:"), value)
 }
-
 
 // The minor value that the observed beacon transmitted.
 //
@@ -123,7 +118,6 @@ func (b_ BeaconIdentityConstraint) Minor() objc.IObject /* cross-framework: NSNu
 	return rv
 }
 
-
 // The minor value that the observed beacon transmitted.
 //
 // [Full Topic]
@@ -131,7 +125,6 @@ func (b_ BeaconIdentityConstraint) Minor() objc.IObject /* cross-framework: NSNu
 func (b_ BeaconIdentityConstraint) SetMinor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setMinor:"), value)
 }
-
 
 // The UUID that the observed beacon transmitted.
 //
@@ -142,7 +135,6 @@ func (b_ BeaconIdentityConstraint) Uuid() objc.IObject /* cross-framework: UUID 
 	return rv
 }
 
-
 // The UUID that the observed beacon transmitted.
 //
 // [Full Topic]
@@ -150,6 +142,3 @@ func (b_ BeaconIdentityConstraint) Uuid() objc.IObject /* cross-framework: UUID 
 func (b_ BeaconIdentityConstraint) SetUuid(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setUuid:"), value)
 }
-
-
-

@@ -37,7 +37,6 @@ type IPHAssetCreationRequest interface {
 //
 // A object, used within a photo library change block, constructs a new photo or video asset from data resources, and adds it to the Photos library. This class works in terms of the raw data resources that together form an asset, so you can use it together with the class to perform a complete copy (or backup and restore) of an asset’s underlying resources. To instead simply create a new asset from an image object, image file, or video file, see the superclass . To create a new asset from data resources, first start a change block using the shared method or . Then, within the change block: Within the change block, create a new asset creation request with the method. Add image, video, or data resources using the methods in the Providing Data Resources for the New Asset section below. (Optional.) Set metadata for the new asset using methods and properties of the superclass . After Photos runs the change block and calls your completion handler, the new asset is created in the Photos library. If you instantiate or use this class outside a photo library change block, Photos throws an exception. For details on change blocks, see .
 
-
 // A request to create a new Photos asset from underlying data resources, for use in a photo library change block.
 //
 // [Full Topic]
@@ -85,7 +84,3 @@ func (p_ PHAssetCreationRequest) Autorelease() PHAssetCreationRequest {
 func NewPHAssetCreationRequest() PHAssetCreationRequest {
 	return getPHAssetCreationRequestClass().New()
 }
-
-
-
-

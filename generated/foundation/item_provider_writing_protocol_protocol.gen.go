@@ -22,7 +22,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSItemProviderWriting
 type PItemProviderWriting interface {
 	// Required methods
-	LoadDataWithTypeIdentifierForItemProviderCompletionHandler(typeIdentifier IString, completionHandler unsafe.Pointer) Progress
+	LoadDataWithTypeIdentifierForItemProviderCompletionHandler(typeIdentifier IString, completionHandler unsafe.Pointer) Progress/* debug [protocol_interface/required_method]: LoadDataWithTypeIdentifierForItemProviderCompletionHandler */
 	// Optional methods
 	ItemProviderVisibilityForRepresentationWithTypeIdentifier(typeIdentifier IString) ItemProviderRepresentationVisibility
 	HasItemProviderVisibilityForRepresentationWithTypeIdentifier() bool

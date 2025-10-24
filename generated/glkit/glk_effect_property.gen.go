@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GLKEffectProperty */
+
+
+/* debug [class_header]: Header for GLKEffectProperty */
 // The class instance for the [GLKEffectProperty] class.
 var (
 	GLKEffectPropertyClass     _GLKEffectPropertyClass
@@ -26,34 +30,30 @@ func getGLKEffectPropertyClass() _GLKEffectPropertyClass {
 type _GLKEffectPropertyClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GLKEffectProperty */
 // An interface definition for the [GLKEffectProperty] class.
 type IGLKEffectProperty interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GLKEffectProperty */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GLKEffectProperty */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The abstract superclass for configuration information used in GLKit rendering effects.
-//
-// Subclasses of provide one or more Objective-C properties that define how that state can be configured for an effect.
+/* debug [class_interface]: End interface */
 
 
-// The abstract superclass for configuration information used in GLKit rendering effects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectProperty
-type GLKEffectProperty struct {
-	objectivec.Object
-}
 
-// GLKEffectPropertyFrom constructs a [GLKEffectProperty] from an unsafe.Pointer.
-//
-// The abstract superclass for configuration information used in GLKit rendering effects.
-func GLKEffectPropertyFrom(ptr unsafe.Pointer) GLKEffectProperty {
-	return GLKEffectProperty{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GLKEffectProperty */
 // Alloc allocates a new instance without initialization.
 func (gc _GLKEffectPropertyClass) Alloc() GLKEffectProperty {
 	rv := objc.Send[GLKEffectProperty](objc.ID(gc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (gc _GLKEffectPropertyClass) Alloc() GLKEffectProperty {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GLKEffectPropertyClass) New() GLKEffectProperty {
 	rv := objc.Send[GLKEffectProperty](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,7 +83,58 @@ func (g_ GLKEffectProperty) Autorelease() GLKEffectProperty {
 func NewGLKEffectProperty() GLKEffectProperty {
 	return getGLKEffectPropertyClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for GLKEffectProperty */
+// The abstract superclass for configuration information used in GLKit rendering effects.
+//
+// Subclasses of provide one or more Objective-C properties that define how that state can be configured for an effect.
+
+
+// The abstract superclass for configuration information used in GLKit rendering effects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectProperty
+type GLKEffectProperty struct {
+	objectivec.Object
+}
+
+// GLKEffectPropertyFrom constructs a [GLKEffectProperty] from an unsafe.Pointer.
+//
+// The abstract superclass for configuration information used in GLKit rendering effects.
+func GLKEffectPropertyFrom(ptr unsafe.Pointer) GLKEffectProperty {
+	return GLKEffectProperty{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GLKEffectProperty *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GLKEffectProperty */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GLKEffectProperty */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GLKEffectProperty */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GLKEffectProperty */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GLKEffectProperty */
 
 
 

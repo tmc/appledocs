@@ -15,3 +15,4 @@ var restrictsOwnershipChangesProtocol *objc.Protocol
 func init() {
 	restrictsOwnershipChangesProtocol = objc.GetProtocol("restrictsOwnershipChanges")
 }
+

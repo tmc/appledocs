@@ -18,3 +18,4 @@ var FileProviderReplicatedExtensionProtocol *objc.Protocol
 func init() {
 	FileProviderReplicatedExtensionProtocol = objc.GetProtocol("NSFileProviderReplicatedExtension")
 }
+

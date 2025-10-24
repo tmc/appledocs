@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/addressbook"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -20,7 +19,7 @@ import (
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/abRecord(with:)
 func (e_ EKParticipant) ABRecordWithAddressBook(addressBook ABAddressBookRef /* typedef */) ABRecordRef /* typedef */ {
-	rv := objc.Send[ABRecordRef](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("ABRecordWithAddressBook:"), addressBook)
 	return rv
 }
 

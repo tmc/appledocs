@@ -20,3 +20,4 @@ var resolveCounterRangeProtocol *objc.Protocol
 func init() {
 	resolveCounterRangeProtocol = objc.GetProtocol("resolveCounterRange:")
 }
+

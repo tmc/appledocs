@@ -15,3 +15,4 @@ var UserActivityRestoringProtocol *objc.Protocol
 func init() {
 	UserActivityRestoringProtocol = objc.GetProtocol("NSUserActivityRestoring")
 }
+

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class HKHealthConceptIdentifier */
+
+
+/* debug [class_header]: Header for HKHealthConceptIdentifier */
 // The class instance for the [HKHealthConceptIdentifier] class.
 var (
 	HKHealthConceptIdentifierClass     _HKHealthConceptIdentifierClass
@@ -26,36 +30,31 @@ func getHKHealthConceptIdentifierClass() _HKHealthConceptIdentifierClass {
 type _HKHealthConceptIdentifierClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKHealthConceptIdentifier */
 // An interface definition for the [HKHealthConceptIdentifier] class.
 type IHKHealthConceptIdentifier interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for HKHealthConceptIdentifier */
 	// properties:
 	Domain() HKHealthConceptDomain /* typedef */
-	SetDomain(value HKHealthConceptDomain /* typedef */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKHealthConceptIdentifier */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A unique identifier for a specific health concept within a domain.
-//
-// Each identifier points to one concept inside a domain. For example, within the medication domain, one identifier might represent ibuprofen while another represents insulin.
+/* debug [class_interface]: End interface */
 
 
-// A unique identifier for a specific health concept within a domain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier
-type HKHealthConceptIdentifier struct {
-	objectivec.Object
-}
 
-// HKHealthConceptIdentifierFrom constructs a [HKHealthConceptIdentifier] from an unsafe.Pointer.
-//
-// A unique identifier for a specific health concept within a domain.
-func HKHealthConceptIdentifierFrom(ptr unsafe.Pointer) HKHealthConceptIdentifier {
-	return HKHealthConceptIdentifier{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for HKHealthConceptIdentifier */
 // Alloc allocates a new instance without initialization.
 func (hc _HKHealthConceptIdentifierClass) Alloc() HKHealthConceptIdentifier {
 	rv := objc.Send[HKHealthConceptIdentifier](objc.ID(hc.class), objc.Sel("alloc"))
@@ -63,7 +62,6 @@ func (hc _HKHealthConceptIdentifierClass) Alloc() HKHealthConceptIdentifier {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKHealthConceptIdentifierClass) New() HKHealthConceptIdentifier {
 	rv := objc.Send[HKHealthConceptIdentifier](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,26 +84,68 @@ func (h_ HKHealthConceptIdentifier) Autorelease() HKHealthConceptIdentifier {
 func NewHKHealthConceptIdentifier() HKHealthConceptIdentifier {
 	return getHKHealthConceptIdentifierClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HKHealthConceptIdentifier */
+// A unique identifier for a specific health concept within a domain.
+//
+// Each identifier points to one concept inside a domain. For example, within the medication domain, one identifier might represent ibuprofen while another represents insulin.
+
+
+// A unique identifier for a specific health concept within a domain.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier
+type HKHealthConceptIdentifier struct {
+	objectivec.Object
+}
+
+// HKHealthConceptIdentifierFrom constructs a [HKHealthConceptIdentifier] from an unsafe.Pointer.
+//
+// A unique identifier for a specific health concept within a domain.
+func HKHealthConceptIdentifierFrom(ptr unsafe.Pointer) HKHealthConceptIdentifier {
+	return HKHealthConceptIdentifier{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKHealthConceptIdentifier *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKHealthConceptIdentifier */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKHealthConceptIdentifier */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKHealthConceptIdentifier */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKHealthConceptIdentifier */
 
 // The domain this identifier belongs to.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkhealthconceptidentifier/domain
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthConceptIdentifier/domain
 func (h_ HKHealthConceptIdentifier) Domain() HKHealthConceptDomain /* typedef */ {
-	rv := objc.Send[HKHealthConceptDomain](h_.ID, objc.Sel("domain"))
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("domain"))
 	return rv
-}
+}/* debug [instance_properties/getter]: domain */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The domain this identifier belongs to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkhealthconceptidentifier/domain
-func (h_ HKHealthConceptIdentifier) SetDomain(value HKHealthConceptDomain /* typedef */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDomain:"), value)
-}
+/* debug [class.gen.go]: End class HKHealthConceptIdentifier */
 
 
 

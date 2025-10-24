@@ -20,3 +20,4 @@ var nextInputStateProtocol *objc.Protocol
 func init() {
 	nextInputStateProtocol = objc.GetProtocol("nextInputState")
 }
+

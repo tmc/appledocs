@@ -17,3 +17,20 @@ func ExampleNewFontCollectionWithDescriptors() {
 	)
 	// Output:
 }
+// ExampleNewFontCollectionWithName demonstrates how to create a FontCollection instance using NewFontCollectionWithName.
+// Creates a named font collection object.
+func ExampleNewFontCollectionWithName() {
+	_ = appkit.NewFontCollectionWithName(
+		appkit.FontCollectionName /* typedef */{}, // name FontCollectionName /* typedef */
+	)
+	// Output:
+}
+// ExampleNewFontCollectionWithNameVisibility demonstrates how to create a FontCollection instance using NewFontCollectionWithNameVisibility.
+// Creates a font collection with the specified name and font visibility.
+func ExampleNewFontCollectionWithNameVisibility() {
+	_ = appkit.NewFontCollectionWithNameVisibility(
+		appkit.FontCollectionName /* typedef */{}, // name FontCollectionName /* typedef */
+		appkit.FontCollectionVisibility{}, // visibility FontCollectionVisibility
+	)
+	// Output:
+}

@@ -39,7 +39,6 @@ type IINAppendToNoteIntent interface {
 //
 // Siri creates an object when the user asks to append content to an existing note. The intent object contains the note to modify and the content to add to the note. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated note.
 
-
 // A request to append content to a note.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINAppendToNoteIntent() INAppendToNoteIntent {
 	return getINAppendToNoteIntentClass().New()
 }
 
-
-
 // The content to append to the note.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INAppendToNoteIntent) Content() unsafe.Pointer {
 	return rv
 }
 
-
 // The content to append to the note.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (i_ INAppendToNoteIntent) Content() unsafe.Pointer {
 func (i_ INAppendToNoteIntent) SetContent(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), value)
 }
-
 
 // The note to receive the additional content.
 //
@@ -118,7 +113,6 @@ func (i_ INAppendToNoteIntent) TargetNote() unsafe.Pointer {
 	return rv
 }
 
-
 // The note to receive the additional content.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (i_ INAppendToNoteIntent) TargetNote() unsafe.Pointer {
 func (i_ INAppendToNoteIntent) SetTargetNote(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTargetNote:"), value)
 }
-
-
-

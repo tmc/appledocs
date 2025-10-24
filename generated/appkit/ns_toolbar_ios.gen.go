@@ -5,15 +5,11 @@
 package appkit
 
 import (
-	"unsafe"
-
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for Toolbar
-
 
 // Inserts an item into the toolbar at the specified index.
 //
@@ -148,7 +144,3 @@ func (t_ Toolbar) VisibleItems() []IToolbarItem {
 	rv := objc.Send[[]ToolbarItem](t_.ID, objc.Sel("visibleItems"))
 	return rv
 }
-
-
-
-

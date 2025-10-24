@@ -7,10 +7,15 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class EAWiFiUnconfiguredAccessoryBrowser */
+
+
+/* debug [class_header]: Header for EAWiFiUnconfiguredAccessoryBrowser */
 // The class instance for the [EAWiFiUnconfiguredAccessoryBrowser] class.
 var (
 	EAWiFiUnconfiguredAccessoryBrowserClass     _EAWiFiUnconfiguredAccessoryBrowserClass
@@ -27,36 +32,30 @@ func getEAWiFiUnconfiguredAccessoryBrowserClass() _EAWiFiUnconfiguredAccessoryBr
 type _EAWiFiUnconfiguredAccessoryBrowserClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EAWiFiUnconfiguredAccessoryBrowser */
 // An interface definition for the [EAWiFiUnconfiguredAccessoryBrowser] class.
 type IEAWiFiUnconfiguredAccessoryBrowser interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for EAWiFiUnconfiguredAccessoryBrowser */
 	// properties:
-	UnconfiguredAccessories() IEAWiFiUnconfiguredAccessory
-	SetUnconfiguredAccessories(value IEAWiFiUnconfiguredAccessory)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EAWiFiUnconfiguredAccessoryBrowser */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object you use to scan for wireless accessories and configure them for use with the user’s app.
-//
-// The class gives your app access to the MFi Wireless Accessory Configuration process. You use a browser object to scan for unconfigured accessories, connect them to the user’s Wi-Fi infrastructure, and configure attributes of the accessories. An accessory is represented by an instance of .
+/* debug [class_interface]: End interface */
 
 
-// An object you use to scan for wireless accessories and configure them for use with the user’s app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser
-type EAWiFiUnconfiguredAccessoryBrowser struct {
-	objectivec.Object
-}
 
-// EAWiFiUnconfiguredAccessoryBrowserFrom constructs a [EAWiFiUnconfiguredAccessoryBrowser] from an unsafe.Pointer.
-//
-// An object you use to scan for wireless accessories and configure them for use with the user’s app.
-func EAWiFiUnconfiguredAccessoryBrowserFrom(ptr unsafe.Pointer) EAWiFiUnconfiguredAccessoryBrowser {
-	return EAWiFiUnconfiguredAccessoryBrowser{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for EAWiFiUnconfiguredAccessoryBrowser */
 // Alloc allocates a new instance without initialization.
 func (ec _EAWiFiUnconfiguredAccessoryBrowserClass) Alloc() EAWiFiUnconfiguredAccessoryBrowser {
 	rv := objc.Send[EAWiFiUnconfiguredAccessoryBrowser](objc.ID(ec.class), objc.Sel("alloc"))
@@ -64,7 +63,6 @@ func (ec _EAWiFiUnconfiguredAccessoryBrowserClass) Alloc() EAWiFiUnconfiguredAcc
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EAWiFiUnconfiguredAccessoryBrowserClass) New() EAWiFiUnconfiguredAccessoryBrowser {
 	rv := objc.Send[EAWiFiUnconfiguredAccessoryBrowser](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,25 +85,70 @@ func (e_ EAWiFiUnconfiguredAccessoryBrowser) Autorelease() EAWiFiUnconfiguredAcc
 func NewEAWiFiUnconfiguredAccessoryBrowser() EAWiFiUnconfiguredAccessoryBrowser {
 	return getEAWiFiUnconfiguredAccessoryBrowserClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The set of unconfigured accessories that have been discovered.
+/* debug [class_struct]: Struct for EAWiFiUnconfiguredAccessoryBrowser */
+// An object you use to scan for wireless accessories and configure them for use with the user’s app.
+//
+// The class gives your app access to the MFi Wireless Accessory Configuration process. You use a browser object to scan for unconfigured accessories, connect them to the user’s Wi-Fi infrastructure, and configure attributes of the accessories. An accessory is represented by an instance of .
+
+
+// An object you use to scan for wireless accessories and configure them for use with the user’s app.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowser/unconfiguredaccessories
-func (e_ EAWiFiUnconfiguredAccessoryBrowser) UnconfiguredAccessories() IEAWiFiUnconfiguredAccessory {
-	rv := objc.Send[EAWiFiUnconfiguredAccessory](e_.ID, objc.Sel("unconfiguredAccessories"))
+// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser
+type EAWiFiUnconfiguredAccessoryBrowser struct {
+	objectivec.Object
+}
+
+// EAWiFiUnconfiguredAccessoryBrowserFrom constructs a [EAWiFiUnconfiguredAccessoryBrowser] from an unsafe.Pointer.
+//
+// An object you use to scan for wireless accessories and configure them for use with the user’s app.
+func EAWiFiUnconfiguredAccessoryBrowserFrom(ptr unsafe.Pointer) EAWiFiUnconfiguredAccessoryBrowser {
+	return EAWiFiUnconfiguredAccessoryBrowser{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EAWiFiUnconfiguredAccessoryBrowser */
+
+// Creates a browser object that scans for unconfigured accessories.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessoryBrowser/init(delegate:queue:)
+func NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue(delegate unsafe.Pointer, queue unsafe.Pointer) EAWiFiUnconfiguredAccessoryBrowser {
+	instance := getEAWiFiUnconfiguredAccessoryBrowserClass().Alloc()
+	rv := objc.Send[EAWiFiUnconfiguredAccessoryBrowser](instance.ID, objc.Sel("initWithDelegate:queue:"), delegate, queue)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewEAWiFiUnconfiguredAccessoryBrowserWithDelegateQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
-// The set of unconfigured accessories that have been discovered.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessorybrowser/unconfiguredaccessories
-func (e_ EAWiFiUnconfiguredAccessoryBrowser) SetUnconfiguredAccessories(value IEAWiFiUnconfiguredAccessory) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setUnconfiguredAccessories:"), value)
-}
+
+/* debug [class_methods]: Class methods for EAWiFiUnconfiguredAccessoryBrowser */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EAWiFiUnconfiguredAccessoryBrowser */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EAWiFiUnconfiguredAccessoryBrowser */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EAWiFiUnconfiguredAccessoryBrowser */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class EAWiFiUnconfiguredAccessoryBrowser */
 
 

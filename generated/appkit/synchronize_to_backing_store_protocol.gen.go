@@ -15,3 +15,4 @@ var synchronizeToBackingStoreProtocol *objc.Protocol
 func init() {
 	synchronizeToBackingStoreProtocol = objc.GetProtocol("synchronizeToBackingStore:")
 }
+

@@ -15,3 +15,4 @@ var changeColorProtocol *objc.Protocol
 func init() {
 	changeColorProtocol = objc.GetProtocol("changeColor:")
 }
+

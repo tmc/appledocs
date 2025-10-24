@@ -15,3 +15,4 @@ var namesOfPromisedFilesDroppedAtDestinationProtocol *objc.Protocol
 func init() {
 	namesOfPromisedFilesDroppedAtDestinationProtocol = objc.GetProtocol("namesOfPromisedFilesDroppedAtDestination:")
 }
+

@@ -15,3 +15,4 @@ var AccessibilitySliderProtocol *objc.Protocol
 func init() {
 	AccessibilitySliderProtocol = objc.GetProtocol("NSAccessibilitySlider")
 }
+

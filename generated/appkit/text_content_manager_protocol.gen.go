@@ -15,3 +15,4 @@ var textContentManagerProtocol *objc.Protocol
 func init() {
 	textContentManagerProtocol = objc.GetProtocol("textContentManager:")
 }
+

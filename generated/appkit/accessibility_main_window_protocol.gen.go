@@ -15,3 +15,4 @@ var accessibilityMainWindowProtocol *objc.Protocol
 func init() {
 	accessibilityMainWindowProtocol = objc.GetProtocol("accessibilityMainWindow")
 }
+

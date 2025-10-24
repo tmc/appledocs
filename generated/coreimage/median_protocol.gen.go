@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // MedianProtocol is the CIMedian protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIMedian.
 var MedianProtocol *objc.Protocol
 
 func init() {
 	MedianProtocol = objc.GetProtocol("CIMedian")
 }
+

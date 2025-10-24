@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSImageLaplacian */
+
+
+/* debug [class_header]: Header for MPSImageLaplacian */
 // The class instance for the [ImageLaplacian] class.
 var (
 	ImageLaplacianClass     _ImageLaplacianClass
@@ -25,38 +30,32 @@ func getImageLaplacianClass() _ImageLaplacianClass {
 type _ImageLaplacianClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ImageLaplacian */
 // An interface definition for the [ImageLaplacian] class.
 type IImageLaplacian interface {
 	IUnaryImageKernel
+	
+/* debug [class_interface_properties]: Properties for ImageLaplacian */
 	// properties:
-	Bias() float32
-	SetBias(value float32)
+	Bias() objectivec.IObject
+	SetBias(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ImageLaplacian */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An optimized Laplacian filter, provided for ease of use.
-//
-// This filter uses an optimized convolution filter with a 3x3 kernel with the following weights:
+/* debug [class_interface]: End interface */
 
 
-// An optimized Laplacian filter, provided for ease of use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLaplacian
-type ImageLaplacian struct {
-	UnaryImageKernel
-}
 
-// ImageLaplacianFrom constructs a [ImageLaplacian] from an unsafe.Pointer.
-//
-// An optimized Laplacian filter, provided for ease of use.
-func ImageLaplacianFrom(ptr unsafe.Pointer) ImageLaplacian {
-	return ImageLaplacian{
-		UnaryImageKernel: UnaryImageKernelFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ImageLaplacian */
 // Alloc allocates a new instance without initialization.
 func (ic _ImageLaplacianClass) Alloc() ImageLaplacian {
 	rv := objc.Send[ImageLaplacian](objc.ID(ic.class), objc.Sel("alloc"))
@@ -64,7 +63,6 @@ func (ic _ImageLaplacianClass) Alloc() ImageLaplacian {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ImageLaplacianClass) New() ImageLaplacian {
 	rv := objc.Send[ImageLaplacian](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,26 +85,79 @@ func (i_ ImageLaplacian) Autorelease() ImageLaplacian {
 func NewImageLaplacian() ImageLaplacian {
 	return getImageLaplacianClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ImageLaplacian */
+// An optimized Laplacian filter, provided for ease of use.
+//
+// This filter uses an optimized convolution filter with a 3x3 kernel with the following weights:
+
+
+// An optimized Laplacian filter, provided for ease of use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLaplacian
+type ImageLaplacian struct {
+	UnaryImageKernel
+}
+
+// ImageLaplacianFrom constructs a [ImageLaplacian] from an unsafe.Pointer.
+//
+// An optimized Laplacian filter, provided for ease of use.
+func ImageLaplacianFrom(ptr unsafe.Pointer) ImageLaplacian {
+	return ImageLaplacian{
+		UnaryImageKernel: UnaryImageKernelFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ImageLaplacian *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ImageLaplacian */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ImageLaplacian */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ImageLaplacian */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ImageLaplacian */
 
 // The value added to a convolved pixel before it is converted back to its intended storage format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLaplacian/bias
-func (i_ ImageLaplacian) Bias() float32 {
-	rv := objc.Send[float32](i_.ID, objc.Sel("bias"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacian/1648929-bias
+func (i_ ImageLaplacian) Bias() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](i_.ID, objc.Sel("bias"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bias */
 
 
 // The value added to a convolved pixel before it is converted back to its intended storage format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageLaplacian/bias
-func (i_ ImageLaplacian) SetBias(value float32) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimagelaplacian/1648929-bias
+func (i_ ImageLaplacian) SetBias(value objectivec.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBias:"), value)
-}
+}/* debug [instance_properties/setter]: bias */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSImageLaplacian */
 
 
 

@@ -19,3 +19,4 @@ var exposureTextureProtocol *objc.Protocol
 func init() {
 	exposureTextureProtocol = objc.GetProtocol("exposureTexture")
 }
+

@@ -13,7 +13,7 @@ var _ = eventkit.NewEKRecurrenceEnd
 // Initializes and returns a count-based recurrence end with a given maximum occurrence count.
 func ExampleNewEKRecurrenceEndWithOccurrenceCount() {
 	_ = eventkit.NewEKRecurrenceEndWithOccurrenceCount(
-		0, // occurrenceCount uint
+		10, // occurrenceCount uint
 	)
 	// Output:
 }

@@ -15,3 +15,4 @@ var validateToolbarItemInWindowProtocol *objc.Protocol
 func init() {
 	validateToolbarItemInWindowProtocol = objc.GetProtocol("validateToolbarItemInWindow:")
 }
+

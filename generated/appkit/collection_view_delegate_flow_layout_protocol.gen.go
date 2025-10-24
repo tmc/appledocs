@@ -15,3 +15,4 @@ var CollectionViewDelegateFlowLayoutProtocol *objc.Protocol
 func init() {
 	CollectionViewDelegateFlowLayoutProtocol = objc.GetProtocol("NSCollectionViewDelegateFlowLayout")
 }
+

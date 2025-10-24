@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,13 +32,13 @@ type _PersistentHistoryTransactionClass struct {
 type IPersistentHistoryTransaction interface {
 	objectivec.IObject
 	// properties:
-	Author() objc.IObject /* cross-framework: NSString */
+	Author() objc.IObject   /* cross-framework: NSString */
 	BundleID() objc.IObject /* cross-framework: NSString */
 	Changes() []IPersistentHistoryChange
 	ContextName() objc.IObject /* cross-framework: NSString */
-	ProcessID() objc.IObject /* cross-framework: NSString */
-	StoreID() objc.IObject /* cross-framework: NSString */
-	Timestamp() objc.IObject /* cross-framework: Date */
+	ProcessID() objc.IObject   /* cross-framework: NSString */
+	StoreID() objc.IObject     /* cross-framework: NSString */
+	Timestamp() objc.IObject   /* cross-framework: Date */
 	SetTimestamp(value objc.IObject /* cross-framework: Date */)
 	Token() IPersistentHistoryToken
 	SetToken(value IPersistentHistoryToken)
@@ -49,7 +49,6 @@ type IPersistentHistoryTransaction interface {
 }
 
 // A set of changes in the persistent history based on a context save or batch operation.
-
 
 // A set of changes in the persistent history based on a context save or batch operation.
 //
@@ -97,8 +96,6 @@ func NewPersistentHistoryTransaction() PersistentHistoryTransaction {
 	return getPersistentHistoryTransactionClass().New()
 }
 
-
-
 // Requests an entity description using the provided context for the managed object type affected by the transaction.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func (pc _PersistentHistoryTransactionClass) EntityDescriptionWithContext(contex
 	rv := objc.Send[EntityDescription](objc.ID(pc.class), objc.Sel("entityDescriptionWithContext:"), context)
 	return rv
 }
-
 
 // The entity description of the persistent history transaction entity.
 //
@@ -136,7 +132,6 @@ func (p_ PersistentHistoryTransaction) ObjectIDNotification() objc.IObject /* cr
 	return rv
 }
 
-
 // A granular description of the context that made the persistent history change, if available.
 //
 // [Full Topic]
@@ -145,7 +140,6 @@ func (p_ PersistentHistoryTransaction) Author() objc.IObject /* cross-framework:
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("author"))
 	return rv
 }
-
 
 // The originating bundle’s identifier.
 //
@@ -156,7 +150,6 @@ func (p_ PersistentHistoryTransaction) BundleID() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The array of persistent history changes.
 //
 // [Full Topic]
@@ -165,7 +158,6 @@ func (p_ PersistentHistoryTransaction) Changes() []IPersistentHistoryChange {
 	rv := objc.Send[[]PersistentHistoryChange](p_.ID, objc.Sel("changes"))
 	return rv
 }
-
 
 // The originating context’s name.
 //
@@ -176,7 +168,6 @@ func (p_ PersistentHistoryTransaction) ContextName() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // The entity description of the persistent history transaction entity.
 //
 // [Full Topic]
@@ -185,7 +176,6 @@ func (p_ PersistentHistoryTransaction) EntityDescription() IEntityDescription {
 	rv := objc.Send[EntityDescription](p_.ID, objc.Sel("entityDescription"))
 	return rv
 }
-
 
 // A fetch request that has the persistent history transaction as the entity.
 //
@@ -196,7 +186,6 @@ func (p_ PersistentHistoryTransaction) FetchRequest() IFetchRequest {
 	return rv
 }
 
-
 // The originating process’s identifier.
 //
 // [Full Topic]
@@ -205,7 +194,6 @@ func (p_ PersistentHistoryTransaction) ProcessID() objc.IObject /* cross-framewo
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("processID"))
 	return rv
 }
-
 
 // The originating store’s identifier.
 //
@@ -216,7 +204,6 @@ func (p_ PersistentHistoryTransaction) StoreID() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The date of the persistent history change.
 //
 // [Full Topic]
@@ -226,7 +213,6 @@ func (p_ PersistentHistoryTransaction) Timestamp() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // The date of the persistent history change.
 //
 // [Full Topic]
@@ -234,7 +220,6 @@ func (p_ PersistentHistoryTransaction) Timestamp() objc.IObject /* cross-framewo
 func (p_ PersistentHistoryTransaction) SetTimestamp(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTimestamp:"), value)
 }
-
 
 // The token that represents this transaction in the persistent history.
 //
@@ -245,7 +230,6 @@ func (p_ PersistentHistoryTransaction) Token() IPersistentHistoryToken {
 	return rv
 }
 
-
 // The token that represents this transaction in the persistent history.
 //
 // [Full Topic]
@@ -253,7 +237,6 @@ func (p_ PersistentHistoryTransaction) Token() IPersistentHistoryToken {
 func (p_ PersistentHistoryTransaction) SetToken(value IPersistentHistoryToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setToken:"), value)
 }
-
 
 // The transaction’s numeric identifier.
 //
@@ -264,7 +247,6 @@ func (p_ PersistentHistoryTransaction) TransactionNumber() unsafe.Pointer {
 	return rv
 }
 
-
 // The transaction’s numeric identifier.
 //
 // [Full Topic]
@@ -272,6 +254,3 @@ func (p_ PersistentHistoryTransaction) TransactionNumber() unsafe.Pointer {
 func (p_ PersistentHistoryTransaction) SetTransactionNumber(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransactionNumber:"), value)
 }
-
-
-

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class VNPixelBufferObservation */
+
+
+/* debug [class_header]: Header for VNPixelBufferObservation */
 // The class instance for the [PixelBufferObservation] class.
 var (
 	PixelBufferObservationClass     _PixelBufferObservationClass
@@ -27,44 +31,36 @@ func getPixelBufferObservationClass() _PixelBufferObservationClass {
 type _PixelBufferObservationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PixelBufferObservation */
 // An interface definition for the [PixelBufferObservation] class.
 type IPixelBufferObservation interface {
 	IObservation
+	
+/* debug [class_interface_properties]: Properties for PixelBufferObservation */
 	// properties:
-	ModelDescription() objc.IObject /* cross-framework: ModelDescription */
-	SetModelDescription(value objc.IObject /* cross-framework: ModelDescription */)
-	OutputDescriptionsByName() objc.IObject /* cross-framework: FeatureDescription */
-	SetOutputDescriptionsByName(value objc.IObject /* cross-framework: FeatureDescription */)
 	FeatureName() objc.IObject /* cross-framework: NSString */
-	SetFeatureName(value objc.IObject /* cross-framework: NSString */)
-	PixelBuffer() PixelBuffer /* not a class type */
-	SetPixelBuffer(value PixelBuffer /* not a class type */)
+	PixelBuffer() PixelBufferRef /* not a class type */
+	ModelDescription() coreml.ModelDescription
+	SetModelDescription(value coreml.ModelDescription)
+	OutputDescriptionsByName() coreml.FeatureDescription
+	SetOutputDescriptionsByName(value coreml.FeatureDescription)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PixelBufferObservation */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents an image that an image-analysis request produces.
-//
-// This type of observation results from performing a image analysis with a Core ML model that has an image-to-image processing role. For example, this observation might result from a model that analyzes the style of one image and then transfers that style to a different image. Vision infers that an object is an image-to-image model if that model includes an image. Its object includes an image-typed feature description in its dictionary.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents an image that an image-analysis request produces.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPixelBufferObservation
-type PixelBufferObservation struct {
-	Observation
-}
 
-// PixelBufferObservationFrom constructs a [PixelBufferObservation] from an unsafe.Pointer.
-//
-// An object that represents an image that an image-analysis request produces.
-func PixelBufferObservationFrom(ptr unsafe.Pointer) PixelBufferObservation {
-	return PixelBufferObservation{
-		Observation: ObservationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for PixelBufferObservation */
 // Alloc allocates a new instance without initialization.
 func (pc _PixelBufferObservationClass) Alloc() PixelBufferObservation {
 	rv := objc.Send[PixelBufferObservation](objc.ID(pc.class), objc.Sel("alloc"))
@@ -72,7 +68,6 @@ func (pc _PixelBufferObservationClass) Alloc() PixelBufferObservation {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PixelBufferObservationClass) New() PixelBufferObservation {
 	rv := objc.Send[PixelBufferObservation](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,83 +90,118 @@ func (p_ PixelBufferObservation) Autorelease() PixelBufferObservation {
 func NewPixelBufferObservation() PixelBufferObservation {
 	return getPixelBufferObservationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+/* debug [class_struct]: Struct for PixelBufferObservation */
+// An object that represents an image that an image-analysis request produces.
+//
+// This type of observation results from performing a image analysis with a Core ML model that has an image-to-image processing role. For example, this observation might result from a model that analyzes the style of one image and then transfers that style to a different image. Vision infers that an object is an image-to-image model if that model includes an image. Its object includes an image-typed feature description in its dictionary.
+
+
+// An object that represents an image that an image-analysis request produces.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (p_ PixelBufferObservation) ModelDescription() objc.IObject /* cross-framework: ModelDescription */ {
-	rv := objc.Send[coreml.ModelDescription](p_.ID, objc.Sel("modelDescription"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPixelBufferObservation
+type PixelBufferObservation struct {
+	Observation
 }
 
-
-// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+// PixelBufferObservationFrom constructs a [PixelBufferObservation] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
-func (p_ PixelBufferObservation) SetModelDescription(value objc.IObject /* cross-framework: ModelDescription */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setModelDescription:"), value)
+// An object that represents an image that an image-analysis request produces.
+func PixelBufferObservationFrom(ptr unsafe.Pointer) PixelBufferObservation {
+	return PixelBufferObservation{
+		Observation: ObservationFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// A dictionary of output feature descriptions, which the model keys by the output’s name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (p_ PixelBufferObservation) OutputDescriptionsByName() objc.IObject /* cross-framework: FeatureDescription */ {
-	rv := objc.Send[coreml.FeatureDescription](p_.ID, objc.Sel("outputDescriptionsByName"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for PixelBufferObservation *//* debug [class_init_methods]: End init methods */
 
 
-// A dictionary of output feature descriptions, which the model keys by the output’s name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
-func (p_ PixelBufferObservation) SetOutputDescriptionsByName(value objc.IObject /* cross-framework: FeatureDescription */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputDescriptionsByName:"), value)
-}
 
+/* debug [class_methods]: Class methods for PixelBufferObservation */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PixelBufferObservation */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PixelBufferObservation */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PixelBufferObservation */
 
 // A feature name that the CoreML model defines.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/featurename
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPixelBufferObservation/featureName
 func (p_ PixelBufferObservation) FeatureName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("featureName"))
 	return rv
-}
-
-
-// A feature name that the CoreML model defines.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/featurename
-func (p_ PixelBufferObservation) SetFeatureName(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setFeatureName:"), value)
-}
+}/* debug [instance_properties/getter]: featureName */
 
 
 // The image that results from a request with image output.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/pixelbuffer
-func (p_ PixelBufferObservation) PixelBuffer() PixelBuffer /* not a class type */ {
-	rv := objc.Send[PixelBuffer](p_.ID, objc.Sel("pixelBuffer"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNPixelBufferObservation/pixelBuffer
+func (p_ PixelBufferObservation) PixelBuffer() PixelBufferRef /* not a class type */ {
+	rv := objc.Send[PixelBufferRef](p_.ID, objc.Sel("pixelBuffer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pixelBuffer */
 
 
-// The image that results from a request with image output.
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnpixelbufferobservation/pixelbuffer
-func (p_ PixelBufferObservation) SetPixelBuffer(value PixelBuffer /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelBuffer:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (p_ PixelBufferObservation) ModelDescription() coreml.ModelDescription {
+	rv := objc.Send[coreml.ModelDescription](p_.ID, objc.Sel("modelDescription"))
+	return rv
+}/* debug [instance_properties/getter]: modelDescription */
+
+
+// Model information you use at runtime during development, which Xcode also displays in its Core ML model editor view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModel/modelDescription
+func (p_ PixelBufferObservation) SetModelDescription(value coreml.ModelDescription) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setModelDescription:"), value)
+}/* debug [instance_properties/setter]: modelDescription */
+
+
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
+func (p_ PixelBufferObservation) OutputDescriptionsByName() coreml.FeatureDescription {
+	rv := objc.Send[coreml.FeatureDescription](p_.ID, objc.Sel("outputDescriptionsByName"))
+	return rv
+}/* debug [instance_properties/getter]: outputDescriptionsByName */
+
+
+// A dictionary of output feature descriptions, which the model keys by the output’s name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelDescription/outputDescriptionsByName
+func (p_ PixelBufferObservation) SetOutputDescriptionsByName(value coreml.FeatureDescription) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOutputDescriptionsByName:"), value)
+}/* debug [instance_properties/setter]: outputDescriptionsByName */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class VNPixelBufferObservation */
 
 
 

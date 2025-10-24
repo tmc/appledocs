@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentHistoryChangeRequest] class.
@@ -41,7 +40,6 @@ type IPersistentHistoryChangeRequest interface {
 }
 
 // A request to fetch or purge persistent history.
-
 
 // A request to fetch or purge persistent history.
 //
@@ -91,8 +89,6 @@ func NewPersistentHistoryChangeRequest() PersistentHistoryChangeRequest {
 	return getPersistentHistoryChangeRequestClass().New()
 }
 
-
-
 // Purges history older than that defined by a given token.
 //
 // [Full Topic]
@@ -101,7 +97,6 @@ func (pc _PersistentHistoryChangeRequestClass) DeleteHistoryBeforeToken(token IP
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("deleteHistoryBeforeToken:"), token)
 	return rv
 }
-
 
 // Retrieves the request history after a given token.
 //
@@ -112,7 +107,6 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterToken(token IPer
 	return rv
 }
 
-
 // Retrieves history since a given date.
 //
 // [Full Topic]
@@ -121,7 +115,6 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryAfterDate(date objc.I
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchHistoryAfterDate:"), date)
 	return rv
 }
-
 
 // Retrieves history based on a fetch request.
 //
@@ -132,7 +125,6 @@ func (pc _PersistentHistoryChangeRequestClass) FetchHistoryWithFetchRequest(fetc
 	return rv
 }
 
-
 // The specified fetch request, when retrieving history.
 //
 // [Full Topic]
@@ -142,7 +134,6 @@ func (p_ PersistentHistoryChangeRequest) FetchRequest() IFetchRequest {
 	return rv
 }
 
-
 // The specified fetch request, when retrieving history.
 //
 // [Full Topic]
@@ -150,7 +141,6 @@ func (p_ PersistentHistoryChangeRequest) FetchRequest() IFetchRequest {
 func (p_ PersistentHistoryChangeRequest) SetFetchRequest(value IFetchRequest) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setFetchRequest:"), value)
 }
-
 
 // The type of result that this request returns.
 //
@@ -161,7 +151,6 @@ func (p_ PersistentHistoryChangeRequest) ResultType() PersistentHistoryResultTyp
 	return rv
 }
 
-
 // The type of result that this request returns.
 //
 // [Full Topic]
@@ -169,7 +158,6 @@ func (p_ PersistentHistoryChangeRequest) ResultType() PersistentHistoryResultTyp
 func (p_ PersistentHistoryChangeRequest) SetResultType(value PersistentHistoryResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
-
 
 // The specified token, when retrieving history defined by a token.
 //
@@ -180,7 +168,6 @@ func (p_ PersistentHistoryChangeRequest) Token() IPersistentHistoryToken {
 	return rv
 }
 
-
 // The specified token, when retrieving history defined by a token.
 //
 // [Full Topic]
@@ -188,6 +175,3 @@ func (p_ PersistentHistoryChangeRequest) Token() IPersistentHistoryToken {
 func (p_ PersistentHistoryChangeRequest) SetToken(value IPersistentHistoryToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setToken:"), value)
 }
-
-
-

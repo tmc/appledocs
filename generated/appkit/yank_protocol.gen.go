@@ -15,3 +15,4 @@ var yankProtocol *objc.Protocol
 func init() {
 	yankProtocol = objc.GetProtocol("yank:")
 }
+

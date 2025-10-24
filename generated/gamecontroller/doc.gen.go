@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for GameController. DO NOT EDIT.
 
 // Package gamecontroller provides Go bindings for the GameController framework.
 //
-// Support hardware game controllers in your game.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GameController without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/GameController
 package gamecontroller
 
 import (

@@ -15,3 +15,4 @@ var AuthorizationProviderExtensionRegistrationHandlerProtocol *objc.Protocol
 func init() {
 	AuthorizationProviderExtensionRegistrationHandlerProtocol = objc.GetProtocol("ASAuthorizationProviderExtensionRegistrationHandler")
 }
+

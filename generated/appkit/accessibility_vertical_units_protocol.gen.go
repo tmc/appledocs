@@ -15,3 +15,4 @@ var accessibilityVerticalUnitsProtocol *objc.Protocol
 func init() {
 	accessibilityVerticalUnitsProtocol = objc.GetProtocol("accessibilityVerticalUnits")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +36,6 @@ type IMTRBridgedDeviceBasicInformationClusterStartUpEvent interface {
 	SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicInformationClusterStartUpEvent
@@ -81,8 +79,6 @@ func NewMTRBridgedDeviceBasicInformationClusterStartUpEvent() MTRBridgedDeviceBa
 	return getMTRBridgedDeviceBasicInformationClusterStartUpEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterstartupevent/softwareversion
 func (m_ MTRBridgedDeviceBasicInformationClusterStartUpEvent) SoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
@@ -90,12 +86,8 @@ func (m_ MTRBridgedDeviceBasicInformationClusterStartUpEvent) SoftwareVersion() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicinformationclusterstartupevent/softwareversion
 func (m_ MTRBridgedDeviceBasicInformationClusterStartUpEvent) SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
-
-
-

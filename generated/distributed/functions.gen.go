@@ -2,10 +2,10 @@
 
 package distributed
 
+/* debug [functions.gen.go]: Generating 0 functions for Distributed */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // Distributed Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

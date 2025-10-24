@@ -8,8 +8,13 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CNContactFetchRequest */
+
+
+/* debug [class_header]: Header for CNContactFetchRequest */
 // The class instance for the [CNContactFetchRequest] class.
 var (
 	CNContactFetchRequestClass     _CNContactFetchRequestClass
@@ -26,46 +31,40 @@ func getCNContactFetchRequestClass() _CNContactFetchRequestClass {
 type _CNContactFetchRequestClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNContactFetchRequest */
 // An interface definition for the [CNContactFetchRequest] class.
 type ICNContactFetchRequest interface {
 	ICNFetchRequest
+	
+/* debug [class_interface_properties]: Properties for CNContactFetchRequest */
 	// properties:
 	KeysToFetch() []objc.ID
 	SetKeysToFetch(value []objc.ID)
 	MutableObjects() bool
 	SetMutableObjects(value bool)
-	Predicate() objc.IObject /* cross-framework: Predicate */
-	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
+	Predicate() foundation.Predicate
+	SetPredicate(value foundation.Predicate)
 	SortOrder() CNContactSortOrder
 	SetSortOrder(value CNContactSortOrder)
 	UnifyResults() bool
 	SetUnifyResults(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNContactFetchRequest */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that defines the options to use when fetching contacts.
-//
-// You need at least one contact property key to fetch a contact’s properties. Use this class with the method to execute the contact fetch request.
+/* debug [class_interface]: End interface */
 
 
-// An object that defines the options to use when fetching contacts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest
-type CNContactFetchRequest struct {
-	CNFetchRequest
-}
 
-// CNContactFetchRequestFrom constructs a [CNContactFetchRequest] from an unsafe.Pointer.
-//
-// An object that defines the options to use when fetching contacts.
-func CNContactFetchRequestFrom(ptr unsafe.Pointer) CNContactFetchRequest {
-	return CNContactFetchRequest{
-		CNFetchRequest: CNFetchRequestFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CNContactFetchRequest */
 // Alloc allocates a new instance without initialization.
 func (cc _CNContactFetchRequestClass) Alloc() CNContactFetchRequest {
 	rv := objc.Send[CNContactFetchRequest](objc.ID(cc.class), objc.Sel("alloc"))
@@ -73,7 +72,6 @@ func (cc _CNContactFetchRequestClass) Alloc() CNContactFetchRequest {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNContactFetchRequestClass) New() CNContactFetchRequest {
 	rv := objc.Send[CNContactFetchRequest](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -96,8 +94,37 @@ func (c_ CNContactFetchRequest) Autorelease() CNContactFetchRequest {
 func NewCNContactFetchRequest() CNContactFetchRequest {
 	return getCNContactFetchRequestClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CNContactFetchRequest */
+// An object that defines the options to use when fetching contacts.
+//
+// You need at least one contact property key to fetch a contact’s properties. Use this class with the method to execute the contact fetch request.
+
+
+// An object that defines the options to use when fetching contacts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest
+type CNContactFetchRequest struct {
+	CNFetchRequest
+}
+
+// CNContactFetchRequestFrom constructs a [CNContactFetchRequest] from an unsafe.Pointer.
+//
+// An object that defines the options to use when fetching contacts.
+func CNContactFetchRequestFrom(ptr unsafe.Pointer) CNContactFetchRequest {
+	return CNContactFetchRequest{
+		CNFetchRequest: CNFetchRequestFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CNContactFetchRequest */
 
 // Creates a fetch request for the specified keys.
 //
@@ -108,9 +135,28 @@ func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID) CNContactFet
 	rv := objc.Send[CNContactFetchRequest](instance.ID, objc.Sel("initWithKeysToFetch:"), keysToFetch)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCNContactFetchRequestWithKeysToFetch */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for CNContactFetchRequest */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNContactFetchRequest */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNContactFetchRequest */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNContactFetchRequest */
 
 // The properties to fetch in the returned contacts.
 //
@@ -119,7 +165,7 @@ func NewCNContactFetchRequestWithKeysToFetch(keysToFetch []objc.ID) CNContactFet
 func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("keysToFetch"))
 	return rv
-}
+}/* debug [instance_properties/getter]: keysToFetch */
 
 
 // The properties to fetch in the returned contacts.
@@ -127,7 +173,6 @@ func (c_ CNContactFetchRequest) KeysToFetch() []objc.ID {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/keysToFetch
 func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
-	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
 		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
@@ -138,7 +183,7 @@ func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](c_.ID, objc.Sel("setKeysToFetch:"), nsArray)
-}
+}/* debug [instance_properties/setter]: keysToFetch */
 
 
 // A Boolean value that indicates whether to return mutable contacts.
@@ -148,7 +193,7 @@ func (c_ CNContactFetchRequest) SetKeysToFetch(value []objc.ID) {
 func (c_ CNContactFetchRequest) MutableObjects() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("mutableObjects"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mutableObjects */
 
 
 // A Boolean value that indicates whether to return mutable contacts.
@@ -157,26 +202,26 @@ func (c_ CNContactFetchRequest) MutableObjects() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/mutableObjects
 func (c_ CNContactFetchRequest) SetMutableObjects(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMutableObjects:"), value)
-}
+}/* debug [instance_properties/setter]: mutableObjects */
 
 
 // The predicate to match contacts against.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
-func (c_ CNContactFetchRequest) Predicate() objc.IObject /* cross-framework: Predicate */ {
+func (c_ CNContactFetchRequest) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: predicate */
 
 
 // The predicate to match contacts against.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/predicate
-func (c_ CNContactFetchRequest) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
+func (c_ CNContactFetchRequest) SetPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
-}
+}/* debug [instance_properties/setter]: predicate */
 
 
 // The sort order for contacts.
@@ -186,7 +231,7 @@ func (c_ CNContactFetchRequest) SetPredicate(value objc.IObject /* cross-framewo
 func (c_ CNContactFetchRequest) SortOrder() CNContactSortOrder {
 	rv := objc.Send[CNContactSortOrder](c_.ID, objc.Sel("sortOrder"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sortOrder */
 
 
 // The sort order for contacts.
@@ -195,7 +240,7 @@ func (c_ CNContactFetchRequest) SortOrder() CNContactSortOrder {
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/sortOrder
 func (c_ CNContactFetchRequest) SetSortOrder(value CNContactSortOrder) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortOrder:"), value)
-}
+}/* debug [instance_properties/setter]: sortOrder */
 
 
 // A Boolean value that indicates whether to return linked contacts as unified contacts.
@@ -205,7 +250,7 @@ func (c_ CNContactFetchRequest) SetSortOrder(value CNContactSortOrder) {
 func (c_ CNContactFetchRequest) UnifyResults() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("unifyResults"))
 	return rv
-}
+}/* debug [instance_properties/getter]: unifyResults */
 
 
 // A Boolean value that indicates whether to return linked contacts as unified contacts.
@@ -214,6 +259,11 @@ func (c_ CNContactFetchRequest) UnifyResults() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactFetchRequest/unifyResults
 func (c_ CNContactFetchRequest) SetUnifyResults(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUnifyResults:"), value)
-}
+}/* debug [instance_properties/setter]: unifyResults */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CNContactFetchRequest */
 
 

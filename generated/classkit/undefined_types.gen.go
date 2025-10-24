@@ -10,7 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	ImageRef = _undefined // referenced in ClassKit
-	Kind = _undefined // referenced in ClassKit
 )
 
 

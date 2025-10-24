@@ -15,3 +15,4 @@ var SharingServicePickerDelegateProtocol *objc.Protocol
 func init() {
 	SharingServicePickerDelegateProtocol = objc.GetProtocol("NSSharingServicePickerDelegate")
 }
+

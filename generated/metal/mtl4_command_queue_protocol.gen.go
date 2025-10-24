@@ -4,19 +4,20 @@ package metal
 
 import "github.com/ebitengine/purego/objc"
 
-// MTL4CommandQueueProtocol is the MTL4CommandQueue protocol.
+// mtl4CommandQueueProtocol is the mtl4CommandQueue protocol.
 //
 // Availability:
-//   - Mac Catalyst 26.0+
-//   - iOS 26.0+
-//   - iPadOS 26.0+
-//   - macOS 26.0+
-//   - tvOS 26.0+
-//   - visionOS 26.0+
+//   - Mac Catalyst 13.1+
+//   - iOS 11.0+
+//   - iPadOS 11.0+
+//   - macOS 10.13+
+//   - tvOS 11.0+
+//   - visionOS 1.0+
 //
-// Use this protocol when registering custom classes that conform to MTL4CommandQueue.
-var MTL4CommandQueueProtocol *objc.Protocol
+// Use this protocol when registering custom classes that conform to mtl4CommandQueue.
+var mtl4CommandQueueProtocol *objc.Protocol
 
 func init() {
-	MTL4CommandQueueProtocol = objc.GetProtocol("MTL4CommandQueue")
+	mtl4CommandQueueProtocol = objc.GetProtocol("mtl4CommandQueue")
 }
+

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class DDMatch */
+
+
+/* debug [class_header]: Header for DDMatch */
 // The class instance for the [DDMatch] class.
 var (
 	DDMatchClass     _DDMatchClass
@@ -27,35 +31,31 @@ func getDDMatchClass() _DDMatchClass {
 type _DDMatchClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DDMatch */
 // An interface definition for the [DDMatch] class.
 type IDDMatch interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for DDMatch */
 	// properties:
 	MatchedString() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DDMatch */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A base class for common types of data that the data detection system matches.
-//
-// The DataDetection framework returns results in objects that are subclasses of , which are specific to the type of matching data. Each object contains the matched string.
+/* debug [class_interface]: End interface */
 
 
-// A base class for common types of data that the data detection system matches.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch
-type DDMatch struct {
-	objectivec.Object
-}
 
-// DDMatchFrom constructs a [DDMatch] from an unsafe.Pointer.
-//
-// A base class for common types of data that the data detection system matches.
-func DDMatchFrom(ptr unsafe.Pointer) DDMatch {
-	return DDMatch{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for DDMatch */
 // Alloc allocates a new instance without initialization.
 func (dc _DDMatchClass) Alloc() DDMatch {
 	rv := objc.Send[DDMatch](objc.ID(dc.class), objc.Sel("alloc"))
@@ -63,7 +63,6 @@ func (dc _DDMatchClass) Alloc() DDMatch {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DDMatchClass) New() DDMatch {
 	rv := objc.Send[DDMatch](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,8 +85,54 @@ func (d_ DDMatch) Autorelease() DDMatch {
 func NewDDMatch() DDMatch {
 	return getDDMatchClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for DDMatch */
+// A base class for common types of data that the data detection system matches.
+//
+// The DataDetection framework returns results in objects that are subclasses of , which are specific to the type of matching data. Each object contains the matched string.
+
+
+// A base class for common types of data that the data detection system matches.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatch
+type DDMatch struct {
+	objectivec.Object
+}
+
+// DDMatchFrom constructs a [DDMatch] from an unsafe.Pointer.
+//
+// A base class for common types of data that the data detection system matches.
+func DDMatchFrom(ptr unsafe.Pointer) DDMatch {
+	return DDMatch{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DDMatch *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for DDMatch */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DDMatch */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DDMatch */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DDMatch */
 
 // A substring that the data detection system identifies from an original string as a common type of data.
 //
@@ -96,7 +141,12 @@ func NewDDMatch() DDMatch {
 func (d_ DDMatch) MatchedString() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("matchedString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: matchedString */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class DDMatch */
 
 
 

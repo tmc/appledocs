@@ -55,7 +55,6 @@ type IMigrationManager interface {
 
 // A migration manager instance that performs a migration of data from one persistent store to another using a given mapping model.
 
-
 // A migration manager instance that performs a migration of data from one persistent store to another using a given mapping model.
 //
 // [Full Topic]
@@ -102,8 +101,6 @@ func NewMigrationManager() MigrationManager {
 	return getMigrationManagerClass().New()
 }
 
-
-
 // Returns the entity description for the destination entity of a given entity mapping.
 //
 // [Full Topic]
@@ -112,7 +109,6 @@ func (m_ MigrationManager) DestinationEntityForEntityMapping(mEntity IEntityMapp
 	rv := objc.Send[EntityDescription](m_.ID, objc.Sel("destinationEntityForEntityMapping:"), mEntity)
 	return rv
 }
-
 
 // The entity mapping currently being processed.
 //
@@ -123,7 +119,6 @@ func (m_ MigrationManager) CurrentEntityMapping() IEntityMapping {
 	return rv
 }
 
-
 // The entity mapping currently being processed.
 //
 // [Full Topic]
@@ -131,7 +126,6 @@ func (m_ MigrationManager) CurrentEntityMapping() IEntityMapping {
 func (m_ MigrationManager) SetCurrentEntityMapping(value IEntityMapping) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrentEntityMapping:"), value)
 }
-
 
 // The managed object context the migration manager uses for writing the destination persistent store.
 //
@@ -142,7 +136,6 @@ func (m_ MigrationManager) DestinationContext() IManagedObjectContext {
 	return rv
 }
 
-
 // The managed object context the migration manager uses for writing the destination persistent store.
 //
 // [Full Topic]
@@ -150,7 +143,6 @@ func (m_ MigrationManager) DestinationContext() IManagedObjectContext {
 func (m_ MigrationManager) SetDestinationContext(value IManagedObjectContext) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDestinationContext:"), value)
 }
-
 
 // The destination model for the migration manager.
 //
@@ -161,7 +153,6 @@ func (m_ MigrationManager) DestinationModel() IManagedObjectModel {
 	return rv
 }
 
-
 // The destination model for the migration manager.
 //
 // [Full Topic]
@@ -169,7 +160,6 @@ func (m_ MigrationManager) DestinationModel() IManagedObjectModel {
 func (m_ MigrationManager) SetDestinationModel(value IManagedObjectModel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDestinationModel:"), value)
 }
-
 
 // The mapping model for the migration manager.
 //
@@ -180,7 +170,6 @@ func (m_ MigrationManager) MappingModel() IMappingModel {
 	return rv
 }
 
-
 // The mapping model for the migration manager.
 //
 // [Full Topic]
@@ -188,7 +177,6 @@ func (m_ MigrationManager) MappingModel() IMappingModel {
 func (m_ MigrationManager) SetMappingModel(value IMappingModel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMappingModel:"), value)
 }
-
 
 // A number between
 //
@@ -199,7 +187,6 @@ func (m_ MigrationManager) MigrationProgress() float32 {
 	return rv
 }
 
-
 // A number between
 //
 // [Full Topic]
@@ -207,7 +194,6 @@ func (m_ MigrationManager) MigrationProgress() float32 {
 func (m_ MigrationManager) SetMigrationProgress(value float32) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMigrationProgress:"), value)
 }
-
 
 // The managed object context the migration manager uses for reading the source persistent store.
 //
@@ -218,7 +204,6 @@ func (m_ MigrationManager) SourceContext() IManagedObjectContext {
 	return rv
 }
 
-
 // The managed object context the migration manager uses for reading the source persistent store.
 //
 // [Full Topic]
@@ -226,7 +211,6 @@ func (m_ MigrationManager) SourceContext() IManagedObjectContext {
 func (m_ MigrationManager) SetSourceContext(value IManagedObjectContext) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceContext:"), value)
 }
-
 
 // The source model for the migration manager.
 //
@@ -237,7 +221,6 @@ func (m_ MigrationManager) SourceModel() IManagedObjectModel {
 	return rv
 }
 
-
 // The source model for the migration manager.
 //
 // [Full Topic]
@@ -245,7 +228,6 @@ func (m_ MigrationManager) SourceModel() IManagedObjectModel {
 func (m_ MigrationManager) SetSourceModel(value IManagedObjectModel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSourceModel:"), value)
 }
-
 
 // The user info for the migration manager.
 //
@@ -256,7 +238,6 @@ func (m_ MigrationManager) UserInfo() unsafe.Pointer {
 	return rv
 }
 
-
 // The user info for the migration manager.
 //
 // [Full Topic]
@@ -264,7 +245,6 @@ func (m_ MigrationManager) UserInfo() unsafe.Pointer {
 func (m_ MigrationManager) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUserInfo:"), value)
 }
-
 
 // A Boolean value that indicates whether the migration manager tries to use a store specific migration manager to perform the migration.
 //
@@ -275,7 +255,6 @@ func (m_ MigrationManager) UsesStoreSpecificMigrationManager() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the migration manager tries to use a store specific migration manager to perform the migration.
 //
 // [Full Topic]
@@ -283,6 +262,3 @@ func (m_ MigrationManager) UsesStoreSpecificMigrationManager() bool {
 func (m_ MigrationManager) SetUsesStoreSpecificMigrationManager(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUsesStoreSpecificMigrationManager:"), value)
 }
-
-
-

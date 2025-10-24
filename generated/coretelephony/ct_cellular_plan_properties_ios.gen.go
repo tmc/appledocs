@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -40,6 +39,18 @@ func (c_ CellularPlanProperties) SimCapability() CellularPlanCapability {
 }
 func (c_ CellularPlanProperties) SetSimCapability(value CellularPlanCapability) {
 	c_.ID.Send(objc.RegisterName("setSimCapability:"), value)
+}
+
+// The available regions that your eSIM supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties/supportedRegionCodes-5elox
+func (c_ CellularPlanProperties) SupportedRegionCodes() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("supportedRegionCodes"))
+	return rv
+}
+func (c_ CellularPlanProperties) SetSupportedRegionCodes(value []string) {
+	c_.ID.Send(objc.RegisterName("setSupportedRegionCodes:"), value)
 }
 
 

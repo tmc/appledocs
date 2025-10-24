@@ -20,3 +20,4 @@ var mapPhysicalToScreenCoordinatesProtocol *objc.Protocol
 func init() {
 	mapPhysicalToScreenCoordinatesProtocol = objc.GetProtocol("mapPhysicalToScreenCoordinates:")
 }
+

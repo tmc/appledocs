@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class IOBluetoothSDPServiceAttribute */
+
+
+/* debug [class_header]: Header for IOBluetoothSDPServiceAttribute */
 // The class instance for the [BluetoothSDPServiceAttribute] class.
 var (
 	BluetoothSDPServiceAttributeClass     _BluetoothSDPServiceAttributeClass
@@ -27,37 +31,33 @@ func getBluetoothSDPServiceAttributeClass() _BluetoothSDPServiceAttributeClass {
 type _BluetoothSDPServiceAttributeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for BluetoothSDPServiceAttribute */
 // An interface definition for the [BluetoothSDPServiceAttribute] class.
 type IBluetoothSDPServiceAttribute interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for BluetoothSDPServiceAttribute */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for BluetoothSDPServiceAttribute */
 	// methods:
 	GetDataElement() IBluetoothSDPDataElement
 	GetAttributeID() BluetoothSDPServiceAttributeID /* typedef */
 	GetIDDataElement() IBluetoothSDPDataElement
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// IOBluetoothSDPServiceAttribute represents a single SDP service attribute.
-//
-// A service attribute contains two components: an attribute ID and a data element.
+/* debug [class_interface]: End interface */
 
 
-// IOBluetoothSDPServiceAttribute represents a single SDP service attribute.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute
-type BluetoothSDPServiceAttribute struct {
-	objectivec.Object
-}
 
-// BluetoothSDPServiceAttributeFrom constructs a [BluetoothSDPServiceAttribute] from an unsafe.Pointer.
-//
-// IOBluetoothSDPServiceAttribute represents a single SDP service attribute.
-func BluetoothSDPServiceAttributeFrom(ptr unsafe.Pointer) BluetoothSDPServiceAttribute {
-	return BluetoothSDPServiceAttribute{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for BluetoothSDPServiceAttribute */
 // Alloc allocates a new instance without initialization.
 func (bc _BluetoothSDPServiceAttributeClass) Alloc() BluetoothSDPServiceAttribute {
 	rv := objc.Send[BluetoothSDPServiceAttribute](objc.ID(bc.class), objc.Sel("alloc"))
@@ -65,7 +65,6 @@ func (bc _BluetoothSDPServiceAttributeClass) Alloc() BluetoothSDPServiceAttribut
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BluetoothSDPServiceAttributeClass) New() BluetoothSDPServiceAttribute {
 	rv := objc.Send[BluetoothSDPServiceAttribute](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +87,35 @@ func (b_ BluetoothSDPServiceAttribute) Autorelease() BluetoothSDPServiceAttribut
 func NewBluetoothSDPServiceAttribute() BluetoothSDPServiceAttribute {
 	return getBluetoothSDPServiceAttributeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for BluetoothSDPServiceAttribute */
+// IOBluetoothSDPServiceAttribute represents a single SDP service attribute.
+//
+// A service attribute contains two components: an attribute ID and a data element.
+
+
+// IOBluetoothSDPServiceAttribute represents a single SDP service attribute.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute
+type BluetoothSDPServiceAttribute struct {
+	objectivec.Object
+}
+
+// BluetoothSDPServiceAttributeFrom constructs a [BluetoothSDPServiceAttribute] from an unsafe.Pointer.
+//
+// IOBluetoothSDPServiceAttribute represents a single SDP service attribute.
+func BluetoothSDPServiceAttributeFrom(ptr unsafe.Pointer) BluetoothSDPServiceAttribute {
+	return BluetoothSDPServiceAttribute{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for BluetoothSDPServiceAttribute */
 
 // Initializes a new service attribute with the given ID and data element.
 //
@@ -100,7 +126,7 @@ func NewBluetoothSDPServiceAttributeWithIDAttributeElement(newAttributeID Blueto
 	rv := objc.Send[BluetoothSDPServiceAttribute](instance.ID, objc.Sel("initWithID:attributeElement:"), newAttributeID, attributeElement)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBluetoothSDPServiceAttributeWithIDAttributeElement */
 
 
 // Initializes a new service attribute with the given ID and element value.
@@ -112,9 +138,13 @@ func NewBluetoothSDPServiceAttributeWithIDAttributeElementValue(newAttributeID B
 	rv := objc.Send[BluetoothSDPServiceAttribute](instance.ID, objc.Sel("initWithID:attributeElementValue:"), newAttributeID, attributeElementValue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBluetoothSDPServiceAttributeWithIDAttributeElementValue */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for BluetoothSDPServiceAttribute */
 
 // Creates a new service attribute with the given ID and data element.
 //
@@ -123,7 +153,7 @@ func NewBluetoothSDPServiceAttributeWithIDAttributeElementValue(newAttributeID B
 func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElement(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElement IOBluetoothSDPDataElement) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withID:attributeElement:"), newAttributeID, attributeElement)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=WithIDAttributeElement) */
 
 
 // Creates a new service attribute with the given ID and element value.
@@ -133,8 +163,18 @@ func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElement(newAttribute
 func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElementValue(newAttributeID BluetoothSDPServiceAttributeID /* typedef */, attributeElementValue objc.IObject /* cross-framework: NSObject */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withID:attributeElementValue:"), newAttributeID, attributeElementValue)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=WithIDAttributeElementValue) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for BluetoothSDPServiceAttribute */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for BluetoothSDPServiceAttribute */
 
 // Returns the data element for the target service attribute.
 //
@@ -143,7 +183,7 @@ func (bc _BluetoothSDPServiceAttributeClass) WithIDAttributeElementValue(newAttr
 func (b_ BluetoothSDPServiceAttribute) GetDataElement() IBluetoothSDPDataElement {
 	rv := objc.Send[BluetoothSDPDataElement](b_.ID, objc.Sel("getDataElement"))
 	return rv
-}
+}/* debug [instance_methods/method]: GetDataElement */
 
 
 // Returns the attribute ID for the target service attribute.
@@ -151,9 +191,9 @@ func (b_ BluetoothSDPServiceAttribute) GetDataElement() IBluetoothSDPDataElement
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceAttribute/getID()
 func (b_ BluetoothSDPServiceAttribute) GetAttributeID() BluetoothSDPServiceAttributeID /* typedef */ {
-	rv := objc.Send[BluetoothSDPServiceAttributeID](b_.ID, objc.Sel("getAttributeID"))
+	rv := objc.Send[uint16](b_.ID, objc.Sel("getAttributeID"))
 	return rv
-}
+}/* debug [instance_methods/method]: GetAttributeID */
 
 
 // Returns the data element representing the attribute ID for the target service attribute.
@@ -163,6 +203,16 @@ func (b_ BluetoothSDPServiceAttribute) GetAttributeID() BluetoothSDPServiceAttri
 func (b_ BluetoothSDPServiceAttribute) GetIDDataElement() IBluetoothSDPDataElement {
 	rv := objc.Send[BluetoothSDPDataElement](b_.ID, objc.Sel("getIDDataElement"))
 	return rv
-}
+}/* debug [instance_methods/method]: GetIDDataElement */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for BluetoothSDPServiceAttribute */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class IOBluetoothSDPServiceAttribute */
 
 

@@ -15,3 +15,4 @@ var validateUserInterfaceItemProtocol *objc.Protocol
 func init() {
 	validateUserInterfaceItemProtocol = objc.GetProtocol("validateUserInterfaceItem:")
 }
+

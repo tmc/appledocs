@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for DeviceManagement. DO NOT EDIT.
 
 // Package devicemanagement provides Go bindings for the DeviceManagement framework.
 //
-// Manage your organization’s devices remotely.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DeviceManagement without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/DeviceManagement
 package devicemanagement
 
 import (

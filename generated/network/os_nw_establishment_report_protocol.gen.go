@@ -21,3 +21,4 @@ var OS_nw_establishment_reportProtocol *objc.Protocol
 func init() {
 	OS_nw_establishment_reportProtocol = objc.GetProtocol("OS_nw_establishment_report")
 }
+

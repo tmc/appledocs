@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INPlayMediaIntent] class.
@@ -49,7 +48,6 @@ type IINPlayMediaIntent interface {
 // An intent that contains information about media playable from your app.
 //
 // Use to donate songs, movies, and other media the user plays in your app, or to recommend upcoming media, such as new TV shows or podcast episodes. The system uses these donations to offer the user relevant search results and suggestions. supports playing audio in the background. See for more information about supporting background audio in your app.
-
 
 // An intent that contains information about media playable from your app.
 //
@@ -99,8 +97,6 @@ func NewINPlayMediaIntent() INPlayMediaIntent {
 	return getINPlayMediaIntentClass().New()
 }
 
-
-
 // The media item container.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (i_ INPlayMediaIntent) MediaContainer() INMediaItem {
 	return rv
 }
 
-
 // The media item container.
 //
 // [Full Topic]
@@ -118,7 +113,6 @@ func (i_ INPlayMediaIntent) MediaContainer() INMediaItem {
 func (i_ INPlayMediaIntent) SetMediaContainer(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaContainer:"), value)
 }
-
 
 // The media content.
 //
@@ -129,7 +123,6 @@ func (i_ INPlayMediaIntent) MediaItems() INMediaItem {
 	return rv
 }
 
-
 // The media content.
 //
 // [Full Topic]
@@ -137,7 +130,6 @@ func (i_ INPlayMediaIntent) MediaItems() INMediaItem {
 func (i_ INPlayMediaIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
-
 
 // An object that contains the search parameters.
 //
@@ -148,7 +140,6 @@ func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch {
 	return rv
 }
 
-
 // An object that contains the search parameters.
 //
 // [Full Topic]
@@ -156,7 +147,6 @@ func (i_ INPlayMediaIntent) MediaSearch() INMediaSearch {
 func (i_ INPlayMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
-
 
 // A Boolean value that indicates whether the media plays in a shuffled order.
 //
@@ -167,7 +157,6 @@ func (i_ INPlayMediaIntent) PlayShuffled() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the media plays in a shuffled order.
 //
 // [Full Topic]
@@ -175,7 +164,6 @@ func (i_ INPlayMediaIntent) PlayShuffled() bool {
 func (i_ INPlayMediaIntent) SetPlayShuffled(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlayShuffled:"), value)
 }
-
 
 // The queue location for a media item during playback.
 //
@@ -186,7 +174,6 @@ func (i_ INPlayMediaIntent) PlaybackQueueLocation() unsafe.Pointer {
 	return rv
 }
 
-
 // The queue location for a media item during playback.
 //
 // [Full Topic]
@@ -194,7 +181,6 @@ func (i_ INPlayMediaIntent) PlaybackQueueLocation() unsafe.Pointer {
 func (i_ INPlayMediaIntent) SetPlaybackQueueLocation(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackQueueLocation:"), value)
 }
-
 
 // The repeat mode setting at the time the user plays the media item.
 //
@@ -205,7 +191,6 @@ func (i_ INPlayMediaIntent) PlaybackRepeatMode() INPlaybackRepeatMode {
 	return rv
 }
 
-
 // The repeat mode setting at the time the user plays the media item.
 //
 // [Full Topic]
@@ -213,5 +198,3 @@ func (i_ INPlayMediaIntent) PlaybackRepeatMode() INPlaybackRepeatMode {
 func (i_ INPlayMediaIntent) SetPlaybackRepeatMode(value INPlaybackRepeatMode) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPlaybackRepeatMode:"), value)
 }
-
-

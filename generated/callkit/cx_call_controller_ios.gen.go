@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -27,7 +26,7 @@ func (c_ CXCallController) RequestTransactionCompletion(transaction ICXTransacti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallController/requestTransaction(with:completion:)-4o1m4
-func (c_ CXCallController) RequestTransactionWithActionsCompletion(actions []ICXAction, completion unsafe.Pointer) {
+func (c_ CXCallController) RequestTransactionWithActionsCompletion(actions []CXAction, completion unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestTransactionWithActions:completion:"), actions, completion)
 }
 

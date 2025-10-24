@@ -8,11 +8,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // iOS-only methods for CloudServiceSetupViewController
-
 
 // iOS-only properties
 
@@ -20,15 +18,10 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceSetupViewController/delegate
-func (c_ CloudServiceSetupViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
+func (c_ CloudServiceSetupViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (c_ CloudServiceSetupViewController) SetDelegate(value objc.ID) {
+func (c_ CloudServiceSetupViewController) SetDelegate(value unsafe.Pointer) {
 	c_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
-
-
-
-
-

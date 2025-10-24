@@ -15,3 +15,4 @@ var makeTextWritingDirectionRightToLeftProtocol *objc.Protocol
 func init() {
 	makeTextWritingDirectionRightToLeftProtocol = objc.GetProtocol("makeTextWritingDirectionRightToLeft:")
 }
+

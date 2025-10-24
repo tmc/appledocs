@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -53,7 +53,6 @@ type IINInteraction interface {
 // An interaction between the user and your app involving an intent object.
 //
 // An object encapsulates information about a SiriKit request and your app’s response. SiriKit creates interaction objects automatically when it needs your app to respond to a specific intent, either by handling the intent or providing an error explaining why your app couldn’t handle the intent. SiriKit places the interaction in an object that the system passes to your app at launch time. You can also create instances of this class in your app and donate relevant interactions to the system. Donating interactions provides contextual information that might be helpful to other apps. Some system apps use donated interactions to improve search results or to anticipate user actions. For example, a ride-booking app could donate an interaction containing the user’s planned ride information. If the user subsequently uses the Maps app to search for restaurants, Maps can show relevant results near the user’s destination. You choose which of your app’s interactions you want to donate to the system. To donate an interaction, create an instance of this class, filling it with your intent object and response, and call the method. You can also use the methods of this class to delete interactions when they are no longer relevant.
-
 
 // An interaction between the user and your app involving an intent object.
 //
@@ -101,8 +100,6 @@ func NewINInteraction() INInteraction {
 	return getINInteractionClass().New()
 }
 
-
-
 // Deletes the specified interactions that were donated by the calling app.
 //
 // [Full Topic]
@@ -111,7 +108,6 @@ func (ic _INInteractionClass) DeleteInteractionsWithIdentifiersCompletion(identi
 	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("deleteInteractionsWithIdentifiers:completion:"), identifiers, completion)
 }
 
-
 // Donates this interaction object to the system.
 //
 // [Full Topic]
@@ -119,7 +115,6 @@ func (ic _INInteractionClass) DeleteInteractionsWithIdentifiersCompletion(identi
 func (i_ INInteraction) DonateInteractionWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("donateInteractionWithCompletion:"), completion)
 }
-
 
 // The time at which the interaction started and its duration.
 //
@@ -130,7 +125,6 @@ func (i_ INInteraction) DateInterval() objc.IObject /* cross-framework: DateInte
 	return rv
 }
 
-
 // The time at which the interaction started and its duration.
 //
 // [Full Topic]
@@ -138,7 +132,6 @@ func (i_ INInteraction) DateInterval() objc.IObject /* cross-framework: DateInte
 func (i_ INInteraction) SetDateInterval(value objc.IObject /* cross-framework: DateInterval */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateInterval:"), value)
 }
-
 
 // The direction in which information flowed to or from the device.
 //
@@ -149,7 +142,6 @@ func (i_ INInteraction) Direction() unsafe.Pointer {
 	return rv
 }
 
-
 // The direction in which information flowed to or from the device.
 //
 // [Full Topic]
@@ -157,7 +149,6 @@ func (i_ INInteraction) Direction() unsafe.Pointer {
 func (i_ INInteraction) SetDirection(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDirection:"), value)
 }
-
 
 // The unique identifier of the interaction’s group.
 //
@@ -168,7 +159,6 @@ func (i_ INInteraction) GroupIdentifier() objc.IObject /* cross-framework: NSStr
 	return rv
 }
 
-
 // The unique identifier of the interaction’s group.
 //
 // [Full Topic]
@@ -176,7 +166,6 @@ func (i_ INInteraction) GroupIdentifier() objc.IObject /* cross-framework: NSStr
 func (i_ INInteraction) SetGroupIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupIdentifier:"), value)
 }
-
 
 // The unique identifier of the interaction.
 //
@@ -187,7 +176,6 @@ func (i_ INInteraction) Identifier() objc.IObject /* cross-framework: NSString *
 	return rv
 }
 
-
 // The unique identifier of the interaction.
 //
 // [Full Topic]
@@ -195,7 +183,6 @@ func (i_ INInteraction) Identifier() objc.IObject /* cross-framework: NSString *
 func (i_ INInteraction) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 // The intent object that describes the user’s request.
 //
@@ -206,7 +193,6 @@ func (i_ INInteraction) Intent() INIntent {
 	return rv
 }
 
-
 // The intent object that describes the user’s request.
 //
 // [Full Topic]
@@ -214,7 +200,6 @@ func (i_ INInteraction) Intent() INIntent {
 func (i_ INInteraction) SetIntent(value INIntent) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
 }
-
 
 // The current state of the interaction.
 //
@@ -225,7 +210,6 @@ func (i_ INInteraction) IntentHandlingStatus() unsafe.Pointer {
 	return rv
 }
 
-
 // The current state of the interaction.
 //
 // [Full Topic]
@@ -233,7 +217,6 @@ func (i_ INInteraction) IntentHandlingStatus() unsafe.Pointer {
 func (i_ INInteraction) SetIntentHandlingStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentHandlingStatus:"), value)
 }
-
 
 // The response object that your app created in response to the request.
 //
@@ -244,7 +227,6 @@ func (i_ INInteraction) IntentResponse() INIntentResponse {
 	return rv
 }
 
-
 // The response object that your app created in response to the request.
 //
 // [Full Topic]
@@ -252,5 +234,3 @@ func (i_ INInteraction) IntentResponse() INIntentResponse {
 func (i_ INInteraction) SetIntentResponse(value INIntentResponse) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentResponse:"), value)
 }
-
-

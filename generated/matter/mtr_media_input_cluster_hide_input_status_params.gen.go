@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRMediaInputClusterHideInputStatusParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaInputClusterHideInputStatusParams
@@ -83,8 +81,6 @@ func NewMTRMediaInputClusterHideInputStatusParams() MTRMediaInputClusterHideInpu
 	return getMTRMediaInputClusterHideInputStatusParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/serversideprocessingtimeout
 func (m_ MTRMediaInputClusterHideInputStatusParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRMediaInputClusterHideInputStatusParams) ServerSideProcessingTimeout(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/serversideprocessingtimeout
 func (m_ MTRMediaInputClusterHideInputStatusParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRMediaInputClusterHideInputStatusParams) TimedInvokeTimeoutMs() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterhideinputstatusparams/timedinvoketimeoutms
 func (m_ MTRMediaInputClusterHideInputStatusParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

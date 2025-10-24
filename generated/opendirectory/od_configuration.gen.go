@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/securityfoundation"
 )
 
+/* debug [class.gen.go]: Generating class ODConfiguration */
+
+
+/* debug [class_header]: Header for ODConfiguration */
 // The class instance for the [ODConfiguration] class.
 var (
 	ODConfigurationClass     _ODConfigurationClass
@@ -28,10 +32,16 @@ func getODConfigurationClass() _ODConfigurationClass {
 type _ODConfigurationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ODConfiguration */
 // An interface definition for the [ODConfiguration] class.
 type IODConfiguration interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ODConfiguration */
 	// properties:
 	AuthenticationModuleEntries() objc.IObject /* cross-framework: NSArray */
 	SetAuthenticationModuleEntries(value objc.IObject /* cross-framework: NSArray */)
@@ -76,25 +86,22 @@ type IODConfiguration interface {
 	TrustUsesSystemKeychain() bool
 	VirtualSubnodes() objc.IObject /* cross-framework: NSArray */
 	SetVirtualSubnodes(value objc.IObject /* cross-framework: NSArray */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ODConfiguration */
 	// methods:
 	AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType objc.IObject /* cross-framework: NSString */, account objc.IObject /* cross-framework: NSString */, accountPassword objc.IObject /* cross-framework: NSString */, username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, join bool, error_ unsafe.Pointer) bool
 	RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, deleteAccount bool, error_ unsafe.Pointer) bool
-	SaveUsingAuthorizationError(authorization objc.IObject /* cross-framework: SFAuthorization */, error_ unsafe.Pointer) bool
+	SaveUsingAuthorizationError(authorization securityfoundation.SFAuthorization, error_ unsafe.Pointer) bool
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration
-type ODConfiguration struct {
-	objectivec.Object
-}
-
-// ODConfigurationFrom constructs a [ODConfiguration] from an unsafe.Pointer.
-func ODConfigurationFrom(ptr unsafe.Pointer) ODConfiguration {
-	return ODConfiguration{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ODConfiguration */
 // Alloc allocates a new instance without initialization.
 func (oc _ODConfigurationClass) Alloc() ODConfiguration {
 	rv := objc.Send[ODConfiguration](objc.ID(oc.class), objc.Sel("alloc"))
@@ -102,7 +109,6 @@ func (oc _ODConfigurationClass) Alloc() ODConfiguration {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _ODConfigurationClass) New() ODConfiguration {
 	rv := objc.Send[ODConfiguration](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -125,39 +131,73 @@ func (o_ ODConfiguration) Autorelease() ODConfiguration {
 func NewODConfiguration() ODConfiguration {
 	return getODConfigurationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ODConfiguration */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration
+type ODConfiguration struct {
+	objectivec.Object
+}
+
+// ODConfigurationFrom constructs a [ODConfiguration] from an unsafe.Pointer.
+func ODConfigurationFrom(ptr unsafe.Pointer) ODConfiguration {
+	return ODConfiguration{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ODConfiguration *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ODConfiguration */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/configuration
 func (oc _ODConfigurationClass) Configuration() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(oc.class), objc.Sel("configuration"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Configuration) */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/suggestedTrustAccount(_:)
-func (oc _ODConfigurationClass) SuggestedTrustAccount(hostname objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+func (oc _ODConfigurationClass) SuggestedTrustAccount(hostname objc.IObject /* cross-framework: NSString */) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(oc.class), objc.Sel("suggestedTrustAccount:"), hostname)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SuggestedTrustAccount) */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/suggestedTrustPassword(_:)
-func (oc _ODConfigurationClass) SuggestedTrustPassword(length uintptr /* not a class type */) objc.IObject /* cross-framework: String */ {
+func (oc _ODConfigurationClass) SuggestedTrustPassword(length uintptr /* not a class type */) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(oc.class), objc.Sel("suggestedTrustPassword:"), length)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SuggestedTrustPassword) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ODConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ODConfiguration */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/addTrustType(_:trustAccount:trustPassword:username:password:joinExisting:)
 func (o_ ODConfiguration) AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError(trustType objc.IObject /* cross-framework: NSString */, account objc.IObject /* cross-framework: NSString */, accountPassword objc.IObject /* cross-framework: NSString */, username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, join bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("addTrustType:trustAccount:trustPassword:username:password:joinExisting:error:"), trustType, account, accountPassword, username, password, join, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJoinExistingError */
 
 
 // [Full Topic]
@@ -165,30 +205,35 @@ func (o_ ODConfiguration) AddTrustTypeTrustAccountTrustPasswordUsernamePasswordJ
 func (o_ ODConfiguration) RemoveTrustUsingUsernamePasswordDeleteTrustAccountError(username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, deleteAccount bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("removeTrustUsingUsername:password:deleteTrustAccount:error:"), username, password, deleteAccount, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: RemoveTrustUsingUsernamePasswordDeleteTrustAccountError */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/save(using:)
-func (o_ ODConfiguration) SaveUsingAuthorizationError(authorization objc.IObject /* cross-framework: SFAuthorization */, error_ unsafe.Pointer) bool {
+func (o_ ODConfiguration) SaveUsingAuthorizationError(authorization securityfoundation.SFAuthorization, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("saveUsingAuthorization:error:"), authorization, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: SaveUsingAuthorizationError */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ODConfiguration */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/authenticationModuleEntries-swift.property
 func (o_ ODConfiguration) AuthenticationModuleEntries() objc.IObject /* cross-framework: NSArray */ {
 	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("authenticationModuleEntries"))
 	return rv
-}
+}/* debug [instance_properties/getter]: authenticationModuleEntries */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/authenticationModuleEntries-swift.property
 func (o_ ODConfiguration) SetAuthenticationModuleEntries(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAuthenticationModuleEntries:"), value)
-}
+}/* debug [instance_properties/setter]: authenticationModuleEntries */
 
 
 // [Full Topic]
@@ -196,14 +241,14 @@ func (o_ ODConfiguration) SetAuthenticationModuleEntries(value objc.IObject /* c
 func (o_ ODConfiguration) Comment() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("comment"))
 	return rv
-}
+}/* debug [instance_properties/getter]: comment */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/comment-swift.property
 func (o_ ODConfiguration) SetComment(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setComment:"), value)
-}
+}/* debug [instance_properties/setter]: comment */
 
 
 // [Full Topic]
@@ -211,14 +256,14 @@ func (o_ ODConfiguration) SetComment(value objc.IObject /* cross-framework: NSSt
 func (o_ ODConfiguration) ConnectionIdleTimeoutInSeconds() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("connectionIdleTimeoutInSeconds"))
 	return rv
-}
+}/* debug [instance_properties/getter]: connectionIdleTimeoutInSeconds */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionIdleTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) SetConnectionIdleTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConnectionIdleTimeoutInSeconds:"), value)
-}
+}/* debug [instance_properties/setter]: connectionIdleTimeoutInSeconds */
 
 
 // [Full Topic]
@@ -226,14 +271,14 @@ func (o_ ODConfiguration) SetConnectionIdleTimeoutInSeconds(value int) {
 func (o_ ODConfiguration) ConnectionSetupTimeoutInSeconds() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("connectionSetupTimeoutInSeconds"))
 	return rv
-}
+}/* debug [instance_properties/getter]: connectionSetupTimeoutInSeconds */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/connectionSetupTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) SetConnectionSetupTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConnectionSetupTimeoutInSeconds:"), value)
-}
+}/* debug [instance_properties/setter]: connectionSetupTimeoutInSeconds */
 
 
 // [Full Topic]
@@ -241,14 +286,14 @@ func (o_ ODConfiguration) SetConnectionSetupTimeoutInSeconds(value int) {
 func (o_ ODConfiguration) DefaultMappings() IODMappings {
 	rv := objc.Send[ODMappings](o_.ID, objc.Sel("defaultMappings"))
 	return rv
-}
+}/* debug [instance_properties/getter]: defaultMappings */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultMappings-swift.property
 func (o_ ODConfiguration) SetDefaultMappings(value IODMappings) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDefaultMappings:"), value)
-}
+}/* debug [instance_properties/setter]: defaultMappings */
 
 
 // [Full Topic]
@@ -256,14 +301,14 @@ func (o_ ODConfiguration) SetDefaultMappings(value IODMappings) {
 func (o_ ODConfiguration) DefaultModuleEntries() objc.IObject /* cross-framework: NSArray */ {
 	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("defaultModuleEntries"))
 	return rv
-}
+}/* debug [instance_properties/getter]: defaultModuleEntries */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultModuleEntries-swift.property
 func (o_ ODConfiguration) SetDefaultModuleEntries(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDefaultModuleEntries:"), value)
-}
+}/* debug [instance_properties/setter]: defaultModuleEntries */
 
 
 // [Full Topic]
@@ -271,14 +316,14 @@ func (o_ ODConfiguration) SetDefaultModuleEntries(value objc.IObject /* cross-fr
 func (o_ ODConfiguration) DiscoveryModuleEntries() objc.IObject /* cross-framework: NSArray */ {
 	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("discoveryModuleEntries"))
 	return rv
-}
+}/* debug [instance_properties/getter]: discoveryModuleEntries */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/discoveryModuleEntries-swift.property
 func (o_ ODConfiguration) SetDiscoveryModuleEntries(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setDiscoveryModuleEntries:"), value)
-}
+}/* debug [instance_properties/setter]: discoveryModuleEntries */
 
 
 // [Full Topic]
@@ -286,14 +331,14 @@ func (o_ ODConfiguration) SetDiscoveryModuleEntries(value objc.IObject /* cross-
 func (o_ ODConfiguration) GeneralModuleEntries() objc.IObject /* cross-framework: NSArray */ {
 	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("generalModuleEntries"))
 	return rv
-}
+}/* debug [instance_properties/getter]: generalModuleEntries */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/generalModuleEntries-swift.property
 func (o_ ODConfiguration) SetGeneralModuleEntries(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setGeneralModuleEntries:"), value)
-}
+}/* debug [instance_properties/setter]: generalModuleEntries */
 
 
 // [Full Topic]
@@ -301,14 +346,14 @@ func (o_ ODConfiguration) SetGeneralModuleEntries(value objc.IObject /* cross-fr
 func (o_ ODConfiguration) HideRegistration() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("hideRegistration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hideRegistration */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/hideRegistration-swift.property
 func (o_ ODConfiguration) SetHideRegistration(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setHideRegistration:"), value)
-}
+}/* debug [instance_properties/setter]: hideRegistration */
 
 
 // [Full Topic]
@@ -316,14 +361,14 @@ func (o_ ODConfiguration) SetHideRegistration(value bool) {
 func (o_ ODConfiguration) ManInTheMiddleProtection() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("manInTheMiddleProtection"))
 	return rv
-}
+}/* debug [instance_properties/getter]: manInTheMiddleProtection */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/manInTheMiddleProtection-swift.property
 func (o_ ODConfiguration) SetManInTheMiddleProtection(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setManInTheMiddleProtection:"), value)
-}
+}/* debug [instance_properties/setter]: manInTheMiddleProtection */
 
 
 // [Full Topic]
@@ -331,14 +376,14 @@ func (o_ ODConfiguration) SetManInTheMiddleProtection(value bool) {
 func (o_ ODConfiguration) NodeName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("nodeName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nodeName */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/nodeName-swift.property
 func (o_ ODConfiguration) SetNodeName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setNodeName:"), value)
-}
+}/* debug [instance_properties/setter]: nodeName */
 
 
 // [Full Topic]
@@ -346,14 +391,14 @@ func (o_ ODConfiguration) SetNodeName(value objc.IObject /* cross-framework: NSS
 func (o_ ODConfiguration) PacketEncryption() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("packetEncryption"))
 	return rv
-}
+}/* debug [instance_properties/getter]: packetEncryption */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetEncryption-swift.property
 func (o_ ODConfiguration) SetPacketEncryption(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPacketEncryption:"), value)
-}
+}/* debug [instance_properties/setter]: packetEncryption */
 
 
 // [Full Topic]
@@ -361,14 +406,14 @@ func (o_ ODConfiguration) SetPacketEncryption(value int) {
 func (o_ ODConfiguration) PacketSigning() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("packetSigning"))
 	return rv
-}
+}/* debug [instance_properties/getter]: packetSigning */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/packetSigning-swift.property
 func (o_ ODConfiguration) SetPacketSigning(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPacketSigning:"), value)
-}
+}/* debug [instance_properties/setter]: packetSigning */
 
 
 // [Full Topic]
@@ -376,14 +421,14 @@ func (o_ ODConfiguration) SetPacketSigning(value int) {
 func (o_ ODConfiguration) PreferredDestinationHostName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("preferredDestinationHostName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preferredDestinationHostName */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostName-swift.property
 func (o_ ODConfiguration) SetPreferredDestinationHostName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostName:"), value)
-}
+}/* debug [instance_properties/setter]: preferredDestinationHostName */
 
 
 // [Full Topic]
@@ -391,14 +436,14 @@ func (o_ ODConfiguration) SetPreferredDestinationHostName(value objc.IObject /* 
 func (o_ ODConfiguration) PreferredDestinationHostPort() uint16 /* not a class type */ {
 	rv := objc.Send[uint16](o_.ID, objc.Sel("preferredDestinationHostPort"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preferredDestinationHostPort */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/preferredDestinationHostPort-swift.property
 func (o_ ODConfiguration) SetPreferredDestinationHostPort(value uint16 /* not a class type */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPreferredDestinationHostPort:"), value)
-}
+}/* debug [instance_properties/setter]: preferredDestinationHostPort */
 
 
 // [Full Topic]
@@ -406,14 +451,14 @@ func (o_ ODConfiguration) SetPreferredDestinationHostPort(value uint16 /* not a 
 func (o_ ODConfiguration) QueryTimeoutInSeconds() int {
 	rv := objc.Send[int](o_.ID, objc.Sel("queryTimeoutInSeconds"))
 	return rv
-}
+}/* debug [instance_properties/getter]: queryTimeoutInSeconds */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/queryTimeoutInSeconds-swift.property
 func (o_ ODConfiguration) SetQueryTimeoutInSeconds(value int) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setQueryTimeoutInSeconds:"), value)
-}
+}/* debug [instance_properties/setter]: queryTimeoutInSeconds */
 
 
 // [Full Topic]
@@ -421,14 +466,14 @@ func (o_ ODConfiguration) SetQueryTimeoutInSeconds(value int) {
 func (o_ ODConfiguration) TemplateName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("templateName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: templateName */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/templateName-swift.property
 func (o_ ODConfiguration) SetTemplateName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setTemplateName:"), value)
-}
+}/* debug [instance_properties/setter]: templateName */
 
 
 // [Full Topic]
@@ -436,7 +481,7 @@ func (o_ ODConfiguration) SetTemplateName(value objc.IObject /* cross-framework:
 func (o_ ODConfiguration) TrustAccount() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("trustAccount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trustAccount */
 
 
 // [Full Topic]
@@ -444,7 +489,7 @@ func (o_ ODConfiguration) TrustAccount() objc.IObject /* cross-framework: NSStri
 func (o_ ODConfiguration) TrustKerberosPrincipal() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("trustKerberosPrincipal"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trustKerberosPrincipal */
 
 
 // [Full Topic]
@@ -452,7 +497,7 @@ func (o_ ODConfiguration) TrustKerberosPrincipal() objc.IObject /* cross-framewo
 func (o_ ODConfiguration) TrustMetaAccount() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("trustMetaAccount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trustMetaAccount */
 
 
 // [Full Topic]
@@ -460,7 +505,7 @@ func (o_ ODConfiguration) TrustMetaAccount() objc.IObject /* cross-framework: NS
 func (o_ ODConfiguration) TrustType() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("trustType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trustType */
 
 
 // [Full Topic]
@@ -468,7 +513,7 @@ func (o_ ODConfiguration) TrustType() objc.IObject /* cross-framework: NSString 
 func (o_ ODConfiguration) TrustUsesKerberosKeytab() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("trustUsesKerberosKeytab"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trustUsesKerberosKeytab */
 
 
 // [Full Topic]
@@ -476,7 +521,7 @@ func (o_ ODConfiguration) TrustUsesKerberosKeytab() bool {
 func (o_ ODConfiguration) TrustUsesMutualAuthentication() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("trustUsesMutualAuthentication"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trustUsesMutualAuthentication */
 
 
 // [Full Topic]
@@ -484,7 +529,7 @@ func (o_ ODConfiguration) TrustUsesMutualAuthentication() bool {
 func (o_ ODConfiguration) TrustUsesSystemKeychain() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("trustUsesSystemKeychain"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trustUsesSystemKeychain */
 
 
 // [Full Topic]
@@ -492,14 +537,19 @@ func (o_ ODConfiguration) TrustUsesSystemKeychain() bool {
 func (o_ ODConfiguration) VirtualSubnodes() objc.IObject /* cross-framework: NSArray */ {
 	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("virtualSubnodes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: virtualSubnodes */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/virtualSubnodes-swift.property
 func (o_ ODConfiguration) SetVirtualSubnodes(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setVirtualSubnodes:"), value)
-}
+}/* debug [instance_properties/setter]: virtualSubnodes */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class ODConfiguration */
 
 
 

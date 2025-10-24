@@ -19,3 +19,4 @@ var MediaPlaybackProtocol *objc.Protocol
 func init() {
 	MediaPlaybackProtocol = objc.GetProtocol("MPMediaPlayback")
 }
+

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for PreferencePanes. DO NOT EDIT.
 
 // Package preferencepanes provides Go bindings for the PreferencePanes framework.
 //
-// Integrate your app’s custom preferences into the System Preferences app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to PreferencePanes without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/PreferencePanes
 package preferencepanes
 
 import (

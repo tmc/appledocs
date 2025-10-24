@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -82,7 +82,7 @@ type ICollectionView interface {
 	DeselectItemsAtIndexPaths(indexPaths unsafe.Pointer)
 	DraggingImageForItemsAtIndexPathsWithEventOffset(indexPaths unsafe.Pointer, event IEvent, dragImageOffset PointPointer /* not a class type */) IImage
 	DraggingImageForItemsAtIndexesWithEventOffset(indexes foundation.IndexSet, event IEvent, dragImageOffset PointPointer /* not a class type */) IImage
-	FrameForItemAtIndex(index uint) objc.IObject /* cross-framework: Rect */
+	FrameForItemAtIndex(index uint) objc.IObject                                      /* cross-framework: Rect */
 	FrameForItemAtIndexWithNumberOfItems(index uint, numberOfItems uint) objc.IObject /* cross-framework: Rect */
 	IndexPathForItem(item ICollectionViewItem) foundation.IndexPath
 	IndexPathForItemAtPoint(point objc.IObject /* cross-framework: Point */) foundation.IndexPath
@@ -120,7 +120,6 @@ type ICollectionView interface {
 // An ordered collection of data items displayed in a customizable layout.
 //
 // The simplest type of collection view displays its items in a grid, but you can define layouts to arrange items however you like. For example, you might create a layout where items are arranged in a circle. You can also change layouts dynamically at runtime whenever you need to present items differently. You can add collection views to your interface using Interface Builder or create them programmatically in your view controller or window controller code. It is recommended that you configure your collection view with a data source object, which is an object that conforms to the protocol. Data sources support multiple sections and the modern layout architecture and are the preferred way for specifying your data. In addition to displaying items, collection views support the display of supplementary and decoration views. Support for supplementary and decoration views is defined by the current layout object, but both types of views add to the visual presentation of your content. Supplementary views are associated with a specific section and can be used to create header and footer views for a related group of items. Decoration views are purely visual adornments and can be used to implement dynamic backgrounds or other types of configurable visual content. The layout of a collection view can be changed dynamically by assigning a new layout object to the property. Changing the layout object updates the appearance of the collection view without animating the changes.
-
 
 // An ordered collection of data items displayed in a customizable layout.
 //
@@ -170,8 +169,6 @@ func NewCollectionView() CollectionView {
 	return getCollectionViewClass().New()
 }
 
-
-
 // Deletes the items at the specified index paths.
 //
 // [Full Topic]
@@ -179,7 +176,6 @@ func NewCollectionView() CollectionView {
 func (c_ CollectionView) DeleteItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteItemsAtIndexPaths:"), indexPaths)
 }
-
 
 // Deletes the specified sections and their contained items.
 //
@@ -189,7 +185,6 @@ func (c_ CollectionView) DeleteSections(sections foundation.IndexSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deleteSections:"), sections)
 }
 
-
 // Deselects all items in the collection view.
 //
 // [Full Topic]
@@ -198,7 +193,6 @@ func (c_ CollectionView) DeselectAll(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deselectAll:"), sender)
 }
 
-
 // Removes the specified items from the current selection.
 //
 // [Full Topic]
@@ -206,7 +200,6 @@ func (c_ CollectionView) DeselectAll(sender objectivec.IObject) {
 func (c_ CollectionView) DeselectItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("deselectItemsAtIndexPaths:"), indexPaths)
 }
-
 
 // Returns an image to use for dragging the specified items.
 //
@@ -217,7 +210,6 @@ func (c_ CollectionView) DraggingImageForItemsAtIndexPathsWithEventOffset(indexP
 	return rv
 }
 
-
 // This method computes and returns an image to use for dragging.
 //
 // [Full Topic]
@@ -226,7 +218,6 @@ func (c_ CollectionView) DraggingImageForItemsAtIndexesWithEventOffset(indexes f
 	rv := objc.Send[Image](c_.ID, objc.Sel("draggingImageForItemsAtIndexes:withEvent:offset:"), indexes, event, dragImageOffset)
 	return rv
 }
-
 
 // Returns the frame of the collection view item at the specified index.
 //
@@ -237,7 +228,6 @@ func (c_ CollectionView) FrameForItemAtIndex(index uint) objc.IObject /* cross-f
 	return rv
 }
 
-
 // Returns the frame of an item based on the number of items in the collection view.
 //
 // [Full Topic]
@@ -246,7 +236,6 @@ func (c_ CollectionView) FrameForItemAtIndexWithNumberOfItems(index uint, number
 	rv := objc.Send[corefoundation.Rect](c_.ID, objc.Sel("frameForItemAtIndex:withNumberOfItems:"), index, numberOfItems)
 	return rv
 }
-
 
 // Returns the index path of the specified item.
 //
@@ -257,7 +246,6 @@ func (c_ CollectionView) IndexPathForItem(item ICollectionViewItem) foundation.I
 	return rv
 }
 
-
 // Returns the index path of the item at the specified point.
 //
 // [Full Topic]
@@ -266,7 +254,6 @@ func (c_ CollectionView) IndexPathForItemAtPoint(point objc.IObject /* cross-fra
 	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("indexPathForItemAtPoint:"), point)
 	return rv
 }
-
 
 // Returns the index paths of the currently active items.
 //
@@ -277,7 +264,6 @@ func (c_ CollectionView) IndexPathsForVisibleItems() unsafe.Pointer {
 	return rv
 }
 
-
 // Returns the index paths of the currently active supplementary views.
 //
 // [Full Topic]
@@ -287,7 +273,6 @@ func (c_ CollectionView) IndexPathsForVisibleSupplementaryElementsOfKind(element
 	return rv
 }
 
-
 // Inserts new items into the collection view at the specified locations.
 //
 // [Full Topic]
@@ -296,7 +281,6 @@ func (c_ CollectionView) InsertItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("insertItemsAtIndexPaths:"), indexPaths)
 }
 
-
 // Inserts new sections at the specified indexes.
 //
 // [Full Topic]
@@ -304,7 +288,6 @@ func (c_ CollectionView) InsertItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 func (c_ CollectionView) InsertSections(sections foundation.IndexSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("insertSections:"), sections)
 }
-
 
 // Returns the item associated with the specified index path.
 //
@@ -315,7 +298,6 @@ func (c_ CollectionView) ItemAtIndexPath(indexPath foundation.IndexPath) ICollec
 	return rv
 }
 
-
 // Returns the collection view item for the represented object at the specified index.
 //
 // [Full Topic]
@@ -324,7 +306,6 @@ func (c_ CollectionView) ItemAtIndex(index uint) ICollectionViewItem {
 	rv := objc.Send[CollectionViewItem](c_.ID, objc.Sel("itemAtIndex:"), index)
 	return rv
 }
-
 
 // Returns the layout information for the item at the specified index path.
 //
@@ -335,7 +316,6 @@ func (c_ CollectionView) LayoutAttributesForItemAtIndexPath(indexPath foundation
 	return rv
 }
 
-
 // Returns the layout information for the supplementary view at the specified index path.
 //
 // [Full Topic]
@@ -344,7 +324,6 @@ func (c_ CollectionView) LayoutAttributesForSupplementaryElementOfKindAtIndexPat
 	rv := objc.Send[CollectionViewLayoutAttributes](c_.ID, objc.Sel("layoutAttributesForSupplementaryElementOfKind:atIndexPath:"), kind, indexPath)
 	return rv
 }
-
 
 // Creates or returns a reusable item object of the specified type.
 //
@@ -355,7 +334,6 @@ func (c_ CollectionView) MakeItemWithIdentifierForIndexPath(identifier objc.IObj
 	return rv
 }
 
-
 // Creates or returns a reusable supplementary view of the specified type.
 //
 // [Full Topic]
@@ -365,7 +343,6 @@ func (c_ CollectionView) MakeSupplementaryViewOfKindWithIdentifierForIndexPath(e
 	return rv
 }
 
-
 // Moves an item from one location to another in the collection view.
 //
 // [Full Topic]
@@ -374,7 +351,6 @@ func (c_ CollectionView) MoveItemAtIndexPathToIndexPath(indexPath foundation.Ind
 	objc.Send[objc.ID](c_.ID, objc.Sel("moveItemAtIndexPath:toIndexPath:"), indexPath, newIndexPath)
 }
 
-
 // Moves a section from its current location to a new location.
 //
 // [Full Topic]
@@ -382,7 +358,6 @@ func (c_ CollectionView) MoveItemAtIndexPathToIndexPath(indexPath foundation.Ind
 func (c_ CollectionView) MoveSectionToSection(section int, newSection int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("moveSection:toSection:"), section, newSection)
 }
-
 
 // Returns the number of items in the specified section.
 //
@@ -393,7 +368,6 @@ func (c_ CollectionView) NumberOfItemsInSection(section int) int {
 	return rv
 }
 
-
 // Encapsulates multiple insert, delete, reload, and move operations into a single animated operation.
 //
 // [Full Topic]
@@ -401,7 +375,6 @@ func (c_ CollectionView) NumberOfItemsInSection(section int) int {
 func (c_ CollectionView) PerformBatchUpdatesCompletionHandler(updates unsafe.Pointer, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("performBatchUpdates:completionHandler:"), updates, completionHandler)
 }
-
 
 // Registers a class to use when creating new items in the collection view.
 //
@@ -411,7 +384,6 @@ func (c_ CollectionView) RegisterClassForItemWithIdentifier(itemClass objc.Class
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerClass:forItemWithIdentifier:"), itemClass, identifier)
 }
 
-
 // Registers a nib file to use when creating items in the collection view.
 //
 // [Full Topic]
@@ -419,7 +391,6 @@ func (c_ CollectionView) RegisterClassForItemWithIdentifier(itemClass objc.Class
 func (c_ CollectionView) RegisterNibForItemWithIdentifier(nib INib, identifier objc.IObject /* cross-framework: UserInterfaceItemIdentifier */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerNib:forItemWithIdentifier:"), nib, identifier)
 }
-
 
 // Registers a class to use when creating new supplementary views in the collection view.
 //
@@ -429,7 +400,6 @@ func (c_ CollectionView) RegisterClassForSupplementaryViewOfKindWithIdentifier(v
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerClass:forSupplementaryViewOfKind:withIdentifier:"), viewClass, kind, identifier)
 }
 
-
 // Registers a nib file to use when creating supplementary views in the collection view.
 //
 // [Full Topic]
@@ -437,7 +407,6 @@ func (c_ CollectionView) RegisterClassForSupplementaryViewOfKindWithIdentifier(v
 func (c_ CollectionView) RegisterNibForSupplementaryViewOfKindWithIdentifier(nib INib, kind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, identifier objc.IObject /* cross-framework: UserInterfaceItemIdentifier */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("registerNib:forSupplementaryViewOfKind:withIdentifier:"), nib, kind, identifier)
 }
-
 
 // Reloads only the specified items.
 //
@@ -447,7 +416,6 @@ func (c_ CollectionView) ReloadItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadItemsAtIndexPaths:"), indexPaths)
 }
 
-
 // Reloads all of the data for the collection view.
 //
 // [Full Topic]
@@ -455,7 +423,6 @@ func (c_ CollectionView) ReloadItemsAtIndexPaths(indexPaths unsafe.Pointer) {
 func (c_ CollectionView) ReloadData() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadData"))
 }
-
 
 // Reloads the data in the specified sections of the collection view.
 //
@@ -465,7 +432,6 @@ func (c_ CollectionView) ReloadSections(sections foundation.IndexSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("reloadSections:"), sections)
 }
 
-
 // Scrolls the collection view contents until the specified items are visible.
 //
 // [Full Topic]
@@ -473,7 +439,6 @@ func (c_ CollectionView) ReloadSections(sections foundation.IndexSet) {
 func (c_ CollectionView) ScrollToItemsAtIndexPathsScrollPosition(indexPaths unsafe.Pointer, scrollPosition CollectionViewScrollPosition) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("scrollToItemsAtIndexPaths:scrollPosition:"), indexPaths, scrollPosition)
 }
-
 
 // Selects all items in the collection view, if doing so is possible.
 //
@@ -483,7 +448,6 @@ func (c_ CollectionView) SelectAll(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectAll:"), sender)
 }
 
-
 // Adds the specified items to the current selection and optionally scrolls the items into position.
 //
 // [Full Topic]
@@ -492,7 +456,6 @@ func (c_ CollectionView) SelectItemsAtIndexPathsScrollPosition(indexPaths unsafe
 	objc.Send[objc.ID](c_.ID, objc.Sel("selectItemsAtIndexPaths:scrollPosition:"), indexPaths, scrollPosition)
 }
 
-
 // Configures the drag operation mask.
 //
 // [Full Topic]
@@ -500,7 +463,6 @@ func (c_ CollectionView) SelectItemsAtIndexPathsScrollPosition(indexPaths unsafe
 func (c_ CollectionView) SetDraggingSourceOperationMaskForLocal(dragOperationMask DragOperation, localDestination bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDraggingSourceOperationMask:forLocal:"), dragOperationMask, localDestination)
 }
-
 
 // Returns the supplementary view associated with the specified index path.
 //
@@ -511,7 +473,6 @@ func (c_ CollectionView) SupplementaryViewForElementKindAtIndexPath(elementKind 
 	return rv
 }
 
-
 // Collapses the section in which the sender resides into a single horizontally scrollable row.
 //
 // [Full Topic]
@@ -519,7 +480,6 @@ func (c_ CollectionView) SupplementaryViewForElementKindAtIndexPath(elementKind 
 func (c_ CollectionView) ToggleSectionCollapse(sender objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("toggleSectionCollapse:"), sender)
 }
-
 
 // Returns an array of the actively managed items in the collection view.
 //
@@ -530,7 +490,6 @@ func (c_ CollectionView) VisibleItems() []CollectionViewItem {
 	return rv
 }
 
-
 // Returns an array of the actively managed supplementary views in the collection view.
 //
 // [Full Topic]
@@ -539,7 +498,6 @@ func (c_ CollectionView) VisibleSupplementaryViewsOfKind(elementKind objc.IObjec
 	rv := objc.Send[[]View](c_.ID, objc.Sel("visibleSupplementaryViewsOfKind:"), elementKind)
 	return rv
 }
-
 
 // A Boolean value indicating whether the collection view may have no selected items.
 //
@@ -550,7 +508,6 @@ func (c_ CollectionView) AllowsEmptySelection() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the collection view may have no selected items.
 //
 // [Full Topic]
@@ -558,7 +515,6 @@ func (c_ CollectionView) AllowsEmptySelection() bool {
 func (c_ CollectionView) SetAllowsEmptySelection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsEmptySelection:"), value)
 }
-
 
 // A Boolean value that indicates whether the user may select more than one item in the collection view.
 //
@@ -569,7 +525,6 @@ func (c_ CollectionView) AllowsMultipleSelection() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user may select more than one item in the collection view.
 //
 // [Full Topic]
@@ -577,7 +532,6 @@ func (c_ CollectionView) AllowsMultipleSelection() bool {
 func (c_ CollectionView) SetAllowsMultipleSelection(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
 }
-
 
 // An array containing the collection view’s background colors.
 //
@@ -587,7 +541,6 @@ func (c_ CollectionView) BackgroundColors() []Color {
 	rv := objc.Send[[]Color](c_.ID, objc.Sel("backgroundColors"))
 	return rv
 }
-
 
 // An array containing the collection view’s background colors.
 //
@@ -607,7 +560,6 @@ func (c_ CollectionView) SetBackgroundColors(value []Color) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundColors:"), nsArray)
 }
 
-
 // The background view placed behind all items and supplementary views.
 //
 // [Full Topic]
@@ -617,7 +569,6 @@ func (c_ CollectionView) BackgroundView() IView {
 	return rv
 }
 
-
 // The background view placed behind all items and supplementary views.
 //
 // [Full Topic]
@@ -625,7 +576,6 @@ func (c_ CollectionView) BackgroundView() IView {
 func (c_ CollectionView) SetBackgroundView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundView:"), value)
 }
-
 
 // A Boolean value that indicates whether the collection view’s background view scrolls with the items and other content.
 //
@@ -636,7 +586,6 @@ func (c_ CollectionView) BackgroundViewScrollsWithContent() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the collection view’s background view scrolls with the items and other content.
 //
 // [Full Topic]
@@ -644,7 +593,6 @@ func (c_ CollectionView) BackgroundViewScrollsWithContent() bool {
 func (c_ CollectionView) SetBackgroundViewScrollsWithContent(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setBackgroundViewScrollsWithContent:"), value)
 }
-
 
 // The layout object used to organize the collection view’s content.
 //
@@ -655,7 +603,6 @@ func (c_ CollectionView) CollectionViewLayout() ICollectionViewLayout {
 	return rv
 }
 
-
 // The layout object used to organize the collection view’s content.
 //
 // [Full Topic]
@@ -663,7 +610,6 @@ func (c_ CollectionView) CollectionViewLayout() ICollectionViewLayout {
 func (c_ CollectionView) SetCollectionViewLayout(value ICollectionViewLayout) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCollectionViewLayout:"), value)
 }
-
 
 // An array that provides data for the collection view.
 //
@@ -673,7 +619,6 @@ func (c_ CollectionView) Content() []objc.D {
 	rv := objc.Send[[]objc.ID](c_.ID, objc.Sel("content"))
 	return rv
 }
-
 
 // An array that provides data for the collection view.
 //
@@ -693,7 +638,6 @@ func (c_ CollectionView) SetContent(value []objc.D) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContent:"), nsArray)
 }
 
-
 // An object that provides data for the collection view.
 //
 // [Full Topic]
@@ -703,7 +647,6 @@ func (c_ CollectionView) DataSource() objc.ID {
 	return rv
 }
 
-
 // An object that provides data for the collection view.
 //
 // [Full Topic]
@@ -711,7 +654,6 @@ func (c_ CollectionView) DataSource() objc.ID {
 func (c_ CollectionView) SetDataSource(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDataSource:"), value)
 }
-
 
 // The collection view’s delegate object.
 //
@@ -722,7 +664,6 @@ func (c_ CollectionView) Delegate() objc.ID {
 	return rv
 }
 
-
 // The collection view’s delegate object.
 //
 // [Full Topic]
@@ -730,7 +671,6 @@ func (c_ CollectionView) Delegate() objc.ID {
 func (c_ CollectionView) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:"), value)
 }
-
 
 // A Boolean value indicating whether the collection view is the first responder.
 //
@@ -741,7 +681,6 @@ func (c_ CollectionView) FirstResponder() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user may select items in the collection view.
 //
 // [Full Topic]
@@ -751,7 +690,6 @@ func (c_ CollectionView) Selectable() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user may select items in the collection view.
 //
 // [Full Topic]
@@ -759,7 +697,6 @@ func (c_ CollectionView) Selectable() bool {
 func (c_ CollectionView) SetSelectable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectable:"), value)
 }
-
 
 // The receiver’s collection view item prototype.
 //
@@ -770,7 +707,6 @@ func (c_ CollectionView) ItemPrototype() ICollectionViewItem {
 	return rv
 }
 
-
 // The receiver’s collection view item prototype.
 //
 // [Full Topic]
@@ -778,7 +714,6 @@ func (c_ CollectionView) ItemPrototype() ICollectionViewItem {
 func (c_ CollectionView) SetItemPrototype(value ICollectionViewItem) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setItemPrototype:"), value)
 }
-
 
 // The maximum size (in points) of items in the collection view grid.
 //
@@ -789,7 +724,6 @@ func (c_ CollectionView) MaxItemSize() objc.IObject /* cross-framework: Size */ 
 	return rv
 }
 
-
 // The maximum size (in points) of items in the collection view grid.
 //
 // [Full Topic]
@@ -797,7 +731,6 @@ func (c_ CollectionView) MaxItemSize() objc.IObject /* cross-framework: Size */ 
 func (c_ CollectionView) SetMaxItemSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxItemSize:"), value)
 }
-
 
 // The maximum number of columns that the collection view displays.
 //
@@ -808,7 +741,6 @@ func (c_ CollectionView) MaxNumberOfColumns() uint {
 	return rv
 }
 
-
 // The maximum number of columns that the collection view displays.
 //
 // [Full Topic]
@@ -816,7 +748,6 @@ func (c_ CollectionView) MaxNumberOfColumns() uint {
 func (c_ CollectionView) SetMaxNumberOfColumns(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxNumberOfColumns:"), value)
 }
-
 
 // The maximum number of rows that the collection view displays.
 //
@@ -827,7 +758,6 @@ func (c_ CollectionView) MaxNumberOfRows() uint {
 	return rv
 }
 
-
 // The maximum number of rows that the collection view displays.
 //
 // [Full Topic]
@@ -835,7 +765,6 @@ func (c_ CollectionView) MaxNumberOfRows() uint {
 func (c_ CollectionView) SetMaxNumberOfRows(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxNumberOfRows:"), value)
 }
-
 
 // The minimum size (in points) of items in the collection view grid.
 //
@@ -846,7 +775,6 @@ func (c_ CollectionView) MinItemSize() objc.IObject /* cross-framework: Size */ 
 	return rv
 }
 
-
 // The minimum size (in points) of items in the collection view grid.
 //
 // [Full Topic]
@@ -854,7 +782,6 @@ func (c_ CollectionView) MinItemSize() objc.IObject /* cross-framework: Size */ 
 func (c_ CollectionView) SetMinItemSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinItemSize:"), value)
 }
-
 
 // The number of sections in the collection view.
 //
@@ -865,7 +792,6 @@ func (c_ CollectionView) NumberOfSections() int {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/prefetchDataSource
 func (c_ CollectionView) PrefetchDataSource() objc.ID {
@@ -873,13 +799,11 @@ func (c_ CollectionView) PrefetchDataSource() objc.ID {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionView/prefetchDataSource
 func (c_ CollectionView) SetPrefetchDataSource(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPrefetchDataSource:"), value)
 }
-
 
 // The indexes of the currently selected items.
 //
@@ -890,7 +814,6 @@ func (c_ CollectionView) SelectionIndexes() foundation.IndexSet {
 	return rv
 }
 
-
 // The indexes of the currently selected items.
 //
 // [Full Topic]
@@ -898,7 +821,6 @@ func (c_ CollectionView) SelectionIndexes() foundation.IndexSet {
 func (c_ CollectionView) SetSelectionIndexes(value foundation.IndexSet) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectionIndexes:"), value)
 }
-
 
 // The set of index paths representing the currently selected items.
 //
@@ -909,7 +831,6 @@ func (c_ CollectionView) SelectionIndexPaths() unsafe.Pointer {
 	return rv
 }
 
-
 // The set of index paths representing the currently selected items.
 //
 // [Full Topic]
@@ -917,7 +838,6 @@ func (c_ CollectionView) SelectionIndexPaths() unsafe.Pointer {
 func (c_ CollectionView) SetSelectionIndexPaths(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
-
 
 // A Boolean value indicating whether the collection view is the first responder.
 //
@@ -928,7 +848,6 @@ func (c_ CollectionView) IsFirstResponder() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the collection view is the first responder.
 //
 // [Full Topic]
@@ -936,7 +855,6 @@ func (c_ CollectionView) IsFirstResponder() bool {
 func (c_ CollectionView) SetIsFirstResponder(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFirstResponder:"), value)
 }
-
 
 // A Boolean value that indicates whether the user may select items in the collection view.
 //
@@ -947,7 +865,6 @@ func (c_ CollectionView) IsSelectable() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user may select items in the collection view.
 //
 // [Full Topic]
@@ -955,6 +872,3 @@ func (c_ CollectionView) IsSelectable() bool {
 func (c_ CollectionView) SetIsSelectable(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsSelectable:"), value)
 }
-
-
-

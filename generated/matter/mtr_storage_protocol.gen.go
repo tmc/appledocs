@@ -21,3 +21,4 @@ var MTRStorageProtocol *objc.Protocol
 func init() {
 	MTRStorageProtocol = objc.GetProtocol("MTRStorage")
 }
+

@@ -19,3 +19,4 @@ var normalTextureUsageProtocol *objc.Protocol
 func init() {
 	normalTextureUsageProtocol = objc.GetProtocol("normalTextureUsage")
 }
+

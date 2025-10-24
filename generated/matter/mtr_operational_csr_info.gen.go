@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTROperationalCSRInfo */
+
+
+/* debug [class_header]: Header for MTROperationalCSRInfo */
 // The class instance for the [MTROperationalCSRInfo] class.
 var (
 	MTROperationalCSRInfoClass     _MTROperationalCSRInfoClass
@@ -27,35 +31,34 @@ func getMTROperationalCSRInfoClass() _MTROperationalCSRInfoClass {
 type _MTROperationalCSRInfoClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTROperationalCSRInfo */
 // An interface definition for the [MTROperationalCSRInfo] class.
 type IMTROperationalCSRInfo interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTROperationalCSRInfo */
 	// properties:
-	AttestationSignature() objc.IObject /* cross-framework: Data */
-	SetAttestationSignature(value objc.IObject /* cross-framework: Data */)
-	Csr() objc.IObject /* cross-framework: Data */
-	SetCsr(value objc.IObject /* cross-framework: Data */)
-	CsrElementsTLV() objc.IObject /* cross-framework: Data */
-	SetCsrElementsTLV(value objc.IObject /* cross-framework: Data */)
-	CsrNonce() objc.IObject /* cross-framework: Data */
-	SetCsrNonce(value objc.IObject /* cross-framework: Data */)
+	AttestationSignature() objc.IObject /* cross-framework: NSData */
+	Csr() unsafe.Pointer
+	CsrElementsTLV() unsafe.Pointer
+	CsrNonce() objc.IObject /* cross-framework: NSData */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTROperationalCSRInfo */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo
-type MTROperationalCSRInfo struct {
-	objectivec.Object
-}
-
-// MTROperationalCSRInfoFrom constructs a [MTROperationalCSRInfo] from an unsafe.Pointer.
-func MTROperationalCSRInfoFrom(ptr unsafe.Pointer) MTROperationalCSRInfo {
-	return MTROperationalCSRInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTROperationalCSRInfo */
 // Alloc allocates a new instance without initialization.
 func (mc _MTROperationalCSRInfoClass) Alloc() MTROperationalCSRInfo {
 	rv := objc.Send[MTROperationalCSRInfo](objc.ID(mc.class), objc.Sel("alloc"))
@@ -63,7 +66,6 @@ func (mc _MTROperationalCSRInfoClass) Alloc() MTROperationalCSRInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTROperationalCSRInfoClass) New() MTROperationalCSRInfo {
 	rv := objc.Send[MTROperationalCSRInfo](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,67 +88,123 @@ func (m_ MTROperationalCSRInfo) Autorelease() MTROperationalCSRInfo {
 func NewMTROperationalCSRInfo() MTROperationalCSRInfo {
 	return getMTROperationalCSRInfoClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTROperationalCSRInfo */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/attestationsignature
-func (m_ MTROperationalCSRInfo) AttestationSignature() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("attestationSignature"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo
+type MTROperationalCSRInfo struct {
+	objectivec.Object
+}
+
+// MTROperationalCSRInfoFrom constructs a [MTROperationalCSRInfo] from an unsafe.Pointer.
+func MTROperationalCSRInfoFrom(ptr unsafe.Pointer) MTROperationalCSRInfo {
+	return MTROperationalCSRInfo{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTROperationalCSRInfo */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo/init(csr:csrNonce:csrElementsTLV:attestationSignature:)
+func NewMTROperationalCSRInfoWithCSRCsrNonceCsrElementsTLVAttestationSignature(csr unsafe.Pointer, csrNonce objc.IObject /* cross-framework: NSData */, csrElementsTLV unsafe.Pointer, attestationSignature objc.IObject /* cross-framework: NSData */) MTROperationalCSRInfo {
+	instance := getMTROperationalCSRInfoClass().Alloc()
+	rv := objc.Send[MTROperationalCSRInfo](instance.ID, objc.Sel("initWithCSR:csrNonce:csrElementsTLV:attestationSignature:"), csr, csrNonce, csrElementsTLV, attestationSignature)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTROperationalCSRInfoWithCSRCsrNonceCsrElementsTLVAttestationSignature */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/attestationsignature
-func (m_ MTROperationalCSRInfo) SetAttestationSignature(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAttestationSignature:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csr
-func (m_ MTROperationalCSRInfo) Csr() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csr"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo/init(csrElementsTLV:attestationSignature:)
+func NewMTROperationalCSRInfoWithCSRElementsTLVAttestationSignature(csrElementsTLV unsafe.Pointer, attestationSignature objc.IObject /* cross-framework: NSData */) MTROperationalCSRInfo {
+	instance := getMTROperationalCSRInfoClass().Alloc()
+	rv := objc.Send[MTROperationalCSRInfo](instance.ID, objc.Sel("initWithCSRElementsTLV:attestationSignature:"), csrElementsTLV, attestationSignature)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTROperationalCSRInfoWithCSRElementsTLVAttestationSignature */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csr
-func (m_ MTROperationalCSRInfo) SetCsr(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCsr:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrelementstlv
-func (m_ MTROperationalCSRInfo) CsrElementsTLV() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csrElementsTLV"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo/init(csrNonce:csrElementsTLV:attestationSignature:)
+func NewMTROperationalCSRInfoWithCSRNonceCsrElementsTLVAttestationSignature(csrNonce objc.IObject /* cross-framework: NSData */, csrElementsTLV unsafe.Pointer, attestationSignature objc.IObject /* cross-framework: NSData */) MTROperationalCSRInfo {
+	instance := getMTROperationalCSRInfoClass().Alloc()
+	rv := objc.Send[MTROperationalCSRInfo](instance.ID, objc.Sel("initWithCSRNonce:csrElementsTLV:attestationSignature:"), csrNonce, csrElementsTLV, attestationSignature)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTROperationalCSRInfoWithCSRNonceCsrElementsTLVAttestationSignature */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrelementstlv
-func (m_ MTROperationalCSRInfo) SetCsrElementsTLV(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrElementsTLV:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrnonce
-func (m_ MTROperationalCSRInfo) CsrNonce() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("csrNonce"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo/init(csrResponseParams:)
+func NewMTROperationalCSRInfoWithCSRResponseParams(responseParams IMTROperationalCredentialsClusterCSRResponseParams) MTROperationalCSRInfo {
+	instance := getMTROperationalCSRInfoClass().Alloc()
+	rv := objc.Send[MTROperationalCSRInfo](instance.ID, objc.Sel("initWithCSRResponseParams:"), responseParams)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTROperationalCSRInfoWithCSRResponseParams */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTROperationalCSRInfo */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTROperationalCSRInfo */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTROperationalCSRInfo */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTROperationalCSRInfo */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo/attestationSignature
+func (m_ MTROperationalCSRInfo) AttestationSignature() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("attestationSignature"))
+	return rv
+}/* debug [instance_properties/getter]: attestationSignature */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalcsrinfo/csrnonce
-func (m_ MTROperationalCSRInfo) SetCsrNonce(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCsrNonce:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo/csr
+func (m_ MTROperationalCSRInfo) Csr() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csr"))
+	return rv
+}/* debug [instance_properties/getter]: csr */
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo/csrElementsTLV
+func (m_ MTROperationalCSRInfo) CsrElementsTLV() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("csrElementsTLV"))
+	return rv
+}/* debug [instance_properties/getter]: csrElementsTLV */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalCSRInfo/csrNonce
+func (m_ MTROperationalCSRInfo) CsrNonce() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("csrNonce"))
+	return rv
+}/* debug [instance_properties/getter]: csrNonce */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTROperationalCSRInfo */
 
 

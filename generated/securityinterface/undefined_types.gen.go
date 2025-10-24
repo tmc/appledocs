@@ -9,14 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Array = _undefined // referenced in SecurityInterface
-	AuthorizationCallbacks = _undefined // referenced in SecurityInterface
 	AuthorizationRights = _undefined // referenced in SecurityInterface
-	Error = _undefined // referenced in SecurityInterface
-	Responder = _undefined // referenced in SecurityInterface
-	SFAuthorization = _undefined // referenced in SecurityInterface
-	String = _undefined // referenced in SecurityInterface
-	View = _undefined // referenced in SecurityInterface
+	Error               = _undefined // referenced in SecurityInterface
+	View                = _undefined // referenced in SecurityInterface
 )
-
-

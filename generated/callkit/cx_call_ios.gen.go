@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -66,7 +65,7 @@ func (c_ CXCall) Outgoing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCall/uuid
-func (c_ CXCall) UUID() objc.IObject /* cross-framework: UUID */ {
+func (c_ CXCall) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }

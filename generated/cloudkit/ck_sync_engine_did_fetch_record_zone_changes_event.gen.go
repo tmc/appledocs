@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class CKSyncEngineDidFetchRecordZoneChangesEvent */
+
+
+/* debug [class_header]: Header for CKSyncEngineDidFetchRecordZoneChangesEvent */
 // The class instance for the [CKSyncEngineDidFetchRecordZoneChangesEvent] class.
 var (
 	CKSyncEngineDidFetchRecordZoneChangesEventClass     _CKSyncEngineDidFetchRecordZoneChangesEventClass
@@ -26,34 +29,32 @@ func getCKSyncEngineDidFetchRecordZoneChangesEventClass() _CKSyncEngineDidFetchR
 type _CKSyncEngineDidFetchRecordZoneChangesEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CKSyncEngineDidFetchRecordZoneChangesEvent */
 // An interface definition for the [CKSyncEngineDidFetchRecordZoneChangesEvent] class.
 type ICKSyncEngineDidFetchRecordZoneChangesEvent interface {
 	ICKSyncEngineEvent
-	Error() foundation.Error
-	ZoneID() CKRecordZoneID
+	
+/* debug [class_interface_properties]: Properties for CKSyncEngineDidFetchRecordZoneChangesEvent */
+	// properties:
+	Error() objc.IObject /* cross-framework: Error */
+	ZoneID() ICKRecordZoneID
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CKSyncEngineDidFetchRecordZoneChangesEvent */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that provides information about a finished record zone fetch.
 
 
-// An object that provides information about a finished record zone fetch.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent
-type CKSyncEngineDidFetchRecordZoneChangesEvent struct {
-	CKSyncEngineEvent
-}
-
-// CKSyncEngineDidFetchRecordZoneChangesEventFrom constructs a [CKSyncEngineDidFetchRecordZoneChangesEvent] from an unsafe.Pointer.
-//
-// An object that provides information about a finished record zone fetch.
-func CKSyncEngineDidFetchRecordZoneChangesEventFrom(ptr unsafe.Pointer) CKSyncEngineDidFetchRecordZoneChangesEvent {
-	return CKSyncEngineDidFetchRecordZoneChangesEvent{
-		CKSyncEngineEvent: CKSyncEngineEventFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CKSyncEngineDidFetchRecordZoneChangesEvent */
 // Alloc allocates a new instance without initialization.
 func (cc _CKSyncEngineDidFetchRecordZoneChangesEventClass) Alloc() CKSyncEngineDidFetchRecordZoneChangesEvent {
 	rv := objc.Send[CKSyncEngineDidFetchRecordZoneChangesEvent](objc.ID(cc.class), objc.Sel("alloc"))
@@ -61,7 +62,6 @@ func (cc _CKSyncEngineDidFetchRecordZoneChangesEventClass) Alloc() CKSyncEngineD
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CKSyncEngineDidFetchRecordZoneChangesEventClass) New() CKSyncEngineDidFetchRecordZoneChangesEvent {
 	rv := objc.Send[CKSyncEngineDidFetchRecordZoneChangesEvent](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,27 +84,78 @@ func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) Autorelease() CKSyncEngineD
 func NewCKSyncEngineDidFetchRecordZoneChangesEvent() CKSyncEngineDidFetchRecordZoneChangesEvent {
 	return getCKSyncEngineDidFetchRecordZoneChangesEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CKSyncEngineDidFetchRecordZoneChangesEvent */
+// An object that provides information about a finished record zone fetch.
+
+
+// An object that provides information about a finished record zone fetch.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent
+type CKSyncEngineDidFetchRecordZoneChangesEvent struct {
+	CKSyncEngineEvent
+}
+
+// CKSyncEngineDidFetchRecordZoneChangesEventFrom constructs a [CKSyncEngineDidFetchRecordZoneChangesEvent] from an unsafe.Pointer.
+//
+// An object that provides information about a finished record zone fetch.
+func CKSyncEngineDidFetchRecordZoneChangesEventFrom(ptr unsafe.Pointer) CKSyncEngineDidFetchRecordZoneChangesEvent {
+	return CKSyncEngineDidFetchRecordZoneChangesEvent{
+		CKSyncEngineEvent: CKSyncEngineEventFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CKSyncEngineDidFetchRecordZoneChangesEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CKSyncEngineDidFetchRecordZoneChangesEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CKSyncEngineDidFetchRecordZoneChangesEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CKSyncEngineDidFetchRecordZoneChangesEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CKSyncEngineDidFetchRecordZoneChangesEvent */
 
 // An error that describes the cause of a failed fetch operation.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent/error
-func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) Error() foundation.Error {
-	rv := objc.Send[foundation.Error](c_.ID, objc.Sel("error"))
+func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) Error() objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](c_.ID, objc.Sel("error"))
 	return rv
-}
+}/* debug [instance_properties/getter]: error */
 
 
 // The associated record zone’s unique identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEngineDidFetchRecordZoneChangesEvent/zoneID
-func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) ZoneID() CKRecordZoneID {
+func (c_ CKSyncEngineDidFetchRecordZoneChangesEvent) ZoneID() ICKRecordZoneID {
 	rv := objc.Send[CKRecordZoneID](c_.ID, objc.Sel("zoneID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: zoneID */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CKSyncEngineDidFetchRecordZoneChangesEvent */
 
 
 

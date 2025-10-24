@@ -20,3 +20,4 @@ var hasUnifiedMemoryProtocol *objc.Protocol
 func init() {
 	hasUnifiedMemoryProtocol = objc.GetProtocol("hasUnifiedMemory")
 }
+

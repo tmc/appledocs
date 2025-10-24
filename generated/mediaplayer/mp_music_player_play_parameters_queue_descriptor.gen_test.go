@@ -13,7 +13,7 @@ var _ = mediaplayer.NewMusicPlayerPlayParametersQueueDescriptor
 // Creates a new queue descriptor using the designated queue of play parameters.
 func ExampleNewMusicPlayerPlayParametersQueueDescriptorWithPlayParametersQueue() {
 	_ = mediaplayer.NewMusicPlayerPlayParametersQueueDescriptorWithPlayParametersQueue(
-		[]mediaplayer.IMusicPlayerPlayParameters{}, // playParametersQueue []IMusicPlayerPlayParameters
+		[]mediaplayer.MusicPlayerPlayParameters{}, // playParametersQueue []MusicPlayerPlayParameters
 	)
 	// Output:
 }

@@ -13,8 +13,8 @@ var _ = coreml.NewMultiArray
 // Merges an array of multiarrays into one multiarray along an axis.
 func ExampleNewMultiArrayByConcatenatingMultiArraysAlongAxisDataType() {
 	_ = coreml.NewMultiArrayByConcatenatingMultiArraysAlongAxisDataType(
-		[]coreml.MultiArray{}, // multiArrays []MultiArray
-		0, // axis int
+		[]coreml.MultiArray{},       // multiArrays []MultiArray
+		0,                           // axis int
 		coreml.MultiArrayDataType{}, // dataType MultiArrayDataType
 	)
 	// Output:

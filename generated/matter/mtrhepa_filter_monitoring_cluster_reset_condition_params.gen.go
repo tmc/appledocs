@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRHEPAFilterMonitoringClusterResetConditionParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRHEPAFilterMonitoringClusterResetConditionParams
@@ -83,8 +81,6 @@ func NewMTRHEPAFilterMonitoringClusterResetConditionParams() MTRHEPAFilterMonito
 	return getMTRHEPAFilterMonitoringClusterResetConditionParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterresetconditionparams/serversideprocessingtimeout
 func (m_ MTRHEPAFilterMonitoringClusterResetConditionParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRHEPAFilterMonitoringClusterResetConditionParams) ServerSideProcessin
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterresetconditionparams/serversideprocessingtimeout
 func (m_ MTRHEPAFilterMonitoringClusterResetConditionParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterresetconditionparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRHEPAFilterMonitoringClusterResetConditionParams) TimedInvokeTimeoutM
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrhepafiltermonitoringclusterresetconditionparams/timedinvoketimeoutms
 func (m_ MTRHEPAFilterMonitoringClusterResetConditionParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

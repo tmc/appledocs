@@ -15,5 +15,4 @@ func ExampleBAAssetPackManifest_AllDownloads() {
 	obj := backgroundassets.NewBAAssetPackManifest()
 	_ = obj.AllDownloads()
 	// Output:
-	}
-
+}

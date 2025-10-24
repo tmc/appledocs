@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SCShareableContentInfo */
+
+
+/* debug [class_header]: Header for SCShareableContentInfo */
 // The class instance for the [ShareableContentInfo] class.
 var (
 	ShareableContentInfoClass     _ShareableContentInfoClass
@@ -27,36 +31,33 @@ func getShareableContentInfoClass() _ShareableContentInfoClass {
 type _ShareableContentInfoClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ShareableContentInfo */
 // An interface definition for the [ShareableContentInfo] class.
 type IShareableContentInfo interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ShareableContentInfo */
 	// properties:
+	ContentRect() corefoundation.CGRect
 	PointPixelScale() float32
 	Style() ShareableContentStyle
-	ContentRect() objc.IObject /* cross-framework: Rect */
-	SetContentRect(value objc.IObject /* cross-framework: Rect */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ShareableContentInfo */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An instance that provides information for the content in a given stream.
 
 
-// An instance that provides information for the content in a given stream.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo
-type ShareableContentInfo struct {
-	objectivec.Object
-}
-
-// ShareableContentInfoFrom constructs a [ShareableContentInfo] from an unsafe.Pointer.
-//
-// An instance that provides information for the content in a given stream.
-func ShareableContentInfoFrom(ptr unsafe.Pointer) ShareableContentInfo {
-	return ShareableContentInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ShareableContentInfo */
 // Alloc allocates a new instance without initialization.
 func (sc _ShareableContentInfoClass) Alloc() ShareableContentInfo {
 	rv := objc.Send[ShareableContentInfo](objc.ID(sc.class), objc.Sel("alloc"))
@@ -64,7 +65,6 @@ func (sc _ShareableContentInfoClass) Alloc() ShareableContentInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ShareableContentInfoClass) New() ShareableContentInfo {
 	rv := objc.Send[ShareableContentInfo](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,7 +87,61 @@ func (s_ ShareableContentInfo) Autorelease() ShareableContentInfo {
 func NewShareableContentInfo() ShareableContentInfo {
 	return getShareableContentInfoClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for ShareableContentInfo */
+// An instance that provides information for the content in a given stream.
+
+
+// An instance that provides information for the content in a given stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo
+type ShareableContentInfo struct {
+	objectivec.Object
+}
+
+// ShareableContentInfoFrom constructs a [ShareableContentInfo] from an unsafe.Pointer.
+//
+// An instance that provides information for the content in a given stream.
+func ShareableContentInfoFrom(ptr unsafe.Pointer) ShareableContentInfo {
+	return ShareableContentInfo{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ShareableContentInfo *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ShareableContentInfo */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ShareableContentInfo */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ShareableContentInfo */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ShareableContentInfo */
+
+// The size and location of content for the stream.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenCaptureKit/SCShareableContentInfo/contentRect
+func (s_ ShareableContentInfo) ContentRect() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](s_.ID, objc.Sel("contentRect"))
+	return rv
+}/* debug [instance_properties/getter]: contentRect */
 
 
 // The scaling from points to output pixel resolution for the stream.
@@ -97,7 +151,7 @@ func NewShareableContentInfo() ShareableContentInfo {
 func (s_ ShareableContentInfo) PointPixelScale() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("pointPixelScale"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pointPixelScale */
 
 
 // The current presentation style of the stream.
@@ -107,26 +161,12 @@ func (s_ ShareableContentInfo) PointPixelScale() float32 {
 func (s_ ShareableContentInfo) Style() ShareableContentStyle {
 	rv := objc.Send[ShareableContentStyle](s_.ID, objc.Sel("style"))
 	return rv
-}
+}/* debug [instance_properties/getter]: style */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The size and location of content for the stream.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/contentrect
-func (s_ ShareableContentInfo) ContentRect() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("contentRect"))
-	return rv
-}
-
-
-// The size and location of content for the stream.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screencapturekit/scshareablecontentinfo/contentrect
-func (s_ ShareableContentInfo) SetContentRect(value objc.IObject /* cross-framework: Rect */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setContentRect:"), value)
-}
+/* debug [class.gen.go]: End class SCShareableContentInfo */
 
 
 

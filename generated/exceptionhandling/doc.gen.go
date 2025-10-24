@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for ExceptionHandling. DO NOT EDIT.
 
 // Package exceptionhandling provides Go bindings for the ExceptionHandling framework.
 //
-// Monitor and debug exceptional conditions in code.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ExceptionHandling without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/ExceptionHandling
 package exceptionhandling
 
 import (

@@ -2,6 +2,13 @@
 
 package appkit
 
+import (
+
+	"github.com/tmc/appledocs/generated/corefoundation"
+
+	"github.com/tmc/appledocs/generated/foundation"
+)
+
 // PTextCheckingClient is the NSTextCheckingClient protocol interface.
 //
 // Availability:
@@ -10,5 +17,5 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextCheckingClient
 type PTextCheckingClient interface {
 	// Required methods
-	ReplaceCharactersInRangeWithAnnotatedString(range_ corefoundation.Range, annotatedString foundation.AttributedString)
+	ReplaceCharactersInRangeWithAnnotatedString(range_ corefoundation.Range, annotatedString foundation.AttributedString)/* debug [protocol_interface/required_method]: ReplaceCharactersInRangeWithAnnotatedString */
 }

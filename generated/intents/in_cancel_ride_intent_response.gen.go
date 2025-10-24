@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INCancelRideIntentResponse] class.
@@ -41,7 +41,6 @@ type IINCancelRideIntentResponse interface {
 // Your app’s response to a cancel ride intent.
 //
 // An object contains your app’s response to the cancellation of a ride. After creating the response object, specify any cancellation-related fees using the properties of this object. Siri and Maps display your response information to the user during the confirmation phase. You create an object in the and methods of your handler object. For more information about implementing your handler object, see .
-
 
 // Your app’s response to a cancel ride intent.
 //
@@ -91,8 +90,6 @@ func NewINCancelRideIntentResponse() INCancelRideIntentResponse {
 	return getINCancelRideIntentResponseClass().New()
 }
 
-
-
 // The cancellation fee charged by your service.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (i_ INCancelRideIntentResponse) CancellationFee() INCurrencyAmount {
 	return rv
 }
 
-
 // The cancellation fee charged by your service.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (i_ INCancelRideIntentResponse) CancellationFee() INCurrencyAmount {
 func (i_ INCancelRideIntentResponse) SetCancellationFee(value INCurrencyAmount) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCancellationFee:"), value)
 }
-
 
 // The amount of time that must elapse before cancellation fees apply.
 //
@@ -121,7 +116,6 @@ func (i_ INCancelRideIntentResponse) CancellationFeeThreshold() foundation.DateC
 	return rv
 }
 
-
 // The amount of time that must elapse before cancellation fees apply.
 //
 // [Full Topic]
@@ -129,7 +123,6 @@ func (i_ INCancelRideIntentResponse) CancellationFeeThreshold() foundation.DateC
 func (i_ INCancelRideIntentResponse) SetCancellationFeeThreshold(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCancellationFeeThreshold:"), value)
 }
-
 
 // The code indicating whether you successfully handled the intent.
 //
@@ -140,7 +133,6 @@ func (i_ INCancelRideIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -148,6 +140,3 @@ func (i_ INCancelRideIntentResponse) Code() unsafe.Pointer {
 func (i_ INCancelRideIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
-
-

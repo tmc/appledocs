@@ -6,7 +6,6 @@ import (
 	"github.com/ebitengine/purego"
 )
 
-
 // HealthKitUI Functions (0 total)
 //
 // Type-safe package-level functions with graceful error handling.
@@ -20,8 +19,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-

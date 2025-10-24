@@ -37,7 +37,6 @@ type IINFlightReservation interface {
 
 // The information that describes a flight reservation.
 
-
 // The information that describes a flight reservation.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINFlightReservation() INFlightReservation {
 	return getINFlightReservationClass().New()
 }
 
-
-
 // The flight information associated with the reservation.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INFlightReservation) Flight() unsafe.Pointer {
 	return rv
 }
 
-
 // The flight information associated with the reservation.
 //
 // [Full Topic]
@@ -105,7 +101,6 @@ func (i_ INFlightReservation) Flight() unsafe.Pointer {
 func (i_ INFlightReservation) SetFlight(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFlight:"), value)
 }
-
 
 // The user’s seat for the flight.
 //
@@ -116,7 +111,6 @@ func (i_ INFlightReservation) ReservedSeat() INSeat {
 	return rv
 }
 
-
 // The user’s seat for the flight.
 //
 // [Full Topic]
@@ -124,6 +118,3 @@ func (i_ INFlightReservation) ReservedSeat() INSeat {
 func (i_ INFlightReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
 }
-
-
-

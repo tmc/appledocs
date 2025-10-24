@@ -36,7 +36,6 @@ type IINIntentDonationMetadata interface {
 
 // A parent class referenced by other Intents classes.
 
-
 // A parent class referenced by other Intents classes. [Full Topic]
 type INIntentDonationMetadata struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (i_ INIntentDonationMetadata) Autorelease() INIntentDonationMetadata {
 func NewINIntentDonationMetadata() INIntentDonationMetadata {
 	return getINIntentDonationMetadataClass().New()
 }
-
-
-
-

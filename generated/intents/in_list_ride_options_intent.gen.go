@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INListRideOptionsIntent] class.
@@ -41,7 +41,6 @@ type IINListRideOptionsIntent interface {
 // An intent for getting the types of rides available from a ride-booking service.
 //
 // Maps creates an object when it needs to display the types of vehicles that your service offers. Use the information in this intent to identify the possible vehicles that you can provide to the user right now. The intent contains information about the user’s pickup and drop-off locations, which you can use to determine ride availability, pricing, and estimated pickup times. This intent object represents a request for information and is not a commitment from the user to book any of the specified rides. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should resolve and confirm the request parameters and create an object with the list of options.
-
 
 // An intent for getting the types of rides available from a ride-booking service.
 //
@@ -91,8 +90,6 @@ func NewINListRideOptionsIntent() INListRideOptionsIntent {
 	return getINListRideOptionsIntentClass().New()
 }
 
-
-
 // The user’s destination.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (i_ INListRideOptionsIntent) DropOffLocation() objc.IObject /* cross-framew
 	return rv
 }
 
-
 // The user’s destination.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (i_ INListRideOptionsIntent) DropOffLocation() objc.IObject /* cross-framew
 func (i_ INListRideOptionsIntent) SetDropOffLocation(value objc.IObject /* cross-framework: Placemark */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
-
 
 // The user’s starting location.
 //
@@ -121,7 +116,6 @@ func (i_ INListRideOptionsIntent) PickupLocation() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // The user’s starting location.
 //
 // [Full Topic]
@@ -129,6 +123,3 @@ func (i_ INListRideOptionsIntent) PickupLocation() objc.IObject /* cross-framewo
 func (i_ INListRideOptionsIntent) SetPickupLocation(value objc.IObject /* cross-framework: Placemark */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
-
-
-

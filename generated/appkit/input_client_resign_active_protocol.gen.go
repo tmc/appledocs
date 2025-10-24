@@ -15,3 +15,4 @@ var inputClientResignActiveProtocol *objc.Protocol
 func init() {
 	inputClientResignActiveProtocol = objc.GetProtocol("inputClientResignActive:")
 }
+

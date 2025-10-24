@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,7 +34,7 @@ type IPHCloudIdentifierMapping interface {
 	// properties:
 	UserInfo() objc.IObject /* cross-framework: NSString */
 	SetUserInfo(value objc.IObject /* cross-framework: NSString */)
-	PHLocalIdentifierNotFound() objc.IObject /* cross-framework: NSString */
+	PHLocalIdentifierNotFound() objc.IObject  /* cross-framework: NSString */
 	PHLocalIdentifiersErrorKey() objc.IObject /* cross-framework: NSString */
 	// methods:
 }
@@ -42,7 +42,6 @@ type IPHCloudIdentifierMapping interface {
 // An object that contains the cloud identifier result from looking up a local identifier, or an error indicating why the lookup failed.
 //
 // The error property exhibits two common errors— and . When encountering multiple identifiers, use the error’s property to retrieve a list of matched local identifiers. You can access them using .
-
 
 // An object that contains the cloud identifier result from looking up a local identifier, or an error indicating why the lookup failed.
 //
@@ -90,8 +89,6 @@ func NewPHCloudIdentifierMapping() PHCloudIdentifierMapping {
 	return getPHCloudIdentifierMappingClass().New()
 }
 
-
-
 // The user info dictionary.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (p_ PHCloudIdentifierMapping) UserInfo() objc.IObject /* cross-framework: N
 	return rv
 }
 
-
 // The user info dictionary.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (p_ PHCloudIdentifierMapping) UserInfo() objc.IObject /* cross-framework: N
 func (p_ PHCloudIdentifierMapping) SetUserInfo(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
-
 
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
@@ -120,7 +115,6 @@ func (p_ PHCloudIdentifierMapping) PHLocalIdentifierNotFound() objc.IObject /* c
 	return rv
 }
 
-
 // An error key that retrieves an array of string values representing local identifiers matched to a cloud identifier.
 //
 // [Full Topic]
@@ -129,6 +123,3 @@ func (p_ PHCloudIdentifierMapping) PHLocalIdentifiersErrorKey() objc.IObject /* 
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("PHLocalIdentifiersErrorKey"))
 	return rv
 }
-
-
-

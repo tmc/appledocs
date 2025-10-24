@@ -14,7 +14,7 @@ var _ = gameplaykit.NewRidgedNoiseSource
 func ExampleNewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed() {
 	_ = gameplaykit.NewRidgedNoiseSourceWithFrequencyOctaveCountLacunaritySeed(
 		0.0, // frequency float64
-		0, // octaveCount int
+		10, // octaveCount int
 		0.0, // lacunarity float64
 		gameplaykit.int32 /* not a class type */{}, // seed int32 /* not a class type */
 	)

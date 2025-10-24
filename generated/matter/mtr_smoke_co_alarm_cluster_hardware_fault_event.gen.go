@@ -34,8 +34,6 @@ type IMTRSmokeCOAlarmClusterHardwareFaultEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterHardwareFaultEvent
 type MTRSmokeCOAlarmClusterHardwareFaultEvent struct {
@@ -77,7 +75,3 @@ func (m_ MTRSmokeCOAlarmClusterHardwareFaultEvent) Autorelease() MTRSmokeCOAlarm
 func NewMTRSmokeCOAlarmClusterHardwareFaultEvent() MTRSmokeCOAlarmClusterHardwareFaultEvent {
 	return getMTRSmokeCOAlarmClusterHardwareFaultEventClass().New()
 }
-
-
-
-

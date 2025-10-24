@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRServerEndpoint interface {
 	SetServerClusters(value IMTRServerCluster)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServerEndpoint
@@ -87,8 +85,6 @@ func NewMTRServerEndpoint() MTRServerEndpoint {
 	return getMTRServerEndpointClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/accessgrants
 func (m_ MTRServerEndpoint) AccessGrants() IMTRAccessGrant {
@@ -96,13 +92,11 @@ func (m_ MTRServerEndpoint) AccessGrants() IMTRAccessGrant {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/accessgrants
 func (m_ MTRServerEndpoint) SetAccessGrants(value IMTRAccessGrant) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessGrants:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/devicetypes
@@ -111,13 +105,11 @@ func (m_ MTRServerEndpoint) DeviceTypes() IMTRDeviceTypeRevision {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/devicetypes
 func (m_ MTRServerEndpoint) SetDeviceTypes(value IMTRDeviceTypeRevision) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceTypes:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/endpointid
@@ -126,13 +118,11 @@ func (m_ MTRServerEndpoint) EndpointID() objc.IObject /* cross-framework: NSNumb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/endpointid
 func (m_ MTRServerEndpoint) SetEndpointID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpointID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/serverclusters
@@ -141,12 +131,8 @@ func (m_ MTRServerEndpoint) ServerClusters() IMTRServerCluster {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverendpoint/serverclusters
 func (m_ MTRServerEndpoint) SetServerClusters(value IMTRServerCluster) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerClusters:"), value)
 }
-
-
-

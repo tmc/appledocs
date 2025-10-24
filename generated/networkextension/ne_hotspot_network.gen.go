@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NEHotspotNetwork */
+
+
+/* debug [class_header]: Header for NEHotspotNetwork */
 // The class instance for the [NEHotspotNetwork] class.
 var (
 	NEHotspotNetworkClass     _NEHotspotNetworkClass
@@ -27,13 +31,17 @@ func getNEHotspotNetworkClass() _NEHotspotNetworkClass {
 type _NEHotspotNetworkClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEHotspotNetwork */
 // An interface definition for the [NEHotspotNetwork] class.
 type INEHotspotNetwork interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NEHotspotNetwork */
 	// properties:
-	Bssid() objc.IObject /* cross-framework: NSString */
-	SetBssid(value objc.IObject /* cross-framework: NSString */)
 	DidAutoJoin() bool
 	SetDidAutoJoin(value bool)
 	DidJustJoin() bool
@@ -42,35 +50,19 @@ type INEHotspotNetwork interface {
 	SetIsChosenHelper(value bool)
 	IsSecure() bool
 	SetIsSecure(value bool)
-	SecurityType() unsafe.Pointer
-	SetSecurityType(value unsafe.Pointer)
-	SignalStrength() float64
-	SetSignalStrength(value float64)
-	Ssid() objc.IObject /* cross-framework: NSString */
-	SetSsid(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NEHotspotNetwork */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Information about a Wi-Fi network associated with a command or a response.
-//
-// When the Hotspot Helper app is asked to evaluate the a network or filter the Wi-Fi scan list, it annotates the object via the method.
+/* debug [class_interface]: End interface */
 
 
-// Information about a Wi-Fi network associated with a command or a response.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotNetwork
-type NEHotspotNetwork struct {
-	objectivec.Object
-}
 
-// NEHotspotNetworkFrom constructs a [NEHotspotNetwork] from an unsafe.Pointer.
-//
-// Information about a Wi-Fi network associated with a command or a response.
-func NEHotspotNetworkFrom(ptr unsafe.Pointer) NEHotspotNetwork {
-	return NEHotspotNetwork{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NEHotspotNetwork */
 // Alloc allocates a new instance without initialization.
 func (nc _NEHotspotNetworkClass) Alloc() NEHotspotNetwork {
 	rv := objc.Send[NEHotspotNetwork](objc.ID(nc.class), objc.Sel("alloc"))
@@ -78,7 +70,6 @@ func (nc _NEHotspotNetworkClass) Alloc() NEHotspotNetwork {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEHotspotNetworkClass) New() NEHotspotNetwork {
 	rv := objc.Send[NEHotspotNetwork](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,8 +92,39 @@ func (n_ NEHotspotNetwork) Autorelease() NEHotspotNetwork {
 func NewNEHotspotNetwork() NEHotspotNetwork {
 	return getNEHotspotNetworkClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for NEHotspotNetwork */
+// Information about a Wi-Fi network associated with a command or a response.
+//
+// When the Hotspot Helper app is asked to evaluate the a network or filter the Wi-Fi scan list, it annotates the object via the method.
+
+
+// Information about a Wi-Fi network associated with a command or a response.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotNetwork
+type NEHotspotNetwork struct {
+	objectivec.Object
+}
+
+// NEHotspotNetworkFrom constructs a [NEHotspotNetwork] from an unsafe.Pointer.
+//
+// Information about a Wi-Fi network associated with a command or a response.
+func NEHotspotNetworkFrom(ptr unsafe.Pointer) NEHotspotNetwork {
+	return NEHotspotNetwork{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NEHotspotNetwork *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NEHotspotNetwork */
 
 // Fetches information about the current Wi-Fi network.
 //
@@ -110,27 +132,23 @@ func NewNEHotspotNetwork() NEHotspotNetwork {
 // [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotNetwork/fetchCurrent(completionHandler:)
 func (nc _NEHotspotNetworkClass) FetchCurrentWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("fetchCurrentWithCompletionHandler:"), completionHandler)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=FetchCurrentWithCompletionHandler) */
+
+/* debug [class_methods]: End class methods */
 
 
-// The BSSID for the Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
-func (n_ NEHotspotNetwork) Bssid() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("bssid"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for NEHotspotNetwork */
+/* debug [class_properties_class]: End class properties */
 
 
-// The BSSID for the Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/bssid
-func (n_ NEHotspotNetwork) SetBssid(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setBssid:"), value)
-}
 
+/* debug [instance_methods]: Instance methods for NEHotspotNetwork */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEHotspotNetwork */
 
 // Indicates whether the network was joined automatically or was joined explicitly by the user.
 //
@@ -139,7 +157,7 @@ func (n_ NEHotspotNetwork) SetBssid(value objc.IObject /* cross-framework: NSStr
 func (n_ NEHotspotNetwork) DidAutoJoin() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("didAutoJoin"))
 	return rv
-}
+}/* debug [instance_properties/getter]: didAutoJoin */
 
 
 // Indicates whether the network was joined automatically or was joined explicitly by the user.
@@ -148,7 +166,7 @@ func (n_ NEHotspotNetwork) DidAutoJoin() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/didautojoin
 func (n_ NEHotspotNetwork) SetDidAutoJoin(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDidAutoJoin:"), value)
-}
+}/* debug [instance_properties/setter]: didAutoJoin */
 
 
 // Indicates whether the network was just joined.
@@ -158,7 +176,7 @@ func (n_ NEHotspotNetwork) SetDidAutoJoin(value bool) {
 func (n_ NEHotspotNetwork) DidJustJoin() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("didJustJoin"))
 	return rv
-}
+}/* debug [instance_properties/getter]: didJustJoin */
 
 
 // Indicates whether the network was just joined.
@@ -167,7 +185,7 @@ func (n_ NEHotspotNetwork) DidJustJoin() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/didjustjoin
 func (n_ NEHotspotNetwork) SetDidJustJoin(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setDidJustJoin:"), value)
-}
+}/* debug [instance_properties/setter]: didJustJoin */
 
 
 // Indicates whether the calling Hotspot Helper is the chosen helper for this network.
@@ -177,7 +195,7 @@ func (n_ NEHotspotNetwork) SetDidJustJoin(value bool) {
 func (n_ NEHotspotNetwork) IsChosenHelper() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isChosenHelper"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isChosenHelper */
 
 
 // Indicates whether the calling Hotspot Helper is the chosen helper for this network.
@@ -186,7 +204,7 @@ func (n_ NEHotspotNetwork) IsChosenHelper() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ischosenhelper
 func (n_ NEHotspotNetwork) SetIsChosenHelper(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsChosenHelper:"), value)
-}
+}/* debug [instance_properties/setter]: isChosenHelper */
 
 
 // Indicates whether the network is secure
@@ -196,7 +214,7 @@ func (n_ NEHotspotNetwork) SetIsChosenHelper(value bool) {
 func (n_ NEHotspotNetwork) IsSecure() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isSecure"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isSecure */
 
 
 // Indicates whether the network is secure
@@ -205,63 +223,11 @@ func (n_ NEHotspotNetwork) IsSecure() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/issecure
 func (n_ NEHotspotNetwork) SetIsSecure(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsSecure:"), value)
-}
+}/* debug [instance_properties/setter]: isSecure */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The type of security used by the Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/securitytype
-func (n_ NEHotspotNetwork) SecurityType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("securityType"))
-	return rv
-}
-
-
-// The type of security used by the Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/securitytype
-func (n_ NEHotspotNetwork) SetSecurityType(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSecurityType:"), value)
-}
-
-
-// The recent signal strength for the Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/signalstrength
-func (n_ NEHotspotNetwork) SignalStrength() float64 {
-	rv := objc.Send[float64](n_.ID, objc.Sel("signalStrength"))
-	return rv
-}
-
-
-// The recent signal strength for the Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/signalstrength
-func (n_ NEHotspotNetwork) SetSignalStrength(value float64) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSignalStrength:"), value)
-}
-
-
-// The SSID for the Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
-func (n_ NEHotspotNetwork) Ssid() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("ssid"))
-	return rv
-}
-
-
-// The SSID for the Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspotnetwork/ssid
-func (n_ NEHotspotNetwork) SetSsid(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSsid:"), value)
-}
+/* debug [class.gen.go]: End class NEHotspotNetwork */
 
 

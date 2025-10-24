@@ -11,6 +11,7 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 8.3+
 //   - iPadOS 8.3+
 //   - macOS 10.11+
+//   - tvOS +
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to setFragmentBytes:.
@@ -19,3 +20,4 @@ var setFragmentBytesProtocol *objc.Protocol
 func init() {
 	setFragmentBytesProtocol = objc.GetProtocol("setFragmentBytes:")
 }
+

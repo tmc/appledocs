@@ -13,7 +13,7 @@ var _ = gameplaykit.NewRandomDistribution
 // Creates a random distribution equivalent to a die with the specified number of sides.
 func ExampleNewRandomDistributionForDieWithSideCount() {
 	_ = gameplaykit.NewRandomDistributionForDieWithSideCount(
-		0, // sideCount int
+		10, // sideCount int
 	)
 	// Output:
 }

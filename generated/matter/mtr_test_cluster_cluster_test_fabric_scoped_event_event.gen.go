@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestFabricScopedEventEvent] class.
@@ -35,8 +35,6 @@ type IMTRTestClusterClusterTestFabricScopedEventEvent interface {
 	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestFabricScopedEventEvent
@@ -82,8 +80,6 @@ func NewMTRTestClusterClusterTestFabricScopedEventEvent() MTRTestClusterClusterT
 	return getMTRTestClusterClusterTestFabricScopedEventEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscopedeventevent/fabricindex
 func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
@@ -91,12 +87,8 @@ func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) FabricIndex() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscopedeventevent/fabricindex
 func (m_ MTRTestClusterClusterTestFabricScopedEventEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
-
-

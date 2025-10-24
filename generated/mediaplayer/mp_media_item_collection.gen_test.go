@@ -13,7 +13,7 @@ var _ = mediaplayer.NewMediaItemCollection
 // Initializes a media item collection with an array of media items.
 func ExampleNewMediaItemCollectionWithItems() {
 	_ = mediaplayer.NewMediaItemCollectionWithItems(
-		[]mediaplayer.IMediaItem{}, // items []IMediaItem
+		[]mediaplayer.MediaItem{}, // items []MediaItem
 	)
 	// Output:
 }

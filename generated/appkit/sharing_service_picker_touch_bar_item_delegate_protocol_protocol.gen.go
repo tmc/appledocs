@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PSharingServicePickerTouchBarItemDelegate is the NSSharingServicePickerTouchBarItemDelegate protocol interface.
@@ -17,7 +19,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSSharingServicePickerTouchBarItemDelegate
 type PSharingServicePickerTouchBarItemDelegate interface {
 	// Required methods
-	ItemsForSharingServicePickerTouchBarItem(pickerTouchBarItem ISharingServicePickerTouchBarItem) foundation.Array
+	ItemsForSharingServicePickerTouchBarItem(pickerTouchBarItem ISharingServicePickerTouchBarItem) foundation.Array/* debug [protocol_interface/required_method]: ItemsForSharingServicePickerTouchBarItem */
 }
 
 // SharingServicePickerTouchBarItemDelegate is a delegate implementation builder for the PSharingServicePickerTouchBarItemDelegate protocol.

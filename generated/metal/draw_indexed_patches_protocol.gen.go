@@ -8,10 +8,10 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 10.0+
-//   - iPadOS 10.0+
-//   - macOS 10.12+
-//   - tvOS 10.0+
+//   - iOS 12.0+
+//   - iPadOS 12.0+
+//   - macOS 10.14+
+//   - tvOS 14.5+
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to drawIndexedPatches:.
@@ -20,3 +20,4 @@ var drawIndexedPatchesProtocol *objc.Protocol
 func init() {
 	drawIndexedPatchesProtocol = objc.GetProtocol("drawIndexedPatches:")
 }
+

@@ -33,8 +33,6 @@ type IMTRBaseClusterDiagnosticLogs interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDiagnosticLogs
 type MTRBaseClusterDiagnosticLogs struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterDiagnosticLogs) Autorelease() MTRBaseClusterDiagnosticLog
 func NewMTRBaseClusterDiagnosticLogs() MTRBaseClusterDiagnosticLogs {
 	return getMTRBaseClusterDiagnosticLogsClass().New()
 }
-
-
-
-

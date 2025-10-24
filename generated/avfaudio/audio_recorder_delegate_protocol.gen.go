@@ -21,3 +21,4 @@ var AudioRecorderDelegateProtocol *objc.Protocol
 func init() {
 	AudioRecorderDelegateProtocol = objc.GetProtocol("AVAudioRecorderDelegate")
 }
+

@@ -9,7 +9,10 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	UInt8 = _undefined // referenced in CoreMIDI
+	DataRef = _undefined // referenced in CoreMIDI
+	DictionaryRef = _undefined // referenced in CoreMIDI
+	RunLoopRef = _undefined // referenced in CoreMIDI
+	StringRef = _undefined // referenced in CoreMIDI
 )
 
 

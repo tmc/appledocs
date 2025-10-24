@@ -33,8 +33,6 @@ type IMTRClusterHEPAFilterMonitoring interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterHEPAFilterMonitoring
 type MTRClusterHEPAFilterMonitoring struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterHEPAFilterMonitoring) Autorelease() MTRClusterHEPAFilterMonit
 func NewMTRClusterHEPAFilterMonitoring() MTRClusterHEPAFilterMonitoring {
 	return getMTRClusterHEPAFilterMonitoringClass().New()
 }
-
-
-
-

@@ -37,7 +37,6 @@ type IINGetCarLockStatusIntent interface {
 //
 // When the user asks for the car’s lock status, Siri creates an object . This intent object can contain the name of the user’s car. Use this object to provide information about the car’s current lock status. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results.
 
-
 // A request to get the lock status of the user’s car.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINGetCarLockStatusIntent() INGetCarLockStatusIntent {
 	return getINGetCarLockStatusIntentClass().New()
 }
 
-
-
 // A name that identifies the user’s car.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INGetCarLockStatusIntent) CarName() INSpeakableString {
 	return rv
 }
 
-
 // A name that identifies the user’s car.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INGetCarLockStatusIntent) CarName() INSpeakableString {
 func (i_ INGetCarLockStatusIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
-
-
-

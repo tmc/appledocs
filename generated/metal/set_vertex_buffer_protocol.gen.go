@@ -8,9 +8,10 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 8.0+
-//   - iPadOS 8.0+
-//   - macOS 10.11+
+//   - iOS 12.0+
+//   - iPadOS 12.0+
+//   - macOS 10.14+
+//   - tvOS 12.0+
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to setVertexBuffer:.
@@ -19,3 +20,4 @@ var setVertexBufferProtocol *objc.Protocol
 func init() {
 	setVertexBufferProtocol = objc.GetProtocol("setVertexBuffer:")
 }
+

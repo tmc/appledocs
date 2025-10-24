@@ -10,9 +10,7 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	CreationSource = _undefined // referenced in PhotosUI
-	Identifier = _undefined // referenced in PhotosUI
-	Progress = _undefined // referenced in PhotosUI
-	SectionType = _undefined // referenced in PhotosUI
+	Identifier     = _undefined // referenced in PhotosUI
+	Progress       = _undefined // referenced in PhotosUI
+	SectionType    = _undefined // referenced in PhotosUI
 )
-
-

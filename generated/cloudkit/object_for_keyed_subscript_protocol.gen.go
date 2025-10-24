@@ -21,3 +21,4 @@ var objectForKeyedSubscriptProtocol *objc.Protocol
 func init() {
 	objectForKeyedSubscriptProtocol = objc.GetProtocol("objectForKeyedSubscript:")
 }
+

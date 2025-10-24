@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INSearchForMessagesIntent] class.
@@ -74,7 +74,6 @@ type IINSearchForMessagesIntent interface {
 //
 // Siri creates objects when the user asks to see sent or received messages. You must implement this intent to support the reading of messages by Siri. This intent object contains the values for you to match when searching the user’s messages. Users can search for messages involving a specific person, messages with specific sent or received dates, or messages containing specific terms. When performing the search, use only the provided parameters, and ignore any that have no values. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler confirms the request and creates an object with the results of the search. For successful searches, Siri offers the user a way to launch your app and see the results. To allow a user wearing AirPods to automatically hear messages, you must implement both and . Add to the options when calling . Finally, add to the category option and to the category intent identifier.
 
-
 // A request to list the messages that match the specified criteria.
 //
 // [Full Topic]
@@ -123,8 +122,6 @@ func NewINSearchForMessagesIntent() INSearchForMessagesIntent {
 	return getINSearchForMessagesIntentClass().New()
 }
 
-
-
 // The attributes that must be present on a message to yield a match.
 //
 // [Full Topic]
@@ -134,7 +131,6 @@ func (i_ INSearchForMessagesIntent) Attributes() unsafe.Pointer {
 	return rv
 }
 
-
 // The attributes that must be present on a message to yield a match.
 //
 // [Full Topic]
@@ -142,7 +138,6 @@ func (i_ INSearchForMessagesIntent) Attributes() unsafe.Pointer {
 func (i_ INSearchForMessagesIntent) SetAttributes(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttributes:"), value)
 }
-
 
 // The conversation identifiers to locate in your search.
 //
@@ -153,7 +148,6 @@ func (i_ INSearchForMessagesIntent) ConversationIdentifiers() objc.IObject /* cr
 	return rv
 }
 
-
 // The conversation identifiers to locate in your search.
 //
 // [Full Topic]
@@ -161,7 +155,6 @@ func (i_ INSearchForMessagesIntent) ConversationIdentifiers() objc.IObject /* cr
 func (i_ INSearchForMessagesIntent) SetConversationIdentifiers(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifiers:"), value)
 }
-
 
 // The operator that defines how to use the conversation identifiers in the search criteria.
 //
@@ -172,7 +165,6 @@ func (i_ INSearchForMessagesIntent) ConversationIdentifiersOperator() unsafe.Poi
 	return rv
 }
 
-
 // The operator that defines how to use the conversation identifiers in the search criteria.
 //
 // [Full Topic]
@@ -180,7 +172,6 @@ func (i_ INSearchForMessagesIntent) ConversationIdentifiersOperator() unsafe.Poi
 func (i_ INSearchForMessagesIntent) SetConversationIdentifiersOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifiersOperator:"), value)
 }
-
 
 // The range of dates in which to search for messages.
 //
@@ -191,7 +182,6 @@ func (i_ INSearchForMessagesIntent) DateTimeRange() INDateComponentsRange {
 	return rv
 }
 
-
 // The range of dates in which to search for messages.
 //
 // [Full Topic]
@@ -199,7 +189,6 @@ func (i_ INSearchForMessagesIntent) DateTimeRange() INDateComponentsRange {
 func (i_ INSearchForMessagesIntent) SetDateTimeRange(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateTimeRange:"), value)
 }
-
 
 // The names of any groups associated with the message.
 //
@@ -210,7 +199,6 @@ func (i_ INSearchForMessagesIntent) GroupNames() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The names of any groups associated with the message.
 //
 // [Full Topic]
@@ -218,7 +206,6 @@ func (i_ INSearchForMessagesIntent) GroupNames() objc.IObject /* cross-framework
 func (i_ INSearchForMessagesIntent) SetGroupNames(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupNames:"), value)
 }
-
 
 // The operator that defines how to use the group names in the search criteria.
 //
@@ -229,7 +216,6 @@ func (i_ INSearchForMessagesIntent) GroupNamesOperator() unsafe.Pointer {
 	return rv
 }
 
-
 // The operator that defines how to use the group names in the search criteria.
 //
 // [Full Topic]
@@ -237,7 +223,6 @@ func (i_ INSearchForMessagesIntent) GroupNamesOperator() unsafe.Pointer {
 func (i_ INSearchForMessagesIntent) SetGroupNamesOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupNamesOperator:"), value)
 }
-
 
 // The message identifiers to locate in your search.
 //
@@ -248,7 +233,6 @@ func (i_ INSearchForMessagesIntent) Identifiers() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The message identifiers to locate in your search.
 //
 // [Full Topic]
@@ -256,7 +240,6 @@ func (i_ INSearchForMessagesIntent) Identifiers() objc.IObject /* cross-framewor
 func (i_ INSearchForMessagesIntent) SetIdentifiers(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifiers:"), value)
 }
-
 
 // The operator that defines how to use the identifiers in the search criteria.
 //
@@ -267,7 +250,6 @@ func (i_ INSearchForMessagesIntent) IdentifiersOperator() unsafe.Pointer {
 	return rv
 }
 
-
 // The operator that defines how to use the identifiers in the search criteria.
 //
 // [Full Topic]
@@ -275,7 +257,6 @@ func (i_ INSearchForMessagesIntent) IdentifiersOperator() unsafe.Pointer {
 func (i_ INSearchForMessagesIntent) SetIdentifiersOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifiersOperator:"), value)
 }
-
 
 // The notification identifiers to locate in your search.
 //
@@ -286,7 +267,6 @@ func (i_ INSearchForMessagesIntent) NotificationIdentifiers() objc.IObject /* cr
 	return rv
 }
 
-
 // The notification identifiers to locate in your search.
 //
 // [Full Topic]
@@ -294,7 +274,6 @@ func (i_ INSearchForMessagesIntent) NotificationIdentifiers() objc.IObject /* cr
 func (i_ INSearchForMessagesIntent) SetNotificationIdentifiers(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNotificationIdentifiers:"), value)
 }
-
 
 // The operator that defines how to use the notification identifiers in the search criteria.
 //
@@ -305,7 +284,6 @@ func (i_ INSearchForMessagesIntent) NotificationIdentifiersOperator() unsafe.Poi
 	return rv
 }
 
-
 // The operator that defines how to use the notification identifiers in the search criteria.
 //
 // [Full Topic]
@@ -313,7 +291,6 @@ func (i_ INSearchForMessagesIntent) NotificationIdentifiersOperator() unsafe.Poi
 func (i_ INSearchForMessagesIntent) SetNotificationIdentifiersOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNotificationIdentifiersOperator:"), value)
 }
-
 
 // The contacts who are the recipients of the messages.
 //
@@ -324,7 +301,6 @@ func (i_ INSearchForMessagesIntent) Recipients() INPerson {
 	return rv
 }
 
-
 // The contacts who are the recipients of the messages.
 //
 // [Full Topic]
@@ -332,7 +308,6 @@ func (i_ INSearchForMessagesIntent) Recipients() INPerson {
 func (i_ INSearchForMessagesIntent) SetRecipients(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipients:"), value)
 }
-
 
 // The operator that defines how to use the recipients in the search criteria.
 //
@@ -343,7 +318,6 @@ func (i_ INSearchForMessagesIntent) RecipientsOperator() unsafe.Pointer {
 	return rv
 }
 
-
 // The operator that defines how to use the recipients in the search criteria.
 //
 // [Full Topic]
@@ -351,7 +325,6 @@ func (i_ INSearchForMessagesIntent) RecipientsOperator() unsafe.Pointer {
 func (i_ INSearchForMessagesIntent) SetRecipientsOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipientsOperator:"), value)
 }
-
 
 // The terms to look for in the messages.
 //
@@ -362,7 +335,6 @@ func (i_ INSearchForMessagesIntent) SearchTerms() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The terms to look for in the messages.
 //
 // [Full Topic]
@@ -370,7 +342,6 @@ func (i_ INSearchForMessagesIntent) SearchTerms() objc.IObject /* cross-framewor
 func (i_ INSearchForMessagesIntent) SetSearchTerms(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTerms:"), value)
 }
-
 
 // The operator that defines how to use the set of terms in the search criteria.
 //
@@ -381,7 +352,6 @@ func (i_ INSearchForMessagesIntent) SearchTermsOperator() unsafe.Pointer {
 	return rv
 }
 
-
 // The operator that defines how to use the set of terms in the search criteria.
 //
 // [Full Topic]
@@ -389,7 +359,6 @@ func (i_ INSearchForMessagesIntent) SearchTermsOperator() unsafe.Pointer {
 func (i_ INSearchForMessagesIntent) SetSearchTermsOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSearchTermsOperator:"), value)
 }
-
 
 // The senders to include or exclude when you search for messages.
 //
@@ -400,7 +369,6 @@ func (i_ INSearchForMessagesIntent) Senders() INPerson {
 	return rv
 }
 
-
 // The senders to include or exclude when you search for messages.
 //
 // [Full Topic]
@@ -408,7 +376,6 @@ func (i_ INSearchForMessagesIntent) Senders() INPerson {
 func (i_ INSearchForMessagesIntent) SetSenders(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSenders:"), value)
 }
-
 
 // The operator that defines how to use the senders in the search criteria.
 //
@@ -419,7 +386,6 @@ func (i_ INSearchForMessagesIntent) SendersOperator() unsafe.Pointer {
 	return rv
 }
 
-
 // The operator that defines how to use the senders in the search criteria.
 //
 // [Full Topic]
@@ -427,7 +393,6 @@ func (i_ INSearchForMessagesIntent) SendersOperator() unsafe.Pointer {
 func (i_ INSearchForMessagesIntent) SetSendersOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSendersOperator:"), value)
 }
-
 
 // The names of any groups associated with the message.
 //
@@ -438,7 +403,6 @@ func (i_ INSearchForMessagesIntent) SpeakableGroupNames() INSpeakableString {
 	return rv
 }
 
-
 // The names of any groups associated with the message.
 //
 // [Full Topic]
@@ -446,7 +410,6 @@ func (i_ INSearchForMessagesIntent) SpeakableGroupNames() INSpeakableString {
 func (i_ INSearchForMessagesIntent) SetSpeakableGroupNames(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpeakableGroupNames:"), value)
 }
-
 
 // The operator that defines how to use the group names in the search criteria.
 //
@@ -457,7 +420,6 @@ func (i_ INSearchForMessagesIntent) SpeakableGroupNamesOperator() unsafe.Pointer
 	return rv
 }
 
-
 // The operator that defines how to use the group names in the search criteria.
 //
 // [Full Topic]
@@ -465,6 +427,3 @@ func (i_ INSearchForMessagesIntent) SpeakableGroupNamesOperator() unsafe.Pointer
 func (i_ INSearchForMessagesIntent) SetSpeakableGroupNamesOperator(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpeakableGroupNamesOperator:"), value)
 }
-
-
-

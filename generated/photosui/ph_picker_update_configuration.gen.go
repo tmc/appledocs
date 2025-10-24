@@ -83,7 +83,6 @@ func NewPHPickerUpdateConfiguration() PHPickerUpdateConfiguration {
 	return getPHPickerUpdateConfigurationClass().New()
 }
 
-
 // The portions of a photo picker’s permiter that are borderless.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHPickerUpdateConfiguration/edgesWithoutContentMargins
@@ -91,7 +90,6 @@ func (p_ PHPickerUpdateConfiguration) EdgesWithoutContentMargins() unsafe.Pointe
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("edgesWithoutContentMargins"))
 	return rv
 }
-
 
 // SetEdgesWithoutContentMargins sets the value of the edgesWithoutContentMargins property.
 // The portions of a photo picker’s permiter that are borderless.
@@ -110,7 +108,6 @@ func (p_ PHPickerUpdateConfiguration) SelectionLimit() int {
 	return rv
 }
 
-
 // SetSelectionLimit sets the value of the selectionLimit property.
 // The maximum number of selections the user can make.
 
@@ -119,6 +116,3 @@ func (p_ PHPickerUpdateConfiguration) SelectionLimit() int {
 func (p_ PHPickerUpdateConfiguration) SetSelectionLimit(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setSelectionLimit:"), value)
 }
-
-
-

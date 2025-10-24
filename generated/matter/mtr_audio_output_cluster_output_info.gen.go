@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRAudioOutputClusterOutputInfo] class.
@@ -39,8 +39,6 @@ type IMTRAudioOutputClusterOutputInfo interface {
 	SetOutputType(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAudioOutputClusterOutputInfo
@@ -86,8 +84,6 @@ func NewMTRAudioOutputClusterOutputInfo() MTRAudioOutputClusterOutputInfo {
 	return getMTRAudioOutputClusterOutputInfoClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/index
 func (m_ MTRAudioOutputClusterOutputInfo) Index() objc.IObject /* cross-framework: NSNumber */ {
@@ -95,13 +91,11 @@ func (m_ MTRAudioOutputClusterOutputInfo) Index() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/index
 func (m_ MTRAudioOutputClusterOutputInfo) SetIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/name
@@ -110,13 +104,11 @@ func (m_ MTRAudioOutputClusterOutputInfo) Name() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/name
 func (m_ MTRAudioOutputClusterOutputInfo) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/outputtype
@@ -125,12 +117,8 @@ func (m_ MTRAudioOutputClusterOutputInfo) OutputType() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfo/outputtype
 func (m_ MTRAudioOutputClusterOutputInfo) SetOutputType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputType:"), value)
 }
-
-
-

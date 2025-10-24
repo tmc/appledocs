@@ -21,3 +21,4 @@ var OS_nw_browse_descriptorProtocol *objc.Protocol
 func init() {
 	OS_nw_browse_descriptorProtocol = objc.GetProtocol("OS_nw_browse_descriptor")
 }
+

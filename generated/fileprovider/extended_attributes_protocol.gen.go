@@ -18,3 +18,4 @@ var extendedAttributesProtocol *objc.Protocol
 func init() {
 	extendedAttributesProtocol = objc.GetProtocol("extendedAttributes")
 }
+

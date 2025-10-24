@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRNetworkCommissioningClusterScanNetworksResponseParams interface {
 	SetWiFiScanResults(value unsafe.Pointer)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterScanNetworksResponseParams
@@ -89,8 +87,6 @@ func NewMTRNetworkCommissioningClusterScanNetworksResponseParams() MTRNetworkCom
 	return getMTRNetworkCommissioningClusterScanNetworksResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() objc.IObject /* cross-framework: NSString */ {
@@ -98,13 +94,11 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) DebugText() o
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/debugtext
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetDebugText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/networkingstatus
@@ -113,13 +107,11 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) NetworkingSta
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/networkingstatus
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetNetworkingStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkingStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/threadscanresults
@@ -128,13 +120,11 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) ThreadScanRes
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/threadscanresults
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetThreadScanResults(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setThreadScanResults:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/timedinvoketimeoutms
@@ -143,13 +133,11 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) TimedInvokeTi
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/timedinvoketimeoutms
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/wifiscanresults
@@ -158,12 +146,8 @@ func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) WiFiScanResul
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusterscannetworksresponseparams/wifiscanresults
 func (m_ MTRNetworkCommissioningClusterScanNetworksResponseParams) SetWiFiScanResults(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWiFiScanResults:"), value)
 }
-
-
-

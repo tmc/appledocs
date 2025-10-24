@@ -20,3 +20,4 @@ var newMTL4CommandQueueProtocol *objc.Protocol
 func init() {
 	newMTL4CommandQueueProtocol = objc.GetProtocol("newMTL4CommandQueue")
 }
+

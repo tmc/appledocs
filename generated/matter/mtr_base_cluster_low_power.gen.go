@@ -33,8 +33,6 @@ type IMTRBaseClusterLowPower interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterLowPower
 type MTRBaseClusterLowPower struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterLowPower) Autorelease() MTRBaseClusterLowPower {
 func NewMTRBaseClusterLowPower() MTRBaseClusterLowPower {
 	return getMTRBaseClusterLowPowerClass().New()
 }
-
-
-
-

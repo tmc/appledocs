@@ -2,12 +2,8 @@
 
 // Package imageplayground provides Go bindings for the ImagePlayground framework.
 //
-// Present a system interface to generate images based on descriptive information.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ImagePlayground without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/ImagePlayground
 package imageplayground
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/ImagePlayground.framework/ImagePlayground"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

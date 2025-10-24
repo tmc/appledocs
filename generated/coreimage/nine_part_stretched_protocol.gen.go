@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // NinePartStretchedProtocol is the CINinePartStretched protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CINinePartStretched.
 var NinePartStretchedProtocol *objc.Protocol
 
 func init() {
 	NinePartStretchedProtocol = objc.GetProtocol("CINinePartStretched")
 }
+

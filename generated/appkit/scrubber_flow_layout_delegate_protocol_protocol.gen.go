@@ -17,7 +17,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSScrubberFlowLayoutDelegate
 type PScrubberFlowLayoutDelegate interface {
 	// Optional methods
-	ScrubberLayoutSizeForItemAtIndex(scrubber IScrubber, layout IScrubberFlowLayout, itemIndex int) corefoundation.Size
+	ScrubberLayoutSizeForItemAtIndex(scrubber IScrubber, layout IScrubberFlowLayout, itemIndex int) Size
 	HasScrubberLayoutSizeForItemAtIndex() bool
 }
 
@@ -25,22 +25,22 @@ type PScrubberFlowLayoutDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ScrubberFlowLayoutDelegate struct {
-	_ScrubberLayoutSizeForItemAtIndex func(scrubber IScrubber, layout IScrubberFlowLayout, itemIndex int) corefoundation.Size
+	_ScrubberLayoutSizeForItemAtIndex func(scrubber IScrubber, layout IScrubberFlowLayout, itemIndex int) Size
 }
 
 // SetScrubberLayoutSizeForItemAtIndex sets the handler for the ScrubberLayoutSizeForItemAtIndex delegate method.
 //
 // Asks the delegate for the size of each item in a scrubber whose items are arranged in a flow layout.
-func (d *ScrubberFlowLayoutDelegate) SetScrubberLayoutSizeForItemAtIndex(f func(scrubber IScrubber, layout IScrubberFlowLayout, itemIndex int) corefoundation.Size) {
+func (d *ScrubberFlowLayoutDelegate) SetScrubberLayoutSizeForItemAtIndex(f func(scrubber IScrubber, layout IScrubberFlowLayout, itemIndex int) Size) {
 	d._ScrubberLayoutSizeForItemAtIndex = f
 }
 
 // ScrubberLayoutSizeForItemAtIndex implements the PScrubberFlowLayoutDelegate interface.
-func (d *ScrubberFlowLayoutDelegate) ScrubberLayoutSizeForItemAtIndex(scrubber IScrubber, layout IScrubberFlowLayout, itemIndex int) corefoundation.Size {
+func (d *ScrubberFlowLayoutDelegate) ScrubberLayoutSizeForItemAtIndex(scrubber IScrubber, layout IScrubberFlowLayout, itemIndex int) Size {
 	if d._ScrubberLayoutSizeForItemAtIndex != nil {
 		return d._ScrubberLayoutSizeForItemAtIndex(scrubber, layout, itemIndex)
 	}
-	var zero corefoundation.Size
+	var zero Size
 	return zero
 }
 

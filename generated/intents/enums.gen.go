@@ -41,5 +41,3 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INVocabularyStringType
 type INVocabularyStringType uint
-
-

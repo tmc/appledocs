@@ -20,3 +20,4 @@ var CounterProtocol *objc.Protocol
 func init() {
 	CounterProtocol = objc.GetProtocol("MTLCounter")
 }
+

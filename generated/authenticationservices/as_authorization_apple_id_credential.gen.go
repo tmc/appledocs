@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class ASAuthorizationAppleIDCredential */
+
+
+/* debug [class_header]: Header for ASAuthorizationAppleIDCredential */
 // The class instance for the [AuthorizationAppleIDCredential] class.
 var (
 	AuthorizationAppleIDCredentialClass     _AuthorizationAppleIDCredentialClass
@@ -27,48 +30,39 @@ func getAuthorizationAppleIDCredentialClass() _AuthorizationAppleIDCredentialCla
 type _AuthorizationAppleIDCredentialClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AuthorizationAppleIDCredential */
 // An interface definition for the [AuthorizationAppleIDCredential] class.
 type IAuthorizationAppleIDCredential interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AuthorizationAppleIDCredential */
 	// properties:
+	AuthorizationCode() objc.IObject /* cross-framework: NSData */
+	AuthorizedScopes() []string
 	Email() objc.IObject /* cross-framework: NSString */
-	RealUserStatus() UserDetectionStatus /* not a class type */
-	AuthorizationCode() objc.IObject /* cross-framework: Data */
-	SetAuthorizationCode(value objc.IObject /* cross-framework: Data */)
-	AuthorizedScopes() unsafe.Pointer
-	SetAuthorizedScopes(value unsafe.Pointer)
-	FullName() objc.IObject /* cross-framework: PersonNameComponents */
-	SetFullName(value objc.IObject /* cross-framework: PersonNameComponents */)
-	IdentityToken() objc.IObject /* cross-framework: Data */
-	SetIdentityToken(value objc.IObject /* cross-framework: Data */)
+	FullName() foundation.PersonNameComponents
+	IdentityToken() objc.IObject /* cross-framework: NSData */
+	RealUserStatus() UserDetectionStatus
 	State() objc.IObject /* cross-framework: NSString */
-	SetState(value objc.IObject /* cross-framework: NSString */)
 	User() objc.IObject /* cross-framework: NSString */
-	SetUser(value objc.IObject /* cross-framework: NSString */)
-	UserAgeRange() UserAgeRange /* not a class type */
-	SetUserAgeRange(value UserAgeRange /* not a class type */)
+	UserAgeRange() UserAgeRange
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AuthorizationAppleIDCredential */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A credential that results from a successful Apple ID authentication.
 
 
-// A credential that results from a successful Apple ID authentication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential
-type AuthorizationAppleIDCredential struct {
-	objectivec.Object
-}
-
-// AuthorizationAppleIDCredentialFrom constructs a [AuthorizationAppleIDCredential] from an unsafe.Pointer.
-//
-// A credential that results from a successful Apple ID authentication.
-func AuthorizationAppleIDCredentialFrom(ptr unsafe.Pointer) AuthorizationAppleIDCredential {
-	return AuthorizationAppleIDCredential{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AuthorizationAppleIDCredential */
 // Alloc allocates a new instance without initialization.
 func (ac _AuthorizationAppleIDCredentialClass) Alloc() AuthorizationAppleIDCredential {
 	rv := objc.Send[AuthorizationAppleIDCredential](objc.ID(ac.class), objc.Sel("alloc"))
@@ -76,7 +70,6 @@ func (ac _AuthorizationAppleIDCredentialClass) Alloc() AuthorizationAppleIDCrede
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AuthorizationAppleIDCredentialClass) New() AuthorizationAppleIDCredential {
 	rv := objc.Send[AuthorizationAppleIDCredential](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -99,7 +92,71 @@ func (a_ AuthorizationAppleIDCredential) Autorelease() AuthorizationAppleIDCrede
 func NewAuthorizationAppleIDCredential() AuthorizationAppleIDCredential {
 	return getAuthorizationAppleIDCredentialClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for AuthorizationAppleIDCredential */
+// A credential that results from a successful Apple ID authentication.
+
+
+// A credential that results from a successful Apple ID authentication.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential
+type AuthorizationAppleIDCredential struct {
+	objectivec.Object
+}
+
+// AuthorizationAppleIDCredentialFrom constructs a [AuthorizationAppleIDCredential] from an unsafe.Pointer.
+//
+// A credential that results from a successful Apple ID authentication.
+func AuthorizationAppleIDCredentialFrom(ptr unsafe.Pointer) AuthorizationAppleIDCredential {
+	return AuthorizationAppleIDCredential{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AuthorizationAppleIDCredential *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AuthorizationAppleIDCredential */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AuthorizationAppleIDCredential */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AuthorizationAppleIDCredential */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AuthorizationAppleIDCredential */
+
+// A token that the app uses to interact with the server.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/authorizationCode
+func (a_ AuthorizationAppleIDCredential) AuthorizationCode() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("authorizationCode"))
+	return rv
+}/* debug [instance_properties/getter]: authorizationCode */
+
+
+// The contact information the user authorized your app to access.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/authorizedScopes
+func (a_ AuthorizationAppleIDCredential) AuthorizedScopes() []string {
+	rv := objc.Send[[]string](a_.ID, objc.Sel("authorizedScopes"))
+	return rv
+}/* debug [instance_properties/getter]: authorizedScopes */
 
 
 // The user’s email address.
@@ -109,146 +166,70 @@ func NewAuthorizationAppleIDCredential() AuthorizationAppleIDCredential {
 func (a_ AuthorizationAppleIDCredential) Email() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("email"))
 	return rv
-}
+}/* debug [instance_properties/getter]: email */
+
+
+// The user’s full name from their Apple ID or a user-submitted value provided from the Sign in with Apple UI.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/fullName
+func (a_ AuthorizationAppleIDCredential) FullName() foundation.PersonNameComponents {
+	rv := objc.Send[foundation.PersonNameComponents](a_.ID, objc.Sel("fullName"))
+	return rv
+}/* debug [instance_properties/getter]: fullName */
+
+
+// A JSON Web Token (JWT) that securely communicates information about the user to the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/identityToken
+func (a_ AuthorizationAppleIDCredential) IdentityToken() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("identityToken"))
+	return rv
+}/* debug [instance_properties/getter]: identityToken */
 
 
 // A value that indicates whether the user appears to be a real person.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/realUserStatus
-func (a_ AuthorizationAppleIDCredential) RealUserStatus() UserDetectionStatus /* not a class type */ {
+func (a_ AuthorizationAppleIDCredential) RealUserStatus() UserDetectionStatus {
 	rv := objc.Send[UserDetectionStatus](a_.ID, objc.Sel("realUserStatus"))
 	return rv
-}
-
-
-// A token that the app uses to interact with the server.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-func (a_ AuthorizationAppleIDCredential) AuthorizationCode() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("authorizationCode"))
-	return rv
-}
-
-
-// A token that the app uses to interact with the server.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizationcode
-func (a_ AuthorizationAppleIDCredential) SetAuthorizationCode(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizationCode:"), value)
-}
-
-
-// The contact information the user authorized your app to access.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes
-func (a_ AuthorizationAppleIDCredential) AuthorizedScopes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("authorizedScopes"))
-	return rv
-}
-
-
-// The contact information the user authorized your app to access.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/authorizedscopes
-func (a_ AuthorizationAppleIDCredential) SetAuthorizedScopes(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAuthorizedScopes:"), value)
-}
-
-
-// The user’s full name from their Apple ID or a user-submitted value provided from the Sign in with Apple UI.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/fullname
-func (a_ AuthorizationAppleIDCredential) FullName() objc.IObject /* cross-framework: PersonNameComponents */ {
-	rv := objc.Send[foundation.PersonNameComponents](a_.ID, objc.Sel("fullName"))
-	return rv
-}
-
-
-// The user’s full name from their Apple ID or a user-submitted value provided from the Sign in with Apple UI.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/fullname
-func (a_ AuthorizationAppleIDCredential) SetFullName(value objc.IObject /* cross-framework: PersonNameComponents */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setFullName:"), value)
-}
-
-
-// A JSON Web Token (JWT) that securely communicates information about the user to the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-func (a_ AuthorizationAppleIDCredential) IdentityToken() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](a_.ID, objc.Sel("identityToken"))
-	return rv
-}
-
-
-// A JSON Web Token (JWT) that securely communicates information about the user to the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/identitytoken
-func (a_ AuthorizationAppleIDCredential) SetIdentityToken(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentityToken:"), value)
-}
+}/* debug [instance_properties/getter]: realUserStatus */
 
 
 // An arbitrary string that your app provides to the request that generates the credential.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/state
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/state
 func (a_ AuthorizationAppleIDCredential) State() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("state"))
 	return rv
-}
-
-
-// An arbitrary string that your app provides to the request that generates the credential.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/state
-func (a_ AuthorizationAppleIDCredential) SetState(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setState:"), value)
-}
+}/* debug [instance_properties/getter]: state */
 
 
 // An identifier for the authenticated user.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/user
 func (a_ AuthorizationAppleIDCredential) User() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("user"))
 	return rv
-}
-
-
-// An identifier for the authenticated user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/user
-func (a_ AuthorizationAppleIDCredential) SetUser(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUser:"), value)
-}
+}/* debug [instance_properties/getter]: user */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
-func (a_ AuthorizationAppleIDCredential) UserAgeRange() UserAgeRange /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDCredential/userAgeRange
+func (a_ AuthorizationAppleIDCredential) UserAgeRange() UserAgeRange {
 	rv := objc.Send[UserAgeRange](a_.ID, objc.Sel("userAgeRange"))
 	return rv
-}
+}/* debug [instance_properties/getter]: userAgeRange */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asauthorizationappleidcredential/useragerange
-func (a_ AuthorizationAppleIDCredential) SetUserAgeRange(value UserAgeRange /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUserAgeRange:"), value)
-}
+/* debug [class.gen.go]: End class ASAuthorizationAppleIDCredential */
 
 
 

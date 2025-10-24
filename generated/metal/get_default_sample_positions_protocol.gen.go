@@ -20,3 +20,4 @@ var getDefaultSamplePositionsProtocol *objc.Protocol
 func init() {
 	getDefaultSamplePositionsProtocol = objc.GetProtocol("getDefaultSamplePositions:")
 }
+

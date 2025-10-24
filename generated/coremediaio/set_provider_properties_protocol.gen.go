@@ -16,3 +16,4 @@ var setProviderPropertiesProtocol *objc.Protocol
 func init() {
 	setProviderPropertiesProtocol = objc.GetProtocol("setProviderProperties:")
 }
+

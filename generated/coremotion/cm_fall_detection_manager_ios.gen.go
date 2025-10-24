@@ -37,11 +37,11 @@ func (f_ FallDetectionManager) AuthorizationStatus() AuthorizationStatus {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMFallDetectionManager/delegate
-func (f_ FallDetectionManager) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
+func (f_ FallDetectionManager) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (f_ FallDetectionManager) SetDelegate(value objc.ID) {
+func (f_ FallDetectionManager) SetDelegate(value unsafe.Pointer) {
 	f_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 

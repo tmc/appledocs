@@ -20,3 +20,4 @@ var supportsQueryTextureLODProtocol *objc.Protocol
 func init() {
 	supportsQueryTextureLODProtocol = objc.GetProtocol("supportsQueryTextureLOD")
 }
+

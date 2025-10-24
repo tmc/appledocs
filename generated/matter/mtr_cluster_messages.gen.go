@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterMessages */
+
+
+/* debug [class_header]: Header for MTRClusterMessages */
 // The class instance for the [MTRClusterMessages] class.
 var (
 	MTRClusterMessagesClass     _MTRClusterMessagesClass
@@ -26,43 +30,30 @@ func getMTRClusterMessagesClass() _MTRClusterMessagesClass {
 type _MTRClusterMessagesClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterMessages */
 // An interface definition for the [MTRClusterMessages] class.
 type IMTRClusterMessages interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterMessages */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterMessages */
 	// methods:
-	CancelMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMessagesClusterCancelMessagesRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	PresentMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMessagesClusterPresentMessagesRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeActiveMessageIDsWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeMessagesWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Messages This cluster provides an interface for passing messages to be presented by a device.
 
 
-// Cluster Messages This cluster provides an interface for passing messages to be presented by a device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages
-type MTRClusterMessages struct {
-	MTRGenericCluster
-}
-
-// MTRClusterMessagesFrom constructs a [MTRClusterMessages] from an unsafe.Pointer.
-//
-// Cluster Messages This cluster provides an interface for passing messages to be presented by a device.
-func MTRClusterMessagesFrom(ptr unsafe.Pointer) MTRClusterMessages {
-	return MTRClusterMessages{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterMessages */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterMessagesClass) Alloc() MTRClusterMessages {
 	rv := objc.Send[MTRClusterMessages](objc.ID(mc.class), objc.Sel("alloc"))
@@ -70,7 +61,6 @@ func (mc _MTRClusterMessagesClass) Alloc() MTRClusterMessages {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterMessagesClass) New() MTRClusterMessages {
 	rv := objc.Send[MTRClusterMessages](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +83,35 @@ func (m_ MTRClusterMessages) Autorelease() MTRClusterMessages {
 func NewMTRClusterMessages() MTRClusterMessages {
 	return getMTRClusterMessagesClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterMessages */
+// Cluster Messages This cluster provides an interface for passing messages to be presented by a device.
+
+
+// Cluster Messages This cluster provides an interface for passing messages to be presented by a device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages
+type MTRClusterMessages struct {
+	MTRGenericCluster
+}
+
+// MTRClusterMessagesFrom constructs a [MTRClusterMessages] from an unsafe.Pointer.
+//
+// Cluster Messages This cluster provides an interface for passing messages to be presented by a device.
+func MTRClusterMessagesFrom(ptr unsafe.Pointer) MTRClusterMessages {
+	return MTRClusterMessages{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterMessages */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -105,77 +122,31 @@ func NewMTRClusterMessagesWithDeviceEndpointIDQueue(device IMTRDevice, endpointI
 	rv := objc.Send[MTRClusterMessages](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterMessagesWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/cancelRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterMessages) CancelMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMessagesClusterCancelMessagesRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelMessagesRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class_methods]: Class methods for MTRClusterMessages */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/presentRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterMessages) PresentMessagesRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMessagesClusterPresentMessagesRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("presentMessagesRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterMessages */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterMessages) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterMessages */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeActiveMessageIDs(with:)
-func (m_ MTRClusterMessages) ReadAttributeActiveMessageIDsWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeActiveMessageIDsWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterMessages */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeAttributeList(with:)
-func (m_ MTRClusterMessages) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeClusterRevision(with:)
-func (m_ MTRClusterMessages) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeFeatureMap(with:)
-func (m_ MTRClusterMessages) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterMessages) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMessages/readAttributeMessages(with:)
-func (m_ MTRClusterMessages) ReadAttributeMessagesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeMessagesWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterMessages */
 
 

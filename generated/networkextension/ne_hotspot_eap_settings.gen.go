@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NEHotspotEAPSettings */
+
+
+/* debug [class_header]: Header for NEHotspotEAPSettings */
 // The class instance for the [NEHotspotEAPSettings] class.
 var (
 	NEHotspotEAPSettingsClass     _NEHotspotEAPSettingsClass
@@ -27,48 +31,32 @@ func getNEHotspotEAPSettingsClass() _NEHotspotEAPSettingsClass {
 type _NEHotspotEAPSettingsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEHotspotEAPSettings */
 // An interface definition for the [NEHotspotEAPSettings] class.
 type INEHotspotEAPSettings interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NEHotspotEAPSettings */
 	// properties:
 	IsTLSClientCertificateRequired() bool
 	SetIsTLSClientCertificateRequired(value bool)
-	OuterIdentity() objc.IObject /* cross-framework: NSString */
-	SetOuterIdentity(value objc.IObject /* cross-framework: NSString */)
-	Password() objc.IObject /* cross-framework: NSString */
-	SetPassword(value objc.IObject /* cross-framework: NSString */)
-	PreferredTLSVersion() unsafe.Pointer
-	SetPreferredTLSVersion(value unsafe.Pointer)
-	SupportedEAPTypes() objc.IObject /* cross-framework: NSNumber */
-	SetSupportedEAPTypes(value objc.IObject /* cross-framework: NSNumber */)
-	TrustedServerNames() objc.IObject /* cross-framework: NSString */
-	SetTrustedServerNames(value objc.IObject /* cross-framework: NSString */)
-	TtlsInnerAuthenticationType() unsafe.Pointer
-	SetTtlsInnerAuthenticationType(value unsafe.Pointer)
-	Username() objc.IObject /* cross-framework: NSString */
-	SetUsername(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NEHotspotEAPSettings */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.
 
 
-// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings
-type NEHotspotEAPSettings struct {
-	objectivec.Object
-}
-
-// NEHotspotEAPSettingsFrom constructs a [NEHotspotEAPSettings] from an unsafe.Pointer.
-//
-// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.
-func NEHotspotEAPSettingsFrom(ptr unsafe.Pointer) NEHotspotEAPSettings {
-	return NEHotspotEAPSettings{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NEHotspotEAPSettings */
 // Alloc allocates a new instance without initialization.
 func (nc _NEHotspotEAPSettingsClass) Alloc() NEHotspotEAPSettings {
 	rv := objc.Send[NEHotspotEAPSettings](objc.ID(nc.class), objc.Sel("alloc"))
@@ -76,7 +64,6 @@ func (nc _NEHotspotEAPSettingsClass) Alloc() NEHotspotEAPSettings {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEHotspotEAPSettingsClass) New() NEHotspotEAPSettings {
 	rv := objc.Send[NEHotspotEAPSettings](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -99,8 +86,52 @@ func (n_ NEHotspotEAPSettings) Autorelease() NEHotspotEAPSettings {
 func NewNEHotspotEAPSettings() NEHotspotEAPSettings {
 	return getNEHotspotEAPSettingsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for NEHotspotEAPSettings */
+// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.
+
+
+// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEHotspotEAPSettings
+type NEHotspotEAPSettings struct {
+	objectivec.Object
+}
+
+// NEHotspotEAPSettingsFrom constructs a [NEHotspotEAPSettings] from an unsafe.Pointer.
+//
+// Extensible Authentication Protocol settings for configuring WPA and WPA2 enterprise Wi-Fi networks.
+func NEHotspotEAPSettingsFrom(ptr unsafe.Pointer) NEHotspotEAPSettings {
+	return NEHotspotEAPSettings{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NEHotspotEAPSettings *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NEHotspotEAPSettings */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NEHotspotEAPSettings */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NEHotspotEAPSettings */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEHotspotEAPSettings */
 
 // A Boolean value indicating whether a network requires two-factor authentication or allows zero-factor authentication.
 //
@@ -109,7 +140,7 @@ func NewNEHotspotEAPSettings() NEHotspotEAPSettings {
 func (n_ NEHotspotEAPSettings) IsTLSClientCertificateRequired() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isTLSClientCertificateRequired"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isTLSClientCertificateRequired */
 
 
 // A Boolean value indicating whether a network requires two-factor authentication or allows zero-factor authentication.
@@ -118,140 +149,11 @@ func (n_ NEHotspotEAPSettings) IsTLSClientCertificateRequired() bool {
 // [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/istlsclientcertificaterequired
 func (n_ NEHotspotEAPSettings) SetIsTLSClientCertificateRequired(value bool) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setIsTLSClientCertificateRequired:"), value)
-}
+}/* debug [instance_properties/setter]: isTLSClientCertificateRequired */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The identity string to be used in the EAP-Identity/Response packet during outer EAP authentication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/outeridentity
-func (n_ NEHotspotEAPSettings) OuterIdentity() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("outerIdentity"))
-	return rv
-}
-
-
-// The identity string to be used in the EAP-Identity/Response packet during outer EAP authentication.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/outeridentity
-func (n_ NEHotspotEAPSettings) SetOuterIdentity(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setOuterIdentity:"), value)
-}
-
-
-// The password component of the IEEE 802.1X authentication credential.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/password
-func (n_ NEHotspotEAPSettings) Password() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("password"))
-	return rv
-}
-
-
-// The password component of the IEEE 802.1X authentication credential.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/password
-func (n_ NEHotspotEAPSettings) SetPassword(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setPassword:"), value)
-}
-
-
-// The Transport Layer Security (TLS) version to use during a TLS authentication handshake.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/preferredtlsversion
-func (n_ NEHotspotEAPSettings) PreferredTLSVersion() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("preferredTLSVersion"))
-	return rv
-}
-
-
-// The Transport Layer Security (TLS) version to use during a TLS authentication handshake.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/preferredtlsversion
-func (n_ NEHotspotEAPSettings) SetPreferredTLSVersion(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setPreferredTLSVersion:"), value)
-}
-
-
-// An array of supported EAP types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/supportedeaptypes
-func (n_ NEHotspotEAPSettings) SupportedEAPTypes() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](n_.ID, objc.Sel("supportedEAPTypes"))
-	return rv
-}
-
-
-// An array of supported EAP types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/supportedeaptypes
-func (n_ NEHotspotEAPSettings) SetSupportedEAPTypes(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSupportedEAPTypes:"), value)
-}
-
-
-// An array of server certificate common name strings used to verify a server’s certificate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/trustedservernames
-func (n_ NEHotspotEAPSettings) TrustedServerNames() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("trustedServerNames"))
-	return rv
-}
-
-
-// An array of server certificate common name strings used to verify a server’s certificate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/trustedservernames
-func (n_ NEHotspotEAPSettings) SetTrustedServerNames(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTrustedServerNames:"), value)
-}
-
-
-// The inner-layer authentication protocol used by a TTLS module.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.property
-func (n_ NEHotspotEAPSettings) TtlsInnerAuthenticationType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("ttlsInnerAuthenticationType"))
-	return rv
-}
-
-
-// The inner-layer authentication protocol used by a TTLS module.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/ttlsinnerauthenticationtype-swift.property
-func (n_ NEHotspotEAPSettings) SetTtlsInnerAuthenticationType(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTtlsInnerAuthenticationType:"), value)
-}
-
-
-// The user name string for EAP authentication, encoded as UTF-8.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/username
-func (n_ NEHotspotEAPSettings) Username() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("username"))
-	return rv
-}
-
-
-// The user name string for EAP authentication, encoded as UTF-8.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nehotspoteapsettings/username
-func (n_ NEHotspotEAPSettings) SetUsername(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setUsername:"), value)
-}
-
+/* debug [class.gen.go]: End class NEHotspotEAPSettings */
 
 

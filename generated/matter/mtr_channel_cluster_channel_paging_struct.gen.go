@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRChannelClusterChannelPagingStruct */
+
+
+/* debug [class_header]: Header for MTRChannelClusterChannelPagingStruct */
 // The class instance for the [MTRChannelClusterChannelPagingStruct] class.
 var (
 	MTRChannelClusterChannelPagingStructClass     _MTRChannelClusterChannelPagingStructClass
@@ -26,31 +30,34 @@ func getMTRChannelClusterChannelPagingStructClass() _MTRChannelClusterChannelPag
 type _MTRChannelClusterChannelPagingStructClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRChannelClusterChannelPagingStruct */
 // An interface definition for the [MTRChannelClusterChannelPagingStruct] class.
 type IMTRChannelClusterChannelPagingStruct interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRChannelClusterChannelPagingStruct */
 	// properties:
 	NextToken() IMTRChannelClusterPageTokenStruct
 	SetNextToken(value IMTRChannelClusterPageTokenStruct)
 	PreviousToken() IMTRChannelClusterPageTokenStruct
 	SetPreviousToken(value IMTRChannelClusterPageTokenStruct)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRChannelClusterChannelPagingStruct */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct
-type MTRChannelClusterChannelPagingStruct struct {
-	objectivec.Object
-}
-
-// MTRChannelClusterChannelPagingStructFrom constructs a [MTRChannelClusterChannelPagingStruct] from an unsafe.Pointer.
-func MTRChannelClusterChannelPagingStructFrom(ptr unsafe.Pointer) MTRChannelClusterChannelPagingStruct {
-	return MTRChannelClusterChannelPagingStruct{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRChannelClusterChannelPagingStruct */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRChannelClusterChannelPagingStructClass) Alloc() MTRChannelClusterChannelPagingStruct {
 	rv := objc.Send[MTRChannelClusterChannelPagingStruct](objc.ID(mc.class), objc.Sel("alloc"))
@@ -58,7 +65,6 @@ func (mc _MTRChannelClusterChannelPagingStructClass) Alloc() MTRChannelClusterCh
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRChannelClusterChannelPagingStructClass) New() MTRChannelClusterChannelPagingStruct {
 	rv := objc.Send[MTRChannelClusterChannelPagingStruct](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,37 +87,81 @@ func (m_ MTRChannelClusterChannelPagingStruct) Autorelease() MTRChannelClusterCh
 func NewMTRChannelClusterChannelPagingStruct() MTRChannelClusterChannelPagingStruct {
 	return getMTRChannelClusterChannelPagingStructClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRChannelClusterChannelPagingStruct */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct
+type MTRChannelClusterChannelPagingStruct struct {
+	objectivec.Object
+}
+
+// MTRChannelClusterChannelPagingStructFrom constructs a [MTRChannelClusterChannelPagingStruct] from an unsafe.Pointer.
+func MTRChannelClusterChannelPagingStructFrom(ptr unsafe.Pointer) MTRChannelClusterChannelPagingStruct {
+	return MTRChannelClusterChannelPagingStruct{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRChannelClusterChannelPagingStruct *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRChannelClusterChannelPagingStruct */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRChannelClusterChannelPagingStruct */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRChannelClusterChannelPagingStruct */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRChannelClusterChannelPagingStruct */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/nextToken
 func (m_ MTRChannelClusterChannelPagingStruct) NextToken() IMTRChannelClusterPageTokenStruct {
 	rv := objc.Send[MTRChannelClusterPageTokenStruct](m_.ID, objc.Sel("nextToken"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nextToken */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/nextToken
 func (m_ MTRChannelClusterChannelPagingStruct) SetNextToken(value IMTRChannelClusterPageTokenStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNextToken:"), value)
-}
+}/* debug [instance_properties/setter]: nextToken */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/previousToken
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelpagingstruct/previoustoken
 func (m_ MTRChannelClusterChannelPagingStruct) PreviousToken() IMTRChannelClusterPageTokenStruct {
 	rv := objc.Send[MTRChannelClusterPageTokenStruct](m_.ID, objc.Sel("previousToken"))
 	return rv
-}
+}/* debug [instance_properties/getter]: previousToken */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelPagingStruct/previousToken
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelpagingstruct/previoustoken
 func (m_ MTRChannelClusterChannelPagingStruct) SetPreviousToken(value IMTRChannelClusterPageTokenStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPreviousToken:"), value)
-}
+}/* debug [instance_properties/setter]: previousToken */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRChannelClusterChannelPagingStruct */
 
 
 

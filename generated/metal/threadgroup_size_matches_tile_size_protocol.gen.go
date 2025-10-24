@@ -20,3 +20,4 @@ var threadgroupSizeMatchesTileSizeProtocol *objc.Protocol
 func init() {
 	threadgroupSizeMatchesTileSizeProtocol = objc.GetProtocol("threadgroupSizeMatchesTileSize")
 }
+

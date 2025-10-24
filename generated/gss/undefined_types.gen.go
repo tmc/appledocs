@@ -9,7 +9,11 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
+	DictionaryRef = _undefined // referenced in GSS
+	ErrorRef = _undefined // referenced in GSS
 	StringRef = _undefined // referenced in GSS
+	TypeRef = _undefined // referenced in GSS
+	UUIDRef = _undefined // referenced in GSS
 )
 
 

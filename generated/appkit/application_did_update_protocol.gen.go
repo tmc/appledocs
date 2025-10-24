@@ -15,3 +15,4 @@ var applicationDidUpdateProtocol *objc.Protocol
 func init() {
 	applicationDidUpdateProtocol = objc.GetProtocol("applicationDidUpdate:")
 }
+

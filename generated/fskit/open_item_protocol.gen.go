@@ -15,3 +15,4 @@ var openItemProtocol *objc.Protocol
 func init() {
 	openItemProtocol = objc.GetProtocol("openItem:")
 }
+

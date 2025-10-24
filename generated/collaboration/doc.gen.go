@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for Collaboration. DO NOT EDIT.
 
 // Package collaboration provides Go bindings for the Collaboration framework.
 //
-// Find and access identities, that is, users and groups. Display the Identity Picker, which lets users create and select identities.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Collaboration without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Collaboration
 package collaboration
 
 import (

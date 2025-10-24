@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // CheckerboardGeneratorProtocol is the CICheckerboardGenerator protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CICheckerboardGenerator.
 var CheckerboardGeneratorProtocol *objc.Protocol
 
 func init() {
 	CheckerboardGeneratorProtocol = objc.GetProtocol("CICheckerboardGenerator")
 }
+

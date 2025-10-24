@@ -20,3 +20,4 @@ var PlaybackCoordinatorPlaybackControlDelegateProtocol *objc.Protocol
 func init() {
 	PlaybackCoordinatorPlaybackControlDelegateProtocol = objc.GetProtocol("AVPlaybackCoordinatorPlaybackControlDelegate")
 }
+

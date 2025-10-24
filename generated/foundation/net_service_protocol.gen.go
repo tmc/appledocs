@@ -20,3 +20,4 @@ var netServiceProtocol *objc.Protocol
 func init() {
 	netServiceProtocol = objc.GetProtocol("netService:")
 }
+

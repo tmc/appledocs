@@ -20,3 +20,4 @@ var setDepthStoreActionOptionsProtocol *objc.Protocol
 func init() {
 	setDepthStoreActionOptionsProtocol = objc.GetProtocol("setDepthStoreActionOptions:")
 }
+

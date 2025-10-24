@@ -21,3 +21,4 @@ var LocalPlayerListenerProtocol *objc.Protocol
 func init() {
 	LocalPlayerListenerProtocol = objc.GetProtocol("GKLocalPlayerListener")
 }
+

@@ -20,3 +20,4 @@ var MCSessionDelegateProtocol *objc.Protocol
 func init() {
 	MCSessionDelegateProtocol = objc.GetProtocol("MCSessionDelegate")
 }
+

@@ -43,7 +43,7 @@ func (m_ MediaLibrary) EndGeneratingLibraryChangeNotifications() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaLibrary/getPlaylist(with:creationMetadata:completionHandler:)
-func (m_ MediaLibrary) GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid objc.IObject /* cross-framework: UUID */, creationMetadata IMPMediaPlaylistCreationMetadata, completionHandler unsafe.Pointer) {
+func (m_ MediaLibrary) GetPlaylistWithUUIDCreationMetadataCompletionHandler(uuid foundation.UUID, creationMetadata IMPMediaPlaylistCreationMetadata, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("getPlaylistWithUUID:creationMetadata:completionHandler:"), uuid, creationMetadata, completionHandler)
 }
 

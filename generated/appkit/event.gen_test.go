@@ -13,7 +13,7 @@ var _ = appkit.NewEvent
 // Creates and returns an event object for a Core Graphics event.
 func ExampleNewEventWithCGEvent() {
 	_ = appkit.NewEventWithCGEvent(
-		appkit.EventRef /* not a class type */{}, // cgEvent EventRef /* not a class type */
+		appkit.EventRef /* not a class type */ {}, // cgEvent EventRef /* not a class type */
 	)
 	// Output:
 }

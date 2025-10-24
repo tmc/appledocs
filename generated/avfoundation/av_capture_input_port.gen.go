@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureInputPort */
+
+
+/* debug [class_header]: Header for AVCaptureInputPort */
 // The class instance for the [CaptureInputPort] class.
 var (
 	CaptureInputPortClass     _CaptureInputPortClass
@@ -26,50 +30,40 @@ func getCaptureInputPortClass() _CaptureInputPortClass {
 type _CaptureInputPortClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureInputPort */
 // An interface definition for the [CaptureInputPort] class.
 type ICaptureInputPort interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CaptureInputPort */
 	// properties:
-	Clock() Clock /* not a class type */
-	SetClock(value Clock /* not a class type */)
-	FormatDescription() FormatDescription /* not a class type */
-	SetFormatDescription(value FormatDescription /* not a class type */)
+	Clock() ClockRef /* not a class type */
+	FormatDescription() FormatDescriptionRef /* not a class type */
 	Input() IAVCaptureInput
-	SetInput(value IAVCaptureInput)
+	Enabled() bool
+	SetEnabled(value bool)
+	MediaType() MediaType /* typedef */
 	IsEnabled() bool
 	SetIsEnabled(value bool)
-	MediaType() MediaType /* not a class type */
-	SetMediaType(value MediaType /* not a class type */)
-	SourceDevicePosition() unsafe.Pointer
-	SetSourceDevicePosition(value unsafe.Pointer)
-	SourceDeviceType() unsafe.Pointer
-	SetSourceDeviceType(value unsafe.Pointer)
 	Ports() IAVCaptureInputPort
 	SetPorts(value IAVCaptureInputPort)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureInputPort */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents a stream of data that a capture input provides.
-//
-// Instances of have one or more input ports, one for each data stream they can produce. For example, an object presenting one video data stream has one port.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents a stream of data that a capture input provides.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port
-type CaptureInputPort struct {
-	objectivec.Object
-}
 
-// CaptureInputPortFrom constructs a [CaptureInputPort] from an unsafe.Pointer.
-//
-// An object that represents a stream of data that a capture input provides.
-func CaptureInputPortFrom(ptr unsafe.Pointer) CaptureInputPort {
-	return CaptureInputPort{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CaptureInputPort */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureInputPortClass) Alloc() CaptureInputPort {
 	rv := objc.Send[CaptureInputPort](objc.ID(cc.class), objc.Sel("alloc"))
@@ -77,7 +71,6 @@ func (cc _CaptureInputPortClass) Alloc() CaptureInputPort {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureInputPortClass) New() CaptureInputPort {
 	rv := objc.Send[CaptureInputPort](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -100,64 +93,112 @@ func (c_ CaptureInputPort) Autorelease() CaptureInputPort {
 func NewCaptureInputPort() CaptureInputPort {
 	return getCaptureInputPortClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CaptureInputPort */
+// An object that represents a stream of data that a capture input provides.
+//
+// Instances of have one or more input ports, one for each data stream they can produce. For example, an object presenting one video data stream has one port.
+
+
+// An object that represents a stream of data that a capture input provides.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port
+type CaptureInputPort struct {
+	objectivec.Object
+}
+
+// CaptureInputPortFrom constructs a [CaptureInputPort] from an unsafe.Pointer.
+//
+// An object that represents a stream of data that a capture input provides.
+func CaptureInputPortFrom(ptr unsafe.Pointer) CaptureInputPort {
+	return CaptureInputPort{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CaptureInputPort *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CaptureInputPort */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CaptureInputPort */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CaptureInputPort */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureInputPort */
 
 // An object that represents the capture device’s clock.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/clock
-func (c_ CaptureInputPort) Clock() Clock /* not a class type */ {
-	rv := objc.Send[Clock](c_.ID, objc.Sel("clock"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port/clock
+func (c_ CaptureInputPort) Clock() ClockRef /* not a class type */ {
+	rv := objc.Send[ClockRef](c_.ID, objc.Sel("clock"))
 	return rv
-}
-
-
-// An object that represents the capture device’s clock.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/clock
-func (c_ CaptureInputPort) SetClock(value Clock /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setClock:"), value)
-}
+}/* debug [instance_properties/getter]: clock */
 
 
 // A description of the port format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/formatdescription
-func (c_ CaptureInputPort) FormatDescription() FormatDescription /* not a class type */ {
-	rv := objc.Send[FormatDescription](c_.ID, objc.Sel("formatDescription"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port/formatDescription
+func (c_ CaptureInputPort) FormatDescription() FormatDescriptionRef /* not a class type */ {
+	rv := objc.Send[FormatDescriptionRef](c_.ID, objc.Sel("formatDescription"))
 	return rv
-}
-
-
-// A description of the port format.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/formatdescription
-func (c_ CaptureInputPort) SetFormatDescription(value FormatDescription /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setFormatDescription:"), value)
-}
+}/* debug [instance_properties/getter]: formatDescription */
 
 
 // The input object that owns the port.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/input
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port/input
 func (c_ CaptureInputPort) Input() IAVCaptureInput {
 	rv := objc.Send[CaptureInput](c_.ID, objc.Sel("input"))
 	return rv
-}
+}/* debug [instance_properties/getter]: input */
 
 
-// The input object that owns the port.
+// A Boolean value that indicates whether the port is in an enabled state.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/input
-func (c_ CaptureInputPort) SetInput(value IAVCaptureInput) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInput:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port/isEnabled
+func (c_ CaptureInputPort) Enabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("enabled"))
+	return rv
+}/* debug [instance_properties/getter]: enabled */
+
+
+// A Boolean value that indicates whether the port is in an enabled state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port/isEnabled
+func (c_ CaptureInputPort) SetEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabled:"), value)
+}/* debug [instance_properties/setter]: enabled */
+
+
+// The media type of the port.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/Port/mediaType
+func (c_ CaptureInputPort) MediaType() MediaType /* typedef */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("mediaType"))
+	return rv
+}/* debug [instance_properties/getter]: mediaType */
 
 
 // A Boolean value that indicates whether the port is in an enabled state.
@@ -167,7 +208,7 @@ func (c_ CaptureInputPort) SetInput(value IAVCaptureInput) {
 func (c_ CaptureInputPort) IsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isEnabled */
 
 
 // A Boolean value that indicates whether the port is in an enabled state.
@@ -176,64 +217,7 @@ func (c_ CaptureInputPort) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/isenabled
 func (c_ CaptureInputPort) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
-
-// The media type of the port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/mediatype
-func (c_ CaptureInputPort) MediaType() MediaType /* not a class type */ {
-	rv := objc.Send[MediaType](c_.ID, objc.Sel("mediaType"))
-	return rv
-}
-
-
-// The media type of the port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/mediatype
-func (c_ CaptureInputPort) SetMediaType(value MediaType /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMediaType:"), value)
-}
-
-
-// The position of the source device providing input through this port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/sourcedeviceposition
-func (c_ CaptureInputPort) SourceDevicePosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceDevicePosition"))
-	return rv
-}
-
-
-// The position of the source device providing input through this port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/sourcedeviceposition
-func (c_ CaptureInputPort) SetSourceDevicePosition(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceDevicePosition:"), value)
-}
-
-
-// The device type of the source camera that provides data to the port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/sourcedevicetype
-func (c_ CaptureInputPort) SourceDeviceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("sourceDeviceType"))
-	return rv
-}
-
-
-// The device type of the source camera that provides data to the port.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/port/sourcedevicetype
-func (c_ CaptureInputPort) SetSourceDeviceType(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSourceDeviceType:"), value)
-}
+}/* debug [instance_properties/setter]: isEnabled */
 
 
 // The ports available on a capture input.
@@ -243,7 +227,7 @@ func (c_ CaptureInputPort) SetSourceDeviceType(value unsafe.Pointer) {
 func (c_ CaptureInputPort) Ports() IAVCaptureInputPort {
 	rv := objc.Send[CaptureInputPort](c_.ID, objc.Sel("ports"))
 	return rv
-}
+}/* debug [instance_properties/getter]: ports */
 
 
 // The ports available on a capture input.
@@ -252,7 +236,11 @@ func (c_ CaptureInputPort) Ports() IAVCaptureInputPort {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
 func (c_ CaptureInputPort) SetPorts(value IAVCaptureInputPort) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPorts:"), value)
-}
+}/* debug [instance_properties/setter]: ports */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVCaptureInputPort */
 
 

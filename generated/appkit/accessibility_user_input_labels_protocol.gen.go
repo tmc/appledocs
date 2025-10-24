@@ -15,3 +15,4 @@ var accessibilityUserInputLabelsProtocol *objc.Protocol
 func init() {
 	accessibilityUserInputLabelsProtocol = objc.GetProtocol("accessibilityUserInputLabels")
 }
+

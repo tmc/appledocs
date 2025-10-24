@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for ScreenSaver. DO NOT EDIT.
 
 // Package screensaver provides Go bindings for the ScreenSaver framework.
 //
-// Animate screen savers, and interact with the screen saver infrastructure.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ScreenSaver without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/ScreenSaver
 package screensaver
 
 import (

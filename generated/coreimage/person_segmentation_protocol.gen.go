@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // PersonSegmentationProtocol is the CIPersonSegmentation protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIPersonSegmentation.
 var PersonSegmentationProtocol *objc.Protocol
 
 func init() {
 	PersonSegmentationProtocol = objc.GetProtocol("CIPersonSegmentation")
 }
+

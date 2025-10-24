@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPMusicPlayerPlayParameters */
+
+
+/* debug [class_header]: Header for MPMusicPlayerPlayParameters */
 // The class instance for the [MusicPlayerPlayParameters] class.
 var (
 	MusicPlayerPlayParametersClass     _MusicPlayerPlayParametersClass
@@ -27,34 +31,30 @@ func getMusicPlayerPlayParametersClass() _MusicPlayerPlayParametersClass {
 type _MusicPlayerPlayParametersClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MusicPlayerPlayParameters */
 // An interface definition for the [MusicPlayerPlayParameters] class.
 type IMusicPlayerPlayParameters interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MusicPlayerPlayParameters */
 	// properties:
-	Dictionary() objc.IObject /* cross-framework: NSString */
-	SetDictionary(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MusicPlayerPlayParameters */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// The MusicKit parameters that describe items to play.
 
 
-// The MusicKit parameters that describe items to play.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParameters
-type MusicPlayerPlayParameters struct {
-	objectivec.Object
-}
-
-// MusicPlayerPlayParametersFrom constructs a [MusicPlayerPlayParameters] from an unsafe.Pointer.
-//
-// The MusicKit parameters that describe items to play.
-func MusicPlayerPlayParametersFrom(ptr unsafe.Pointer) MusicPlayerPlayParameters {
-	return MusicPlayerPlayParameters{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MusicPlayerPlayParameters */
 // Alloc allocates a new instance without initialization.
 func (mc _MusicPlayerPlayParametersClass) Alloc() MusicPlayerPlayParameters {
 	rv := objc.Send[MusicPlayerPlayParameters](objc.ID(mc.class), objc.Sel("alloc"))
@@ -62,7 +62,6 @@ func (mc _MusicPlayerPlayParametersClass) Alloc() MusicPlayerPlayParameters {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MusicPlayerPlayParametersClass) New() MusicPlayerPlayParameters {
 	rv := objc.Send[MusicPlayerPlayParameters](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,26 +84,68 @@ func (m_ MusicPlayerPlayParameters) Autorelease() MusicPlayerPlayParameters {
 func NewMusicPlayerPlayParameters() MusicPlayerPlayParameters {
 	return getMusicPlayerPlayParametersClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The information returned from a MusicKit query and stored in a play parameters object.
+/* debug [class_struct]: Struct for MusicPlayerPlayParameters */
+// The MusicKit parameters that describe items to play.
+
+
+// The MusicKit parameters that describe items to play.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters/dictionary
-func (m_ MusicPlayerPlayParameters) Dictionary() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("dictionary"))
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParameters
+type MusicPlayerPlayParameters struct {
+	objectivec.Object
+}
+
+// MusicPlayerPlayParametersFrom constructs a [MusicPlayerPlayParameters] from an unsafe.Pointer.
+//
+// The MusicKit parameters that describe items to play.
+func MusicPlayerPlayParametersFrom(ptr unsafe.Pointer) MusicPlayerPlayParameters {
+	return MusicPlayerPlayParameters{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MusicPlayerPlayParameters */
+
+// Returns a new play parameters object using information from MusicKit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMusicPlayerPlayParameters/init(dictionary:)
+func NewMusicPlayerPlayParametersWithDictionary(dictionary foundation.IDictionary) MusicPlayerPlayParameters {
+	instance := getMusicPlayerPlayParametersClass().Alloc()
+	rv := objc.Send[MusicPlayerPlayParameters](instance.ID, objc.Sel("initWithDictionary:"), dictionary)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMusicPlayerPlayParametersWithDictionary */
+
+/* debug [class_init_methods]: End init methods */
 
 
-// The information returned from a MusicKit query and stored in a play parameters object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmusicplayerplayparameters/dictionary
-func (m_ MusicPlayerPlayParameters) SetDictionary(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDictionary:"), value)
-}
 
+/* debug [class_methods]: Class methods for MusicPlayerPlayParameters */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MusicPlayerPlayParameters */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MusicPlayerPlayParameters */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MusicPlayerPlayParameters */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPMusicPlayerPlayParameters */
 
 

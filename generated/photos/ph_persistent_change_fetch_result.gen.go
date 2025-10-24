@@ -38,7 +38,6 @@ type IPHPersistentChangeFetchResult interface {
 
 // An object that represents a fetch result and allows you to enumerate a very large set of change records.
 
-
 // An object that represents a fetch result and allows you to enumerate a very large set of change records.
 //
 // [Full Topic]
@@ -85,8 +84,6 @@ func NewPHPersistentChangeFetchResult() PHPersistentChangeFetchResult {
 	return getPHPersistentChangeFetchResultClass().New()
 }
 
-
-
 // The opaque token that represents the current state of the Photos library.
 //
 // [Full Topic]
@@ -96,7 +93,6 @@ func (p_ PHPersistentChangeFetchResult) CurrentChangeToken() IPHPersistentChange
 	return rv
 }
 
-
 // The opaque token that represents the current state of the Photos library.
 //
 // [Full Topic]
@@ -104,6 +100,3 @@ func (p_ PHPersistentChangeFetchResult) CurrentChangeToken() IPHPersistentChange
 func (p_ PHPersistentChangeFetchResult) SetCurrentChangeToken(value IPHPersistentChangeToken) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentChangeToken:"), value)
 }
-
-
-

@@ -15,3 +15,4 @@ var MatrixDelegateProtocol *objc.Protocol
 func init() {
 	MatrixDelegateProtocol = objc.GetProtocol("NSMatrixDelegate")
 }
+

@@ -20,3 +20,4 @@ var IsInverseOpProtocol *objc.Protocol
 func init() {
 	IsInverseOpProtocol = objc.GetProtocol("IsInverseOp")
 }
+

@@ -15,3 +15,4 @@ var outlineViewItemWillExpandProtocol *objc.Protocol
 func init() {
 	outlineViewItemWillExpandProtocol = objc.GetProtocol("outlineViewItemWillExpand:")
 }
+

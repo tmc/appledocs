@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // VibranceProtocol is the CIVibrance protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIVibrance.
 var VibranceProtocol *objc.Protocol
 
 func init() {
 	VibranceProtocol = objc.GetProtocol("CIVibrance")
 }
+

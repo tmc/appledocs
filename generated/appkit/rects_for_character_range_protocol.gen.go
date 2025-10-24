@@ -15,3 +15,4 @@ var rectsForCharacterRangeProtocol *objc.Protocol
 func init() {
 	rectsForCharacterRangeProtocol = objc.GetProtocol("rectsForCharacterRange:")
 }
+

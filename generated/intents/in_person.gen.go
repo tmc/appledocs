@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -67,7 +67,6 @@ type IINPerson interface {
 //
 // SiriKit uses objects to represent people with many different roles, including the sender or recipient of calls and messages, the payer or payee of a financial transaction, or the driver of a vehicle. You also use person objects to identify the corresponding contact in your app and to communicate information about that contact back to SiriKit. When resolving the parameters of an intent, use any provided objects to identify the corresponding contacts in your app. A person object contains information provided by the initial request, which could be as little as a single name spoken by the person interacting with Siri. After identifying the contact, create a new object and fill it with the information that you need to identify that contact again later. For example, you might specify a value for property that contains the information about how your app identifies that contact. When resolving the identities of contacts, SiriKit leverages the information in the device owner’s contacts database when that information is available. If the owner denies your app access to their contacts, SiriKit can’t use that information, which might cause many properties of a person object to be . Because the class conforms to the protocol, though, SiriKit still populates the property with what the person interacting with Siri said, and you can use that information to try to identify the contact. For more information about that protocol, see .
 
-
 // Information about a person participating in a SiriKit interaction.
 //
 // [Full Topic]
@@ -114,8 +113,6 @@ func NewINPerson() INPerson {
 	return getINPersonClass().New()
 }
 
-
-
 // The additional handles that Siri may use to identify the person.
 //
 // [Full Topic]
@@ -125,7 +122,6 @@ func (i_ INPerson) Aliases() INPersonHandle {
 	return rv
 }
 
-
 // The additional handles that Siri may use to identify the person.
 //
 // [Full Topic]
@@ -133,7 +129,6 @@ func (i_ INPerson) Aliases() INPersonHandle {
 func (i_ INPerson) SetAliases(value INPersonHandle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAliases:"), value)
 }
-
 
 // The Contacts database identifier for the person.
 //
@@ -144,7 +139,6 @@ func (i_ INPerson) ContactIdentifier() objc.IObject /* cross-framework: NSString
 	return rv
 }
 
-
 // The Contacts database identifier for the person.
 //
 // [Full Topic]
@@ -152,7 +146,6 @@ func (i_ INPerson) ContactIdentifier() objc.IObject /* cross-framework: NSString
 func (i_ INPerson) SetContactIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContactIdentifier:"), value)
 }
-
 
 // The unique identifier that your app uses to identify the person.
 //
@@ -163,7 +156,6 @@ func (i_ INPerson) CustomIdentifier() objc.IObject /* cross-framework: NSString 
 	return rv
 }
 
-
 // The unique identifier that your app uses to identify the person.
 //
 // [Full Topic]
@@ -171,7 +163,6 @@ func (i_ INPerson) CustomIdentifier() objc.IObject /* cross-framework: NSString 
 func (i_ INPerson) SetCustomIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCustomIdentifier:"), value)
 }
-
 
 // The person’s formatted name.
 //
@@ -182,7 +173,6 @@ func (i_ INPerson) DisplayName() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The person’s formatted name.
 //
 // [Full Topic]
@@ -190,7 +180,6 @@ func (i_ INPerson) DisplayName() objc.IObject /* cross-framework: NSString */ {
 func (i_ INPerson) SetDisplayName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDisplayName:"), value)
 }
-
 
 // The unique identifier that your app assigned to the user.
 //
@@ -201,7 +190,6 @@ func (i_ INPerson) Handle() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The unique identifier that your app assigned to the user.
 //
 // [Full Topic]
@@ -209,7 +197,6 @@ func (i_ INPerson) Handle() objc.IObject /* cross-framework: NSString */ {
 func (i_ INPerson) SetHandle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setHandle:"), value)
 }
-
 
 // An image of the person.
 //
@@ -220,7 +207,6 @@ func (i_ INPerson) Image() INImage {
 	return rv
 }
 
-
 // An image of the person.
 //
 // [Full Topic]
@@ -228,7 +214,6 @@ func (i_ INPerson) Image() INImage {
 func (i_ INPerson) SetImage(value INImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:"), value)
 }
-
 
 // A Boolean value that indicates whether the person is a contact suggestion.
 //
@@ -239,7 +224,6 @@ func (i_ INPerson) IsContactSuggestion() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the person is a contact suggestion.
 //
 // [Full Topic]
@@ -247,7 +231,6 @@ func (i_ INPerson) IsContactSuggestion() bool {
 func (i_ INPerson) SetIsContactSuggestion(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsContactSuggestion:"), value)
 }
-
 
 // A Boolean value indicating whether the person is the user of the device.
 //
@@ -258,7 +241,6 @@ func (i_ INPerson) IsMe() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the person is the user of the device.
 //
 // [Full Topic]
@@ -266,7 +248,6 @@ func (i_ INPerson) IsMe() bool {
 func (i_ INPerson) SetIsMe(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsMe:"), value)
 }
-
 
 // The individual components of the person’s full name.
 //
@@ -277,7 +258,6 @@ func (i_ INPerson) NameComponents() objc.IObject /* cross-framework: PersonNameC
 	return rv
 }
 
-
 // The individual components of the person’s full name.
 //
 // [Full Topic]
@@ -285,7 +265,6 @@ func (i_ INPerson) NameComponents() objc.IObject /* cross-framework: PersonNameC
 func (i_ INPerson) SetNameComponents(value objc.IObject /* cross-framework: PersonNameComponents */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNameComponents:"), value)
 }
-
 
 // The unique handle that your app assigns to the person.
 //
@@ -296,7 +275,6 @@ func (i_ INPerson) PersonHandle() INPersonHandle {
 	return rv
 }
 
-
 // The unique handle that your app assigns to the person.
 //
 // [Full Topic]
@@ -304,7 +282,6 @@ func (i_ INPerson) PersonHandle() INPersonHandle {
 func (i_ INPerson) SetPersonHandle(value INPersonHandle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPersonHandle:"), value)
 }
-
 
 // The relationship between this person and the person using the device.
 //
@@ -315,7 +292,6 @@ func (i_ INPerson) Relationship() unsafe.Pointer {
 	return rv
 }
 
-
 // The relationship between this person and the person using the device.
 //
 // [Full Topic]
@@ -323,7 +299,6 @@ func (i_ INPerson) Relationship() unsafe.Pointer {
 func (i_ INPerson) SetRelationship(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRelationship:"), value)
 }
-
 
 // The list of matches Siri provides for you to resolve or disambiguate.
 //
@@ -334,7 +309,6 @@ func (i_ INPerson) SiriMatches() INPerson {
 	return rv
 }
 
-
 // The list of matches Siri provides for you to resolve or disambiguate.
 //
 // [Full Topic]
@@ -342,7 +316,6 @@ func (i_ INPerson) SiriMatches() INPerson {
 func (i_ INPerson) SetSiriMatches(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSiriMatches:"), value)
 }
-
 
 // The type of contact information to donate with interactions.
 //
@@ -353,7 +326,6 @@ func (i_ INPerson) SuggestionType() INPersonSuggestionType {
 	return rv
 }
 
-
 // The type of contact information to donate with interactions.
 //
 // [Full Topic]
@@ -361,7 +333,6 @@ func (i_ INPerson) SuggestionType() INPersonSuggestionType {
 func (i_ INPerson) SetSuggestionType(value INPersonSuggestionType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestionType:"), value)
 }
-
 
 // The phrase identified by Siri.
 //
@@ -372,7 +343,6 @@ func (i_ INPerson) SpokenPhrase() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The phrase identified by Siri.
 //
 // [Full Topic]
@@ -380,6 +350,3 @@ func (i_ INPerson) SpokenPhrase() objc.IObject /* cross-framework: NSString */ {
 func (i_ INPerson) SetSpokenPhrase(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpokenPhrase:"), value)
 }
-
-
-

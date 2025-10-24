@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRPumpConfigurationAndControlClusterAirDetectionEvent */
+
+
+/* debug [class_header]: Header for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
 // The class instance for the [MTRPumpConfigurationAndControlClusterAirDetectionEvent] class.
 var (
 	MTRPumpConfigurationAndControlClusterAirDetectionEventClass     _MTRPumpConfigurationAndControlClusterAirDetectionEventClass
@@ -26,27 +30,30 @@ func getMTRPumpConfigurationAndControlClusterAirDetectionEventClass() _MTRPumpCo
 type _MTRPumpConfigurationAndControlClusterAirDetectionEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
 // An interface definition for the [MTRPumpConfigurationAndControlClusterAirDetectionEvent] class.
 type IMTRPumpConfigurationAndControlClusterAirDetectionEvent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterAirDetectionEvent
-type MTRPumpConfigurationAndControlClusterAirDetectionEvent struct {
-	objectivec.Object
-}
-
-// MTRPumpConfigurationAndControlClusterAirDetectionEventFrom constructs a [MTRPumpConfigurationAndControlClusterAirDetectionEvent] from an unsafe.Pointer.
-func MTRPumpConfigurationAndControlClusterAirDetectionEventFrom(ptr unsafe.Pointer) MTRPumpConfigurationAndControlClusterAirDetectionEvent {
-	return MTRPumpConfigurationAndControlClusterAirDetectionEvent{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRPumpConfigurationAndControlClusterAirDetectionEventClass) Alloc() MTRPumpConfigurationAndControlClusterAirDetectionEvent {
 	rv := objc.Send[MTRPumpConfigurationAndControlClusterAirDetectionEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _MTRPumpConfigurationAndControlClusterAirDetectionEventClass) Alloc() M
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRPumpConfigurationAndControlClusterAirDetectionEventClass) New() MTRPumpConfigurationAndControlClusterAirDetectionEvent {
 	rv := objc.Send[MTRPumpConfigurationAndControlClusterAirDetectionEvent](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ MTRPumpConfigurationAndControlClusterAirDetectionEvent) Autorelease() M
 func NewMTRPumpConfigurationAndControlClusterAirDetectionEvent() MTRPumpConfigurationAndControlClusterAirDetectionEvent {
 	return getMTRPumpConfigurationAndControlClusterAirDetectionEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterAirDetectionEvent
+type MTRPumpConfigurationAndControlClusterAirDetectionEvent struct {
+	objectivec.Object
+}
+
+// MTRPumpConfigurationAndControlClusterAirDetectionEventFrom constructs a [MTRPumpConfigurationAndControlClusterAirDetectionEvent] from an unsafe.Pointer.
+func MTRPumpConfigurationAndControlClusterAirDetectionEventFrom(ptr unsafe.Pointer) MTRPumpConfigurationAndControlClusterAirDetectionEvent {
+	return MTRPumpConfigurationAndControlClusterAirDetectionEvent{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRPumpConfigurationAndControlClusterAirDetectionEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRPumpConfigurationAndControlClusterAirDetectionEvent */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRPumpConfigurationAndControlClusterAirDetectionEvent */
 
 
 

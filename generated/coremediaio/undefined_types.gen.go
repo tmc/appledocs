@@ -9,8 +9,17 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Time = _undefined // referenced in CoreMediaIO
+	AllocatorRef = _undefined // referenced in CoreMediaIO
+	AttachmentMode = _undefined // referenced in CoreMediaIO
+	BlockBufferRef = _undefined // referenced in CoreMediaIO
+	FormatDescriptionRef = _undefined // referenced in CoreMediaIO
+	IOHardwarePlugInRef = _undefined // referenced in CoreMediaIO
+	IOObjectPropertyListenerBlock = _undefined // referenced in CoreMediaIO
+	ImageBufferRef = _undefined // referenced in CoreMediaIO
+	SampleBufferRef = _undefined // referenced in CoreMediaIO
+	StringRef = _undefined // referenced in CoreMediaIO
 	TypeRef = _undefined // referenced in CoreMediaIO
+	VideoFormatDescriptionRef = _undefined // referenced in CoreMediaIO
 )
 
 

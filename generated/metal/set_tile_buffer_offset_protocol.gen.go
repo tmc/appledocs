@@ -20,3 +20,4 @@ var setTileBufferOffsetProtocol *objc.Protocol
 func init() {
 	setTileBufferOffsetProtocol = objc.GetProtocol("setTileBufferOffset:")
 }
+

@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PAccessibilityTable is the NSAccessibilityTable protocol interface.
@@ -17,8 +19,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityTable
 type PAccessibilityTable interface {
 	// Required methods
-	AccessibilityLabel() foundation.String
-	AccessibilityRows() []objc.ID
+	AccessibilityLabel() foundation.String/* debug [protocol_interface/required_method]: AccessibilityLabel */
+	AccessibilityRows() []objc.ID/* debug [protocol_interface/required_method]: AccessibilityRows */
 	// Optional methods
 	AccessibilityColumnHeaderUIElements() foundation.Array
 	HasAccessibilityColumnHeaderUIElements() bool

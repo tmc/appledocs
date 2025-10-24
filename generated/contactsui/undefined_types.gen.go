@@ -9,6 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
+	Rect = _undefined // referenced in ContactsUI
 	RectEdge = _undefined // referenced in ContactsUI
 )
 

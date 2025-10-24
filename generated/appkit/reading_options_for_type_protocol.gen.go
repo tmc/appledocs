@@ -15,3 +15,4 @@ var readingOptionsForTypeProtocol *objc.Protocol
 func init() {
 	readingOptionsForTypeProtocol = objc.GetProtocol("readingOptionsForType:")
 }
+

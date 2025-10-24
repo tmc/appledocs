@@ -15,3 +15,4 @@ var pasteboardPropertyListForTypeProtocol *objc.Protocol
 func init() {
 	pasteboardPropertyListForTypeProtocol = objc.GetProtocol("pasteboardPropertyListForType:")
 }
+

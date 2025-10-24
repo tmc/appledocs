@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // DeviceProviderProtocol is the MPSDeviceProvider protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to MPSDeviceProvider.
 var DeviceProviderProtocol *objc.Protocol
 
 func init() {
 	DeviceProviderProtocol = objc.GetProtocol("MPSDeviceProvider")
 }
+

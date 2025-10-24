@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTREthernetNetworkDiagnosticsClusterResetCountsParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREthernetNetworkDiagnosticsClusterResetCountsParams
@@ -83,8 +81,6 @@ func NewMTREthernetNetworkDiagnosticsClusterResetCountsParams() MTREthernetNetwo
 	return getMTREthernetNetworkDiagnosticsClusterResetCountsParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/serversideprocessingtimeout
 func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) ServerSideProces
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/serversideprocessingtimeout
 func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) TimedInvokeTimeo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrethernetnetworkdiagnosticsclusterresetcountsparams/timedinvoketimeoutms
 func (m_ MTREthernetNetworkDiagnosticsClusterResetCountsParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

@@ -13,12 +13,12 @@ type PHAccessLevel uint
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAsset/PlaybackStyle-swift.enum
 type PHAssetPlaybackStyle uint
 
-// PHAssetBurstSelectionType - Bit mask values indicating whether and how an asset is marked as a favorite member of a burst photo sequence. Used by the 
+// PHAssetBurstSelectionType - Bit mask values indicating whether and how an asset is marked as a favorite member of a burst photo sequence. Used by the
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetBurstSelectionType
 type PHAssetBurstSelectionType uint
 
-// PHAssetEditOperation - Values identifying possible actions an asset can support, used by the 
+// PHAssetEditOperation - Values identifying possible actions an asset can support, used by the
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetEditOperation
 type PHAssetEditOperation uint
@@ -65,24 +65,22 @@ const (
 	PHAuthorizationStatusNotDetermined PHAuthorizationStatus = 0
 )
 
-// PHCollectionEditOperation - Values identifying possible actions that a collection can support, used by the 
+// PHCollectionEditOperation - Values identifying possible actions that a collection can support, used by the
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionEditOperation
 type PHCollectionEditOperation uint
 
-// PHCollectionListSubtype - Major distinctions between kinds of collection list, used by the 
+// PHCollectionListSubtype - Major distinctions between kinds of collection list, used by the
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListSubtype
 type PHCollectionListSubtype uint
 
-// PHCollectionListType - Major distinctions between kinds of collection list, used by the 
+// PHCollectionListType - Major distinctions between kinds of collection list, used by the
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHCollectionListType
 type PHCollectionListType uint
 
-// PHImageContentMode - Options for fitting an image’s aspect ratio to a requested size, used by the 
+// PHImageContentMode - Options for fitting an image’s aspect ratio to a requested size, used by the
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHImageContentMode
 type PHImageContentMode uint
-
-

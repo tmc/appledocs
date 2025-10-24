@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRFabricInfo */
+
+
+/* debug [class_header]: Header for MTRFabricInfo */
 // The class instance for the [MTRFabricInfo] class.
 var (
 	MTRFabricInfoClass     _MTRFabricInfoClass
@@ -27,51 +31,42 @@ func getMTRFabricInfoClass() _MTRFabricInfoClass {
 type _MTRFabricInfoClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRFabricInfo */
 // An interface definition for the [MTRFabricInfo] class.
 type IMTRFabricInfo interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRFabricInfo */
 	// properties:
 	FabricID() objc.IObject /* cross-framework: NSNumber */
-	SetFabricID(value objc.IObject /* cross-framework: NSNumber */)
 	FabricIndex() objc.IObject /* cross-framework: NSNumber */
-	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
-	IntermediateCertificate() objc.IObject /* cross-framework: Data */
-	SetIntermediateCertificate(value objc.IObject /* cross-framework: Data */)
-	IntermediateCertificateTLV() objc.IObject /* cross-framework: Data */
-	SetIntermediateCertificateTLV(value objc.IObject /* cross-framework: Data */)
+	IntermediateCertificate() unsafe.Pointer
+	IntermediateCertificateTLV() unsafe.Pointer
 	Label() objc.IObject /* cross-framework: NSString */
-	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	NodeID() objc.IObject /* cross-framework: NSNumber */
-	SetNodeID(value objc.IObject /* cross-framework: NSNumber */)
-	OperationalCertificate() objc.IObject /* cross-framework: Data */
-	SetOperationalCertificate(value objc.IObject /* cross-framework: Data */)
-	OperationalCertificateTLV() objc.IObject /* cross-framework: Data */
-	SetOperationalCertificateTLV(value objc.IObject /* cross-framework: Data */)
-	RootCertificate() objc.IObject /* cross-framework: Data */
-	SetRootCertificate(value objc.IObject /* cross-framework: Data */)
-	RootCertificateTLV() objc.IObject /* cross-framework: Data */
-	SetRootCertificateTLV(value objc.IObject /* cross-framework: Data */)
-	RootPublicKey() objc.IObject /* cross-framework: Data */
-	SetRootPublicKey(value objc.IObject /* cross-framework: Data */)
+	OperationalCertificate() unsafe.Pointer
+	OperationalCertificateTLV() unsafe.Pointer
+	RootCertificate() unsafe.Pointer
+	RootCertificateTLV() unsafe.Pointer
+	RootPublicKey() objc.IObject /* cross-framework: NSData */
 	VendorID() objc.IObject /* cross-framework: NSNumber */
-	SetVendorID(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRFabricInfo */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo
-type MTRFabricInfo struct {
-	objectivec.Object
-}
-
-// MTRFabricInfoFrom constructs a [MTRFabricInfo] from an unsafe.Pointer.
-func MTRFabricInfoFrom(ptr unsafe.Pointer) MTRFabricInfo {
-	return MTRFabricInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRFabricInfo */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRFabricInfoClass) Alloc() MTRFabricInfo {
 	rv := objc.Send[MTRFabricInfo](objc.ID(mc.class), objc.Sel("alloc"))
@@ -79,7 +74,6 @@ func (mc _MTRFabricInfoClass) Alloc() MTRFabricInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRFabricInfoClass) New() MTRFabricInfo {
 	rv := objc.Send[MTRFabricInfo](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -102,187 +96,147 @@ func (m_ MTRFabricInfo) Autorelease() MTRFabricInfo {
 func NewMTRFabricInfo() MTRFabricInfo {
 	return getMTRFabricInfoClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRFabricInfo */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/fabricid
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo
+type MTRFabricInfo struct {
+	objectivec.Object
+}
+
+// MTRFabricInfoFrom constructs a [MTRFabricInfo] from an unsafe.Pointer.
+func MTRFabricInfoFrom(ptr unsafe.Pointer) MTRFabricInfo {
+	return MTRFabricInfo{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRFabricInfo *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRFabricInfo */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRFabricInfo */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRFabricInfo */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRFabricInfo */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/fabricID
 func (m_ MTRFabricInfo) FabricID() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fabricID */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/fabricid
-func (m_ MTRFabricInfo) SetFabricID(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricID:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/fabricindex
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/fabricIndex
 func (m_ MTRFabricInfo) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fabricIndex"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fabricIndex */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/fabricindex
-func (m_ MTRFabricInfo) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/intermediatecertificate
-func (m_ MTRFabricInfo) IntermediateCertificate() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("intermediateCertificate"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/intermediateCertificate
+func (m_ MTRFabricInfo) IntermediateCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("intermediateCertificate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: intermediateCertificate */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/intermediatecertificate
-func (m_ MTRFabricInfo) SetIntermediateCertificate(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCertificate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/intermediatecertificatetlv
-func (m_ MTRFabricInfo) IntermediateCertificateTLV() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("intermediateCertificateTLV"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/intermediateCertificateTLV
+func (m_ MTRFabricInfo) IntermediateCertificateTLV() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("intermediateCertificateTLV"))
 	return rv
-}
+}/* debug [instance_properties/getter]: intermediateCertificateTLV */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/intermediatecertificatetlv
-func (m_ MTRFabricInfo) SetIntermediateCertificateTLV(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIntermediateCertificateTLV:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/label
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/label
 func (m_ MTRFabricInfo) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("label"))
 	return rv
-}
+}/* debug [instance_properties/getter]: label */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/label
-func (m_ MTRFabricInfo) SetLabel(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/nodeid
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/nodeID
 func (m_ MTRFabricInfo) NodeID() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nodeID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nodeID */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/nodeid
-func (m_ MTRFabricInfo) SetNodeID(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNodeID:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/operationalcertificate
-func (m_ MTRFabricInfo) OperationalCertificate() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalCertificate"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/operationalCertificate
+func (m_ MTRFabricInfo) OperationalCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: operationalCertificate */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/operationalcertificate
-func (m_ MTRFabricInfo) SetOperationalCertificate(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/operationalcertificatetlv
-func (m_ MTRFabricInfo) OperationalCertificateTLV() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("operationalCertificateTLV"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/operationalCertificateTLV
+func (m_ MTRFabricInfo) OperationalCertificateTLV() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("operationalCertificateTLV"))
 	return rv
-}
+}/* debug [instance_properties/getter]: operationalCertificateTLV */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/operationalcertificatetlv
-func (m_ MTRFabricInfo) SetOperationalCertificateTLV(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOperationalCertificateTLV:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootcertificate
-func (m_ MTRFabricInfo) RootCertificate() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificate"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/rootCertificate
+func (m_ MTRFabricInfo) RootCertificate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootCertificate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rootCertificate */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootcertificate
-func (m_ MTRFabricInfo) SetRootCertificate(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootcertificatetlv
-func (m_ MTRFabricInfo) RootCertificateTLV() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootCertificateTLV"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/rootCertificateTLV
+func (m_ MTRFabricInfo) RootCertificateTLV() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("rootCertificateTLV"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rootCertificateTLV */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootcertificatetlv
-func (m_ MTRFabricInfo) SetRootCertificateTLV(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificateTLV:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootpublickey
-func (m_ MTRFabricInfo) RootPublicKey() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("rootPublicKey"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/rootPublicKey
+func (m_ MTRFabricInfo) RootPublicKey() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("rootPublicKey"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rootPublicKey */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/rootpublickey
-func (m_ MTRFabricInfo) SetRootPublicKey(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRootPublicKey:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/vendorid
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFabricInfo/vendorID
 func (m_ MTRFabricInfo) VendorID() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("vendorID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: vendorID */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrfabricinfo/vendorid
-func (m_ MTRFabricInfo) SetVendorID(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setVendorID:"), value)
-}
+/* debug [class.gen.go]: End class MTRFabricInfo */
 
 
 

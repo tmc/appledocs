@@ -21,3 +21,4 @@ var tokenProtocol *objc.Protocol
 func init() {
 	tokenProtocol = objc.GetProtocol("token:")
 }
+

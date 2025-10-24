@@ -18,3 +18,4 @@ var userInfoProtocol *objc.Protocol
 func init() {
 	userInfoProtocol = objc.GetProtocol("userInfo")
 }
+

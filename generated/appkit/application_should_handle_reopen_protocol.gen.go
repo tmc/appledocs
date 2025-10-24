@@ -15,3 +15,4 @@ var applicationShouldHandleReopenProtocol *objc.Protocol
 func init() {
 	applicationShouldHandleReopenProtocol = objc.GetProtocol("applicationShouldHandleReopen:")
 }
+

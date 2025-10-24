@@ -37,7 +37,6 @@ type IINSendMessageAttachment interface {
 //
 // When the type of a message is , the intent includes the audio recording as an .
 
-
 // A file to include in a message.
 //
 // [Full Topic]
@@ -84,8 +83,6 @@ func NewINSendMessageAttachment() INSendMessageAttachment {
 	return getINSendMessageAttachmentClass().New()
 }
 
-
-
 // Creates a message attachment with an audio file.
 //
 // [Full Topic]
@@ -94,8 +91,6 @@ func NewINSendMessageAttachmentWithAudioMessageFile(audioMessageFile unsafe.Poin
 	rv := objc.Send[INSendMessageAttachment](objc.ID(getINSendMessageAttachmentClass().class), objc.Sel("attachmentWithAudioMessageFile:"), audioMessageFile)
 	return rv
 }
-
-
 
 // Creates a message attachment with an audio file.
 //
@@ -106,7 +101,6 @@ func (ic _INSendMessageAttachmentClass) AttachmentWithAudioMessageFile(audioMess
 	return rv
 }
 
-
 // The attachment’s recorded message.
 //
 // [Full Topic]
@@ -115,5 +109,3 @@ func (i_ INSendMessageAttachment) AudioMessageFile() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("audioMessageFile"))
 	return rv
 }
-
-

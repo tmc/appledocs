@@ -27,7 +27,7 @@ func (m_ MediaEntity) EnumerateValuesForPropertiesUsingBlock(properties unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaEntity/subscript(_:)
-func (m_ MediaEntity) ObjectForKeyedSubscript(key objectivec.IObject) objc.ID {
+func (m_ MediaEntity) ObjectForKeyedSubscript(key objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](m_.ID, objc.Sel("objectForKeyedSubscript:"), key)
 	return rv
 }
@@ -47,8 +47,8 @@ func (m_ MediaEntity) ValueForProperty(property objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaEntity/persistentID
-func (m_ MediaEntity) PersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("persistentID"))
+func (m_ MediaEntity) PersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("persistentID"))
 	return rv
 }
 

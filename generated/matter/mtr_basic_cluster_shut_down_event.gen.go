@@ -33,8 +33,6 @@ type IMTRBasicClusterShutDownEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicClusterShutDownEvent
 type MTRBasicClusterShutDownEvent struct {
@@ -78,7 +76,3 @@ func (m_ MTRBasicClusterShutDownEvent) Autorelease() MTRBasicClusterShutDownEven
 func NewMTRBasicClusterShutDownEvent() MTRBasicClusterShutDownEvent {
 	return getMTRBasicClusterShutDownEventClass().New()
 }
-
-
-
-

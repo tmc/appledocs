@@ -14,10 +14,10 @@ var _ = mediaplayer.NewNowPlayingInfoLanguageOption
 func ExampleNewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier() {
 	_ = mediaplayer.NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier(
 		mediaplayer.NowPlayingInfoLanguageOptionType{}, // languageOptionType NowPlayingInfoLanguageOptionType
-		"languageTag", // languageTag string
+		"languageTag",          // languageTag string
 		[]mediaplayer.string{}, // languageOptionCharacteristics []string
-		"displayName", // displayName string
-		"identifier", // identifier string
+		"displayName",          // displayName string
+		"identifier",           // identifier string
 	)
 	// Output:
 }

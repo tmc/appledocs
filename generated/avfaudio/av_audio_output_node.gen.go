@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/audiotoolbox"
 )
 
+/* debug [class.gen.go]: Generating class AVAudioOutputNode */
+
+
+/* debug [class_header]: Header for AVAudioOutputNode */
 // The class instance for the [AudioOutputNode] class.
 var (
 	AudioOutputNodeClass     _AudioOutputNodeClass
@@ -26,40 +29,32 @@ func getAudioOutputNodeClass() _AudioOutputNodeClass {
 type _AudioOutputNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AudioOutputNode */
 // An interface definition for the [AudioOutputNode] class.
 type IAudioOutputNode interface {
 	IAudioIONode
+	
+/* debug [class_interface_properties]: Properties for AudioOutputNode */
 	// properties:
 	ManualRenderingFormat() IAVAudioFormat
 	SetManualRenderingFormat(value IAVAudioFormat)
-	IntendedSpatialExperience() objc.IObject /* cross-framework: SpatialAudioExperience */
-	SetIntendedSpatialExperience(value objc.IObject /* cross-framework: SpatialAudioExperience */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AudioOutputNode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that connects to the system’s audio output.
-//
-// This node connects to the system’s audio output when rendering to or from an audio device. This node performs output in response to client’s requests when the engine is in manual rendering mode. This audio node has one element. The format of the output scope reflects: The audio hardware sample rate and channel count when it connects to the hardware. The engine’s manual rendering mode output format (see ). The format of the input scope is initially the same as that of the output, but you may set it to a different format, in which case the audio node converts.
+/* debug [class_interface]: End interface */
 
 
-// An object that connects to the system’s audio output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioOutputNode
-type AudioOutputNode struct {
-	AudioIONode
-}
 
-// AudioOutputNodeFrom constructs a [AudioOutputNode] from an unsafe.Pointer.
-//
-// An object that connects to the system’s audio output.
-func AudioOutputNodeFrom(ptr unsafe.Pointer) AudioOutputNode {
-	return AudioOutputNode{
-		AudioIONode: AudioIONodeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for AudioOutputNode */
 // Alloc allocates a new instance without initialization.
 func (ac _AudioOutputNodeClass) Alloc() AudioOutputNode {
 	rv := objc.Send[AudioOutputNode](objc.ID(ac.class), objc.Sel("alloc"))
@@ -67,7 +62,6 @@ func (ac _AudioOutputNodeClass) Alloc() AudioOutputNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AudioOutputNodeClass) New() AudioOutputNode {
 	rv := objc.Send[AudioOutputNode](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,8 +84,56 @@ func (a_ AudioOutputNode) Autorelease() AudioOutputNode {
 func NewAudioOutputNode() AudioOutputNode {
 	return getAudioOutputNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for AudioOutputNode */
+// An object that connects to the system’s audio output.
+//
+// This node connects to the system’s audio output when rendering to or from an audio device. This node performs output in response to client’s requests when the engine is in manual rendering mode. This audio node has one element. The format of the output scope reflects: The audio hardware sample rate and channel count when it connects to the hardware. The engine’s manual rendering mode output format (see ). The format of the input scope is initially the same as that of the output, but you may set it to a different format, in which case the audio node converts.
+
+
+// An object that connects to the system’s audio output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioOutputNode
+type AudioOutputNode struct {
+	AudioIONode
+}
+
+// AudioOutputNodeFrom constructs a [AudioOutputNode] from an unsafe.Pointer.
+//
+// An object that connects to the system’s audio output.
+func AudioOutputNodeFrom(ptr unsafe.Pointer) AudioOutputNode {
+	return AudioOutputNode{
+		AudioIONode: AudioIONodeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AudioOutputNode *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AudioOutputNode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AudioOutputNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AudioOutputNode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AudioOutputNode */
 
 // The render format of the engine in manual rendering mode.
 //
@@ -100,7 +142,7 @@ func NewAudioOutputNode() AudioOutputNode {
 func (a_ AudioOutputNode) ManualRenderingFormat() IAVAudioFormat {
 	rv := objc.Send[AudioFormat](a_.ID, objc.Sel("manualRenderingFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: manualRenderingFormat */
 
 
 // The render format of the engine in manual rendering mode.
@@ -109,26 +151,11 @@ func (a_ AudioOutputNode) ManualRenderingFormat() IAVAudioFormat {
 // [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudioengine/manualrenderingformat
 func (a_ AudioOutputNode) SetManualRenderingFormat(value IAVAudioFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setManualRenderingFormat:"), value)
-}
+}/* debug [instance_properties/setter]: manualRenderingFormat */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The AVAudioOutputNode’s intended
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
-func (a_ AudioOutputNode) IntendedSpatialExperience() objc.IObject /* cross-framework: SpatialAudioExperience */ {
-	rv := objc.Send[audiotoolbox.SpatialAudioExperience](a_.ID, objc.Sel("intendedSpatialExperience"))
-	return rv
-}
-
-
-// The AVAudioOutputNode’s intended
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfaudio/avaudiooutputnode/intendedspatialexperience-3ts59
-func (a_ AudioOutputNode) SetIntendedSpatialExperience(value objc.IObject /* cross-framework: SpatialAudioExperience */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIntendedSpatialExperience:"), value)
-}
-
+/* debug [class.gen.go]: End class AVAudioOutputNode */
 
 

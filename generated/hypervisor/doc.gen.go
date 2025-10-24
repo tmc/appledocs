@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for Hypervisor. DO NOT EDIT.
 
 // Package hypervisor provides Go bindings for the Hypervisor framework.
 //
-// Build virtualization solutions on top of a lightweight hypervisor, without third-party kernel extensions.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Hypervisor without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Hypervisor
 package hypervisor
 
 import (

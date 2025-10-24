@@ -19,3 +19,4 @@ var depthTextureUsageProtocol *objc.Protocol
 func init() {
 	depthTextureUsageProtocol = objc.GetProtocol("depthTextureUsage")
 }
+

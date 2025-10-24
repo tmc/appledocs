@@ -15,3 +15,4 @@ var effectiveContentInsetsProtocol *objc.Protocol
 func init() {
 	effectiveContentInsetsProtocol = objc.GetProtocol("effectiveContentInsets")
 }
+

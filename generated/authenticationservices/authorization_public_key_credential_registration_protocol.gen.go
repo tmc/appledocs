@@ -20,3 +20,4 @@ var AuthorizationPublicKeyCredentialRegistrationProtocol *objc.Protocol
 func init() {
 	AuthorizationPublicKeyCredentialRegistrationProtocol = objc.GetProtocol("ASAuthorizationPublicKeyCredentialRegistration")
 }
+

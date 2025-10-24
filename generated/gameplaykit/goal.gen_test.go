@@ -14,21 +14,23 @@ var _ = gameplaykit.NewGoal
 func ExampleNewGoalToAlignWithAgentsMaxDistanceMaxAngle() {
 	_ = gameplaykit.NewGoalToAlignWithAgentsMaxDistanceMaxAngle(
 		[]gameplaykit.Agent{}, // agents []Agent
-		0.0, // maxDistance float32
-		0.0, // maxAngle float32
+		0.0,                   // maxDistance float32
+		0.0,                   // maxAngle float32
 	)
 	// Output:
 }
+
 // ExampleNewGoalToCohereWithAgentsMaxDistanceMaxAngle demonstrates how to create a Goal instance using NewGoalToCohereWithAgentsMaxDistanceMaxAngle.
 // Creates a goal whose effect is to make an agent stay near the other agents in a specified group.
 func ExampleNewGoalToCohereWithAgentsMaxDistanceMaxAngle() {
 	_ = gameplaykit.NewGoalToCohereWithAgentsMaxDistanceMaxAngle(
 		[]gameplaykit.Agent{}, // agents []Agent
-		0.0, // maxDistance float32
-		0.0, // maxAngle float32
+		0.0,                   // maxDistance float32
+		0.0,                   // maxAngle float32
 	)
 	// Output:
 }
+
 // ExampleNewGoalToFleeAgent demonstrates how to create a Goal instance using NewGoalToFleeAgent.
 // Creates a goal whose effect is to move an agent away from the current position of the specified other agent.
 func ExampleNewGoalToFleeAgent() {
@@ -37,6 +39,7 @@ func ExampleNewGoalToFleeAgent() {
 	)
 	// Output:
 }
+
 // ExampleNewGoalToReachTargetSpeed demonstrates how to create a Goal instance using NewGoalToReachTargetSpeed.
 // Creates a goal whose effect is to accelerate or decelerate an agent until it reaches the specified speed.
 func ExampleNewGoalToReachTargetSpeed() {
@@ -45,6 +48,7 @@ func ExampleNewGoalToReachTargetSpeed() {
 	)
 	// Output:
 }
+
 // ExampleNewGoalToSeekAgent demonstrates how to create a Goal instance using NewGoalToSeekAgent.
 // Creates a goal whose effect is to move an agent toward the current position of the specified other agent.
 func ExampleNewGoalToSeekAgent() {
@@ -53,16 +57,18 @@ func ExampleNewGoalToSeekAgent() {
 	)
 	// Output:
 }
+
 // ExampleNewGoalToSeparateFromAgentsMaxDistanceMaxAngle demonstrates how to create a Goal instance using NewGoalToSeparateFromAgentsMaxDistanceMaxAngle.
 // Creates a goal whose effect is to make an agent maintain the specified distance from other agents in a specified group.
 func ExampleNewGoalToSeparateFromAgentsMaxDistanceMaxAngle() {
 	_ = gameplaykit.NewGoalToSeparateFromAgentsMaxDistanceMaxAngle(
 		[]gameplaykit.Agent{}, // agents []Agent
-		0.0, // maxDistance float32
-		0.0, // maxAngle float32
+		0.0,                   // maxDistance float32
+		0.0,                   // maxAngle float32
 	)
 	// Output:
 }
+
 // ExampleNewGoalToWander demonstrates how to create a Goal instance using NewGoalToWander.
 // Creates a goal whose effect is to make an agent wander aimlessly, moving forward and turning at random.
 func ExampleNewGoalToWander() {

@@ -6,10 +6,15 @@ import (
 )
 
 // Type aliases and typedefs
+// ABSearchElementRef - A reference to an ABSearchElement object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElementRef
+// ABSearchElementRef has base type: struct __ABSearchElementRef *
+type ABSearchElementRef uintptr
 // ABAddressBookRef - A reference to an ABAddressBook object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBookRef
-// ABAddressBookRef has base type: struct __ABAddressBookRef *
+// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABAddressBook-swift.typealias
+// ABAddressBookRef has base type: CFTypeRef
 type ABAddressBookRef uintptr
 // ABExternalChangeCallback - Prototype for a function callback invoked on an address book when the Address Book database is modified by another address book instance.
 //
@@ -28,20 +33,20 @@ type ABGroupRef uintptr
 // ABImageClientCallback is a callback function
 // C type: void (*)(const struct __CFData *, long, void *)
 type ABImageClientCallback = func(unsafe.Pointer, int, unsafe.Pointer)
+// ABMultiValueRef - A reference to an   or  .
+//
+// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValue-swift.typealias
+// ABMultiValueRef has base type: CFTypeRef
+type ABMultiValueRef uintptr
 // ABMultiValueIdentifier - Identifies multivalue properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueIdentifier
 // ABMultiValueIdentifier has base type: int32_t
 type ABMultiValueIdentifier uintptr
-// ABMultiValueRef - A reference to an   or  .
-//
-// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMultiValueRef
-// ABMultiValueRef has base type: const struct __ABMultiValue *
-type ABMultiValueRef uintptr
 // ABMutableMultiValueRef - A reference to an ABMutableMultiValue object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValueRef
-// ABMutableMultiValueRef has base type: CFTypeRef
+// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABMutableMultiValue-swift.typealias
+// ABMutableMultiValueRef has base type: struct __ABMultiValue *
 type ABMutableMultiValueRef uintptr
 // ABPersonCompositeNameFormat - Indicates a person-name display format.
 //
@@ -66,18 +71,18 @@ type ABPropertyID uintptr
 // ABPropertyType - These are the possible types of ABRecord properties.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABPropertyType
-// ABPropertyType has base type: CFIndex
+// ABPropertyType has base type: uint32_t
 type ABPropertyType uintptr
+// ABRecordRef - A reference to an ABRecord object or any of its derivedopaque types.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecord-swift.typealias
+// ABRecordRef has base type: void *
+type ABRecordRef uintptr
 // ABRecordID - Integer that identifies a record.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecordID
 // ABRecordID has base type: int32_t
 type ABRecordID uintptr
-// ABRecordRef - A reference to an ABRecord object or any of its derivedopaque types.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecordRef
-// ABRecordRef has base type: void *
-type ABRecordRef uintptr
 // ABRecordType - Integer that identifies a record type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABRecordType
@@ -93,11 +98,6 @@ type ABSearchComparison uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchConjunction
 // ABSearchConjunction has base type: CFIndex
 type ABSearchConjunction uintptr
-// ABSearchElementRef - A reference to an ABSearchElement object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSearchElementRef
-// ABSearchElementRef has base type: struct __ABSearchElementRef *
-type ABSearchElementRef uintptr
 // ABSourceType - Indicates a source type. See  .
 //
 // [Full Topic]: https://developer.apple.com/documentation/AddressBook/ABSourceType

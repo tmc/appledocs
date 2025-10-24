@@ -6,3 +6,4 @@ package mlcompute
 //go:generate go run github.com/tmc/appledocs/cmd/generate-framework-bindings -framework ^MLCompute$ -output ..
 
 
+

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for CoreText. DO NOT EDIT.
 
 // Package coretext provides Go bindings for the CoreText framework.
 //
-// Create text layouts, optimize font handling, and access font metrics and glyph data.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreText without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CoreText
 package coretext
 
 import (

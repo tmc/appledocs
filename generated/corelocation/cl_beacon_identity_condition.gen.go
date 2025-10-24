@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BeaconIdentityCondition] class.
@@ -31,7 +31,7 @@ type _BeaconIdentityConditionClass struct {
 type IBeaconIdentityCondition interface {
 	ICondition
 	// properties:
-	UUID() objc.IObject /* cross-framework: UUID */
+	UUID() objc.IObject  /* cross-framework: UUID */
 	Major() objc.IObject /* cross-framework: NSNumber */
 	Minor() objc.IObject /* cross-framework: NSNumber */
 	// methods:
@@ -40,7 +40,6 @@ type IBeaconIdentityCondition interface {
 // A condition that describes the identity characteristics of a beacon.
 //
 // Core Location defines a beacon identity by UUID, and major and minor values. You need to specify the UUID. If you only specify a UUID, the framework treats the major and minor values as wildcards and any beacons with the same UUID satisfy the condition. Similarly, if you specify only a UUID and a major value, the framework treats the minor value as a wildcard and any beacons with the same UUID and major value satisfy the condition.
-
 
 // A condition that describes the identity characteristics of a beacon.
 //
@@ -90,8 +89,6 @@ func NewBeaconIdentityCondition() BeaconIdentityCondition {
 	return getBeaconIdentityConditionClass().New()
 }
 
-
-
 // Creates a new beacon identity condition with the identifier you specify.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func NewBeaconIdentityConditionWithUUID(uuid objc.IObject /* cross-framework: UU
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates a new beacon identity condition with the identifier and major value you specify.
 //
@@ -115,7 +111,6 @@ func NewBeaconIdentityConditionWithUUIDMajor(uuid objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // Creates a new beacon identity condition with the identifier, and major and minor values you specify.
 //
 // [Full Topic]
@@ -127,8 +122,6 @@ func NewBeaconIdentityConditionWithUUIDMajorMinor(uuid objc.IObject /* cross-fra
 	return rv
 }
 
-
-
 // A universally unique identifier that represent the beacon’s identifier.
 //
 // [Full Topic]
@@ -137,7 +130,6 @@ func (b_ BeaconIdentityCondition) UUID() objc.IObject /* cross-framework: UUID *
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
 	return rv
 }
-
 
 // The most significant value associated with the beacon.
 //
@@ -148,7 +140,6 @@ func (b_ BeaconIdentityCondition) Major() objc.IObject /* cross-framework: NSNum
 	return rv
 }
 
-
 // The least significant value associated with the beacon.
 //
 // [Full Topic]
@@ -157,5 +148,3 @@ func (b_ BeaconIdentityCondition) Minor() objc.IObject /* cross-framework: NSNum
 	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
-
-

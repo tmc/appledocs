@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MLCSliceLayer */
+
+
+/* debug [class_header]: Header for MLCSliceLayer */
 // The class instance for the [CSliceLayer] class.
 var (
 	CSliceLayerClass     _CSliceLayerClass
@@ -25,42 +30,33 @@ func getCSliceLayerClass() _CSliceLayerClass {
 type _CSliceLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CSliceLayer */
 // An interface definition for the [CSliceLayer] class.
 type ICSliceLayer interface {
 	ICLayer
+	
+/* debug [class_interface_properties]: Properties for CSliceLayer */
 	// properties:
-	End() int
-	SetEnd(value int)
-	Start() int
-	SetStart(value int)
-	Stride() int
-	SetStride(value int)
+	End() []foundation.Number
+	Start() []foundation.Number
+	Stride() []foundation.Number
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CSliceLayer */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A layer that extracts a slice from a tensor.
-//
-// The framework supports positive stride. Use a slice layer to slice a given source. Slicing won’t decrease the tensor dimension. The start, end, and stride vectors must be of the same size, equal to the source tensor dimension.
+/* debug [class_interface]: End interface */
 
 
-// A layer that extracts a slice from a tensor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSliceLayer
-type CSliceLayer struct {
-	CLayer
-}
 
-// CSliceLayerFrom constructs a [CSliceLayer] from an unsafe.Pointer.
-//
-// A layer that extracts a slice from a tensor.
-func CSliceLayerFrom(ptr unsafe.Pointer) CSliceLayer {
-	return CSliceLayer{
-		CLayer: CLayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CSliceLayer */
 // Alloc allocates a new instance without initialization.
 func (cc _CSliceLayerClass) Alloc() CSliceLayer {
 	rv := objc.Send[CSliceLayer](objc.ID(cc.class), objc.Sel("alloc"))
@@ -68,7 +64,6 @@ func (cc _CSliceLayerClass) Alloc() CSliceLayer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CSliceLayerClass) New() CSliceLayer {
 	rv := objc.Send[CSliceLayer](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,64 +86,100 @@ func (c_ CSliceLayer) Autorelease() CSliceLayer {
 func NewCSliceLayer() CSliceLayer {
 	return getCSliceLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The end vector.
+/* debug [class_struct]: Struct for CSliceLayer */
+// A layer that extracts a slice from a tensor.
+//
+// The framework supports positive stride. Use a slice layer to slice a given source. Slicing won’t decrease the tensor dimension. The start, end, and stride vectors must be of the same size, equal to the source tensor dimension.
+
+
+// A layer that extracts a slice from a tensor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/end-9xw91
-func (c_ CSliceLayer) End() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("end"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSliceLayer
+type CSliceLayer struct {
+	CLayer
+}
+
+// CSliceLayerFrom constructs a [CSliceLayer] from an unsafe.Pointer.
+//
+// A layer that extracts a slice from a tensor.
+func CSliceLayerFrom(ptr unsafe.Pointer) CSliceLayer {
+	return CSliceLayer{
+		CLayer: CLayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CSliceLayer *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CSliceLayer */
+
+// Creates a slice layer with the specified start, end, and stride.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSliceLayer/sliceLayerWithStart:end:stride:
+func (cc _CSliceLayerClass) SliceLayerWithStartEndStride(start []foundation.Number, end []foundation.Number, stride []foundation.Number) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sliceLayerWithStart:end:stride:"), start, end, stride)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SliceLayerWithStartEndStride) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CSliceLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CSliceLayer */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CSliceLayer */
 
 // The end vector.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/end-9xw91
-func (c_ CSliceLayer) SetEnd(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEnd:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSliceLayer/end-8z0wi
+func (c_ CSliceLayer) End() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("end"))
+	return rv
+}/* debug [instance_properties/getter]: end */
 
 
 // The start vector.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/start-6wsh6
-func (c_ CSliceLayer) Start() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("start"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSliceLayer/start-6dnjn
+func (c_ CSliceLayer) Start() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("start"))
 	return rv
-}
-
-
-// The start vector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/start-6wsh6
-func (c_ CSliceLayer) SetStart(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStart:"), value)
-}
+}/* debug [instance_properties/getter]: start */
 
 
 // The stride vector.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/stride-84fhb
-func (c_ CSliceLayer) Stride() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("stride"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCSliceLayer/stride-8dnpu
+func (c_ CSliceLayer) Stride() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("stride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stride */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The stride vector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcslicelayer/stride-84fhb
-func (c_ CSliceLayer) SetStride(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setStride:"), value)
-}
+/* debug [class.gen.go]: End class MLCSliceLayer */
 
 
 

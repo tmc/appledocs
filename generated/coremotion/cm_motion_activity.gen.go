@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class CMMotionActivity */
+
+
+/* debug [class_header]: Header for CMMotionActivity */
 // The class instance for the [MotionActivity] class.
 var (
 	MotionActivityClass     _MotionActivityClass
@@ -26,10 +30,16 @@ func getMotionActivityClass() _MotionActivityClass {
 type _MotionActivityClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MotionActivity */
 // An interface definition for the [MotionActivity] class.
 type IMotionActivity interface {
 	ILogItem
+	
+/* debug [class_interface_properties]: Properties for MotionActivity */
 	// properties:
 	Automotive() bool
 	Confidence() MotionActivityConfidence
@@ -38,31 +48,19 @@ type IMotionActivity interface {
 	Stationary() bool
 	Unknown() bool
 	Walking() bool
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MotionActivity */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The data for a single motion update event.
-//
-// On devices that support motion, you can use a or object to request updates when the current type of motion changes. When a change occurs, the update information is packaged into a object and sent to your app. The motion-related properties of this class aren’t mutually exclusive. In other words, it’s possible for more than one of the motion-related properties to contain the value . For example, if the user was driving in a car and the car stopped at a red light, the update event associated with that change in motion would have both the and properties set to . It’s also possible for all of the properties to be set to when the device is in motion but the movement doesn’t correlate to walking, running, cycling, or automotive travel. You don’t create instances of this class yourself. The object creates them and sends them to the handler block you registered. For more information about how to initiate the delivery of motion activity updates to your app, see .
+/* debug [class_interface]: End interface */
 
 
-// The data for a single motion update event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity
-type MotionActivity struct {
-	LogItem
-}
 
-// MotionActivityFrom constructs a [MotionActivity] from an unsafe.Pointer.
-//
-// The data for a single motion update event.
-func MotionActivityFrom(ptr unsafe.Pointer) MotionActivity {
-	return MotionActivity{
-		LogItem: LogItemFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MotionActivity */
 // Alloc allocates a new instance without initialization.
 func (mc _MotionActivityClass) Alloc() MotionActivity {
 	rv := objc.Send[MotionActivity](objc.ID(mc.class), objc.Sel("alloc"))
@@ -70,7 +68,6 @@ func (mc _MotionActivityClass) Alloc() MotionActivity {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MotionActivityClass) New() MotionActivity {
 	rv := objc.Send[MotionActivity](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +90,56 @@ func (m_ MotionActivity) Autorelease() MotionActivity {
 func NewMotionActivity() MotionActivity {
 	return getMotionActivityClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MotionActivity */
+// The data for a single motion update event.
+//
+// On devices that support motion, you can use a or object to request updates when the current type of motion changes. When a change occurs, the update information is packaged into a object and sent to your app. The motion-related properties of this class aren’t mutually exclusive. In other words, it’s possible for more than one of the motion-related properties to contain the value . For example, if the user was driving in a car and the car stopped at a red light, the update event associated with that change in motion would have both the and properties set to . It’s also possible for all of the properties to be set to when the device is in motion but the movement doesn’t correlate to walking, running, cycling, or automotive travel. You don’t create instances of this class yourself. The object creates them and sends them to the handler block you registered. For more information about how to initiate the delivery of motion activity updates to your app, see .
+
+
+// The data for a single motion update event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivity
+type MotionActivity struct {
+	LogItem
+}
+
+// MotionActivityFrom constructs a [MotionActivity] from an unsafe.Pointer.
+//
+// The data for a single motion update event.
+func MotionActivityFrom(ptr unsafe.Pointer) MotionActivity {
+	return MotionActivity{
+		LogItem: LogItemFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MotionActivity *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MotionActivity */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MotionActivity */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MotionActivity */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MotionActivity */
 
 // A Boolean indicating whether the device is in an automobile.
 //
@@ -103,7 +148,7 @@ func NewMotionActivity() MotionActivity {
 func (m_ MotionActivity) Automotive() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("automotive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: automotive */
 
 
 // The confidence in the assessment of the motion type.
@@ -113,7 +158,7 @@ func (m_ MotionActivity) Automotive() bool {
 func (m_ MotionActivity) Confidence() MotionActivityConfidence {
 	rv := objc.Send[MotionActivityConfidence](m_.ID, objc.Sel("confidence"))
 	return rv
-}
+}/* debug [instance_properties/getter]: confidence */
 
 
 // A Boolean indicating whether the device is on a running person.
@@ -123,7 +168,7 @@ func (m_ MotionActivity) Confidence() MotionActivityConfidence {
 func (m_ MotionActivity) Running() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("running"))
 	return rv
-}
+}/* debug [instance_properties/getter]: running */
 
 
 // The time at which the change in motion occurred.
@@ -133,7 +178,7 @@ func (m_ MotionActivity) Running() bool {
 func (m_ MotionActivity) StartDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("startDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startDate */
 
 
 // A Boolean indicating whether the device is stationary.
@@ -143,7 +188,7 @@ func (m_ MotionActivity) StartDate() objc.IObject /* cross-framework: NSDate */ 
 func (m_ MotionActivity) Stationary() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("stationary"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stationary */
 
 
 // A Boolean indicating whether the type of motion is unknown.
@@ -153,7 +198,7 @@ func (m_ MotionActivity) Stationary() bool {
 func (m_ MotionActivity) Unknown() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("unknown"))
 	return rv
-}
+}/* debug [instance_properties/getter]: unknown */
 
 
 // A Boolean indicating whether the device is on a walking person.
@@ -163,6 +208,11 @@ func (m_ MotionActivity) Unknown() bool {
 func (m_ MotionActivity) Walking() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("walking"))
 	return rv
-}
+}/* debug [instance_properties/getter]: walking */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CMMotionActivity */
 
 

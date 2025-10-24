@@ -21,3 +21,4 @@ var OSLogEntryWithPayloadProtocol *objc.Protocol
 func init() {
 	OSLogEntryWithPayloadProtocol = objc.GetProtocol("OSLogEntryWithPayload")
 }
+

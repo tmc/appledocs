@@ -15,3 +15,4 @@ var localizedTitlesForItemProtocol *objc.Protocol
 func init() {
 	localizedTitlesForItemProtocol = objc.GetProtocol("localizedTitlesForItem:")
 }
+

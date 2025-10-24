@@ -33,8 +33,6 @@ type IMTRClusterTargetNavigator interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTargetNavigator
 type MTRClusterTargetNavigator struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterTargetNavigator) Autorelease() MTRClusterTargetNavigator {
 func NewMTRClusterTargetNavigator() MTRClusterTargetNavigator {
 	return getMTRClusterTargetNavigatorClass().New()
 }
-
-
-
-

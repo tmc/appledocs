@@ -20,3 +20,4 @@ var newBinaryArchiveWithDescriptorProtocol *objc.Protocol
 func init() {
 	newBinaryArchiveWithDescriptorProtocol = objc.GetProtocol("newBinaryArchiveWithDescriptor:")
 }
+

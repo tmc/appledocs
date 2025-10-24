@@ -15,3 +15,4 @@ var slideDraggedImageToProtocol *objc.Protocol
 func init() {
 	slideDraggedImageToProtocol = objc.GetProtocol("slideDraggedImageTo:")
 }
+

@@ -37,7 +37,6 @@ type IINResumeWorkoutIntent interface {
 //
 // SiriKit creates an object when the user asks to resume a currently paused workout. Resuming a workout resumes gathering workout data and counting that data toward the user’s current workout goal. Use this intent object to validate the workout parameters. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object that indicates it’s possible to resume the workout. For the successful handling of the intent, SiriKit launches your app and passes it an object your app must then use to resume the workout.
 
-
 // A request to resume a paused workout.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINResumeWorkoutIntent() INResumeWorkoutIntent {
 	return getINResumeWorkoutIntentClass().New()
 }
 
-
-
 // The name of the workout.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INResumeWorkoutIntent) WorkoutName() INSpeakableString {
 	return rv
 }
 
-
 // The name of the workout.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INResumeWorkoutIntent) WorkoutName() INSpeakableString {
 func (i_ INResumeWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
 }
-
-
-

@@ -21,3 +21,4 @@ var isKindOfClassProtocol *objc.Protocol
 func init() {
 	isKindOfClassProtocol = objc.GetProtocol("isKindOfClass:")
 }
+

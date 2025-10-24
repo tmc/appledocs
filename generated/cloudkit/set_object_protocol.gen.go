@@ -21,3 +21,4 @@ var setObjectProtocol *objc.Protocol
 func init() {
 	setObjectProtocol = objc.GetProtocol("setObject:")
 }
+

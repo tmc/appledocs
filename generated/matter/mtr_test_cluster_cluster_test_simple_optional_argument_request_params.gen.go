@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams] class.
@@ -39,8 +39,6 @@ type IMTRTestClusterClusterTestSimpleOptionalArgumentRequestParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams
@@ -86,8 +84,6 @@ func NewMTRTestClusterClusterTestSimpleOptionalArgumentRequestParams() MTRTestCl
 	return getMTRTestClusterClusterTestSimpleOptionalArgumentRequestParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/arg1
 func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) Arg1() objc.IObject /* cross-framework: NSNumber */ {
@@ -95,13 +91,11 @@ func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) Arg1() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/arg1
 func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) SetArg1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/serversideprocessingtimeout
@@ -110,13 +104,11 @@ func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) ServerSid
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/serversideprocessingtimeout
 func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/timedinvoketimeoutms
@@ -125,12 +117,8 @@ func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) TimedInvo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestsimpleoptionalargumentrequestparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestSimpleOptionalArgumentRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

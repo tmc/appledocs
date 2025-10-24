@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for Metal. DO NOT EDIT.
 
 // Package metal provides Go bindings for the Metal framework.

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -52,7 +52,6 @@ type IFetchedResultsController interface {
 // A controller that you use to manage the results of a Core Data fetch request and to display data to the user.
 //
 // While you can use table views can in several ways, fetched results controllers primarily assist you with a primary list view. expects its data source to provide cells as an array of sections made up of rows. You configure a fetched results controller using a — an object that specifies what type of entity to fetch and how to sort the results. You can also add criteria for when to include a specific instance of the entity. The fetched results controller efficiently analyzes the result of the fetch request and computes all the information about sections in the result set. It also computes all the information for the index based on the result set. In addition, fetched results controllers: Optionally monitor changes to objects in the associated managed object context, and report changes in the results set to its delegate (see ). Optionally cache the results of its computation to enable redisplaying the same data without repeating the work to fetch it. For more information, see . A controller thus effectively has three modes of operation, determined by whether it has a delegate and whether you set the cache file name. No tracking: The delegate is . The controller provides access to the data as it was when it fetched it. Memory-only tracking: the delegate is non- and the file cache name is . The controller monitors objects in its result set and updates section and ordering information in response to relevant changes. Full persistent tracking: the delegate and the file cache name are non- . The controller monitors objects in its result set and updates section and ordering information in response to relevant changes. The controller maintains a persistent cache of the results of its computation.
-
 
 // A controller that you use to manage the results of a Core Data fetch request and to display data to the user.
 //
@@ -100,8 +99,6 @@ func NewFetchedResultsController() FetchedResultsController {
 	return getFetchedResultsControllerClass().New()
 }
 
-
-
 // Returns a fetch request controller initialized using the given arguments.
 //
 // [Full Topic]
@@ -113,8 +110,6 @@ func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameK
 	return rv
 }
 
-
-
 // Deletes the cached section information with the given name.
 //
 // [Full Topic]
@@ -122,7 +117,6 @@ func NewFetchedResultsControllerWithFetchRequestManagedObjectContextSectionNameK
 func (fc _FetchedResultsControllerClass) DeleteCacheWithName(name objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](objc.ID(fc.class), objc.Sel("deleteCacheWithName:"), name)
 }
-
 
 // Returns the index path of a given object.
 //
@@ -133,7 +127,6 @@ func (f_ FetchedResultsController) IndexPathForObject(object unsafe.Pointer) obj
 	return rv
 }
 
-
 // Returns the object at the given index path in the fetch results.
 //
 // [Full Topic]
@@ -142,7 +135,6 @@ func (f_ FetchedResultsController) ObjectAtIndexPath(indexPath objc.IObject /* c
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("objectAtIndexPath:"), indexPath)
 	return rv
 }
-
 
 // Executes the controller’s fetch request.
 //
@@ -153,7 +145,6 @@ func (f_ FetchedResultsController) PerformFetch(error_ unsafe.Pointer) bool {
 	return rv
 }
 
-
 // Returns the section number for a given section title and index in the section index.
 //
 // [Full Topic]
@@ -162,7 +153,6 @@ func (f_ FetchedResultsController) SectionForSectionIndexTitleAtIndex(title objc
 	rv := objc.Send[int](f_.ID, objc.Sel("sectionForSectionIndexTitle:atIndex:"), title, sectionIndex)
 	return rv
 }
-
 
 // Returns the corresponding section index entry for a given section name.
 //
@@ -173,7 +163,6 @@ func (f_ FetchedResultsController) SectionIndexTitleForSectionName(sectionName o
 	return rv
 }
 
-
 // The name of the file used to cache section information.
 //
 // [Full Topic]
@@ -182,7 +171,6 @@ func (f_ FetchedResultsController) CacheName() objc.IObject /* cross-framework: 
 	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("cacheName"))
 	return rv
 }
-
 
 // The object that is notified when the fetched results changed.
 //
@@ -193,7 +181,6 @@ func (f_ FetchedResultsController) Delegate() objc.ID {
 	return rv
 }
 
-
 // The object that is notified when the fetched results changed.
 //
 // [Full Topic]
@@ -201,7 +188,6 @@ func (f_ FetchedResultsController) Delegate() objc.ID {
 func (f_ FetchedResultsController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
-
 
 // The fetch request used to do the fetching.
 //
@@ -212,7 +198,6 @@ func (f_ FetchedResultsController) FetchRequest() unsafe.Pointer {
 	return rv
 }
 
-
 // The results of the fetch.
 //
 // [Full Topic]
@@ -221,7 +206,6 @@ func (f_ FetchedResultsController) FetchedObjects() []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("fetchedObjects"))
 	return rv
 }
-
 
 // The managed object context used to fetch objects.
 //
@@ -232,7 +216,6 @@ func (f_ FetchedResultsController) ManagedObjectContext() IManagedObjectContext 
 	return rv
 }
 
-
 // The array of section index titles.
 //
 // [Full Topic]
@@ -241,7 +224,6 @@ func (f_ FetchedResultsController) SectionIndexTitles() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("sectionIndexTitles"))
 	return rv
 }
-
 
 // The key path of the attribute that determines which section the fetched entity belongs to.
 //
@@ -252,7 +234,6 @@ func (f_ FetchedResultsController) SectionNameKeyPath() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // The sections for the fetch results.
 //
 // [Full Topic]
@@ -261,5 +242,3 @@ func (f_ FetchedResultsController) Sections() []objc.ID {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("sections"))
 	return rv
 }
-
-

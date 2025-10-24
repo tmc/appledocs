@@ -13,10 +13,7 @@ type (
 	ArrayRef = _undefined // referenced in CFNetwork
 	DataRef = _undefined // referenced in CFNetwork
 	DictionaryRef = _undefined // referenced in CFNetwork
-	ErrorRef = _undefined // referenced in CFNetwork
-	HostClientContext = _undefined // referenced in CFNetwork
 	Index = _undefined // referenced in CFNetwork
-	NetServiceClientContext = _undefined // referenced in CFNetwork
 	OptionFlags = _undefined // referenced in CFNetwork
 	ReadStreamRef = _undefined // referenced in CFNetwork
 	RunLoopRef = _undefined // referenced in CFNetwork

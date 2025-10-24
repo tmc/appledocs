@@ -33,8 +33,6 @@ type IMTRClusterContentLauncher interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterContentLauncher
 type MTRClusterContentLauncher struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterContentLauncher) Autorelease() MTRClusterContentLauncher {
 func NewMTRClusterContentLauncher() MTRClusterContentLauncher {
 	return getMTRClusterContentLauncherClass().New()
 }
-
-
-
-

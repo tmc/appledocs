@@ -37,7 +37,6 @@ type IINUpdateMediaAffinityIntentResponse interface {
 //
 // Use an object to specify the results from trying to update the user’s affinity for a media item. After performing the add action using the criteria specified in the object, create an instance of this class with the results of the action. Siri communicates the response status to the user at appropriate times. You create an object in the and methods of your add media handler object. For more information about implementing your handler object, see .
 
-
 // An intents handler’s response to an update media affinity intent.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINUpdateMediaAffinityIntentResponse() INUpdateMediaAffinityIntentRespons
 	return getINUpdateMediaAffinityIntentResponseClass().New()
 }
 
-
-
 // The code that indicates whether the app successfully updated the user’s affinity for the media.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INUpdateMediaAffinityIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // The code that indicates whether the app successfully updated the user’s affinity for the media.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INUpdateMediaAffinityIntentResponse) Code() unsafe.Pointer {
 func (i_ INUpdateMediaAffinityIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
-
-

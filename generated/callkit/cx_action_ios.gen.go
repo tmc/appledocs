@@ -55,7 +55,7 @@ func (c_ CXAction) TimeoutDate() objc.IObject /* cross-framework: NSDate */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXAction/uuid
-func (c_ CXAction) UUID() objc.IObject /* cross-framework: UUID */ {
+func (c_ CXAction) UUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("UUID"))
 	return rv
 }

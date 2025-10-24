@@ -9,6 +9,9 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class VZVirtioSoundDeviceOutputStreamConfiguration */
+
+/* debug [class_header]: Header for VZVirtioSoundDeviceOutputStreamConfiguration */
 // The class instance for the [VZVirtioSoundDeviceOutputStreamConfiguration] class.
 var (
 	VZVirtioSoundDeviceOutputStreamConfigurationClass     _VZVirtioSoundDeviceOutputStreamConfigurationClass
@@ -26,37 +29,28 @@ type _VZVirtioSoundDeviceOutputStreamConfigurationClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for VZVirtioSoundDeviceOutputStreamConfiguration */
 // An interface definition for the [VZVirtioSoundDeviceOutputStreamConfiguration] class.
 type IVZVirtioSoundDeviceOutputStreamConfiguration interface {
 	IVZVirtioSoundDeviceStreamConfiguration
+
+	/* debug [class_interface_properties]: Properties for VZVirtioSoundDeviceOutputStreamConfiguration */
 	// properties:
 	Sink() IVZAudioOutputStreamSink
 	SetSink(value IVZAudioOutputStreamSink)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for VZVirtioSoundDeviceOutputStreamConfiguration */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that defines a Virtio sound device output stream configuration.
-//
-// A PCM stream of output audio data, such as to a speaker.
+/* debug [class_interface]: End interface */
 
-
-// An object that defines a Virtio sound device output stream configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration
-type VZVirtioSoundDeviceOutputStreamConfiguration struct {
-	VZVirtioSoundDeviceStreamConfiguration
-}
-
-// VZVirtioSoundDeviceOutputStreamConfigurationFrom constructs a [VZVirtioSoundDeviceOutputStreamConfiguration] from an unsafe.Pointer.
-//
-// An object that defines a Virtio sound device output stream configuration.
-func VZVirtioSoundDeviceOutputStreamConfigurationFrom(ptr unsafe.Pointer) VZVirtioSoundDeviceOutputStreamConfiguration {
-	return VZVirtioSoundDeviceOutputStreamConfiguration{
-		VZVirtioSoundDeviceStreamConfiguration: VZVirtioSoundDeviceStreamConfigurationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for VZVirtioSoundDeviceOutputStreamConfiguration */
 // Alloc allocates a new instance without initialization.
 func (vc _VZVirtioSoundDeviceOutputStreamConfigurationClass) Alloc() VZVirtioSoundDeviceOutputStreamConfiguration {
 	rv := objc.Send[VZVirtioSoundDeviceOutputStreamConfiguration](objc.ID(vc.class), objc.Sel("alloc"))
@@ -64,7 +58,6 @@ func (vc _VZVirtioSoundDeviceOutputStreamConfigurationClass) Alloc() VZVirtioSou
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (vc _VZVirtioSoundDeviceOutputStreamConfigurationClass) New() VZVirtioSoundDeviceOutputStreamConfiguration {
 	rv := objc.Send[VZVirtioSoundDeviceOutputStreamConfiguration](objc.ID(vc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +81,45 @@ func NewVZVirtioSoundDeviceOutputStreamConfiguration() VZVirtioSoundDeviceOutput
 	return getVZVirtioSoundDeviceOutputStreamConfigurationClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for VZVirtioSoundDeviceOutputStreamConfiguration */
+// An object that defines a Virtio sound device output stream configuration.
+//
+// A PCM stream of output audio data, such as to a speaker.
 
+// An object that defines a Virtio sound device output stream configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration
+type VZVirtioSoundDeviceOutputStreamConfiguration struct {
+	VZVirtioSoundDeviceStreamConfiguration
+}
+
+// VZVirtioSoundDeviceOutputStreamConfigurationFrom constructs a [VZVirtioSoundDeviceOutputStreamConfiguration] from an unsafe.Pointer.
+//
+// An object that defines a Virtio sound device output stream configuration.
+func VZVirtioSoundDeviceOutputStreamConfigurationFrom(ptr unsafe.Pointer) VZVirtioSoundDeviceOutputStreamConfiguration {
+	return VZVirtioSoundDeviceOutputStreamConfiguration{
+		VZVirtioSoundDeviceStreamConfiguration: VZVirtioSoundDeviceStreamConfigurationFrom(ptr),
+	}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for VZVirtioSoundDeviceOutputStreamConfiguration */
+/* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for VZVirtioSoundDeviceOutputStreamConfiguration */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for VZVirtioSoundDeviceOutputStreamConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for VZVirtioSoundDeviceOutputStreamConfiguration */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for VZVirtioSoundDeviceOutputStreamConfiguration */
 
 // An audio stream sink that defines how the host handles audio data produced by the guest.
 //
@@ -98,8 +128,7 @@ func NewVZVirtioSoundDeviceOutputStreamConfiguration() VZVirtioSoundDeviceOutput
 func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) Sink() IVZAudioOutputStreamSink {
 	rv := objc.Send[VZAudioOutputStreamSink](v_.ID, objc.Sel("sink"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: sink */
 
 // An audio stream sink that defines how the host handles audio data produced by the guest.
 //
@@ -107,6 +136,8 @@ func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) Sink() IVZAudioOutputStre
 // [Full Topic]: https://developer.apple.com/documentation/Virtualization/VZVirtioSoundDeviceOutputStreamConfiguration/sink
 func (v_ VZVirtioSoundDeviceOutputStreamConfiguration) SetSink(value IVZAudioOutputStreamSink) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setSink:"), value)
-}
+} /* debug [instance_properties/setter]: sink */
 
+/* debug [instance_properties]: End instance properties */
 
+/* debug [class.gen.go]: End class VZVirtioSoundDeviceOutputStreamConfiguration */

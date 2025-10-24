@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CNContactsUserDefaults */
+
+
+/* debug [class_header]: Header for CNContactsUserDefaults */
 // The class instance for the [CNContactsUserDefaults] class.
 var (
 	CNContactsUserDefaultsClass     _CNContactsUserDefaultsClass
@@ -27,34 +31,32 @@ func getCNContactsUserDefaultsClass() _CNContactsUserDefaultsClass {
 type _CNContactsUserDefaultsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNContactsUserDefaults */
 // An interface definition for the [CNContactsUserDefaults] class.
 type ICNContactsUserDefaults interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CNContactsUserDefaults */
 	// properties:
 	CountryCode() objc.IObject /* cross-framework: NSString */
 	SortOrder() CNContactSortOrder
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNContactsUserDefaults */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that defines the default options to use when displaying contacts.
 
 
-// An object that defines the default options to use when displaying contacts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults
-type CNContactsUserDefaults struct {
-	objectivec.Object
-}
-
-// CNContactsUserDefaultsFrom constructs a [CNContactsUserDefaults] from an unsafe.Pointer.
-//
-// An object that defines the default options to use when displaying contacts.
-func CNContactsUserDefaultsFrom(ptr unsafe.Pointer) CNContactsUserDefaults {
-	return CNContactsUserDefaults{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CNContactsUserDefaults */
 // Alloc allocates a new instance without initialization.
 func (cc _CNContactsUserDefaultsClass) Alloc() CNContactsUserDefaults {
 	rv := objc.Send[CNContactsUserDefaults](objc.ID(cc.class), objc.Sel("alloc"))
@@ -62,7 +64,6 @@ func (cc _CNContactsUserDefaultsClass) Alloc() CNContactsUserDefaults {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNContactsUserDefaultsClass) New() CNContactsUserDefaults {
 	rv := objc.Send[CNContactsUserDefaults](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,18 +86,62 @@ func (c_ CNContactsUserDefaults) Autorelease() CNContactsUserDefaults {
 func NewCNContactsUserDefaults() CNContactsUserDefaults {
 	return getCNContactsUserDefaultsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CNContactsUserDefaults */
+// An object that defines the default options to use when displaying contacts.
+
+
+// An object that defines the default options to use when displaying contacts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults
+type CNContactsUserDefaults struct {
+	objectivec.Object
+}
+
+// CNContactsUserDefaultsFrom constructs a [CNContactsUserDefaults] from an unsafe.Pointer.
+//
+// An object that defines the default options to use when displaying contacts.
+func CNContactsUserDefaultsFrom(ptr unsafe.Pointer) CNContactsUserDefaults {
+	return CNContactsUserDefaults{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CNContactsUserDefaults *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CNContactsUserDefaults */
 
 // The singleton contacts user defaults object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactsUserDefaults/shared()
-func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("sharedDefaults"))
+func (cc _CNContactsUserDefaultsClass) SharedDefaults() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("sharedDefaults"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SharedDefaults) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNContactsUserDefaults */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNContactsUserDefaults */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNContactsUserDefaults */
 
 // An ISO country code.
 //
@@ -105,7 +150,7 @@ func (cc _CNContactsUserDefaultsClass) SharedDefaults() unsafe.Pointer {
 func (c_ CNContactsUserDefaults) CountryCode() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("countryCode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: countryCode */
 
 
 // Default sorting order by name.
@@ -115,7 +160,12 @@ func (c_ CNContactsUserDefaults) CountryCode() objc.IObject /* cross-framework: 
 func (c_ CNContactsUserDefaults) SortOrder() CNContactSortOrder {
 	rv := objc.Send[CNContactSortOrder](c_.ID, objc.Sel("sortOrder"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sortOrder */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CNContactsUserDefaults */
 
 
 

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRICDManagementClusterRegisterClientParams */
+
+
+/* debug [class_header]: Header for MTRICDManagementClusterRegisterClientParams */
 // The class instance for the [MTRICDManagementClusterRegisterClientParams] class.
 var (
 	MTRICDManagementClusterRegisterClientParamsClass     _MTRICDManagementClusterRegisterClientParamsClass
@@ -27,41 +31,44 @@ func getMTRICDManagementClusterRegisterClientParamsClass() _MTRICDManagementClus
 type _MTRICDManagementClusterRegisterClientParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRICDManagementClusterRegisterClientParams */
 // An interface definition for the [MTRICDManagementClusterRegisterClientParams] class.
 type IMTRICDManagementClusterRegisterClientParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRICDManagementClusterRegisterClientParams */
 	// properties:
 	CheckInNodeID() objc.IObject /* cross-framework: NSNumber */
 	SetCheckInNodeID(value objc.IObject /* cross-framework: NSNumber */)
 	ClientType() objc.IObject /* cross-framework: NSNumber */
 	SetClientType(value objc.IObject /* cross-framework: NSNumber */)
-	Key() objc.IObject /* cross-framework: NSData */
-	SetKey(value objc.IObject /* cross-framework: NSData */)
+	Key() foundation.Data
+	SetKey(value foundation.Data)
 	MonitoredSubject() objc.IObject /* cross-framework: NSNumber */
 	SetMonitoredSubject(value objc.IObject /* cross-framework: NSNumber */)
 	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
 	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
 	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
-	VerificationKey() objc.IObject /* cross-framework: NSData */
-	SetVerificationKey(value objc.IObject /* cross-framework: NSData */)
+	VerificationKey() foundation.Data
+	SetVerificationKey(value foundation.Data)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRICDManagementClusterRegisterClientParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams
-type MTRICDManagementClusterRegisterClientParams struct {
-	objectivec.Object
-}
-
-// MTRICDManagementClusterRegisterClientParamsFrom constructs a [MTRICDManagementClusterRegisterClientParams] from an unsafe.Pointer.
-func MTRICDManagementClusterRegisterClientParamsFrom(ptr unsafe.Pointer) MTRICDManagementClusterRegisterClientParams {
-	return MTRICDManagementClusterRegisterClientParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRICDManagementClusterRegisterClientParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRICDManagementClusterRegisterClientParamsClass) Alloc() MTRICDManagementClusterRegisterClientParams {
 	rv := objc.Send[MTRICDManagementClusterRegisterClientParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +76,6 @@ func (mc _MTRICDManagementClusterRegisterClientParamsClass) Alloc() MTRICDManage
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRICDManagementClusterRegisterClientParamsClass) New() MTRICDManagementClusterRegisterClientParams {
 	rv := objc.Send[MTRICDManagementClusterRegisterClientParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,120 +98,164 @@ func (m_ MTRICDManagementClusterRegisterClientParams) Autorelease() MTRICDManage
 func NewMTRICDManagementClusterRegisterClientParams() MTRICDManagementClusterRegisterClientParams {
 	return getMTRICDManagementClusterRegisterClientParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRICDManagementClusterRegisterClientParams */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams
+type MTRICDManagementClusterRegisterClientParams struct {
+	objectivec.Object
+}
+
+// MTRICDManagementClusterRegisterClientParamsFrom constructs a [MTRICDManagementClusterRegisterClientParams] from an unsafe.Pointer.
+func MTRICDManagementClusterRegisterClientParamsFrom(ptr unsafe.Pointer) MTRICDManagementClusterRegisterClientParams {
+	return MTRICDManagementClusterRegisterClientParams{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRICDManagementClusterRegisterClientParams *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRICDManagementClusterRegisterClientParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRICDManagementClusterRegisterClientParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRICDManagementClusterRegisterClientParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRICDManagementClusterRegisterClientParams */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/checkInNodeID
 func (m_ MTRICDManagementClusterRegisterClientParams) CheckInNodeID() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("checkInNodeID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: checkInNodeID */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/checkInNodeID
 func (m_ MTRICDManagementClusterRegisterClientParams) SetCheckInNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCheckInNodeID:"), value)
-}
+}/* debug [instance_properties/setter]: checkInNodeID */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/clientType
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/clienttype
 func (m_ MTRICDManagementClusterRegisterClientParams) ClientType() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("clientType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: clientType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/clientType
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/clienttype
 func (m_ MTRICDManagementClusterRegisterClientParams) SetClientType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClientType:"), value)
-}
+}/* debug [instance_properties/setter]: clientType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/key
-func (m_ MTRICDManagementClusterRegisterClientParams) Key() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("key"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/key
+func (m_ MTRICDManagementClusterRegisterClientParams) Key() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("key"))
 	return rv
-}
+}/* debug [instance_properties/getter]: key */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/key
-func (m_ MTRICDManagementClusterRegisterClientParams) SetKey(value objc.IObject /* cross-framework: NSData */) {
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/key
+func (m_ MTRICDManagementClusterRegisterClientParams) SetKey(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKey:"), value)
-}
+}/* debug [instance_properties/setter]: key */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/monitoredSubject
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/monitoredsubject
 func (m_ MTRICDManagementClusterRegisterClientParams) MonitoredSubject() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("monitoredSubject"))
 	return rv
-}
+}/* debug [instance_properties/getter]: monitoredSubject */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/monitoredSubject
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/monitoredsubject
 func (m_ MTRICDManagementClusterRegisterClientParams) SetMonitoredSubject(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMonitoredSubject:"), value)
-}
+}/* debug [instance_properties/setter]: monitoredSubject */
 
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/serverSideProcessingTimeout
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/serversideprocessingtimeout
 func (m_ MTRICDManagementClusterRegisterClientParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
-}
+}/* debug [instance_properties/getter]: serverSideProcessingTimeout */
 
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/serverSideProcessingTimeout
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/serversideprocessingtimeout
 func (m_ MTRICDManagementClusterRegisterClientParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
+}/* debug [instance_properties/setter]: serverSideProcessingTimeout */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/timedInvokeTimeoutMs
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/timedinvoketimeoutms
 func (m_ MTRICDManagementClusterRegisterClientParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timedInvokeTimeoutMs */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/timedInvokeTimeoutMs
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/timedinvoketimeoutms
 func (m_ MTRICDManagementClusterRegisterClientParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
+}/* debug [instance_properties/setter]: timedInvokeTimeoutMs */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/verificationKey
-func (m_ MTRICDManagementClusterRegisterClientParams) VerificationKey() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("verificationKey"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/verificationkey
+func (m_ MTRICDManagementClusterRegisterClientParams) VerificationKey() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("verificationKey"))
 	return rv
-}
+}/* debug [instance_properties/getter]: verificationKey */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRICDManagementClusterRegisterClientParams/verificationKey
-func (m_ MTRICDManagementClusterRegisterClientParams) SetVerificationKey(value objc.IObject /* cross-framework: NSData */) {
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtricdmanagementclusterregisterclientparams/verificationkey
+func (m_ MTRICDManagementClusterRegisterClientParams) SetVerificationKey(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVerificationKey:"), value)
-}
+}/* debug [instance_properties/setter]: verificationKey */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRICDManagementClusterRegisterClientParams */
 
 
 

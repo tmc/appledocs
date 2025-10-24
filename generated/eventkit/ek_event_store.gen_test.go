@@ -15,11 +15,19 @@ func ExampleNewEKEventStore() {
 	_ = eventkit.NewEKEventStore()
 	// Output:
 }
+// ExampleNewEKEventStoreWithAccessToEntityTypes demonstrates how to create a EKEventStore instance using NewEKEventStoreWithAccessToEntityTypes.
+// Initializes access to the event store with support for the given entity type.
+func ExampleNewEKEventStoreWithAccessToEntityTypes() {
+	_ = eventkit.NewEKEventStoreWithAccessToEntityTypes(
+		eventkit.EKEntityMask{}, // entityTypes EKEntityMask
+	)
+	// Output:
+}
 // ExampleNewEKEventStoreWithSources demonstrates how to create a EKEventStore instance using NewEKEventStoreWithSources.
 // Creates an event store that contains data for the specified sources.
 func ExampleNewEKEventStoreWithSources() {
 	_ = eventkit.NewEKEventStoreWithSources(
-		[]eventkit.IEKSource{}, // sources []IEKSource
+		[]eventkit.EKSource{}, // sources []EKSource
 	)
 	// Output:
 }

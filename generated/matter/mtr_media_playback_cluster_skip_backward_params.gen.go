@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRMediaPlaybackClusterSkipBackwardParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterSkipBackwardParams
@@ -85,8 +83,6 @@ func NewMTRMediaPlaybackClusterSkipBackwardParams() MTRMediaPlaybackClusterSkipB
 	return getMTRMediaPlaybackClusterSkipBackwardParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipbackwardparams/deltapositionmilliseconds
 func (m_ MTRMediaPlaybackClusterSkipBackwardParams) DeltaPositionMilliseconds() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRMediaPlaybackClusterSkipBackwardParams) DeltaPositionMilliseconds() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipbackwardparams/deltapositionmilliseconds
 func (m_ MTRMediaPlaybackClusterSkipBackwardParams) SetDeltaPositionMilliseconds(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeltaPositionMilliseconds:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipbackwardparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRMediaPlaybackClusterSkipBackwardParams) ServerSideProcessingTimeout(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipbackwardparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterSkipBackwardParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipbackwardparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRMediaPlaybackClusterSkipBackwardParams) TimedInvokeTimeoutMs() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterskipbackwardparams/timedinvoketimeoutms
 func (m_ MTRMediaPlaybackClusterSkipBackwardParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

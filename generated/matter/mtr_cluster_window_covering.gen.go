@@ -33,8 +33,6 @@ type IMTRClusterWindowCovering interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWindowCovering
 type MTRClusterWindowCovering struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterWindowCovering) Autorelease() MTRClusterWindowCovering {
 func NewMTRClusterWindowCovering() MTRClusterWindowCovering {
 	return getMTRClusterWindowCoveringClass().New()
 }
-
-
-
-

@@ -38,8 +38,6 @@ type IMTRGeneralDiagnosticsClusterNetworkFaultChangeEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent
 type MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent struct {
@@ -82,8 +80,6 @@ func NewMTRGeneralDiagnosticsClusterNetworkFaultChangeEvent() MTRGeneralDiagnost
 	return getMTRGeneralDiagnosticsClusterNetworkFaultChangeEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkfaultchangeevent/current
 func (m_ MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent) Current() unsafe.Pointer {
@@ -91,13 +87,11 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent) Current() unsafe.P
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkfaultchangeevent/current
 func (m_ MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent) SetCurrent(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCurrent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkfaultchangeevent/previous
@@ -106,12 +100,8 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent) Previous() unsafe.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkfaultchangeevent/previous
 func (m_ MTRGeneralDiagnosticsClusterNetworkFaultChangeEvent) SetPrevious(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrevious:"), value)
 }
-
-
-

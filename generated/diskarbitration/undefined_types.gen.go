@@ -10,6 +10,9 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	AllocatorRef = _undefined // referenced in DiskArbitration
+	ArrayRef = _undefined // referenced in DiskArbitration
+	DictionaryRef = _undefined // referenced in DiskArbitration
+	Index = _undefined // referenced in DiskArbitration
 	RunLoopRef = _undefined // referenced in DiskArbitration
 	StringRef = _undefined // referenced in DiskArbitration
 	TypeID = _undefined // referenced in DiskArbitration

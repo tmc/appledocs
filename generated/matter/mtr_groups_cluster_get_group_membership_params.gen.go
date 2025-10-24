@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRGroupsClusterGetGroupMembershipParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterGetGroupMembershipParams
@@ -85,8 +83,6 @@ func NewMTRGroupsClusterGetGroupMembershipParams() MTRGroupsClusterGetGroupMembe
 	return getMTRGroupsClusterGetGroupMembershipParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/grouplist
 func (m_ MTRGroupsClusterGetGroupMembershipParams) GroupList() unsafe.Pointer {
@@ -94,13 +90,11 @@ func (m_ MTRGroupsClusterGetGroupMembershipParams) GroupList() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/grouplist
 func (m_ MTRGroupsClusterGetGroupMembershipParams) SetGroupList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupList:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRGroupsClusterGetGroupMembershipParams) ServerSideProcessingTimeout()
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/serversideprocessingtimeout
 func (m_ MTRGroupsClusterGetGroupMembershipParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRGroupsClusterGetGroupMembershipParams) TimedInvokeTimeoutMs() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclustergetgroupmembershipparams/timedinvoketimeoutms
 func (m_ MTRGroupsClusterGetGroupMembershipParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

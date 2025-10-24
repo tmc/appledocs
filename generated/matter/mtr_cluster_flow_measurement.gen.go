@@ -33,8 +33,6 @@ type IMTRClusterFlowMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterFlowMeasurement
 type MTRClusterFlowMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterFlowMeasurement) Autorelease() MTRClusterFlowMeasurement {
 func NewMTRClusterFlowMeasurement() MTRClusterFlowMeasurement {
 	return getMTRClusterFlowMeasurementClass().New()
 }
-
-
-
-

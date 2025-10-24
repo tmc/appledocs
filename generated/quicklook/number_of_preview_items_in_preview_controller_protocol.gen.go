@@ -18,3 +18,4 @@ var numberOfPreviewItemsInPreviewControllerProtocol *objc.Protocol
 func init() {
 	numberOfPreviewItemsInPreviewControllerProtocol = objc.GetProtocol("numberOfPreviewItemsInPreviewController:")
 }
+

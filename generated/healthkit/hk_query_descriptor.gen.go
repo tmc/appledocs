@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class HKQueryDescriptor */
+
+
+/* debug [class_header]: Header for HKQueryDescriptor */
 // The class instance for the [HKQueryDescriptor] class.
 var (
 	HKQueryDescriptorClass     _HKQueryDescriptorClass
@@ -27,38 +31,32 @@ func getHKQueryDescriptorClass() _HKQueryDescriptorClass {
 type _HKQueryDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKQueryDescriptor */
 // An interface definition for the [HKQueryDescriptor] class.
 type IHKQueryDescriptor interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for HKQueryDescriptor */
 	// properties:
-	Predicate() objc.IObject /* cross-framework: Predicate */
-	SetPredicate(value objc.IObject /* cross-framework: Predicate */)
+	Predicate() foundation.Predicate
 	SampleType() IHKSampleType
-	SetSampleType(value IHKSampleType)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKQueryDescriptor */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A descriptor that specifies a set of samples based on the data type and a predicate.
-//
-// Use descriptors to create queries that return multiple data types. You can use descriptors when creating , , or instances.
+/* debug [class_interface]: End interface */
 
 
-// A descriptor that specifies a set of samples based on the data type and a predicate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryDescriptor
-type HKQueryDescriptor struct {
-	objectivec.Object
-}
 
-// HKQueryDescriptorFrom constructs a [HKQueryDescriptor] from an unsafe.Pointer.
-//
-// A descriptor that specifies a set of samples based on the data type and a predicate.
-func HKQueryDescriptorFrom(ptr unsafe.Pointer) HKQueryDescriptor {
-	return HKQueryDescriptor{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for HKQueryDescriptor */
 // Alloc allocates a new instance without initialization.
 func (hc _HKQueryDescriptorClass) Alloc() HKQueryDescriptor {
 	rv := objc.Send[HKQueryDescriptor](objc.ID(hc.class), objc.Sel("alloc"))
@@ -66,7 +64,6 @@ func (hc _HKQueryDescriptorClass) Alloc() HKQueryDescriptor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKQueryDescriptorClass) New() HKQueryDescriptor {
 	rv := objc.Send[HKQueryDescriptor](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,45 +86,90 @@ func (h_ HKQueryDescriptor) Autorelease() HKQueryDescriptor {
 func NewHKQueryDescriptor() HKQueryDescriptor {
 	return getHKQueryDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HKQueryDescriptor */
+// A descriptor that specifies a set of samples based on the data type and a predicate.
+//
+// Use descriptors to create queries that return multiple data types. You can use descriptors when creating , , or instances.
+
+
+// A descriptor that specifies a set of samples based on the data type and a predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryDescriptor
+type HKQueryDescriptor struct {
+	objectivec.Object
+}
+
+// HKQueryDescriptorFrom constructs a [HKQueryDescriptor] from an unsafe.Pointer.
+//
+// A descriptor that specifies a set of samples based on the data type and a predicate.
+func HKQueryDescriptorFrom(ptr unsafe.Pointer) HKQueryDescriptor {
+	return HKQueryDescriptor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKQueryDescriptor */
+
+// Creates a new descriptor for the data type and predicate you provided.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryDescriptor/init(sampleType:predicate:)
+func NewHKQueryDescriptorWithSampleTypePredicate(sampleType IHKSampleType, predicate foundation.Predicate) HKQueryDescriptor {
+	instance := getHKQueryDescriptorClass().Alloc()
+	rv := objc.Send[HKQueryDescriptor](instance.ID, objc.Sel("initWithSampleType:predicate:"), sampleType, predicate)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewHKQueryDescriptorWithSampleTypePredicate */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKQueryDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKQueryDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKQueryDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKQueryDescriptor */
 
 // The predicate that filters samples matching this descriptor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-func (h_ HKQueryDescriptor) Predicate() objc.IObject /* cross-framework: Predicate */ {
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryDescriptor/predicate
+func (h_ HKQueryDescriptor) Predicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](h_.ID, objc.Sel("predicate"))
 	return rv
-}
-
-
-// The predicate that filters samples matching this descriptor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/predicate
-func (h_ HKQueryDescriptor) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setPredicate:"), value)
-}
+}/* debug [instance_properties/getter]: predicate */
 
 
 // The data type of samples that match this descriptor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKQueryDescriptor/sampleType
 func (h_ HKQueryDescriptor) SampleType() IHKSampleType {
 	rv := objc.Send[HKSampleType](h_.ID, objc.Sel("sampleType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sampleType */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The data type of samples that match this descriptor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkquerydescriptor/sampletype
-func (h_ HKQueryDescriptor) SetSampleType(value IHKSampleType) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSampleType:"), value)
-}
-
+/* debug [class.gen.go]: End class HKQueryDescriptor */
 
 

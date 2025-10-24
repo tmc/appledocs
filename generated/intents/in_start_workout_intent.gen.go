@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [INStartWorkoutIntent] class.
@@ -43,7 +42,6 @@ type IINStartWorkoutIntent interface {
 // A request to start a workout for the user.
 //
 // SiriKit creates an object when the user asks to start a workout using your app. A start workout intent identifies the user-selected workout type and goals. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object that indicates it’s possible to start the workout. For the successful handling of the intent, SiriKit launches your app and passes it an object your app must then use to start the workout.
-
 
 // A request to start a workout for the user.
 //
@@ -93,8 +91,6 @@ func NewINStartWorkoutIntent() INStartWorkoutIntent {
 	return getINStartWorkoutIntentClass().New()
 }
 
-
-
 // A Boolean value that indicates whether the workout is open ended.
 //
 // [Full Topic]
@@ -104,7 +100,6 @@ func (i_ INStartWorkoutIntent) IsOpenEnded() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the workout is open ended.
 //
 // [Full Topic]
@@ -112,7 +107,6 @@ func (i_ INStartWorkoutIntent) IsOpenEnded() bool {
 func (i_ INStartWorkoutIntent) SetIsOpenEnded(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsOpenEnded:"), value)
 }
-
 
 // The location of the workout.
 //
@@ -123,7 +117,6 @@ func (i_ INStartWorkoutIntent) WorkoutLocationType() unsafe.Pointer {
 	return rv
 }
 
-
 // The location of the workout.
 //
 // [Full Topic]
@@ -131,7 +124,6 @@ func (i_ INStartWorkoutIntent) WorkoutLocationType() unsafe.Pointer {
 func (i_ INStartWorkoutIntent) SetWorkoutLocationType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutLocationType:"), value)
 }
-
 
 // The name of the workout.
 //
@@ -142,7 +134,6 @@ func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString {
 	return rv
 }
 
-
 // The name of the workout.
 //
 // [Full Topic]
@@ -150,5 +141,3 @@ func (i_ INStartWorkoutIntent) WorkoutName() INSpeakableString {
 func (i_ INStartWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
 }
-
-

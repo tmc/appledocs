@@ -17,3 +17,4 @@ var safariViewControllerProtocol *objc.Protocol
 func init() {
 	safariViewControllerProtocol = objc.GetProtocol("safariViewController:")
 }
+

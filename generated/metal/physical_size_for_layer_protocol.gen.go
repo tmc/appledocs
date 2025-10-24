@@ -20,3 +20,4 @@ var physicalSizeForLayerProtocol *objc.Protocol
 func init() {
 	physicalSizeForLayerProtocol = objc.GetProtocol("physicalSizeForLayer:")
 }
+

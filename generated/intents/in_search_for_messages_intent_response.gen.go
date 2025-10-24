@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INSearchForMessagesIntentResponse] class.
@@ -38,7 +38,6 @@ type IINSearchForMessagesIntentResponse interface {
 // Your app’s response to a search for messages intent.
 //
 // Use an object to specify the results of searching the user’s messages. After performing a search using the criteria specified in the object, create an instance of this class with the results of that search. Siri communicates the status from your response to the user at appropriate times. You create an object in the and methods of your search for messages handler object. For more information about implementing your handler object, see .
-
 
 // Your app’s response to a search for messages intent.
 //
@@ -88,8 +87,6 @@ func NewINSearchForMessagesIntentResponse() INSearchForMessagesIntentResponse {
 	return getINSearchForMessagesIntentResponseClass().New()
 }
 
-
-
 // Initializes the response object with the specified code and user activity object.
 //
 // [Full Topic]
@@ -101,8 +98,6 @@ func NewINSearchForMessagesIntentResponseWithCodeUserActivity(code INSearchForMe
 	return rv
 }
 
-
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -112,7 +107,6 @@ func (i_ INSearchForMessagesIntentResponse) Code() INSearchForMessagesIntentResp
 	return rv
 }
 
-
 // The array of messages matching the search parameters.
 //
 // [Full Topic]
@@ -121,7 +115,6 @@ func (i_ INSearchForMessagesIntentResponse) Messages() []INMessage {
 	rv := objc.Send[[]INMessage](i_.ID, objc.Sel("messages"))
 	return rv
 }
-
 
 // The array of messages matching the search parameters.
 //
@@ -140,5 +133,3 @@ func (i_ INSearchForMessagesIntentResponse) SetMessages(value []INMessage) {
 	}
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMessages:"), nsArray)
 }
-
-

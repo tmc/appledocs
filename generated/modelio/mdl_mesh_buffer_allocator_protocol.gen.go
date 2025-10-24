@@ -20,3 +20,4 @@ var MDLMeshBufferAllocatorProtocol *objc.Protocol
 func init() {
 	MDLMeshBufferAllocatorProtocol = objc.GetProtocol("MDLMeshBufferAllocator")
 }
+

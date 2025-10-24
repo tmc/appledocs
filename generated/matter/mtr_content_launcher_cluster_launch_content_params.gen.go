@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -46,8 +46,6 @@ type IMTRContentLauncherClusterLaunchContentParams interface {
 	SetUseCurrentContext(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterLaunchContentParams
@@ -91,8 +89,6 @@ func NewMTRContentLauncherClusterLaunchContentParams() MTRContentLauncherCluster
 	return getMTRContentLauncherClusterLaunchContentParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/autoplay
 func (m_ MTRContentLauncherClusterLaunchContentParams) AutoPlay() objc.IObject /* cross-framework: NSNumber */ {
@@ -100,13 +96,11 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) AutoPlay() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/autoplay
 func (m_ MTRContentLauncherClusterLaunchContentParams) SetAutoPlay(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAutoPlay:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/data
@@ -115,13 +109,11 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) Data() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/data
 func (m_ MTRContentLauncherClusterLaunchContentParams) SetData(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/search
@@ -130,13 +122,11 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) Search() IMTRContentLaunc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/search
 func (m_ MTRContentLauncherClusterLaunchContentParams) SetSearch(value IMTRContentLauncherClusterContentSearchStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSearch:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
@@ -145,13 +135,11 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) ServerSideProcessingTimeo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/serversideprocessingtimeout
 func (m_ MTRContentLauncherClusterLaunchContentParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/timedinvoketimeoutms
@@ -160,13 +148,11 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) TimedInvokeTimeoutMs() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/timedinvoketimeoutms
 func (m_ MTRContentLauncherClusterLaunchContentParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
@@ -175,12 +161,8 @@ func (m_ MTRContentLauncherClusterLaunchContentParams) UseCurrentContext() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchcontentparams/usecurrentcontext
 func (m_ MTRContentLauncherClusterLaunchContentParams) SetUseCurrentContext(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUseCurrentContext:"), value)
 }
-
-
-

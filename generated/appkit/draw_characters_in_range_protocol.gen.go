@@ -15,3 +15,4 @@ var drawCharactersInRangeProtocol *objc.Protocol
 func init() {
 	drawCharactersInRangeProtocol = objc.GetProtocol("drawCharactersInRange:")
 }
+

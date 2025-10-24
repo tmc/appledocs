@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVPlayerMediaSelectionCriteria */
+
+
+/* debug [class_header]: Header for AVPlayerMediaSelectionCriteria */
 // The class instance for the [PlayerMediaSelectionCriteria] class.
 var (
 	PlayerMediaSelectionCriteriaClass     _PlayerMediaSelectionCriteriaClass
@@ -27,40 +30,33 @@ func getPlayerMediaSelectionCriteriaClass() _PlayerMediaSelectionCriteriaClass {
 type _PlayerMediaSelectionCriteriaClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PlayerMediaSelectionCriteria */
 // An interface definition for the [PlayerMediaSelectionCriteria] class.
 type IPlayerMediaSelectionCriteria interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PlayerMediaSelectionCriteria */
 	// properties:
-	PreferredLanguages() objc.IObject /* cross-framework: NSString */
-	SetPreferredLanguages(value objc.IObject /* cross-framework: NSString */)
-	PreferredMediaCharacteristics() MediaCharacteristic /* not a class type */
-	SetPreferredMediaCharacteristics(value MediaCharacteristic /* not a class type */)
-	PrincipalMediaCharacteristics() MediaCharacteristic /* not a class type */
-	SetPrincipalMediaCharacteristics(value MediaCharacteristic /* not a class type */)
+	PreferredLanguages() []string
+	PreferredMediaCharacteristics() []string
+	PrincipalMediaCharacteristics() []string
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PlayerMediaSelectionCriteria */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that specifies the preferred languages and media characteristics for a player.
-//
-// An instance of this object represents the languages and media characteristics of assets that contain media selection options that a player attempts to select automatically when preparing and playing items. It lists the languages and media characteristics in their preferred order.
+/* debug [class_interface]: End interface */
 
 
-// An object that specifies the preferred languages and media characteristics for a player.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerMediaSelectionCriteria
-type PlayerMediaSelectionCriteria struct {
-	objectivec.Object
-}
 
-// PlayerMediaSelectionCriteriaFrom constructs a [PlayerMediaSelectionCriteria] from an unsafe.Pointer.
-//
-// An object that specifies the preferred languages and media characteristics for a player.
-func PlayerMediaSelectionCriteriaFrom(ptr unsafe.Pointer) PlayerMediaSelectionCriteria {
-	return PlayerMediaSelectionCriteria{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PlayerMediaSelectionCriteria */
 // Alloc allocates a new instance without initialization.
 func (pc _PlayerMediaSelectionCriteriaClass) Alloc() PlayerMediaSelectionCriteria {
 	rv := objc.Send[PlayerMediaSelectionCriteria](objc.ID(pc.class), objc.Sel("alloc"))
@@ -68,7 +64,6 @@ func (pc _PlayerMediaSelectionCriteriaClass) Alloc() PlayerMediaSelectionCriteri
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PlayerMediaSelectionCriteriaClass) New() PlayerMediaSelectionCriteria {
 	rv := objc.Send[PlayerMediaSelectionCriteria](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,64 +86,112 @@ func (p_ PlayerMediaSelectionCriteria) Autorelease() PlayerMediaSelectionCriteri
 func NewPlayerMediaSelectionCriteria() PlayerMediaSelectionCriteria {
 	return getPlayerMediaSelectionCriteriaClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// An array of language identifiers in preferred order.
+/* debug [class_struct]: Struct for PlayerMediaSelectionCriteria */
+// An object that specifies the preferred languages and media characteristics for a player.
+//
+// An instance of this object represents the languages and media characteristics of assets that contain media selection options that a player attempts to select automatically when preparing and playing items. It lists the languages and media characteristics in their preferred order.
+
+
+// An object that specifies the preferred languages and media characteristics for a player.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria/preferredlanguages
-func (p_ PlayerMediaSelectionCriteria) PreferredLanguages() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("preferredLanguages"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerMediaSelectionCriteria
+type PlayerMediaSelectionCriteria struct {
+	objectivec.Object
+}
+
+// PlayerMediaSelectionCriteriaFrom constructs a [PlayerMediaSelectionCriteria] from an unsafe.Pointer.
+//
+// An object that specifies the preferred languages and media characteristics for a player.
+func PlayerMediaSelectionCriteriaFrom(ptr unsafe.Pointer) PlayerMediaSelectionCriteria {
+	return PlayerMediaSelectionCriteria{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PlayerMediaSelectionCriteria */
+
+// Creates media selection criteria with the preferred languages and media characteristics.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerMediaSelectionCriteria/init(preferredLanguages:preferredMediaCharacteristics:)
+func NewPlayerMediaSelectionCriteriaWithPreferredLanguagesPreferredMediaCharacteristics(preferredLanguages []string, preferredMediaCharacteristics []string) PlayerMediaSelectionCriteria {
+	instance := getPlayerMediaSelectionCriteriaClass().Alloc()
+	rv := objc.Send[PlayerMediaSelectionCriteria](instance.ID, objc.Sel("initWithPreferredLanguages:preferredMediaCharacteristics:"), preferredLanguages, preferredMediaCharacteristics)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPlayerMediaSelectionCriteriaWithPreferredLanguagesPreferredMediaCharacteristics */
 
+
+// Creates media selection criteria with the principal media characteristics, and preferred languages and media characteristics.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerMediaSelectionCriteria/init(principalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:)
+func NewPlayerMediaSelectionCriteriaWithPrincipalMediaCharacteristicsPreferredLanguagesPreferredMediaCharacteristics(principalMediaCharacteristics []string, preferredLanguages []string, preferredMediaCharacteristics []string) PlayerMediaSelectionCriteria {
+	instance := getPlayerMediaSelectionCriteriaClass().Alloc()
+	rv := objc.Send[PlayerMediaSelectionCriteria](instance.ID, objc.Sel("initWithPrincipalMediaCharacteristics:preferredLanguages:preferredMediaCharacteristics:"), principalMediaCharacteristics, preferredLanguages, preferredMediaCharacteristics)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewPlayerMediaSelectionCriteriaWithPrincipalMediaCharacteristicsPreferredLanguagesPreferredMediaCharacteristics */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PlayerMediaSelectionCriteria */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PlayerMediaSelectionCriteria */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PlayerMediaSelectionCriteria */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PlayerMediaSelectionCriteria */
 
 // An array of language identifiers in preferred order.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria/preferredlanguages
-func (p_ PlayerMediaSelectionCriteria) SetPreferredLanguages(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredLanguages:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerMediaSelectionCriteria/preferredLanguages
+func (p_ PlayerMediaSelectionCriteria) PreferredLanguages() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("preferredLanguages"))
+	return rv
+}/* debug [instance_properties/getter]: preferredLanguages */
 
 
 // An array of media characteristics in preferred order.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria/preferredmediacharacteristics
-func (p_ PlayerMediaSelectionCriteria) PreferredMediaCharacteristics() MediaCharacteristic /* not a class type */ {
-	rv := objc.Send[MediaCharacteristic](p_.ID, objc.Sel("preferredMediaCharacteristics"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerMediaSelectionCriteria/preferredMediaCharacteristics
+func (p_ PlayerMediaSelectionCriteria) PreferredMediaCharacteristics() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("preferredMediaCharacteristics"))
 	return rv
-}
-
-
-// An array of media characteristics in preferred order.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria/preferredmediacharacteristics
-func (p_ PlayerMediaSelectionCriteria) SetPreferredMediaCharacteristics(value MediaCharacteristic /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPreferredMediaCharacteristics:"), value)
-}
+}/* debug [instance_properties/getter]: preferredMediaCharacteristics */
 
 
 // An array of media characteristics that are essential to select when choosing media with a particular characteristic.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria/principalmediacharacteristics
-func (p_ PlayerMediaSelectionCriteria) PrincipalMediaCharacteristics() MediaCharacteristic /* not a class type */ {
-	rv := objc.Send[MediaCharacteristic](p_.ID, objc.Sel("principalMediaCharacteristics"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerMediaSelectionCriteria/principalMediaCharacteristics
+func (p_ PlayerMediaSelectionCriteria) PrincipalMediaCharacteristics() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("principalMediaCharacteristics"))
 	return rv
-}
+}/* debug [instance_properties/getter]: principalMediaCharacteristics */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// An array of media characteristics that are essential to select when choosing media with a particular characteristic.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayermediaselectioncriteria/principalmediacharacteristics
-func (p_ PlayerMediaSelectionCriteria) SetPrincipalMediaCharacteristics(value MediaCharacteristic /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPrincipalMediaCharacteristics:"), value)
-}
-
+/* debug [class.gen.go]: End class AVPlayerMediaSelectionCriteria */
 
 

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for CryptoTokenKit. DO NOT EDIT.
 
 // Package cryptotokenkit provides Go bindings for the CryptoTokenKit framework.
 //
-// Access security tokens and the cryptographic assets they store.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CryptoTokenKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CryptoTokenKit
 package cryptotokenkit
 
 import (

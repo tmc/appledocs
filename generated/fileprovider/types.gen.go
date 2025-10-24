@@ -9,7 +9,9 @@ package fileprovider
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderTypeAndCreator
 type FileProviderTypeAndCreator struct {
-}
+}/* debug [types.gen.go/struct]: FileProviderTypeAndCreator */
+
+
 
 
 

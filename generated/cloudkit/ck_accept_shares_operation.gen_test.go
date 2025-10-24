@@ -19,7 +19,7 @@ func ExampleNewCKAcceptSharesOperation() {
 // Creates an operation for accepting the specified shares.
 func ExampleNewCKAcceptSharesOperationWithShareMetadatas() {
 	_ = cloudkit.NewCKAcceptSharesOperationWithShareMetadatas(
-		[]cloudkit.ICKShareMetadata{}, // shareMetadatas []ICKShareMetadata
+		[]cloudkit.CKShareMetadata{}, // shareMetadatas []CKShareMetadata
 	)
 	// Output:
 }

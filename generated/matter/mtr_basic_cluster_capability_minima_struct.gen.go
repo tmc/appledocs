@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRBasicClusterCapabilityMinimaStruct] class.
@@ -37,8 +37,6 @@ type IMTRBasicClusterCapabilityMinimaStruct interface {
 	SetSubscriptionsPerFabric(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicClusterCapabilityMinimaStruct
@@ -84,8 +82,6 @@ func NewMTRBasicClusterCapabilityMinimaStruct() MTRBasicClusterCapabilityMinimaS
 	return getMTRBasicClusterCapabilityMinimaStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/casesessionsperfabric
 func (m_ MTRBasicClusterCapabilityMinimaStruct) CaseSessionsPerFabric() objc.IObject /* cross-framework: NSNumber */ {
@@ -93,13 +89,11 @@ func (m_ MTRBasicClusterCapabilityMinimaStruct) CaseSessionsPerFabric() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/casesessionsperfabric
 func (m_ MTRBasicClusterCapabilityMinimaStruct) SetCaseSessionsPerFabric(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCaseSessionsPerFabric:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/subscriptionsperfabric
@@ -108,12 +102,8 @@ func (m_ MTRBasicClusterCapabilityMinimaStruct) SubscriptionsPerFabric() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclustercapabilityminimastruct/subscriptionsperfabric
 func (m_ MTRBasicClusterCapabilityMinimaStruct) SetSubscriptionsPerFabric(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubscriptionsPerFabric:"), value)
 }
-
-
-

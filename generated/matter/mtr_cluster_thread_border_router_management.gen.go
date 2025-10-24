@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterThreadBorderRouterManagement */
+
+
+/* debug [class_header]: Header for MTRClusterThreadBorderRouterManagement */
 // The class instance for the [MTRClusterThreadBorderRouterManagement] class.
 var (
 	MTRClusterThreadBorderRouterManagementClass     _MTRClusterThreadBorderRouterManagementClass
@@ -26,51 +30,30 @@ func getMTRClusterThreadBorderRouterManagementClass() _MTRClusterThreadBorderRou
 type _MTRClusterThreadBorderRouterManagementClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterThreadBorderRouterManagement */
 // An interface definition for the [MTRClusterThreadBorderRouterManagement] class.
 type IMTRClusterThreadBorderRouterManagement interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterThreadBorderRouterManagement */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterThreadBorderRouterManagement */
 	// methods:
-	GetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	GetActiveDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	GetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	GetPendingDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeActiveDatasetTimestampWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeBorderAgentIDWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeBorderRouterNameWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeInterfaceEnabledWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributePendingDatasetTimestampWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeThreadVersionWithParams(params IMTRReadParams) foundation.IDictionary
-	SetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	SetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Thread Border Router Management Manage the Thread network of Thread Border Router
 
 
-// Cluster Thread Border Router Management Manage the Thread network of Thread Border Router
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement
-type MTRClusterThreadBorderRouterManagement struct {
-	MTRGenericCluster
-}
-
-// MTRClusterThreadBorderRouterManagementFrom constructs a [MTRClusterThreadBorderRouterManagement] from an unsafe.Pointer.
-//
-// Cluster Thread Border Router Management Manage the Thread network of Thread Border Router
-func MTRClusterThreadBorderRouterManagementFrom(ptr unsafe.Pointer) MTRClusterThreadBorderRouterManagement {
-	return MTRClusterThreadBorderRouterManagement{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterThreadBorderRouterManagement */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterThreadBorderRouterManagementClass) Alloc() MTRClusterThreadBorderRouterManagement {
 	rv := objc.Send[MTRClusterThreadBorderRouterManagement](objc.ID(mc.class), objc.Sel("alloc"))
@@ -78,7 +61,6 @@ func (mc _MTRClusterThreadBorderRouterManagementClass) Alloc() MTRClusterThreadB
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterThreadBorderRouterManagementClass) New() MTRClusterThreadBorderRouterManagement {
 	rv := objc.Send[MTRClusterThreadBorderRouterManagement](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,8 +83,35 @@ func (m_ MTRClusterThreadBorderRouterManagement) Autorelease() MTRClusterThreadB
 func NewMTRClusterThreadBorderRouterManagement() MTRClusterThreadBorderRouterManagement {
 	return getMTRClusterThreadBorderRouterManagementClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterThreadBorderRouterManagement */
+// Cluster Thread Border Router Management Manage the Thread network of Thread Border Router
+
+
+// Cluster Thread Border Router Management Manage the Thread network of Thread Border Router
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement
+type MTRClusterThreadBorderRouterManagement struct {
+	MTRGenericCluster
+}
+
+// MTRClusterThreadBorderRouterManagementFrom constructs a [MTRClusterThreadBorderRouterManagement] from an unsafe.Pointer.
+//
+// Cluster Thread Border Router Management Manage the Thread network of Thread Border Router
+func MTRClusterThreadBorderRouterManagementFrom(ptr unsafe.Pointer) MTRClusterThreadBorderRouterManagement {
+	return MTRClusterThreadBorderRouterManagement{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterThreadBorderRouterManagement */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -113,137 +122,31 @@ func NewMTRClusterThreadBorderRouterManagementWithDeviceEndpointIDQueue(device I
 	rv := objc.Send[MTRClusterThreadBorderRouterManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterThreadBorderRouterManagementWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/getActiveDatasetRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) GetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterGetActiveDatasetRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getActiveDatasetRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class_methods]: Class methods for MTRClusterThreadBorderRouterManagement */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/getActiveDatasetRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) GetActiveDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getActiveDatasetRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterThreadBorderRouterManagement */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/getPendingDatasetRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) GetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterGetPendingDatasetRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getPendingDatasetRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterThreadBorderRouterManagement */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/getPendingDatasetRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) GetPendingDatasetRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("getPendingDatasetRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterThreadBorderRouterManagement */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeActiveDatasetTimestamp(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeActiveDatasetTimestampWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeActiveDatasetTimestampWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeBorderAgentID(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeBorderAgentIDWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeBorderAgentIDWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeBorderRouterName(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeBorderRouterNameWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeBorderRouterNameWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeInterfaceEnabled(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeInterfaceEnabledWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeInterfaceEnabledWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributePendingDatasetTimestamp(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributePendingDatasetTimestampWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributePendingDatasetTimestampWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/readAttributeThreadVersion(with:)
-func (m_ MTRClusterThreadBorderRouterManagement) ReadAttributeThreadVersionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeThreadVersionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/setActiveDatasetRequestWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) SetActiveDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterSetActiveDatasetRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setActiveDatasetRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThreadBorderRouterManagement/setPendingDatasetRequestWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterThreadBorderRouterManagement) SetPendingDatasetRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRThreadBorderRouterManagementClusterSetPendingDatasetRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPendingDatasetRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class.gen.go]: End class MTRClusterThreadBorderRouterManagement */
 
 

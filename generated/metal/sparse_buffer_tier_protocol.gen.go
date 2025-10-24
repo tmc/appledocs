@@ -20,3 +20,4 @@ var sparseBufferTierProtocol *objc.Protocol
 func init() {
 	sparseBufferTierProtocol = objc.GetProtocol("sparseBufferTier")
 }
+

@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -21,7 +20,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/supportedMultiCamDeviceSets
-func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() []objc.IObject /* cross-framework: Set */ {
+func (c_ CaptureDeviceDiscoverySession) SupportedMultiCamDeviceSets() []foundation.Set {
 	rv := objc.Send[[]foundation.Set](c_.ID, objc.Sel("supportedMultiCamDeviceSets"))
 	return rv
 }

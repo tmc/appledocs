@@ -7,9 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/vision"
 )
 
+/* debug [class.gen.go]: Generating class NSScroller */
+
+
+/* debug [class_header]: Header for NSScroller */
 // The class instance for the [Scroller] class.
 var (
 	ScrollerClass     _ScrollerClass
@@ -26,10 +30,16 @@ func getScrollerClass() _ScrollerClass {
 type _ScrollerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Scroller */
 // An interface definition for the [Scroller] class.
 type IScroller interface {
 	IControl
+	
+/* debug [class_interface_properties]: Properties for Scroller */
 	// properties:
 	ArrowsPosition() ScrollArrowPosition
 	SetArrowsPosition(value ScrollArrowPosition)
@@ -45,37 +55,25 @@ type IScroller interface {
 	ScrollerStyle() ScrollerStyle
 	SetScrollerStyle(value ScrollerStyle)
 	UsableParts() UsableScrollerParts
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Scroller */
 	// methods:
 	CheckSpaceForParts()
 	DrawKnob()
-	DrawKnobSlotInRectHighlight(slotRect objc.IObject /* cross-framework: Rect */, flag bool)
-	RectForPart(partCode ScrollerPart) objc.IObject /* cross-framework: Rect */
-	TestPart(point objc.IObject /* cross-framework: Point */) ScrollerPart
+	DrawKnobSlotInRectHighlight(slotRect Rect /* not a class type */, flag bool)
+	RectForPart(partCode ScrollerPart) Rect /* not a class type */
+	TestPart(point vision.Point) ScrollerPart
 	TrackKnob(event IEvent)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that controls scrolling of a document view within a scroll view or other type of container view.
-//
-// A scroller displays a slot containing a knob that the user can drag directly to the desired location. The knob indicates both the position within the document view and—by varying in size within the slot—the amount visible relative to the size of the document view. Typically, you don’t need to program with scrollers; instead, you configure them with an object in a . Don’t use an scroller when a slider would be more appropriate. An object represents a range of values for something in the application and lets the user choose a setting. A scroller represents the relative position of the visible portion of a view and lets the user choose which portion to view.
+/* debug [class_interface]: End interface */
 
 
-// An object that controls scrolling of a document view within a scroll view or other type of container view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller
-type Scroller struct {
-	Control
-}
 
-// ScrollerFrom constructs a [Scroller] from an unsafe.Pointer.
-//
-// An object that controls scrolling of a document view within a scroll view or other type of container view.
-func ScrollerFrom(ptr unsafe.Pointer) Scroller {
-	return Scroller{
-		Control: ControlFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for Scroller */
 // Alloc allocates a new instance without initialization.
 func (sc _ScrollerClass) Alloc() Scroller {
 	rv := objc.Send[Scroller](objc.ID(sc.class), objc.Sel("alloc"))
@@ -83,7 +81,6 @@ func (sc _ScrollerClass) Alloc() Scroller {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScrollerClass) New() Scroller {
 	rv := objc.Send[Scroller](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -106,8 +103,41 @@ func (s_ Scroller) Autorelease() Scroller {
 func NewScroller() Scroller {
 	return getScrollerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Scroller */
+// An object that controls scrolling of a document view within a scroll view or other type of container view.
+//
+// A scroller displays a slot containing a knob that the user can drag directly to the desired location. The knob indicates both the position within the document view and—by varying in size within the slot—the amount visible relative to the size of the document view. Typically, you don’t need to program with scrollers; instead, you configure them with an object in a . Don’t use an scroller when a slider would be more appropriate. An object represents a range of values for something in the application and lets the user choose a setting. A scroller represents the relative position of the visible portion of a view and lets the user choose which portion to view.
+
+
+// An object that controls scrolling of a document view within a scroll view or other type of container view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller
+type Scroller struct {
+	Control
+}
+
+// ScrollerFrom constructs a [Scroller] from an unsafe.Pointer.
+//
+// An object that controls scrolling of a document view within a scroll view or other type of container view.
+func ScrollerFrom(ptr unsafe.Pointer) Scroller {
+	return Scroller{
+		Control: ControlFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Scroller *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for Scroller */
 
 // Returns the width for scrollers of the receiving class, assuming a control size , and a scroller style of .
 //
@@ -116,7 +146,7 @@ func NewScroller() Scroller {
 func (sc _ScrollerClass) ScrollerWidth() float64 {
 	rv := objc.Send[float64](objc.ID(sc.class), objc.Sel("scrollerWidth"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ScrollerWidth) */
 
 
 // Returns the width of the scroller based on and assuming a scroller style of .
@@ -126,7 +156,7 @@ func (sc _ScrollerClass) ScrollerWidth() float64 {
 func (sc _ScrollerClass) ScrollerWidthForControlSize(controlSize ControlSize) float64 {
 	rv := objc.Send[float64](objc.ID(sc.class), objc.Sel("scrollerWidthForControlSize:"), controlSize)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ScrollerWidthForControlSize) */
 
 
 // Returns the width for scrollers of the receiving class for a given control size and scroller style.
@@ -136,15 +166,20 @@ func (sc _ScrollerClass) ScrollerWidthForControlSize(controlSize ControlSize) fl
 func (sc _ScrollerClass) ScrollerWidthForControlSizeScrollerStyle(controlSize ControlSize, scrollerStyle ScrollerStyle) float64 {
 	rv := objc.Send[float64](objc.ID(sc.class), objc.Sel("scrollerWidthForControlSize:scrollerStyle:"), controlSize, scrollerStyle)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ScrollerWidthForControlSizeScrollerStyle) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Scroller */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/isCompatibleWithOverlayScrollers
 func (sc _ScrollerClass) CompatibleWithOverlayScrollers() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("compatibleWithOverlayScrollers"))
 	return rv
-}
+}/* debug [class_properties_class/property]: compatibleWithOverlayScrollers */
 
 // Returns the style of scrollers that applications should use wherever possible.
 //
@@ -153,7 +188,12 @@ func (sc _ScrollerClass) CompatibleWithOverlayScrollers() bool {
 func (sc _ScrollerClass) PreferredScrollerStyle() ScrollerStyle {
 	rv := objc.Send[ScrollerStyle](objc.ID(sc.class), objc.Sel("preferredScrollerStyle"))
 	return rv
-}
+}/* debug [class_properties_class/property]: preferredScrollerStyle */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Scroller */
 
 // Checks to see if there is enough room in the receiver to display the knob and buttons.
 //
@@ -161,7 +201,7 @@ func (sc _ScrollerClass) PreferredScrollerStyle() ScrollerStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/checkSpaceForParts()
 func (s_ Scroller) CheckSpaceForParts() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("checkSpaceForParts"))
-}
+}/* debug [instance_methods/method]: CheckSpaceForParts */
 
 
 // Draws the knob.
@@ -170,36 +210,36 @@ func (s_ Scroller) CheckSpaceForParts() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/drawKnob()
 func (s_ Scroller) DrawKnob() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawKnob"))
-}
+}/* debug [instance_methods/method]: DrawKnob */
 
 
 // Draws the portion of the scroller’s track, possibly including the line increment and decrement arrow buttons, that falls in the given rectangle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/drawKnobSlot(in:highlight:)
-func (s_ Scroller) DrawKnobSlotInRectHighlight(slotRect objc.IObject /* cross-framework: Rect */, flag bool) {
+func (s_ Scroller) DrawKnobSlotInRectHighlight(slotRect Rect /* not a class type */, flag bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawKnobSlotInRect:highlight:"), slotRect, flag)
-}
+}/* debug [instance_methods/method]: DrawKnobSlotInRectHighlight */
 
 
 // Returns the rectangle occupied by , which for this method is interpreted literally rather than as an indicator of scrolling direction.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/rect(for:)
-func (s_ Scroller) RectForPart(partCode ScrollerPart) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("rectForPart:"), partCode)
+func (s_ Scroller) RectForPart(partCode ScrollerPart) Rect /* not a class type */ {
+	rv := objc.Send[Rect](s_.ID, objc.Sel("rectForPart:"), partCode)
 	return rv
-}
+}/* debug [instance_methods/method]: RectForPart */
 
 
 // Returns the part that would be hit by a mouse-down event at (expressed in the window’s coordinate system).
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/testPart(_:)
-func (s_ Scroller) TestPart(point objc.IObject /* cross-framework: Point */) ScrollerPart {
+func (s_ Scroller) TestPart(point vision.Point) ScrollerPart {
 	rv := objc.Send[ScrollerPart](s_.ID, objc.Sel("testPart:"), point)
 	return rv
-}
+}/* debug [instance_methods/method]: TestPart */
 
 
 // Tracks the knob and sends action messages to the receiver’s target.
@@ -208,8 +248,13 @@ func (s_ Scroller) TestPart(point objc.IObject /* cross-framework: Point */) Scr
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/trackKnob(with:)
 func (s_ Scroller) TrackKnob(event IEvent) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("trackKnob:"), event)
-}
+}/* debug [instance_methods/method]: TrackKnob */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Scroller */
 
 // The location of the scroll buttons within the scroller, as described in .
 //
@@ -218,7 +263,7 @@ func (s_ Scroller) TrackKnob(event IEvent) {
 func (s_ Scroller) ArrowsPosition() ScrollArrowPosition {
 	rv := objc.Send[ScrollArrowPosition](s_.ID, objc.Sel("arrowsPosition"))
 	return rv
-}
+}/* debug [instance_properties/getter]: arrowsPosition */
 
 
 // The location of the scroll buttons within the scroller, as described in .
@@ -227,7 +272,7 @@ func (s_ Scroller) ArrowsPosition() ScrollArrowPosition {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/arrowsPosition
 func (s_ Scroller) SetArrowsPosition(value ScrollArrowPosition) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setArrowsPosition:"), value)
-}
+}/* debug [instance_properties/setter]: arrowsPosition */
 
 
 // The size of the scroller.
@@ -237,7 +282,7 @@ func (s_ Scroller) SetArrowsPosition(value ScrollArrowPosition) {
 func (s_ Scroller) ControlSize() ControlSize {
 	rv := objc.Send[ControlSize](s_.ID, objc.Sel("controlSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlSize */
 
 
 // The size of the scroller.
@@ -246,7 +291,7 @@ func (s_ Scroller) ControlSize() ControlSize {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/controlSize
 func (s_ Scroller) SetControlSize(value ControlSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlSize:"), value)
-}
+}/* debug [instance_properties/setter]: controlSize */
 
 
 // The scroller’s control tint.
@@ -256,7 +301,7 @@ func (s_ Scroller) SetControlSize(value ControlSize) {
 func (s_ Scroller) ControlTint() ControlTint {
 	rv := objc.Send[ControlTint](s_.ID, objc.Sel("controlTint"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controlTint */
 
 
 // The scroller’s control tint.
@@ -265,7 +310,7 @@ func (s_ Scroller) ControlTint() ControlTint {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/controlTint
 func (s_ Scroller) SetControlTint(value ControlTint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlTint:"), value)
-}
+}/* debug [instance_properties/setter]: controlTint */
 
 
 // A part code indicating the manner in which the scrolling should be performed.
@@ -275,7 +320,7 @@ func (s_ Scroller) SetControlTint(value ControlTint) {
 func (s_ Scroller) HitPart() ScrollerPart {
 	rv := objc.Send[ScrollerPart](s_.ID, objc.Sel("hitPart"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hitPart */
 
 
 // [Full Topic]
@@ -283,7 +328,7 @@ func (s_ Scroller) HitPart() ScrollerPart {
 func (s_ Scroller) CompatibleWithOverlayScrollers() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("compatibleWithOverlayScrollers"))
 	return rv
-}
+}/* debug [instance_properties/getter]: compatibleWithOverlayScrollers */
 
 
 // The proportion of the knob slot that the knob should fill.
@@ -293,7 +338,7 @@ func (s_ Scroller) CompatibleWithOverlayScrollers() bool {
 func (s_ Scroller) KnobProportion() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("knobProportion"))
 	return rv
-}
+}/* debug [instance_properties/getter]: knobProportion */
 
 
 // The proportion of the knob slot that the knob should fill.
@@ -302,7 +347,7 @@ func (s_ Scroller) KnobProportion() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/knobProportion
 func (s_ Scroller) SetKnobProportion(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobProportion:"), value)
-}
+}/* debug [instance_properties/setter]: knobProportion */
 
 
 // The scroller’s knob style.
@@ -312,7 +357,7 @@ func (s_ Scroller) SetKnobProportion(value float64) {
 func (s_ Scroller) KnobStyle() ScrollerKnobStyle {
 	rv := objc.Send[ScrollerKnobStyle](s_.ID, objc.Sel("knobStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: knobStyle */
 
 
 // The scroller’s knob style.
@@ -321,7 +366,7 @@ func (s_ Scroller) KnobStyle() ScrollerKnobStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/knobStyle-swift.property
 func (s_ Scroller) SetKnobStyle(value ScrollerKnobStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobStyle:"), value)
-}
+}/* debug [instance_properties/setter]: knobStyle */
 
 
 // Returns the style of scrollers that applications should use wherever possible.
@@ -331,7 +376,7 @@ func (s_ Scroller) SetKnobStyle(value ScrollerKnobStyle) {
 func (s_ Scroller) PreferredScrollerStyle() ScrollerStyle {
 	rv := objc.Send[ScrollerStyle](s_.ID, objc.Sel("preferredScrollerStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preferredScrollerStyle */
 
 
 // The scroller style for this scroller.
@@ -341,7 +386,7 @@ func (s_ Scroller) PreferredScrollerStyle() ScrollerStyle {
 func (s_ Scroller) ScrollerStyle() ScrollerStyle {
 	rv := objc.Send[ScrollerStyle](s_.ID, objc.Sel("scrollerStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scrollerStyle */
 
 
 // The scroller style for this scroller.
@@ -350,7 +395,7 @@ func (s_ Scroller) ScrollerStyle() ScrollerStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/scrollerStyle
 func (s_ Scroller) SetScrollerStyle(value ScrollerStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrollerStyle:"), value)
-}
+}/* debug [instance_properties/setter]: scrollerStyle */
 
 
 // A value that indicates which parts of the receiver are displayed and usable.
@@ -360,7 +405,12 @@ func (s_ Scroller) SetScrollerStyle(value ScrollerStyle) {
 func (s_ Scroller) UsableParts() UsableScrollerParts {
 	rv := objc.Send[UsableScrollerParts](s_.ID, objc.Sel("usableParts"))
 	return rv
-}
+}/* debug [instance_properties/getter]: usableParts */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSScroller */
 
 
 

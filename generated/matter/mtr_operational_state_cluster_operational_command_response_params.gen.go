@@ -36,8 +36,6 @@ type IMTROperationalStateClusterOperationalCommandResponseParams interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalStateClusterOperationalCommandResponseParams
 type MTROperationalStateClusterOperationalCommandResponseParams struct {
@@ -80,8 +78,6 @@ func NewMTROperationalStateClusterOperationalCommandResponseParams() MTROperatio
 	return getMTROperationalStateClusterOperationalCommandResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalcommandresponseparams/commandresponsestate
 func (m_ MTROperationalStateClusterOperationalCommandResponseParams) CommandResponseState() IMTROperationalStateClusterErrorStateStruct {
@@ -89,12 +85,8 @@ func (m_ MTROperationalStateClusterOperationalCommandResponseParams) CommandResp
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalcommandresponseparams/commandresponsestate
 func (m_ MTROperationalStateClusterOperationalCommandResponseParams) SetCommandResponseState(value IMTROperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommandResponseState:"), value)
 }
-
-
-

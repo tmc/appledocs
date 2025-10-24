@@ -12,7 +12,16 @@ import (
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AccessibilitySettings
 type AccessibilitySettings struct {
-}
+}/* debug [types.gen.go/struct]: AccessibilitySettings */
+
+// AXMFiHearingDevice - A namespace for hearing device accessibility symbols in Swift.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMFiHearingDevice
+type AXMFiHearingDevice struct {
+}/* debug [types.gen.go/struct]: AXMFiHearingDevice */
+
+
 
 
 

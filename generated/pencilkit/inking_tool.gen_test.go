@@ -14,7 +14,7 @@ var _ = pencilkit.NewInkingTool
 func ExampleNewInkingToolWithInkWidth() {
 	_ = pencilkit.NewInkingToolWithInkWidth(
 		pencilkit.PKInk{}, // ink PKInk
-		0.0, // width float64
+		0.0,               // width float64
 	)
 	// Output:
 }

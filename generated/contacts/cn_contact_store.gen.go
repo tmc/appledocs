@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CNContactStore */
+
+
+/* debug [class_header]: Header for CNContactStore */
 // The class instance for the [CNContactStore] class.
 var (
 	CNContactStoreClass     _CNContactStoreClass
@@ -27,46 +31,42 @@ func getCNContactStoreClass() _CNContactStoreClass {
 type _CNContactStoreClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNContactStore */
 // An interface definition for the [CNContactStore] class.
 type ICNContactStore interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CNContactStore */
 	// properties:
 	CurrentHistoryToken() objc.IObject /* cross-framework: NSData */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNContactStore */
 	// methods:
-	ContainersMatchingPredicateError(predicate objc.IObject /* cross-framework: Predicate */, error_ unsafe.Pointer) []ICNContainer
-	DefaultContainerIdentifier() objc.IObject /* cross-framework: String */
-	EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest ICNContactFetchRequest, error_ unsafe.Pointer, block unsafe.Pointer) bool
-	EnumeratorForChangeHistoryFetchRequestError(request ICNChangeHistoryFetchRequest, error_ unsafe.Pointer) unsafe.Pointer
-	EnumeratorForContactFetchRequestError(request ICNContactFetchRequest, error_ unsafe.Pointer) unsafe.Pointer
-	ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ unsafe.Pointer) bool
-	GroupsMatchingPredicateError(predicate objc.IObject /* cross-framework: Predicate */, error_ unsafe.Pointer) []ICNGroup
+	ContainersMatchingPredicateError(predicate foundation.Predicate, error_ objectivec.IObject) []CNContainer
+	DefaultContainerIdentifier() foundation.String
+	EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest ICNContactFetchRequest, error_ objectivec.IObject, block unsafe.Pointer) bool
+	EnumeratorForChangeHistoryFetchRequestError(request ICNChangeHistoryFetchRequest, error_ objectivec.IObject) unsafe.Pointer
+	EnumeratorForContactFetchRequestError(request ICNContactFetchRequest, error_ objectivec.IObject) unsafe.Pointer
+	ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ objectivec.IObject) bool
+	GroupsMatchingPredicateError(predicate foundation.Predicate, error_ objectivec.IObject) []CNGroup
 	RequestAccessForEntityTypeCompletionHandler(entityType CNEntityType, completionHandler unsafe.Pointer)
-	UnifiedContactWithIdentifierKeysToFetchError(identifier objc.IObject /* cross-framework: NSString */, keys []objc.ID, error_ unsafe.Pointer) ICNContact
-	UnifiedContactsMatchingPredicateKeysToFetchError(predicate objc.IObject /* cross-framework: Predicate */, keys []objc.ID, error_ unsafe.Pointer) []ICNContact
-	UnifiedMeContactWithKeysToFetchError(keys []objc.ID, error_ unsafe.Pointer) ICNContact
+	UnifiedContactsMatchingPredicateKeysToFetchError(predicate foundation.Predicate, keys []objc.ID, error_ objectivec.IObject) []CNContact
+	UnifiedContactWithIdentifierKeysToFetchError(identifier objc.IObject /* cross-framework: NSString */, keys []objc.ID, error_ objectivec.IObject) ICNContact
+	UnifiedMeContactWithKeysToFetchError(keys []objc.ID, error_ objectivec.IObject) ICNContact
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
-//
-// The object represents the user’s contacts store database, and you use it to fetch information from that database and save changes back to it. There are a few recommended ways you can implement fetch and save requests in your app: Fetch only the properties that you need for contacts. When fetching all contacts and caching the results, first fetch all contacts identifiers, then fetch batches of detailed contacts by identifiers as required. To aggregate several contacts fetches, first collect a set of unique identifiers from the fetches. Then fetch batches of detailed contacts by those unique identifiers. If you cache the fetched contacts, groups, or containers, you need to refetch these objects (and release the old cached objects) when is posted. Because fetch methods perform I/O, it’s recommended that you avoid using the main thread to execute fetches.
+/* debug [class_interface]: End interface */
 
 
-// The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore
-type CNContactStore struct {
-	objectivec.Object
-}
 
-// CNContactStoreFrom constructs a [CNContactStore] from an unsafe.Pointer.
-//
-// The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
-func CNContactStoreFrom(ptr unsafe.Pointer) CNContactStore {
-	return CNContactStore{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CNContactStore */
 // Alloc allocates a new instance without initialization.
 func (cc _CNContactStoreClass) Alloc() CNContactStore {
 	rv := objc.Send[CNContactStore](objc.ID(cc.class), objc.Sel("alloc"))
@@ -74,7 +74,6 @@ func (cc _CNContactStoreClass) Alloc() CNContactStore {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNContactStoreClass) New() CNContactStore {
 	rv := objc.Send[CNContactStore](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,8 +96,39 @@ func (c_ CNContactStore) Autorelease() CNContactStore {
 func NewCNContactStore() CNContactStore {
 	return getCNContactStoreClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CNContactStore */
+// The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
+//
+// The object represents the user’s contacts store database, and you use it to fetch information from that database and save changes back to it. There are a few recommended ways you can implement fetch and save requests in your app: Fetch only the properties that you need for contacts. When fetching all contacts and caching the results, first fetch all contacts identifiers, then fetch batches of detailed contacts by identifiers as required. To aggregate several contacts fetches, first collect a set of unique identifiers from the fetches. Then fetch batches of detailed contacts by those unique identifiers. If you cache the fetched contacts, groups, or containers, you need to refetch these objects (and release the old cached objects) when is posted. Because fetch methods perform I/O, it’s recommended that you avoid using the main thread to execute fetches.
+
+
+// The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore
+type CNContactStore struct {
+	objectivec.Object
+}
+
+// CNContactStoreFrom constructs a [CNContactStore] from an unsafe.Pointer.
+//
+// The object that fetches and saves contacts, groups, and containers from the user’s Contacts database.
+func CNContactStoreFrom(ptr unsafe.Pointer) CNContactStore {
+	return CNContactStore{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CNContactStore *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CNContactStore */
 
 // Returns the current authorization status to access the contact data.
 //
@@ -107,77 +137,87 @@ func NewCNContactStore() CNContactStore {
 func (cc _CNContactStoreClass) AuthorizationStatusForEntityType(entityType CNEntityType) CNAuthorizationStatus {
 	rv := objc.Send[CNAuthorizationStatus](objc.ID(cc.class), objc.Sel("authorizationStatusForEntityType:"), entityType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AuthorizationStatusForEntityType) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNContactStore */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNContactStore */
 
 // Fetches all containers matching the specified predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/containers(matching:)
-func (c_ CNContactStore) ContainersMatchingPredicateError(predicate objc.IObject /* cross-framework: Predicate */, error_ unsafe.Pointer) []ICNContainer {
+func (c_ CNContactStore) ContainersMatchingPredicateError(predicate foundation.Predicate, error_ objectivec.IObject) []CNContainer {
 	rv := objc.Send[[]CNContainer](c_.ID, objc.Sel("containersMatchingPredicate:error:"), predicate, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainersMatchingPredicateError */
 
 
 // Returns the identifier of the default container.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/defaultContainerIdentifier()
-func (c_ CNContactStore) DefaultContainerIdentifier() objc.IObject /* cross-framework: String */ {
+func (c_ CNContactStore) DefaultContainerIdentifier() foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("defaultContainerIdentifier"))
 	return rv
-}
+}/* debug [instance_methods/method]: DefaultContainerIdentifier */
 
 
 // Returns a Boolean value that indicates whether the enumeration of all contacts matching a contact fetch request executes successfully.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/enumerateContacts(with:usingBlock:)
-func (c_ CNContactStore) EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest ICNContactFetchRequest, error_ unsafe.Pointer, block unsafe.Pointer) bool {
+func (c_ CNContactStore) EnumerateContactsWithFetchRequestErrorUsingBlock(fetchRequest ICNContactFetchRequest, error_ objectivec.IObject, block unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("enumerateContactsWithFetchRequest:error:usingBlock:"), fetchRequest, error_, block)
 	return rv
-}
+}/* debug [instance_methods/method]: EnumerateContactsWithFetchRequestErrorUsingBlock */
 
 
 // Enumerates a change history fetch request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/enumeratorForChangeHistoryFetchRequest:error:
-func (c_ CNContactStore) EnumeratorForChangeHistoryFetchRequestError(request ICNChangeHistoryFetchRequest, error_ unsafe.Pointer) unsafe.Pointer {
+func (c_ CNContactStore) EnumeratorForChangeHistoryFetchRequestError(request ICNChangeHistoryFetchRequest, error_ objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("enumeratorForChangeHistoryFetchRequest:error:"), request, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: EnumeratorForChangeHistoryFetchRequestError */
 
 
 // Enumerates a contact fetch request.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/enumeratorForContactFetchRequest:error:
-func (c_ CNContactStore) EnumeratorForContactFetchRequestError(request ICNContactFetchRequest, error_ unsafe.Pointer) unsafe.Pointer {
+func (c_ CNContactStore) EnumeratorForContactFetchRequestError(request ICNContactFetchRequest, error_ objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("enumeratorForContactFetchRequest:error:"), request, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: EnumeratorForContactFetchRequestError */
 
 
 // Executes a save request and returns success or failure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/execute(_:)
-func (c_ CNContactStore) ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ unsafe.Pointer) bool {
+func (c_ CNContactStore) ExecuteSaveRequestError(saveRequest ICNSaveRequest, error_ objectivec.IObject) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("executeSaveRequest:error:"), saveRequest, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ExecuteSaveRequestError */
 
 
 // Fetches all groups matching the specified predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/groups(matching:)
-func (c_ CNContactStore) GroupsMatchingPredicateError(predicate objc.IObject /* cross-framework: Predicate */, error_ unsafe.Pointer) []ICNGroup {
+func (c_ CNContactStore) GroupsMatchingPredicateError(predicate foundation.Predicate, error_ objectivec.IObject) []CNGroup {
 	rv := objc.Send[[]CNGroup](c_.ID, objc.Sel("groupsMatchingPredicate:error:"), predicate, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: GroupsMatchingPredicateError */
 
 
 // Requests access to the user’s contacts.
@@ -186,38 +226,43 @@ func (c_ CNContactStore) GroupsMatchingPredicateError(predicate objc.IObject /* 
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/requestAccess(for:completionHandler:)
 func (c_ CNContactStore) RequestAccessForEntityTypeCompletionHandler(entityType CNEntityType, completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("requestAccessForEntityType:completionHandler:"), entityType, completionHandler)
-}
-
-
-// Fetches a unified contact for the specified contact identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/unifiedContact(withIdentifier:keysToFetch:)
-func (c_ CNContactStore) UnifiedContactWithIdentifierKeysToFetchError(identifier objc.IObject /* cross-framework: NSString */, keys []objc.ID, error_ unsafe.Pointer) ICNContact {
-	rv := objc.Send[CNContact](c_.ID, objc.Sel("unifiedContactWithIdentifier:keysToFetch:error:"), identifier, keys, error_)
-	return rv
-}
+}/* debug [instance_methods/method]: RequestAccessForEntityTypeCompletionHandler */
 
 
 // Fetches all unified contacts matching the specified predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/unifiedContacts(matching:keysToFetch:)
-func (c_ CNContactStore) UnifiedContactsMatchingPredicateKeysToFetchError(predicate objc.IObject /* cross-framework: Predicate */, keys []objc.ID, error_ unsafe.Pointer) []ICNContact {
+func (c_ CNContactStore) UnifiedContactsMatchingPredicateKeysToFetchError(predicate foundation.Predicate, keys []objc.ID, error_ objectivec.IObject) []CNContact {
 	rv := objc.Send[[]CNContact](c_.ID, objc.Sel("unifiedContactsMatchingPredicate:keysToFetch:error:"), predicate, keys, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: UnifiedContactsMatchingPredicateKeysToFetchError */
+
+
+// Fetches a unified contact for the specified contact identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/unifiedContact(withIdentifier:keysToFetch:)
+func (c_ CNContactStore) UnifiedContactWithIdentifierKeysToFetchError(identifier objc.IObject /* cross-framework: NSString */, keys []objc.ID, error_ objectivec.IObject) ICNContact {
+	rv := objc.Send[CNContact](c_.ID, objc.Sel("unifiedContactWithIdentifier:keysToFetch:error:"), identifier, keys, error_)
+	return rv
+}/* debug [instance_methods/method]: UnifiedContactWithIdentifierKeysToFetchError */
 
 
 // Fetches the unified contact that’s the card.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNContactStore/unifiedMeContactWithKeys(toFetch:)
-func (c_ CNContactStore) UnifiedMeContactWithKeysToFetchError(keys []objc.ID, error_ unsafe.Pointer) ICNContact {
+func (c_ CNContactStore) UnifiedMeContactWithKeysToFetchError(keys []objc.ID, error_ objectivec.IObject) ICNContact {
 	rv := objc.Send[CNContact](c_.ID, objc.Sel("unifiedMeContactWithKeysToFetch:error:"), keys, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: UnifiedMeContactWithKeysToFetchError */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNContactStore */
 
 // The current history token.
 //
@@ -226,7 +271,12 @@ func (c_ CNContactStore) UnifiedMeContactWithKeysToFetchError(keys []objc.ID, er
 func (c_ CNContactStore) CurrentHistoryToken() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("currentHistoryToken"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentHistoryToken */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CNContactStore */
 
 
 

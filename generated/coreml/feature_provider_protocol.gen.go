@@ -21,3 +21,4 @@ var FeatureProviderProtocol *objc.Protocol
 func init() {
 	FeatureProviderProtocol = objc.GetProtocol("MLFeatureProvider")
 }
+

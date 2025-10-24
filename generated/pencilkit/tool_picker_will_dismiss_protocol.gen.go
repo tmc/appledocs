@@ -15,3 +15,4 @@ var toolPickerWillDismissProtocol *objc.Protocol
 func init() {
 	toolPickerWillDismissProtocol = objc.GetProtocol("toolPickerWillDismiss:")
 }
+

@@ -36,8 +36,6 @@ type IMTRRVCOperationalStateClusterOperationalErrorEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCOperationalStateClusterOperationalErrorEvent
 type MTRRVCOperationalStateClusterOperationalErrorEvent struct {
@@ -80,8 +78,6 @@ func NewMTRRVCOperationalStateClusterOperationalErrorEvent() MTRRVCOperationalSt
 	return getMTRRVCOperationalStateClusterOperationalErrorEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalerrorevent/errorstate
 func (m_ MTRRVCOperationalStateClusterOperationalErrorEvent) ErrorState() IMTRRVCOperationalStateClusterErrorStateStruct {
@@ -89,12 +85,8 @@ func (m_ MTRRVCOperationalStateClusterOperationalErrorEvent) ErrorState() IMTRRV
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcoperationalstateclusteroperationalerrorevent/errorstate
 func (m_ MTRRVCOperationalStateClusterOperationalErrorEvent) SetErrorState(value IMTRRVCOperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorState:"), value)
 }
-
-
-

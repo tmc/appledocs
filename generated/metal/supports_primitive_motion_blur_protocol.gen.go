@@ -20,3 +20,4 @@ var supportsPrimitiveMotionBlurProtocol *objc.Protocol
 func init() {
 	supportsPrimitiveMotionBlurProtocol = objc.GetProtocol("supportsPrimitiveMotionBlur")
 }
+

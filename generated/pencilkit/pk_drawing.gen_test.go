@@ -19,7 +19,7 @@ func ExampleNewDrawing() {
 // Creates a drawing object with the strokes you supply.
 func ExampleNewDrawingWithStrokes() {
 	_ = pencilkit.NewDrawingWithStrokes(
-		[]pencilkit.IStroke{}, // strokes []IStroke
+		[]pencilkit.Stroke{}, // strokes []Stroke
 	)
 	// Output:
 }

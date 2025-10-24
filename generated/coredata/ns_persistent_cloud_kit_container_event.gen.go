@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -48,7 +48,6 @@ type IPersistentCloudKitContainerEvent interface {
 }
 
 // An object that represents activity in a persistent CloudKit container.
-
 
 // An object that represents activity in a persistent CloudKit container.
 //
@@ -96,8 +95,6 @@ func NewPersistentCloudKitContainerEvent() PersistentCloudKitContainerEvent {
 	return getPersistentCloudKitContainerEventClass().New()
 }
 
-
-
 // An error that indicates why an operation fails.
 //
 // [Full Topic]
@@ -106,7 +103,6 @@ func (p_ PersistentCloudKitContainerEvent) Error() objc.IObject /* cross-framewo
 	rv := objc.Send[foundation.Error](p_.ID, objc.Sel("error"))
 	return rv
 }
-
 
 // A Boolean value that indicates whether the operation the event represents is successful.
 //
@@ -117,7 +113,6 @@ func (p_ PersistentCloudKitContainerEvent) Succeeded() bool {
 	return rv
 }
 
-
 // The end date of the operation that the event represents.
 //
 // [Full Topic]
@@ -127,7 +122,6 @@ func (p_ PersistentCloudKitContainerEvent) EndDate() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // The end date of the operation that the event represents.
 //
 // [Full Topic]
@@ -135,7 +129,6 @@ func (p_ PersistentCloudKitContainerEvent) EndDate() objc.IObject /* cross-frame
 func (p_ PersistentCloudKitContainerEvent) SetEndDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndDate:"), value)
 }
-
 
 // A unique identifier for the event in a container.
 //
@@ -146,7 +139,6 @@ func (p_ PersistentCloudKitContainerEvent) Identifier() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // A unique identifier for the event in a container.
 //
 // [Full Topic]
@@ -154,7 +146,6 @@ func (p_ PersistentCloudKitContainerEvent) Identifier() objc.IObject /* cross-fr
 func (p_ PersistentCloudKitContainerEvent) SetIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 // The start date of the operation that the event represents.
 //
@@ -165,7 +156,6 @@ func (p_ PersistentCloudKitContainerEvent) StartDate() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // The start date of the operation that the event represents.
 //
 // [Full Topic]
@@ -173,7 +163,6 @@ func (p_ PersistentCloudKitContainerEvent) StartDate() objc.IObject /* cross-fra
 func (p_ PersistentCloudKitContainerEvent) SetStartDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStartDate:"), value)
 }
-
 
 // The associated store identifier in the container for the event.
 //
@@ -184,7 +173,6 @@ func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() objc.IObject /* cro
 	return rv
 }
 
-
 // The associated store identifier in the container for the event.
 //
 // [Full Topic]
@@ -192,7 +180,6 @@ func (p_ PersistentCloudKitContainerEvent) StoreIdentifier() objc.IObject /* cro
 func (p_ PersistentCloudKitContainerEvent) SetStoreIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStoreIdentifier:"), value)
 }
-
 
 // The type of event, either setup, import, or export.
 //
@@ -203,7 +190,6 @@ func (p_ PersistentCloudKitContainerEvent) Type() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of event, either setup, import, or export.
 //
 // [Full Topic]
@@ -211,6 +197,3 @@ func (p_ PersistentCloudKitContainerEvent) Type() unsafe.Pointer {
 func (p_ PersistentCloudKitContainerEvent) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }
-
-
-

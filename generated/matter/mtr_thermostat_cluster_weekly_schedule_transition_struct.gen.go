@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRThermostatClusterWeeklyScheduleTransitionStruct */
+
+
+/* debug [class_header]: Header for MTRThermostatClusterWeeklyScheduleTransitionStruct */
 // The class instance for the [MTRThermostatClusterWeeklyScheduleTransitionStruct] class.
 var (
 	MTRThermostatClusterWeeklyScheduleTransitionStructClass     _MTRThermostatClusterWeeklyScheduleTransitionStructClass
@@ -27,33 +30,30 @@ func getMTRThermostatClusterWeeklyScheduleTransitionStructClass() _MTRThermostat
 type _MTRThermostatClusterWeeklyScheduleTransitionStructClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRThermostatClusterWeeklyScheduleTransitionStruct */
 // An interface definition for the [MTRThermostatClusterWeeklyScheduleTransitionStruct] class.
 type IMTRThermostatClusterWeeklyScheduleTransitionStruct interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRThermostatClusterWeeklyScheduleTransitionStruct */
 	// properties:
-	CoolSetpoint() objc.IObject /* cross-framework: NSNumber */
-	SetCoolSetpoint(value objc.IObject /* cross-framework: NSNumber */)
-	HeatSetpoint() objc.IObject /* cross-framework: NSNumber */
-	SetHeatSetpoint(value objc.IObject /* cross-framework: NSNumber */)
-	TransitionTime() objc.IObject /* cross-framework: NSNumber */
-	SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRThermostatClusterWeeklyScheduleTransitionStruct */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThermostatClusterWeeklyScheduleTransitionStruct
-type MTRThermostatClusterWeeklyScheduleTransitionStruct struct {
-	objectivec.Object
-}
-
-// MTRThermostatClusterWeeklyScheduleTransitionStructFrom constructs a [MTRThermostatClusterWeeklyScheduleTransitionStruct] from an unsafe.Pointer.
-func MTRThermostatClusterWeeklyScheduleTransitionStructFrom(ptr unsafe.Pointer) MTRThermostatClusterWeeklyScheduleTransitionStruct {
-	return MTRThermostatClusterWeeklyScheduleTransitionStruct{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRThermostatClusterWeeklyScheduleTransitionStruct */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRThermostatClusterWeeklyScheduleTransitionStructClass) Alloc() MTRThermostatClusterWeeklyScheduleTransitionStruct {
 	rv := objc.Send[MTRThermostatClusterWeeklyScheduleTransitionStruct](objc.ID(mc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (mc _MTRThermostatClusterWeeklyScheduleTransitionStructClass) Alloc() MTRTh
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRThermostatClusterWeeklyScheduleTransitionStructClass) New() MTRThermostatClusterWeeklyScheduleTransitionStruct {
 	rv := objc.Send[MTRThermostatClusterWeeklyScheduleTransitionStruct](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,52 +83,53 @@ func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) Autorelease() MTRTh
 func NewMTRThermostatClusterWeeklyScheduleTransitionStruct() MTRThermostatClusterWeeklyScheduleTransitionStruct {
 	return getMTRThermostatClusterWeeklyScheduleTransitionStructClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/coolsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) CoolSetpoint() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("coolSetpoint"))
-	return rv
+/* debug [class_struct]: Struct for MTRThermostatClusterWeeklyScheduleTransitionStruct */
+// A parent class referenced by other Matter classes.
+
+
+// A parent class referenced by other Matter classes. [Full Topic]
+type MTRThermostatClusterWeeklyScheduleTransitionStruct struct {
+	objectivec.Object
 }
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/coolsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetCoolSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCoolSetpoint:"), value)
+// MTRThermostatClusterWeeklyScheduleTransitionStructFrom constructs a [MTRThermostatClusterWeeklyScheduleTransitionStruct] from an unsafe.Pointer.
+//
+// A parent class referenced by other Matter classes.
+func MTRThermostatClusterWeeklyScheduleTransitionStructFrom(ptr unsafe.Pointer) MTRThermostatClusterWeeklyScheduleTransitionStruct {
+	return MTRThermostatClusterWeeklyScheduleTransitionStruct{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/heatsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) HeatSetpoint() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("heatSetpoint"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRThermostatClusterWeeklyScheduleTransitionStruct *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/heatsetpoint
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetHeatSetpoint(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHeatSetpoint:"), value)
-}
+
+/* debug [class_methods]: Class methods for MTRThermostatClusterWeeklyScheduleTransitionStruct */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/transitiontime
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) TransitionTime() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("transitionTime"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRThermostatClusterWeeklyScheduleTransitionStruct */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthermostatclusterweeklyscheduletransitionstruct/transitiontime
-func (m_ MTRThermostatClusterWeeklyScheduleTransitionStruct) SetTransitionTime(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTransitionTime:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for MTRThermostatClusterWeeklyScheduleTransitionStruct */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRThermostatClusterWeeklyScheduleTransitionStruct */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRThermostatClusterWeeklyScheduleTransitionStruct */
 
 
 

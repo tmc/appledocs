@@ -15,3 +15,4 @@ var isAccessibilityFocusedProtocol *objc.Protocol
 func init() {
 	isAccessibilityFocusedProtocol = objc.GetProtocol("isAccessibilityFocused")
 }
+

@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // DocumentEnhancerProtocol is the CIDocumentEnhancer protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIDocumentEnhancer.
 var DocumentEnhancerProtocol *objc.Protocol
 
 func init() {
 	DocumentEnhancerProtocol = objc.GetProtocol("CIDocumentEnhancer")
 }
+

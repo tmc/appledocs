@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MLCMultiheadAttentionLayer */
+
+
+/* debug [class_header]: Header for MLCMultiheadAttentionLayer */
 // The class instance for the [CMultiheadAttentionLayer] class.
 var (
 	CMultiheadAttentionLayerClass     _CMultiheadAttentionLayerClass
@@ -25,48 +29,36 @@ func getCMultiheadAttentionLayerClass() _CMultiheadAttentionLayerClass {
 type _CMultiheadAttentionLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CMultiheadAttentionLayer */
 // An interface definition for the [CMultiheadAttentionLayer] class.
 type ICMultiheadAttentionLayer interface {
 	ICLayer
+	
+/* debug [class_interface_properties]: Properties for CMultiheadAttentionLayer */
 	// properties:
-	AttentionBiases() IMLCTensor
-	SetAttentionBiases(value IMLCTensor)
-	Biases() IMLCTensor
-	SetBiases(value IMLCTensor)
-	BiasesParameters() objc.IObject /* cross-framework: CTensorParameter */
-	SetBiasesParameters(value objc.IObject /* cross-framework: CTensorParameter */)
-	Descriptor() CMultiheadAttentionDescriptor /* not a class type */
-	SetDescriptor(value CMultiheadAttentionDescriptor /* not a class type */)
-	Weights() IMLCTensor
-	SetWeights(value IMLCTensor)
-	WeightsParameters() objc.IObject /* cross-framework: CTensorParameter */
-	SetWeightsParameters(value objc.IObject /* cross-framework: CTensorParameter */)
+	AttentionBiases() []CTensor
+	Biases() []CTensor
+	BiasesParameters() []CTensorParameter
+	Descriptor() IMLCMultiheadAttentionDescriptor
+	Weights() []CTensor
+	WeightsParameters() []CTensorParameter
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CMultiheadAttentionLayer */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A multihead, scaled dot-product attention layer that attends to one or more entries in the input key-value pairs.
-//
-// The dimensions of projections are as follows: ``
+/* debug [class_interface]: End interface */
 
 
-// A multihead, scaled dot-product attention layer that attends to one or more entries in the input key-value pairs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer
-type CMultiheadAttentionLayer struct {
-	CLayer
-}
 
-// CMultiheadAttentionLayerFrom constructs a [CMultiheadAttentionLayer] from an unsafe.Pointer.
-//
-// A multihead, scaled dot-product attention layer that attends to one or more entries in the input key-value pairs.
-func CMultiheadAttentionLayerFrom(ptr unsafe.Pointer) CMultiheadAttentionLayer {
-	return CMultiheadAttentionLayer{
-		CLayer: CLayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CMultiheadAttentionLayer */
 // Alloc allocates a new instance without initialization.
 func (cc _CMultiheadAttentionLayerClass) Alloc() CMultiheadAttentionLayer {
 	rv := objc.Send[CMultiheadAttentionLayer](objc.ID(cc.class), objc.Sel("alloc"))
@@ -74,7 +66,6 @@ func (cc _CMultiheadAttentionLayerClass) Alloc() CMultiheadAttentionLayer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CMultiheadAttentionLayerClass) New() CMultiheadAttentionLayer {
 	rv := objc.Send[CMultiheadAttentionLayer](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,121 +88,140 @@ func (c_ CMultiheadAttentionLayer) Autorelease() CMultiheadAttentionLayer {
 func NewCMultiheadAttentionLayer() CMultiheadAttentionLayer {
 	return getCMultiheadAttentionLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The array of attention biases you use for key and value.
+/* debug [class_struct]: Struct for CMultiheadAttentionLayer */
+// A multihead, scaled dot-product attention layer that attends to one or more entries in the input key-value pairs.
+//
+// The dimensions of projections are as follows: ``
+
+
+// A multihead, scaled dot-product attention layer that attends to one or more entries in the input key-value pairs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/attentionbiases
-func (c_ CMultiheadAttentionLayer) AttentionBiases() IMLCTensor {
-	rv := objc.Send[CTensor](c_.ID, objc.Sel("attentionBiases"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer
+type CMultiheadAttentionLayer struct {
+	CLayer
+}
+
+// CMultiheadAttentionLayerFrom constructs a [CMultiheadAttentionLayer] from an unsafe.Pointer.
+//
+// A multihead, scaled dot-product attention layer that attends to one or more entries in the input key-value pairs.
+func CMultiheadAttentionLayerFrom(ptr unsafe.Pointer) CMultiheadAttentionLayer {
+	return CMultiheadAttentionLayer{
+		CLayer: CLayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CMultiheadAttentionLayer */
+
+// Creates a multi-head attention layer with the descriptor, weights, and biases you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer/init(descriptor:weights:biases:attentionBiases:)
+func NewCMultiheadAttentionLayerWithDescriptorWeightsBiasesAttentionBiases(descriptor IMLCMultiheadAttentionDescriptor, weights []CTensor, biases []CTensor, attentionBiases []CTensor) CMultiheadAttentionLayer {
+	rv := objc.Send[CMultiheadAttentionLayer](objc.ID(getCMultiheadAttentionLayerClass().class), objc.Sel("layerWithDescriptor:weights:biases:attentionBiases:"), descriptor, weights, biases, attentionBiases)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCMultiheadAttentionLayerWithDescriptorWeightsBiasesAttentionBiases */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CMultiheadAttentionLayer */
+
+// Creates a multi-head attention layer with the descriptor, weights, and biases you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer/init(descriptor:weights:biases:attentionBiases:)
+func (cc _CMultiheadAttentionLayerClass) LayerWithDescriptorWeightsBiasesAttentionBiases(descriptor IMLCMultiheadAttentionDescriptor, weights []CTensor, biases []CTensor, attentionBiases []CTensor) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithDescriptor:weights:biases:attentionBiases:"), descriptor, weights, biases, attentionBiases)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithDescriptorWeightsBiasesAttentionBiases) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CMultiheadAttentionLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CMultiheadAttentionLayer */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CMultiheadAttentionLayer */
 
 // The array of attention biases you use for key and value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/attentionbiases
-func (c_ CMultiheadAttentionLayer) SetAttentionBiases(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAttentionBiases:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer/attentionBiases
+func (c_ CMultiheadAttentionLayer) AttentionBiases() []CTensor {
+	rv := objc.Send[[]CTensor](c_.ID, objc.Sel("attentionBiases"))
+	return rv
+}/* debug [instance_properties/getter]: attentionBiases */
 
 
 // The array of biases you use for query, key, value, and output projections.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biases
-func (c_ CMultiheadAttentionLayer) Biases() IMLCTensor {
-	rv := objc.Send[CTensor](c_.ID, objc.Sel("biases"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer/biases
+func (c_ CMultiheadAttentionLayer) Biases() []CTensor {
+	rv := objc.Send[[]CTensor](c_.ID, objc.Sel("biases"))
 	return rv
-}
-
-
-// The array of biases you use for query, key, value, and output projections.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biases
-func (c_ CMultiheadAttentionLayer) SetBiases(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBiases:"), value)
-}
+}/* debug [instance_properties/getter]: biases */
 
 
 // The array of biases tensor parameters you use for optimizer updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biasesparameters
-func (c_ CMultiheadAttentionLayer) BiasesParameters() objc.IObject /* cross-framework: CTensorParameter */ {
-	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("biasesParameters"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer/biasesParameters
+func (c_ CMultiheadAttentionLayer) BiasesParameters() []CTensorParameter {
+	rv := objc.Send[[]CTensorParameter](c_.ID, objc.Sel("biasesParameters"))
 	return rv
-}
-
-
-// The array of biases tensor parameters you use for optimizer updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/biasesparameters
-func (c_ CMultiheadAttentionLayer) SetBiasesParameters(value objc.IObject /* cross-framework: CTensorParameter */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBiasesParameters:"), value)
-}
+}/* debug [instance_properties/getter]: biasesParameters */
 
 
 // The configuration object you use to create the multi-head attention layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/descriptor
-func (c_ CMultiheadAttentionLayer) Descriptor() CMultiheadAttentionDescriptor /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer/descriptor
+func (c_ CMultiheadAttentionLayer) Descriptor() IMLCMultiheadAttentionDescriptor {
 	rv := objc.Send[CMultiheadAttentionDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
-}
-
-
-// The configuration object you use to create the multi-head attention layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/descriptor
-func (c_ CMultiheadAttentionLayer) SetDescriptor(value CMultiheadAttentionDescriptor /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
-}
+}/* debug [instance_properties/getter]: descriptor */
 
 
 // The array of weights you use for query, key, value, and output projections.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weights
-func (c_ CMultiheadAttentionLayer) Weights() IMLCTensor {
-	rv := objc.Send[CTensor](c_.ID, objc.Sel("weights"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer/weights
+func (c_ CMultiheadAttentionLayer) Weights() []CTensor {
+	rv := objc.Send[[]CTensor](c_.ID, objc.Sel("weights"))
 	return rv
-}
-
-
-// The array of weights you use for query, key, value, and output projections.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weights
-func (c_ CMultiheadAttentionLayer) SetWeights(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
-}
+}/* debug [instance_properties/getter]: weights */
 
 
 // The array of weights tensor parameters you use for optimizer updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weightsparameters
-func (c_ CMultiheadAttentionLayer) WeightsParameters() objc.IObject /* cross-framework: CTensorParameter */ {
-	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("weightsParameters"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCMultiheadAttentionLayer/weightsParameters
+func (c_ CMultiheadAttentionLayer) WeightsParameters() []CTensorParameter {
+	rv := objc.Send[[]CTensorParameter](c_.ID, objc.Sel("weightsParameters"))
 	return rv
-}
+}/* debug [instance_properties/getter]: weightsParameters */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The array of weights tensor parameters you use for optimizer updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcmultiheadattentionlayer/weightsparameters
-func (c_ CMultiheadAttentionLayer) SetWeightsParameters(value objc.IObject /* cross-framework: CTensorParameter */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameters:"), value)
-}
-
+/* debug [class.gen.go]: End class MLCMultiheadAttentionLayer */
 
 

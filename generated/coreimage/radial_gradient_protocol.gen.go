@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // RadialGradientProtocol is the CIRadialGradient protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIRadialGradient.
 var RadialGradientProtocol *objc.Protocol
 
 func init() {
 	RadialGradientProtocol = objc.GetProtocol("CIRadialGradient")
 }
+

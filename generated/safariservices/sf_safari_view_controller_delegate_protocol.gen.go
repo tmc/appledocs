@@ -17,3 +17,4 @@ var SFSafariViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	SFSafariViewControllerDelegateProtocol = objc.GetProtocol("SFSafariViewControllerDelegate")
 }
+

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSScanner */
+
+
+/* debug [class_header]: Header for NSScanner */
 // The class instance for the [Scanner] class.
 var (
 	ScannerClass     _ScannerClass
@@ -26,10 +30,16 @@ func getScannerClass() _ScannerClass {
 type _ScannerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Scanner */
 // An interface definition for the [Scanner] class.
 type IScanner interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Scanner */
 	// properties:
 	CaseSensitive() bool
 	SetCaseSensitive(value bool)
@@ -42,39 +52,29 @@ type IScanner interface {
 	SetScanLocation(value uint)
 	String() IString
 	NSNotFound() int
-	CurrentIndex() unsafe.Pointer
-	SetCurrentIndex(value unsafe.Pointer)
+	CurrentIndex() objectivec.IObject
+	SetCurrentIndex(value objectivec.IObject)
 	IsAtEnd() bool
 	SetIsAtEnd(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Scanner */
 	// methods:
-	ScanHexDouble(result unsafe.Pointer) bool
-	ScanHexFloat(result unsafe.Pointer) bool
-	ScanHexLongLong(result unsafe.Pointer) bool
+	ScanHexDouble(result objectivec.IObject) bool
+	ScanHexFloat(result objectivec.IObject) bool
+	ScanHexLongLong(result objectivec.IObject) bool
 	ScanInteger(result int) bool
-	ScanLongLong(result unsafe.Pointer) bool
-	ScanUnsignedLongLong(result unsafe.Pointer) bool
+	ScanLongLong(result objectivec.IObject) bool
+	ScanUnsignedLongLong(result objectivec.IObject) bool
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
-//
-// A object interprets and converts the characters of a into number and string values. You assign the scanner’s string when you create the scanner, and the scanner progresses through the characters of that string from beginning to end as you request items. Because of the nature of class clusters, a scanner object isn’t an actual instance of the class, but is one of its private subclasses. Although a scanner object’s class is private, its interface is public, as declared by this abstract superclass, . The objects you create using this class are referred to as scanner objects (and when no confusion will result, merely as scanners). To set a object to ignore a set of characters as it scans the string, use the property. Characters in the skip set are skipped over before the target is scanned. The default set of characters to skip is the whitespace and newline character set. To retrieve the unscanned remainder of the string, use .
+/* debug [class_interface]: End interface */
 
 
-// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner
-type Scanner struct {
-	objectivec.Object
-}
 
-// ScannerFrom constructs a [Scanner] from an unsafe.Pointer.
-//
-// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
-func ScannerFrom(ptr unsafe.Pointer) Scanner {
-	return Scanner{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Scanner */
 // Alloc allocates a new instance without initialization.
 func (sc _ScannerClass) Alloc() Scanner {
 	rv := objc.Send[Scanner](objc.ID(sc.class), objc.Sel("alloc"))
@@ -82,7 +82,6 @@ func (sc _ScannerClass) Alloc() Scanner {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScannerClass) New() Scanner {
 	rv := objc.Send[Scanner](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -105,8 +104,35 @@ func (s_ Scanner) Autorelease() Scanner {
 func NewScanner() Scanner {
 	return getScannerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Scanner */
+// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
+//
+// A object interprets and converts the characters of a into number and string values. You assign the scanner’s string when you create the scanner, and the scanner progresses through the characters of that string from beginning to end as you request items. Because of the nature of class clusters, a scanner object isn’t an actual instance of the class, but is one of its private subclasses. Although a scanner object’s class is private, its interface is public, as declared by this abstract superclass, . The objects you create using this class are referred to as scanner objects (and when no confusion will result, merely as scanners). To set a object to ignore a set of characters as it scans the string, use the property. Characters in the skip set are skipped over before the target is scanned. The default set of characters to skip is the whitespace and newline character set. To retrieve the unscanned remainder of the string, use .
+
+
+// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner
+type Scanner struct {
+	objectivec.Object
+}
+
+// ScannerFrom constructs a [Scanner] from an unsafe.Pointer.
+//
+// A string parser that scans for substrings or characters in a character set, and for numeric values from decimal, hexadecimal, and floating-point representations.
+func ScannerFrom(ptr unsafe.Pointer) Scanner {
+	return Scanner{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Scanner */
 
 // Returns an object initialized to scan a given string.
 //
@@ -117,18 +143,22 @@ func NewScannerWithString(string_ IString) Scanner {
 	rv := objc.Send[Scanner](instance.ID, objc.Sel("initWithString:"), string_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewScannerWithString */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for Scanner */
 
 // Returns an object that scans a given string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScanner/scannerWithString:
-func (sc _ScannerClass) ScannerWithString(string_ IString) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("scannerWithString:"), string_)
+func (sc _ScannerClass) ScannerWithString(string_ IString) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("scannerWithString:"), string_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ScannerWithString) */
 
 
 // Returns an object that scans a given string according to the user’s default locale.
@@ -138,37 +168,47 @@ func (sc _ScannerClass) ScannerWithString(string_ IString) unsafe.Pointer {
 func (sc _ScannerClass) LocalizedScannerWithString(string_ IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("localizedScannerWithString:"), string_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedScannerWithString) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Scanner */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Scanner */
 
 // Scans for a double value from a hexadecimal representation, returning a found value by reference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexDouble(_:)
-func (s_ Scanner) ScanHexDouble(result unsafe.Pointer) bool {
+func (s_ Scanner) ScanHexDouble(result objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexDouble:"), result)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanHexDouble */
 
 
 // Scans for a double value from a hexadecimal representation, returning a found value by reference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexFloat(_:)
-func (s_ Scanner) ScanHexFloat(result unsafe.Pointer) bool {
+func (s_ Scanner) ScanHexFloat(result objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexFloat:"), result)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanHexFloat */
 
 
 // Scans for a long long value from a hexadecimal representation, returning a found value by reference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanHexInt64(_:)
-func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool {
+func (s_ Scanner) ScanHexLongLong(result objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanHexLongLong:"), result)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanHexLongLong */
 
 
 // Scans for an NSInteger value from a decimal representation, returning a found value by reference
@@ -178,28 +218,33 @@ func (s_ Scanner) ScanHexLongLong(result unsafe.Pointer) bool {
 func (s_ Scanner) ScanInteger(result int) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanInteger:"), result)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanInteger */
 
 
 // Scans for a long long value from a decimal representation, returning a found value by reference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanInt64(_:)
-func (s_ Scanner) ScanLongLong(result unsafe.Pointer) bool {
+func (s_ Scanner) ScanLongLong(result objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanLongLong:"), result)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanLongLong */
 
 
 // Scans for an unsigned long long value from a decimal representation, returning a found value by reference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanUnsignedLongLong(_:)
-func (s_ Scanner) ScanUnsignedLongLong(result unsafe.Pointer) bool {
+func (s_ Scanner) ScanUnsignedLongLong(result objectivec.IObject) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("scanUnsignedLongLong:"), result)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanUnsignedLongLong */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Scanner */
 
 // Flag that indicates whether the receiver distinguishes case in the characters it scans.
 //
@@ -208,7 +253,7 @@ func (s_ Scanner) ScanUnsignedLongLong(result unsafe.Pointer) bool {
 func (s_ Scanner) CaseSensitive() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("caseSensitive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: caseSensitive */
 
 
 // Flag that indicates whether the receiver distinguishes case in the characters it scans.
@@ -217,7 +262,7 @@ func (s_ Scanner) CaseSensitive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/caseSensitive
 func (s_ Scanner) SetCaseSensitive(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCaseSensitive:"), value)
-}
+}/* debug [instance_properties/setter]: caseSensitive */
 
 
 // Character set containing the characters the scanner ignores when looking for a scannable element.
@@ -227,7 +272,7 @@ func (s_ Scanner) SetCaseSensitive(value bool) {
 func (s_ Scanner) CharactersToBeSkipped() ICharacterSet {
 	rv := objc.Send[CharacterSet](s_.ID, objc.Sel("charactersToBeSkipped"))
 	return rv
-}
+}/* debug [instance_properties/getter]: charactersToBeSkipped */
 
 
 // Character set containing the characters the scanner ignores when looking for a scannable element.
@@ -236,7 +281,7 @@ func (s_ Scanner) CharactersToBeSkipped() ICharacterSet {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/charactersToBeSkipped
 func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCharactersToBeSkipped:"), value)
-}
+}/* debug [instance_properties/setter]: charactersToBeSkipped */
 
 
 // Flag that indicates whether the receiver has exhausted all significant characters.
@@ -246,7 +291,7 @@ func (s_ Scanner) SetCharactersToBeSkipped(value ICharacterSet) {
 func (s_ Scanner) AtEnd() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("atEnd"))
 	return rv
-}
+}/* debug [instance_properties/getter]: atEnd */
 
 
 // The locale to use when scanning.
@@ -256,7 +301,7 @@ func (s_ Scanner) AtEnd() bool {
 func (s_ Scanner) Locale() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("locale"))
 	return rv
-}
+}/* debug [instance_properties/getter]: locale */
 
 
 // The locale to use when scanning.
@@ -265,7 +310,7 @@ func (s_ Scanner) Locale() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/locale
 func (s_ Scanner) SetLocale(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLocale:"), value)
-}
+}/* debug [instance_properties/setter]: locale */
 
 
 // The character position at which the receiver will begin its next scanning operation.
@@ -275,7 +320,7 @@ func (s_ Scanner) SetLocale(value objc.ID) {
 func (s_ Scanner) ScanLocation() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("scanLocation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scanLocation */
 
 
 // The character position at which the receiver will begin its next scanning operation.
@@ -284,7 +329,7 @@ func (s_ Scanner) ScanLocation() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Scanner/scanLocation
 func (s_ Scanner) SetScanLocation(value uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScanLocation:"), value)
-}
+}/* debug [instance_properties/setter]: scanLocation */
 
 
 // The string the scanner will scan.
@@ -294,7 +339,7 @@ func (s_ Scanner) SetScanLocation(value uint) {
 func (s_ Scanner) String() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("string"))
 	return rv
-}
+}/* debug [instance_properties/getter]: string */
 
 
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
@@ -304,22 +349,22 @@ func (s_ Scanner) String() IString {
 func (s_ Scanner) NSNotFound() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("NSNotFound"))
 	return rv
-}
+}/* debug [instance_properties/getter]: NSNotFound */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) CurrentIndex() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentIndex"))
+func (s_ Scanner) CurrentIndex() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("currentIndex"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentIndex */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/currentindex
-func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
+func (s_ Scanner) SetCurrentIndex(value objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentIndex:"), value)
-}
+}/* debug [instance_properties/setter]: currentIndex */
 
 
 // Flag that indicates whether the receiver has exhausted all significant characters.
@@ -329,7 +374,7 @@ func (s_ Scanner) SetCurrentIndex(value unsafe.Pointer) {
 func (s_ Scanner) IsAtEnd() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAtEnd"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAtEnd */
 
 
 // Flag that indicates whether the receiver has exhausted all significant characters.
@@ -338,6 +383,11 @@ func (s_ Scanner) IsAtEnd() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/scanner/isatend
 func (s_ Scanner) SetIsAtEnd(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAtEnd:"), value)
-}
+}/* debug [instance_properties/setter]: isAtEnd */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSScanner */
 
 

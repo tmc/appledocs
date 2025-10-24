@@ -15,3 +15,4 @@ var comboBoxWillDismissProtocol *objc.Protocol
 func init() {
 	comboBoxWillDismissProtocol = objc.GetProtocol("comboBoxWillDismiss:")
 }
+

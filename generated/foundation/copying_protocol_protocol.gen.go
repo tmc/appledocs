@@ -23,5 +23,5 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSCopying
 type PCopying interface {
 	// Required methods
-	CopyWithZone(zone Zone /* not a class type */) objc.ID
+	CopyWithZone(zone Zone /* not a class type */) objc.ID/* debug [protocol_interface/required_method]: CopyWithZone */
 }

@@ -2,12 +2,30 @@
 
 package cfnetwork
 
+/* debug [enums.gen.go]: Generating 9 enums for CFNetwork */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum CFHostInfoType (3 cases) */
 // CFHostInfoType - Values indicating the type of data that is to be resolved or the type of data that was resolved.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostInfoType
 type CFHostInfoType uint
 
+const (
+	// kCFHostAddresses - Specifies that addresses are to be resolved or that addresses were resolved.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostInfoType/addresses
+	kCFHostAddresses CFHostInfoType = 0
+	// kCFHostNames - Specifies that names are to be resolved or that names were resolved.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostInfoType/names
+	kCFHostNames CFHostInfoType = 0
+	// kCFHostReachability - Specifies that reachability information is to be resolved or that reachability information was resolved.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostInfoType/reachability
+	kCFHostReachability CFHostInfoType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CFNetDiagnosticStatusValues (5 cases) */
 // CFNetDiagnosticStatusValues - Constants for diagnostic status values.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticStatusValues
@@ -36,26 +54,106 @@ const (
 	kCFNetDiagnosticNoErr CFNetDiagnosticStatusValues = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFNetServiceBrowserFlags (5 cases) */
 // CFNetServiceBrowserFlags - Flags that the system passes to net service browser callbacks.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserFlags
 type CFNetServiceBrowserFlags uint
 
+const (
+	// kCFNetServiceFlagIsDefault - Specifies whether the resulting domain is the default registration or browse domain.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserFlags/isDefault
+	kCFNetServiceFlagIsDefault CFNetServiceBrowserFlags = 0
+	// kCFNetServiceFlagIsDomain - Specifies whether the result pertains to a search for domains or services.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserFlags/isDomain
+	kCFNetServiceFlagIsDomain CFNetServiceBrowserFlags = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserFlags/isRegistrationDomain
+	kCFNetServiceFlagIsRegistrationDomain CFNetServiceBrowserFlags = 0
+	// kCFNetServiceFlagMoreComing - A hint that the system will call the client’s callback function again soon.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserFlags/moreComing
+	kCFNetServiceFlagMoreComing CFNetServiceBrowserFlags = 0
+	// kCFNetServiceFlagRemove - Specifies whether the client should remove the result instead of adding it.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserFlags/remove
+	kCFNetServiceFlagRemove CFNetServiceBrowserFlags = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CFNetServiceMonitorType (1 cases) */
 // CFNetServiceMonitorType - Record type specifier used to tell a service monitor the type of record changes to watch for.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorType
 type CFNetServiceMonitorType uint
 
+const (
+	// kCFNetServiceMonitorTXT - Watch for TXT record changes.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorType/TXT
+	kCFNetServiceMonitorTXT CFNetServiceMonitorType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CFNetServiceRegisterFlags (1 cases) */
 // CFNetServiceRegisterFlags - Options to use when registering a service on the network.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceRegisterFlags
 type CFNetServiceRegisterFlags uint
 
+const (
+	// kCFNetServiceFlagNoAutoRename - Causes registrations to fail if a name conflict occurs.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceRegisterFlags/noAutoRename
+	kCFNetServiceFlagNoAutoRename CFNetServiceRegisterFlags = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CFNetServicesError (9 cases) */
 // CFNetServicesError - Error codes that may be returned by CFNetServices functions or passed to CFNetServices callback functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError
 type CFNetServicesError uint
 
+const (
+	// kCFNetServicesErrorBadArgument - A required argument was not provided.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/badArgument
+	kCFNetServicesErrorBadArgument CFNetServicesError = 0
+	// kCFNetServicesErrorCancel - The search or service was canceled.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/cancel
+	kCFNetServicesErrorCancel CFNetServicesError = 0
+	// kCFNetServicesErrorCollision - An attempt was made to use a name that is already in use.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/collision
+	kCFNetServicesErrorCollision CFNetServicesError = 0
+	// kCFNetServicesErrorInProgress - A search is already in progress.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/inProgress
+	kCFNetServicesErrorInProgress CFNetServicesError = 0
+	// kCFNetServicesErrorInvalid - Invalid data was passed to a CFNetServices function.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/invalid
+	kCFNetServicesErrorInvalid CFNetServicesError = 0
+	// kCFNetServicesErrorMissingRequiredConfiguration - A required configuration for local network access is missing.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/missingRequiredConfiguration
+	kCFNetServicesErrorMissingRequiredConfiguration CFNetServicesError = 0
+	// kCFNetServicesErrorNotFound - Not used.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/notFound
+	kCFNetServicesErrorNotFound CFNetServicesError = 0
+	// kCFNetServicesErrorTimeout - Resolution failed because the timeout was reached.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/timeout
+	kCFNetServicesErrorTimeout CFNetServicesError = 0
+	// kCFNetServicesErrorUnknown - An unknown CFNetService error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServicesError/unknown
+	kCFNetServicesErrorUnknown CFNetServicesError = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CFNetworkErrors (84 cases) */
 // CFNetworkErrors - This enumeration contains error codes returned under the error domain 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors
@@ -106,6 +204,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfErrorPACFileError
 	kCFErrorPACFileError CFNetworkErrors = 0
+	// kCFFTPErrorUnexpectedStatusCode - The server returned an unexpected status code.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfftpErrorUnexpectedStatusCode
+	kCFFTPErrorUnexpectedStatusCode CFNetworkErrors = 0
 	// kCFHostErrorHostNotFound - The specified host wasn’t found.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfHostErrorHostNotFound
@@ -114,6 +216,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfHostErrorUnknown
 	kCFHostErrorUnknown CFNetworkErrors = 0
+	// kCFHTTPCookieCannotParseCookieFile - The cookie file can’t be parsed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfhttpCookieCannotParseCookieFile
+	kCFHTTPCookieCannotParseCookieFile CFNetworkErrors = 0
 	// kCFNetServiceErrorBadArgument - A required argument either wasn’t provided or wasn’t valid.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfNetServiceErrorBadArgument
@@ -150,18 +256,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfNetServiceErrorUnknown
 	kCFNetServiceErrorUnknown CFNetworkErrors = 0
-	// kCFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod - The HTTPS proxy returned an unexpected status code, such as a   redirect.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod
-	kCFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod CFNetworkErrors = 0
-	// kCFFTPErrorUnexpectedStatusCode - The server returned an unexpected status code.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfftpErrorUnexpectedStatusCode
-	kCFFTPErrorUnexpectedStatusCode CFNetworkErrors = 0
-	// kCFHTTPCookieCannotParseCookieFile - The cookie file can’t be parsed.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfhttpCookieCannotParseCookieFile
-	kCFHTTPCookieCannotParseCookieFile CFNetworkErrors = 0
 	// kCFSOCKS4ErrorIdConflict - The server rejected the request because the client program and the   daemon reported different user IDs.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfsocks4ErrorIdConflict
@@ -206,6 +300,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfsocksErrorUnsupportedServerVersion
 	kCFSOCKSErrorUnsupportedServerVersion CFNetworkErrors = 0
+	// kCFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod - The HTTPS proxy returned an unexpected status code, such as a   redirect.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod
+	kCFStreamErrorHTTPSProxyFailureUnexpectedResponseToCONNECTMethod CFNetworkErrors = 0
 	// kCFURLErrorAppTransportSecurityRequiresSecureConnection - The connection failed because the App Transport Security configuration requires a secure connection.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfurlErrorAppTransportSecurityRequiresSecureConnection
@@ -290,10 +388,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfurlErrorClientCertificateRequired
 	kCFURLErrorClientCertificateRequired CFNetworkErrors = 0
-	// kCFURLErrorDNSLookupFailed - The connection failed because the DNS lookup failed.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfurlErrorDNSLookupFailed
-	kCFURLErrorDNSLookupFailed CFNetworkErrors = 0
 	// kCFURLErrorDataLengthExceedsMaximum - The file operation failed because the file is too large.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfurlErrorDataLengthExceedsMaximum
@@ -302,6 +396,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfurlErrorDataNotAllowed
 	kCFURLErrorDataNotAllowed CFNetworkErrors = 0
+	// kCFURLErrorDNSLookupFailed - The connection failed because the DNS lookup failed.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfurlErrorDNSLookupFailed
+	kCFURLErrorDNSLookupFailed CFNetworkErrors = 0
 	// kCFURLErrorDownloadDecodingFailedMidStream - The download failed because decoding of the downloaded data failed midstream.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetworkErrors/cfurlErrorDownloadDecodingFailedMidStream
@@ -400,6 +498,7 @@ const (
 	kCFURLErrorZeroByteResource CFNetworkErrors = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStreamErrorHTTP (3 cases) */
 // CFStreamErrorHTTP - Error codes that a read stream for an HTTP request may return.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFStreamErrorHTTP
@@ -420,6 +519,7 @@ const (
 	kCFStreamErrorHTTPRedirectionLoop CFStreamErrorHTTP = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CFStreamErrorHTTPAuthentication (3 cases) */
 // CFStreamErrorHTTPAuthentication - Authentication error codes that may be returned when trying to apply authentication to a request.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFStreamErrorHTTPAuthentication

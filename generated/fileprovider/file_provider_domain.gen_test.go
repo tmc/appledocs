@@ -18,13 +18,14 @@ func ExampleNewFileProviderDomainWithIdentifierDisplayName() {
 	)
 	// Output:
 }
+
 // ExampleNewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage demonstrates how to create a FileProviderDomain instance using NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage.
 // Returns a newly instantiated domain.
 func ExampleNewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage() {
 	_ = fileprovider.NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(
 		fileprovider.FileProviderDomainIdentifier{}, // identifier FileProviderDomainIdentifier
 		"displayName", // displayName string
-		"/tmp/test", // pathRelativeToDocumentStorage string
+		"/tmp/test",   // pathRelativeToDocumentStorage string
 	)
 	// Output:
 }

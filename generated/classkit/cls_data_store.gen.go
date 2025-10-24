@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CLSDataStore */
+
+
+/* debug [class_header]: Header for CLSDataStore */
 // The class instance for the [SDataStore] class.
 var (
 	SDataStoreClass     _SDataStoreClass
@@ -27,45 +31,41 @@ func getSDataStoreClass() _SDataStoreClass {
 type _SDataStoreClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SDataStore */
 // An interface definition for the [SDataStore] class.
 type ISDataStore interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for SDataStore */
 	// properties:
 	ActiveContext() ICLSContext
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	MainAppContext() ICLSContext
 	RunningActivity() ICLSActivity
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SDataStore */
 	// methods:
 	CompleteAllAssignedActivitiesMatching(contextPath []string)
-	ContextsMatchingPredicateCompletion(predicate objc.IObject /* cross-framework: Predicate */, completion unsafe.Pointer)
+	ContextsMatchingPredicateCompletion(predicate foundation.Predicate, completion unsafe.Pointer)
 	ContextsMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer)
 	FetchActivityForURLCompletion(url objc.IObject /* cross-framework: NSURL */, completion unsafe.Pointer)
 	RemoveContext(context ICLSContext)
 	SaveWithCompletion(completion unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A container for all the ClassKit data in your app.
-//
-// Use the ClassKit data store to build and access contexts ( instances) that you use to advertise your app’s assignable content. Contexts in turn provide access to activities ( instances) and activity items ( , , and instances) that you use to record progress through assignments. You don’t instantiate a data store yourself. Instead, use the single data store instance throughout your app. The data store provides access to the app’s one and only main context through the property. This property acts as the root context in your context hierarchy that you can use as a starting point when searching for descendant contexts. To build contexts, you adopt the protocol in one of your classes, typically one that exists for the lifetime of your app, and assign an instance of that class as the shared data store’s property. Then, when the data store needs a context that it’s never seen before, it asks your delegate to build it. After you make changes to any context, activity, or activity item, call the data store’s method to commit the changes, and propagate them through the network.
+/* debug [class_interface]: End interface */
 
 
-// A container for all the ClassKit data in your app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore
-type SDataStore struct {
-	objectivec.Object
-}
 
-// SDataStoreFrom constructs a [SDataStore] from an unsafe.Pointer.
-//
-// A container for all the ClassKit data in your app.
-func SDataStoreFrom(ptr unsafe.Pointer) SDataStore {
-	return SDataStore{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SDataStore */
 // Alloc allocates a new instance without initialization.
 func (sc _SDataStoreClass) Alloc() SDataStore {
 	rv := objc.Send[SDataStore](objc.ID(sc.class), objc.Sel("alloc"))
@@ -73,7 +73,6 @@ func (sc _SDataStoreClass) Alloc() SDataStore {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SDataStoreClass) New() SDataStore {
 	rv := objc.Send[SDataStore](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -96,8 +95,44 @@ func (s_ SDataStore) Autorelease() SDataStore {
 func NewSDataStore() SDataStore {
 	return getSDataStoreClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SDataStore */
+// A container for all the ClassKit data in your app.
+//
+// Use the ClassKit data store to build and access contexts ( instances) that you use to advertise your app’s assignable content. Contexts in turn provide access to activities ( instances) and activity items ( , , and instances) that you use to record progress through assignments. You don’t instantiate a data store yourself. Instead, use the single data store instance throughout your app. The data store provides access to the app’s one and only main context through the property. This property acts as the root context in your context hierarchy that you can use as a starting point when searching for descendant contexts. To build contexts, you adopt the protocol in one of your classes, typically one that exists for the lifetime of your app, and assign an instance of that class as the shared data store’s property. Then, when the data store needs a context that it’s never seen before, it asks your delegate to build it. After you make changes to any context, activity, or activity item, call the data store’s method to commit the changes, and propagate them through the network.
+
+
+// A container for all the ClassKit data in your app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore
+type SDataStore struct {
+	objectivec.Object
+}
+
+// SDataStoreFrom constructs a [SDataStore] from an unsafe.Pointer.
+//
+// A container for all the ClassKit data in your app.
+func SDataStoreFrom(ptr unsafe.Pointer) SDataStore {
+	return SDataStore{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SDataStore *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SDataStore */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SDataStore */
 
 // The shared data store object.
 //
@@ -106,7 +141,12 @@ func NewSDataStore() SDataStore {
 func (sc _SDataStoreClass) Shared() SDataStore {
 	rv := objc.Send[SDataStore](objc.ID(sc.class), objc.Sel("shared"))
 	return rv
-}
+}/* debug [class_properties_class/property]: shared */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SDataStore */
 
 // Marks all of the assigned and active activities for the given context path as complete.
 //
@@ -114,16 +154,16 @@ func (sc _SDataStoreClass) Shared() SDataStore {
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/completeAllAssignedActivities(matching:)
 func (s_ SDataStore) CompleteAllAssignedActivitiesMatching(contextPath []string) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("completeAllAssignedActivitiesMatching:"), contextPath)
-}
+}/* debug [instance_methods/method]: CompleteAllAssignedActivitiesMatching */
 
 
 // Fetches all the contexts matching a predicate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/contexts(matching:completion:)
-func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate objc.IObject /* cross-framework: Predicate */, completion unsafe.Pointer) {
+func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate foundation.Predicate, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("contextsMatchingPredicate:completion:"), predicate, completion)
-}
+}/* debug [instance_methods/method]: ContextsMatchingPredicateCompletion */
 
 
 // Fetches all the contexts along a given identifier path.
@@ -132,7 +172,7 @@ func (s_ SDataStore) ContextsMatchingPredicateCompletion(predicate objc.IObject 
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/contexts(matchingIdentifierPath:completion:)
 func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath []string, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("contextsMatchingIdentifierPath:completion:"), identifierPath, completion)
-}
+}/* debug [instance_methods/method]: ContextsMatchingIdentifierPathCompletion */
 
 
 // Fetches an activity for a given document so you can record progress on the associated task.
@@ -141,7 +181,7 @@ func (s_ SDataStore) ContextsMatchingIdentifierPathCompletion(identifierPath []s
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/fetchActivity(for:completion:)
 func (s_ SDataStore) FetchActivityForURLCompletion(url objc.IObject /* cross-framework: NSURL */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("fetchActivityForURL:completion:"), url, completion)
-}
+}/* debug [instance_methods/method]: FetchActivityForURLCompletion */
 
 
 // Marks a context for removal.
@@ -150,7 +190,7 @@ func (s_ SDataStore) FetchActivityForURLCompletion(url objc.IObject /* cross-fra
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/remove(_:)
 func (s_ SDataStore) RemoveContext(context ICLSContext) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("removeContext:"), context)
-}
+}/* debug [instance_methods/method]: RemoveContext */
 
 
 // Saves any changes you’ve made in the data store.
@@ -159,8 +199,13 @@ func (s_ SDataStore) RemoveContext(context ICLSContext) {
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/save(completion:)
 func (s_ SDataStore) SaveWithCompletion(completion unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("saveWithCompletion:"), completion)
-}
+}/* debug [instance_methods/method]: SaveWithCompletion */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SDataStore */
 
 // The currently active context.
 //
@@ -169,26 +214,26 @@ func (s_ SDataStore) SaveWithCompletion(completion unsafe.Pointer) {
 func (s_ SDataStore) ActiveContext() ICLSContext {
 	rv := objc.Send[SContext](s_.ID, objc.Sel("activeContext"))
 	return rv
-}
+}/* debug [instance_properties/getter]: activeContext */
 
 
 // The data store delegate instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/delegate
-func (s_ SDataStore) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+func (s_ SDataStore) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // The data store delegate instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ClassKit/CLSDataStore/delegate
-func (s_ SDataStore) SetDelegate(value objc.ID) {
+func (s_ SDataStore) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
+}/* debug [instance_properties/setter]: delegate */
 
 
 // The app’s top-level context.
@@ -198,7 +243,7 @@ func (s_ SDataStore) SetDelegate(value objc.ID) {
 func (s_ SDataStore) MainAppContext() ICLSContext {
 	rv := objc.Send[SContext](s_.ID, objc.Sel("mainAppContext"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mainAppContext */
 
 
 // The currently running activity within the currently active context.
@@ -208,7 +253,7 @@ func (s_ SDataStore) MainAppContext() ICLSContext {
 func (s_ SDataStore) RunningActivity() ICLSActivity {
 	rv := objc.Send[SActivity](s_.ID, objc.Sel("runningActivity"))
 	return rv
-}
+}/* debug [instance_properties/getter]: runningActivity */
 
 
 // The shared data store object.
@@ -218,7 +263,12 @@ func (s_ SDataStore) RunningActivity() ICLSActivity {
 func (s_ SDataStore) Shared() ICLSDataStore {
 	rv := objc.Send[SDataStore](s_.ID, objc.Sel("shared"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shared */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CLSDataStore */
 
 
 

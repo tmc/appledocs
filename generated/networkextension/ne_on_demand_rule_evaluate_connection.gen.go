@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NEOnDemandRuleEvaluateConnection */
+
+
+/* debug [class_header]: Header for NEOnDemandRuleEvaluateConnection */
 // The class instance for the [NEOnDemandRuleEvaluateConnection] class.
 var (
 	NEOnDemandRuleEvaluateConnectionClass     _NEOnDemandRuleEvaluateConnectionClass
@@ -25,32 +29,32 @@ func getNEOnDemandRuleEvaluateConnectionClass() _NEOnDemandRuleEvaluateConnectio
 type _NEOnDemandRuleEvaluateConnectionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEOnDemandRuleEvaluateConnection */
 // An interface definition for the [NEOnDemandRuleEvaluateConnection] class.
 type INEOnDemandRuleEvaluateConnection interface {
 	INEOnDemandRule
-	ConnectionRules() unsafe.Pointer
-	SetConnectionRules(value unsafe.Pointer)
-}
+	
+/* debug [class_interface_properties]: Properties for NEOnDemandRuleEvaluateConnection */
+	// properties:
+	ConnectionRules() []NEEvaluateConnectionRule
+	SetConnectionRules(value []NEEvaluateConnectionRule)
+/* debug [class_interface_properties]: End properties */
 
-// A VPN On Demand rule that evaluate the app’s connection to determine whether to run its action.
-//
-// When rules of this class match, the properties of the network connection being established are matched against a set of connection rules. The action of the matched rule (if any) is used to determine whether or not the VPN will be started.
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRuleEvaluateConnection
-type NEOnDemandRuleEvaluateConnection struct {
-	NEOnDemandRule
-}
+	
+/* debug [class_interface_methods]: Methods for NEOnDemandRuleEvaluateConnection */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// NEOnDemandRuleEvaluateConnectionFrom constructs a [NEOnDemandRuleEvaluateConnection] from an unsafe.Pointer.
-//
-// A VPN On Demand rule that evaluate the app’s connection to determine whether to run its action.
-func NEOnDemandRuleEvaluateConnectionFrom(ptr unsafe.Pointer) NEOnDemandRuleEvaluateConnection {
-	return NEOnDemandRuleEvaluateConnection{
-		NEOnDemandRule: NEOnDemandRuleFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for NEOnDemandRuleEvaluateConnection */
 // Alloc allocates a new instance without initialization.
 func (nc _NEOnDemandRuleEvaluateConnectionClass) Alloc() NEOnDemandRuleEvaluateConnection {
 	rv := objc.Send[NEOnDemandRuleEvaluateConnection](objc.ID(nc.class), objc.Sel("alloc"))
@@ -58,7 +62,6 @@ func (nc _NEOnDemandRuleEvaluateConnectionClass) Alloc() NEOnDemandRuleEvaluateC
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEOnDemandRuleEvaluateConnectionClass) New() NEOnDemandRuleEvaluateConnection {
 	rv := objc.Send[NEOnDemandRuleEvaluateConnection](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,25 +84,88 @@ func (n_ NEOnDemandRuleEvaluateConnection) Autorelease() NEOnDemandRuleEvaluateC
 func NewNEOnDemandRuleEvaluateConnection() NEOnDemandRuleEvaluateConnection {
 	return getNEOnDemandRuleEvaluateConnectionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-// An array of
+
+/* debug [class_struct]: Struct for NEOnDemandRuleEvaluateConnection */
+// A VPN On Demand rule that evaluate the app’s connection to determine whether to run its action.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandruleevaluateconnection/connectionrules
-func (n_ NEOnDemandRuleEvaluateConnection) ConnectionRules() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("connectionRules"))
+// When rules of this class match, the properties of the network connection being established are matched against a set of connection rules. The action of the matched rule (if any) is used to determine whether or not the VPN will be started.
+
+
+// A VPN On Demand rule that evaluate the app’s connection to determine whether to run its action.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRuleEvaluateConnection
+type NEOnDemandRuleEvaluateConnection struct {
+	NEOnDemandRule
+}
+
+// NEOnDemandRuleEvaluateConnectionFrom constructs a [NEOnDemandRuleEvaluateConnection] from an unsafe.Pointer.
+//
+// A VPN On Demand rule that evaluate the app’s connection to determine whether to run its action.
+func NEOnDemandRuleEvaluateConnectionFrom(ptr unsafe.Pointer) NEOnDemandRuleEvaluateConnection {
+	return NEOnDemandRuleEvaluateConnection{
+		NEOnDemandRule: NEOnDemandRuleFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NEOnDemandRuleEvaluateConnection *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NEOnDemandRuleEvaluateConnection */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NEOnDemandRuleEvaluateConnection */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NEOnDemandRuleEvaluateConnection */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEOnDemandRuleEvaluateConnection */
+
+// An array of objects
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRuleEvaluateConnection/connectionRules
+func (n_ NEOnDemandRuleEvaluateConnection) ConnectionRules() []NEEvaluateConnectionRule {
+	rv := objc.Send[[]NEEvaluateConnectionRule](n_.ID, objc.Sel("connectionRules"))
 	return rv
-}
+}/* debug [instance_properties/getter]: connectionRules */
 
 
-// SetConnectionRules sets the value of the connectionRules property.
-// An array of
-
+// An array of objects
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandruleevaluateconnection/connectionrules
-func (n_ NEOnDemandRuleEvaluateConnection) SetConnectionRules(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setConnectionRules:"), value)
-}
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRuleEvaluateConnection/connectionRules
+func (n_ NEOnDemandRuleEvaluateConnection) SetConnectionRules(value []NEEvaluateConnectionRule) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](n_.ID, objc.Sel("setConnectionRules:"), nsArray)
+}/* debug [instance_properties/setter]: connectionRules */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NEOnDemandRuleEvaluateConnection */
 
 
 

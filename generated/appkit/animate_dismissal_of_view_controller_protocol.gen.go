@@ -15,3 +15,4 @@ var animateDismissalOfViewControllerProtocol *objc.Protocol
 func init() {
 	animateDismissalOfViewControllerProtocol = objc.GetProtocol("animateDismissalOfViewController:")
 }
+

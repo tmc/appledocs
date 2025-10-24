@@ -37,7 +37,6 @@ type IINVoiceShortcutCenter interface {
 //
 // With Shortcut Center, your app can: Retrieve shortcuts associated with your app that the user added to Siri. Suggest shortcuts the user may want to add to Siri. Before you can retrieve or suggest shortcuts, get a reference to the Shortcut Center from the class property. To retrieve all shortcuts associated with your app, call . To retrieve a particular shortcut, use the method, passing in the shortcut’s identifier. These methods return shortcuts associated with your app that the user added to Siri using your app or the Settings app. To suggest shortcuts for actions that the user hasn’t performed in your app but may want to add to Siri, call , passing in a list of suggested shortcuts. The user views the suggestions in the Gallery of the Shortcuts app. For more information, see .
 
-
 // Retrieve the user’s shortcuts and make shortcut suggestions.
 //
 // [Full Topic]
@@ -84,8 +83,6 @@ func NewINVoiceShortcutCenter() INVoiceShortcutCenter {
 	return getINVoiceShortcutCenterClass().New()
 }
 
-
-
 // The shared shortcut center.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (i_ INVoiceShortcutCenter) SetShortcutSuggestions(suggestions []INShortcut)
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcutSuggestions:"), suggestions)
 }
 
-
 // The shared shortcut center.
 //
 // [Full Topic]
@@ -112,7 +108,3 @@ func (i_ INVoiceShortcutCenter) SharedCenter() INVoiceShortcutCenter {
 	rv := objc.Send[INVoiceShortcutCenter](i_.ID, objc.Sel("sharedCenter"))
 	return rv
 }
-
-
-
-

@@ -15,3 +15,4 @@ var AccessibilityElementProtocol *objc.Protocol
 func init() {
 	AccessibilityElementProtocol = objc.GetProtocol("NSAccessibilityElement")
 }
+

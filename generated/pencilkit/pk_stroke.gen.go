@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PKStroke */
+
+
+/* debug [class_header]: Header for PKStroke */
 // The class instance for the [Stroke] class.
 var (
 	StrokeClass     _StrokeClass
@@ -28,40 +32,38 @@ func getStrokeClass() _StrokeClass {
 type _StrokeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Stroke */
 // An interface definition for the [Stroke] class.
 type IStroke interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Stroke */
 	// properties:
 	Ink() IPKInk
-	Mask() objc.IObject /* cross-framework: BezierPath */
-	MaskedPathRanges() []IFloatRange
+	Mask() appkit.BezierPath
+	MaskedPathRanges() []FloatRange
 	Path() IPKStrokePath
 	RandomSeed() uint32 /* not a class type */
-	RenderBounds() objc.IObject /* cross-framework: Rect */
+	RenderBounds() corefoundation.CGRect
 	RequiredContentVersion() ContentVersion
-	Transform() objc.IObject /* cross-framework: AffineTransform */
+	Transform() corefoundation.CGAffineTransform
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Stroke */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.
 
 
-// A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference
-type Stroke struct {
-	objectivec.Object
-}
-
-// StrokeFrom constructs a [Stroke] from an unsafe.Pointer.
-//
-// A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.
-func StrokeFrom(ptr unsafe.Pointer) Stroke {
-	return Stroke{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Stroke */
 // Alloc allocates a new instance without initialization.
 func (sc _StrokeClass) Alloc() Stroke {
 	rv := objc.Send[Stroke](objc.ID(sc.class), objc.Sel("alloc"))
@@ -69,7 +71,6 @@ func (sc _StrokeClass) Alloc() Stroke {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _StrokeClass) New() Stroke {
 	rv := objc.Send[Stroke](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,33 +93,77 @@ func (s_ Stroke) Autorelease() Stroke {
 func NewStroke() Stroke {
 	return getStrokeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Stroke */
+// A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.
+
+
+// A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference
+type Stroke struct {
+	objectivec.Object
+}
+
+// StrokeFrom constructs a [Stroke] from an unsafe.Pointer.
+//
+// A class that represents the paths, boundaries and other properties of a stroke drawn on a canvas.
+func StrokeFrom(ptr unsafe.Pointer) Stroke {
+	return Stroke{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Stroke */
 
 // Creates a stroke with the line properties, path, transform, and mask that you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/init(ink:strokePath:transform:mask:)
-func NewStrokeWithInkStrokePathTransformMask(ink IPKInk, strokePath IPKStrokePath, transform objc.IObject /* cross-framework: AffineTransform */, mask objc.IObject /* cross-framework: BezierPath */) Stroke {
+func NewStrokeWithInkStrokePathTransformMask(ink IPKInk, strokePath IPKStrokePath, transform corefoundation.CGAffineTransform, mask appkit.BezierPath) Stroke {
 	instance := getStrokeClass().Alloc()
 	rv := objc.Send[Stroke](instance.ID, objc.Sel("initWithInk:strokePath:transform:mask:"), ink, strokePath, transform, mask)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStrokeWithInkStrokePathTransformMask */
 
 
 // Creates a stroke with the line properties, path, transform, mask, and random seed that you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/init(ink:strokePath:transform:mask:randomSeed:)
-func NewStrokeWithInkStrokePathTransformMaskRandomSeed(ink IPKInk, strokePath IPKStrokePath, transform objc.IObject /* cross-framework: AffineTransform */, mask objc.IObject /* cross-framework: BezierPath */, randomSeed uint32 /* not a class type */) Stroke {
+func NewStrokeWithInkStrokePathTransformMaskRandomSeed(ink IPKInk, strokePath IPKStrokePath, transform corefoundation.CGAffineTransform, mask appkit.BezierPath, randomSeed uint32 /* not a class type */) Stroke {
 	instance := getStrokeClass().Alloc()
 	rv := objc.Send[Stroke](instance.ID, objc.Sel("initWithInk:strokePath:transform:mask:randomSeed:"), ink, strokePath, transform, mask, randomSeed)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStrokeWithInkStrokePathTransformMaskRandomSeed */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for Stroke */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Stroke */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Stroke */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Stroke */
 
 // The line properties used to render this stroke.
 //
@@ -127,27 +172,27 @@ func NewStrokeWithInkStrokePathTransformMaskRandomSeed(ink IPKInk, strokePath IP
 func (s_ Stroke) Ink() IPKInk {
 	rv := objc.Send[Ink](s_.ID, objc.Sel("ink"))
 	return rv
-}
+}/* debug [instance_properties/getter]: ink */
 
 
 // The pretransform mask used to clip the rendering of the stroke.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/mask
-func (s_ Stroke) Mask() objc.IObject /* cross-framework: BezierPath */ {
+func (s_ Stroke) Mask() appkit.BezierPath {
 	rv := objc.Send[appkit.BezierPath](s_.ID, objc.Sel("mask"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mask */
 
 
 // The range of points in the stroke path reference that intersect the stroke’s mask.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/maskedPathRanges
-func (s_ Stroke) MaskedPathRanges() []IFloatRange {
+func (s_ Stroke) MaskedPathRanges() []FloatRange {
 	rv := objc.Send[[]FloatRange](s_.ID, objc.Sel("maskedPathRanges"))
 	return rv
-}
+}/* debug [instance_properties/getter]: maskedPathRanges */
 
 
 // The B-spline path that describes this stroke.
@@ -157,7 +202,7 @@ func (s_ Stroke) MaskedPathRanges() []IFloatRange {
 func (s_ Stroke) Path() IPKStrokePath {
 	rv := objc.Send[StrokePath](s_.ID, objc.Sel("path"))
 	return rv
-}
+}/* debug [instance_properties/getter]: path */
 
 
 // An unsigned 32-bit integer to use as a random seed for drawing strokes that use randomized effects.
@@ -167,17 +212,17 @@ func (s_ Stroke) Path() IPKStrokePath {
 func (s_ Stroke) RandomSeed() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](s_.ID, objc.Sel("randomSeed"))
 	return rv
-}
+}/* debug [instance_properties/getter]: randomSeed */
 
 
 // The bounds of the rendered stroke, including the width and line properties of the stroke after applying the transform.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/renderBounds
-func (s_ Stroke) RenderBounds() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("renderBounds"))
+func (s_ Stroke) RenderBounds() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](s_.ID, objc.Sel("renderBounds"))
 	return rv
-}
+}/* debug [instance_properties/getter]: renderBounds */
 
 
 // The version of PencilKit necessary to use the stroke.
@@ -187,16 +232,21 @@ func (s_ Stroke) RenderBounds() objc.IObject /* cross-framework: Rect */ {
 func (s_ Stroke) RequiredContentVersion() ContentVersion {
 	rv := objc.Send[ContentVersion](s_.ID, objc.Sel("requiredContentVersion"))
 	return rv
-}
+}/* debug [instance_properties/getter]: requiredContentVersion */
 
 
 // The affine transform of the stroke after rendering.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKStrokeReference/transform
-func (s_ Stroke) Transform() objc.IObject /* cross-framework: AffineTransform */ {
-	rv := objc.Send[corefoundation.AffineTransform](s_.ID, objc.Sel("transform"))
+func (s_ Stroke) Transform() corefoundation.CGAffineTransform {
+	rv := objc.Send[corefoundation.CGAffineTransform](s_.ID, objc.Sel("transform"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transform */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PKStroke */
 
 

@@ -44,7 +44,6 @@ type IINTransferMoneyIntent interface {
 //
 // Siri creates an object when the user asks to transfer money between two accounts. Transfers can occur only between accounts associated with the user. Use the information provided by the intent object to identify the involved accounts and the amount to transfer. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the transaction details. For successful transfers, Siri offers a way for the user to view the results.
 
-
 // A request to transfer money between two accounts.
 //
 // [Full Topic]
@@ -93,8 +92,6 @@ func NewINTransferMoneyIntent() INTransferMoneyIntent {
 	return getINTransferMoneyIntentClass().New()
 }
 
-
-
 // The account containing the funds to transfer.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (i_ INTransferMoneyIntent) FromAccount() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("fromAccount"))
 	return rv
 }
-
 
 // The account receiving the funds.
 //
@@ -114,7 +110,6 @@ func (i_ INTransferMoneyIntent) ToAccount() unsafe.Pointer {
 	return rv
 }
 
-
 // The account receiving the funds.
 //
 // [Full Topic]
@@ -122,7 +117,6 @@ func (i_ INTransferMoneyIntent) ToAccount() unsafe.Pointer {
 func (i_ INTransferMoneyIntent) SetToAccount(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setToAccount:"), value)
 }
-
 
 // The amount to transfer.
 //
@@ -133,7 +127,6 @@ func (i_ INTransferMoneyIntent) TransactionAmount() unsafe.Pointer {
 	return rv
 }
 
-
 // The amount to transfer.
 //
 // [Full Topic]
@@ -141,7 +134,6 @@ func (i_ INTransferMoneyIntent) TransactionAmount() unsafe.Pointer {
 func (i_ INTransferMoneyIntent) SetTransactionAmount(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionAmount:"), value)
 }
-
 
 // An optional note associated with the transaction.
 //
@@ -152,7 +144,6 @@ func (i_ INTransferMoneyIntent) TransactionNote() string {
 	return rv
 }
 
-
 // An optional note associated with the transaction.
 //
 // [Full Topic]
@@ -160,7 +151,6 @@ func (i_ INTransferMoneyIntent) TransactionNote() string {
 func (i_ INTransferMoneyIntent) SetTransactionNote(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionNote:"), objc.String(value))
 }
-
 
 // The date on which to transfer the funds.
 //
@@ -171,7 +161,6 @@ func (i_ INTransferMoneyIntent) TransactionScheduledDate() INDateComponentsRange
 	return rv
 }
 
-
 // The date on which to transfer the funds.
 //
 // [Full Topic]
@@ -179,6 +168,3 @@ func (i_ INTransferMoneyIntent) TransactionScheduledDate() INDateComponentsRange
 func (i_ INTransferMoneyIntent) SetTransactionScheduledDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTransactionScheduledDate:"), value)
 }
-
-
-

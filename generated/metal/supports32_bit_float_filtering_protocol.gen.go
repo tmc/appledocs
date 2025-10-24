@@ -20,3 +20,4 @@ var supports32BitFloatFilteringProtocol *objc.Protocol
 func init() {
 	supports32BitFloatFilteringProtocol = objc.GetProtocol("supports32BitFloatFiltering")
 }
+

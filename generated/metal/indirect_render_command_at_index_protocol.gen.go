@@ -20,3 +20,4 @@ var indirectRenderCommandAtIndexProtocol *objc.Protocol
 func init() {
 	indirectRenderCommandAtIndexProtocol = objc.GetProtocol("indirectRenderCommandAtIndex:")
 }
+

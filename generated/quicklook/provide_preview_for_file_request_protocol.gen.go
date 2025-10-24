@@ -18,3 +18,4 @@ var providePreviewForFileRequestProtocol *objc.Protocol
 func init() {
 	providePreviewForFileRequestProtocol = objc.GetProtocol("providePreviewForFileRequest:")
 }
+

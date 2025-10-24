@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // deviceInquiryDeviceFoundProtocol is the deviceInquiryDeviceFound: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to deviceInquiryDeviceFound:.
 var deviceInquiryDeviceFoundProtocol *objc.Protocol
 
 func init() {
 	deviceInquiryDeviceFoundProtocol = objc.GetProtocol("deviceInquiryDeviceFound:")
 }
+

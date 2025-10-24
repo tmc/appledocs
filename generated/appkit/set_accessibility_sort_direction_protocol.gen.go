@@ -15,3 +15,4 @@ var setAccessibilitySortDirectionProtocol *objc.Protocol
 func init() {
 	setAccessibilitySortDirectionProtocol = objc.GetProtocol("setAccessibilitySortDirection")
 }
+

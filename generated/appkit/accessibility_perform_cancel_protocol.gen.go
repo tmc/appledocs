@@ -15,3 +15,4 @@ var accessibilityPerformCancelProtocol *objc.Protocol
 func init() {
 	accessibilityPerformCancelProtocol = objc.GetProtocol("accessibilityPerformCancel")
 }
+

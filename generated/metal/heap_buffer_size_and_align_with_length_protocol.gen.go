@@ -20,3 +20,4 @@ var heapBufferSizeAndAlignWithLengthProtocol *objc.Protocol
 func init() {
 	heapBufferSizeAndAlignWithLengthProtocol = objc.GetProtocol("heapBufferSizeAndAlignWithLength:")
 }
+

@@ -15,3 +15,4 @@ var draggingDestinationWindowProtocol *objc.Protocol
 func init() {
 	draggingDestinationWindowProtocol = objc.GetProtocol("draggingDestinationWindow")
 }
+

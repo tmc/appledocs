@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVSampleBufferGenerator */
+
+
+/* debug [class_header]: Header for AVSampleBufferGenerator */
 // The class instance for the [SampleBufferGenerator] class.
 var (
 	SampleBufferGeneratorClass     _SampleBufferGeneratorClass
@@ -26,32 +30,33 @@ func getSampleBufferGeneratorClass() _SampleBufferGeneratorClass {
 type _SampleBufferGeneratorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SampleBufferGenerator */
 // An interface definition for the [SampleBufferGenerator] class.
 type ISampleBufferGenerator interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for SampleBufferGenerator */
+	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SampleBufferGenerator */
+	// methods:
+	MakeBatch() ISampleBufferGeneratorBatch
+	CreateSampleBufferForRequestError(request IAVSampleBufferRequest, outError objectivec.IObject) SampleBufferRef /* not a class type */
+	CreateSampleBufferForRequestAddingToBatchError(request IAVSampleBufferRequest, batch IAVSampleBufferGeneratorBatch, outError objectivec.IObject) SampleBufferRef /* not a class type */
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that creates sample buffers.
-//
-// Each request for creation is described in an object. The opaque objects are returned synchronously. If requested, sample data may be loaded asynchronously (depending on file format support).
+/* debug [class_interface]: End interface */
 
 
-// An object that creates sample buffers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator
-type SampleBufferGenerator struct {
-	objectivec.Object
-}
 
-// SampleBufferGeneratorFrom constructs a [SampleBufferGenerator] from an unsafe.Pointer.
-//
-// An object that creates sample buffers.
-func SampleBufferGeneratorFrom(ptr unsafe.Pointer) SampleBufferGenerator {
-	return SampleBufferGenerator{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SampleBufferGenerator */
 // Alloc allocates a new instance without initialization.
 func (sc _SampleBufferGeneratorClass) Alloc() SampleBufferGenerator {
 	rv := objc.Send[SampleBufferGenerator](objc.ID(sc.class), objc.Sel("alloc"))
@@ -59,7 +64,6 @@ func (sc _SampleBufferGeneratorClass) Alloc() SampleBufferGenerator {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SampleBufferGeneratorClass) New() SampleBufferGenerator {
 	rv := objc.Send[SampleBufferGenerator](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,7 +86,109 @@ func (s_ SampleBufferGenerator) Autorelease() SampleBufferGenerator {
 func NewSampleBufferGenerator() SampleBufferGenerator {
 	return getSampleBufferGeneratorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SampleBufferGenerator */
+// An object that creates sample buffers.
+//
+// Each request for creation is described in an object. The opaque objects are returned synchronously. If requested, sample data may be loaded asynchronously (depending on file format support).
+
+
+// An object that creates sample buffers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator
+type SampleBufferGenerator struct {
+	objectivec.Object
+}
+
+// SampleBufferGeneratorFrom constructs a [SampleBufferGenerator] from an unsafe.Pointer.
+//
+// An object that creates sample buffers.
+func SampleBufferGeneratorFrom(ptr unsafe.Pointer) SampleBufferGenerator {
+	return SampleBufferGenerator{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SampleBufferGenerator */
+
+// Creates a new sample buffer generator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator/init(asset:timebase:)
+func NewSampleBufferGeneratorWithAssetTimebase(asset IAVAsset, timebase TimebaseRef /* not a class type */) SampleBufferGenerator {
+	instance := getSampleBufferGeneratorClass().Alloc()
+	rv := objc.Send[SampleBufferGenerator](instance.ID, objc.Sel("initWithAsset:timebase:"), asset, timebase)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewSampleBufferGeneratorWithAssetTimebase */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SampleBufferGenerator */
+
+// Notifies the sample buffer generator when data is ready for the sample buffer reference or an error has occurred.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator/notifyOfDataReady(for:completionHandler:)
+func (sc _SampleBufferGeneratorClass) NotifyOfDataReadyForSampleBufferCompletionHandler(sbuf SampleBufferRef /* not a class type */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("notifyOfDataReadyForSampleBuffer:completionHandler:"), sbuf, completionHandler)
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NotifyOfDataReadyForSampleBufferCompletionHandler) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SampleBufferGenerator */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SampleBufferGenerator */
+
+// Creates a batch object to handle generating multiple sample buffers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator/makeBatch()
+func (s_ SampleBufferGenerator) MakeBatch() ISampleBufferGeneratorBatch {
+	rv := objc.Send[SampleBufferGeneratorBatch](s_.ID, objc.Sel("makeBatch"))
+	return rv
+}/* debug [instance_methods/method]: MakeBatch */
+
+
+// Creates a sample buffer, and attempts to load its data asynchronously if requested.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator/makeSampleBuffer(for:)
+func (s_ SampleBufferGenerator) CreateSampleBufferForRequestError(request IAVSampleBufferRequest, outError objectivec.IObject) SampleBufferRef /* not a class type */ {
+	rv := objc.Send[SampleBufferRef](s_.ID, objc.Sel("createSampleBufferForRequest:error:"), request, outError)
+	return rv
+}/* debug [instance_methods/method]: CreateSampleBufferForRequestError */
+
+
+// Creates a sample buffer and attempts to defer I/O for its data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferGenerator/makeSampleBuffer(for:addTo:)
+func (s_ SampleBufferGenerator) CreateSampleBufferForRequestAddingToBatchError(request IAVSampleBufferRequest, batch IAVSampleBufferGeneratorBatch, outError objectivec.IObject) SampleBufferRef /* not a class type */ {
+	rv := objc.Send[SampleBufferRef](s_.ID, objc.Sel("createSampleBufferForRequest:addingToBatch:error:"), request, batch, outError)
+	return rv
+}/* debug [instance_methods/method]: CreateSampleBufferForRequestAddingToBatchError */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SampleBufferGenerator */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVSampleBufferGenerator */
 
 

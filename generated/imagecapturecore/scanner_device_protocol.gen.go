@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // scannerDeviceProtocol is the scannerDevice: protocol.
 //
 // Availability:
-//   - macOS 10.7+
+//   - macOS 10.6+ (Deprecated in 10.7)
 //
 // Use this protocol when registering custom classes that conform to scannerDevice:.
 var scannerDeviceProtocol *objc.Protocol
@@ -15,3 +15,4 @@ var scannerDeviceProtocol *objc.Protocol
 func init() {
 	scannerDeviceProtocol = objc.GetProtocol("scannerDevice:")
 }
+

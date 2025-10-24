@@ -20,3 +20,4 @@ var setTessellationFactorScaleProtocol *objc.Protocol
 func init() {
 	setTessellationFactorScaleProtocol = objc.GetProtocol("setTessellationFactorScale:")
 }
+

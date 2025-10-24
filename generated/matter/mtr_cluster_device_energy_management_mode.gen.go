@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterDeviceEnergyManagementMode */
+
+
+/* debug [class_header]: Header for MTRClusterDeviceEnergyManagementMode */
 // The class instance for the [MTRClusterDeviceEnergyManagementMode] class.
 var (
 	MTRClusterDeviceEnergyManagementModeClass     _MTRClusterDeviceEnergyManagementModeClass
@@ -26,42 +29,30 @@ func getMTRClusterDeviceEnergyManagementModeClass() _MTRClusterDeviceEnergyManag
 type _MTRClusterDeviceEnergyManagementModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterDeviceEnergyManagementMode */
 // An interface definition for the [MTRClusterDeviceEnergyManagementMode] class.
 type IMTRClusterDeviceEnergyManagementMode interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterDeviceEnergyManagementMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterDeviceEnergyManagementMode */
 	// methods:
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Device Energy Management Mode Attributes and commands for selecting a mode from a list of supported options.
 
 
-// Cluster Device Energy Management Mode Attributes and commands for selecting a mode from a list of supported options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode
-type MTRClusterDeviceEnergyManagementMode struct {
-	MTRGenericCluster
-}
-
-// MTRClusterDeviceEnergyManagementModeFrom constructs a [MTRClusterDeviceEnergyManagementMode] from an unsafe.Pointer.
-//
-// Cluster Device Energy Management Mode Attributes and commands for selecting a mode from a list of supported options.
-func MTRClusterDeviceEnergyManagementModeFrom(ptr unsafe.Pointer) MTRClusterDeviceEnergyManagementMode {
-	return MTRClusterDeviceEnergyManagementMode{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterDeviceEnergyManagementMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterDeviceEnergyManagementModeClass) Alloc() MTRClusterDeviceEnergyManagementMode {
 	rv := objc.Send[MTRClusterDeviceEnergyManagementMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +60,6 @@ func (mc _MTRClusterDeviceEnergyManagementModeClass) Alloc() MTRClusterDeviceEne
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterDeviceEnergyManagementModeClass) New() MTRClusterDeviceEnergyManagementMode {
 	rv := objc.Send[MTRClusterDeviceEnergyManagementMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,82 +82,58 @@ func (m_ MTRClusterDeviceEnergyManagementMode) Autorelease() MTRClusterDeviceEne
 func NewMTRClusterDeviceEnergyManagementMode() MTRClusterDeviceEnergyManagementMode {
 	return getMTRClusterDeviceEnergyManagementModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRClusterDeviceEnergyManagementMode */
+// Cluster Device Energy Management Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Device Energy Management Mode Attributes and commands for selecting a mode from a list of supported options.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/init(device:endpointID:queue:)
-func NewMTRClusterDeviceEnergyManagementModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterDeviceEnergyManagementMode {
-	instance := getMTRClusterDeviceEnergyManagementModeClass().Alloc()
-	rv := objc.Send[MTRClusterDeviceEnergyManagementMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode
+type MTRClusterDeviceEnergyManagementMode struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagementMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
+// MTRClusterDeviceEnergyManagementModeFrom constructs a [MTRClusterDeviceEnergyManagementMode] from an unsafe.Pointer.
+//
+// Cluster Device Energy Management Mode Attributes and commands for selecting a mode from a list of supported options.
+func MTRClusterDeviceEnergyManagementModeFrom(ptr unsafe.Pointer) MTRClusterDeviceEnergyManagementMode {
+	return MTRClusterDeviceEnergyManagementMode{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterDeviceEnergyManagementMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRClusterDeviceEnergyManagementMode *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterDeviceEnergyManagementMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_methods]: Class methods for MTRClusterDeviceEnergyManagementMode */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterDeviceEnergyManagementMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterDeviceEnergyManagementMode */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterDeviceEnergyManagementMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterDeviceEnergyManagementMode */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterDeviceEnergyManagementMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterDeviceEnergyManagementMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterDeviceEnergyManagementMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterDeviceEnergyManagementMode */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagementMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterDeviceEnergyManagementMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
-	return rv
-}
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,7 +42,6 @@ type IAtomicStoreCacheNode interface {
 // A concrete class that you use to represent basic nodes in a Core Data atomic store.
 //
 // A node represents a single record in a persistent store. You can subclass to provide custom behavior.
-
 
 // A concrete class that you use to represent basic nodes in a Core Data atomic store.
 //
@@ -90,8 +89,6 @@ func NewAtomicStoreCacheNode() AtomicStoreCacheNode {
 	return getAtomicStoreCacheNodeClass().New()
 }
 
-
-
 // Returns the value for a given key.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (a_ AtomicStoreCacheNode) ValueForKey(key objc.IObject /* cross-framework: 
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("valueForKey:"), key)
 	return rv
 }
-
 
 // The managed object ID of the node.
 //
@@ -111,7 +107,6 @@ func (a_ AtomicStoreCacheNode) ObjectID() IManagedObjectID {
 	return rv
 }
 
-
 // The managed object ID of the node.
 //
 // [Full Topic]
@@ -119,7 +114,6 @@ func (a_ AtomicStoreCacheNode) ObjectID() IManagedObjectID {
 func (a_ AtomicStoreCacheNode) SetObjectID(value IManagedObjectID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setObjectID:"), value)
 }
-
 
 // The property cache dictionary of the node.
 //
@@ -130,7 +124,6 @@ func (a_ AtomicStoreCacheNode) PropertyCache() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // The property cache dictionary of the node.
 //
 // [Full Topic]
@@ -138,6 +131,3 @@ func (a_ AtomicStoreCacheNode) PropertyCache() objc.IObject /* cross-framework: 
 func (a_ AtomicStoreCacheNode) SetPropertyCache(value objc.IObject /* cross-framework: MutableDictionary */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPropertyCache:"), value)
 }
-
-
-

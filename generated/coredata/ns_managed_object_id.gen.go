@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,7 +44,6 @@ type IManagedObjectID interface {
 // A compact, universal identifier for a managed object.
 //
 // This identifier forms the basis for uniquing in the Core Data Framework. A managed object ID uniquely identifies the same managed object both between managed object contexts in a single application, and in multiple applications (as in distributed systems). Identifiers contain the information needed to exactly describe an object in a persistent store (like the primary key in the database), although the detailed information is not exposed. The framework completely encapsulates the “external” information and presents a clean object oriented interface. Object IDs can be transformed into a URI representation which can be archived and recreated later to refer back to a given object (using ( ) and ( ). For example, the last selected group in an application could be stored in the user defaults through the group object’s ID. You can also use object ID URI representations to store “weak” relationships across persistent stores (where no hard join is possible).
-
 
 // A compact, universal identifier for a managed object.
 //
@@ -92,8 +91,6 @@ func NewManagedObjectID() ManagedObjectID {
 	return getManagedObjectIDClass().New()
 }
 
-
-
 // Returns a URI that provides an archiveable reference to the object for the object ID.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (m_ ManagedObjectID) URIRepresentation() objc.IObject /* cross-framework: U
 	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("URIRepresentation"))
 	return rv
 }
-
 
 // The entity description associated with the object ID.
 //
@@ -113,7 +109,6 @@ func (m_ ManagedObjectID) Entity() IEntityDescription {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the object ID is temporary.
 //
 // [Full Topic]
@@ -122,7 +117,6 @@ func (m_ ManagedObjectID) TemporaryID() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("temporaryID"))
 	return rv
 }
-
 
 // The persistent store that fetched the object for the object ID.
 //
@@ -133,7 +127,6 @@ func (m_ ManagedObjectID) PersistentStore() IPersistentStore {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the object ID is temporary.
 //
 // [Full Topic]
@@ -143,7 +136,6 @@ func (m_ ManagedObjectID) IsTemporaryID() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the object ID is temporary.
 //
 // [Full Topic]
@@ -151,6 +143,3 @@ func (m_ ManagedObjectID) IsTemporaryID() bool {
 func (m_ ManagedObjectID) SetIsTemporaryID(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsTemporaryID:"), value)
 }
-
-
-

@@ -15,3 +15,4 @@ var windowWillStartLiveResizeProtocol *objc.Protocol
 func init() {
 	windowWillStartLiveResizeProtocol = objc.GetProtocol("windowWillStartLiveResize:")
 }
+

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SBElementArray */
+
+
+/* debug [class_header]: Header for SBElementArray */
 // The class instance for the [SBElementArray] class.
 var (
 	SBElementArrayClass     _SBElementArrayClass
@@ -27,42 +31,36 @@ func getSBElementArrayClass() _SBElementArrayClass {
 type _SBElementArrayClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SBElementArray */
 // An interface definition for the [SBElementArray] class.
 type ISBElementArray interface {
 	foundation.IMutableArray
+	
+/* debug [class_interface_properties]: Properties for SBElementArray */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SBElementArray */
 	// methods:
 	ArrayByApplyingSelector(selector objc.SEL) []objc.ID
-	ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) []objc.ID
+	ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objc.IObject) []objc.ID
 	Get() []objc.ID
-	ObjectAtLocation(location objectivec.IObject) unsafe.Pointer
-	ObjectWithID(identifier objectivec.IObject) unsafe.Pointer
+	ObjectAtLocation(location objc.IObject) unsafe.Pointer
+	ObjectWithID(identifier objc.IObject) unsafe.Pointer
 	ObjectWithName(name objc.IObject /* cross-framework: NSString */) unsafe.Pointer
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
-//
-// defines methods beyond those of for obtaining individual objects. In addition to , also defines , , and .
+/* debug [class_interface]: End interface */
 
 
-// is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray
-type SBElementArray struct {
-	foundation.MutableArray
-}
 
-// SBElementArrayFrom constructs a [SBElementArray] from an unsafe.Pointer.
-//
-// is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
-func SBElementArrayFrom(ptr unsafe.Pointer) SBElementArray {
-	return SBElementArray{
-		MutableArray: foundation.MutableArrayFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for SBElementArray */
 // Alloc allocates a new instance without initialization.
 func (sc _SBElementArrayClass) Alloc() SBElementArray {
 	rv := objc.Send[SBElementArray](objc.ID(sc.class), objc.Sel("alloc"))
@@ -70,7 +68,6 @@ func (sc _SBElementArrayClass) Alloc() SBElementArray {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SBElementArrayClass) New() SBElementArray {
 	rv := objc.Send[SBElementArray](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +90,51 @@ func (s_ SBElementArray) Autorelease() SBElementArray {
 func NewSBElementArray() SBElementArray {
 	return getSBElementArrayClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SBElementArray */
+// is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
+//
+// defines methods beyond those of for obtaining individual objects. In addition to , also defines , , and .
+
+
+// is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray
+type SBElementArray struct {
+	foundation.MutableArray
+}
+
+// SBElementArrayFrom constructs a [SBElementArray] from an unsafe.Pointer.
+//
+// is subclass of that manages collections of related objects. For example, when you ask the Finder for a list of disks, or ask iTunes for a list of playlists, you get the result back as an containing Scripting Bridge objects representing those items.
+func SBElementArrayFrom(ptr unsafe.Pointer) SBElementArray {
+	return SBElementArray{
+		MutableArray: foundation.MutableArrayFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SBElementArray *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SBElementArray */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SBElementArray */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SBElementArray */
 
 // Returns an array containing the results of sending the specified message to each object in the receiver.
 //
@@ -103,17 +143,17 @@ func NewSBElementArray() SBElementArray {
 func (s_ SBElementArray) ArrayByApplyingSelector(selector objc.SEL) []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("arrayByApplyingSelector:"), selector)
 	return rv
-}
+}/* debug [instance_methods/method]: ArrayByApplyingSelector */
 
 
 // Returns an array containing the results of sending the specified message to each object in the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/array(byApplying:with:)
-func (s_ SBElementArray) ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) []objc.ID {
+func (s_ SBElementArray) ArrayByApplyingSelectorWithObject(aSelector objc.SEL, argument objc.IObject) []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("arrayByApplyingSelector:withObject:"), aSelector, argument)
 	return rv
-}
+}/* debug [instance_methods/method]: ArrayByApplyingSelectorWithObject */
 
 
 // Forces evaluation of the receiver, causing the real object to be returned immediately.
@@ -123,27 +163,27 @@ func (s_ SBElementArray) ArrayByApplyingSelectorWithObject(aSelector objc.SEL, a
 func (s_ SBElementArray) Get() []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("get"))
 	return rv
-}
+}/* debug [instance_methods/method]: Get */
 
 
 // Returns the object at the given location in the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(atLocation:)
-func (s_ SBElementArray) ObjectAtLocation(location objectivec.IObject) unsafe.Pointer {
+func (s_ SBElementArray) ObjectAtLocation(location objc.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectAtLocation:"), location)
 	return rv
-}
+}/* debug [instance_methods/method]: ObjectAtLocation */
 
 
 // Returns the object in the array with the given identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ScriptingBridge/SBElementArray/object(withID:)
-func (s_ SBElementArray) ObjectWithID(identifier objectivec.IObject) unsafe.Pointer {
+func (s_ SBElementArray) ObjectWithID(identifier objc.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithID:"), identifier)
 	return rv
-}
+}/* debug [instance_methods/method]: ObjectWithID */
 
 
 // Returns the object in the array with the given name.
@@ -153,7 +193,17 @@ func (s_ SBElementArray) ObjectWithID(identifier objectivec.IObject) unsafe.Poin
 func (s_ SBElementArray) ObjectWithName(name objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectWithName:"), name)
 	return rv
-}
+}/* debug [instance_methods/method]: ObjectWithName */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SBElementArray */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class SBElementArray */
 
 
 

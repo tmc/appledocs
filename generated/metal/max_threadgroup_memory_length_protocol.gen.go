@@ -20,3 +20,4 @@ var maxThreadgroupMemoryLengthProtocol *objc.Protocol
 func init() {
 	maxThreadgroupMemoryLengthProtocol = objc.GetProtocol("maxThreadgroupMemoryLength")
 }
+

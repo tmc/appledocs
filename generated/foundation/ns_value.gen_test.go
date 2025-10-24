@@ -9,14 +9,6 @@ import (
 // Suppress unused import errors
 var _ = foundation.NewValue
 
-// ExampleNewValueWithCMTime demonstrates how to create a Value instance using NewValueWithCMTime.
-// Creates a new value object containing the specified CoreMedia time structure.
-func ExampleNewValueWithCMTime() {
-	_ = foundation.NewValueWithCMTime(
-		foundation.Time /* not a class type */{}, // time Time /* not a class type */
-	)
-	// Output:
-}
 // ExampleNewValueWithCMTimeMapping demonstrates how to create a Value instance using NewValueWithCMTimeMapping.
 // Creates a new value object containing the specified CoreMedia time mapping structure.
 func ExampleNewValueWithCMTimeMapping() {
@@ -48,6 +40,14 @@ func ExampleNewValueWithMKCoordinate() {
 	)
 	// Output:
 }
+// ExampleNewValueWithRect demonstrates how to create a Value instance using NewValueWithRect.
+// Creates a new value object containing the specified Foundation rectangle structure.
+func ExampleNewValueWithRect() {
+	_ = foundation.NewValueWithRect(
+		foundation.Rect /* typedef */{}, // rect Rect /* typedef */
+	)
+	// Output:
+}
 // ExampleNewValueWithSCNMatrix4 demonstrates how to create a Value instance using NewValueWithSCNMatrix4.
 // Creates a value object that contains the specified SceneKit 4 x 4 matrix.
 func ExampleNewValueWithSCNMatrix4() {
@@ -69,6 +69,14 @@ func ExampleNewValueWithSCNVector3() {
 func ExampleNewValueWithSCNVector4() {
 	_ = foundation.NewValueWithSCNVector4(
 		foundation.NVector4 /* not a class type */{}, // v NVector4 /* not a class type */
+	)
+	// Output:
+}
+// ExampleNewValueWithSize demonstrates how to create a Value instance using NewValueWithSize.
+// Creates a new value object containing the specified Foundation size structure.
+func ExampleNewValueWithSize() {
+	_ = foundation.NewValueWithSize(
+		foundation.Size /* typedef */{}, // size Size /* typedef */
 	)
 	// Output:
 }

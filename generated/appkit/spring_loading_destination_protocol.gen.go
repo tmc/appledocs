@@ -15,3 +15,4 @@ var SpringLoadingDestinationProtocol *objc.Protocol
 func init() {
 	SpringLoadingDestinationProtocol = objc.GetProtocol("NSSpringLoadingDestination")
 }
+

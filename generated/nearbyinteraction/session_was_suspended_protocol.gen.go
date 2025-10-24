@@ -18,3 +18,4 @@ var sessionWasSuspendedProtocol *objc.Protocol
 func init() {
 	sessionWasSuspendedProtocol = objc.GetProtocol("sessionWasSuspended:")
 }
+

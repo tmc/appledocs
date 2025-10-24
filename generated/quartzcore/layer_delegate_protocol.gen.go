@@ -20,3 +20,4 @@ var LayerDelegateProtocol *objc.Protocol
 func init() {
 	LayerDelegateProtocol = objc.GetProtocol("CALayerDelegate")
 }
+

@@ -16,3 +16,4 @@ var SBApplicationDelegateProtocol *objc.Protocol
 func init() {
 	SBApplicationDelegateProtocol = objc.GetProtocol("SBApplicationDelegate")
 }
+

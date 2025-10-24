@@ -19,3 +19,4 @@ var NowPlayingSessionDelegateProtocol *objc.Protocol
 func init() {
 	NowPlayingSessionDelegateProtocol = objc.GetProtocol("MPNowPlayingSessionDelegate")
 }
+

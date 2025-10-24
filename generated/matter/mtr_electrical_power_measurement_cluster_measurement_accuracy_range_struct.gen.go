@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -51,8 +51,6 @@ type IMTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct interfa
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct
 type MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct struct {
@@ -95,8 +93,6 @@ func NewMTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct() MTR
 	return getMTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedmax
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) FixedMax() objc.IObject /* cross-framework: NSNumber */ {
@@ -104,13 +100,11 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) Fix
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedmax
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMax(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedMax:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedmin
@@ -119,13 +113,11 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) Fix
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedmin
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedMin(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedMin:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedtypical
@@ -134,13 +126,11 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) Fix
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/fixedtypical
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetFixedTypical(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFixedTypical:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percentmax
@@ -149,13 +139,11 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) Per
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percentmax
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMax(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentMax:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percentmin
@@ -164,13 +152,11 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) Per
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percentmin
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentMin(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentMin:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percenttypical
@@ -179,13 +165,11 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) Per
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/percenttypical
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetPercentTypical(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPercentTypical:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/rangemax
@@ -194,13 +178,11 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) Ran
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/rangemax
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMax(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRangeMax:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/rangemin
@@ -209,12 +191,8 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) Ran
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementaccuracyrangestruct/rangemin
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementAccuracyRangeStruct) SetRangeMin(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRangeMin:"), value)
 }
-
-
-

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRAccessGrant interface {
 	SetSubjectID(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessGrant
@@ -85,8 +83,6 @@ func NewMTRAccessGrant() MTRAccessGrant {
 	return getMTRAccessGrantClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/authenticationmode
 func (m_ MTRAccessGrant) AuthenticationMode() MTRAccessControlEntryAuthMode {
@@ -94,13 +90,11 @@ func (m_ MTRAccessGrant) AuthenticationMode() MTRAccessControlEntryAuthMode {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/authenticationmode
 func (m_ MTRAccessGrant) SetAuthenticationMode(value MTRAccessControlEntryAuthMode) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAuthenticationMode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/grantedprivilege
@@ -109,13 +103,11 @@ func (m_ MTRAccessGrant) GrantedPrivilege() MTRAccessControlEntryPrivilege {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/grantedprivilege
 func (m_ MTRAccessGrant) SetGrantedPrivilege(value MTRAccessControlEntryPrivilege) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGrantedPrivilege:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/subjectid
@@ -124,12 +116,8 @@ func (m_ MTRAccessGrant) SubjectID() objc.IObject /* cross-framework: NSNumber *
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccessgrant/subjectid
 func (m_ MTRAccessGrant) SetSubjectID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSubjectID:"), value)
 }
-
-
-

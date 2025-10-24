@@ -20,3 +20,4 @@ var newCommandAllocatorWithDescriptorProtocol *objc.Protocol
 func init() {
 	newCommandAllocatorWithDescriptorProtocol = objc.GetProtocol("newCommandAllocatorWithDescriptor:")
 }
+

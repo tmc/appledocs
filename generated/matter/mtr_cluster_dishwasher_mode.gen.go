@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterDishwasherMode */
+
+
+/* debug [class_header]: Header for MTRClusterDishwasherMode */
 // The class instance for the [MTRClusterDishwasherMode] class.
 var (
 	MTRClusterDishwasherModeClass     _MTRClusterDishwasherModeClass
@@ -26,42 +30,30 @@ func getMTRClusterDishwasherModeClass() _MTRClusterDishwasherModeClass {
 type _MTRClusterDishwasherModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterDishwasherMode */
 // An interface definition for the [MTRClusterDishwasherMode] class.
 type IMTRClusterDishwasherMode interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterDishwasherMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterDishwasherMode */
 	// methods:
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDishwasherModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Dishwasher Mode Attributes and commands for selecting a mode from a list of supported options.
 
 
-// Cluster Dishwasher Mode Attributes and commands for selecting a mode from a list of supported options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode
-type MTRClusterDishwasherMode struct {
-	MTRGenericCluster
-}
-
-// MTRClusterDishwasherModeFrom constructs a [MTRClusterDishwasherMode] from an unsafe.Pointer.
-//
-// Cluster Dishwasher Mode Attributes and commands for selecting a mode from a list of supported options.
-func MTRClusterDishwasherModeFrom(ptr unsafe.Pointer) MTRClusterDishwasherMode {
-	return MTRClusterDishwasherMode{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterDishwasherMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterDishwasherModeClass) Alloc() MTRClusterDishwasherMode {
 	rv := objc.Send[MTRClusterDishwasherMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +61,6 @@ func (mc _MTRClusterDishwasherModeClass) Alloc() MTRClusterDishwasherMode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterDishwasherModeClass) New() MTRClusterDishwasherMode {
 	rv := objc.Send[MTRClusterDishwasherMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,8 +83,35 @@ func (m_ MTRClusterDishwasherMode) Autorelease() MTRClusterDishwasherMode {
 func NewMTRClusterDishwasherMode() MTRClusterDishwasherMode {
 	return getMTRClusterDishwasherModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterDishwasherMode */
+// Cluster Dishwasher Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Dishwasher Mode Attributes and commands for selecting a mode from a list of supported options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode
+type MTRClusterDishwasherMode struct {
+	MTRGenericCluster
+}
+
+// MTRClusterDishwasherModeFrom constructs a [MTRClusterDishwasherMode] from an unsafe.Pointer.
+//
+// Cluster Dishwasher Mode Attributes and commands for selecting a mode from a list of supported options.
+func MTRClusterDishwasherModeFrom(ptr unsafe.Pointer) MTRClusterDishwasherMode {
+	return MTRClusterDishwasherMode{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterDishwasherMode */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -104,70 +122,31 @@ func NewMTRClusterDishwasherModeWithDeviceEndpointIDQueue(device IMTRDevice, end
 	rv := objc.Send[MTRClusterDishwasherMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterDishwasherModeWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDishwasherMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDishwasherModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class_methods]: Class methods for MTRClusterDishwasherMode */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterDishwasherMode */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterDishwasherMode */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterDishwasherMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDishwasherMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterDishwasherMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterDishwasherMode */
 
 

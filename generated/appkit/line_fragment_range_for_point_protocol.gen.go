@@ -15,3 +15,4 @@ var lineFragmentRangeForPointProtocol *objc.Protocol
 func init() {
 	lineFragmentRangeForPointProtocol = objc.GetProtocol("lineFragmentRangeForPoint:")
 }
+

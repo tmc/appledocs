@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRGeneralCommissioningClusterSetRegulatoryConfigParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterSetRegulatoryConfigParams
@@ -89,8 +87,6 @@ func NewMTRGeneralCommissioningClusterSetRegulatoryConfigParams() MTRGeneralComm
 	return getMTRGeneralCommissioningClusterSetRegulatoryConfigParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/breadcrumb
 func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) Breadcrumb() o
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/breadcrumb
 func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
@@ -113,13 +107,11 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) CountryCode() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/countrycode
 func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetCountryCode(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCountryCode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/newregulatoryconfig
@@ -128,13 +120,11 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) NewRegulatoryC
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/newregulatoryconfig
 func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetNewRegulatoryConfig(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNewRegulatoryConfig:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
@@ -143,13 +133,11 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) ServerSideProc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/serversideprocessingtimeout
 func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/timedinvoketimeoutms
@@ -158,12 +146,8 @@ func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) TimedInvokeTim
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclustersetregulatoryconfigparams/timedinvoketimeoutms
 func (m_ MTRGeneralCommissioningClusterSetRegulatoryConfigParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

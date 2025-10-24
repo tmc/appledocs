@@ -21,3 +21,4 @@ var MTRDeviceControllerServerProtocolProtocol *objc.Protocol
 func init() {
 	MTRDeviceControllerServerProtocolProtocol = objc.GetProtocol("MTRDeviceControllerServerProtocol")
 }
+

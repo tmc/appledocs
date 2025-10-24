@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSDate */
+
+
+/* debug [class_header]: Header for NSDate */
 // The class instance for the [Date] class.
 var (
 	DateClass     _DateClass
@@ -26,50 +30,45 @@ func getDateClass() _DateClass {
 type _DateClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Date */
 // An interface definition for the [Date] class.
 type IDate interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Date */
 	// properties:
 	Description() IString
 	TimeIntervalSince1970() float64
 	TimeIntervalSinceNow() float64
 	TimeIntervalSinceReferenceDate() float64
-	CustomPlaygroundQuickLook() unsafe.Pointer
-	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
+	CustomPlaygroundQuickLook() objectivec.IObject
+	SetCustomPlaygroundQuickLook(value objectivec.IObject)
 	NSTimeIntervalSince1970() float64
 	SetNSTimeIntervalSince1970(value float64)
+/* debug [class_interface_properties]: End properties */
+
 	
+/* debug [class_interface_methods]: Methods for Date */
 	// methods:
-	DateByAddingTimeInterval(ti float64) unsafe.Pointer
+	DateByAddingTimeInterval(ti float64) objectivec.IObject
 	Compare(other IDate) ComparisonResult
 	DescriptionWithLocale(locale objc.IObject) IString
 	EarlierDate(anotherDate IDate) IDate
 	IsEqualToDate(otherDate IDate) bool
 	LaterDate(anotherDate IDate) IDate
 	TimeIntervalSinceDate(anotherDate IDate) float64
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A representation of a specific point in time, independent of any calendar or time zone.
-//
-// In Swift, use this type when you need reference semantics or other Foundation-specific behavior. objects encapsulate a single point in time, independent of any particular calendrical system or time zone. Date objects are immutable, representing an invariant time interval relative to an absolute reference date (00:00:00 UTC on 1 January 2001). The class provides methods for comparing dates, calculating the time interval between two dates, and creating a new date from a time interval relative to another date. objects can be used in conjunction with objects to create localized representations of dates and times, as well as with objects to perform calendar arithmetic. is with its Core Foundation counterpart, . See for more information on toll-free bridging.
+/* debug [class_interface]: End interface */
 
 
-// A representation of a specific point in time, independent of any calendar or time zone.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate
-type Date struct {
-	objectivec.Object
-}
 
-// DateFrom constructs a [Date] from an unsafe.Pointer.
-//
-// A representation of a specific point in time, independent of any calendar or time zone.
-func DateFrom(ptr unsafe.Pointer) Date {
-	return Date{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Date */
 // Alloc allocates a new instance without initialization.
 func (dc _DateClass) Alloc() Date {
 	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("alloc"))
@@ -77,7 +76,6 @@ func (dc _DateClass) Alloc() Date {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DateClass) New() Date {
 	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -100,8 +98,35 @@ func (d_ Date) Autorelease() Date {
 func NewDate() Date {
 	return getDateClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Date */
+// A representation of a specific point in time, independent of any calendar or time zone.
+//
+// In Swift, use this type when you need reference semantics or other Foundation-specific behavior. objects encapsulate a single point in time, independent of any particular calendrical system or time zone. Date objects are immutable, representing an invariant time interval relative to an absolute reference date (00:00:00 UTC on 1 January 2001). The class provides methods for comparing dates, calculating the time interval between two dates, and creating a new date from a time interval relative to another date. objects can be used in conjunction with objects to create localized representations of dates and times, as well as with objects to perform calendar arithmetic. is with its Core Foundation counterpart, . See for more information on toll-free bridging.
+
+
+// A representation of a specific point in time, independent of any calendar or time zone.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate
+type Date struct {
+	objectivec.Object
+}
+
+// DateFrom constructs a [Date] from an unsafe.Pointer.
+//
+// A representation of a specific point in time, independent of any calendar or time zone.
+func DateFrom(ptr unsafe.Pointer) Date {
+	return Date{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Date */
 
 // Returns a date object initialized from data in the given unarchiver.
 //
@@ -112,17 +137,17 @@ func NewDateWithCoder(coder ICoder) Date {
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDateWithCoder */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(SRAbsoluteTime:)-886t8
-func NewDateWithSRAbsoluteTime(time unsafe.Pointer) Date {
+func NewDateWithSRAbsoluteTime(time objectivec.IObject) Date {
 	instance := getDateClass().Alloc()
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithSRAbsoluteTime:"), time)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDateWithSRAbsoluteTime */
 
 
 // Returns a date object initialized with a date and time value specified by a given string in the international string representation format.
@@ -134,7 +159,7 @@ func NewDateWithString(description IString) Date {
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithString:"), description)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDateWithString */
 
 
 // Returns a date object initialized relative to 00:00:00 UTC on 1 January 1970 by a given number of seconds.
@@ -146,7 +171,7 @@ func NewDateWithTimeIntervalSince1970(secs float64) Date {
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSince1970:"), secs)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDateWithTimeIntervalSince1970 */
 
 
 // Returns a date object initialized relative to another given date by a given number of seconds.
@@ -158,7 +183,7 @@ func NewDateWithTimeIntervalSinceDate(secsToBeAdded float64, date IDate) Date {
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeInterval:sinceDate:"), secsToBeAdded, date)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDateWithTimeIntervalSinceDate */
 
 
 // Returns a date object initialized relative to the current date and time by a given number of seconds.
@@ -170,7 +195,7 @@ func NewDateWithTimeIntervalSinceNow(secs float64) Date {
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSinceNow:"), secs)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDateWithTimeIntervalSinceNow */
 
 
 // Returns a date object initialized relative to 00:00:00 UTC on 1 January 2001 by a given number of seconds.
@@ -182,18 +207,22 @@ func NewDateWithTimeIntervalSinceReferenceDate(ti float64) Date {
 	rv := objc.Send[Date](instance.ID, objc.Sel("initWithTimeIntervalSinceReferenceDate:"), ti)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewDateWithTimeIntervalSinceReferenceDate */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for Date */
 
 // Creates and returns a new date object set to the current date and time.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/date
-func (dc _DateClass) Date() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("date"))
+func (dc _DateClass) Date() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(dc.class), objc.Sel("date"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Date) */
 
 
 // Creates and returns a date object with a date and time value specified by a given string in the international string representation format ( ).
@@ -203,7 +232,7 @@ func (dc _DateClass) Date() unsafe.Pointer {
 func (dc _DateClass) DateWithString(aString IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dateWithString:"), aString)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithString) */
 
 
 // Creates and returns a date object set to the date and time specified by a given string.
@@ -213,7 +242,7 @@ func (dc _DateClass) DateWithString(aString IString) objc.ID {
 func (dc _DateClass) DateWithNaturalLanguageString(string_ IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dateWithNaturalLanguageString:"), string_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithNaturalLanguageString) */
 
 
 // Creates and returns a date object set to the date and time specified by a given string.
@@ -223,56 +252,61 @@ func (dc _DateClass) DateWithNaturalLanguageString(string_ IString) objc.ID {
 func (dc _DateClass) DateWithNaturalLanguageStringLocale(string_ IString, locale objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dateWithNaturalLanguageString:locale:"), string_, locale)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithNaturalLanguageStringLocale) */
 
 
 // Creates and returns a date object set to the given number of seconds from 00:00:00 UTC on 1 January 1970.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSince1970:
-func (dc _DateClass) DateWithTimeIntervalSince1970(secs float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSince1970:"), secs)
+func (dc _DateClass) DateWithTimeIntervalSince1970(secs float64) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSince1970:"), secs)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithTimeIntervalSince1970) */
 
 
 // Creates and returns a date object set to a given number of seconds from the current date and time.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSinceNow:
-func (dc _DateClass) DateWithTimeIntervalSinceNow(secs float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceNow:"), secs)
+func (dc _DateClass) DateWithTimeIntervalSinceNow(secs float64) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceNow:"), secs)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithTimeIntervalSinceNow) */
 
 
 // Creates and returns a date object set to a given number of seconds from 00:00:00 UTC on 1 January 2001.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/dateWithTimeIntervalSinceReferenceDate:
-func (dc _DateClass) DateWithTimeIntervalSinceReferenceDate(ti float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceReferenceDate:"), ti)
+func (dc _DateClass) DateWithTimeIntervalSinceReferenceDate(ti float64) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(dc.class), objc.Sel("dateWithTimeIntervalSinceReferenceDate:"), ti)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithTimeIntervalSinceReferenceDate) */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(SRAbsoluteTime:)-9wpl1
-func (dc _DateClass) DateWithSRAbsoluteTime(time unsafe.Pointer) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithSRAbsoluteTime:"), time)
+func (dc _DateClass) DateWithSRAbsoluteTime(time objectivec.IObject) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(dc.class), objc.Sel("dateWithSRAbsoluteTime:"), time)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithSRAbsoluteTime) */
 
 
 // Creates and returns a date object set to a given number of seconds from the specified date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/init(timeInterval:sinceDate:)-49cea
-func (dc _DateClass) DateWithTimeIntervalSinceDate(secsToBeAdded float64, date IDate) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dateWithTimeInterval:sinceDate:"), secsToBeAdded, date)
+func (dc _DateClass) DateWithTimeIntervalSinceDate(secsToBeAdded float64, date IDate) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(dc.class), objc.Sel("dateWithTimeInterval:sinceDate:"), secsToBeAdded, date)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithTimeIntervalSinceDate) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Date */
 
 // A date object representing a date in the distant future.
 //
@@ -281,7 +315,7 @@ func (dc _DateClass) DateWithTimeIntervalSinceDate(secsToBeAdded float64, date I
 func (dc _DateClass) DistantFuture() Date {
 	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("distantFuture"))
 	return rv
-}
+}/* debug [class_properties_class/property]: distantFuture */
 
 // A date object representing a date in the distant past.
 //
@@ -290,7 +324,7 @@ func (dc _DateClass) DistantFuture() Date {
 func (dc _DateClass) DistantPast() Date {
 	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("distantPast"))
 	return rv
-}
+}/* debug [class_properties_class/property]: distantPast */
 
 // The current date and time, as of the time of access.
 //
@@ -299,16 +333,21 @@ func (dc _DateClass) DistantPast() Date {
 func (dc _DateClass) Now() Date {
 	rv := objc.Send[Date](objc.ID(dc.class), objc.Sel("now"))
 	return rv
-}
+}/* debug [class_properties_class/property]: now */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Date */
 
 // Returns a new date object that is set to a given number of seconds relative to the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/addingTimeInterval(_:)
-func (d_ Date) DateByAddingTimeInterval(ti float64) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("dateByAddingTimeInterval:"), ti)
+func (d_ Date) DateByAddingTimeInterval(ti float64) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("dateByAddingTimeInterval:"), ti)
 	return rv
-}
+}/* debug [instance_methods/method]: DateByAddingTimeInterval */
 
 
 // Indicates the temporal ordering of the receiver and another given date.
@@ -318,7 +357,7 @@ func (d_ Date) DateByAddingTimeInterval(ti float64) unsafe.Pointer {
 func (d_ Date) Compare(other IDate) ComparisonResult {
 	rv := objc.Send[ComparisonResult](d_.ID, objc.Sel("compare:"), other)
 	return rv
-}
+}/* debug [instance_methods/method]: Compare */
 
 
 // Returns a string representation of the date using the given locale.
@@ -328,7 +367,7 @@ func (d_ Date) Compare(other IDate) ComparisonResult {
 func (d_ Date) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
-}
+}/* debug [instance_methods/method]: DescriptionWithLocale */
 
 
 // Returns the earlier of the receiver and another given date.
@@ -338,7 +377,7 @@ func (d_ Date) DescriptionWithLocale(locale objc.IObject) IString {
 func (d_ Date) EarlierDate(anotherDate IDate) IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("earlierDate:"), anotherDate)
 	return rv
-}
+}/* debug [instance_methods/method]: EarlierDate */
 
 
 // Returns a Boolean value that indicates whether a given object is a date that is exactly equal the receiver.
@@ -348,7 +387,7 @@ func (d_ Date) EarlierDate(anotherDate IDate) IDate {
 func (d_ Date) IsEqualToDate(otherDate IDate) bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isEqualToDate:"), otherDate)
 	return rv
-}
+}/* debug [instance_methods/method]: IsEqualToDate */
 
 
 // Returns the later of the receiver and another given date.
@@ -358,7 +397,7 @@ func (d_ Date) IsEqualToDate(otherDate IDate) bool {
 func (d_ Date) LaterDate(anotherDate IDate) IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("laterDate:"), anotherDate)
 	return rv
-}
+}/* debug [instance_methods/method]: LaterDate */
 
 
 // Returns the interval between the receiver and another given date.
@@ -368,8 +407,13 @@ func (d_ Date) LaterDate(anotherDate IDate) IDate {
 func (d_ Date) TimeIntervalSinceDate(anotherDate IDate) float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("timeIntervalSinceDate:"), anotherDate)
 	return rv
-}
+}/* debug [instance_methods/method]: TimeIntervalSinceDate */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Date */
 
 // A string representation of the date object.
 //
@@ -378,7 +422,7 @@ func (d_ Date) TimeIntervalSinceDate(anotherDate IDate) float64 {
 func (d_ Date) Description() IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("description"))
 	return rv
-}
+}/* debug [instance_properties/getter]: description */
 
 
 // A date object representing a date in the distant future.
@@ -388,7 +432,7 @@ func (d_ Date) Description() IString {
 func (d_ Date) DistantFuture() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("distantFuture"))
 	return rv
-}
+}/* debug [instance_properties/getter]: distantFuture */
 
 
 // A date object representing a date in the distant past.
@@ -398,7 +442,7 @@ func (d_ Date) DistantFuture() IDate {
 func (d_ Date) DistantPast() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("distantPast"))
 	return rv
-}
+}/* debug [instance_properties/getter]: distantPast */
 
 
 // The current date and time, as of the time of access.
@@ -408,7 +452,7 @@ func (d_ Date) DistantPast() IDate {
 func (d_ Date) Now() IDate {
 	rv := objc.Send[Date](d_.ID, objc.Sel("now"))
 	return rv
-}
+}/* debug [instance_properties/getter]: now */
 
 
 // The interval between the date object and 00:00:00 UTC on 1 January 1970.
@@ -418,7 +462,7 @@ func (d_ Date) Now() IDate {
 func (d_ Date) TimeIntervalSince1970() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("timeIntervalSince1970"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeIntervalSince1970 */
 
 
 // The interval between the date object and the current date and time.
@@ -428,7 +472,7 @@ func (d_ Date) TimeIntervalSince1970() float64 {
 func (d_ Date) TimeIntervalSinceNow() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("timeIntervalSinceNow"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeIntervalSinceNow */
 
 
 // The interval between the date object and 00:00:00 UTC on 1 January 2001.
@@ -438,26 +482,26 @@ func (d_ Date) TimeIntervalSinceNow() float64 {
 func (d_ Date) TimeIntervalSinceReferenceDate() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeIntervalSinceReferenceDate */
 
 
 // A custom playground Quick Look for this object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
-func (d_ Date) CustomPlaygroundQuickLook() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("customPlaygroundQuickLook"))
+func (d_ Date) CustomPlaygroundQuickLook() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("customPlaygroundQuickLook"))
 	return rv
-}
+}/* debug [instance_properties/getter]: customPlaygroundQuickLook */
 
 
 // A custom playground Quick Look for this object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsdate/customplaygroundquicklook
-func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
+func (d_ Date) SetCustomPlaygroundQuickLook(value objectivec.IObject) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
-}
+}/* debug [instance_properties/setter]: customPlaygroundQuickLook */
 
 
 // The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
@@ -467,7 +511,7 @@ func (d_ Date) SetCustomPlaygroundQuickLook(value unsafe.Pointer) {
 func (d_ Date) NSTimeIntervalSince1970() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("NSTimeIntervalSince1970"))
 	return rv
-}
+}/* debug [instance_properties/getter]: NSTimeIntervalSince1970 */
 
 
 // The number of seconds from 1 January 1970 to the reference date, 1 January 2001.
@@ -476,6 +520,11 @@ func (d_ Date) NSTimeIntervalSince1970() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstimeintervalsince1970
 func (d_ Date) SetNSTimeIntervalSince1970(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setNSTimeIntervalSince1970:"), value)
-}
+}/* debug [instance_properties/setter]: NSTimeIntervalSince1970 */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSDate */
 
 

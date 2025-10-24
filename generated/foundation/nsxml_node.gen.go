@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSXMLNode */
+
+
+/* debug [class_header]: Header for NSXMLNode */
 // The class instance for the [XMLNode] class.
 var (
 	XMLNodeClass     _XMLNodeClass
@@ -26,10 +30,16 @@ func getXMLNodeClass() _XMLNodeClass {
 type _XMLNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for XMLNode */
 // An interface definition for the [XMLNode] class.
 type IXMLNode interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for XMLNode */
 	// properties:
 	ChildCount() uint
 	Children() []XMLNode
@@ -54,12 +64,16 @@ type IXMLNode interface {
 	SetURI(value IString)
 	XPath() IString
 	XMLString() IString
-	Kind() unsafe.Pointer
-	SetKind(value unsafe.Pointer)
+	Kind() objectivec.IObject
+	SetKind(value objectivec.IObject)
 	Next() IXMLNode
 	SetNext(value IXMLNode)
 	Previous() IXMLNode
 	SetPrevious(value IXMLNode)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for XMLNode */
 	// methods:
 	CanonicalXMLStringPreservingComments(comments bool) IString
 	ChildAtIndex(index uint) IXMLNode
@@ -69,28 +83,14 @@ type IXMLNode interface {
 	ObjectsForXQueryConstantsError(xquery IString, constants IDictionary, error_ IError) IArray
 	SetStringValueResolvingEntities(string_ IString, resolve bool)
 	XMLStringWithOptions(options XMLNodeOptions) IString
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The nodes in the abstract, logical tree structure that represents an XML document.
-//
-// Node objects can be of different kinds, corresponding to the following markup constructs in an XML document: element, attribute, text, processing instruction, namespace, and comment. In addition, a document-node object (specifically, an instance of ) represents an XML document in its entirety. objects can also represent document type declarations as well as declarations in Document Type Definitions (DTDs). Class factory methods of enable you to create nodes of each kind. Only document, element, and DTD nodes may have child nodes. Among the XML family of classes (excluding ) the class is the base class. Inheriting from it are the classes , , , and . specifies the interface common to all XML node objects and defines common node behavior and attributes, for example hierarchy level, node name and value, tree traversal, and the ability to emit representative XML markup text.
+/* debug [class_interface]: End interface */
 
 
-// The nodes in the abstract, logical tree structure that represents an XML document.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode
-type XMLNode struct {
-	objectivec.Object
-}
 
-// XMLNodeFrom constructs a [XMLNode] from an unsafe.Pointer.
-//
-// The nodes in the abstract, logical tree structure that represents an XML document.
-func XMLNodeFrom(ptr unsafe.Pointer) XMLNode {
-	return XMLNode{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for XMLNode */
 // Alloc allocates a new instance without initialization.
 func (xc _XMLNodeClass) Alloc() XMLNode {
 	rv := objc.Send[XMLNode](objc.ID(xc.class), objc.Sel("alloc"))
@@ -98,7 +98,6 @@ func (xc _XMLNodeClass) Alloc() XMLNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (xc _XMLNodeClass) New() XMLNode {
 	rv := objc.Send[XMLNode](objc.ID(xc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -121,9 +120,52 @@ func (x_ XMLNode) Autorelease() XMLNode {
 func NewXMLNode() XMLNode {
 	return getXMLNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
+/* debug [class_struct]: Struct for XMLNode */
+// The nodes in the abstract, logical tree structure that represents an XML document.
+//
+// Node objects can be of different kinds, corresponding to the following markup constructs in an XML document: element, attribute, text, processing instruction, namespace, and comment. In addition, a document-node object (specifically, an instance of ) represents an XML document in its entirety. objects can also represent document type declarations as well as declarations in Document Type Definitions (DTDs). Class factory methods of enable you to create nodes of each kind. Only document, element, and DTD nodes may have child nodes. Among the XML family of classes (excluding ) the class is the base class. Inheriting from it are the classes , , , and . specifies the interface common to all XML node objects and defines common node behavior and attributes, for example hierarchy level, node name and value, tree traversal, and the ability to emit representative XML markup text.
+
+
+// The nodes in the abstract, logical tree structure that represents an XML document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode
+type XMLNode struct {
+	objectivec.Object
+}
+
+// XMLNodeFrom constructs a [XMLNode] from an unsafe.Pointer.
+//
+// The nodes in the abstract, logical tree structure that represents an XML document.
+func XMLNodeFrom(ptr unsafe.Pointer) XMLNode {
+	return XMLNode{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for XMLNode */
+
+// Returns an instance initialized with the constant indicating node kind.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/init(kind:)
+func NewXMLNodeWithKind(kind XMLNodeKind /* not a class type */) XMLNode {
+	instance := getXMLNodeClass().Alloc()
+	rv := objc.Send[XMLNode](instance.ID, objc.Sel("initWithKind:"), kind)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewXMLNodeWithKind */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for XMLNode */
 
 // Returns an object representing an attribute node with a given name and string.
 //
@@ -132,7 +174,7 @@ func NewXMLNode() XMLNode {
 func (xc _XMLNodeClass) AttributeWithNameStringValue(name IString, stringValue IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("attributeWithName:stringValue:"), name, stringValue)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AttributeWithNameStringValue) */
 
 
 // Returns an object representing an attribute node with a given qualified name and string.
@@ -142,7 +184,7 @@ func (xc _XMLNodeClass) AttributeWithNameStringValue(name IString, stringValue I
 func (xc _XMLNodeClass) AttributeWithNameURIStringValue(name IString, URI IString, stringValue IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("attributeWithName:URI:stringValue:"), name, URI, stringValue)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AttributeWithNameURIStringValue) */
 
 
 // Returns an object representing a comment node containing given text.
@@ -152,7 +194,7 @@ func (xc _XMLNodeClass) AttributeWithNameURIStringValue(name IString, URI IStrin
 func (xc _XMLNodeClass) CommentWithStringValue(stringValue IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("commentWithStringValue:"), stringValue)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CommentWithStringValue) */
 
 
 // Returns an empty document node.
@@ -162,7 +204,7 @@ func (xc _XMLNodeClass) CommentWithStringValue(stringValue IString) objc.ID {
 func (xc _XMLNodeClass) Document() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("document"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Document) */
 
 
 // Returns an object initialized with a given root element.
@@ -172,7 +214,7 @@ func (xc _XMLNodeClass) Document() objc.ID {
 func (xc _XMLNodeClass) DocumentWithRootElement(element IXMLElement) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("documentWithRootElement:"), element)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DocumentWithRootElement) */
 
 
 // Returns a object representing the DTD declaration for an element, attribute, entity, or notation based on a given string.
@@ -182,7 +224,7 @@ func (xc _XMLNodeClass) DocumentWithRootElement(element IXMLElement) objc.ID {
 func (xc _XMLNodeClass) DTDNodeWithXMLString(string_ IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("DTDNodeWithXMLString:"), string_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DTDNodeWithXMLString) */
 
 
 // Returns an object with a given tag identifier, or name
@@ -192,7 +234,7 @@ func (xc _XMLNodeClass) DTDNodeWithXMLString(string_ IString) objc.ID {
 func (xc _XMLNodeClass) ElementWithName(name IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:"), name)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ElementWithName) */
 
 
 // Returns an object with the given tag (name), attributes, and children.
@@ -202,7 +244,7 @@ func (xc _XMLNodeClass) ElementWithName(name IString) objc.ID {
 func (xc _XMLNodeClass) ElementWithNameChildrenAttributes(name IString, children []XMLNode, attributes []XMLNode) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:children:attributes:"), name, children, attributes)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ElementWithNameChildrenAttributes) */
 
 
 // Returns an object with a single text-node child containing the specified text.
@@ -212,7 +254,7 @@ func (xc _XMLNodeClass) ElementWithNameChildrenAttributes(name IString, children
 func (xc _XMLNodeClass) ElementWithNameStringValue(name IString, string_ IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:stringValue:"), name, string_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ElementWithNameStringValue) */
 
 
 // Returns an element whose fully qualified name is specified.
@@ -222,7 +264,7 @@ func (xc _XMLNodeClass) ElementWithNameStringValue(name IString, string_ IString
 func (xc _XMLNodeClass) ElementWithNameURI(name IString, URI IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:URI:"), name, URI)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ElementWithNameURI) */
 
 
 // Returns the local name from the specified qualified name.
@@ -232,7 +274,7 @@ func (xc _XMLNodeClass) ElementWithNameURI(name IString, URI IString) objc.ID {
 func (xc _XMLNodeClass) LocalNameForName(name IString) IString {
 	rv := objc.Send[String](objc.ID(xc.class), objc.Sel("localNameForName:"), name)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalNameForName) */
 
 
 // Returns an object representing a namespace with a specified name and URI.
@@ -242,7 +284,7 @@ func (xc _XMLNodeClass) LocalNameForName(name IString) IString {
 func (xc _XMLNodeClass) NamespaceWithNameStringValue(name IString, stringValue IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("namespaceWithName:stringValue:"), name, stringValue)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NamespaceWithNameStringValue) */
 
 
 // Returns an object representing one of the predefined namespaces with the specified prefix.
@@ -252,7 +294,7 @@ func (xc _XMLNodeClass) NamespaceWithNameStringValue(name IString, stringValue I
 func (xc _XMLNodeClass) PredefinedNamespaceForPrefix(name IString) IXMLNode {
 	rv := objc.Send[XMLNode](objc.ID(xc.class), objc.Sel("predefinedNamespaceForPrefix:"), name)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PredefinedNamespaceForPrefix) */
 
 
 // Returns the prefix from the specified qualified name.
@@ -262,7 +304,7 @@ func (xc _XMLNodeClass) PredefinedNamespaceForPrefix(name IString) IXMLNode {
 func (xc _XMLNodeClass) PrefixForName(name IString) IString {
 	rv := objc.Send[String](objc.ID(xc.class), objc.Sel("prefixForName:"), name)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PrefixForName) */
 
 
 // Returns an object representing a processing instruction with a specified name and value.
@@ -272,7 +314,7 @@ func (xc _XMLNodeClass) PrefixForName(name IString) IString {
 func (xc _XMLNodeClass) ProcessingInstructionWithNameStringValue(name IString, stringValue IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("processingInstructionWithName:stringValue:"), name, stringValue)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ProcessingInstructionWithNameStringValue) */
 
 
 // Returns an object representing a text node with specified content.
@@ -282,8 +324,18 @@ func (xc _XMLNodeClass) ProcessingInstructionWithNameStringValue(name IString, s
 func (xc _XMLNodeClass) TextWithStringValue(stringValue IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("textWithStringValue:"), stringValue)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TextWithStringValue) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for XMLNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for XMLNode */
 
 // Returns a string object encapsulating the receiver’s XML in canonical form.
 //
@@ -292,7 +344,7 @@ func (xc _XMLNodeClass) TextWithStringValue(stringValue IString) objc.ID {
 func (x_ XMLNode) CanonicalXMLStringPreservingComments(comments bool) IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("canonicalXMLStringPreservingComments:"), comments)
 	return rv
-}
+}/* debug [instance_methods/method]: CanonicalXMLStringPreservingComments */
 
 
 // Returns the child node of the receiver at the specified location.
@@ -302,7 +354,7 @@ func (x_ XMLNode) CanonicalXMLStringPreservingComments(comments bool) IString {
 func (x_ XMLNode) ChildAtIndex(index uint) IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("childAtIndex:"), index)
 	return rv
-}
+}/* debug [instance_methods/method]: ChildAtIndex */
 
 
 // Detaches the receiver from its parent node.
@@ -311,7 +363,7 @@ func (x_ XMLNode) ChildAtIndex(index uint) IXMLNode {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/detach()
 func (x_ XMLNode) Detach() {
 	objc.Send[objc.ID](x_.ID, objc.Sel("detach"))
-}
+}/* debug [instance_methods/method]: Detach */
 
 
 // Returns the nodes resulting from executing an XPath query upon the receiver.
@@ -321,7 +373,7 @@ func (x_ XMLNode) Detach() {
 func (x_ XMLNode) NodesForXPathError(xpath IString, error_ IError) []XMLNode {
 	rv := objc.Send[[]XMLNode](x_.ID, objc.Sel("nodesForXPath:error:"), xpath, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: NodesForXPathError */
 
 
 // Returns the objects resulting from executing an XQuery query upon the receiver.
@@ -331,7 +383,7 @@ func (x_ XMLNode) NodesForXPathError(xpath IString, error_ IError) []XMLNode {
 func (x_ XMLNode) ObjectsForXQueryError(xquery IString, error_ IError) IArray {
 	rv := objc.Send[Array](x_.ID, objc.Sel("objectsForXQuery:error:"), xquery, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ObjectsForXQueryError */
 
 
 // Returns the objects resulting from executing an XQuery query upon the receiver.
@@ -341,7 +393,7 @@ func (x_ XMLNode) ObjectsForXQueryError(xquery IString, error_ IError) IArray {
 func (x_ XMLNode) ObjectsForXQueryConstantsError(xquery IString, constants IDictionary, error_ IError) IArray {
 	rv := objc.Send[Array](x_.ID, objc.Sel("objectsForXQuery:constants:error:"), xquery, constants, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ObjectsForXQueryConstantsError */
 
 
 // Sets the content of the receiver as a string value and, optionally, resolves character references, predefined entities, and user-defined entities as declared in the associated DTD.
@@ -350,7 +402,7 @@ func (x_ XMLNode) ObjectsForXQueryConstantsError(xquery IString, constants IDict
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/setStringValue(_:resolvingEntities:)
 func (x_ XMLNode) SetStringValueResolvingEntities(string_ IString, resolve bool) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:resolvingEntities:"), string_, resolve)
-}
+}/* debug [instance_methods/method]: SetStringValueResolvingEntities */
 
 
 // Returns the string representation of the receiver as it would appear in an XML document, with one or more output options specified.
@@ -360,8 +412,13 @@ func (x_ XMLNode) SetStringValueResolvingEntities(string_ IString, resolve bool)
 func (x_ XMLNode) XMLStringWithOptions(options XMLNodeOptions) IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("XMLStringWithOptions:"), options)
 	return rv
-}
+}/* debug [instance_methods/method]: XMLStringWithOptions */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for XMLNode */
 
 // Returns the number of child nodes the receiver has.
 //
@@ -370,7 +427,7 @@ func (x_ XMLNode) XMLStringWithOptions(options XMLNodeOptions) IString {
 func (x_ XMLNode) ChildCount() uint {
 	rv := objc.Send[uint](x_.ID, objc.Sel("childCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: childCount */
 
 
 // Returns an immutable array containing the child nodes of the receiver (as objects).
@@ -380,7 +437,7 @@ func (x_ XMLNode) ChildCount() uint {
 func (x_ XMLNode) Children() []XMLNode {
 	rv := objc.Send[[]XMLNode](x_.ID, objc.Sel("children"))
 	return rv
-}
+}/* debug [instance_properties/getter]: children */
 
 
 // [Full Topic]
@@ -388,7 +445,7 @@ func (x_ XMLNode) Children() []XMLNode {
 func (x_ XMLNode) Description() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("description"))
 	return rv
-}
+}/* debug [instance_properties/getter]: description */
 
 
 // Returns the index of the receiver identifying its position relative to its sibling nodes.
@@ -398,7 +455,7 @@ func (x_ XMLNode) Description() IString {
 func (x_ XMLNode) Index() uint {
 	rv := objc.Send[uint](x_.ID, objc.Sel("index"))
 	return rv
-}
+}/* debug [instance_properties/getter]: index */
 
 
 // Returns the nesting level of the receiver within the tree hierarchy.
@@ -408,7 +465,7 @@ func (x_ XMLNode) Index() uint {
 func (x_ XMLNode) Level() uint {
 	rv := objc.Send[uint](x_.ID, objc.Sel("level"))
 	return rv
-}
+}/* debug [instance_properties/getter]: level */
 
 
 // Returns the local name of the receiver.
@@ -418,7 +475,7 @@ func (x_ XMLNode) Level() uint {
 func (x_ XMLNode) LocalName() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("localName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localName */
 
 
 // Returns the name of the receiver.
@@ -428,7 +485,7 @@ func (x_ XMLNode) LocalName() IString {
 func (x_ XMLNode) Name() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("name"))
 	return rv
-}
+}/* debug [instance_properties/getter]: name */
 
 
 // Returns the name of the receiver.
@@ -437,7 +494,7 @@ func (x_ XMLNode) Name() IString {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/name
 func (x_ XMLNode) SetName(value IString) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setName:"), value)
-}
+}/* debug [instance_properties/setter]: name */
 
 
 // Returns the next object in document order.
@@ -447,7 +504,7 @@ func (x_ XMLNode) SetName(value IString) {
 func (x_ XMLNode) NextNode() IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("nextNode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nextNode */
 
 
 // Returns the next object that is a sibling node to the receiver.
@@ -457,7 +514,7 @@ func (x_ XMLNode) NextNode() IXMLNode {
 func (x_ XMLNode) NextSibling() IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("nextSibling"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nextSibling */
 
 
 // Returns the object value of the receiver.
@@ -467,7 +524,7 @@ func (x_ XMLNode) NextSibling() IXMLNode {
 func (x_ XMLNode) ObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](x_.ID, objc.Sel("objectValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: objectValue */
 
 
 // Returns the object value of the receiver.
@@ -476,7 +533,7 @@ func (x_ XMLNode) ObjectValue() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/objectValue
 func (x_ XMLNode) SetObjectValue(value objc.ID) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setObjectValue:"), value)
-}
+}/* debug [instance_properties/setter]: objectValue */
 
 
 // Returns the parent node of the receiver.
@@ -486,7 +543,7 @@ func (x_ XMLNode) SetObjectValue(value objc.ID) {
 func (x_ XMLNode) Parent() IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("parent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: parent */
 
 
 // Returns the prefix of the receiver’s name.
@@ -496,7 +553,7 @@ func (x_ XMLNode) Parent() IXMLNode {
 func (x_ XMLNode) Prefix() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("prefix"))
 	return rv
-}
+}/* debug [instance_properties/getter]: prefix */
 
 
 // Returns the previous object in document order.
@@ -506,7 +563,7 @@ func (x_ XMLNode) Prefix() IString {
 func (x_ XMLNode) PreviousNode() IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("previousNode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: previousNode */
 
 
 // Returns the previous object that is a sibling node to the receiver.
@@ -516,7 +573,7 @@ func (x_ XMLNode) PreviousNode() IXMLNode {
 func (x_ XMLNode) PreviousSibling() IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("previousSibling"))
 	return rv
-}
+}/* debug [instance_properties/getter]: previousSibling */
 
 
 // Returns the object containing the root element and representing the XML document as a whole.
@@ -526,7 +583,7 @@ func (x_ XMLNode) PreviousSibling() IXMLNode {
 func (x_ XMLNode) RootDocument() IXMLDocument {
 	rv := objc.Send[XMLDocument](x_.ID, objc.Sel("rootDocument"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rootDocument */
 
 
 // Returns the content of the receiver as a string value.
@@ -536,7 +593,7 @@ func (x_ XMLNode) RootDocument() IXMLDocument {
 func (x_ XMLNode) StringValue() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("stringValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stringValue */
 
 
 // Returns the content of the receiver as a string value.
@@ -545,7 +602,7 @@ func (x_ XMLNode) StringValue() IString {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/stringValue
 func (x_ XMLNode) SetStringValue(value IString) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setStringValue:"), value)
-}
+}/* debug [instance_properties/setter]: stringValue */
 
 
 // Returns the URI associated with the receiver.
@@ -555,7 +612,7 @@ func (x_ XMLNode) SetStringValue(value IString) {
 func (x_ XMLNode) URI() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("URI"))
 	return rv
-}
+}/* debug [instance_properties/getter]: URI */
 
 
 // Returns the URI associated with the receiver.
@@ -564,7 +621,7 @@ func (x_ XMLNode) URI() IString {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/uri
 func (x_ XMLNode) SetURI(value IString) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setURI:"), value)
-}
+}/* debug [instance_properties/setter]: URI */
 
 
 // Returns the XPath expression identifying the receiver’s location in the document tree.
@@ -574,7 +631,7 @@ func (x_ XMLNode) SetURI(value IString) {
 func (x_ XMLNode) XPath() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("XPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: XPath */
 
 
 // Returns the string representation of the receiver as it would appear in an XML document.
@@ -584,26 +641,26 @@ func (x_ XMLNode) XPath() IString {
 func (x_ XMLNode) XMLString() IString {
 	rv := objc.Send[String](x_.ID, objc.Sel("XMLString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: XMLString */
 
 
 // Returns the kind of node the receiver is as a constant of type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.property
-func (x_ XMLNode) Kind() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](x_.ID, objc.Sel("kind"))
+func (x_ XMLNode) Kind() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](x_.ID, objc.Sel("kind"))
 	return rv
-}
+}/* debug [instance_properties/getter]: kind */
 
 
 // Returns the kind of node the receiver is as a constant of type
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/kind-swift.property
-func (x_ XMLNode) SetKind(value unsafe.Pointer) {
+func (x_ XMLNode) SetKind(value objectivec.IObject) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setKind:"), value)
-}
+}/* debug [instance_properties/setter]: kind */
 
 
 // Returns the next
@@ -613,7 +670,7 @@ func (x_ XMLNode) SetKind(value unsafe.Pointer) {
 func (x_ XMLNode) Next() IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("next"))
 	return rv
-}
+}/* debug [instance_properties/getter]: next */
 
 
 // Returns the next
@@ -622,7 +679,7 @@ func (x_ XMLNode) Next() IXMLNode {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/next
 func (x_ XMLNode) SetNext(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setNext:"), value)
-}
+}/* debug [instance_properties/setter]: next */
 
 
 // Returns the previous
@@ -632,7 +689,7 @@ func (x_ XMLNode) SetNext(value IXMLNode) {
 func (x_ XMLNode) Previous() IXMLNode {
 	rv := objc.Send[XMLNode](x_.ID, objc.Sel("previous"))
 	return rv
-}
+}/* debug [instance_properties/getter]: previous */
 
 
 // Returns the previous
@@ -641,6 +698,11 @@ func (x_ XMLNode) Previous() IXMLNode {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/xmlnode/previous
 func (x_ XMLNode) SetPrevious(value IXMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setPrevious:"), value)
-}
+}/* debug [instance_properties/setter]: previous */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSXMLNode */
 
 

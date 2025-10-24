@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // maximumDistanceProtocol is the maximumDistance protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to maximumDistance.
 var maximumDistanceProtocol *objc.Protocol
 
 func init() {
 	maximumDistanceProtocol = objc.GetProtocol("maximumDistance")
 }
+

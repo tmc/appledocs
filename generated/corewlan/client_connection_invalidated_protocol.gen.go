@@ -16,3 +16,4 @@ var clientConnectionInvalidatedProtocol *objc.Protocol
 func init() {
 	clientConnectionInvalidatedProtocol = objc.GetProtocol("clientConnectionInvalidated")
 }
+

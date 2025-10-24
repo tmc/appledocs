@@ -34,7 +34,6 @@ type IINRelevantShortcutStore interface {
 
 // An object that saves relevant shortcuts.
 
-
 // An object that saves relevant shortcuts.
 //
 // [Full Topic]
@@ -81,8 +80,6 @@ func NewINRelevantShortcutStore() INRelevantShortcutStore {
 	return getINRelevantShortcutStoreClass().New()
 }
 
-
-
 // The default relevant shortcut store.
 //
 // [Full Topic]
@@ -100,6 +97,3 @@ func (i_ INRelevantShortcutStore) DefaultStore() INRelevantShortcutStore {
 	rv := objc.Send[INRelevantShortcutStore](i_.ID, objc.Sel("defaultStore"))
 	return rv
 }
-
-
-

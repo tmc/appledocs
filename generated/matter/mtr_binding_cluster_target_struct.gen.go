@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRBindingClusterTargetStruct interface {
 	SetNode(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBindingClusterTargetStruct
@@ -89,8 +87,6 @@ func NewMTRBindingClusterTargetStruct() MTRBindingClusterTargetStruct {
 	return getMTRBindingClusterTargetStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
 func (m_ MTRBindingClusterTargetStruct) Cluster() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRBindingClusterTargetStruct) Cluster() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/cluster
 func (m_ MTRBindingClusterTargetStruct) SetCluster(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCluster:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/endpoint
@@ -113,13 +107,11 @@ func (m_ MTRBindingClusterTargetStruct) Endpoint() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/endpoint
 func (m_ MTRBindingClusterTargetStruct) SetEndpoint(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndpoint:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
@@ -128,13 +120,11 @@ func (m_ MTRBindingClusterTargetStruct) FabricIndex() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/fabricindex
 func (m_ MTRBindingClusterTargetStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
@@ -143,13 +133,11 @@ func (m_ MTRBindingClusterTargetStruct) Group() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/group
 func (m_ MTRBindingClusterTargetStruct) SetGroup(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroup:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/node
@@ -158,12 +146,8 @@ func (m_ MTRBindingClusterTargetStruct) Node() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbindingclustertargetstruct/node
 func (m_ MTRBindingClusterTargetStruct) SetNode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNode:"), value)
 }
-
-
-

@@ -9,6 +9,17 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewWindow
 
+// ExampleNewWindowWithContentRectStyleMaskBackingDefer demonstrates how to create a Window instance using NewWindowWithContentRectStyleMaskBackingDefer.
+// Initializes the window with the specified values.
+func ExampleNewWindowWithContentRectStyleMaskBackingDefer() {
+	_ = appkit.NewWindowWithContentRectStyleMaskBackingDefer(
+		appkit.Rect /* not a class type */{}, // contentRect Rect /* not a class type */
+		appkit.WindowStyleMask{}, // style WindowStyleMask
+		appkit.BackingStoreType{}, // backingStoreType BackingStoreType
+		false, // flag bool
+	)
+	// Output:
+}
 // ExampleWindow_BecomeKeyWindow demonstrates using BecomeKeyWindow on a Window instance.
 // Informs the window that it has become the key window.
 func ExampleWindow_BecomeKeyWindow() {

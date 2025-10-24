@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mRFCOMMChannel */
+
+
+/* debug [class_header]: Header for mRFCOMMChannel */
 // The class instance for the [mRFCOMMChannel] class.
 var (
 	MRFCOMMChannelClass     _mRFCOMMChannelClass
@@ -26,27 +30,30 @@ func getmRFCOMMChannelClass() _mRFCOMMChannelClass {
 type _mRFCOMMChannelClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mRFCOMMChannel */
 // An interface definition for the [mRFCOMMChannel] class.
 type ImRFCOMMChannel interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mRFCOMMChannel */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mRFCOMMChannel */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/mRFCOMMChannel
-type mRFCOMMChannel struct {
-	objectivec.Object
-}
-
-// mRFCOMMChannelFrom constructs a [mRFCOMMChannel] from an unsafe.Pointer.
-func mRFCOMMChannelFrom(ptr unsafe.Pointer) mRFCOMMChannel {
-	return mRFCOMMChannel{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mRFCOMMChannel */
 // Alloc allocates a new instance without initialization.
 func (mc _mRFCOMMChannelClass) Alloc() mRFCOMMChannel {
 	rv := objc.Send[mRFCOMMChannel](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mRFCOMMChannelClass) Alloc() mRFCOMMChannel {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mRFCOMMChannelClass) New() mRFCOMMChannel {
 	rv := objc.Send[mRFCOMMChannel](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mRFCOMMChannel) Autorelease() mRFCOMMChannel {
 func NewmRFCOMMChannel() mRFCOMMChannel {
 	return getmRFCOMMChannelClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mRFCOMMChannel */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/mRFCOMMChannel
+type mRFCOMMChannel struct {
+	objectivec.Object
+}
+
+// mRFCOMMChannelFrom constructs a [mRFCOMMChannel] from an unsafe.Pointer.
+func mRFCOMMChannelFrom(ptr unsafe.Pointer) mRFCOMMChannel {
+	return mRFCOMMChannel{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mRFCOMMChannel *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mRFCOMMChannel */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mRFCOMMChannel */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mRFCOMMChannel */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mRFCOMMChannel */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mRFCOMMChannel */
 
 
 

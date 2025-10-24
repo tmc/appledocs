@@ -8,7 +8,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/avfoundation"
+	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -66,11 +66,11 @@ func (n_ NowPlayingSession) CanBecomeActive() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/delegate
-func (n_ NowPlayingSession) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](n_.ID, objc.Sel("delegate"))
+func (n_ NowPlayingSession) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (n_ NowPlayingSession) SetDelegate(value objc.ID) {
+func (n_ NowPlayingSession) SetDelegate(value unsafe.Pointer) {
 	n_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -97,7 +97,7 @@ func (n_ NowPlayingSession) NowPlayingInfoCenter() IMPNowPlayingInfoCenter {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingSession/players
 func (n_ NowPlayingSession) Players() []objc.IObject /* cross-framework: Player */ {
-	rv := objc.Send[[]avfoundation.Player](n_.ID, objc.Sel("players"))
+	rv := objc.Send[[]appkit.Player](n_.ID, objc.Sel("players"))
 	return rv
 }
 

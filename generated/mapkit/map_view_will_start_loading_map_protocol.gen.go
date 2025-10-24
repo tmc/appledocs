@@ -20,3 +20,4 @@ var mapViewWillStartLoadingMapProtocol *objc.Protocol
 func init() {
 	mapViewWillStartLoadingMapProtocol = objc.GetProtocol("mapViewWillStartLoadingMap:")
 }
+

@@ -42,7 +42,6 @@ type ILocationSourceInformation interface {
 //
 // contains information about the source that provides a instance, such as instances that delivers. For example, an app may choose to check the source information and reject locations if the property is when the developer isn’t debugging or testing the app.
 
-
 // Information about the source that provides a location.
 //
 // [Full Topic]
@@ -89,8 +88,6 @@ func NewLocationSourceInformation() LocationSourceInformation {
 	return getLocationSourceInformationClass().New()
 }
 
-
-
 // A Boolean value that indicates whether the system receives the location from an external accessory.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (l_ LocationSourceInformation) IsProducedByAccessory() unsafe.Pointer {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the system receives the location from an external accessory.
 //
 // [Full Topic]
@@ -108,7 +104,6 @@ func (l_ LocationSourceInformation) IsProducedByAccessory() unsafe.Pointer {
 func (l_ LocationSourceInformation) SetIsProducedByAccessory(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsProducedByAccessory:"), value)
 }
-
 
 // A Boolean value that indicates whether the system generates the location using on-device software simulation.
 //
@@ -119,7 +114,6 @@ func (l_ LocationSourceInformation) IsSimulatedBySoftware() unsafe.Pointer {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the system generates the location using on-device software simulation.
 //
 // [Full Topic]
@@ -127,6 +121,3 @@ func (l_ LocationSourceInformation) IsSimulatedBySoftware() unsafe.Pointer {
 func (l_ LocationSourceInformation) SetIsSimulatedBySoftware(value unsafe.Pointer) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsSimulatedBySoftware:"), value)
 }
-
-
-

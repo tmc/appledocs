@@ -16,3 +16,4 @@ var ChallengeEventHandlerDelegateProtocol *objc.Protocol
 func init() {
 	ChallengeEventHandlerDelegateProtocol = objc.GetProtocol("GKChallengeEventHandlerDelegate")
 }
+

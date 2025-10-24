@@ -20,3 +20,4 @@ var AssetWriterDelegateProtocol *objc.Protocol
 func init() {
 	AssetWriterDelegateProtocol = objc.GetProtocol("AVAssetWriterDelegate")
 }
+

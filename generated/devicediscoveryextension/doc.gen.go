@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for DeviceDiscoveryExtension. DO NOT EDIT.
 
 // Package devicediscoveryextension provides Go bindings for the DeviceDiscoveryExtension framework.
 //
-// Stream media to a third-party device that a user selects in a system menu.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DeviceDiscoveryExtension without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/DeviceDiscoveryExtension
 package devicediscoveryextension
 
 import (

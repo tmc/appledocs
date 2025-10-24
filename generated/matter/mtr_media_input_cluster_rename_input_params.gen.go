@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRMediaInputClusterRenameInputParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaInputClusterRenameInputParams
@@ -87,8 +85,6 @@ func NewMTRMediaInputClusterRenameInputParams() MTRMediaInputClusterRenameInputP
 	return getMTRMediaInputClusterRenameInputParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/index
 func (m_ MTRMediaInputClusterRenameInputParams) Index() objc.IObject /* cross-framework: NSNumber */ {
@@ -96,13 +92,11 @@ func (m_ MTRMediaInputClusterRenameInputParams) Index() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/index
 func (m_ MTRMediaInputClusterRenameInputParams) SetIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/name
@@ -111,13 +105,11 @@ func (m_ MTRMediaInputClusterRenameInputParams) Name() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/name
 func (m_ MTRMediaInputClusterRenameInputParams) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/serversideprocessingtimeout
@@ -126,13 +118,11 @@ func (m_ MTRMediaInputClusterRenameInputParams) ServerSideProcessingTimeout() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/serversideprocessingtimeout
 func (m_ MTRMediaInputClusterRenameInputParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/timedinvoketimeoutms
@@ -141,12 +131,8 @@ func (m_ MTRMediaInputClusterRenameInputParams) TimedInvokeTimeoutMs() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediainputclusterrenameinputparams/timedinvoketimeoutms
 func (m_ MTRMediaInputClusterRenameInputParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

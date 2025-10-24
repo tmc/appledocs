@@ -10,7 +10,5 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	NWTXTRecord = _undefined // referenced in DeviceDiscoveryExtension
-	UUID = _undefined // referenced in DeviceDiscoveryExtension
+	UUID        = _undefined // referenced in DeviceDiscoveryExtension
 )
-
-

@@ -15,3 +15,4 @@ var playerViewControllerWillBeginDismissalTransitionProtocol *objc.Protocol
 func init() {
 	playerViewControllerWillBeginDismissalTransitionProtocol = objc.GetProtocol("playerViewControllerWillBeginDismissalTransition:")
 }
+

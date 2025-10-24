@@ -9,7 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Data = _undefined // referenced in LocalAuthentication
 	PresentationContext = _undefined // referenced in LocalAuthentication
 )
 

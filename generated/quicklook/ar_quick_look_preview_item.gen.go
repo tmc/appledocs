@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class ARQuickLookPreviewItem */
+
+
+/* debug [class_header]: Header for ARQuickLookPreviewItem */
 // The class instance for the [QuickLookPreviewItem] class.
 var (
 	QuickLookPreviewItemClass     _QuickLookPreviewItemClass
@@ -27,31 +31,30 @@ func getQuickLookPreviewItemClass() _QuickLookPreviewItemClass {
 type _QuickLookPreviewItemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for QuickLookPreviewItem */
 // An interface definition for the [QuickLookPreviewItem] class.
 type IQuickLookPreviewItem interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for QuickLookPreviewItem */
 	// properties:
-	AllowsContentScaling() bool
-	SetAllowsContentScaling(value bool)
-	CanonicalWebPageURL() objc.IObject /* cross-framework: URL */
-	SetCanonicalWebPageURL(value objc.IObject /* cross-framework: URL */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for QuickLookPreviewItem */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem
-type QuickLookPreviewItem struct {
-	objectivec.Object
-}
-
-// QuickLookPreviewItemFrom constructs a [QuickLookPreviewItem] from an unsafe.Pointer.
-func QuickLookPreviewItemFrom(ptr unsafe.Pointer) QuickLookPreviewItem {
-	return QuickLookPreviewItem{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for QuickLookPreviewItem */
 // Alloc allocates a new instance without initialization.
 func (qc _QuickLookPreviewItemClass) Alloc() QuickLookPreviewItem {
 	rv := objc.Send[QuickLookPreviewItem](objc.ID(qc.class), objc.Sel("alloc"))
@@ -59,7 +62,6 @@ func (qc _QuickLookPreviewItemClass) Alloc() QuickLookPreviewItem {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (qc _QuickLookPreviewItemClass) New() QuickLookPreviewItem {
 	rv := objc.Send[QuickLookPreviewItem](objc.ID(qc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,8 +84,28 @@ func (q_ QuickLookPreviewItem) Autorelease() QuickLookPreviewItem {
 func NewQuickLookPreviewItem() QuickLookPreviewItem {
 	return getQuickLookPreviewItemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for QuickLookPreviewItem */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/ARQuickLookPreviewItem
+type QuickLookPreviewItem struct {
+	objectivec.Object
+}
+
+// QuickLookPreviewItemFrom constructs a [QuickLookPreviewItem] from an unsafe.Pointer.
+func QuickLookPreviewItemFrom(ptr unsafe.Pointer) QuickLookPreviewItem {
+	return QuickLookPreviewItem{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for QuickLookPreviewItem */
 
 // Creates an object representing the 3D content that will be previewed in AR Quick Look.
 //
@@ -94,45 +116,31 @@ func NewQuickLookPreviewItemWithFileAtURL(url objc.IObject /* cross-framework: N
 	rv := objc.Send[QuickLookPreviewItem](instance.ID, objc.Sel("initWithFileAtURL:"), url)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewQuickLookPreviewItemWithFileAtURL */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// Whether or not AR Quick Look allows content scaling in AR mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/arquicklookpreviewitem/allowscontentscaling
-func (q_ QuickLookPreviewItem) AllowsContentScaling() bool {
-	rv := objc.Send[bool](q_.ID, objc.Sel("allowsContentScaling"))
-	return rv
-}
+/* debug [class_methods]: Class methods for QuickLookPreviewItem */
+/* debug [class_methods]: End class methods */
 
 
-// Whether or not AR Quick Look allows content scaling in AR mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/arquicklookpreviewitem/allowscontentscaling
-func (q_ QuickLookPreviewItem) SetAllowsContentScaling(value bool) {
-	objc.Send[objc.ID](q_.ID, objc.Sel("setAllowsContentScaling:"), value)
-}
+
+/* debug [class_properties_class]: Class properties for QuickLookPreviewItem */
+/* debug [class_properties_class]: End class properties */
 
 
-// An optional canonical web page URL for the 3D content that will be shared.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/arquicklookpreviewitem/canonicalwebpageurl
-func (q_ QuickLookPreviewItem) CanonicalWebPageURL() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](q_.ID, objc.Sel("canonicalWebPageURL"))
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for QuickLookPreviewItem */
+/* debug [instance_methods]: End instance methods */
 
 
-// An optional canonical web page URL for the 3D content that will be shared.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quicklook/arquicklookpreviewitem/canonicalwebpageurl
-func (q_ QuickLookPreviewItem) SetCanonicalWebPageURL(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](q_.ID, objc.Sel("setCanonicalWebPageURL:"), value)
-}
+
+/* debug [instance_properties]: Instance properties for QuickLookPreviewItem */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class ARQuickLookPreviewItem */
 
 

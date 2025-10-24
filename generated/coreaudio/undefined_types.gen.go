@@ -9,7 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	TapMuteBehavior = _undefined // referenced in CoreAudio
+	DictionaryRef = _undefined // referenced in CoreAudio
+	RunLoopSourceRef = _undefined // referenced in CoreAudio
 )
 
 

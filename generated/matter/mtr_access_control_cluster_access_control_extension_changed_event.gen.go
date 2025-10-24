@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRAccessControlClusterAccessControlExtensionChangedEvent interface {
 	SetLatestValue(value IMTRAccessControlClusterAccessControlExtensionStruct)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessControlExtensionChangedEvent
@@ -89,8 +87,6 @@ func NewMTRAccessControlClusterAccessControlExtensionChangedEvent() MTRAccessCon
 	return getMTRAccessControlClusterAccessControlExtensionChangedEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminnodeid
 func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) AdminNodeID() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) AdminNodeID(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminnodeid
 func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetAdminNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminNodeID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminpasscodeid
@@ -113,13 +107,11 @@ func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) AdminPasscod
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/adminpasscodeid
 func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetAdminPasscodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminPasscodeID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/changetype
@@ -128,13 +120,11 @@ func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) ChangeType()
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/changetype
 func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetChangeType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChangeType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/fabricindex
@@ -143,13 +133,11 @@ func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) FabricIndex(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/fabricindex
 func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/latestvalue
@@ -158,12 +146,8 @@ func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) LatestValue(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionchangedevent/latestvalue
 func (m_ MTRAccessControlClusterAccessControlExtensionChangedEvent) SetLatestValue(value IMTRAccessControlClusterAccessControlExtensionStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLatestValue:"), value)
 }
-
-
-

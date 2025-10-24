@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INLodgingReservation] class.
@@ -43,7 +43,6 @@ type IINLodgingReservation interface {
 }
 
 // The information that describes a lodging reservation.
-
 
 // The information that describes a lodging reservation.
 //
@@ -93,8 +92,6 @@ func NewINLodgingReservation() INLodgingReservation {
 	return getINLodgingReservationClass().New()
 }
 
-
-
 // The name and location of the lodging establishment.
 //
 // [Full Topic]
@@ -104,7 +101,6 @@ func (i_ INLodgingReservation) LodgingBusinessLocation() objc.IObject /* cross-f
 	return rv
 }
 
-
 // The name and location of the lodging establishment.
 //
 // [Full Topic]
@@ -112,7 +108,6 @@ func (i_ INLodgingReservation) LodgingBusinessLocation() objc.IObject /* cross-f
 func (i_ INLodgingReservation) SetLodgingBusinessLocation(value objc.IObject /* cross-framework: Placemark */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLodgingBusinessLocation:"), value)
 }
-
 
 // The number of adults staying at the lodging location.
 //
@@ -123,7 +118,6 @@ func (i_ INLodgingReservation) NumberOfAdults() int {
 	return rv
 }
 
-
 // The number of adults staying at the lodging location.
 //
 // [Full Topic]
@@ -131,7 +125,6 @@ func (i_ INLodgingReservation) NumberOfAdults() int {
 func (i_ INLodgingReservation) SetNumberOfAdults(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfAdults:"), value)
 }
-
 
 // The number of children staying at the lodging location.
 //
@@ -142,7 +135,6 @@ func (i_ INLodgingReservation) NumberOfChildren() int {
 	return rv
 }
 
-
 // The number of children staying at the lodging location.
 //
 // [Full Topic]
@@ -150,7 +142,6 @@ func (i_ INLodgingReservation) NumberOfChildren() int {
 func (i_ INLodgingReservation) SetNumberOfChildren(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfChildren:"), value)
 }
-
 
 // The date and time range that indicates the beginning and end of the reservation.
 //
@@ -161,7 +152,6 @@ func (i_ INLodgingReservation) ReservationDuration() INDateComponentsRange {
 	return rv
 }
 
-
 // The date and time range that indicates the beginning and end of the reservation.
 //
 // [Full Topic]
@@ -169,6 +159,3 @@ func (i_ INLodgingReservation) ReservationDuration() INDateComponentsRange {
 func (i_ INLodgingReservation) SetReservationDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
 }
-
-
-

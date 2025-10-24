@@ -15,3 +15,4 @@ var writeContentsProtocol *objc.Protocol
 func init() {
 	writeContentsProtocol = objc.GetProtocol("writeContents:")
 }
+

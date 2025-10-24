@@ -15,3 +15,4 @@ var selectWordProtocol *objc.Protocol
 func init() {
 	selectWordProtocol = objc.GetProtocol("selectWord:")
 }
+

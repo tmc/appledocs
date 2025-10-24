@@ -15,3 +15,4 @@ var readSelectionFromPasteboardProtocol *objc.Protocol
 func init() {
 	readSelectionFromPasteboardProtocol = objc.GetProtocol("readSelectionFromPasteboard:")
 }
+

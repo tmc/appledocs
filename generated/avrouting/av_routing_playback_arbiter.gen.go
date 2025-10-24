@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVRoutingPlaybackArbiter */
+
+
+/* debug [class_header]: Header for AVRoutingPlaybackArbiter */
 // The class instance for the [RoutingPlaybackArbiter] class.
 var (
 	RoutingPlaybackArbiterClass     _RoutingPlaybackArbiterClass
@@ -26,36 +30,30 @@ func getRoutingPlaybackArbiterClass() _RoutingPlaybackArbiterClass {
 type _RoutingPlaybackArbiterClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for RoutingPlaybackArbiter */
 // An interface definition for the [RoutingPlaybackArbiter] class.
 type IRoutingPlaybackArbiter interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for RoutingPlaybackArbiter */
 	// properties:
-	PreferredParticipantForExternalPlayback() RoutingPlaybackParticipant /* not a class type */
-	SetPreferredParticipantForExternalPlayback(value RoutingPlaybackParticipant /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for RoutingPlaybackArbiter */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that manages playback routing preferences.
-//
-// This object manages instances of for arbitration of media playback routing priorities and preferences on restricted playback interfaces. The playback routing arbiter is responsible for collecting and applying preferences, such as priorities in non-mixable audio routes and external playback states where the number of allowed players is limited.
+/* debug [class_interface]: End interface */
 
 
-// An object that manages playback routing preferences.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter
-type RoutingPlaybackArbiter struct {
-	objectivec.Object
-}
 
-// RoutingPlaybackArbiterFrom constructs a [RoutingPlaybackArbiter] from an unsafe.Pointer.
-//
-// An object that manages playback routing preferences.
-func RoutingPlaybackArbiterFrom(ptr unsafe.Pointer) RoutingPlaybackArbiter {
-	return RoutingPlaybackArbiter{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for RoutingPlaybackArbiter */
 // Alloc allocates a new instance without initialization.
 func (rc _RoutingPlaybackArbiterClass) Alloc() RoutingPlaybackArbiter {
 	rv := objc.Send[RoutingPlaybackArbiter](objc.ID(rc.class), objc.Sel("alloc"))
@@ -63,7 +61,6 @@ func (rc _RoutingPlaybackArbiterClass) Alloc() RoutingPlaybackArbiter {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _RoutingPlaybackArbiterClass) New() RoutingPlaybackArbiter {
 	rv := objc.Send[RoutingPlaybackArbiter](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,25 +83,67 @@ func (r_ RoutingPlaybackArbiter) Autorelease() RoutingPlaybackArbiter {
 func NewRoutingPlaybackArbiter() RoutingPlaybackArbiter {
 	return getRoutingPlaybackArbiterClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The participant that has priority to play on external playback interfaces.
+/* debug [class_struct]: Struct for RoutingPlaybackArbiter */
+// An object that manages playback routing preferences.
+//
+// This object manages instances of for arbitration of media playback routing priorities and preferences on restricted playback interfaces. The playback routing arbiter is responsible for collecting and applying preferences, such as priorities in non-mixable audio routes and external playback states where the number of allowed players is limited.
+
+
+// An object that manages playback routing preferences.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avroutingplaybackarbiter/preferredparticipantforexternalplayback
-func (r_ RoutingPlaybackArbiter) PreferredParticipantForExternalPlayback() RoutingPlaybackParticipant /* not a class type */ {
-	rv := objc.Send[RoutingPlaybackParticipant](r_.ID, objc.Sel("preferredParticipantForExternalPlayback"))
+// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter
+type RoutingPlaybackArbiter struct {
+	objectivec.Object
+}
+
+// RoutingPlaybackArbiterFrom constructs a [RoutingPlaybackArbiter] from an unsafe.Pointer.
+//
+// An object that manages playback routing preferences.
+func RoutingPlaybackArbiterFrom(ptr unsafe.Pointer) RoutingPlaybackArbiter {
+	return RoutingPlaybackArbiter{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for RoutingPlaybackArbiter *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for RoutingPlaybackArbiter */
+
+// Returns the singleton playback arbiter instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVRoutingPlaybackArbiter/shared()
+func (rc _RoutingPlaybackArbiterClass) SharedRoutingPlaybackArbiter() IRoutingPlaybackArbiter {
+	rv := objc.Send[RoutingPlaybackArbiter](objc.ID(rc.class), objc.Sel("sharedRoutingPlaybackArbiter"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SharedRoutingPlaybackArbiter) */
+
+/* debug [class_methods]: End class methods */
 
 
-// The participant that has priority to play on external playback interfaces.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avroutingplaybackarbiter/preferredparticipantforexternalplayback
-func (r_ RoutingPlaybackArbiter) SetPreferredParticipantForExternalPlayback(value RoutingPlaybackParticipant /* not a class type */) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setPreferredParticipantForExternalPlayback:"), value)
-}
+
+/* debug [class_properties_class]: Class properties for RoutingPlaybackArbiter */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for RoutingPlaybackArbiter */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for RoutingPlaybackArbiter */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVRoutingPlaybackArbiter */
 
 

@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // EightfoldReflectedTileProtocol is the CIEightfoldReflectedTile protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIEightfoldReflectedTile.
 var EightfoldReflectedTileProtocol *objc.Protocol
 
 func init() {
 	EightfoldReflectedTileProtocol = objc.GetProtocol("CIEightfoldReflectedTile")
 }
+

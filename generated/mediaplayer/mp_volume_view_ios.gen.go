@@ -5,21 +5,18 @@
 package mediaplayer
 
 import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // iOS-only methods for VolumeView
-
 
 // Returns the maximum volume image associated with the specified control state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/maximumVolumeSliderImage(for:)
-func (v_ VolumeView) MaximumVolumeSliderImageForState(state ControlState /* not a class type */) objc.IObject /* cross-framework: Image */ {
+func (v_ VolumeView) MaximumVolumeSliderImageForState(state ControlState /* not a class type */) appkit.Image {
 	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("maximumVolumeSliderImageForState:"), state)
 	return rv
 }
@@ -28,7 +25,7 @@ func (v_ VolumeView) MaximumVolumeSliderImageForState(state ControlState /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/minimumVolumeSliderImage(for:)
-func (v_ VolumeView) MinimumVolumeSliderImageForState(state ControlState /* not a class type */) objc.IObject /* cross-framework: Image */ {
+func (v_ VolumeView) MinimumVolumeSliderImageForState(state ControlState /* not a class type */) appkit.Image {
 	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("minimumVolumeSliderImageForState:"), state)
 	return rv
 }
@@ -37,7 +34,7 @@ func (v_ VolumeView) MinimumVolumeSliderImageForState(state ControlState /* not 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setMaximumVolumeSliderImage(_:for:)
-func (v_ VolumeView) SetMaximumVolumeSliderImageForState(image objc.IObject /* cross-framework: Image */, state ControlState /* not a class type */) {
+func (v_ VolumeView) SetMaximumVolumeSliderImageForState(image appkit.Image, state ControlState /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMaximumVolumeSliderImage:forState:"), image, state)
 }
 
@@ -45,7 +42,7 @@ func (v_ VolumeView) SetMaximumVolumeSliderImageForState(image objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setMinimumVolumeSliderImage(_:for:)
-func (v_ VolumeView) SetMinimumVolumeSliderImageForState(image objc.IObject /* cross-framework: Image */, state ControlState /* not a class type */) {
+func (v_ VolumeView) SetMinimumVolumeSliderImageForState(image appkit.Image, state ControlState /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setMinimumVolumeSliderImage:forState:"), image, state)
 }
 
@@ -53,7 +50,7 @@ func (v_ VolumeView) SetMinimumVolumeSliderImageForState(image objc.IObject /* c
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/setVolumeThumbImage(_:for:)
-func (v_ VolumeView) SetVolumeThumbImageForState(image objc.IObject /* cross-framework: Image */, state ControlState /* not a class type */) {
+func (v_ VolumeView) SetVolumeThumbImageForState(image appkit.Image, state ControlState /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVolumeThumbImage:forState:"), image, state)
 }
 
@@ -61,8 +58,8 @@ func (v_ VolumeView) SetVolumeThumbImageForState(image objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeSliderRect(forBounds:)
-func (v_ VolumeView) VolumeSliderRectForBounds(bounds objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](v_.ID, objc.Sel("volumeSliderRectForBounds:"), bounds)
+func (v_ VolumeView) VolumeSliderRectForBounds(bounds corefoundation.CGRect) corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](v_.ID, objc.Sel("volumeSliderRectForBounds:"), bounds)
 	return rv
 }
 
@@ -70,7 +67,7 @@ func (v_ VolumeView) VolumeSliderRectForBounds(bounds objc.IObject /* cross-fram
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeThumbImage(for:)
-func (v_ VolumeView) VolumeThumbImageForState(state ControlState /* not a class type */) objc.IObject /* cross-framework: Image */ {
+func (v_ VolumeView) VolumeThumbImageForState(state ControlState /* not a class type */) appkit.Image {
 	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("volumeThumbImageForState:"), state)
 	return rv
 }
@@ -79,8 +76,8 @@ func (v_ VolumeView) VolumeThumbImageForState(state ControlState /* not a class 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeThumbRect(forBounds:volumeSliderRect:value:)
-func (v_ VolumeView) VolumeThumbRectForBoundsVolumeSliderRectValue(bounds objc.IObject /* cross-framework: Rect */, rect objc.IObject /* cross-framework: Rect */, value float32) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](v_.ID, objc.Sel("volumeThumbRectForBounds:volumeSliderRect:value:"), bounds, rect, value)
+func (v_ VolumeView) VolumeThumbRectForBoundsVolumeSliderRectValue(bounds corefoundation.CGRect, rect corefoundation.CGRect, value float32) corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](v_.ID, objc.Sel("volumeThumbRectForBounds:volumeSliderRect:value:"), bounds, rect, value)
 	return rv
 }
 
@@ -132,16 +129,10 @@ func (v_ VolumeView) SetShowsVolumeSlider(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPVolumeView/volumeWarningSliderImage
-func (v_ VolumeView) VolumeWarningSliderImage() objc.IObject /* cross-framework: Image */ {
+func (v_ VolumeView) VolumeWarningSliderImage() appkit.Image {
 	rv := objc.Send[appkit.Image](v_.ID, objc.Sel("volumeWarningSliderImage"))
 	return rv
 }
-func (v_ VolumeView) SetVolumeWarningSliderImage(value objc.IObject /* cross-framework: Image */) {
+func (v_ VolumeView) SetVolumeWarningSliderImage(value appkit.Image) {
 	v_.ID.Send(objc.RegisterName("setVolumeWarningSliderImage:"), value)
 }
-
-
-
-
-
-

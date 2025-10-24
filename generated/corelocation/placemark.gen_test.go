@@ -14,6 +14,7 @@ func ExampleNewPlacemark() {
 	_ = corelocation.NewPlacemark()
 	// Output:
 }
+
 // ExampleNewPlacemarkWithPlacemark demonstrates how to create a Placemark instance using NewPlacemarkWithPlacemark.
 // Initializes and returns a placemark object from another placemark object.
 func ExampleNewPlacemarkWithPlacemark() {

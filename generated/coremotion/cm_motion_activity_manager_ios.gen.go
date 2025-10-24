@@ -19,7 +19,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/queryActivityStarting(from:to:to:withHandler:)
-func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHandler(start objc.IObject /* cross-framework: NSDate */, end objc.IObject /* cross-framework: NSDate */, queue objc.IObject /* cross-framework: OperationQueue */, handler MotionActivityQueryHandler /* not a class type */) {
+func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHandler(start objc.IObject /* cross-framework: NSDate */, end objc.IObject /* cross-framework: NSDate */, queue foundation.OperationQueue, handler MotionActivityQueryHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("queryActivityStartingFromDate:toDate:toQueue:withHandler:"), start, end, queue, handler)
 }
 
@@ -27,7 +27,7 @@ func (m_ MotionActivityManager) QueryActivityStartingFromDateToDateToQueueWithHa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionActivityManager/startActivityUpdates(to:withHandler:)
-func (m_ MotionActivityManager) StartActivityUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler MotionActivityHandler /* not a class type */) {
+func (m_ MotionActivityManager) StartActivityUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler MotionActivityHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startActivityUpdatesToQueue:withHandler:"), queue, handler)
 }
 

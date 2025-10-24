@@ -10,6 +10,9 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SKStoreReviewController */
+
+/* debug [class_header]: Header for SKStoreReviewController */
 // The class instance for the [StoreReviewController] class.
 var (
 	StoreReviewControllerClass     _StoreReviewControllerClass
@@ -27,33 +30,26 @@ type _StoreReviewControllerClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for StoreReviewController */
 // An interface definition for the [StoreReviewController] class.
 type IStoreReviewController interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for StoreReviewController */
 	// properties:
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for StoreReviewController */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that controls the process of requesting App Store ratings and reviews from customers.
-//
-// Use the method to indicate when it makes sense within the logic of your app to ask the customer for ratings and reviews.
+/* debug [class_interface]: End interface */
 
-
-// An object that controls the process of requesting App Store ratings and reviews from customers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreReviewController
-type StoreReviewController struct {
-	objectivec.Object
-}
-
-// StoreReviewControllerFrom constructs a [StoreReviewController] from an unsafe.Pointer.
-//
-// An object that controls the process of requesting App Store ratings and reviews from customers.
-func StoreReviewControllerFrom(ptr unsafe.Pointer) StoreReviewController {
-	return StoreReviewController{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for StoreReviewController */
 // Alloc allocates a new instance without initialization.
 func (sc _StoreReviewControllerClass) Alloc() StoreReviewController {
 	rv := objc.Send[StoreReviewController](objc.ID(sc.class), objc.Sel("alloc"))
@@ -61,7 +57,6 @@ func (sc _StoreReviewControllerClass) Alloc() StoreReviewController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _StoreReviewControllerClass) New() StoreReviewController {
 	rv := objc.Send[StoreReviewController](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,7 +80,33 @@ func NewStoreReviewController() StoreReviewController {
 	return getStoreReviewControllerClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for StoreReviewController */
+// An object that controls the process of requesting App Store ratings and reviews from customers.
+//
+// Use the method to indicate when it makes sense within the logic of your app to ask the customer for ratings and reviews.
+
+// An object that controls the process of requesting App Store ratings and reviews from customers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreReviewController
+type StoreReviewController struct {
+	objectivec.Object
+}
+
+// StoreReviewControllerFrom constructs a [StoreReviewController] from an unsafe.Pointer.
+//
+// An object that controls the process of requesting App Store ratings and reviews from customers.
+func StoreReviewControllerFrom(ptr unsafe.Pointer) StoreReviewController {
+	return StoreReviewController{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for StoreReviewController */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for StoreReviewController */
 
 // Tells StoreKit to ask the customer to rate or review your app, if appropriate.
 //
@@ -93,8 +114,7 @@ func NewStoreReviewController() StoreReviewController {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreReviewController/requestReview()
 func (sc _StoreReviewControllerClass) RequestReview() {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("requestReview"))
-}
-
+} /* debug [class_methods/method]: Class method for%!(EXTRA string=RequestReview) */
 
 // Tells StoreKit to ask the customer to rate or review the app, if appropriate, using the specified scene.
 //
@@ -102,6 +122,17 @@ func (sc _StoreReviewControllerClass) RequestReview() {
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKStoreReviewController/requestReview(in:)
 func (sc _StoreReviewControllerClass) RequestReviewInScene(windowScene WindowScene /* not a class type */) {
 	objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("requestReviewInScene:"), windowScene)
-}
+} /* debug [class_methods/method]: Class method for%!(EXTRA string=RequestReviewInScene) */
 
+/* debug [class_methods]: End class methods */
 
+/* debug [class_properties_class]: Class properties for StoreReviewController */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for StoreReviewController */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for StoreReviewController */
+/* debug [instance_properties]: End instance properties */
+
+/* debug [class.gen.go]: End class SKStoreReviewController */

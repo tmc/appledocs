@@ -15,3 +15,4 @@ var readableTypesForPasteboardProtocol *objc.Protocol
 func init() {
 	readableTypesForPasteboardProtocol = objc.GetProtocol("readableTypesForPasteboard:")
 }
+

@@ -15,3 +15,4 @@ var FSVolumeOpenCloseOperationsProtocol *objc.Protocol
 func init() {
 	FSVolumeOpenCloseOperationsProtocol = objc.GetProtocol("FSVolumeOpenCloseOperations")
 }
+

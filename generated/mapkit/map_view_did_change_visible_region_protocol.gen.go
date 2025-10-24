@@ -20,3 +20,4 @@ var mapViewDidChangeVisibleRegionProtocol *objc.Protocol
 func init() {
 	mapViewDidChangeVisibleRegionProtocol = objc.GetProtocol("mapViewDidChangeVisibleRegion:")
 }
+

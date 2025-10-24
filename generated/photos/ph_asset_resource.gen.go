@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
@@ -53,7 +53,6 @@ type IPHAssetResource interface {
 // An underlying data resource associated with a photo, video, or Live Photo asset in the Photos library.
 //
 // Each object references one or more resources. Use these objects to work with those resources directly, like when backing up or restoring assets. A photo asset can contain both JPEG and RAW files representing the same photo. A Live Photo asset contains both still photo and video resources. An edited asset contains resources representing asset content before and after the edit, as well as a resource corresponding to the object that describes the edit. To work with the data contained in an asset resource, fetch it using the class.
-
 
 // An underlying data resource associated with a photo, video, or Live Photo asset in the Photos library.
 //
@@ -101,8 +100,6 @@ func NewPHAssetResource() PHAssetResource {
 	return getPHAssetResourceClass().New()
 }
 
-
-
 // The unique identifier the system associates for a local asset object.
 //
 // [Full Topic]
@@ -112,7 +109,6 @@ func (p_ PHAssetResource) AssetLocalIdentifier() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The unique identifier the system associates for a local asset object.
 //
 // [Full Topic]
@@ -120,7 +116,6 @@ func (p_ PHAssetResource) AssetLocalIdentifier() objc.IObject /* cross-framework
 func (p_ PHAssetResource) SetAssetLocalIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAssetLocalIdentifier:"), value)
 }
-
 
 // The type of data associated with this asset resource (the data can be retrieved via PHAssetResourceManager)
 //
@@ -131,7 +126,6 @@ func (p_ PHAssetResource) ContentType() objc.IObject /* cross-framework: UTType 
 	return rv
 }
 
-
 // The type of data associated with this asset resource (the data can be retrieved via PHAssetResourceManager)
 //
 // [Full Topic]
@@ -139,7 +133,6 @@ func (p_ PHAssetResource) ContentType() objc.IObject /* cross-framework: UTType 
 func (p_ PHAssetResource) SetContentType(value objc.IObject /* cross-framework: UTType */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentType:"), value)
 }
-
 
 // The original filename of the asset resource from when it was created or imported.
 //
@@ -150,7 +143,6 @@ func (p_ PHAssetResource) OriginalFilename() objc.IObject /* cross-framework: NS
 	return rv
 }
 
-
 // The original filename of the asset resource from when it was created or imported.
 //
 // [Full Topic]
@@ -158,7 +150,6 @@ func (p_ PHAssetResource) OriginalFilename() objc.IObject /* cross-framework: NS
 func (p_ PHAssetResource) SetOriginalFilename(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginalFilename:"), value)
 }
-
 
 // The height of the resource, in pixels.
 //
@@ -169,7 +160,6 @@ func (p_ PHAssetResource) PixelHeight() int {
 	return rv
 }
 
-
 // The height of the resource, in pixels.
 //
 // [Full Topic]
@@ -177,7 +167,6 @@ func (p_ PHAssetResource) PixelHeight() int {
 func (p_ PHAssetResource) SetPixelHeight(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelHeight:"), value)
 }
-
 
 // The width of the resource, in pixels.
 //
@@ -188,7 +177,6 @@ func (p_ PHAssetResource) PixelWidth() int {
 	return rv
 }
 
-
 // The width of the resource, in pixels.
 //
 // [Full Topic]
@@ -196,7 +184,6 @@ func (p_ PHAssetResource) PixelWidth() int {
 func (p_ PHAssetResource) SetPixelWidth(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPixelWidth:"), value)
 }
-
 
 // The relationship of an asset resource to its owning asset.
 //
@@ -207,7 +194,6 @@ func (p_ PHAssetResource) Type() unsafe.Pointer {
 	return rv
 }
 
-
 // The relationship of an asset resource to its owning asset.
 //
 // [Full Topic]
@@ -215,7 +201,6 @@ func (p_ PHAssetResource) Type() unsafe.Pointer {
 func (p_ PHAssetResource) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
 }
-
 
 // The uniform type identifier for the asset resource’s image or video data.
 //
@@ -226,7 +211,6 @@ func (p_ PHAssetResource) UniformTypeIdentifier() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The uniform type identifier for the asset resource’s image or video data.
 //
 // [Full Topic]
@@ -234,6 +218,3 @@ func (p_ PHAssetResource) UniformTypeIdentifier() objc.IObject /* cross-framewor
 func (p_ PHAssetResource) SetUniformTypeIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUniformTypeIdentifier:"), value)
 }
-
-
-

@@ -15,3 +15,4 @@ var applicationDidChangeOcclusionStateProtocol *objc.Protocol
 func init() {
 	applicationDidChangeOcclusionStateProtocol = objc.GetProtocol("applicationDidChangeOcclusionState:")
 }
+

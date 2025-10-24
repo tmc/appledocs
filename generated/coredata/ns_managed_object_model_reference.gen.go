@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,7 +40,6 @@ type IManagedObjectModelReference interface {
 }
 
 // An object that describes a specific version of an object model.
-
 
 // An object that describes a specific version of an object model.
 //
@@ -88,8 +87,6 @@ func NewManagedObjectModelReference() ManagedObjectModelReference {
 	return getManagedObjectModelReferenceClass().New()
 }
 
-
-
 // The resolved object model.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (m_ ManagedObjectModelReference) ResolvedModel() IManagedObjectModel {
 	return rv
 }
 
-
 // The resolved object model.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (m_ ManagedObjectModelReference) ResolvedModel() IManagedObjectModel {
 func (m_ ManagedObjectModelReference) SetResolvedModel(value IManagedObjectModel) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setResolvedModel:"), value)
 }
-
 
 // The version checksum of the resolved model.
 //
@@ -118,7 +113,6 @@ func (m_ ManagedObjectModelReference) VersionChecksum() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // The version checksum of the resolved model.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (m_ ManagedObjectModelReference) VersionChecksum() objc.IObject /* cross-fr
 func (m_ ManagedObjectModelReference) SetVersionChecksum(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVersionChecksum:"), value)
 }
-
-
-

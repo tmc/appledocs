@@ -15,3 +15,4 @@ var inputClientBecomeActiveProtocol *objc.Protocol
 func init() {
 	inputClientBecomeActiveProtocol = objc.GetProtocol("inputClientBecomeActive:")
 }
+

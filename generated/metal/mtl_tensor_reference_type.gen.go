@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTLTensorReferenceType */
+
+
+/* debug [class_header]: Header for MTLTensorReferenceType */
 // The class instance for the [TensorReferenceType] class.
 var (
 	TensorReferenceTypeClass     _TensorReferenceTypeClass
@@ -26,36 +31,37 @@ func getTensorReferenceTypeClass() _TensorReferenceTypeClass {
 type _TensorReferenceTypeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TensorReferenceType */
 // An interface definition for the [TensorReferenceType] class.
 type ITensorReferenceType interface {
-	objectivec.IObject
+	IType
+	
+/* debug [class_interface_properties]: Properties for TensorReferenceType */
+	// properties:
+	Access() BindingAccess
+	Dimensions() IMTLTensorExtents
+	IndexType() DataType
 	TensorDataType() TensorDataType
-	MTLTensorDomain() string
-	Access() unsafe.Pointer
-	SetAccess(value unsafe.Pointer)
-	Dimensions() MTLTensorExtents
-	SetDimensions(value IMTLTensorExtents)
-	IndexType() unsafe.Pointer
-	SetIndexType(value unsafe.Pointer)
-	MTL_TENSOR_MAX_RANK() unsafe.Pointer
-	SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer)
-}
+	MTLTensorDomain() objc.IObject /* cross-framework: NSString */
+	MTL_TENSOR_MAX_RANK() objectivec.IObject
+	SetMTL_TENSOR_MAX_RANK(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
 
-// An object that represents a tensor in the shading language in a struct or array.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType
-type TensorReferenceType struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for TensorReferenceType */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// TensorReferenceTypeFrom constructs a [TensorReferenceType] from an unsafe.Pointer.
-//
-// An object that represents a tensor in the shading language in a struct or array.
-func TensorReferenceTypeFrom(ptr unsafe.Pointer) TensorReferenceType {
-	return TensorReferenceType{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for TensorReferenceType */
 // Alloc allocates a new instance without initialization.
 func (tc _TensorReferenceTypeClass) Alloc() TensorReferenceType {
 	rv := objc.Send[TensorReferenceType](objc.ID(tc.class), objc.Sel("alloc"))
@@ -63,7 +69,6 @@ func (tc _TensorReferenceTypeClass) Alloc() TensorReferenceType {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TensorReferenceTypeClass) New() TensorReferenceType {
 	rv := objc.Send[TensorReferenceType](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,92 +91,123 @@ func (t_ TensorReferenceType) Autorelease() TensorReferenceType {
 func NewTensorReferenceType() TensorReferenceType {
 	return getTensorReferenceTypeClass().New()
 }
+/* debug [class_constructors]: End constructors */
+
+
+
+/* debug [class_struct]: Struct for TensorReferenceType */
+// An object that represents a tensor in the shading language in a struct or array.
+
+
+// An object that represents a tensor in the shading language in a struct or array.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType
+type TensorReferenceType struct {
+	Type
+}
+
+// TensorReferenceTypeFrom constructs a [TensorReferenceType] from an unsafe.Pointer.
+//
+// An object that represents a tensor in the shading language in a struct or array.
+func TensorReferenceTypeFrom(ptr unsafe.Pointer) TensorReferenceType {
+	return TensorReferenceType{
+		Type: TypeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TensorReferenceType *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for TensorReferenceType */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TensorReferenceType */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TensorReferenceType */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TensorReferenceType */
+
+// A value that represents the read/write permissions of the tensor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType/access
+func (t_ TensorReferenceType) Access() BindingAccess {
+	rv := objc.Send[BindingAccess](t_.ID, objc.Sel("access"))
+	return rv
+}/* debug [instance_properties/getter]: access */
+
+
+// The array of sizes, in elements, one for each dimension of this tensor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType/dimensions
+func (t_ TensorReferenceType) Dimensions() IMTLTensorExtents {
+	rv := objc.Send[TensorExtents](t_.ID, objc.Sel("dimensions"))
+	return rv
+}/* debug [instance_properties/getter]: dimensions */
+
+
+// The data format you use for indexing into the tensor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType/indexType
+func (t_ TensorReferenceType) IndexType() DataType {
+	rv := objc.Send[DataType](t_.ID, objc.Sel("indexType"))
+	return rv
+}/* debug [instance_properties/getter]: indexType */
 
 
 // The underlying data format of the tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLTensorReferenceType/tensorDataType
 func (t_ TensorReferenceType) TensorDataType() TensorDataType {
 	rv := objc.Send[TensorDataType](t_.ID, objc.Sel("tensorDataType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tensorDataType */
+
 
 // An error domain for errors that pertain to creating a tensor.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtltensordomain
-func (t_ TensorReferenceType) MTLTensorDomain() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("MTLTensorDomain"))
+func (t_ TensorReferenceType) MTLTensorDomain() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("MTLTensorDomain"))
 	return rv
-}
-
-// A value that represents the read/write permissions of the tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/access
-func (t_ TensorReferenceType) Access() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("access"))
-	return rv
-}
+}/* debug [instance_properties/getter]: MTLTensorDomain */
 
 
-// SetAccess sets the value of the access property.
-// A value that represents the read/write permissions of the tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/access
-func (t_ TensorReferenceType) SetAccess(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAccess:"), value)
-}
-
-// The array of sizes, in elements, one for each dimension of this tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/dimensions
-func (t_ TensorReferenceType) Dimensions() MTLTensorExtents {
-	rv := objc.Send[MTLTensorExtents](t_.ID, objc.Sel("dimensions"))
-	return rv
-}
-
-
-// SetDimensions sets the value of the dimensions property.
-// The array of sizes, in elements, one for each dimension of this tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/dimensions
-func (t_ TensorReferenceType) SetDimensions(value IMTLTensorExtents) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDimensions:"), value)
-}
-
-// The data format you use for indexing into the tensor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/indextype
-func (t_ TensorReferenceType) IndexType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("indexType"))
-	return rv
-}
-
-
-// SetIndexType sets the value of the indexType property.
-// The data format you use for indexing into the tensor.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtltensorreferencetype/indextype
-func (t_ TensorReferenceType) SetIndexType(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIndexType:"), value)
-}
-
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
-func (t_ TensorReferenceType) MTL_TENSOR_MAX_RANK() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
+func (t_ TensorReferenceType) MTL_TENSOR_MAX_RANK() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](t_.ID, objc.Sel("MTL_TENSOR_MAX_RANK"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MTL_TENSOR_MAX_RANK */
 
 
-// SetMTL_TENSOR_MAX_RANK sets the value of the MTL_TENSOR_MAX_RANK property.
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metal/mtl_tensor_max_rank
-func (t_ TensorReferenceType) SetMTL_TENSOR_MAX_RANK(value unsafe.Pointer) {
+func (t_ TensorReferenceType) SetMTL_TENSOR_MAX_RANK(value objectivec.IObject) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMTL_TENSOR_MAX_RANK:"), value)
-}
+}/* debug [instance_properties/setter]: MTL_TENSOR_MAX_RANK */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTLTensorReferenceType */
 
 
 

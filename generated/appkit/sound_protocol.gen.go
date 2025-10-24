@@ -15,3 +15,4 @@ var soundProtocol *objc.Protocol
 func init() {
 	soundProtocol = objc.GetProtocol("sound:")
 }
+

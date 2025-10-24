@@ -15,3 +15,4 @@ var SpeechSynthesizerDelegateProtocol *objc.Protocol
 func init() {
 	SpeechSynthesizerDelegateProtocol = objc.GetProtocol("NSSpeechSynthesizerDelegate")
 }
+

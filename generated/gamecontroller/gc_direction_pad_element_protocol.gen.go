@@ -20,3 +20,4 @@ var GCDirectionPadElementProtocol *objc.Protocol
 func init() {
 	GCDirectionPadElementProtocol = objc.GetProtocol("GCDirectionPadElement")
 }
+

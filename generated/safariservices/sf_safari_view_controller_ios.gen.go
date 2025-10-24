@@ -30,11 +30,11 @@ func (s_ SFSafariViewController) Configuration() ISFSafariViewControllerConfigur
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/delegate
-func (s_ SFSafariViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+func (s_ SFSafariViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (s_ SFSafariViewController) SetDelegate(value objc.ID) {
+func (s_ SFSafariViewController) SetDelegate(value unsafe.Pointer) {
 	s_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -54,11 +54,11 @@ func (s_ SFSafariViewController) SetDismissButtonStyle(value SFSafariViewControl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredBarTintColor
-func (s_ SFSafariViewController) PreferredBarTintColor() objc.IObject /* cross-framework: Color */ {
+func (s_ SFSafariViewController) PreferredBarTintColor() appkit.Color {
 	rv := objc.Send[appkit.Color](s_.ID, objc.Sel("preferredBarTintColor"))
 	return rv
 }
-func (s_ SFSafariViewController) SetPreferredBarTintColor(value objc.IObject /* cross-framework: Color */) {
+func (s_ SFSafariViewController) SetPreferredBarTintColor(value appkit.Color) {
 	s_.ID.Send(objc.RegisterName("setPreferredBarTintColor:"), value)
 }
 
@@ -66,11 +66,11 @@ func (s_ SFSafariViewController) SetPreferredBarTintColor(value objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/preferredControlTintColor
-func (s_ SFSafariViewController) PreferredControlTintColor() objc.IObject /* cross-framework: Color */ {
+func (s_ SFSafariViewController) PreferredControlTintColor() appkit.Color {
 	rv := objc.Send[appkit.Color](s_.ID, objc.Sel("preferredControlTintColor"))
 	return rv
 }
-func (s_ SFSafariViewController) SetPreferredControlTintColor(value objc.IObject /* cross-framework: Color */) {
+func (s_ SFSafariViewController) SetPreferredControlTintColor(value appkit.Color) {
 	s_.ID.Send(objc.RegisterName("setPreferredControlTintColor:"), value)
 }
 

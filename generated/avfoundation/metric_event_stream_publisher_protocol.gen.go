@@ -21,3 +21,4 @@ var MetricEventStreamPublisherProtocol *objc.Protocol
 func init() {
 	MetricEventStreamPublisherProtocol = objc.GetProtocol("AVMetricEventStreamPublisher")
 }
+

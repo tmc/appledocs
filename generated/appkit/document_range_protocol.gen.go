@@ -15,3 +15,4 @@ var documentRangeProtocol *objc.Protocol
 func init() {
 	documentRangeProtocol = objc.GetProtocol("documentRange")
 }
+

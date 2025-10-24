@@ -8,12 +8,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for OSSystemExtensionsWorkspace
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionsWorkspace/systemExtensions(forApplicationWithBundleID:)
@@ -23,9 +20,3 @@ func (o_ OSSystemExtensionsWorkspace) SystemExtensionsForApplicationWithBundleID
 }
 
 // iOS-only properties
-
-
-
-
-
-

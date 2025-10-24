@@ -3,4 +3,3 @@
 package coredata
 
 // Type aliases and typedefs
-

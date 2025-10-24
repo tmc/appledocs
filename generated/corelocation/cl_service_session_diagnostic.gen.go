@@ -34,8 +34,6 @@ type IServiceSessionDiagnostic interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionDiagnostic
 type ServiceSessionDiagnostic struct {
@@ -77,6 +75,3 @@ func (s_ ServiceSessionDiagnostic) Autorelease() ServiceSessionDiagnostic {
 func NewServiceSessionDiagnostic() ServiceSessionDiagnostic {
 	return getServiceSessionDiagnosticClass().New()
 }
-
-
-

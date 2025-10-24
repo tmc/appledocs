@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTLSamplerDescriptor */
+
+
+/* debug [class_header]: Header for MTLSamplerDescriptor */
 // The class instance for the [SamplerDescriptor] class.
 var (
 	SamplerDescriptorClass     _SamplerDescriptorClass
@@ -26,62 +31,64 @@ func getSamplerDescriptorClass() _SamplerDescriptorClass {
 type _SamplerDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SamplerDescriptor */
 // An interface definition for the [SamplerDescriptor] class.
 type ISamplerDescriptor interface {
 	objectivec.IObject
-	LodMinClamp() float32
-	SetLodMinClamp(value float32)
-	MaxAnisotropy() uint
-	SetMaxAnisotropy(value uint)
-	BorderColor() unsafe.Pointer
-	SetBorderColor(value unsafe.Pointer)
-	CompareFunction() unsafe.Pointer
-	SetCompareFunction(value unsafe.Pointer)
-	Label() string
-	SetLabel(value string)
+	
+/* debug [class_interface_properties]: Properties for SamplerDescriptor */
+	// properties:
+	BorderColor() SamplerBorderColor
+	SetBorderColor(value SamplerBorderColor)
+	CompareFunction() CompareFunction
+	SetCompareFunction(value CompareFunction)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	LodAverage() bool
 	SetLodAverage(value bool)
 	LodBias() float32
 	SetLodBias(value float32)
 	LodMaxClamp() float32
 	SetLodMaxClamp(value float32)
-	MagFilter() unsafe.Pointer
-	SetMagFilter(value unsafe.Pointer)
-	MinFilter() unsafe.Pointer
-	SetMinFilter(value unsafe.Pointer)
-	MipFilter() unsafe.Pointer
-	SetMipFilter(value unsafe.Pointer)
+	LodMinClamp() float32
+	SetLodMinClamp(value float32)
+	MagFilter() SamplerMinMagFilter
+	SetMagFilter(value SamplerMinMagFilter)
+	MaxAnisotropy() uint
+	SetMaxAnisotropy(value uint)
+	MinFilter() SamplerMinMagFilter
+	SetMinFilter(value SamplerMinMagFilter)
+	MipFilter() SamplerMipFilter
+	SetMipFilter(value SamplerMipFilter)
 	NormalizedCoordinates() bool
 	SetNormalizedCoordinates(value bool)
-	RAddressMode() unsafe.Pointer
-	SetRAddressMode(value unsafe.Pointer)
+	RAddressMode() SamplerAddressMode
+	SetRAddressMode(value SamplerAddressMode)
 	ReductionMode() SamplerReductionMode
 	SetReductionMode(value SamplerReductionMode)
-	SAddressMode() unsafe.Pointer
-	SetSAddressMode(value unsafe.Pointer)
+	SAddressMode() SamplerAddressMode
+	SetSAddressMode(value SamplerAddressMode)
 	SupportArgumentBuffers() bool
 	SetSupportArgumentBuffers(value bool)
-	TAddressMode() unsafe.Pointer
-	SetTAddressMode(value unsafe.Pointer)
-}
+	TAddressMode() SamplerAddressMode
+	SetTAddressMode(value SamplerAddressMode)
+/* debug [class_interface_properties]: End properties */
 
-// An object that you use to configure a texture sampler.
-//
-// To make a sampler, create and configure an instance and then call an instance’s method. After you create the sampler, you can release the descriptor or reconfigure its properties to create other samplers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor
-type SamplerDescriptor struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for SamplerDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// SamplerDescriptorFrom constructs a [SamplerDescriptor] from an unsafe.Pointer.
-//
-// An object that you use to configure a texture sampler.
-func SamplerDescriptorFrom(ptr unsafe.Pointer) SamplerDescriptor {
-	return SamplerDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for SamplerDescriptor */
 // Alloc allocates a new instance without initialization.
 func (sc _SamplerDescriptorClass) Alloc() SamplerDescriptor {
 	rv := objc.Send[SamplerDescriptor](objc.ID(sc.class), objc.Sel("alloc"))
@@ -89,7 +96,6 @@ func (sc _SamplerDescriptorClass) Alloc() SamplerDescriptor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SamplerDescriptorClass) New() SamplerDescriptor {
 	rv := objc.Send[SamplerDescriptor](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -112,313 +118,381 @@ func (s_ SamplerDescriptor) Autorelease() SamplerDescriptor {
 func NewSamplerDescriptor() SamplerDescriptor {
 	return getSamplerDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
+
+
+
+/* debug [class_struct]: Struct for SamplerDescriptor */
+// An object that you use to configure a texture sampler.
+//
+// To make a sampler, create and configure an instance and then call an instance’s method. After you create the sampler, you can release the descriptor or reconfigure its properties to create other samplers.
+
+
+// An object that you use to configure a texture sampler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor
+type SamplerDescriptor struct {
+	objectivec.Object
+}
+
+// SamplerDescriptorFrom constructs a [SamplerDescriptor] from an unsafe.Pointer.
+//
+// An object that you use to configure a texture sampler.
+func SamplerDescriptorFrom(ptr unsafe.Pointer) SamplerDescriptor {
+	return SamplerDescriptor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SamplerDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SamplerDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SamplerDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SamplerDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SamplerDescriptor */
+
+// The border color for clamped texture values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/borderColor
+func (s_ SamplerDescriptor) BorderColor() SamplerBorderColor {
+	rv := objc.Send[SamplerBorderColor](s_.ID, objc.Sel("borderColor"))
+	return rv
+}/* debug [instance_properties/getter]: borderColor */
+
+
+// The border color for clamped texture values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/borderColor
+func (s_ SamplerDescriptor) SetBorderColor(value SamplerBorderColor) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBorderColor:"), value)
+}/* debug [instance_properties/setter]: borderColor */
+
+
+// The sampler comparison function used when performing a sample compare operation on a depth texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/compareFunction
+func (s_ SamplerDescriptor) CompareFunction() CompareFunction {
+	rv := objc.Send[CompareFunction](s_.ID, objc.Sel("compareFunction"))
+	return rv
+}/* debug [instance_properties/getter]: compareFunction */
+
+
+// The sampler comparison function used when performing a sample compare operation on a depth texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/compareFunction
+func (s_ SamplerDescriptor) SetCompareFunction(value CompareFunction) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCompareFunction:"), value)
+}/* debug [instance_properties/setter]: compareFunction */
+
+
+// A string that identifies the sampler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/label
+func (s_ SamplerDescriptor) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("label"))
+	return rv
+}/* debug [instance_properties/getter]: label */
+
+
+// A string that identifies the sampler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/label
+func (s_ SamplerDescriptor) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
+}/* debug [instance_properties/setter]: label */
+
+
+// A Boolean value that specifies whether the GPU can use an average level of detail (LOD) when sampling from a texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodAverage
+func (s_ SamplerDescriptor) LodAverage() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("lodAverage"))
+	return rv
+}/* debug [instance_properties/getter]: lodAverage */
+
+
+// A Boolean value that specifies whether the GPU can use an average level of detail (LOD) when sampling from a texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodAverage
+func (s_ SamplerDescriptor) SetLodAverage(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLodAverage:"), value)
+}/* debug [instance_properties/setter]: lodAverage */
+
+
+// Sets the level-of-detail (lod) bias when sampling from a texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodBias
+func (s_ SamplerDescriptor) LodBias() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("lodBias"))
+	return rv
+}/* debug [instance_properties/getter]: lodBias */
+
+
+// Sets the level-of-detail (lod) bias when sampling from a texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodBias
+func (s_ SamplerDescriptor) SetLodBias(value float32) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLodBias:"), value)
+}/* debug [instance_properties/setter]: lodBias */
+
+
+// The maximum level of detail (LOD) to use when sampling from a texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodMaxClamp
+func (s_ SamplerDescriptor) LodMaxClamp() float32 {
+	rv := objc.Send[float32](s_.ID, objc.Sel("lodMaxClamp"))
+	return rv
+}/* debug [instance_properties/getter]: lodMaxClamp */
+
+
+// The maximum level of detail (LOD) to use when sampling from a texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodMaxClamp
+func (s_ SamplerDescriptor) SetLodMaxClamp(value float32) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLodMaxClamp:"), value)
+}/* debug [instance_properties/setter]: lodMaxClamp */
 
 
 // The minimum level of detail (LOD) to use when sampling from a texture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodMinClamp
 func (s_ SamplerDescriptor) LodMinClamp() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("lodMinClamp"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lodMinClamp */
 
 
-// SetLodMinClamp sets the value of the lodMinClamp property.
 // The minimum level of detail (LOD) to use when sampling from a texture.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/lodMinClamp
 func (s_ SamplerDescriptor) SetLodMinClamp(value float32) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLodMinClamp:"), value)
-}
+}/* debug [instance_properties/setter]: lodMinClamp */
+
+
+// The filtering operation for combining pixels within one mipmap level when the sample footprint is smaller than a pixel (magnification).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/magFilter
+func (s_ SamplerDescriptor) MagFilter() SamplerMinMagFilter {
+	rv := objc.Send[SamplerMinMagFilter](s_.ID, objc.Sel("magFilter"))
+	return rv
+}/* debug [instance_properties/getter]: magFilter */
+
+
+// The filtering operation for combining pixels within one mipmap level when the sample footprint is smaller than a pixel (magnification).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/magFilter
+func (s_ SamplerDescriptor) SetMagFilter(value SamplerMinMagFilter) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMagFilter:"), value)
+}/* debug [instance_properties/setter]: magFilter */
+
 
 // The number of samples that can be taken to improve the quality of sample footprints that are anisotropic.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/maxAnisotropy
 func (s_ SamplerDescriptor) MaxAnisotropy() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("maxAnisotropy"))
 	return rv
-}
+}/* debug [instance_properties/getter]: maxAnisotropy */
 
 
-// SetMaxAnisotropy sets the value of the maxAnisotropy property.
 // The number of samples that can be taken to improve the quality of sample footprints that are anisotropic.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/maxAnisotropy
 func (s_ SamplerDescriptor) SetMaxAnisotropy(value uint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxAnisotropy:"), value)
-}
+}/* debug [instance_properties/setter]: maxAnisotropy */
 
-// The border color for clamped texture values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/bordercolor
-func (s_ SamplerDescriptor) BorderColor() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("borderColor"))
-	return rv
-}
-
-
-// SetBorderColor sets the value of the borderColor property.
-// The border color for clamped texture values.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/bordercolor
-func (s_ SamplerDescriptor) SetBorderColor(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setBorderColor:"), value)
-}
-
-// The sampler comparison function used when performing a sample compare operation on a depth texture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/comparefunction
-func (s_ SamplerDescriptor) CompareFunction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("compareFunction"))
-	return rv
-}
-
-
-// SetCompareFunction sets the value of the compareFunction property.
-// The sampler comparison function used when performing a sample compare operation on a depth texture.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/comparefunction
-func (s_ SamplerDescriptor) SetCompareFunction(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCompareFunction:"), value)
-}
-
-// A string that identifies the sampler.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/label
-func (s_ SamplerDescriptor) Label() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("label"))
-	return rv
-}
-
-
-// SetLabel sets the value of the label property.
-// A string that identifies the sampler.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/label
-func (s_ SamplerDescriptor) SetLabel(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), objc.String(value))
-}
-
-// A Boolean value that specifies whether the GPU can use an average level of detail (LOD) when sampling from a texture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodaverage
-func (s_ SamplerDescriptor) LodAverage() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("lodAverage"))
-	return rv
-}
-
-
-// SetLodAverage sets the value of the lodAverage property.
-// A Boolean value that specifies whether the GPU can use an average level of detail (LOD) when sampling from a texture.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodaverage
-func (s_ SamplerDescriptor) SetLodAverage(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLodAverage:"), value)
-}
-
-// Sets the level-of-detail (lod) bias when sampling from a texture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodbias
-func (s_ SamplerDescriptor) LodBias() float32 {
-	rv := objc.Send[float32](s_.ID, objc.Sel("lodBias"))
-	return rv
-}
-
-
-// SetLodBias sets the value of the lodBias property.
-// Sets the level-of-detail (lod) bias when sampling from a texture.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodbias
-func (s_ SamplerDescriptor) SetLodBias(value float32) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLodBias:"), value)
-}
-
-// The maximum level of detail (LOD) to use when sampling from a texture.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodmaxclamp
-func (s_ SamplerDescriptor) LodMaxClamp() float32 {
-	rv := objc.Send[float32](s_.ID, objc.Sel("lodMaxClamp"))
-	return rv
-}
-
-
-// SetLodMaxClamp sets the value of the lodMaxClamp property.
-// The maximum level of detail (LOD) to use when sampling from a texture.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/lodmaxclamp
-func (s_ SamplerDescriptor) SetLodMaxClamp(value float32) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLodMaxClamp:"), value)
-}
-
-// The filtering operation for combining pixels within one mipmap level when the sample footprint is smaller than a pixel (magnification).
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/magfilter
-func (s_ SamplerDescriptor) MagFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("magFilter"))
-	return rv
-}
-
-
-// SetMagFilter sets the value of the magFilter property.
-// The filtering operation for combining pixels within one mipmap level when the sample footprint is smaller than a pixel (magnification).
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/magfilter
-func (s_ SamplerDescriptor) SetMagFilter(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMagFilter:"), value)
-}
 
 // The filtering option for combining pixels within one mipmap level when the sample footprint is larger than a pixel (minification).
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/minfilter
-func (s_ SamplerDescriptor) MinFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("minFilter"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/minFilter
+func (s_ SamplerDescriptor) MinFilter() SamplerMinMagFilter {
+	rv := objc.Send[SamplerMinMagFilter](s_.ID, objc.Sel("minFilter"))
 	return rv
-}
+}/* debug [instance_properties/getter]: minFilter */
 
 
-// SetMinFilter sets the value of the minFilter property.
 // The filtering option for combining pixels within one mipmap level when the sample footprint is larger than a pixel (minification).
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/minfilter
-func (s_ SamplerDescriptor) SetMinFilter(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/minFilter
+func (s_ SamplerDescriptor) SetMinFilter(value SamplerMinMagFilter) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinFilter:"), value)
-}
+}/* debug [instance_properties/setter]: minFilter */
+
 
 // The filtering option for combining pixels between two mipmap levels.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/mipfilter
-func (s_ SamplerDescriptor) MipFilter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("mipFilter"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/mipFilter
+func (s_ SamplerDescriptor) MipFilter() SamplerMipFilter {
+	rv := objc.Send[SamplerMipFilter](s_.ID, objc.Sel("mipFilter"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mipFilter */
 
 
-// SetMipFilter sets the value of the mipFilter property.
 // The filtering option for combining pixels between two mipmap levels.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/mipfilter
-func (s_ SamplerDescriptor) SetMipFilter(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/mipFilter
+func (s_ SamplerDescriptor) SetMipFilter(value SamplerMipFilter) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMipFilter:"), value)
-}
+}/* debug [instance_properties/setter]: mipFilter */
 
-// A Boolean value that indicates whether texture coordinates are normalized to the range
+
+// A Boolean value that indicates whether texture coordinates are normalized to the range .
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/normalizedcoordinates
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/normalizedCoordinates
 func (s_ SamplerDescriptor) NormalizedCoordinates() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("normalizedCoordinates"))
 	return rv
-}
+}/* debug [instance_properties/getter]: normalizedCoordinates */
 
 
-// SetNormalizedCoordinates sets the value of the normalizedCoordinates property.
-// A Boolean value that indicates whether texture coordinates are normalized to the range
-
+// A Boolean value that indicates whether texture coordinates are normalized to the range .
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/normalizedcoordinates
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/normalizedCoordinates
 func (s_ SamplerDescriptor) SetNormalizedCoordinates(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNormalizedCoordinates:"), value)
-}
+}/* debug [instance_properties/setter]: normalizedCoordinates */
+
 
 // The address mode for the texture depth (r) coordinate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/raddressmode
-func (s_ SamplerDescriptor) RAddressMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("rAddressMode"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/rAddressMode
+func (s_ SamplerDescriptor) RAddressMode() SamplerAddressMode {
+	rv := objc.Send[SamplerAddressMode](s_.ID, objc.Sel("rAddressMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rAddressMode */
 
 
-// SetRAddressMode sets the value of the rAddressMode property.
 // The address mode for the texture depth (r) coordinate.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/raddressmode
-func (s_ SamplerDescriptor) SetRAddressMode(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/rAddressMode
+func (s_ SamplerDescriptor) SetRAddressMode(value SamplerAddressMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRAddressMode:"), value)
-}
+}/* debug [instance_properties/setter]: rAddressMode */
+
 
 // Sets the reduction mode for filtering contributing samples.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/reductionmode
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/reductionMode
 func (s_ SamplerDescriptor) ReductionMode() SamplerReductionMode {
 	rv := objc.Send[SamplerReductionMode](s_.ID, objc.Sel("reductionMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: reductionMode */
 
 
-// SetReductionMode sets the value of the reductionMode property.
 // Sets the reduction mode for filtering contributing samples.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/reductionmode
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/reductionMode
 func (s_ SamplerDescriptor) SetReductionMode(value SamplerReductionMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReductionMode:"), value)
-}
+}/* debug [instance_properties/setter]: reductionMode */
+
 
 // The address mode for the texture width (s) coordinate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/saddressmode
-func (s_ SamplerDescriptor) SAddressMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sAddressMode"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/sAddressMode
+func (s_ SamplerDescriptor) SAddressMode() SamplerAddressMode {
+	rv := objc.Send[SamplerAddressMode](s_.ID, objc.Sel("sAddressMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sAddressMode */
 
 
-// SetSAddressMode sets the value of the sAddressMode property.
 // The address mode for the texture width (s) coordinate.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/saddressmode
-func (s_ SamplerDescriptor) SetSAddressMode(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/sAddressMode
+func (s_ SamplerDescriptor) SetSAddressMode(value SamplerAddressMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSAddressMode:"), value)
-}
+}/* debug [instance_properties/setter]: sAddressMode */
 
-// A Boolean value that indicates whether you can reference a sampler, that you make
+
+// A Boolean value that indicates whether you can reference a sampler, that you make with this descriptor, by its resource ID from an argument buffer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/supportargumentbuffers
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/supportArgumentBuffers
 func (s_ SamplerDescriptor) SupportArgumentBuffers() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("supportArgumentBuffers"))
 	return rv
-}
+}/* debug [instance_properties/getter]: supportArgumentBuffers */
 
 
-// SetSupportArgumentBuffers sets the value of the supportArgumentBuffers property.
-// A Boolean value that indicates whether you can reference a sampler, that you make
-
+// A Boolean value that indicates whether you can reference a sampler, that you make with this descriptor, by its resource ID from an argument buffer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/supportargumentbuffers
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/supportArgumentBuffers
 func (s_ SamplerDescriptor) SetSupportArgumentBuffers(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSupportArgumentBuffers:"), value)
-}
+}/* debug [instance_properties/setter]: supportArgumentBuffers */
+
 
 // The address mode for the texture height (t) coordinate.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/taddressmode
-func (s_ SamplerDescriptor) TAddressMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tAddressMode"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/tAddressMode
+func (s_ SamplerDescriptor) TAddressMode() SamplerAddressMode {
+	rv := objc.Send[SamplerAddressMode](s_.ID, objc.Sel("tAddressMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tAddressMode */
 
 
-// SetTAddressMode sets the value of the tAddressMode property.
 // The address mode for the texture height (t) coordinate.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlsamplerdescriptor/taddressmode
-func (s_ SamplerDescriptor) SetTAddressMode(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLSamplerDescriptor/tAddressMode
+func (s_ SamplerDescriptor) SetTAddressMode(value SamplerAddressMode) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTAddressMode:"), value)
-}
+}/* debug [instance_properties/setter]: tAddressMode */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTLSamplerDescriptor */
 
 
 

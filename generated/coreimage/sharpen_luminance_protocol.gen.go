@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // SharpenLuminanceProtocol is the CISharpenLuminance protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CISharpenLuminance.
 var SharpenLuminanceProtocol *objc.Protocol
 
 func init() {
 	SharpenLuminanceProtocol = objc.GetProtocol("CISharpenLuminance")
 }
+

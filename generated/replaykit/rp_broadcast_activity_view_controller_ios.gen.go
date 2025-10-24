@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -21,11 +20,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ReplayKit/RPBroadcastActivityViewController/delegate
-func (r_ RPBroadcastActivityViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](r_.ID, objc.Sel("delegate"))
+func (r_ RPBroadcastActivityViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](r_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (r_ RPBroadcastActivityViewController) SetDelegate(value objc.ID) {
+func (r_ RPBroadcastActivityViewController) SetDelegate(value unsafe.Pointer) {
 	r_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 

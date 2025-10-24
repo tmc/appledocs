@@ -15,3 +15,4 @@ var adjustedRangeFromRangeProtocol *objc.Protocol
 func init() {
 	adjustedRangeFromRangeProtocol = objc.GetProtocol("adjustedRangeFromRange:")
 }
+

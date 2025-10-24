@@ -9,6 +9,15 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewPopUpButton
 
+// ExampleNewPopUpButtonWithFramePullsDown demonstrates how to create a PopUpButton instance using NewPopUpButtonWithFramePullsDown.
+// Returns an   object initialized to the specified dimensions.
+func ExampleNewPopUpButtonWithFramePullsDown() {
+	_ = appkit.NewPopUpButtonWithFramePullsDown(
+		appkit.Rect /* not a class type */{}, // buttonFrame Rect /* not a class type */
+		false, // flag bool
+	)
+	// Output:
+}
 // ExamplePopUpButton_RemoveAllItems demonstrates using RemoveAllItems on a PopUpButton instance.
 // Removes all items in the receiver’s item menu.
 func ExamplePopUpButton_RemoveAllItems() {

@@ -21,3 +21,4 @@ var peripheralDidUpdateRSSIProtocol *objc.Protocol
 func init() {
 	peripheralDidUpdateRSSIProtocol = objc.GetProtocol("peripheralDidUpdateRSSI:")
 }
+

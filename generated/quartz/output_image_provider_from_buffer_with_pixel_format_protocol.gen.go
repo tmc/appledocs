@@ -15,3 +15,4 @@ var outputImageProviderFromBufferWithPixelFormatProtocol *objc.Protocol
 func init() {
 	outputImageProviderFromBufferWithPixelFormatProtocol = objc.GetProtocol("outputImageProviderFromBufferWithPixelFormat:")
 }
+

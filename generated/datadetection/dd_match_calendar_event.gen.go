@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class DDMatchCalendarEvent */
+
+
+/* debug [class_header]: Header for DDMatchCalendarEvent */
 // The class instance for the [DDMatchCalendarEvent] class.
 var (
 	DDMatchCalendarEventClass     _DDMatchCalendarEventClass
@@ -26,43 +30,37 @@ func getDDMatchCalendarEventClass() _DDMatchCalendarEventClass {
 type _DDMatchCalendarEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DDMatchCalendarEvent */
 // An interface definition for the [DDMatchCalendarEvent] class.
 type IDDMatchCalendarEvent interface {
 	IDDMatch
+	
+/* debug [class_interface_properties]: Properties for DDMatchCalendarEvent */
 	// properties:
 	EndDate() objc.IObject /* cross-framework: NSDate */
-	EndTimeZone() objc.IObject /* cross-framework: TimeZone */
+	EndTimeZone() foundation.TimeZone
 	AllDay() bool
 	StartDate() objc.IObject /* cross-framework: NSDate */
-	StartTimeZone() objc.IObject /* cross-framework: TimeZone */
+	StartTimeZone() foundation.TimeZone
 	IsAllDay() bool
 	SetIsAllDay(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DDMatchCalendarEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents a calendar date or date range that the data detection system matches.
-//
-// The DataDetection framework returns a calendar event match in a object, which has only a beginning date, only an end date, or both a beginning date and an end date.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents a calendar date or date range that the data detection system matches.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent
-type DDMatchCalendarEvent struct {
-	DDMatch
-}
 
-// DDMatchCalendarEventFrom constructs a [DDMatchCalendarEvent] from an unsafe.Pointer.
-//
-// An object that represents a calendar date or date range that the data detection system matches.
-func DDMatchCalendarEventFrom(ptr unsafe.Pointer) DDMatchCalendarEvent {
-	return DDMatchCalendarEvent{
-		DDMatch: DDMatchFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for DDMatchCalendarEvent */
 // Alloc allocates a new instance without initialization.
 func (dc _DDMatchCalendarEventClass) Alloc() DDMatchCalendarEvent {
 	rv := objc.Send[DDMatchCalendarEvent](objc.ID(dc.class), objc.Sel("alloc"))
@@ -70,7 +68,6 @@ func (dc _DDMatchCalendarEventClass) Alloc() DDMatchCalendarEvent {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DDMatchCalendarEventClass) New() DDMatchCalendarEvent {
 	rv := objc.Send[DDMatchCalendarEvent](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +90,56 @@ func (d_ DDMatchCalendarEvent) Autorelease() DDMatchCalendarEvent {
 func NewDDMatchCalendarEvent() DDMatchCalendarEvent {
 	return getDDMatchCalendarEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for DDMatchCalendarEvent */
+// An object that represents a calendar date or date range that the data detection system matches.
+//
+// The DataDetection framework returns a calendar event match in a object, which has only a beginning date, only an end date, or both a beginning date and an end date.
+
+
+// An object that represents a calendar date or date range that the data detection system matches.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent
+type DDMatchCalendarEvent struct {
+	DDMatch
+}
+
+// DDMatchCalendarEventFrom constructs a [DDMatchCalendarEvent] from an unsafe.Pointer.
+//
+// An object that represents a calendar date or date range that the data detection system matches.
+func DDMatchCalendarEventFrom(ptr unsafe.Pointer) DDMatchCalendarEvent {
+	return DDMatchCalendarEvent{
+		DDMatch: DDMatchFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DDMatchCalendarEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for DDMatchCalendarEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DDMatchCalendarEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DDMatchCalendarEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DDMatchCalendarEvent */
 
 // A date that represents the end of the event.
 //
@@ -103,17 +148,17 @@ func NewDDMatchCalendarEvent() DDMatchCalendarEvent {
 func (d_ DDMatchCalendarEvent) EndDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("endDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: endDate */
 
 
 // The time zone for the event’s end date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/endTimeZone
-func (d_ DDMatchCalendarEvent) EndTimeZone() objc.IObject /* cross-framework: TimeZone */ {
+func (d_ DDMatchCalendarEvent) EndTimeZone() foundation.TimeZone {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("endTimeZone"))
 	return rv
-}
+}/* debug [instance_properties/getter]: endTimeZone */
 
 
 // A Boolean value that indicates whether the event is an all-day event.
@@ -123,7 +168,7 @@ func (d_ DDMatchCalendarEvent) EndTimeZone() objc.IObject /* cross-framework: Ti
 func (d_ DDMatchCalendarEvent) AllDay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("allDay"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allDay */
 
 
 // A date that represents the start of the event.
@@ -133,17 +178,17 @@ func (d_ DDMatchCalendarEvent) AllDay() bool {
 func (d_ DDMatchCalendarEvent) StartDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("startDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startDate */
 
 
 // The time zone for the event’s start date.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DataDetection/DDMatchCalendarEvent/startTimeZone
-func (d_ DDMatchCalendarEvent) StartTimeZone() objc.IObject /* cross-framework: TimeZone */ {
+func (d_ DDMatchCalendarEvent) StartTimeZone() foundation.TimeZone {
 	rv := objc.Send[foundation.TimeZone](d_.ID, objc.Sel("startTimeZone"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startTimeZone */
 
 
 // A Boolean value that indicates whether the event is an all-day event.
@@ -153,7 +198,7 @@ func (d_ DDMatchCalendarEvent) StartTimeZone() objc.IObject /* cross-framework: 
 func (d_ DDMatchCalendarEvent) IsAllDay() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("isAllDay"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAllDay */
 
 
 // A Boolean value that indicates whether the event is an all-day event.
@@ -162,7 +207,12 @@ func (d_ DDMatchCalendarEvent) IsAllDay() bool {
 // [Full Topic]: https://developer.apple.com/documentation/datadetection/ddmatchcalendarevent/isallday
 func (d_ DDMatchCalendarEvent) SetIsAllDay(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setIsAllDay:"), value)
-}
+}/* debug [instance_properties/setter]: isAllDay */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class DDMatchCalendarEvent */
 
 
 

@@ -2,6 +2,7 @@
 
 package endpointsecurity
 
+/* debug [functions.gen.go]: Generating 39 functions for EndpointSecurity */
 import (
 	"unsafe"
 
@@ -18,9 +19,9 @@ var (
 	_es_clear_cache func(unsafe.Pointer) unsafe.Pointer
 	_es_copy_message func(unsafe.Pointer) unsafe.Pointer
 	_es_delete_client func(unsafe.Pointer) unsafe.Pointer
-	_es_exec_arg func(unsafe.Pointer, uint32) unsafe.Pointer
+	_es_exec_arg func(unsafe.Pointer, uint32) Es_string_token_t
 	_es_exec_arg_count func(unsafe.Pointer) uint32
-	_es_exec_env func(unsafe.Pointer, uint32) unsafe.Pointer
+	_es_exec_env func(unsafe.Pointer, uint32) Es_string_token_t
 	_es_exec_env_count func(unsafe.Pointer) uint32
 	_es_exec_fd func(unsafe.Pointer, uint32) unsafe.Pointer
 	_es_exec_fd_count func(unsafe.Pointer) uint32
@@ -125,7 +126,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_clear_cache(_:)
 func es_clear_cache(client unsafe.Pointer) unsafe.Pointer {
 	return _es_clear_cache(client)
-}
+}/* debug [functions.gen.go/function]: es_clear_cache */
 
 // Copies a message, by allocating new memory.
 //
@@ -138,7 +139,7 @@ func es_clear_cache(client unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_copy_message(_:)
 func es_copy_message(msg unsafe.Pointer) unsafe.Pointer {
 	return _es_copy_message(msg)
-}
+}/* debug [functions.gen.go/function]: es_copy_message */
 
 // Destroys and disconnects a client instance from the Endpoint Security system.
 //
@@ -149,7 +150,7 @@ func es_copy_message(msg unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_delete_client(_:)
 func es_delete_client(client unsafe.Pointer) unsafe.Pointer {
 	return _es_delete_client(client)
-}
+}/* debug [functions.gen.go/function]: es_delete_client */
 
 // Gets the argument at the specified position from a process execution event.
 //
@@ -158,9 +159,9 @@ func es_delete_client(client unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_arg(_:_:)
-func es_exec_arg(event unsafe.Pointer, index uint32) unsafe.Pointer {
+func es_exec_arg(event unsafe.Pointer, index uint32) Es_string_token_t {
 	return _es_exec_arg(event, index)
-}
+}/* debug [functions.gen.go/function]: es_exec_arg */
 
 // Gets the number of arguments from a process execution event.
 //
@@ -171,7 +172,7 @@ func es_exec_arg(event unsafe.Pointer, index uint32) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_arg_count(_:)
 func es_exec_arg_count(event unsafe.Pointer) uint32 {
 	return _es_exec_arg_count(event)
-}
+}/* debug [functions.gen.go/function]: es_exec_arg_count */
 
 // Gets the environment variable at the specified position from a process execution event.
 //
@@ -180,9 +181,9 @@ func es_exec_arg_count(event unsafe.Pointer) uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_env(_:_:)
-func es_exec_env(event unsafe.Pointer, index uint32) unsafe.Pointer {
+func es_exec_env(event unsafe.Pointer, index uint32) Es_string_token_t {
 	return _es_exec_env(event, index)
-}
+}/* debug [functions.gen.go/function]: es_exec_env */
 
 // Gets the number of environment variables from a process execution event.
 //
@@ -193,7 +194,7 @@ func es_exec_env(event unsafe.Pointer, index uint32) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_env_count(_:)
 func es_exec_env_count(event unsafe.Pointer) uint32 {
 	return _es_exec_env_count(event)
-}
+}/* debug [functions.gen.go/function]: es_exec_env_count */
 
 // Gets the file descriptor at the specified position from a process execution event.
 //
@@ -204,7 +205,7 @@ func es_exec_env_count(event unsafe.Pointer) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_fd(_:_:)
 func es_exec_fd(event unsafe.Pointer, index uint32) unsafe.Pointer {
 	return _es_exec_fd(event, index)
-}
+}/* debug [functions.gen.go/function]: es_exec_fd */
 
 // Gets the number of file descriptors from a process execution event.
 //
@@ -215,7 +216,7 @@ func es_exec_fd(event unsafe.Pointer, index uint32) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_exec_fd_count(_:)
 func es_exec_fd_count(event unsafe.Pointer) uint32 {
 	return _es_exec_fd_count(event)
-}
+}/* debug [functions.gen.go/function]: es_exec_fd_count */
 
 // Frees the memory allocated for the given message.
 //
@@ -228,7 +229,7 @@ func es_exec_fd_count(event unsafe.Pointer) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_free_message(_:)
 func es_free_message(msg unsafe.Pointer) {
 	_es_free_message(msg)
-}
+}/* debug [functions.gen.go/function]: es_free_message */
 
 // es_invert_muting is a EndpointSecurity function.
 //
@@ -237,7 +238,7 @@ func es_free_message(msg unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_invert_muting(_:_:)
 func es_invert_muting(client unsafe.Pointer, mute_type unsafe.Pointer) unsafe.Pointer {
 	return _es_invert_muting(client, mute_type)
-}
+}/* debug [functions.gen.go/function]: es_invert_muting */
 
 // Calculates the size of a message structure.
 //
@@ -250,7 +251,7 @@ func es_invert_muting(client unsafe.Pointer, mute_type unsafe.Pointer) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_message_size(_:)
 func es_message_size(msg unsafe.Pointer) uintptr {
 	return _es_message_size(msg)
-}
+}/* debug [functions.gen.go/function]: es_message_size */
 
 // Suppresses events from executables that match a given path.
 //
@@ -261,7 +262,7 @@ func es_message_size(msg unsafe.Pointer) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_path(_:_:_:)
 func es_mute_path(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_path(client, path, type_)
-}
+}/* debug [functions.gen.go/function]: es_mute_path */
 
 // Suppresses a subset of events from executables that match a given path.
 //
@@ -272,7 +273,7 @@ func es_mute_path(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_path_events(_:_:_:_:_:)
 func es_mute_path_events(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Pointer, events unsafe.Pointer, event_count uintptr) unsafe.Pointer {
 	return _es_mute_path_events(client, path, type_, events, event_count)
-}
+}/* debug [functions.gen.go/function]: es_mute_path_events */
 
 // Suppresses events from executables matching a path literal.
 //
@@ -285,7 +286,7 @@ func es_mute_path_events(client unsafe.Pointer, path unsafe.Pointer, type_ unsaf
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_path_literal(_:_:)
 func es_mute_path_literal(client unsafe.Pointer, path_literal unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_path_literal(client, path_literal)
-}
+}/* debug [functions.gen.go/function]: es_mute_path_literal */
 
 // Suppresses events from executables matching a path prefix.
 //
@@ -298,7 +299,7 @@ func es_mute_path_literal(client unsafe.Pointer, path_literal unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_path_prefix(_:_:)
 func es_mute_path_prefix(client unsafe.Pointer, path_prefix unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_path_prefix(client, path_prefix)
-}
+}/* debug [functions.gen.go/function]: es_mute_path_prefix */
 
 // Suppresses events from a given process.
 //
@@ -309,7 +310,7 @@ func es_mute_path_prefix(client unsafe.Pointer, path_prefix unsafe.Pointer) unsa
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_process(_:_:)
 func es_mute_process(client unsafe.Pointer, audit_token unsafe.Pointer) unsafe.Pointer {
 	return _es_mute_process(client, audit_token)
-}
+}/* debug [functions.gen.go/function]: es_mute_process */
 
 // Suppresses a subset of events from a given process.
 //
@@ -320,7 +321,7 @@ func es_mute_process(client unsafe.Pointer, audit_token unsafe.Pointer) unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_mute_process_events(_:_:_:_:)
 func es_mute_process_events(client unsafe.Pointer, audit_token unsafe.Pointer, events unsafe.Pointer, event_count uintptr) unsafe.Pointer {
 	return _es_mute_process_events(client, audit_token, events, event_count)
-}
+}/* debug [functions.gen.go/function]: es_mute_process_events */
 
 // Retrieve a list of all muted paths.
 //
@@ -331,7 +332,7 @@ func es_mute_process_events(client unsafe.Pointer, audit_token unsafe.Pointer, e
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_muted_paths_events(_:_:)
 func es_muted_paths_events(client unsafe.Pointer, muted_paths unsafe.Pointer) unsafe.Pointer {
 	return _es_muted_paths_events(client, muted_paths)
-}
+}/* debug [functions.gen.go/function]: es_muted_paths_events */
 
 // Generates a list of muted processes.
 //
@@ -344,7 +345,7 @@ func es_muted_paths_events(client unsafe.Pointer, muted_paths unsafe.Pointer) un
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_muted_processes(_:_:_:)
 func es_muted_processes(client unsafe.Pointer, count unsafe.Pointer, audit_tokens unsafe.Pointer) unsafe.Pointer {
 	return _es_muted_processes(client, count, audit_tokens)
-}
+}/* debug [functions.gen.go/function]: es_muted_processes */
 
 // Retrieve a list of all muted processes.
 //
@@ -355,7 +356,7 @@ func es_muted_processes(client unsafe.Pointer, count unsafe.Pointer, audit_token
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_muted_processes_events(_:_:)
 func es_muted_processes_events(client unsafe.Pointer, muted_processes unsafe.Pointer) unsafe.Pointer {
 	return _es_muted_processes_events(client, muted_processes)
-}
+}/* debug [functions.gen.go/function]: es_muted_processes_events */
 
 // es_muting_inverted is a EndpointSecurity function.
 //
@@ -364,7 +365,7 @@ func es_muted_processes_events(client unsafe.Pointer, muted_processes unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_muting_inverted(_:_:)
 func es_muting_inverted(client unsafe.Pointer, mute_type unsafe.Pointer) unsafe.Pointer {
 	return _es_muting_inverted(client, mute_type)
-}
+}/* debug [functions.gen.go/function]: es_muting_inverted */
 
 // Creates a new client instance and connects it to the Endpoint Security system.
 //
@@ -375,7 +376,7 @@ func es_muting_inverted(client unsafe.Pointer, mute_type unsafe.Pointer) unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_new_client(_:_:)
 func es_new_client(client unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer {
 	return _es_new_client(client, handler)
-}
+}/* debug [functions.gen.go/function]: es_new_client */
 
 // Releases a previously-retained message.
 //
@@ -386,7 +387,7 @@ func es_new_client(client unsafe.Pointer, handler unsafe.Pointer) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_release_message(_:)
 func es_release_message(msg unsafe.Pointer) {
 	_es_release_message(msg)
-}
+}/* debug [functions.gen.go/function]: es_release_message */
 
 // Frees resources associated with a set of previously-retrieved muted paths.
 //
@@ -397,7 +398,7 @@ func es_release_message(msg unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_release_muted_paths(_:)
 func es_release_muted_paths(muted_paths unsafe.Pointer) {
 	_es_release_muted_paths(muted_paths)
-}
+}/* debug [functions.gen.go/function]: es_release_muted_paths */
 
 // Frees resources associated with a set of previously-retrieved muted processes.
 //
@@ -408,7 +409,7 @@ func es_release_muted_paths(muted_paths unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_release_muted_processes(_:)
 func es_release_muted_processes(muted_processes unsafe.Pointer) {
 	_es_release_muted_processes(muted_processes)
-}
+}/* debug [functions.gen.go/function]: es_release_muted_processes */
 
 // Responds to an event that requires an authorization response.
 //
@@ -419,7 +420,7 @@ func es_release_muted_processes(muted_processes unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_respond_auth_result(_:_:_:_:)
 func es_respond_auth_result(client unsafe.Pointer, message unsafe.Pointer, result unsafe.Pointer, cache bool) unsafe.Pointer {
 	return _es_respond_auth_result(client, message, result, cache)
-}
+}/* debug [functions.gen.go/function]: es_respond_auth_result */
 
 // Responds to an event that requires authorization flags as a response.
 //
@@ -430,7 +431,7 @@ func es_respond_auth_result(client unsafe.Pointer, message unsafe.Pointer, resul
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_respond_flags_result(_:_:_:_:)
 func es_respond_flags_result(client unsafe.Pointer, message unsafe.Pointer, authorized_flags uint32, cache bool) unsafe.Pointer {
 	return _es_respond_flags_result(client, message, authorized_flags, cache)
-}
+}/* debug [functions.gen.go/function]: es_respond_flags_result */
 
 // Retains the given message, extending its lifetime until released.
 //
@@ -441,7 +442,7 @@ func es_respond_flags_result(client unsafe.Pointer, message unsafe.Pointer, auth
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_retain_message(_:)
 func es_retain_message(msg unsafe.Pointer) {
 	_es_retain_message(msg)
-}
+}/* debug [functions.gen.go/function]: es_retain_message */
 
 // Subscribes a client to a set of events.
 //
@@ -452,7 +453,7 @@ func es_retain_message(msg unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_subscribe(_:_:_:)
 func es_subscribe(client unsafe.Pointer, events unsafe.Pointer, event_count uint32) unsafe.Pointer {
 	return _es_subscribe(client, events, event_count)
-}
+}/* debug [functions.gen.go/function]: es_subscribe */
 
 // Returns a list of the client’s subscriptions.
 //
@@ -463,7 +464,7 @@ func es_subscribe(client unsafe.Pointer, events unsafe.Pointer, event_count uint
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_subscriptions(_:_:_:)
 func es_subscriptions(client unsafe.Pointer, count unsafe.Pointer, subscriptions unsafe.Pointer) unsafe.Pointer {
 	return _es_subscriptions(client, count, subscriptions)
-}
+}/* debug [functions.gen.go/function]: es_subscriptions */
 
 // Restores event delivery from previously-muted paths.
 //
@@ -474,7 +475,7 @@ func es_subscriptions(client unsafe.Pointer, count unsafe.Pointer, subscriptions
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_all_paths(_:)
 func es_unmute_all_paths(client unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_all_paths(client)
-}
+}/* debug [functions.gen.go/function]: es_unmute_all_paths */
 
 // es_unmute_all_target_paths is a EndpointSecurity function.
 //
@@ -483,7 +484,7 @@ func es_unmute_all_paths(client unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_all_target_paths(_:)
 func es_unmute_all_target_paths(client unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_all_target_paths(client)
-}
+}/* debug [functions.gen.go/function]: es_unmute_all_target_paths */
 
 // Restores event delivery from a previously-muted path.
 //
@@ -494,7 +495,7 @@ func es_unmute_all_target_paths(client unsafe.Pointer) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_path(_:_:_:)
 func es_unmute_path(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_path(client, path, type_)
-}
+}/* debug [functions.gen.go/function]: es_unmute_path */
 
 // Restores event delivery of a subset of events from a previously-muted path.
 //
@@ -505,7 +506,7 @@ func es_unmute_path(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_path_events(_:_:_:_:_:)
 func es_unmute_path_events(client unsafe.Pointer, path unsafe.Pointer, type_ unsafe.Pointer, events unsafe.Pointer, event_count uintptr) unsafe.Pointer {
 	return _es_unmute_path_events(client, path, type_, events, event_count)
-}
+}/* debug [functions.gen.go/function]: es_unmute_path_events */
 
 // Restores event delivery from a previously-muted process.
 //
@@ -516,7 +517,7 @@ func es_unmute_path_events(client unsafe.Pointer, path unsafe.Pointer, type_ uns
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_process(_:_:)
 func es_unmute_process(client unsafe.Pointer, audit_token unsafe.Pointer) unsafe.Pointer {
 	return _es_unmute_process(client, audit_token)
-}
+}/* debug [functions.gen.go/function]: es_unmute_process */
 
 // Restores event delivery of a subset of events from a previously-muted process.
 //
@@ -527,7 +528,7 @@ func es_unmute_process(client unsafe.Pointer, audit_token unsafe.Pointer) unsafe
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unmute_process_events(_:_:_:_:)
 func es_unmute_process_events(client unsafe.Pointer, audit_token unsafe.Pointer, events unsafe.Pointer, event_count uintptr) unsafe.Pointer {
 	return _es_unmute_process_events(client, audit_token, events, event_count)
-}
+}/* debug [functions.gen.go/function]: es_unmute_process_events */
 
 // Unsubscribes the provided client from a set of events.
 //
@@ -538,7 +539,7 @@ func es_unmute_process_events(client unsafe.Pointer, audit_token unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unsubscribe(_:_:_:)
 func es_unsubscribe(client unsafe.Pointer, events unsafe.Pointer, event_count uint32) unsafe.Pointer {
 	return _es_unsubscribe(client, events, event_count)
-}
+}/* debug [functions.gen.go/function]: es_unsubscribe */
 
 // Unsubscribes a client from all events.
 //
@@ -549,7 +550,8 @@ func es_unsubscribe(client unsafe.Pointer, events unsafe.Pointer, event_count ui
 // [Full Topic]: https://developer.apple.com/documentation/EndpointSecurity/es_unsubscribe_all(_:)
 func es_unsubscribe_all(client unsafe.Pointer) unsafe.Pointer {
 	return _es_unsubscribe_all(client)
-}
+}/* debug [functions.gen.go/function]: es_unsubscribe_all */
+
 
 
 

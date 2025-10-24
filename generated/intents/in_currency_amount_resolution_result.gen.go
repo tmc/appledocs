@@ -35,7 +35,6 @@ type IINCurrencyAmountResolutionResult interface {
 //
 // An object is what you return when resolving parameters containing an object. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see .
 
-
 // A resolution result for a currency amount associated with an intent.
 //
 // [Full Topic]
@@ -83,7 +82,3 @@ func (i_ INCurrencyAmountResolutionResult) Autorelease() INCurrencyAmountResolut
 func NewINCurrencyAmountResolutionResult() INCurrencyAmountResolutionResult {
 	return getINCurrencyAmountResolutionResultClass().New()
 }
-
-
-
-

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class DispatchQueue */
+
+
+/* debug [class_header]: Header for DispatchQueue */
 // The class instance for the [DispatchQueue] class.
 var (
 	DispatchQueueClass     _DispatchQueueClass
@@ -26,34 +30,30 @@ func getDispatchQueueClass() _DispatchQueueClass {
 type _DispatchQueueClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DispatchQueue */
 // An interface definition for the [DispatchQueue] class.
 type IDispatchQueue interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for DispatchQueue */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DispatchQueue */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.
-//
-// Dispatch queues are FIFO queues to which your application can submit tasks in the form of block objects. Dispatch queues execute tasks either serially or concurrently. Work submitted to dispatch queues executes on a pool of threads managed by the system. Except for the dispatch queue representing your app’s main thread, the system makes no guarantees about which thread it uses to execute a task. You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
+/* debug [class_interface]: End interface */
 
 
-// An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchQueue
-type DispatchQueue struct {
-	objectivec.Object
-}
 
-// DispatchQueueFrom constructs a [DispatchQueue] from an unsafe.Pointer.
-//
-// An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.
-func DispatchQueueFrom(ptr unsafe.Pointer) DispatchQueue {
-	return DispatchQueue{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for DispatchQueue */
 // Alloc allocates a new instance without initialization.
 func (dc _DispatchQueueClass) Alloc() DispatchQueue {
 	rv := objc.Send[DispatchQueue](objc.ID(dc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (dc _DispatchQueueClass) Alloc() DispatchQueue {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DispatchQueueClass) New() DispatchQueue {
 	rv := objc.Send[DispatchQueue](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,7 +83,58 @@ func (d_ DispatchQueue) Autorelease() DispatchQueue {
 func NewDispatchQueue() DispatchQueue {
 	return getDispatchQueueClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for DispatchQueue */
+// An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.
+//
+// Dispatch queues are FIFO queues to which your application can submit tasks in the form of block objects. Dispatch queues execute tasks either serially or concurrently. Work submitted to dispatch queues executes on a pool of threads managed by the system. Except for the dispatch queue representing your app’s main thread, the system makes no guarantees about which thread it uses to execute a task. You schedule work items synchronously or asynchronously. When you schedule a work item synchronously, your code waits until that item finishes execution. When you schedule a work item asynchronously, your code continues executing while the work item runs elsewhere.
+
+
+// An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchQueue
+type DispatchQueue struct {
+	objectivec.Object
+}
+
+// DispatchQueueFrom constructs a [DispatchQueue] from an unsafe.Pointer.
+//
+// An object that manages the execution of tasks serially or concurrently on your app’s main thread or on a background thread.
+func DispatchQueueFrom(ptr unsafe.Pointer) DispatchQueue {
+	return DispatchQueue{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DispatchQueue *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for DispatchQueue */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DispatchQueue */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DispatchQueue */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DispatchQueue */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class DispatchQueue */
 
 
 

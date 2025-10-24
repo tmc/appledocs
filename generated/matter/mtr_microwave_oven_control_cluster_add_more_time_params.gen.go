@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRMicrowaveOvenControlClusterAddMoreTimeParams */
+
+
+/* debug [class_header]: Header for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
 // The class instance for the [MTRMicrowaveOvenControlClusterAddMoreTimeParams] class.
 var (
 	MTRMicrowaveOvenControlClusterAddMoreTimeParamsClass     _MTRMicrowaveOvenControlClusterAddMoreTimeParamsClass
@@ -27,10 +31,16 @@ func getMTRMicrowaveOvenControlClusterAddMoreTimeParamsClass() _MTRMicrowaveOven
 type _MTRMicrowaveOvenControlClusterAddMoreTimeParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
 // An interface definition for the [MTRMicrowaveOvenControlClusterAddMoreTimeParams] class.
 type IMTRMicrowaveOvenControlClusterAddMoreTimeParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
 	// properties:
 	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
 	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
@@ -38,22 +48,19 @@ type IMTRMicrowaveOvenControlClusterAddMoreTimeParams interface {
 	SetTimeToAdd(value objc.IObject /* cross-framework: NSNumber */)
 	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams
-type MTRMicrowaveOvenControlClusterAddMoreTimeParams struct {
-	objectivec.Object
-}
-
-// MTRMicrowaveOvenControlClusterAddMoreTimeParamsFrom constructs a [MTRMicrowaveOvenControlClusterAddMoreTimeParams] from an unsafe.Pointer.
-func MTRMicrowaveOvenControlClusterAddMoreTimeParamsFrom(ptr unsafe.Pointer) MTRMicrowaveOvenControlClusterAddMoreTimeParams {
-	return MTRMicrowaveOvenControlClusterAddMoreTimeParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRMicrowaveOvenControlClusterAddMoreTimeParamsClass) Alloc() MTRMicrowaveOvenControlClusterAddMoreTimeParams {
 	rv := objc.Send[MTRMicrowaveOvenControlClusterAddMoreTimeParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -61,7 +68,6 @@ func (mc _MTRMicrowaveOvenControlClusterAddMoreTimeParamsClass) Alloc() MTRMicro
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRMicrowaveOvenControlClusterAddMoreTimeParamsClass) New() MTRMicrowaveOvenControlClusterAddMoreTimeParams {
 	rv := objc.Send[MTRMicrowaveOvenControlClusterAddMoreTimeParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,8 +90,47 @@ func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) Autorelease() MTRMicro
 func NewMTRMicrowaveOvenControlClusterAddMoreTimeParams() MTRMicrowaveOvenControlClusterAddMoreTimeParams {
 	return getMTRMicrowaveOvenControlClusterAddMoreTimeParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams
+type MTRMicrowaveOvenControlClusterAddMoreTimeParams struct {
+	objectivec.Object
+}
+
+// MTRMicrowaveOvenControlClusterAddMoreTimeParamsFrom constructs a [MTRMicrowaveOvenControlClusterAddMoreTimeParams] from an unsafe.Pointer.
+func MTRMicrowaveOvenControlClusterAddMoreTimeParamsFrom(ptr unsafe.Pointer) MTRMicrowaveOvenControlClusterAddMoreTimeParams {
+	return MTRMicrowaveOvenControlClusterAddMoreTimeParams{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRMicrowaveOvenControlClusterAddMoreTimeParams *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRMicrowaveOvenControlClusterAddMoreTimeParams */
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
 //
@@ -94,7 +139,7 @@ func NewMTRMicrowaveOvenControlClusterAddMoreTimeParams() MTRMicrowaveOvenContro
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
 	return rv
-}
+}/* debug [instance_properties/getter]: serverSideProcessingTimeout */
 
 
 // Controls how much time, in seconds, we will allow for the server to process the command.
@@ -103,41 +148,46 @@ func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) ServerSideProcessingTi
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/serverSideProcessingTimeout
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
+}/* debug [instance_properties/setter]: serverSideProcessingTimeout */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/timeToAdd
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmicrowaveovencontrolclusteraddmoretimeparams/timetoadd
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) TimeToAdd() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timeToAdd"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeToAdd */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/timeToAdd
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmicrowaveovencontrolclusteraddmoretimeparams/timetoadd
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetTimeToAdd(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeToAdd:"), value)
-}
+}/* debug [instance_properties/setter]: timeToAdd */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/timedInvokeTimeoutMs
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmicrowaveovencontrolclusteraddmoretimeparams/timedinvoketimeoutms
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timedInvokeTimeoutMs */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMicrowaveOvenControlClusterAddMoreTimeParams/timedInvokeTimeoutMs
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrmicrowaveovencontrolclusteraddmoretimeparams/timedinvoketimeoutms
 func (m_ MTRMicrowaveOvenControlClusterAddMoreTimeParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
+}/* debug [instance_properties/setter]: timedInvokeTimeoutMs */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRMicrowaveOvenControlClusterAddMoreTimeParams */
 
 
 

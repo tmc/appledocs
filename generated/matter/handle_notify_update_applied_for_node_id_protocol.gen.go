@@ -21,3 +21,4 @@ var handleNotifyUpdateAppliedForNodeIDProtocol *objc.Protocol
 func init() {
 	handleNotifyUpdateAppliedForNodeIDProtocol = objc.GetProtocol("handleNotifyUpdateAppliedForNodeID:")
 }
+

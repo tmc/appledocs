@@ -20,3 +20,4 @@ var MTL4CommitFeedbackProtocol *objc.Protocol
 func init() {
 	MTL4CommitFeedbackProtocol = objc.GetProtocol("MTL4CommitFeedback")
 }
+

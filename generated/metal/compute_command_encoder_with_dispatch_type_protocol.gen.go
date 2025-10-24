@@ -20,3 +20,4 @@ var computeCommandEncoderWithDispatchTypeProtocol *objc.Protocol
 func init() {
 	computeCommandEncoderWithDispatchTypeProtocol = objc.GetProtocol("computeCommandEncoderWithDispatchType:")
 }
+

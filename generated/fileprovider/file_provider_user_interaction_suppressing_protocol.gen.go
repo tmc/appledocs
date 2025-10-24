@@ -15,3 +15,4 @@ var FileProviderUserInteractionSuppressingProtocol *objc.Protocol
 func init() {
 	FileProviderUserInteractionSuppressingProtocol = objc.GetProtocol("NSFileProviderUserInteractionSuppressing")
 }
+

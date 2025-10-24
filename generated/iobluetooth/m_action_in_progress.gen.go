@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mActionInProgress */
+
+
+/* debug [class_header]: Header for mActionInProgress */
 // The class instance for the [mActionInProgress] class.
 var (
 	MActionInProgressClass     _mActionInProgressClass
@@ -26,27 +30,30 @@ func getmActionInProgressClass() _mActionInProgressClass {
 type _mActionInProgressClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mActionInProgress */
 // An interface definition for the [mActionInProgress] class.
 type ImActionInProgress interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mActionInProgress */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mActionInProgress */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mActionInProgress
-type mActionInProgress struct {
-	objectivec.Object
-}
-
-// mActionInProgressFrom constructs a [mActionInProgress] from an unsafe.Pointer.
-func mActionInProgressFrom(ptr unsafe.Pointer) mActionInProgress {
-	return mActionInProgress{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mActionInProgress */
 // Alloc allocates a new instance without initialization.
 func (mc _mActionInProgressClass) Alloc() mActionInProgress {
 	rv := objc.Send[mActionInProgress](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mActionInProgressClass) Alloc() mActionInProgress {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mActionInProgressClass) New() mActionInProgress {
 	rv := objc.Send[mActionInProgress](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mActionInProgress) Autorelease() mActionInProgress {
 func NewmActionInProgress() mActionInProgress {
 	return getmActionInProgressClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mActionInProgress */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mActionInProgress
+type mActionInProgress struct {
+	objectivec.Object
+}
+
+// mActionInProgressFrom constructs a [mActionInProgress] from an unsafe.Pointer.
+func mActionInProgressFrom(ptr unsafe.Pointer) mActionInProgress {
+	return mActionInProgress{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mActionInProgress *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mActionInProgress */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mActionInProgress */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mActionInProgress */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mActionInProgress */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mActionInProgress */
 
 
 

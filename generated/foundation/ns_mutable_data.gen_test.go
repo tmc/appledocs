@@ -21,7 +21,7 @@ func ExampleNewMutableDataWithCapacity() {
 // Initializes and returns a mutable data object containing a given number of zeroed bytes.
 func ExampleNewMutableDataWithLength() {
 	_ = foundation.NewMutableDataWithLength(
-		0, // length uint
+		10, // length uint
 	)
 	// Output:
 }

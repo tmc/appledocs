@@ -19,3 +19,4 @@ var CapturePhotoOutputReadinessCoordinatorDelegateProtocol *objc.Protocol
 func init() {
 	CapturePhotoOutputReadinessCoordinatorDelegateProtocol = objc.GetProtocol("AVCapturePhotoOutputReadinessCoordinatorDelegate")
 }
+

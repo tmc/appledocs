@@ -15,3 +15,4 @@ var sessionProtocol *objc.Protocol
 func init() {
 	sessionProtocol = objc.GetProtocol("session:")
 }
+

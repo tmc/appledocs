@@ -18,3 +18,4 @@ var assessmentSessionDidUpdateProtocol *objc.Protocol
 func init() {
 	assessmentSessionDidUpdateProtocol = objc.GetProtocol("assessmentSessionDidUpdate:")
 }
+

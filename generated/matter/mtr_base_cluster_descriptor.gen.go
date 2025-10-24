@@ -33,8 +33,6 @@ type IMTRBaseClusterDescriptor interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterDescriptor
 type MTRBaseClusterDescriptor struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterDescriptor) Autorelease() MTRBaseClusterDescriptor {
 func NewMTRBaseClusterDescriptor() MTRBaseClusterDescriptor {
 	return getMTRBaseClusterDescriptorClass().New()
 }
-
-
-
-

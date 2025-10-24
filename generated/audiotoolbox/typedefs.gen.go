@@ -6,6 +6,12 @@ import (
 )
 
 // Type aliases and typedefs
+// AudioConverterComplexInputDataProcRealtimeSafe type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioConverterComplexInputDataProcRealtimeSafe
+// AudioConverterComplexInputDataProcRealtimeSafe is a callback function
+// C type: int (*)(struct OpaqueAudioConverter *, unsigned int *, struct AudioBufferList *, struct AudioStreamPacketDescription **, void *) __attribute__((nonblocking))
+type AudioConverterComplexInputDataProcRealtimeSafe = func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, void *) __attribute__((nonblocking)) int32
 // AudioChannelCount - A number of audio channels.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioChannelCount
@@ -26,76 +32,6 @@ type AudioObjectID uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUAudioUnitStatus
 // AUAudioUnitStatus has base type: OSStatus
 type AudioUnitStatus uintptr
-// EventListenerProc type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventListenerProc
-// AUEventListenerProc is a callback function
-// C type: void (*)(void *, void *, const struct AudioUnitEvent *, unsigned long long, float)
-type EventListenerProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uint64, float32)
-// EventListenerRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventListenerRef
-// AUEventListenerRef has base type: AUParameterListenerRef
-type EventListenerRef uintptr
-// EventSampleTime - Expresses time as a sample count.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventSampleTime
-// AUEventSampleTime has base type: int64_t
-type EventSampleTime uintptr
-// InputSamplesInOutputCallback - Called by the system when an audio unit has provided a buffer of output samples.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUInputSamplesInOutputCallback
-// AUInputSamplesInOutputCallback is a callback function
-// C type: void (*)(void *, const struct AudioTimeStamp *, double, double) __attribute__((nonblocking))
-type InputSamplesInOutputCallback = func(unsafe.Pointer, unsafe.Pointer, float64, double) __attribute__((nonblocking))
-// MIDIOutputCallback - When called by a host application, gets MIDI data from an audio unit.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUMIDIOutputCallback
-// AUMIDIOutputCallback is a callback function
-// C type: int (*)(void *, const struct AudioTimeStamp *, unsigned int, const struct MIDIPacketList *) __attribute__((nonblocking))
-type MIDIOutputCallback = func(unsafe.Pointer, unsafe.Pointer, uint32, MIDIPacketList *) __attribute__((nonblocking)) int32
-// Node - A member of an audio processing graph, associated with an audio unit.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUNode
-// AUNode has base type: SInt32
-type Node uintptr
-// NodeConnection type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUNodeConnection
-// AUNodeConnection has base type: struct AudioUnitNodeConnection
-type NodeConnection uintptr
-// ParameterAddress - A numeric identifier for an audio unit parameter.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterAddress
-// AUParameterAddress has base type: uint64_t
-type ParameterAddress uintptr
-// ParameterListenerProc type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterListenerProc
-// AUParameterListenerProc is a callback function
-// C type: void (*)(void *, void *, const struct AudioUnitParameter *, float)
-type ParameterListenerProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float32)
-// ParameterListenerRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterListenerRef
-// AUParameterListenerRef has base type: struct AUListenerBase *
-type ParameterListenerRef uintptr
-// ParameterObserverToken - A token representing an installed parameter observer block.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterObserverToken
-// AUParameterObserverToken has base type: void *
-type ParameterObserverToken uintptr
-// RenderCallback - Called by the system when an audio unit requires input samples, or before and after a render operation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AURenderCallback
-// AURenderCallback is a callback function
-// C type: int (*)(void *, enum AudioUnitRenderActionFlags *, const struct AudioTimeStamp *, unsigned int, unsigned int, struct AudioBufferList *) __attribute__((nonblocking))
-type RenderCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uint32, uint32, AudioBufferList *) __attribute__((nonblocking)) int32
-// Value - A value of an audio unit parameter.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUValue
-// AUValue has base type: float
-type Value uintptr
 // AudioCodec - An instance of a Component Manager component.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioCodec
@@ -180,7 +116,7 @@ type AudioComponentFactoryFunction = func(unsafe.Pointer) unsafe.Pointer
 // AudioComponentInstance - A component instance, or object, is an audio unit or audio codec.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioComponentInstance
-// AudioComponentInstance has base type: struct OpaqueAudioComponentInstance *
+// AudioComponentInstance has base type: struct ComponentInstanceRecord *
 type AudioComponentInstance uintptr
 // AudioComponentMethod type alias
 //
@@ -194,12 +130,6 @@ type AudioComponentMethod = func(unsafe.Pointer, ...) int32
 // AudioConverterComplexInputDataProc is a callback function
 // C type: int (*)(struct OpaqueAudioConverter *, unsigned int *, struct AudioBufferList *, struct AudioStreamPacketDescription **, void *)
 type AudioConverterComplexInputDataProc = func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int32
-// AudioConverterComplexInputDataProcRealtimeSafe type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioConverterComplexInputDataProcRealtimeSafe
-// AudioConverterComplexInputDataProcRealtimeSafe is a callback function
-// C type: int (*)(struct OpaqueAudioConverter *, unsigned int *, struct AudioBufferList *, struct AudioStreamPacketDescription **, void *) __attribute__((nonblocking))
-type AudioConverterComplexInputDataProcRealtimeSafe = func(unsafe.Pointer, uint32, unsafe.Pointer, unsafe.Pointer, void *) __attribute__((nonblocking)) int32
 // AudioConverterInputDataProc - Deprecated. Use   instead.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioConverterInputDataProc
@@ -216,6 +146,30 @@ type AudioConverterPropertyID uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioConverterRef
 // AudioConverterRef has base type: struct OpaqueAudioConverter *
 type AudioConverterRef uintptr
+// AudioFile_GetSizeProc - Gets file data size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFile_GetSizeProc
+// AudioFile_GetSizeProc is a callback function
+// C type: long long (*)(void *)
+type AudioFile_GetSizeProc = func(unsafe.Pointer) int64
+// AudioFile_ReadProc - Reads audio data when used in conjunction with the   or   functions.)
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFile_ReadProc
+// AudioFile_ReadProc is a callback function
+// C type: int (*)(void *, long long, unsigned int, void *, unsigned int *)
+type AudioFile_ReadProc = func(unsafe.Pointer, int64, uint32, unsafe.Pointer, uint32) int32
+// AudioFile_SetSizeProc - Sets file data size.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFile_SetSizeProc
+// AudioFile_SetSizeProc is a callback function
+// C type: int (*)(void *, long long)
+type AudioFile_SetSizeProc = func(unsafe.Pointer, int64) int32
+// AudioFile_WriteProc - A callback for writing file data when used in conjunction with the   or   functions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFile_WriteProc
+// AudioFile_WriteProc is a callback function
+// C type: int (*)(void *, long long, unsigned int, const void *, unsigned int *)
+type AudioFile_WriteProc = func(unsafe.Pointer, int64, uint32, unsafe.Pointer, uint32) int32
 // AudioFileComponent type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileComponent
@@ -386,16 +340,6 @@ type AudioFileID uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFilePropertyID
 // AudioFilePropertyID has base type: UInt32
 type AudioFilePropertyID uintptr
-// AudioFileStreamID - Defines an opaque data type that represents an audio file stream parser.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileStreamID
-// AudioFileStreamID has base type: struct OpaqueAudioFileStreamID *
-type AudioFileStreamID uintptr
-// AudioFileStreamPropertyID - Uniquely identifies an audio file stream property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileStreamPropertyID
-// AudioFileStreamPropertyID has base type: UInt32
-type AudioFileStreamPropertyID uintptr
 // AudioFileStream_PacketsProc - Invoked by an audio file stream parser when it finds audio data in the audio file stream.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileStream_PacketsProc
@@ -408,35 +352,21 @@ type AudioFileStream_PacketsProc = func(unsafe.Pointer, uint32, uint32, unsafe.P
 // AudioFileStream_PropertyListenerProc is a callback function
 // C type: void (*)(void *, struct OpaqueAudioFileStreamID *, unsigned int, enum AudioFileStreamPropertyFlags *)
 type AudioFileStream_PropertyListenerProc = func(unsafe.Pointer, unsafe.Pointer, uint32, unsafe.Pointer)
+// AudioFileStreamID - Defines an opaque data type that represents an audio file stream parser.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileStreamID
+// AudioFileStreamID has base type: struct OpaqueAudioFileStreamID *
+type AudioFileStreamID uintptr
+// AudioFileStreamPropertyID - Uniquely identifies an audio file stream property.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileStreamPropertyID
+// AudioFileStreamPropertyID has base type: UInt32
+type AudioFileStreamPropertyID uintptr
 // AudioFileTypeID - Operating system constants that indicate the type of file to be written or a hint about what type of file to expect from data provided.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFileTypeID
 // AudioFileTypeID has base type: UInt32
 type AudioFileTypeID uintptr
-// AudioFile_GetSizeProc - Gets file data size.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFile_GetSizeProc
-// AudioFile_GetSizeProc is a callback function
-// C type: long long (*)(void *)
-type AudioFile_GetSizeProc = func(unsafe.Pointer) int64
-// AudioFile_ReadProc - Reads audio data when used in conjunction with the   or   functions.)
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFile_ReadProc
-// AudioFile_ReadProc is a callback function
-// C type: int (*)(void *, long long, unsigned int, void *, unsigned int *)
-type AudioFile_ReadProc = func(unsafe.Pointer, int64, uint32, unsafe.Pointer, uint32) int32
-// AudioFile_SetSizeProc - Sets file data size.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFile_SetSizeProc
-// AudioFile_SetSizeProc is a callback function
-// C type: int (*)(void *, long long)
-type AudioFile_SetSizeProc = func(unsafe.Pointer, int64) int32
-// AudioFile_WriteProc - A callback for writing file data when used in conjunction with the   or   functions.
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFile_WriteProc
-// AudioFile_WriteProc is a callback function
-// C type: int (*)(void *, long long, unsigned int, const void *, unsigned int *)
-type AudioFile_WriteProc = func(unsafe.Pointer, int64, uint32, unsafe.Pointer, uint32) int32
 // AudioFormatPropertyID - A type for four-char codes for audio format property identifiers.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioFormatPropertyID
@@ -555,8 +485,8 @@ type AudioUnit uintptr
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitAddPropertyListenerProc
 // AudioUnitAddPropertyListenerProc is a callback function
-// C type: int (*)(void *, unsigned int, void (*)(void *, struct ComponentInstanceRecord *, unsigned int, unsigned int, unsigned int), void *)
-type AudioUnitAddPropertyListenerProc = func(unsafe.Pointer, uint32, void (*)(void *, struct ComponentInstanceRecord *, unsigned int, unsigned int, unsigned int), unsafe.Pointer) int32
+// C type: int (*)(void *, unsigned int, void (*)(void *, struct OpaqueAudioComponentInstance *, unsigned int, unsigned int, unsigned int), void *)
+type AudioUnitAddPropertyListenerProc = func(unsafe.Pointer, uint32, void (*)(void *, struct OpaqueAudioComponentInstance *, unsigned int, unsigned int, unsigned int), unsafe.Pointer) int32
 // AudioUnitAddRenderNotifyProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitAddRenderNotifyProc
@@ -640,14 +570,14 @@ type AudioUnitPropertyListenerProc = func(unsafe.Pointer, unsafe.Pointer, uint32
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitRemovePropertyListenerProc
 // AudioUnitRemovePropertyListenerProc is a callback function
-// C type: int (*)(void *, unsigned int, void (*)(void *, struct ComponentInstanceRecord *, unsigned int, unsigned int, unsigned int))
-type AudioUnitRemovePropertyListenerProc = func(unsafe.Pointer, uint32, void (*)(void *, struct ComponentInstanceRecord *, unsigned int, unsigned int, unsigned int)) int32
+// C type: int (*)(void *, unsigned int, void (*)(void *, struct OpaqueAudioComponentInstance *, unsigned int, unsigned int, unsigned int))
+type AudioUnitRemovePropertyListenerProc = func(unsafe.Pointer, uint32, void (*)(void *, struct OpaqueAudioComponentInstance *, unsigned int, unsigned int, unsigned int)) int32
 // AudioUnitRemovePropertyListenerWithUserDataProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitRemovePropertyListenerWithUserDataProc
 // AudioUnitRemovePropertyListenerWithUserDataProc is a callback function
-// C type: int (*)(void *, unsigned int, void (*)(void *, struct OpaqueAudioComponentInstance *, unsigned int, unsigned int, unsigned int), void *)
-type AudioUnitRemovePropertyListenerWithUserDataProc = func(unsafe.Pointer, uint32, void (*)(void *, struct OpaqueAudioComponentInstance *, unsigned int, unsigned int, unsigned int), unsafe.Pointer) int32
+// C type: int (*)(void *, unsigned int, void (*)(void *, struct ComponentInstanceRecord *, unsigned int, unsigned int, unsigned int), void *)
+type AudioUnitRemovePropertyListenerWithUserDataProc = func(unsafe.Pointer, uint32, void (*)(void *, struct ComponentInstanceRecord *, unsigned int, unsigned int, unsigned int), unsafe.Pointer) int32
 // AudioUnitRemoveRenderNotifyProc type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AudioUnitRemoveRenderNotifyProc
@@ -695,6 +625,81 @@ type AudioUnitSetPropertyProc = func(unsafe.Pointer, uint32, uint32, uint32, uns
 // AudioUnitUninitializeProc is a callback function
 // C type: int (*)(void *)
 type AudioUnitUninitializeProc = func(unsafe.Pointer) int32
+// EventListenerProc type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventListenerProc
+// AUEventListenerProc is a callback function
+// C type: void (*)(void *, void *, const struct AudioUnitEvent *, unsigned long long, float)
+type EventListenerProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uint64, float32)
+// EventListenerRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventListenerRef
+// AUEventListenerRef has base type: AUParameterListenerRef
+type EventListenerRef uintptr
+// EventSampleTime - Expresses time as a sample count.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUEventSampleTime
+// AUEventSampleTime has base type: int64_t
+type EventSampleTime uintptr
+// Graph - An opaque type representing an audio processing graph.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUGraph
+// AUGraph has base type: struct OpaqueAUGraph *
+type Graph uintptr
+// InputSamplesInOutputCallback - Called by the system when an audio unit has provided a buffer of output samples.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUInputSamplesInOutputCallback
+// AUInputSamplesInOutputCallback is a callback function
+// C type: void (*)(void *, const struct AudioTimeStamp *, double, double) __attribute__((nonblocking))
+type InputSamplesInOutputCallback = func(unsafe.Pointer, unsafe.Pointer, float64, double) __attribute__((nonblocking))
+// MIDIOutputCallback - When called by a host application, gets MIDI data from an audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUMIDIOutputCallback
+// AUMIDIOutputCallback is a callback function
+// C type: int (*)(void *, const struct AudioTimeStamp *, unsigned int, const struct MIDIPacketList *) __attribute__((nonblocking))
+type MIDIOutputCallback = func(unsafe.Pointer, unsafe.Pointer, uint32, MIDIPacketList *) __attribute__((nonblocking)) int32
+// Node - A member of an audio processing graph, associated with an audio unit.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUNode
+// AUNode has base type: SInt32
+type Node uintptr
+// NodeConnection type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUNodeConnection
+// AUNodeConnection has base type: struct AudioUnitNodeConnection
+type NodeConnection uintptr
+// ParameterAddress - A numeric identifier for an audio unit parameter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterAddress
+// AUParameterAddress has base type: uint64_t
+type ParameterAddress uintptr
+// ParameterListenerProc type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterListenerProc
+// AUParameterListenerProc is a callback function
+// C type: void (*)(void *, void *, const struct AudioUnitParameter *, float)
+type ParameterListenerProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, float32)
+// ParameterListenerRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterListenerRef
+// AUParameterListenerRef has base type: struct AUListenerBase *
+type ParameterListenerRef uintptr
+// ParameterObserverToken - A token representing an installed parameter observer block.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUParameterObserverToken
+// AUParameterObserverToken has base type: void *
+type ParameterObserverToken uintptr
+// RenderCallback - Called by the system when an audio unit requires input samples, or before and after a render operation.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AURenderCallback
+// AURenderCallback is a callback function
+// C type: int (*)(void *, enum AudioUnitRenderActionFlags *, const struct AudioTimeStamp *, unsigned int, unsigned int, struct AudioBufferList *) __attribute__((nonblocking))
+type RenderCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, uint32, uint32, AudioBufferList *) __attribute__((nonblocking)) int32
+// Value - A value of an audio unit parameter.
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/AUValue
+// AUValue has base type: float
+type Value uintptr
 // ClockBeats type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockBeats
@@ -711,11 +716,6 @@ type ClockListenerProc = func(unsafe.Pointer, ClockMessage, unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockRef
 // CAClockRef has base type: struct OpaqueCAClock *
 type ClockRef uintptr
-// ClockSMPTEFormat type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSMPTEFormat
-// CAClockSMPTEFormat has base type: SMPTETimeType
-type ClockSMPTEFormat uintptr
 // ClockSamples type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSamples
@@ -726,6 +726,11 @@ type ClockSamples uintptr
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSeconds
 // CAClockSeconds has base type: Float64
 type ClockSeconds uintptr
+// ClockSMPTEFormat type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockSMPTEFormat
+// CAClockSMPTEFormat has base type: SMPTETimeType
+type ClockSMPTEFormat uintptr
 // ClockTempo type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/CAClockTempo
@@ -800,16 +805,16 @@ type HostCallback_GetTransportState = func(unsafe.Pointer, uint8, uint8, float64
 // HostCallback_GetTransportState2 is a callback function
 // C type: int (*)(void *, unsigned char *, unsigned char *, unsigned char *, double *, unsigned char *, double *, double *) __attribute__((nonblocking))
 type HostCallback_GetTransportState2 = func(unsafe.Pointer, uint8, uint8, uint8, float64, uint8, float64, double *) __attribute__((nonblocking)) int32
-// MIDIChannelNumber - MIDI Channel, 0~15 (channels 1 through 16, respectively).
-//
-// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/MIDIChannelNumber
-// MIDIChannelNumber has base type: uint8_t
-type MIDIChannelNumber uintptr
 // MagicCookieInfo - A structure holding magic cookie information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/MagicCookieInfo
 // MagicCookieInfo has base type: struct AudioCodecMagicCookieInfo
 type MagicCookieInfo uintptr
+// MIDIChannelNumber - MIDI Channel, 0~15 (channels 1 through 16, respectively).
+//
+// [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/MIDIChannelNumber
+// MIDIChannelNumber has base type: uint8_t
+type MIDIChannelNumber uintptr
 // MusicDeviceComponent type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/AudioToolbox/MusicDeviceComponent

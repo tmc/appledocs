@@ -15,3 +15,4 @@ var commitEditingWithDelegateProtocol *objc.Protocol
 func init() {
 	commitEditingWithDelegateProtocol = objc.GetProtocol("commitEditingWithDelegate:")
 }
+

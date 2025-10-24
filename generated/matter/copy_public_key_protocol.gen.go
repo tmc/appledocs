@@ -21,3 +21,4 @@ var copyPublicKeyProtocol *objc.Protocol
 func init() {
 	copyPublicKeyProtocol = objc.GetProtocol("copyPublicKey")
 }
+

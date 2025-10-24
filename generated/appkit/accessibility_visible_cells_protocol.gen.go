@@ -15,3 +15,4 @@ var accessibilityVisibleCellsProtocol *objc.Protocol
 func init() {
 	accessibilityVisibleCellsProtocol = objc.GetProtocol("accessibilityVisibleCells")
 }
+

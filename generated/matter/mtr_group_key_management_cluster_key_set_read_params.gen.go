@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRGroupKeyManagementClusterKeySetReadParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterKeySetReadParams
@@ -85,8 +83,6 @@ func NewMTRGroupKeyManagementClusterKeySetReadParams() MTRGroupKeyManagementClus
 	return getMTRGroupKeyManagementClusterKeySetReadParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/groupkeysetid
 func (m_ MTRGroupKeyManagementClusterKeySetReadParams) GroupKeySetID() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadParams) GroupKeySetID() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/groupkeysetid
 func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetGroupKeySetID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadParams) ServerSideProcessingTimeo
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/serversideprocessingtimeout
 func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadParams) TimedInvokeTimeoutMs() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadparams/timedinvoketimeoutms
 func (m_ MTRGroupKeyManagementClusterKeySetReadParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

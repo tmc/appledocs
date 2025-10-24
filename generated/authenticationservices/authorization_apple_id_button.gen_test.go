@@ -13,16 +13,17 @@ var _ = authenticationservices.NewAuthorizationAppleIDButton
 // Creates a new Sign In with Apple authorization button with the given type and style.
 func ExampleNewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle() {
 	_ = authenticationservices.NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle(
-		authenticationservices.AuthorizationAppleIDButtonType{}, // type AuthorizationAppleIDButtonType
+		authenticationservices.AuthorizationAppleIDButtonType{},  // type AuthorizationAppleIDButtonType
 		authenticationservices.AuthorizationAppleIDButtonStyle{}, // style AuthorizationAppleIDButtonStyle
 	)
 	// Output:
 }
+
 // ExampleNewAuthorizationAppleIDButtonWithTypeStyle demonstrates how to create a AuthorizationAppleIDButton instance using NewAuthorizationAppleIDButtonWithTypeStyle.
 // Creates a new Sign In with Apple authorization button with the given type and style.
 func ExampleNewAuthorizationAppleIDButtonWithTypeStyle() {
 	_ = authenticationservices.NewAuthorizationAppleIDButtonWithTypeStyle(
-		authenticationservices.AuthorizationAppleIDButtonType{}, // type AuthorizationAppleIDButtonType
+		authenticationservices.AuthorizationAppleIDButtonType{},  // type AuthorizationAppleIDButtonType
 		authenticationservices.AuthorizationAppleIDButtonStyle{}, // style AuthorizationAppleIDButtonStyle
 	)
 	// Output:

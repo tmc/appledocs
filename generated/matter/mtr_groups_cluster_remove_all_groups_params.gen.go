@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRGroupsClusterRemoveAllGroupsParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterRemoveAllGroupsParams
@@ -83,8 +81,6 @@ func NewMTRGroupsClusterRemoveAllGroupsParams() MTRGroupsClusterRemoveAllGroupsP
 	return getMTRGroupsClusterRemoveAllGroupsParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremoveallgroupsparams/serversideprocessingtimeout
 func (m_ MTRGroupsClusterRemoveAllGroupsParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRGroupsClusterRemoveAllGroupsParams) ServerSideProcessingTimeout() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremoveallgroupsparams/serversideprocessingtimeout
 func (m_ MTRGroupsClusterRemoveAllGroupsParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremoveallgroupsparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRGroupsClusterRemoveAllGroupsParams) TimedInvokeTimeoutMs() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterremoveallgroupsparams/timedinvoketimeoutms
 func (m_ MTRGroupsClusterRemoveAllGroupsParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

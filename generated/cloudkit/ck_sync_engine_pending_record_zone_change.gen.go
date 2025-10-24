@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CKSyncEnginePendingRecordZoneChange */
+
+
+/* debug [class_header]: Header for CKSyncEnginePendingRecordZoneChange */
 // The class instance for the [CKSyncEnginePendingRecordZoneChange] class.
 var (
 	CKSyncEnginePendingRecordZoneChangeClass     _CKSyncEnginePendingRecordZoneChangeClass
@@ -26,32 +30,32 @@ func getCKSyncEnginePendingRecordZoneChangeClass() _CKSyncEnginePendingRecordZon
 type _CKSyncEnginePendingRecordZoneChangeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CKSyncEnginePendingRecordZoneChange */
 // An interface definition for the [CKSyncEnginePendingRecordZoneChange] class.
 type ICKSyncEnginePendingRecordZoneChange interface {
 	objectivec.IObject
-	RecordID() CKRecordID
+	
+/* debug [class_interface_properties]: Properties for CKSyncEnginePendingRecordZoneChange */
+	// properties:
+	RecordID() ICKRecordID
 	Type() CKSyncEnginePendingRecordZoneChangeType
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CKSyncEnginePendingRecordZoneChange */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Describes an unsent record modification.
 
 
-// Describes an unsent record modification.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange
-type CKSyncEnginePendingRecordZoneChange struct {
-	objectivec.Object
-}
-
-// CKSyncEnginePendingRecordZoneChangeFrom constructs a [CKSyncEnginePendingRecordZoneChange] from an unsafe.Pointer.
-//
-// Describes an unsent record modification.
-func CKSyncEnginePendingRecordZoneChangeFrom(ptr unsafe.Pointer) CKSyncEnginePendingRecordZoneChange {
-	return CKSyncEnginePendingRecordZoneChange{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CKSyncEnginePendingRecordZoneChange */
 // Alloc allocates a new instance without initialization.
 func (cc _CKSyncEnginePendingRecordZoneChangeClass) Alloc() CKSyncEnginePendingRecordZoneChange {
 	rv := objc.Send[CKSyncEnginePendingRecordZoneChange](objc.ID(cc.class), objc.Sel("alloc"))
@@ -59,7 +63,6 @@ func (cc _CKSyncEnginePendingRecordZoneChangeClass) Alloc() CKSyncEnginePendingR
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CKSyncEnginePendingRecordZoneChangeClass) New() CKSyncEnginePendingRecordZoneChange {
 	rv := objc.Send[CKSyncEnginePendingRecordZoneChange](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,8 +85,33 @@ func (c_ CKSyncEnginePendingRecordZoneChange) Autorelease() CKSyncEnginePendingR
 func NewCKSyncEnginePendingRecordZoneChange() CKSyncEnginePendingRecordZoneChange {
 	return getCKSyncEnginePendingRecordZoneChangeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CKSyncEnginePendingRecordZoneChange */
+// Describes an unsent record modification.
+
+
+// Describes an unsent record modification.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange
+type CKSyncEnginePendingRecordZoneChange struct {
+	objectivec.Object
+}
+
+// CKSyncEnginePendingRecordZoneChangeFrom constructs a [CKSyncEnginePendingRecordZoneChange] from an unsafe.Pointer.
+//
+// Describes an unsent record modification.
+func CKSyncEnginePendingRecordZoneChangeFrom(ptr unsafe.Pointer) CKSyncEnginePendingRecordZoneChange {
+	return CKSyncEnginePendingRecordZoneChange{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CKSyncEnginePendingRecordZoneChange */
 
 // Creates a record zone change of the specified type for the given record.
 //
@@ -94,18 +122,37 @@ func NewCKSyncEnginePendingRecordZoneChangeWithRecordIDType(recordID ICKRecordID
 	rv := objc.Send[CKSyncEnginePendingRecordZoneChange](instance.ID, objc.Sel("initWithRecordID:type:"), recordID, type_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCKSyncEnginePendingRecordZoneChangeWithRecordIDType */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for CKSyncEnginePendingRecordZoneChange */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CKSyncEnginePendingRecordZoneChange */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CKSyncEnginePendingRecordZoneChange */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CKSyncEnginePendingRecordZoneChange */
 
 // The identifier of the modified record.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CloudKit/CKSyncEnginePendingRecordZoneChange/recordID
-func (c_ CKSyncEnginePendingRecordZoneChange) RecordID() CKRecordID {
+func (c_ CKSyncEnginePendingRecordZoneChange) RecordID() ICKRecordID {
 	rv := objc.Send[CKRecordID](c_.ID, objc.Sel("recordID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: recordID */
 
 
 // The type of change to make.
@@ -115,6 +162,11 @@ func (c_ CKSyncEnginePendingRecordZoneChange) RecordID() CKRecordID {
 func (c_ CKSyncEnginePendingRecordZoneChange) Type() CKSyncEnginePendingRecordZoneChangeType {
 	rv := objc.Send[CKSyncEnginePendingRecordZoneChangeType](c_.ID, objc.Sel("type"))
 	return rv
-}
+}/* debug [instance_properties/getter]: type */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CKSyncEnginePendingRecordZoneChange */
 
 

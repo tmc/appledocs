@@ -2,6 +2,7 @@
 
 package nearbyinteraction
 
+/* debug [functions.gen.go]: Generating 1 functions for NearbyInteraction */
 import (
 	"unsafe"
 
@@ -48,7 +49,8 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIAlgorithmConvergenceStatusReasonDescription
 func NIAlgorithmConvergenceStatusReasonDescription(reason unsafe.Pointer) unsafe.Pointer {
 	return _NIAlgorithmConvergenceStatusReasonDescription(reason)
-}
+}/* debug [functions.gen.go/function]: NIAlgorithmConvergenceStatusReasonDescription */
+
 
 
 

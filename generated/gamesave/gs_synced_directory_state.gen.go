@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GSSyncedDirectoryState */
+
+
+/* debug [class_header]: Header for GSSyncedDirectoryState */
 // The class instance for the [GSSyncedDirectoryState] class.
 var (
 	GSSyncedDirectoryStateClass     _GSSyncedDirectoryStateClass
@@ -28,40 +32,36 @@ func getGSSyncedDirectoryStateClass() _GSSyncedDirectoryStateClass {
 type _GSSyncedDirectoryStateClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GSSyncedDirectoryState */
 // An interface definition for the [GSSyncedDirectoryState] class.
 type IGSSyncedDirectoryState interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GSSyncedDirectoryState */
 	// properties:
-	ConflictedVersions() []GSSyncedDirectoryVersion /* not a class type */
+	ConflictedVersions() []GSSyncedDirectoryVersion
 	Error() objc.IObject /* cross-framework: Error */
 	State() GSSyncState
 	Url() objc.IObject /* cross-framework: NSURL */
 	DirectoryState() IGSSyncedDirectoryState
 	SetDirectoryState(value IGSSyncedDirectoryState)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GSSyncedDirectoryState */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Represents the state and its associated properties of the directory
-//
-// Use the property to determine the validity of the other properties
+/* debug [class_interface]: End interface */
 
 
-// Represents the state and its associated properties of the directory
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectoryState
-type GSSyncedDirectoryState struct {
-	objectivec.Object
-}
 
-// GSSyncedDirectoryStateFrom constructs a [GSSyncedDirectoryState] from an unsafe.Pointer.
-//
-// Represents the state and its associated properties of the directory
-func GSSyncedDirectoryStateFrom(ptr unsafe.Pointer) GSSyncedDirectoryState {
-	return GSSyncedDirectoryState{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GSSyncedDirectoryState */
 // Alloc allocates a new instance without initialization.
 func (gc _GSSyncedDirectoryStateClass) Alloc() GSSyncedDirectoryState {
 	rv := objc.Send[GSSyncedDirectoryState](objc.ID(gc.class), objc.Sel("alloc"))
@@ -69,7 +69,6 @@ func (gc _GSSyncedDirectoryStateClass) Alloc() GSSyncedDirectoryState {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GSSyncedDirectoryStateClass) New() GSSyncedDirectoryState {
 	rv := objc.Send[GSSyncedDirectoryState](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,17 +91,63 @@ func (g_ GSSyncedDirectoryState) Autorelease() GSSyncedDirectoryState {
 func NewGSSyncedDirectoryState() GSSyncedDirectoryState {
 	return getGSSyncedDirectoryStateClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GSSyncedDirectoryState */
+// Represents the state and its associated properties of the directory
+//
+// Use the property to determine the validity of the other properties
+
+
+// Represents the state and its associated properties of the directory
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectoryState
+type GSSyncedDirectoryState struct {
+	objectivec.Object
+}
+
+// GSSyncedDirectoryStateFrom constructs a [GSSyncedDirectoryState] from an unsafe.Pointer.
+//
+// Represents the state and its associated properties of the directory
+func GSSyncedDirectoryStateFrom(ptr unsafe.Pointer) GSSyncedDirectoryState {
+	return GSSyncedDirectoryState{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GSSyncedDirectoryState *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GSSyncedDirectoryState */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GSSyncedDirectoryState */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GSSyncedDirectoryState */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GSSyncedDirectoryState */
 
 // The conflicting versions.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameSave/GSSyncedDirectoryState/conflictedVersions
-func (g_ GSSyncedDirectoryState) ConflictedVersions() []GSSyncedDirectoryVersion /* not a class type */ {
+func (g_ GSSyncedDirectoryState) ConflictedVersions() []GSSyncedDirectoryVersion {
 	rv := objc.Send[[]GSSyncedDirectoryVersion](g_.ID, objc.Sel("conflictedVersions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: conflictedVersions */
 
 
 // The error preventing you from using the directory.
@@ -112,7 +157,7 @@ func (g_ GSSyncedDirectoryState) ConflictedVersions() []GSSyncedDirectoryVersion
 func (g_ GSSyncedDirectoryState) Error() objc.IObject /* cross-framework: Error */ {
 	rv := objc.Send[coretelephony.Error](g_.ID, objc.Sel("error"))
 	return rv
-}
+}/* debug [instance_properties/getter]: error */
 
 
 // Specifies the current state of the directory
@@ -122,7 +167,7 @@ func (g_ GSSyncedDirectoryState) Error() objc.IObject /* cross-framework: Error 
 func (g_ GSSyncedDirectoryState) State() GSSyncState {
 	rv := objc.Send[GSSyncState](g_.ID, objc.Sel("state"))
 	return rv
-}
+}/* debug [instance_properties/getter]: state */
 
 
 // The URL of a directory to read and write game-save data in.
@@ -132,7 +177,7 @@ func (g_ GSSyncedDirectoryState) State() GSSyncState {
 func (g_ GSSyncedDirectoryState) Url() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](g_.ID, objc.Sel("url"))
 	return rv
-}
+}/* debug [instance_properties/getter]: url */
 
 
 // The state of the directory.
@@ -142,7 +187,7 @@ func (g_ GSSyncedDirectoryState) Url() objc.IObject /* cross-framework: NSURL */
 func (g_ GSSyncedDirectoryState) DirectoryState() IGSSyncedDirectoryState {
 	rv := objc.Send[GSSyncedDirectoryState](g_.ID, objc.Sel("directoryState"))
 	return rv
-}
+}/* debug [instance_properties/getter]: directoryState */
 
 
 // The state of the directory.
@@ -151,8 +196,12 @@ func (g_ GSSyncedDirectoryState) DirectoryState() IGSSyncedDirectoryState {
 // [Full Topic]: https://developer.apple.com/documentation/gamesave/gssynceddirectory/directorystate
 func (g_ GSSyncedDirectoryState) SetDirectoryState(value IGSSyncedDirectoryState) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setDirectoryState:"), value)
-}
+}/* debug [instance_properties/setter]: directoryState */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GSSyncedDirectoryState */
 
 
 

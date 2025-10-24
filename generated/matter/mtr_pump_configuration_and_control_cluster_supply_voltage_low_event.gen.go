@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
+
+
+/* debug [class_header]: Header for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
 // The class instance for the [MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent] class.
 var (
 	MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass     _MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass
@@ -26,27 +30,30 @@ func getMTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass() _MTRPu
 type _MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
 // An interface definition for the [MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent] class.
 type IMTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent
-type MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent struct {
-	objectivec.Object
-}
-
-// MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventFrom constructs a [MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent] from an unsafe.Pointer.
-func MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventFrom(ptr unsafe.Pointer) MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent {
-	return MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass) Alloc() MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent {
 	rv := objc.Send[MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass) Alloc
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass) New() MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent {
 	rv := objc.Send[MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent) Autorelease
 func NewMTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent() MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent {
 	return getMTRPumpConfigurationAndControlClusterSupplyVoltageLowEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent
+type MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent struct {
+	objectivec.Object
+}
+
+// MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventFrom constructs a [MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent] from an unsafe.Pointer.
+func MTRPumpConfigurationAndControlClusterSupplyVoltageLowEventFrom(ptr unsafe.Pointer) MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent {
+	return MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRPumpConfigurationAndControlClusterSupplyVoltageLowEvent */
 
 
 

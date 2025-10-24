@@ -15,3 +15,4 @@ var FileProviderSearchingProtocol *objc.Protocol
 func init() {
 	FileProviderSearchingProtocol = objc.GetProtocol("NSFileProviderSearching")
 }
+

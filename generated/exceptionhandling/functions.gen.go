@@ -2,6 +2,7 @@
 
 package exceptionhandling
 
+/* debug [functions.gen.go]: Generating 1 functions for ExceptionHandling */
 import (
 	"unsafe"
 
@@ -47,7 +48,8 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/ExceptionHandling/NSExceptionHandlerResume()
 func NSExceptionHandlerResume() {
 	_NSExceptionHandlerResume()
-}
+}/* debug [functions.gen.go/function]: NSExceptionHandlerResume */
+
 
 
 

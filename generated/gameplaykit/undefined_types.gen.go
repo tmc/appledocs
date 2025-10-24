@@ -9,13 +9,9 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Array = _undefined // referenced in GameplayKit
-	Class = _undefined // referenced in GameplayKit
 	GameModel = _undefined // referenced in GameplayKit
 	NNode = _undefined // referenced in GameplayKit
 	Node = _undefined // referenced in GameplayKit
-	Number = _undefined // referenced in GameplayKit
-	Object = _undefined // referenced in GameplayKit
 	Random = _undefined // referenced in GameplayKit
 )
 

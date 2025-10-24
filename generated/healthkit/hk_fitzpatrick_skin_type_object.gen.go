@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class HKFitzpatrickSkinTypeObject */
+
+
+/* debug [class_header]: Header for HKFitzpatrickSkinTypeObject */
 // The class instance for the [HKFitzpatrickSkinTypeObject] class.
 var (
 	HKFitzpatrickSkinTypeObjectClass     _HKFitzpatrickSkinTypeObjectClass
@@ -26,34 +30,31 @@ func getHKFitzpatrickSkinTypeObjectClass() _HKFitzpatrickSkinTypeObjectClass {
 type _HKFitzpatrickSkinTypeObjectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKFitzpatrickSkinTypeObject */
 // An interface definition for the [HKFitzpatrickSkinTypeObject] class.
 type IHKFitzpatrickSkinTypeObject interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for HKFitzpatrickSkinTypeObject */
 	// properties:
 	SkinType() HKFitzpatrickSkinType
-	SetSkinType(value HKFitzpatrickSkinType)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKFitzpatrickSkinTypeObject */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// This class acts as a wrapper for the enumeration.
 
 
-// This class acts as a wrapper for the enumeration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFitzpatrickSkinTypeObject
-type HKFitzpatrickSkinTypeObject struct {
-	objectivec.Object
-}
-
-// HKFitzpatrickSkinTypeObjectFrom constructs a [HKFitzpatrickSkinTypeObject] from an unsafe.Pointer.
-//
-// This class acts as a wrapper for the enumeration.
-func HKFitzpatrickSkinTypeObjectFrom(ptr unsafe.Pointer) HKFitzpatrickSkinTypeObject {
-	return HKFitzpatrickSkinTypeObject{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for HKFitzpatrickSkinTypeObject */
 // Alloc allocates a new instance without initialization.
 func (hc _HKFitzpatrickSkinTypeObjectClass) Alloc() HKFitzpatrickSkinTypeObject {
 	rv := objc.Send[HKFitzpatrickSkinTypeObject](objc.ID(hc.class), objc.Sel("alloc"))
@@ -61,7 +62,6 @@ func (hc _HKFitzpatrickSkinTypeObjectClass) Alloc() HKFitzpatrickSkinTypeObject 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKFitzpatrickSkinTypeObjectClass) New() HKFitzpatrickSkinTypeObject {
 	rv := objc.Send[HKFitzpatrickSkinTypeObject](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,26 +84,66 @@ func (h_ HKFitzpatrickSkinTypeObject) Autorelease() HKFitzpatrickSkinTypeObject 
 func NewHKFitzpatrickSkinTypeObject() HKFitzpatrickSkinTypeObject {
 	return getHKFitzpatrickSkinTypeObjectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HKFitzpatrickSkinTypeObject */
+// This class acts as a wrapper for the enumeration.
+
+
+// This class acts as a wrapper for the enumeration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFitzpatrickSkinTypeObject
+type HKFitzpatrickSkinTypeObject struct {
+	objectivec.Object
+}
+
+// HKFitzpatrickSkinTypeObjectFrom constructs a [HKFitzpatrickSkinTypeObject] from an unsafe.Pointer.
+//
+// This class acts as a wrapper for the enumeration.
+func HKFitzpatrickSkinTypeObjectFrom(ptr unsafe.Pointer) HKFitzpatrickSkinTypeObject {
+	return HKFitzpatrickSkinTypeObject{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKFitzpatrickSkinTypeObject *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKFitzpatrickSkinTypeObject */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKFitzpatrickSkinTypeObject */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKFitzpatrickSkinTypeObject */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKFitzpatrickSkinTypeObject */
 
 // The user’s skin type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject/skintype
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFitzpatrickSkinTypeObject/skinType
 func (h_ HKFitzpatrickSkinTypeObject) SkinType() HKFitzpatrickSkinType {
 	rv := objc.Send[HKFitzpatrickSkinType](h_.ID, objc.Sel("skinType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: skinType */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The user’s skin type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfitzpatrickskintypeobject/skintype
-func (h_ HKFitzpatrickSkinTypeObject) SetSkinType(value HKFitzpatrickSkinType) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSkinType:"), value)
-}
+/* debug [class.gen.go]: End class HKFitzpatrickSkinTypeObject */
 
 
 

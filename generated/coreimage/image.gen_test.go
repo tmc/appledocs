@@ -17,6 +17,7 @@ func ExampleNewImageWithBitmapImageRep() {
 	)
 	// Output:
 }
+
 // ExampleNewImageWithCVImageBuffer demonstrates how to create a Image instance using NewImageWithCVImageBuffer.
 // Initializes an image object from the contents of a Core Video image buffer.
 func ExampleNewImageWithCVImageBuffer() {
@@ -25,6 +26,7 @@ func ExampleNewImageWithCVImageBuffer() {
 	)
 	// Output:
 }
+
 // ExampleNewImageWithCVPixelBuffer demonstrates how to create a Image instance using NewImageWithCVPixelBuffer.
 // Initializes an image object from the contents of a Core Video pixel buffer.
 func ExampleNewImageWithCVPixelBuffer() {
@@ -33,6 +35,7 @@ func ExampleNewImageWithCVPixelBuffer() {
 	)
 	// Output:
 }
+
 // ExampleNewImageWithColor demonstrates how to create a Image instance using NewImageWithColor.
 // Initializes an image of infinite extent whose entire content is the specified color.
 func ExampleNewImageWithColor() {
@@ -41,6 +44,7 @@ func ExampleNewImageWithColor() {
 	)
 	// Output:
 }
+
 // ExampleNewImageWithDepthData demonstrates how to create a Image instance using NewImageWithDepthData.
 func ExampleNewImageWithDepthData() {
 	_ = coreimage.NewImageWithDepthData(
@@ -48,6 +52,7 @@ func ExampleNewImageWithDepthData() {
 	)
 	// Output:
 }
+
 // ExampleNewImageWithIOSurface demonstrates how to create a Image instance using NewImageWithIOSurface.
 // Initializes an image with the contents of an IOSurface.
 func ExampleNewImageWithIOSurface() {
@@ -56,6 +61,7 @@ func ExampleNewImageWithIOSurface() {
 	)
 	// Output:
 }
+
 // ExampleNewImageWithImage demonstrates how to create a Image instance using NewImageWithImage.
 // Initializes an image object with the specified UIKit image object.
 func ExampleNewImageWithImage() {
@@ -64,6 +70,7 @@ func ExampleNewImageWithImage() {
 	)
 	// Output:
 }
+
 // ExampleNewImageWithPortaitEffectsMatte demonstrates how to create a Image instance using NewImageWithPortaitEffectsMatte.
 func ExampleNewImageWithPortaitEffectsMatte() {
 	_ = coreimage.NewImageWithPortaitEffectsMatte(
@@ -71,6 +78,7 @@ func ExampleNewImageWithPortaitEffectsMatte() {
 	)
 	// Output:
 }
+
 // ExampleNewImageWithSemanticSegmentationMatte demonstrates how to create a Image instance using NewImageWithSemanticSegmentationMatte.
 func ExampleNewImageWithSemanticSegmentationMatte() {
 	_ = coreimage.NewImageWithSemanticSegmentationMatte(

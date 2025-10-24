@@ -20,3 +20,4 @@ var randomSourceProtocol *objc.Protocol
 func init() {
 	randomSourceProtocol = objc.GetProtocol("randomSource")
 }
+

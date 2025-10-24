@@ -16,3 +16,4 @@ var finishSuspendProtocol *objc.Protocol
 func init() {
 	finishSuspendProtocol = objc.GetProtocol("finishSuspend")
 }
+

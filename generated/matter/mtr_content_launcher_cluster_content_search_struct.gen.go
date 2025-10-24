@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRContentLauncherClusterContentSearchStruct */
+
+
+/* debug [class_header]: Header for MTRContentLauncherClusterContentSearchStruct */
 // The class instance for the [MTRContentLauncherClusterContentSearchStruct] class.
 var (
 	MTRContentLauncherClusterContentSearchStructClass     _MTRContentLauncherClusterContentSearchStructClass
@@ -26,29 +31,32 @@ func getMTRContentLauncherClusterContentSearchStructClass() _MTRContentLauncherC
 type _MTRContentLauncherClusterContentSearchStructClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRContentLauncherClusterContentSearchStruct */
 // An interface definition for the [MTRContentLauncherClusterContentSearchStruct] class.
 type IMTRContentLauncherClusterContentSearchStruct interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRContentLauncherClusterContentSearchStruct */
 	// properties:
-	ParameterList() unsafe.Pointer
-	SetParameterList(value unsafe.Pointer)
+	ParameterList() objc.IObject /* cross-framework: NSArray */
+	SetParameterList(value objc.IObject /* cross-framework: NSArray */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRContentLauncherClusterContentSearchStruct */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterContentSearchStruct
-type MTRContentLauncherClusterContentSearchStruct struct {
-	objectivec.Object
-}
-
-// MTRContentLauncherClusterContentSearchStructFrom constructs a [MTRContentLauncherClusterContentSearchStruct] from an unsafe.Pointer.
-func MTRContentLauncherClusterContentSearchStructFrom(ptr unsafe.Pointer) MTRContentLauncherClusterContentSearchStruct {
-	return MTRContentLauncherClusterContentSearchStruct{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRContentLauncherClusterContentSearchStruct */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRContentLauncherClusterContentSearchStructClass) Alloc() MTRContentLauncherClusterContentSearchStruct {
 	rv := objc.Send[MTRContentLauncherClusterContentSearchStruct](objc.ID(mc.class), objc.Sel("alloc"))
@@ -56,7 +64,6 @@ func (mc _MTRContentLauncherClusterContentSearchStructClass) Alloc() MTRContentL
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRContentLauncherClusterContentSearchStructClass) New() MTRContentLauncherClusterContentSearchStruct {
 	rv := objc.Send[MTRContentLauncherClusterContentSearchStruct](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,22 +86,66 @@ func (m_ MTRContentLauncherClusterContentSearchStruct) Autorelease() MTRContentL
 func NewMTRContentLauncherClusterContentSearchStruct() MTRContentLauncherClusterContentSearchStruct {
 	return getMTRContentLauncherClusterContentSearchStructClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRContentLauncherClusterContentSearchStruct */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclustercontentsearchstruct/parameterlist
-func (m_ MTRContentLauncherClusterContentSearchStruct) ParameterList() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("parameterList"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterContentSearchStruct
+type MTRContentLauncherClusterContentSearchStruct struct {
+	objectivec.Object
+}
+
+// MTRContentLauncherClusterContentSearchStructFrom constructs a [MTRContentLauncherClusterContentSearchStruct] from an unsafe.Pointer.
+func MTRContentLauncherClusterContentSearchStructFrom(ptr unsafe.Pointer) MTRContentLauncherClusterContentSearchStruct {
+	return MTRContentLauncherClusterContentSearchStruct{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRContentLauncherClusterContentSearchStruct *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRContentLauncherClusterContentSearchStruct */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRContentLauncherClusterContentSearchStruct */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRContentLauncherClusterContentSearchStruct */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRContentLauncherClusterContentSearchStruct */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterContentSearchStruct/parameterList
+func (m_ MTRContentLauncherClusterContentSearchStruct) ParameterList() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](m_.ID, objc.Sel("parameterList"))
 	return rv
-}
+}/* debug [instance_properties/getter]: parameterList */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclustercontentsearchstruct/parameterlist
-func (m_ MTRContentLauncherClusterContentSearchStruct) SetParameterList(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterContentSearchStruct/parameterList
+func (m_ MTRContentLauncherClusterContentSearchStruct) SetParameterList(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParameterList:"), value)
-}
+}/* debug [instance_properties/setter]: parameterList */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRContentLauncherClusterContentSearchStruct */
 
 
 

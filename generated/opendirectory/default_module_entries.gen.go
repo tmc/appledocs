@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class defaultModuleEntries */
+
+
+/* debug [class_header]: Header for defaultModuleEntries */
 // The class instance for the [defaultModuleEntries] class.
 var (
 	DefaultModuleEntriesClass     _defaultModuleEntriesClass
@@ -26,27 +30,30 @@ func getdefaultModuleEntriesClass() _defaultModuleEntriesClass {
 type _defaultModuleEntriesClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for defaultModuleEntries */
 // An interface definition for the [defaultModuleEntries] class.
 type IdefaultModuleEntries interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for defaultModuleEntries */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for defaultModuleEntries */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultModuleEntries-c.ivar
-type defaultModuleEntries struct {
-	objectivec.Object
-}
-
-// defaultModuleEntriesFrom constructs a [defaultModuleEntries] from an unsafe.Pointer.
-func defaultModuleEntriesFrom(ptr unsafe.Pointer) defaultModuleEntries {
-	return defaultModuleEntries{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for defaultModuleEntries */
 // Alloc allocates a new instance without initialization.
 func (dc _defaultModuleEntriesClass) Alloc() defaultModuleEntries {
 	rv := objc.Send[defaultModuleEntries](objc.ID(dc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (dc _defaultModuleEntriesClass) Alloc() defaultModuleEntries {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _defaultModuleEntriesClass) New() defaultModuleEntries {
 	rv := objc.Send[defaultModuleEntries](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (d_ defaultModuleEntries) Autorelease() defaultModuleEntries {
 func NewdefaultModuleEntries() defaultModuleEntries {
 	return getdefaultModuleEntriesClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for defaultModuleEntries */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/defaultModuleEntries-c.ivar
+type defaultModuleEntries struct {
+	objectivec.Object
+}
+
+// defaultModuleEntriesFrom constructs a [defaultModuleEntries] from an unsafe.Pointer.
+func defaultModuleEntriesFrom(ptr unsafe.Pointer) defaultModuleEntries {
+	return defaultModuleEntries{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for defaultModuleEntries *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for defaultModuleEntries */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for defaultModuleEntries */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for defaultModuleEntries */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for defaultModuleEntries */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class defaultModuleEntries */
 
 
 

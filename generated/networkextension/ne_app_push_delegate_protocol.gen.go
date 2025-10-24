@@ -18,3 +18,4 @@ var NEAppPushDelegateProtocol *objc.Protocol
 func init() {
 	NEAppPushDelegateProtocol = objc.GetProtocol("NEAppPushDelegate")
 }
+

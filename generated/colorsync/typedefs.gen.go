@@ -30,6 +30,11 @@ type MInitializeLinkProfileProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Po
 // CMMInitializeTransformProc is a callback function
 // C type: _Bool (*)(struct ColorSyncTransform *, const struct __CFArray *, const struct __CFDictionary *)
 type MInitializeTransformProc = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+// ColorSyncCMMRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMM
+// ColorSyncCMMRef has base type: struct ColorSyncCMM *
+type ColorSyncCMMRef uintptr
 // ColorSyncCMMIterateCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMMIterateCallback
@@ -47,6 +52,11 @@ type ColorSyncDataLayout uintptr
 // ColorSyncDeviceProfileIterateCallback is a callback function
 // C type: _Bool (*)(const struct __CFDictionary *, void *)
 type ColorSyncDeviceProfileIterateCallback = func(unsafe.Pointer, unsafe.Pointer) bool
+// ColorSyncMutableProfileRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncMutableProfile
+// ColorSyncMutableProfileRef has base type: struct ColorSyncProfile *
+type ColorSyncMutableProfileRef uintptr
 // ColorSyncProfileRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncProfile
@@ -58,16 +68,6 @@ type ColorSyncProfileRef uintptr
 // ColorSyncProfileIterateCallback is a callback function
 // C type: _Bool (*)(const struct __CFDictionary *, void *)
 type ColorSyncProfileIterateCallback = func(unsafe.Pointer, unsafe.Pointer) bool
-// ColorSyncCMMRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncCMM
-// ColorSyncCMMRef has base type: struct ColorSyncCMM *
-type ColorSyncCMMRef uintptr
-// ColorSyncMutableProfileRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncMutableProfile
-// ColorSyncMutableProfileRef has base type: struct ColorSyncProfile *
-type ColorSyncMutableProfileRef uintptr
 // ColorSyncTransformRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncTransform

@@ -39,7 +39,6 @@ type IDerivedAttributeDescription interface {
 //
 // Use derived attributes to optimize fetch performance; for example: Create a derived attribute to reflect a attribute with case and diacritics removed for more efficient comparison. Create a derived attribute to reflect the number of objects in a relationship and avoid having to do a join. Derived attributes support the following expressions:
 
-
 // A description of an attribute that derives its value by performing a calculation on a related attribute.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewDerivedAttributeDescription() DerivedAttributeDescription {
 	return getDerivedAttributeDescriptionClass().New()
 }
 
-
-
 // An expression for generating derived data.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (d_ DerivedAttributeDescription) DerivationExpression() objc.IObject /* cro
 	return rv
 }
 
-
 // An expression for generating derived data.
 //
 // [Full Topic]
@@ -107,6 +103,3 @@ func (d_ DerivedAttributeDescription) DerivationExpression() objc.IObject /* cro
 func (d_ DerivedAttributeDescription) SetDerivationExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDerivationExpression:"), value)
 }
-
-
-

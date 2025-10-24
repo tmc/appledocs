@@ -15,3 +15,4 @@ var textLayoutOrientationAtLocationProtocol *objc.Protocol
 func init() {
 	textLayoutOrientationAtLocationProtocol = objc.GetProtocol("textLayoutOrientationAtLocation:")
 }
+

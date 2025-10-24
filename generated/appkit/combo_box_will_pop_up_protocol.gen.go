@@ -15,3 +15,4 @@ var comboBoxWillPopUpProtocol *objc.Protocol
 func init() {
 	comboBoxWillPopUpProtocol = objc.GetProtocol("comboBoxWillPopUp:")
 }
+

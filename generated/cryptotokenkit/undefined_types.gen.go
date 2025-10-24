@@ -10,6 +10,7 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	Configuration = _undefined // referenced in CryptoTokenKit
+	Data = _undefined // referenced in CryptoTokenKit
 )
 
 

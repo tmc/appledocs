@@ -20,3 +20,4 @@ var supportsVertexAmplificationCountProtocol *objc.Protocol
 func init() {
 	supportsVertexAmplificationCountProtocol = objc.GetProtocol("supportsVertexAmplificationCount:")
 }
+

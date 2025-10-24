@@ -2,7 +2,9 @@
 
 package linkpresentation
 
+/* debug [enums.gen.go]: Generating 1 enums for LinkPresentation */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum LPErrorCode (5 cases) */
 // LPErrorCode - Possible error values that can be returned from LinkPresentation APIs.
 //
 // [Full Topic]: https://developer.apple.com/documentation/LinkPresentation/LPError/Code

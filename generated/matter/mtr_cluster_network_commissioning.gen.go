@@ -33,8 +33,6 @@ type IMTRClusterNetworkCommissioning interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterNetworkCommissioning
 type MTRClusterNetworkCommissioning struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterNetworkCommissioning) Autorelease() MTRClusterNetworkCommissi
 func NewMTRClusterNetworkCommissioning() MTRClusterNetworkCommissioning {
 	return getMTRClusterNetworkCommissioningClass().New()
 }
-
-
-
-

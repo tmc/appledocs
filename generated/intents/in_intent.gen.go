@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -49,7 +49,6 @@ type IINIntent interface {
 // A request to fulfill in your app or Intents extension.
 //
 // The class is abstract and provides behaviors shared by all intent objects. You don’t create instances of this class directly or implement your own custom subclasses. For a list of intent types that SiriKit already handles, see the Standard Intents section of . You may also define custom intent types in an Intent Definition file. Each subclass of defines the properties needed to perform the corresponding action. You use instances of those classes when responding to a request sent to your app or Intents extension by SiriKit. For more information about a specific type of action, see the appropriate subclass.
-
 
 // A request to fulfill in your app or Intents extension.
 //
@@ -97,8 +96,6 @@ func NewINIntent() INIntent {
 	return getINIntentClass().New()
 }
 
-
-
 // Sets the image to use for the specified parameter.
 //
 // [Full Topic]
@@ -106,7 +103,6 @@ func NewINIntent() INIntent {
 func (i_ INIntent) SetImageForParameterNamed(image INImage, parameterName string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImage:forParameterNamed:"), image, objc.String(parameterName))
 }
-
 
 // The intent’s display name.
 //
@@ -117,7 +113,6 @@ func (i_ INIntent) SuggestedInvocationPhrase() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // The intent’s display name.
 //
 // [Full Topic]
@@ -126,7 +121,6 @@ func (i_ INIntent) SetSuggestedInvocationPhrase(value objc.IObject /* cross-fram
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedInvocationPhrase:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/donationmetadata
 func (i_ INIntent) DonationMetadata() INIntentDonationMetadata {
@@ -134,13 +128,11 @@ func (i_ INIntent) DonationMetadata() INIntentDonationMetadata {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inintent/donationmetadata
 func (i_ INIntent) SetDonationMetadata(value INIntentDonationMetadata) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDonationMetadata:"), value)
 }
-
 
 // The unique identifier for this intent object.
 //
@@ -151,7 +143,6 @@ func (i_ INIntent) Identifier() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The unique identifier for this intent object.
 //
 // [Full Topic]
@@ -159,7 +150,6 @@ func (i_ INIntent) Identifier() objc.IObject /* cross-framework: NSString */ {
 func (i_ INIntent) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 // A string describing the content of the intent.
 //
@@ -170,7 +160,6 @@ func (i_ INIntent) IntentDescription() objc.IObject /* cross-framework: NSString
 	return rv
 }
 
-
 // A string describing the content of the intent.
 //
 // [Full Topic]
@@ -178,7 +167,6 @@ func (i_ INIntent) IntentDescription() objc.IObject /* cross-framework: NSString
 func (i_ INIntent) SetIntentDescription(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntentDescription:"), value)
 }
-
 
 // A set of defined contexts in which an intent or activity might be relevant to a user.
 //
@@ -189,7 +177,6 @@ func (i_ INIntent) ShortcutAvailability() unsafe.Pointer {
 	return rv
 }
 
-
 // A set of defined contexts in which an intent or activity might be relevant to a user.
 //
 // [Full Topic]
@@ -197,6 +184,3 @@ func (i_ INIntent) ShortcutAvailability() unsafe.Pointer {
 func (i_ INIntent) SetShortcutAvailability(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setShortcutAvailability:"), value)
 }
-
-
-

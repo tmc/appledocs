@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class HKDiscreteQuantitySample */
+
+
+/* debug [class_header]: Header for HKDiscreteQuantitySample */
 // The class instance for the [HKDiscreteQuantitySample] class.
 var (
 	HKDiscreteQuantitySampleClass     _HKDiscreteQuantitySampleClass
@@ -26,21 +30,22 @@ func getHKDiscreteQuantitySampleClass() _HKDiscreteQuantitySampleClass {
 type _HKDiscreteQuantitySampleClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKDiscreteQuantitySample */
 // An interface definition for the [HKDiscreteQuantitySample] class.
 type IHKDiscreteQuantitySample interface {
 	IHKQuantitySample
+	
+/* debug [class_interface_properties]: Properties for HKDiscreteQuantitySample */
 	// properties:
 	AverageQuantity() IHKQuantity
-	SetAverageQuantity(value IHKQuantity)
 	MaximumQuantity() IHKQuantity
-	SetMaximumQuantity(value IHKQuantity)
 	MinimumQuantity() IHKQuantity
-	SetMinimumQuantity(value IHKQuantity)
 	MostRecentQuantity() IHKQuantity
-	SetMostRecentQuantity(value IHKQuantity)
-	MostRecentQuantityDateInterval() objc.IObject /* cross-framework: DateInterval */
-	SetMostRecentQuantityDateInterval(value objc.IObject /* cross-framework: DateInterval */)
+	MostRecentQuantityDateInterval() foundation.DateInterval
 	HKPredicateKeyPathAverage() objc.IObject /* cross-framework: NSString */
 	HKPredicateKeyPathMax() objc.IObject /* cross-framework: NSString */
 	HKPredicateKeyPathMin() objc.IObject /* cross-framework: NSString */
@@ -48,31 +53,19 @@ type IHKDiscreteQuantitySample interface {
 	HKPredicateKeyPathMostRecentDuration() objc.IObject /* cross-framework: NSString */
 	HKPredicateKeyPathMostRecentEndDate() objc.IObject /* cross-framework: NSString */
 	HKPredicateKeyPathMostRecentStartDate() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKDiscreteQuantitySample */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A sample that represents a discrete quantity.
-//
-// A quantity sample contains one or more objects. Each quantity represents a single piece of data with a single numeric value and the value’s associated units. Use these samples to store data representing independent measurements, such as height, heart rate, or temperature. The class is a concrete subclass of the class. Discrete quantity samples are immutable; you set the sample’s properties when you create it, and they cannot change.
+/* debug [class_interface]: End interface */
 
 
-// A sample that represents a discrete quantity.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDiscreteQuantitySample
-type HKDiscreteQuantitySample struct {
-	HKQuantitySample
-}
 
-// HKDiscreteQuantitySampleFrom constructs a [HKDiscreteQuantitySample] from an unsafe.Pointer.
-//
-// A sample that represents a discrete quantity.
-func HKDiscreteQuantitySampleFrom(ptr unsafe.Pointer) HKDiscreteQuantitySample {
-	return HKDiscreteQuantitySample{
-		HKQuantitySample: HKQuantitySampleFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for HKDiscreteQuantitySample */
 // Alloc allocates a new instance without initialization.
 func (hc _HKDiscreteQuantitySampleClass) Alloc() HKDiscreteQuantitySample {
 	rv := objc.Send[HKDiscreteQuantitySample](objc.ID(hc.class), objc.Sel("alloc"))
@@ -80,7 +73,6 @@ func (hc _HKDiscreteQuantitySampleClass) Alloc() HKDiscreteQuantitySample {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKDiscreteQuantitySampleClass) New() HKDiscreteQuantitySample {
 	rv := objc.Send[HKDiscreteQuantitySample](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -103,102 +95,105 @@ func (h_ HKDiscreteQuantitySample) Autorelease() HKDiscreteQuantitySample {
 func NewHKDiscreteQuantitySample() HKDiscreteQuantitySample {
 	return getHKDiscreteQuantitySampleClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HKDiscreteQuantitySample */
+// A sample that represents a discrete quantity.
+//
+// A quantity sample contains one or more objects. Each quantity represents a single piece of data with a single numeric value and the value’s associated units. Use these samples to store data representing independent measurements, such as height, heart rate, or temperature. The class is a concrete subclass of the class. Discrete quantity samples are immutable; you set the sample’s properties when you create it, and they cannot change.
+
+
+// A sample that represents a discrete quantity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDiscreteQuantitySample
+type HKDiscreteQuantitySample struct {
+	HKQuantitySample
+}
+
+// HKDiscreteQuantitySampleFrom constructs a [HKDiscreteQuantitySample] from an unsafe.Pointer.
+//
+// A sample that represents a discrete quantity.
+func HKDiscreteQuantitySampleFrom(ptr unsafe.Pointer) HKDiscreteQuantitySample {
+	return HKDiscreteQuantitySample{
+		HKQuantitySample: HKQuantitySampleFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKDiscreteQuantitySample *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKDiscreteQuantitySample */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKDiscreteQuantitySample */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKDiscreteQuantitySample */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKDiscreteQuantitySample */
 
 // The average of all quantities contained by the sample.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/averagequantity
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDiscreteQuantitySample/averageQuantity
 func (h_ HKDiscreteQuantitySample) AverageQuantity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("averageQuantity"))
 	return rv
-}
-
-
-// The average of all quantities contained by the sample.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/averagequantity
-func (h_ HKDiscreteQuantitySample) SetAverageQuantity(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setAverageQuantity:"), value)
-}
+}/* debug [instance_properties/getter]: averageQuantity */
 
 
 // The maximum quantity contained by the sample.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/maximumquantity
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDiscreteQuantitySample/maximumQuantity
 func (h_ HKDiscreteQuantitySample) MaximumQuantity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("maximumQuantity"))
 	return rv
-}
-
-
-// The maximum quantity contained by the sample.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/maximumquantity
-func (h_ HKDiscreteQuantitySample) SetMaximumQuantity(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMaximumQuantity:"), value)
-}
+}/* debug [instance_properties/getter]: maximumQuantity */
 
 
 // The minimum value contained by the sample.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/minimumquantity
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDiscreteQuantitySample/minimumQuantity
 func (h_ HKDiscreteQuantitySample) MinimumQuantity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("minimumQuantity"))
 	return rv
-}
-
-
-// The minimum value contained by the sample.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/minimumquantity
-func (h_ HKDiscreteQuantitySample) SetMinimumQuantity(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMinimumQuantity:"), value)
-}
+}/* debug [instance_properties/getter]: minimumQuantity */
 
 
 // The most recent quantity contained by the sample.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantity
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantity
 func (h_ HKDiscreteQuantitySample) MostRecentQuantity() IHKQuantity {
 	rv := objc.Send[HKQuantity](h_.ID, objc.Sel("mostRecentQuantity"))
 	return rv
-}
-
-
-// The most recent quantity contained by the sample.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantity
-func (h_ HKDiscreteQuantitySample) SetMostRecentQuantity(value IHKQuantity) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMostRecentQuantity:"), value)
-}
+}/* debug [instance_properties/getter]: mostRecentQuantity */
 
 
 // The date interval for the most recent quantity contained by the sample.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantitydateinterval
-func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() objc.IObject /* cross-framework: DateInterval */ {
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKDiscreteQuantitySample/mostRecentQuantityDateInterval
+func (h_ HKDiscreteQuantitySample) MostRecentQuantityDateInterval() foundation.DateInterval {
 	rv := objc.Send[foundation.DateInterval](h_.ID, objc.Sel("mostRecentQuantityDateInterval"))
 	return rv
-}
-
-
-// The date interval for the most recent quantity contained by the sample.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkdiscretequantitysample/mostrecentquantitydateinterval
-func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value objc.IObject /* cross-framework: DateInterval */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMostRecentQuantityDateInterval:"), value)
-}
+}/* debug [instance_properties/getter]: mostRecentQuantityDateInterval */
 
 
 // The key path for the sample’s average quantity.
@@ -208,7 +203,7 @@ func (h_ HKDiscreteQuantitySample) SetMostRecentQuantityDateInterval(value objc.
 func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathAverage"))
 	return rv
-}
+}/* debug [instance_properties/getter]: HKPredicateKeyPathAverage */
 
 
 // The key path for the sample’s maximum quantity.
@@ -218,7 +213,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathAverage() objc.IObject /* c
 func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathMax"))
 	return rv
-}
+}/* debug [instance_properties/getter]: HKPredicateKeyPathMax */
 
 
 // The key path for the sample’s minimum quantity.
@@ -228,7 +223,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMax() objc.IObject /* cross
 func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathMin"))
 	return rv
-}
+}/* debug [instance_properties/getter]: HKPredicateKeyPathMin */
 
 
 // The key path for the sample’s most recent quantity.
@@ -238,7 +233,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMin() objc.IObject /* cross
 func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathMostRecent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: HKPredicateKeyPathMostRecent */
 
 
 // A key path for the duration of the sample’s most recent quantity.
@@ -248,7 +243,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecent() objc.IObject /
 func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentDuration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: HKPredicateKeyPathMostRecentDuration */
 
 
 // The key path for the end date of the sample’s most recent quantity.
@@ -258,7 +253,7 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentDuration() objc.I
 func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentEndDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: HKPredicateKeyPathMostRecentEndDate */
 
 
 // The key path for the start date of the sample’s most recent quantity.
@@ -268,7 +263,12 @@ func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentEndDate() objc.IO
 func (h_ HKDiscreteQuantitySample) HKPredicateKeyPathMostRecentStartDate() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("HKPredicateKeyPathMostRecentStartDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: HKPredicateKeyPathMostRecentStartDate */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class HKDiscreteQuantitySample */
 
 
 

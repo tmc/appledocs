@@ -27,7 +27,7 @@ func (m_ MotionManager) StartAccelerometerUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startAccelerometerUpdates(to:withHandler:)
-func (m_ MotionManager) StartAccelerometerUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler AccelerometerHandler /* not a class type */) {
+func (m_ MotionManager) StartAccelerometerUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler AccelerometerHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startAccelerometerUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -43,7 +43,7 @@ func (m_ MotionManager) StartDeviceMotionUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(to:withHandler:)
-func (m_ MotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler DeviceMotionHandler /* not a class type */) {
+func (m_ MotionManager) StartDeviceMotionUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler DeviceMotionHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startDeviceMotionUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -59,7 +59,7 @@ func (m_ MotionManager) StartDeviceMotionUpdatesUsingReferenceFrame(referenceFra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startDeviceMotionUpdates(using:to:withHandler:)
-func (m_ MotionManager) StartDeviceMotionUpdatesUsingReferenceFrameToQueueWithHandler(referenceFrame AttitudeReferenceFrame, queue objc.IObject /* cross-framework: OperationQueue */, handler DeviceMotionHandler /* not a class type */) {
+func (m_ MotionManager) StartDeviceMotionUpdatesUsingReferenceFrameToQueueWithHandler(referenceFrame AttitudeReferenceFrame, queue foundation.OperationQueue, handler DeviceMotionHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startDeviceMotionUpdatesUsingReferenceFrame:toQueue:withHandler:"), referenceFrame, queue, handler)
 }
 
@@ -75,7 +75,7 @@ func (m_ MotionManager) StartGyroUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startGyroUpdates(to:withHandler:)
-func (m_ MotionManager) StartGyroUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler GyroHandler /* not a class type */) {
+func (m_ MotionManager) StartGyroUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler GyroHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startGyroUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -91,7 +91,7 @@ func (m_ MotionManager) StartMagnetometerUpdates() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/startMagnetometerUpdates(to:withHandler:)
-func (m_ MotionManager) StartMagnetometerUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler MagnetometerHandler /* not a class type */) {
+func (m_ MotionManager) StartMagnetometerUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler MagnetometerHandler /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("startMagnetometerUpdatesToQueue:withHandler:"), queue, handler)
 }
 
@@ -143,7 +143,7 @@ func (m_ MotionManager) AccelerometerData() ICMAccelerometerData {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/accelerometerUpdateInterval
 func (m_ MotionManager) AccelerometerUpdateInterval() float64 {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("accelerometerUpdateInterval"))
+	rv := objc.Send[float64](m_.ID, objc.Sel("accelerometerUpdateInterval"))
 	return rv
 }
 func (m_ MotionManager) SetAccelerometerUpdateInterval(value float64) {
@@ -173,7 +173,7 @@ func (m_ MotionManager) DeviceMotion() ICMDeviceMotion {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/deviceMotionUpdateInterval
 func (m_ MotionManager) DeviceMotionUpdateInterval() float64 {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("deviceMotionUpdateInterval"))
+	rv := objc.Send[float64](m_.ID, objc.Sel("deviceMotionUpdateInterval"))
 	return rv
 }
 func (m_ MotionManager) SetDeviceMotionUpdateInterval(value float64) {
@@ -194,7 +194,7 @@ func (m_ MotionManager) GyroData() ICMGyroData {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/gyroUpdateInterval
 func (m_ MotionManager) GyroUpdateInterval() float64 {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("gyroUpdateInterval"))
+	rv := objc.Send[float64](m_.ID, objc.Sel("gyroUpdateInterval"))
 	return rv
 }
 func (m_ MotionManager) SetGyroUpdateInterval(value float64) {
@@ -287,7 +287,7 @@ func (m_ MotionManager) MagnetometerData() ICMMagnetometerData {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMotionManager/magnetometerUpdateInterval
 func (m_ MotionManager) MagnetometerUpdateInterval() float64 {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("magnetometerUpdateInterval"))
+	rv := objc.Send[float64](m_.ID, objc.Sel("magnetometerUpdateInterval"))
 	return rv
 }
 func (m_ MotionManager) SetMagnetometerUpdateInterval(value float64) {

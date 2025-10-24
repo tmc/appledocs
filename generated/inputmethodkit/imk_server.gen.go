@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class IMKServer */
+
+
+/* debug [class_header]: Header for IMKServer */
 // The class instance for the [IMKServer] class.
 var (
 	IMKServerClass     _IMKServerClass
@@ -27,35 +31,33 @@ func getIMKServerClass() _IMKServerClass {
 type _IMKServerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for IMKServer */
 // An interface definition for the [IMKServer] class.
 type IIMKServer interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for IMKServer */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for IMKServer */
 	// methods:
-	Bundle() objc.IObject /* cross-framework: Bundle */
+	Bundle() foundation.Bundle
 	LastKeyEventWasDeadKey() bool
 	PaletteWillTerminate() bool
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
 
 
-// The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer
-type IMKServer struct {
-	objectivec.Object
-}
-
-// IMKServerFrom constructs a [IMKServer] from an unsafe.Pointer.
-//
-// The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
-func IMKServerFrom(ptr unsafe.Pointer) IMKServer {
-	return IMKServer{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for IMKServer */
 // Alloc allocates a new instance without initialization.
 func (ic _IMKServerClass) Alloc() IMKServer {
 	rv := objc.Send[IMKServer](objc.ID(ic.class), objc.Sel("alloc"))
@@ -63,7 +65,6 @@ func (ic _IMKServerClass) Alloc() IMKServer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _IMKServerClass) New() IMKServer {
 	rv := objc.Send[IMKServer](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,8 +87,33 @@ func (i_ IMKServer) Autorelease() IMKServer {
 func NewIMKServer() IMKServer {
 	return getIMKServerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for IMKServer */
+// The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
+
+
+// The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer
+type IMKServer struct {
+	objectivec.Object
+}
+
+// IMKServerFrom constructs a [IMKServer] from an unsafe.Pointer.
+//
+// The class manages client connections to your input method. When you write the main function for your input method, you create an object. You should never need to override this class.
+func IMKServerFrom(ptr unsafe.Pointer) IMKServer {
+	return IMKServer{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for IMKServer */
 
 // Creates and returns a server object from property list information contained in the provided bundle.
 //
@@ -98,7 +124,7 @@ func NewIMKServerWithNameBundleIdentifier(name objc.IObject /* cross-framework: 
 	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:bundleIdentifier:"), name, bundleIdentifier)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewIMKServerWithNameBundleIdentifier */
 
 
 // Creates and returns a server object initialized with the provided parameters.
@@ -110,18 +136,32 @@ func NewIMKServerWithNameControllerClassDelegateClass(name objc.IObject /* cross
 	rv := objc.Send[IMKServer](instance.ID, objc.Sel("initWithName:controllerClass:delegateClass:"), name, controllerClassID, delegateClassID)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewIMKServerWithNameControllerClassDelegateClass */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for IMKServer */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for IMKServer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for IMKServer */
 
 // Returns an object for the input method.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/InputMethodKit/IMKServer/bundle()
-func (i_ IMKServer) Bundle() objc.IObject /* cross-framework: Bundle */ {
+func (i_ IMKServer) Bundle() foundation.Bundle {
 	rv := objc.Send[foundation.Bundle](i_.ID, objc.Sel("bundle"))
 	return rv
-}
+}/* debug [instance_methods/method]: Bundle */
 
 
 // [Full Topic]
@@ -129,7 +169,7 @@ func (i_ IMKServer) Bundle() objc.IObject /* cross-framework: Bundle */ {
 func (i_ IMKServer) LastKeyEventWasDeadKey() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("lastKeyEventWasDeadKey"))
 	return rv
-}
+}/* debug [instance_methods/method]: LastKeyEventWasDeadKey */
 
 
 // [Full Topic]
@@ -137,6 +177,16 @@ func (i_ IMKServer) LastKeyEventWasDeadKey() bool {
 func (i_ IMKServer) PaletteWillTerminate() bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("paletteWillTerminate"))
 	return rv
-}
+}/* debug [instance_methods/method]: PaletteWillTerminate */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for IMKServer */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class IMKServer */
 
 

@@ -6,10 +6,13 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class SKOverlayAppConfiguration */
+
+/* debug [class_header]: Header for SKOverlayAppConfiguration */
 // The class instance for the [OverlayAppConfiguration] class.
 var (
 	OverlayAppConfigurationClass     _OverlayAppConfigurationClass
@@ -27,53 +30,32 @@ type _OverlayAppConfigurationClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for OverlayAppConfiguration */
 // An interface definition for the [OverlayAppConfiguration] class.
 type IOverlayAppConfiguration interface {
 	IOverlayConfiguration
+
+	/* debug [class_interface_properties]: Properties for OverlayAppConfiguration */
 	// properties:
-	AdAttributionReengagementURL() objc.IObject /* cross-framework: URL */
-	SetAdAttributionReengagementURL(value objc.IObject /* cross-framework: URL */)
-	AppIdentifier() objc.IObject /* cross-framework: NSString */
-	SetAppIdentifier(value objc.IObject /* cross-framework: NSString */)
+	AdAttributionReengagementURL() foundation.URL
+	SetAdAttributionReengagementURL(value foundation.URL)
 	AppImpression() unsafe.Pointer
 	SetAppImpression(value unsafe.Pointer)
-	CampaignToken() objc.IObject /* cross-framework: NSString */
-	SetCampaignToken(value objc.IObject /* cross-framework: NSString */)
-	CustomProductPageIdentifier() objc.IObject /* cross-framework: NSString */
-	SetCustomProductPageIdentifier(value objc.IObject /* cross-framework: NSString */)
-	LatestReleaseID() objc.IObject /* cross-framework: NSString */
-	SetLatestReleaseID(value objc.IObject /* cross-framework: NSString */)
-	Position() unsafe.Pointer
-	SetPosition(value unsafe.Pointer)
-	ProviderToken() objc.IObject /* cross-framework: NSString */
-	SetProviderToken(value objc.IObject /* cross-framework: NSString */)
-	UserDismissible() bool
-	SetUserDismissible(value bool)
-	Configuration() objc.IObject /* cross-framework: OverlayConfiguration */
-	SetConfiguration(value objc.IObject /* cross-framework: OverlayConfiguration */)
+	Configuration() ISKOverlayConfiguration
+	SetConfiguration(value ISKOverlayConfiguration)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for OverlayAppConfiguration */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that represents the attributes of an overlay you use to recommend another app on the App Store.
+/* debug [class_interface]: End interface */
 
-
-// An object that represents the attributes of an overlay you use to recommend another app on the App Store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration
-type OverlayAppConfiguration struct {
-	OverlayConfiguration
-}
-
-// OverlayAppConfigurationFrom constructs a [OverlayAppConfiguration] from an unsafe.Pointer.
-//
-// An object that represents the attributes of an overlay you use to recommend another app on the App Store.
-func OverlayAppConfigurationFrom(ptr unsafe.Pointer) OverlayAppConfiguration {
-	return OverlayAppConfiguration{
-		OverlayConfiguration: OverlayConfigurationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for OverlayAppConfiguration */
 // Alloc allocates a new instance without initialization.
 func (oc _OverlayAppConfigurationClass) Alloc() OverlayAppConfiguration {
 	rv := objc.Send[OverlayAppConfiguration](objc.ID(oc.class), objc.Sel("alloc"))
@@ -81,7 +63,6 @@ func (oc _OverlayAppConfigurationClass) Alloc() OverlayAppConfiguration {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OverlayAppConfigurationClass) New() OverlayAppConfiguration {
 	rv := objc.Send[OverlayAppConfiguration](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -105,188 +86,99 @@ func NewOverlayAppConfiguration() OverlayAppConfiguration {
 	return getOverlayAppConfigurationClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for OverlayAppConfiguration */
+// An object that represents the attributes of an overlay you use to recommend another app on the App Store.
+
+// An object that represents the attributes of an overlay you use to recommend another app on the App Store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration
+type OverlayAppConfiguration struct {
+	OverlayConfiguration
+}
+
+// OverlayAppConfigurationFrom constructs a [OverlayAppConfiguration] from an unsafe.Pointer.
+//
+// An object that represents the attributes of an overlay you use to recommend another app on the App Store.
+func OverlayAppConfigurationFrom(ptr unsafe.Pointer) OverlayAppConfiguration {
+	return OverlayAppConfiguration{
+		OverlayConfiguration: OverlayConfigurationFrom(ptr),
+	}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for OverlayAppConfiguration */
+
+// Creates an object that represents the attributes of an overlay you use to recommend another app on the App Store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppConfiguration/init(appIdentifier:position:)
+func NewOverlayAppConfigurationWithAppIdentifierPosition(appIdentifier objc.IObject /* cross-framework: NSString */, position OverlayPosition) OverlayAppConfiguration {
+	instance := getOverlayAppConfigurationClass().Alloc()
+	rv := objc.Send[OverlayAppConfiguration](instance.ID, objc.Sel("initWithAppIdentifier:position:"), appIdentifier, position)
+	rv.Autorelease()
+	return rv
+} /* debug [class_init_methods/constructor]: NewOverlayAppConfigurationWithAppIdentifierPosition */
+
+/* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for OverlayAppConfiguration */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for OverlayAppConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for OverlayAppConfiguration */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for OverlayAppConfiguration */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/adattributionreengagementurl
-func (o_ OverlayAppConfiguration) AdAttributionReengagementURL() objc.IObject /* cross-framework: URL */ {
+func (o_ OverlayAppConfiguration) AdAttributionReengagementURL() foundation.URL {
 	rv := objc.Send[foundation.URL](o_.ID, objc.Sel("adAttributionReengagementURL"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: adAttributionReengagementURL */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/adattributionreengagementurl
-func (o_ OverlayAppConfiguration) SetAdAttributionReengagementURL(value objc.IObject /* cross-framework: URL */) {
+func (o_ OverlayAppConfiguration) SetAdAttributionReengagementURL(value foundation.URL) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAdAttributionReengagementURL:"), value)
-}
-
-
-// The iTunes identifier of the recommended app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appidentifier
-func (o_ OverlayAppConfiguration) AppIdentifier() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("appIdentifier"))
-	return rv
-}
-
-
-// The iTunes identifier of the recommended app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appidentifier
-func (o_ OverlayAppConfiguration) SetAppIdentifier(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAppIdentifier:"), value)
-}
-
+} /* debug [instance_properties/setter]: adAttributionReengagementURL */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appimpression
 func (o_ OverlayAppConfiguration) AppImpression() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("appImpression"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: appImpression */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/appimpression
 func (o_ OverlayAppConfiguration) SetAppImpression(value unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAppImpression:"), value)
-}
-
-
-// A token you use to represent an ad campaign and measure its effectiveness.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/campaigntoken
-func (o_ OverlayAppConfiguration) CampaignToken() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("campaignToken"))
-	return rv
-}
-
-
-// A token you use to represent an ad campaign and measure its effectiveness.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/campaigntoken
-func (o_ OverlayAppConfiguration) SetCampaignToken(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCampaignToken:"), value)
-}
-
-
-// An optional identifier for an app’s custom product page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/customproductpageidentifier
-func (o_ OverlayAppConfiguration) CustomProductPageIdentifier() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("customProductPageIdentifier"))
-	return rv
-}
-
-
-// An optional identifier for an app’s custom product page.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/customproductpageidentifier
-func (o_ OverlayAppConfiguration) SetCustomProductPageIdentifier(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCustomProductPageIdentifier:"), value)
-}
-
-
-// The release ID of the latest version of your app as displayed in App Store Connect.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/latestreleaseid
-func (o_ OverlayAppConfiguration) LatestReleaseID() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("latestReleaseID"))
-	return rv
-}
-
-
-// The release ID of the latest version of your app as displayed in App Store Connect.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/latestreleaseid
-func (o_ OverlayAppConfiguration) SetLatestReleaseID(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setLatestReleaseID:"), value)
-}
-
-
-// The position of the overlay on the screen.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/position
-func (o_ OverlayAppConfiguration) Position() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("position"))
-	return rv
-}
-
-
-// The position of the overlay on the screen.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/position
-func (o_ OverlayAppConfiguration) SetPosition(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setPosition:"), value)
-}
-
-
-// A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/providertoken
-func (o_ OverlayAppConfiguration) ProviderToken() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("providerToken"))
-	return rv
-}
-
-
-// A token that represents the provider of an app promotion campaign, and that you use to measure the campaign’s effectiveness.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/providertoken
-func (o_ OverlayAppConfiguration) SetProviderToken(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setProviderToken:"), value)
-}
-
-
-// A Boolean value that indicates whether the user can dismiss the overlay.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/userdismissible
-func (o_ OverlayAppConfiguration) UserDismissible() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("userDismissible"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the user can dismiss the overlay.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/appconfiguration/userdismissible
-func (o_ OverlayAppConfiguration) SetUserDismissible(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUserDismissible:"), value)
-}
-
+} /* debug [instance_properties/setter]: appImpression */
 
 // An overlay’s attributes; for example, its position on the screen.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppConfiguration) Configuration() objc.IObject /* cross-framework: OverlayConfiguration */ {
+func (o_ OverlayAppConfiguration) Configuration() ISKOverlayConfiguration {
 	rv := objc.Send[OverlayConfiguration](o_.ID, objc.Sel("configuration"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: configuration */
 
 // An overlay’s attributes; for example, its position on the screen.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/storekit/skoverlay/configuration-swift.property
-func (o_ OverlayAppConfiguration) SetConfiguration(value objc.IObject /* cross-framework: OverlayConfiguration */) {
+func (o_ OverlayAppConfiguration) SetConfiguration(value ISKOverlayConfiguration) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setConfiguration:"), value)
-}
+} /* debug [instance_properties/setter]: configuration */
 
+/* debug [instance_properties]: End instance properties */
 
-
+/* debug [class.gen.go]: End class SKOverlayAppConfiguration */

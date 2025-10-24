@@ -19,3 +19,4 @@ var createContextForIdentifierProtocol *objc.Protocol
 func init() {
 	createContextForIdentifierProtocol = objc.GetProtocol("createContextForIdentifier:")
 }
+

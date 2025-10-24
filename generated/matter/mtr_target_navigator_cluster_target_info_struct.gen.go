@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRTargetNavigatorClusterTargetInfoStruct interface {
 	SetName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTargetNavigatorClusterTargetInfoStruct
@@ -83,8 +81,6 @@ func NewMTRTargetNavigatorClusterTargetInfoStruct() MTRTargetNavigatorClusterTar
 	return getMTRTargetNavigatorClusterTargetInfoStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/identifier
 func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Identifier() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Identifier() objc.IObject /*
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/identifier
 func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetIdentifier(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/name
@@ -107,12 +101,8 @@ func (m_ MTRTargetNavigatorClusterTargetInfoStruct) Name() objc.IObject /* cross
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtargetnavigatorclustertargetinfostruct/name
 func (m_ MTRTargetNavigatorClusterTargetInfoStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
-
-
-

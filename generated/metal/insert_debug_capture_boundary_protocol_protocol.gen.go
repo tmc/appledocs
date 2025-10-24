@@ -1,0 +1,19 @@
+// Code generated from Apple documentation for Metal. DO NOT EDIT.
+
+package metal
+
+// PinsertDebugCaptureBoundary is the insertDebugCaptureBoundary protocol interface.
+//
+// Informs Xcode about when GPU Frame Capture starts and stops.
+//
+// Availability:
+//   - Mac Catalyst 13.1+ (Deprecated in 13.1)
+//   - iOS 8.0+ (Deprecated in 11.0)
+//   - iPadOS 8.0+ (Deprecated in 11.0)
+//   - macOS 10.11+ (Deprecated in 10.13)
+//   - tvOS + (Deprecated in 11.0)
+//   - visionOS 1.0+ (Deprecated in 1.0)
+//
+// See: doc://com.apple.metal/documentation/Metal/MTLCommandQueue/insertDebugCaptureBoundary()
+type PinsertDebugCaptureBoundary interface {
+}

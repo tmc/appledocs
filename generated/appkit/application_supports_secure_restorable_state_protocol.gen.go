@@ -15,3 +15,4 @@ var applicationSupportsSecureRestorableStateProtocol *objc.Protocol
 func init() {
 	applicationSupportsSecureRestorableStateProtocol = objc.GetProtocol("applicationSupportsSecureRestorableState:")
 }
+

@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INRestaurantReservation] class.
@@ -39,7 +39,6 @@ type IINRestaurantReservation interface {
 }
 
 // The information that describes a restaurant reservation.
-
 
 // The information that describes a restaurant reservation.
 //
@@ -89,8 +88,6 @@ func NewINRestaurantReservation() INRestaurantReservation {
 	return getINRestaurantReservationClass().New()
 }
 
-
-
 // Creates a new restaurant reservation with the provided information.
 //
 // [Full Topic]
@@ -102,8 +99,6 @@ func NewINRestaurantReservationWithItemReferenceReservationNumberBookingTimeRese
 	return rv
 }
 
-
-
 // The name and location of the restaurant.
 //
 // [Full Topic]
@@ -112,7 +107,6 @@ func (i_ INRestaurantReservation) RestaurantLocation() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("restaurantLocation"))
 	return rv
 }
-
 
 // The number of people in the party.
 //
@@ -123,7 +117,6 @@ func (i_ INRestaurantReservation) PartySize() int {
 	return rv
 }
 
-
 // The number of people in the party.
 //
 // [Full Topic]
@@ -131,7 +124,6 @@ func (i_ INRestaurantReservation) PartySize() int {
 func (i_ INRestaurantReservation) SetPartySize(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
 }
-
 
 // The date and time range that defines beginning and end of the restaurant reservation.
 //
@@ -142,7 +134,6 @@ func (i_ INRestaurantReservation) ReservationDuration() INDateComponentsRange {
 	return rv
 }
 
-
 // The date and time range that defines beginning and end of the restaurant reservation.
 //
 // [Full Topic]
@@ -150,5 +141,3 @@ func (i_ INRestaurantReservation) ReservationDuration() INDateComponentsRange {
 func (i_ INRestaurantReservation) SetReservationDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationDuration:"), value)
 }
-
-

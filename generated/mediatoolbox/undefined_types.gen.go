@@ -13,7 +13,6 @@ type (
 	ItemCount = _undefined // referenced in MediaToolbox
 	MediaType = _undefined // referenced in MediaToolbox
 	StringRef = _undefined // referenced in MediaToolbox
-	TimeRange = _undefined // referenced in MediaToolbox
 	TypeID = _undefined // referenced in MediaToolbox
 )
 

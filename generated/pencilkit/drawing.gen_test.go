@@ -15,6 +15,7 @@ func ExampleNewDrawing() {
 	_ = pencilkit.NewDrawing()
 	// Output:
 }
+
 // ExampleNewDrawingWithStrokes demonstrates how to create a Drawing instance using NewDrawingWithStrokes.
 // Creates a drawing object with the strokes you supply.
 func ExampleNewDrawingWithStrokes() {

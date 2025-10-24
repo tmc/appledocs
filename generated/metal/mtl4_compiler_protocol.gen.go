@@ -20,3 +20,4 @@ var MTL4CompilerProtocol *objc.Protocol
 func init() {
 	MTL4CompilerProtocol = objc.GetProtocol("MTL4Compiler")
 }
+

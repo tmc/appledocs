@@ -15,3 +15,4 @@ var characterIndexForPointProtocol *objc.Protocol
 func init() {
 	characterIndexForPointProtocol = objc.GetProtocol("characterIndexForPoint:")
 }
+

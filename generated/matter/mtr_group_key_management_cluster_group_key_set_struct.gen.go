@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -51,8 +51,6 @@ type IMTRGroupKeyManagementClusterGroupKeySetStruct interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterGroupKeySetStruct
 type MTRGroupKeyManagementClusterGroupKeySetStruct struct {
@@ -95,8 +93,6 @@ func NewMTRGroupKeyManagementClusterGroupKeySetStruct() MTRGroupKeyManagementClu
 	return getMTRGroupKeyManagementClusterGroupKeySetStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey0
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey0() objc.IObject /* cross-framework: Data */ {
@@ -104,13 +100,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey0() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey0
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey0(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochKey0:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey1
@@ -119,13 +113,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey1() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey1
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey1(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochKey1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey2
@@ -134,13 +126,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochKey2() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochkey2
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochKey2(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochKey2:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime0
@@ -149,13 +139,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochStartTime0() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime0
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime0(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochStartTime0:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime1
@@ -164,13 +152,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochStartTime1() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime1
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochStartTime1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime2
@@ -179,13 +165,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) EpochStartTime2() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/epochstarttime2
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetEpochStartTime2(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEpochStartTime2:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/groupkeysecuritypolicy
@@ -194,13 +178,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) GroupKeySecurityPolicy()
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/groupkeysecuritypolicy
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetGroupKeySecurityPolicy(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySecurityPolicy:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/groupkeysetid
@@ -209,12 +191,8 @@ func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) GroupKeySetID() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeysetstruct/groupkeysetid
 func (m_ MTRGroupKeyManagementClusterGroupKeySetStruct) SetGroupKeySetID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
 }
-
-
-

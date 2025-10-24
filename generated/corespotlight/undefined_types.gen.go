@@ -11,9 +11,6 @@ type _undefined = int
 type (
 	ComparisonResult = _undefined // referenced in CoreSpotlight
 	FileProtectionType = _undefined // referenced in CoreSpotlight
-	Responses = _undefined // referenced in CoreSpotlight
-	Results = _undefined // referenced in CoreSpotlight
-	Suggestions = _undefined // referenced in CoreSpotlight
 )
 
 

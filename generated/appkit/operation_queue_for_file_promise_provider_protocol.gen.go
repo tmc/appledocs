@@ -15,3 +15,4 @@ var operationQueueForFilePromiseProviderProtocol *objc.Protocol
 func init() {
 	operationQueueForFilePromiseProviderProtocol = objc.GetProtocol("operationQueueForFilePromiseProvider:")
 }
+

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
+/* debug [class.gen.go]: Generating class CAScrollLayer */
+
+
+/* debug [class_header]: Header for CAScrollLayer */
 // The class instance for the [ScrollLayer] class.
 var (
 	ScrollLayerClass     _ScrollLayerClass
@@ -26,39 +30,34 @@ func getScrollLayerClass() _ScrollLayerClass {
 type _ScrollLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ScrollLayer */
 // An interface definition for the [ScrollLayer] class.
 type IScrollLayer interface {
 	ILayer
+	
+/* debug [class_interface_properties]: Properties for ScrollLayer */
 	// properties:
-	ScrollMode() ScrollLayerScrollMode /* not a class type */
-	SetScrollMode(value ScrollLayerScrollMode /* not a class type */)
+	ScrollMode() ScrollLayerScrollMode /* typedef */
+	SetScrollMode(value ScrollLayerScrollMode /* typedef */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ScrollLayer */
 	// methods:
-	ScrollToRect(r objc.IObject /* cross-framework: Rect */)
+	ScrollToPoint(p corefoundation.CGPoint)
+	ScrollToRect(r corefoundation.CGRect)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A layer that displays scrollable content larger than its own bounds.
-//
-// The class is a subclass of that simplifies displaying a portion of a layer. The extent of the scrollable area of the is defined by the layout of its sublayers. The visible portion of the layer content is set by specifying the origin as a point or a rectangular area of the contents to be displayed. does not provide keyboard or mouse event-handling, nor does it provide visible scrollers.
+/* debug [class_interface]: End interface */
 
 
-// A layer that displays scrollable content larger than its own bounds.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer
-type ScrollLayer struct {
-	Layer
-}
 
-// ScrollLayerFrom constructs a [ScrollLayer] from an unsafe.Pointer.
-//
-// A layer that displays scrollable content larger than its own bounds.
-func ScrollLayerFrom(ptr unsafe.Pointer) ScrollLayer {
-	return ScrollLayer{
-		Layer: LayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ScrollLayer */
 // Alloc allocates a new instance without initialization.
 func (sc _ScrollLayerClass) Alloc() ScrollLayer {
 	rv := objc.Send[ScrollLayer](objc.ID(sc.class), objc.Sel("alloc"))
@@ -66,7 +65,6 @@ func (sc _ScrollLayerClass) Alloc() ScrollLayer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _ScrollLayerClass) New() ScrollLayer {
 	rv := objc.Send[ScrollLayer](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,35 +87,97 @@ func (s_ ScrollLayer) Autorelease() ScrollLayer {
 func NewScrollLayer() ScrollLayer {
 	return getScrollLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for ScrollLayer */
+// A layer that displays scrollable content larger than its own bounds.
+//
+// The class is a subclass of that simplifies displaying a portion of a layer. The extent of the scrollable area of the is defined by the layout of its sublayers. The visible portion of the layer content is set by specifying the origin as a point or a rectangular area of the contents to be displayed. does not provide keyboard or mouse event-handling, nor does it provide visible scrollers.
+
+
+// A layer that displays scrollable content larger than its own bounds.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer
+type ScrollLayer struct {
+	Layer
+}
+
+// ScrollLayerFrom constructs a [ScrollLayer] from an unsafe.Pointer.
+//
+// A layer that displays scrollable content larger than its own bounds.
+func ScrollLayerFrom(ptr unsafe.Pointer) ScrollLayer {
+	return ScrollLayer{
+		Layer: LayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ScrollLayer *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ScrollLayer */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ScrollLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ScrollLayer */
+
+// Changes the origin of the receiver to the specified point.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scroll(to:)-37q0p
+func (s_ ScrollLayer) ScrollToPoint(p corefoundation.CGPoint) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("scrollToPoint:"), p)
+}/* debug [instance_methods/method]: ScrollToPoint */
 
 
 // Scroll the contents of the receiver to ensure that the rectangle is visible.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scroll(to:)-782vd
-func (s_ ScrollLayer) ScrollToRect(r objc.IObject /* cross-framework: Rect */) {
+func (s_ ScrollLayer) ScrollToRect(r corefoundation.CGRect) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("scrollToRect:"), r)
-}
+}/* debug [instance_methods/method]: ScrollToRect */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ScrollLayer */
 
 // Defines the axes in which the layer may be scrolled.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cascrolllayer/scrollmode
-func (s_ ScrollLayer) ScrollMode() ScrollLayerScrollMode /* not a class type */ {
-	rv := objc.Send[ScrollLayerScrollMode](s_.ID, objc.Sel("scrollMode"))
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scrollMode
+func (s_ ScrollLayer) ScrollMode() ScrollLayerScrollMode /* typedef */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("scrollMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scrollMode */
 
 
 // Defines the axes in which the layer may be scrolled.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/quartzcore/cascrolllayer/scrollmode
-func (s_ ScrollLayer) SetScrollMode(value ScrollLayerScrollMode /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAScrollLayer/scrollMode
+func (s_ ScrollLayer) SetScrollMode(value ScrollLayerScrollMode /* typedef */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrollMode:"), value)
-}
+}/* debug [instance_properties/setter]: scrollMode */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CAScrollLayer */
 
 
 

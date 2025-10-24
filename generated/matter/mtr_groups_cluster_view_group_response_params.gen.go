@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRGroupsClusterViewGroupResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupsClusterViewGroupResponseParams
@@ -89,8 +87,6 @@ func NewMTRGroupsClusterViewGroupResponseParams() MTRGroupsClusterViewGroupRespo
 	return getMTRGroupsClusterViewGroupResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/groupid-7jt17
 func (m_ MTRGroupsClusterViewGroupResponseParams) GroupID() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRGroupsClusterViewGroupResponseParams) GroupID() objc.IObject /* cros
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/groupid-7jt17
 func (m_ MTRGroupsClusterViewGroupResponseParams) SetGroupID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/groupid-7jt0b
@@ -113,13 +107,11 @@ func (m_ MTRGroupsClusterViewGroupResponseParams) GroupId() objc.IObject /* cros
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/groupid-7jt0b
 func (m_ MTRGroupsClusterViewGroupResponseParams) SetGroupId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/groupname
@@ -128,13 +120,11 @@ func (m_ MTRGroupsClusterViewGroupResponseParams) GroupName() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/groupname
 func (m_ MTRGroupsClusterViewGroupResponseParams) SetGroupName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/status
@@ -143,13 +133,11 @@ func (m_ MTRGroupsClusterViewGroupResponseParams) Status() objc.IObject /* cross
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/status
 func (m_ MTRGroupsClusterViewGroupResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/timedinvoketimeoutms
@@ -158,12 +146,8 @@ func (m_ MTRGroupsClusterViewGroupResponseParams) TimedInvokeTimeoutMs() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupsclusterviewgroupresponseparams/timedinvoketimeoutms
 func (m_ MTRGroupsClusterViewGroupResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

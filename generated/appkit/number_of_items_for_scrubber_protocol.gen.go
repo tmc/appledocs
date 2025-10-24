@@ -15,3 +15,4 @@ var numberOfItemsForScrubberProtocol *objc.Protocol
 func init() {
 	numberOfItemsForScrubberProtocol = objc.GetProtocol("numberOfItemsForScrubber:")
 }
+

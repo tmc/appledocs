@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/gamekit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NISession */
+
+
+/* debug [class_header]: Header for NISession */
 // The class instance for the [NISession] class.
 var (
 	NISessionClass     _NISessionClass
@@ -26,40 +31,30 @@ func getNISessionClass() _NISessionClass {
 type _NISessionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NISession */
 // An interface definition for the [NISession] class.
 type INISession interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NISession */
 	// properties:
-	Configuration() INIConfiguration
-	SetConfiguration(value INIConfiguration)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	DelegateQueue() unsafe.Pointer
-	SetDelegateQueue(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NISession */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that identifies a unique connection between two peer devices.
-//
-// This class represents the central mechanism to interact with nearby objects, for example, a peer Apple device or third-party accessory. After creating an for a nearby object, the app interacts with the object by receiving callbacks. One session represents an interaction between the user and a single nearby object. To interact with multiple nearby objects, create a separate session for each. For more information, see .
+/* debug [class_interface]: End interface */
 
 
-// An object that identifies a unique connection between two peer devices.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession
-type NISession struct {
-	objectivec.Object
-}
 
-// NISessionFrom constructs a [NISession] from an unsafe.Pointer.
-//
-// An object that identifies a unique connection between two peer devices.
-func NISessionFrom(ptr unsafe.Pointer) NISession {
-	return NISession{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NISession */
 // Alloc allocates a new instance without initialization.
 func (nc _NISessionClass) Alloc() NISession {
 	rv := objc.Send[NISession](objc.ID(nc.class), objc.Sel("alloc"))
@@ -67,7 +62,6 @@ func (nc _NISessionClass) Alloc() NISession {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NISessionClass) New() NISession {
 	rv := objc.Send[NISession](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,17 +84,53 @@ func (n_ NISession) Autorelease() NISession {
 func NewNISession() NISession {
 	return getNISessionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for NISession */
+// An object that identifies a unique connection between two peer devices.
+//
+// This class represents the central mechanism to interact with nearby objects, for example, a peer Apple device or third-party accessory. After creating an for a nearby object, the app interacts with the object by receiving callbacks. One session represents an interaction between the user and a single nearby object. To interact with multiple nearby objects, create a separate session for each. For more information, see .
+
+
+// An object that identifies a unique connection between two peer devices.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession
+type NISession struct {
+	objectivec.Object
+}
+
+// NISessionFrom constructs a [NISession] from an unsafe.Pointer.
+//
+// An object that identifies a unique connection between two peer devices.
+func NISessionFrom(ptr unsafe.Pointer) NISession {
+	return NISession{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NISession *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NISession */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NISession */
 
 // An object that communicates the device’s supported framework features.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NISession/deviceCapabilities
-func (nc _NISessionClass) DeviceCapabilities() objc.ID {
-	rv := objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("deviceCapabilities"))
+func (nc _NISessionClass) DeviceCapabilities() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("deviceCapabilities"))
 	return rv
-}
+}/* debug [class_properties_class/property]: deviceCapabilities */
 
 // A Boolean value that indicates whether the device supports basic interaction-session functionality.
 //
@@ -109,62 +139,20 @@ func (nc _NISessionClass) DeviceCapabilities() objc.ID {
 func (nc _NISessionClass) Supported() bool {
 	rv := objc.Send[bool](objc.ID(nc.class), objc.Sel("supported"))
 	return rv
-}
-
-// The configuration run by the session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
-func (n_ NISession) Configuration() INIConfiguration {
-	rv := objc.Send[NIConfiguration](n_.ID, objc.Sel("configuration"))
-	return rv
-}
+}/* debug [class_properties_class/property]: supported */
+/* debug [class_properties_class]: End class properties */
 
 
-// The configuration run by the session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/configuration
-func (n_ NISession) SetConfiguration(value INIConfiguration) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setConfiguration:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for NISession */
+/* debug [instance_methods]: End instance methods */
 
 
-// An object that the framework notifies of session events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
-func (n_ NISession) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegate"))
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for NISession */
+/* debug [instance_properties]: End instance properties */
 
 
-// An object that the framework notifies of session events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegate
-func (n_ NISession) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The dispatch queue on which the session invokes delegate callbacks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegatequeue
-func (n_ NISession) DelegateQueue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("delegateQueue"))
-	return rv
-}
-
-
-// The dispatch queue on which the session invokes delegate callbacks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nisession/delegatequeue
-func (n_ NISession) SetDelegateQueue(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDelegateQueue:"), value)
-}
+/* debug [class.gen.go]: End class NISession */
 
 

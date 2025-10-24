@@ -15,3 +15,4 @@ var accessibilityHorizontalScrollBarProtocol *objc.Protocol
 func init() {
 	accessibilityHorizontalScrollBarProtocol = objc.GetProtocol("accessibilityHorizontalScrollBar")
 }
+

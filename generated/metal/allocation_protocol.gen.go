@@ -20,3 +20,4 @@ var AllocationProtocol *objc.Protocol
 func init() {
 	AllocationProtocol = objc.GetProtocol("MTLAllocation")
 }
+

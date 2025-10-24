@@ -20,3 +20,4 @@ var newRenderPipelineStateWithBinaryFunctionsProtocol *objc.Protocol
 func init() {
 	newRenderPipelineStateWithBinaryFunctionsProtocol = objc.GetProtocol("newRenderPipelineStateWithBinaryFunctions:")
 }
+

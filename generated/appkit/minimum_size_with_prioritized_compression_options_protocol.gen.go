@@ -15,3 +15,4 @@ var minimumSizeWithPrioritizedCompressionOptionsProtocol *objc.Protocol
 func init() {
 	minimumSizeWithPrioritizedCompressionOptionsProtocol = objc.GetProtocol("minimumSizeWithPrioritizedCompressionOptions:")
 }
+

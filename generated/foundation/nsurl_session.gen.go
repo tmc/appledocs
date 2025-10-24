@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSURLSession */
+
+
+/* debug [class_header]: Header for NSURLSession */
 // The class instance for the [URLSession] class.
 var (
 	URLSessionClass     _URLSessionClass
@@ -26,16 +30,26 @@ func getURLSessionClass() _URLSessionClass {
 type _URLSessionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for URLSession */
 // An interface definition for the [URLSession] class.
 type IURLSession interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for URLSession */
 	// properties:
 	Configuration() IURLSessionConfiguration
-	Delegate() objc.ID
+	Delegate() unsafe.Pointer
 	DelegateQueue() IOperationQueue
 	SessionDescription() IString
 	SetSessionDescription(value IString)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for URLSession */
 	// methods:
 	DataTaskWithURL(url IURL) IURLSessionDataTask
 	DataTaskWithRequest(request IURLRequest) IURLSessionDataTask
@@ -64,28 +78,14 @@ type IURLSession interface {
 	WebSocketTaskWithURL(url IURL) IURLSessionWebSocketTask
 	WebSocketTaskWithRequest(request IURLRequest) IURLSessionWebSocketTask
 	WebSocketTaskWithURLProtocols(url IURL, protocols []string) IURLSessionWebSocketTask
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that coordinates a group of related, network data transfer tasks.
-//
-// The class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related and to support authentication and receive events like redirection and task completion. Your app creates one or more instances, each of which coordinates a group of related data-transfer tasks. For example, if you’re creating a web browser, your app might create one session per tab or window, or one session for interactive use and another for background downloads. Within each session, your app adds a series of tasks, each of which represents a request for a specific URL (following HTTP redirects, if necessary).
+/* debug [class_interface]: End interface */
 
 
-// An object that coordinates a group of related, network data transfer tasks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession
-type URLSession struct {
-	objectivec.Object
-}
 
-// URLSessionFrom constructs a [URLSession] from an unsafe.Pointer.
-//
-// An object that coordinates a group of related, network data transfer tasks.
-func URLSessionFrom(ptr unsafe.Pointer) URLSession {
-	return URLSession{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for URLSession */
 // Alloc allocates a new instance without initialization.
 func (uc _URLSessionClass) Alloc() URLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("alloc"))
@@ -93,7 +93,6 @@ func (uc _URLSessionClass) Alloc() URLSession {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLSessionClass) New() URLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -116,8 +115,35 @@ func (u_ URLSession) Autorelease() URLSession {
 func NewURLSession() URLSession {
 	return getURLSessionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for URLSession */
+// An object that coordinates a group of related, network data transfer tasks.
+//
+// The class and related classes provide an API for downloading data from and uploading data to endpoints indicated by URLs. Your app can also use this API to perform background downloads when your app isn’t running or, in iOS, while your app is suspended. You can use the related and to support authentication and receive events like redirection and task completion. Your app creates one or more instances, each of which coordinates a group of related data-transfer tasks. For example, if you’re creating a web browser, your app might create one session per tab or window, or one session for interactive use and another for background downloads. Within each session, your app adds a series of tasks, each of which represents a request for a specific URL (following HTTP redirects, if necessary).
+
+
+// An object that coordinates a group of related, network data transfer tasks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession
+type URLSession struct {
+	objectivec.Object
+}
+
+// URLSessionFrom constructs a [URLSession] from an unsafe.Pointer.
+//
+// An object that coordinates a group of related, network data transfer tasks.
+func URLSessionFrom(ptr unsafe.Pointer) URLSession {
+	return URLSession{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for URLSession */
 
 // Creates a session with the specified session configuration.
 //
@@ -126,19 +152,23 @@ func NewURLSession() URLSession {
 func NewURLSessionWithConfiguration(configuration IURLSessionConfiguration) URLSession {
 	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:"), configuration)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewURLSessionWithConfiguration */
 
 
 // Creates a session with the specified session configuration, delegate, and operation queue.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
-func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate objc.IObject, queue IOperationQueue) URLSession {
+func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate unsafe.Pointer, queue IOperationQueue) URLSession {
 	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewURLSessionWithConfigurationDelegateDelegateQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for URLSession */
 
 // Creates a session with the specified session configuration.
 //
@@ -147,18 +177,23 @@ func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration IURLSessi
 func (uc _URLSessionClass) SessionWithConfiguration(configuration IURLSessionConfiguration) IURLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("sessionWithConfiguration:"), configuration)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SessionWithConfiguration) */
 
 
 // Creates a session with the specified session configuration, delegate, and operation queue.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
-func (uc _URLSessionClass) SessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate objc.IObject, queue IOperationQueue) IURLSession {
+func (uc _URLSessionClass) SessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate unsafe.Pointer, queue IOperationQueue) IURLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SessionWithConfigurationDelegateDelegateQueue) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for URLSession */
 
 // The shared singleton session object.
 //
@@ -167,7 +202,12 @@ func (uc _URLSessionClass) SessionWithConfigurationDelegateDelegateQueue(configu
 func (uc _URLSessionClass) SharedSession() URLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("sharedSession"))
 	return rv
-}
+}/* debug [class_properties_class/property]: sharedSession */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for URLSession */
 
 // Creates a task that retrieves the contents of the specified URL.
 //
@@ -176,7 +216,7 @@ func (uc _URLSessionClass) SharedSession() URLSession {
 func (u_ URLSession) DataTaskWithURL(url IURL) IURLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](u_.ID, objc.Sel("dataTaskWithURL:"), url)
 	return rv
-}
+}/* debug [instance_methods/method]: DataTaskWithURL */
 
 
 // Creates a task that retrieves the contents of a URL based on the specified URL request object.
@@ -186,7 +226,7 @@ func (u_ URLSession) DataTaskWithURL(url IURL) IURLSessionDataTask {
 func (u_ URLSession) DataTaskWithRequest(request IURLRequest) IURLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](u_.ID, objc.Sel("dataTaskWithRequest:"), request)
 	return rv
-}
+}/* debug [instance_methods/method]: DataTaskWithRequest */
 
 
 // Creates a task that retrieves the contents of the specified URL, then calls a handler upon completion.
@@ -196,7 +236,7 @@ func (u_ URLSession) DataTaskWithRequest(request IURLRequest) IURLSessionDataTas
 func (u_ URLSession) DataTaskWithURLCompletionHandler(url IURL, completionHandler unsafe.Pointer) IURLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](u_.ID, objc.Sel("dataTaskWithURL:completionHandler:"), url, completionHandler)
 	return rv
-}
+}/* debug [instance_methods/method]: DataTaskWithURLCompletionHandler */
 
 
 // Creates a task that retrieves the contents of a URL based on the specified URL request object, and calls a handler upon completion.
@@ -206,7 +246,7 @@ func (u_ URLSession) DataTaskWithURLCompletionHandler(url IURL, completionHandle
 func (u_ URLSession) DataTaskWithRequestCompletionHandler(request IURLRequest, completionHandler unsafe.Pointer) IURLSessionDataTask {
 	rv := objc.Send[URLSessionDataTask](u_.ID, objc.Sel("dataTaskWithRequest:completionHandler:"), request, completionHandler)
 	return rv
-}
+}/* debug [instance_methods/method]: DataTaskWithRequestCompletionHandler */
 
 
 // Creates a download task that retrieves the contents of the specified URL and saves the results to a file.
@@ -216,7 +256,7 @@ func (u_ URLSession) DataTaskWithRequestCompletionHandler(request IURLRequest, c
 func (u_ URLSession) DownloadTaskWithURL(url IURL) IURLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithURL:"), url)
 	return rv
-}
+}/* debug [instance_methods/method]: DownloadTaskWithURL */
 
 
 // Creates a download task that retrieves the contents of a URL based on the specified URL request object and saves the results to a file.
@@ -226,7 +266,7 @@ func (u_ URLSession) DownloadTaskWithURL(url IURL) IURLSessionDownloadTask {
 func (u_ URLSession) DownloadTaskWithRequest(request IURLRequest) IURLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithRequest:"), request)
 	return rv
-}
+}/* debug [instance_methods/method]: DownloadTaskWithRequest */
 
 
 // Creates a download task that retrieves the contents of a URL based on the specified URL request object, saves the results to a file, and calls a handler upon completion.
@@ -236,7 +276,7 @@ func (u_ URLSession) DownloadTaskWithRequest(request IURLRequest) IURLSessionDow
 func (u_ URLSession) DownloadTaskWithRequestCompletionHandler(request IURLRequest, completionHandler unsafe.Pointer) IURLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithRequest:completionHandler:"), request, completionHandler)
 	return rv
-}
+}/* debug [instance_methods/method]: DownloadTaskWithRequestCompletionHandler */
 
 
 // Creates a download task that retrieves the contents of the specified URL, saves the results to a file, and calls a handler upon completion.
@@ -246,7 +286,7 @@ func (u_ URLSession) DownloadTaskWithRequestCompletionHandler(request IURLReques
 func (u_ URLSession) DownloadTaskWithURLCompletionHandler(url IURL, completionHandler unsafe.Pointer) IURLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithURL:completionHandler:"), url, completionHandler)
 	return rv
-}
+}/* debug [instance_methods/method]: DownloadTaskWithURLCompletionHandler */
 
 
 // Creates a download task to resume a previously canceled or failed download.
@@ -256,7 +296,7 @@ func (u_ URLSession) DownloadTaskWithURLCompletionHandler(url IURL, completionHa
 func (u_ URLSession) DownloadTaskWithResumeData(resumeData IData) IURLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithResumeData:"), resumeData)
 	return rv
-}
+}/* debug [instance_methods/method]: DownloadTaskWithResumeData */
 
 
 // Creates a download task to resume a previously canceled or failed download and calls a handler upon completion.
@@ -266,7 +306,7 @@ func (u_ URLSession) DownloadTaskWithResumeData(resumeData IData) IURLSessionDow
 func (u_ URLSession) DownloadTaskWithResumeDataCompletionHandler(resumeData IData, completionHandler unsafe.Pointer) IURLSessionDownloadTask {
 	rv := objc.Send[URLSessionDownloadTask](u_.ID, objc.Sel("downloadTaskWithResumeData:completionHandler:"), resumeData, completionHandler)
 	return rv
-}
+}/* debug [instance_methods/method]: DownloadTaskWithResumeDataCompletionHandler */
 
 
 // Invalidates the session, allowing any outstanding tasks to finish.
@@ -275,7 +315,7 @@ func (u_ URLSession) DownloadTaskWithResumeDataCompletionHandler(resumeData IDat
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/finishTasksAndInvalidate()
 func (u_ URLSession) FinishTasksAndInvalidate() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("finishTasksAndInvalidate"))
-}
+}/* debug [instance_methods/method]: FinishTasksAndInvalidate */
 
 
 // Flushes cookies and credentials to disk, clears transient caches, and ensures that future requests occur on a new TCP connection.
@@ -284,7 +324,7 @@ func (u_ URLSession) FinishTasksAndInvalidate() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/flush(completionHandler:)
 func (u_ URLSession) FlushWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("flushWithCompletionHandler:"), completionHandler)
-}
+}/* debug [instance_methods/method]: FlushWithCompletionHandler */
 
 
 // Asynchronously calls a completion callback with all tasks in a session
@@ -293,7 +333,7 @@ func (u_ URLSession) FlushWithCompletionHandler(completionHandler unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/getAllTasks(completionHandler:)
 func (u_ URLSession) GetAllTasksWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getAllTasksWithCompletionHandler:"), completionHandler)
-}
+}/* debug [instance_methods/method]: GetAllTasksWithCompletionHandler */
 
 
 // Asynchronously calls a completion callback with all data, upload, and download tasks in a session.
@@ -302,7 +342,7 @@ func (u_ URLSession) GetAllTasksWithCompletionHandler(completionHandler unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/getTasksWithCompletionHandler(_:)
 func (u_ URLSession) GetTasksWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("getTasksWithCompletionHandler:"), completionHandler)
-}
+}/* debug [instance_methods/method]: GetTasksWithCompletionHandler */
 
 
 // Cancels all outstanding tasks and then invalidates the session.
@@ -311,7 +351,7 @@ func (u_ URLSession) GetTasksWithCompletionHandler(completionHandler unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/invalidateAndCancel()
 func (u_ URLSession) InvalidateAndCancel() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("invalidateAndCancel"))
-}
+}/* debug [instance_methods/method]: InvalidateAndCancel */
 
 
 // Empties all cookies, caches and credential stores, removes disk files, flushes in-progress downloads to disk, and ensures that future requests occur on a new socket.
@@ -320,7 +360,7 @@ func (u_ URLSession) InvalidateAndCancel() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/reset(completionHandler:)
 func (u_ URLSession) ResetWithCompletionHandler(completionHandler unsafe.Pointer) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("resetWithCompletionHandler:"), completionHandler)
-}
+}/* debug [instance_methods/method]: ResetWithCompletionHandler */
 
 
 // Creates a task that establishes a bidirectional TCP/IP connection to a specified hostname and port.
@@ -330,7 +370,7 @@ func (u_ URLSession) ResetWithCompletionHandler(completionHandler unsafe.Pointer
 func (u_ URLSession) StreamTaskWithHostNamePort(hostname IString, port int) IURLSessionStreamTask {
 	rv := objc.Send[URLSessionStreamTask](u_.ID, objc.Sel("streamTaskWithHostName:port:"), hostname, port)
 	return rv
-}
+}/* debug [instance_methods/method]: StreamTaskWithHostNamePort */
 
 
 // Creates a task that performs an HTTP request for the specified URL request object and uploads the provided data.
@@ -340,7 +380,7 @@ func (u_ URLSession) StreamTaskWithHostNamePort(hostname IString, port int) IURL
 func (u_ URLSession) UploadTaskWithRequestFromData(request IURLRequest, bodyData IData) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromData:"), request, bodyData)
 	return rv
-}
+}/* debug [instance_methods/method]: UploadTaskWithRequestFromData */
 
 
 // Creates a task that performs an HTTP request for the specified URL request object, uploads the provided data, and calls a handler upon completion.
@@ -350,7 +390,7 @@ func (u_ URLSession) UploadTaskWithRequestFromData(request IURLRequest, bodyData
 func (u_ URLSession) UploadTaskWithRequestFromDataCompletionHandler(request IURLRequest, bodyData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromData:completionHandler:"), request, bodyData, completionHandler)
 	return rv
-}
+}/* debug [instance_methods/method]: UploadTaskWithRequestFromDataCompletionHandler */
 
 
 // Creates a task that performs an HTTP request for uploading the specified file.
@@ -360,7 +400,7 @@ func (u_ URLSession) UploadTaskWithRequestFromDataCompletionHandler(request IURL
 func (u_ URLSession) UploadTaskWithRequestFromFile(request IURLRequest, fileURL IURL) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromFile:"), request, fileURL)
 	return rv
-}
+}/* debug [instance_methods/method]: UploadTaskWithRequestFromFile */
 
 
 // Creates a task that performs an HTTP request for uploading the specified file, then calls a handler upon completion.
@@ -370,7 +410,7 @@ func (u_ URLSession) UploadTaskWithRequestFromFile(request IURLRequest, fileURL 
 func (u_ URLSession) UploadTaskWithRequestFromFileCompletionHandler(request IURLRequest, fileURL IURL, completionHandler unsafe.Pointer) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithRequest:fromFile:completionHandler:"), request, fileURL, completionHandler)
 	return rv
-}
+}/* debug [instance_methods/method]: UploadTaskWithRequestFromFileCompletionHandler */
 
 
 // [Full Topic]
@@ -378,7 +418,7 @@ func (u_ URLSession) UploadTaskWithRequestFromFileCompletionHandler(request IURL
 func (u_ URLSession) UploadTaskWithResumeData(resumeData IData) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithResumeData:"), resumeData)
 	return rv
-}
+}/* debug [instance_methods/method]: UploadTaskWithResumeData */
 
 
 // [Full Topic]
@@ -386,7 +426,7 @@ func (u_ URLSession) UploadTaskWithResumeData(resumeData IData) IURLSessionUploa
 func (u_ URLSession) UploadTaskWithResumeDataCompletionHandler(resumeData IData, completionHandler unsafe.Pointer) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithResumeData:completionHandler:"), resumeData, completionHandler)
 	return rv
-}
+}/* debug [instance_methods/method]: UploadTaskWithResumeDataCompletionHandler */
 
 
 // Creates a task that performs an HTTP request for uploading data based on the specified URL request.
@@ -396,7 +436,7 @@ func (u_ URLSession) UploadTaskWithResumeDataCompletionHandler(resumeData IData,
 func (u_ URLSession) UploadTaskWithStreamedRequest(request IURLRequest) IURLSessionUploadTask {
 	rv := objc.Send[URLSessionUploadTask](u_.ID, objc.Sel("uploadTaskWithStreamedRequest:"), request)
 	return rv
-}
+}/* debug [instance_methods/method]: UploadTaskWithStreamedRequest */
 
 
 // Creates a WebSocket task for the provided URL.
@@ -406,7 +446,7 @@ func (u_ URLSession) UploadTaskWithStreamedRequest(request IURLRequest) IURLSess
 func (u_ URLSession) WebSocketTaskWithURL(url IURL) IURLSessionWebSocketTask {
 	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("webSocketTaskWithURL:"), url)
 	return rv
-}
+}/* debug [instance_methods/method]: WebSocketTaskWithURL */
 
 
 // Creates a WebSocket task for the provided URL request.
@@ -416,7 +456,7 @@ func (u_ URLSession) WebSocketTaskWithURL(url IURL) IURLSessionWebSocketTask {
 func (u_ URLSession) WebSocketTaskWithRequest(request IURLRequest) IURLSessionWebSocketTask {
 	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("webSocketTaskWithRequest:"), request)
 	return rv
-}
+}/* debug [instance_methods/method]: WebSocketTaskWithRequest */
 
 
 // Creates a WebSocket task given a URL and an array of protocols.
@@ -426,8 +466,13 @@ func (u_ URLSession) WebSocketTaskWithRequest(request IURLRequest) IURLSessionWe
 func (u_ URLSession) WebSocketTaskWithURLProtocols(url IURL, protocols []string) IURLSessionWebSocketTask {
 	rv := objc.Send[URLSessionWebSocketTask](u_.ID, objc.Sel("webSocketTaskWithURL:protocols:"), url, protocols)
 	return rv
-}
+}/* debug [instance_methods/method]: WebSocketTaskWithURLProtocols */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for URLSession */
 
 // A copy of the configuration object for this session.
 //
@@ -436,17 +481,17 @@ func (u_ URLSession) WebSocketTaskWithURLProtocols(url IURL, protocols []string)
 func (u_ URLSession) Configuration() IURLSessionConfiguration {
 	rv := objc.Send[URLSessionConfiguration](u_.ID, objc.Sel("configuration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: configuration */
 
 
 // The delegate assigned when this object was created.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/delegate
-func (u_ URLSession) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
+func (u_ URLSession) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // The operation queue provided when this object was created.
@@ -456,7 +501,7 @@ func (u_ URLSession) Delegate() objc.ID {
 func (u_ URLSession) DelegateQueue() IOperationQueue {
 	rv := objc.Send[OperationQueue](u_.ID, objc.Sel("delegateQueue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegateQueue */
 
 
 // An app-defined descriptive label for the session.
@@ -466,7 +511,7 @@ func (u_ URLSession) DelegateQueue() IOperationQueue {
 func (u_ URLSession) SessionDescription() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("sessionDescription"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sessionDescription */
 
 
 // An app-defined descriptive label for the session.
@@ -475,7 +520,7 @@ func (u_ URLSession) SessionDescription() IString {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/sessionDescription
 func (u_ URLSession) SetSessionDescription(value IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSessionDescription:"), value)
-}
+}/* debug [instance_properties/setter]: sessionDescription */
 
 
 // The shared singleton session object.
@@ -485,6 +530,11 @@ func (u_ URLSession) SetSessionDescription(value IString) {
 func (u_ URLSession) SharedSession() IURLSession {
 	rv := objc.Send[URLSession](u_.ID, objc.Sel("sharedSession"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sharedSession */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSURLSession */
 
 

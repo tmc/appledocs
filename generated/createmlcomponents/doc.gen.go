@@ -2,12 +2,8 @@
 
 // Package createmlcomponents provides Go bindings for the CreateMLComponents framework.
 //
-// Create more customizable machine learning models in your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CreateMLComponents without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CreateMLComponents
 package createmlcomponents
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/CreateMLComponents.framework/CreateMLComponents"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

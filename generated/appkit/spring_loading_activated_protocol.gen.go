@@ -15,3 +15,4 @@ var springLoadingActivatedProtocol *objc.Protocol
 func init() {
 	springLoadingActivatedProtocol = objc.GetProtocol("springLoadingActivated:")
 }
+

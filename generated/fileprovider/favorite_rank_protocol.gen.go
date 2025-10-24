@@ -17,3 +17,4 @@ var favoriteRankProtocol *objc.Protocol
 func init() {
 	favoriteRankProtocol = objc.GetProtocol("favoriteRank")
 }
+

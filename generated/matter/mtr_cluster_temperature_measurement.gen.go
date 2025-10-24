@@ -33,8 +33,6 @@ type IMTRClusterTemperatureMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterTemperatureMeasurement
 type MTRClusterTemperatureMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterTemperatureMeasurement) Autorelease() MTRClusterTemperatureMe
 func NewMTRClusterTemperatureMeasurement() MTRClusterTemperatureMeasurement {
 	return getMTRClusterTemperatureMeasurementClass().New()
 }
-
-
-
-

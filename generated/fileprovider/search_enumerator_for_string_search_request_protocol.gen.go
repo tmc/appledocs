@@ -15,3 +15,4 @@ var searchEnumeratorForStringSearchRequestProtocol *objc.Protocol
 func init() {
 	searchEnumeratorForStringSearchRequestProtocol = objc.GetProtocol("searchEnumeratorForStringSearchRequest:")
 }
+

@@ -37,7 +37,6 @@ type IINSetMessageAttributeIntentResponse interface {
 //
 // An object contains the status of modifying the specified messages. You create instances of this class when confirming or handling a set message attribute intent. You create an object in the and methods of your set message attribute handler object. For more information about implementing your handler object, see .
 
-
 // Your app’s response to a set message attribute intent.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINSetMessageAttributeIntentResponse() INSetMessageAttributeIntentRespons
 	return getINSetMessageAttributeIntentResponseClass().New()
 }
 
-
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INSetMessageAttributeIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INSetMessageAttributeIntentResponse) Code() unsafe.Pointer {
 func (i_ INSetMessageAttributeIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
-
-

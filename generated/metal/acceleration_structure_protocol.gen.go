@@ -20,3 +20,4 @@ var AccelerationStructureProtocol *objc.Protocol
 func init() {
 	AccelerationStructureProtocol = objc.GetProtocol("MTLAccelerationStructure")
 }
+

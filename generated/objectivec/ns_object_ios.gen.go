@@ -41,15 +41,15 @@ func (o_ Object) AccessibilityDecrement() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElement(at:)
-func (o_ Object) AccessibilityElementAtIndex(index objc.IObject /* cross-framework: Integer */) IObject {
+func (o_ Object) AccessibilityElementAtIndex(index int) IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityElementAtIndex:"), index)
 	return Object{ID: rv}
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementCount()
-func (o_ Object) AccessibilityElementCount() objc.IObject /* cross-framework: Integer */ {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityElementCount"))
+func (o_ Object) AccessibilityElementCount() int {
+	rv := objc.Send[int](o_.ID, objc.Sel("accessibilityElementCount"))
 	return rv
 }
 
@@ -140,8 +140,8 @@ func (o_ Object) AccessibilityZoomOutAtPoint(point IObject) bool {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/index(ofAccessibilityElement:)
-func (o_ Object) IndexOfAccessibilityElement(element IObject) objc.IObject /* cross-framework: Integer */ {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("indexOfAccessibilityElement:"), element)
+func (o_ Object) IndexOfAccessibilityElement(element IObject) int {
+	rv := objc.Send[int](o_.ID, objc.Sel("indexOfAccessibilityElement:"), element)
 	return rv
 }
 
@@ -149,21 +149,21 @@ func (o_ Object) IndexOfAccessibilityElement(element IObject) objc.IObject /* cr
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivateBlock
-func (o_ Object) AccessibilityActivateBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityActivateBlock"))
+func (o_ Object) AccessibilityActivateBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityActivateBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityActivateBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityActivateBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityActivateBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityActivationPointBlock
-func (o_ Object) AccessibilityActivationPointBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityActivationPointBlock"))
+func (o_ Object) AccessibilityActivationPointBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityActivationPointBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityActivationPointBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityActivationPointBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityActivationPointBlock:"), value)
 }
 
@@ -179,11 +179,11 @@ func (o_ Object) SetAccessibilityAttributedHint(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedHintBlock
-func (o_ Object) AccessibilityAttributedHintBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedHintBlock"))
+func (o_ Object) AccessibilityAttributedHintBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityAttributedHintBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityAttributedHintBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityAttributedHintBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedHintBlock:"), value)
 }
 
@@ -199,11 +199,11 @@ func (o_ Object) SetAccessibilityAttributedLabel(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedLabelBlock
-func (o_ Object) AccessibilityAttributedLabelBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedLabelBlock"))
+func (o_ Object) AccessibilityAttributedLabelBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityAttributedLabelBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityAttributedLabelBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityAttributedLabelBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedLabelBlock:"), value)
 }
 
@@ -219,11 +219,11 @@ func (o_ Object) SetAccessibilityAttributedUserInputLabels(value []objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabelsBlock
-func (o_ Object) AccessibilityAttributedUserInputLabelsBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedUserInputLabelsBlock"))
+func (o_ Object) AccessibilityAttributedUserInputLabelsBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityAttributedUserInputLabelsBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityAttributedUserInputLabelsBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityAttributedUserInputLabelsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedUserInputLabelsBlock:"), value)
 }
 
@@ -239,11 +239,11 @@ func (o_ Object) SetAccessibilityAttributedValue(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedValueBlock
-func (o_ Object) AccessibilityAttributedValueBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityAttributedValueBlock"))
+func (o_ Object) AccessibilityAttributedValueBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityAttributedValueBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityAttributedValueBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityAttributedValueBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedValueBlock:"), value)
 }
 
@@ -259,11 +259,11 @@ func (o_ Object) SetAccessibilityContainerType(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityContainerTypeBlock
-func (o_ Object) AccessibilityContainerTypeBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityContainerTypeBlock"))
+func (o_ Object) AccessibilityContainerTypeBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityContainerTypeBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityContainerTypeBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityContainerTypeBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityContainerTypeBlock:"), value)
 }
 
@@ -281,11 +281,11 @@ func (o_ Object) SetAccessibilityCustomActions(value []objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActionsBlock
-func (o_ Object) AccessibilityCustomActionsBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityCustomActionsBlock"))
+func (o_ Object) AccessibilityCustomActionsBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityCustomActionsBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityCustomActionsBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityCustomActionsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityCustomActionsBlock:"), value)
 }
 
@@ -301,21 +301,21 @@ func (o_ Object) SetAccessibilityCustomRotors(value []objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotorsBlock
-func (o_ Object) AccessibilityCustomRotorsBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityCustomRotorsBlock"))
+func (o_ Object) AccessibilityCustomRotorsBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityCustomRotorsBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityCustomRotorsBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityCustomRotorsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityCustomRotorsBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDecrementBlock
-func (o_ Object) AccessibilityDecrementBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityDecrementBlock"))
+func (o_ Object) AccessibilityDecrementBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityDecrementBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityDecrementBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityDecrementBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityDecrementBlock:"), value)
 }
 
@@ -355,11 +355,11 @@ func (o_ Object) SetAccessibilityDropPointDescriptors(value []objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsBlock
-func (o_ Object) AccessibilityElementsBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityElementsBlock"))
+func (o_ Object) AccessibilityElementsBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityElementsBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityElementsBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityElementsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityElementsBlock:"), value)
 }
 
@@ -375,11 +375,11 @@ func (o_ Object) SetAccessibilityElementsHidden(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityElementsHiddenBlock
-func (o_ Object) AccessibilityElementsHiddenBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityElementsHiddenBlock"))
+func (o_ Object) AccessibilityElementsHiddenBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityElementsHiddenBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityElementsHiddenBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityElementsHiddenBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityElementsHiddenBlock:"), value)
 }
 
@@ -405,81 +405,81 @@ func (o_ Object) SetAccessibilityExpandedStatusBlock(value func() unsafe.Pointer
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFrameBlock
-func (o_ Object) AccessibilityFrameBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityFrameBlock"))
+func (o_ Object) AccessibilityFrameBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityFrameBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityFrameBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityFrameBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityFrameBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHeaderElementsBlock
-func (o_ Object) AccessibilityHeaderElementsBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHeaderElementsBlock"))
+func (o_ Object) AccessibilityHeaderElementsBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityHeaderElementsBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityHeaderElementsBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityHeaderElementsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityHeaderElementsBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityHintBlock
-func (o_ Object) AccessibilityHintBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityHintBlock"))
+func (o_ Object) AccessibilityHintBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityHintBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityHintBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityHintBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityHintBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIdentifierBlock
-func (o_ Object) AccessibilityIdentifierBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityIdentifierBlock"))
+func (o_ Object) AccessibilityIdentifierBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityIdentifierBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityIdentifierBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityIdentifierBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityIdentifierBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityIncrementBlock
-func (o_ Object) AccessibilityIncrementBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityIncrementBlock"))
+func (o_ Object) AccessibilityIncrementBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityIncrementBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityIncrementBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityIncrementBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityIncrementBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLabelBlock
-func (o_ Object) AccessibilityLabelBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLabelBlock"))
+func (o_ Object) AccessibilityLabelBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityLabelBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityLabelBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityLabelBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityLabelBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityLanguageBlock
-func (o_ Object) AccessibilityLanguageBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityLanguageBlock"))
+func (o_ Object) AccessibilityLanguageBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityLanguageBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityLanguageBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityLanguageBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityLanguageBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityMagicTapBlock
-func (o_ Object) AccessibilityMagicTapBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityMagicTapBlock"))
+func (o_ Object) AccessibilityMagicTapBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityMagicTapBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityMagicTapBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityMagicTapBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityMagicTapBlock:"), value)
 }
 
@@ -495,11 +495,11 @@ func (o_ Object) SetAccessibilityNavigationStyle(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNavigationStyleBlock
-func (o_ Object) AccessibilityNavigationStyleBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityNavigationStyleBlock"))
+func (o_ Object) AccessibilityNavigationStyleBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityNavigationStyleBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityNavigationStyleBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityNavigationStyleBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityNavigationStyleBlock:"), value)
 }
 
@@ -515,11 +515,11 @@ func (o_ Object) SetAccessibilityNextTextNavigationElement(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNextTextNavigationElementBlock
-func (o_ Object) AccessibilityNextTextNavigationElementBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityNextTextNavigationElementBlock"))
+func (o_ Object) AccessibilityNextTextNavigationElementBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityNextTextNavigationElementBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityNextTextNavigationElementBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityNextTextNavigationElementBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityNextTextNavigationElementBlock:"), value)
 }
 
@@ -535,21 +535,21 @@ func (o_ Object) SetAccessibilityPath(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPathBlock
-func (o_ Object) AccessibilityPathBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPathBlock"))
+func (o_ Object) AccessibilityPathBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityPathBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityPathBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityPathBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityPathBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPerformEscapeBlock
-func (o_ Object) AccessibilityPerformEscapeBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPerformEscapeBlock"))
+func (o_ Object) AccessibilityPerformEscapeBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityPerformEscapeBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityPerformEscapeBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityPerformEscapeBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityPerformEscapeBlock:"), value)
 }
 
@@ -565,11 +565,11 @@ func (o_ Object) SetAccessibilityPreviousTextNavigationElement(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPreviousTextNavigationElementBlock
-func (o_ Object) AccessibilityPreviousTextNavigationElementBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityPreviousTextNavigationElementBlock"))
+func (o_ Object) AccessibilityPreviousTextNavigationElementBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityPreviousTextNavigationElementBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityPreviousTextNavigationElementBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityPreviousTextNavigationElementBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityPreviousTextNavigationElementBlock:"), value)
 }
 
@@ -585,41 +585,41 @@ func (o_ Object) SetAccessibilityRespondsToUserInteraction(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityRespondsToUserInteractionBlock
-func (o_ Object) AccessibilityRespondsToUserInteractionBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityRespondsToUserInteractionBlock"))
+func (o_ Object) AccessibilityRespondsToUserInteractionBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityRespondsToUserInteractionBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityRespondsToUserInteractionBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityRespondsToUserInteractionBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityRespondsToUserInteractionBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityShouldGroupAccessibilityChildrenBlock
-func (o_ Object) AccessibilityShouldGroupAccessibilityChildrenBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityShouldGroupAccessibilityChildrenBlock"))
+func (o_ Object) AccessibilityShouldGroupAccessibilityChildrenBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityShouldGroupAccessibilityChildrenBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityShouldGroupAccessibilityChildrenBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityShouldGroupAccessibilityChildrenBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityShouldGroupAccessibilityChildrenBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextInputResponder
-func (o_ Object) AccessibilityTextInputResponder() IObject {
-	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityTextInputResponder"))
-	return Object{ID: rv}
+func (o_ Object) AccessibilityTextInputResponder() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTextInputResponder"))
+	return rv
 }
-func (o_ Object) SetAccessibilityTextInputResponder(value IObject) {
+func (o_ Object) SetAccessibilityTextInputResponder(value unsafe.Pointer) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityTextInputResponder:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextInputResponderBlock
-func (o_ Object) AccessibilityTextInputResponderBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTextInputResponderBlock"))
+func (o_ Object) AccessibilityTextInputResponderBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityTextInputResponderBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityTextInputResponderBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityTextInputResponderBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityTextInputResponderBlock:"), value)
 }
 
@@ -635,11 +635,11 @@ func (o_ Object) SetAccessibilityTextualContext(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextualContextBlock
-func (o_ Object) AccessibilityTextualContextBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTextualContextBlock"))
+func (o_ Object) AccessibilityTextualContextBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityTextualContextBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityTextualContextBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityTextualContextBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityTextualContextBlock:"), value)
 }
 
@@ -655,11 +655,11 @@ func (o_ Object) SetAccessibilityTraits(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTraitsBlock
-func (o_ Object) AccessibilityTraitsBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityTraitsBlock"))
+func (o_ Object) AccessibilityTraitsBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityTraitsBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityTraitsBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityTraitsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityTraitsBlock:"), value)
 }
 
@@ -675,21 +675,21 @@ func (o_ Object) SetAccessibilityUserInputLabels(value []string) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityUserInputLabelsBlock
-func (o_ Object) AccessibilityUserInputLabelsBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityUserInputLabelsBlock"))
+func (o_ Object) AccessibilityUserInputLabelsBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityUserInputLabelsBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityUserInputLabelsBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityUserInputLabelsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityUserInputLabelsBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityValueBlock
-func (o_ Object) AccessibilityValueBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityValueBlock"))
+func (o_ Object) AccessibilityValueBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityValueBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityValueBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityValueBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityValueBlock:"), value)
 }
 
@@ -705,21 +705,21 @@ func (o_ Object) SetAccessibilityViewIsModal(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityViewIsModalBlock
-func (o_ Object) AccessibilityViewIsModalBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("accessibilityViewIsModalBlock"))
+func (o_ Object) AccessibilityViewIsModalBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("accessibilityViewIsModalBlock"))
 	return rv
 }
-func (o_ Object) SetAccessibilityViewIsModalBlock(value unsafe.Pointer) {
+func (o_ Object) SetAccessibilityViewIsModalBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityViewIsModalBlock:"), value)
 }
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/automationElementsBlock
-func (o_ Object) AutomationElementsBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("automationElementsBlock"))
+func (o_ Object) AutomationElementsBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("automationElementsBlock"))
 	return rv
 }
-func (o_ Object) SetAutomationElementsBlock(value unsafe.Pointer) {
+func (o_ Object) SetAutomationElementsBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setAutomationElementsBlock:"), value)
 }
 
@@ -735,11 +735,11 @@ func (o_ Object) SetIsAccessibilityElement(value bool) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isAccessibilityElementBlock
-func (o_ Object) IsAccessibilityElementBlock() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("isAccessibilityElementBlock"))
+func (o_ Object) IsAccessibilityElementBlock() IObject {
+	rv := objc.Send[Object](o_.ID, objc.Sel("isAccessibilityElementBlock"))
 	return rv
 }
-func (o_ Object) SetIsAccessibilityElementBlock(value unsafe.Pointer) {
+func (o_ Object) SetIsAccessibilityElementBlock(value IObject) {
 	o_.ID.Send(objc.RegisterName("setIsAccessibilityElementBlock:"), value)
 }
 

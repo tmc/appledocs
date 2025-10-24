@@ -2,7 +2,9 @@
 
 package usernotificationsui
 
+/* debug [enums.gen.go]: Generating 2 enums for UserNotificationsUI */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum UNNotificationContentExtensionMediaPlayPauseButtonType (3 cases) */
 // UNNotificationContentExtensionMediaPlayPauseButtonType - Constants indicating the type of media button to display.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionMediaPlayPauseButtonType
@@ -23,6 +25,7 @@ const (
 	UNNotificationContentExtensionMediaPlayPauseButtonTypeOverlay UNNotificationContentExtensionMediaPlayPauseButtonType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum UNNotificationContentExtensionResponseOption (3 cases) */
 // UNNotificationContentExtensionResponseOption - Constants indicating the preferred response to a notification.
 //
 // [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionResponseOption
@@ -42,5 +45,3 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/UserNotificationsUI/UNNotificationContentExtensionResponseOption/doNotDismiss
 	UNNotificationContentExtensionResponseOptionDoNotDismiss UNNotificationContentExtensionResponseOption = 0
 )
-
-

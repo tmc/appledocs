@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -68,7 +68,6 @@ type IINRideStatus interface {
 //
 // When the user books a ride or requests the status of a ride, you create an object as part of your response and fill it with the relevant information. A ride status object conveys information about the current status of a ride, such as whether the ride is ongoing, completed, or has yet to occur. This object also contains details about the ride such as the pickup location, drop-off location, and information about the driver and vehicle. Siri and Maps display the information in this object to the user at appropriate times. When configuring ride status objects, always provide values for as many properties as possible. Siri and Maps display almost all of the information that you provide to the user, so it is good to offer as many details as you can.
 
-
 // The status of a ride booked through a ride-booking service.
 //
 // [Full Topic]
@@ -115,8 +114,6 @@ func NewINRideStatus() INRideStatus {
 	return getINRideStatusClass().New()
 }
 
-
-
 // Information about how the ride ended.
 //
 // [Full Topic]
@@ -126,7 +123,6 @@ func (i_ INRideStatus) CompletionStatus() unsafe.Pointer {
 	return rv
 }
 
-
 // Information about how the ride ended.
 //
 // [Full Topic]
@@ -134,7 +130,6 @@ func (i_ INRideStatus) CompletionStatus() unsafe.Pointer {
 func (i_ INRideStatus) SetCompletionStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCompletionStatus:"), value)
 }
-
 
 // The driver providing the ride.
 //
@@ -145,7 +140,6 @@ func (i_ INRideStatus) Driver() unsafe.Pointer {
 	return rv
 }
 
-
 // The driver providing the ride.
 //
 // [Full Topic]
@@ -153,7 +147,6 @@ func (i_ INRideStatus) Driver() unsafe.Pointer {
 func (i_ INRideStatus) SetDriver(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDriver:"), value)
 }
-
 
 // The current status of the ride.
 //
@@ -164,7 +157,6 @@ func (i_ INRideStatus) Phase() INRidePhase {
 	return rv
 }
 
-
 // The current status of the ride.
 //
 // [Full Topic]
@@ -172,7 +164,6 @@ func (i_ INRideStatus) Phase() INRidePhase {
 func (i_ INRideStatus) SetPhase(value INRidePhase) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPhase:"), value)
 }
-
 
 // The unique string that you use to identify the ride.
 //
@@ -183,7 +174,6 @@ func (i_ INRideStatus) RideIdentifier() string {
 	return rv
 }
 
-
 // The unique string that you use to identify the ride.
 //
 // [Full Topic]
@@ -191,7 +181,6 @@ func (i_ INRideStatus) RideIdentifier() string {
 func (i_ INRideStatus) SetRideIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRideIdentifier:"), objc.String(value))
 }
-
 
 // Information about the type of ride that you are offering to the user.
 //
@@ -202,7 +191,6 @@ func (i_ INRideStatus) RideOption() unsafe.Pointer {
 	return rv
 }
 
-
 // Information about the type of ride that you are offering to the user.
 //
 // [Full Topic]
@@ -210,7 +198,6 @@ func (i_ INRideStatus) RideOption() unsafe.Pointer {
 func (i_ INRideStatus) SetRideOption(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRideOption:"), value)
 }
-
 
 // A user activity object for canceling the ride request.
 //
@@ -221,7 +208,6 @@ func (i_ INRideStatus) UserActivityForCancelingInApplication() foundation.UserAc
 	return rv
 }
 
-
 // A user activity object for canceling the ride request.
 //
 // [Full Topic]
@@ -229,7 +215,6 @@ func (i_ INRideStatus) UserActivityForCancelingInApplication() foundation.UserAc
 func (i_ INRideStatus) SetUserActivityForCancelingInApplication(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUserActivityForCancelingInApplication:"), value)
 }
-
 
 // The vehicle assigned to pick up the user.
 //
@@ -240,7 +225,6 @@ func (i_ INRideStatus) Vehicle() INRideVehicle {
 	return rv
 }
 
-
 // The vehicle assigned to pick up the user.
 //
 // [Full Topic]
@@ -248,7 +232,6 @@ func (i_ INRideStatus) Vehicle() INRideVehicle {
 func (i_ INRideStatus) SetVehicle(value INRideVehicle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setVehicle:"), value)
 }
-
 
 // Additional activities that the user may choose to perform while the ride request is active.
 //
@@ -259,7 +242,6 @@ func (i_ INRideStatus) AdditionalActionActivities() foundation.UserActivity {
 	return rv
 }
 
-
 // Additional activities that the user may choose to perform while the ride request is active.
 //
 // [Full Topic]
@@ -267,7 +249,6 @@ func (i_ INRideStatus) AdditionalActionActivities() foundation.UserActivity {
 func (i_ INRideStatus) SetAdditionalActionActivities(value foundation.IUserActivity) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAdditionalActionActivities:"), value)
 }
-
 
 // The destination of the user.
 //
@@ -278,7 +259,6 @@ func (i_ INRideStatus) DropOffLocation() corelocation.Placemark {
 	return rv
 }
 
-
 // The destination of the user.
 //
 // [Full Topic]
@@ -286,7 +266,6 @@ func (i_ INRideStatus) DropOffLocation() corelocation.Placemark {
 func (i_ INRideStatus) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
-
 
 // The estimated drop-off time for the ride.
 //
@@ -297,7 +276,6 @@ func (i_ INRideStatus) EstimatedDropOffDate() foundation.Date {
 	return rv
 }
 
-
 // The estimated drop-off time for the ride.
 //
 // [Full Topic]
@@ -305,7 +283,6 @@ func (i_ INRideStatus) EstimatedDropOffDate() foundation.Date {
 func (i_ INRideStatus) SetEstimatedDropOffDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedDropOffDate:"), value)
 }
-
 
 // The estimated pickup time for the ride.
 //
@@ -316,7 +293,6 @@ func (i_ INRideStatus) EstimatedPickupDate() foundation.Date {
 	return rv
 }
 
-
 // The estimated pickup time for the ride.
 //
 // [Full Topic]
@@ -324,7 +300,6 @@ func (i_ INRideStatus) EstimatedPickupDate() foundation.Date {
 func (i_ INRideStatus) SetEstimatedPickupDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedPickupDate:"), value)
 }
-
 
 // The date after which the driver may stop waiting for the user.
 //
@@ -335,7 +310,6 @@ func (i_ INRideStatus) EstimatedPickupEndDate() foundation.Date {
 	return rv
 }
 
-
 // The date after which the driver may stop waiting for the user.
 //
 // [Full Topic]
@@ -343,7 +317,6 @@ func (i_ INRideStatus) EstimatedPickupEndDate() foundation.Date {
 func (i_ INRideStatus) SetEstimatedPickupEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEstimatedPickupEndDate:"), value)
 }
-
 
 // The starting location for the ride.
 //
@@ -354,7 +327,6 @@ func (i_ INRideStatus) PickupLocation() corelocation.Placemark {
 	return rv
 }
 
-
 // The starting location for the ride.
 //
 // [Full Topic]
@@ -362,7 +334,6 @@ func (i_ INRideStatus) PickupLocation() corelocation.Placemark {
 func (i_ INRideStatus) SetPickupLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
-
 
 // The scheduled pickup time for the user.
 //
@@ -373,7 +344,6 @@ func (i_ INRideStatus) ScheduledPickupTime() INDateComponentsRange {
 	return rv
 }
 
-
 // The scheduled pickup time for the user.
 //
 // [Full Topic]
@@ -381,7 +351,6 @@ func (i_ INRideStatus) ScheduledPickupTime() INDateComponentsRange {
 func (i_ INRideStatus) SetScheduledPickupTime(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setScheduledPickupTime:"), value)
 }
-
 
 // The intermediate waypoints for the journey.
 //
@@ -392,7 +361,6 @@ func (i_ INRideStatus) Waypoints() corelocation.Placemark {
 	return rv
 }
 
-
 // The intermediate waypoints for the journey.
 //
 // [Full Topic]
@@ -400,6 +368,3 @@ func (i_ INRideStatus) Waypoints() corelocation.Placemark {
 func (i_ INRideStatus) SetWaypoints(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWaypoints:"), value)
 }
-
-
-

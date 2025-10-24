@@ -15,3 +15,4 @@ var insertGlyphsProtocol *objc.Protocol
 func init() {
 	insertGlyphsProtocol = objc.GetProtocol("insertGlyphs:")
 }
+

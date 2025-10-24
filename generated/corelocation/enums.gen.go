@@ -141,5 +141,3 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSessionAuthorizationRequirement/CLServiceSessionAuthorizationRequirementWhenInUse
 	CLServiceSessionAuthorizationRequirementWhenInUse CLServiceSessionAuthorizationRequirement = 0
 )
-
-

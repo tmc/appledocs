@@ -21,3 +21,4 @@ var OS_nw_protocol_metadataProtocol *objc.Protocol
 func init() {
 	OS_nw_protocol_metadataProtocol = objc.GetProtocol("OS_nw_protocol_metadata")
 }
+

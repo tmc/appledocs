@@ -7,12 +7,12 @@ import "github.com/ebitengine/purego/objc"
 // dispatchThreadsProtocol is the dispatchThreads: protocol.
 //
 // Availability:
-//   - Mac Catalyst 13.1+
-//   - iOS 11.0+
-//   - iPadOS 11.0+
-//   - macOS 10.13+
-//   - tvOS 14.5+
-//   - visionOS 1.0+
+//   - Mac Catalyst 26.0+
+//   - iOS 26.0+
+//   - iPadOS 26.0+
+//   - macOS 26.0+
+//   - tvOS 26.0+
+//   - visionOS 26.0+
 //
 // Use this protocol when registering custom classes that conform to dispatchThreads:.
 var dispatchThreadsProtocol *objc.Protocol
@@ -20,3 +20,4 @@ var dispatchThreadsProtocol *objc.Protocol
 func init() {
 	dispatchThreadsProtocol = objc.GetProtocol("dispatchThreads:")
 }
+

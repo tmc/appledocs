@@ -37,7 +37,6 @@ type IBatchDeleteResult interface {
 
 // An object that describes the result of a batch delete request.
 
-
 // An object that describes the result of a batch delete request.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewBatchDeleteResult() BatchDeleteResult {
 	return getBatchDeleteResultClass().New()
 }
 
-
-
 // The value the request returns after it executes.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (b_ BatchDeleteResult) Result() objc.ID {
 	return rv
 }
 
-
 // The data type of the request’s result value.
 //
 // [Full Topic]
@@ -106,6 +102,3 @@ func (b_ BatchDeleteResult) ResultType() BatchDeleteRequestResultType {
 	rv := objc.Send[BatchDeleteRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
-
-
-

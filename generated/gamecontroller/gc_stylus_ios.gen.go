@@ -26,6 +26,15 @@ func (g_ GCStylus) Haptics() IGCDeviceHaptics {
 	return rv
 }
 
+// Gets the input profile for the stylus.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCStylus/input
+func (g_ GCStylus) Input() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("input"))
+	return rv
+}
+
 
 
 

@@ -143,11 +143,26 @@ type Nw_protocol_options_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_protocol_stack_t
 // nw_protocol_stack_t has base type: NSObject<OS_nw_protocol_stack> *
 type Nw_protocol_stack_t uintptr
+// Nw_proxy_config_t - A proxy configuration for Relays, Oblivious HTTP, HTTP CONNECT, or SOCKSv5.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_proxy_config_t
+// nw_proxy_config_t has base type: NSObject<OS_nw_proxy_config> *
+type Nw_proxy_config_t uintptr
+// Nw_relay_hop_t - A single relay server you can chain together with other servers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_relay_hop_t
+// nw_relay_hop_t has base type: NSObject<OS_nw_relay_hop> *
+type Nw_relay_hop_t uintptr
 // Nw_resolution_report_t - A description of a single DNS resolution step.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolution_report_t
 // nw_resolution_report_t has base type: NSObject<OS_nw_resolution_report> *
 type Nw_resolution_report_t uintptr
+// Nw_resolver_config_t - A DNS server configuration that uses TLS or HTTPS.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Network/nw_resolver_config_t
+// nw_resolver_config_t has base type: NSObject<OS_nw_resolver_config> *
+type Nw_resolver_config_t uintptr
 // Nw_txt_record_t - A dictionary representing a TXT record in a DNS packet.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Network/nw_txt_record_t

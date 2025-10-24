@@ -3,8 +3,7 @@
 package appkit
 
 import (
-
-	"github.com/tmc/appledocs/generated/objc"
+	"unsafe"
 )
 
 // PTextLocation is the NSTextLocation protocol interface.
@@ -17,5 +16,5 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextLocation
 type PTextLocation interface {
 	// Required methods
-	Compare(location objc.IObject) ComparisonResult
+	Compare(location unsafe.Pointer) ComparisonResult/* debug [protocol_interface/required_method]: Compare */
 }

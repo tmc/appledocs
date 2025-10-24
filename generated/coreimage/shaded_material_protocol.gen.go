@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // ShadedMaterialProtocol is the CIShadedMaterial protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIShadedMaterial.
 var ShadedMaterialProtocol *objc.Protocol
 
 func init() {
 	ShadedMaterialProtocol = objc.GetProtocol("CIShadedMaterial")
 }
+

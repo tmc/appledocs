@@ -20,3 +20,4 @@ var IOCommandBufferProtocol *objc.Protocol
 func init() {
 	IOCommandBufferProtocol = objc.GetProtocol("MTLIOCommandBuffer")
 }
+

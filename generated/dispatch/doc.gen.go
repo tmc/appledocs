@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for Dispatch. DO NOT EDIT.
 
 // Package dispatch provides Go bindings for the Dispatch framework.
 //
-// Execute code concurrently on multicore hardware by submitting work to dispatch queues managed by the system.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Dispatch without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Dispatch
 package dispatch
 
 import (

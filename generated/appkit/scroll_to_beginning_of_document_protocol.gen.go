@@ -15,3 +15,4 @@ var scrollToBeginningOfDocumentProtocol *objc.Protocol
 func init() {
 	scrollToBeginningOfDocumentProtocol = objc.GetProtocol("scrollToBeginningOfDocument:")
 }
+

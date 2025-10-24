@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VNGeometryUtils */
+
+
+/* debug [class_header]: Header for VNGeometryUtils */
 // The class instance for the [GeometryUtils] class.
 var (
 	GeometryUtilsClass     _GeometryUtilsClass
@@ -26,32 +30,30 @@ func getGeometryUtilsClass() _GeometryUtilsClass {
 type _GeometryUtilsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GeometryUtils */
 // An interface definition for the [GeometryUtils] class.
 type IGeometryUtils interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GeometryUtils */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GeometryUtils */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Utility methods to determine the geometries of various Vision types.
 
 
-// Utility methods to determine the geometries of various Vision types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils
-type GeometryUtils struct {
-	objectivec.Object
-}
-
-// GeometryUtilsFrom constructs a [GeometryUtils] from an unsafe.Pointer.
-//
-// Utility methods to determine the geometries of various Vision types.
-func GeometryUtilsFrom(ptr unsafe.Pointer) GeometryUtils {
-	return GeometryUtils{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GeometryUtils */
 // Alloc allocates a new instance without initialization.
 func (gc _GeometryUtilsClass) Alloc() GeometryUtils {
 	rv := objc.Send[GeometryUtils](objc.ID(gc.class), objc.Sel("alloc"))
@@ -59,7 +61,6 @@ func (gc _GeometryUtilsClass) Alloc() GeometryUtils {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GeometryUtilsClass) New() GeometryUtils {
 	rv := objc.Send[GeometryUtils](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,7 +83,106 @@ func (g_ GeometryUtils) Autorelease() GeometryUtils {
 func NewGeometryUtils() GeometryUtils {
 	return getGeometryUtilsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for GeometryUtils */
+// Utility methods to determine the geometries of various Vision types.
+
+
+// Utility methods to determine the geometries of various Vision types.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils
+type GeometryUtils struct {
+	objectivec.Object
+}
+
+// GeometryUtilsFrom constructs a [GeometryUtils] from an unsafe.Pointer.
+//
+// Utility methods to determine the geometries of various Vision types.
+func GeometryUtilsFrom(ptr unsafe.Pointer) GeometryUtils {
+	return GeometryUtils{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GeometryUtils *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GeometryUtils */
+
+// Calculates a bounding circle for the specified contour object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/boundingCircle(for:)-423ll
+func (gc _GeometryUtilsClass) BoundingCircleForContourError(contour IVNContour, error_ objectivec.IObject) ICircle {
+	rv := objc.Send[Circle](objc.ID(gc.class), objc.Sel("boundingCircleForContour:error:"), contour, error_)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=BoundingCircleForContourError) */
+
+
+// Calculates a bounding circle for the specified array of points.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/boundingCircle(for:)-9dggv
+func (gc _GeometryUtilsClass) BoundingCircleForPointsError(points []Point, error_ objectivec.IObject) ICircle {
+	rv := objc.Send[Circle](objc.ID(gc.class), objc.Sel("boundingCircleForPoints:error:"), points, error_)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=BoundingCircleForPointsError) */
+
+
+// Calculates a bounding circle for the specified points.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/boundingCircle(forSIMDPoints:pointCount:)
+func (gc _GeometryUtilsClass) BoundingCircleForSIMDPointsPointCountError(points objectivec.IObject, pointCount int, error_ objectivec.IObject) ICircle {
+	rv := objc.Send[Circle](objc.ID(gc.class), objc.Sel("boundingCircleForSIMDPoints:pointCount:error:"), points, pointCount, error_)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=BoundingCircleForSIMDPointsPointCountError) */
+
+
+// Calculates the area for the specified contour.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/calculateArea(_:for:orientedArea:)
+func (gc _GeometryUtilsClass) CalculateAreaForContourOrientedAreaError(area objectivec.IObject, contour IVNContour, orientedArea bool, error_ objectivec.IObject) bool {
+	rv := objc.Send[bool](objc.ID(gc.class), objc.Sel("calculateArea:forContour:orientedArea:error:"), area, contour, orientedArea, error_)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CalculateAreaForContourOrientedAreaError) */
+
+
+// Calculates the perimeter of a closed contour.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNGeometryUtils/calculatePerimeter(_:for:)
+func (gc _GeometryUtilsClass) CalculatePerimeterForContourError(perimeter objectivec.IObject, contour IVNContour, error_ objectivec.IObject) bool {
+	rv := objc.Send[bool](objc.ID(gc.class), objc.Sel("calculatePerimeter:forContour:error:"), perimeter, contour, error_)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CalculatePerimeterForContourError) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GeometryUtils */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GeometryUtils */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GeometryUtils */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class VNGeometryUtils */
 
 
 

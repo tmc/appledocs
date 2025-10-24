@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CMHeadphoneActivityManager */
+
+
+/* debug [class_header]: Header for CMHeadphoneActivityManager */
 // The class instance for the [HeadphoneActivityManager] class.
 var (
 	HeadphoneActivityManagerClass     _HeadphoneActivityManagerClass
@@ -27,10 +31,16 @@ func getHeadphoneActivityManagerClass() _HeadphoneActivityManagerClass {
 type _HeadphoneActivityManagerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HeadphoneActivityManager */
 // An interface definition for the [HeadphoneActivityManager] class.
 type IHeadphoneActivityManager interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for HeadphoneActivityManager */
 	// properties:
 	ActivityActive() bool
 	ActivityAvailable() bool
@@ -44,33 +54,23 @@ type IHeadphoneActivityManager interface {
 	SetIsStatusActive(value bool)
 	IsStatusAvailable() bool
 	SetIsStatusAvailable(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HeadphoneActivityManager */
 	// methods:
-	StartActivityUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler HeadphoneActivityHandler /* not a class type */)
-	StartStatusUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler HeadphoneActivityStatusHandler /* not a class type */)
+	StartActivityUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler HeadphoneActivityHandler /* not a class type */)
+	StartStatusUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler HeadphoneActivityStatusHandler /* not a class type */)
 	StopActivityUpdates()
 	StopStatusUpdates()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that starts and manages headphone activity services.
-//
-// This class delivers headphone activity updates to your app. Use an instance of the manager to determine if the device supports headphone activity updates, and to start and stop updates. Before using this class, check and to make sure the features are available. This class provides similar information to , except the activity information comes from headphone motion, rather than from device motion.
+/* debug [class_interface]: End interface */
 
 
-// An object that starts and manages headphone activity services.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager
-type HeadphoneActivityManager struct {
-	objectivec.Object
-}
 
-// HeadphoneActivityManagerFrom constructs a [HeadphoneActivityManager] from an unsafe.Pointer.
-//
-// An object that starts and manages headphone activity services.
-func HeadphoneActivityManagerFrom(ptr unsafe.Pointer) HeadphoneActivityManager {
-	return HeadphoneActivityManager{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for HeadphoneActivityManager */
 // Alloc allocates a new instance without initialization.
 func (hc _HeadphoneActivityManagerClass) Alloc() HeadphoneActivityManager {
 	rv := objc.Send[HeadphoneActivityManager](objc.ID(hc.class), objc.Sel("alloc"))
@@ -78,7 +78,6 @@ func (hc _HeadphoneActivityManagerClass) Alloc() HeadphoneActivityManager {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HeadphoneActivityManagerClass) New() HeadphoneActivityManager {
 	rv := objc.Send[HeadphoneActivityManager](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -101,8 +100,39 @@ func (h_ HeadphoneActivityManager) Autorelease() HeadphoneActivityManager {
 func NewHeadphoneActivityManager() HeadphoneActivityManager {
 	return getHeadphoneActivityManagerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HeadphoneActivityManager */
+// An object that starts and manages headphone activity services.
+//
+// This class delivers headphone activity updates to your app. Use an instance of the manager to determine if the device supports headphone activity updates, and to start and stop updates. Before using this class, check and to make sure the features are available. This class provides similar information to , except the activity information comes from headphone motion, rather than from device motion.
+
+
+// An object that starts and manages headphone activity services.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager
+type HeadphoneActivityManager struct {
+	objectivec.Object
+}
+
+// HeadphoneActivityManagerFrom constructs a [HeadphoneActivityManager] from an unsafe.Pointer.
+//
+// An object that starts and manages headphone activity services.
+func HeadphoneActivityManagerFrom(ptr unsafe.Pointer) HeadphoneActivityManager {
+	return HeadphoneActivityManager{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HeadphoneActivityManager *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HeadphoneActivityManager */
 
 // Returns the authorization status for monitoring headphone activity.
 //
@@ -111,25 +141,35 @@ func NewHeadphoneActivityManager() HeadphoneActivityManager {
 func (hc _HeadphoneActivityManagerClass) AuthorizationStatus() AuthorizationStatus {
 	rv := objc.Send[AuthorizationStatus](objc.ID(hc.class), objc.Sel("authorizationStatus"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AuthorizationStatus) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HeadphoneActivityManager */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HeadphoneActivityManager */
 
 // Starts headphone activity updates, providing data to the given handler through the given queue.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager/startActivityUpdates(to:withHandler:)
-func (h_ HeadphoneActivityManager) StartActivityUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler HeadphoneActivityHandler /* not a class type */) {
+func (h_ HeadphoneActivityManager) StartActivityUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler HeadphoneActivityHandler /* not a class type */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("startActivityUpdatesToQueue:withHandler:"), queue, handler)
-}
+}/* debug [instance_methods/method]: StartActivityUpdatesToQueueWithHandler */
 
 
 // Starts headphone status updates, providing data to the given handler through the given queue.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager/startStatusUpdates(to:withHandler:)
-func (h_ HeadphoneActivityManager) StartStatusUpdatesToQueueWithHandler(queue objc.IObject /* cross-framework: OperationQueue */, handler HeadphoneActivityStatusHandler /* not a class type */) {
+func (h_ HeadphoneActivityManager) StartStatusUpdatesToQueueWithHandler(queue foundation.OperationQueue, handler HeadphoneActivityStatusHandler /* not a class type */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("startStatusUpdatesToQueue:withHandler:"), queue, handler)
-}
+}/* debug [instance_methods/method]: StartStatusUpdatesToQueueWithHandler */
 
 
 // Stops headphone activity updates.
@@ -138,7 +178,7 @@ func (h_ HeadphoneActivityManager) StartStatusUpdatesToQueueWithHandler(queue ob
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager/stopActivityUpdates()
 func (h_ HeadphoneActivityManager) StopActivityUpdates() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("stopActivityUpdates"))
-}
+}/* debug [instance_methods/method]: StopActivityUpdates */
 
 
 // Stops headphone status updates.
@@ -147,8 +187,13 @@ func (h_ HeadphoneActivityManager) StopActivityUpdates() {
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMHeadphoneActivityManager/stopStatusUpdates()
 func (h_ HeadphoneActivityManager) StopStatusUpdates() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("stopStatusUpdates"))
-}
+}/* debug [instance_methods/method]: StopStatusUpdates */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HeadphoneActivityManager */
 
 // A Boolean value that indicates whether headphone motion activity is active.
 //
@@ -157,7 +202,7 @@ func (h_ HeadphoneActivityManager) StopStatusUpdates() {
 func (h_ HeadphoneActivityManager) ActivityActive() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("activityActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: activityActive */
 
 
 // A Boolean value that indicates whether the current device supports headphone activity.
@@ -167,7 +212,7 @@ func (h_ HeadphoneActivityManager) ActivityActive() bool {
 func (h_ HeadphoneActivityManager) ActivityAvailable() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("activityAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: activityAvailable */
 
 
 // A Boolean value that indicates whether headphone status is active.
@@ -177,7 +222,7 @@ func (h_ HeadphoneActivityManager) ActivityAvailable() bool {
 func (h_ HeadphoneActivityManager) StatusActive() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("statusActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: statusActive */
 
 
 // A Boolean value that indicates whether the current device supports headphone status.
@@ -187,7 +232,7 @@ func (h_ HeadphoneActivityManager) StatusActive() bool {
 func (h_ HeadphoneActivityManager) StatusAvailable() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("statusAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: statusAvailable */
 
 
 // A Boolean value that indicates whether headphone motion activity is active.
@@ -197,7 +242,7 @@ func (h_ HeadphoneActivityManager) StatusAvailable() bool {
 func (h_ HeadphoneActivityManager) IsActivityActive() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isActivityActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isActivityActive */
 
 
 // A Boolean value that indicates whether headphone motion activity is active.
@@ -206,7 +251,7 @@ func (h_ HeadphoneActivityManager) IsActivityActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/isactivityactive
 func (h_ HeadphoneActivityManager) SetIsActivityActive(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsActivityActive:"), value)
-}
+}/* debug [instance_properties/setter]: isActivityActive */
 
 
 // A Boolean value that indicates whether the current device supports headphone activity.
@@ -216,7 +261,7 @@ func (h_ HeadphoneActivityManager) SetIsActivityActive(value bool) {
 func (h_ HeadphoneActivityManager) IsActivityAvailable() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isActivityAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isActivityAvailable */
 
 
 // A Boolean value that indicates whether the current device supports headphone activity.
@@ -225,7 +270,7 @@ func (h_ HeadphoneActivityManager) IsActivityAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/isactivityavailable
 func (h_ HeadphoneActivityManager) SetIsActivityAvailable(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsActivityAvailable:"), value)
-}
+}/* debug [instance_properties/setter]: isActivityAvailable */
 
 
 // A Boolean value that indicates whether headphone status is active.
@@ -235,7 +280,7 @@ func (h_ HeadphoneActivityManager) SetIsActivityAvailable(value bool) {
 func (h_ HeadphoneActivityManager) IsStatusActive() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isStatusActive"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isStatusActive */
 
 
 // A Boolean value that indicates whether headphone status is active.
@@ -244,7 +289,7 @@ func (h_ HeadphoneActivityManager) IsStatusActive() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/isstatusactive
 func (h_ HeadphoneActivityManager) SetIsStatusActive(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsStatusActive:"), value)
-}
+}/* debug [instance_properties/setter]: isStatusActive */
 
 
 // A Boolean value that indicates whether the current device supports headphone status.
@@ -254,7 +299,7 @@ func (h_ HeadphoneActivityManager) SetIsStatusActive(value bool) {
 func (h_ HeadphoneActivityManager) IsStatusAvailable() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isStatusAvailable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isStatusAvailable */
 
 
 // A Boolean value that indicates whether the current device supports headphone status.
@@ -263,7 +308,12 @@ func (h_ HeadphoneActivityManager) IsStatusAvailable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coremotion/cmheadphoneactivitymanager/isstatusavailable
 func (h_ HeadphoneActivityManager) SetIsStatusAvailable(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsStatusAvailable:"), value)
-}
+}/* debug [instance_properties/setter]: isStatusAvailable */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CMHeadphoneActivityManager */
 
 
 

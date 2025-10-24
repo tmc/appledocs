@@ -15,3 +15,4 @@ var discardEditingProtocol *objc.Protocol
 func init() {
 	discardEditingProtocol = objc.GetProtocol("discardEditing")
 }
+

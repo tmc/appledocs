@@ -33,8 +33,6 @@ type IMTRBaseClusterFanControl interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterFanControl
 type MTRBaseClusterFanControl struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterFanControl) Autorelease() MTRBaseClusterFanControl {
 func NewMTRBaseClusterFanControl() MTRBaseClusterFanControl {
 	return getMTRBaseClusterFanControlClass().New()
 }
-
-
-
-

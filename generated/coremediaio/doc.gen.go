@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for CoreMediaIO. DO NOT EDIT.
 
 // Package coremediaio provides Go bindings for the CoreMediaIO framework.
 //
-// Securely support custom camera devices in macOS.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreMediaIO without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CoreMediaIO
 package coremediaio
 
 import (

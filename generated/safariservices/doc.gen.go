@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for SafariServices. DO NOT EDIT.
 
 // Package safariservices provides Go bindings for the SafariServices framework.
 //
-// Enable web views and services in your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to SafariServices without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/SafariServices
 package safariservices
 
 import (

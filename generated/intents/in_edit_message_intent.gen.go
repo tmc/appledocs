@@ -35,8 +35,6 @@ type IINEditMessageIntent interface {
 	SetMessageIdentifier(value string)
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INEditMessageIntent
 type INEditMessageIntent struct {
@@ -81,8 +79,6 @@ func NewINEditMessageIntent() INEditMessageIntent {
 	return getINEditMessageIntentClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/editedcontent
 func (i_ INEditMessageIntent) EditedContent() string {
@@ -90,13 +86,11 @@ func (i_ INEditMessageIntent) EditedContent() string {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/editedcontent
 func (i_ INEditMessageIntent) SetEditedContent(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEditedContent:"), objc.String(value))
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/messageidentifier
@@ -105,12 +99,8 @@ func (i_ INEditMessageIntent) MessageIdentifier() string {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/ineditmessageintent/messageidentifier
 func (i_ INEditMessageIntent) SetMessageIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMessageIdentifier:"), objc.String(value))
 }
-
-
-

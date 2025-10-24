@@ -15,3 +15,4 @@ var requestBadgeIdentifierForURLProtocol *objc.Protocol
 func init() {
 	requestBadgeIdentifierForURLProtocol = objc.GetProtocol("requestBadgeIdentifierForURL:")
 }
+

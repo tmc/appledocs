@@ -20,3 +20,4 @@ var switchesProtocol *objc.Protocol
 func init() {
 	switchesProtocol = objc.GetProtocol("switches")
 }
+

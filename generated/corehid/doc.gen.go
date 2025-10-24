@@ -2,12 +2,8 @@
 
 // Package corehid provides Go bindings for the CoreHID framework.
 //
-// Interact with keyboards, mice, and other human interface devices.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreHID without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CoreHID
 package corehid
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/CoreHID.framework/CoreHID"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

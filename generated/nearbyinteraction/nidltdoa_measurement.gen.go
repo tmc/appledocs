@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NIDLTDOAMeasurement */
+
+
+/* debug [class_header]: Header for NIDLTDOAMeasurement */
 // The class instance for the [NIDLTDOAMeasurement] class.
 var (
 	NIDLTDOAMeasurementClass     _NIDLTDOAMeasurementClass
@@ -26,50 +30,30 @@ func getNIDLTDOAMeasurementClass() _NIDLTDOAMeasurementClass {
 type _NIDLTDOAMeasurementClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NIDLTDOAMeasurement */
 // An interface definition for the [NIDLTDOAMeasurement] class.
 type INIDLTDOAMeasurement interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NIDLTDOAMeasurement */
 	// properties:
-	Address() int
-	SetAddress(value int)
-	CarrierFrequencyOffset() float64
-	SetCarrierFrequencyOffset(value float64)
-	Coordinates() unsafe.Pointer
-	SetCoordinates(value unsafe.Pointer)
-	CoordinatesType() NIDLTDOACoordinatesType
-	SetCoordinatesType(value NIDLTDOACoordinatesType)
-	MeasurementType() NIDLTDOAMeasurementType
-	SetMeasurementType(value NIDLTDOAMeasurementType)
-	ReceiveTime() float64
-	SetReceiveTime(value float64)
-	SignalStrength() float64
-	SetSignalStrength(value float64)
-	TransmitTime() float64
-	SetTransmitTime(value float64)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NIDLTDOAMeasurement */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Information from a Downlink Time-Difference-of-Arrival anchor that you use to derive a range estimate.
-//
-// Your app runs on a receiver device that fields messages from nearby physical base stations, or . The framework processes the messages into instances of this class and provides them to your app through the callback. Your app analyzes the measurements to calculate the receiver’s position relative to the anchors in the tracked area. Only sessions that run a receive Downlink Time-Difference-of-Arrival measurements.
+/* debug [class_interface]: End interface */
 
 
-// Information from a Downlink Time-Difference-of-Arrival anchor that you use to derive a range estimate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIDLTDOAMeasurement
-type NIDLTDOAMeasurement struct {
-	objectivec.Object
-}
 
-// NIDLTDOAMeasurementFrom constructs a [NIDLTDOAMeasurement] from an unsafe.Pointer.
-//
-// Information from a Downlink Time-Difference-of-Arrival anchor that you use to derive a range estimate.
-func NIDLTDOAMeasurementFrom(ptr unsafe.Pointer) NIDLTDOAMeasurement {
-	return NIDLTDOAMeasurement{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NIDLTDOAMeasurement */
 // Alloc allocates a new instance without initialization.
 func (nc _NIDLTDOAMeasurementClass) Alloc() NIDLTDOAMeasurement {
 	rv := objc.Send[NIDLTDOAMeasurement](objc.ID(nc.class), objc.Sel("alloc"))
@@ -77,7 +61,6 @@ func (nc _NIDLTDOAMeasurementClass) Alloc() NIDLTDOAMeasurement {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NIDLTDOAMeasurementClass) New() NIDLTDOAMeasurement {
 	rv := objc.Send[NIDLTDOAMeasurement](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -100,159 +83,57 @@ func (n_ NIDLTDOAMeasurement) Autorelease() NIDLTDOAMeasurement {
 func NewNIDLTDOAMeasurement() NIDLTDOAMeasurement {
 	return getNIDLTDOAMeasurementClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A value that uniquely identifies an anchor in a tracked area.
+/* debug [class_struct]: Struct for NIDLTDOAMeasurement */
+// Information from a Downlink Time-Difference-of-Arrival anchor that you use to derive a range estimate.
+//
+// Your app runs on a receiver device that fields messages from nearby physical base stations, or . The framework processes the messages into instances of this class and provides them to your app through the callback. Your app analyzes the measurements to calculate the receiver’s position relative to the anchors in the tracked area. Only sessions that run a receive Downlink Time-Difference-of-Arrival measurements.
+
+
+// Information from a Downlink Time-Difference-of-Arrival anchor that you use to derive a range estimate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/address
-func (n_ NIDLTDOAMeasurement) Address() int {
-	rv := objc.Send[int](n_.ID, objc.Sel("address"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIDLTDOAMeasurement
+type NIDLTDOAMeasurement struct {
+	objectivec.Object
 }
 
-
-// A value that uniquely identifies an anchor in a tracked area.
+// NIDLTDOAMeasurementFrom constructs a [NIDLTDOAMeasurement] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/address
-func (n_ NIDLTDOAMeasurement) SetAddress(value int) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setAddress:"), value)
+// Information from a Downlink Time-Difference-of-Arrival anchor that you use to derive a range estimate.
+func NIDLTDOAMeasurementFrom(ptr unsafe.Pointer) NIDLTDOAMeasurement {
+	return NIDLTDOAMeasurement{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The drift, as a ratio, across the frequencies of the receiver and the anchor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/carrierfrequencyoffset
-func (n_ NIDLTDOAMeasurement) CarrierFrequencyOffset() float64 {
-	rv := objc.Send[float64](n_.ID, objc.Sel("carrierFrequencyOffset"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for NIDLTDOAMeasurement *//* debug [class_init_methods]: End init methods */
 
 
-// The drift, as a ratio, across the frequencies of the receiver and the anchor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/carrierfrequencyoffset
-func (n_ NIDLTDOAMeasurement) SetCarrierFrequencyOffset(value float64) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCarrierFrequencyOffset:"), value)
-}
+
+/* debug [class_methods]: Class methods for NIDLTDOAMeasurement */
+/* debug [class_methods]: End class methods */
 
 
-// A triplet that represents the location in 3D space of the anchor that provides the measurement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinates
-func (n_ NIDLTDOAMeasurement) Coordinates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("coordinates"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for NIDLTDOAMeasurement */
+/* debug [class_properties_class]: End class properties */
 
 
-// A triplet that represents the location in 3D space of the anchor that provides the measurement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinates
-func (n_ NIDLTDOAMeasurement) SetCoordinates(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCoordinates:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for NIDLTDOAMeasurement */
+/* debug [instance_methods]: End instance methods */
 
 
-// The type of coordinate system that the measurement conforms to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinatestype
-func (n_ NIDLTDOAMeasurement) CoordinatesType() NIDLTDOACoordinatesType {
-	rv := objc.Send[NIDLTDOACoordinatesType](n_.ID, objc.Sel("coordinatesType"))
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for NIDLTDOAMeasurement */
+/* debug [instance_properties]: End instance properties */
 
 
-// The type of coordinate system that the measurement conforms to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/coordinatestype
-func (n_ NIDLTDOAMeasurement) SetCoordinatesType(value NIDLTDOACoordinatesType) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setCoordinatesType:"), value)
-}
-
-
-// The type of anchor message that the measurement derives from.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/measurementtype
-func (n_ NIDLTDOAMeasurement) MeasurementType() NIDLTDOAMeasurementType {
-	rv := objc.Send[NIDLTDOAMeasurementType](n_.ID, objc.Sel("measurementType"))
-	return rv
-}
-
-
-// The type of anchor message that the measurement derives from.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/measurementtype
-func (n_ NIDLTDOAMeasurement) SetMeasurementType(value NIDLTDOAMeasurementType) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMeasurementType:"), value)
-}
-
-
-// A timestamp, in seconds, for the time that the device receives the measurement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/receivetime
-func (n_ NIDLTDOAMeasurement) ReceiveTime() float64 {
-	rv := objc.Send[float64](n_.ID, objc.Sel("receiveTime"))
-	return rv
-}
-
-
-// A timestamp, in seconds, for the time that the device receives the measurement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/receivetime
-func (n_ NIDLTDOAMeasurement) SetReceiveTime(value float64) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setReceiveTime:"), value)
-}
-
-
-// A value that represents the signal strength, in dBm, to the anchor that provides the measurement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/signalstrength
-func (n_ NIDLTDOAMeasurement) SignalStrength() float64 {
-	rv := objc.Send[float64](n_.ID, objc.Sel("signalStrength"))
-	return rv
-}
-
-
-// A value that represents the signal strength, in dBm, to the anchor that provides the measurement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/signalstrength
-func (n_ NIDLTDOAMeasurement) SetSignalStrength(value float64) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSignalStrength:"), value)
-}
-
-
-// A timestamp, in seconds, for the elapsed message transmission time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/transmittime
-func (n_ NIDLTDOAMeasurement) TransmitTime() float64 {
-	rv := objc.Send[float64](n_.ID, objc.Sel("transmitTime"))
-	return rv
-}
-
-
-// A timestamp, in seconds, for the elapsed message transmission time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/nidltdoameasurement/transmittime
-func (n_ NIDLTDOAMeasurement) SetTransmitTime(value float64) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setTransmitTime:"), value)
-}
-
+/* debug [class.gen.go]: End class NIDLTDOAMeasurement */
 
 

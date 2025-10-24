@@ -33,8 +33,6 @@ type IMTRClusterDoorLock interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDoorLock
 type MTRClusterDoorLock struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterDoorLock) Autorelease() MTRClusterDoorLock {
 func NewMTRClusterDoorLock() MTRClusterDoorLock {
 	return getMTRClusterDoorLockClass().New()
 }
-
-
-
-

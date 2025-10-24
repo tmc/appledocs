@@ -15,3 +15,4 @@ var textStorageProtocol *objc.Protocol
 func init() {
 	textStorageProtocol = objc.GetProtocol("textStorage")
 }
+

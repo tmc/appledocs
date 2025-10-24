@@ -36,7 +36,6 @@ type IOperation interface {
 
 // A parent class referenced by other CloudKit classes.
 
-
 // A parent class referenced by other CloudKit classes. [Full Topic]
 type Operation struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (o_ Operation) Autorelease() Operation {
 func NewOperation() Operation {
 	return getOperationClass().New()
 }
-
-
-
-

@@ -20,3 +20,4 @@ var resourceStateCommandEncoderWithDescriptorProtocol *objc.Protocol
 func init() {
 	resourceStateCommandEncoderWithDescriptorProtocol = objc.GetProtocol("resourceStateCommandEncoderWithDescriptor:")
 }
+

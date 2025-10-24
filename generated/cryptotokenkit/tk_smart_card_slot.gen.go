@@ -7,11 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreml"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class TKSmartCardSlot */
+
+
+/* debug [class_header]: Header for TKSmartCardSlot */
 // The class instance for the [TKSmartCardSlot] class.
 var (
 	TKSmartCardSlotClass     _TKSmartCardSlotClass
@@ -28,46 +31,38 @@ func getTKSmartCardSlotClass() _TKSmartCardSlotClass {
 type _TKSmartCardSlotClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TKSmartCardSlot */
 // An interface definition for the [TKSmartCardSlot] class.
 type ITKSmartCardSlot interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for TKSmartCardSlot */
 	// properties:
-	MaxOutputLength() int
-	Atr() unsafe.Pointer
-	SetAtr(value unsafe.Pointer)
+	ATR() ITKSmartCardATR
 	MaxInputLength() int
-	SetMaxInputLength(value int)
+	MaxOutputLength() int
 	Name() objc.IObject /* cross-framework: NSString */
-	SetName(value objc.IObject /* cross-framework: NSString */)
-	State() objc.IObject /* cross-framework: State */
-	SetState(value objc.IObject /* cross-framework: State */)
+	State() TKSmartCardSlotState
 	SlotNames() objc.IObject /* cross-framework: NSString */
 	SetSlotNames(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TKSmartCardSlot */
 	// methods:
 	MakeSmartCard() ITKSmartCard
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A single smart card reader slot in the system.
-//
-// Use the class to manage all the smart card reader slots available to the system. You can retrieve the names of available smart card reader slots for a system using the property of a manager object, and access instances of using the method.
+/* debug [class_interface]: End interface */
 
 
-// A single smart card reader slot in the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot
-type TKSmartCardSlot struct {
-	objectivec.Object
-}
 
-// TKSmartCardSlotFrom constructs a [TKSmartCardSlot] from an unsafe.Pointer.
-//
-// A single smart card reader slot in the system.
-func TKSmartCardSlotFrom(ptr unsafe.Pointer) TKSmartCardSlot {
-	return TKSmartCardSlot{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for TKSmartCardSlot */
 // Alloc allocates a new instance without initialization.
 func (tc _TKSmartCardSlotClass) Alloc() TKSmartCardSlot {
 	rv := objc.Send[TKSmartCardSlot](objc.ID(tc.class), objc.Sel("alloc"))
@@ -75,7 +70,6 @@ func (tc _TKSmartCardSlotClass) Alloc() TKSmartCardSlot {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TKSmartCardSlotClass) New() TKSmartCardSlot {
 	rv := objc.Send[TKSmartCardSlot](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -98,8 +92,49 @@ func (t_ TKSmartCardSlot) Autorelease() TKSmartCardSlot {
 func NewTKSmartCardSlot() TKSmartCardSlot {
 	return getTKSmartCardSlotClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for TKSmartCardSlot */
+// A single smart card reader slot in the system.
+//
+// Use the class to manage all the smart card reader slots available to the system. You can retrieve the names of available smart card reader slots for a system using the property of a manager object, and access instances of using the method.
+
+
+// A single smart card reader slot in the system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot
+type TKSmartCardSlot struct {
+	objectivec.Object
+}
+
+// TKSmartCardSlotFrom constructs a [TKSmartCardSlot] from an unsafe.Pointer.
+//
+// A single smart card reader slot in the system.
+func TKSmartCardSlotFrom(ptr unsafe.Pointer) TKSmartCardSlot {
+	return TKSmartCardSlot{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TKSmartCardSlot *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for TKSmartCardSlot */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TKSmartCardSlot */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TKSmartCardSlot */
 
 // Creates a new object representing the currently inserted Smart Card.
 //
@@ -108,7 +143,32 @@ func NewTKSmartCardSlot() TKSmartCardSlot {
 func (t_ TKSmartCardSlot) MakeSmartCard() ITKSmartCard {
 	rv := objc.Send[TKSmartCard](t_.ID, objc.Sel("makeSmartCard"))
 	return rv
-}
+}/* debug [instance_methods/method]: MakeSmartCard */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TKSmartCardSlot */
+
+// The ATR (Answer to Reset) of the inserted Smart Card, or if no Smart Card is inserted or the inserted Smart Card is mute.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/atr
+func (t_ TKSmartCardSlot) ATR() ITKSmartCardATR {
+	rv := objc.Send[TKSmartCardATR](t_.ID, objc.Sel("ATR"))
+	return rv
+}/* debug [instance_properties/getter]: ATR */
+
+
+// The maximum length of input APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer to the Smart Card.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/maxInputLength
+func (t_ TKSmartCardSlot) MaxInputLength() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("maxInputLength"))
+	return rv
+}/* debug [instance_properties/getter]: maxInputLength */
 
 
 // The maximum length of output APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer from the Smart Card.
@@ -118,83 +178,27 @@ func (t_ TKSmartCardSlot) MakeSmartCard() ITKSmartCard {
 func (t_ TKSmartCardSlot) MaxOutputLength() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("maxOutputLength"))
 	return rv
-}
-
-
-// The ATR (Answer to Reset) of the inserted Smart Card, or
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/atr
-func (t_ TKSmartCardSlot) Atr() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("atr"))
-	return rv
-}
-
-
-// The ATR (Answer to Reset) of the inserted Smart Card, or
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/atr
-func (t_ TKSmartCardSlot) SetAtr(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAtr:"), value)
-}
-
-
-// The maximum length of input APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer to the Smart Card.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxinputlength
-func (t_ TKSmartCardSlot) MaxInputLength() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("maxInputLength"))
-	return rv
-}
-
-
-// The maximum length of input APDU (Application Protocol Data Unit) that the Smart Card reader slot is able to transfer to the Smart Card.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/maxinputlength
-func (t_ TKSmartCardSlot) SetMaxInputLength(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setMaxInputLength:"), value)
-}
+}/* debug [instance_properties/getter]: maxOutputLength */
 
 
 // The name of the Smart Card reader slot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/name
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/name
 func (t_ TKSmartCardSlot) Name() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("name"))
 	return rv
-}
-
-
-// The name of the Smart Card reader slot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/name
-func (t_ TKSmartCardSlot) SetName(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setName:"), value)
-}
+}/* debug [instance_properties/getter]: name */
 
 
 // The current state of the Smart Card reader slot.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.property
-func (t_ TKSmartCardSlot) State() objc.IObject /* cross-framework: State */ {
-	rv := objc.Send[coreml.State](t_.ID, objc.Sel("state"))
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardSlot/state-swift.property
+func (t_ TKSmartCardSlot) State() TKSmartCardSlotState {
+	rv := objc.Send[TKSmartCardSlotState](t_.ID, objc.Sel("state"))
 	return rv
-}
-
-
-// The current state of the Smart Card reader slot.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslot/state-swift.property
-func (t_ TKSmartCardSlot) SetState(value objc.IObject /* cross-framework: State */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setState:"), value)
-}
+}/* debug [instance_properties/getter]: state */
 
 
 // A list of identifiers for all the Smart Card reader slots available to the system.
@@ -204,7 +208,7 @@ func (t_ TKSmartCardSlot) SetState(value objc.IObject /* cross-framework: State 
 func (t_ TKSmartCardSlot) SlotNames() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("slotNames"))
 	return rv
-}
+}/* debug [instance_properties/getter]: slotNames */
 
 
 // A list of identifiers for all the Smart Card reader slots available to the system.
@@ -213,7 +217,12 @@ func (t_ TKSmartCardSlot) SlotNames() objc.IObject /* cross-framework: NSString 
 // [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tksmartcardslotmanager/slotnames
 func (t_ TKSmartCardSlot) SetSlotNames(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSlotNames:"), value)
-}
+}/* debug [instance_properties/setter]: slotNames */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class TKSmartCardSlot */
 
 
 

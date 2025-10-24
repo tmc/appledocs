@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INRequestRideIntent] class.
@@ -46,7 +46,6 @@ type IINRequestRideIntent interface {
 // A request to book the specified ride from your service.
 //
 // SiriKit creates an object when the user asks to book a ride using your app. A ride request intent contains user-supplied information about the ride, such as its starting point and the number of people. Use this intent object to identify possible ride options for the user to choose from and to book the ride after the user confirms it. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with information about whether your app successfully booked the ride. When implementing ride-booking support, provide a GeoJSON file with the regions for which you are able to provide rides and upload that file as your app’s Routing App Coverage File in App Store Connect. When it needs to suggest apps capable of providing a ride, Maps uses your coverage information to determine whether it should suggest your app. If you do not provide a coverage file and your app is not installed on the user’s device, Maps does not suggest your app. For information about how to create and upload a Routing App Coverage File, see .
-
 
 // A request to book the specified ride from your service.
 //
@@ -96,8 +95,6 @@ func NewINRequestRideIntent() INRequestRideIntent {
 	return getINRequestRideIntentClass().New()
 }
 
-
-
 // The user’s starting location.
 //
 // [Full Topic]
@@ -106,7 +103,6 @@ func (i_ INRequestRideIntent) PickupLocation() corelocation.Placemark {
 	rv := objc.Send[corelocation.Placemark](i_.ID, objc.Sel("pickupLocation"))
 	return rv
 }
-
 
 // The user’s destination.
 //
@@ -117,7 +113,6 @@ func (i_ INRequestRideIntent) DropOffLocation() corelocation.Placemark {
 	return rv
 }
 
-
 // The user’s destination.
 //
 // [Full Topic]
@@ -125,7 +120,6 @@ func (i_ INRequestRideIntent) DropOffLocation() corelocation.Placemark {
 func (i_ INRequestRideIntent) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
-
 
 // The number of passengers that the ride must accommodate.
 //
@@ -136,7 +130,6 @@ func (i_ INRequestRideIntent) PartySize() int {
 	return rv
 }
 
-
 // The number of passengers that the ride must accommodate.
 //
 // [Full Topic]
@@ -144,7 +137,6 @@ func (i_ INRequestRideIntent) PartySize() int {
 func (i_ INRequestRideIntent) SetPartySize(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
 }
-
 
 // The user’s requested payment method.
 //
@@ -155,7 +147,6 @@ func (i_ INRequestRideIntent) PaymentMethod() unsafe.Pointer {
 	return rv
 }
 
-
 // The user’s requested payment method.
 //
 // [Full Topic]
@@ -163,7 +154,6 @@ func (i_ INRequestRideIntent) PaymentMethod() unsafe.Pointer {
 func (i_ INRequestRideIntent) SetPaymentMethod(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPaymentMethod:"), value)
 }
-
 
 // The name of the ride option selected by the user.
 //
@@ -174,7 +164,6 @@ func (i_ INRequestRideIntent) RideOptionName() INSpeakableString {
 	return rv
 }
 
-
 // The name of the ride option selected by the user.
 //
 // [Full Topic]
@@ -182,7 +171,6 @@ func (i_ INRequestRideIntent) RideOptionName() INSpeakableString {
 func (i_ INRequestRideIntent) SetRideOptionName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRideOptionName:"), value)
 }
-
 
 // The time at which to pick up the user.
 //
@@ -193,7 +181,6 @@ func (i_ INRequestRideIntent) ScheduledPickupTime() INDateComponentsRange {
 	return rv
 }
 
-
 // The time at which to pick up the user.
 //
 // [Full Topic]
@@ -201,6 +188,3 @@ func (i_ INRequestRideIntent) ScheduledPickupTime() INDateComponentsRange {
 func (i_ INRequestRideIntent) SetScheduledPickupTime(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setScheduledPickupTime:"), value)
 }
-
-
-

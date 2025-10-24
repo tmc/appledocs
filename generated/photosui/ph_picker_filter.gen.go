@@ -36,7 +36,6 @@ type IPHPickerFilter interface {
 
 // A type that defines the filter to apply to the photo library.
 
-
 // A type that defines the filter to apply to the photo library.
 //
 // [Full Topic]
@@ -82,7 +81,3 @@ func (p_ PHPickerFilter) Autorelease() PHPickerFilter {
 func NewPHPickerFilter() PHPickerFilter {
 	return getPHPickerFilterClass().New()
 }
-
-
-
-

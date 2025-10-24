@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewNDArrayBinaryKernel
 
+// ExampleNDArrayBinaryKernel_Encode demonstrates using Encode on a NDArrayBinaryKernel instance.
+func ExampleNDArrayBinaryKernel_Encode() {
+	obj := metalperformanceshaders.NewNDArrayBinaryKernel()
+	obj.Encode()
+	// Output:
+	}
+

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class IOUSBHostIOSource */
+
+
+/* debug [class_header]: Header for IOUSBHostIOSource */
 // The class instance for the [USBHostIOSource] class.
 var (
 	USBHostIOSourceClass     _USBHostIOSourceClass
@@ -26,37 +30,33 @@ func getUSBHostIOSourceClass() _USBHostIOSourceClass {
 type _USBHostIOSourceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for USBHostIOSource */
 // An interface definition for the [USBHostIOSource] class.
 type IUSBHostIOSource interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for USBHostIOSource */
 	// properties:
 	DeviceAddress() uint
 	EndpointAddress() uint
 	HostInterface() IOUSBHostInterface
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for USBHostIOSource */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// This class provides basic functionality for deriving pipe and stream classes.
-//
-// Don’t create objects of this class or use this class as a subclass. Instead, use and when creating an .
+/* debug [class_interface]: End interface */
 
 
-// This class provides basic functionality for deriving pipe and stream classes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource
-type USBHostIOSource struct {
-	objectivec.Object
-}
 
-// USBHostIOSourceFrom constructs a [USBHostIOSource] from an unsafe.Pointer.
-//
-// This class provides basic functionality for deriving pipe and stream classes.
-func USBHostIOSourceFrom(ptr unsafe.Pointer) USBHostIOSource {
-	return USBHostIOSource{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for USBHostIOSource */
 // Alloc allocates a new instance without initialization.
 func (uc _USBHostIOSourceClass) Alloc() USBHostIOSource {
 	rv := objc.Send[USBHostIOSource](objc.ID(uc.class), objc.Sel("alloc"))
@@ -64,7 +64,6 @@ func (uc _USBHostIOSourceClass) Alloc() USBHostIOSource {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _USBHostIOSourceClass) New() USBHostIOSource {
 	rv := objc.Send[USBHostIOSource](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,8 +86,54 @@ func (u_ USBHostIOSource) Autorelease() USBHostIOSource {
 func NewUSBHostIOSource() USBHostIOSource {
 	return getUSBHostIOSourceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for USBHostIOSource */
+// This class provides basic functionality for deriving pipe and stream classes.
+//
+// Don’t create objects of this class or use this class as a subclass. Instead, use and when creating an .
+
+
+// This class provides basic functionality for deriving pipe and stream classes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource
+type USBHostIOSource struct {
+	objectivec.Object
+}
+
+// USBHostIOSourceFrom constructs a [USBHostIOSource] from an unsafe.Pointer.
+//
+// This class provides basic functionality for deriving pipe and stream classes.
+func USBHostIOSourceFrom(ptr unsafe.Pointer) USBHostIOSource {
+	return USBHostIOSource{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for USBHostIOSource *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for USBHostIOSource */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for USBHostIOSource */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for USBHostIOSource */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for USBHostIOSource */
 
 // The device’s bus address.
 //
@@ -97,7 +142,7 @@ func NewUSBHostIOSource() USBHostIOSource {
 func (u_ USBHostIOSource) DeviceAddress() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("deviceAddress"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deviceAddress */
 
 
 // The pipe or stream’s endpoint address.
@@ -107,7 +152,7 @@ func (u_ USBHostIOSource) DeviceAddress() uint {
 func (u_ USBHostIOSource) EndpointAddress() uint {
 	rv := objc.Send[uint](u_.ID, objc.Sel("endpointAddress"))
 	return rv
-}
+}/* debug [instance_properties/getter]: endpointAddress */
 
 
 // The interface for the input/output source.
@@ -115,9 +160,14 @@ func (u_ USBHostIOSource) EndpointAddress() uint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostIOSource/hostInterface
 func (u_ USBHostIOSource) HostInterface() IOUSBHostInterface {
-	rv := objc.Send[USBHostInterface](u_.ID, objc.Sel("hostInterface"))
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("hostInterface"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hostInterface */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class IOUSBHostIOSource */
 
 
 

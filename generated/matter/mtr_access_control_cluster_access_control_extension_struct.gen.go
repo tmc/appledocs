@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRAccessControlClusterAccessControlExtensionStruct interface {
 	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessControlExtensionStruct
@@ -83,8 +81,6 @@ func NewMTRAccessControlClusterAccessControlExtensionStruct() MTRAccessControlCl
 	return getMTRAccessControlClusterAccessControlExtensionStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/data
 func (m_ MTRAccessControlClusterAccessControlExtensionStruct) Data() objc.IObject /* cross-framework: Data */ {
@@ -92,13 +88,11 @@ func (m_ MTRAccessControlClusterAccessControlExtensionStruct) Data() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/data
 func (m_ MTRAccessControlClusterAccessControlExtensionStruct) SetData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/fabricindex
@@ -107,12 +101,8 @@ func (m_ MTRAccessControlClusterAccessControlExtensionStruct) FabricIndex() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolextensionstruct/fabricindex
 func (m_ MTRAccessControlClusterAccessControlExtensionStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
-
-

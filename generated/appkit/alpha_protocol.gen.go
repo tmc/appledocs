@@ -15,3 +15,4 @@ var alphaProtocol *objc.Protocol
 func init() {
 	alphaProtocol = objc.GetProtocol("alpha")
 }
+

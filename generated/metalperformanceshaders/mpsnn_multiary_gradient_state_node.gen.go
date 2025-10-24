@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNMultiaryGradientStateNode */
+
+
+/* debug [class_header]: Header for MPSNNMultiaryGradientStateNode */
 // The class instance for the [MultiaryGradientStateNode] class.
 var (
 	MultiaryGradientStateNodeClass     _MultiaryGradientStateNodeClass
@@ -25,29 +29,30 @@ func getMultiaryGradientStateNodeClass() _MultiaryGradientStateNodeClass {
 type _MultiaryGradientStateNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MultiaryGradientStateNode */
 // An interface definition for the [MultiaryGradientStateNode] class.
 type IMultiaryGradientStateNode interface {
 	IStateNode
+	
+/* debug [class_interface_properties]: Properties for MultiaryGradientStateNode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MultiaryGradientStateNode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNMultiaryGradientStateNode
-type MultiaryGradientStateNode struct {
-	StateNode
-}
-
-// MultiaryGradientStateNodeFrom constructs a [MultiaryGradientStateNode] from an unsafe.Pointer.
-func MultiaryGradientStateNodeFrom(ptr unsafe.Pointer) MultiaryGradientStateNode {
-	return MultiaryGradientStateNode{
-		StateNode: StateNodeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MultiaryGradientStateNode */
 // Alloc allocates a new instance without initialization.
 func (mc _MultiaryGradientStateNodeClass) Alloc() MultiaryGradientStateNode {
 	rv := objc.Send[MultiaryGradientStateNode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -55,7 +60,6 @@ func (mc _MultiaryGradientStateNodeClass) Alloc() MultiaryGradientStateNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MultiaryGradientStateNodeClass) New() MultiaryGradientStateNode {
 	rv := objc.Send[MultiaryGradientStateNode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -78,7 +82,53 @@ func (m_ MultiaryGradientStateNode) Autorelease() MultiaryGradientStateNode {
 func NewMultiaryGradientStateNode() MultiaryGradientStateNode {
 	return getMultiaryGradientStateNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MultiaryGradientStateNode */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNMultiaryGradientStateNode
+type MultiaryGradientStateNode struct {
+	StateNode
+}
+
+// MultiaryGradientStateNodeFrom constructs a [MultiaryGradientStateNode] from an unsafe.Pointer.
+func MultiaryGradientStateNodeFrom(ptr unsafe.Pointer) MultiaryGradientStateNode {
+	return MultiaryGradientStateNode{
+		StateNode: StateNodeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MultiaryGradientStateNode *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MultiaryGradientStateNode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MultiaryGradientStateNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MultiaryGradientStateNode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MultiaryGradientStateNode */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNNMultiaryGradientStateNode */
 
 
 

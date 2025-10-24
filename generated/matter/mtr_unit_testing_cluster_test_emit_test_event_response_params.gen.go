@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRUnitTestingClusterTestEmitTestEventResponseParams interface {
 	SetValue(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRUnitTestingClusterTestEmitTestEventResponseParams
@@ -83,8 +81,6 @@ func NewMTRUnitTestingClusterTestEmitTestEventResponseParams() MTRUnitTestingClu
 	return getMTRUnitTestingClusterTestEmitTestEventResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventresponseparams/timedinvoketimeoutms
 func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) TimedInvokeTimeou
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventresponseparams/timedinvoketimeoutms
 func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventresponseparams/value
@@ -107,12 +101,8 @@ func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) Value() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrunittestingclustertestemittesteventresponseparams/value
 func (m_ MTRUnitTestingClusterTestEmitTestEventResponseParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

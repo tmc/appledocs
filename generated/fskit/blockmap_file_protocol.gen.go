@@ -15,3 +15,4 @@ var blockmapFileProtocol *objc.Protocol
 func init() {
 	blockmapFileProtocol = objc.GetProtocol("blockmapFile:")
 }
+

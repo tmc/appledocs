@@ -15,3 +15,4 @@ var setAccessibilitySharedTextUIElementsProtocol *objc.Protocol
 func init() {
 	setAccessibilitySharedTextUIElementsProtocol = objc.GetProtocol("setAccessibilitySharedTextUIElements")
 }
+

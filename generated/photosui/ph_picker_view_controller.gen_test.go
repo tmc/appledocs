@@ -15,7 +15,7 @@ func ExamplePHPickerViewController_ScrollToInitialPosition() {
 	obj := photosui.NewPHPickerViewController()
 	obj.ScrollToInitialPosition()
 	// Output:
-	}
+}
 
 // ExamplePHPickerViewController_ZoomIn demonstrates using ZoomIn on a PHPickerViewController instance.
 // Changes the picker’s content scale by making the photo thumbnails larger in the view.
@@ -23,7 +23,7 @@ func ExamplePHPickerViewController_ZoomIn() {
 	obj := photosui.NewPHPickerViewController()
 	obj.ZoomIn()
 	// Output:
-	}
+}
 
 // ExamplePHPickerViewController_ZoomOut demonstrates using ZoomOut on a PHPickerViewController instance.
 // Changes the picker’s content scale by making the photo thumbnails smaller in the view.
@@ -31,5 +31,4 @@ func ExamplePHPickerViewController_ZoomOut() {
 	obj := photosui.NewPHPickerViewController()
 	obj.ZoomOut()
 	// Output:
-	}
-
+}

@@ -14,7 +14,7 @@ var _ = classkit.NewSQuantityItem
 func ExampleNewSQuantityItemWithIdentifierTitle() {
 	_ = classkit.NewSQuantityItemWithIdentifierTitle(
 		"identifier", // identifier string
-		"title", // title string
+		"title",      // title string
 	)
 	// Output:
 }

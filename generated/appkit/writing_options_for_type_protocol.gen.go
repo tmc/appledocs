@@ -15,3 +15,4 @@ var writingOptionsForTypeProtocol *objc.Protocol
 func init() {
 	writingOptionsForTypeProtocol = objc.GetProtocol("writingOptionsForType:")
 }
+

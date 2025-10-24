@@ -13,8 +13,8 @@ var _ = coreaudiokit.NewAudioUnitViewConfiguration
 // Creates a new configuration object.
 func ExampleNewAudioUnitViewConfigurationWithWidthHeightHostHasController() {
 	_ = coreaudiokit.NewAudioUnitViewConfigurationWithWidthHeightHostHasController(
-		0.0, // width float64
-		0.0, // height float64
+		100.0, // width float64
+		100.0, // height float64
 		false, // hostHasController bool
 	)
 	// Output:

@@ -20,3 +20,4 @@ var readWriteTextureSupportProtocol *objc.Protocol
 func init() {
 	readWriteTextureSupportProtocol = objc.GetProtocol("readWriteTextureSupport")
 }
+

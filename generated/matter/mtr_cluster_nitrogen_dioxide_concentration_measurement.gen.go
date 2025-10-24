@@ -33,8 +33,6 @@ type IMTRClusterNitrogenDioxideConcentrationMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterNitrogenDioxideConcentrationMeasurement
 type MTRClusterNitrogenDioxideConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterNitrogenDioxideConcentrationMeasurement) Autorelease() MTRClu
 func NewMTRClusterNitrogenDioxideConcentrationMeasurement() MTRClusterNitrogenDioxideConcentrationMeasurement {
 	return getMTRClusterNitrogenDioxideConcentrationMeasurementClass().New()
 }
-
-
-
-

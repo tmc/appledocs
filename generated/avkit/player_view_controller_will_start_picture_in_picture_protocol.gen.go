@@ -19,3 +19,4 @@ var playerViewControllerWillStartPictureInPictureProtocol *objc.Protocol
 func init() {
 	playerViewControllerWillStartPictureInPictureProtocol = objc.GetProtocol("playerViewControllerWillStartPictureInPicture:")
 }
+

@@ -18,7 +18,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSSpellServerDelegate
 type PSpellServerDelegate interface {
 	// Optional methods
-	SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes objc.IObject /* cross-framework: TextCheckingTypes */, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult
+	SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes TextCheckingTypes /* typedef */, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult
 	HasSpellServerCheckStringOffsetTypesOptionsOrthographyWordCount() bool
 	SpellServerCheckGrammarInStringLanguageDetails(sender ISpellServer, stringToCheck IString, language IString, details IDictionary) Range
 	HasSpellServerCheckGrammarInStringLanguageDetails() bool
@@ -40,7 +40,7 @@ type PSpellServerDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type SpellServerDelegate struct {
-	_SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount func(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes objc.IObject /* cross-framework: TextCheckingTypes */, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult
+	_SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount func(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes TextCheckingTypes /* typedef */, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult
 	_SpellServerCheckGrammarInStringLanguageDetails func(sender ISpellServer, stringToCheck IString, language IString, details IDictionary) Range
 	_SpellServerDidForgetWordInLanguage func(sender ISpellServer, word IString, language IString)
 	_SpellServerDidLearnWordInLanguage func(sender ISpellServer, word IString, language IString)
@@ -53,7 +53,7 @@ type SpellServerDelegate struct {
 // SetSpellServerCheckStringOffsetTypesOptionsOrthographyWordCount sets the handler for the SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount delegate method.
 //
 // Gives the delegate the opportunity to analyze both the spelling and grammar simultaneously, which is more efficient.
-func (d *SpellServerDelegate) SetSpellServerCheckStringOffsetTypesOptionsOrthographyWordCount(f func(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes objc.IObject /* cross-framework: TextCheckingTypes */, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult) {
+func (d *SpellServerDelegate) SetSpellServerCheckStringOffsetTypesOptionsOrthographyWordCount(f func(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes TextCheckingTypes /* typedef */, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult) {
 	d._SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount = f
 }
 
@@ -107,7 +107,7 @@ func (d *SpellServerDelegate) SetSpellServerSuggestGuessesForWordInLanguage(f fu
 }
 
 // SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount implements the PSpellServerDelegate interface.
-func (d *SpellServerDelegate) SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes objc.IObject /* cross-framework: TextCheckingTypes */, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult {
+func (d *SpellServerDelegate) SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount(sender ISpellServer, stringToCheck IString, offset uint, checkingTypes TextCheckingTypes /* typedef */, options IDictionary, orthography IOrthography, wordCount int) []TextCheckingResult {
 	if d._SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount != nil {
 		return d._SpellServerCheckStringOffsetTypesOptionsOrthographyWordCount(sender, stringToCheck, offset, checkingTypes, options, orthography, wordCount)
 	}

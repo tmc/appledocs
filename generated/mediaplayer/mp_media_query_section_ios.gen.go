@@ -22,7 +22,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaQuerySection/range
-func (m_ MediaQuerySection) Range() objc.IObject /* cross-framework: Range */ {
+func (m_ MediaQuerySection) Range() corefoundation.Range {
 	rv := objc.Send[corefoundation.Range](m_.ID, objc.Sel("range"))
 	return rv
 }

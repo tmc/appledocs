@@ -9,8 +9,10 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
+	AllocatorRef = _undefined // referenced in GLKit
 	ImageRef = _undefined // referenced in GLKit
 	MDLMesh = _undefined // referenced in GLKit
+	TypeID = _undefined // referenced in GLKit
 )
 
 

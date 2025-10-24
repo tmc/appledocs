@@ -15,3 +15,4 @@ var layoutOrientationProtocol *objc.Protocol
 func init() {
 	layoutOrientationProtocol = objc.GetProtocol("layoutOrientation")
 }
+

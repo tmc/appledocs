@@ -39,7 +39,6 @@ type IINSearchForBillsIntentResponse interface {
 //
 // Use an object to return the list of bills found during a search operation. After performing a search using the criteria specified in an object, create an instance of this class and fill it with the results of that search. Siri communicates the information from your response to the user at appropriate times. You create an object in the and methods of your search for bills handler object. For more information about implementing your handler object, see .
 
-
 // Your app’s response to a request to a search for bills.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINSearchForBillsIntentResponse() INSearchForBillsIntentResponse {
 	return getINSearchForBillsIntentResponseClass().New()
 }
 
-
-
 // The bills found during the search.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INSearchForBillsIntentResponse) Bills() unsafe.Pointer {
 	return rv
 }
 
-
 // The bills found during the search.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (i_ INSearchForBillsIntentResponse) Bills() unsafe.Pointer {
 func (i_ INSearchForBillsIntentResponse) SetBills(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBills:"), value)
 }
-
 
 // The code indicating whether you successfully handled the intent.
 //
@@ -118,7 +113,6 @@ func (i_ INSearchForBillsIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // The code indicating whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (i_ INSearchForBillsIntentResponse) Code() unsafe.Pointer {
 func (i_ INSearchForBillsIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
-
-

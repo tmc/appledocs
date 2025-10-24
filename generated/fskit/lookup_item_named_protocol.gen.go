@@ -15,3 +15,4 @@ var lookupItemNamedProtocol *objc.Protocol
 func init() {
 	lookupItemNamedProtocol = objc.GetProtocol("lookupItemNamed:")
 }
+

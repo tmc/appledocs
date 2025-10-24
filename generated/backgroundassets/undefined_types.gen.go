@@ -9,9 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Data = _undefined // referenced in BackgroundAssets
+	Data               = _undefined // referenced in BackgroundAssets
 	DataReadingOptions = _undefined // referenced in BackgroundAssets
-	URL = _undefined // referenced in BackgroundAssets
+	URL                = _undefined // referenced in BackgroundAssets
 )
-
-

@@ -20,3 +20,4 @@ var setFragmentAccelerationStructureProtocol *objc.Protocol
 func init() {
 	setFragmentAccelerationStructureProtocol = objc.GetProtocol("setFragmentAccelerationStructure:")
 }
+

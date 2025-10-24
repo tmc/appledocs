@@ -15,3 +15,4 @@ var viewportBoundsForTextViewportLayoutControllerProtocol *objc.Protocol
 func init() {
 	viewportBoundsForTextViewportLayoutControllerProtocol = objc.GetProtocol("viewportBoundsForTextViewportLayoutController:")
 }
+

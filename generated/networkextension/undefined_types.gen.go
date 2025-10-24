@@ -10,8 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	Accessory = _undefined // referenced in NetworkExtension
-	Grade = _undefined // referenced in NetworkExtension
-	Verdict = _undefined // referenced in NetworkExtension
 )
 
 

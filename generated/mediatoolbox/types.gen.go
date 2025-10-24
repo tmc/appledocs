@@ -12,7 +12,9 @@ import (
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaToolbox/MTAudioProcessingTapCallbacks
 type MTAudioProcessingTapCallbacks struct {
-}
+}/* debug [types.gen.go/struct]: MTAudioProcessingTapCallbacks */
+
+
 
 
 

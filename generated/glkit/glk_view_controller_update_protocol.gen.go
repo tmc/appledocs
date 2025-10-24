@@ -17,3 +17,4 @@ var glkViewControllerUpdateProtocol *objc.Protocol
 func init() {
 	glkViewControllerUpdateProtocol = objc.GetProtocol("glkViewControllerUpdate:")
 }
+

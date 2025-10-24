@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // StripesGeneratorProtocol is the CIStripesGenerator protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIStripesGenerator.
 var StripesGeneratorProtocol *objc.Protocol
 
 func init() {
 	StripesGeneratorProtocol = objc.GetProtocol("CIStripesGenerator")
 }
+

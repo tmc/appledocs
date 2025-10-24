@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // OpTileProtocol is the CIOpTile protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIOpTile.
 var OpTileProtocol *objc.Protocol
 
 func init() {
 	OpTileProtocol = objc.GetProtocol("CIOpTile")
 }
+

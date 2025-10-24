@@ -15,3 +15,4 @@ var applicationDidFinishLaunchingProtocol *objc.Protocol
 func init() {
 	applicationDidFinishLaunchingProtocol = objc.GetProtocol("applicationDidFinishLaunching:")
 }
+

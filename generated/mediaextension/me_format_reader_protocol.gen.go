@@ -15,3 +15,4 @@ var MEFormatReaderProtocol *objc.Protocol
 func init() {
 	MEFormatReaderProtocol = objc.GetProtocol("MEFormatReader")
 }
+

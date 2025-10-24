@@ -15,3 +15,4 @@ var attachmentBoundsForAttributesProtocol *objc.Protocol
 func init() {
 	attachmentBoundsForAttributesProtocol = objc.GetProtocol("attachmentBoundsForAttributes:")
 }
+

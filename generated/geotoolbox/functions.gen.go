@@ -2,10 +2,10 @@
 
 package geotoolbox
 
+/* debug [functions.gen.go]: Generating 0 functions for GeoToolbox */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // GeoToolbox Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

@@ -19,3 +19,4 @@ var deviceDidBecomeReadyProtocol *objc.Protocol
 func init() {
 	deviceDidBecomeReadyProtocol = objc.GetProtocol("deviceDidBecomeReady:")
 }
+

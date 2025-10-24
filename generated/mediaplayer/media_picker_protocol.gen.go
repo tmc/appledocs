@@ -17,3 +17,4 @@ var mediaPickerProtocol *objc.Protocol
 func init() {
 	mediaPickerProtocol = objc.GetProtocol("mediaPicker:")
 }
+

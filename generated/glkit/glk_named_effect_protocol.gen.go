@@ -18,3 +18,4 @@ var GLKNamedEffectProtocol *objc.Protocol
 func init() {
 	GLKNamedEffectProtocol = objc.GetProtocol("GLKNamedEffect")
 }
+

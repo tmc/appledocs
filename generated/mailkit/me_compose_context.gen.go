@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MEComposeContext */
+
+
+/* debug [class_header]: Header for MEComposeContext */
 // The class instance for the [MEComposeContext] class.
 var (
 	MEComposeContextClass     _MEComposeContextClass
@@ -27,39 +31,37 @@ func getMEComposeContextClass() _MEComposeContextClass {
 type _MEComposeContextClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MEComposeContext */
 // An interface definition for the [MEComposeContext] class.
 type IMEComposeContext interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MEComposeContext */
 	// properties:
-	ContextID() objc.IObject /* cross-framework: UUID */
-	OriginalMessage() IMEMessage
-	Action() unsafe.Pointer
-	SetAction(value unsafe.Pointer)
+	Action() MEComposeUserAction
+	ContextID() foundation.UUID
 	IsEncrypted() bool
-	SetIsEncrypted(value bool)
 	IsSigned() bool
-	SetIsSigned(value bool)
+	OriginalMessage() IMEMessage
 	ShouldEncrypt() bool
-	SetShouldEncrypt(value bool)
 	ShouldSign() bool
-	SetShouldSign(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MEComposeContext */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext
-type MEComposeContext struct {
-	objectivec.Object
-}
-
-// MEComposeContextFrom constructs a [MEComposeContext] from an unsafe.Pointer.
-func MEComposeContextFrom(ptr unsafe.Pointer) MEComposeContext {
-	return MEComposeContext{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MEComposeContext */
 // Alloc allocates a new instance without initialization.
 func (mc _MEComposeContextClass) Alloc() MEComposeContext {
 	rv := objc.Send[MEComposeContext](objc.ID(mc.class), objc.Sel("alloc"))
@@ -67,7 +69,6 @@ func (mc _MEComposeContextClass) Alloc() MEComposeContext {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MEComposeContextClass) New() MEComposeContext {
 	rv := objc.Send[MEComposeContext](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,15 +91,78 @@ func (m_ MEComposeContext) Autorelease() MEComposeContext {
 func NewMEComposeContext() MEComposeContext {
 	return getMEComposeContextClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MEComposeContext */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext
+type MEComposeContext struct {
+	objectivec.Object
+}
+
+// MEComposeContextFrom constructs a [MEComposeContext] from an unsafe.Pointer.
+func MEComposeContextFrom(ptr unsafe.Pointer) MEComposeContext {
+	return MEComposeContext{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MEComposeContext *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MEComposeContext */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MEComposeContext */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MEComposeContext */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MEComposeContext */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/action
+func (m_ MEComposeContext) Action() MEComposeUserAction {
+	rv := objc.Send[MEComposeUserAction](m_.ID, objc.Sel("action"))
+	return rv
+}/* debug [instance_properties/getter]: action */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/contextID
-func (m_ MEComposeContext) ContextID() objc.IObject /* cross-framework: UUID */ {
+func (m_ MEComposeContext) ContextID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](m_.ID, objc.Sel("contextID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: contextID */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/isEncrypted
+func (m_ MEComposeContext) IsEncrypted() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isEncrypted"))
+	return rv
+}/* debug [instance_properties/getter]: isEncrypted */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/isSigned
+func (m_ MEComposeContext) IsSigned() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("isSigned"))
+	return rv
+}/* debug [instance_properties/getter]: isSigned */
 
 
 // [Full Topic]
@@ -106,82 +170,28 @@ func (m_ MEComposeContext) ContextID() objc.IObject /* cross-framework: UUID */ 
 func (m_ MEComposeContext) OriginalMessage() IMEMessage {
 	rv := objc.Send[MEMessage](m_.ID, objc.Sel("originalMessage"))
 	return rv
-}
+}/* debug [instance_properties/getter]: originalMessage */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/action
-func (m_ MEComposeContext) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("action"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/action
-func (m_ MEComposeContext) SetAction(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/isencrypted
-func (m_ MEComposeContext) IsEncrypted() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isEncrypted"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/isencrypted
-func (m_ MEComposeContext) SetIsEncrypted(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsEncrypted:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
-func (m_ MEComposeContext) IsSigned() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("isSigned"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/issigned
-func (m_ MEComposeContext) SetIsSigned(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsSigned:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/shouldEncrypt
 func (m_ MEComposeContext) ShouldEncrypt() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldEncrypt"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shouldEncrypt */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldencrypt
-func (m_ MEComposeContext) SetShouldEncrypt(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldEncrypt:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
+// [Full Topic]: https://developer.apple.com/documentation/MailKit/MEComposeContext/shouldSign
 func (m_ MEComposeContext) ShouldSign() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldSign"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shouldSign */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mailkit/mecomposecontext/shouldsign
-func (m_ MEComposeContext) SetShouldSign(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldSign:"), value)
-}
+/* debug [class.gen.go]: End class MEComposeContext */
 
 
 

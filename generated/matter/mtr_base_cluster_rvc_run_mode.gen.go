@@ -33,8 +33,6 @@ type IMTRBaseClusterRVCRunMode interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRVCRunMode
 type MTRBaseClusterRVCRunMode struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterRVCRunMode) Autorelease() MTRBaseClusterRVCRunMode {
 func NewMTRBaseClusterRVCRunMode() MTRBaseClusterRVCRunMode {
 	return getMTRBaseClusterRVCRunModeClass().New()
 }
-
-
-
-

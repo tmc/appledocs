@@ -33,8 +33,6 @@ type IMTRBaseClusterUserLabel interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterUserLabel
 type MTRBaseClusterUserLabel struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterUserLabel) Autorelease() MTRBaseClusterUserLabel {
 func NewMTRBaseClusterUserLabel() MTRBaseClusterUserLabel {
 	return getMTRBaseClusterUserLabelClass().New()
 }
-
-
-
-

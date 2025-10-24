@@ -15,3 +15,4 @@ var windowShouldCloseProtocol *objc.Protocol
 func init() {
 	windowShouldCloseProtocol = objc.GetProtocol("windowShouldClose:")
 }
+

@@ -2,7 +2,9 @@
 
 package callkit
 
+/* debug [enums.gen.go]: Generating 10 enums for CallKit */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum CXCallDirectoryEnabledStatus (3 cases) */
 // CXCallDirectoryEnabledStatus - The enabled status of a Call Directory app extension, as reported by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallDirectoryManager/EnabledStatus
@@ -23,6 +25,49 @@ const (
 	CXCallDirectoryEnabledStatusUnknown CXCallDirectoryEnabledStatus = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CXHandleType (3 cases) */
+// CXHandleType - The possible types of handles.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType
+type CXHandleType uint
+
+const (
+	// CXHandleTypeEmailAddress - An email address.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/emailAddress
+	CXHandleTypeEmailAddress CXHandleType = 0
+	// CXHandleTypeGeneric - An unspecified type of handle.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/generic
+	CXHandleTypeGeneric CXHandleType = 0
+	// CXHandleTypePhoneNumber - A phone number.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/phoneNumber
+	CXHandleTypePhoneNumber CXHandleType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CXPlayDTMFCallActionType (3 cases) */
+// CXPlayDTMFCallActionType - The types of events that generate dial tones.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/ActionType
+type CXPlayDTMFCallActionType uint
+
+const (
+	// CXPlayDTMFCallActionTypeHardPause - Indicates that the user included digits after a hard pause in their dial string. A hard pause is indicated by a semicolon ( ) and waits for further user interaction before dialing the additional digits.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/ActionType/hardPause
+	CXPlayDTMFCallActionTypeHardPause CXPlayDTMFCallActionType = 0
+	// CXPlayDTMFCallActionTypeSingleTone - Indicates that the user tapped a digit on the in-call keypad.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/ActionType/singleTone
+	CXPlayDTMFCallActionTypeSingleTone CXPlayDTMFCallActionType = 0
+	// CXPlayDTMFCallActionTypeSoftPause - Indicates that the user included digits after a soft pause in their dial string. A soft pause is indicated by a comma ( ) and waits a few seconds before dialing the additional digits.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/ActionType/softPause
+	CXPlayDTMFCallActionTypeSoftPause CXPlayDTMFCallActionType = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CXCallEndedReason (5 cases) */
 // CXCallEndedReason - The reason that a call ended.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallEndedReason
@@ -51,21 +96,114 @@ const (
 	CXCallEndedReasonUnanswered CXCallEndedReason = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CXErrorCode (4 cases) */
 // CXErrorCode - Error codes for the CallKit errors.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXError/Code
 type CXErrorCode uint
 
+const (
+	// CXErrorCodeInvalidArgument - The argument is invalid.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXError/Code/invalidArgument
+	CXErrorCodeInvalidArgument CXErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXError/Code/missingVoIPBackgroundMode
+	CXErrorCodeMissingVoIPBackgroundMode CXErrorCode = 0
+	// CXErrorCodeUnentitled - The caller doesn’t have the correct entitlement.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXError/Code/unentitled
+	CXErrorCodeUnentitled CXErrorCode = 0
+	// CXErrorCodeUnknownError - An unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXError/Code/unknownError
+	CXErrorCodeUnknownError CXErrorCode = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CXErrorCodeCallDirectoryManagerError (9 cases) */
 // CXErrorCodeCallDirectoryManagerError - Error codes the CallKit framework returns.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code
 type CXErrorCodeCallDirectoryManagerError uint
 
+const (
+	// CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading - The call directory manager is loading the app extension.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/currentlyLoading
+	CXErrorCodeCallDirectoryManagerErrorCurrentlyLoading CXErrorCodeCallDirectoryManagerError = 0
+	// CXErrorCodeCallDirectoryManagerErrorDuplicateEntries - There are duplicate entries in the call directory.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/duplicateEntries
+	CXErrorCodeCallDirectoryManagerErrorDuplicateEntries CXErrorCodeCallDirectoryManagerError = 0
+	// CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder - The entries in the call directory are out of order.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/entriesOutOfOrder
+	CXErrorCodeCallDirectoryManagerErrorEntriesOutOfOrder CXErrorCodeCallDirectoryManagerError = 0
+	// CXErrorCodeCallDirectoryManagerErrorExtensionDisabled - The call directory extension isn’t enabled by the system.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/extensionDisabled
+	CXErrorCodeCallDirectoryManagerErrorExtensionDisabled CXErrorCodeCallDirectoryManagerError = 0
+	// CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted - The call directory manager was interrupted while loading the app extension.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/loadingInterrupted
+	CXErrorCodeCallDirectoryManagerErrorLoadingInterrupted CXErrorCodeCallDirectoryManagerError = 0
+	// CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded - There are too many entries in the call directory.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/maximumEntriesExceeded
+	CXErrorCodeCallDirectoryManagerErrorMaximumEntriesExceeded CXErrorCodeCallDirectoryManagerError = 0
+	// CXErrorCodeCallDirectoryManagerErrorNoExtensionFound - The call directory manager could not find a corresponding app extension.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/noExtensionFound
+	CXErrorCodeCallDirectoryManagerErrorNoExtensionFound CXErrorCodeCallDirectoryManagerError = 0
+	// CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval - A request occurred before confirming incremental loading.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/unexpectedIncrementalRemoval
+	CXErrorCodeCallDirectoryManagerErrorUnexpectedIncrementalRemoval CXErrorCodeCallDirectoryManagerError = 0
+	// CXErrorCodeCallDirectoryManagerErrorUnknown - An unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeCallDirectoryManagerError-swift.struct/Code/unknown
+	CXErrorCodeCallDirectoryManagerErrorUnknown CXErrorCodeCallDirectoryManagerError = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CXErrorCodeIncomingCallError (8 cases) */
 // CXErrorCodeIncomingCallError - Codes for errors that occur during incoming calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code
 type CXErrorCodeIncomingCallError uint
 
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code/callIsProtected
+	CXErrorCodeIncomingCallErrorCallIsProtected CXErrorCodeIncomingCallError = 0
+	// CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists - The incoming call UUID already exists.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code/callUUIDAlreadyExists
+	CXErrorCodeIncomingCallErrorCallUUIDAlreadyExists CXErrorCodeIncomingCallError = 0
+	// CXErrorCodeIncomingCallErrorFilteredByBlockList - The incoming call is filtered because the incoming caller has been blocked by the user.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code/filteredByBlockList
+	CXErrorCodeIncomingCallErrorFilteredByBlockList CXErrorCodeIncomingCallError = 0
+	// CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb - The incoming call is filtered because Do Not Disturb is active and the incoming caller is not a VIP.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code/filteredByDoNotDisturb
+	CXErrorCodeIncomingCallErrorFilteredByDoNotDisturb CXErrorCodeIncomingCallError = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code/filteredBySensitiveParticipants
+	CXErrorCodeIncomingCallErrorFilteredBySensitiveParticipants CXErrorCodeIncomingCallError = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code/filteredDuringRestrictedSharingMode
+	CXErrorCodeIncomingCallErrorFilteredDuringRestrictedSharingMode CXErrorCodeIncomingCallError = 0
+	// CXErrorCodeIncomingCallErrorUnentitled - The app isn’t entitled to receive incoming calls.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code/unentitled
+	CXErrorCodeIncomingCallErrorUnentitled CXErrorCodeIncomingCallError = 0
+	// CXErrorCodeIncomingCallErrorUnknown - An unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeIncomingCallError-swift.struct/Code/unknown
+	CXErrorCodeIncomingCallErrorUnknown CXErrorCodeIncomingCallError = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CXErrorCodeNotificationServiceExtensionError (3 cases) */
 // CXErrorCodeNotificationServiceExtensionError - Constants for errors returned when reporting new, incoming VoIP calls.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeNotificationServiceExtensionError-swift.struct/Code
@@ -86,39 +224,64 @@ const (
 	CXErrorCodeNotificationServiceExtensionErrorUnknown CXErrorCodeNotificationServiceExtensionError = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CXErrorCodeRequestTransactionError (9 cases) */
 // CXErrorCodeRequestTransactionError - Error codes for the CallKit error domain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code
 type CXErrorCodeRequestTransactionError uint
 
-// CXHandleType - The possible types of handles.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType
-type CXHandleType uint
-
 const (
-	// CXHandleTypeEmailAddress - An email address.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/emailAddress
-	CXHandleTypeEmailAddress CXHandleType = 0
-	// CXHandleTypeGeneric - An unspecified type of handle.
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/callIsProtected
+	CXErrorCodeRequestTransactionErrorCallIsProtected CXErrorCodeRequestTransactionError = 0
+	// CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists - The requested transaction contains call actions that reference a UUID that already exists.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/generic
-	CXHandleTypeGeneric CXHandleType = 0
-	// CXHandleTypePhoneNumber - A phone number.
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/callUUIDAlreadyExists
+	CXErrorCodeRequestTransactionErrorCallUUIDAlreadyExists CXErrorCodeRequestTransactionError = 0
+	// CXErrorCodeRequestTransactionErrorEmptyTransaction - The requested transaction contains no actions.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXHandle/HandleType/phoneNumber
-	CXHandleTypePhoneNumber CXHandleType = 0
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/emptyTransaction
+	CXErrorCodeRequestTransactionErrorEmptyTransaction CXErrorCodeRequestTransactionError = 0
+	// CXErrorCodeRequestTransactionErrorInvalidAction - The requested transaction contains an invalid action.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/invalidAction
+	CXErrorCodeRequestTransactionErrorInvalidAction CXErrorCodeRequestTransactionError = 0
+	// CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached - The requested transaction contains actions that, if performed, would exceed the maximum number of call groups for the provider.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/maximumCallGroupsReached
+	CXErrorCodeRequestTransactionErrorMaximumCallGroupsReached CXErrorCodeRequestTransactionError = 0
+	// CXErrorCodeRequestTransactionErrorUnentitled - The app isn’t entitled to perform the actions in the requested transaction.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/unentitled
+	CXErrorCodeRequestTransactionErrorUnentitled CXErrorCodeRequestTransactionError = 0
+	// CXErrorCodeRequestTransactionErrorUnknown - An unknown error occurred.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/unknown
+	CXErrorCodeRequestTransactionErrorUnknown CXErrorCodeRequestTransactionError = 0
+	// CXErrorCodeRequestTransactionErrorUnknownCallProvider - The controller couldn’t find a call provider to perform the actions in the requested transaction.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/unknownCallProvider
+	CXErrorCodeRequestTransactionErrorUnknownCallProvider CXErrorCodeRequestTransactionError = 0
+	// CXErrorCodeRequestTransactionErrorUnknownCallUUID - The requested transaction contains call actions that reference an unknown UUID.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXErrorCodeRequestTransactionError-swift.struct/Code/unknownCallUUID
+	CXErrorCodeRequestTransactionErrorUnknownCallUUID CXErrorCodeRequestTransactionError = 0
 )
 
-// CXPlayDTMFCallActionType - The types of events that generate dial tones.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXPlayDTMFCallAction/ActionType
-type CXPlayDTMFCallActionType uint
-
+/* debug [enums.gen.go]: Processing enum CXTranslationEngine (2 cases) */
 // CXTranslationEngine - Values that describe the translation engine that provided a translation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTranslationEngine
 type CXTranslationEngine uint
+
+const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTranslationEngine/custom
+	CXTranslationEngineCustom CXTranslationEngine = 0
+	// CXTranslationEngineDefault - The translation was provided by the system’s default translation engine.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXTranslationEngine/default
+	CXTranslationEngineDefault CXTranslationEngine = 0
+)
 
 

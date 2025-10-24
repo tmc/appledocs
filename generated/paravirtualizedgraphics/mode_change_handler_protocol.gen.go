@@ -16,3 +16,4 @@ var modeChangeHandlerProtocol *objc.Protocol
 func init() {
 	modeChangeHandlerProtocol = objc.GetProtocol("modeChangeHandler")
 }
+

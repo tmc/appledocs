@@ -20,7 +20,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTouchBarDelegate
 type PTouchBarDelegate interface {
 	// Optional methods
-	TouchBarMakeItemForIdentifier(touchBar objc.IObject /* cross-framework: TouchBar */, identifier objc.IObject /* cross-framework: TouchBarItemIdentifier */) TouchBarItem
+	TouchBarMakeItemForIdentifier(touchBar objc.IObject /* cross-framework: TouchBar */, identifier TouchBarItemIdentifier /* typedef */) TouchBarItem
 	HasTouchBarMakeItemForIdentifier() bool
 }
 
@@ -28,18 +28,18 @@ type PTouchBarDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type TouchBarDelegate struct {
-	_TouchBarMakeItemForIdentifier func(touchBar objc.IObject /* cross-framework: TouchBar */, identifier objc.IObject /* cross-framework: TouchBarItemIdentifier */) TouchBarItem
+	_TouchBarMakeItemForIdentifier func(touchBar objc.IObject /* cross-framework: TouchBar */, identifier TouchBarItemIdentifier /* typedef */) TouchBarItem
 }
 
 // SetTouchBarMakeItemForIdentifier sets the handler for the TouchBarMakeItemForIdentifier delegate method.
 //
 // Asks the delegate object for the bar item for the specified bar and item identifier.
-func (d *TouchBarDelegate) SetTouchBarMakeItemForIdentifier(f func(touchBar objc.IObject /* cross-framework: TouchBar */, identifier objc.IObject /* cross-framework: TouchBarItemIdentifier */) TouchBarItem) {
+func (d *TouchBarDelegate) SetTouchBarMakeItemForIdentifier(f func(touchBar objc.IObject /* cross-framework: TouchBar */, identifier TouchBarItemIdentifier /* typedef */) TouchBarItem) {
 	d._TouchBarMakeItemForIdentifier = f
 }
 
 // TouchBarMakeItemForIdentifier implements the PTouchBarDelegate interface.
-func (d *TouchBarDelegate) TouchBarMakeItemForIdentifier(touchBar objc.IObject /* cross-framework: TouchBar */, identifier objc.IObject /* cross-framework: TouchBarItemIdentifier */) TouchBarItem {
+func (d *TouchBarDelegate) TouchBarMakeItemForIdentifier(touchBar objc.IObject /* cross-framework: TouchBar */, identifier TouchBarItemIdentifier /* typedef */) TouchBarItem {
 	if d._TouchBarMakeItemForIdentifier != nil {
 		return d._TouchBarMakeItemForIdentifier(touchBar, identifier)
 	}

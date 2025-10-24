@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSHTTPCookie */
+
+
+/* debug [class_header]: Header for NSHTTPCookie */
 // The class instance for the [HTTPCookie] class.
 var (
 	HTTPCookieClass     _HTTPCookieClass
@@ -26,10 +30,16 @@ func getHTTPCookieClass() _HTTPCookieClass {
 type _HTTPCookieClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HTTPCookie */
 // An interface definition for the [HTTPCookie] class.
 type IHTTPCookie interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for HTTPCookie */
 	// properties:
 	ExpiresDate() IDate
 	Comment() IString
@@ -50,37 +60,27 @@ type IHTTPCookie interface {
 	SetPath(value IString)
 	PortList() INumber
 	SetPortList(value INumber)
-	Properties() unsafe.Pointer
-	SetProperties(value unsafe.Pointer)
-	SameSitePolicy() unsafe.Pointer
-	SetSameSitePolicy(value unsafe.Pointer)
+	Properties() objectivec.IObject
+	SetProperties(value objectivec.IObject)
+	SameSitePolicy() objectivec.IObject
+	SetSameSitePolicy(value objectivec.IObject)
 	Value() IString
 	SetValue(value IString)
 	Version() int
 	SetVersion(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HTTPCookie */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A representation of an HTTP cookie.
-//
-// An object is immutable, initialized from a dictionary that contains the attributes of the cookie. This class supports two different cookie versions: Version 0: The original cookie format defined by Netscape. Most cookies are in this format. Version 1: The cookie format defined in , HTTP State Management Mechanism.
+/* debug [class_interface]: End interface */
 
 
-// A representation of an HTTP cookie.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie
-type HTTPCookie struct {
-	objectivec.Object
-}
 
-// HTTPCookieFrom constructs a [HTTPCookie] from an unsafe.Pointer.
-//
-// A representation of an HTTP cookie.
-func HTTPCookieFrom(ptr unsafe.Pointer) HTTPCookie {
-	return HTTPCookie{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for HTTPCookie */
 // Alloc allocates a new instance without initialization.
 func (hc _HTTPCookieClass) Alloc() HTTPCookie {
 	rv := objc.Send[HTTPCookie](objc.ID(hc.class), objc.Sel("alloc"))
@@ -88,7 +88,6 @@ func (hc _HTTPCookieClass) Alloc() HTTPCookie {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HTTPCookieClass) New() HTTPCookie {
 	rv := objc.Send[HTTPCookie](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -111,8 +110,54 @@ func (h_ HTTPCookie) Autorelease() HTTPCookie {
 func NewHTTPCookie() HTTPCookie {
 	return getHTTPCookieClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HTTPCookie */
+// A representation of an HTTP cookie.
+//
+// An object is immutable, initialized from a dictionary that contains the attributes of the cookie. This class supports two different cookie versions: Version 0: The original cookie format defined by Netscape. Most cookies are in this format. Version 1: The cookie format defined in , HTTP State Management Mechanism.
+
+
+// A representation of an HTTP cookie.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/HTTPCookie
+type HTTPCookie struct {
+	objectivec.Object
+}
+
+// HTTPCookieFrom constructs a [HTTPCookie] from an unsafe.Pointer.
+//
+// A representation of an HTTP cookie.
+func HTTPCookieFrom(ptr unsafe.Pointer) HTTPCookie {
+	return HTTPCookie{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HTTPCookie *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HTTPCookie */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HTTPCookie */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HTTPCookie */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HTTPCookie */
 
 // The cookie’s expiration date.
 //
@@ -121,7 +166,7 @@ func NewHTTPCookie() HTTPCookie {
 func (h_ HTTPCookie) ExpiresDate() IDate {
 	rv := objc.Send[Date](h_.ID, objc.Sel("expiresDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: expiresDate */
 
 
 // The cookie’s comment string.
@@ -131,7 +176,7 @@ func (h_ HTTPCookie) ExpiresDate() IDate {
 func (h_ HTTPCookie) Comment() IString {
 	rv := objc.Send[String](h_.ID, objc.Sel("comment"))
 	return rv
-}
+}/* debug [instance_properties/getter]: comment */
 
 
 // The cookie’s comment string.
@@ -140,7 +185,7 @@ func (h_ HTTPCookie) Comment() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/comment
 func (h_ HTTPCookie) SetComment(value IString) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setComment:"), value)
-}
+}/* debug [instance_properties/setter]: comment */
 
 
 // The cookie’s comment URL.
@@ -150,7 +195,7 @@ func (h_ HTTPCookie) SetComment(value IString) {
 func (h_ HTTPCookie) CommentURL() IURL {
 	rv := objc.Send[URL](h_.ID, objc.Sel("commentURL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: commentURL */
 
 
 // The cookie’s comment URL.
@@ -159,7 +204,7 @@ func (h_ HTTPCookie) CommentURL() IURL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/commenturl
 func (h_ HTTPCookie) SetCommentURL(value IURL) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setCommentURL:"), value)
-}
+}/* debug [instance_properties/setter]: commentURL */
 
 
 // The domain of the cookie.
@@ -169,7 +214,7 @@ func (h_ HTTPCookie) SetCommentURL(value IURL) {
 func (h_ HTTPCookie) Domain() IString {
 	rv := objc.Send[String](h_.ID, objc.Sel("domain"))
 	return rv
-}
+}/* debug [instance_properties/getter]: domain */
 
 
 // The domain of the cookie.
@@ -178,7 +223,7 @@ func (h_ HTTPCookie) Domain() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/domain
 func (h_ HTTPCookie) SetDomain(value IString) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setDomain:"), value)
-}
+}/* debug [instance_properties/setter]: domain */
 
 
 // A Boolean value that indicates whether the cookie should only be sent to HTTP servers.
@@ -188,7 +233,7 @@ func (h_ HTTPCookie) SetDomain(value IString) {
 func (h_ HTTPCookie) IsHTTPOnly() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isHTTPOnly"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isHTTPOnly */
 
 
 // A Boolean value that indicates whether the cookie should only be sent to HTTP servers.
@@ -197,7 +242,7 @@ func (h_ HTTPCookie) IsHTTPOnly() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/ishttponly
 func (h_ HTTPCookie) SetIsHTTPOnly(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsHTTPOnly:"), value)
-}
+}/* debug [instance_properties/setter]: isHTTPOnly */
 
 
 // A Boolean value that indicates whether the cookie may only be sent over secure channels.
@@ -207,7 +252,7 @@ func (h_ HTTPCookie) SetIsHTTPOnly(value bool) {
 func (h_ HTTPCookie) IsSecure() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSecure"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isSecure */
 
 
 // A Boolean value that indicates whether the cookie may only be sent over secure channels.
@@ -216,7 +261,7 @@ func (h_ HTTPCookie) IsSecure() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issecure
 func (h_ HTTPCookie) SetIsSecure(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSecure:"), value)
-}
+}/* debug [instance_properties/setter]: isSecure */
 
 
 // A Boolean value that indicates whether the cookie should be discarded at the end of the session (regardless of expiration date).
@@ -226,7 +271,7 @@ func (h_ HTTPCookie) SetIsSecure(value bool) {
 func (h_ HTTPCookie) IsSessionOnly() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSessionOnly"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isSessionOnly */
 
 
 // A Boolean value that indicates whether the cookie should be discarded at the end of the session (regardless of expiration date).
@@ -235,7 +280,7 @@ func (h_ HTTPCookie) IsSessionOnly() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/issessiononly
 func (h_ HTTPCookie) SetIsSessionOnly(value bool) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setIsSessionOnly:"), value)
-}
+}/* debug [instance_properties/setter]: isSessionOnly */
 
 
 // The cookie’s name.
@@ -245,7 +290,7 @@ func (h_ HTTPCookie) SetIsSessionOnly(value bool) {
 func (h_ HTTPCookie) Name() IString {
 	rv := objc.Send[String](h_.ID, objc.Sel("name"))
 	return rv
-}
+}/* debug [instance_properties/getter]: name */
 
 
 // The cookie’s name.
@@ -254,7 +299,7 @@ func (h_ HTTPCookie) Name() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/name
 func (h_ HTTPCookie) SetName(value IString) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setName:"), value)
-}
+}/* debug [instance_properties/setter]: name */
 
 
 // The cookie’s path.
@@ -264,7 +309,7 @@ func (h_ HTTPCookie) SetName(value IString) {
 func (h_ HTTPCookie) Path() IString {
 	rv := objc.Send[String](h_.ID, objc.Sel("path"))
 	return rv
-}
+}/* debug [instance_properties/getter]: path */
 
 
 // The cookie’s path.
@@ -273,7 +318,7 @@ func (h_ HTTPCookie) Path() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/path
 func (h_ HTTPCookie) SetPath(value IString) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPath:"), value)
-}
+}/* debug [instance_properties/setter]: path */
 
 
 // The cookie’s port list.
@@ -283,7 +328,7 @@ func (h_ HTTPCookie) SetPath(value IString) {
 func (h_ HTTPCookie) PortList() INumber {
 	rv := objc.Send[Number](h_.ID, objc.Sel("portList"))
 	return rv
-}
+}/* debug [instance_properties/getter]: portList */
 
 
 // The cookie’s port list.
@@ -292,45 +337,45 @@ func (h_ HTTPCookie) PortList() INumber {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/portlist
 func (h_ HTTPCookie) SetPortList(value INumber) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setPortList:"), value)
-}
+}/* debug [instance_properties/setter]: portList */
 
 
 // The cookie’s properties.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/properties
-func (h_ HTTPCookie) Properties() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("properties"))
+func (h_ HTTPCookie) Properties() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("properties"))
 	return rv
-}
+}/* debug [instance_properties/getter]: properties */
 
 
 // The cookie’s properties.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/properties
-func (h_ HTTPCookie) SetProperties(value unsafe.Pointer) {
+func (h_ HTTPCookie) SetProperties(value objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setProperties:"), value)
-}
+}/* debug [instance_properties/setter]: properties */
 
 
 // A Boolean value that indicates whether to restrict the cookie to requests sent back to the same site that created it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/samesitepolicy
-func (h_ HTTPCookie) SameSitePolicy() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("sameSitePolicy"))
+func (h_ HTTPCookie) SameSitePolicy() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("sameSitePolicy"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sameSitePolicy */
 
 
 // A Boolean value that indicates whether to restrict the cookie to requests sent back to the same site that created it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/samesitepolicy
-func (h_ HTTPCookie) SetSameSitePolicy(value unsafe.Pointer) {
+func (h_ HTTPCookie) SetSameSitePolicy(value objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setSameSitePolicy:"), value)
-}
+}/* debug [instance_properties/setter]: sameSitePolicy */
 
 
 // The cookie’s string value.
@@ -340,7 +385,7 @@ func (h_ HTTPCookie) SetSameSitePolicy(value unsafe.Pointer) {
 func (h_ HTTPCookie) Value() IString {
 	rv := objc.Send[String](h_.ID, objc.Sel("value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: value */
 
 
 // The cookie’s string value.
@@ -349,7 +394,7 @@ func (h_ HTTPCookie) Value() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/value
 func (h_ HTTPCookie) SetValue(value IString) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setValue:"), value)
-}
+}/* debug [instance_properties/setter]: value */
 
 
 // The cookie’s version.
@@ -359,7 +404,7 @@ func (h_ HTTPCookie) SetValue(value IString) {
 func (h_ HTTPCookie) Version() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("version"))
 	return rv
-}
+}/* debug [instance_properties/getter]: version */
 
 
 // The cookie’s version.
@@ -368,7 +413,12 @@ func (h_ HTTPCookie) Version() int {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpcookie/version
 func (h_ HTTPCookie) SetVersion(value int) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setVersion:"), value)
-}
+}/* debug [instance_properties/setter]: version */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSHTTPCookie */
 
 
 

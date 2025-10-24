@@ -15,3 +15,4 @@ var AppearanceCustomizationProtocol *objc.Protocol
 func init() {
 	AppearanceCustomizationProtocol = objc.GetProtocol("NSAppearanceCustomization")
 }
+

@@ -8,6 +8,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -20,8 +21,8 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionContext/hostedViewMinimumAllowedSize
-func (e_ ExtensionContext) HostedViewMinimumAllowedSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[objc.ID](e_.ID, objc.Sel("hostedViewMinimumAllowedSize"))
+func (e_ ExtensionContext) HostedViewMinimumAllowedSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](e_.ID, objc.Sel("hostedViewMinimumAllowedSize"))
 	return rv
 }
 

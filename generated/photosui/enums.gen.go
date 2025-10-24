@@ -3,7 +3,7 @@
 package photosui
 
 // Enum types and constants
-// PHLivePhotoBadgeOptions - Options for the semantic use and display style of icons for badging Live Photo assets, used by the 
+// PHLivePhotoBadgeOptions - Options for the semantic use and display style of icons for badging Live Photo assets, used by the
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoBadgeOptions
 type PHLivePhotoBadgeOptions uint
@@ -35,7 +35,7 @@ const (
 	PHLivePhotoViewContentModeAspectFit PHLivePhotoViewContentMode = 0
 )
 
-// PHLivePhotoViewPlaybackStyle - Options for how much of the motion and sound content of a Live Photo to play, used in the 
+// PHLivePhotoViewPlaybackStyle - Options for how much of the motion and sound content of a Live Photo to play, used in the
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHLivePhotoViewPlaybackStyle
 type PHLivePhotoViewPlaybackStyle uint
@@ -175,5 +175,3 @@ const (
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectTextElement/ElementType
 type PHProjectTextElementType uint
-
-

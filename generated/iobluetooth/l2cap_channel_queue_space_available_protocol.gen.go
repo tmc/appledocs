@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // l2capChannelQueueSpaceAvailableProtocol is the l2capChannelQueueSpaceAvailable: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to l2capChannelQueueSpaceAvailable:.
 var l2capChannelQueueSpaceAvailableProtocol *objc.Protocol
 
 func init() {
 	l2capChannelQueueSpaceAvailableProtocol = objc.GetProtocol("l2capChannelQueueSpaceAvailable:")
 }
+

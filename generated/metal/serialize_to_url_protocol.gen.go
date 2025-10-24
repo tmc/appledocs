@@ -20,3 +20,4 @@ var serializeToURLProtocol *objc.Protocol
 func init() {
 	serializeToURLProtocol = objc.GetProtocol("serializeToURL:")
 }
+

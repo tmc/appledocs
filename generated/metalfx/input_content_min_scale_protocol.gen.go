@@ -19,3 +19,4 @@ var inputContentMinScaleProtocol *objc.Protocol
 func init() {
 	inputContentMinScaleProtocol = objc.GetProtocol("inputContentMinScale")
 }
+

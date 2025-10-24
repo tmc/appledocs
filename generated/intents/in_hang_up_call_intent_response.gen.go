@@ -33,8 +33,6 @@ type IINHangUpCallIntentResponse interface {
 	SetCode(value unsafe.Pointer)
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INHangUpCallIntentResponse
 type INHangUpCallIntentResponse struct {
@@ -79,8 +77,6 @@ func NewINHangUpCallIntentResponse() INHangUpCallIntentResponse {
 	return getINHangUpCallIntentResponseClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inhangupcallintentresponse/code
 func (i_ INHangUpCallIntentResponse) Code() unsafe.Pointer {
@@ -88,12 +84,8 @@ func (i_ INHangUpCallIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inhangupcallintentresponse/code
 func (i_ INHangUpCallIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
-
-

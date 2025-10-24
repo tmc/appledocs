@@ -17,11 +17,12 @@ func ExampleNewEraserToolWithEraserType() {
 	)
 	// Output:
 }
+
 // ExampleNewEraserToolWithEraserTypeWidth demonstrates how to create a EraserTool instance using NewEraserToolWithEraserTypeWidth.
 func ExampleNewEraserToolWithEraserTypeWidth() {
 	_ = pencilkit.NewEraserToolWithEraserTypeWidth(
 		pencilkit.EraserType{}, // eraserType EraserType
-		0.0, // width float64
+		0.0,                    // width float64
 	)
 	// Output:
 }

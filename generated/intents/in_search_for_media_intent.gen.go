@@ -39,7 +39,6 @@ type IINSearchForMediaIntent interface {
 //
 // The system creates an object when the user asks Siri to search for a media item, or searches for a musician or band in Spotlight. To handle this intent, provide a handler that conforms to the protocol. Your handler should confirm the request and create an object with the media to search for.
 
-
 // A request to search for a media item.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINSearchForMediaIntent() INSearchForMediaIntent {
 	return getINSearchForMediaIntentClass().New()
 }
 
-
-
 // The location to search for the media item.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INSearchForMediaIntent) MediaSearch() INMediaSearch {
 	return rv
 }
 
-
 // The location to search for the media item.
 //
 // [Full Topic]
@@ -107,5 +103,3 @@ func (i_ INSearchForMediaIntent) MediaSearch() INMediaSearch {
 func (i_ INSearchForMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
-
-

@@ -5,14 +5,10 @@
 package identitylookupui
 
 import (
-	"unsafe"
-
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // iOS-only methods for ILClassificationUIExtensionContext
-
 
 // iOS-only properties
 
@@ -27,8 +23,3 @@ func (i_ ILClassificationUIExtensionContext) ReadyForClassificationResponse() bo
 func (i_ ILClassificationUIExtensionContext) SetReadyForClassificationResponse(value bool) {
 	i_.ID.Send(objc.RegisterName("setReadyForClassificationResponse:"), value)
 }
-
-
-
-
-

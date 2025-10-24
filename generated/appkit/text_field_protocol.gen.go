@@ -15,3 +15,4 @@ var textFieldProtocol *objc.Protocol
 func init() {
 	textFieldProtocol = objc.GetProtocol("textField:")
 }
+

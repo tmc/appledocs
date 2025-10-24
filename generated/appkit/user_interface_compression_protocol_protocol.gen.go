@@ -12,6 +12,6 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSUserInterfaceCompression
 type PUserInterfaceCompression interface {
 	// Required methods
-	CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions)
-	MinimumSizeWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) corefoundation.Size
+	CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions)/* debug [protocol_interface/required_method]: CompressWithPrioritizedCompressionOptions */
+	MinimumSizeWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) Size/* debug [protocol_interface/required_method]: MinimumSizeWithPrioritizedCompressionOptions */
 }

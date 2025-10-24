@@ -20,3 +20,4 @@ var updateBufferMappingsProtocol *objc.Protocol
 func init() {
 	updateBufferMappingsProtocol = objc.GetProtocol("updateBufferMappings:")
 }
+

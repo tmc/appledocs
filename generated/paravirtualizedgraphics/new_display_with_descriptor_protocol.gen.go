@@ -16,3 +16,4 @@ var newDisplayWithDescriptorProtocol *objc.Protocol
 func init() {
 	newDisplayWithDescriptorProtocol = objc.GetProtocol("newDisplayWithDescriptor:")
 }
+

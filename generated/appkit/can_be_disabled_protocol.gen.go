@@ -15,3 +15,4 @@ var canBeDisabledProtocol *objc.Protocol
 func init() {
 	canBeDisabledProtocol = objc.GetProtocol("canBeDisabled")
 }
+

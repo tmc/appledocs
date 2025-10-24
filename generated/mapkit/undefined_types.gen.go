@@ -9,15 +9,17 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	CameraBoundary = _undefined // referenced in MapKit
-	CameraZoomRange = _undefined // referenced in MapKit
-	FeatureType = _undefined // referenced in MapKit
-	FilterType = _undefined // referenced in MapKit
-	Identifier = _undefined // referenced in MapKit
+	BlendMode = _undefined // referenced in MapKit
+	ContextRef = _undefined // referenced in MapKit
+	LineCap = _undefined // referenced in MapKit
+	LineJoin = _undefined // referenced in MapKit
+	LocationCoordinate2D = _undefined // referenced in MapKit
+	LocationDegrees = _undefined // referenced in MapKit
 	LocationDirection = _undefined // referenced in MapKit
 	LocationDistance = _undefined // referenced in MapKit
-	MapFeature = _undefined // referenced in MapKit
-	PlaceDescriptor = _undefined // referenced in MapKit
+	PathRef = _undefined // referenced in MapKit
+	RectEdge = _undefined // referenced in MapKit
+	Size = _undefined // referenced in MapKit
 	TraitCollection = _undefined // referenced in MapKit
 )
 

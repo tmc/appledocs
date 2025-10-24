@@ -9,10 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in Collaboration
+	Bool                   = _undefined // referenced in Collaboration
 	CSIdentityAuthorityRef = _undefined // referenced in Collaboration
-	SecCertificateRef = _undefined // referenced in Collaboration
-	UUID = _undefined // referenced in Collaboration
+	SecCertificateRef      = _undefined // referenced in Collaboration
+	UUID                   = _undefined // referenced in Collaboration
 )
-
-

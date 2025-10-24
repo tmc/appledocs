@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class AVAssetDownloadTask */
+
+
+/* debug [class_header]: Header for AVAssetDownloadTask */
 // The class instance for the [AssetDownloadTask] class.
 var (
 	AssetDownloadTaskClass     _AssetDownloadTaskClass
@@ -26,44 +29,33 @@ func getAssetDownloadTaskClass() _AssetDownloadTaskClass {
 type _AssetDownloadTaskClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AssetDownloadTask */
 // An interface definition for the [AssetDownloadTask] class.
 type IAssetDownloadTask interface {
 	IURLSessionTask
+	
+/* debug [class_interface_properties]: Properties for AssetDownloadTask */
 	// properties:
-	DestinationURL() objc.IObject /* cross-framework: URL */
-	SetDestinationURL(value objc.IObject /* cross-framework: URL */)
-	LoadedTimeRanges() objc.IObject /* cross-framework: Value */
-	SetLoadedTimeRanges(value objc.IObject /* cross-framework: Value */)
-	Options() objc.IObject /* cross-framework: NSString */
-	SetOptions(value objc.IObject /* cross-framework: NSString */)
-	UrlAsset() IAVURLAsset
-	SetUrlAsset(value IAVURLAsset)
+	LoadedTimeRanges() []foundation.Value
+	Options() foundation.IDictionary
+	URLAsset() IAVURLAsset
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AssetDownloadTask */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A session used to download HTTP Live Streaming assets.
-//
-// This class is a subclass of that you use to download HTTP Live Streaming assets. You create instances of this class by calling on the download session.
+/* debug [class_interface]: End interface */
 
 
-// A session used to download HTTP Live Streaming assets.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask
-type AssetDownloadTask struct {
-	URLSessionTask
-}
 
-// AssetDownloadTaskFrom constructs a [AssetDownloadTask] from an unsafe.Pointer.
-//
-// A session used to download HTTP Live Streaming assets.
-func AssetDownloadTaskFrom(ptr unsafe.Pointer) AssetDownloadTask {
-	return AssetDownloadTask{
-		URLSessionTask: URLSessionTaskFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for AssetDownloadTask */
 // Alloc allocates a new instance without initialization.
 func (ac _AssetDownloadTaskClass) Alloc() AssetDownloadTask {
 	rv := objc.Send[AssetDownloadTask](objc.ID(ac.class), objc.Sel("alloc"))
@@ -71,7 +63,6 @@ func (ac _AssetDownloadTaskClass) Alloc() AssetDownloadTask {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AssetDownloadTaskClass) New() AssetDownloadTask {
 	rv := objc.Send[AssetDownloadTask](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,83 +85,89 @@ func (a_ AssetDownloadTask) Autorelease() AssetDownloadTask {
 func NewAssetDownloadTask() AssetDownloadTask {
 	return getAssetDownloadTaskClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The local file URL to where the task downloads the asset.
+/* debug [class_struct]: Struct for AssetDownloadTask */
+// A session used to download HTTP Live Streaming assets.
+//
+// This class is a subclass of that you use to download HTTP Live Streaming assets. You create instances of this class by calling on the download session.
+
+
+// A session used to download HTTP Live Streaming assets.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
-func (a_ AssetDownloadTask) DestinationURL() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](a_.ID, objc.Sel("destinationURL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask
+type AssetDownloadTask struct {
+	URLSessionTask
 }
 
-
-// The local file URL to where the task downloads the asset.
+// AssetDownloadTaskFrom constructs a [AssetDownloadTask] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/destinationurl
-func (a_ AssetDownloadTask) SetDestinationURL(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDestinationURL:"), value)
+// A session used to download HTTP Live Streaming assets.
+func AssetDownloadTaskFrom(ptr unsafe.Pointer) AssetDownloadTask {
+	return AssetDownloadTask{
+		URLSessionTask: URLSessionTaskFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
+
+
+/* debug [class_init_methods]: Init methods for AssetDownloadTask *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AssetDownloadTask */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AssetDownloadTask */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AssetDownloadTask */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AssetDownloadTask */
 
 // The time ranges of the downloaded media that are ready for playback.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
-func (a_ AssetDownloadTask) LoadedTimeRanges() objc.IObject /* cross-framework: Value */ {
-	rv := objc.Send[foundation.Value](a_.ID, objc.Sel("loadedTimeRanges"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask/loadedTimeRanges
+func (a_ AssetDownloadTask) LoadedTimeRanges() []foundation.Value {
+	rv := objc.Send[[]foundation.Value](a_.ID, objc.Sel("loadedTimeRanges"))
 	return rv
-}
-
-
-// The time ranges of the downloaded media that are ready for playback.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/loadedtimeranges
-func (a_ AssetDownloadTask) SetLoadedTimeRanges(value objc.IObject /* cross-framework: Value */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLoadedTimeRanges:"), value)
-}
+}/* debug [instance_properties/getter]: loadedTimeRanges */
 
 
 // The configuration options for the task.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
-func (a_ AssetDownloadTask) Options() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("options"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask/options
+func (a_ AssetDownloadTask) Options() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](a_.ID, objc.Sel("options"))
 	return rv
-}
-
-
-// The configuration options for the task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/options
-func (a_ AssetDownloadTask) SetOptions(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOptions:"), value)
-}
+}/* debug [instance_properties/getter]: options */
 
 
 // The asset that this task downloads.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/urlasset
-func (a_ AssetDownloadTask) UrlAsset() IAVURLAsset {
-	rv := objc.Send[URLAsset](a_.ID, objc.Sel("urlAsset"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetDownloadTask/urlAsset
+func (a_ AssetDownloadTask) URLAsset() IAVURLAsset {
+	rv := objc.Send[URLAsset](a_.ID, objc.Sel("URLAsset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: URLAsset */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The asset that this task downloads.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassetdownloadtask/urlasset
-func (a_ AssetDownloadTask) SetUrlAsset(value IAVURLAsset) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setUrlAsset:"), value)
-}
-
+/* debug [class.gen.go]: End class AVAssetDownloadTask */
 
 

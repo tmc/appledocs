@@ -6,9 +6,17 @@ import "github.com/ebitengine/purego/objc"
 
 // ICDeviceBrowserDelegateProtocol is the ICDeviceBrowserDelegate protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to ICDeviceBrowserDelegate.
 var ICDeviceBrowserDelegateProtocol *objc.Protocol
 
 func init() {
 	ICDeviceBrowserDelegateProtocol = objc.GetProtocol("ICDeviceBrowserDelegate")
 }
+

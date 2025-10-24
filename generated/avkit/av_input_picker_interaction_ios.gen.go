@@ -37,11 +37,11 @@ func (i_ InputPickerInteraction) Present() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/audioSession
-func (i_ InputPickerInteraction) AudioSession() objc.IObject /* cross-framework: AudioSession */ {
+func (i_ InputPickerInteraction) AudioSession() avfaudio.AudioSession {
 	rv := objc.Send[avfaudio.AudioSession](i_.ID, objc.Sel("audioSession"))
 	return rv
 }
-func (i_ InputPickerInteraction) SetAudioSession(value objc.IObject /* cross-framework: AudioSession */) {
+func (i_ InputPickerInteraction) SetAudioSession(value avfaudio.AudioSession) {
 	i_.ID.Send(objc.RegisterName("setAudioSession:"), value)
 }
 
@@ -49,11 +49,11 @@ func (i_ InputPickerInteraction) SetAudioSession(value objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVInputPickerInteraction/delegate-swift.property
-func (i_ InputPickerInteraction) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("delegate"))
+func (i_ InputPickerInteraction) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (i_ InputPickerInteraction) SetDelegate(value objc.ID) {
+func (i_ InputPickerInteraction) SetDelegate(value unsafe.Pointer) {
 	i_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 

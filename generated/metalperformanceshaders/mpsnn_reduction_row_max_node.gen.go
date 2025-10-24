@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNReductionRowMaxNode */
+
+
+/* debug [class_header]: Header for MPSNNReductionRowMaxNode */
 // The class instance for the [ReductionRowMaxNode] class.
 var (
 	ReductionRowMaxNodeClass     _ReductionRowMaxNodeClass
@@ -25,29 +29,30 @@ func getReductionRowMaxNodeClass() _ReductionRowMaxNodeClass {
 type _ReductionRowMaxNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ReductionRowMaxNode */
 // An interface definition for the [ReductionRowMaxNode] class.
 type IReductionRowMaxNode interface {
 	IUnaryReductionNode
+	
+/* debug [class_interface_properties]: Properties for ReductionRowMaxNode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ReductionRowMaxNode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionRowMaxNode
-type ReductionRowMaxNode struct {
-	UnaryReductionNode
-}
-
-// ReductionRowMaxNodeFrom constructs a [ReductionRowMaxNode] from an unsafe.Pointer.
-func ReductionRowMaxNodeFrom(ptr unsafe.Pointer) ReductionRowMaxNode {
-	return ReductionRowMaxNode{
-		UnaryReductionNode: UnaryReductionNodeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ReductionRowMaxNode */
 // Alloc allocates a new instance without initialization.
 func (rc _ReductionRowMaxNodeClass) Alloc() ReductionRowMaxNode {
 	rv := objc.Send[ReductionRowMaxNode](objc.ID(rc.class), objc.Sel("alloc"))
@@ -55,7 +60,6 @@ func (rc _ReductionRowMaxNodeClass) Alloc() ReductionRowMaxNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _ReductionRowMaxNodeClass) New() ReductionRowMaxNode {
 	rv := objc.Send[ReductionRowMaxNode](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -78,7 +82,53 @@ func (r_ ReductionRowMaxNode) Autorelease() ReductionRowMaxNode {
 func NewReductionRowMaxNode() ReductionRowMaxNode {
 	return getReductionRowMaxNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for ReductionRowMaxNode */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNReductionRowMaxNode
+type ReductionRowMaxNode struct {
+	UnaryReductionNode
+}
+
+// ReductionRowMaxNodeFrom constructs a [ReductionRowMaxNode] from an unsafe.Pointer.
+func ReductionRowMaxNodeFrom(ptr unsafe.Pointer) ReductionRowMaxNode {
+	return ReductionRowMaxNode{
+		UnaryReductionNode: UnaryReductionNodeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ReductionRowMaxNode *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ReductionRowMaxNode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ReductionRowMaxNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ReductionRowMaxNode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ReductionRowMaxNode */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNNReductionRowMaxNode */
 
 
 

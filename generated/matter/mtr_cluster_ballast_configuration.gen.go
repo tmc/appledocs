@@ -33,8 +33,6 @@ type IMTRClusterBallastConfiguration interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterBallastConfiguration
 type MTRClusterBallastConfiguration struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterBallastConfiguration) Autorelease() MTRClusterBallastConfigur
 func NewMTRClusterBallastConfiguration() MTRClusterBallastConfiguration {
 	return getMTRClusterBallastConfigurationClass().New()
 }
-
-
-
-

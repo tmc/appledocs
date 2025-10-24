@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class CABTLEMIDIWindowController */
+
+
+/* debug [class_header]: Header for CABTLEMIDIWindowController */
 // The class instance for the [BTLEMIDIWindowController] class.
 var (
 	BTLEMIDIWindowControllerClass     _BTLEMIDIWindowControllerClass
@@ -26,34 +30,30 @@ func getBTLEMIDIWindowControllerClass() _BTLEMIDIWindowControllerClass {
 type _BTLEMIDIWindowControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for BTLEMIDIWindowController */
 // An interface definition for the [BTLEMIDIWindowController] class.
 type IBTLEMIDIWindowController interface {
 	appkit.IWindowController
+	
+/* debug [class_interface_properties]: Properties for BTLEMIDIWindowController */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for BTLEMIDIWindowController */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A window controller that displays nearby Bluetooth-based MIDI peripherals.
 
 
-// A window controller that displays nearby Bluetooth-based MIDI peripherals.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTLEMIDIWindowController
-type BTLEMIDIWindowController struct {
-	appkit.WindowController
-}
-
-// BTLEMIDIWindowControllerFrom constructs a [BTLEMIDIWindowController] from an unsafe.Pointer.
-//
-// A window controller that displays nearby Bluetooth-based MIDI peripherals.
-func BTLEMIDIWindowControllerFrom(ptr unsafe.Pointer) BTLEMIDIWindowController {
-	return BTLEMIDIWindowController{
-		WindowController: appkit.WindowControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for BTLEMIDIWindowController */
 // Alloc allocates a new instance without initialization.
 func (bc _BTLEMIDIWindowControllerClass) Alloc() BTLEMIDIWindowController {
 	rv := objc.Send[BTLEMIDIWindowController](objc.ID(bc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (bc _BTLEMIDIWindowControllerClass) Alloc() BTLEMIDIWindowController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BTLEMIDIWindowControllerClass) New() BTLEMIDIWindowController {
 	rv := objc.Send[BTLEMIDIWindowController](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,7 +83,58 @@ func (b_ BTLEMIDIWindowController) Autorelease() BTLEMIDIWindowController {
 func NewBTLEMIDIWindowController() BTLEMIDIWindowController {
 	return getBTLEMIDIWindowControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for BTLEMIDIWindowController */
+// A window controller that displays nearby Bluetooth-based MIDI peripherals.
+
+
+// A window controller that displays nearby Bluetooth-based MIDI peripherals.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreAudioKit/CABTLEMIDIWindowController
+type BTLEMIDIWindowController struct {
+	appkit.WindowController
+}
+
+// BTLEMIDIWindowControllerFrom constructs a [BTLEMIDIWindowController] from an unsafe.Pointer.
+//
+// A window controller that displays nearby Bluetooth-based MIDI peripherals.
+func BTLEMIDIWindowControllerFrom(ptr unsafe.Pointer) BTLEMIDIWindowController {
+	return BTLEMIDIWindowController{
+		WindowController: appkit.WindowControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for BTLEMIDIWindowController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for BTLEMIDIWindowController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for BTLEMIDIWindowController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for BTLEMIDIWindowController */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for BTLEMIDIWindowController */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CABTLEMIDIWindowController */
 
 
 

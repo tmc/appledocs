@@ -9,10 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	ArrayRef = _undefined // referenced in ServiceManagement
+	ArrayRef      = _undefined // referenced in ServiceManagement
 	DictionaryRef = _undefined // referenced in ServiceManagement
-	ErrorRef = _undefined // referenced in ServiceManagement
-	StringRef = _undefined // referenced in ServiceManagement
+	StringRef     = _undefined // referenced in ServiceManagement
 )
-
-

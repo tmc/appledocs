@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRMediaPlaybackClusterStopPlaybackParams] class.
@@ -37,8 +37,6 @@ type IMTRMediaPlaybackClusterStopPlaybackParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterStopPlaybackParams
@@ -84,8 +82,6 @@ func NewMTRMediaPlaybackClusterStopPlaybackParams() MTRMediaPlaybackClusterStopP
 	return getMTRMediaPlaybackClusterStopPlaybackParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterStopPlaybackParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -93,13 +89,11 @@ func (m_ MTRMediaPlaybackClusterStopPlaybackParams) ServerSideProcessingTimeout(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/timedinvoketimeoutms
@@ -108,12 +102,8 @@ func (m_ MTRMediaPlaybackClusterStopPlaybackParams) TimedInvokeTimeoutMs() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterstopplaybackparams/timedinvoketimeoutms
 func (m_ MTRMediaPlaybackClusterStopPlaybackParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

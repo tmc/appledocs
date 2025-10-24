@@ -19,3 +19,4 @@ var jitterOffsetYProtocol *objc.Protocol
 func init() {
 	jitterOffsetYProtocol = objc.GetProtocol("jitterOffsetY")
 }
+

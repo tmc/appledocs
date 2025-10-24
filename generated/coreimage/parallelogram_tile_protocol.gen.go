@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // ParallelogramTileProtocol is the CIParallelogramTile protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIParallelogramTile.
 var ParallelogramTileProtocol *objc.Protocol
 
 func init() {
 	ParallelogramTileProtocol = objc.GetProtocol("CIParallelogramTile")
 }
+

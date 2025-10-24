@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureMultiCamSession */
+
+
+/* debug [class_header]: Header for AVCaptureMultiCamSession */
 // The class instance for the [CaptureMultiCamSession] class.
 var (
 	CaptureMultiCamSessionClass     _CaptureMultiCamSessionClass
@@ -25,42 +29,32 @@ func getCaptureMultiCamSessionClass() _CaptureMultiCamSessionClass {
 type _CaptureMultiCamSessionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureMultiCamSession */
 // An interface definition for the [CaptureMultiCamSession] class.
 type ICaptureMultiCamSession interface {
 	ICaptureSession
+	
+/* debug [class_interface_properties]: Properties for CaptureMultiCamSession */
 	// properties:
 	ActiveFormat() IAVCaptureDeviceFormat
 	SetActiveFormat(value IAVCaptureDeviceFormat)
-	HardwareCost() float32
-	SetHardwareCost(value float32)
-	SystemPressureCost() float32
-	SetSystemPressureCost(value float32)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureMultiCamSession */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A capture session that supports simultaneous capture from multiple inputs of the same media type.
-//
-// The session preset for a multicamera session is always . Set each capture device’s value to the desired quality of service. You can dynamically enable and disable this session’s individual camera inputs without interrupting capture preview. To stop an individual camera, disable all of its connections or connected ports. The camera then stops streaming data to save power and bandwidth. Other inputs that are streaming data through the session are unaffected.
+/* debug [class_interface]: End interface */
 
 
-// A capture session that supports simultaneous capture from multiple inputs of the same media type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMultiCamSession
-type CaptureMultiCamSession struct {
-	CaptureSession
-}
 
-// CaptureMultiCamSessionFrom constructs a [CaptureMultiCamSession] from an unsafe.Pointer.
-//
-// A capture session that supports simultaneous capture from multiple inputs of the same media type.
-func CaptureMultiCamSessionFrom(ptr unsafe.Pointer) CaptureMultiCamSession {
-	return CaptureMultiCamSession{
-		CaptureSession: CaptureSessionFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CaptureMultiCamSession */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureMultiCamSessionClass) Alloc() CaptureMultiCamSession {
 	rv := objc.Send[CaptureMultiCamSession](objc.ID(cc.class), objc.Sel("alloc"))
@@ -68,7 +62,6 @@ func (cc _CaptureMultiCamSessionClass) Alloc() CaptureMultiCamSession {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureMultiCamSessionClass) New() CaptureMultiCamSession {
 	rv := objc.Send[CaptureMultiCamSession](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,8 +84,65 @@ func (c_ CaptureMultiCamSession) Autorelease() CaptureMultiCamSession {
 func NewCaptureMultiCamSession() CaptureMultiCamSession {
 	return getCaptureMultiCamSessionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CaptureMultiCamSession */
+// A capture session that supports simultaneous capture from multiple inputs of the same media type.
+//
+// The session preset for a multicamera session is always . Set each capture device’s value to the desired quality of service. You can dynamically enable and disable this session’s individual camera inputs without interrupting capture preview. To stop an individual camera, disable all of its connections or connected ports. The camera then stops streaming data to save power and bandwidth. Other inputs that are streaming data through the session are unaffected.
+
+
+// A capture session that supports simultaneous capture from multiple inputs of the same media type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMultiCamSession
+type CaptureMultiCamSession struct {
+	CaptureSession
+}
+
+// CaptureMultiCamSessionFrom constructs a [CaptureMultiCamSession] from an unsafe.Pointer.
+//
+// A capture session that supports simultaneous capture from multiple inputs of the same media type.
+func CaptureMultiCamSessionFrom(ptr unsafe.Pointer) CaptureMultiCamSession {
+	return CaptureMultiCamSession{
+		CaptureSession: CaptureSessionFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CaptureMultiCamSession *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CaptureMultiCamSession */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CaptureMultiCamSession */
+
+// A Boolean value that indicates whether this device supports multi-camera sessions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureMultiCamSession/isMultiCamSupported
+func (cc _CaptureMultiCamSessionClass) MultiCamSupported() bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("multiCamSupported"))
+	return rv
+}/* debug [class_properties_class/property]: multiCamSupported */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CaptureMultiCamSession */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureMultiCamSession */
 
 // The capture format in use by the device.
 //
@@ -101,7 +151,7 @@ func NewCaptureMultiCamSession() CaptureMultiCamSession {
 func (c_ CaptureMultiCamSession) ActiveFormat() IAVCaptureDeviceFormat {
 	rv := objc.Send[CaptureDeviceFormat](c_.ID, objc.Sel("activeFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: activeFormat */
 
 
 // The capture format in use by the device.
@@ -110,45 +160,11 @@ func (c_ CaptureMultiCamSession) ActiveFormat() IAVCaptureDeviceFormat {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activeformat
 func (c_ CaptureMultiCamSession) SetActiveFormat(value IAVCaptureDeviceFormat) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveFormat:"), value)
-}
+}/* debug [instance_properties/setter]: activeFormat */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// A value that indicates the percentage of the session’s available hardware budget currently in use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/hardwarecost
-func (c_ CaptureMultiCamSession) HardwareCost() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("hardwareCost"))
-	return rv
-}
-
-
-// A value that indicates the percentage of the session’s available hardware budget currently in use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/hardwarecost
-func (c_ CaptureMultiCamSession) SetHardwareCost(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setHardwareCost:"), value)
-}
-
-
-// A value that indicates the system pressure cost of the current session configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/systempressurecost
-func (c_ CaptureMultiCamSession) SystemPressureCost() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("systemPressureCost"))
-	return rv
-}
-
-
-// A value that indicates the system pressure cost of the current session configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturemulticamsession/systempressurecost
-func (c_ CaptureMultiCamSession) SetSystemPressureCost(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSystemPressureCost:"), value)
-}
-
+/* debug [class.gen.go]: End class AVCaptureMultiCamSession */
 
 

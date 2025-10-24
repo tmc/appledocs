@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class authGen */
+
+
+/* debug [class_header]: Header for authGen */
 // The class instance for the [authGen] class.
 var (
 	AuthGenClass     _authGenClass
@@ -26,27 +30,30 @@ func getauthGenClass() _authGenClass {
 type _authGenClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for authGen */
 // An interface definition for the [authGen] class.
 type IauthGen interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for authGen */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for authGen */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/authGen
-type authGen struct {
-	objectivec.Object
-}
-
-// authGenFrom constructs a [authGen] from an unsafe.Pointer.
-func authGenFrom(ptr unsafe.Pointer) authGen {
-	return authGen{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for authGen */
 // Alloc allocates a new instance without initialization.
 func (ac _authGenClass) Alloc() authGen {
 	rv := objc.Send[authGen](objc.ID(ac.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (ac _authGenClass) Alloc() authGen {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _authGenClass) New() authGen {
 	rv := objc.Send[authGen](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (a_ authGen) Autorelease() authGen {
 func NewauthGen() authGen {
 	return getauthGenClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for authGen */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/authGen
+type authGen struct {
+	objectivec.Object
+}
+
+// authGenFrom constructs a [authGen] from an unsafe.Pointer.
+func authGenFrom(ptr unsafe.Pointer) authGen {
+	return authGen{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for authGen *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for authGen */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for authGen */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for authGen */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for authGen */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class authGen */
 
 
 

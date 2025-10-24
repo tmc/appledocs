@@ -15,6 +15,7 @@ func ExampleNewInputPickerInteraction() {
 	_ = avkit.NewInputPickerInteraction()
 	// Output:
 }
+
 // ExampleNewInputPickerInteractionWithAudioSession demonstrates how to create a InputPickerInteraction instance using NewInputPickerInteractionWithAudioSession.
 // Creates a new instance of AVInputPickerInteraction using a specific  .
 func ExampleNewInputPickerInteractionWithAudioSession() {

@@ -15,3 +15,4 @@ var HapticFeedbackPerformerProtocol *objc.Protocol
 func init() {
 	HapticFeedbackPerformerProtocol = objc.GetProtocol("NSHapticFeedbackPerformer")
 }
+

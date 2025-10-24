@@ -15,3 +15,4 @@ var browserColumnConfigurationDidChangeProtocol *objc.Protocol
 func init() {
 	browserColumnConfigurationDidChangeProtocol = objc.GetProtocol("browserColumnConfigurationDidChange:")
 }
+

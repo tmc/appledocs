@@ -15,3 +15,4 @@ var findBarViewDidChangeHeightProtocol *objc.Protocol
 func init() {
 	findBarViewDidChangeHeightProtocol = objc.GetProtocol("findBarViewDidChangeHeight")
 }
+

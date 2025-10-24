@@ -15,3 +15,4 @@ var setXattrNamedProtocol *objc.Protocol
 func init() {
 	setXattrNamedProtocol = objc.GetProtocol("setXattrNamed:")
 }
+

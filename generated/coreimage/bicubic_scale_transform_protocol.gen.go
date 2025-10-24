@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // BicubicScaleTransformProtocol is the CIBicubicScaleTransform protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIBicubicScaleTransform.
 var BicubicScaleTransformProtocol *objc.Protocol
 
 func init() {
 	BicubicScaleTransformProtocol = objc.GetProtocol("CIBicubicScaleTransform")
 }
+

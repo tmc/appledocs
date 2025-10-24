@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureDeviceDiscoverySession */
+
+
+/* debug [class_header]: Header for AVCaptureDeviceDiscoverySession */
 // The class instance for the [CaptureDeviceDiscoverySession] class.
 var (
 	CaptureDeviceDiscoverySessionClass     _CaptureDeviceDiscoverySessionClass
@@ -27,35 +30,31 @@ func getCaptureDeviceDiscoverySessionClass() _CaptureDeviceDiscoverySessionClass
 type _CaptureDeviceDiscoverySessionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureDeviceDiscoverySession */
 // An interface definition for the [CaptureDeviceDiscoverySession] class.
 type ICaptureDeviceDiscoverySession interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CaptureDeviceDiscoverySession */
 	// properties:
-	Devices() []ICaptureDevice
+	Devices() []CaptureDevice
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureDeviceDiscoverySession */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that finds capture devices that match specific search criteria.
-//
-// After creating a device discovery session, query its property to find a device to use for capture. You can also key-value observe this property to monitor changes to the list of available devices.
+/* debug [class_interface]: End interface */
 
 
-// An object that finds capture devices that match specific search criteria.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession
-type CaptureDeviceDiscoverySession struct {
-	objectivec.Object
-}
 
-// CaptureDeviceDiscoverySessionFrom constructs a [CaptureDeviceDiscoverySession] from an unsafe.Pointer.
-//
-// An object that finds capture devices that match specific search criteria.
-func CaptureDeviceDiscoverySessionFrom(ptr unsafe.Pointer) CaptureDeviceDiscoverySession {
-	return CaptureDeviceDiscoverySession{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CaptureDeviceDiscoverySession */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureDeviceDiscoverySessionClass) Alloc() CaptureDeviceDiscoverySession {
 	rv := objc.Send[CaptureDeviceDiscoverySession](objc.ID(cc.class), objc.Sel("alloc"))
@@ -63,7 +62,6 @@ func (cc _CaptureDeviceDiscoverySessionClass) Alloc() CaptureDeviceDiscoverySess
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureDeviceDiscoverySessionClass) New() CaptureDeviceDiscoverySession {
 	rv := objc.Send[CaptureDeviceDiscoverySession](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,37 +84,88 @@ func (c_ CaptureDeviceDiscoverySession) Autorelease() CaptureDeviceDiscoverySess
 func NewCaptureDeviceDiscoverySession() CaptureDeviceDiscoverySession {
 	return getCaptureDeviceDiscoverySessionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CaptureDeviceDiscoverySession */
+// An object that finds capture devices that match specific search criteria.
+//
+// After creating a device discovery session, query its property to find a device to use for capture. You can also key-value observe this property to monitor changes to the list of available devices.
+
+
+// An object that finds capture devices that match specific search criteria.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession
+type CaptureDeviceDiscoverySession struct {
+	objectivec.Object
+}
+
+// CaptureDeviceDiscoverySessionFrom constructs a [CaptureDeviceDiscoverySession] from an unsafe.Pointer.
+//
+// An object that finds capture devices that match specific search criteria.
+func CaptureDeviceDiscoverySessionFrom(ptr unsafe.Pointer) CaptureDeviceDiscoverySession {
+	return CaptureDeviceDiscoverySession{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CaptureDeviceDiscoverySession */
 
 // Creates a discovery session that finds devices that match the specified criteria.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
-func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType /* not a class type */, position CaptureDevicePosition) CaptureDeviceDiscoverySession {
+func NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType /* typedef */, position CaptureDevicePosition) CaptureDeviceDiscoverySession {
 	rv := objc.Send[CaptureDeviceDiscoverySession](objc.ID(getCaptureDeviceDiscoverySessionClass().class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCaptureDeviceDiscoverySessionWithDeviceTypesMediaTypePosition */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for CaptureDeviceDiscoverySession */
 
 // Creates a discovery session that finds devices that match the specified criteria.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/init(deviceTypes:mediaType:position:)
-func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType /* not a class type */, position CaptureDevicePosition) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
+func (cc _CaptureDeviceDiscoverySessionClass) DiscoverySessionWithDeviceTypesMediaTypePosition(deviceTypes []string, mediaType MediaType /* typedef */, position CaptureDevicePosition) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("discoverySessionWithDeviceTypes:mediaType:position:"), deviceTypes, mediaType, position)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DiscoverySessionWithDeviceTypesMediaTypePosition) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CaptureDeviceDiscoverySession */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CaptureDeviceDiscoverySession */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureDeviceDiscoverySession */
 
 // A list of devices that match the search criteria of the discovery session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureDevice/DiscoverySession/devices
-func (c_ CaptureDeviceDiscoverySession) Devices() []ICaptureDevice {
+func (c_ CaptureDeviceDiscoverySession) Devices() []CaptureDevice {
 	rv := objc.Send[[]CaptureDevice](c_.ID, objc.Sel("devices"))
 	return rv
-}
+}/* debug [instance_properties/getter]: devices */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVCaptureDeviceDiscoverySession */
 
 

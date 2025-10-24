@@ -14,8 +14,8 @@ var _ = classkit.NewSContext
 func ExampleNewSContextWithTypeIdentifierTitle() {
 	_ = classkit.NewSContextWithTypeIdentifierTitle(
 		classkit.SContextType{}, // type SContextType
-		"identifier", // identifier string
-		"title", // title string
+		"identifier",            // identifier string
+		"title",                 // title string
 	)
 	// Output:
 }

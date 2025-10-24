@@ -35,7 +35,6 @@ type IINCallDestinationTypeResolutionResult interface {
 //
 // You return an object when resolving parameters containing an value. Use the creation method that best reflects your ability to resolve the parameter successfully. For additional resolution operators, see .
 
-
 // A resolution result for the destination type of a call.
 //
 // [Full Topic]
@@ -83,7 +82,3 @@ func (i_ INCallDestinationTypeResolutionResult) Autorelease() INCallDestinationT
 func NewINCallDestinationTypeResolutionResult() INCallDestinationTypeResolutionResult {
 	return getINCallDestinationTypeResolutionResultClass().New()
 }
-
-
-
-

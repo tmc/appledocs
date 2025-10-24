@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSFileProviderKnownFolderLocations */
+
+
+/* debug [class_header]: Header for NSFileProviderKnownFolderLocations */
 // The class instance for the [FileProviderKnownFolderLocations] class.
 var (
 	FileProviderKnownFolderLocationsClass     _FileProviderKnownFolderLocationsClass
@@ -26,38 +30,36 @@ func getFileProviderKnownFolderLocationsClass() _FileProviderKnownFolderLocation
 type _FileProviderKnownFolderLocationsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FileProviderKnownFolderLocations */
 // An interface definition for the [FileProviderKnownFolderLocations] class.
 type IFileProviderKnownFolderLocations interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for FileProviderKnownFolderLocations */
 	// properties:
-	DesktopLocation() objc.IObject /* cross-framework: FileProviderKnownFolderLocation */
-	SetDesktopLocation(value objc.IObject /* cross-framework: FileProviderKnownFolderLocation */)
-	DocumentsLocation() objc.IObject /* cross-framework: FileProviderKnownFolderLocation */
-	SetDocumentsLocation(value objc.IObject /* cross-framework: FileProviderKnownFolderLocation */)
+	DesktopLocation() IFileProviderKnownFolderLocation
+	SetDesktopLocation(value IFileProviderKnownFolderLocation)
+	DocumentsLocation() IFileProviderKnownFolderLocation
+	SetDocumentsLocation(value IFileProviderKnownFolderLocation)
 	ShouldCreateBinaryCompatibilitySymlink() bool
 	SetShouldCreateBinaryCompatibilitySymlink(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FileProviderKnownFolderLocations */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A class for working with known-folder locations.
 
 
-// A class for working with known-folder locations.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations
-type FileProviderKnownFolderLocations struct {
-	objectivec.Object
-}
-
-// FileProviderKnownFolderLocationsFrom constructs a [FileProviderKnownFolderLocations] from an unsafe.Pointer.
-//
-// A class for working with known-folder locations.
-func FileProviderKnownFolderLocationsFrom(ptr unsafe.Pointer) FileProviderKnownFolderLocations {
-	return FileProviderKnownFolderLocations{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for FileProviderKnownFolderLocations */
 // Alloc allocates a new instance without initialization.
 func (fc _FileProviderKnownFolderLocationsClass) Alloc() FileProviderKnownFolderLocations {
 	rv := objc.Send[FileProviderKnownFolderLocations](objc.ID(fc.class), objc.Sel("alloc"))
@@ -65,7 +67,6 @@ func (fc _FileProviderKnownFolderLocationsClass) Alloc() FileProviderKnownFolder
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileProviderKnownFolderLocationsClass) New() FileProviderKnownFolderLocations {
 	rv := objc.Send[FileProviderKnownFolderLocations](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,52 +89,101 @@ func (f_ FileProviderKnownFolderLocations) Autorelease() FileProviderKnownFolder
 func NewFileProviderKnownFolderLocations() FileProviderKnownFolderLocations {
 	return getFileProviderKnownFolderLocationsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for FileProviderKnownFolderLocations */
+// A class for working with known-folder locations.
+
+
+// A class for working with known-folder locations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations
+type FileProviderKnownFolderLocations struct {
+	objectivec.Object
+}
+
+// FileProviderKnownFolderLocationsFrom constructs a [FileProviderKnownFolderLocations] from an unsafe.Pointer.
+//
+// A class for working with known-folder locations.
+func FileProviderKnownFolderLocationsFrom(ptr unsafe.Pointer) FileProviderKnownFolderLocations {
+	return FileProviderKnownFolderLocations{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FileProviderKnownFolderLocations */
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for FileProviderKnownFolderLocations */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FileProviderKnownFolderLocations */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FileProviderKnownFolderLocations */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FileProviderKnownFolderLocations */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
-func (f_ FileProviderKnownFolderLocations) DesktopLocation() objc.IObject /* cross-framework: FileProviderKnownFolderLocation */ {
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/desktopLocation
+func (f_ FileProviderKnownFolderLocations) DesktopLocation() IFileProviderKnownFolderLocation {
 	rv := objc.Send[FileProviderKnownFolderLocation](f_.ID, objc.Sel("desktopLocation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: desktopLocation */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/desktoplocation
-func (f_ FileProviderKnownFolderLocations) SetDesktopLocation(value objc.IObject /* cross-framework: FileProviderKnownFolderLocation */) {
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/desktopLocation
+func (f_ FileProviderKnownFolderLocations) SetDesktopLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDesktopLocation:"), value)
-}
+}/* debug [instance_properties/setter]: desktopLocation */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
-func (f_ FileProviderKnownFolderLocations) DocumentsLocation() objc.IObject /* cross-framework: FileProviderKnownFolderLocation */ {
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/documentsLocation
+func (f_ FileProviderKnownFolderLocations) DocumentsLocation() IFileProviderKnownFolderLocation {
 	rv := objc.Send[FileProviderKnownFolderLocation](f_.ID, objc.Sel("documentsLocation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: documentsLocation */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/documentslocation
-func (f_ FileProviderKnownFolderLocations) SetDocumentsLocation(value objc.IObject /* cross-framework: FileProviderKnownFolderLocation */) {
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/documentsLocation
+func (f_ FileProviderKnownFolderLocations) SetDocumentsLocation(value IFileProviderKnownFolderLocation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDocumentsLocation:"), value)
-}
+}/* debug [instance_properties/setter]: documentsLocation */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/shouldcreatebinarycompatibilitysymlink
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/shouldCreateBinaryCompatibilitySymlink
 func (f_ FileProviderKnownFolderLocations) ShouldCreateBinaryCompatibilitySymlink() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("shouldCreateBinaryCompatibilitySymlink"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shouldCreateBinaryCompatibilitySymlink */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderknownfolderlocations/shouldcreatebinarycompatibilitysymlink
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderKnownFolderLocations/shouldCreateBinaryCompatibilitySymlink
 func (f_ FileProviderKnownFolderLocations) SetShouldCreateBinaryCompatibilitySymlink(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setShouldCreateBinaryCompatibilitySymlink:"), value)
-}
+}/* debug [instance_properties/setter]: shouldCreateBinaryCompatibilitySymlink */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSFileProviderKnownFolderLocations */
 
 

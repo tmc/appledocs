@@ -17,13 +17,13 @@ func ExampleNewAuthenticationViewWithContext() {
 	)
 	// Output:
 }
+
 // ExampleNewAuthenticationViewWithContextControlSize demonstrates how to create a AuthenticationView instance using NewAuthenticationViewWithContextControlSize.
 // Creates a new authentication icon that reflects the current authentication state,   using a specified size.
 func ExampleNewAuthenticationViewWithContextControlSize() {
 	_ = localauthenticationembeddedui.NewAuthenticationViewWithContextControlSize(
-		localauthenticationembeddedui.Context{}, // context Context
+		localauthenticationembeddedui.Context{},     // context Context
 		localauthenticationembeddedui.ControlSize{}, // controlSize ControlSize
 	)
 	// Output:
 }
-

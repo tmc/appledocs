@@ -15,3 +15,4 @@ var scrollPageUpProtocol *objc.Protocol
 func init() {
 	scrollPageUpProtocol = objc.GetProtocol("scrollPageUp:")
 }
+

@@ -7,12 +7,12 @@ import "github.com/ebitengine/purego/objc"
 // updateFenceProtocol is the updateFence: protocol.
 //
 // Availability:
-//   - Mac Catalyst 14.0+
-//   - iOS 13.0+
-//   - iPadOS 13.0+
-//   - macOS 11.0+
-//   - tvOS 16.0+
-//   - visionOS 1.0+
+//   - Mac Catalyst 26.0+
+//   - iOS 26.0+
+//   - iPadOS 26.0+
+//   - macOS 26.0+
+//   - tvOS 26.0+
+//   - visionOS 26.0+
 //
 // Use this protocol when registering custom classes that conform to updateFence:.
 var updateFenceProtocol *objc.Protocol
@@ -20,3 +20,4 @@ var updateFenceProtocol *objc.Protocol
 func init() {
 	updateFenceProtocol = objc.GetProtocol("updateFence:")
 }
+

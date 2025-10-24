@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterMicrowaveOvenControl */
+
+
+/* debug [class_header]: Header for MTRClusterMicrowaveOvenControl */
 // The class instance for the [MTRClusterMicrowaveOvenControl] class.
 var (
 	MTRClusterMicrowaveOvenControlClass     _MTRClusterMicrowaveOvenControlClass
@@ -26,49 +30,30 @@ func getMTRClusterMicrowaveOvenControlClass() _MTRClusterMicrowaveOvenControlCla
 type _MTRClusterMicrowaveOvenControlClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterMicrowaveOvenControl */
 // An interface definition for the [MTRClusterMicrowaveOvenControl] class.
 type IMTRClusterMicrowaveOvenControl interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterMicrowaveOvenControl */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterMicrowaveOvenControl */
 	// methods:
-	AddMoreTimeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMicrowaveOvenControlClusterAddMoreTimeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeCookTimeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeMaxCookTimeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeMaxPowerWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeMinPowerWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributePowerSettingWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributePowerStepWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeWattRatingWithParams(params IMTRReadParams) foundation.IDictionary
-	SetCookingParametersWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMicrowaveOvenControlClusterSetCookingParametersParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	SetCookingParametersWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Microwave Oven Control Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
 
 
-// Cluster Microwave Oven Control Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl
-type MTRClusterMicrowaveOvenControl struct {
-	MTRGenericCluster
-}
-
-// MTRClusterMicrowaveOvenControlFrom constructs a [MTRClusterMicrowaveOvenControl] from an unsafe.Pointer.
-//
-// Cluster Microwave Oven Control Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
-func MTRClusterMicrowaveOvenControlFrom(ptr unsafe.Pointer) MTRClusterMicrowaveOvenControl {
-	return MTRClusterMicrowaveOvenControl{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterMicrowaveOvenControl */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterMicrowaveOvenControlClass) Alloc() MTRClusterMicrowaveOvenControl {
 	rv := objc.Send[MTRClusterMicrowaveOvenControl](objc.ID(mc.class), objc.Sel("alloc"))
@@ -76,7 +61,6 @@ func (mc _MTRClusterMicrowaveOvenControlClass) Alloc() MTRClusterMicrowaveOvenCo
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterMicrowaveOvenControlClass) New() MTRClusterMicrowaveOvenControl {
 	rv := objc.Send[MTRClusterMicrowaveOvenControl](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -99,8 +83,35 @@ func (m_ MTRClusterMicrowaveOvenControl) Autorelease() MTRClusterMicrowaveOvenCo
 func NewMTRClusterMicrowaveOvenControl() MTRClusterMicrowaveOvenControl {
 	return getMTRClusterMicrowaveOvenControlClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterMicrowaveOvenControl */
+// Cluster Microwave Oven Control Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
+
+
+// Cluster Microwave Oven Control Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl
+type MTRClusterMicrowaveOvenControl struct {
+	MTRGenericCluster
+}
+
+// MTRClusterMicrowaveOvenControlFrom constructs a [MTRClusterMicrowaveOvenControl] from an unsafe.Pointer.
+//
+// Cluster Microwave Oven Control Attributes and commands for configuring the microwave oven control, and reporting cooking stats.
+func MTRClusterMicrowaveOvenControlFrom(ptr unsafe.Pointer) MTRClusterMicrowaveOvenControl {
+	return MTRClusterMicrowaveOvenControl{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterMicrowaveOvenControl */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -111,124 +122,31 @@ func NewMTRClusterMicrowaveOvenControlWithDeviceEndpointIDQueue(device IMTRDevic
 	rv := objc.Send[MTRClusterMicrowaveOvenControl](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterMicrowaveOvenControlWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/addMoreTime(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterMicrowaveOvenControl) AddMoreTimeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMicrowaveOvenControlClusterAddMoreTimeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("addMoreTimeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class_methods]: Class methods for MTRClusterMicrowaveOvenControl */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterMicrowaveOvenControl */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeAttributeList(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterMicrowaveOvenControl */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeClusterRevision(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterMicrowaveOvenControl */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeCookTime(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeCookTimeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCookTimeWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeFeatureMap(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeMaxCookTime(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeMaxCookTimeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeMaxCookTimeWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeMaxPower(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeMaxPowerWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeMaxPowerWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeMinPower(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeMinPowerWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeMinPowerWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributePowerSetting(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributePowerSettingWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributePowerSettingWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributePowerStep(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributePowerStepWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributePowerStepWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/readAttributeWattRating(with:)
-func (m_ MTRClusterMicrowaveOvenControl) ReadAttributeWattRatingWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeWattRatingWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/setCookingParametersWith(_:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterMicrowaveOvenControl) SetCookingParametersWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRMicrowaveOvenControlClusterSetCookingParametersParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCookingParametersWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenControl/setCookingParametersWithExpectedValues(_:expectedValueInterval:completion:)
-func (m_ MTRClusterMicrowaveOvenControl) SetCookingParametersWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCookingParametersWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
+/* debug [class.gen.go]: End class MTRClusterMicrowaveOvenControl */
 
 

@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 )
 
 // The class instance for the [INPlacemarkResolutionResult] class.
@@ -37,7 +36,6 @@ type IINPlacemarkResolutionResult interface {
 // A resolution result for placemark information associated with an intent.
 //
 // An object is what you return when resolving parameters containing an object. Use the creation method that best reflects your ability to successfully resolve the parameter. For additional resolution options, see .
-
 
 // A resolution result for placemark information associated with an intent.
 //
@@ -87,8 +85,6 @@ func NewINPlacemarkResolutionResult() INPlacemarkResolutionResult {
 	return getINPlacemarkResolutionResultClass().New()
 }
 
-
-
 // Creates an object whose resolution requires that the user must confirm the value before proceeding.
 //
 // [Full Topic]
@@ -97,6 +93,3 @@ func (ic _INPlacemarkResolutionResultClass) ConfirmationRequiredWithPlacemarkToC
 	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("confirmationRequiredWithPlacemarkToConfirm:"), placemarkToConfirm)
 	return rv
 }
-
-
-

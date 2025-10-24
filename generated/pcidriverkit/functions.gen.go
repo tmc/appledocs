@@ -2,10 +2,10 @@
 
 package pcidriverkit
 
+/* debug [functions.gen.go]: Generating 0 functions for PCIDriverKit */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // PCIDriverKit Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

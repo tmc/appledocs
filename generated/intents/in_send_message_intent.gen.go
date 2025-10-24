@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INSendMessageIntent] class.
@@ -54,7 +54,6 @@ type IINSendMessageIntent interface {
 // A request to send a message to the designated recipients.
 //
 // Siri creates an object when the user asks to send a message to one or more users. This intent object contains the message to send and the recipients of the message, which can include groups of users. Use the information in this object to construct and send the message. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler confirms the request and creates an object with the results.
-
 
 // A request to send a message to the designated recipients.
 //
@@ -104,8 +103,6 @@ func NewINSendMessageIntent() INSendMessageIntent {
 	return getINSendMessageIntentClass().New()
 }
 
-
-
 // The name of the group to receive the message.
 //
 // [Full Topic]
@@ -114,7 +111,6 @@ func (i_ INSendMessageIntent) SpeakableGroupName() INSpeakableString {
 	rv := objc.Send[INSpeakableString](i_.ID, objc.Sel("speakableGroupName"))
 	return rv
 }
-
 
 // Audio files to include in the message.
 //
@@ -125,7 +121,6 @@ func (i_ INSendMessageIntent) Attachments() INSendMessageAttachment {
 	return rv
 }
 
-
 // Audio files to include in the message.
 //
 // [Full Topic]
@@ -133,7 +128,6 @@ func (i_ INSendMessageIntent) Attachments() INSendMessageAttachment {
 func (i_ INSendMessageIntent) SetAttachments(value INSendMessageAttachment) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAttachments:"), value)
 }
-
 
 // The content of the message.
 //
@@ -144,7 +138,6 @@ func (i_ INSendMessageIntent) Content() objc.IObject /* cross-framework: NSStrin
 	return rv
 }
 
-
 // The content of the message.
 //
 // [Full Topic]
@@ -152,7 +145,6 @@ func (i_ INSendMessageIntent) Content() objc.IObject /* cross-framework: NSStrin
 func (i_ INSendMessageIntent) SetContent(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), value)
 }
-
 
 // The identifier for the conversation.
 //
@@ -163,7 +155,6 @@ func (i_ INSendMessageIntent) ConversationIdentifier() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // The identifier for the conversation.
 //
 // [Full Topic]
@@ -171,7 +162,6 @@ func (i_ INSendMessageIntent) ConversationIdentifier() objc.IObject /* cross-fra
 func (i_ INSendMessageIntent) SetConversationIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setConversationIdentifier:"), value)
 }
-
 
 // The name of the group to receive the message.
 //
@@ -182,7 +172,6 @@ func (i_ INSendMessageIntent) GroupName() objc.IObject /* cross-framework: NSStr
 	return rv
 }
 
-
 // The name of the group to receive the message.
 //
 // [Full Topic]
@@ -190,7 +179,6 @@ func (i_ INSendMessageIntent) GroupName() objc.IObject /* cross-framework: NSStr
 func (i_ INSendMessageIntent) SetGroupName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
-
 
 // The format of the message contents.
 //
@@ -201,7 +189,6 @@ func (i_ INSendMessageIntent) OutgoingMessageType() unsafe.Pointer {
 	return rv
 }
 
-
 // The format of the message contents.
 //
 // [Full Topic]
@@ -209,7 +196,6 @@ func (i_ INSendMessageIntent) OutgoingMessageType() unsafe.Pointer {
 func (i_ INSendMessageIntent) SetOutgoingMessageType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setOutgoingMessageType:"), value)
 }
-
 
 // The array of users to receive the message.
 //
@@ -220,7 +206,6 @@ func (i_ INSendMessageIntent) Recipients() INPerson {
 	return rv
 }
 
-
 // The array of users to receive the message.
 //
 // [Full Topic]
@@ -228,7 +213,6 @@ func (i_ INSendMessageIntent) Recipients() INPerson {
 func (i_ INSendMessageIntent) SetRecipients(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecipients:"), value)
 }
-
 
 // The person or account that’s sending the message.
 //
@@ -239,7 +223,6 @@ func (i_ INSendMessageIntent) Sender() INPerson {
 	return rv
 }
 
-
 // The person or account that’s sending the message.
 //
 // [Full Topic]
@@ -247,7 +230,6 @@ func (i_ INSendMessageIntent) Sender() INPerson {
 func (i_ INSendMessageIntent) SetSender(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSender:"), value)
 }
-
 
 // The service to use when sending the message.
 //
@@ -258,7 +240,6 @@ func (i_ INSendMessageIntent) ServiceName() objc.IObject /* cross-framework: NSS
 	return rv
 }
 
-
 // The service to use when sending the message.
 //
 // [Full Topic]
@@ -266,6 +247,3 @@ func (i_ INSendMessageIntent) ServiceName() objc.IObject /* cross-framework: NSS
 func (i_ INSendMessageIntent) SetServiceName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setServiceName:"), value)
 }
-
-
-

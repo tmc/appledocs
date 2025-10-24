@@ -21,3 +21,4 @@ var MTRXPCClientProtocol_MTRDeviceControllerProtocol *objc.Protocol
 func init() {
 	MTRXPCClientProtocol_MTRDeviceControllerProtocol = objc.GetProtocol("MTRXPCClientProtocol_MTRDeviceController")
 }
+

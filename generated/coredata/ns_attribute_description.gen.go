@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AttributeDescription] class.
@@ -55,7 +55,6 @@ type IAttributeDescription interface {
 // A description of a single attribute belonging to an entity.
 //
 // inherits from , which provides most of the basic behavior. Instances of are used to describe attributes, as distinct from relationships. The class adds the ability to specify the attribute type, and to specify a default value. In a managed object model, you must specify the type of all attributes—you can only use the undefined attribute type ( ) for transient attributes.
-
 
 // A description of a single attribute belonging to an entity.
 //
@@ -105,8 +104,6 @@ func NewAttributeDescription() AttributeDescription {
 	return getAttributeDescriptionClass().New()
 }
 
-
-
 // A Boolean value that determines whether to encrypt the attribute’s value.
 //
 // [Full Topic]
@@ -116,7 +113,6 @@ func (a_ AttributeDescription) AllowsCloudEncryption() bool {
 	return rv
 }
 
-
 // A Boolean value that determines whether to encrypt the attribute’s value.
 //
 // [Full Topic]
@@ -124,7 +120,6 @@ func (a_ AttributeDescription) AllowsCloudEncryption() bool {
 func (a_ AttributeDescription) SetAllowsCloudEncryption(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsCloudEncryption:"), value)
 }
-
 
 // The attribute’s type.
 //
@@ -135,7 +130,6 @@ func (a_ AttributeDescription) AttributeType() AttributeType {
 	return rv
 }
 
-
 // The attribute’s type.
 //
 // [Full Topic]
@@ -143,7 +137,6 @@ func (a_ AttributeDescription) AttributeType() AttributeType {
 func (a_ AttributeDescription) SetAttributeType(value AttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeType:"), value)
 }
-
 
 // The default value of the attribute.
 //
@@ -154,7 +147,6 @@ func (a_ AttributeDescription) DefaultValue() objc.ID {
 	return rv
 }
 
-
 // The default value of the attribute.
 //
 // [Full Topic]
@@ -162,7 +154,6 @@ func (a_ AttributeDescription) DefaultValue() objc.ID {
 func (a_ AttributeDescription) SetDefaultValue(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDefaultValue:"), value)
 }
-
 
 // A Boolean value that indicates whether the attribute records its value in the persistent history transaction for a managed object’s deletion.
 //
@@ -173,7 +164,6 @@ func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the attribute records its value in the persistent history transaction for a managed object’s deletion.
 //
 // [Full Topic]
@@ -181,7 +171,6 @@ func (a_ AttributeDescription) PreservesValueInHistoryOnDeletion() bool {
 func (a_ AttributeDescription) SetPreservesValueInHistoryOnDeletion(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesValueInHistoryOnDeletion:"), value)
 }
-
 
 // A Boolean value that indicates whether the attribute allows external binary storage.
 //
@@ -192,7 +181,6 @@ func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the attribute allows external binary storage.
 //
 // [Full Topic]
@@ -200,7 +188,6 @@ func (a_ AttributeDescription) AllowsExternalBinaryDataStorage() bool {
 func (a_ AttributeDescription) SetAllowsExternalBinaryDataStorage(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAllowsExternalBinaryDataStorage:"), value)
 }
-
 
 // The class name that represents the attribute’s value.
 //
@@ -211,7 +198,6 @@ func (a_ AttributeDescription) AttributeValueClassName() objc.IObject /* cross-f
 	return rv
 }
 
-
 // The class name that represents the attribute’s value.
 //
 // [Full Topic]
@@ -219,7 +205,6 @@ func (a_ AttributeDescription) AttributeValueClassName() objc.IObject /* cross-f
 func (a_ AttributeDescription) SetAttributeValueClassName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributeValueClassName:"), value)
 }
-
 
 // The attribute’s type.
 //
@@ -230,7 +215,6 @@ func (a_ AttributeDescription) Type() AttributeType {
 	return rv
 }
 
-
 // The attribute’s type.
 //
 // [Full Topic]
@@ -238,7 +222,6 @@ func (a_ AttributeDescription) Type() AttributeType {
 func (a_ AttributeDescription) SetType(value AttributeType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }
-
 
 // The name of the transformer to use for the attribute value.
 //
@@ -249,7 +232,6 @@ func (a_ AttributeDescription) ValueTransformerName() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // The name of the transformer to use for the attribute value.
 //
 // [Full Topic]
@@ -257,7 +239,6 @@ func (a_ AttributeDescription) ValueTransformerName() objc.IObject /* cross-fram
 func (a_ AttributeDescription) SetValueTransformerName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValueTransformerName:"), value)
 }
-
 
 // The version hash for the attribute.
 //
@@ -268,7 +249,6 @@ func (a_ AttributeDescription) VersionHash() objc.IObject /* cross-framework: Da
 	return rv
 }
 
-
 // The version hash for the attribute.
 //
 // [Full Topic]
@@ -276,6 +256,3 @@ func (a_ AttributeDescription) VersionHash() objc.IObject /* cross-framework: Da
 func (a_ AttributeDescription) SetVersionHash(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVersionHash:"), value)
 }
-
-
-

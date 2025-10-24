@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRContentLauncherClusterParameter] class.
@@ -39,8 +39,6 @@ type IMTRContentLauncherClusterParameter interface {
 	SetValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterParameter
@@ -86,8 +84,6 @@ func NewMTRContentLauncherClusterParameter() MTRContentLauncherClusterParameter 
 	return getMTRContentLauncherClusterParameterClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/externalidlist
 func (m_ MTRContentLauncherClusterParameter) ExternalIDList() unsafe.Pointer {
@@ -95,13 +91,11 @@ func (m_ MTRContentLauncherClusterParameter) ExternalIDList() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/externalidlist
 func (m_ MTRContentLauncherClusterParameter) SetExternalIDList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setExternalIDList:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/type
@@ -110,13 +104,11 @@ func (m_ MTRContentLauncherClusterParameter) Type() objc.IObject /* cross-framew
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/type
 func (m_ MTRContentLauncherClusterParameter) SetType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/value
@@ -125,12 +117,8 @@ func (m_ MTRContentLauncherClusterParameter) Value() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterparameter/value
 func (m_ MTRContentLauncherClusterParameter) SetValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

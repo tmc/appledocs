@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRAudioOutputClusterOutputInfoStruct interface {
 	SetOutputType(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAudioOutputClusterOutputInfoStruct
@@ -85,8 +83,6 @@ func NewMTRAudioOutputClusterOutputInfoStruct() MTRAudioOutputClusterOutputInfoS
 	return getMTRAudioOutputClusterOutputInfoStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/index
 func (m_ MTRAudioOutputClusterOutputInfoStruct) Index() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRAudioOutputClusterOutputInfoStruct) Index() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/index
 func (m_ MTRAudioOutputClusterOutputInfoStruct) SetIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
@@ -109,13 +103,11 @@ func (m_ MTRAudioOutputClusterOutputInfoStruct) Name() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/name
 func (m_ MTRAudioOutputClusterOutputInfoStruct) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/outputtype
@@ -124,12 +116,8 @@ func (m_ MTRAudioOutputClusterOutputInfoStruct) OutputType() objc.IObject /* cro
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraudiooutputclusteroutputinfostruct/outputtype
 func (m_ MTRAudioOutputClusterOutputInfoStruct) SetOutputType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOutputType:"), value)
 }
-
-
-

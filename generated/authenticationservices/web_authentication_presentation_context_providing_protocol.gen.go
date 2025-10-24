@@ -19,3 +19,4 @@ var WebAuthenticationPresentationContextProvidingProtocol *objc.Protocol
 func init() {
 	WebAuthenticationPresentationContextProvidingProtocol = objc.GetProtocol("ASWebAuthenticationPresentationContextProviding")
 }
+

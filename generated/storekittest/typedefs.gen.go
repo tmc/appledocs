@@ -8,4 +8,3 @@ package storekittest
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackVersion
 // SKAdTestPostbackVersion is a string typedef
 type AdTestPostbackVersion = string
-

@@ -8,14 +8,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/coretelephony"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for PHPhotoLibrary
-
 
 // Prompts the user to update their limited library selection.
 //
@@ -50,8 +45,3 @@ func (p_ PHPhotoLibrary) UploadJobExtensionEnabled() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("uploadJobExtensionEnabled"))
 	return rv
 }
-
-
-
-
-

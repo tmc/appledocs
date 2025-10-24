@@ -36,7 +36,6 @@ type IINTicketedEventReservation interface {
 
 // The information that describes a ticketed event reservation.
 
-
 // The information that describes a ticketed event reservation.
 //
 // [Full Topic]
@@ -85,8 +84,6 @@ func NewINTicketedEventReservation() INTicketedEventReservation {
 	return getINTicketedEventReservationClass().New()
 }
 
-
-
 // An object containing detailed information about the ticketed event.
 //
 // [Full Topic]
@@ -95,7 +92,6 @@ func (i_ INTicketedEventReservation) Event() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("event"))
 	return rv
 }
-
 
 // The user’s assigned seat for the ticketed event.
 //
@@ -106,7 +102,6 @@ func (i_ INTicketedEventReservation) ReservedSeat() INSeat {
 	return rv
 }
 
-
 // The user’s assigned seat for the ticketed event.
 //
 // [Full Topic]
@@ -114,6 +109,3 @@ func (i_ INTicketedEventReservation) ReservedSeat() INSeat {
 func (i_ INTicketedEventReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
 }
-
-
-

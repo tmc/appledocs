@@ -33,8 +33,6 @@ type IMTRBaseClusterBinding interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterBinding
 type MTRBaseClusterBinding struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterBinding) Autorelease() MTRBaseClusterBinding {
 func NewMTRBaseClusterBinding() MTRBaseClusterBinding {
 	return getMTRBaseClusterBindingClass().New()
 }
-
-
-
-

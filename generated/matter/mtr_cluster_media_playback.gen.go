@@ -33,8 +33,6 @@ type IMTRClusterMediaPlayback interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMediaPlayback
 type MTRClusterMediaPlayback struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterMediaPlayback) Autorelease() MTRClusterMediaPlayback {
 func NewMTRClusterMediaPlayback() MTRClusterMediaPlayback {
 	return getMTRClusterMediaPlaybackClass().New()
 }
-
-
-
-

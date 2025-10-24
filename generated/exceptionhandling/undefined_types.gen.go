@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	AnyHashable = _undefined // referenced in ExceptionHandling
 )
-
-

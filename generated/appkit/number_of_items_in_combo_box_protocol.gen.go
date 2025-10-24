@@ -15,3 +15,4 @@ var numberOfItemsInComboBoxProtocol *objc.Protocol
 func init() {
 	numberOfItemsInComboBoxProtocol = objc.GetProtocol("numberOfItemsInComboBox:")
 }
+

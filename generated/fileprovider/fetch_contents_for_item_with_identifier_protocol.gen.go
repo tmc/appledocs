@@ -18,3 +18,4 @@ var fetchContentsForItemWithIdentifierProtocol *objc.Protocol
 func init() {
 	fetchContentsForItemWithIdentifierProtocol = objc.GetProtocol("fetchContentsForItemWithIdentifier:")
 }
+

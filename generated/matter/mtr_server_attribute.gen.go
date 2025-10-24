@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRServerAttribute interface {
 	SetValue(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServerAttribute
@@ -87,8 +85,6 @@ func NewMTRServerAttribute() MTRServerAttribute {
 	return getMTRServerAttributeClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/attributeid
 func (m_ MTRServerAttribute) AttributeID() objc.IObject /* cross-framework: NSNumber */ {
@@ -96,13 +92,11 @@ func (m_ MTRServerAttribute) AttributeID() objc.IObject /* cross-framework: NSNu
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/attributeid
 func (m_ MTRServerAttribute) SetAttributeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributeID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/iswritable
@@ -111,13 +105,11 @@ func (m_ MTRServerAttribute) IsWritable() bool {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/iswritable
 func (m_ MTRServerAttribute) SetIsWritable(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsWritable:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/requiredreadprivilege
@@ -126,13 +118,11 @@ func (m_ MTRServerAttribute) RequiredReadPrivilege() MTRAccessControlEntryPrivil
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/requiredreadprivilege
 func (m_ MTRServerAttribute) SetRequiredReadPrivilege(value MTRAccessControlEntryPrivilege) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRequiredReadPrivilege:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/value
@@ -141,12 +131,8 @@ func (m_ MTRServerAttribute) Value() objc.IObject /* cross-framework: NSString *
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrserverattribute/value
 func (m_ MTRServerAttribute) SetValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

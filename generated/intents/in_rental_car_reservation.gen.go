@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INRentalCarReservation] class.
@@ -41,7 +41,6 @@ type IINRentalCarReservation interface {
 }
 
 // The information that describes a rental car reservation.
-
 
 // The information that describes a rental car reservation.
 //
@@ -91,8 +90,6 @@ func NewINRentalCarReservation() INRentalCarReservation {
 	return getINRentalCarReservationClass().New()
 }
 
-
-
 // The name and location where the user can drop off the car.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (i_ INRentalCarReservation) DropOffLocation() corelocation.Placemark {
 	return rv
 }
 
-
 // The name and location where the user can drop off the car.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (i_ INRentalCarReservation) DropOffLocation() corelocation.Placemark {
 func (i_ INRentalCarReservation) SetDropOffLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDropOffLocation:"), value)
 }
-
 
 // The name and location where the user can pick up the car.
 //
@@ -121,7 +116,6 @@ func (i_ INRentalCarReservation) PickupLocation() corelocation.Placemark {
 	return rv
 }
 
-
 // The name and location where the user can pick up the car.
 //
 // [Full Topic]
@@ -129,7 +123,6 @@ func (i_ INRentalCarReservation) PickupLocation() corelocation.Placemark {
 func (i_ INRentalCarReservation) SetPickupLocation(value corelocation.IPlacemark) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPickupLocation:"), value)
 }
-
 
 // An object containing detailed information about the rental car.
 //
@@ -140,7 +133,6 @@ func (i_ INRentalCarReservation) RentalCar() unsafe.Pointer {
 	return rv
 }
 
-
 // An object containing detailed information about the rental car.
 //
 // [Full Topic]
@@ -148,7 +140,6 @@ func (i_ INRentalCarReservation) RentalCar() unsafe.Pointer {
 func (i_ INRentalCarReservation) SetRentalCar(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRentalCar:"), value)
 }
-
 
 // The date and time range that indicates the pickup and drop off times for the rental.
 //
@@ -159,7 +150,6 @@ func (i_ INRentalCarReservation) RentalDuration() INDateComponentsRange {
 	return rv
 }
 
-
 // The date and time range that indicates the pickup and drop off times for the rental.
 //
 // [Full Topic]
@@ -167,6 +157,3 @@ func (i_ INRentalCarReservation) RentalDuration() INDateComponentsRange {
 func (i_ INRentalCarReservation) SetRentalDuration(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRentalDuration:"), value)
 }
-
-
-

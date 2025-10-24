@@ -18,3 +18,4 @@ var managerProtocol *objc.Protocol
 func init() {
 	managerProtocol = objc.GetProtocol("manager:")
 }
+

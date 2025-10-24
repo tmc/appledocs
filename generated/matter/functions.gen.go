@@ -2,6 +2,7 @@
 
 package matter
 
+/* debug [functions.gen.go]: Generating 5 functions for Matter */
 import (
 	"unsafe"
 
@@ -9,20 +10,17 @@ import (
 )
 
 
-// Matter Functions (8 total)
+// Matter Functions (5 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_MTRAttributeNameForID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MTRClusterNameForID func(unsafe.Pointer) unsafe.Pointer
-	_MTRDeviceControllerStorageClasses func() unsafe.Pointer
-	_MTREventNameForID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MTRRequestCommandNameForID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_MTRResponseCommandNameForID func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
+	_MTRAttributeNameForID func(MTRClusterIDType, unsafe.Pointer) unsafe.Pointer
+	_MTREventNameForID func(MTRClusterIDType, unsafe.Pointer) unsafe.Pointer
+	_MTRRequestCommandNameForID func(MTRClusterIDType, unsafe.Pointer) unsafe.Pointer
+	_MTRResponseCommandNameForID func(MTRClusterIDType, unsafe.Pointer) unsafe.Pointer
 	_MTRSetLogCallback func(unsafe.Pointer, unsafe.Pointer)
-	_MTRSetMessageReliabilityParameters func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 )
 
 func init() {
@@ -31,13 +29,10 @@ func init() {
 		panic(err)
 	}
 	tryRegister(&_MTRAttributeNameForID, lib, "MTRAttributeNameForID")
-	tryRegister(&_MTRClusterNameForID, lib, "MTRClusterNameForID")
-	tryRegister(&_MTRDeviceControllerStorageClasses, lib, "MTRDeviceControllerStorageClasses")
 	tryRegister(&_MTREventNameForID, lib, "MTREventNameForID")
 	tryRegister(&_MTRRequestCommandNameForID, lib, "MTRRequestCommandNameForID")
 	tryRegister(&_MTRResponseCommandNameForID, lib, "MTRResponseCommandNameForID")
 	tryRegister(&_MTRSetLogCallback, lib, "MTRSetLogCallback")
-	tryRegister(&_MTRSetMessageReliabilityParameters, lib, "MTRSetMessageReliabilityParameters")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -59,27 +54,9 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // Added in macOS 14.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAttributeNameForID(_:_:)
-func MTRAttributeNameForID(clusterID unsafe.Pointer, attributeID unsafe.Pointer) unsafe.Pointer {
+func MTRAttributeNameForID(clusterID MTRClusterIDType, attributeID unsafe.Pointer) unsafe.Pointer {
 	return _MTRAttributeNameForID(clusterID, attributeID)
-}
-
-// MTRClusterNameForID is a Matter function.
-//
-// Added in macOS 14.6.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterNameForID(_:)
-func MTRClusterNameForID(clusterID unsafe.Pointer) unsafe.Pointer {
-	return _MTRClusterNameForID(clusterID)
-}
-
-// MTRDeviceControllerStorageClasses is a Matter function.
-//
-// Added in macOS 14.6.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerStorageClasses()
-func MTRDeviceControllerStorageClasses() unsafe.Pointer {
-	return _MTRDeviceControllerStorageClasses()
-}
+}/* debug [functions.gen.go/function]: MTRAttributeNameForID */
 
 // Resolve Matter event IDs into a descriptive string.
 //
@@ -88,9 +65,9 @@ func MTRDeviceControllerStorageClasses() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREventNameForID(_:_:)
-func MTREventNameForID(clusterID unsafe.Pointer, eventID unsafe.Pointer) unsafe.Pointer {
+func MTREventNameForID(clusterID MTRClusterIDType, eventID unsafe.Pointer) unsafe.Pointer {
 	return _MTREventNameForID(clusterID, eventID)
-}
+}/* debug [functions.gen.go/function]: MTREventNameForID */
 
 // Resolve Matter request (client to server) command IDs into a descriptive string.
 //
@@ -99,9 +76,9 @@ func MTREventNameForID(clusterID unsafe.Pointer, eventID unsafe.Pointer) unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRequestCommandNameForID(_:_:)
-func MTRRequestCommandNameForID(clusterID unsafe.Pointer, commandID unsafe.Pointer) unsafe.Pointer {
+func MTRRequestCommandNameForID(clusterID MTRClusterIDType, commandID unsafe.Pointer) unsafe.Pointer {
 	return _MTRRequestCommandNameForID(clusterID, commandID)
-}
+}/* debug [functions.gen.go/function]: MTRRequestCommandNameForID */
 
 // Resolve Matter response (server to client) command IDs into a descriptive string.
 //
@@ -110,9 +87,9 @@ func MTRRequestCommandNameForID(clusterID unsafe.Pointer, commandID unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRResponseCommandNameForID(_:_:)
-func MTRResponseCommandNameForID(clusterID unsafe.Pointer, commandID unsafe.Pointer) unsafe.Pointer {
+func MTRResponseCommandNameForID(clusterID MTRClusterIDType, commandID unsafe.Pointer) unsafe.Pointer {
 	return _MTRResponseCommandNameForID(clusterID, commandID)
-}
+}/* debug [functions.gen.go/function]: MTRResponseCommandNameForID */
 
 // MTRSetLogCallback is a Matter function.
 //
@@ -121,16 +98,8 @@ func MTRResponseCommandNameForID(clusterID unsafe.Pointer, commandID unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetLogCallback(_:_:)
 func MTRSetLogCallback(logTypeThreshold unsafe.Pointer, callback unsafe.Pointer) {
 	_MTRSetLogCallback(logTypeThreshold, callback)
-}
+}/* debug [functions.gen.go/function]: MTRSetLogCallback */
 
-// MTRSetMessageReliabilityParameters is a Matter function.
-//
-// Added in macOS 14.6.
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSetMessageReliabilityParameters(_:_:_:_:)
-func MTRSetMessageReliabilityParameters(idleRetransmitMs unsafe.Pointer, activeRetransmitMs unsafe.Pointer, activeThresholdMs unsafe.Pointer, additionalRetransmitDelayMs unsafe.Pointer) {
-	_MTRSetMessageReliabilityParameters(idleRetransmitMs, activeRetransmitMs, activeThresholdMs, additionalRetransmitDelayMs)
-}
 
 
 

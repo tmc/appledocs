@@ -15,3 +15,4 @@ var textViewWritingToolsDidEndProtocol *objc.Protocol
 func init() {
 	textViewWritingToolsDidEndProtocol = objc.GetProtocol("textViewWritingToolsDidEnd:")
 }
+

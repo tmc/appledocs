@@ -6,9 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHPickerViewController] class.
@@ -49,7 +48,6 @@ type IPHPickerViewController interface {
 // A view controller that provides the user interface for choosing assets from the photo library.
 //
 // The class is an alternative to . improves stability and reliability, and includes several benefits to developers and users, such as the following: Deferred image loading and recovery UI Reliable handling of large and complex assets, like RAW and panoramic images User-selectable assets that aren’t available for Configuration of the picker to display only Live Photos Availability of objects without library access Stricter validations against invalid inputs
-
 
 // A view controller that provides the user interface for choosing assets from the photo library.
 //
@@ -99,8 +97,6 @@ func NewPHPickerViewController() PHPickerViewController {
 	return getPHPickerViewControllerClass().New()
 }
 
-
-
 // Creates a new picker view controller with the configuration you specify.
 //
 // [Full Topic]
@@ -112,8 +108,6 @@ func NewPHPickerViewControllerWithConfiguration(configuration IPHPickerConfigura
 	return rv
 }
 
-
-
 // Deselects assets that are in a selected state.
 //
 // [Full Topic]
@@ -121,7 +115,6 @@ func NewPHPickerViewControllerWithConfiguration(configuration IPHPickerConfigura
 func (p_ PHPickerViewController) DeselectAssetsWithIdentifiers(identifiers []string) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("deselectAssetsWithIdentifiers:"), identifiers)
 }
-
 
 // Reorders assets that are in a selected state.
 //
@@ -131,7 +124,6 @@ func (p_ PHPickerViewController) MoveAssetWithIdentifierAfterAssetWithIdentifier
 	objc.Send[objc.ID](p_.ID, objc.Sel("moveAssetWithIdentifier:afterAssetWithIdentifier:"), identifier, afterIdentifier)
 }
 
-
 // Resets the visible photo thumbnails by scrolling the view to the picker’s initial position.
 //
 // [Full Topic]
@@ -139,7 +131,6 @@ func (p_ PHPickerViewController) MoveAssetWithIdentifierAfterAssetWithIdentifier
 func (p_ PHPickerViewController) ScrollToInitialPosition() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("scrollToInitialPosition"))
 }
-
 
 // Customizes your app’s photo picker according to the given configuration.
 //
@@ -149,7 +140,6 @@ func (p_ PHPickerViewController) UpdatePickerUsingConfiguration(configuration ob
 	objc.Send[objc.ID](p_.ID, objc.Sel("updatePickerUsingConfiguration:"), configuration)
 }
 
-
 // Changes the picker’s content scale by making the photo thumbnails larger in the view.
 //
 // [Full Topic]
@@ -158,7 +148,6 @@ func (p_ PHPickerViewController) ZoomIn() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("zoomIn"))
 }
 
-
 // Changes the picker’s content scale by making the photo thumbnails smaller in the view.
 //
 // [Full Topic]
@@ -166,7 +155,6 @@ func (p_ PHPickerViewController) ZoomIn() {
 func (p_ PHPickerViewController) ZoomOut() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("zoomOut"))
 }
-
 
 // The configuration you specify when creating the picker.
 //
@@ -177,7 +165,6 @@ func (p_ PHPickerViewController) Configuration() IPHPickerConfiguration {
 	return rv
 }
 
-
 // The picker’s delegate object.
 //
 // [Full Topic]
@@ -187,7 +174,6 @@ func (p_ PHPickerViewController) Delegate() objc.ID {
 	return rv
 }
 
-
 // The picker’s delegate object.
 //
 // [Full Topic]
@@ -195,7 +181,6 @@ func (p_ PHPickerViewController) Delegate() objc.ID {
 func (p_ PHPickerViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
-
 
 // The opacity of the receiver. Animatable.
 //
@@ -206,7 +191,6 @@ func (p_ PHPickerViewController) Opacity() float32 {
 	return rv
 }
 
-
 // The opacity of the receiver. Animatable.
 //
 // [Full Topic]
@@ -214,5 +198,3 @@ func (p_ PHPickerViewController) Opacity() float32 {
 func (p_ PHPickerViewController) SetOpacity(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOpacity:"), value)
 }
-
-

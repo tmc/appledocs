@@ -9,8 +9,13 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Float = _undefined // referenced in Accelerate
+	ColorConversionInfoRef = _undefined // referenced in Accelerate
+	ColorRenderingIntent = _undefined // referenced in Accelerate
+	ColorSpaceRef = _undefined // referenced in Accelerate
+	ImageRef = _undefined // referenced in Accelerate
 	PixelBufferRef = _undefined // referenced in Accelerate
+	StringRef = _undefined // referenced in Accelerate
+	TypeRef = _undefined // referenced in Accelerate
 )
 
 

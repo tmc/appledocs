@@ -15,3 +15,4 @@ var enumerateTextElementsFromLocationProtocol *objc.Protocol
 func init() {
 	enumerateTextElementsFromLocationProtocol = objc.GetProtocol("enumerateTextElementsFromLocation:")
 }
+

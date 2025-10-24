@@ -9,10 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	ANTestPostbackResponseHandler = _undefined // referenced in StoreKitTest
+	ANTestPostbackResponseHandler  = _undefined // referenced in StoreKitTest
 	AdNetworkCoarseConversionValue = _undefined // referenced in StoreKitTest
-	ErrorCode = _undefined // referenced in StoreKitTest
-	PaymentTransactionState = _undefined // referenced in StoreKitTest
+	ErrorCode                      = _undefined // referenced in StoreKitTest
+	PaymentTransactionState        = _undefined // referenced in StoreKitTest
 )
-
-

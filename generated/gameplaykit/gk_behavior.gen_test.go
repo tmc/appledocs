@@ -13,7 +13,7 @@ var _ = gameplaykit.NewBehavior
 // Creates a behavior with the specified goals.
 func ExampleNewBehaviorWithGoals() {
 	_ = gameplaykit.NewBehaviorWithGoals(
-		[]gameplaykit.IGoal{}, // goals []IGoal
+		[]gameplaykit.Goal{}, // goals []Goal
 	)
 	// Output:
 }

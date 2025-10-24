@@ -2,27 +2,9 @@
 
 package multipeerconnectivity
 
+/* debug [enums.gen.go]: Generating 4 enums for MultipeerConnectivity */
 // Enum types and constants
-// MCEncryptionPreference - Indicates whether a session should use encryption when communicating with nearby peers.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCEncryptionPreference
-type MCEncryptionPreference uint
-
-const (
-	// MCEncryptionNone - The session should not be encrypted.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCEncryptionPreference/none
-	MCEncryptionNone MCEncryptionPreference = 0
-	// MCEncryptionOptional - The session prefers to use encryption, but accepts unencrypted connections. A connection uses encryption when all the peers choose either   or  . If some peers choose  , then the session will not be encrypted. For this reason, if some peers running your app can be configured without encryption, you should always assume that the session is unencrypted.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCEncryptionPreference/optional
-	MCEncryptionOptional MCEncryptionPreference = 0
-	// MCEncryptionRequired - The session requires encryption.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCEncryptionPreference/required
-	MCEncryptionRequired MCEncryptionPreference = 0
-)
-
+/* debug [enums.gen.go]: Processing enum MCErrorCode (7 cases) */
 // MCErrorCode - Error codes found in 
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCError/Code
@@ -59,6 +41,28 @@ const (
 	MCErrorUnsupported MCErrorCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum MCEncryptionPreference (3 cases) */
+// MCEncryptionPreference - Indicates whether a session should use encryption when communicating with nearby peers.
+//
+// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCEncryptionPreference
+type MCEncryptionPreference uint
+
+const (
+	// MCEncryptionNone - The session should not be encrypted.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCEncryptionPreference/none
+	MCEncryptionNone MCEncryptionPreference = 0
+	// MCEncryptionOptional - The session prefers to use encryption, but accepts unencrypted connections. A connection uses encryption when all the peers choose either   or  . If some peers choose  , then the session will not be encrypted. For this reason, if some peers running your app can be configured without encryption, you should always assume that the session is unencrypted.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCEncryptionPreference/optional
+	MCEncryptionOptional MCEncryptionPreference = 0
+	// MCEncryptionRequired - The session requires encryption.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCEncryptionPreference/required
+	MCEncryptionRequired MCEncryptionPreference = 0
+)
+
+/* debug [enums.gen.go]: Processing enum MCSessionSendDataMode (2 cases) */
 // MCSessionSendDataMode - Indicates whether delivery of data should be guaranteed.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSessionSendDataMode
@@ -75,6 +79,7 @@ const (
 	MCSessionSendDataUnreliable MCSessionSendDataMode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum MCSessionState (3 cases) */
 // MCSessionState - Indicates the current state of a given peer within a session.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MultipeerConnectivity/MCSessionState

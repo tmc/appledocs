@@ -24,8 +24,8 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSXPCProxyCreating
 type PXPCProxyCreating interface {
 	// Required methods
-	RemoteObjectProxy() objc.ID
-	RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
+	RemoteObjectProxy() objc.ID/* debug [protocol_interface/required_method]: RemoteObjectProxy */
+	RemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID/* debug [protocol_interface/required_method]: RemoteObjectProxyWithErrorHandler */
 	// Optional methods
 	SynchronousRemoteObjectProxyWithErrorHandler(handler unsafe.Pointer) objc.ID
 	HasSynchronousRemoteObjectProxyWithErrorHandler() bool

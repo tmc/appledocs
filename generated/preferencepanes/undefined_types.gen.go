@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	View = _undefined // referenced in PreferencePanes
 )
-
-

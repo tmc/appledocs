@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class AVMovieTrack */
+
+
+/* debug [class_header]: Header for AVMovieTrack */
 // The class instance for the [MovieTrack] class.
 var (
 	MovieTrackClass     _MovieTrackClass
@@ -25,40 +29,34 @@ func getMovieTrackClass() _MovieTrackClass {
 type _MovieTrackClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MovieTrack */
 // An interface definition for the [MovieTrack] class.
 type IMovieTrack interface {
 	IAssetTrack
+	
+/* debug [class_interface_properties]: Properties for MovieTrack */
+	// properties:
 	AlternateGroupID() int
-	SetAlternateGroupID(value int)
-	MediaDataStorage() AVMediaDataStorage
-	SetMediaDataStorage(value IAVMediaDataStorage)
-	MediaDecodeTimeRange() unsafe.Pointer
-	SetMediaDecodeTimeRange(value unsafe.Pointer)
-	MediaPresentationTimeRange() unsafe.Pointer
-	SetMediaPresentationTimeRange(value unsafe.Pointer)
+	MediaDataStorage() IAVMediaDataStorage
+	MediaDecodeTimeRange() TimeRange /* not a class type */
+	MediaPresentationTimeRange() TimeRange /* not a class type */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MovieTrack */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A track in a movie that conforms to the QuickTime or ISO base media file format.
 
 
-// A track in a movie that conforms to the QuickTime or ISO base media file format.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovieTrack
-type MovieTrack struct {
-	AssetTrack
-}
-
-// MovieTrackFrom constructs a [MovieTrack] from an unsafe.Pointer.
-//
-// A track in a movie that conforms to the QuickTime or ISO base media file format.
-func MovieTrackFrom(ptr unsafe.Pointer) MovieTrack {
-	return MovieTrack{
-		AssetTrack: AssetTrackFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MovieTrack */
 // Alloc allocates a new instance without initialization.
 func (mc _MovieTrackClass) Alloc() MovieTrack {
 	rv := objc.Send[MovieTrack](objc.ID(mc.class), objc.Sel("alloc"))
@@ -66,7 +64,6 @@ func (mc _MovieTrackClass) Alloc() MovieTrack {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MovieTrackClass) New() MovieTrack {
 	rv := objc.Send[MovieTrack](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,83 +86,98 @@ func (m_ MovieTrack) Autorelease() MovieTrack {
 func NewMovieTrack() MovieTrack {
 	return getMovieTrackClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MovieTrack */
+// A track in a movie that conforms to the QuickTime or ISO base media file format.
+
+
+// A track in a movie that conforms to the QuickTime or ISO base media file format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovieTrack
+type MovieTrack struct {
+	AssetTrack
+}
+
+// MovieTrackFrom constructs a [MovieTrack] from an unsafe.Pointer.
+//
+// A track in a movie that conforms to the QuickTime or ISO base media file format.
+func MovieTrackFrom(ptr unsafe.Pointer) MovieTrack {
+	return MovieTrack{
+		AssetTrack: AssetTrackFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MovieTrack *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MovieTrack */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MovieTrack */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MovieTrack */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MovieTrack */
 
 // A value that identifies the track as a member of a particular alternate group.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/alternategroupid
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovieTrack/alternateGroupID
 func (m_ MovieTrack) AlternateGroupID() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("alternateGroupID"))
 	return rv
-}
-
-
-// A value that identifies the track as a member of a particular alternate group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/alternategroupid
-func (m_ MovieTrack) SetAlternateGroupID(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAlternateGroupID:"), value)
-}
+}/* debug [instance_properties/getter]: alternateGroupID */
 
 
 // The storage container for media data added to a track.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadatastorage
-func (m_ MovieTrack) MediaDataStorage() AVMediaDataStorage {
-	rv := objc.Send[AVMediaDataStorage](m_.ID, objc.Sel("mediaDataStorage"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovieTrack/mediaDataStorage
+func (m_ MovieTrack) MediaDataStorage() IAVMediaDataStorage {
+	rv := objc.Send[MediaDataStorage](m_.ID, objc.Sel("mediaDataStorage"))
 	return rv
-}
-
-
-// The storage container for media data added to a track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadatastorage
-func (m_ MovieTrack) SetMediaDataStorage(value IAVMediaDataStorage) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaDataStorage:"), value)
-}
+}/* debug [instance_properties/getter]: mediaDataStorage */
 
 
 // A range of decode times for the track’s media.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadecodetimerange
-func (m_ MovieTrack) MediaDecodeTimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaDecodeTimeRange"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovieTrack/mediaDecodeTimeRange
+func (m_ MovieTrack) MediaDecodeTimeRange() TimeRange /* not a class type */ {
+	rv := objc.Send[TimeRange](m_.ID, objc.Sel("mediaDecodeTimeRange"))
 	return rv
-}
-
-
-// A range of decode times for the track’s media.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediadecodetimerange
-func (m_ MovieTrack) SetMediaDecodeTimeRange(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaDecodeTimeRange:"), value)
-}
+}/* debug [instance_properties/getter]: mediaDecodeTimeRange */
 
 
 // A range of presentation times for the track’s media.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediapresentationtimerange
-func (m_ MovieTrack) MediaPresentationTimeRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaPresentationTimeRange"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMovieTrack/mediaPresentationTimeRange
+func (m_ MovieTrack) MediaPresentationTimeRange() TimeRange /* not a class type */ {
+	rv := objc.Send[TimeRange](m_.ID, objc.Sel("mediaPresentationTimeRange"))
 	return rv
-}
+}/* debug [instance_properties/getter]: mediaPresentationTimeRange */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// A range of presentation times for the track’s media.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmovietrack/mediapresentationtimerange
-func (m_ MovieTrack) SetMediaPresentationTimeRange(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaPresentationTimeRange:"), value)
-}
+/* debug [class.gen.go]: End class AVMovieTrack */
 
 
 

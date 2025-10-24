@@ -41,7 +41,6 @@ type IBatchDeleteRequest interface {
 //
 // — available only when using a SQLite persistent store — deletes managed objects at the SQL level of the persistent store. This request is quicker and more efficient than using a context to fetch a large number of objects into memory, delete them, and then save those deletions back to the store. You create a request using an instance of that identifies the objects to delete. Alternatively, you can provide an array of identifiers from specific objects of the same entity type; mixing entity types results in an error when you execute the request. doesn’t automatically merge a request’s deletions because they happen at the SQL level. Subsequently, you must remove any deleted objects from memory after the request finishes. To determine the objects a request deletes, configure it to return the of each deleted object and use those identifiers to update your contexts, as the following example shows: Alternatively, you can use persistent history tracking to make your contexts aware of changes that happen at the persistent store level. For more information, see .
 
-
 // A request that deletes objects in the SQLite persistent store without loading them into memory.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewBatchDeleteRequest() BatchDeleteRequest {
 	return getBatchDeleteRequestClass().New()
 }
 
-
-
 // The type of result the request provides when it executes.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (b_ BatchDeleteRequest) ResultType() BatchDeleteRequestResultType {
 	return rv
 }
 
-
 // The type of result the request provides when it executes.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (b_ BatchDeleteRequest) ResultType() BatchDeleteRequestResultType {
 func (b_ BatchDeleteRequest) SetResultType(value BatchDeleteRequestResultType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
-
 
 // The fetch request that identifies the managed objects to delete.
 //
@@ -120,7 +115,6 @@ func (b_ BatchDeleteRequest) FetchRequest() FetchRequestResult /* not a class ty
 	return rv
 }
 
-
 // The fetch request that identifies the managed objects to delete.
 //
 // [Full Topic]
@@ -128,6 +122,3 @@ func (b_ BatchDeleteRequest) FetchRequest() FetchRequestResult /* not a class ty
 func (b_ BatchDeleteRequest) SetFetchRequest(value FetchRequestResult /* not a class type */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setFetchRequest:"), value)
 }
-
-
-

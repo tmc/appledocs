@@ -15,3 +15,4 @@ var insertNewlineProtocol *objc.Protocol
 func init() {
 	insertNewlineProtocol = objc.GetProtocol("insertNewline:")
 }
+

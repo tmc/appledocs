@@ -19,3 +19,4 @@ var prevColorTextureProtocol *objc.Protocol
 func init() {
 	prevColorTextureProtocol = objc.GetProtocol("prevColorTexture")
 }
+

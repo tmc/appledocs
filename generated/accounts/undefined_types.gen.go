@@ -9,11 +9,9 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	ACAccountStoreCredentialRenewalHandler = _undefined // referenced in Accounts
-	ACAccountStoreRemoveCompletionHandler = _undefined // referenced in Accounts
+	ACAccountStoreCredentialRenewalHandler       = _undefined // referenced in Accounts
+	ACAccountStoreRemoveCompletionHandler        = _undefined // referenced in Accounts
 	ACAccountStoreRequestAccessCompletionHandler = _undefined // referenced in Accounts
-	ACAccountStoreSaveCompletionHandler = _undefined // referenced in Accounts
-	Array = _undefined // referenced in Accounts
+	ACAccountStoreSaveCompletionHandler          = _undefined // referenced in Accounts
+	Array                                        = _undefined // referenced in Accounts
 )
-
-

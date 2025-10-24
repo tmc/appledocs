@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PViewLayerContentScaleDelegate is the NSViewLayerContentScaleDelegate protocol interface.

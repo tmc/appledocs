@@ -20,3 +20,4 @@ var MDLAssetResolverProtocol *objc.Protocol
 func init() {
 	MDLAssetResolverProtocol = objc.GetProtocol("MDLAssetResolver")
 }
+

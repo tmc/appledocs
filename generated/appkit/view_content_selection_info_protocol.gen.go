@@ -15,3 +15,4 @@ var ViewContentSelectionInfoProtocol *objc.Protocol
 func init() {
 	ViewContentSelectionInfoProtocol = objc.GetProtocol("NSViewContentSelectionInfo")
 }
+

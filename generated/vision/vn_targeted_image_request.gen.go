@@ -7,8 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VNTargetedImageRequest */
+
+
+/* debug [class_header]: Header for VNTargetedImageRequest */
 // The class instance for the [TargetedImageRequest] class.
 var (
 	TargetedImageRequestClass     _TargetedImageRequestClass
@@ -25,36 +31,30 @@ func getTargetedImageRequestClass() _TargetedImageRequestClass {
 type _TargetedImageRequestClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TargetedImageRequest */
 // An interface definition for the [TargetedImageRequest] class.
 type ITargetedImageRequest interface {
 	IImageBasedRequest
+	
+/* debug [class_interface_properties]: Properties for TargetedImageRequest */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TargetedImageRequest */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
-//
-// Other Vision request handlers that operate on both the processed image and a secondary image inherit from this abstract base class. Instantiate one of its subclasses to perform image analysis, and pass in auxiliary image data by filling in the dictionary at initialization.
+/* debug [class_interface]: End interface */
 
 
-// The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest
-type TargetedImageRequest struct {
-	ImageBasedRequest
-}
 
-// TargetedImageRequestFrom constructs a [TargetedImageRequest] from an unsafe.Pointer.
-//
-// The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
-func TargetedImageRequestFrom(ptr unsafe.Pointer) TargetedImageRequest {
-	return TargetedImageRequest{
-		ImageBasedRequest: ImageBasedRequestFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for TargetedImageRequest */
 // Alloc allocates a new instance without initialization.
 func (tc _TargetedImageRequestClass) Alloc() TargetedImageRequest {
 	rv := objc.Send[TargetedImageRequest](objc.ID(tc.class), objc.Sel("alloc"))
@@ -62,7 +62,6 @@ func (tc _TargetedImageRequestClass) Alloc() TargetedImageRequest {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TargetedImageRequestClass) New() TargetedImageRequest {
 	rv := objc.Send[TargetedImageRequest](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,7 +84,348 @@ func (t_ TargetedImageRequest) Autorelease() TargetedImageRequest {
 func NewTargetedImageRequest() TargetedImageRequest {
 	return getTargetedImageRequestClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for TargetedImageRequest */
+// The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
+//
+// Other Vision request handlers that operate on both the processed image and a secondary image inherit from this abstract base class. Instantiate one of its subclasses to perform image analysis, and pass in auxiliary image data by filling in the dictionary at initialization.
+
+
+// The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest
+type TargetedImageRequest struct {
+	ImageBasedRequest
+}
+
+// TargetedImageRequestFrom constructs a [TargetedImageRequest] from an unsafe.Pointer.
+//
+// The abstract superclass for image analysis requests that operate on both the processed image and a secondary image.
+func TargetedImageRequestFrom(ptr unsafe.Pointer) TargetedImageRequest {
+	return TargetedImageRequest{
+		ImageBasedRequest: ImageBasedRequestFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TargetedImageRequest */
+
+// Creates a new request targeting a Core Graphics image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedCGImage:options:
+func NewTargetedImageRequestWithTargetedCGImageOptions(cgImage ImageRef /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCGImage:options:"), cgImage, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCGImageOptions */
+
+
+// Creates a new request targeting a Core Graphics image, executing the completion handler when done.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedCGImage:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedCGImageOptionsCompletionHandler(cgImage ImageRef /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCGImage:options:completionHandler:"), cgImage, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCGImageOptionsCompletionHandler */
+
+
+// Creates a new request targeting a Core Graphics image of known orientation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedCGImage:orientation:options:
+func NewTargetedImageRequestWithTargetedCGImageOrientationOptions(cgImage ImageRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCGImage:orientation:options:"), cgImage, orientation, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCGImageOrientationOptions */
+
+
+// Creates a new request targeting a Core Graphics image of known orientation, executing the completion handler when done.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedCGImage:orientation:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedCGImageOrientationOptionsCompletionHandler(cgImage ImageRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCGImage:orientation:options:completionHandler:"), cgImage, orientation, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCGImageOrientationOptionsCompletionHandler */
+
+
+// Creates a new request targeting a Core Image image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedCIImage:options:
+func NewTargetedImageRequestWithTargetedCIImageOptions(ciImage objectivec.IObject, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCIImage:options:"), ciImage, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCIImageOptions */
+
+
+// Creates a new request targeting a Core Image image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedCIImage:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedCIImageOptionsCompletionHandler(ciImage objectivec.IObject, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCIImage:options:completionHandler:"), ciImage, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCIImageOptionsCompletionHandler */
+
+
+// Creates a new request targeting a Core Image image of known orientation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedCIImage:orientation:options:
+func NewTargetedImageRequestWithTargetedCIImageOrientationOptions(ciImage objectivec.IObject, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCIImage:orientation:options:"), ciImage, orientation, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCIImageOrientationOptions */
+
+
+// Creates a new request targeting a Core Image image of known orientation, executing the completion handler when done.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedCIImage:orientation:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedCIImageOrientationOptionsCompletionHandler(ciImage objectivec.IObject, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCIImage:orientation:options:completionHandler:"), ciImage, orientation, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCIImageOrientationOptionsCompletionHandler */
+
+
+// Creates a new request that targets an image in a sample buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedCMSampleBuffer:options:
+func NewTargetedImageRequestWithTargetedCMSampleBufferOptions(sampleBuffer SampleBufferRef /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCMSampleBuffer:options:"), sampleBuffer, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCMSampleBufferOptions */
+
+
+// Creates a new request with a completion handler that targets an image in a sample buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedCMSampleBuffer:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedCMSampleBufferOptionsCompletionHandler(sampleBuffer SampleBufferRef /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCMSampleBuffer:options:completionHandler:"), sampleBuffer, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCMSampleBufferOptionsCompletionHandler */
+
+
+// Creates a new request that targets an image of a known orientation in a sample buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedCMSampleBuffer:orientation:options:
+func NewTargetedImageRequestWithTargetedCMSampleBufferOrientationOptions(sampleBuffer SampleBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCMSampleBuffer:orientation:options:"), sampleBuffer, orientation, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCMSampleBufferOrientationOptions */
+
+
+// Creates a new request with a completion handler that targets an image of a known orientation in a sample buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedCMSampleBuffer:orientation:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedCMSampleBufferOrientationOptionsCompletionHandler(sampleBuffer SampleBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCMSampleBuffer:orientation:options:completionHandler:"), sampleBuffer, orientation, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCMSampleBufferOrientationOptionsCompletionHandler */
+
+
+// Creates a new request targeting an image in a pixel buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedCVPixelBuffer:options:
+func NewTargetedImageRequestWithTargetedCVPixelBufferOptions(pixelBuffer PixelBufferRef /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCVPixelBuffer:options:"), pixelBuffer, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCVPixelBufferOptions */
+
+
+// Creates a new request targeting an image in a pixel buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedCVPixelBuffer:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedCVPixelBufferOptionsCompletionHandler(pixelBuffer PixelBufferRef /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCVPixelBuffer:options:completionHandler:"), pixelBuffer, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCVPixelBufferOptionsCompletionHandler */
+
+
+// Creates a new request targeting an image in a pixel buffer of known orientation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedCVPixelBuffer:orientation:options:
+func NewTargetedImageRequestWithTargetedCVPixelBufferOrientationOptions(pixelBuffer PixelBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCVPixelBuffer:orientation:options:"), pixelBuffer, orientation, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCVPixelBufferOrientationOptions */
+
+
+// Creates a new request targeting an image in a pixel buffer of known orientation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedCVPixelBuffer:orientation:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedCVPixelBufferOrientationOptionsCompletionHandler(pixelBuffer PixelBufferRef /* not a class type */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedCVPixelBuffer:orientation:options:completionHandler:"), pixelBuffer, orientation, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedCVPixelBufferOrientationOptionsCompletionHandler */
+
+
+// Creates a new request targeting an image as raw data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageData:options:
+func NewTargetedImageRequestWithTargetedImageDataOptions(imageData objc.IObject /* cross-framework: NSData */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageData:options:"), imageData, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedImageDataOptions */
+
+
+// Creates a new request targeting an image as raw data, executing the completion handler when done.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedImageData:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedImageDataOptionsCompletionHandler(imageData objc.IObject /* cross-framework: NSData */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageData:options:completionHandler:"), imageData, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedImageDataOptionsCompletionHandler */
+
+
+// Creates a new request targeting a raw data image of known orientation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageData:orientation:options:
+func NewTargetedImageRequestWithTargetedImageDataOrientationOptions(imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageData:orientation:options:"), imageData, orientation, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedImageDataOrientationOptions */
+
+
+// Creates a new request targeting a raw data image of known orientation, executing the completion handler when done.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedImageData:orientation:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedImageDataOrientationOptionsCompletionHandler(imageData objc.IObject /* cross-framework: NSData */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageData:orientation:options:completionHandler:"), imageData, orientation, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedImageDataOrientationOptionsCompletionHandler */
+
+
+// Creates a new request targeting an image at the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageURL:options:
+func NewTargetedImageRequestWithTargetedImageURLOptions(imageURL objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:options:"), imageURL, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedImageURLOptions */
+
+
+// Creates a new request targeting an image at the specified URL, executing the completion handler when done.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedImageURL:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedImageURLOptionsCompletionHandler(imageURL objc.IObject /* cross-framework: NSURL */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:options:completionHandler:"), imageURL, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedImageURLOptionsCompletionHandler */
+
+
+// Creates a new request targeting an image of known orientation, at the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/initWithTargetedImageURL:orientation:options:
+func NewTargetedImageRequestWithTargetedImageURLOrientationOptions(imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:orientation:options:"), imageURL, orientation, options)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedImageURLOrientationOptions */
+
+
+// Creates a new request targeting an image of known orientation, at the specified URL, executing the completion handler when done.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNTargetedImageRequest/init(targetedImageURL:orientation:options:completionHandler:)
+func NewTargetedImageRequestWithTargetedImageURLOrientationOptionsCompletionHandler(imageURL objc.IObject /* cross-framework: NSURL */, orientation ImagePropertyOrientation /* not a class type */, options foundation.IDictionary, completionHandler RequestCompletionHandler /* not a class type */) TargetedImageRequest {
+	instance := getTargetedImageRequestClass().Alloc()
+	rv := objc.Send[TargetedImageRequest](instance.ID, objc.Sel("initWithTargetedImageURL:orientation:options:completionHandler:"), imageURL, orientation, options, completionHandler)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewTargetedImageRequestWithTargetedImageURLOrientationOptionsCompletionHandler */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for TargetedImageRequest */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TargetedImageRequest */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TargetedImageRequest */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TargetedImageRequest */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class VNTargetedImageRequest */
 
 

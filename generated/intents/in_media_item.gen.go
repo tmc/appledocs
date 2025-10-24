@@ -44,7 +44,6 @@ type IINMediaItem interface {
 
 // An object that describes a piece of media content, such as a song, TV show, artist, or podcast playlist.
 
-
 // An object that describes a piece of media content, such as a song, TV show, artist, or podcast playlist.
 //
 // [Full Topic]
@@ -91,8 +90,6 @@ func NewINMediaItem() INMediaItem {
 	return getINMediaItemClass().New()
 }
 
-
-
 // The artist associated with the media item.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (i_ INMediaItem) Artist() string {
 	return rv
 }
 
-
 // The artist associated with the media item.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (i_ INMediaItem) Artist() string {
 func (i_ INMediaItem) SetArtist(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setArtist:"), objc.String(value))
 }
-
 
 // Artwork for the media item.
 //
@@ -121,7 +116,6 @@ func (i_ INMediaItem) Artwork() INImage {
 	return rv
 }
 
-
 // Artwork for the media item.
 //
 // [Full Topic]
@@ -129,7 +123,6 @@ func (i_ INMediaItem) Artwork() INImage {
 func (i_ INMediaItem) SetArtwork(value INImage) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setArtwork:"), value)
 }
-
 
 // The value your app uses to identify the media item.
 //
@@ -140,7 +133,6 @@ func (i_ INMediaItem) Identifier() string {
 	return rv
 }
 
-
 // The value your app uses to identify the media item.
 //
 // [Full Topic]
@@ -148,7 +140,6 @@ func (i_ INMediaItem) Identifier() string {
 func (i_ INMediaItem) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
-
 
 // The media item title.
 //
@@ -159,7 +150,6 @@ func (i_ INMediaItem) Title() string {
 	return rv
 }
 
-
 // The media item title.
 //
 // [Full Topic]
@@ -167,7 +157,6 @@ func (i_ INMediaItem) Title() string {
 func (i_ INMediaItem) SetTitle(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), objc.String(value))
 }
-
 
 // The media item type.
 //
@@ -178,7 +167,6 @@ func (i_ INMediaItem) Type() unsafe.Pointer {
 	return rv
 }
 
-
 // The media item type.
 //
 // [Full Topic]
@@ -186,6 +174,3 @@ func (i_ INMediaItem) Type() unsafe.Pointer {
 func (i_ INMediaItem) SetType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setType:"), value)
 }
-
-
-

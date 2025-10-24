@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [PersistentCloudKitContainerEventRequest] class.
@@ -37,7 +36,6 @@ type IPersistentCloudKitContainerEventRequest interface {
 }
 
 // A request to fetch setup, import, or export events in a persistent CloudKit container.
-
 
 // A request to fetch setup, import, or export events in a persistent CloudKit container.
 //
@@ -87,8 +85,6 @@ func NewPersistentCloudKitContainerEventRequest() PersistentCloudKitContainerEve
 	return getPersistentCloudKitContainerEventRequestClass().New()
 }
 
-
-
 // Creates a fetch request for events that occur after a specified event from a persistent CloudKit container.
 //
 // [Full Topic]
@@ -97,7 +93,6 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterEvent(ev
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsAfterEvent:"), event)
 	return rv
 }
-
 
 // Creates a fetch request for events after a specified date from a persistent CloudKit container.
 //
@@ -108,7 +103,6 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsAfterDate(dat
 	return rv
 }
 
-
 // Creates a fetch request for events that match a specified fetch request from a persistent CloudKit container.
 //
 // [Full Topic]
@@ -117,7 +111,6 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchEventsMatchingFetch
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchEventsMatchingFetchRequest:"), fetchRequest)
 	return rv
 }
-
 
 // Creates a fetch request for all events in a persistent CloudKit container.
 //
@@ -128,7 +121,6 @@ func (pc _PersistentCloudKitContainerEventRequestClass) FetchRequestForEvents() 
 	return rv
 }
 
-
 // The type of result that the request returns.
 //
 // [Full Topic]
@@ -138,7 +130,6 @@ func (p_ PersistentCloudKitContainerEventRequest) ResultType() PersistentCloudKi
 	return rv
 }
 
-
 // The type of result that the request returns.
 //
 // [Full Topic]
@@ -146,6 +137,3 @@ func (p_ PersistentCloudKitContainerEventRequest) ResultType() PersistentCloudKi
 func (p_ PersistentCloudKitContainerEventRequest) SetResultType(value PersistentCloudKitContainerEventResultType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setResultType:"), value)
 }
-
-
-

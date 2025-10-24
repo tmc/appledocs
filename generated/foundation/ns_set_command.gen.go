@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSSetCommand */
+
+
+/* debug [class_header]: Header for NSSetCommand */
 // The class instance for the [SetCommand] class.
 var (
 	SetCommandClass     _SetCommandClass
@@ -25,39 +29,33 @@ func getSetCommandClass() _SetCommandClass {
 type _SetCommandClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SetCommand */
 // An interface definition for the [SetCommand] class.
 type ISetCommand interface {
 	IScriptCommand
+	
+/* debug [class_interface_properties]: Properties for SetCommand */
 	// properties:
 	KeySpecifier() IScriptObjectSpecifier
 	SetKeySpecifier(value IScriptObjectSpecifier)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SetCommand */
 	// methods:
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A command that sets one or more attributes or relationships to one or more values.
-//
-// An instance of sets one or more attributes or relationships to one or more values; for example, it may set the (x, y) coordinates for a window’s position or set the name of a document. is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or call its methods. uses available scripting class descriptions to determine whether it should set a value for an attribute (or property), or set a value for all elements (to-many objects). For the latter, it invokes ; for the former, it invokes (or, if the receiver overrides , it invokes that method, to support backward binary compatibility.) For information on working with commands, see in .
+/* debug [class_interface]: End interface */
 
 
-// A command that sets one or more attributes or relationships to one or more values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand
-type SetCommand struct {
-	ScriptCommand
-}
 
-// SetCommandFrom constructs a [SetCommand] from an unsafe.Pointer.
-//
-// A command that sets one or more attributes or relationships to one or more values.
-func SetCommandFrom(ptr unsafe.Pointer) SetCommand {
-	return SetCommand{
-		ScriptCommand: ScriptCommandFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for SetCommand */
 // Alloc allocates a new instance without initialization.
 func (sc _SetCommandClass) Alloc() SetCommand {
 	rv := objc.Send[SetCommand](objc.ID(sc.class), objc.Sel("alloc"))
@@ -65,7 +63,6 @@ func (sc _SetCommandClass) Alloc() SetCommand {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SetCommandClass) New() SetCommand {
 	rv := objc.Send[SetCommand](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +85,51 @@ func (s_ SetCommand) Autorelease() SetCommand {
 func NewSetCommand() SetCommand {
 	return getSetCommandClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SetCommand */
+// A command that sets one or more attributes or relationships to one or more values.
+//
+// An instance of sets one or more attributes or relationships to one or more values; for example, it may set the (x, y) coordinates for a window’s position or set the name of a document. is part of Cocoa’s built-in scripting support. It works automatically to support the command through key-value coding. Most applications don’t need to subclass or call its methods. uses available scripting class descriptions to determine whether it should set a value for an attribute (or property), or set a value for all elements (to-many objects). For the latter, it invokes ; for the former, it invokes (or, if the receiver overrides , it invokes that method, to support backward binary compatibility.) For information on working with commands, see in .
+
+
+// A command that sets one or more attributes or relationships to one or more values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand
+type SetCommand struct {
+	ScriptCommand
+}
+
+// SetCommandFrom constructs a [SetCommand] from an unsafe.Pointer.
+//
+// A command that sets one or more attributes or relationships to one or more values.
+func SetCommandFrom(ptr unsafe.Pointer) SetCommand {
+	return SetCommand{
+		ScriptCommand: ScriptCommandFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SetCommand *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SetCommand */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SetCommand */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SetCommand */
 
 // Sets the receiver’s object specifier.
 //
@@ -97,8 +137,13 @@ func NewSetCommand() SetCommand {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSetCommand/setReceiversSpecifier(_:)
 func (s_ SetCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
-}
+}/* debug [instance_methods/method]: SetReceiversSpecifier */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SetCommand */
 
 // Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
 //
@@ -107,7 +152,7 @@ func (s_ SetCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) 
 func (s_ SetCommand) KeySpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[ScriptObjectSpecifier](s_.ID, objc.Sel("keySpecifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: keySpecifier */
 
 
 // Returns a specifier that identifies the attribute or relationship that is to be set for the receiver of the
@@ -116,7 +161,12 @@ func (s_ SetCommand) KeySpecifier() IScriptObjectSpecifier {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nssetcommand/keyspecifier
 func (s_ SetCommand) SetKeySpecifier(value IScriptObjectSpecifier) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKeySpecifier:"), value)
-}
+}/* debug [instance_properties/setter]: keySpecifier */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSSetCommand */
 
 
 

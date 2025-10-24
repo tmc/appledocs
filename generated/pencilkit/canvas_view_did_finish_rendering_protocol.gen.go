@@ -18,3 +18,4 @@ var canvasViewDidFinishRenderingProtocol *objc.Protocol
 func init() {
 	canvasViewDidFinishRenderingProtocol = objc.GetProtocol("canvasViewDidFinishRendering:")
 }
+

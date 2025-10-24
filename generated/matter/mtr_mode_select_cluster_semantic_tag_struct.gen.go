@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRModeSelectClusterSemanticTagStruct interface {
 	SetValue(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRModeSelectClusterSemanticTagStruct
@@ -83,8 +81,6 @@ func NewMTRModeSelectClusterSemanticTagStruct() MTRModeSelectClusterSemanticTagS
 	return getMTRModeSelectClusterSemanticTagStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictagstruct/mfgcode
 func (m_ MTRModeSelectClusterSemanticTagStruct) MfgCode() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRModeSelectClusterSemanticTagStruct) MfgCode() objc.IObject /* cross-
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictagstruct/mfgcode
 func (m_ MTRModeSelectClusterSemanticTagStruct) SetMfgCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMfgCode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictagstruct/value
@@ -107,12 +101,8 @@ func (m_ MTRModeSelectClusterSemanticTagStruct) Value() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustersemantictagstruct/value
 func (m_ MTRModeSelectClusterSemanticTagStruct) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
-
-

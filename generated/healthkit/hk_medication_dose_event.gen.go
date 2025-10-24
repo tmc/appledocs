@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class HKMedicationDoseEvent */
+
+
+/* debug [class_header]: Header for HKMedicationDoseEvent */
 // The class instance for the [HKMedicationDoseEvent] class.
 var (
 	HKMedicationDoseEventClass     _HKMedicationDoseEventClass
@@ -26,45 +30,38 @@ func getHKMedicationDoseEventClass() _HKMedicationDoseEventClass {
 type _HKMedicationDoseEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKMedicationDoseEvent */
 // An interface definition for the [HKMedicationDoseEvent] class.
 type IHKMedicationDoseEvent interface {
 	IHKSample
+	
+/* debug [class_interface_properties]: Properties for HKMedicationDoseEvent */
 	// properties:
-	DoseQuantity() float64
-	SetDoseQuantity(value float64)
-	LogStatus() unsafe.Pointer
-	SetLogStatus(value unsafe.Pointer)
+	DoseQuantity() objc.IObject /* cross-framework: NSNumber */
+	LogStatus() HKMedicationDoseEventLogStatus
 	MedicationConceptIdentifier() IHKHealthConceptIdentifier
-	SetMedicationConceptIdentifier(value IHKHealthConceptIdentifier)
 	MedicationDoseEventType() IHKMedicationDoseEventType
-	SetMedicationDoseEventType(value IHKMedicationDoseEventType)
-	ScheduleType() unsafe.Pointer
-	SetScheduleType(value unsafe.Pointer)
-	ScheduledDate() objc.IObject /* cross-framework: Date */
-	SetScheduledDate(value objc.IObject /* cross-framework: Date */)
-	ScheduledDoseQuantity() float64
-	SetScheduledDoseQuantity(value float64)
+	ScheduledDate() objc.IObject /* cross-framework: NSDate */
+	ScheduledDoseQuantity() objc.IObject /* cross-framework: NSNumber */
+	ScheduleType() HKMedicationDoseEventScheduleType
 	Unit() IHKUnit
-	SetUnit(value IHKUnit)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKMedicationDoseEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent
-type HKMedicationDoseEvent struct {
-	HKSample
-}
-
-// HKMedicationDoseEventFrom constructs a [HKMedicationDoseEvent] from an unsafe.Pointer.
-func HKMedicationDoseEventFrom(ptr unsafe.Pointer) HKMedicationDoseEvent {
-	return HKMedicationDoseEvent{
-		HKSample: HKSampleFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for HKMedicationDoseEvent */
 // Alloc allocates a new instance without initialization.
 func (hc _HKMedicationDoseEventClass) Alloc() HKMedicationDoseEvent {
 	rv := objc.Send[HKMedicationDoseEvent](objc.ID(hc.class), objc.Sel("alloc"))
@@ -72,7 +69,6 @@ func (hc _HKMedicationDoseEventClass) Alloc() HKMedicationDoseEvent {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKMedicationDoseEventClass) New() HKMedicationDoseEvent {
 	rv := objc.Send[HKMedicationDoseEvent](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,159 +91,133 @@ func (h_ HKMedicationDoseEvent) Autorelease() HKMedicationDoseEvent {
 func NewHKMedicationDoseEvent() HKMedicationDoseEvent {
 	return getHKMedicationDoseEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The quantity of the medication taken.
+/* debug [class_struct]: Struct for HKMedicationDoseEvent */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent
+type HKMedicationDoseEvent struct {
+	HKSample
+}
+
+// HKMedicationDoseEventFrom constructs a [HKMedicationDoseEvent] from an unsafe.Pointer.
+func HKMedicationDoseEventFrom(ptr unsafe.Pointer) HKMedicationDoseEvent {
+	return HKMedicationDoseEvent{
+		HKSample: HKSampleFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKMedicationDoseEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKMedicationDoseEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKMedicationDoseEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKMedicationDoseEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKMedicationDoseEvent */
+
+// The dose quantity the person reports as taken.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/dosequantity-4cb5m
-func (h_ HKMedicationDoseEvent) DoseQuantity() float64 {
-	rv := objc.Send[float64](h_.ID, objc.Sel("doseQuantity"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/doseQuantity-52hxr
+func (h_ HKMedicationDoseEvent) DoseQuantity() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](h_.ID, objc.Sel("doseQuantity"))
 	return rv
-}
-
-
-// The quantity of the medication taken.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/dosequantity-4cb5m
-func (h_ HKMedicationDoseEvent) SetDoseQuantity(value float64) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setDoseQuantity:"), value)
-}
+}/* debug [instance_properties/getter]: doseQuantity */
 
 
 // The log status the system assigns to this dose event.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.property
-func (h_ HKMedicationDoseEvent) LogStatus() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("logStatus"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/logStatus-swift.property
+func (h_ HKMedicationDoseEvent) LogStatus() HKMedicationDoseEventLogStatus {
+	rv := objc.Send[HKMedicationDoseEventLogStatus](h_.ID, objc.Sel("logStatus"))
 	return rv
-}
-
-
-// The log status the system assigns to this dose event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/logstatus-swift.property
-func (h_ HKMedicationDoseEvent) SetLogStatus(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setLogStatus:"), value)
-}
+}/* debug [instance_properties/getter]: logStatus */
 
 
 // The identifier of the medication concept the system associates with this dose event.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/medicationconceptidentifier
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/medicationConceptIdentifier
 func (h_ HKMedicationDoseEvent) MedicationConceptIdentifier() IHKHealthConceptIdentifier {
 	rv := objc.Send[HKHealthConceptIdentifier](h_.ID, objc.Sel("medicationConceptIdentifier"))
 	return rv
-}
-
-
-// The identifier of the medication concept the system associates with this dose event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/medicationconceptidentifier
-func (h_ HKMedicationDoseEvent) SetMedicationConceptIdentifier(value IHKHealthConceptIdentifier) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMedicationConceptIdentifier:"), value)
-}
+}/* debug [instance_properties/getter]: medicationConceptIdentifier */
 
 
 // The data type that identified the samples that store medication dose event data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/medicationdoseeventtype
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/medicationDoseEventType
 func (h_ HKMedicationDoseEvent) MedicationDoseEventType() IHKMedicationDoseEventType {
 	rv := objc.Send[HKMedicationDoseEventType](h_.ID, objc.Sel("medicationDoseEventType"))
 	return rv
-}
-
-
-// The data type that identified the samples that store medication dose event data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/medicationdoseeventtype
-func (h_ HKMedicationDoseEvent) SetMedicationDoseEventType(value IHKMedicationDoseEventType) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMedicationDoseEventType:"), value)
-}
-
-
-// The scheduling context for this logged dose event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduletype-swift.property
-func (h_ HKMedicationDoseEvent) ScheduleType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("scheduleType"))
-	return rv
-}
-
-
-// The scheduling context for this logged dose event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduletype-swift.property
-func (h_ HKMedicationDoseEvent) SetScheduleType(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setScheduleType:"), value)
-}
+}/* debug [instance_properties/getter]: medicationDoseEventType */
 
 
 // The date and time the person takes the medication, if scheduled.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddate
-func (h_ HKMedicationDoseEvent) ScheduledDate() objc.IObject /* cross-framework: Date */ {
-	rv := objc.Send[foundation.Date](h_.ID, objc.Sel("scheduledDate"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/scheduledDate
+func (h_ HKMedicationDoseEvent) ScheduledDate() objc.IObject /* cross-framework: NSDate */ {
+	rv := objc.Send[foundation.NSDate](h_.ID, objc.Sel("scheduledDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scheduledDate */
 
 
-// The date and time the person takes the medication, if scheduled.
+// The dose quantity a person is expected to take based on their medication schedule.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddate
-func (h_ HKMedicationDoseEvent) SetScheduledDate(value objc.IObject /* cross-framework: Date */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setScheduledDate:"), value)
-}
-
-
-// The quantity of the medication scheduled to be taken.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddosequantity-477ge
-func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() float64 {
-	rv := objc.Send[float64](h_.ID, objc.Sel("scheduledDoseQuantity"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/scheduledDoseQuantity-7ffhr
+func (h_ HKMedicationDoseEvent) ScheduledDoseQuantity() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](h_.ID, objc.Sel("scheduledDoseQuantity"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scheduledDoseQuantity */
 
 
-// The quantity of the medication scheduled to be taken.
+// The scheduling context for this logged dose event.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/scheduleddosequantity-477ge
-func (h_ HKMedicationDoseEvent) SetScheduledDoseQuantity(value float64) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setScheduledDoseQuantity:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/scheduleType-swift.property
+func (h_ HKMedicationDoseEvent) ScheduleType() HKMedicationDoseEventScheduleType {
+	rv := objc.Send[HKMedicationDoseEventScheduleType](h_.ID, objc.Sel("scheduleType"))
+	return rv
+}/* debug [instance_properties/getter]: scheduleType */
 
 
 // The unit that the system associates with the medication when the person logs the dose.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/unit
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKMedicationDoseEvent/unit
 func (h_ HKMedicationDoseEvent) Unit() IHKUnit {
 	rv := objc.Send[HKUnit](h_.ID, objc.Sel("unit"))
 	return rv
-}
+}/* debug [instance_properties/getter]: unit */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The unit that the system associates with the medication when the person logs the dose.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkmedicationdoseevent/unit
-func (h_ HKMedicationDoseEvent) SetUnit(value IHKUnit) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setUnit:"), value)
-}
+/* debug [class.gen.go]: End class HKMedicationDoseEvent */
 
 
 

@@ -38,7 +38,6 @@ type ILightweightMigrationStage interface {
 //
 // Use when you have a series of models to migrate and those models are compatible with lightweight migrations. Instances of this class supplement your custom migration stages and help maintain a consistent stage order for the entire migration.
 
-
 // An object that describes a series of models suitable for lightweight migration.
 //
 // [Full Topic]
@@ -87,8 +86,6 @@ func NewLightweightMigrationStage() LightweightMigrationStage {
 	return getLightweightMigrationStageClass().New()
 }
 
-
-
 // The array of version checksums.
 //
 // [Full Topic]
@@ -97,6 +94,3 @@ func (l_ LightweightMigrationStage) VersionChecksums() []string {
 	rv := objc.Send[[]string](l_.ID, objc.Sel("versionChecksums"))
 	return rv
 }
-
-
-

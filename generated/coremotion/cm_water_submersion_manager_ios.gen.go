@@ -20,11 +20,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMWaterSubmersionManager/delegate
-func (w_ WaterSubmersionManager) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](w_.ID, objc.Sel("delegate"))
+func (w_ WaterSubmersionManager) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (w_ WaterSubmersionManager) SetDelegate(value objc.ID) {
+func (w_ WaterSubmersionManager) SetDelegate(value unsafe.Pointer) {
 	w_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 

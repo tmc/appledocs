@@ -15,3 +15,4 @@ var FileProviderPartialContentFetchingProtocol *objc.Protocol
 func init() {
 	FileProviderPartialContentFetchingProtocol = objc.GetProtocol("NSFileProviderPartialContentFetching")
 }
+

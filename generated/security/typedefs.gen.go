@@ -6,6 +6,11 @@ import (
 )
 
 // Type aliases and typedefs
+// SecCECrlReason type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecCECrlReason
+// SecCECrlReason has base type: uint32_t
+type SecCECrlReason uintptr
 // AuthorizationEnvironment - An authorization item set designated to hold environment information relevant to authorization decisions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/AuthorizationEnvironment
@@ -29,13 +34,11 @@ type AuthorizationString uintptr
 // CE_CrlNumber type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CE_CrlNumber
-// CE_CrlNumber has base type: uint32
-type CE_CrlNumber uintptr
+type CE_CrlNumber = uint32
 // CE_DeltaCrl type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CE_DeltaCrl
-// CE_DeltaCrl has base type: uint32
-type CE_DeltaCrl uintptr
+type CE_DeltaCrl = uint32
 // SDecoderRef - An opaque reference to a CMS decoder object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSDecoder
@@ -46,6 +49,11 @@ type SDecoderRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CMSEncoder
 // CMSEncoderRef has base type: struct _CMSEncoder *
 type SEncoderRef uintptr
+// CSSM_AC_HANDLE type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_AC_HANDLE
+// CSSM_AC_HANDLE has base type: CSSM_MODULE_HANDLE
+type CSSM_AC_HANDLE uintptr
 // CSSM_ACL_AUTHORIZATION_TAG type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ACL_AUTHORIZATION_TAG
@@ -54,8 +62,7 @@ type CSSM_ACL_AUTHORIZATION_TAG uintptr
 // CSSM_ACL_EDIT_MODE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ACL_EDIT_MODE
-// CSSM_ACL_EDIT_MODE has base type: uint32
-type CSSM_ACL_EDIT_MODE uintptr
+type CSSM_ACL_EDIT_MODE = uint32
 // CSSM_ACL_HANDLE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ACL_HANDLE
@@ -69,8 +76,7 @@ type CSSM_ACL_KEYCHAIN_PROMPT_SELECTOR uintptr
 // CSSM_ACL_PREAUTH_TRACKING_STATE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ACL_PREAUTH_TRACKING_STATE
-// CSSM_ACL_PREAUTH_TRACKING_STATE has base type: uint32
-type CSSM_ACL_PREAUTH_TRACKING_STATE uintptr
+type CSSM_ACL_PREAUTH_TRACKING_STATE = uint32
 // CSSM_ACL_PROCESS_SUBJECT_SELECTOR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ACL_PROCESS_SUBJECT_SELECTOR-swift.typealias
@@ -81,16 +87,18 @@ type CSSM_ACL_PROCESS_SUBJECT_SELECTOR uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ACL_SUBJECT_TYPE
 // CSSM_ACL_SUBJECT_TYPE has base type: sint32
 type CSSM_ACL_SUBJECT_TYPE uintptr
-// CSSM_AC_HANDLE type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_AC_HANDLE
-// CSSM_AC_HANDLE has base type: CSSM_MODULE_HANDLE
-type CSSM_AC_HANDLE uintptr
 // CSSM_ALGORITHMS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ALGORITHMS
-// CSSM_ALGORITHMS has base type: uint32
-type CSSM_ALGORITHMS uintptr
+type CSSM_ALGORITHMS = uint32
+// CSSM_APPLE_TP_ACTION_FLAGS type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_APPLE_TP_ACTION_FLAGS
+type CSSM_APPLE_TP_ACTION_FLAGS = uint32
+// CSSM_APPLE_TP_CRL_OPT_FLAGS type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_APPLE_TP_CRL_OPT_FLAGS
+type CSSM_APPLE_TP_CRL_OPT_FLAGS = uint32
 // CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_APPLECSPDL_DB_CHANGE_PASSWORD_PARAMETERS-swift.typealias
@@ -131,26 +139,14 @@ type CSSM_APPLEDL_OPEN_PARAMETERS uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_APPLEDL_OPEN_PARAMETERS_PTR
 // CSSM_APPLEDL_OPEN_PARAMETERS_PTR has base type: struct cssm_appledl_open_parameters *
 type CSSM_APPLEDL_OPEN_PARAMETERS_PTR uintptr
-// CSSM_APPLE_TP_ACTION_FLAGS type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_APPLE_TP_ACTION_FLAGS
-// CSSM_APPLE_TP_ACTION_FLAGS has base type: uint32
-type CSSM_APPLE_TP_ACTION_FLAGS uintptr
-// CSSM_APPLE_TP_CRL_OPT_FLAGS type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_APPLE_TP_CRL_OPT_FLAGS
-// CSSM_APPLE_TP_CRL_OPT_FLAGS has base type: uint32
-type CSSM_APPLE_TP_CRL_OPT_FLAGS uintptr
 // CSSM_ATTACH_FLAGS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ATTACH_FLAGS
-// CSSM_ATTACH_FLAGS has base type: uint32
-type CSSM_ATTACH_FLAGS uintptr
+type CSSM_ATTACH_FLAGS = uint32
 // CSSM_ATTRIBUTE_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ATTRIBUTE_TYPE
-// CSSM_ATTRIBUTE_TYPE has base type: uint32
-type CSSM_ATTRIBUTE_TYPE uintptr
+type CSSM_ATTRIBUTE_TYPE = uint32
 // CSSM_BER_TAG type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_BER_TAG
@@ -159,8 +155,7 @@ type CSSM_BER_TAG uintptr
 // CSSM_BITMASK type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_BITMASK
-// CSSM_BITMASK has base type: uint32
-type CSSM_BITMASK uintptr
+type CSSM_BITMASK = uint32
 // CSSM_BOOL type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_BOOL
@@ -177,31 +172,18 @@ type CSSM_CALLOC = func(uint32, uint, unsafe.Pointer) unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CC_HANDLE
 // CSSM_CC_HANDLE has base type: CSSM_LONG_HANDLE
 type CSSM_CC_HANDLE uintptr
-// CSSM_CERTGROUP_TYPE type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERTGROUP_TYPE
-// CSSM_CERTGROUP_TYPE has base type: uint32
-type CSSM_CERTGROUP_TYPE uintptr
-// CSSM_CERTGROUP_TYPE_PTR type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERTGROUP_TYPE_PTR
-// CSSM_CERTGROUP_TYPE_PTR has base type: uint32 *
-type CSSM_CERTGROUP_TYPE_PTR uintptr
 // CSSM_CERT_BUNDLE_ENCODING type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERT_BUNDLE_ENCODING
-// CSSM_CERT_BUNDLE_ENCODING has base type: uint32
-type CSSM_CERT_BUNDLE_ENCODING uintptr
+type CSSM_CERT_BUNDLE_ENCODING = uint32
 // CSSM_CERT_BUNDLE_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERT_BUNDLE_TYPE
-// CSSM_CERT_BUNDLE_TYPE has base type: uint32
-type CSSM_CERT_BUNDLE_TYPE uintptr
+type CSSM_CERT_BUNDLE_TYPE = uint32
 // CSSM_CERT_ENCODING type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERT_ENCODING
-// CSSM_CERT_ENCODING has base type: uint32
-type CSSM_CERT_ENCODING uintptr
+type CSSM_CERT_ENCODING = uint32
 // CSSM_CERT_ENCODING_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERT_ENCODING_PTR
@@ -210,8 +192,7 @@ type CSSM_CERT_ENCODING_PTR uintptr
 // CSSM_CERT_PARSE_FORMAT type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERT_PARSE_FORMAT
-// CSSM_CERT_PARSE_FORMAT has base type: uint32
-type CSSM_CERT_PARSE_FORMAT uintptr
+type CSSM_CERT_PARSE_FORMAT = uint32
 // CSSM_CERT_PARSE_FORMAT_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERT_PARSE_FORMAT_PTR
@@ -220,13 +201,21 @@ type CSSM_CERT_PARSE_FORMAT_PTR uintptr
 // CSSM_CERT_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERT_TYPE
-// CSSM_CERT_TYPE has base type: uint32
-type CSSM_CERT_TYPE uintptr
+type CSSM_CERT_TYPE = uint32
 // CSSM_CERT_TYPE_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERT_TYPE_PTR
 // CSSM_CERT_TYPE_PTR has base type: uint32 *
 type CSSM_CERT_TYPE_PTR uintptr
+// CSSM_CERTGROUP_TYPE type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERTGROUP_TYPE
+type CSSM_CERTGROUP_TYPE = uint32
+// CSSM_CERTGROUP_TYPE_PTR type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CERTGROUP_TYPE_PTR
+// CSSM_CERTGROUP_TYPE_PTR has base type: uint32 *
+type CSSM_CERTGROUP_TYPE_PTR uintptr
 // CSSM_CL_HANDLE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CL_HANDLE
@@ -235,33 +224,19 @@ type CSSM_CL_HANDLE uintptr
 // CSSM_CL_TEMPLATE_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CL_TEMPLATE_TYPE
-// CSSM_CL_TEMPLATE_TYPE has base type: uint32
-type CSSM_CL_TEMPLATE_TYPE uintptr
+type CSSM_CL_TEMPLATE_TYPE = uint32
 // CSSM_CONTEXT_EVENT type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CONTEXT_EVENT
-// CSSM_CONTEXT_EVENT has base type: uint32
-type CSSM_CONTEXT_EVENT uintptr
+type CSSM_CONTEXT_EVENT = uint32
 // CSSM_CONTEXT_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CONTEXT_TYPE
-// CSSM_CONTEXT_TYPE has base type: uint32
-type CSSM_CONTEXT_TYPE uintptr
-// CSSM_CRLGROUP_TYPE type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRLGROUP_TYPE
-// CSSM_CRLGROUP_TYPE has base type: uint32
-type CSSM_CRLGROUP_TYPE uintptr
-// CSSM_CRLGROUP_TYPE_PTR type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRLGROUP_TYPE_PTR
-// CSSM_CRLGROUP_TYPE_PTR has base type: uint32 *
-type CSSM_CRLGROUP_TYPE_PTR uintptr
+type CSSM_CONTEXT_TYPE = uint32
 // CSSM_CRL_ENCODING type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRL_ENCODING
-// CSSM_CRL_ENCODING has base type: uint32
-type CSSM_CRL_ENCODING uintptr
+type CSSM_CRL_ENCODING = uint32
 // CSSM_CRL_ENCODING_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRL_ENCODING_PTR
@@ -270,8 +245,7 @@ type CSSM_CRL_ENCODING_PTR uintptr
 // CSSM_CRL_PARSE_FORMAT type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRL_PARSE_FORMAT
-// CSSM_CRL_PARSE_FORMAT has base type: uint32
-type CSSM_CRL_PARSE_FORMAT uintptr
+type CSSM_CRL_PARSE_FORMAT = uint32
 // CSSM_CRL_PARSE_FORMAT_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRL_PARSE_FORMAT_PTR
@@ -280,23 +254,25 @@ type CSSM_CRL_PARSE_FORMAT_PTR uintptr
 // CSSM_CRL_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRL_TYPE
-// CSSM_CRL_TYPE has base type: uint32
-type CSSM_CRL_TYPE uintptr
+type CSSM_CRL_TYPE = uint32
 // CSSM_CRL_TYPE_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRL_TYPE_PTR
 // CSSM_CRL_TYPE_PTR has base type: uint32 *
 type CSSM_CRL_TYPE_PTR uintptr
-// CSSM_CSPTYPE type alias
+// CSSM_CRLGROUP_TYPE type alias
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CSPTYPE
-// CSSM_CSPTYPE has base type: uint32
-type CSSM_CSPTYPE uintptr
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRLGROUP_TYPE
+type CSSM_CRLGROUP_TYPE = uint32
+// CSSM_CRLGROUP_TYPE_PTR type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CRLGROUP_TYPE_PTR
+// CSSM_CRLGROUP_TYPE_PTR has base type: uint32 *
+type CSSM_CRLGROUP_TYPE_PTR uintptr
 // CSSM_CSP_FLAGS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CSP_FLAGS
-// CSSM_CSP_FLAGS has base type: uint32
-type CSSM_CSP_FLAGS uintptr
+type CSSM_CSP_FLAGS = uint32
 // CSSM_CSP_HANDLE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CSP_HANDLE
@@ -305,13 +281,15 @@ type CSSM_CSP_HANDLE uintptr
 // CSSM_CSP_READER_FLAGS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CSP_READER_FLAGS
-// CSSM_CSP_READER_FLAGS has base type: uint32
-type CSSM_CSP_READER_FLAGS uintptr
+type CSSM_CSP_READER_FLAGS = uint32
+// CSSM_CSPTYPE type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_CSPTYPE
+type CSSM_CSPTYPE = uint32
 // CSSM_DB_ACCESS_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_ACCESS_TYPE
-// CSSM_DB_ACCESS_TYPE has base type: uint32
-type CSSM_DB_ACCESS_TYPE uintptr
+type CSSM_DB_ACCESS_TYPE = uint32
 // CSSM_DB_ACCESS_TYPE_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_ACCESS_TYPE_PTR
@@ -320,8 +298,7 @@ type CSSM_DB_ACCESS_TYPE_PTR uintptr
 // CSSM_DB_ATTRIBUTE_FORMAT type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_ATTRIBUTE_FORMAT
-// CSSM_DB_ATTRIBUTE_FORMAT has base type: uint32
-type CSSM_DB_ATTRIBUTE_FORMAT uintptr
+type CSSM_DB_ATTRIBUTE_FORMAT = uint32
 // CSSM_DB_ATTRIBUTE_FORMAT_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_ATTRIBUTE_FORMAT_PTR
@@ -330,8 +307,7 @@ type CSSM_DB_ATTRIBUTE_FORMAT_PTR uintptr
 // CSSM_DB_ATTRIBUTE_NAME_FORMAT type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_ATTRIBUTE_NAME_FORMAT
-// CSSM_DB_ATTRIBUTE_NAME_FORMAT has base type: uint32
-type CSSM_DB_ATTRIBUTE_NAME_FORMAT uintptr
+type CSSM_DB_ATTRIBUTE_NAME_FORMAT = uint32
 // CSSM_DB_ATTRIBUTE_NAME_FORMAT_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_ATTRIBUTE_NAME_FORMAT_PTR
@@ -340,8 +316,7 @@ type CSSM_DB_ATTRIBUTE_NAME_FORMAT_PTR uintptr
 // CSSM_DB_CONJUNCTIVE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_CONJUNCTIVE
-// CSSM_DB_CONJUNCTIVE has base type: uint32
-type CSSM_DB_CONJUNCTIVE uintptr
+type CSSM_DB_CONJUNCTIVE = uint32
 // CSSM_DB_CONJUNCTIVE_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_CONJUNCTIVE_PTR
@@ -352,26 +327,22 @@ type CSSM_DB_CONJUNCTIVE_PTR uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_HANDLE
 // CSSM_DB_HANDLE has base type: CSSM_MODULE_HANDLE
 type CSSM_DB_HANDLE uintptr
-// CSSM_DB_INDEXED_DATA_LOCATION type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_INDEXED_DATA_LOCATION
-// CSSM_DB_INDEXED_DATA_LOCATION has base type: uint32
-type CSSM_DB_INDEXED_DATA_LOCATION uintptr
 // CSSM_DB_INDEX_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_INDEX_TYPE
-// CSSM_DB_INDEX_TYPE has base type: uint32
-type CSSM_DB_INDEX_TYPE uintptr
+type CSSM_DB_INDEX_TYPE = uint32
+// CSSM_DB_INDEXED_DATA_LOCATION type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_INDEXED_DATA_LOCATION
+type CSSM_DB_INDEXED_DATA_LOCATION = uint32
 // CSSM_DB_MODIFY_MODE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_MODIFY_MODE
-// CSSM_DB_MODIFY_MODE has base type: uint32
-type CSSM_DB_MODIFY_MODE uintptr
+type CSSM_DB_MODIFY_MODE = uint32
 // CSSM_DB_OPERATOR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_OPERATOR
-// CSSM_DB_OPERATOR has base type: uint32
-type CSSM_DB_OPERATOR uintptr
+type CSSM_DB_OPERATOR = uint32
 // CSSM_DB_OPERATOR_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_OPERATOR_PTR
@@ -380,23 +351,11 @@ type CSSM_DB_OPERATOR_PTR uintptr
 // CSSM_DB_RECORDTYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_RECORDTYPE
-// CSSM_DB_RECORDTYPE has base type: uint32
-type CSSM_DB_RECORDTYPE uintptr
+type CSSM_DB_RECORDTYPE = uint32
 // CSSM_DB_RETRIEVAL_MODES type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DB_RETRIEVAL_MODES
-// CSSM_DB_RETRIEVAL_MODES has base type: uint32
-type CSSM_DB_RETRIEVAL_MODES uintptr
-// CSSM_DLTYPE type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DLTYPE
-// CSSM_DLTYPE has base type: uint32
-type CSSM_DLTYPE uintptr
-// CSSM_DLTYPE_PTR type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DLTYPE_PTR
-// CSSM_DLTYPE_PTR has base type: uint32 *
-type CSSM_DLTYPE_PTR uintptr
+type CSSM_DB_RETRIEVAL_MODES = uint32
 // CSSM_DL_CUSTOM_ATTRIBUTES type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DL_CUSTOM_ATTRIBUTES
@@ -432,16 +391,23 @@ type CSSM_DL_PKCS11_ATTRIBUTE uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DL_PKCS11_ATTRIBUTE_PTR
 // CSSM_DL_PKCS11_ATTRIBUTE_PTR has base type: struct cssm_dl_pkcs11_attributes *
 type CSSM_DL_PKCS11_ATTRIBUTE_PTR uintptr
+// CSSM_DLTYPE type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DLTYPE
+type CSSM_DLTYPE = uint32
+// CSSM_DLTYPE_PTR type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_DLTYPE_PTR
+// CSSM_DLTYPE_PTR has base type: uint32 *
+type CSSM_DLTYPE_PTR uintptr
 // CSSM_ENCRYPT_MODE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_ENCRYPT_MODE
-// CSSM_ENCRYPT_MODE has base type: uint32
-type CSSM_ENCRYPT_MODE uintptr
+type CSSM_ENCRYPT_MODE = uint32
 // CSSM_EVIDENCE_FORM type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_EVIDENCE_FORM
-// CSSM_EVIDENCE_FORM has base type: uint32
-type CSSM_EVIDENCE_FORM uintptr
+type CSSM_EVIDENCE_FORM = uint32
 // CSSM_FREE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_FREE
@@ -461,38 +427,12 @@ type CSSM_HANDLE_PTR uintptr
 // CSSM_HEADERVERSION type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_HEADERVERSION
-// CSSM_HEADERVERSION has base type: uint32
-type CSSM_HEADERVERSION uintptr
+type CSSM_HEADERVERSION = uint32
 // CSSM_INTPTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_INTPTR
 // CSSM_INTPTR has base type: intptr_t
 type CSSM_INTPTR uintptr
-// CSSM_KEYATTR_FLAGS type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYATTR_FLAGS
-// CSSM_KEYATTR_FLAGS has base type: uint32
-type CSSM_KEYATTR_FLAGS uintptr
-// CSSM_KEYBLOB_FORMAT type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYBLOB_FORMAT
-// CSSM_KEYBLOB_FORMAT has base type: uint32
-type CSSM_KEYBLOB_FORMAT uintptr
-// CSSM_KEYBLOB_TYPE type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYBLOB_TYPE
-// CSSM_KEYBLOB_TYPE has base type: uint32
-type CSSM_KEYBLOB_TYPE uintptr
-// CSSM_KEYCLASS type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYCLASS
-// CSSM_KEYCLASS has base type: uint32
-type CSSM_KEYCLASS uintptr
-// CSSM_KEYUSE type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYUSE
-// CSSM_KEYUSE has base type: uint32
-type CSSM_KEYUSE uintptr
 // CSSM_KEY_HIERARCHY type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEY_HIERARCHY
@@ -503,21 +443,38 @@ type CSSM_KEY_HIERARCHY uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEY_TYPE
 // CSSM_KEY_TYPE has base type: CSSM_ALGORITHMS
 type CSSM_KEY_TYPE uintptr
-// CSSM_KRSP_HANDLE type alias
+// CSSM_KEYATTR_FLAGS type alias
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KRSP_HANDLE
-// CSSM_KRSP_HANDLE has base type: uint32
-type CSSM_KRSP_HANDLE uintptr
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYATTR_FLAGS
+type CSSM_KEYATTR_FLAGS = uint32
+// CSSM_KEYBLOB_FORMAT type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYBLOB_FORMAT
+type CSSM_KEYBLOB_FORMAT = uint32
+// CSSM_KEYBLOB_TYPE type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYBLOB_TYPE
+type CSSM_KEYBLOB_TYPE = uint32
+// CSSM_KEYCLASS type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYCLASS
+type CSSM_KEYCLASS = uint32
+// CSSM_KEYUSE type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KEYUSE
+type CSSM_KEYUSE = uint32
 // CSSM_KR_POLICY_FLAGS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KR_POLICY_FLAGS
-// CSSM_KR_POLICY_FLAGS has base type: uint32
-type CSSM_KR_POLICY_FLAGS uintptr
+type CSSM_KR_POLICY_FLAGS = uint32
 // CSSM_KR_POLICY_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KR_POLICY_TYPE
-// CSSM_KR_POLICY_TYPE has base type: uint32
-type CSSM_KR_POLICY_TYPE uintptr
+type CSSM_KR_POLICY_TYPE = uint32
+// CSSM_KRSP_HANDLE type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_KRSP_HANDLE
+type CSSM_KRSP_HANDLE = uint32
 // CSSM_LIST_ELEMENT_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_LIST_ELEMENT_PTR
@@ -526,8 +483,7 @@ type CSSM_LIST_ELEMENT_PTR uintptr
 // CSSM_LIST_ELEMENT_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_LIST_ELEMENT_TYPE
-// CSSM_LIST_ELEMENT_TYPE has base type: uint32
-type CSSM_LIST_ELEMENT_TYPE uintptr
+type CSSM_LIST_ELEMENT_TYPE = uint32
 // CSSM_LIST_ELEMENT_TYPE_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_LIST_ELEMENT_TYPE_PTR
@@ -536,8 +492,7 @@ type CSSM_LIST_ELEMENT_TYPE_PTR uintptr
 // CSSM_LIST_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_LIST_TYPE
-// CSSM_LIST_TYPE has base type: uint32
-type CSSM_LIST_TYPE uintptr
+type CSSM_LIST_TYPE = uint32
 // CSSM_LIST_TYPE_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_LIST_TYPE_PTR
@@ -546,8 +501,7 @@ type CSSM_LIST_TYPE_PTR uintptr
 // CSSM_LONG_HANDLE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_LONG_HANDLE
-// CSSM_LONG_HANDLE has base type: uint64
-type CSSM_LONG_HANDLE uintptr
+type CSSM_LONG_HANDLE = uint64
 // CSSM_LONG_HANDLE_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_LONG_HANDLE_PTR
@@ -562,13 +516,11 @@ type CSSM_MALLOC = func(uint, unsafe.Pointer) unsafe.Pointer
 // CSSM_MANAGER_EVENT_TYPES type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_MANAGER_EVENT_TYPES
-// CSSM_MANAGER_EVENT_TYPES has base type: uint32
-type CSSM_MANAGER_EVENT_TYPES uintptr
+type CSSM_MANAGER_EVENT_TYPES = uint32
 // CSSM_MODULE_EVENT type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_MODULE_EVENT
-// CSSM_MODULE_EVENT has base type: uint32
-type CSSM_MODULE_EVENT uintptr
+type CSSM_MODULE_EVENT = uint32
 // CSSM_MODULE_EVENT_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_MODULE_EVENT_PTR
@@ -587,43 +539,35 @@ type CSSM_MODULE_HANDLE_PTR uintptr
 // CSSM_NET_ADDRESS_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_NET_ADDRESS_TYPE
-// CSSM_NET_ADDRESS_TYPE has base type: uint32
-type CSSM_NET_ADDRESS_TYPE uintptr
+type CSSM_NET_ADDRESS_TYPE = uint32
 // CSSM_NET_PROTOCOL type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_NET_PROTOCOL
-// CSSM_NET_PROTOCOL has base type: uint32
-type CSSM_NET_PROTOCOL uintptr
+type CSSM_NET_PROTOCOL = uint32
 // CSSM_PADDING type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PADDING
-// CSSM_PADDING has base type: uint32
-type CSSM_PADDING uintptr
+type CSSM_PADDING = uint32
 // CSSM_PKCS5_PBKDF2_PRF type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PKCS5_PBKDF2_PRF
-// CSSM_PKCS5_PBKDF2_PRF has base type: uint32
-type CSSM_PKCS5_PBKDF2_PRF uintptr
+type CSSM_PKCS5_PBKDF2_PRF = uint32
 // CSSM_PKCS_OAEP_MGF type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PKCS_OAEP_MGF
-// CSSM_PKCS_OAEP_MGF has base type: uint32
-type CSSM_PKCS_OAEP_MGF uintptr
+type CSSM_PKCS_OAEP_MGF = uint32
 // CSSM_PKCS_OAEP_PSOURCE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PKCS_OAEP_PSOURCE
-// CSSM_PKCS_OAEP_PSOURCE has base type: uint32
-type CSSM_PKCS_OAEP_PSOURCE uintptr
+type CSSM_PKCS_OAEP_PSOURCE = uint32
 // CSSM_PRIVILEGE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PRIVILEGE
-// CSSM_PRIVILEGE has base type: uint64
-type CSSM_PRIVILEGE uintptr
+type CSSM_PRIVILEGE = uint64
 // CSSM_PRIVILEGE_SCOPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PRIVILEGE_SCOPE
-// CSSM_PRIVILEGE_SCOPE has base type: uint32
-type CSSM_PRIVILEGE_SCOPE uintptr
+type CSSM_PRIVILEGE_SCOPE = uint32
 // CSSM_PROC_ADDR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_PROC_ADDR
@@ -643,8 +587,7 @@ type CSSM_PVC_MODE uintptr
 // CSSM_QUERY_FLAGS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_QUERY_FLAGS
-// CSSM_QUERY_FLAGS has base type: uint32
-type CSSM_QUERY_FLAGS uintptr
+type CSSM_QUERY_FLAGS = uint32
 // CSSM_REALLOC type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_REALLOC
@@ -664,13 +607,11 @@ type CSSM_SAMPLE_TYPE uintptr
 // CSSM_SC_FLAGS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_SC_FLAGS
-// CSSM_SC_FLAGS has base type: uint32
-type CSSM_SC_FLAGS uintptr
+type CSSM_SC_FLAGS = uint32
 // CSSM_SERVICE_MASK type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_SERVICE_MASK
-// CSSM_SERVICE_MASK has base type: uint32
-type CSSM_SERVICE_MASK uintptr
+type CSSM_SERVICE_MASK = uint32
 // CSSM_SERVICE_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_SERVICE_TYPE
@@ -694,18 +635,15 @@ type CSSM_TIMESTRING uintptr
 // CSSM_TP_ACTION type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_ACTION
-// CSSM_TP_ACTION has base type: uint32
-type CSSM_TP_ACTION uintptr
+type CSSM_TP_ACTION = uint32
 // CSSM_TP_APPLE_CERT_STATUS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_APPLE_CERT_STATUS
-// CSSM_TP_APPLE_CERT_STATUS has base type: uint32
-type CSSM_TP_APPLE_CERT_STATUS uintptr
+type CSSM_TP_APPLE_CERT_STATUS = uint32
 // CSSM_TP_AUTHORITY_REQUEST_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_AUTHORITY_REQUEST_TYPE
-// CSSM_TP_AUTHORITY_REQUEST_TYPE has base type: uint32
-type CSSM_TP_AUTHORITY_REQUEST_TYPE uintptr
+type CSSM_TP_AUTHORITY_REQUEST_TYPE = uint32
 // CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR
@@ -714,43 +652,35 @@ type CSSM_TP_AUTHORITY_REQUEST_TYPE_PTR uintptr
 // CSSM_TP_CERTCHANGE_ACTION type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CERTCHANGE_ACTION
-// CSSM_TP_CERTCHANGE_ACTION has base type: uint32
-type CSSM_TP_CERTCHANGE_ACTION uintptr
+type CSSM_TP_CERTCHANGE_ACTION = uint32
 // CSSM_TP_CERTCHANGE_REASON type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CERTCHANGE_REASON
-// CSSM_TP_CERTCHANGE_REASON has base type: uint32
-type CSSM_TP_CERTCHANGE_REASON uintptr
+type CSSM_TP_CERTCHANGE_REASON = uint32
 // CSSM_TP_CERTCHANGE_STATUS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CERTCHANGE_STATUS
-// CSSM_TP_CERTCHANGE_STATUS has base type: uint32
-type CSSM_TP_CERTCHANGE_STATUS uintptr
+type CSSM_TP_CERTCHANGE_STATUS = uint32
 // CSSM_TP_CERTISSUE_STATUS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CERTISSUE_STATUS
-// CSSM_TP_CERTISSUE_STATUS has base type: uint32
-type CSSM_TP_CERTISSUE_STATUS uintptr
+type CSSM_TP_CERTISSUE_STATUS = uint32
 // CSSM_TP_CERTNOTARIZE_STATUS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CERTNOTARIZE_STATUS
-// CSSM_TP_CERTNOTARIZE_STATUS has base type: uint32
-type CSSM_TP_CERTNOTARIZE_STATUS uintptr
+type CSSM_TP_CERTNOTARIZE_STATUS = uint32
 // CSSM_TP_CERTRECLAIM_STATUS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CERTRECLAIM_STATUS
-// CSSM_TP_CERTRECLAIM_STATUS has base type: uint32
-type CSSM_TP_CERTRECLAIM_STATUS uintptr
+type CSSM_TP_CERTRECLAIM_STATUS = uint32
 // CSSM_TP_CERTVERIFY_STATUS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CERTVERIFY_STATUS
-// CSSM_TP_CERTVERIFY_STATUS has base type: uint32
-type CSSM_TP_CERTVERIFY_STATUS uintptr
+type CSSM_TP_CERTVERIFY_STATUS = uint32
 // CSSM_TP_CONFIRM_STATUS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CONFIRM_STATUS
-// CSSM_TP_CONFIRM_STATUS has base type: uint32
-type CSSM_TP_CONFIRM_STATUS uintptr
+type CSSM_TP_CONFIRM_STATUS = uint32
 // CSSM_TP_CONFIRM_STATUS_PTR type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CONFIRM_STATUS_PTR
@@ -759,13 +689,11 @@ type CSSM_TP_CONFIRM_STATUS_PTR uintptr
 // CSSM_TP_CRLISSUE_STATUS type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_CRLISSUE_STATUS
-// CSSM_TP_CRLISSUE_STATUS has base type: uint32
-type CSSM_TP_CRLISSUE_STATUS uintptr
+type CSSM_TP_CRLISSUE_STATUS = uint32
 // CSSM_TP_FORM_TYPE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_FORM_TYPE
-// CSSM_TP_FORM_TYPE has base type: uint32
-type CSSM_TP_FORM_TYPE uintptr
+type CSSM_TP_FORM_TYPE = uint32
 // CSSM_TP_HANDLE type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_HANDLE
@@ -774,13 +702,11 @@ type CSSM_TP_HANDLE uintptr
 // CSSM_TP_SERVICES type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_SERVICES
-// CSSM_TP_SERVICES has base type: uint32
-type CSSM_TP_SERVICES uintptr
+type CSSM_TP_SERVICES = uint32
 // CSSM_TP_STOP_ON type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_TP_STOP_ON
-// CSSM_TP_STOP_ON has base type: uint32
-type CSSM_TP_STOP_ON uintptr
+type CSSM_TP_STOP_ON = uint32
 // CSSM_USEE_TAG type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_USEE_TAG
@@ -791,53 +717,16 @@ type CSSM_USEE_TAG uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_WORDID_TYPE
 // CSSM_WORDID_TYPE has base type: sint32
 type CSSM_WORDID_TYPE uintptr
-// CSSM_X509EXT_DATA_FORMAT type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_X509EXT_DATA_FORMAT
-// CSSM_X509EXT_DATA_FORMAT has base type: enum extension_data_format
-type CSSM_X509EXT_DATA_FORMAT uintptr
 // CSSM_X509_OPTION type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_X509_OPTION
 // CSSM_X509_OPTION has base type: CSSM_BOOL
 type CSSM_X509_OPTION uintptr
-// MDS_HANDLE type alias
+// CSSM_X509EXT_DATA_FORMAT type alias
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/MDS_HANDLE
-// MDS_HANDLE has base type: CSSM_DL_HANDLE
-type MDS_HANDLE uintptr
-// SSLCipherSuite - A type for storing cipher suite values.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SSLCipherSuite
-// SSLCipherSuite has base type: uint32_t
-type SSLCipherSuite uintptr
-// SSLConnectionRef - A pointer to an opaque I/O connection object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SSLConnectionRef
-// SSLConnectionRef has base type: const void *
-type SSLConnectionRef uintptr
-// SSLContextRef - An opaque type that represents an SSL session context object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SSLContext
-// SSLContextRef has base type: struct SSLContext *
-type SSLContextRef uintptr
-// SSLReadFunc - A pointer to a customized read function that secure transport calls to read data from the connection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SSLReadFunc
-// SSLReadFunc is a callback function
-// C type: int (*)(const void *, void *, unsigned long *)
-type SSLReadFunc = func(unsafe.Pointer, unsafe.Pointer, uint) int32
-// SSLWriteFunc - A pointer to a customized write function that secure transport calls to write data to the connection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SSLWriteFunc
-// SSLWriteFunc is a callback function
-// C type: int (*)(const void *, const void *, unsigned long *)
-type SSLWriteFunc = func(unsafe.Pointer, unsafe.Pointer, uint) int32
-// SecAFPServerSignature - Represents a 16-byte Apple File Protocol server signature block.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecAFPServerSignature
-// SecAFPServerSignature has base type: UInt8[16]
-type SecAFPServerSignature uintptr
+// [Full Topic]: https://developer.apple.com/documentation/Security/CSSM_X509EXT_DATA_FORMAT
+// CSSM_X509EXT_DATA_FORMAT has base type: enum extension_data_format
+type CSSM_X509EXT_DATA_FORMAT uintptr
 // SecAccessRef - An opaque type that identifies a keychain item’s access information.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccess
@@ -848,6 +737,21 @@ type SecAccessRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessControl
 // SecAccessControlRef has base type: struct __SecAccessControl *
 type SecAccessControlRef uintptr
+// SecAccessOwnerType - A type for flags that enable you to configure ACL ownership.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecAccessOwnerType
+// SecAccessOwnerType has base type: UInt32
+type SecAccessOwnerType uintptr
+// SecACLRef - An opaque type that represents information about an ACL entry.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecACL
+// SecACLRef has base type: struct __SecACL *
+type SecACLRef uintptr
+// SecAFPServerSignature - Represents a 16-byte Apple File Protocol server signature block.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecAFPServerSignature
+// SecAFPServerSignature has base type: UInt8[16]
+type SecAFPServerSignature uintptr
 // SecAsn1Item - A structure holding DER encoded data.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1Item
@@ -858,11 +762,6 @@ type SecAsn1Item uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1Oid
 // SecAsn1Oid has base type: struct cssm_data
 type SecAsn1Oid uintptr
-// SecAsn1Template - A structure that defines one element of a BER or DER encoding.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1Template
-// SecAsn1Template has base type: struct SecAsn1Template_struct
-type SecAsn1Template uintptr
 // SecAsn1TemplateChooser - Dynamically provides the sub-template to use during encode or decode.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecAsn1TemplateChooser
@@ -874,16 +773,6 @@ type SecAsn1TemplateChooser uintptr
 // SecAsn1TemplateChooserPtr is a callback function
 // C type: const struct SecAsn1Template_struct *(*)(void *, unsigned char, const char *, unsigned long, void *)
 type SecAsn1TemplateChooserPtr = func(unsafe.Pointer, uint8, string, uint, unsafe.Pointer) unsafe.Pointer
-// SecCECrlReason type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecCECrlReason
-// SecCECrlReason has base type: uint32_t
-type SecCECrlReason uintptr
-// SecCEKeyUsage type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecCEKeyUsage
-// SecCEKeyUsage has base type: uint16_t
-type SecCEKeyUsage uintptr
 // SecCertificateRef - An abstract Core Foundation-type object representing an X.509 certificate.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecCertificate
@@ -919,26 +808,52 @@ type SecIdentitySearchRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKey
 // SecKeyRef has base type: struct __SecKey *
 type SecKeyRef uintptr
+// SecKeyAlgorithm - The algorithms that cryptographic keys enable.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyAlgorithm
+// SecKeyAlgorithm has base type: CFStringRef
+type SecKeyAlgorithm uintptr
 // SecKeychainRef - An opaque type that represents a keychain.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychain
 // SecKeychainRef has base type: struct __SecKeychain *
 type SecKeychainRef uintptr
-// SecKeychainAttrType - The keychain attribute type.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAttrType
-// SecKeychainAttrType has base type: OSType
-type SecKeychainAttrType uintptr
 // SecKeychainAttributePtr - A pointer to a keychain attribute structure.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAttributePtr
 // SecKeychainAttributePtr has base type: SecKeychainAttribute *
 type SecKeychainAttributePtr uintptr
+// SecKeychainAttrType - The keychain attribute type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainAttrType
+// SecKeychainAttrType has base type: OSType
+type SecKeychainAttrType uintptr
+// SecKeychainCallback - A customized callback function that keychain services call when a keychain event has occurred.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainCallback
+// SecKeychainCallback is a callback function
+// C type: int (*)(enum SecKeychainEvent, struct SecKeychainCallbackInfo *, void *)
+type SecKeychainCallback = func(SecKeychainEvent, unsafe.Pointer, unsafe.Pointer) int32
 // SecKeychainItemRef - An opaque type that represents a keychain item.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainItem
 // SecKeychainItemRef has base type: struct __SecKeychainItem *
 type SecKeychainItemRef uintptr
+// SecKeychainSearchRef - An opaque type that contains information about a keychain search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainSearch
+// SecKeychainSearchRef has base type: struct __SecKeychainSearch *
+type SecKeychainSearchRef uintptr
+// SecKeychainStatus - A value that defines the current status of a keychain.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeychainStatus
+// SecKeychainStatus has base type: UInt32
+type SecKeychainStatus uintptr
+// SecKeyKeyExchangeParameter - The dictionary keys used to specify Diffie-Hellman key exchange parameters.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecKeyKeyExchangeParameter
+// SecKeyKeyExchangeParameter has base type: CFStringRef
+type SecKeyKeyExchangeParameter uintptr
 // SecPasswordRef - Contains information about a password.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPassword
@@ -949,6 +864,16 @@ type SecPasswordRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicy
 // SecPolicyRef has base type: struct __SecPolicy *
 type SecPolicyRef uintptr
+// SecPolicySearchRef - An object that contains information about a policy search.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecPolicySearch
+// SecPolicySearchRef has base type: struct OpaquePolicySearchRef *
+type SecPolicySearchRef uintptr
+// SecPublicKeyHash - A container for a 20-byte public key hash.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecPublicKeyHash
+// SecPublicKeyHash has base type: UInt8[20]
+type SecPublicKeyHash uintptr
 // SecRandomRef - An abstract Core Foundation-type object containing information about a random number generator.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecRandomRef
@@ -996,79 +921,41 @@ type SecTransformStringOrAttributeRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecTrust
 // SecTrustRef has base type: struct __SecTrust *
 type SecTrustRef uintptr
+// SecTrustedApplicationRef - An opaque type that contains information about a trusted app.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Security/SecTrustedApplication
+// SecTrustedApplicationRef has base type: struct __SecTrustedApplication *
+type SecTrustedApplicationRef uintptr
 // SecuritySessionId - A type that contains an authorization session identifier.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Security/SecuritySessionId
 // SecuritySessionId has base type: UInt32
 type SecuritySessionId uintptr
-// Sec_certificate_t type alias
+// SSLCipherSuite - A type for storing cipher suite values.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/sec_certificate_t
-// sec_certificate_t has base type: NSObject<OS_sec_certificate> *
-type Sec_certificate_t uintptr
-// Sec_identity_t type alias
+// [Full Topic]: https://developer.apple.com/documentation/Security/SSLCipherSuite
+// SSLCipherSuite has base type: uint16_t
+type SSLCipherSuite uintptr
+// SSLConnectionRef - A pointer to an opaque I/O connection object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/sec_identity_t
-// sec_identity_t has base type: NSObject<OS_sec_identity> *
-type Sec_identity_t uintptr
-// Sec_object_t - A   is a generic, ARC-able type wrapper for common CoreFoundation Security types.
+// [Full Topic]: https://developer.apple.com/documentation/Security/SSLConnectionRef
+// SSLConnectionRef has base type: const void *
+type SSLConnectionRef uintptr
+// SSLContextRef - An opaque type that represents an SSL session context object.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/sec_object_t
-// sec_object_t has base type: NSObject<OS_sec_object> *
-type Sec_object_t uintptr
-// Sec_protocol_metadata_t - A   instance conatins read-only properties of a connected and configured   security protocol. Clients use this object to read information about a protocol instance. Properties   include, for example, the negotiated TLS version, ciphersuite, and peer certificates.
+// [Full Topic]: https://developer.apple.com/documentation/Security/SSLContext
+// SSLContextRef has base type: struct SSLContext *
+type SSLContextRef uintptr
+// SSLReadFunc - A pointer to a customized read function that secure transport calls to read data from the connection.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_metadata_t
-// sec_protocol_metadata_t has base type: NSObject<OS_sec_protocol_metadata> *
-type Sec_protocol_metadata_t uintptr
-// Sec_protocol_options_t - A   instance is a container of options for security protocol instances,   such as TLS. Protocol options are used to configure security protocols in the network stack.   For example, clients may set the maximum and minimum allowed TLS versions through protocol   options.
+// [Full Topic]: https://developer.apple.com/documentation/Security/SSLReadFunc
+// SSLReadFunc is a callback function
+// C type: int (*)(const void *, void *, unsigned long *)
+type SSLReadFunc = func(unsafe.Pointer, unsafe.Pointer, uint) int32
+// SSLWriteFunc - A pointer to a customized write function that secure transport calls to write data to the connection.
 //
-// [Full Topic]: https://developer.apple.com/documentation/Security/sec_protocol_options_t
-// sec_protocol_options_t has base type: NSObject<OS_sec_protocol_options> *
-type Sec_protocol_options_t uintptr
-// Sec_trust_t - These are os_object compatible and ARC-able wrappers around existing CoreFoundation   Security types, including: SecTrustRef, SecIdentityRef, and SecCertificateRef. They allow   clients to use these types in os_object-type APIs and data structures. The underlying   CoreFoundation types may be extracted and used by clients as needed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/sec_trust_t
-// sec_trust_t has base type: NSObject<OS_sec_trust> *
-type Sec_trust_t uintptr
-// Sint16 type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/sint16
-// sint16 has base type: int16_t
-type Sint16 uintptr
-// Sint32 type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/sint32
-// sint32 has base type: int32_t
-type Sint32 uintptr
-// Sint64 type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/sint64
-// sint64 has base type: int64_t
-type Sint64 uintptr
-// Sint8 type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/sint8
-// sint8 has base type: int8_t
-type Sint8 uintptr
-// Uint16 type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/uint16
-// uint16 has base type: uint16_t
-type Uint16 uintptr
-// Uint32 type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/uint32
-// uint32 has base type: uint32_t
-type Uint32 uintptr
-// Uint64 type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/uint64
-// uint64 has base type: uint64_t
-type Uint64 uintptr
-// Uint8 type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/Security/uint8
-// uint8 has base type: uint8_t
-type Uint8 uintptr
+// [Full Topic]: https://developer.apple.com/documentation/Security/SSLWriteFunc
+// SSLWriteFunc is a callback function
+// C type: int (*)(const void *, const void *, unsigned long *)
+type SSLWriteFunc = func(unsafe.Pointer, unsafe.Pointer, uint) int32
 

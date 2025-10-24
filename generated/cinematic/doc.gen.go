@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for Cinematic. DO NOT EDIT.
 
 // Package cinematic provides Go bindings for the Cinematic framework.
 //
-// Integrate playback and editing of assets captured in Cinematic mode into your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Cinematic without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Cinematic
 package cinematic
 
 import (

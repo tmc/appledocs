@@ -15,3 +15,4 @@ var completeIOForFileProtocol *objc.Protocol
 func init() {
 	completeIOForFileProtocol = objc.GetProtocol("completeIOForFile:")
 }
+

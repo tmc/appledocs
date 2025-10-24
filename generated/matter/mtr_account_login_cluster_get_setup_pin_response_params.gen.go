@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRAccountLoginClusterGetSetupPINResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccountLoginClusterGetSetupPINResponseParams
@@ -83,8 +81,6 @@ func NewMTRAccountLoginClusterGetSetupPINResponseParams() MTRAccountLoginCluster
 	return getMTRAccountLoginClusterGetSetupPINResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinresponseparams/setuppin
 func (m_ MTRAccountLoginClusterGetSetupPINResponseParams) SetupPIN() objc.IObject /* cross-framework: NSString */ {
@@ -92,13 +88,11 @@ func (m_ MTRAccountLoginClusterGetSetupPINResponseParams) SetupPIN() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinresponseparams/setuppin
 func (m_ MTRAccountLoginClusterGetSetupPINResponseParams) SetSetupPIN(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSetupPIN:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinresponseparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRAccountLoginClusterGetSetupPINResponseParams) TimedInvokeTimeoutMs()
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccountloginclustergetsetuppinresponseparams/timedinvoketimeoutms
 func (m_ MTRAccountLoginClusterGetSetupPINResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterLaundryWasherMode */
+
+
+/* debug [class_header]: Header for MTRClusterLaundryWasherMode */
 // The class instance for the [MTRClusterLaundryWasherMode] class.
 var (
 	MTRClusterLaundryWasherModeClass     _MTRClusterLaundryWasherModeClass
@@ -26,42 +30,30 @@ func getMTRClusterLaundryWasherModeClass() _MTRClusterLaundryWasherModeClass {
 type _MTRClusterLaundryWasherModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterLaundryWasherMode */
 // An interface definition for the [MTRClusterLaundryWasherMode] class.
 type IMTRClusterLaundryWasherMode interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterLaundryWasherMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterLaundryWasherMode */
 	// methods:
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRLaundryWasherModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Laundry Washer Mode Attributes and commands for selecting a mode from a list of supported options.
 
 
-// Cluster Laundry Washer Mode Attributes and commands for selecting a mode from a list of supported options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode
-type MTRClusterLaundryWasherMode struct {
-	MTRGenericCluster
-}
-
-// MTRClusterLaundryWasherModeFrom constructs a [MTRClusterLaundryWasherMode] from an unsafe.Pointer.
-//
-// Cluster Laundry Washer Mode Attributes and commands for selecting a mode from a list of supported options.
-func MTRClusterLaundryWasherModeFrom(ptr unsafe.Pointer) MTRClusterLaundryWasherMode {
-	return MTRClusterLaundryWasherMode{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterLaundryWasherMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterLaundryWasherModeClass) Alloc() MTRClusterLaundryWasherMode {
 	rv := objc.Send[MTRClusterLaundryWasherMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +61,6 @@ func (mc _MTRClusterLaundryWasherModeClass) Alloc() MTRClusterLaundryWasherMode 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterLaundryWasherModeClass) New() MTRClusterLaundryWasherMode {
 	rv := objc.Send[MTRClusterLaundryWasherMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,8 +83,35 @@ func (m_ MTRClusterLaundryWasherMode) Autorelease() MTRClusterLaundryWasherMode 
 func NewMTRClusterLaundryWasherMode() MTRClusterLaundryWasherMode {
 	return getMTRClusterLaundryWasherModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterLaundryWasherMode */
+// Cluster Laundry Washer Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Laundry Washer Mode Attributes and commands for selecting a mode from a list of supported options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode
+type MTRClusterLaundryWasherMode struct {
+	MTRGenericCluster
+}
+
+// MTRClusterLaundryWasherModeFrom constructs a [MTRClusterLaundryWasherMode] from an unsafe.Pointer.
+//
+// Cluster Laundry Washer Mode Attributes and commands for selecting a mode from a list of supported options.
+func MTRClusterLaundryWasherModeFrom(ptr unsafe.Pointer) MTRClusterLaundryWasherMode {
+	return MTRClusterLaundryWasherMode{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterLaundryWasherMode */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -104,70 +122,31 @@ func NewMTRClusterLaundryWasherModeWithDeviceEndpointIDQueue(device IMTRDevice, 
 	rv := objc.Send[MTRClusterLaundryWasherMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterLaundryWasherModeWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterLaundryWasherMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRLaundryWasherModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class_methods]: Class methods for MTRClusterLaundryWasherMode */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterLaundryWasherMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterLaundryWasherMode */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterLaundryWasherMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterLaundryWasherMode */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterLaundryWasherMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterLaundryWasherMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterLaundryWasherMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterLaundryWasherMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterLaundryWasherMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterLaundryWasherMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterLaundryWasherMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterLaundryWasherMode */
 
 

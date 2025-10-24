@@ -7,10 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coretelephony"
+	"github.com/tmc/appledocs/generated/corevideo"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVSampleBufferVideoRenderer */
+
+
+/* debug [class_header]: Header for AVSampleBufferVideoRenderer */
 // The class instance for the [SampleBufferVideoRenderer] class.
 var (
 	SampleBufferVideoRendererClass     _SampleBufferVideoRendererClass
@@ -27,42 +31,42 @@ func getSampleBufferVideoRendererClass() _SampleBufferVideoRendererClass {
 type _SampleBufferVideoRendererClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SampleBufferVideoRenderer */
 // An interface definition for the [SampleBufferVideoRenderer] class.
 type ISampleBufferVideoRenderer interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for SampleBufferVideoRenderer */
 	// properties:
-	Error() coretelephony.Error
-	SetError(value coretelephony.Error)
-	PresentationTimeExpectation() unsafe.Pointer
-	SetPresentationTimeExpectation(value unsafe.Pointer)
-	RecommendedPixelBufferAttributes() PixelBufferAttributes /* not a class type */
-	SetRecommendedPixelBufferAttributes(value PixelBufferAttributes /* not a class type */)
+	Error() Error
+	RecommendedPixelBufferAttributes() foundation.IDictionary
 	RequiresFlushToResumeDecoding() bool
-	SetRequiresFlushToResumeDecoding(value bool)
-	Status() QueuedSampleBufferRenderingStatus /* not a class type */
-	SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */)
+	Status() QueuedSampleBufferRenderingStatus
+	PresentationTimeExpectation() objectivec.IObject
+	SetPresentationTimeExpectation(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SampleBufferVideoRenderer */
 	// methods:
+	CopyDisplayedPixelBuffer() PixelBufferRef /* not a class type */
+	ExpectMinimumUpcomingSampleBufferPresentationTime(minimumUpcomingPresentationTime objc.IObject /* cross-framework: Time */)
+	ExpectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes()
+	FlushWithRemovalOfDisplayedImageCompletionHandler(removeDisplayedImage bool, handler unsafe.Pointer)
+	LoadVideoPerformanceMetricsWithCompletionHandler(completionHandler unsafe.Pointer)
+	ResetUpcomingSampleBufferPresentationTimeExpectations()
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that enqueues video sample buffers for rendering.
 
 
-// An object that enqueues video sample buffers for rendering.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer
-type SampleBufferVideoRenderer struct {
-	objectivec.Object
-}
-
-// SampleBufferVideoRendererFrom constructs a [SampleBufferVideoRenderer] from an unsafe.Pointer.
-//
-// An object that enqueues video sample buffers for rendering.
-func SampleBufferVideoRendererFrom(ptr unsafe.Pointer) SampleBufferVideoRenderer {
-	return SampleBufferVideoRenderer{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SampleBufferVideoRenderer */
 // Alloc allocates a new instance without initialization.
 func (sc _SampleBufferVideoRendererClass) Alloc() SampleBufferVideoRenderer {
 	rv := objc.Send[SampleBufferVideoRenderer](objc.ID(sc.class), objc.Sel("alloc"))
@@ -70,7 +74,6 @@ func (sc _SampleBufferVideoRendererClass) Alloc() SampleBufferVideoRenderer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SampleBufferVideoRendererClass) New() SampleBufferVideoRenderer {
 	rv := objc.Send[SampleBufferVideoRenderer](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,98 +96,154 @@ func (s_ SampleBufferVideoRenderer) Autorelease() SampleBufferVideoRenderer {
 func NewSampleBufferVideoRenderer() SampleBufferVideoRenderer {
 	return getSampleBufferVideoRendererClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SampleBufferVideoRenderer */
+// An object that enqueues video sample buffers for rendering.
+
+
+// An object that enqueues video sample buffers for rendering.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer
+type SampleBufferVideoRenderer struct {
+	objectivec.Object
+}
+
+// SampleBufferVideoRendererFrom constructs a [SampleBufferVideoRenderer] from an unsafe.Pointer.
+//
+// An object that enqueues video sample buffers for rendering.
+func SampleBufferVideoRendererFrom(ptr unsafe.Pointer) SampleBufferVideoRenderer {
+	return SampleBufferVideoRenderer{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SampleBufferVideoRenderer *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SampleBufferVideoRenderer */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SampleBufferVideoRenderer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SampleBufferVideoRenderer */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/displayedPixelBuffer()
+func (s_ SampleBufferVideoRenderer) CopyDisplayedPixelBuffer() PixelBufferRef /* not a class type */ {
+	rv := objc.Send[PixelBufferRef](s_.ID, objc.Sel("copyDisplayedPixelBuffer"))
+	return rv
+}/* debug [instance_methods/method]: CopyDisplayedPixelBuffer */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/expectMinimumUpcomingSampleBufferPresentationTime:
+func (s_ SampleBufferVideoRenderer) ExpectMinimumUpcomingSampleBufferPresentationTime(minimumUpcomingPresentationTime objc.IObject /* cross-framework: Time */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("expectMinimumUpcomingSampleBufferPresentationTime:"), minimumUpcomingPresentationTime)
+}/* debug [instance_methods/method]: ExpectMinimumUpcomingSampleBufferPresentationTime */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/expectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes
+func (s_ SampleBufferVideoRenderer) ExpectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("expectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes"))
+}/* debug [instance_methods/method]: ExpectMonotonicallyIncreasingUpcomingSampleBufferPresentationTimes */
+
+
+// Tells the video renderer to discard pending enqueued sample buffers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/flush(removingDisplayedImage:completionHandler:)
+func (s_ SampleBufferVideoRenderer) FlushWithRemovalOfDisplayedImageCompletionHandler(removeDisplayedImage bool, handler unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("flushWithRemovalOfDisplayedImage:completionHandler:"), removeDisplayedImage, handler)
+}/* debug [instance_methods/method]: FlushWithRemovalOfDisplayedImageCompletionHandler */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/loadVideoPerformanceMetrics(completionHandler:)
+func (s_ SampleBufferVideoRenderer) LoadVideoPerformanceMetricsWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("loadVideoPerformanceMetricsWithCompletionHandler:"), completionHandler)
+}/* debug [instance_methods/method]: LoadVideoPerformanceMetricsWithCompletionHandler */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/resetUpcomingSampleBufferPresentationTimeExpectations
+func (s_ SampleBufferVideoRenderer) ResetUpcomingSampleBufferPresentationTimeExpectations() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("resetUpcomingSampleBufferPresentationTimeExpectations"))
+}/* debug [instance_methods/method]: ResetUpcomingSampleBufferPresentationTimeExpectations */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SampleBufferVideoRenderer */
 
 // An object the describes the error that caused the rendering failure.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-func (s_ SampleBufferVideoRenderer) Error() coretelephony.Error {
-	rv := objc.Send[coretelephony.Error](s_.ID, objc.Sel("error"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/error
+func (s_ SampleBufferVideoRenderer) Error() Error {
+	rv := objc.Send[Error](s_.ID, objc.Sel("error"))
 	return rv
-}
-
-
-// An object the describes the error that caused the rendering failure.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/error
-func (s_ SampleBufferVideoRenderer) SetError(value coretelephony.Error) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setError:"), value)
-}
+}/* debug [instance_properties/getter]: error */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/presentationtimeexpectation-swift.property
-func (s_ SampleBufferVideoRenderer) PresentationTimeExpectation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("presentationTimeExpectation"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/recommendedPixelBufferAttributes-6326f
+func (s_ SampleBufferVideoRenderer) RecommendedPixelBufferAttributes() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](s_.ID, objc.Sel("recommendedPixelBufferAttributes"))
 	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/presentationtimeexpectation-swift.property
-func (s_ SampleBufferVideoRenderer) SetPresentationTimeExpectation(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPresentationTimeExpectation:"), value)
-}
-
-
-// Recommended pixel buffer attributes for optimal performance when using CMSampleBuffers containing CVPixelbuffers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/recommendedpixelbufferattributes-6zrqb
-func (s_ SampleBufferVideoRenderer) RecommendedPixelBufferAttributes() PixelBufferAttributes /* not a class type */ {
-	rv := objc.Send[PixelBufferAttributes](s_.ID, objc.Sel("recommendedPixelBufferAttributes"))
-	return rv
-}
-
-
-// Recommended pixel buffer attributes for optimal performance when using CMSampleBuffers containing CVPixelbuffers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/recommendedpixelbufferattributes-6zrqb
-func (s_ SampleBufferVideoRenderer) SetRecommendedPixelBufferAttributes(value PixelBufferAttributes /* not a class type */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRecommendedPixelBufferAttributes:"), value)
-}
+}/* debug [instance_properties/getter]: recommendedPixelBufferAttributes */
 
 
 // A Boolean value that Indicates whether the renderer requires flushing to continue decoding frames.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/requiresFlushToResumeDecoding
 func (s_ SampleBufferVideoRenderer) RequiresFlushToResumeDecoding() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("requiresFlushToResumeDecoding"))
 	return rv
-}
-
-
-// A Boolean value that Indicates whether the renderer requires flushing to continue decoding frames.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/requiresflushtoresumedecoding
-func (s_ SampleBufferVideoRenderer) SetRequiresFlushToResumeDecoding(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRequiresFlushToResumeDecoding:"), value)
-}
+}/* debug [instance_properties/getter]: requiresFlushToResumeDecoding */
 
 
 // A status value that indicates whether this object can enqueue and render sample buffers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/status
-func (s_ SampleBufferVideoRenderer) Status() QueuedSampleBufferRenderingStatus /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleBufferVideoRenderer/status
+func (s_ SampleBufferVideoRenderer) Status() QueuedSampleBufferRenderingStatus {
 	rv := objc.Send[QueuedSampleBufferRenderingStatus](s_.ID, objc.Sel("status"))
 	return rv
-}
+}/* debug [instance_properties/getter]: status */
 
 
-// A status value that indicates whether this object can enqueue and render sample buffers.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/status
-func (s_ SampleBufferVideoRenderer) SetStatus(value QueuedSampleBufferRenderingStatus /* not a class type */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStatus:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/presentationtimeexpectation-swift.property
+func (s_ SampleBufferVideoRenderer) PresentationTimeExpectation() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("presentationTimeExpectation"))
+	return rv
+}/* debug [instance_properties/getter]: presentationTimeExpectation */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplebuffervideorenderer/presentationtimeexpectation-swift.property
+func (s_ SampleBufferVideoRenderer) SetPresentationTimeExpectation(value objectivec.IObject) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPresentationTimeExpectation:"), value)
+}/* debug [instance_properties/setter]: presentationTimeExpectation */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVSampleBufferVideoRenderer */
 
 
 

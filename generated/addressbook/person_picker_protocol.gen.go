@@ -15,3 +15,4 @@ var personPickerProtocol *objc.Protocol
 func init() {
 	personPickerProtocol = objc.GetProtocol("personPicker:")
 }
+

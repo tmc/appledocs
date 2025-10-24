@@ -20,3 +20,4 @@ var PublicKeyCredentialProtocol *objc.Protocol
 func init() {
 	PublicKeyCredentialProtocol = objc.GetProtocol("ASPublicKeyCredential")
 }
+

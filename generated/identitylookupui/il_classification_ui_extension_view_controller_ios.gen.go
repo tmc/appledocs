@@ -8,11 +8,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // iOS-only methods for ILClassificationUIExtensionViewController
-
 
 // Notifies the view controller when the user finishes entering data and presses the Done button.
 //
@@ -41,9 +39,3 @@ func (i_ ILClassificationUIExtensionViewController) ExtensionContext() ILClassif
 	rv := objc.Send[ILClassificationUIExtensionContext](i_.ID, objc.Sel("extensionContext"))
 	return rv
 }
-
-
-
-
-
-

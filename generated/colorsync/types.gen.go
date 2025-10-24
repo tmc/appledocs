@@ -13,7 +13,9 @@ import (
 // [Full Topic]: https://developer.apple.com/documentation/ColorSync/ColorSyncMD5
 type ColorSyncMD5 struct {
 	Digest uint8
-}
+}/* debug [types.gen.go/struct]: ColorSyncMD5 */
+
+
 
 
 

@@ -20,3 +20,4 @@ var aliasesProtocol *objc.Protocol
 func init() {
 	aliasesProtocol = objc.GetProtocol("aliases")
 }
+

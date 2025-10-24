@@ -20,3 +20,4 @@ var newTextureViewPoolWithDescriptorProtocol *objc.Protocol
 func init() {
 	newTextureViewPoolWithDescriptorProtocol = objc.GetProtocol("newTextureViewPoolWithDescriptor:")
 }
+

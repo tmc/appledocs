@@ -17,6 +17,7 @@ func ExampleNewBatchDeleteRequestWithFetchRequest() {
 	)
 	// Output:
 }
+
 // ExampleNewBatchDeleteRequestWithObjectIDs demonstrates how to create a BatchDeleteRequest instance using NewBatchDeleteRequestWithObjectIDs.
 // Creates a request that deletes the managed objects with the specified identifiers.
 func ExampleNewBatchDeleteRequestWithObjectIDs() {

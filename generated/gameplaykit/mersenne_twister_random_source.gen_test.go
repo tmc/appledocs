@@ -15,6 +15,7 @@ func ExampleNewMersenneTwisterRandomSource() {
 	_ = gameplaykit.NewMersenneTwisterRandomSource()
 	// Output:
 }
+
 // ExampleNewMersenneTwisterRandomSourceWithSeed demonstrates how to create a MersenneTwisterRandomSource instance using NewMersenneTwisterRandomSourceWithSeed.
 // Initializes a random source with the specified seed value.
 func ExampleNewMersenneTwisterRandomSourceWithSeed() {

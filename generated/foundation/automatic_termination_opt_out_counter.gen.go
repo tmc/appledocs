@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class automaticTerminationOptOutCounter */
+
+
+/* debug [class_header]: Header for automaticTerminationOptOutCounter */
 // The class instance for the [automaticTerminationOptOutCounter] class.
 var (
 	AutomaticTerminationOptOutCounterClass     _automaticTerminationOptOutCounterClass
@@ -26,27 +30,30 @@ func getautomaticTerminationOptOutCounterClass() _automaticTerminationOptOutCoun
 type _automaticTerminationOptOutCounterClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for automaticTerminationOptOutCounter */
 // An interface definition for the [automaticTerminationOptOutCounter] class.
 type IautomaticTerminationOptOutCounter interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for automaticTerminationOptOutCounter */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for automaticTerminationOptOutCounter */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProcessInfo/automaticTerminationOptOutCounter
-type automaticTerminationOptOutCounter struct {
-	objectivec.Object
-}
-
-// automaticTerminationOptOutCounterFrom constructs a [automaticTerminationOptOutCounter] from an unsafe.Pointer.
-func automaticTerminationOptOutCounterFrom(ptr unsafe.Pointer) automaticTerminationOptOutCounter {
-	return automaticTerminationOptOutCounter{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for automaticTerminationOptOutCounter */
 // Alloc allocates a new instance without initialization.
 func (ac _automaticTerminationOptOutCounterClass) Alloc() automaticTerminationOptOutCounter {
 	rv := objc.Send[automaticTerminationOptOutCounter](objc.ID(ac.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (ac _automaticTerminationOptOutCounterClass) Alloc() automaticTerminationOp
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _automaticTerminationOptOutCounterClass) New() automaticTerminationOptOutCounter {
 	rv := objc.Send[automaticTerminationOptOutCounter](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (a_ automaticTerminationOptOutCounter) Autorelease() automaticTerminationOp
 func NewautomaticTerminationOptOutCounter() automaticTerminationOptOutCounter {
 	return getautomaticTerminationOptOutCounterClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for automaticTerminationOptOutCounter */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProcessInfo/automaticTerminationOptOutCounter
+type automaticTerminationOptOutCounter struct {
+	objectivec.Object
+}
+
+// automaticTerminationOptOutCounterFrom constructs a [automaticTerminationOptOutCounter] from an unsafe.Pointer.
+func automaticTerminationOptOutCounterFrom(ptr unsafe.Pointer) automaticTerminationOptOutCounter {
+	return automaticTerminationOptOutCounter{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for automaticTerminationOptOutCounter *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for automaticTerminationOptOutCounter */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for automaticTerminationOptOutCounter */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for automaticTerminationOptOutCounter */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for automaticTerminationOptOutCounter */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class automaticTerminationOptOutCounter */
 
 
 

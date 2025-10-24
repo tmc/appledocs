@@ -20,3 +20,4 @@ var gameModelProtocol *objc.Protocol
 func init() {
 	gameModelProtocol = objc.GetProtocol("gameModel")
 }
+

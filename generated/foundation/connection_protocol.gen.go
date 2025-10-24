@@ -16,3 +16,4 @@ var connectionProtocol *objc.Protocol
 func init() {
 	connectionProtocol = objc.GetProtocol("connection:")
 }
+

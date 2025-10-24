@@ -15,3 +15,4 @@ var accessibilityScreenPointForLayoutPointProtocol *objc.Protocol
 func init() {
 	accessibilityScreenPointForLayoutPointProtocol = objc.GetProtocol("accessibilityScreenPointForLayoutPoint:")
 }
+

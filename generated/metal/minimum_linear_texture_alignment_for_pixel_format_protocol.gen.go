@@ -20,3 +20,4 @@ var minimumLinearTextureAlignmentForPixelFormatProtocol *objc.Protocol
 func init() {
 	minimumLinearTextureAlignmentForPixelFormatProtocol = objc.GetProtocol("minimumLinearTextureAlignmentForPixelFormat:")
 }
+

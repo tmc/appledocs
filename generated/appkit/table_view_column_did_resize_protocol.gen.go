@@ -15,3 +15,4 @@ var tableViewColumnDidResizeProtocol *objc.Protocol
 func init() {
 	tableViewColumnDidResizeProtocol = objc.GetProtocol("tableViewColumnDidResize:")
 }
+

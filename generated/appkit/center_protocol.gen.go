@@ -15,3 +15,4 @@ var centerProtocol *objc.Protocol
 func init() {
 	centerProtocol = objc.GetProtocol("center")
 }
+

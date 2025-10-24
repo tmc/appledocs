@@ -9,8 +9,9 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Progress = _undefined // referenced in FileProvider
-	URL = _undefined // referenced in FileProvider
+	ComparisonResult = _undefined // referenced in FileProvider
+	FileProviderServiceName = _undefined // referenced in FileProvider
+	ProgressFileOperationKind = _undefined // referenced in FileProvider
 )
 
 

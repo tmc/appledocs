@@ -9,14 +9,13 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	CaptureDynamicRange = _undefined // referenced in ScreenCaptureKit
-	CaptureResolutionType = _undefined // referenced in ScreenCaptureKit
-	Clock = _undefined // referenced in ScreenCaptureKit
+	ClockRef = _undefined // referenced in ScreenCaptureKit
+	ColorRef = _undefined // referenced in ScreenCaptureKit
 	DirectDisplayID = _undefined // referenced in ScreenCaptureKit
-	DynamicRange = _undefined // referenced in ScreenCaptureKit
+	FileType = _undefined // referenced in ScreenCaptureKit
 	ImageRef = _undefined // referenced in ScreenCaptureKit
-	PresenterOverlayAlertSetting = _undefined // referenced in ScreenCaptureKit
-	RecordingOutput = _undefined // referenced in ScreenCaptureKit
+	StringRef = _undefined // referenced in ScreenCaptureKit
+	VideoCodecType = _undefined // referenced in ScreenCaptureKit
 	WindowID = _undefined // referenced in ScreenCaptureKit
 )
 

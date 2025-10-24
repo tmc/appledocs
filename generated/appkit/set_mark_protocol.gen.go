@@ -15,3 +15,4 @@ var setMarkProtocol *objc.Protocol
 func init() {
 	setMarkProtocol = objc.GetProtocol("setMark:")
 }
+

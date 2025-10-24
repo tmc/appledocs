@@ -15,3 +15,4 @@ var widgetSearchProtocol *objc.Protocol
 func init() {
 	widgetSearchProtocol = objc.GetProtocol("widgetSearch:")
 }
+

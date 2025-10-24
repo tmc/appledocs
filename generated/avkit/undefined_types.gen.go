@@ -10,15 +10,11 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	Action = _undefined // referenced in AVKit
-	Color = _undefined // referenced in AVKit
-	ContentSource = _undefined // referenced in AVKit
 	ExperienceController = _undefined // referenced in AVKit
 	GroupExperienceCoordinator = _undefined // referenced in AVKit
-	Image = _undefined // referenced in AVKit
 	LayerVideoGravity = _undefined // referenced in AVKit
 	MenuElement = _undefined // referenced in AVKit
-	PictureInPictureSampleBufferPlaybackDelegate = _undefined // referenced in AVKit
-	Time = _undefined // referenced in AVKit
+	Rect = _undefined // referenced in AVKit
 	TimeRange = _undefined // referenced in AVKit
 	TraitCollection = _undefined // referenced in AVKit
 )

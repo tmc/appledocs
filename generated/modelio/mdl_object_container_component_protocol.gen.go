@@ -20,3 +20,4 @@ var MDLObjectContainerComponentProtocol *objc.Protocol
 func init() {
 	MDLObjectContainerComponentProtocol = objc.GetProtocol("MDLObjectContainerComponent")
 }
+

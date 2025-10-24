@@ -15,3 +15,4 @@ var isSelectableProtocol *objc.Protocol
 func init() {
 	isSelectableProtocol = objc.GetProtocol("isSelectable")
 }
+

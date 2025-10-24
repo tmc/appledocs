@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for InputMethodKit. DO NOT EDIT.
 
 // Package inputmethodkit provides Go bindings for the InputMethodKit framework.
 //
-// Develop input methods and manage communication with client applications, candidates windows, and input method modes.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to InputMethodKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/InputMethodKit
 package inputmethodkit
 
 import (

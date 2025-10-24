@@ -20,3 +20,4 @@ var netServiceDidStopProtocol *objc.Protocol
 func init() {
 	netServiceDidStopProtocol = objc.GetProtocol("netServiceDidStop:")
 }
+

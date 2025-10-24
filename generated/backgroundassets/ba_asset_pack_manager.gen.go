@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class BAAssetPackManager */
+
+
+/* debug [class_header]: Header for BAAssetPackManager */
 // The class instance for the [BAAssetPackManager] class.
 var (
 	BAAssetPackManagerClass     _BAAssetPackManagerClass
@@ -27,45 +30,30 @@ func getBAAssetPackManagerClass() _BAAssetPackManagerClass {
 type _BAAssetPackManagerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for BAAssetPackManager */
 // An interface definition for the [BAAssetPackManager] class.
 type IBAAssetPackManager interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for BAAssetPackManager */
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for BAAssetPackManager */
 	// methods:
-	URLForPathError(path objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) objc.IObject /* cross-framework: URL */
-	CheckForUpdatesWithCompletionHandler(completionHandler unsafe.Pointer)
-	ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path objc.IObject /* cross-framework: NSString */, assetPackIdentifier objc.IObject /* cross-framework: NSString */, options DataReadingOptions /* not a class type */, error_ unsafe.Pointer) objc.IObject /* cross-framework: Data */
-	EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack IBAAssetPack, completionHandler unsafe.Pointer)
-	FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path objc.IObject /* cross-framework: NSString */, assetPackIdentifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) int
-	GetAllAssetPacksWithCompletionHandler(completionHandler unsafe.Pointer)
-	GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer)
-	GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer)
-	RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A class that manages asset packs.
-//
-// The first time that your code refers to the shared manager, Background Assets considers that your app is opting into automatic system management of your asset packs.
+/* debug [class_interface]: End interface */
 
 
-// A class that manages asset packs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager
-type BAAssetPackManager struct {
-	objectivec.Object
-}
 
-// BAAssetPackManagerFrom constructs a [BAAssetPackManager] from an unsafe.Pointer.
-//
-// A class that manages asset packs.
-func BAAssetPackManagerFrom(ptr unsafe.Pointer) BAAssetPackManager {
-	return BAAssetPackManager{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for BAAssetPackManager */
 // Alloc allocates a new instance without initialization.
 func (bc _BAAssetPackManagerClass) Alloc() BAAssetPackManager {
 	rv := objc.Send[BAAssetPackManager](objc.ID(bc.class), objc.Sel("alloc"))
@@ -73,7 +61,6 @@ func (bc _BAAssetPackManagerClass) Alloc() BAAssetPackManager {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BAAssetPackManagerClass) New() BAAssetPackManager {
 	rv := objc.Send[BAAssetPackManager](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -96,129 +83,58 @@ func (b_ BAAssetPackManager) Autorelease() BAAssetPackManager {
 func NewBAAssetPackManager() BAAssetPackManager {
 	return getBAAssetPackManagerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The shared asset-pack manager.
+/* debug [class_struct]: Struct for BAAssetPackManager */
+// A class that manages asset packs.
+//
+// The first time that your code refers to the shared manager, Background Assets considers that your app is opting into automatic system management of your asset packs.
+
+
+// A class that manages asset packs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
-func (bc _BAAssetPackManagerClass) SharedManager() BAAssetPackManager {
-	rv := objc.Send[BAAssetPackManager](objc.ID(bc.class), objc.Sel("sharedManager"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager
+type BAAssetPackManager struct {
+	objectivec.Object
 }
 
-// Returns a URL for the specified relative path.
+// BAAssetPackManagerFrom constructs a [BAAssetPackManager] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/URLForPath:error:
-func (b_ BAAssetPackManager) URLForPathError(path objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](b_.ID, objc.Sel("URLForPath:error:"), path, error_)
-	return rv
+// A class that manages asset packs.
+func BAAssetPackManagerFrom(ptr unsafe.Pointer) BAAssetPackManager {
+	return BAAssetPackManager{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// Gets the latest asset-pack information from the server, updates outdated asset packs, and removes obsolete asset packs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/checkForUpdatesWithCompletionHandler:
-func (b_ BAAssetPackManager) CheckForUpdatesWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("checkForUpdatesWithCompletionHandler:"), completionHandler)
-}
+
+/* debug [class_init_methods]: Init methods for BAAssetPackManager *//* debug [class_init_methods]: End init methods */
 
 
-// Returns the contents of an asset file at the specified relative path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/contentsAtPath:searchingInAssetPackWithIdentifier:options:error:
-func (b_ BAAssetPackManager) ContentsAtPathSearchingInAssetPackWithIdentifierOptionsError(path objc.IObject /* cross-framework: NSString */, assetPackIdentifier objc.IObject /* cross-framework: NSString */, options DataReadingOptions /* not a class type */, error_ unsafe.Pointer) objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](b_.ID, objc.Sel("contentsAtPath:searchingInAssetPackWithIdentifier:options:error:"), path, assetPackIdentifier, options, error_)
-	return rv
-}
+
+/* debug [class_methods]: Class methods for BAAssetPackManager */
+/* debug [class_methods]: End class methods */
 
 
-// Ensures that the specified asset pack be available locally.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/ensureLocalAvailabilityOfAssetPack:completionHandler:
-func (b_ BAAssetPackManager) EnsureLocalAvailabilityOfAssetPackCompletionHandler(assetPack IBAAssetPack, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("ensureLocalAvailabilityOfAssetPack:completionHandler:"), assetPack, completionHandler)
-}
+
+/* debug [class_properties_class]: Class properties for BAAssetPackManager */
+/* debug [class_properties_class]: End class properties */
 
 
-// Opens and returns a file descriptor for the asset file at the specified relative path.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:
-func (b_ BAAssetPackManager) FileDescriptorForPathSearchingInAssetPackWithIdentifierError(path objc.IObject /* cross-framework: NSString */, assetPackIdentifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) int {
-	rv := objc.Send[int](b_.ID, objc.Sel("fileDescriptorForPath:searchingInAssetPackWithIdentifier:error:"), path, assetPackIdentifier, error_)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for BAAssetPackManager */
+/* debug [instance_methods]: End instance methods */
 
 
-// Gets the asset packs that are available to download.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getAllAssetPacksWithCompletionHandler:
-func (b_ BAAssetPackManager) GetAllAssetPacksWithCompletionHandler(completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("getAllAssetPacksWithCompletionHandler:"), completionHandler)
-}
+
+/* debug [instance_properties]: Instance properties for BAAssetPackManager */
+/* debug [instance_properties]: End instance properties */
 
 
-// Gets the asset pack with the given identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) GetAssetPackWithIdentifierCompletionHandler(assetPackIdentifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("getAssetPackWithIdentifier:completionHandler:"), assetPackIdentifier, completionHandler)
-}
-
-
-// Gets the status of the asset pack with the specified identifier.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/getStatusOfAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) GetStatusOfAssetPackWithIdentifierCompletionHandler(assetPackIdentifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("getStatusOfAssetPackWithIdentifier:completionHandler:"), assetPackIdentifier, completionHandler)
-}
-
-
-// Removes the specified asset pack from the device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/removeAssetPackWithIdentifier:completionHandler:
-func (b_ BAAssetPackManager) RemoveAssetPackWithIdentifierCompletionHandler(assetPackIdentifier objc.IObject /* cross-framework: NSString */, completionHandler unsafe.Pointer) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("removeAssetPackWithIdentifier:completionHandler:"), assetPackIdentifier, completionHandler)
-}
-
-
-// An object that receives notifications about events that occur as an asset pack is downloaded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/delegate
-func (b_ BAAssetPackManager) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](b_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// An object that receives notifications about events that occur as an asset pack is downloaded.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/delegate
-func (b_ BAAssetPackManager) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](b_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The shared asset-pack manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManager/sharedManager
-func (b_ BAAssetPackManager) SharedManager() IBAAssetPackManager {
-	rv := objc.Send[BAAssetPackManager](b_.ID, objc.Sel("sharedManager"))
-	return rv
-}
+/* debug [class.gen.go]: End class BAAssetPackManager */
 
 
 

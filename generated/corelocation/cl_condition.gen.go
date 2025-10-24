@@ -36,7 +36,6 @@ type ICondition interface {
 
 // The abstract base class that all other conditions derive from.
 
-
 // The abstract base class that all other conditions derive from.
 //
 // [Full Topic]
@@ -82,7 +81,3 @@ func (c_ Condition) Autorelease() Condition {
 func NewCondition() Condition {
 	return getConditionClass().New()
 }
-
-
-
-

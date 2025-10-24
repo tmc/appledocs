@@ -20,3 +20,4 @@ var visitAddMemberToGroupEventProtocol *objc.Protocol
 func init() {
 	visitAddMemberToGroupEventProtocol = objc.GetProtocol("visitAddMemberToGroupEvent:")
 }
+

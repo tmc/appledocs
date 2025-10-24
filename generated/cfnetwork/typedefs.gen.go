@@ -21,22 +21,11 @@ type HTTPMessageRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHost
 // CFHostRef has base type: struct __CFHost *
 type HostRef uintptr
-// HostClientCallBack - Defines a pointer to the callback function that is called when an asynchronous resolution of a CFHost completes or an error occurs for an asynchronous CFHost resolution.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostClientCallBack
-// CFHostClientCallBack is a callback function
-// C type: void (*)(struct __CFHost *, enum CFHostInfoType, const CFStreamError *, void *)
-type HostClientCallBack = func(unsafe.Pointer, HostInfoType, unsafe.Pointer, unsafe.Pointer)
 // NetDiagnosticRef - An opaque reference representing a CFNetDiagnostic.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnostic
 // CFNetDiagnosticRef has base type: struct __CFNetDiagnostic *
 type NetDiagnosticRef uintptr
-// NetDiagnosticStatus - A CFIndex type that is used to return status values from   status and diagnostic functions. For a list of possible values, see  .
-//
-// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticStatus
-// CFNetDiagnosticStatus has base type: CFIndex
-type NetDiagnosticStatus uintptr
 // NetServiceRef - An opaque reference representing a CFNetService.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetService
@@ -47,6 +36,28 @@ type NetServiceRef uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowser
 // CFNetServiceBrowserRef has base type: struct __CFNetServiceBrowser *
 type NetServiceBrowserRef uintptr
+// NetServiceMonitorRef - An opaque reference for a service monitor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitor
+// CFNetServiceMonitorRef has base type: struct __CFNetServiceMonitor *
+type NetServiceMonitorRef uintptr
+// ProxyAutoConfigurationResultCallback - Callback function called when a proxy autoconfiguration computation has completed.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFProxyAutoConfigurationResultCallback
+// CFProxyAutoConfigurationResultCallback is a callback function
+// C type: void (*)(void *, const struct __CFArray *, struct __CFError *)
+type ProxyAutoConfigurationResultCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
+// HostClientCallBack - Defines a pointer to the callback function that is called when an asynchronous resolution of a CFHost completes or an error occurs for an asynchronous CFHost resolution.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFHostClientCallBack
+// CFHostClientCallBack is a callback function
+// C type: void (*)(struct __CFHost *, enum CFHostInfoType, const CFStreamError *, void *)
+type HostClientCallBack = func(unsafe.Pointer, HostInfoType, unsafe.Pointer, unsafe.Pointer)
+// NetDiagnosticStatus - A CFIndex type that is used to return status values from   status and diagnostic functions. For a list of possible values, see  .
+//
+// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetDiagnosticStatus
+// CFNetDiagnosticStatus has base type: CFIndex
+type NetDiagnosticStatus uintptr
 // NetServiceBrowserClientCallBack - Defines a pointer to the callback function for a CFNetServiceBrowser.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceBrowserClientCallBack
@@ -59,21 +70,10 @@ type NetServiceBrowserClientCallBack = func(unsafe.Pointer, uint, unsafe.Pointer
 // CFNetServiceClientCallBack is a callback function
 // C type: void (*)(struct __CFNetService *, CFStreamError *, void *)
 type NetServiceClientCallBack = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-// NetServiceMonitorRef - An opaque reference for a service monitor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitor
-// CFNetServiceMonitorRef has base type: struct __CFNetServiceMonitor *
-type NetServiceMonitorRef uintptr
 // NetServiceMonitorClientCallBack - Defines a pointer to the callback function that is to be called when a monitored record type changes.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFNetServiceMonitorClientCallBack
 // CFNetServiceMonitorClientCallBack is a callback function
 // C type: void (*)(struct __CFNetServiceMonitor *, struct __CFNetService *, enum CFNetServiceMonitorType, const struct __CFData *, CFStreamError *, void *)
 type NetServiceMonitorClientCallBack = func(unsafe.Pointer, unsafe.Pointer, NetServiceMonitorType, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-// ProxyAutoConfigurationResultCallback - Callback function called when a proxy autoconfiguration computation has completed.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CFNetwork/CFProxyAutoConfigurationResultCallback
-// CFProxyAutoConfigurationResultCallback is a callback function
-// C type: void (*)(void *, const struct __CFArray *, struct __CFError *)
-type ProxyAutoConfigurationResultCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
 

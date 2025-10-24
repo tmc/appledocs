@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRBridgedDeviceBasicClusterReachableChangedEvent] class.
@@ -35,8 +35,6 @@ type IMTRBridgedDeviceBasicClusterReachableChangedEvent interface {
 	SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBridgedDeviceBasicClusterReachableChangedEvent
@@ -82,8 +80,6 @@ func NewMTRBridgedDeviceBasicClusterReachableChangedEvent() MTRBridgedDeviceBasi
 	return getMTRBridgedDeviceBasicClusterReachableChangedEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicclusterreachablechangedevent/reachablenewvalue
 func (m_ MTRBridgedDeviceBasicClusterReachableChangedEvent) ReachableNewValue() objc.IObject /* cross-framework: NSNumber */ {
@@ -91,12 +87,8 @@ func (m_ MTRBridgedDeviceBasicClusterReachableChangedEvent) ReachableNewValue() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbridgeddevicebasicclusterreachablechangedevent/reachablenewvalue
 func (m_ MTRBridgedDeviceBasicClusterReachableChangedEvent) SetReachableNewValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReachableNewValue:"), value)
 }
-
-
-

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [BatchInsertRequest] class.
@@ -47,7 +47,6 @@ type IBatchInsertRequest interface {
 }
 
 // A request to insert a batch of data in a persistent store.
-
 
 // A request to insert a batch of data in a persistent store.
 //
@@ -97,8 +96,6 @@ func NewBatchInsertRequest() BatchInsertRequest {
 	return getBatchInsertRequestClass().New()
 }
 
-
-
 // Creates a batch-insertion request for a managed entity, and specifies a closure that inserts data into the entity.
 //
 // [Full Topic]
@@ -109,7 +106,6 @@ func NewBatchInsertRequestWithEntityManagedObjectHandler(entity IEntityDescripti
 	rv.Autorelease()
 	return rv
 }
-
 
 // Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion.
 //
@@ -122,7 +118,6 @@ func NewBatchInsertRequestWithEntityNameDictionaryHandler(entityName objc.IObjec
 	return rv
 }
 
-
 // Creates a batch-insertion request for a named managed entity, and specifies a closure that inserts data into the entity.
 //
 // [Full Topic]
@@ -134,8 +129,6 @@ func NewBatchInsertRequestWithEntityNameManagedObjectHandler(entityName objc.IOb
 	return rv
 }
 
-
-
 // Creates a batch-insertion request for a named managed entity, and specifies a closure that provides data dictionaries for insertion.
 //
 // [Full Topic]
@@ -144,7 +137,6 @@ func (bc _BatchInsertRequestClass) BatchInsertRequestWithEntityNameDictionaryHan
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("batchInsertRequestWithEntityName:dictionaryHandler:"), entityName, handler)
 	return rv
 }
-
 
 // A closure that provides a dictionary for your app to insert data into.
 //
@@ -155,7 +147,6 @@ func (b_ BatchInsertRequest) DictionaryHandler() bool {
 	return rv
 }
 
-
 // A closure that provides a dictionary for your app to insert data into.
 //
 // [Full Topic]
@@ -163,7 +154,6 @@ func (b_ BatchInsertRequest) DictionaryHandler() bool {
 func (b_ BatchInsertRequest) SetDictionaryHandler(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setDictionaryHandler:"), value)
 }
-
 
 // The managed entity to insert data into.
 //
@@ -174,7 +164,6 @@ func (b_ BatchInsertRequest) Entity() IEntityDescription {
 	return rv
 }
 
-
 // The managed entity to insert data into.
 //
 // [Full Topic]
@@ -182,7 +171,6 @@ func (b_ BatchInsertRequest) Entity() IEntityDescription {
 func (b_ BatchInsertRequest) SetEntity(value IEntityDescription) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setEntity:"), value)
 }
-
 
 // The name of the managed entity to insert data into.
 //
@@ -193,7 +181,6 @@ func (b_ BatchInsertRequest) EntityName() objc.IObject /* cross-framework: NSStr
 	return rv
 }
 
-
 // The name of the managed entity to insert data into.
 //
 // [Full Topic]
@@ -201,7 +188,6 @@ func (b_ BatchInsertRequest) EntityName() objc.IObject /* cross-framework: NSStr
 func (b_ BatchInsertRequest) SetEntityName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setEntityName:"), value)
 }
-
 
 // A closure that provides a managed object for your app to insert data into.
 //
@@ -212,7 +198,6 @@ func (b_ BatchInsertRequest) ManagedObjectHandler() bool {
 	return rv
 }
 
-
 // A closure that provides a managed object for your app to insert data into.
 //
 // [Full Topic]
@@ -220,7 +205,6 @@ func (b_ BatchInsertRequest) ManagedObjectHandler() bool {
 func (b_ BatchInsertRequest) SetManagedObjectHandler(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setManagedObjectHandler:"), value)
 }
-
 
 // An array of dictionaries that represents the objects to insert with the keys as attribute names and their assigned values.
 //
@@ -231,7 +215,6 @@ func (b_ BatchInsertRequest) ObjectsToInsert() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // An array of dictionaries that represents the objects to insert with the keys as attribute names and their assigned values.
 //
 // [Full Topic]
@@ -239,7 +222,6 @@ func (b_ BatchInsertRequest) ObjectsToInsert() objc.IObject /* cross-framework: 
 func (b_ BatchInsertRequest) SetObjectsToInsert(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setObjectsToInsert:"), value)
 }
-
 
 // The type of result that Core Data returns from this request.
 //
@@ -250,7 +232,6 @@ func (b_ BatchInsertRequest) ResultType() BatchInsertRequestResultType {
 	return rv
 }
 
-
 // The type of result that Core Data returns from this request.
 //
 // [Full Topic]
@@ -258,5 +239,3 @@ func (b_ BatchInsertRequest) ResultType() BatchInsertRequestResultType {
 func (b_ BatchInsertRequest) SetResultType(value BatchInsertRequestResultType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
-
-

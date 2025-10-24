@@ -15,3 +15,4 @@ var newRemoteBufferViewForDeviceProtocol *objc.Protocol
 func init() {
 	newRemoteBufferViewForDeviceProtocol = objc.GetProtocol("newRemoteBufferViewForDevice:")
 }
+

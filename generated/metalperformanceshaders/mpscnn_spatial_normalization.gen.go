@@ -7,8 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSCNNSpatialNormalization */
+
+
+/* debug [class_header]: Header for MPSCNNSpatialNormalization */
 // The class instance for the [CNNSpatialNormalization] class.
 var (
 	CNNSpatialNormalizationClass     _CNNSpatialNormalizationClass
@@ -25,42 +31,36 @@ func getCNNSpatialNormalizationClass() _CNNSpatialNormalizationClass {
 type _CNNSpatialNormalizationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNNSpatialNormalization */
 // An interface definition for the [CNNSpatialNormalization] class.
 type ICNNSpatialNormalization interface {
 	ICNNKernel
+	
+/* debug [class_interface_properties]: Properties for CNNSpatialNormalization */
 	// properties:
-	Alpha() float32
-	SetAlpha(value float32)
-	Beta() float32
-	SetBeta(value float32)
-	Delta() float32
-	SetDelta(value float32)
+	Alpha() objectivec.IObject
+	SetAlpha(value objectivec.IObject)
+	Delta() objectivec.IObject
+	SetDelta(value objectivec.IObject)
+	Beta() objectivec.IObject
+	SetBeta(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNNSpatialNormalization */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A spatial normalization kernel.
-//
-// The spatial normalization for a feature channel applies the kernel over local regions which extend spatially, but are in separate feature channels (i.e., they have the shape ). For each feature channel, the function computes the sum of squares of inside each rectangle, . It then divides each element of as follows: Where and are the values of the and properties, respectively. It is your responsibility to ensure that the combination of the values of the and properties does not result in a situation where the denominator becomes zero (in such situations the resulting pixel-value is undefined).
+/* debug [class_interface]: End interface */
 
 
-// A spatial normalization kernel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNSpatialNormalization
-type CNNSpatialNormalization struct {
-	CNNKernel
-}
 
-// CNNSpatialNormalizationFrom constructs a [CNNSpatialNormalization] from an unsafe.Pointer.
-//
-// A spatial normalization kernel.
-func CNNSpatialNormalizationFrom(ptr unsafe.Pointer) CNNSpatialNormalization {
-	return CNNSpatialNormalization{
-		CNNKernel: CNNKernelFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CNNSpatialNormalization */
 // Alloc allocates a new instance without initialization.
 func (cc _CNNSpatialNormalizationClass) Alloc() CNNSpatialNormalization {
 	rv := objc.Send[CNNSpatialNormalization](objc.ID(cc.class), objc.Sel("alloc"))
@@ -68,7 +68,6 @@ func (cc _CNNSpatialNormalizationClass) Alloc() CNNSpatialNormalization {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNNSpatialNormalizationClass) New() CNNSpatialNormalization {
 	rv := objc.Send[CNNSpatialNormalization](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,64 +90,141 @@ func (c_ CNNSpatialNormalization) Autorelease() CNNSpatialNormalization {
 func NewCNNSpatialNormalization() CNNSpatialNormalization {
 	return getCNNSpatialNormalizationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The “alpha” variable of the kernel function.
+/* debug [class_struct]: Struct for CNNSpatialNormalization */
+// A spatial normalization kernel.
+//
+// The spatial normalization for a feature channel applies the kernel over local regions which extend spatially, but are in separate feature channels (i.e., they have the shape ). For each feature channel, the function computes the sum of squares of inside each rectangle, . It then divides each element of as follows: Where and are the values of the and properties, respectively. It is your responsibility to ensure that the combination of the values of the and properties does not result in a situation where the denominator becomes zero (in such situations the resulting pixel-value is undefined).
+
+
+// A spatial normalization kernel.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/alpha
-func (c_ CNNSpatialNormalization) Alpha() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("alpha"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNSpatialNormalization
+type CNNSpatialNormalization struct {
+	CNNKernel
 }
 
+// CNNSpatialNormalizationFrom constructs a [CNNSpatialNormalization] from an unsafe.Pointer.
+//
+// A spatial normalization kernel.
+func CNNSpatialNormalizationFrom(ptr unsafe.Pointer) CNNSpatialNormalization {
+	return CNNSpatialNormalization{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
 
-// The “alpha” variable of the kernel function.
+
+
+/* debug [class_init_methods]: Init methods for CNNSpatialNormalization */
+
+// Initializes a spatial normalization kernel.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/alpha
-func (c_ CNNSpatialNormalization) SetAlpha(value float32) {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNSpatialNormalization/init(coder:device:)
+func NewCNNSpatialNormalizationWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) CNNSpatialNormalization {
+	instance := getCNNSpatialNormalizationClass().Alloc()
+	rv := objc.Send[CNNSpatialNormalization](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewCNNSpatialNormalizationWithCoderDevice */
+
+
+// Initializes a spatial normalization kernel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/1648831-initwithdevice
+func NewCNNSpatialNormalizationWithDeviceKernelWidthKernelHeight(device unsafe.Pointer, kernelWidth uint, kernelHeight uint) CNNSpatialNormalization {
+	instance := getCNNSpatialNormalizationClass().Alloc()
+	rv := objc.Send[CNNSpatialNormalization](instance.ID, objc.Sel("initWithDevice:kernelWidth:kernelHeight:"), device, kernelWidth, kernelHeight)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewCNNSpatialNormalizationWithDeviceKernelWidthKernelHeight */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CNNSpatialNormalization */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNNSpatialNormalization */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNNSpatialNormalization */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNNSpatialNormalization */
+
+// The "alpha" variable of the kernel function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/1648825-alpha
+func (c_ CNNSpatialNormalization) Alpha() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("alpha"))
+	return rv
+}/* debug [instance_properties/getter]: alpha */
+
+
+// The "alpha" variable of the kernel function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/1648825-alpha
+func (c_ CNNSpatialNormalization) SetAlpha(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlpha:"), value)
-}
+}/* debug [instance_properties/setter]: alpha */
 
 
-// The “beta” variable of the kernel function.
+// The "delta" variable of the kernel function.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/beta
-func (c_ CNNSpatialNormalization) Beta() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("beta"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/1648933-delta
+func (c_ CNNSpatialNormalization) Delta() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("delta"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delta */
 
 
-// The “beta” variable of the kernel function.
+// The "delta" variable of the kernel function.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/beta
-func (c_ CNNSpatialNormalization) SetBeta(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
-}
-
-
-// The “delta” variable of the kernel function.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/delta
-func (c_ CNNSpatialNormalization) Delta() float32 {
-	rv := objc.Send[float32](c_.ID, objc.Sel("delta"))
-	return rv
-}
-
-
-// The “delta” variable of the kernel function.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/delta
-func (c_ CNNSpatialNormalization) SetDelta(value float32) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/1648933-delta
+func (c_ CNNSpatialNormalization) SetDelta(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelta:"), value)
-}
+}/* debug [instance_properties/setter]: delta */
 
+
+// The "beta" variable of the kernel function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/1648936-beta
+func (c_ CNNSpatialNormalization) Beta() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("beta"))
+	return rv
+}/* debug [instance_properties/getter]: beta */
+
+
+// The "beta" variable of the kernel function.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnspatialnormalization/1648936-beta
+func (c_ CNNSpatialNormalization) SetBeta(value objectivec.IObject) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setBeta:"), value)
+}/* debug [instance_properties/setter]: beta */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSCNNSpatialNormalization */
 
 

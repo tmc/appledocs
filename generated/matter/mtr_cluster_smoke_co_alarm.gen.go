@@ -33,8 +33,6 @@ type IMTRClusterSmokeCOAlarm interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterSmokeCOAlarm
 type MTRClusterSmokeCOAlarm struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterSmokeCOAlarm) Autorelease() MTRClusterSmokeCOAlarm {
 func NewMTRClusterSmokeCOAlarm() MTRClusterSmokeCOAlarm {
 	return getMTRClusterSmokeCOAlarmClass().New()
 }
-
-
-
-

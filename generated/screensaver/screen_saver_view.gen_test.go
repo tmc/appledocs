@@ -9,6 +9,15 @@ import (
 // Suppress unused import errors
 var _ = screensaver.NewScreenSaverView
 
+// ExampleNewScreenSaverViewWithFrameIsPreview demonstrates how to create a ScreenSaverView instance using NewScreenSaverViewWithFrameIsPreview.
+// Creates a newly allocated screen saver view with the specified frame rectangle and preview information.
+func ExampleNewScreenSaverViewWithFrameIsPreview() {
+	_ = screensaver.NewScreenSaverViewWithFrameIsPreview(
+		screensaver.Rect /* not a class type */{}, // frame Rect /* not a class type */
+		false, // isPreview bool
+	)
+	// Output:
+}
 // ExampleScreenSaverView_AnimateOneFrame demonstrates using AnimateOneFrame on a ScreenSaverView instance.
 // Advances the screen saver’s animation by a single frame.
 func ExampleScreenSaverView_AnimateOneFrame() {
@@ -32,5 +41,7 @@ func ExampleScreenSaverView_StopAnimation() {
 	obj.StopAnimation()
 	// Output:
 	}
+
+
 
 

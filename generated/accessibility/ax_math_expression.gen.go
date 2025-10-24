@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AXMathExpression */
+
+
+/* debug [class_header]: Header for AXMathExpression */
 // The class instance for the [AXMathExpression] class.
 var (
 	AXMathExpressionClass     _AXMathExpressionClass
@@ -26,27 +30,30 @@ func getAXMathExpressionClass() _AXMathExpressionClass {
 type _AXMathExpressionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AXMathExpression */
 // An interface definition for the [AXMathExpression] class.
 type IAXMathExpression interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AXMathExpression */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AXMathExpression */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpression
-type AXMathExpression struct {
-	objectivec.Object
-}
-
-// AXMathExpressionFrom constructs a [AXMathExpression] from an unsafe.Pointer.
-func AXMathExpressionFrom(ptr unsafe.Pointer) AXMathExpression {
-	return AXMathExpression{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AXMathExpression */
 // Alloc allocates a new instance without initialization.
 func (ac _AXMathExpressionClass) Alloc() AXMathExpression {
 	rv := objc.Send[AXMathExpression](objc.ID(ac.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (ac _AXMathExpressionClass) Alloc() AXMathExpression {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AXMathExpressionClass) New() AXMathExpression {
 	rv := objc.Send[AXMathExpression](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (a_ AXMathExpression) Autorelease() AXMathExpression {
 func NewAXMathExpression() AXMathExpression {
 	return getAXMathExpressionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for AXMathExpression */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXMathExpression
+type AXMathExpression struct {
+	objectivec.Object
+}
+
+// AXMathExpressionFrom constructs a [AXMathExpression] from an unsafe.Pointer.
+func AXMathExpressionFrom(ptr unsafe.Pointer) AXMathExpression {
+	return AXMathExpression{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AXMathExpression *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AXMathExpression */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AXMathExpression */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AXMathExpression */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AXMathExpression */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AXMathExpression */
 
 
 

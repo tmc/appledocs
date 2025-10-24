@@ -32,11 +32,11 @@ func (s_ SpeechSynthesizer) SetMixToTelephonyUplink(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVSpeechSynthesizer/outputChannels
-func (s_ SpeechSynthesizer) OutputChannels() []AudioSessionChannelDescription /* not a class type */ {
+func (s_ SpeechSynthesizer) OutputChannels() []AudioSessionChannelDescription {
 	rv := objc.Send[[]AudioSessionChannelDescription](s_.ID, objc.Sel("outputChannels"))
 	return rv
 }
-func (s_ SpeechSynthesizer) SetOutputChannels(value []AudioSessionChannelDescription /* not a class type */) {
+func (s_ SpeechSynthesizer) SetOutputChannels(value []AudioSessionChannelDescription) {
 	s_.ID.Send(objc.RegisterName("setOutputChannels:"), value)
 }
 

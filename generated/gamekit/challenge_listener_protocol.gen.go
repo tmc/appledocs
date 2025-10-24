@@ -21,3 +21,4 @@ var ChallengeListenerProtocol *objc.Protocol
 func init() {
 	ChallengeListenerProtocol = objc.GetProtocol("GKChallengeListener")
 }
+

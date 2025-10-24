@@ -15,3 +15,4 @@ var visibleCharacterRangesProtocol *objc.Protocol
 func init() {
 	visibleCharacterRangesProtocol = objc.GetProtocol("visibleCharacterRanges")
 }
+

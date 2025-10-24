@@ -15,3 +15,4 @@ var setAccessibilityLinkedUIElementsProtocol *objc.Protocol
 func init() {
 	setAccessibilityLinkedUIElementsProtocol = objc.GetProtocol("setAccessibilityLinkedUIElements")
 }
+

@@ -15,3 +15,4 @@ var FSVolumePreallocateOperationsProtocol *objc.Protocol
 func init() {
 	FSVolumePreallocateOperationsProtocol = objc.GetProtocol("FSVolumePreallocateOperations")
 }
+

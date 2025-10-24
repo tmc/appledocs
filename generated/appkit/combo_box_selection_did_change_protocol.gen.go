@@ -15,3 +15,4 @@ var comboBoxSelectionDidChangeProtocol *objc.Protocol
 func init() {
 	comboBoxSelectionDidChangeProtocol = objc.GetProtocol("comboBoxSelectionDidChange:")
 }
+

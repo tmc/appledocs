@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PRuleEditorDelegate is the NSRuleEditorDelegate protocol interface.
@@ -17,9 +19,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSRuleEditorDelegate
 type PRuleEditorDelegate interface {
 	// Required methods
-	RuleEditorChildForCriterionWithRowType(editor IRuleEditor, index int, criterion objc.IObject, rowType RuleEditorRowType) objc.ID
-	RuleEditorDisplayValueForCriterionInRow(editor IRuleEditor, criterion objc.IObject, row int) objc.ID
-	RuleEditorNumberOfChildrenForCriterionWithRowType(editor IRuleEditor, criterion objc.IObject, rowType RuleEditorRowType) int
+	RuleEditorChildForCriterionWithRowType(editor IRuleEditor, index int, criterion objc.IObject, rowType RuleEditorRowType) objc.ID/* debug [protocol_interface/required_method]: RuleEditorChildForCriterionWithRowType */
+	RuleEditorDisplayValueForCriterionInRow(editor IRuleEditor, criterion objc.IObject, row int) objc.ID/* debug [protocol_interface/required_method]: RuleEditorDisplayValueForCriterionInRow */
+	RuleEditorNumberOfChildrenForCriterionWithRowType(editor IRuleEditor, criterion objc.IObject, rowType RuleEditorRowType) int/* debug [protocol_interface/required_method]: RuleEditorNumberOfChildrenForCriterionWithRowType */
 	// Optional methods
 	RuleEditorPredicatePartsForCriterionWithDisplayValueInRow(editor IRuleEditor, criterion objc.IObject, value objc.IObject, row int) foundation.IDictionary
 	HasRuleEditorPredicatePartsForCriterionWithDisplayValueInRow() bool

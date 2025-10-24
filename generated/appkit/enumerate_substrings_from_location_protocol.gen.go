@@ -15,3 +15,4 @@ var enumerateSubstringsFromLocationProtocol *objc.Protocol
 func init() {
 	enumerateSubstringsFromLocationProtocol = objc.GetProtocol("enumerateSubstringsFromLocation:")
 }
+

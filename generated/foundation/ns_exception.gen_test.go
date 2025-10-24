@@ -15,5 +15,4 @@ func ExampleException_Raise() {
 	obj := foundation.NewException()
 	obj.Raise()
 	// Output:
-	}
-
+}

@@ -15,3 +15,4 @@ var numberOfSectionsInCollectionViewProtocol *objc.Protocol
 func init() {
 	numberOfSectionsInCollectionViewProtocol = objc.GetProtocol("numberOfSectionsInCollectionView:")
 }
+

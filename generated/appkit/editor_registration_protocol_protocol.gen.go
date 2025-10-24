@@ -3,8 +3,7 @@
 package appkit
 
 import (
-
-	"github.com/tmc/appledocs/generated/objc"
+	"unsafe"
 )
 
 // PEditorRegistration is the NSEditorRegistration protocol interface.
@@ -17,8 +16,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSEditorRegistration
 type PEditorRegistration interface {
 	// Optional methods
-	ObjectDidBeginEditing(editor objc.IObject)
+	ObjectDidBeginEditing(editor unsafe.Pointer)
 	HasObjectDidBeginEditing() bool
-	ObjectDidEndEditing(editor objc.IObject)
+	ObjectDidEndEditing(editor unsafe.Pointer)
 	HasObjectDidEndEditing() bool
 }

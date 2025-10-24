@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class IOBluetoothSDPUUID */
+
+
+/* debug [class_header]: Header for IOBluetoothSDPUUID */
 // The class instance for the [BluetoothSDPUUID] class.
 var (
 	BluetoothSDPUUIDClass     _BluetoothSDPUUIDClass
@@ -26,41 +30,35 @@ func getBluetoothSDPUUIDClass() _BluetoothSDPUUIDClass {
 type _BluetoothSDPUUIDClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for BluetoothSDPUUID */
 // An interface definition for the [BluetoothSDPUUID] class.
 type IBluetoothSDPUUID interface {
 	foundation.IData
+	
+/* debug [class_interface_properties]: Properties for BluetoothSDPUUID */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for BluetoothSDPUUID */
 	// methods:
 	ClassForArchiver() objc.Class
 	ClassForCoder() objc.Class
 	ClassForPortCoder() objc.Class
 	GetUUIDWithLength(newLength unsafe.Pointer) unsafe.Pointer
 	IsEqualToUUID(otherUUID IOBluetoothSDPUUID) bool
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
-//
-// The IOBluetoothSDPUUID class can represent a UUID of any valid size (16, 32 or 128 bits). It provides the ability to compare two UUIDs no matter what their size as well as the ability to promote the size of a UUID to a larger one.
+/* debug [class_interface]: End interface */
 
 
-// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID
-type BluetoothSDPUUID struct {
-	foundation.Data
-}
 
-// BluetoothSDPUUIDFrom constructs a [BluetoothSDPUUID] from an unsafe.Pointer.
-//
-// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
-func BluetoothSDPUUIDFrom(ptr unsafe.Pointer) BluetoothSDPUUID {
-	return BluetoothSDPUUID{
-		Data: foundation.DataFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for BluetoothSDPUUID */
 // Alloc allocates a new instance without initialization.
 func (bc _BluetoothSDPUUIDClass) Alloc() BluetoothSDPUUID {
 	rv := objc.Send[BluetoothSDPUUID](objc.ID(bc.class), objc.Sel("alloc"))
@@ -68,7 +66,6 @@ func (bc _BluetoothSDPUUIDClass) Alloc() BluetoothSDPUUID {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BluetoothSDPUUIDClass) New() BluetoothSDPUUID {
 	rv := objc.Send[BluetoothSDPUUID](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,8 +88,37 @@ func (b_ BluetoothSDPUUID) Autorelease() BluetoothSDPUUID {
 func NewBluetoothSDPUUID() BluetoothSDPUUID {
 	return getBluetoothSDPUUIDClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for BluetoothSDPUUID */
+// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
+//
+// The IOBluetoothSDPUUID class can represent a UUID of any valid size (16, 32 or 128 bits). It provides the ability to compare two UUIDs no matter what their size as well as the ability to promote the size of a UUID to a larger one.
+
+
+// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID
+type BluetoothSDPUUID struct {
+	foundation.Data
+}
+
+// BluetoothSDPUUIDFrom constructs a [BluetoothSDPUUID] from an unsafe.Pointer.
+//
+// An NSData subclass that represents a UUID as defined in the Bluetooth SDP spec.
+func BluetoothSDPUUIDFrom(ptr unsafe.Pointer) BluetoothSDPUUID {
+	return BluetoothSDPUUID{
+		Data: foundation.DataFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for BluetoothSDPUUID */
 
 // Creates a new IOBluetoothSDPUUID object with the given bytes of the given length.
 //
@@ -101,7 +127,7 @@ func NewBluetoothSDPUUID() BluetoothSDPUUID {
 func NewBluetoothSDPUUIDUuidWithBytesLength(bytes unsafe.Pointer, length unsafe.Pointer) BluetoothSDPUUID {
 	rv := objc.Send[BluetoothSDPUUID](objc.ID(getBluetoothSDPUUIDClass().class), objc.Sel("uuidWithBytes:length:"), bytes, length)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBluetoothSDPUUIDUuidWithBytesLength */
 
 
 // Creates a new IOBluetoothSDPUUID object from the given NSData.
@@ -111,7 +137,7 @@ func NewBluetoothSDPUUIDUuidWithBytesLength(bytes unsafe.Pointer, length unsafe.
 func NewBluetoothSDPUUIDUuidWithData(data objc.IObject /* cross-framework: NSData */) BluetoothSDPUUID {
 	rv := objc.Send[BluetoothSDPUUID](objc.ID(getBluetoothSDPUUIDClass().class), objc.Sel("uuidWithData:"), data)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBluetoothSDPUUIDUuidWithData */
 
 
 // Initializes a new 16-bit IOBluetoothSDPUUID with the given UUID16
@@ -123,7 +149,7 @@ func NewBluetoothSDPUUIDWithUUID16(uuid16 BluetoothSDPUUID16 /* typedef */) Blue
 	rv := objc.Send[BluetoothSDPUUID](instance.ID, objc.Sel("initWithUUID16:"), uuid16)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBluetoothSDPUUIDWithUUID16 */
 
 
 // Creates a new 32-bit IOBluetoothSDPUUID with the given UUID32
@@ -135,9 +161,13 @@ func NewBluetoothSDPUUIDWithUUID32(uuid32 BluetoothSDPUUID32 /* typedef */) Blue
 	rv := objc.Send[BluetoothSDPUUID](instance.ID, objc.Sel("initWithUUID32:"), uuid32)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewBluetoothSDPUUIDWithUUID32 */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for BluetoothSDPUUID */
 
 // Creates a new IOBluetoothSDPUUID object with the given bytes of the given length.
 //
@@ -146,7 +176,7 @@ func NewBluetoothSDPUUIDWithUUID32(uuid32 BluetoothSDPUUID32 /* typedef */) Blue
 func (bc _BluetoothSDPUUIDClass) UuidWithBytesLength(bytes unsafe.Pointer, length unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("uuidWithBytes:length:"), bytes, length)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=UuidWithBytesLength) */
 
 
 // Creates a new IOBluetoothSDPUUID object from the given NSData.
@@ -156,7 +186,7 @@ func (bc _BluetoothSDPUUIDClass) UuidWithBytesLength(bytes unsafe.Pointer, lengt
 func (bc _BluetoothSDPUUIDClass) UuidWithData(data objc.IObject /* cross-framework: NSData */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("uuidWithData:"), data)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=UuidWithData) */
 
 
 // Creates a new 16-bit IOBluetoothSDPUUID with the given UUID16
@@ -166,7 +196,7 @@ func (bc _BluetoothSDPUUIDClass) UuidWithData(data objc.IObject /* cross-framewo
 func (bc _BluetoothSDPUUIDClass) Uuid16(uuid16 BluetoothSDPUUID16 /* typedef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("uuid16:"), uuid16)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Uuid16) */
 
 
 // Creates a new 32-bit IOBluetoothSDPUUID with the given UUID32
@@ -176,25 +206,35 @@ func (bc _BluetoothSDPUUIDClass) Uuid16(uuid16 BluetoothSDPUUID16 /* typedef */)
 func (bc _BluetoothSDPUUIDClass) Uuid32(uuid32 BluetoothSDPUUID32 /* typedef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("uuid32:"), uuid32)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Uuid32) */
 
 
 // Method call to convert an IOBluetoothSDPUUIDRef into an IOBluetoothSDPUUID *.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/withSDPUUIDRef:
-func (bc _BluetoothSDPUUIDClass) WithSDPUUIDRef(sdpUUIDRef objc.IObject /* cross-framework: BluetoothSDPUUIDRef */) unsafe.Pointer {
+func (bc _BluetoothSDPUUIDClass) WithSDPUUIDRef(sdpUUIDRef BluetoothSDPUUIDRef /* typedef */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(bc.class), objc.Sel("withSDPUUIDRef:"), sdpUUIDRef)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=WithSDPUUIDRef) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for BluetoothSDPUUID */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for BluetoothSDPUUID */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUID/classForArchiver()
 func (b_ BluetoothSDPUUID) ClassForArchiver() objc.Class {
 	rv := objc.Send[objc.Class](b_.ID, objc.Sel("classForArchiver"))
 	return rv
-}
+}/* debug [instance_methods/method]: ClassForArchiver */
 
 
 // [Full Topic]
@@ -202,7 +242,7 @@ func (b_ BluetoothSDPUUID) ClassForArchiver() objc.Class {
 func (b_ BluetoothSDPUUID) ClassForCoder() objc.Class {
 	rv := objc.Send[objc.Class](b_.ID, objc.Sel("classForCoder"))
 	return rv
-}
+}/* debug [instance_methods/method]: ClassForCoder */
 
 
 // [Full Topic]
@@ -210,7 +250,7 @@ func (b_ BluetoothSDPUUID) ClassForCoder() objc.Class {
 func (b_ BluetoothSDPUUID) ClassForPortCoder() objc.Class {
 	rv := objc.Send[objc.Class](b_.ID, objc.Sel("classForPortCoder"))
 	return rv
-}
+}/* debug [instance_methods/method]: ClassForPortCoder */
 
 
 // Returns an IOBluetoothSDPUUID object matching the target UUID, but with the given number of bytes.
@@ -220,7 +260,7 @@ func (b_ BluetoothSDPUUID) ClassForPortCoder() objc.Class {
 func (b_ BluetoothSDPUUID) GetUUIDWithLength(newLength unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("getUUIDWithLength:"), newLength)
 	return rv
-}
+}/* debug [instance_methods/method]: GetUUIDWithLength */
 
 
 // Compares the target IOBluetoothSDPUUID object with the given otherUUID object.
@@ -230,6 +270,16 @@ func (b_ BluetoothSDPUUID) GetUUIDWithLength(newLength unsafe.Pointer) unsafe.Po
 func (b_ BluetoothSDPUUID) IsEqualToUUID(otherUUID IOBluetoothSDPUUID) bool {
 	rv := objc.Send[bool](b_.ID, objc.Sel("isEqualToUUID:"), otherUUID)
 	return rv
-}
+}/* debug [instance_methods/method]: IsEqualToUUID */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for BluetoothSDPUUID */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class IOBluetoothSDPUUID */
 
 

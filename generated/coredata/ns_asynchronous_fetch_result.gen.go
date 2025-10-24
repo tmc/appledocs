@@ -37,7 +37,6 @@ type IAsynchronousFetchResult interface {
 
 // A fetch result object that encompasses the response from an executed asynchronous fetch request.
 
-
 // A fetch result object that encompasses the response from an executed asynchronous fetch request.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewAsynchronousFetchResult() AsynchronousFetchResult {
 	return getAsynchronousFetchResultClass().New()
 }
 
-
-
 // The underlying fetch request that was executed.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (a_ AsynchronousFetchResult) FetchRequest() unsafe.Pointer {
 	return rv
 }
 
-
 // The results that were received from the fetch request.
 //
 // [Full Topic]
@@ -106,6 +102,3 @@ func (a_ AsynchronousFetchResult) FinalResult() []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("finalResult"))
 	return rv
 }
-
-
-

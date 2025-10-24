@@ -21,3 +21,4 @@ var CustomModelProtocol *objc.Protocol
 func init() {
 	CustomModelProtocol = objc.GetProtocol("MLCustomModel")
 }
+

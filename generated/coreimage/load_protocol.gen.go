@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // loadProtocol is the load: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to load:.
 var loadProtocol *objc.Protocol
 
 func init() {
 	loadProtocol = objc.GetProtocol("load:")
 }
+

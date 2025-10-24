@@ -15,3 +15,4 @@ var QCPlugInInputImageSourceProtocol *objc.Protocol
 func init() {
 	QCPlugInInputImageSourceProtocol = objc.GetProtocol("QCPlugInInputImageSource")
 }
+

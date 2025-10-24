@@ -20,3 +20,4 @@ var GCDevicePhysicalInputStateDiffProtocol *objc.Protocol
 func init() {
 	GCDevicePhysicalInputStateDiffProtocol = objc.GetProtocol("GCDevicePhysicalInputStateDiff")
 }
+

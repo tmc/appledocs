@@ -15,3 +15,4 @@ var setAccessibilityWindowsProtocol *objc.Protocol
 func init() {
 	setAccessibilityWindowsProtocol = objc.GetProtocol("setAccessibilityWindows")
 }
+

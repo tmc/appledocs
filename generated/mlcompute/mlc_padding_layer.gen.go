@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MLCPaddingLayer */
+
+
+/* debug [class_header]: Header for MLCPaddingLayer */
 // The class instance for the [CPaddingLayer] class.
 var (
 	CPaddingLayerClass     _CPaddingLayerClass
@@ -25,46 +30,36 @@ func getCPaddingLayerClass() _CPaddingLayerClass {
 type _CPaddingLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CPaddingLayer */
 // An interface definition for the [CPaddingLayer] class.
 type ICPaddingLayer interface {
 	ICLayer
+	
+/* debug [class_interface_properties]: Properties for CPaddingLayer */
 	// properties:
 	ConstantValue() float32
-	SetConstantValue(value float32)
-	PaddingBottom() int
-	SetPaddingBottom(value int)
-	PaddingLeft() int
-	SetPaddingLeft(value int)
-	PaddingRight() int
-	SetPaddingRight(value int)
-	PaddingTop() int
-	SetPaddingTop(value int)
+	PaddingBottom() uint
+	PaddingLeft() uint
+	PaddingRight() uint
+	PaddingTop() uint
 	PaddingType() CPaddingType
-	SetPaddingType(value CPaddingType)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CPaddingLayer */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A layer that pads a tensor with the padding sizes you specify.
 
 
-// A layer that pads a tensor with the padding sizes you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer
-type CPaddingLayer struct {
-	CLayer
-}
-
-// CPaddingLayerFrom constructs a [CPaddingLayer] from an unsafe.Pointer.
-//
-// A layer that pads a tensor with the padding sizes you specify.
-func CPaddingLayerFrom(ptr unsafe.Pointer) CPaddingLayer {
-	return CPaddingLayer{
-		CLayer: CLayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CPaddingLayer */
 // Alloc allocates a new instance without initialization.
 func (cc _CPaddingLayerClass) Alloc() CPaddingLayer {
 	rv := objc.Send[CPaddingLayer](objc.ID(cc.class), objc.Sel("alloc"))
@@ -72,7 +67,6 @@ func (cc _CPaddingLayerClass) Alloc() CPaddingLayer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CPaddingLayerClass) New() CPaddingLayer {
 	rv := objc.Send[CPaddingLayer](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,121 +89,158 @@ func (c_ CPaddingLayer) Autorelease() CPaddingLayer {
 func NewCPaddingLayer() CPaddingLayer {
 	return getCPaddingLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CPaddingLayer */
+// A layer that pads a tensor with the padding sizes you specify.
+
+
+// A layer that pads a tensor with the padding sizes you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer
+type CPaddingLayer struct {
+	CLayer
+}
+
+// CPaddingLayerFrom constructs a [CPaddingLayer] from an unsafe.Pointer.
+//
+// A layer that pads a tensor with the padding sizes you specify.
+func CPaddingLayerFrom(ptr unsafe.Pointer) CPaddingLayer {
+	return CPaddingLayer{
+		CLayer: CLayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CPaddingLayer *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CPaddingLayer */
+
+// Creates a padding layer with the constant padding sizes and constant valu you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/layerWithConstantPadding:constantValue:
+func (cc _CPaddingLayerClass) LayerWithConstantPaddingConstantValue(padding []foundation.Number, constantValue float32) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithConstantPadding:constantValue:"), padding, constantValue)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithConstantPaddingConstantValue) */
+
+
+// Creates a padding layer with the reflection padding sizes you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/layerWithReflectionPadding:
+func (cc _CPaddingLayerClass) LayerWithReflectionPadding(padding []foundation.Number) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithReflectionPadding:"), padding)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithReflectionPadding) */
+
+
+// Creates a padding layer with the symmetric padding sizes you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/layerWithSymmetricPadding:
+func (cc _CPaddingLayerClass) LayerWithSymmetricPadding(padding []foundation.Number) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithSymmetricPadding:"), padding)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithSymmetricPadding) */
+
+
+// Creates a padding layer with the zero padding sizes you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/layerWithZeroPadding:
+func (cc _CPaddingLayerClass) LayerWithZeroPadding(padding []foundation.Number) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithZeroPadding:"), padding)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithZeroPadding) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CPaddingLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CPaddingLayer */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CPaddingLayer */
 
 // The constant value you use if padding type is constant.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/constantvalue
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/constantValue
 func (c_ CPaddingLayer) ConstantValue() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("constantValue"))
 	return rv
-}
-
-
-// The constant value you use if padding type is constant.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/constantvalue
-func (c_ CPaddingLayer) SetConstantValue(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConstantValue:"), value)
-}
+}/* debug [instance_properties/getter]: constantValue */
 
 
 // The bottom padding size.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingbottom
-func (c_ CPaddingLayer) PaddingBottom() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("paddingBottom"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/paddingBottom
+func (c_ CPaddingLayer) PaddingBottom() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("paddingBottom"))
 	return rv
-}
-
-
-// The bottom padding size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingbottom
-func (c_ CPaddingLayer) SetPaddingBottom(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingBottom:"), value)
-}
+}/* debug [instance_properties/getter]: paddingBottom */
 
 
 // The left padding size.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingleft
-func (c_ CPaddingLayer) PaddingLeft() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("paddingLeft"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/paddingLeft
+func (c_ CPaddingLayer) PaddingLeft() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("paddingLeft"))
 	return rv
-}
-
-
-// The left padding size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingleft
-func (c_ CPaddingLayer) SetPaddingLeft(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingLeft:"), value)
-}
+}/* debug [instance_properties/getter]: paddingLeft */
 
 
 // The right padding size.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingright
-func (c_ CPaddingLayer) PaddingRight() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("paddingRight"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/paddingRight
+func (c_ CPaddingLayer) PaddingRight() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("paddingRight"))
 	return rv
-}
-
-
-// The right padding size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingright
-func (c_ CPaddingLayer) SetPaddingRight(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingRight:"), value)
-}
+}/* debug [instance_properties/getter]: paddingRight */
 
 
 // The top padding size.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtop
-func (c_ CPaddingLayer) PaddingTop() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("paddingTop"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/paddingTop
+func (c_ CPaddingLayer) PaddingTop() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("paddingTop"))
 	return rv
-}
-
-
-// The top padding size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtop
-func (c_ CPaddingLayer) SetPaddingTop(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingTop:"), value)
-}
+}/* debug [instance_properties/getter]: paddingTop */
 
 
 // The padding type.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtype
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCPaddingLayer/paddingType
 func (c_ CPaddingLayer) PaddingType() CPaddingType {
 	rv := objc.Send[CPaddingType](c_.ID, objc.Sel("paddingType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: paddingType */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The padding type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcpaddinglayer/paddingtype
-func (c_ CPaddingLayer) SetPaddingType(value CPaddingType) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPaddingType:"), value)
-}
+/* debug [class.gen.go]: End class MLCPaddingLayer */
 
 
 

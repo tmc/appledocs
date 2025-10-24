@@ -19,3 +19,4 @@ var deltaTimeProtocol *objc.Protocol
 func init() {
 	deltaTimeProtocol = objc.GetProtocol("deltaTime")
 }
+

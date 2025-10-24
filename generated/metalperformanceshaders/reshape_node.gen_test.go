@@ -13,9 +13,9 @@ var _ = metalperformanceshaders.NewReshapeNode
 func ExampleNewReshapeNodeWithSourceResultWidthResultHeightResultFeatureChannels() {
 	_ = metalperformanceshaders.NewReshapeNodeWithSourceResultWidthResultHeightResultFeatureChannels(
 		metalperformanceshaders.MPSNNImageNode{}, // source MPSNNImageNode
-		0, // resultWidth uint
-		0, // resultHeight uint
-		0, // resultFeatureChannels uint
+		0,                                        // resultWidth uint
+		0,                                        // resultHeight uint
+		0,                                        // resultFeatureChannels uint
 	)
 	// Output:
 }

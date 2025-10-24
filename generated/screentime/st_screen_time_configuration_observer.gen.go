@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class STScreenTimeConfigurationObserver */
+
+
+/* debug [class_header]: Header for STScreenTimeConfigurationObserver */
 // The class instance for the [STScreenTimeConfigurationObserver] class.
 var (
 	STScreenTimeConfigurationObserverClass     _STScreenTimeConfigurationObserverClass
@@ -26,39 +30,35 @@ func getSTScreenTimeConfigurationObserverClass() _STScreenTimeConfigurationObser
 type _STScreenTimeConfigurationObserverClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for STScreenTimeConfigurationObserver */
 // An interface definition for the [STScreenTimeConfigurationObserver] class.
 type ISTScreenTimeConfigurationObserver interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for STScreenTimeConfigurationObserver */
 	// properties:
+	Configuration() ISTScreenTimeConfiguration
 	EnforcesChildRestrictions() bool
 	SetEnforcesChildRestrictions(value bool)
-	Configuration() ISTScreenTimeConfiguration
-	SetConfiguration(value ISTScreenTimeConfiguration)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for STScreenTimeConfigurationObserver */
 	// methods:
 	StartObserving()
+	StopObserving()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The object you use to observe changes to the current configuration.
-//
-// Use this class to start and stop observing the current configuration. For example, you can opt to disable private browsing in your web browser’s view controller when is .
+/* debug [class_interface]: End interface */
 
 
-// The object you use to observe changes to the current configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver
-type STScreenTimeConfigurationObserver struct {
-	objectivec.Object
-}
 
-// STScreenTimeConfigurationObserverFrom constructs a [STScreenTimeConfigurationObserver] from an unsafe.Pointer.
-//
-// The object you use to observe changes to the current configuration.
-func STScreenTimeConfigurationObserverFrom(ptr unsafe.Pointer) STScreenTimeConfigurationObserver {
-	return STScreenTimeConfigurationObserver{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for STScreenTimeConfigurationObserver */
 // Alloc allocates a new instance without initialization.
 func (sc _STScreenTimeConfigurationObserverClass) Alloc() STScreenTimeConfigurationObserver {
 	rv := objc.Send[STScreenTimeConfigurationObserver](objc.ID(sc.class), objc.Sel("alloc"))
@@ -66,7 +66,6 @@ func (sc _STScreenTimeConfigurationObserverClass) Alloc() STScreenTimeConfigurat
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _STScreenTimeConfigurationObserverClass) New() STScreenTimeConfigurationObserver {
 	rv := objc.Send[STScreenTimeConfigurationObserver](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,8 +88,35 @@ func (s_ STScreenTimeConfigurationObserver) Autorelease() STScreenTimeConfigurat
 func NewSTScreenTimeConfigurationObserver() STScreenTimeConfigurationObserver {
 	return getSTScreenTimeConfigurationObserverClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for STScreenTimeConfigurationObserver */
+// The object you use to observe changes to the current configuration.
+//
+// Use this class to start and stop observing the current configuration. For example, you can opt to disable private browsing in your web browser’s view controller when is .
+
+
+// The object you use to observe changes to the current configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver
+type STScreenTimeConfigurationObserver struct {
+	objectivec.Object
+}
+
+// STScreenTimeConfigurationObserverFrom constructs a [STScreenTimeConfigurationObserver] from an unsafe.Pointer.
+//
+// The object you use to observe changes to the current configuration.
+func STScreenTimeConfigurationObserverFrom(ptr unsafe.Pointer) STScreenTimeConfigurationObserver {
+	return STScreenTimeConfigurationObserver{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for STScreenTimeConfigurationObserver */
 
 // Creates a configuration observer that reports updates on the queue you specify.
 //
@@ -101,9 +127,23 @@ func NewSTScreenTimeConfigurationObserverWithUpdateQueue(updateQueue unsafe.Poin
 	rv := objc.Send[STScreenTimeConfigurationObserver](instance.ID, objc.Sel("initWithUpdateQueue:"), updateQueue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewSTScreenTimeConfigurationObserverWithUpdateQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for STScreenTimeConfigurationObserver */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for STScreenTimeConfigurationObserver */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for STScreenTimeConfigurationObserver */
 
 // Starts observing changes to the current configuration.
 //
@@ -111,7 +151,31 @@ func NewSTScreenTimeConfigurationObserverWithUpdateQueue(updateQueue unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver/startObserving()
 func (s_ STScreenTimeConfigurationObserver) StartObserving() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("startObserving"))
-}
+}/* debug [instance_methods/method]: StartObserving */
+
+
+// Stops observing changes to the current configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver/stopObserving()
+func (s_ STScreenTimeConfigurationObserver) StopObserving() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("stopObserving"))
+}/* debug [instance_methods/method]: StopObserving */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for STScreenTimeConfigurationObserver */
+
+// The configuration being observed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ScreenTime/STScreenTimeConfigurationObserver/configuration
+func (s_ STScreenTimeConfigurationObserver) Configuration() ISTScreenTimeConfiguration {
+	rv := objc.Send[STScreenTimeConfiguration](s_.ID, objc.Sel("configuration"))
+	return rv
+}/* debug [instance_properties/getter]: configuration */
 
 
 // A Boolean that indicates whether the device is currently enforcing child
@@ -121,7 +185,7 @@ func (s_ STScreenTimeConfigurationObserver) StartObserving() {
 func (s_ STScreenTimeConfigurationObserver) EnforcesChildRestrictions() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("enforcesChildRestrictions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: enforcesChildRestrictions */
 
 
 // A Boolean that indicates whether the device is currently enforcing child
@@ -130,25 +194,11 @@ func (s_ STScreenTimeConfigurationObserver) EnforcesChildRestrictions() bool {
 // [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfiguration/enforceschildrestrictions
 func (s_ STScreenTimeConfigurationObserver) SetEnforcesChildRestrictions(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEnforcesChildRestrictions:"), value)
-}
+}/* debug [instance_properties/setter]: enforcesChildRestrictions */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The configuration being observed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfigurationobserver/configuration
-func (s_ STScreenTimeConfigurationObserver) Configuration() ISTScreenTimeConfiguration {
-	rv := objc.Send[STScreenTimeConfiguration](s_.ID, objc.Sel("configuration"))
-	return rv
-}
-
-
-// The configuration being observed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/screentime/stscreentimeconfigurationobserver/configuration
-func (s_ STScreenTimeConfigurationObserver) SetConfiguration(value ISTScreenTimeConfiguration) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setConfiguration:"), value)
-}
+/* debug [class.gen.go]: End class STScreenTimeConfigurationObserver */
 
 

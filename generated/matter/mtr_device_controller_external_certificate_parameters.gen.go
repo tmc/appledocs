@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRDeviceControllerExternalCertificateParameters] class.
@@ -35,8 +35,6 @@ type IMTRDeviceControllerExternalCertificateParameters interface {
 	SetRootCertificate(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerExternalCertificateParameters
@@ -82,8 +80,6 @@ func NewMTRDeviceControllerExternalCertificateParameters() MTRDeviceControllerEx
 	return getMTRDeviceControllerExternalCertificateParametersClass().New()
 }
 
-
-
 // The root certificate we were initialized with.
 //
 // [Full Topic]
@@ -93,7 +89,6 @@ func (m_ MTRDeviceControllerExternalCertificateParameters) RootCertificate() obj
 	return rv
 }
 
-
 // The root certificate we were initialized with.
 //
 // [Full Topic]
@@ -101,6 +96,3 @@ func (m_ MTRDeviceControllerExternalCertificateParameters) RootCertificate() obj
 func (m_ MTRDeviceControllerExternalCertificateParameters) SetRootCertificate(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRootCertificate:"), value)
 }
-
-
-

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MLModelCollectionEntry */
+
+
+/* debug [class_header]: Header for MLModelCollectionEntry */
 // The class instance for the [ModelCollectionEntry] class.
 var (
 	ModelCollectionEntryClass     _ModelCollectionEntryClass
@@ -27,38 +31,32 @@ func getModelCollectionEntryClass() _ModelCollectionEntryClass {
 type _ModelCollectionEntryClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ModelCollectionEntry */
 // An interface definition for the [ModelCollectionEntry] class.
 type IModelCollectionEntry interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ModelCollectionEntry */
 	// properties:
-	ModelIdentifier() objc.IObject /* cross-framework: NSString */
-	SetModelIdentifier(value objc.IObject /* cross-framework: NSString */)
-	ModelURL() objc.IObject /* cross-framework: URL */
-	SetModelURL(value objc.IObject /* cross-framework: URL */)
 	Entries() IMLModelCollectionEntry
 	SetEntries(value IMLModelCollectionEntry)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ModelCollectionEntry */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A model and its identifier within a model collection.
 
 
-// A model and its identifier within a model collection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry
-type ModelCollectionEntry struct {
-	objectivec.Object
-}
-
-// ModelCollectionEntryFrom constructs a [ModelCollectionEntry] from an unsafe.Pointer.
-//
-// A model and its identifier within a model collection.
-func ModelCollectionEntryFrom(ptr unsafe.Pointer) ModelCollectionEntry {
-	return ModelCollectionEntry{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ModelCollectionEntry */
 // Alloc allocates a new instance without initialization.
 func (mc _ModelCollectionEntryClass) Alloc() ModelCollectionEntry {
 	rv := objc.Send[ModelCollectionEntry](objc.ID(mc.class), objc.Sel("alloc"))
@@ -66,7 +64,6 @@ func (mc _ModelCollectionEntryClass) Alloc() ModelCollectionEntry {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _ModelCollectionEntryClass) New() ModelCollectionEntry {
 	rv := objc.Send[ModelCollectionEntry](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,46 +86,52 @@ func (m_ ModelCollectionEntry) Autorelease() ModelCollectionEntry {
 func NewModelCollectionEntry() ModelCollectionEntry {
 	return getModelCollectionEntryClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The name of the model, which is unique to the collection.
+/* debug [class_struct]: Struct for ModelCollectionEntry */
+// A model and its identifier within a model collection.
+
+
+// A model and its identifier within a model collection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelidentifier
-func (m_ ModelCollectionEntry) ModelIdentifier() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("modelIdentifier"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreML/MLModelCollection/Entry
+type ModelCollectionEntry struct {
+	objectivec.Object
 }
 
-
-// The name of the model, which is unique to the collection.
+// ModelCollectionEntryFrom constructs a [ModelCollectionEntry] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelidentifier
-func (m_ ModelCollectionEntry) SetModelIdentifier(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelIdentifier:"), value)
+// A model and its identifier within a model collection.
+func ModelCollectionEntryFrom(ptr unsafe.Pointer) ModelCollectionEntry {
+	return ModelCollectionEntry{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The compiled model’s location on the device’s file system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelurl
-func (m_ ModelCollectionEntry) ModelURL() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](m_.ID, objc.Sel("modelURL"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for ModelCollectionEntry *//* debug [class_init_methods]: End init methods */
 
 
-// The compiled model’s location on the device’s file system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entry/modelurl
-func (m_ ModelCollectionEntry) SetModelURL(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setModelURL:"), value)
-}
 
+/* debug [class_methods]: Class methods for ModelCollectionEntry */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ModelCollectionEntry */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ModelCollectionEntry */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ModelCollectionEntry */
 
 // A dictionary of model entries keyed to the models’ identifiers.
 //
@@ -137,7 +140,7 @@ func (m_ ModelCollectionEntry) SetModelURL(value objc.IObject /* cross-framework
 func (m_ ModelCollectionEntry) Entries() IMLModelCollectionEntry {
 	rv := objc.Send[ModelCollectionEntry](m_.ID, objc.Sel("entries"))
 	return rv
-}
+}/* debug [instance_properties/getter]: entries */
 
 
 // A dictionary of model entries keyed to the models’ identifiers.
@@ -146,7 +149,11 @@ func (m_ ModelCollectionEntry) Entries() IMLModelCollectionEntry {
 // [Full Topic]: https://developer.apple.com/documentation/coreml/mlmodelcollection/entries
 func (m_ ModelCollectionEntry) SetEntries(value IMLModelCollectionEntry) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntries:"), value)
-}
+}/* debug [instance_properties/setter]: entries */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MLModelCollectionEntry */
 
 

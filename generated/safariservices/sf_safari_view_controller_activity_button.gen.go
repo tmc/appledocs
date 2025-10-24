@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SFSafariViewControllerActivityButton */
+
+
+/* debug [class_header]: Header for SFSafariViewControllerActivityButton */
 // The class instance for the [SFSafariViewControllerActivityButton] class.
 var (
 	SFSafariViewControllerActivityButtonClass     _SFSafariViewControllerActivityButtonClass
@@ -28,29 +32,30 @@ func getSFSafariViewControllerActivityButtonClass() _SFSafariViewControllerActiv
 type _SFSafariViewControllerActivityButtonClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SFSafariViewControllerActivityButton */
 // An interface definition for the [SFSafariViewControllerActivityButton] class.
 type ISFSafariViewControllerActivityButton interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for SFSafariViewControllerActivityButton */
 	// properties:
-	TemplateImage() objc.IObject /* cross-framework: Image */
-	SetTemplateImage(value objc.IObject /* cross-framework: Image */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SFSafariViewControllerActivityButton */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton
-type SFSafariViewControllerActivityButton struct {
-	objectivec.Object
-}
-
-// SFSafariViewControllerActivityButtonFrom constructs a [SFSafariViewControllerActivityButton] from an unsafe.Pointer.
-func SFSafariViewControllerActivityButtonFrom(ptr unsafe.Pointer) SFSafariViewControllerActivityButton {
-	return SFSafariViewControllerActivityButton{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SFSafariViewControllerActivityButton */
 // Alloc allocates a new instance without initialization.
 func (sc _SFSafariViewControllerActivityButtonClass) Alloc() SFSafariViewControllerActivityButton {
 	rv := objc.Send[SFSafariViewControllerActivityButton](objc.ID(sc.class), objc.Sel("alloc"))
@@ -58,7 +63,6 @@ func (sc _SFSafariViewControllerActivityButtonClass) Alloc() SFSafariViewControl
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SFSafariViewControllerActivityButtonClass) New() SFSafariViewControllerActivityButton {
 	rv := objc.Send[SFSafariViewControllerActivityButton](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,32 +85,61 @@ func (s_ SFSafariViewControllerActivityButton) Autorelease() SFSafariViewControl
 func NewSFSafariViewControllerActivityButton() SFSafariViewControllerActivityButton {
 	return getSFSafariViewControllerActivityButtonClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for SFSafariViewControllerActivityButton */
 
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton
+type SFSafariViewControllerActivityButton struct {
+	objectivec.Object
+}
+
+// SFSafariViewControllerActivityButtonFrom constructs a [SFSafariViewControllerActivityButton] from an unsafe.Pointer.
+func SFSafariViewControllerActivityButtonFrom(ptr unsafe.Pointer) SFSafariViewControllerActivityButton {
+	return SFSafariViewControllerActivityButton{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SFSafariViewControllerActivityButton */
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/ActivityButton/init(templateImage:extensionIdentifier:)
-func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier(templateImage objc.IObject /* cross-framework: Image */, extensionIdentifier objc.IObject /* cross-framework: NSString */) SFSafariViewControllerActivityButton {
+func NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier(templateImage appkit.Image, extensionIdentifier objc.IObject /* cross-framework: NSString */) SFSafariViewControllerActivityButton {
 	instance := getSFSafariViewControllerActivityButtonClass().Alloc()
 	rv := objc.Send[SFSafariViewControllerActivityButton](instance.ID, objc.Sel("initWithTemplateImage:extensionIdentifier:"), templateImage, extensionIdentifier)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewSFSafariViewControllerActivityButtonWithTemplateImageExtensionIdentifier */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/activitybutton/templateimage
-func (s_ SFSafariViewControllerActivityButton) TemplateImage() objc.IObject /* cross-framework: Image */ {
-	rv := objc.Send[appkit.Image](s_.ID, objc.Sel("templateImage"))
-	return rv
-}
+/* debug [class_methods]: Class methods for SFSafariViewControllerActivityButton */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/safariservices/sfsafariviewcontroller/activitybutton/templateimage
-func (s_ SFSafariViewControllerActivityButton) SetTemplateImage(value objc.IObject /* cross-framework: Image */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTemplateImage:"), value)
-}
+
+/* debug [class_properties_class]: Class properties for SFSafariViewControllerActivityButton */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SFSafariViewControllerActivityButton */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SFSafariViewControllerActivityButton */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class SFSafariViewControllerActivityButton */
 
 

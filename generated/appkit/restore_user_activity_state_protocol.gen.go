@@ -15,3 +15,4 @@ var restoreUserActivityStateProtocol *objc.Protocol
 func init() {
 	restoreUserActivityStateProtocol = objc.GetProtocol("restoreUserActivityState:")
 }
+

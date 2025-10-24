@@ -15,3 +15,4 @@ var remoteStorageTextureProtocol *objc.Protocol
 func init() {
 	remoteStorageTextureProtocol = objc.GetProtocol("remoteStorageTexture")
 }
+

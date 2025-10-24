@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MLCGatherLayer */
+
+
+/* debug [class_header]: Header for MLCGatherLayer */
 // The class instance for the [CGatherLayer] class.
 var (
 	CGatherLayerClass     _CGatherLayerClass
@@ -25,36 +29,31 @@ func getCGatherLayerClass() _CGatherLayerClass {
 type _CGatherLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CGatherLayer */
 // An interface definition for the [CGatherLayer] class.
 type ICGatherLayer interface {
 	ICLayer
+	
+/* debug [class_interface_properties]: Properties for CGatherLayer */
 	// properties:
-	Dimension() int
-	SetDimension(value int)
+	Dimension() uint
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CGatherLayer */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A layer that fetches data at the locations you specify.
 
 
-// A layer that fetches data at the locations you specify.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGatherLayer
-type CGatherLayer struct {
-	CLayer
-}
-
-// CGatherLayerFrom constructs a [CGatherLayer] from an unsafe.Pointer.
-//
-// A layer that fetches data at the locations you specify.
-func CGatherLayerFrom(ptr unsafe.Pointer) CGatherLayer {
-	return CGatherLayer{
-		CLayer: CLayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CGatherLayer */
 // Alloc allocates a new instance without initialization.
 func (cc _CGatherLayerClass) Alloc() CGatherLayer {
 	rv := objc.Send[CGatherLayer](objc.ID(cc.class), objc.Sel("alloc"))
@@ -62,7 +61,6 @@ func (cc _CGatherLayerClass) Alloc() CGatherLayer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CGatherLayerClass) New() CGatherLayer {
 	rv := objc.Send[CGatherLayer](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,26 +83,88 @@ func (c_ CGatherLayer) Autorelease() CGatherLayer {
 func NewCGatherLayer() CGatherLayer {
 	return getCGatherLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The dimension to index.
+/* debug [class_struct]: Struct for CGatherLayer */
+// A layer that fetches data at the locations you specify.
+
+
+// A layer that fetches data at the locations you specify.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgatherlayer/dimension
-func (c_ CGatherLayer) Dimension() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("dimension"))
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGatherLayer
+type CGatherLayer struct {
+	CLayer
+}
+
+// CGatherLayerFrom constructs a [CGatherLayer] from an unsafe.Pointer.
+//
+// A layer that fetches data at the locations you specify.
+func CGatherLayerFrom(ptr unsafe.Pointer) CGatherLayer {
+	return CGatherLayer{
+		CLayer: CLayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CGatherLayer */
+
+// Creates a gather layer with the dimension you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGatherLayer/init(dimension:)
+func NewCGatherLayerWithDimension(dimension uint) CGatherLayer {
+	rv := objc.Send[CGatherLayer](objc.ID(getCGatherLayerClass().class), objc.Sel("layerWithDimension:"), dimension)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCGatherLayerWithDimension */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CGatherLayer */
+
+// Creates a gather layer with the dimension you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGatherLayer/init(dimension:)
+func (cc _CGatherLayerClass) LayerWithDimension(dimension uint) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithDimension:"), dimension)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithDimension) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CGatherLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CGatherLayer */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CGatherLayer */
 
 // The dimension to index.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcgatherlayer/dimension
-func (c_ CGatherLayer) SetDimension(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDimension:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCGatherLayer/dimension
+func (c_ CGatherLayer) Dimension() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("dimension"))
+	return rv
+}/* debug [instance_properties/getter]: dimension */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MLCGatherLayer */
 
 

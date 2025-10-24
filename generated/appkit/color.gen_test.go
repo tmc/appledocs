@@ -13,7 +13,7 @@ var _ = appkit.NewColor
 // Creates a color object using the specified Core Graphics color.
 func ExampleNewColorWithCGColor() {
 	_ = appkit.NewColorWithCGColor(
-		appkit.ColorRef /* not a class type */{}, // cgColor ColorRef /* not a class type */
+		appkit.ColorRef /* not a class type */ {}, // cgColor ColorRef /* not a class type */
 	)
 	// Output:
 }

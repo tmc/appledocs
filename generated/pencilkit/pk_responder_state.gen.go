@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PKResponderState */
+
+
+/* debug [class_header]: Header for PKResponderState */
 // The class instance for the [ResponderState] class.
 var (
 	ResponderStateClass     _ResponderStateClass
@@ -26,34 +30,30 @@ func getResponderStateClass() _ResponderStateClass {
 type _ResponderStateClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ResponderState */
 // An interface definition for the [ResponderState] class.
 type IResponderState interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ResponderState */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ResponderState */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The state of PencilKit behavior related to a .
-//
-// Control the behavior of responders via the property.
+/* debug [class_interface]: End interface */
 
 
-// The state of PencilKit behavior related to a .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState
-type ResponderState struct {
-	objectivec.Object
-}
 
-// ResponderStateFrom constructs a [ResponderState] from an unsafe.Pointer.
-//
-// The state of PencilKit behavior related to a .
-func ResponderStateFrom(ptr unsafe.Pointer) ResponderState {
-	return ResponderState{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ResponderState */
 // Alloc allocates a new instance without initialization.
 func (rc _ResponderStateClass) Alloc() ResponderState {
 	rv := objc.Send[ResponderState](objc.ID(rc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (rc _ResponderStateClass) Alloc() ResponderState {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (rc _ResponderStateClass) New() ResponderState {
 	rv := objc.Send[ResponderState](objc.ID(rc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,6 +83,57 @@ func (r_ ResponderState) Autorelease() ResponderState {
 func NewResponderState() ResponderState {
 	return getResponderStateClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for ResponderState */
+// The state of PencilKit behavior related to a .
+//
+// Control the behavior of responders via the property.
+
+
+// The state of PencilKit behavior related to a .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKResponderState
+type ResponderState struct {
+	objectivec.Object
+}
+
+// ResponderStateFrom constructs a [ResponderState] from an unsafe.Pointer.
+//
+// The state of PencilKit behavior related to a .
+func ResponderStateFrom(ptr unsafe.Pointer) ResponderState {
+	return ResponderState{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ResponderState *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ResponderState */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ResponderState */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ResponderState */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ResponderState */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PKResponderState */
 
 

@@ -15,5 +15,4 @@ func ExampleText_SizeToFit() {
 	obj := appkit.NewText()
 	obj.SizeToFit()
 	// Output:
-	}
-
+}

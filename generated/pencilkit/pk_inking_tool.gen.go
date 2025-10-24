@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class PKInkingTool */
+
+
+/* debug [class_header]: Header for PKInkingTool */
 // The class instance for the [InkingTool] class.
 var (
 	InkingToolClass     _InkingToolClass
@@ -26,42 +30,36 @@ func getInkingToolClass() _InkingToolClass {
 type _InkingToolClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for InkingTool */
 // An interface definition for the [InkingTool] class.
 type IInkingTool interface {
 	ITool
+	
+/* debug [class_interface_properties]: Properties for InkingTool */
 	// properties:
 	Azimuth() float64
-	Color() objc.IObject /* cross-framework: Color */
+	Color() appkit.Color
 	Ink() IPKInk
 	InkType() InkType /* not a class type */
 	RequiredContentVersion() ContentVersion
 	Width() float64
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for InkingTool */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.
-//
-// A object supports the creation of new content on a . With an inking tool, the canvas turns touch input from the user into a continuously rendered stroke. The value in the property determines the base width of that stroke; however, that base value also depends on input from Apple Pencil, including force, azimuth, and angle data. Create an inking tool programmatically, or display a object and from which a user can select a tool. Assign the resulting object to the property of your object. The canvas uses any subsequent touch sequences to draw new content on the canvas. Assigning a new inking tool doesn’t change the characteristics for any previously drawn strokes.
+/* debug [class_interface]: End interface */
 
 
-// An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference
-type InkingTool struct {
-	Tool
-}
 
-// InkingToolFrom constructs a [InkingTool] from an unsafe.Pointer.
-//
-// An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.
-func InkingToolFrom(ptr unsafe.Pointer) InkingTool {
-	return InkingTool{
-		Tool: ToolFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for InkingTool */
 // Alloc allocates a new instance without initialization.
 func (ic _InkingToolClass) Alloc() InkingTool {
 	rv := objc.Send[InkingTool](objc.ID(ic.class), objc.Sel("alloc"))
@@ -69,7 +67,6 @@ func (ic _InkingToolClass) Alloc() InkingTool {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _InkingToolClass) New() InkingTool {
 	rv := objc.Send[InkingTool](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,41 +89,70 @@ func (i_ InkingTool) Autorelease() InkingTool {
 func NewInkingTool() InkingTool {
 	return getInkingToolClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for InkingTool */
+// An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.
+//
+// A object supports the creation of new content on a . With an inking tool, the canvas turns touch input from the user into a continuously rendered stroke. The value in the property determines the base width of that stroke; however, that base value also depends on input from Apple Pencil, including force, azimuth, and angle data. Create an inking tool programmatically, or display a object and from which a user can select a tool. Assign the resulting object to the property of your object. The canvas uses any subsequent touch sequences to draw new content on the canvas. Assigning a new inking tool doesn’t change the characteristics for any previously drawn strokes.
+
+
+// An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference
+type InkingTool struct {
+	Tool
+}
+
+// InkingToolFrom constructs a [InkingTool] from an unsafe.Pointer.
+//
+// An object that defines the drawing characteristics (width, color, pen style) to use when drawing lines on a canvas view.
+func InkingToolFrom(ptr unsafe.Pointer) InkingTool {
+	return InkingTool{
+		Tool: ToolFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for InkingTool */
 
 // Creates an ink tool object with the default line width and the specified color.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(inkType:color:)
-func NewInkingToolWithInkTypeColor(type_ InkType /* not a class type */, color objc.IObject /* cross-framework: Color */) InkingTool {
+func NewInkingToolWithInkTypeColor(type_ InkType /* not a class type */, color appkit.Color) InkingTool {
 	instance := getInkingToolClass().Alloc()
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInkType:color:"), type_, color)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewInkingToolWithInkTypeColor */
 
 
 // Creates an ink tool object with the specified color and line width values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(inkType:color:width:)
-func NewInkingToolWithInkTypeColorWidth(type_ InkType /* not a class type */, color objc.IObject /* cross-framework: Color */, width float64) InkingTool {
+func NewInkingToolWithInkTypeColorWidth(type_ InkType /* not a class type */, color appkit.Color, width float64) InkingTool {
 	instance := getInkingToolClass().Alloc()
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInkType:color:width:"), type_, color, width)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewInkingToolWithInkTypeColorWidth */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/init(inkType:color:width:azimuth:)
-func NewInkingToolWithInkTypeColorWidthAzimuth(type_ InkType /* not a class type */, color objc.IObject /* cross-framework: Color */, width float64, angle float64) InkingTool {
+func NewInkingToolWithInkTypeColorWidthAzimuth(type_ InkType /* not a class type */, color appkit.Color, width float64, angle float64) InkingTool {
 	instance := getInkingToolClass().Alloc()
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInkType:color:width:azimuth:"), type_, color, width, angle)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewInkingToolWithInkTypeColorWidthAzimuth */
 
 
 // Create an inking tool with the specified ink and width.
@@ -138,18 +164,22 @@ func NewInkingToolWithInkWidth(ink IPKInk, width float64) InkingTool {
 	rv := objc.Send[InkingTool](instance.ID, objc.Sel("initWithInk:width:"), ink, width)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewInkingToolWithInkWidth */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for InkingTool */
 
 // Converts a color from one user interface style to another.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/convert(_:from:to:)
-func (ic _InkingToolClass) ConvertColorFromUserInterfaceStyleTo(color objc.IObject /* cross-framework: Color */, fromUserInterfaceStyle UserInterfaceStyle /* not a class type */, toUserInterfaceStyle UserInterfaceStyle /* not a class type */) objc.IObject /* cross-framework: Color */ {
+func (ic _InkingToolClass) ConvertColorFromUserInterfaceStyleTo(color appkit.Color, fromUserInterfaceStyle UserInterfaceStyle /* not a class type */, toUserInterfaceStyle UserInterfaceStyle /* not a class type */) appkit.Color {
 	rv := objc.Send[appkit.Color](objc.ID(ic.class), objc.Sel("convertColor:fromUserInterfaceStyle:to:"), color, fromUserInterfaceStyle, toUserInterfaceStyle)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConvertColorFromUserInterfaceStyleTo) */
 
 
 // Returns the default line width for the specified tool type.
@@ -159,7 +189,7 @@ func (ic _InkingToolClass) ConvertColorFromUserInterfaceStyleTo(color objc.IObje
 func (ic _InkingToolClass) DefaultWidthForInkType(inkType InkType /* not a class type */) float64 {
 	rv := objc.Send[float64](objc.ID(ic.class), objc.Sel("defaultWidthForInkType:"), inkType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DefaultWidthForInkType) */
 
 
 // Converts a color from light to dark appearance or vice versa.
@@ -169,7 +199,7 @@ func (ic _InkingToolClass) DefaultWidthForInkType(inkType InkType /* not a class
 func (ic _InkingToolClass) InvertColor(color ColorRef /* not a class type */) ColorRef /* not a class type */ {
 	rv := objc.Send[ColorRef](objc.ID(ic.class), objc.Sel("invertColor:"), color)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=InvertColor) */
 
 
 // Returns the maximum allowed line width for the specified tool type.
@@ -179,7 +209,7 @@ func (ic _InkingToolClass) InvertColor(color ColorRef /* not a class type */) Co
 func (ic _InkingToolClass) MaximumWidthForInkType(inkType InkType /* not a class type */) float64 {
 	rv := objc.Send[float64](objc.ID(ic.class), objc.Sel("maximumWidthForInkType:"), inkType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MaximumWidthForInkType) */
 
 
 // Returns the minimum allowed line width for the specified tool type.
@@ -189,8 +219,23 @@ func (ic _InkingToolClass) MaximumWidthForInkType(inkType InkType /* not a class
 func (ic _InkingToolClass) MinimumWidthForInkType(inkType InkType /* not a class type */) float64 {
 	rv := objc.Send[float64](objc.ID(ic.class), objc.Sel("minimumWidthForInkType:"), inkType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MinimumWidthForInkType) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for InkingTool */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for InkingTool */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for InkingTool */
 
 // The base angle of the ink.
 //
@@ -199,17 +244,17 @@ func (ic _InkingToolClass) MinimumWidthForInkType(inkType InkType /* not a class
 func (i_ InkingTool) Azimuth() float64 {
 	rv := objc.Send[float64](i_.ID, objc.Sel("azimuth"))
 	return rv
-}
+}/* debug [instance_properties/getter]: azimuth */
 
 
 // The color of the ink.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKInkingToolReference/color
-func (i_ InkingTool) Color() objc.IObject /* cross-framework: Color */ {
+func (i_ InkingTool) Color() appkit.Color {
 	rv := objc.Send[appkit.Color](i_.ID, objc.Sel("color"))
 	return rv
-}
+}/* debug [instance_properties/getter]: color */
 
 
 // The ink that this tool creates strokes with.
@@ -219,7 +264,7 @@ func (i_ InkingTool) Color() objc.IObject /* cross-framework: Color */ {
 func (i_ InkingTool) Ink() IPKInk {
 	rv := objc.Send[Ink](i_.ID, objc.Sel("ink"))
 	return rv
-}
+}/* debug [instance_properties/getter]: ink */
 
 
 // The tool type that determines the shape of the rendered content.
@@ -229,7 +274,7 @@ func (i_ InkingTool) Ink() IPKInk {
 func (i_ InkingTool) InkType() InkType /* not a class type */ {
 	rv := objc.Send[InkType](i_.ID, objc.Sel("inkType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: inkType */
 
 
 // The version of PencilKit necessary to use the inking tool.
@@ -239,7 +284,7 @@ func (i_ InkingTool) InkType() InkType /* not a class type */ {
 func (i_ InkingTool) RequiredContentVersion() ContentVersion {
 	rv := objc.Send[ContentVersion](i_.ID, objc.Sel("requiredContentVersion"))
 	return rv
-}
+}/* debug [instance_properties/getter]: requiredContentVersion */
 
 
 // The base line width for new content.
@@ -249,6 +294,11 @@ func (i_ InkingTool) RequiredContentVersion() ContentVersion {
 func (i_ InkingTool) Width() float64 {
 	rv := objc.Send[float64](i_.ID, objc.Sel("width"))
 	return rv
-}
+}/* debug [instance_properties/getter]: width */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PKInkingTool */
 
 

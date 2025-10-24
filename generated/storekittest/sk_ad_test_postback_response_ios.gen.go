@@ -5,16 +5,12 @@
 package storekittest
 
 import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // iOS-only methods for AdTestPostbackResponse
-
 
 // iOS-only properties
 
@@ -46,15 +42,10 @@ func (a_ AdTestPostbackResponse) SetError(value objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostbackResponse/httpResponse
-func (a_ AdTestPostbackResponse) HttpResponse() objc.IObject /* cross-framework: HTTPURLResponse */ {
+func (a_ AdTestPostbackResponse) HttpResponse() foundation.HTTPURLResponse {
 	rv := objc.Send[foundation.HTTPURLResponse](a_.ID, objc.Sel("httpResponse"))
 	return rv
 }
-func (a_ AdTestPostbackResponse) SetHttpResponse(value objc.IObject /* cross-framework: HTTPURLResponse */) {
+func (a_ AdTestPostbackResponse) SetHttpResponse(value foundation.HTTPURLResponse) {
 	a_.ID.Send(objc.RegisterName("setHttpResponse:"), value)
 }
-
-
-
-
-

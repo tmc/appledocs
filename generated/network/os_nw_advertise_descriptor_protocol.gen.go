@@ -21,3 +21,4 @@ var OS_nw_advertise_descriptorProtocol *objc.Protocol
 func init() {
 	OS_nw_advertise_descriptorProtocol = objc.GetProtocol("OS_nw_advertise_descriptor")
 }
+

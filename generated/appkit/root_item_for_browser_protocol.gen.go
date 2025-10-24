@@ -15,3 +15,4 @@ var rootItemForBrowserProtocol *objc.Protocol
 func init() {
 	rootItemForBrowserProtocol = objc.GetProtocol("rootItemForBrowser:")
 }
+

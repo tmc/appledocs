@@ -33,8 +33,6 @@ type IMTRBaseClusterGroups interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterGroups
 type MTRBaseClusterGroups struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterGroups) Autorelease() MTRBaseClusterGroups {
 func NewMTRBaseClusterGroups() MTRBaseClusterGroups {
 	return getMTRBaseClusterGroupsClass().New()
 }
-
-
-
-

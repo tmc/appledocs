@@ -2,6 +2,7 @@
 
 package hypervisor
 
+/* debug [functions.gen.go]: Generating 159 functions for Hypervisor */
 import (
 	"unsafe"
 
@@ -9,7 +10,7 @@ import (
 )
 
 
-// Hypervisor Functions (125 total)
+// Hypervisor Functions (159 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
@@ -28,6 +29,7 @@ var (
 	_hv_gic_get_icc_reg func(Hv_vcpu_t, unsafe.Pointer, []uint64) Hv_return_t
 	_hv_gic_get_ich_reg func(Hv_vcpu_t, unsafe.Pointer, []uint64) Hv_return_t
 	_hv_gic_get_icv_reg func(Hv_vcpu_t, unsafe.Pointer, []uint64) Hv_return_t
+	_hv_gic_get_intid func(unsafe.Pointer, []uint32) Hv_return_t
 	_hv_gic_get_msi_reg func(unsafe.Pointer, []uint64) Hv_return_t
 	_hv_gic_get_msi_region_base_alignment func(unsafe.Pointer) Hv_return_t
 	_hv_gic_get_msi_region_size func(unsafe.Pointer) Hv_return_t
@@ -61,8 +63,13 @@ var (
 	_hv_vcpu_apic_read func(Hv_vcpuid_t, uint32, []uint32) Hv_return_t
 	_hv_vcpu_apic_trigger_lvt func(Hv_vcpuid_t, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_apic_write func(Hv_vcpuid_t, uint32, uint32, unsafe.Pointer) Hv_return_t
+	_hv_vcpu_config_create func() Hv_vcpu_config_t
+	_hv_vcpu_config_get_ccsidr_el1_sys_reg_values func(Hv_vcpu_config_t, unsafe.Pointer, uint64, unsafe.Pointer) Hv_return_t
+	_hv_vcpu_config_get_feature_reg func(Hv_vcpu_config_t, unsafe.Pointer, []uint64) Hv_return_t
 	_hv_vcpu_create func(unsafe.Pointer, Hv_vcpu_options_t) Hv_return_t
 	_hv_vcpu_destroy func(Hv_vcpuid_t) Hv_return_t
+	_hv_vcpu_enable_managed_msr func(Hv_vcpuid_t, uint32, bool) Hv_return_t
+	_hv_vcpu_enable_native_msr func(Hv_vcpuid_t, uint32, bool) Hv_return_t
 	_hv_vcpu_exit_apic_access_read func(Hv_vcpuid_t, []uint32) Hv_return_t
 	_hv_vcpu_exit_info func(Hv_vcpuid_t, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_exit_init_ap func(Hv_vcpuid_t, bool, unsafe.Pointer) Hv_return_t
@@ -70,31 +77,49 @@ var (
 	_hv_vcpu_exit_ioapic_eoi func(Hv_vcpuid_t, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_exit_startup_ap func(Hv_vcpuid_t, bool, unsafe.Pointer, []uint64) Hv_return_t
 	_hv_vcpu_flush func(Hv_vcpuid_t) Hv_return_t
-	_hv_vcpu_get_exec_time func(Hv_vcpu_t, []uint64) Hv_return_t
+	_hv_vcpu_get_exec_time func(Hv_vcpuid_t, []uint64) Hv_return_t
 	_hv_vcpu_get_idle_time func(Hv_vcpuid_t, []uint64) Hv_return_t
 	_hv_vcpu_get_pending_interrupt func(Hv_vcpu_t, unsafe.Pointer, unsafe.Pointer) Hv_return_t
+	_hv_vcpu_get_reg func(Hv_vcpu_t, unsafe.Pointer, []uint64) Hv_return_t
+	_hv_vcpu_get_simd_fp_reg func(Hv_vcpu_t, unsafe.Pointer, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_get_sme_p_reg func(Hv_vcpu_t, unsafe.Pointer, unsafe.Pointer, uintptr) Hv_return_t
 	_hv_vcpu_get_sme_state func(Hv_vcpu_t, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_get_sme_z_reg func(Hv_vcpu_t, unsafe.Pointer, unsafe.Pointer, uintptr) Hv_return_t
 	_hv_vcpu_get_sme_za_reg func(Hv_vcpu_t, unsafe.Pointer, uintptr) Hv_return_t
 	_hv_vcpu_get_sme_zt0_reg func(Hv_vcpu_t, unsafe.Pointer) Hv_return_t
+	_hv_vcpu_get_sys_reg func(Hv_vcpu_t, unsafe.Pointer, []uint64) Hv_return_t
+	_hv_vcpu_get_trap_debug_exceptions func(Hv_vcpu_t, unsafe.Pointer) Hv_return_t
+	_hv_vcpu_get_trap_debug_reg_accesses func(Hv_vcpu_t, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_get_vtimer_mask func(Hv_vcpu_t, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_get_vtimer_offset func(Hv_vcpu_t, []uint64) Hv_return_t
 	_hv_vcpu_inject_extint func(Hv_vcpuid_t) Hv_return_t
 	_hv_vcpu_interrupt func(unsafe.Pointer, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_invalidate_tlb func(Hv_vcpuid_t) Hv_return_t
+	_hv_vcpu_read_fpstate func(Hv_vcpuid_t, unsafe.Pointer, uintptr) Hv_return_t
+	_hv_vcpu_read_msr func(Hv_vcpuid_t, uint32, []uint64) Hv_return_t
+	_hv_vcpu_read_register func(Hv_vcpuid_t, unsafe.Pointer, []uint64) Hv_return_t
 	_hv_vcpu_run func(Hv_vcpuid_t) Hv_return_t
 	_hv_vcpu_run_until func(Hv_vcpuid_t, uint64) Hv_return_t
+	_hv_vcpu_set_msr_access func(Hv_vcpuid_t, uint32, Hv_msr_flags_t) Hv_return_t
 	_hv_vcpu_set_pending_interrupt func(Hv_vcpu_t, unsafe.Pointer, bool) Hv_return_t
+	_hv_vcpu_set_reg func(Hv_vcpu_t, unsafe.Pointer, uint64) Hv_return_t
+	_hv_vcpu_set_simd_fp_reg func(Hv_vcpu_t, unsafe.Pointer, Hv_simd_fp_uchar16_t) Hv_return_t
 	_hv_vcpu_set_sme_p_reg func(Hv_vcpu_t, unsafe.Pointer, unsafe.Pointer, uintptr) Hv_return_t
 	_hv_vcpu_set_sme_state func(Hv_vcpu_t, unsafe.Pointer) Hv_return_t
 	_hv_vcpu_set_sme_z_reg func(Hv_vcpu_t, unsafe.Pointer, unsafe.Pointer, uintptr) Hv_return_t
 	_hv_vcpu_set_sme_za_reg func(Hv_vcpu_t, unsafe.Pointer, uintptr) Hv_return_t
 	_hv_vcpu_set_sme_zt0_reg func(Hv_vcpu_t, unsafe.Pointer) Hv_return_t
+	_hv_vcpu_set_space func(Hv_vcpuid_t, Hv_vm_space_t) Hv_return_t
+	_hv_vcpu_set_sys_reg func(Hv_vcpu_t, unsafe.Pointer, uint64) Hv_return_t
+	_hv_vcpu_set_trap_debug_exceptions func(Hv_vcpu_t, bool) Hv_return_t
+	_hv_vcpu_set_trap_debug_reg_accesses func(Hv_vcpu_t, bool) Hv_return_t
 	_hv_vcpu_set_tsc_relative func(Hv_vcpuid_t, int64) Hv_return_t
 	_hv_vcpu_set_vtimer_mask func(Hv_vcpu_t, bool) Hv_return_t
 	_hv_vcpu_set_vtimer_offset func(Hv_vcpu_t, uint64) Hv_return_t
 	_hv_vcpu_vmx_status func(Hv_vcpuid_t, []uint32) Hv_return_t
+	_hv_vcpu_write_fpstate func(Hv_vcpuid_t, unsafe.Pointer, uintptr) Hv_return_t
+	_hv_vcpu_write_msr func(Hv_vcpuid_t, uint32, uint64) Hv_return_t
+	_hv_vcpu_write_register func(Hv_vcpuid_t, unsafe.Pointer, uint64) Hv_return_t
 	_hv_vcpus_exit func(unsafe.Pointer, uint32) Hv_return_t
 	_hv_vm_add_pio_notifier func(uint16, uintptr, uint32, unsafe.Pointer, Hv_ion_flags_t) Hv_return_t
 	_hv_vm_allocate func(unsafe.Pointer, uintptr, Hv_allocate_flags_t) Hv_return_t
@@ -130,16 +155,26 @@ var (
 	_hv_vm_lapic_set_intr func(Hv_vcpuid_t, uint8, unsafe.Pointer) Hv_return_t
 	_hv_vm_map func(Hv_uvaddr_t, Hv_gpaddr_t, uintptr, Hv_memory_flags_t) Hv_return_t
 	_hv_vm_map_space func(Hv_vm_space_t, Hv_uvaddr_t, Hv_gpaddr_t, uintptr, Hv_memory_flags_t) Hv_return_t
-	_hv_vm_protect func(Hv_ipa_t, uintptr, Hv_memory_flags_t) Hv_return_t
+	_hv_vm_protect func(Hv_gpaddr_t, uintptr, Hv_memory_flags_t) Hv_return_t
 	_hv_vm_protect_space func(Hv_vm_space_t, Hv_gpaddr_t, uintptr, Hv_memory_flags_t) Hv_return_t
 	_hv_vm_remove_pio_notifier func(uint16, uintptr, uint32, unsafe.Pointer, Hv_ion_flags_t) Hv_return_t
 	_hv_vm_send_ioapic_intr func(uint64) Hv_return_t
 	_hv_vm_set_apic_bus_freq func(uint64) Hv_return_t
 	_hv_vm_space_create func(unsafe.Pointer) Hv_return_t
 	_hv_vm_space_destroy func(Hv_vm_space_t) Hv_return_t
+	_hv_vm_sync_tsc func(uint64) Hv_return_t
 	_hv_vm_unmap func(Hv_gpaddr_t, uintptr) Hv_return_t
 	_hv_vm_unmap_space func(Hv_vm_space_t, Hv_gpaddr_t, uintptr) Hv_return_t
+	_hv_vmx_get_msr_info func(Hv_vmx_msr_info_t, []uint64) Hv_return_t
+	_hv_vmx_read_capability func(unsafe.Pointer, []uint64) Hv_return_t
+	_hv_vmx_vcpu_get_cap_write_vmcs func(Hv_vcpuid_t, uint32, []uint64, []uint64) Hv_return_t
+	_hv_vmx_vcpu_read_shadow_vmcs func(Hv_vcpuid_t, uint32, []uint64) Hv_return_t
+	_hv_vmx_vcpu_read_vmcs func(Hv_vcpuid_t, uint32, []uint64) Hv_return_t
+	_hv_vmx_vcpu_set_apic_address func(Hv_vcpuid_t, Hv_gpaddr_t) Hv_return_t
 	_hv_vmx_vcpu_set_apic_address_space func(Hv_vcpuid_t, Hv_vm_space_t, Hv_gpaddr_t) Hv_return_t
+	_hv_vmx_vcpu_set_shadow_access func(Hv_vcpuid_t, uint32, Hv_shadow_flags_t) Hv_return_t
+	_hv_vmx_vcpu_write_shadow_vmcs func(Hv_vcpuid_t, uint32, uint64) Hv_return_t
+	_hv_vmx_vcpu_write_vmcs func(Hv_vcpuid_t, uint32, uint64) Hv_return_t
 )
 
 func init() {
@@ -160,6 +195,7 @@ func init() {
 	tryRegister(&_hv_gic_get_icc_reg, lib, "hv_gic_get_icc_reg")
 	tryRegister(&_hv_gic_get_ich_reg, lib, "hv_gic_get_ich_reg")
 	tryRegister(&_hv_gic_get_icv_reg, lib, "hv_gic_get_icv_reg")
+	tryRegister(&_hv_gic_get_intid, lib, "hv_gic_get_intid")
 	tryRegister(&_hv_gic_get_msi_reg, lib, "hv_gic_get_msi_reg")
 	tryRegister(&_hv_gic_get_msi_region_base_alignment, lib, "hv_gic_get_msi_region_base_alignment")
 	tryRegister(&_hv_gic_get_msi_region_size, lib, "hv_gic_get_msi_region_size")
@@ -193,8 +229,13 @@ func init() {
 	tryRegister(&_hv_vcpu_apic_read, lib, "hv_vcpu_apic_read")
 	tryRegister(&_hv_vcpu_apic_trigger_lvt, lib, "hv_vcpu_apic_trigger_lvt")
 	tryRegister(&_hv_vcpu_apic_write, lib, "hv_vcpu_apic_write")
+	tryRegister(&_hv_vcpu_config_create, lib, "hv_vcpu_config_create")
+	tryRegister(&_hv_vcpu_config_get_ccsidr_el1_sys_reg_values, lib, "hv_vcpu_config_get_ccsidr_el1_sys_reg_values")
+	tryRegister(&_hv_vcpu_config_get_feature_reg, lib, "hv_vcpu_config_get_feature_reg")
 	tryRegister(&_hv_vcpu_create, lib, "hv_vcpu_create")
 	tryRegister(&_hv_vcpu_destroy, lib, "hv_vcpu_destroy")
+	tryRegister(&_hv_vcpu_enable_managed_msr, lib, "hv_vcpu_enable_managed_msr")
+	tryRegister(&_hv_vcpu_enable_native_msr, lib, "hv_vcpu_enable_native_msr")
 	tryRegister(&_hv_vcpu_exit_apic_access_read, lib, "hv_vcpu_exit_apic_access_read")
 	tryRegister(&_hv_vcpu_exit_info, lib, "hv_vcpu_exit_info")
 	tryRegister(&_hv_vcpu_exit_init_ap, lib, "hv_vcpu_exit_init_ap")
@@ -205,28 +246,46 @@ func init() {
 	tryRegister(&_hv_vcpu_get_exec_time, lib, "hv_vcpu_get_exec_time")
 	tryRegister(&_hv_vcpu_get_idle_time, lib, "hv_vcpu_get_idle_time")
 	tryRegister(&_hv_vcpu_get_pending_interrupt, lib, "hv_vcpu_get_pending_interrupt")
+	tryRegister(&_hv_vcpu_get_reg, lib, "hv_vcpu_get_reg")
+	tryRegister(&_hv_vcpu_get_simd_fp_reg, lib, "hv_vcpu_get_simd_fp_reg")
 	tryRegister(&_hv_vcpu_get_sme_p_reg, lib, "hv_vcpu_get_sme_p_reg")
 	tryRegister(&_hv_vcpu_get_sme_state, lib, "hv_vcpu_get_sme_state")
 	tryRegister(&_hv_vcpu_get_sme_z_reg, lib, "hv_vcpu_get_sme_z_reg")
 	tryRegister(&_hv_vcpu_get_sme_za_reg, lib, "hv_vcpu_get_sme_za_reg")
 	tryRegister(&_hv_vcpu_get_sme_zt0_reg, lib, "hv_vcpu_get_sme_zt0_reg")
+	tryRegister(&_hv_vcpu_get_sys_reg, lib, "hv_vcpu_get_sys_reg")
+	tryRegister(&_hv_vcpu_get_trap_debug_exceptions, lib, "hv_vcpu_get_trap_debug_exceptions")
+	tryRegister(&_hv_vcpu_get_trap_debug_reg_accesses, lib, "hv_vcpu_get_trap_debug_reg_accesses")
 	tryRegister(&_hv_vcpu_get_vtimer_mask, lib, "hv_vcpu_get_vtimer_mask")
 	tryRegister(&_hv_vcpu_get_vtimer_offset, lib, "hv_vcpu_get_vtimer_offset")
 	tryRegister(&_hv_vcpu_inject_extint, lib, "hv_vcpu_inject_extint")
 	tryRegister(&_hv_vcpu_interrupt, lib, "hv_vcpu_interrupt")
 	tryRegister(&_hv_vcpu_invalidate_tlb, lib, "hv_vcpu_invalidate_tlb")
+	tryRegister(&_hv_vcpu_read_fpstate, lib, "hv_vcpu_read_fpstate")
+	tryRegister(&_hv_vcpu_read_msr, lib, "hv_vcpu_read_msr")
+	tryRegister(&_hv_vcpu_read_register, lib, "hv_vcpu_read_register")
 	tryRegister(&_hv_vcpu_run, lib, "hv_vcpu_run")
 	tryRegister(&_hv_vcpu_run_until, lib, "hv_vcpu_run_until")
+	tryRegister(&_hv_vcpu_set_msr_access, lib, "hv_vcpu_set_msr_access")
 	tryRegister(&_hv_vcpu_set_pending_interrupt, lib, "hv_vcpu_set_pending_interrupt")
+	tryRegister(&_hv_vcpu_set_reg, lib, "hv_vcpu_set_reg")
+	tryRegister(&_hv_vcpu_set_simd_fp_reg, lib, "hv_vcpu_set_simd_fp_reg")
 	tryRegister(&_hv_vcpu_set_sme_p_reg, lib, "hv_vcpu_set_sme_p_reg")
 	tryRegister(&_hv_vcpu_set_sme_state, lib, "hv_vcpu_set_sme_state")
 	tryRegister(&_hv_vcpu_set_sme_z_reg, lib, "hv_vcpu_set_sme_z_reg")
 	tryRegister(&_hv_vcpu_set_sme_za_reg, lib, "hv_vcpu_set_sme_za_reg")
 	tryRegister(&_hv_vcpu_set_sme_zt0_reg, lib, "hv_vcpu_set_sme_zt0_reg")
+	tryRegister(&_hv_vcpu_set_space, lib, "hv_vcpu_set_space")
+	tryRegister(&_hv_vcpu_set_sys_reg, lib, "hv_vcpu_set_sys_reg")
+	tryRegister(&_hv_vcpu_set_trap_debug_exceptions, lib, "hv_vcpu_set_trap_debug_exceptions")
+	tryRegister(&_hv_vcpu_set_trap_debug_reg_accesses, lib, "hv_vcpu_set_trap_debug_reg_accesses")
 	tryRegister(&_hv_vcpu_set_tsc_relative, lib, "hv_vcpu_set_tsc_relative")
 	tryRegister(&_hv_vcpu_set_vtimer_mask, lib, "hv_vcpu_set_vtimer_mask")
 	tryRegister(&_hv_vcpu_set_vtimer_offset, lib, "hv_vcpu_set_vtimer_offset")
 	tryRegister(&_hv_vcpu_vmx_status, lib, "hv_vcpu_vmx_status")
+	tryRegister(&_hv_vcpu_write_fpstate, lib, "hv_vcpu_write_fpstate")
+	tryRegister(&_hv_vcpu_write_msr, lib, "hv_vcpu_write_msr")
+	tryRegister(&_hv_vcpu_write_register, lib, "hv_vcpu_write_register")
 	tryRegister(&_hv_vcpus_exit, lib, "hv_vcpus_exit")
 	tryRegister(&_hv_vm_add_pio_notifier, lib, "hv_vm_add_pio_notifier")
 	tryRegister(&_hv_vm_allocate, lib, "hv_vm_allocate")
@@ -269,9 +328,19 @@ func init() {
 	tryRegister(&_hv_vm_set_apic_bus_freq, lib, "hv_vm_set_apic_bus_freq")
 	tryRegister(&_hv_vm_space_create, lib, "hv_vm_space_create")
 	tryRegister(&_hv_vm_space_destroy, lib, "hv_vm_space_destroy")
+	tryRegister(&_hv_vm_sync_tsc, lib, "hv_vm_sync_tsc")
 	tryRegister(&_hv_vm_unmap, lib, "hv_vm_unmap")
 	tryRegister(&_hv_vm_unmap_space, lib, "hv_vm_unmap_space")
+	tryRegister(&_hv_vmx_get_msr_info, lib, "hv_vmx_get_msr_info")
+	tryRegister(&_hv_vmx_read_capability, lib, "hv_vmx_read_capability")
+	tryRegister(&_hv_vmx_vcpu_get_cap_write_vmcs, lib, "hv_vmx_vcpu_get_cap_write_vmcs")
+	tryRegister(&_hv_vmx_vcpu_read_shadow_vmcs, lib, "hv_vmx_vcpu_read_shadow_vmcs")
+	tryRegister(&_hv_vmx_vcpu_read_vmcs, lib, "hv_vmx_vcpu_read_vmcs")
+	tryRegister(&_hv_vmx_vcpu_set_apic_address, lib, "hv_vmx_vcpu_set_apic_address")
 	tryRegister(&_hv_vmx_vcpu_set_apic_address_space, lib, "hv_vmx_vcpu_set_apic_address_space")
+	tryRegister(&_hv_vmx_vcpu_set_shadow_access, lib, "hv_vmx_vcpu_set_shadow_access")
+	tryRegister(&_hv_vmx_vcpu_write_shadow_vmcs, lib, "hv_vmx_vcpu_write_shadow_vmcs")
+	tryRegister(&_hv_vmx_vcpu_write_vmcs, lib, "hv_vmx_vcpu_write_vmcs")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -297,7 +366,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_capability(_:_:)
 func hv_capability(capability Hv_capability_t, value []uint64) Hv_return_t {
 	return _hv_capability(capability, value)
-}
+}/* debug [functions.gen.go/function]: hv_capability */
 
 // Creates a generic interrupt controller (GIC) configuration object.
 //
@@ -308,7 +377,7 @@ func hv_capability(capability Hv_capability_t, value []uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_config_create()
 func hv_gic_config_create() Hv_gic_config_t {
 	return _hv_gic_config_create()
-}
+}/* debug [functions.gen.go/function]: hv_gic_config_create */
 
 // Sets the generic interrupt controller (GIC) distributor region’s base address.
 //
@@ -319,7 +388,7 @@ func hv_gic_config_create() Hv_gic_config_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_config_set_distributor_base(_:_:)
 func hv_gic_config_set_distributor_base(config Hv_gic_config_t, distributor_base_address Hv_ipa_t) Hv_return_t {
 	return _hv_gic_config_set_distributor_base(config, distributor_base_address)
-}
+}/* debug [functions.gen.go/function]: hv_gic_config_set_distributor_base */
 
 // Sets the range of message signaled interrupts (MSIs) the generic interrupt controller supports.
 //
@@ -330,7 +399,7 @@ func hv_gic_config_set_distributor_base(config Hv_gic_config_t, distributor_base
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_config_set_msi_interrupt_range(_:_:_:)
 func hv_gic_config_set_msi_interrupt_range(config Hv_gic_config_t, msi_intid_base uint32, msi_intid_count uint32) Hv_return_t {
 	return _hv_gic_config_set_msi_interrupt_range(config, msi_intid_base, msi_intid_count)
-}
+}/* debug [functions.gen.go/function]: hv_gic_config_set_msi_interrupt_range */
 
 // Sets the generic interrupt controllers message signaled interrupts (MSIs) region base address.
 //
@@ -341,7 +410,7 @@ func hv_gic_config_set_msi_interrupt_range(config Hv_gic_config_t, msi_intid_bas
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_config_set_msi_region_base(_:_:)
 func hv_gic_config_set_msi_region_base(config Hv_gic_config_t, msi_region_base_address Hv_ipa_t) Hv_return_t {
 	return _hv_gic_config_set_msi_region_base(config, msi_region_base_address)
-}
+}/* debug [functions.gen.go/function]: hv_gic_config_set_msi_region_base */
 
 // Sets the generic interrupt controller (GIC) redistributor region base address.
 //
@@ -352,7 +421,7 @@ func hv_gic_config_set_msi_region_base(config Hv_gic_config_t, msi_region_base_a
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_config_set_redistributor_base(_:_:)
 func hv_gic_config_set_redistributor_base(config Hv_gic_config_t, redistributor_base_address Hv_ipa_t) Hv_return_t {
 	return _hv_gic_config_set_redistributor_base(config, redistributor_base_address)
-}
+}/* debug [functions.gen.go/function]: hv_gic_config_set_redistributor_base */
 
 // Creates a generic interrupt controller (GIC) v3 device for a VM configuration.
 //
@@ -363,7 +432,7 @@ func hv_gic_config_set_redistributor_base(config Hv_gic_config_t, redistributor_
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_create(_:)
 func hv_gic_create(gic_config Hv_gic_config_t) Hv_return_t {
 	return _hv_gic_create(gic_config)
-}
+}/* debug [functions.gen.go/function]: hv_gic_create */
 
 // Gets the alignment for the base address of the generic interrupt controller (GIC) distributor region, in bytes.
 //
@@ -374,7 +443,7 @@ func hv_gic_create(gic_config Hv_gic_config_t) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_distributor_base_alignment(_:)
 func hv_gic_get_distributor_base_alignment(distributor_base_alignment unsafe.Pointer) Hv_return_t {
 	return _hv_gic_get_distributor_base_alignment(distributor_base_alignment)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_distributor_base_alignment */
 
 // Reads a generic interrupt controller (GIC) distributor register.
 //
@@ -385,7 +454,7 @@ func hv_gic_get_distributor_base_alignment(distributor_base_alignment unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_distributor_reg(_:_:)
 func hv_gic_get_distributor_reg(reg unsafe.Pointer, value []uint64) Hv_return_t {
 	return _hv_gic_get_distributor_reg(reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_distributor_reg */
 
 // Gets the size of the generic interrupt controller (GIC) distributor region, in bytes.
 //
@@ -396,7 +465,7 @@ func hv_gic_get_distributor_reg(reg unsafe.Pointer, value []uint64) Hv_return_t 
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_distributor_size(_:)
 func hv_gic_get_distributor_size(distributor_size unsafe.Pointer) Hv_return_t {
 	return _hv_gic_get_distributor_size(distributor_size)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_distributor_size */
 
 // Reads a generic interrupt controller’s ICC CPU system register.
 //
@@ -407,7 +476,7 @@ func hv_gic_get_distributor_size(distributor_size unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_icc_reg(_:_:_:)
 func hv_gic_get_icc_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_return_t {
 	return _hv_gic_get_icc_reg(vcpu, reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_icc_reg */
 
 // Reads a generic interrupt controller’s (GIC) ICH virtualization control system register.
 //
@@ -418,7 +487,7 @@ func hv_gic_get_icc_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_r
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_ich_reg(_:_:_:)
 func hv_gic_get_ich_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_return_t {
 	return _hv_gic_get_ich_reg(vcpu, reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_ich_reg */
 
 // Writes a generic interrupt controller’s (GIC) ICV system register.
 //
@@ -429,7 +498,18 @@ func hv_gic_get_ich_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_r
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_icv_reg(_:_:_:)
 func hv_gic_get_icv_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_return_t {
 	return _hv_gic_get_icv_reg(vcpu, reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_icv_reg */
+
+// Gets the interrupt ID for reserved interrupts.
+//
+// Added in macOS 15.0.
+// Gets the interrupt ID for reserved interrupts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_intid(_:_:)
+func hv_gic_get_intid(interrupt unsafe.Pointer, intid []uint32) Hv_return_t {
+	return _hv_gic_get_intid(interrupt, intid)
+}/* debug [functions.gen.go/function]: hv_gic_get_intid */
 
 // Reads a generic interrupt controller (GIC) distributor message signaled interrupt (MSI) register.
 //
@@ -440,7 +520,7 @@ func hv_gic_get_icv_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_r
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_msi_reg(_:_:)
 func hv_gic_get_msi_reg(reg unsafe.Pointer, value []uint64) Hv_return_t {
 	return _hv_gic_get_msi_reg(reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_msi_reg */
 
 // Gets the alignment, in bytes, for the base address of the generic interrupt controller’s message signaled interrupts (MSI) region.
 //
@@ -451,7 +531,7 @@ func hv_gic_get_msi_reg(reg unsafe.Pointer, value []uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_msi_region_base_alignment(_:)
 func hv_gic_get_msi_region_base_alignment(msi_region_base_alignment unsafe.Pointer) Hv_return_t {
 	return _hv_gic_get_msi_region_base_alignment(msi_region_base_alignment)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_msi_region_base_alignment */
 
 // Gets the size in bytes of the generic interrupt controller’s (GIC) message signaled interrupts (MSI) region.
 //
@@ -462,7 +542,7 @@ func hv_gic_get_msi_region_base_alignment(msi_region_base_alignment unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_msi_region_size(_:)
 func hv_gic_get_msi_region_size(msi_region_size unsafe.Pointer) Hv_return_t {
 	return _hv_gic_get_msi_region_size(msi_region_size)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_msi_region_size */
 
 // Gets the redistributor base guest physical address for the given vCPU.
 //
@@ -473,7 +553,7 @@ func hv_gic_get_msi_region_size(msi_region_size unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_redistributor_base(_:_:)
 func hv_gic_get_redistributor_base(vcpu Hv_vcpu_t, redistributor_base_address unsafe.Pointer) Hv_return_t {
 	return _hv_gic_get_redistributor_base(vcpu, redistributor_base_address)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_redistributor_base */
 
 // Gets the alignment for the base address of the generic interrupt controller (GIC) redistributor region, in bytes.
 //
@@ -484,7 +564,7 @@ func hv_gic_get_redistributor_base(vcpu Hv_vcpu_t, redistributor_base_address un
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_redistributor_base_alignment(_:)
 func hv_gic_get_redistributor_base_alignment(redistributor_base_alignment unsafe.Pointer) Hv_return_t {
 	return _hv_gic_get_redistributor_base_alignment(redistributor_base_alignment)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_redistributor_base_alignment */
 
 // Read a generic interrupt controller (GIC) redistributor register.
 //
@@ -495,7 +575,7 @@ func hv_gic_get_redistributor_base_alignment(redistributor_base_alignment unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_redistributor_reg(_:_:_:)
 func hv_gic_get_redistributor_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_return_t {
 	return _hv_gic_get_redistributor_reg(vcpu, reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_redistributor_reg */
 
 // Gets the total size in bytes of the generic interrupt controller (GIC) redistributor region.
 //
@@ -506,7 +586,7 @@ func hv_gic_get_redistributor_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []ui
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_redistributor_region_size(_:)
 func hv_gic_get_redistributor_region_size(redistributor_region_size unsafe.Pointer) Hv_return_t {
 	return _hv_gic_get_redistributor_region_size(redistributor_region_size)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_redistributor_region_size */
 
 // Gets the size in bytes of a single generic interrupt controller (GIC) redistributor.
 //
@@ -517,7 +597,7 @@ func hv_gic_get_redistributor_region_size(redistributor_region_size unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_redistributor_size(_:)
 func hv_gic_get_redistributor_size(redistributor_size unsafe.Pointer) Hv_return_t {
 	return _hv_gic_get_redistributor_size(redistributor_size)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_redistributor_size */
 
 // Gets the range of shared peripheral interrupts (SPIs) the generic interrupt controller supports.
 //
@@ -528,7 +608,7 @@ func hv_gic_get_redistributor_size(redistributor_size unsafe.Pointer) Hv_return_
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_get_spi_interrupt_range(_:_:)
 func hv_gic_get_spi_interrupt_range(spi_intid_base []uint32, spi_intid_count []uint32) Hv_return_t {
 	return _hv_gic_get_spi_interrupt_range(spi_intid_base, spi_intid_count)
-}
+}/* debug [functions.gen.go/function]: hv_gic_get_spi_interrupt_range */
 
 // Resets the generic interrupt controller (GIC) device.
 //
@@ -539,7 +619,7 @@ func hv_gic_get_spi_interrupt_range(spi_intid_base []uint32, spi_intid_count []u
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_reset()
 func hv_gic_reset() Hv_return_t {
 	return _hv_gic_reset()
-}
+}/* debug [functions.gen.go/function]: hv_gic_reset */
 
 // Sends a message signaled interrupt (MSI).
 //
@@ -550,7 +630,7 @@ func hv_gic_reset() Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_send_msi(_:_:)
 func hv_gic_send_msi(address Hv_ipa_t, intid uint32) Hv_return_t {
 	return _hv_gic_send_msi(address, intid)
-}
+}/* debug [functions.gen.go/function]: hv_gic_send_msi */
 
 // Writes the provided value to a generic interrupt controller (GIC) distributor register you specify.
 //
@@ -561,7 +641,7 @@ func hv_gic_send_msi(address Hv_ipa_t, intid uint32) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_set_distributor_reg(_:_:)
 func hv_gic_set_distributor_reg(reg unsafe.Pointer, value uint64) Hv_return_t {
 	return _hv_gic_set_distributor_reg(reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_set_distributor_reg */
 
 // Writes to a generic interrupt controller (GIC) ICC cpu system register.
 //
@@ -572,7 +652,7 @@ func hv_gic_set_distributor_reg(reg unsafe.Pointer, value uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_set_icc_reg(_:_:_:)
 func hv_gic_set_icc_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_return_t {
 	return _hv_gic_set_icc_reg(vcpu, reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_set_icc_reg */
 
 // Writes to a generic interrupt controller (GIC) ICH virtualization control system register.
 //
@@ -583,7 +663,7 @@ func hv_gic_set_icc_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_ret
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_set_ich_reg(_:_:_:)
 func hv_gic_set_ich_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_return_t {
 	return _hv_gic_set_ich_reg(vcpu, reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_set_ich_reg */
 
 // Writes to a generic interrupt controller (GIC) ICV system register.
 //
@@ -594,7 +674,7 @@ func hv_gic_set_ich_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_ret
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_set_icv_reg(_:_:_:)
 func hv_gic_set_icv_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_return_t {
 	return _hv_gic_set_icv_reg(vcpu, reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_set_icv_reg */
 
 // Writes to a generic interrupt controller distributor message signaled interrupt (MSI) register.
 //
@@ -605,7 +685,7 @@ func hv_gic_set_icv_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_ret
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_set_msi_reg(_:_:)
 func hv_gic_set_msi_reg(reg unsafe.Pointer, value uint64) Hv_return_t {
 	return _hv_gic_set_msi_reg(reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_set_msi_reg */
 
 // Writes to a GIC redistributor register.
 //
@@ -616,7 +696,7 @@ func hv_gic_set_msi_reg(reg unsafe.Pointer, value uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_set_redistributor_reg(_:_:_:)
 func hv_gic_set_redistributor_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_return_t {
 	return _hv_gic_set_redistributor_reg(vcpu, reg, value)
-}
+}/* debug [functions.gen.go/function]: hv_gic_set_redistributor_reg */
 
 // Triggers a shared peripheral interrupt (SPI).
 //
@@ -627,7 +707,7 @@ func hv_gic_set_redistributor_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_set_spi(_:_:)
 func hv_gic_set_spi(intid uint32, level bool) Hv_return_t {
 	return _hv_gic_set_spi(intid, level)
-}
+}/* debug [functions.gen.go/function]: hv_gic_set_spi */
 
 // Sets the state of a generic interrupt controller (GIC) device.
 //
@@ -638,7 +718,7 @@ func hv_gic_set_spi(intid uint32, level bool) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_set_state(_:_:)
 func hv_gic_set_state(gic_state_data unsafe.Pointer, gic_state_size uintptr) Hv_return_t {
 	return _hv_gic_set_state(gic_state_data, gic_state_size)
-}
+}/* debug [functions.gen.go/function]: hv_gic_set_state */
 
 // Create a generic interrupt controller (GIC) state object.
 //
@@ -649,7 +729,7 @@ func hv_gic_set_state(gic_state_data unsafe.Pointer, gic_state_size uintptr) Hv_
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_state_create()
 func hv_gic_state_create() Hv_gic_state_t {
 	return _hv_gic_state_create()
-}
+}/* debug [functions.gen.go/function]: hv_gic_state_create */
 
 // Gets the state data for generic interrupt controller (GIC).
 //
@@ -660,7 +740,7 @@ func hv_gic_state_create() Hv_gic_state_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_state_get_data(_:_:)
 func hv_gic_state_get_data(state Hv_gic_state_t, gic_state_data unsafe.Pointer) Hv_return_t {
 	return _hv_gic_state_get_data(state, gic_state_data)
-}
+}/* debug [functions.gen.go/function]: hv_gic_state_get_data */
 
 // Gets the size of the buffer required for generic interrupt controller (GIC) state.
 //
@@ -671,7 +751,7 @@ func hv_gic_state_get_data(state Hv_gic_state_t, gic_state_data unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_state_get_size(_:_:)
 func hv_gic_state_get_size(state Hv_gic_state_t, gic_state_size unsafe.Pointer) Hv_return_t {
 	return _hv_gic_state_get_size(state, gic_state_size)
-}
+}/* debug [functions.gen.go/function]: hv_gic_state_get_size */
 
 // hv_sme_config_get_max_svl_bytes is a Hypervisor function.
 //
@@ -680,7 +760,7 @@ func hv_gic_state_get_size(state Hv_gic_state_t, gic_state_size unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_sme_config_get_max_svl_bytes(_:)
 func hv_sme_config_get_max_svl_bytes(value unsafe.Pointer) Hv_return_t {
 	return _hv_sme_config_get_max_svl_bytes(value)
-}
+}/* debug [functions.gen.go/function]: hv_sme_config_get_max_svl_bytes */
 
 // Returns the value of an abstract clock.
 //
@@ -691,7 +771,7 @@ func hv_sme_config_get_max_svl_bytes(value unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_tsc_clock()
 func hv_tsc_clock() uint64 {
 	return _hv_tsc_clock()
-}
+}/* debug [functions.gen.go/function]: hv_tsc_clock */
 
 // hv_vcpu_apic_ctrl is a Hypervisor function.
 //
@@ -700,7 +780,7 @@ func hv_tsc_clock() uint64 {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_ctrl(_:_:)
 func hv_vcpu_apic_ctrl(vcpu Hv_vcpuid_t, ctrls unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_apic_ctrl(vcpu, ctrls)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_ctrl */
 
 // hv_vcpu_apic_get_state is a Hypervisor function.
 //
@@ -709,7 +789,7 @@ func hv_vcpu_apic_ctrl(vcpu Hv_vcpuid_t, ctrls unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_get_state(_:_:)
 func hv_vcpu_apic_get_state(vcpu Hv_vcpuid_t, state unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_apic_get_state(vcpu, state)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_get_state */
 
 // hv_vcpu_apic_lsc_enter_imm32 is a Hypervisor function.
 //
@@ -718,7 +798,7 @@ func hv_vcpu_apic_get_state(vcpu Hv_vcpuid_t, state unsafe.Pointer) Hv_return_t 
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_lsc_enter_imm32(_:_:_:_:_:_:_:)
 func hv_vcpu_apic_lsc_enter_imm32(vcpu Hv_vcpuid_t, rip uint64, ilen unsafe.Pointer, cs uint16, imm32 uint32, uva uint64, count unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_apic_lsc_enter_imm32(vcpu, rip, ilen, cs, imm32, uva, count)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_lsc_enter_imm32 */
 
 // hv_vcpu_apic_lsc_enter_r32 is a Hypervisor function.
 //
@@ -727,7 +807,7 @@ func hv_vcpu_apic_lsc_enter_imm32(vcpu Hv_vcpuid_t, rip uint64, ilen unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_lsc_enter_r32(_:_:_:_:_:_:_:_:)
 func hv_vcpu_apic_lsc_enter_r32(vcpu Hv_vcpuid_t, is_load bool, rip uint64, ilen unsafe.Pointer, cs uint16, reg unsafe.Pointer, uva uint64, count unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_apic_lsc_enter_r32(vcpu, is_load, rip, ilen, cs, reg, uva, count)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_lsc_enter_r32 */
 
 // hv_vcpu_apic_lsc_invalidate is a Hypervisor function.
 //
@@ -736,7 +816,7 @@ func hv_vcpu_apic_lsc_enter_r32(vcpu Hv_vcpuid_t, is_load bool, rip uint64, ilen
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_lsc_invalidate(_:)
 func hv_vcpu_apic_lsc_invalidate(vcpu Hv_vcpuid_t) Hv_return_t {
 	return _hv_vcpu_apic_lsc_invalidate(vcpu)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_lsc_invalidate */
 
 // hv_vcpu_apic_put_state is a Hypervisor function.
 //
@@ -745,7 +825,7 @@ func hv_vcpu_apic_lsc_invalidate(vcpu Hv_vcpuid_t) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_put_state(_:_:)
 func hv_vcpu_apic_put_state(vcpu Hv_vcpuid_t, state unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_apic_put_state(vcpu, state)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_put_state */
 
 // hv_vcpu_apic_read is a Hypervisor function.
 //
@@ -754,7 +834,7 @@ func hv_vcpu_apic_put_state(vcpu Hv_vcpuid_t, state unsafe.Pointer) Hv_return_t 
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_read(_:_:_:)
 func hv_vcpu_apic_read(vcpu Hv_vcpuid_t, offset uint32, data []uint32) Hv_return_t {
 	return _hv_vcpu_apic_read(vcpu, offset, data)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_read */
 
 // hv_vcpu_apic_trigger_lvt is a Hypervisor function.
 //
@@ -763,7 +843,7 @@ func hv_vcpu_apic_read(vcpu Hv_vcpuid_t, offset uint32, data []uint32) Hv_return
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_trigger_lvt(_:_:)
 func hv_vcpu_apic_trigger_lvt(vcpu Hv_vcpuid_t, flavor unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_apic_trigger_lvt(vcpu, flavor)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_trigger_lvt */
 
 // hv_vcpu_apic_write is a Hypervisor function.
 //
@@ -772,7 +852,40 @@ func hv_vcpu_apic_trigger_lvt(vcpu Hv_vcpuid_t, flavor unsafe.Pointer) Hv_return
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_apic_write(_:_:_:_:)
 func hv_vcpu_apic_write(vcpu Hv_vcpuid_t, offset uint32, data uint32, no_side_effect unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_apic_write(vcpu, offset, data, no_side_effect)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_apic_write */
+
+// Creates a vCPU configuration object.
+//
+// Added in macOS 11.0.
+// Creates a vCPU configuration object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_config_create()
+func hv_vcpu_config_create() Hv_vcpu_config_t {
+	return _hv_vcpu_config_create()
+}/* debug [functions.gen.go/function]: hv_vcpu_config_create */
+
+// Returns the Cache Size ID Register (CCSIDR_EL1) values for the vCPU configuration and cache type you specify.
+//
+// Added in macOS 11.0.
+// Returns the Cache Size ID Register (CCSIDR_EL1) values for the vCPU configuration and cache type you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_config_get_ccsidr_el1_sys_reg_values(_:_:_:)
+func hv_vcpu_config_get_ccsidr_el1_sys_reg_values(config Hv_vcpu_config_t, cache_type unsafe.Pointer, values uint64, p3 unsafe.Pointer) Hv_return_t {
+	return _hv_vcpu_config_get_ccsidr_el1_sys_reg_values(config, cache_type, values, p3)
+}/* debug [functions.gen.go/function]: hv_vcpu_config_get_ccsidr_el1_sys_reg_values */
+
+// Gets the value of a feature register.
+//
+// Added in macOS 11.0.
+// Gets the value of a feature register.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_config_get_feature_reg(_:_:_:)
+func hv_vcpu_config_get_feature_reg(config Hv_vcpu_config_t, feature_reg unsafe.Pointer, value []uint64) Hv_return_t {
+	return _hv_vcpu_config_get_feature_reg(config, feature_reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_config_get_feature_reg */
 
 // Creates a vCPU instance for the current thread.
 //
@@ -783,7 +896,7 @@ func hv_vcpu_apic_write(vcpu Hv_vcpuid_t, offset uint32, data uint32, no_side_ef
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_create(_:_:)
 func hv_vcpu_create(vcpu unsafe.Pointer, flags Hv_vcpu_options_t) Hv_return_t {
 	return _hv_vcpu_create(vcpu, flags)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_create */
 
 // Destroys the vCPU instance associated with the current thread.
 //
@@ -794,7 +907,29 @@ func hv_vcpu_create(vcpu unsafe.Pointer, flags Hv_vcpu_options_t) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_destroy(_:)
 func hv_vcpu_destroy(vcpu Hv_vcpuid_t) Hv_return_t {
 	return _hv_vcpu_destroy(vcpu)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_destroy */
+
+// Enables the guest access of a managed Model-Specific Register (MSR).
+//
+// Added in macOS 11.0.
+// Enables the guest access of a managed Model-Specific Register (MSR).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_enable_managed_msr(_:_:_:)
+func hv_vcpu_enable_managed_msr(vcpu Hv_vcpuid_t, msr uint32, enable bool) Hv_return_t {
+	return _hv_vcpu_enable_managed_msr(vcpu, msr, enable)
+}/* debug [functions.gen.go/function]: hv_vcpu_enable_managed_msr */
+
+// Enables or disables a Model-Specific Register (MSR) that the VM uses natively.
+//
+// Added in macOS 10.10.
+// Enables or disables a Model-Specific Register (MSR) that the VM uses natively.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_enable_native_msr(_:_:_:)
+func hv_vcpu_enable_native_msr(vcpu Hv_vcpuid_t, msr uint32, enable bool) Hv_return_t {
+	return _hv_vcpu_enable_native_msr(vcpu, msr, enable)
+}/* debug [functions.gen.go/function]: hv_vcpu_enable_native_msr */
 
 // hv_vcpu_exit_apic_access_read is a Hypervisor function.
 //
@@ -803,7 +938,7 @@ func hv_vcpu_destroy(vcpu Hv_vcpuid_t) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_exit_apic_access_read(_:_:)
 func hv_vcpu_exit_apic_access_read(vcpu Hv_vcpuid_t, value []uint32) Hv_return_t {
 	return _hv_vcpu_exit_apic_access_read(vcpu, value)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_exit_apic_access_read */
 
 // hv_vcpu_exit_info is a Hypervisor function.
 //
@@ -812,7 +947,7 @@ func hv_vcpu_exit_apic_access_read(vcpu Hv_vcpuid_t, value []uint32) Hv_return_t
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_exit_info(_:_:)
 func hv_vcpu_exit_info(vcpu Hv_vcpuid_t, code unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_exit_info(vcpu, code)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_exit_info */
 
 // hv_vcpu_exit_init_ap is a Hypervisor function.
 //
@@ -821,7 +956,7 @@ func hv_vcpu_exit_info(vcpu Hv_vcpuid_t, code unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_exit_init_ap(_:_:_:)
 func hv_vcpu_exit_init_ap(vcpu Hv_vcpuid_t, is_actv bool, count unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_exit_init_ap(vcpu, is_actv, count)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_exit_init_ap */
 
 // hv_vcpu_exit_inject_excp is a Hypervisor function.
 //
@@ -830,7 +965,7 @@ func hv_vcpu_exit_init_ap(vcpu Hv_vcpuid_t, is_actv bool, count unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_exit_inject_excp(_:_:_:_:_:)
 func hv_vcpu_exit_inject_excp(vcpu Hv_vcpuid_t, vec unsafe.Pointer, valid unsafe.Pointer, code []uint32, restart unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_exit_inject_excp(vcpu, vec, valid, code, restart)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_exit_inject_excp */
 
 // hv_vcpu_exit_ioapic_eoi is a Hypervisor function.
 //
@@ -839,7 +974,7 @@ func hv_vcpu_exit_inject_excp(vcpu Hv_vcpuid_t, vec unsafe.Pointer, valid unsafe
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_exit_ioapic_eoi(_:_:)
 func hv_vcpu_exit_ioapic_eoi(vcpu Hv_vcpuid_t, vec unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_exit_ioapic_eoi(vcpu, vec)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_exit_ioapic_eoi */
 
 // hv_vcpu_exit_startup_ap is a Hypervisor function.
 //
@@ -848,7 +983,7 @@ func hv_vcpu_exit_ioapic_eoi(vcpu Hv_vcpuid_t, vec unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_exit_startup_ap(_:_:_:_:)
 func hv_vcpu_exit_startup_ap(vcpu Hv_vcpuid_t, is_actv bool, count unsafe.Pointer, ap_rip []uint64) Hv_return_t {
 	return _hv_vcpu_exit_startup_ap(vcpu, is_actv, count, ap_rip)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_exit_startup_ap */
 
 // Flushes the cached state of a vCPU.
 //
@@ -861,18 +996,18 @@ func hv_vcpu_exit_startup_ap(vcpu Hv_vcpuid_t, is_actv bool, count unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_flush(_:)
 func hv_vcpu_flush(vcpu Hv_vcpuid_t) Hv_return_t {
 	return _hv_vcpu_flush(vcpu)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_flush */
 
 // Returns, by reference, the cumulative execution time of a vCPU, in nanoseconds.
 //
-// Added in macOS 11.0.
+// Added in macOS 10.10.
 // Returns, by reference, the cumulative execution time of a vCPU, in nanoseconds.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_exec_time(_:_:)
-func hv_vcpu_get_exec_time(vcpu Hv_vcpu_t, time []uint64) Hv_return_t {
+func hv_vcpu_get_exec_time(vcpu Hv_vcpuid_t, time []uint64) Hv_return_t {
 	return _hv_vcpu_get_exec_time(vcpu, time)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_exec_time */
 
 // hv_vcpu_get_idle_time is a Hypervisor function.
 //
@@ -881,7 +1016,7 @@ func hv_vcpu_get_exec_time(vcpu Hv_vcpu_t, time []uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_idle_time(_:_:)
 func hv_vcpu_get_idle_time(vcpu Hv_vcpuid_t, time []uint64) Hv_return_t {
 	return _hv_vcpu_get_idle_time(vcpu, time)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_idle_time */
 
 // Gets pending interrupts for a vCPU.
 //
@@ -892,7 +1027,29 @@ func hv_vcpu_get_idle_time(vcpu Hv_vcpuid_t, time []uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_pending_interrupt(_:_:_:)
 func hv_vcpu_get_pending_interrupt(vcpu Hv_vcpu_t, type_ unsafe.Pointer, pending unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_get_pending_interrupt(vcpu, type_, pending)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_pending_interrupt */
+
+// Gets the current value of a vCPU register.
+//
+// Added in macOS 11.0.
+// Gets the current value of a vCPU register.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_reg(_:_:_:)
+func hv_vcpu_get_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_return_t {
+	return _hv_vcpu_get_reg(vcpu, reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_get_reg */
+
+// Gets the current value of a vCPU SIMD and FP register.
+//
+// Added in macOS 11.0.
+// Gets the current value of a vCPU SIMD and FP register.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_simd_fp_reg(_:_:_:)
+func hv_vcpu_get_simd_fp_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Pointer) Hv_return_t {
+	return _hv_vcpu_get_simd_fp_reg(vcpu, reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_get_simd_fp_reg */
 
 // Returns the value of a vCPU P predicate register in streaming Scalable Vector Extension (SVE) mode.
 //
@@ -903,7 +1060,7 @@ func hv_vcpu_get_pending_interrupt(vcpu Hv_vcpu_t, type_ unsafe.Pointer, pending
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_sme_p_reg(_:_:_:_:)
 func hv_vcpu_get_sme_p_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Pointer, length uintptr) Hv_return_t {
 	return _hv_vcpu_get_sme_p_reg(vcpu, reg, value, length)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_sme_p_reg */
 
 // Gets the current Scalable Matrix Extension (SME) state.
 //
@@ -914,7 +1071,7 @@ func hv_vcpu_get_sme_p_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_sme_state(_:_:)
 func hv_vcpu_get_sme_state(vcpu Hv_vcpu_t, sme_state unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_get_sme_state(vcpu, sme_state)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_sme_state */
 
 // Returns the value of a vCPU Z vector register in streaming Scalable Vector Extension (SVE) mode.
 //
@@ -925,7 +1082,7 @@ func hv_vcpu_get_sme_state(vcpu Hv_vcpu_t, sme_state unsafe.Pointer) Hv_return_t
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_sme_z_reg(_:_:_:_:)
 func hv_vcpu_get_sme_z_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Pointer, length uintptr) Hv_return_t {
 	return _hv_vcpu_get_sme_z_reg(vcpu, reg, value, length)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_sme_z_reg */
 
 // Returns the value of the vCPU ZA matrix register in streaming Scalable Vector Extension (SVE) mode.
 //
@@ -936,7 +1093,7 @@ func hv_vcpu_get_sme_z_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_sme_za_reg(_:_:_:)
 func hv_vcpu_get_sme_za_reg(vcpu Hv_vcpu_t, value unsafe.Pointer, length uintptr) Hv_return_t {
 	return _hv_vcpu_get_sme_za_reg(vcpu, value, length)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_sme_za_reg */
 
 // Returns the current value of the vCPU ZT0 register in streaming Scalable Vector Extension (SVE) mode.
 //
@@ -947,7 +1104,40 @@ func hv_vcpu_get_sme_za_reg(vcpu Hv_vcpu_t, value unsafe.Pointer, length uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_sme_zt0_reg(_:_:)
 func hv_vcpu_get_sme_zt0_reg(vcpu Hv_vcpu_t, value unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_get_sme_zt0_reg(vcpu, value)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_sme_zt0_reg */
+
+// Gets the current value of a vCPU system register.
+//
+// Added in macOS 11.0.
+// Gets the current value of a vCPU system register.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_sys_reg(_:_:_:)
+func hv_vcpu_get_sys_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value []uint64) Hv_return_t {
+	return _hv_vcpu_get_sys_reg(vcpu, reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_get_sys_reg */
+
+// Gets whether debug exceptions exit the guest.
+//
+// Added in macOS 11.0.
+// Gets whether debug exceptions exit the guest.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_trap_debug_exceptions(_:_:)
+func hv_vcpu_get_trap_debug_exceptions(vcpu Hv_vcpu_t, value unsafe.Pointer) Hv_return_t {
+	return _hv_vcpu_get_trap_debug_exceptions(vcpu, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_get_trap_debug_exceptions */
+
+// Gets whether debug-register accesses exit the guest.
+//
+// Added in macOS 11.0.
+// Gets whether debug-register accesses exit the guest.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_trap_debug_reg_accesses(_:_:)
+func hv_vcpu_get_trap_debug_reg_accesses(vcpu Hv_vcpu_t, value unsafe.Pointer) Hv_return_t {
+	return _hv_vcpu_get_trap_debug_reg_accesses(vcpu, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_get_trap_debug_reg_accesses */
 
 // Gets the virtual timer mask.
 //
@@ -958,7 +1148,7 @@ func hv_vcpu_get_sme_zt0_reg(vcpu Hv_vcpu_t, value unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_vtimer_mask(_:_:)
 func hv_vcpu_get_vtimer_mask(vcpu Hv_vcpu_t, vtimer_is_masked unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_get_vtimer_mask(vcpu, vtimer_is_masked)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_vtimer_mask */
 
 // Returns the vTimer offset for the vCPU ID you specify.
 //
@@ -969,7 +1159,7 @@ func hv_vcpu_get_vtimer_mask(vcpu Hv_vcpu_t, vtimer_is_masked unsafe.Pointer) Hv
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_get_vtimer_offset(_:_:)
 func hv_vcpu_get_vtimer_offset(vcpu Hv_vcpu_t, vtimer_offset []uint64) Hv_return_t {
 	return _hv_vcpu_get_vtimer_offset(vcpu, vtimer_offset)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_get_vtimer_offset */
 
 // hv_vcpu_inject_extint is a Hypervisor function.
 //
@@ -978,7 +1168,7 @@ func hv_vcpu_get_vtimer_offset(vcpu Hv_vcpu_t, vtimer_offset []uint64) Hv_return
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_inject_extint(_:)
 func hv_vcpu_inject_extint(vcpu Hv_vcpuid_t) Hv_return_t {
 	return _hv_vcpu_inject_extint(vcpu)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_inject_extint */
 
 // Forces the vCPU instances you provide to immediately exit the VM.
 //
@@ -989,7 +1179,7 @@ func hv_vcpu_inject_extint(vcpu Hv_vcpuid_t) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_interrupt(_:_:)
 func hv_vcpu_interrupt(vcpus unsafe.Pointer, vcpu_count unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_interrupt(vcpus, vcpu_count)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_interrupt */
 
 // Invalidates the translation look-aside buffer (TLB) of a vCPU.
 //
@@ -1000,17 +1190,51 @@ func hv_vcpu_interrupt(vcpus unsafe.Pointer, vcpu_count unsafe.Pointer) Hv_retur
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_invalidate_tlb(_:)
 func hv_vcpu_invalidate_tlb(vcpu Hv_vcpuid_t) Hv_return_t {
 	return _hv_vcpu_invalidate_tlb(vcpu)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_invalidate_tlb */
+
+// Returns, by reference, the current architectural x86 floating point and SIMD state of a vCPU.
+//
+// Added in macOS 10.10.
+// Returns, by reference, the current architectural x86 floating point and SIMD state of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_read_fpstate(_:_:_:)
+func hv_vcpu_read_fpstate(vcpu Hv_vcpuid_t, buffer unsafe.Pointer, size uintptr) Hv_return_t {
+	return _hv_vcpu_read_fpstate(vcpu, buffer, size)
+}/* debug [functions.gen.go/function]: hv_vcpu_read_fpstate */
+
+// Returns, by reference, the current value of a Model-Specific Register (MSR) of a vCPU.
+//
+// Added in macOS 10.10.
+// Returns, by reference, the current value of a Model-Specific Register (MSR) of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_read_msr(_:_:_:)
+func hv_vcpu_read_msr(vcpu Hv_vcpuid_t, msr uint32, value []uint64) Hv_return_t {
+	return _hv_vcpu_read_msr(vcpu, msr, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_read_msr */
+
+// Returns, by reference, the current value of an architectural x86 register of a vCPU.
+//
+// Added in macOS 10.10.
+// Returns, by reference, the current value of an architectural x86 register of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_read_register(_:_:_:)
+func hv_vcpu_read_register(vcpu Hv_vcpuid_t, reg unsafe.Pointer, value []uint64) Hv_return_t {
+	return _hv_vcpu_read_register(vcpu, reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_read_register */
 
 // Starts the execution of a vCPU.
-
+//
+// Added in macOS .
 // Starts the execution of a vCPU.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_run(_:)
 func hv_vcpu_run(vcpu Hv_vcpuid_t) Hv_return_t {
 	return _hv_vcpu_run(vcpu)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_run */
 
 // Executes a vCPU until it reaches the deadline defined in absolute time units you provide.
 //
@@ -1021,7 +1245,18 @@ func hv_vcpu_run(vcpu Hv_vcpuid_t) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_run_until(_:_:)
 func hv_vcpu_run_until(vcpu Hv_vcpuid_t, deadline uint64) Hv_return_t {
 	return _hv_vcpu_run_until(vcpu, deadline)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_run_until */
+
+// Controls the guest access of a managed Model-Specific Register (MSR).
+//
+// Added in macOS 11.0.
+// Controls the guest access of a managed Model-Specific Register (MSR).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_msr_access(_:_:_:)
+func hv_vcpu_set_msr_access(vcpu Hv_vcpuid_t, msr uint32, flags Hv_msr_flags_t) Hv_return_t {
+	return _hv_vcpu_set_msr_access(vcpu, msr, flags)
+}/* debug [functions.gen.go/function]: hv_vcpu_set_msr_access */
 
 // Sets pending interrupts for a vCPU.
 //
@@ -1032,7 +1267,29 @@ func hv_vcpu_run_until(vcpu Hv_vcpuid_t, deadline uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_pending_interrupt(_:_:_:)
 func hv_vcpu_set_pending_interrupt(vcpu Hv_vcpu_t, type_ unsafe.Pointer, pending bool) Hv_return_t {
 	return _hv_vcpu_set_pending_interrupt(vcpu, type_, pending)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_pending_interrupt */
+
+// Sets the value of a vCPU register.
+//
+// Added in macOS 11.0.
+// Sets the value of a vCPU register.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_reg(_:_:_:)
+func hv_vcpu_set_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_return_t {
+	return _hv_vcpu_set_reg(vcpu, reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_set_reg */
+
+// Sets the value of a vCPU SIMD&FP register.
+//
+// Added in macOS 11.0.
+// Sets the value of a vCPU SIMD&FP register.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_simd_fp_reg(_:_:_:)
+func hv_vcpu_set_simd_fp_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value Hv_simd_fp_uchar16_t) Hv_return_t {
+	return _hv_vcpu_set_simd_fp_reg(vcpu, reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_set_simd_fp_reg */
 
 // Sets the value of a vCPU P predicate register in streaming Scalable Vector Extension (SVE) mode.
 //
@@ -1043,7 +1300,7 @@ func hv_vcpu_set_pending_interrupt(vcpu Hv_vcpu_t, type_ unsafe.Pointer, pending
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_sme_p_reg(_:_:_:_:)
 func hv_vcpu_set_sme_p_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Pointer, length uintptr) Hv_return_t {
 	return _hv_vcpu_set_sme_p_reg(vcpu, reg, value, length)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_sme_p_reg */
 
 // Sets the SME state consisting of the streaming Scalable Vector Extension (SVE) mode and ZA storage enable.
 //
@@ -1054,7 +1311,7 @@ func hv_vcpu_set_sme_p_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_sme_state(_:_:)
 func hv_vcpu_set_sme_state(vcpu Hv_vcpu_t, sme_state unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_set_sme_state(vcpu, sme_state)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_sme_state */
 
 // Sets the value of a vCPU Z vector register in streaming Scalable Vector Extension (SVE) mode.
 //
@@ -1065,7 +1322,7 @@ func hv_vcpu_set_sme_state(vcpu Hv_vcpu_t, sme_state unsafe.Pointer) Hv_return_t
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_sme_z_reg(_:_:_:_:)
 func hv_vcpu_set_sme_z_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Pointer, length uintptr) Hv_return_t {
 	return _hv_vcpu_set_sme_z_reg(vcpu, reg, value, length)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_sme_z_reg */
 
 // Sets the value of the vCPU ZA matrix register in streaming Scalable Vector Extension (SVE) mode.
 //
@@ -1076,7 +1333,7 @@ func hv_vcpu_set_sme_z_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_sme_za_reg(_:_:_:)
 func hv_vcpu_set_sme_za_reg(vcpu Hv_vcpu_t, value unsafe.Pointer, length uintptr) Hv_return_t {
 	return _hv_vcpu_set_sme_za_reg(vcpu, value, length)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_sme_za_reg */
 
 // Sets the value of the vCPU ZT0 register in streaming Scalable Vector Extension (SVE) mode.
 //
@@ -1087,7 +1344,51 @@ func hv_vcpu_set_sme_za_reg(vcpu Hv_vcpu_t, value unsafe.Pointer, length uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_sme_zt0_reg(_:_:)
 func hv_vcpu_set_sme_zt0_reg(vcpu Hv_vcpu_t, value unsafe.Pointer) Hv_return_t {
 	return _hv_vcpu_set_sme_zt0_reg(vcpu, value)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_sme_zt0_reg */
+
+// Associates the vCPU instance with an allocated address space.
+//
+// Added in macOS 10.15.
+// Associates the vCPU instance with an allocated address space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_space(_:_:)
+func hv_vcpu_set_space(vcpu Hv_vcpuid_t, asid Hv_vm_space_t) Hv_return_t {
+	return _hv_vcpu_set_space(vcpu, asid)
+}/* debug [functions.gen.go/function]: hv_vcpu_set_space */
+
+// Sets the value of a vCPU system register.
+//
+// Added in macOS 11.0.
+// Sets the value of a vCPU system register.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_sys_reg(_:_:_:)
+func hv_vcpu_set_sys_reg(vcpu Hv_vcpu_t, reg unsafe.Pointer, value uint64) Hv_return_t {
+	return _hv_vcpu_set_sys_reg(vcpu, reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_set_sys_reg */
+
+// Sets whether debug exceptions exit the guest.
+//
+// Added in macOS 11.0.
+// Sets whether debug exceptions exit the guest.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_trap_debug_exceptions(_:_:)
+func hv_vcpu_set_trap_debug_exceptions(vcpu Hv_vcpu_t, value bool) Hv_return_t {
+	return _hv_vcpu_set_trap_debug_exceptions(vcpu, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_set_trap_debug_exceptions */
+
+// Sets whether debug-register accesses exit the guest.
+//
+// Added in macOS 11.0.
+// Sets whether debug-register accesses exit the guest.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_trap_debug_reg_accesses(_:_:)
+func hv_vcpu_set_trap_debug_reg_accesses(vcpu Hv_vcpu_t, value bool) Hv_return_t {
+	return _hv_vcpu_set_trap_debug_reg_accesses(vcpu, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_set_trap_debug_reg_accesses */
 
 // Sets the offset of the guest timestamp-counter (TSC) relative to the Hypervisor’s TSC clock.
 //
@@ -1098,7 +1399,7 @@ func hv_vcpu_set_sme_zt0_reg(vcpu Hv_vcpu_t, value unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_tsc_relative(_:_:)
 func hv_vcpu_set_tsc_relative(vcpu Hv_vcpuid_t, offset int64) Hv_return_t {
 	return _hv_vcpu_set_tsc_relative(vcpu, offset)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_tsc_relative */
 
 // Sets or clears the virtual timer mask.
 //
@@ -1109,7 +1410,7 @@ func hv_vcpu_set_tsc_relative(vcpu Hv_vcpuid_t, offset int64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_vtimer_mask(_:_:)
 func hv_vcpu_set_vtimer_mask(vcpu Hv_vcpu_t, vtimer_is_masked bool) Hv_return_t {
 	return _hv_vcpu_set_vtimer_mask(vcpu, vtimer_is_masked)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_vtimer_mask */
 
 // Sets the vTimer offset to a value that you provide.
 //
@@ -1120,7 +1421,7 @@ func hv_vcpu_set_vtimer_mask(vcpu Hv_vcpu_t, vtimer_is_masked bool) Hv_return_t 
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_set_vtimer_offset(_:_:)
 func hv_vcpu_set_vtimer_offset(vcpu Hv_vcpu_t, vtimer_offset uint64) Hv_return_t {
 	return _hv_vcpu_set_vtimer_offset(vcpu, vtimer_offset)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_set_vtimer_offset */
 
 // hv_vcpu_vmx_status is a Hypervisor function.
 //
@@ -1129,7 +1430,40 @@ func hv_vcpu_set_vtimer_offset(vcpu Hv_vcpu_t, vtimer_offset uint64) Hv_return_t
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_vmx_status(_:_:)
 func hv_vcpu_vmx_status(vcpu Hv_vcpuid_t, status []uint32) Hv_return_t {
 	return _hv_vcpu_vmx_status(vcpu, status)
-}
+}/* debug [functions.gen.go/function]: hv_vcpu_vmx_status */
+
+// Sets the architectural x86 floating point and SIMD state of a vCPU.
+//
+// Added in macOS 10.10.
+// Sets the architectural x86 floating point and SIMD state of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_write_fpstate(_:_:_:)
+func hv_vcpu_write_fpstate(vcpu Hv_vcpuid_t, buffer unsafe.Pointer, size uintptr) Hv_return_t {
+	return _hv_vcpu_write_fpstate(vcpu, buffer, size)
+}/* debug [functions.gen.go/function]: hv_vcpu_write_fpstate */
+
+// Sets the value of a Model-Specific Register (MSR) of a vCPU.
+//
+// Added in macOS 10.10.
+// Sets the value of a Model-Specific Register (MSR) of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_write_msr(_:_:_:)
+func hv_vcpu_write_msr(vcpu Hv_vcpuid_t, msr uint32, value uint64) Hv_return_t {
+	return _hv_vcpu_write_msr(vcpu, msr, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_write_msr */
+
+// Sets the value of an architectural x86 register of a vCPU.
+//
+// Added in macOS 10.10.
+// Sets the value of an architectural x86 register of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_write_register(_:_:_:)
+func hv_vcpu_write_register(vcpu Hv_vcpuid_t, reg unsafe.Pointer, value uint64) Hv_return_t {
+	return _hv_vcpu_write_register(vcpu, reg, value)
+}/* debug [functions.gen.go/function]: hv_vcpu_write_register */
 
 // Forces an immediate exit of a set of vCPUs of the VM.
 //
@@ -1140,7 +1474,7 @@ func hv_vcpu_vmx_status(vcpu Hv_vcpuid_t, status []uint32) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpus_exit(_:_:)
 func hv_vcpus_exit(vcpus unsafe.Pointer, vcpu_count uint32) Hv_return_t {
 	return _hv_vcpus_exit(vcpus, vcpu_count)
-}
+}/* debug [functions.gen.go/function]: hv_vcpus_exit */
 
 // Generate a notification when the Hypervisor issues a matching guest port I/O.
 //
@@ -1151,16 +1485,16 @@ func hv_vcpus_exit(vcpus unsafe.Pointer, vcpu_count uint32) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_add_pio_notifier(_:_:_:_:_:)
 func hv_vm_add_pio_notifier(addr uint16, size uintptr, value uint32, mach_port unsafe.Pointer, flags Hv_ion_flags_t) Hv_return_t {
 	return _hv_vm_add_pio_notifier(addr, size, value, mach_port, flags)
-}
+}/* debug [functions.gen.go/function]: hv_vm_add_pio_notifier */
 
 // hv_vm_allocate is a Hypervisor function.
 //
-// Added in macOS 12.1.
+// Added in macOS 12.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_allocate(_:_:_:)
 func hv_vm_allocate(uvap unsafe.Pointer, size uintptr, flags Hv_allocate_flags_t) Hv_return_t {
 	return _hv_vm_allocate(uvap, size, flags)
-}
+}/* debug [functions.gen.go/function]: hv_vm_allocate */
 
 // hv_vm_atpic_assert_irq is a Hypervisor function.
 //
@@ -1169,7 +1503,7 @@ func hv_vm_allocate(uvap unsafe.Pointer, size uintptr, flags Hv_allocate_flags_t
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_assert_irq(_:)
 func hv_vm_atpic_assert_irq(irq int) Hv_return_t {
 	return _hv_vm_atpic_assert_irq(irq)
-}
+}/* debug [functions.gen.go/function]: hv_vm_atpic_assert_irq */
 
 // hv_vm_atpic_deassert_irq is a Hypervisor function.
 //
@@ -1178,7 +1512,7 @@ func hv_vm_atpic_assert_irq(irq int) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_deassert_irq(_:)
 func hv_vm_atpic_deassert_irq(irq int) Hv_return_t {
 	return _hv_vm_atpic_deassert_irq(irq)
-}
+}/* debug [functions.gen.go/function]: hv_vm_atpic_deassert_irq */
 
 // hv_vm_atpic_get_state is a Hypervisor function.
 //
@@ -1187,23 +1521,25 @@ func hv_vm_atpic_deassert_irq(irq int) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_get_state(_:_:)
 func hv_vm_atpic_get_state(state unsafe.Pointer, is_primary bool) Hv_return_t {
 	return _hv_vm_atpic_get_state(state, is_primary)
-}
+}/* debug [functions.gen.go/function]: hv_vm_atpic_get_state */
 
 // hv_vm_atpic_port_read is a Hypervisor function.
-
+//
+// Added in macOS .
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_port_read(_:_:)
 func hv_vm_atpic_port_read(port int, valuep unsafe.Pointer) Hv_return_t {
 	return _hv_vm_atpic_port_read(port, valuep)
-}
+}/* debug [functions.gen.go/function]: hv_vm_atpic_port_read */
 
 // hv_vm_atpic_port_write is a Hypervisor function.
-
+//
+// Added in macOS .
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_port_write(_:_:)
 func hv_vm_atpic_port_write(port int, value uint8) Hv_return_t {
 	return _hv_vm_atpic_port_write(port, value)
-}
+}/* debug [functions.gen.go/function]: hv_vm_atpic_port_write */
 
 // hv_vm_atpic_put_state is a Hypervisor function.
 //
@@ -1212,7 +1548,7 @@ func hv_vm_atpic_port_write(port int, value uint8) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_atpic_put_state(_:_:)
 func hv_vm_atpic_put_state(state unsafe.Pointer, is_primary bool) Hv_return_t {
 	return _hv_vm_atpic_put_state(state, is_primary)
-}
+}/* debug [functions.gen.go/function]: hv_vm_atpic_put_state */
 
 // Creates a virtual machine configuration object.
 //
@@ -1223,7 +1559,7 @@ func hv_vm_atpic_put_state(state unsafe.Pointer, is_primary bool) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_create()
 func hv_vm_config_create() Hv_vm_config_t {
 	return _hv_vm_config_create()
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_create */
 
 // hv_vm_config_get_default_ipa_granule is a Hypervisor function.
 //
@@ -1232,7 +1568,7 @@ func hv_vm_config_create() Hv_vm_config_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_get_default_ipa_granule(_:)
 func hv_vm_config_get_default_ipa_granule(granule unsafe.Pointer) Hv_return_t {
 	return _hv_vm_config_get_default_ipa_granule(granule)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_get_default_ipa_granule */
 
 // hv_vm_config_get_default_ipa_size is a Hypervisor function.
 //
@@ -1241,7 +1577,7 @@ func hv_vm_config_get_default_ipa_granule(granule unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_get_default_ipa_size(_:)
 func hv_vm_config_get_default_ipa_size(ipa_bit_length []uint32) Hv_return_t {
 	return _hv_vm_config_get_default_ipa_size(ipa_bit_length)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_get_default_ipa_size */
 
 // Return a status value that indicates whether the VM configuration enables support for Exception Level 2 (EL2).
 //
@@ -1252,7 +1588,7 @@ func hv_vm_config_get_default_ipa_size(ipa_bit_length []uint32) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_get_el2_enabled(_:_:)
 func hv_vm_config_get_el2_enabled(config Hv_vm_config_t, el2_enabled unsafe.Pointer) Hv_return_t {
 	return _hv_vm_config_get_el2_enabled(config, el2_enabled)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_get_el2_enabled */
 
 // Returns a status value that indicates whether the current platform supports Exception Level 2 (EL2).
 //
@@ -1263,7 +1599,7 @@ func hv_vm_config_get_el2_enabled(config Hv_vm_config_t, el2_enabled unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_get_el2_supported(_:)
 func hv_vm_config_get_el2_supported(el2_supported unsafe.Pointer) Hv_return_t {
 	return _hv_vm_config_get_el2_supported(el2_supported)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_get_el2_supported */
 
 // hv_vm_config_get_ipa_granule is a Hypervisor function.
 //
@@ -1272,7 +1608,7 @@ func hv_vm_config_get_el2_supported(el2_supported unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_get_ipa_granule(_:_:)
 func hv_vm_config_get_ipa_granule(config Hv_vm_config_t, granule unsafe.Pointer) Hv_return_t {
 	return _hv_vm_config_get_ipa_granule(config, granule)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_get_ipa_granule */
 
 // hv_vm_config_get_ipa_size is a Hypervisor function.
 //
@@ -1281,7 +1617,7 @@ func hv_vm_config_get_ipa_granule(config Hv_vm_config_t, granule unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_get_ipa_size(_:_:)
 func hv_vm_config_get_ipa_size(config Hv_vm_config_t, ipa_bit_length []uint32) Hv_return_t {
 	return _hv_vm_config_get_ipa_size(config, ipa_bit_length)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_get_ipa_size */
 
 // hv_vm_config_get_max_ipa_size is a Hypervisor function.
 //
@@ -1290,7 +1626,7 @@ func hv_vm_config_get_ipa_size(config Hv_vm_config_t, ipa_bit_length []uint32) H
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_get_max_ipa_size(_:)
 func hv_vm_config_get_max_ipa_size(ipa_bit_length []uint32) Hv_return_t {
 	return _hv_vm_config_get_max_ipa_size(ipa_bit_length)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_get_max_ipa_size */
 
 // Sets whether the specified VM configuration enables support for Exception Level 2 (EL2).
 //
@@ -1301,7 +1637,7 @@ func hv_vm_config_get_max_ipa_size(ipa_bit_length []uint32) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_set_el2_enabled(_:_:)
 func hv_vm_config_set_el2_enabled(config Hv_vm_config_t, el2_enabled bool) Hv_return_t {
 	return _hv_vm_config_set_el2_enabled(config, el2_enabled)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_set_el2_enabled */
 
 // hv_vm_config_set_ipa_granule is a Hypervisor function.
 //
@@ -1310,7 +1646,7 @@ func hv_vm_config_set_el2_enabled(config Hv_vm_config_t, el2_enabled bool) Hv_re
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_set_ipa_granule(_:_:)
 func hv_vm_config_set_ipa_granule(config Hv_vm_config_t, granule unsafe.Pointer) Hv_return_t {
 	return _hv_vm_config_set_ipa_granule(config, granule)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_set_ipa_granule */
 
 // hv_vm_config_set_ipa_size is a Hypervisor function.
 //
@@ -1319,7 +1655,7 @@ func hv_vm_config_set_ipa_granule(config Hv_vm_config_t, granule unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_config_set_ipa_size(_:_:)
 func hv_vm_config_set_ipa_size(config Hv_vm_config_t, ipa_bit_length uint32) Hv_return_t {
 	return _hv_vm_config_set_ipa_size(config, ipa_bit_length)
-}
+}/* debug [functions.gen.go/function]: hv_vm_config_set_ipa_size */
 
 // Creates a VM instance for the current process.
 //
@@ -1330,16 +1666,16 @@ func hv_vm_config_set_ipa_size(config Hv_vm_config_t, ipa_bit_length uint32) Hv_
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_create(_:)
 func hv_vm_create(flags Hv_vm_options_t) Hv_return_t {
 	return _hv_vm_create(flags)
-}
+}/* debug [functions.gen.go/function]: hv_vm_create */
 
 // hv_vm_deallocate is a Hypervisor function.
 //
-// Added in macOS 12.1.
+// Added in macOS 12.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_deallocate(_:_:)
 func hv_vm_deallocate(uva unsafe.Pointer, size uintptr) Hv_return_t {
 	return _hv_vm_deallocate(uva, size)
-}
+}/* debug [functions.gen.go/function]: hv_vm_deallocate */
 
 // Destroys the VM instance associated with the current process.
 //
@@ -1350,7 +1686,7 @@ func hv_vm_deallocate(uva unsafe.Pointer, size uintptr) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_destroy()
 func hv_vm_destroy() Hv_return_t {
 	return _hv_vm_destroy()
-}
+}/* debug [functions.gen.go/function]: hv_vm_destroy */
 
 // Returns the maximum number of vCPUs that the hypervisor supports.
 //
@@ -1361,7 +1697,7 @@ func hv_vm_destroy() Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_get_max_vcpu_count(_:)
 func hv_vm_get_max_vcpu_count(max_vcpu_count []uint32) Hv_return_t {
 	return _hv_vm_get_max_vcpu_count(max_vcpu_count)
-}
+}/* debug [functions.gen.go/function]: hv_vm_get_max_vcpu_count */
 
 // hv_vm_ioapic_assert_irq is a Hypervisor function.
 //
@@ -1370,7 +1706,7 @@ func hv_vm_get_max_vcpu_count(max_vcpu_count []uint32) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_assert_irq(_:)
 func hv_vm_ioapic_assert_irq(intin int) Hv_return_t {
 	return _hv_vm_ioapic_assert_irq(intin)
-}
+}/* debug [functions.gen.go/function]: hv_vm_ioapic_assert_irq */
 
 // hv_vm_ioapic_deassert_irq is a Hypervisor function.
 //
@@ -1379,7 +1715,7 @@ func hv_vm_ioapic_assert_irq(intin int) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_deassert_irq(_:)
 func hv_vm_ioapic_deassert_irq(intin int) Hv_return_t {
 	return _hv_vm_ioapic_deassert_irq(intin)
-}
+}/* debug [functions.gen.go/function]: hv_vm_ioapic_deassert_irq */
 
 // hv_vm_ioapic_get_state is a Hypervisor function.
 //
@@ -1388,7 +1724,7 @@ func hv_vm_ioapic_deassert_irq(intin int) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_get_state(_:)
 func hv_vm_ioapic_get_state(state unsafe.Pointer) Hv_return_t {
 	return _hv_vm_ioapic_get_state(state)
-}
+}/* debug [functions.gen.go/function]: hv_vm_ioapic_get_state */
 
 // hv_vm_ioapic_pulse_irq is a Hypervisor function.
 //
@@ -1397,7 +1733,7 @@ func hv_vm_ioapic_get_state(state unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_pulse_irq(_:)
 func hv_vm_ioapic_pulse_irq(intin int) Hv_return_t {
 	return _hv_vm_ioapic_pulse_irq(intin)
-}
+}/* debug [functions.gen.go/function]: hv_vm_ioapic_pulse_irq */
 
 // hv_vm_ioapic_put_state is a Hypervisor function.
 //
@@ -1406,7 +1742,7 @@ func hv_vm_ioapic_pulse_irq(intin int) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_put_state(_:)
 func hv_vm_ioapic_put_state(state unsafe.Pointer) Hv_return_t {
 	return _hv_vm_ioapic_put_state(state)
-}
+}/* debug [functions.gen.go/function]: hv_vm_ioapic_put_state */
 
 // hv_vm_ioapic_read is a Hypervisor function.
 //
@@ -1415,7 +1751,7 @@ func hv_vm_ioapic_put_state(state unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_read(_:_:)
 func hv_vm_ioapic_read(gpa Hv_gpaddr_t, datap []uint32) Hv_return_t {
 	return _hv_vm_ioapic_read(gpa, datap)
-}
+}/* debug [functions.gen.go/function]: hv_vm_ioapic_read */
 
 // hv_vm_ioapic_write is a Hypervisor function.
 //
@@ -1424,7 +1760,7 @@ func hv_vm_ioapic_read(gpa Hv_gpaddr_t, datap []uint32) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_ioapic_write(_:_:)
 func hv_vm_ioapic_write(gpa Hv_gpaddr_t, data uint32) Hv_return_t {
 	return _hv_vm_ioapic_write(gpa, data)
-}
+}/* debug [functions.gen.go/function]: hv_vm_ioapic_write */
 
 // hv_vm_lapic_msi is a Hypervisor function.
 //
@@ -1433,7 +1769,7 @@ func hv_vm_ioapic_write(gpa Hv_gpaddr_t, data uint32) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_lapic_msi(_:_:)
 func hv_vm_lapic_msi(addr uint64, data uint64) Hv_return_t {
 	return _hv_vm_lapic_msi(addr, data)
-}
+}/* debug [functions.gen.go/function]: hv_vm_lapic_msi */
 
 // hv_vm_lapic_set_intr is a Hypervisor function.
 //
@@ -1442,7 +1778,7 @@ func hv_vm_lapic_msi(addr uint64, data uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_lapic_set_intr(_:_:_:)
 func hv_vm_lapic_set_intr(vcpu Hv_vcpuid_t, vector uint8, trig unsafe.Pointer) Hv_return_t {
 	return _hv_vm_lapic_set_intr(vcpu, vector, trig)
-}
+}/* debug [functions.gen.go/function]: hv_vm_lapic_set_intr */
 
 // Maps a region in the virtual address space of the current process into the guest physical address space of the VM.
 //
@@ -1453,7 +1789,7 @@ func hv_vm_lapic_set_intr(vcpu Hv_vcpuid_t, vector uint8, trig unsafe.Pointer) H
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_map(_:_:_:_:)
 func hv_vm_map(uva Hv_uvaddr_t, gpa Hv_gpaddr_t, size uintptr, flags Hv_memory_flags_t) Hv_return_t {
 	return _hv_vm_map(uva, gpa, size, flags)
-}
+}/* debug [functions.gen.go/function]: hv_vm_map */
 
 // Maps a region in the virtual address space of the current task into a guest physical address space of the VM.
 //
@@ -1464,18 +1800,18 @@ func hv_vm_map(uva Hv_uvaddr_t, gpa Hv_gpaddr_t, size uintptr, flags Hv_memory_f
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_map_space(_:_:_:_:_:)
 func hv_vm_map_space(asid Hv_vm_space_t, uva Hv_uvaddr_t, gpa Hv_gpaddr_t, size uintptr, flags Hv_memory_flags_t) Hv_return_t {
 	return _hv_vm_map_space(asid, uva, gpa, size, flags)
-}
+}/* debug [functions.gen.go/function]: hv_vm_map_space */
 
 // Modifies the permissions of a region in the guest physical address space of the VM.
 //
-// Added in macOS 11.0.
+// Added in macOS 10.10.
 // Modifies the permissions of a region in the guest physical address space of the VM.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_protect(_:_:_:)
-func hv_vm_protect(ipa Hv_ipa_t, size uintptr, flags Hv_memory_flags_t) Hv_return_t {
-	return _hv_vm_protect(ipa, size, flags)
-}
+func hv_vm_protect(gpa Hv_gpaddr_t, size uintptr, flags Hv_memory_flags_t) Hv_return_t {
+	return _hv_vm_protect(gpa, size, flags)
+}/* debug [functions.gen.go/function]: hv_vm_protect */
 
 // Modifies the permissions of a region in a guest physical address space of the VM.
 //
@@ -1486,7 +1822,7 @@ func hv_vm_protect(ipa Hv_ipa_t, size uintptr, flags Hv_memory_flags_t) Hv_retur
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_protect_space(_:_:_:_:)
 func hv_vm_protect_space(asid Hv_vm_space_t, gpa Hv_gpaddr_t, size uintptr, flags Hv_memory_flags_t) Hv_return_t {
 	return _hv_vm_protect_space(asid, gpa, size, flags)
-}
+}/* debug [functions.gen.go/function]: hv_vm_protect_space */
 
 // Removes an existing I/O notifier that matches the specifications you provide.
 //
@@ -1497,7 +1833,7 @@ func hv_vm_protect_space(asid Hv_vm_space_t, gpa Hv_gpaddr_t, size uintptr, flag
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_remove_pio_notifier(_:_:_:_:_:)
 func hv_vm_remove_pio_notifier(addr uint16, size uintptr, value uint32, mach_port unsafe.Pointer, flags Hv_ion_flags_t) Hv_return_t {
 	return _hv_vm_remove_pio_notifier(addr, size, value, mach_port, flags)
-}
+}/* debug [functions.gen.go/function]: hv_vm_remove_pio_notifier */
 
 // hv_vm_send_ioapic_intr is a Hypervisor function.
 //
@@ -1506,7 +1842,7 @@ func hv_vm_remove_pio_notifier(addr uint16, size uintptr, value uint32, mach_por
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_send_ioapic_intr(_:)
 func hv_vm_send_ioapic_intr(data uint64) Hv_return_t {
 	return _hv_vm_send_ioapic_intr(data)
-}
+}/* debug [functions.gen.go/function]: hv_vm_send_ioapic_intr */
 
 // hv_vm_set_apic_bus_freq is a Hypervisor function.
 //
@@ -1515,7 +1851,7 @@ func hv_vm_send_ioapic_intr(data uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_set_apic_bus_freq(_:)
 func hv_vm_set_apic_bus_freq(freq uint64) Hv_return_t {
 	return _hv_vm_set_apic_bus_freq(freq)
-}
+}/* debug [functions.gen.go/function]: hv_vm_set_apic_bus_freq */
 
 // Creates an additional guest address space for the current task.
 //
@@ -1526,7 +1862,7 @@ func hv_vm_set_apic_bus_freq(freq uint64) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_space_create(_:)
 func hv_vm_space_create(asid unsafe.Pointer) Hv_return_t {
 	return _hv_vm_space_create(asid)
-}
+}/* debug [functions.gen.go/function]: hv_vm_space_create */
 
 // Destroys the address space instance associated with the current task.
 //
@@ -1537,7 +1873,18 @@ func hv_vm_space_create(asid unsafe.Pointer) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_space_destroy(_:)
 func hv_vm_space_destroy(asid Hv_vm_space_t) Hv_return_t {
 	return _hv_vm_space_destroy(asid)
-}
+}/* debug [functions.gen.go/function]: hv_vm_space_destroy */
+
+// Synchronizes guest timestamp counters (TSC) across all vCPUs.
+//
+// Added in macOS 10.10.
+// Synchronizes guest timestamp counters (TSC) across all vCPUs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_sync_tsc(_:)
+func hv_vm_sync_tsc(tsc uint64) Hv_return_t {
+	return _hv_vm_sync_tsc(tsc)
+}/* debug [functions.gen.go/function]: hv_vm_sync_tsc */
 
 // Unmaps a region in the guest physical address space of the VM.
 //
@@ -1548,7 +1895,7 @@ func hv_vm_space_destroy(asid Hv_vm_space_t) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_unmap(_:_:)
 func hv_vm_unmap(gpa Hv_gpaddr_t, size uintptr) Hv_return_t {
 	return _hv_vm_unmap(gpa, size)
-}
+}/* debug [functions.gen.go/function]: hv_vm_unmap */
 
 // Umaps a region in a guest physical address space of the VM.
 //
@@ -1559,7 +1906,73 @@ func hv_vm_unmap(gpa Hv_gpaddr_t, size uintptr) Hv_return_t {
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_unmap_space(_:_:_:)
 func hv_vm_unmap_space(asid Hv_vm_space_t, gpa Hv_gpaddr_t, size uintptr) Hv_return_t {
 	return _hv_vm_unmap_space(asid, gpa, size)
-}
+}/* debug [functions.gen.go/function]: hv_vm_unmap_space */
+
+// Returns information about guest MSR configuration.
+//
+// Added in macOS 11.0.
+// Returns information about guest MSR configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_get_msr_info(_:_:)
+func hv_vmx_get_msr_info(field Hv_vmx_msr_info_t, value []uint64) Hv_return_t {
+	return _hv_vmx_get_msr_info(field, value)
+}/* debug [functions.gen.go/function]: hv_vmx_get_msr_info */
+
+// Returns, by reference, the VMX virtualization capabilities of the host processor.
+//
+// Added in macOS 10.10.
+// Returns, by reference, the VMX virtualization capabilities of the host processor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_read_capability(_:_:)
+func hv_vmx_read_capability(field unsafe.Pointer, value []uint64) Hv_return_t {
+	return _hv_vmx_read_capability(field, value)
+}/* debug [functions.gen.go/function]: hv_vmx_read_capability */
+
+// Returns the allowed_0 and allowed_1 masks for a VMCS field of a vCPU.
+//
+// Added in macOS 11.0.
+// Returns the allowed_0 and allowed_1 masks for a VMCS field of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_vcpu_get_cap_write_vmcs(_:_:_:_:)
+func hv_vmx_vcpu_get_cap_write_vmcs(vcpu Hv_vcpuid_t, field uint32, allowed_0 []uint64, allowed_1 []uint64) Hv_return_t {
+	return _hv_vmx_vcpu_get_cap_write_vmcs(vcpu, field, allowed_0, allowed_1)
+}/* debug [functions.gen.go/function]: hv_vmx_vcpu_get_cap_write_vmcs */
+
+// Returns the current value of a shadow VMCS field of a vCPU.
+//
+// Added in macOS 10.15.
+// Returns the current value of a shadow VMCS field of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_vcpu_read_shadow_vmcs(_:_:_:)
+func hv_vmx_vcpu_read_shadow_vmcs(vcpu Hv_vcpuid_t, field uint32, value []uint64) Hv_return_t {
+	return _hv_vmx_vcpu_read_shadow_vmcs(vcpu, field, value)
+}/* debug [functions.gen.go/function]: hv_vmx_vcpu_read_shadow_vmcs */
+
+// Returns, by reference, the current value of a virtual machine control structure (VMCS) field of a vCPU.
+//
+// Added in macOS 10.10.
+// Returns, by reference, the current value of a virtual machine control structure (VMCS) field of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_vcpu_read_vmcs(_:_:_:)
+func hv_vmx_vcpu_read_vmcs(vcpu Hv_vcpuid_t, field uint32, value []uint64) Hv_return_t {
+	return _hv_vmx_vcpu_read_vmcs(vcpu, field, value)
+}/* debug [functions.gen.go/function]: hv_vmx_vcpu_read_vmcs */
+
+// Sets the address of the guest Advanced Programmable Interrupt Controller (APIC) for a vCPU in the guest physical address space of the VM.
+//
+// Added in macOS 10.10.
+// Sets the address of the guest Advanced Programmable Interrupt Controller (APIC) for a vCPU in the guest physical address space of the VM.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_vcpu_set_apic_address(_:_:)
+func hv_vmx_vcpu_set_apic_address(vcpu Hv_vcpuid_t, gpa Hv_gpaddr_t) Hv_return_t {
+	return _hv_vmx_vcpu_set_apic_address(vcpu, gpa)
+}/* debug [functions.gen.go/function]: hv_vmx_vcpu_set_apic_address */
 
 // hv_vmx_vcpu_set_apic_address_space is a Hypervisor function.
 //
@@ -1568,7 +1981,41 @@ func hv_vm_unmap_space(asid Hv_vm_space_t, gpa Hv_gpaddr_t, size uintptr) Hv_ret
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_vcpu_set_apic_address_space(_:_:_:)
 func hv_vmx_vcpu_set_apic_address_space(vcpu Hv_vcpuid_t, asid Hv_vm_space_t, gpa Hv_gpaddr_t) Hv_return_t {
 	return _hv_vmx_vcpu_set_apic_address_space(vcpu, asid, gpa)
-}
+}/* debug [functions.gen.go/function]: hv_vmx_vcpu_set_apic_address_space */
+
+// Set the access permissions of a shadow VMCS field of a vCPU.
+//
+// Added in macOS 10.15.
+// Set the access permissions of a shadow VMCS field of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_vcpu_set_shadow_access(_:_:_:)
+func hv_vmx_vcpu_set_shadow_access(vcpu Hv_vcpuid_t, field uint32, flags Hv_shadow_flags_t) Hv_return_t {
+	return _hv_vmx_vcpu_set_shadow_access(vcpu, field, flags)
+}/* debug [functions.gen.go/function]: hv_vmx_vcpu_set_shadow_access */
+
+// Set the value of a shadow VMCS field of a vCPU.
+//
+// Added in macOS 10.15.
+// Set the value of a shadow VMCS field of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_vcpu_write_shadow_vmcs(_:_:_:)
+func hv_vmx_vcpu_write_shadow_vmcs(vcpu Hv_vcpuid_t, field uint32, value uint64) Hv_return_t {
+	return _hv_vmx_vcpu_write_shadow_vmcs(vcpu, field, value)
+}/* debug [functions.gen.go/function]: hv_vmx_vcpu_write_shadow_vmcs */
+
+// Sets the value of a virtual machine control structure (VMCS) field of a vCPU.
+//
+// Added in macOS 10.10.
+// Sets the value of a virtual machine control structure (VMCS) field of a vCPU.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_vcpu_write_vmcs(_:_:_:)
+func hv_vmx_vcpu_write_vmcs(vcpu Hv_vcpuid_t, field uint32, value uint64) Hv_return_t {
+	return _hv_vmx_vcpu_write_vmcs(vcpu, field, value)
+}/* debug [functions.gen.go/function]: hv_vmx_vcpu_write_vmcs */
+
 
 
 

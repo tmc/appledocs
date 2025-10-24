@@ -3,8 +3,7 @@
 package appkit
 
 import (
-
-	"github.com/tmc/appledocs/generated/objc"
+	"unsafe"
 )
 
 // PDraggingDestination is the NSDraggingDestination protocol interface.
@@ -17,21 +16,21 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSDraggingDestination
 type PDraggingDestination interface {
 	// Optional methods
-	ConcludeDragOperation(sender objc.IObject)
+	ConcludeDragOperation(sender unsafe.Pointer)
 	HasConcludeDragOperation() bool
-	DraggingEnded(sender objc.IObject)
+	DraggingEnded(sender unsafe.Pointer)
 	HasDraggingEnded() bool
-	DraggingEntered(sender objc.IObject) DragOperation
+	DraggingEntered(sender unsafe.Pointer) DragOperation
 	HasDraggingEntered() bool
-	DraggingExited(sender objc.IObject)
+	DraggingExited(sender unsafe.Pointer)
 	HasDraggingExited() bool
-	DraggingUpdated(sender objc.IObject) DragOperation
+	DraggingUpdated(sender unsafe.Pointer) DragOperation
 	HasDraggingUpdated() bool
-	PerformDragOperation(sender objc.IObject) bool
+	PerformDragOperation(sender unsafe.Pointer) bool
 	HasPerformDragOperation() bool
-	PrepareForDragOperation(sender objc.IObject) bool
+	PrepareForDragOperation(sender unsafe.Pointer) bool
 	HasPrepareForDragOperation() bool
-	UpdateDraggingItemsForDrag(sender objc.IObject)
+	UpdateDraggingItemsForDrag(sender unsafe.Pointer)
 	HasUpdateDraggingItemsForDrag() bool
 	WantsPeriodicDraggingUpdates() bool
 	HasWantsPeriodicDraggingUpdates() bool

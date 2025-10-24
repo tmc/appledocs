@@ -38,7 +38,6 @@ type IBatchUpdateResult interface {
 
 // The result returned when executing a batch update request.
 
-
 // The result returned when executing a batch update request.
 //
 // [Full Topic]
@@ -87,8 +86,6 @@ func NewBatchUpdateResult() BatchUpdateResult {
 	return getBatchUpdateResultClass().New()
 }
 
-
-
 // The type of result that Core Data returns from the request.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (b_ BatchUpdateResult) ResultType() BatchUpdateRequestResultType /* not a c
 	rv := objc.Send[BatchUpdateRequestResultType](b_.ID, objc.Sel("resultType"))
 	return rv
 }
-
 
 // The result of a batch-update request, either the number of updated objects, the identifiers of the updated objects, or a status value.
 //
@@ -108,7 +104,6 @@ func (b_ BatchUpdateResult) Result() unsafe.Pointer {
 	return rv
 }
 
-
 // The result of a batch-update request, either the number of updated objects, the identifiers of the updated objects, or a status value.
 //
 // [Full Topic]
@@ -116,6 +111,3 @@ func (b_ BatchUpdateResult) Result() unsafe.Pointer {
 func (b_ BatchUpdateResult) SetResult(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResult:"), value)
 }
-
-
-

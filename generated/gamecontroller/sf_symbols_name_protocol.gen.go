@@ -20,3 +20,4 @@ var sfSymbolsNameProtocol *objc.Protocol
 func init() {
 	sfSymbolsNameProtocol = objc.GetProtocol("sfSymbolsName")
 }
+

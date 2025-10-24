@@ -15,3 +15,4 @@ var outlineViewColumnDidMoveProtocol *objc.Protocol
 func init() {
 	outlineViewColumnDidMoveProtocol = objc.GetProtocol("outlineViewColumnDidMove:")
 }
+

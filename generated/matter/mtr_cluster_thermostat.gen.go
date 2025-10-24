@@ -33,8 +33,6 @@ type IMTRClusterThermostat interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterThermostat
 type MTRClusterThermostat struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterThermostat) Autorelease() MTRClusterThermostat {
 func NewMTRClusterThermostat() MTRClusterThermostat {
 	return getMTRClusterThermostatClass().New()
 }
-
-
-
-

@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class AVDelegatingPlaybackCoordinatorSeekCommand */
+
+
+/* debug [class_header]: Header for AVDelegatingPlaybackCoordinatorSeekCommand */
 // The class instance for the [DelegatingPlaybackCoordinatorSeekCommand] class.
 var (
 	DelegatingPlaybackCoordinatorSeekCommandClass     _DelegatingPlaybackCoordinatorSeekCommandClass
@@ -26,40 +29,34 @@ func getDelegatingPlaybackCoordinatorSeekCommandClass() _DelegatingPlaybackCoord
 type _DelegatingPlaybackCoordinatorSeekCommandClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DelegatingPlaybackCoordinatorSeekCommand */
 // An interface definition for the [DelegatingPlaybackCoordinatorSeekCommand] class.
 type IDelegatingPlaybackCoordinatorSeekCommand interface {
 	IDelegatingPlaybackCoordinatorPlaybackControlCommand
+	
+/* debug [class_interface_properties]: Properties for DelegatingPlaybackCoordinatorSeekCommand */
+	// properties:
 	AnticipatedPlaybackRate() float32
-	SetAnticipatedPlaybackRate(value float32)
-	CompletionDueDate() foundation.Date
-	SetCompletionDueDate(value foundation.IDate)
-	ItemTime() unsafe.Pointer
-	SetItemTime(value unsafe.Pointer)
+	CompletionDueDate() objc.IObject /* cross-framework: NSDate */
+	ItemTime() objc.IObject /* cross-framework: Time */
 	ShouldBufferInAnticipationOfPlayback() bool
-	SetShouldBufferInAnticipationOfPlayback(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DelegatingPlaybackCoordinatorSeekCommand */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A command that indicates to seek to a new time in the item timeline.
 
 
-// A command that indicates to seek to a new time in the item timeline.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand
-type DelegatingPlaybackCoordinatorSeekCommand struct {
-	DelegatingPlaybackCoordinatorPlaybackControlCommand
-}
-
-// DelegatingPlaybackCoordinatorSeekCommandFrom constructs a [DelegatingPlaybackCoordinatorSeekCommand] from an unsafe.Pointer.
-//
-// A command that indicates to seek to a new time in the item timeline.
-func DelegatingPlaybackCoordinatorSeekCommandFrom(ptr unsafe.Pointer) DelegatingPlaybackCoordinatorSeekCommand {
-	return DelegatingPlaybackCoordinatorSeekCommand{
-		DelegatingPlaybackCoordinatorPlaybackControlCommand: DelegatingPlaybackCoordinatorPlaybackControlCommandFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for DelegatingPlaybackCoordinatorSeekCommand */
 // Alloc allocates a new instance without initialization.
 func (dc _DelegatingPlaybackCoordinatorSeekCommandClass) Alloc() DelegatingPlaybackCoordinatorSeekCommand {
 	rv := objc.Send[DelegatingPlaybackCoordinatorSeekCommand](objc.ID(dc.class), objc.Sel("alloc"))
@@ -67,7 +64,6 @@ func (dc _DelegatingPlaybackCoordinatorSeekCommandClass) Alloc() DelegatingPlayb
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DelegatingPlaybackCoordinatorSeekCommandClass) New() DelegatingPlaybackCoordinatorSeekCommand {
 	rv := objc.Send[DelegatingPlaybackCoordinatorSeekCommand](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,83 +86,98 @@ func (d_ DelegatingPlaybackCoordinatorSeekCommand) Autorelease() DelegatingPlayb
 func NewDelegatingPlaybackCoordinatorSeekCommand() DelegatingPlaybackCoordinatorSeekCommand {
 	return getDelegatingPlaybackCoordinatorSeekCommandClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for DelegatingPlaybackCoordinatorSeekCommand */
+// A command that indicates to seek to a new time in the item timeline.
+
+
+// A command that indicates to seek to a new time in the item timeline.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand
+type DelegatingPlaybackCoordinatorSeekCommand struct {
+	DelegatingPlaybackCoordinatorPlaybackControlCommand
+}
+
+// DelegatingPlaybackCoordinatorSeekCommandFrom constructs a [DelegatingPlaybackCoordinatorSeekCommand] from an unsafe.Pointer.
+//
+// A command that indicates to seek to a new time in the item timeline.
+func DelegatingPlaybackCoordinatorSeekCommandFrom(ptr unsafe.Pointer) DelegatingPlaybackCoordinatorSeekCommand {
+	return DelegatingPlaybackCoordinatorSeekCommand{
+		DelegatingPlaybackCoordinatorPlaybackControlCommand: DelegatingPlaybackCoordinatorPlaybackControlCommandFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DelegatingPlaybackCoordinatorSeekCommand *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for DelegatingPlaybackCoordinatorSeekCommand */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DelegatingPlaybackCoordinatorSeekCommand */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DelegatingPlaybackCoordinatorSeekCommand */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DelegatingPlaybackCoordinatorSeekCommand */
 
 // The rate at which the coordinator expects playback to resume.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/anticipatedplaybackrate
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand/anticipatedPlaybackRate
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) AnticipatedPlaybackRate() float32 {
 	rv := objc.Send[float32](d_.ID, objc.Sel("anticipatedPlaybackRate"))
 	return rv
-}
-
-
-// The rate at which the coordinator expects playback to resume.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/anticipatedplaybackrate
-func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetAnticipatedPlaybackRate(value float32) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setAnticipatedPlaybackRate:"), value)
-}
+}/* debug [instance_properties/getter]: anticipatedPlaybackRate */
 
 
 // The deadline by which the coordinator expects the delegate to handle the command.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/completionduedate
-func (d_ DelegatingPlaybackCoordinatorSeekCommand) CompletionDueDate() foundation.Date {
-	rv := objc.Send[foundation.Date](d_.ID, objc.Sel("completionDueDate"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand/completionDueDate
+func (d_ DelegatingPlaybackCoordinatorSeekCommand) CompletionDueDate() objc.IObject /* cross-framework: NSDate */ {
+	rv := objc.Send[foundation.NSDate](d_.ID, objc.Sel("completionDueDate"))
 	return rv
-}
-
-
-// The deadline by which the coordinator expects the delegate to handle the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/completionduedate
-func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetCompletionDueDate(value foundation.IDate) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setCompletionDueDate:"), value)
-}
+}/* debug [instance_properties/getter]: completionDueDate */
 
 
 // The time to seek to in the item timeline.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/itemtime
-func (d_ DelegatingPlaybackCoordinatorSeekCommand) ItemTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("itemTime"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand/itemTime
+func (d_ DelegatingPlaybackCoordinatorSeekCommand) ItemTime() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](d_.ID, objc.Sel("itemTime"))
 	return rv
-}
-
-
-// The time to seek to in the item timeline.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/itemtime
-func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetItemTime(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setItemTime:"), value)
-}
+}/* debug [instance_properties/getter]: itemTime */
 
 
 // A Boolean value that indicates whether the player starts buffering in anticipation of a request to begin playback.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/shouldbufferinanticipationofplayback
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVDelegatingPlaybackCoordinatorSeekCommand/shouldBufferInAnticipationOfPlayback
 func (d_ DelegatingPlaybackCoordinatorSeekCommand) ShouldBufferInAnticipationOfPlayback() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("shouldBufferInAnticipationOfPlayback"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shouldBufferInAnticipationOfPlayback */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// A Boolean value that indicates whether the player starts buffering in anticipation of a request to begin playback.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avdelegatingplaybackcoordinatorseekcommand/shouldbufferinanticipationofplayback
-func (d_ DelegatingPlaybackCoordinatorSeekCommand) SetShouldBufferInAnticipationOfPlayback(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setShouldBufferInAnticipationOfPlayback:"), value)
-}
+/* debug [class.gen.go]: End class AVDelegatingPlaybackCoordinatorSeekCommand */
 
 
 

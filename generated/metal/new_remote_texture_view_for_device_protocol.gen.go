@@ -15,3 +15,4 @@ var newRemoteTextureViewForDeviceProtocol *objc.Protocol
 func init() {
 	newRemoteTextureViewForDeviceProtocol = objc.GetProtocol("newRemoteTextureViewForDevice:")
 }
+

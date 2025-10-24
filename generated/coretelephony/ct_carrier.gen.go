@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CTCarrier */
+
+
+/* debug [class_header]: Header for CTCarrier */
 // The class instance for the [Carrier] class.
 var (
 	CarrierClass     _CarrierClass
@@ -27,36 +31,30 @@ func getCarrierClass() _CarrierClass {
 type _CarrierClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Carrier */
 // An interface definition for the [Carrier] class.
 type ICarrier interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Carrier */
 	// properties:
-	AllowsVOIP() bool
-	SetAllowsVOIP(value bool)
-	IsoCountryCode() objc.IObject /* cross-framework: NSString */
-	SetIsoCountryCode(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Carrier */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
 
 
-// Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier
-type Carrier struct {
-	objectivec.Object
-}
-
-// CarrierFrom constructs a [Carrier] from an unsafe.Pointer.
-//
-// Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
-func CarrierFrom(ptr unsafe.Pointer) Carrier {
-	return Carrier{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Carrier */
 // Alloc allocates a new instance without initialization.
 func (cc _CarrierClass) Alloc() Carrier {
 	rv := objc.Send[Carrier](objc.ID(cc.class), objc.Sel("alloc"))
@@ -64,7 +62,6 @@ func (cc _CarrierClass) Alloc() Carrier {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CarrierClass) New() Carrier {
 	rv := objc.Send[Carrier](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,44 +84,55 @@ func (c_ Carrier) Autorelease() Carrier {
 func NewCarrier() Carrier {
 	return getCarrierClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// Indicates if the carrier allows making VoIP calls on its network.
+/* debug [class_struct]: Struct for Carrier */
+// Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
+
+
+// Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/allowsvoip
-func (c_ Carrier) AllowsVOIP() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("allowsVOIP"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCarrier
+type Carrier struct {
+	objectivec.Object
 }
 
-
-// Indicates if the carrier allows making VoIP calls on its network.
+// CarrierFrom constructs a [Carrier] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/allowsvoip
-func (c_ Carrier) SetAllowsVOIP(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAllowsVOIP:"), value)
+// Information about the user’s cellular service provider, such as its unique identifier and whether it allows VoIP calls on its network.
+func CarrierFrom(ptr unsafe.Pointer) Carrier {
+	return Carrier{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The ISO country code for the user’s cellular service provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/isocountrycode
-func (c_ Carrier) IsoCountryCode() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("isoCountryCode"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for Carrier *//* debug [class_init_methods]: End init methods */
 
 
-// The ISO country code for the user’s cellular service provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcarrier/isocountrycode
-func (c_ Carrier) SetIsoCountryCode(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsoCountryCode:"), value)
-}
+
+/* debug [class_methods]: Class methods for Carrier */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Carrier */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Carrier */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Carrier */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CTCarrier */
 
 

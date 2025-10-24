@@ -20,3 +20,4 @@ var setObjectTexturesProtocol *objc.Protocol
 func init() {
 	setObjectTexturesProtocol = objc.GetProtocol("setObjectTextures:")
 }
+

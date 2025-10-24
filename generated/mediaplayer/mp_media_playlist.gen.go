@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MPMediaPlaylist */
+
+
+/* debug [class_header]: Header for MPMediaPlaylist */
 // The class instance for the [MediaPlaylist] class.
 var (
 	MediaPlaylistClass     _MediaPlaylistClass
@@ -26,36 +30,30 @@ func getMediaPlaylistClass() _MediaPlaylistClass {
 type _MediaPlaylistClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MediaPlaylist */
 // An interface definition for the [MediaPlaylist] class.
 type IMediaPlaylist interface {
 	IMediaItemCollection
+	
+/* debug [class_interface_properties]: Properties for MediaPlaylist */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MediaPlaylist */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A playable collection of related media items.
-//
-// Each playlist has a name, a set of attributes, and a unique identifier that persists across application launches. Users configure playlists using iTunes or by creating a playlist on the device. Playlists are read-only to your iOS app. To obtain playlists, configure a media query that’s grouped by playlist. Each returned media item collection is a media playlist. The following code snippet illustrates this by logging playlist and song names to the Xcode debugger console: and describe the API for building a media query. describes the methods for querying media playlist property values.
+/* debug [class_interface]: End interface */
 
 
-// A playable collection of related media items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist
-type MediaPlaylist struct {
-	MediaItemCollection
-}
 
-// MediaPlaylistFrom constructs a [MediaPlaylist] from an unsafe.Pointer.
-//
-// A playable collection of related media items.
-func MediaPlaylistFrom(ptr unsafe.Pointer) MediaPlaylist {
-	return MediaPlaylist{
-		MediaItemCollection: MediaItemCollectionFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MediaPlaylist */
 // Alloc allocates a new instance without initialization.
 func (mc _MediaPlaylistClass) Alloc() MediaPlaylist {
 	rv := objc.Send[MediaPlaylist](objc.ID(mc.class), objc.Sel("alloc"))
@@ -63,7 +61,6 @@ func (mc _MediaPlaylistClass) Alloc() MediaPlaylist {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MediaPlaylistClass) New() MediaPlaylist {
 	rv := objc.Send[MediaPlaylist](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,6 +83,59 @@ func (m_ MediaPlaylist) Autorelease() MediaPlaylist {
 func NewMediaPlaylist() MediaPlaylist {
 	return getMediaPlaylistClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MediaPlaylist */
+// A playable collection of related media items.
+//
+// Each playlist has a name, a set of attributes, and a unique identifier that persists across application launches. Users configure playlists using iTunes or by creating a playlist on the device. Playlists are read-only to your iOS app. To obtain playlists, configure a media query that’s grouped by playlist. Each returned media item collection is a media playlist. The following code snippet illustrates this by logging playlist and song names to the Xcode debugger console: and describe the API for building a media query. describes the methods for querying media playlist property values.
+
+
+// A playable collection of related media items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPlaylist
+type MediaPlaylist struct {
+	MediaItemCollection
+}
+
+// MediaPlaylistFrom constructs a [MediaPlaylist] from an unsafe.Pointer.
+//
+// A playable collection of related media items.
+func MediaPlaylistFrom(ptr unsafe.Pointer) MediaPlaylist {
+	return MediaPlaylist{
+		MediaItemCollection: MediaItemCollectionFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MediaPlaylist *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MediaPlaylist */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MediaPlaylist */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MediaPlaylist */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MediaPlaylist */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPMediaPlaylist */
 
 

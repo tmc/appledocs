@@ -16,3 +16,4 @@ var SubscriberDelegateProtocol *objc.Protocol
 func init() {
 	SubscriberDelegateProtocol = objc.GetProtocol("CTSubscriberDelegate")
 }
+

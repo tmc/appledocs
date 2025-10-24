@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GCVirtualControllerElementConfiguration */
+
+
+/* debug [class_header]: Header for GCVirtualControllerElementConfiguration */
 // The class instance for the [GCVirtualControllerElementConfiguration] class.
 var (
 	GCVirtualControllerElementConfigurationClass     _GCVirtualControllerElementConfigurationClass
@@ -27,36 +31,32 @@ func getGCVirtualControllerElementConfigurationClass() _GCVirtualControllerEleme
 type _GCVirtualControllerElementConfigurationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GCVirtualControllerElementConfiguration */
 // An interface definition for the [GCVirtualControllerElementConfiguration] class.
 type IGCVirtualControllerElementConfiguration interface {
 	objectivec.IObject
-	ActsAsTouchpad() bool
-	SetActsAsTouchpad(value bool)
+	
+/* debug [class_interface_properties]: Properties for GCVirtualControllerElementConfiguration */
+	// properties:
 	IsHidden() bool
 	SetIsHidden(value bool)
-	Path() appkit.BezierPath
-	SetPath(value appkit.IBezierPath)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GCVirtualControllerElementConfiguration */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// The properties of a virtual controller’s element that you can customize.
 
 
-// The properties of a virtual controller’s element that you can customize.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/ElementConfiguration
-type GCVirtualControllerElementConfiguration struct {
-	objectivec.Object
-}
-
-// GCVirtualControllerElementConfigurationFrom constructs a [GCVirtualControllerElementConfiguration] from an unsafe.Pointer.
-//
-// The properties of a virtual controller’s element that you can customize.
-func GCVirtualControllerElementConfigurationFrom(ptr unsafe.Pointer) GCVirtualControllerElementConfiguration {
-	return GCVirtualControllerElementConfiguration{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GCVirtualControllerElementConfiguration */
 // Alloc allocates a new instance without initialization.
 func (gc _GCVirtualControllerElementConfigurationClass) Alloc() GCVirtualControllerElementConfiguration {
 	rv := objc.Send[GCVirtualControllerElementConfiguration](objc.ID(gc.class), objc.Sel("alloc"))
@@ -64,7 +64,6 @@ func (gc _GCVirtualControllerElementConfigurationClass) Alloc() GCVirtualControl
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GCVirtualControllerElementConfigurationClass) New() GCVirtualControllerElementConfiguration {
 	rv := objc.Send[GCVirtualControllerElementConfiguration](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,27 +86,52 @@ func (g_ GCVirtualControllerElementConfiguration) Autorelease() GCVirtualControl
 func NewGCVirtualControllerElementConfiguration() GCVirtualControllerElementConfiguration {
 	return getGCVirtualControllerElementConfigurationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A Boolean value that determines whether the thumbstick element behaves as a touchpad.
+/* debug [class_struct]: Struct for GCVirtualControllerElementConfiguration */
+// The properties of a virtual controller’s element that you can customize.
+
+
+// The properties of a virtual controller’s element that you can customize.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/actsastouchpad
-func (g_ GCVirtualControllerElementConfiguration) ActsAsTouchpad() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("actsAsTouchpad"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/ElementConfiguration
+type GCVirtualControllerElementConfiguration struct {
+	objectivec.Object
 }
 
-
-// A Boolean value that determines whether the thumbstick element behaves as a touchpad.
+// GCVirtualControllerElementConfigurationFrom constructs a [GCVirtualControllerElementConfiguration] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/actsastouchpad
-func (g_ GCVirtualControllerElementConfiguration) SetActsAsTouchpad(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setActsAsTouchpad:"), value)
+// The properties of a virtual controller’s element that you can customize.
+func GCVirtualControllerElementConfigurationFrom(ptr unsafe.Pointer) GCVirtualControllerElementConfiguration {
+	return GCVirtualControllerElementConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
+
+
+/* debug [class_init_methods]: Init methods for GCVirtualControllerElementConfiguration *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GCVirtualControllerElementConfiguration */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GCVirtualControllerElementConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GCVirtualControllerElementConfiguration */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GCVirtualControllerElementConfiguration */
 
 // A Boolean value that determines whether the virtual controller hides the element.
 //
@@ -116,7 +140,7 @@ func (g_ GCVirtualControllerElementConfiguration) SetActsAsTouchpad(value bool) 
 func (g_ GCVirtualControllerElementConfiguration) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isHidden */
 
 
 // A Boolean value that determines whether the virtual controller hides the element.
@@ -125,27 +149,11 @@ func (g_ GCVirtualControllerElementConfiguration) IsHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/ishidden
 func (g_ GCVirtualControllerElementConfiguration) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
-}
+}/* debug [instance_properties/setter]: isHidden */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The Bezier path for the shape of an element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
-func (g_ GCVirtualControllerElementConfiguration) Path() appkit.BezierPath {
-	rv := objc.Send[appkit.BezierPath](g_.ID, objc.Sel("path"))
-	return rv
-}
-
-
-// The Bezier path for the shape of an element.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/elementconfiguration/path
-func (g_ GCVirtualControllerElementConfiguration) SetPath(value appkit.IBezierPath) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setPath:"), value)
-}
-
-
+/* debug [class.gen.go]: End class GCVirtualControllerElementConfiguration */
 
 

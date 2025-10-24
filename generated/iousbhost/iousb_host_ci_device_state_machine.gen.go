@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class IOUSBHostCIDeviceStateMachine */
+
+
+/* debug [class_header]: Header for IOUSBHostCIDeviceStateMachine */
 // The class instance for the [USBHostCIDeviceStateMachine] class.
 var (
 	USBHostCIDeviceStateMachineClass     _USBHostCIDeviceStateMachineClass
@@ -26,34 +30,37 @@ func getUSBHostCIDeviceStateMachineClass() _USBHostCIDeviceStateMachineClass {
 type _USBHostCIDeviceStateMachineClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for USBHostCIDeviceStateMachine */
 // An interface definition for the [USBHostCIDeviceStateMachine] class.
 type IUSBHostCIDeviceStateMachine interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for USBHostCIDeviceStateMachine */
 	// properties:
+	CompleteRoute() uint
 	ControllerInterface() IOUSBHostControllerInterface
-	CompleteRoute() int
-	SetCompleteRoute(value int)
-	DeviceAddress() int
-	SetDeviceAddress(value int)
+	DeviceAddress() uint
 	DeviceState() USBHostCIDeviceState /* not a class type */
-	SetDeviceState(value USBHostCIDeviceState /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for USBHostCIDeviceStateMachine */
 	// methods:
+	InspectCommandError(command USBHostCIMessage, error_ unsafe.Pointer) bool
+	RespondToCommandStatusError(command USBHostCIMessage, status USBHostCIMessageStatus /* not a class type */, error_ unsafe.Pointer) bool
+	RespondToCommandStatusDeviceAddressError(command USBHostCIMessage, status USBHostCIMessageStatus /* not a class type */, deviceAddress uint, error_ unsafe.Pointer) bool
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine
-type USBHostCIDeviceStateMachine struct {
-	objectivec.Object
-}
-
-// USBHostCIDeviceStateMachineFrom constructs a [USBHostCIDeviceStateMachine] from an unsafe.Pointer.
-func USBHostCIDeviceStateMachineFrom(ptr unsafe.Pointer) USBHostCIDeviceStateMachine {
-	return USBHostCIDeviceStateMachine{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for USBHostCIDeviceStateMachine */
 // Alloc allocates a new instance without initialization.
 func (uc _USBHostCIDeviceStateMachineClass) Alloc() USBHostCIDeviceStateMachine {
 	rv := objc.Send[USBHostCIDeviceStateMachine](objc.ID(uc.class), objc.Sel("alloc"))
@@ -61,7 +68,6 @@ func (uc _USBHostCIDeviceStateMachineClass) Alloc() USBHostCIDeviceStateMachine 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _USBHostCIDeviceStateMachineClass) New() USBHostCIDeviceStateMachine {
 	rv := objc.Send[USBHostCIDeviceStateMachine](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,60 +90,117 @@ func (u_ USBHostCIDeviceStateMachine) Autorelease() USBHostCIDeviceStateMachine 
 func NewUSBHostCIDeviceStateMachine() USBHostCIDeviceStateMachine {
 	return getUSBHostCIDeviceStateMachineClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for USBHostCIDeviceStateMachine */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine
+type USBHostCIDeviceStateMachine struct {
+	objectivec.Object
+}
+
+// USBHostCIDeviceStateMachineFrom constructs a [USBHostCIDeviceStateMachine] from an unsafe.Pointer.
+func USBHostCIDeviceStateMachineFrom(ptr unsafe.Pointer) USBHostCIDeviceStateMachine {
+	return USBHostCIDeviceStateMachine{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for USBHostCIDeviceStateMachine */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/initWithInterface:command:error:
+func NewUSBHostCIDeviceStateMachineWithInterfaceCommandError(interface_ IOUSBHostControllerInterface, command USBHostCIMessage, error_ unsafe.Pointer) USBHostCIDeviceStateMachine {
+	instance := getUSBHostCIDeviceStateMachineClass().Alloc()
+	rv := objc.Send[USBHostCIDeviceStateMachine](instance.ID, objc.Sel("initWithInterface:command:error:"), interface_, command, error_)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewUSBHostCIDeviceStateMachineWithInterfaceCommandError */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for USBHostCIDeviceStateMachine */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for USBHostCIDeviceStateMachine */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for USBHostCIDeviceStateMachine */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/inspectCommand(_:)
+func (u_ USBHostCIDeviceStateMachine) InspectCommandError(command USBHostCIMessage, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("inspectCommand:error:"), command, error_)
+	return rv
+}/* debug [instance_methods/method]: InspectCommandError */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/respond(toCommand:status:)
+func (u_ USBHostCIDeviceStateMachine) RespondToCommandStatusError(command USBHostCIMessage, status USBHostCIMessageStatus /* not a class type */, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("respondToCommand:status:error:"), command, status, error_)
+	return rv
+}/* debug [instance_methods/method]: RespondToCommandStatusError */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/respond(toCommand:status:deviceAddress:)
+func (u_ USBHostCIDeviceStateMachine) RespondToCommandStatusDeviceAddressError(command USBHostCIMessage, status USBHostCIMessageStatus /* not a class type */, deviceAddress uint, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("respondToCommand:status:deviceAddress:error:"), command, status, deviceAddress, error_)
+	return rv
+}/* debug [instance_methods/method]: RespondToCommandStatusDeviceAddressError */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for USBHostCIDeviceStateMachine */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/completeRoute
+func (u_ USBHostCIDeviceStateMachine) CompleteRoute() uint {
+	rv := objc.Send[uint](u_.ID, objc.Sel("completeRoute"))
+	return rv
+}/* debug [instance_properties/getter]: completeRoute */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/controllerInterface
 func (u_ USBHostCIDeviceStateMachine) ControllerInterface() IOUSBHostControllerInterface {
-	rv := objc.Send[USBHostControllerInterface](u_.ID, objc.Sel("controllerInterface"))
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("controllerInterface"))
 	return rv
-}
+}/* debug [instance_properties/getter]: controllerInterface */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/completeroute
-func (u_ USBHostCIDeviceStateMachine) CompleteRoute() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("completeRoute"))
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/deviceAddress
+func (u_ USBHostCIDeviceStateMachine) DeviceAddress() uint {
+	rv := objc.Send[uint](u_.ID, objc.Sel("deviceAddress"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deviceAddress */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/completeroute
-func (u_ USBHostCIDeviceStateMachine) SetCompleteRoute(value int) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCompleteRoute:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/deviceaddress
-func (u_ USBHostCIDeviceStateMachine) DeviceAddress() int {
-	rv := objc.Send[int](u_.ID, objc.Sel("deviceAddress"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/deviceaddress
-func (u_ USBHostCIDeviceStateMachine) SetDeviceAddress(value int) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceAddress:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/devicestate
+// [Full Topic]: https://developer.apple.com/documentation/IOUSBHost/IOUSBHostCIDeviceStateMachine/deviceState
 func (u_ USBHostCIDeviceStateMachine) DeviceState() USBHostCIDeviceState /* not a class type */ {
 	rv := objc.Send[USBHostCIDeviceState](u_.ID, objc.Sel("deviceState"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deviceState */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iousbhost/iousbhostcidevicestatemachine/devicestate
-func (u_ USBHostCIDeviceStateMachine) SetDeviceState(value USBHostCIDeviceState /* not a class type */) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setDeviceState:"), value)
-}
-
+/* debug [class.gen.go]: End class IOUSBHostCIDeviceStateMachine */
 
 

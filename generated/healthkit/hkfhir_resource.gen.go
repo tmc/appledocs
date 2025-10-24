@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class HKFHIRResource */
+
+
+/* debug [class_header]: Header for HKFHIRResource */
 // The class instance for the [HKFHIRResource] class.
 var (
 	HKFHIRResourceClass     _HKFHIRResourceClass
@@ -27,42 +31,35 @@ func getHKFHIRResourceClass() _HKFHIRResourceClass {
 type _HKFHIRResourceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKFHIRResource */
 // An interface definition for the [HKFHIRResource] class.
 type IHKFHIRResource interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for HKFHIRResource */
 	// properties:
-	Data() objc.IObject /* cross-framework: Data */
-	SetData(value objc.IObject /* cross-framework: Data */)
-	FhirVersion() objc.IObject /* cross-framework: HKFHIRVersion */
-	SetFhirVersion(value objc.IObject /* cross-framework: HKFHIRVersion */)
+	Data() objc.IObject /* cross-framework: NSData */
+	FHIRVersion() IHKFHIRVersion
 	Identifier() objc.IObject /* cross-framework: NSString */
-	SetIdentifier(value objc.IObject /* cross-framework: NSString */)
-	ResourceType() unsafe.Pointer
-	SetResourceType(value unsafe.Pointer)
-	SourceURL() objc.IObject /* cross-framework: URL */
-	SetSourceURL(value objc.IObject /* cross-framework: URL */)
+	ResourceType() HKFHIRResourceType /* typedef */
+	SourceURL() objc.IObject /* cross-framework: NSURL */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKFHIRResource */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object containing Fast Healthcare Interoperability Resources (FHIR) data.
 
 
-// An object containing Fast Healthcare Interoperability Resources (FHIR) data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource
-type HKFHIRResource struct {
-	objectivec.Object
-}
-
-// HKFHIRResourceFrom constructs a [HKFHIRResource] from an unsafe.Pointer.
-//
-// An object containing Fast Healthcare Interoperability Resources (FHIR) data.
-func HKFHIRResourceFrom(ptr unsafe.Pointer) HKFHIRResource {
-	return HKFHIRResource{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for HKFHIRResource */
 // Alloc allocates a new instance without initialization.
 func (hc _HKFHIRResourceClass) Alloc() HKFHIRResource {
 	rv := objc.Send[HKFHIRResource](objc.ID(hc.class), objc.Sel("alloc"))
@@ -70,7 +67,6 @@ func (hc _HKFHIRResourceClass) Alloc() HKFHIRResource {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKFHIRResourceClass) New() HKFHIRResource {
 	rv := objc.Send[HKFHIRResource](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,102 +89,106 @@ func (h_ HKFHIRResource) Autorelease() HKFHIRResource {
 func NewHKFHIRResource() HKFHIRResource {
 	return getHKFHIRResourceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HKFHIRResource */
+// An object containing Fast Healthcare Interoperability Resources (FHIR) data.
+
+
+// An object containing Fast Healthcare Interoperability Resources (FHIR) data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource
+type HKFHIRResource struct {
+	objectivec.Object
+}
+
+// HKFHIRResourceFrom constructs a [HKFHIRResource] from an unsafe.Pointer.
+//
+// An object containing Fast Healthcare Interoperability Resources (FHIR) data.
+func HKFHIRResourceFrom(ptr unsafe.Pointer) HKFHIRResource {
+	return HKFHIRResource{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKFHIRResource *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKFHIRResource */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKFHIRResource */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKFHIRResource */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKFHIRResource */
 
 // The JSON representation of the FHIR resource.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
-func (h_ HKFHIRResource) Data() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](h_.ID, objc.Sel("data"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/data
+func (h_ HKFHIRResource) Data() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](h_.ID, objc.Sel("data"))
 	return rv
-}
-
-
-// The JSON representation of the FHIR resource.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/data
-func (h_ HKFHIRResource) SetData(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setData:"), value)
-}
+}/* debug [instance_properties/getter]: data */
 
 
 // The FHIR version used by this resource.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/fhirversion
-func (h_ HKFHIRResource) FhirVersion() objc.IObject /* cross-framework: HKFHIRVersion */ {
-	rv := objc.Send[HKFHIRVersion](h_.ID, objc.Sel("fhirVersion"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/fhirVersion
+func (h_ HKFHIRResource) FHIRVersion() IHKFHIRVersion {
+	rv := objc.Send[HKFHIRVersion](h_.ID, objc.Sel("FHIRVersion"))
 	return rv
-}
+}/* debug [instance_properties/getter]: FHIRVersion */
 
 
-// The FHIR version used by this resource.
+// The value from the FHIR resource’s field.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/fhirversion
-func (h_ HKFHIRResource) SetFhirVersion(value objc.IObject /* cross-framework: HKFHIRVersion */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setFhirVersion:"), value)
-}
-
-
-// The value from the FHIR resource’s
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/identifier
 func (h_ HKFHIRResource) Identifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("identifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: identifier */
 
 
-// The value from the FHIR resource’s
+// The value from the FHIR resource’s field.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/identifier
-func (h_ HKFHIRResource) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIdentifier:"), value)
-}
-
-
-// The value from the FHIR resource’s
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/resourcetype
-func (h_ HKFHIRResource) ResourceType() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("resourceType"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/resourceType
+func (h_ HKFHIRResource) ResourceType() HKFHIRResourceType /* typedef */ {
+	rv := objc.Send[foundation.NSString](h_.ID, objc.Sel("resourceType"))
 	return rv
-}
-
-
-// The value from the FHIR resource’s
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/resourcetype
-func (h_ HKFHIRResource) SetResourceType(value unsafe.Pointer) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setResourceType:"), value)
-}
+}/* debug [instance_properties/getter]: resourceType */
 
 
 // The full URL for the source of the FHIR resource.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
-func (h_ HKFHIRResource) SourceURL() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](h_.ID, objc.Sel("sourceURL"))
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKFHIRResource/sourceURL
+func (h_ HKFHIRResource) SourceURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](h_.ID, objc.Sel("sourceURL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sourceURL */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The full URL for the source of the FHIR resource.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hkfhirresource/sourceurl
-func (h_ HKFHIRResource) SetSourceURL(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setSourceURL:"), value)
-}
+/* debug [class.gen.go]: End class HKFHIRResource */
 
 
 

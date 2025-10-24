@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for MediaExtension. DO NOT EDIT.
 
 // Package mediaextension provides Go bindings for the MediaExtension framework.
 //
-// This framework provides a means for developers to create format readers, video decoders, and RAW processors for media that the system doesn’t natively support.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MediaExtension without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/MediaExtension
 package mediaextension
 
 import (

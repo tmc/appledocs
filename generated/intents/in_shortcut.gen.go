@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,7 +39,6 @@ type IINShortcut interface {
 }
 
 // An object representing an action available in your app that the system may suggest to a user or a user may add to Siri.
-
 
 // An object representing an action available in your app that the system may suggest to a user or a user may add to Siri.
 //
@@ -87,8 +86,6 @@ func NewINShortcut() INShortcut {
 	return getINShortcutClass().New()
 }
 
-
-
 // Creates a shortcut with the specified intent.
 //
 // [Full Topic]
@@ -100,8 +97,6 @@ func NewINShortcutWithIntent(intent INIntent) INShortcut {
 	return rv
 }
 
-
-
 // The user activity that defines the action to perform when invoking the shortcut.
 //
 // [Full Topic]
@@ -110,7 +105,6 @@ func (i_ INShortcut) UserActivity() objc.IObject /* cross-framework: UserActivit
 	rv := objc.Send[foundation.UserActivity](i_.ID, objc.Sel("userActivity"))
 	return rv
 }
-
 
 // The intent that performs the action when invoking the shortcut.
 //
@@ -121,7 +115,6 @@ func (i_ INShortcut) Intent() INIntent {
 	return rv
 }
 
-
 // The intent that performs the action when invoking the shortcut.
 //
 // [Full Topic]
@@ -129,5 +122,3 @@ func (i_ INShortcut) Intent() INIntent {
 func (i_ INShortcut) SetIntent(value INIntent) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIntent:"), value)
 }
-
-

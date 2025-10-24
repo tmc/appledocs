@@ -2,12 +2,8 @@
 
 // Package musickit provides Go bindings for the MusicKit framework.
 //
-// Integrate your app with Apple Music.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to MusicKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/MusicKit
 package musickit
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/MusicKit.framework/MusicKit"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

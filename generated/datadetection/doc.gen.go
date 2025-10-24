@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for DataDetection. DO NOT EDIT.
 
 // Package datadetection provides Go bindings for the DataDetection framework.
 //
-// Access and utilize common types of data that the data detection system matches.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DataDetection without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/DataDetection
 package datadetection
 
 import (

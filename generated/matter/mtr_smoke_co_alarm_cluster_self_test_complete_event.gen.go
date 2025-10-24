@@ -34,8 +34,6 @@ type IMTRSmokeCOAlarmClusterSelfTestCompleteEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterSelfTestCompleteEvent
 type MTRSmokeCOAlarmClusterSelfTestCompleteEvent struct {
@@ -77,7 +75,3 @@ func (m_ MTRSmokeCOAlarmClusterSelfTestCompleteEvent) Autorelease() MTRSmokeCOAl
 func NewMTRSmokeCOAlarmClusterSelfTestCompleteEvent() MTRSmokeCOAlarmClusterSelfTestCompleteEvent {
 	return getMTRSmokeCOAlarmClusterSelfTestCompleteEventClass().New()
 }
-
-
-
-

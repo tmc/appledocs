@@ -9,6 +9,13 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewScrollView
 
+// ExampleNewScrollViewWithFrame demonstrates how to create a ScrollView instance using NewScrollViewWithFrame.
+func ExampleNewScrollViewWithFrame() {
+	_ = appkit.NewScrollViewWithFrame(
+		appkit.Rect /* not a class type */{}, // frameRect Rect /* not a class type */
+	)
+	// Output:
+}
 // ExampleScrollView_FlashScrollers demonstrates using FlashScrollers on a ScrollView instance.
 // Flash the overlay scroll bars.
 func ExampleScrollView_FlashScrollers() {

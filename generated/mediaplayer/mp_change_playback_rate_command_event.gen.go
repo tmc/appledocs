@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MPChangePlaybackRateCommandEvent */
+
+
+/* debug [class_header]: Header for MPChangePlaybackRateCommandEvent */
 // The class instance for the [ChangePlaybackRateCommandEvent] class.
 var (
 	ChangePlaybackRateCommandEventClass     _ChangePlaybackRateCommandEventClass
@@ -25,30 +29,31 @@ func getChangePlaybackRateCommandEventClass() _ChangePlaybackRateCommandEventCla
 type _ChangePlaybackRateCommandEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ChangePlaybackRateCommandEvent */
 // An interface definition for the [ChangePlaybackRateCommandEvent] class.
 type IChangePlaybackRateCommandEvent interface {
 	IRemoteCommandEvent
+	
+/* debug [class_interface_properties]: Properties for ChangePlaybackRateCommandEvent */
+	// properties:
 	PlaybackRate() float32
-	SetPlaybackRate(value float32)
-}
+/* debug [class_interface_properties]: End properties */
 
-// An event requesting a change in the playback rate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangePlaybackRateCommandEvent
-type ChangePlaybackRateCommandEvent struct {
-	RemoteCommandEvent
-}
+	
+/* debug [class_interface_methods]: Methods for ChangePlaybackRateCommandEvent */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// ChangePlaybackRateCommandEventFrom constructs a [ChangePlaybackRateCommandEvent] from an unsafe.Pointer.
-//
-// An event requesting a change in the playback rate.
-func ChangePlaybackRateCommandEventFrom(ptr unsafe.Pointer) ChangePlaybackRateCommandEvent {
-	return ChangePlaybackRateCommandEvent{
-		RemoteCommandEvent: RemoteCommandEventFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for ChangePlaybackRateCommandEvent */
 // Alloc allocates a new instance without initialization.
 func (cc _ChangePlaybackRateCommandEventClass) Alloc() ChangePlaybackRateCommandEvent {
 	rv := objc.Send[ChangePlaybackRateCommandEvent](objc.ID(cc.class), objc.Sel("alloc"))
@@ -56,7 +61,6 @@ func (cc _ChangePlaybackRateCommandEventClass) Alloc() ChangePlaybackRateCommand
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ChangePlaybackRateCommandEventClass) New() ChangePlaybackRateCommandEvent {
 	rv := objc.Send[ChangePlaybackRateCommandEvent](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,25 +83,68 @@ func (c_ ChangePlaybackRateCommandEvent) Autorelease() ChangePlaybackRateCommand
 func NewChangePlaybackRateCommandEvent() ChangePlaybackRateCommandEvent {
 	return getChangePlaybackRateCommandEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for ChangePlaybackRateCommandEvent */
+// An event requesting a change in the playback rate.
+
+
+// An event requesting a change in the playback rate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangePlaybackRateCommandEvent
+type ChangePlaybackRateCommandEvent struct {
+	RemoteCommandEvent
+}
+
+// ChangePlaybackRateCommandEventFrom constructs a [ChangePlaybackRateCommandEvent] from an unsafe.Pointer.
+//
+// An event requesting a change in the playback rate.
+func ChangePlaybackRateCommandEventFrom(ptr unsafe.Pointer) ChangePlaybackRateCommandEvent {
+	return ChangePlaybackRateCommandEvent{
+		RemoteCommandEvent: RemoteCommandEventFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ChangePlaybackRateCommandEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ChangePlaybackRateCommandEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ChangePlaybackRateCommandEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ChangePlaybackRateCommandEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ChangePlaybackRateCommandEvent */
 
 // The chosen playback rate for the command event.
 //
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommandevent/playbackrate
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPChangePlaybackRateCommandEvent/playbackRate
 func (c_ ChangePlaybackRateCommandEvent) PlaybackRate() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("playbackRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: playbackRate */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// SetPlaybackRate sets the value of the playbackRate property.
-// The chosen playback rate for the command event.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpchangeplaybackratecommandevent/playbackrate
-func (c_ ChangePlaybackRateCommandEvent) SetPlaybackRate(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPlaybackRate:"), value)
-}
+/* debug [class.gen.go]: End class MPChangePlaybackRateCommandEvent */
 
 
 

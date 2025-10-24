@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureInput */
+
+
+/* debug [class_header]: Header for AVCaptureInput */
 // The class instance for the [CaptureInput] class.
 var (
 	CaptureInputClass     _CaptureInputClass
@@ -26,36 +30,31 @@ func getCaptureInputClass() _CaptureInputClass {
 type _CaptureInputClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureInput */
 // An interface definition for the [CaptureInput] class.
 type ICaptureInput interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CaptureInput */
 	// properties:
-	Ports() IAVCaptureInputPort
-	SetPorts(value IAVCaptureInputPort)
+	Ports() []CaptureInputPort
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureInput */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An abstract superclass for objects that provide input data to a capture session.
-//
-// You create concrete instances of this class, such as , to add inputs to a capture session. An input provides one or more streams of media data. For example, input devices can provide both audio and video data. The framework represents each media stream that an input provides as an object. A capture makes connections between capture inputs and capture outputs using a object. The connection defines the mapping between a set of port objects and an .
+/* debug [class_interface]: End interface */
 
 
-// An abstract superclass for objects that provide input data to a capture session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput
-type CaptureInput struct {
-	objectivec.Object
-}
 
-// CaptureInputFrom constructs a [CaptureInput] from an unsafe.Pointer.
-//
-// An abstract superclass for objects that provide input data to a capture session.
-func CaptureInputFrom(ptr unsafe.Pointer) CaptureInput {
-	return CaptureInput{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CaptureInput */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureInputClass) Alloc() CaptureInput {
 	rv := objc.Send[CaptureInput](objc.ID(cc.class), objc.Sel("alloc"))
@@ -63,7 +62,6 @@ func (cc _CaptureInputClass) Alloc() CaptureInput {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureInputClass) New() CaptureInput {
 	rv := objc.Send[CaptureInput](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,26 +84,68 @@ func (c_ CaptureInput) Autorelease() CaptureInput {
 func NewCaptureInput() CaptureInput {
 	return getCaptureInputClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CaptureInput */
+// An abstract superclass for objects that provide input data to a capture session.
+//
+// You create concrete instances of this class, such as , to add inputs to a capture session. An input provides one or more streams of media data. For example, input devices can provide both audio and video data. The framework represents each media stream that an input provides as an object. A capture makes connections between capture inputs and capture outputs using a object. The connection defines the mapping between a set of port objects and an .
+
+
+// An abstract superclass for objects that provide input data to a capture session.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput
+type CaptureInput struct {
+	objectivec.Object
+}
+
+// CaptureInputFrom constructs a [CaptureInput] from an unsafe.Pointer.
+//
+// An abstract superclass for objects that provide input data to a capture session.
+func CaptureInputFrom(ptr unsafe.Pointer) CaptureInput {
+	return CaptureInput{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CaptureInput *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CaptureInput */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CaptureInput */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CaptureInput */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureInput */
 
 // The ports available on a capture input.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
-func (c_ CaptureInput) Ports() IAVCaptureInputPort {
-	rv := objc.Send[CaptureInputPort](c_.ID, objc.Sel("ports"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureInput/ports
+func (c_ CaptureInput) Ports() []CaptureInputPort {
+	rv := objc.Send[[]CaptureInputPort](c_.ID, objc.Sel("ports"))
 	return rv
-}
+}/* debug [instance_properties/getter]: ports */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The ports available on a capture input.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcaptureinput/ports
-func (c_ CaptureInput) SetPorts(value IAVCaptureInputPort) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPorts:"), value)
-}
+/* debug [class.gen.go]: End class AVCaptureInput */
 
 
 

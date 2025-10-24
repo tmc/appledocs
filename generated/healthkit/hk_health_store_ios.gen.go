@@ -30,24 +30,12 @@ func (h_ HKHealthStore) RecoverActiveWorkoutSessionWithCompletion(completion uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/authorizationViewControllerPresenter
-func (h_ HKHealthStore) AuthorizationViewControllerPresenter() objc.IObject /* cross-framework: ViewController */ {
+func (h_ HKHealthStore) AuthorizationViewControllerPresenter() appkit.ViewController {
 	rv := objc.Send[appkit.ViewController](h_.ID, objc.Sel("authorizationViewControllerPresenter"))
 	return rv
 }
-func (h_ HKHealthStore) SetAuthorizationViewControllerPresenter(value objc.IObject /* cross-framework: ViewController */) {
+func (h_ HKHealthStore) SetAuthorizationViewControllerPresenter(value appkit.ViewController) {
 	h_.ID.Send(objc.RegisterName("setAuthorizationViewControllerPresenter:"), value)
-}
-
-// A block that the system calls when it starts a mirrored workout session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKHealthStore/workoutSessionMirroringStartHandler
-func (h_ HKHealthStore) WorkoutSessionMirroringStartHandler() func(unsafe.Pointer) {
-	rv := objc.Send[func(unsafe.Pointer)](h_.ID, objc.Sel("workoutSessionMirroringStartHandler"))
-	return rv
-}
-func (h_ HKHealthStore) SetWorkoutSessionMirroringStartHandler(value func(unsafe.Pointer)) {
-	h_.ID.Send(objc.RegisterName("setWorkoutSessionMirroringStartHandler:"), value)
 }
 
 

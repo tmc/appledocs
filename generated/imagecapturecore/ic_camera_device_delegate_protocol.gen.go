@@ -6,9 +6,17 @@ import "github.com/ebitengine/purego/objc"
 
 // ICCameraDeviceDelegateProtocol is the ICCameraDeviceDelegate protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to ICCameraDeviceDelegate.
 var ICCameraDeviceDelegateProtocol *objc.Protocol
 
 func init() {
 	ICCameraDeviceDelegateProtocol = objc.GetProtocol("ICCameraDeviceDelegate")
 }
+

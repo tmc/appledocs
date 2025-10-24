@@ -15,3 +15,4 @@ var makeListenerEndpointForServiceNameProtocol *objc.Protocol
 func init() {
 	makeListenerEndpointForServiceNameProtocol = objc.GetProtocol("makeListenerEndpointForServiceName:")
 }
+

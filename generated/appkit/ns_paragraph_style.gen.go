@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSParagraphStyle */
+
+
+/* debug [class_header]: Header for NSParagraphStyle */
 // The class instance for the [ParagraphStyle] class.
 var (
 	ParagraphStyleClass     _ParagraphStyleClass
@@ -27,10 +31,16 @@ func getParagraphStyleClass() _ParagraphStyleClass {
 type _ParagraphStyleClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ParagraphStyle */
 // An interface definition for the [ParagraphStyle] class.
 type IParagraphStyle interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ParagraphStyle */
 	// properties:
 	Alignment() TextAlignment
 	AllowsDefaultTighteningForTruncation() bool
@@ -54,29 +64,19 @@ type IParagraphStyle interface {
 	TextLists() []TextList
 	TighteningFactorForTruncation() float32
 	UsesDefaultHyphenation() bool
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ParagraphStyle */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The paragraph or ruler attributes for an attributed string.
-//
-// An object stores formatting information for a paragraph of text. The formatting information includes the amount of space between lines, indentations for lines of text, line heights, tab-stop positions, and more. Apply paragraph styles to the text of an attributed string by adding the attribute and setting its value to an instance of this class. The text-rendering system uses the paragraph style information in an attributed string to lay out and render the text. The class manages an immutable set of style information, but you can create an when you want to modify the style information before applying it to your text.
+/* debug [class_interface]: End interface */
 
 
-// The paragraph or ruler attributes for an attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle
-type ParagraphStyle struct {
-	objectivec.Object
-}
 
-// ParagraphStyleFrom constructs a [ParagraphStyle] from an unsafe.Pointer.
-//
-// The paragraph or ruler attributes for an attributed string.
-func ParagraphStyleFrom(ptr unsafe.Pointer) ParagraphStyle {
-	return ParagraphStyle{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ParagraphStyle */
 // Alloc allocates a new instance without initialization.
 func (pc _ParagraphStyleClass) Alloc() ParagraphStyle {
 	rv := objc.Send[ParagraphStyle](objc.ID(pc.class), objc.Sel("alloc"))
@@ -84,7 +84,6 @@ func (pc _ParagraphStyleClass) Alloc() ParagraphStyle {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _ParagraphStyleClass) New() ParagraphStyle {
 	rv := objc.Send[ParagraphStyle](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -107,8 +106,39 @@ func (p_ ParagraphStyle) Autorelease() ParagraphStyle {
 func NewParagraphStyle() ParagraphStyle {
 	return getParagraphStyleClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ParagraphStyle */
+// The paragraph or ruler attributes for an attributed string.
+//
+// An object stores formatting information for a paragraph of text. The formatting information includes the amount of space between lines, indentations for lines of text, line heights, tab-stop positions, and more. Apply paragraph styles to the text of an attributed string by adding the attribute and setting its value to an instance of this class. The text-rendering system uses the paragraph style information in an attributed string to lay out and render the text. The class manages an immutable set of style information, but you can create an when you want to modify the style information before applying it to your text.
+
+
+// The paragraph or ruler attributes for an attributed string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle
+type ParagraphStyle struct {
+	objectivec.Object
+}
+
+// ParagraphStyleFrom constructs a [ParagraphStyle] from an unsafe.Pointer.
+//
+// The paragraph or ruler attributes for an attributed string.
+func ParagraphStyleFrom(ptr unsafe.Pointer) ParagraphStyle {
+	return ParagraphStyle{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ParagraphStyle *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ParagraphStyle */
 
 // Returns the default writing direction for the specified language.
 //
@@ -117,8 +147,13 @@ func NewParagraphStyle() ParagraphStyle {
 func (pc _ParagraphStyleClass) DefaultWritingDirectionForLanguage(languageName objc.IObject /* cross-framework: NSString */) WritingDirection {
 	rv := objc.Send[WritingDirection](objc.ID(pc.class), objc.Sel("defaultWritingDirectionForLanguage:"), languageName)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DefaultWritingDirectionForLanguage) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ParagraphStyle */
 
 // The default paragraph style.
 //
@@ -127,7 +162,17 @@ func (pc _ParagraphStyleClass) DefaultWritingDirectionForLanguage(languageName o
 func (pc _ParagraphStyleClass) DefaultParagraphStyle() ParagraphStyle {
 	rv := objc.Send[ParagraphStyle](objc.ID(pc.class), objc.Sel("defaultParagraphStyle"))
 	return rv
-}
+}/* debug [class_properties_class/property]: defaultParagraphStyle */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ParagraphStyle */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ParagraphStyle */
 
 // The text alignment of the paragraph.
 //
@@ -136,7 +181,7 @@ func (pc _ParagraphStyleClass) DefaultParagraphStyle() ParagraphStyle {
 func (p_ ParagraphStyle) Alignment() TextAlignment {
 	rv := objc.Send[TextAlignment](p_.ID, objc.Sel("alignment"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alignment */
 
 
 // A Boolean value that indicates whether the system tightens character spacing before truncating text.
@@ -146,7 +191,7 @@ func (p_ ParagraphStyle) Alignment() TextAlignment {
 func (p_ ParagraphStyle) AllowsDefaultTighteningForTruncation() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("allowsDefaultTighteningForTruncation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allowsDefaultTighteningForTruncation */
 
 
 // The base writing direction for the paragraph.
@@ -156,7 +201,7 @@ func (p_ ParagraphStyle) AllowsDefaultTighteningForTruncation() bool {
 func (p_ ParagraphStyle) BaseWritingDirection() WritingDirection {
 	rv := objc.Send[WritingDirection](p_.ID, objc.Sel("baseWritingDirection"))
 	return rv
-}
+}/* debug [instance_properties/getter]: baseWritingDirection */
 
 
 // The default paragraph style.
@@ -166,7 +211,7 @@ func (p_ ParagraphStyle) BaseWritingDirection() WritingDirection {
 func (p_ ParagraphStyle) DefaultParagraphStyle() IParagraphStyle {
 	rv := objc.Send[ParagraphStyle](p_.ID, objc.Sel("defaultParagraphStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: defaultParagraphStyle */
 
 
 // The documentwide default tab interval.
@@ -176,7 +221,7 @@ func (p_ ParagraphStyle) DefaultParagraphStyle() IParagraphStyle {
 func (p_ ParagraphStyle) DefaultTabInterval() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("defaultTabInterval"))
 	return rv
-}
+}/* debug [instance_properties/getter]: defaultTabInterval */
 
 
 // The indentation of the first line of the paragraph.
@@ -186,7 +231,7 @@ func (p_ ParagraphStyle) DefaultTabInterval() float64 {
 func (p_ ParagraphStyle) FirstLineHeadIndent() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("firstLineHeadIndent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: firstLineHeadIndent */
 
 
 // The indentation of the paragraph’s lines other than the first.
@@ -196,7 +241,7 @@ func (p_ ParagraphStyle) FirstLineHeadIndent() float64 {
 func (p_ ParagraphStyle) HeadIndent() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("headIndent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: headIndent */
 
 
 // The paragraph’s header level for HTML generation.
@@ -206,7 +251,7 @@ func (p_ ParagraphStyle) HeadIndent() float64 {
 func (p_ ParagraphStyle) HeaderLevel() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("headerLevel"))
 	return rv
-}
+}/* debug [instance_properties/getter]: headerLevel */
 
 
 // The paragraph’s threshold for hyphenation.
@@ -216,7 +261,7 @@ func (p_ ParagraphStyle) HeaderLevel() int {
 func (p_ ParagraphStyle) HyphenationFactor() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("hyphenationFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hyphenationFactor */
 
 
 // The mode for breaking lines in the paragraph that don’t fit within a container.
@@ -226,7 +271,7 @@ func (p_ ParagraphStyle) HyphenationFactor() float32 {
 func (p_ ParagraphStyle) LineBreakMode() LineBreakMode {
 	rv := objc.Send[LineBreakMode](p_.ID, objc.Sel("lineBreakMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lineBreakMode */
 
 
 // The strategy for breaking lines while laying out paragraphs.
@@ -236,7 +281,7 @@ func (p_ ParagraphStyle) LineBreakMode() LineBreakMode {
 func (p_ ParagraphStyle) LineBreakStrategy() LineBreakStrategy {
 	rv := objc.Send[LineBreakStrategy](p_.ID, objc.Sel("lineBreakStrategy"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lineBreakStrategy */
 
 
 // The line height multiple.
@@ -246,7 +291,7 @@ func (p_ ParagraphStyle) LineBreakStrategy() LineBreakStrategy {
 func (p_ ParagraphStyle) LineHeightMultiple() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("lineHeightMultiple"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lineHeightMultiple */
 
 
 // The distance in points between the bottom of one line fragment and the top of the next.
@@ -256,7 +301,7 @@ func (p_ ParagraphStyle) LineHeightMultiple() float64 {
 func (p_ ParagraphStyle) LineSpacing() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("lineSpacing"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lineSpacing */
 
 
 // The paragraph’s maximum line height.
@@ -266,7 +311,7 @@ func (p_ ParagraphStyle) LineSpacing() float64 {
 func (p_ ParagraphStyle) MaximumLineHeight() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("maximumLineHeight"))
 	return rv
-}
+}/* debug [instance_properties/getter]: maximumLineHeight */
 
 
 // The paragraph’s minimum line height.
@@ -276,7 +321,7 @@ func (p_ ParagraphStyle) MaximumLineHeight() float64 {
 func (p_ ParagraphStyle) MinimumLineHeight() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("minimumLineHeight"))
 	return rv
-}
+}/* debug [instance_properties/getter]: minimumLineHeight */
 
 
 // Distance between the bottom of this paragraph and top of next.
@@ -286,7 +331,7 @@ func (p_ ParagraphStyle) MinimumLineHeight() float64 {
 func (p_ ParagraphStyle) ParagraphSpacing() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("paragraphSpacing"))
 	return rv
-}
+}/* debug [instance_properties/getter]: paragraphSpacing */
 
 
 // The distance between the paragraph’s top and the beginning of its text content.
@@ -296,7 +341,7 @@ func (p_ ParagraphStyle) ParagraphSpacing() float64 {
 func (p_ ParagraphStyle) ParagraphSpacingBefore() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("paragraphSpacingBefore"))
 	return rv
-}
+}/* debug [instance_properties/getter]: paragraphSpacingBefore */
 
 
 // The text tab objects that represent the paragraph’s tab stops.
@@ -306,7 +351,7 @@ func (p_ ParagraphStyle) ParagraphSpacingBefore() float64 {
 func (p_ ParagraphStyle) TabStops() []TextTab {
 	rv := objc.Send[[]TextTab](p_.ID, objc.Sel("tabStops"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tabStops */
 
 
 // The trailing indentation of the paragraph.
@@ -316,7 +361,7 @@ func (p_ ParagraphStyle) TabStops() []TextTab {
 func (p_ ParagraphStyle) TailIndent() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("tailIndent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tailIndent */
 
 
 // The text blocks that contain the paragraph.
@@ -326,7 +371,7 @@ func (p_ ParagraphStyle) TailIndent() float64 {
 func (p_ ParagraphStyle) TextBlocks() []TextBlock {
 	rv := objc.Send[[]TextBlock](p_.ID, objc.Sel("textBlocks"))
 	return rv
-}
+}/* debug [instance_properties/getter]: textBlocks */
 
 
 // The text lists that contain the paragraph.
@@ -336,7 +381,7 @@ func (p_ ParagraphStyle) TextBlocks() []TextBlock {
 func (p_ ParagraphStyle) TextLists() []TextList {
 	rv := objc.Send[[]TextList](p_.ID, objc.Sel("textLists"))
 	return rv
-}
+}/* debug [instance_properties/getter]: textLists */
 
 
 // The threshold for using tightening as an alternative to truncation.
@@ -346,7 +391,7 @@ func (p_ ParagraphStyle) TextLists() []TextList {
 func (p_ ParagraphStyle) TighteningFactorForTruncation() float32 {
 	rv := objc.Send[float32](p_.ID, objc.Sel("tighteningFactorForTruncation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tighteningFactorForTruncation */
 
 
 // A Boolean value that indicates whether the paragraph style uses the system hyphenation settings.
@@ -356,7 +401,12 @@ func (p_ ParagraphStyle) TighteningFactorForTruncation() float32 {
 func (p_ ParagraphStyle) UsesDefaultHyphenation() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("usesDefaultHyphenation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: usesDefaultHyphenation */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSParagraphStyle */
 
 
 

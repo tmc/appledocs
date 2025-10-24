@@ -18,8 +18,8 @@ import (
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/srAbsoluteTime
-func (d_ Date) SrAbsoluteTime() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("srAbsoluteTime"))
+func (d_ Date) SrAbsoluteTime() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](d_.ID, objc.Sel("srAbsoluteTime"))
 	return rv
 }
 

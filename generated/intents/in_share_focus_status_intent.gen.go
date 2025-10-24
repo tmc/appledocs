@@ -37,7 +37,6 @@ type IINShareFocusStatusIntent interface {
 
 // An object that indicates the user’s focus status is changing.
 
-
 // An object that indicates the user’s focus status is changing.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINShareFocusStatusIntent() INShareFocusStatusIntent {
 	return getINShareFocusStatusIntentClass().New()
 }
 
-
-
 // The user’s preference for receiving communication notifications.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus {
 	return rv
 }
 
-
 // The user’s preference for receiving communication notifications.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INShareFocusStatusIntent) FocusStatus() INFocusStatus {
 func (i_ INShareFocusStatusIntent) SetFocusStatus(value INFocusStatus) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setFocusStatus:"), value)
 }
-
-
-

@@ -15,3 +15,4 @@ var moveDownAndModifySelectionProtocol *objc.Protocol
 func init() {
 	moveDownAndModifySelectionProtocol = objc.GetProtocol("moveDownAndModifySelection:")
 }
+

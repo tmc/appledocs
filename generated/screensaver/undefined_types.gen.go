@@ -9,7 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in ScreenSaver
+	BackingStoreType = _undefined // referenced in ScreenSaver
+	Rect = _undefined // referenced in ScreenSaver
 )
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,12 +36,12 @@ type IPersistentStoreCoordinator interface {
 	Name() objc.IObject /* cross-framework: NSString */
 	SetName(value objc.IObject /* cross-framework: NSString */)
 	NSCoreDataCoreSpotlightExporter() objc.IObject /* cross-framework: NSString */
-	NSPersistentHistoryTrackingKey() objc.IObject /* cross-framework: NSString */
+	NSPersistentHistoryTrackingKey() objc.IObject  /* cross-framework: NSString */
 	PersistentStores() IPersistentStore
 	SetPersistentStores(value IPersistentStore)
 	NSPersistentStoreDeferredLightweightMigrationOptionKey() objc.IObject /* cross-framework: NSString */
-	NSStoreTypeKey() objc.IObject /* cross-framework: NSString */
-	NSStoreUUIDKey() objc.IObject /* cross-framework: NSString */
+	NSStoreTypeKey() objc.IObject                                         /* cross-framework: NSString */
+	NSStoreUUIDKey() objc.IObject                                         /* cross-framework: NSString */
 	// methods:
 	AddPersistentStoreWithTypeConfigurationURLOptionsError(storeType objc.IObject /* cross-framework: NSString */, configuration objc.IObject /* cross-framework: NSString */, storeURL objc.IObject /* cross-framework: NSURL */, options objc.IObject /* cross-framework: NSDictionary */, error_ unsafe.Pointer) IPersistentStore
 	CurrentPersistentHistoryTokenFromStores(stores objc.IObject /* cross-framework: NSArray */) IPersistentHistoryToken
@@ -55,7 +55,6 @@ type IPersistentStoreCoordinator interface {
 // An object that enables an app’s contexts and the underlying persistent stores to work together.
 //
 // A managed object context uses a coordinator to facilitate the persistence of its entities in the coordinator’s registered stores. A context can’t function without a coordinator because it relies on the coordinator’s access to the managed object model. The coordinator presents its registered stores as an aggregate, allowing a context to operate on the union of those stores instead of on each individually. A coordinator performs its work on a private queue and executes that work serially. You can use multiple coordinators if the work requires separate queues. Use a coordinator to add or remove persistent stores, change the type or location on-disk of those stores, query the metadata of a specific store, defer a store’s migrations, determine whether two objects originate from the same store, and so on.
-
 
 // An object that enables an app’s contexts and the underlying persistent stores to work together.
 //
@@ -103,8 +102,6 @@ func NewPersistentStoreCoordinator() PersistentStoreCoordinator {
 	return getPersistentStoreCoordinatorClass().New()
 }
 
-
-
 // Creates a persistent store coordinator with the specified managed object model.
 //
 // [Full Topic]
@@ -116,8 +113,6 @@ func NewPersistentStoreCoordinatorWithManagedObjectModel(model IManagedObjectMod
 	return rv
 }
 
-
-
 // Returns the metadata of a specific type of persistent store at the provided location.
 //
 // [Full Topic]
@@ -126,7 +121,6 @@ func (pc _PersistentStoreCoordinatorClass) MetadataForPersistentStoreOfTypeURLOp
 	rv := objc.Send[foundation.IDictionary](objc.ID(pc.class), objc.Sel("metadataForPersistentStoreOfType:URL:options:error:"), storeType, url, options, error_)
 	return rv
 }
-
 
 // The coordinator’s registered store types.
 //
@@ -146,7 +140,6 @@ func (p_ PersistentStoreCoordinator) AddPersistentStoreWithTypeConfigurationURLO
 	return rv
 }
 
-
 // Returns a single persistent history token representing all of the specified stores.
 //
 // [Full Topic]
@@ -155,7 +148,6 @@ func (p_ PersistentStoreCoordinator) CurrentPersistentHistoryTokenFromStores(sto
 	rv := objc.Send[PersistentHistoryToken](p_.ID, objc.Sel("currentPersistentHistoryTokenFromStores:"), stores)
 	return rv
 }
-
 
 // Executes all remaining tasks of a deferred lightweight migration.
 //
@@ -166,7 +158,6 @@ func (p_ PersistentStoreCoordinator) FinishDeferredLightweightMigration(error_ u
 	return rv
 }
 
-
 // Returns the object identifier for the specified URI representation.
 //
 // [Full Topic]
@@ -176,14 +167,12 @@ func (p_ PersistentStoreCoordinator) ManagedObjectIDForURIRepresentation(url obj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreData/NSPersistentStoreCoordinator/managedObjectIDFromUTF8String:length:
 func (p_ PersistentStoreCoordinator) ManagedObjectIDFromUTF8StringLength(utf8string unsafe.Pointer, len_ uint) IManagedObjectID {
 	rv := objc.Send[ManagedObjectID](p_.ID, objc.Sel("managedObjectIDFromUTF8String:length:"), utf8string, len_)
 	return rv
 }
-
 
 // Updates the metadata for the specified persistent store.
 //
@@ -192,7 +181,6 @@ func (p_ PersistentStoreCoordinator) ManagedObjectIDFromUTF8StringLength(utf8str
 func (p_ PersistentStoreCoordinator) SetMetadataForPersistentStore(metadata foundation.IDictionary, store IPersistentStore) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetadata:forPersistentStore:"), metadata, store)
 }
-
 
 // Returns the location of the provided persistent store.
 //
@@ -203,7 +191,6 @@ func (p_ PersistentStoreCoordinator) URLForPersistentStore(store IPersistentStor
 	return rv
 }
 
-
 // The coordinator’s managed object model.
 //
 // [Full Topic]
@@ -212,7 +199,6 @@ func (p_ PersistentStoreCoordinator) ManagedObjectModel() IManagedObjectModel {
 	rv := objc.Send[ManagedObjectModel](p_.ID, objc.Sel("managedObjectModel"))
 	return rv
 }
-
 
 // The coordinator’s name.
 //
@@ -223,7 +209,6 @@ func (p_ PersistentStoreCoordinator) Name() objc.IObject /* cross-framework: NSS
 	return rv
 }
 
-
 // The coordinator’s name.
 //
 // [Full Topic]
@@ -231,7 +216,6 @@ func (p_ PersistentStoreCoordinator) Name() objc.IObject /* cross-framework: NSS
 func (p_ PersistentStoreCoordinator) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
-
 
 // The coordinator’s registered store types.
 //
@@ -242,7 +226,6 @@ func (p_ PersistentStoreCoordinator) RegisteredStoreTypes() foundation.IDictiona
 	return rv
 }
 
-
 // The key you use to specify your Core Spotlight delegate.
 //
 // [Full Topic]
@@ -251,7 +234,6 @@ func (p_ PersistentStoreCoordinator) NSCoreDataCoreSpotlightExporter() objc.IObj
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("NSCoreDataCoreSpotlightExporter"))
 	return rv
 }
-
 
 // The key you use to enable persistent history tracking.
 //
@@ -262,7 +244,6 @@ func (p_ PersistentStoreCoordinator) NSPersistentHistoryTrackingKey() objc.IObje
 	return rv
 }
 
-
 // The coordinator’s persistent stores.
 //
 // [Full Topic]
@@ -272,7 +253,6 @@ func (p_ PersistentStoreCoordinator) PersistentStores() IPersistentStore {
 	return rv
 }
 
-
 // The coordinator’s persistent stores.
 //
 // [Full Topic]
@@ -280,7 +260,6 @@ func (p_ PersistentStoreCoordinator) PersistentStores() IPersistentStore {
 func (p_ PersistentStoreCoordinator) SetPersistentStores(value IPersistentStore) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistentStores:"), value)
 }
-
 
 // The key for enabling deferred lightweight migrations.
 //
@@ -291,7 +270,6 @@ func (p_ PersistentStoreCoordinator) NSPersistentStoreDeferredLightweightMigrati
 	return rv
 }
 
-
 // A key that identifies the store type.
 //
 // [Full Topic]
@@ -301,7 +279,6 @@ func (p_ PersistentStoreCoordinator) NSStoreTypeKey() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // A key that provides the store’s UUID.
 //
 // [Full Topic]
@@ -310,5 +287,3 @@ func (p_ PersistentStoreCoordinator) NSStoreUUIDKey() objc.IObject /* cross-fram
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("NSStoreUUIDKey"))
 	return rv
 }
-
-

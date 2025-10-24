@@ -84,7 +84,6 @@ func NewPHProjectMapElement() PHProjectMapElement {
 	return getPHProjectMapElementClass().New()
 }
 
-
 // The altitude of the map.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectMapElement/altitude
@@ -132,6 +131,3 @@ func (p_ PHProjectMapElement) Pitch() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("pitch"))
 	return rv
 }
-
-
-

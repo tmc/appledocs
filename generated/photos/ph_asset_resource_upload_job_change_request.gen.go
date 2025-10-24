@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHAssetResourceUploadJobChangeRequest] class.
@@ -83,9 +83,6 @@ func NewPHAssetResourceUploadJobChangeRequest() PHAssetResourceUploadJobChangeRe
 	return getPHAssetResourceUploadJobChangeRequestClass().New()
 }
 
-
-
-
 // Creates a request for modifying the specified upload job.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Photos/PHAssetResourceUploadJobChangeRequest/init(for:)
@@ -93,7 +90,6 @@ func NewPHAssetResourceUploadJobChangeRequestForUploadJob(job IPHAssetResourceUp
 	rv := objc.Send[PHAssetResourceUploadJobChangeRequest](objc.ID(getPHAssetResourceUploadJobChangeRequestClass().class), objc.Sel("changeRequestForUploadJob:"), job)
 	return rv
 }
-
 
 // Used to create an asset resource upload job.
 //
@@ -123,5 +119,3 @@ func (p_ PHAssetResourceUploadJobChangeRequest) Acknowledge() {
 func (p_ PHAssetResourceUploadJobChangeRequest) RetryWithDestination(destination foundation.IURLRequest) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("retryWithDestination:"), destination)
 }
-
-

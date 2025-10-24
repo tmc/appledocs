@@ -19,3 +19,4 @@ var searchableItemsForIdentifiersProtocol *objc.Protocol
 func init() {
 	searchableItemsForIdentifiersProtocol = objc.GetProtocol("searchableItemsForIdentifiers:")
 }
+

@@ -18,3 +18,4 @@ var hostViewControllerDidActivateProtocol *objc.Protocol
 func init() {
 	hostViewControllerDidActivateProtocol = objc.GetProtocol("hostViewControllerDidActivate")
 }
+

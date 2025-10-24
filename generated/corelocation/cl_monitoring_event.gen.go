@@ -38,7 +38,6 @@ type IMonitoringEvent interface {
 //
 // Instances of contain detailed information about an event in the monitoring of a by a .
 
-
 // The object that the framework passes to the monitor’s callback handler upon receiving an event.
 //
 // [Full Topic]
@@ -84,7 +83,3 @@ func (m_ MonitoringEvent) Autorelease() MonitoringEvent {
 func NewMonitoringEvent() MonitoringEvent {
 	return getMonitoringEventClass().New()
 }
-
-
-
-

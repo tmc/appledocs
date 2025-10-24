@@ -39,7 +39,6 @@ type IINStartAudioCallIntent interface {
 //
 // SiriKit creates objects when the user wants to place an audio call using your app. An audio call intent object contains the users to call. Your intent handler matches the information in this object to contacts in your app and to initiate the resulting call. Your Intents extension receives this intent when the user tries to initiate a call from the Siri interface. If your app supports CallKit, you may also receive this intent when the user tries to initiate a call from system interfaces such as the Recents tab of the Phone app. To handle this intent, the handler object in your Intents extension must adopt the protocol. Use your handler to confirm the request and create an object to indicate that it’s possible to begin the call. Don’t try to initiate calls directly from your Intents extension. SiriKit launches your app and passes it an object that your app must then use to initiate the call. SiriKit places an object in the user activity object with this intent. For calls initiated through Siri, the interaction object also includes the response provided by your Intents extension. For a list of other intents in the VoIP calling domain, see .
 
-
 // A request to start an audio-only call with one or more users.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINStartAudioCallIntent() INStartAudioCallIntent {
 	return getINStartAudioCallIntentClass().New()
 }
 
-
-
 // The users to call.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INStartAudioCallIntent) Contacts() INPerson {
 	return rv
 }
 
-
 // The users to call.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (i_ INStartAudioCallIntent) Contacts() INPerson {
 func (i_ INStartAudioCallIntent) SetContacts(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContacts:"), value)
 }
-
 
 // The type of call to place.
 //
@@ -118,7 +113,6 @@ func (i_ INStartAudioCallIntent) DestinationType() INCallDestinationType {
 	return rv
 }
 
-
 // The type of call to place.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (i_ INStartAudioCallIntent) DestinationType() INCallDestinationType {
 func (i_ INStartAudioCallIntent) SetDestinationType(value INCallDestinationType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDestinationType:"), value)
 }
-
-
-

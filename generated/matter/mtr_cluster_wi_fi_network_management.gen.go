@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterWiFiNetworkManagement */
+
+
+/* debug [class_header]: Header for MTRClusterWiFiNetworkManagement */
 // The class instance for the [MTRClusterWiFiNetworkManagement] class.
 var (
 	MTRClusterWiFiNetworkManagementClass     _MTRClusterWiFiNetworkManagementClass
@@ -26,43 +30,30 @@ func getMTRClusterWiFiNetworkManagementClass() _MTRClusterWiFiNetworkManagementC
 type _MTRClusterWiFiNetworkManagementClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterWiFiNetworkManagement */
 // An interface definition for the [MTRClusterWiFiNetworkManagement] class.
 type IMTRClusterWiFiNetworkManagement interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterWiFiNetworkManagement */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterWiFiNetworkManagement */
 	// methods:
-	NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributePassphraseSurrogateWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSSIDWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Wi-Fi Network Management Functionality to retrieve operational information about a managed Wi-Fi network.
 
 
-// Cluster Wi-Fi Network Management Functionality to retrieve operational information about a managed Wi-Fi network.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement
-type MTRClusterWiFiNetworkManagement struct {
-	MTRGenericCluster
-}
-
-// MTRClusterWiFiNetworkManagementFrom constructs a [MTRClusterWiFiNetworkManagement] from an unsafe.Pointer.
-//
-// Cluster Wi-Fi Network Management Functionality to retrieve operational information about a managed Wi-Fi network.
-func MTRClusterWiFiNetworkManagementFrom(ptr unsafe.Pointer) MTRClusterWiFiNetworkManagement {
-	return MTRClusterWiFiNetworkManagement{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterWiFiNetworkManagement */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterWiFiNetworkManagementClass) Alloc() MTRClusterWiFiNetworkManagement {
 	rv := objc.Send[MTRClusterWiFiNetworkManagement](objc.ID(mc.class), objc.Sel("alloc"))
@@ -70,7 +61,6 @@ func (mc _MTRClusterWiFiNetworkManagementClass) Alloc() MTRClusterWiFiNetworkMan
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterWiFiNetworkManagementClass) New() MTRClusterWiFiNetworkManagement {
 	rv := objc.Send[MTRClusterWiFiNetworkManagement](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +83,35 @@ func (m_ MTRClusterWiFiNetworkManagement) Autorelease() MTRClusterWiFiNetworkMan
 func NewMTRClusterWiFiNetworkManagement() MTRClusterWiFiNetworkManagement {
 	return getMTRClusterWiFiNetworkManagementClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterWiFiNetworkManagement */
+// Cluster Wi-Fi Network Management Functionality to retrieve operational information about a managed Wi-Fi network.
+
+
+// Cluster Wi-Fi Network Management Functionality to retrieve operational information about a managed Wi-Fi network.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement
+type MTRClusterWiFiNetworkManagement struct {
+	MTRGenericCluster
+}
+
+// MTRClusterWiFiNetworkManagementFrom constructs a [MTRClusterWiFiNetworkManagement] from an unsafe.Pointer.
+//
+// Cluster Wi-Fi Network Management Functionality to retrieve operational information about a managed Wi-Fi network.
+func MTRClusterWiFiNetworkManagementFrom(ptr unsafe.Pointer) MTRClusterWiFiNetworkManagement {
+	return MTRClusterWiFiNetworkManagement{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterWiFiNetworkManagement */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -105,77 +122,31 @@ func NewMTRClusterWiFiNetworkManagementWithDeviceEndpointIDQueue(device IMTRDevi
 	rv := objc.Send[MTRClusterWiFiNetworkManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterWiFiNetworkManagementWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/networkPassphraseRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWiFiNetworkManagementClusterNetworkPassphraseRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("networkPassphraseRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class_methods]: Class methods for MTRClusterWiFiNetworkManagement */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/networkPassphraseRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWiFiNetworkManagement) NetworkPassphraseRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("networkPassphraseRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterWiFiNetworkManagement */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterWiFiNetworkManagement */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterWiFiNetworkManagement */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributePassphraseSurrogate(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributePassphraseSurrogateWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributePassphraseSurrogateWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWiFiNetworkManagement/readAttributeSSID(with:)
-func (m_ MTRClusterWiFiNetworkManagement) ReadAttributeSSIDWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSSIDWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterWiFiNetworkManagement */
 
 

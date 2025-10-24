@@ -7,11 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCameraCalibrationData */
+
+
+/* debug [class_header]: Header for AVCameraCalibrationData */
 // The class instance for the [CameraCalibrationData] class.
 var (
 	CameraCalibrationDataClass     _CameraCalibrationDataClass
@@ -28,46 +30,37 @@ func getCameraCalibrationDataClass() _CameraCalibrationDataClass {
 type _CameraCalibrationDataClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CameraCalibrationData */
 // An interface definition for the [CameraCalibrationData] class.
 type ICameraCalibrationData interface {
 	objectivec.IObject
-	ExtrinsicMatrix() unsafe.Pointer
-	SetExtrinsicMatrix(value unsafe.Pointer)
-	IntrinsicMatrix() unsafe.Pointer
-	SetIntrinsicMatrix(value unsafe.Pointer)
-	IntrinsicMatrixReferenceDimensions() coregraphics.CGSize
-	SetIntrinsicMatrixReferenceDimensions(value coregraphics.CGSize)
-	InverseLensDistortionLookupTable() foundation.Data
-	SetInverseLensDistortionLookupTable(value foundation.IData)
-	LensDistortionCenter() coregraphics.CGPoint
-	SetLensDistortionCenter(value coregraphics.CGPoint)
-	LensDistortionLookupTable() foundation.Data
-	SetLensDistortionLookupTable(value foundation.IData)
+	
+/* debug [class_interface_properties]: Properties for CameraCalibrationData */
+	// properties:
+	ExtrinsicMatrix() objectivec.IObject
+	IntrinsicMatrix() objectivec.IObject
+	IntrinsicMatrixReferenceDimensions() corefoundation.CGSize
+	InverseLensDistortionLookupTable() objc.IObject /* cross-framework: NSData */
+	LensDistortionCenter() corefoundation.CGPoint
+	LensDistortionLookupTable() objc.IObject /* cross-framework: NSData */
 	PixelSize() float32
-	SetPixelSize(value float32)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CameraCalibrationData */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Information about the camera characteristics used to capture images and depth data.
-//
-// Information about the calibration of a camera—such as its pixel focal length, principal point, and lens distortion characteristics—helps to determine the geometric relationships between the camera device and the images it captures. You can use this information to accurately render visual effects into images produced by a camera or perform computer vision tasks such as correcting images for geometric distortions.
+/* debug [class_interface]: End interface */
 
 
-// Information about the camera characteristics used to capture images and depth data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData
-type CameraCalibrationData struct {
-	objectivec.Object
-}
 
-// CameraCalibrationDataFrom constructs a [CameraCalibrationData] from an unsafe.Pointer.
-//
-// Information about the camera characteristics used to capture images and depth data.
-func CameraCalibrationDataFrom(ptr unsafe.Pointer) CameraCalibrationData {
-	return CameraCalibrationData{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CameraCalibrationData */
 // Alloc allocates a new instance without initialization.
 func (cc _CameraCalibrationDataClass) Alloc() CameraCalibrationData {
 	rv := objc.Send[CameraCalibrationData](objc.ID(cc.class), objc.Sel("alloc"))
@@ -75,7 +68,6 @@ func (cc _CameraCalibrationDataClass) Alloc() CameraCalibrationData {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CameraCalibrationDataClass) New() CameraCalibrationData {
 	rv := objc.Send[CameraCalibrationData](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -98,140 +90,128 @@ func (c_ CameraCalibrationData) Autorelease() CameraCalibrationData {
 func NewCameraCalibrationData() CameraCalibrationData {
 	return getCameraCalibrationDataClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CameraCalibrationData */
+// Information about the camera characteristics used to capture images and depth data.
+//
+// Information about the calibration of a camera—such as its pixel focal length, principal point, and lens distortion characteristics—helps to determine the geometric relationships between the camera device and the images it captures. You can use this information to accurately render visual effects into images produced by a camera or perform computer vision tasks such as correcting images for geometric distortions.
+
+
+// Information about the camera characteristics used to capture images and depth data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData
+type CameraCalibrationData struct {
+	objectivec.Object
+}
+
+// CameraCalibrationDataFrom constructs a [CameraCalibrationData] from an unsafe.Pointer.
+//
+// Information about the camera characteristics used to capture images and depth data.
+func CameraCalibrationDataFrom(ptr unsafe.Pointer) CameraCalibrationData {
+	return CameraCalibrationData{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CameraCalibrationData *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CameraCalibrationData */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CameraCalibrationData */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CameraCalibrationData */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CameraCalibrationData */
 
 // A matrix relating a camera’s position and orientation to a world or scene coordinate system.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/extrinsicmatrix
-func (c_ CameraCalibrationData) ExtrinsicMatrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("extrinsicMatrix"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData/extrinsicMatrix
+func (c_ CameraCalibrationData) ExtrinsicMatrix() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("extrinsicMatrix"))
 	return rv
-}
-
-
-// A matrix relating a camera’s position and orientation to a world or scene coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/extrinsicmatrix
-func (c_ CameraCalibrationData) SetExtrinsicMatrix(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setExtrinsicMatrix:"), value)
-}
+}/* debug [instance_properties/getter]: extrinsicMatrix */
 
 
 // A matrix that relates a camera’s internal properties to an ideal pinhole-camera model.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/intrinsicmatrix
-func (c_ CameraCalibrationData) IntrinsicMatrix() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("intrinsicMatrix"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData/intrinsicMatrix
+func (c_ CameraCalibrationData) IntrinsicMatrix() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("intrinsicMatrix"))
 	return rv
-}
-
-
-// A matrix that relates a camera’s internal properties to an ideal pinhole-camera model.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/intrinsicmatrix
-func (c_ CameraCalibrationData) SetIntrinsicMatrix(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIntrinsicMatrix:"), value)
-}
+}/* debug [instance_properties/getter]: intrinsicMatrix */
 
 
 // The image dimensions to which the camera’s intrinsic matrix values are relative.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/intrinsicmatrixreferencedimensions
-func (c_ CameraCalibrationData) IntrinsicMatrixReferenceDimensions() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("intrinsicMatrixReferenceDimensions"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData/intrinsicMatrixReferenceDimensions
+func (c_ CameraCalibrationData) IntrinsicMatrixReferenceDimensions() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](c_.ID, objc.Sel("intrinsicMatrixReferenceDimensions"))
 	return rv
-}
-
-
-// The image dimensions to which the camera’s intrinsic matrix values are relative.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/intrinsicmatrixreferencedimensions
-func (c_ CameraCalibrationData) SetIntrinsicMatrixReferenceDimensions(value coregraphics.CGSize) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIntrinsicMatrixReferenceDimensions:"), value)
-}
+}/* debug [instance_properties/getter]: intrinsicMatrixReferenceDimensions */
 
 
 // A map of floating-point values describing radial distortions for use in reapplying camera geometry to a rectified image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/inverselensdistortionlookuptable
-func (c_ CameraCalibrationData) InverseLensDistortionLookupTable() foundation.Data {
-	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("inverseLensDistortionLookupTable"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData/inverseLensDistortionLookupTable
+func (c_ CameraCalibrationData) InverseLensDistortionLookupTable() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("inverseLensDistortionLookupTable"))
 	return rv
-}
-
-
-// A map of floating-point values describing radial distortions for use in reapplying camera geometry to a rectified image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/inverselensdistortionlookuptable
-func (c_ CameraCalibrationData) SetInverseLensDistortionLookupTable(value foundation.IData) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInverseLensDistortionLookupTable:"), value)
-}
+}/* debug [instance_properties/getter]: inverseLensDistortionLookupTable */
 
 
 // The offset of the distortion center of the camera lens from the top-left corner of the image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/lensdistortioncenter
-func (c_ CameraCalibrationData) LensDistortionCenter() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("lensDistortionCenter"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData/lensDistortionCenter
+func (c_ CameraCalibrationData) LensDistortionCenter() corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](c_.ID, objc.Sel("lensDistortionCenter"))
 	return rv
-}
-
-
-// The offset of the distortion center of the camera lens from the top-left corner of the image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/lensdistortioncenter
-func (c_ CameraCalibrationData) SetLensDistortionCenter(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLensDistortionCenter:"), value)
-}
+}/* debug [instance_properties/getter]: lensDistortionCenter */
 
 
 // A map of floating-point values describing radial distortions imparted by the camera lens, for use in rectifying camera images.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/lensdistortionlookuptable
-func (c_ CameraCalibrationData) LensDistortionLookupTable() foundation.Data {
-	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("lensDistortionLookupTable"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData/lensDistortionLookupTable
+func (c_ CameraCalibrationData) LensDistortionLookupTable() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("lensDistortionLookupTable"))
 	return rv
-}
-
-
-// A map of floating-point values describing radial distortions imparted by the camera lens, for use in rectifying camera images.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/lensdistortionlookuptable
-func (c_ CameraCalibrationData) SetLensDistortionLookupTable(value foundation.IData) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLensDistortionLookupTable:"), value)
-}
+}/* debug [instance_properties/getter]: lensDistortionLookupTable */
 
 
 // The size, in millimeters, of one image pixel.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/pixelsize
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCameraCalibrationData/pixelSize
 func (c_ CameraCalibrationData) PixelSize() float32 {
 	rv := objc.Send[float32](c_.ID, objc.Sel("pixelSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pixelSize */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The size, in millimeters, of one image pixel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcameracalibrationdata/pixelsize
-func (c_ CameraCalibrationData) SetPixelSize(value float32) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPixelSize:"), value)
-}
+/* debug [class.gen.go]: End class AVCameraCalibrationData */
 
 
 

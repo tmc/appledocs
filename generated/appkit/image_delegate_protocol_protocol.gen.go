@@ -17,12 +17,12 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSImageDelegate
 type PImageDelegate interface {
 	// Required methods
-	ImageDidLoadPartOfRepresentationWithValidRows(image IImage, rep IImageRep, rows int)
-	ImageDidLoadRepresentationWithStatus(image IImage, rep IImageRep, status ImageLoadStatus)
-	ImageDidLoadRepresentationHeader(image IImage, rep IImageRep)
-	ImageWillLoadRepresentation(image IImage, rep IImageRep)
+	ImageDidLoadPartOfRepresentationWithValidRows(image IImage, rep IImageRep, rows int)/* debug [protocol_interface/required_method]: ImageDidLoadPartOfRepresentationWithValidRows */
+	ImageDidLoadRepresentationWithStatus(image IImage, rep IImageRep, status ImageLoadStatus)/* debug [protocol_interface/required_method]: ImageDidLoadRepresentationWithStatus */
+	ImageDidLoadRepresentationHeader(image IImage, rep IImageRep)/* debug [protocol_interface/required_method]: ImageDidLoadRepresentationHeader */
+	ImageWillLoadRepresentation(image IImage, rep IImageRep)/* debug [protocol_interface/required_method]: ImageWillLoadRepresentation */
 	// Optional methods
-	ImageDidNotDrawInRect(sender IImage, rect objc.IObject /* cross-framework: Rect */) Image
+	ImageDidNotDrawInRect(sender IImage, rect Rect /* not a class type */) Image
 	HasImageDidNotDrawInRect() bool
 }
 
@@ -30,7 +30,7 @@ type PImageDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ImageDelegate struct {
-	_ImageDidNotDrawInRect func(sender IImage, rect objc.IObject /* cross-framework: Rect */) Image
+	_ImageDidNotDrawInRect func(sender IImage, rect Rect /* not a class type */) Image
 	_ImageDidLoadPartOfRepresentationWithValidRows func(image IImage, rep IImageRep, rows int)
 	_ImageDidLoadRepresentationWithStatus func(image IImage, rep IImageRep, status ImageLoadStatus)
 	_ImageDidLoadRepresentationHeader func(image IImage, rep IImageRep)
@@ -40,7 +40,7 @@ type ImageDelegate struct {
 // SetImageDidNotDrawInRect sets the handler for the ImageDidNotDrawInRect delegate method.
 //
 // Tells the delegate that the image object is unable, for whatever reason, to lock focus on its image or draw in the specified rectangle.
-func (d *ImageDelegate) SetImageDidNotDrawInRect(f func(sender IImage, rect objc.IObject /* cross-framework: Rect */) Image) {
+func (d *ImageDelegate) SetImageDidNotDrawInRect(f func(sender IImage, rect Rect /* not a class type */) Image) {
 	d._ImageDidNotDrawInRect = f
 }
 
@@ -73,7 +73,7 @@ func (d *ImageDelegate) SetImageWillLoadRepresentation(f func(image IImage, rep 
 }
 
 // ImageDidNotDrawInRect implements the PImageDelegate interface.
-func (d *ImageDelegate) ImageDidNotDrawInRect(sender IImage, rect objc.IObject /* cross-framework: Rect */) Image {
+func (d *ImageDelegate) ImageDidNotDrawInRect(sender IImage, rect Rect /* not a class type */) Image {
 	if d._ImageDidNotDrawInRect != nil {
 		return d._ImageDidNotDrawInRect(sender, rect)
 	}

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for Contacts. DO NOT EDIT.
 
 // Package contacts provides Go bindings for the Contacts framework.
 //
-// Access the user’s contacts, and format and localize contact information.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Contacts without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Contacts
 package contacts
 
 import (

@@ -16,3 +16,4 @@ var authenticationDataForComponentsProtocol *objc.Protocol
 func init() {
 	authenticationDataForComponentsProtocol = objc.GetProtocol("authenticationDataForComponents:")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRContentLauncherClusterLaunchURLParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterLaunchURLParams
@@ -89,8 +87,6 @@ func NewMTRContentLauncherClusterLaunchURLParams() MTRContentLauncherClusterLaun
 	return getMTRContentLauncherClusterLaunchURLParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/brandinginformation
 func (m_ MTRContentLauncherClusterLaunchURLParams) BrandingInformation() IMTRContentLauncherClusterBrandingInformationStruct {
@@ -98,13 +94,11 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) BrandingInformation() IMTRCon
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/brandinginformation
 func (m_ MTRContentLauncherClusterLaunchURLParams) SetBrandingInformation(value IMTRContentLauncherClusterBrandingInformationStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBrandingInformation:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/contenturl
@@ -113,13 +107,11 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) ContentURL() objc.IObject /* 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/contenturl
 func (m_ MTRContentLauncherClusterLaunchURLParams) SetContentURL(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setContentURL:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/displaystring
@@ -128,13 +120,11 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) DisplayString() objc.IObject 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/displaystring
 func (m_ MTRContentLauncherClusterLaunchURLParams) SetDisplayString(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDisplayString:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/serversideprocessingtimeout
@@ -143,13 +133,11 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) ServerSideProcessingTimeout()
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/serversideprocessingtimeout
 func (m_ MTRContentLauncherClusterLaunchURLParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/timedinvoketimeoutms
@@ -158,12 +146,8 @@ func (m_ MTRContentLauncherClusterLaunchURLParams) TimedInvokeTimeoutMs() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterlaunchurlparams/timedinvoketimeoutms
 func (m_ MTRContentLauncherClusterLaunchURLParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

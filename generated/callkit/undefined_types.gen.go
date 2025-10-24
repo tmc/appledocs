@@ -9,9 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in CallKit
+	Bool  = _undefined // referenced in CallKit
 	Coder = _undefined // referenced in CallKit
-	UUID = _undefined // referenced in CallKit
+	UUID  = _undefined // referenced in CallKit
 )
-
-

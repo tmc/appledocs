@@ -7,11 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVMetadataItem */
+
+
+/* debug [class_header]: Header for AVMetadataItem */
 // The class instance for the [MetadataItem] class.
 var (
 	MetadataItemClass     _MetadataItemClass
@@ -28,70 +31,52 @@ func getMetadataItemClass() _MetadataItemClass {
 type _MetadataItemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MetadataItem */
 // An interface definition for the [MetadataItem] class.
 type IMetadataItem interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MetadataItem */
 	// properties:
+	CommonKey() MetadataKey /* typedef */
+	DataType() objc.IObject /* cross-framework: NSString */
+	DataValue() objc.IObject /* cross-framework: NSData */
+	DateValue() objc.IObject /* cross-framework: NSDate */
+	Duration() objc.IObject /* cross-framework: Time */
+	ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */
+	ExtraAttributes() foundation.IDictionary
+	Identifier() MetadataIdentifier /* typedef */
+	Key() unsafe.Pointer
+	KeySpace() MetadataKeySpace /* typedef */
+	Locale() foundation.Locale
+	NumberValue() objc.IObject /* cross-framework: NSNumber */
+	StartDate() objc.IObject /* cross-framework: NSDate */
+	StringValue() objc.IObject /* cross-framework: NSString */
+	Time() objc.IObject /* cross-framework: Time */
+	Value() unsafe.Pointer
 	CommonMetadata() IAVMetadataItem
 	SetCommonMetadata(value IAVMetadataItem)
 	Metadata() IAVMetadataItem
 	SetMetadata(value IAVMetadataItem)
-	CommonKey() MetadataKey /* not a class type */
-	SetCommonKey(value MetadataKey /* not a class type */)
-	DataType() objc.IObject /* cross-framework: NSString */
-	SetDataType(value objc.IObject /* cross-framework: NSString */)
-	DataValue() objc.IObject /* cross-framework: Data */
-	SetDataValue(value objc.IObject /* cross-framework: Data */)
-	DateValue() objc.IObject /* cross-framework: Date */
-	SetDateValue(value objc.IObject /* cross-framework: Date */)
-	Duration() objc.IObject /* cross-framework: Time */
-	SetDuration(value objc.IObject /* cross-framework: Time */)
-	ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */
-	SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */)
-	ExtraAttributes() MetadataExtraAttributeKey /* not a class type */
-	SetExtraAttributes(value MetadataExtraAttributeKey /* not a class type */)
-	Identifier() MetadataIdentifier /* not a class type */
-	SetIdentifier(value MetadataIdentifier /* not a class type */)
-	Key() ObjectProtocol /* not a class type */
-	SetKey(value ObjectProtocol /* not a class type */)
-	KeySpace() MetadataKeySpace /* not a class type */
-	SetKeySpace(value MetadataKeySpace /* not a class type */)
-	Locale() objc.IObject /* cross-framework: Locale */
-	SetLocale(value objc.IObject /* cross-framework: Locale */)
-	NumberValue() objc.IObject /* cross-framework: NSNumber */
-	SetNumberValue(value objc.IObject /* cross-framework: NSNumber */)
-	StartDate() objc.IObject /* cross-framework: Date */
-	SetStartDate(value objc.IObject /* cross-framework: Date */)
-	StringValue() objc.IObject /* cross-framework: NSString */
-	SetStringValue(value objc.IObject /* cross-framework: NSString */)
-	Time() objc.IObject /* cross-framework: Time */
-	SetTime(value objc.IObject /* cross-framework: Time */)
-	Value() ObjectProtocol /* not a class type */
-	SetValue(value ObjectProtocol /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MetadataItem */
 	// methods:
+	LoadValuesAsynchronouslyForKeysCompletionHandler(keys []string, handler unsafe.Pointer)
+	StatusOfValueForKeyError(key objc.IObject /* cross-framework: NSString */, outError objectivec.IObject) KeyValueStatus
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A metadata item for an audiovisual asset or one of its tracks.
-//
-// To effectively use , you need to understand how organizes metadata. To simplify finding and filtering metadata items, the framework groups related metadata into key spaces: The framework defines several format-specific key spaces. They roughly correlate to a particular container or file format, such as QuickTime (QuickTime metadata and user data) or MP3 (ID3). However, a single asset may contain metadata values across multiple key spaces. To retrieve an asset’s complete collection of format-specific metadata, you use its property. There are several common metadata values, such as a movie’s creation date or description, that can exist across multiple key spaces. To help normalize access to this common metadata, the framework provides a common key space that gives access to a limited set of metadata values common to several key spaces. This makes it easy to retrieve commonly used metadata without concern for the specific format. To retrieve an asset’s collection of common metadata, you use its property. Metadata items have keys that accord with the specification of the container format from which they’re drawn. Full details of the metadata formats, metadata keys, and metadata key spaces supported by AVFoundation are available in and . To load values of a metadata item when you access them for the first time, use the methods from the protocol. The class and other classes in turn provide their metadata as needed so that you can obtain objects from those arrays without incurring overhead for items you don’t inspect. To filter arrays of metadata items, you use the methods of this class. For example, you can filter by key and key space, by locale, and by preferred language.
+/* debug [class_interface]: End interface */
 
 
-// A metadata item for an audiovisual asset or one of its tracks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem
-type MetadataItem struct {
-	objectivec.Object
-}
 
-// MetadataItemFrom constructs a [MetadataItem] from an unsafe.Pointer.
-//
-// A metadata item for an audiovisual asset or one of its tracks.
-func MetadataItemFrom(ptr unsafe.Pointer) MetadataItem {
-	return MetadataItem{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MetadataItem */
 // Alloc allocates a new instance without initialization.
 func (mc _MetadataItemClass) Alloc() MetadataItem {
 	rv := objc.Send[MetadataItem](objc.ID(mc.class), objc.Sel("alloc"))
@@ -99,7 +84,6 @@ func (mc _MetadataItemClass) Alloc() MetadataItem {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MetadataItemClass) New() MetadataItem {
 	rv := objc.Send[MetadataItem](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -122,7 +106,333 @@ func (m_ MetadataItem) Autorelease() MetadataItem {
 func NewMetadataItem() MetadataItem {
 	return getMetadataItemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MetadataItem */
+// A metadata item for an audiovisual asset or one of its tracks.
+//
+// To effectively use , you need to understand how organizes metadata. To simplify finding and filtering metadata items, the framework groups related metadata into key spaces: The framework defines several format-specific key spaces. They roughly correlate to a particular container or file format, such as QuickTime (QuickTime metadata and user data) or MP3 (ID3). However, a single asset may contain metadata values across multiple key spaces. To retrieve an asset’s complete collection of format-specific metadata, you use its property. There are several common metadata values, such as a movie’s creation date or description, that can exist across multiple key spaces. To help normalize access to this common metadata, the framework provides a common key space that gives access to a limited set of metadata values common to several key spaces. This makes it easy to retrieve commonly used metadata without concern for the specific format. To retrieve an asset’s collection of common metadata, you use its property. Metadata items have keys that accord with the specification of the container format from which they’re drawn. Full details of the metadata formats, metadata keys, and metadata key spaces supported by AVFoundation are available in and . To load values of a metadata item when you access them for the first time, use the methods from the protocol. The class and other classes in turn provide their metadata as needed so that you can obtain objects from those arrays without incurring overhead for items you don’t inspect. To filter arrays of metadata items, you use the methods of this class. For example, you can filter by key and key space, by locale, and by preferred language.
+
+
+// A metadata item for an audiovisual asset or one of its tracks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem
+type MetadataItem struct {
+	objectivec.Object
+}
+
+// MetadataItemFrom constructs a [MetadataItem] from an unsafe.Pointer.
+//
+// A metadata item for an audiovisual asset or one of its tracks.
+func MetadataItemFrom(ptr unsafe.Pointer) MetadataItem {
+	return MetadataItem{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MetadataItem */
+
+// Creates a metadata item whose value loads on an on-demand basis only.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/init(propertiesOfMetadataItem:valueLoadingHandler:)
+func NewMetadataItemWithPropertiesOfMetadataItemValueLoadingHandler(metadataItem IAVMetadataItem, handler unsafe.Pointer) MetadataItem {
+	rv := objc.Send[MetadataItem](objc.ID(getMetadataItemClass().class), objc.Sel("metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:"), metadataItem, handler)
+	return rv
+}/* debug [class_init_methods/constructor]: NewMetadataItemWithPropertiesOfMetadataItemValueLoadingHandler */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MetadataItem */
+
+// Returns a metadata identifier for the specified key and key space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/identifier(forKey:keySpace:)
+func (mc _MetadataItemClass) IdentifierForKeyKeySpace(key objc.IObject, keySpace MetadataKeySpace /* typedef */) MetadataIdentifier /* typedef */ {
+	rv := objc.Send[foundation.NSString](objc.ID(mc.class), objc.Sel("identifierForKey:keySpace:"), key, keySpace)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=IdentifierForKeyKeySpace) */
+
+
+// Creates a metadata item whose value loads on an on-demand basis only.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/init(propertiesOfMetadataItem:valueLoadingHandler:)
+func (mc _MetadataItemClass) MetadataItemWithPropertiesOfMetadataItemValueLoadingHandler(metadataItem IAVMetadataItem, handler unsafe.Pointer) IMetadataItem {
+	rv := objc.Send[MetadataItem](objc.ID(mc.class), objc.Sel("metadataItemWithPropertiesOfMetadataItem:valueLoadingHandler:"), metadataItem, handler)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MetadataItemWithPropertiesOfMetadataItemValueLoadingHandler) */
+
+
+// Returns a metadata key for the specified identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/key(forIdentifier:)
+func (mc _MetadataItemClass) KeyForIdentifier(identifier MetadataIdentifier /* typedef */) objc.ID {
+	rv := objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("keyForIdentifier:"), identifier)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=KeyForIdentifier) */
+
+
+// Returns a metadata key space for the specified identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/keySpace(forIdentifier:)
+func (mc _MetadataItemClass) KeySpaceForIdentifier(identifier MetadataIdentifier /* typedef */) MetadataKeySpace /* typedef */ {
+	rv := objc.Send[foundation.NSString](objc.ID(mc.class), objc.Sel("keySpaceForIdentifier:"), identifier)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=KeySpaceForIdentifier) */
+
+
+// Returns metadata items whose locales match one of the specified language identifiers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredAndSortedAccordingToPreferredLanguages:)
+func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredAndSortedAccordingToPreferredLanguages(metadataItems []MetadataItem, preferredLanguages []string) []MetadataItem {
+	rv := objc.Send[[]MetadataItem](objc.ID(mc.class), objc.Sel("metadataItemsFromArray:filteredAndSortedAccordingToPreferredLanguages:"), metadataItems, preferredLanguages)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MetadataItemsFromArrayFilteredAndSortedAccordingToPreferredLanguages) */
+
+
+// Returns filtered metadata items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredBy:)
+func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredByMetadataItemFilter(metadataItems []MetadataItem, metadataItemFilter IAVMetadataItemFilter) []MetadataItem {
+	rv := objc.Send[[]MetadataItem](objc.ID(mc.class), objc.Sel("metadataItemsFromArray:filteredByMetadataItemFilter:"), metadataItems, metadataItemFilter)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MetadataItemsFromArrayFilteredByMetadataItemFilter) */
+
+
+// Returns metadata items for the specified identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/metadataItems(from:filteredByIdentifier:)
+func (mc _MetadataItemClass) MetadataItemsFromArrayFilteredByIdentifier(metadataItems []MetadataItem, identifier MetadataIdentifier /* typedef */) []MetadataItem {
+	rv := objc.Send[[]MetadataItem](objc.ID(mc.class), objc.Sel("metadataItemsFromArray:filteredByIdentifier:"), metadataItems, identifier)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MetadataItemsFromArrayFilteredByIdentifier) */
+
+
+// Returns metadata items that match a specified locale.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/metadataItems(from:with:)
+func (mc _MetadataItemClass) MetadataItemsFromArrayWithLocale(metadataItems []MetadataItem, locale foundation.Locale) []MetadataItem {
+	rv := objc.Send[[]MetadataItem](objc.ID(mc.class), objc.Sel("metadataItemsFromArray:withLocale:"), metadataItems, locale)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MetadataItemsFromArrayWithLocale) */
+
+
+// Returns metadata items that match a specified key or key space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/metadataItems(from:withKey:keySpace:)
+func (mc _MetadataItemClass) MetadataItemsFromArrayWithKeyKeySpace(metadataItems []MetadataItem, key objc.IObject, keySpace MetadataKeySpace /* typedef */) []MetadataItem {
+	rv := objc.Send[[]MetadataItem](objc.ID(mc.class), objc.Sel("metadataItemsFromArray:withKey:keySpace:"), metadataItems, key, keySpace)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=MetadataItemsFromArrayWithKeyKeySpace) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MetadataItem */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MetadataItem */
+
+// Tells the object to load the values of any of the specified keys that aren’t already loaded.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/loadValuesAsynchronouslyForKeys:completionHandler:
+func (m_ MetadataItem) LoadValuesAsynchronouslyForKeysCompletionHandler(keys []string, handler unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("loadValuesAsynchronouslyForKeys:completionHandler:"), keys, handler)
+}/* debug [instance_methods/method]: LoadValuesAsynchronouslyForKeysCompletionHandler */
+
+
+// Reports whether the value for a given key is immediately available without blocking.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/statusOfValueForKey:error:
+func (m_ MetadataItem) StatusOfValueForKeyError(key objc.IObject /* cross-framework: NSString */, outError objectivec.IObject) KeyValueStatus {
+	rv := objc.Send[KeyValueStatus](m_.ID, objc.Sel("statusOfValueForKey:error:"), key, outError)
+	return rv
+}/* debug [instance_methods/method]: StatusOfValueForKeyError */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MetadataItem */
+
+// The common key of the metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/commonKey
+func (m_ MetadataItem) CommonKey() MetadataKey /* typedef */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("commonKey"))
+	return rv
+}/* debug [instance_properties/getter]: commonKey */
+
+
+// The data type of the metadata item’s value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/dataType
+func (m_ MetadataItem) DataType() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("dataType"))
+	return rv
+}/* debug [instance_properties/getter]: dataType */
+
+
+// The value of the metadata item as a data value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/dataValue
+func (m_ MetadataItem) DataValue() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("dataValue"))
+	return rv
+}/* debug [instance_properties/getter]: dataValue */
+
+
+// The value of the metadata item as a date.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/dateValue
+func (m_ MetadataItem) DateValue() objc.IObject /* cross-framework: NSDate */ {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("dateValue"))
+	return rv
+}/* debug [instance_properties/getter]: dateValue */
+
+
+// The duration of the metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/duration
+func (m_ MetadataItem) Duration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](m_.ID, objc.Sel("duration"))
+	return rv
+}/* debug [instance_properties/getter]: duration */
+
+
+// The IETF BCP 47 (RFC 4646) language identifier of the metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/extendedLanguageTag
+func (m_ MetadataItem) ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("extendedLanguageTag"))
+	return rv
+}/* debug [instance_properties/getter]: extendedLanguageTag */
+
+
+// A dictionary of additional attributes for a metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/extraAttributes
+func (m_ MetadataItem) ExtraAttributes() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("extraAttributes"))
+	return rv
+}/* debug [instance_properties/getter]: extraAttributes */
+
+
+// An identifier for a metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/identifier
+func (m_ MetadataItem) Identifier() MetadataIdentifier /* typedef */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("identifier"))
+	return rv
+}/* debug [instance_properties/getter]: identifier */
+
+
+// The key of the metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/key
+func (m_ MetadataItem) Key() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("key"))
+	return rv
+}/* debug [instance_properties/getter]: key */
+
+
+// The key space for the metadata item’s key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/keySpace
+func (m_ MetadataItem) KeySpace() MetadataKeySpace /* typedef */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("keySpace"))
+	return rv
+}/* debug [instance_properties/getter]: keySpace */
+
+
+// The locale of the metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/locale
+func (m_ MetadataItem) Locale() foundation.Locale {
+	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
+	return rv
+}/* debug [instance_properties/getter]: locale */
+
+
+// The value of the metadata item as a number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/numberValue
+func (m_ MetadataItem) NumberValue() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("numberValue"))
+	return rv
+}/* debug [instance_properties/getter]: numberValue */
+
+
+// The start date of the timed metadata.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/startDate
+func (m_ MetadataItem) StartDate() objc.IObject /* cross-framework: NSDate */ {
+	rv := objc.Send[foundation.NSDate](m_.ID, objc.Sel("startDate"))
+	return rv
+}/* debug [instance_properties/getter]: startDate */
+
+
+// The value of the metadata item as a string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/stringValue
+func (m_ MetadataItem) StringValue() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("stringValue"))
+	return rv
+}/* debug [instance_properties/getter]: stringValue */
+
+
+// The timestamp of the metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/time
+func (m_ MetadataItem) Time() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](m_.ID, objc.Sel("time"))
+	return rv
+}/* debug [instance_properties/getter]: time */
+
+
+// The value of the metadata item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVMetadataItem/value
+func (m_ MetadataItem) Value() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("value"))
+	return rv
+}/* debug [instance_properties/getter]: value */
 
 
 // The metadata items an asset contains for common metadata identifiers that provide a value.
@@ -132,7 +442,7 @@ func NewMetadataItem() MetadataItem {
 func (m_ MetadataItem) CommonMetadata() IAVMetadataItem {
 	rv := objc.Send[MetadataItem](m_.ID, objc.Sel("commonMetadata"))
 	return rv
-}
+}/* debug [instance_properties/getter]: commonMetadata */
 
 
 // The metadata items an asset contains for common metadata identifiers that provide a value.
@@ -141,7 +451,7 @@ func (m_ MetadataItem) CommonMetadata() IAVMetadataItem {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/commonmetadata
 func (m_ MetadataItem) SetCommonMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommonMetadata:"), value)
-}
+}/* debug [instance_properties/setter]: commonMetadata */
 
 
 // An array of metadata items for all metadata identifiers for which a value is available.
@@ -151,7 +461,7 @@ func (m_ MetadataItem) SetCommonMetadata(value IAVMetadataItem) {
 func (m_ MetadataItem) Metadata() IAVMetadataItem {
 	rv := objc.Send[MetadataItem](m_.ID, objc.Sel("metadata"))
 	return rv
-}
+}/* debug [instance_properties/getter]: metadata */
 
 
 // An array of metadata items for all metadata identifiers for which a value is available.
@@ -160,311 +470,11 @@ func (m_ MetadataItem) Metadata() IAVMetadataItem {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avasset/metadata
 func (m_ MetadataItem) SetMetadata(value IAVMetadataItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMetadata:"), value)
-}
+}/* debug [instance_properties/setter]: metadata */
 
+/* debug [instance_properties]: End instance properties */
 
-// The common key of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/commonkey
-func (m_ MetadataItem) CommonKey() MetadataKey /* not a class type */ {
-	rv := objc.Send[MetadataKey](m_.ID, objc.Sel("commonKey"))
-	return rv
-}
 
-
-// The common key of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/commonkey
-func (m_ MetadataItem) SetCommonKey(value MetadataKey /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCommonKey:"), value)
-}
-
-
-// The data type of the metadata item’s value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datatype
-func (m_ MetadataItem) DataType() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("dataType"))
-	return rv
-}
-
-
-// The data type of the metadata item’s value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datatype
-func (m_ MetadataItem) SetDataType(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDataType:"), value)
-}
-
-
-// The value of the metadata item as a data value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datavalue
-func (m_ MetadataItem) DataValue() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("dataValue"))
-	return rv
-}
-
-
-// The value of the metadata item as a data value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datavalue
-func (m_ MetadataItem) SetDataValue(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDataValue:"), value)
-}
-
-
-// The value of the metadata item as a date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datevalue
-func (m_ MetadataItem) DateValue() objc.IObject /* cross-framework: Date */ {
-	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("dateValue"))
-	return rv
-}
-
-
-// The value of the metadata item as a date.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/datevalue
-func (m_ MetadataItem) SetDateValue(value objc.IObject /* cross-framework: Date */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDateValue:"), value)
-}
-
-
-// The duration of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/duration
-func (m_ MetadataItem) Duration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[coremedia.Time](m_.ID, objc.Sel("duration"))
-	return rv
-}
-
-
-// The duration of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/duration
-func (m_ MetadataItem) SetDuration(value objc.IObject /* cross-framework: Time */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setDuration:"), value)
-}
-
-
-// The IETF BCP 47 (RFC 4646) language identifier of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extendedlanguagetag
-func (m_ MetadataItem) ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("extendedLanguageTag"))
-	return rv
-}
-
-
-// The IETF BCP 47 (RFC 4646) language identifier of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extendedlanguagetag
-func (m_ MetadataItem) SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtendedLanguageTag:"), value)
-}
-
-
-// A dictionary of additional attributes for a metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extraattributes
-func (m_ MetadataItem) ExtraAttributes() MetadataExtraAttributeKey /* not a class type */ {
-	rv := objc.Send[MetadataExtraAttributeKey](m_.ID, objc.Sel("extraAttributes"))
-	return rv
-}
-
-
-// A dictionary of additional attributes for a metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/extraattributes
-func (m_ MetadataItem) SetExtraAttributes(value MetadataExtraAttributeKey /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtraAttributes:"), value)
-}
-
-
-// An identifier for a metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/identifier
-func (m_ MetadataItem) Identifier() MetadataIdentifier /* not a class type */ {
-	rv := objc.Send[MetadataIdentifier](m_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// An identifier for a metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/identifier
-func (m_ MetadataItem) SetIdentifier(value MetadataIdentifier /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIdentifier:"), value)
-}
-
-
-// The key of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/key
-func (m_ MetadataItem) Key() ObjectProtocol /* not a class type */ {
-	rv := objc.Send[ObjectProtocol](m_.ID, objc.Sel("key"))
-	return rv
-}
-
-
-// The key of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/key
-func (m_ MetadataItem) SetKey(value ObjectProtocol /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setKey:"), value)
-}
-
-
-// The key space for the metadata item’s key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/keyspace
-func (m_ MetadataItem) KeySpace() MetadataKeySpace /* not a class type */ {
-	rv := objc.Send[MetadataKeySpace](m_.ID, objc.Sel("keySpace"))
-	return rv
-}
-
-
-// The key space for the metadata item’s key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/keyspace
-func (m_ MetadataItem) SetKeySpace(value MetadataKeySpace /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setKeySpace:"), value)
-}
-
-
-// The locale of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/locale
-func (m_ MetadataItem) Locale() objc.IObject /* cross-framework: Locale */ {
-	rv := objc.Send[foundation.Locale](m_.ID, objc.Sel("locale"))
-	return rv
-}
-
-
-// The locale of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/locale
-func (m_ MetadataItem) SetLocale(value objc.IObject /* cross-framework: Locale */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLocale:"), value)
-}
-
-
-// The value of the metadata item as a number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/numbervalue
-func (m_ MetadataItem) NumberValue() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("numberValue"))
-	return rv
-}
-
-
-// The value of the metadata item as a number.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/numbervalue
-func (m_ MetadataItem) SetNumberValue(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberValue:"), value)
-}
-
-
-// The start date of the timed metadata.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/startdate
-func (m_ MetadataItem) StartDate() objc.IObject /* cross-framework: Date */ {
-	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("startDate"))
-	return rv
-}
-
-
-// The start date of the timed metadata.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/startdate
-func (m_ MetadataItem) SetStartDate(value objc.IObject /* cross-framework: Date */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartDate:"), value)
-}
-
-
-// The value of the metadata item as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/stringvalue
-func (m_ MetadataItem) StringValue() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("stringValue"))
-	return rv
-}
-
-
-// The value of the metadata item as a string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/stringvalue
-func (m_ MetadataItem) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStringValue:"), value)
-}
-
-
-// The timestamp of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/time
-func (m_ MetadataItem) Time() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[coremedia.Time](m_.ID, objc.Sel("time"))
-	return rv
-}
-
-
-// The timestamp of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/time
-func (m_ MetadataItem) SetTime(value objc.IObject /* cross-framework: Time */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTime:"), value)
-}
-
-
-// The value of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/value
-func (m_ MetadataItem) Value() ObjectProtocol /* not a class type */ {
-	rv := objc.Send[ObjectProtocol](m_.ID, objc.Sel("value"))
-	return rv
-}
-
-
-// The value of the metadata item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avmetadataitem/value
-func (m_ MetadataItem) SetValue(value ObjectProtocol /* not a class type */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
-}
-
+/* debug [class.gen.go]: End class AVMetadataItem */
 
 

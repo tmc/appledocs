@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterDeviceEnergyManagement */
+
+
+/* debug [class_header]: Header for MTRClusterDeviceEnergyManagement */
 // The class instance for the [MTRClusterDeviceEnergyManagement] class.
 var (
 	MTRClusterDeviceEnergyManagementClass     _MTRClusterDeviceEnergyManagementClass
@@ -26,58 +30,30 @@ func getMTRClusterDeviceEnergyManagementClass() _MTRClusterDeviceEnergyManagemen
 type _MTRClusterDeviceEnergyManagementClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterDeviceEnergyManagement */
 // An interface definition for the [MTRClusterDeviceEnergyManagement] class.
 type IMTRClusterDeviceEnergyManagement interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterDeviceEnergyManagement */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterDeviceEnergyManagement */
 	// methods:
-	CancelPowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	CancelPowerAdjustRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	CancelRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterCancelRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	CancelRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ModifyForecastRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterModifyForecastRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	PauseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterPauseRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	PowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterPowerAdjustRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAbsMaxPowerWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAbsMinPowerWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeESACanGenerateWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeESAStateWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeESATypeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeForecastWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeOptOutStateWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributePowerAdjustmentCapabilityWithParams(params IMTRReadParams) foundation.IDictionary
-	RequestConstraintBasedForecastWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ResumeRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterResumeRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ResumeRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	StartTimeAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Device Energy Management This cluster allows a client to manage the power draw of a device. An example of such a client could be an Energy Management System (EMS) which controls an Energy Smart Appliance (ESA).
 
 
-// Cluster Device Energy Management This cluster allows a client to manage the power draw of a device. An example of such a client could be an Energy Management System (EMS) which controls an Energy Smart Appliance (ESA).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement
-type MTRClusterDeviceEnergyManagement struct {
-	MTRGenericCluster
-}
-
-// MTRClusterDeviceEnergyManagementFrom constructs a [MTRClusterDeviceEnergyManagement] from an unsafe.Pointer.
-//
-// Cluster Device Energy Management This cluster allows a client to manage the power draw of a device. An example of such a client could be an Energy Management System (EMS) which controls an Energy Smart Appliance (ESA).
-func MTRClusterDeviceEnergyManagementFrom(ptr unsafe.Pointer) MTRClusterDeviceEnergyManagement {
-	return MTRClusterDeviceEnergyManagement{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterDeviceEnergyManagement */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterDeviceEnergyManagementClass) Alloc() MTRClusterDeviceEnergyManagement {
 	rv := objc.Send[MTRClusterDeviceEnergyManagement](objc.ID(mc.class), objc.Sel("alloc"))
@@ -85,7 +61,6 @@ func (mc _MTRClusterDeviceEnergyManagementClass) Alloc() MTRClusterDeviceEnergyM
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterDeviceEnergyManagementClass) New() MTRClusterDeviceEnergyManagement {
 	rv := objc.Send[MTRClusterDeviceEnergyManagement](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -108,8 +83,35 @@ func (m_ MTRClusterDeviceEnergyManagement) Autorelease() MTRClusterDeviceEnergyM
 func NewMTRClusterDeviceEnergyManagement() MTRClusterDeviceEnergyManagement {
 	return getMTRClusterDeviceEnergyManagementClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterDeviceEnergyManagement */
+// Cluster Device Energy Management This cluster allows a client to manage the power draw of a device. An example of such a client could be an Energy Management System (EMS) which controls an Energy Smart Appliance (ESA).
+
+
+// Cluster Device Energy Management This cluster allows a client to manage the power draw of a device. An example of such a client could be an Energy Management System (EMS) which controls an Energy Smart Appliance (ESA).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement
+type MTRClusterDeviceEnergyManagement struct {
+	MTRGenericCluster
+}
+
+// MTRClusterDeviceEnergyManagementFrom constructs a [MTRClusterDeviceEnergyManagement] from an unsafe.Pointer.
+//
+// Cluster Device Energy Management This cluster allows a client to manage the power draw of a device. An example of such a client could be an Energy Management System (EMS) which controls an Energy Smart Appliance (ESA).
+func MTRClusterDeviceEnergyManagementFrom(ptr unsafe.Pointer) MTRClusterDeviceEnergyManagement {
+	return MTRClusterDeviceEnergyManagement{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterDeviceEnergyManagement */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -120,188 +122,31 @@ func NewMTRClusterDeviceEnergyManagementWithDeviceEndpointIDQueue(device IMTRDev
 	rv := objc.Send[MTRClusterDeviceEnergyManagement](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterDeviceEnergyManagementWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/cancelPowerAdjustRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterCancelPowerAdjustRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelPowerAdjustRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class_methods]: Class methods for MTRClusterDeviceEnergyManagement */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/cancelPowerAdjustRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) CancelPowerAdjustRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelPowerAdjustRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterDeviceEnergyManagement */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/cancelRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) CancelRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterCancelRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+
+/* debug [instance_methods]: Instance methods for MTRClusterDeviceEnergyManagement */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/cancelRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) CancelRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("cancelRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterDeviceEnergyManagement */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/modifyForecastRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) ModifyForecastRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterModifyForecastRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("modifyForecastRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/pauseRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) PauseRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterPauseRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("pauseRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/powerAdjustRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) PowerAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterPowerAdjustRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("powerAdjustRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeAbsMaxPower(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeAbsMaxPowerWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAbsMaxPowerWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeAbsMinPower(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeAbsMinPowerWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAbsMinPowerWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeAttributeList(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeClusterRevision(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeESACanGenerate(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeESACanGenerateWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeESACanGenerateWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeESAState(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeESAStateWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeESAStateWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeESAType(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeESATypeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeESATypeWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeFeatureMap(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeForecast(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeForecastWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeForecastWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributeOptOutState(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributeOptOutStateWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeOptOutStateWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/readAttributePowerAdjustmentCapability(with:)
-func (m_ MTRClusterDeviceEnergyManagement) ReadAttributePowerAdjustmentCapabilityWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributePowerAdjustmentCapabilityWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/requestConstraintBasedForecast(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) RequestConstraintBasedForecastWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterRequestConstraintBasedForecastParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("requestConstraintBasedForecastWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/resumeRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) ResumeRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterResumeRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("resumeRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/resumeRequest(withExpectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) ResumeRequestWithExpectedValuesExpectedValueIntervalCompletion(expectedValues foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("resumeRequestWithExpectedValues:expectedValueInterval:completion:"), expectedValues, expectedValueIntervalMs, completion)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterDeviceEnergyManagement/startTimeAdjustRequest(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterDeviceEnergyManagement) StartTimeAdjustRequestWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRDeviceEnergyManagementClusterStartTimeAdjustRequestParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("startTimeAdjustRequestWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+/* debug [class.gen.go]: End class MTRClusterDeviceEnergyManagement */
 
 

@@ -9,10 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in MailKit
-	MEComposeUserAction = _undefined // referenced in MailKit
-	MEMessageEncryptionState = _undefined // referenced in MailKit
+	Bool                         = _undefined // referenced in MailKit
+	MEComposeUserAction          = _undefined // referenced in MailKit
+	MEMessageEncryptionState     = _undefined // referenced in MailKit
 	MEMessageSecurityInformation = _undefined // referenced in MailKit
 )
-
-

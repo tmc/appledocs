@@ -21,3 +21,4 @@ var imageForProposedSizeProtocol *objc.Protocol
 func init() {
 	imageForProposedSizeProtocol = objc.GetProtocol("imageForProposedSize:")
 }
+

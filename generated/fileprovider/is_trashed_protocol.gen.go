@@ -17,3 +17,4 @@ var isTrashedProtocol *objc.Protocol
 func init() {
 	isTrashedProtocol = objc.GetProtocol("isTrashed")
 }
+

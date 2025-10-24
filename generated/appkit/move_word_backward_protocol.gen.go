@@ -15,3 +15,4 @@ var moveWordBackwardProtocol *objc.Protocol
 func init() {
 	moveWordBackwardProtocol = objc.GetProtocol("moveWordBackward:")
 }
+

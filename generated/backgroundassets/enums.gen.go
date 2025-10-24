@@ -2,7 +2,9 @@
 
 package backgroundassets
 
+/* debug [enums.gen.go]: Generating 5 enums for BackgroundAssets */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum BAAssetPackStatus (4 cases) */
 // BAAssetPackStatus - The status of an asset pack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackStatus
@@ -25,30 +27,38 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackStatus/BAAssetPackStatusObsolete
 	BAAssetPackStatusObsolete BAAssetPackStatus = 0
-	// BAAssetPackStatusOutOfDate - A status value that indicates that the downloaded asset pack is out of date.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackStatus/BAAssetPackStatusOutOfDate
-	BAAssetPackStatusOutOfDate BAAssetPackStatus = 0
-	// BAAssetPackStatusUpToDate - A status value that indicates that the downloaded asset pack is up to date.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackStatus/BAAssetPackStatusUpToDate
-	BAAssetPackStatusUpToDate BAAssetPackStatus = 0
-	// BAAssetPackStatusUpdateAvailable - A status value that indicates that an update to the asset pack is available to download.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackStatus/BAAssetPackStatusUpdateAvailable
-	BAAssetPackStatusUpdateAvailable BAAssetPackStatus = 0
 )
 
-// BAContentRequest enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest
-type BAContentRequest uint
-
+/* debug [enums.gen.go]: Processing enum BADownloadState (5 cases) */
 // BADownloadState - Constants that indicate the state of a download.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum
 type BADownloadState uint
 
+const (
+	// BADownloadStateCreated - A state that indicates a created download.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/created
+	BADownloadStateCreated BADownloadState = 0
+	// BADownloadStateDownloading - A state that indicates a download is in progress.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/downloading
+	BADownloadStateDownloading BADownloadState = 0
+	// BADownloadStateFailed - A state that indicates a failed download.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/failed
+	BADownloadStateFailed BADownloadState = 0
+	// BADownloadStateFinished - A state that indicates a finished download.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/finished
+	BADownloadStateFinished BADownloadState = 0
+	// BADownloadStateWaiting - A state that indicates a download is waiting to execute.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BADownload/State-swift.enum/waiting
+	BADownloadStateWaiting BADownloadState = 0
+)
+
+/* debug [enums.gen.go]: Processing enum BAErrorCode (17 cases) */
 // BAErrorCode enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAErrorCode
@@ -56,17 +66,17 @@ type BAErrorCode uint
 
 const (
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAErrorCode/callFromExtensionNotAllowed
-	BAErrorCodeCallFromExtensionNotAllowed BAErrorCode = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAErrorCode/callFromInactiveProcessNotAllowed
-	BAErrorCodeCallFromInactiveProcessNotAllowed BAErrorCode = 0
-	//
 	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAErrorCode/callerConnectionInvalid
 	BAErrorCodeCallerConnectionInvalid BAErrorCode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAErrorCode/callerConnectionNotAccepted
 	BAErrorCodeCallerConnectionNotAccepted BAErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAErrorCode/callFromExtensionNotAllowed
+	BAErrorCodeCallFromExtensionNotAllowed BAErrorCode = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAErrorCode/callFromInactiveProcessNotAllowed
+	BAErrorCodeCallFromInactiveProcessNotAllowed BAErrorCode = 0
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAErrorCode/downloadAlreadyFailed
 	BAErrorCodeDownloadAlreadyFailed BAErrorCode = 0
@@ -108,20 +118,28 @@ const (
 	BAErrorCodeSessionDownloadNotPermittedBeforeAppLaunch BAErrorCode = 0
 )
 
+/* debug [enums.gen.go]: Processing enum BAManagedErrorCode (0 cases) */
 // BAManagedErrorCode - An error code for a managed asset pack.
 //
 // [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAManagedErrorCode
 type BAManagedErrorCode int
 
+/* debug [enums.gen.go]: Processing enum BAContentRequest (3 cases) */
+// BAContentRequest enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest
+type BAContentRequest uint
+
 const (
-	// BAManagedErrorCodeAssetPackNotFound - An error code that indicates the system can’t find an asset pack with the given identifier.
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAManagedErrorCode/BAManagedErrorCodeAssetPackNotFound
-	BAManagedErrorCodeAssetPackNotFound BAManagedErrorCode = 0
-	// BAManagedErrorCodeFileNotFound - An error code that indicates the system can’t find a file at the specified path.
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest/install
+	BAContentRequestInstall BAContentRequest = 0
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAManagedErrorCode/BAManagedErrorCodeFileNotFound
-	BAManagedErrorCodeFileNotFound BAManagedErrorCode = 0
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest/periodic
+	BAContentRequestPeriodic BAContentRequest = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAContentRequest/update
+	BAContentRequestUpdate BAContentRequest = 0
 )
 
 

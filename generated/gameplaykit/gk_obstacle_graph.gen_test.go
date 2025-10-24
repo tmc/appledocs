@@ -13,7 +13,7 @@ var _ = gameplaykit.NewObstacleGraph
 // Initializes a graph with the specified list of obstacles.
 func ExampleNewObstacleGraphWithObstaclesBufferRadius() {
 	_ = gameplaykit.NewObstacleGraphWithObstaclesBufferRadius(
-		[]gameplaykit.IPolygonObstacle{}, // obstacles []IPolygonObstacle
+		[]gameplaykit.PolygonObstacle{}, // obstacles []PolygonObstacle
 		0.0, // bufferRadius float32
 	)
 	// Output:

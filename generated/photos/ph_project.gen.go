@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHProject] class.
@@ -41,7 +41,6 @@ type IPHProject interface {
 // A representation of a Photos app project extension.
 //
 // This class represents the project when extended from macOS Photos. Projects can have the following types: Book Calendar Card Prints Slideshow Wall decor Users create projects by selecting one or more assets, right-clicking the selection, and grouping the assets, much like an album collection. Your app treats the project as a separate entity, represented as a .
-
 
 // A representation of a Photos app project extension.
 //
@@ -91,8 +90,6 @@ func NewPHProject() PHProject {
 	return getPHProjectClass().New()
 }
 
-
-
 // A property that indicates whether a project preview was previously set.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (p_ PHProject) HasProjectPreview() bool {
 	return rv
 }
 
-
 // A property that indicates whether a project preview was previously set.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (p_ PHProject) HasProjectPreview() bool {
 func (p_ PHProject) SetHasProjectPreview(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHasProjectPreview:"), value)
 }
-
 
 // Data associated with the project extension.
 //
@@ -121,7 +116,6 @@ func (p_ PHProject) ProjectExtensionData() objc.IObject /* cross-framework: Data
 	return rv
 }
 
-
 // Data associated with the project extension.
 //
 // [Full Topic]
@@ -129,6 +123,3 @@ func (p_ PHProject) ProjectExtensionData() objc.IObject /* cross-framework: Data
 func (p_ PHProject) SetProjectExtensionData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProjectExtensionData:"), value)
 }
-
-
-

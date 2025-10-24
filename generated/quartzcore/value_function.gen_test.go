@@ -17,4 +17,3 @@ func ExampleNewValueFunctionWithName() {
 	)
 	// Output:
 }
-

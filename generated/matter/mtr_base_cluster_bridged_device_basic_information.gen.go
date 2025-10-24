@@ -33,8 +33,6 @@ type IMTRBaseClusterBridgedDeviceBasicInformation interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterBridgedDeviceBasicInformation
 type MTRBaseClusterBridgedDeviceBasicInformation struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterBridgedDeviceBasicInformation) Autorelease() MTRBaseClust
 func NewMTRBaseClusterBridgedDeviceBasicInformation() MTRBaseClusterBridgedDeviceBasicInformation {
 	return getMTRBaseClusterBridgedDeviceBasicInformationClass().New()
 }
-
-
-
-

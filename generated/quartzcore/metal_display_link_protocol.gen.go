@@ -20,3 +20,4 @@ var metalDisplayLinkProtocol *objc.Protocol
 func init() {
 	metalDisplayLinkProtocol = objc.GetProtocol("metalDisplayLink:")
 }
+

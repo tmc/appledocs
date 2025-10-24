@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INGetAvailableRestaurantReservationBookingsIntent] class.
@@ -47,7 +47,6 @@ type IINGetAvailableRestaurantReservationBookingsIntent interface {
 // A request for the time slots available for making a reservation.
 //
 // An object asks you to generate details regarding the available time slots offered by a restaurant for a given party size. Maps sends this intent to your Intents extension when the user begins the booking process. You use this intent to obtain the initial details about the reservation request, including the number of people and the preferred date for the reservation. You use those details to identify potential time slots that can accommodate the party and return those time slots in your response object. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should resolve and confirm any parameters and create an object with the list of potential time slots.
-
 
 // A request for the time slots available for making a reservation.
 //
@@ -97,8 +96,6 @@ func NewINGetAvailableRestaurantReservationBookingsIntent() INGetAvailableRestau
 	return getINGetAvailableRestaurantReservationBookingsIntentClass().New()
 }
 
-
-
 // The earliest date for which to return results.
 //
 // [Full Topic]
@@ -108,7 +105,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) EarliestBookingDateF
 	return rv
 }
 
-
 // The earliest date for which to return results.
 //
 // [Full Topic]
@@ -116,7 +112,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) EarliestBookingDateF
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEarliestBookingDateForResults:"), value)
 }
-
 
 // The latest date for which to return results.
 //
@@ -127,7 +122,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) LatestBookingDateFor
 	return rv
 }
 
-
 // The latest date for which to return results.
 //
 // [Full Topic]
@@ -135,7 +129,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) LatestBookingDateFor
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetLatestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setLatestBookingDateForResults:"), value)
 }
-
 
 // The maximum number of reservation results to return.
 //
@@ -146,7 +139,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) MaximumNumberOfResul
 	return rv
 }
 
-
 // The maximum number of reservation results to return.
 //
 // [Full Topic]
@@ -154,7 +146,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) MaximumNumberOfResul
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumNumberOfResults:"), value)
 }
-
 
 // The number of people in the guest’s party.
 //
@@ -165,7 +156,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) PartySize() int {
 	return rv
 }
 
-
 // The number of people in the guest’s party.
 //
 // [Full Topic]
@@ -173,7 +163,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) PartySize() int {
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetPartySize(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPartySize:"), value)
 }
-
 
 // The date and time preferred by the user for the reservation.
 //
@@ -184,7 +173,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) PreferredBookingDate
 	return rv
 }
 
-
 // The date and time preferred by the user for the reservation.
 //
 // [Full Topic]
@@ -192,7 +180,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) PreferredBookingDate
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetPreferredBookingDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPreferredBookingDateComponents:"), value)
 }
-
 
 // The restaurant associated with the reservation.
 //
@@ -203,7 +190,6 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) Restaurant() unsafe.
 	return rv
 }
 
-
 // The restaurant associated with the reservation.
 //
 // [Full Topic]
@@ -211,6 +197,3 @@ func (i_ INGetAvailableRestaurantReservationBookingsIntent) Restaurant() unsafe.
 func (i_ INGetAvailableRestaurantReservationBookingsIntent) SetRestaurant(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)
 }
-
-
-

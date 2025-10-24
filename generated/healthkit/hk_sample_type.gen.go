@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class HKSampleType */
+
+
+/* debug [class_header]: Header for HKSampleType */
 // The class instance for the [HKSampleType] class.
 var (
 	HKSampleTypeClass     _HKSampleTypeClass
@@ -25,45 +29,35 @@ func getHKSampleTypeClass() _HKSampleTypeClass {
 type _HKSampleTypeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKSampleType */
 // An interface definition for the [HKSampleType] class.
 type IHKSampleType interface {
 	IHKObjectType
+	
+/* debug [class_interface_properties]: Properties for HKSampleType */
 	// properties:
 	AllowsRecalibrationForEstimates() bool
 	IsMaximumDurationRestricted() bool
-	SetIsMaximumDurationRestricted(value bool)
 	IsMinimumDurationRestricted() bool
-	SetIsMinimumDurationRestricted(value bool)
 	MaximumAllowedDuration() float64
-	SetMaximumAllowedDuration(value float64)
 	MinimumAllowedDuration() float64
-	SetMinimumAllowedDuration(value float64)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKSampleType */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
-//
-// The class is an abstract subclass of the class, used to represent data samples. Never instantiate an object directly. Instead, work with one of its concrete subclasses: , , , or classes.
+/* debug [class_interface]: End interface */
 
 
-// An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType
-type HKSampleType struct {
-	HKObjectType
-}
 
-// HKSampleTypeFrom constructs a [HKSampleType] from an unsafe.Pointer.
-//
-// An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
-func HKSampleTypeFrom(ptr unsafe.Pointer) HKSampleType {
-	return HKSampleType{
-		HKObjectType: HKObjectTypeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for HKSampleType */
 // Alloc allocates a new instance without initialization.
 func (hc _HKSampleTypeClass) Alloc() HKSampleType {
 	rv := objc.Send[HKSampleType](objc.ID(hc.class), objc.Sel("alloc"))
@@ -71,7 +65,6 @@ func (hc _HKSampleTypeClass) Alloc() HKSampleType {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKSampleTypeClass) New() HKSampleType {
 	rv := objc.Send[HKSampleType](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -94,8 +87,56 @@ func (h_ HKSampleType) Autorelease() HKSampleType {
 func NewHKSampleType() HKSampleType {
 	return getHKSampleTypeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for HKSampleType */
+// An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
+//
+// The class is an abstract subclass of the class, used to represent data samples. Never instantiate an object directly. Instead, work with one of its concrete subclasses: , , , or classes.
+
+
+// An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType
+type HKSampleType struct {
+	HKObjectType
+}
+
+// HKSampleTypeFrom constructs a [HKSampleType] from an unsafe.Pointer.
+//
+// An abstract superclass for all classes that identify a specific type of sample when working with the HealthKit store.
+func HKSampleTypeFrom(ptr unsafe.Pointer) HKSampleType {
+	return HKSampleType{
+		HKObjectType: HKObjectTypeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKSampleType *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKSampleType */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKSampleType */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKSampleType */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKSampleType */
 
 // A Boolean value that indicates whether HealthKit supports recalibrating the prediction algorithm used to produce estimates for this sample type.
 //
@@ -104,83 +145,52 @@ func NewHKSampleType() HKSampleType {
 func (h_ HKSampleType) AllowsRecalibrationForEstimates() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("allowsRecalibrationForEstimates"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allowsRecalibrationForEstimates */
 
 
 // A Boolean value that indicates whether samples of this type have a maximum time interval between the start and end dates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/ismaximumdurationrestricted
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType/isMaximumDurationRestricted
 func (h_ HKSampleType) IsMaximumDurationRestricted() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isMaximumDurationRestricted"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether samples of this type have a maximum time interval between the start and end dates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/ismaximumdurationrestricted
-func (h_ HKSampleType) SetIsMaximumDurationRestricted(value bool) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIsMaximumDurationRestricted:"), value)
-}
+}/* debug [instance_properties/getter]: isMaximumDurationRestricted */
 
 
 // A Boolean value that indicates whether samples of this type have a minimum time interval between the start and end dates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/isminimumdurationrestricted
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType/isMinimumDurationRestricted
 func (h_ HKSampleType) IsMinimumDurationRestricted() bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isMinimumDurationRestricted"))
 	return rv
-}
-
-
-// A Boolean value that indicates whether samples of this type have a minimum time interval between the start and end dates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/isminimumdurationrestricted
-func (h_ HKSampleType) SetIsMinimumDurationRestricted(value bool) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setIsMinimumDurationRestricted:"), value)
-}
+}/* debug [instance_properties/getter]: isMinimumDurationRestricted */
 
 
 // The maximum duration if the sample type has a restricted duration.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/maximumallowedduration
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType/maximumAllowedDuration
 func (h_ HKSampleType) MaximumAllowedDuration() float64 {
 	rv := objc.Send[float64](h_.ID, objc.Sel("maximumAllowedDuration"))
 	return rv
-}
-
-
-// The maximum duration if the sample type has a restricted duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/maximumallowedduration
-func (h_ HKSampleType) SetMaximumAllowedDuration(value float64) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMaximumAllowedDuration:"), value)
-}
+}/* debug [instance_properties/getter]: maximumAllowedDuration */
 
 
 // The minimum duration if the sample type has a restricted duration.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/minimumallowedduration
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKSampleType/minimumAllowedDuration
 func (h_ HKSampleType) MinimumAllowedDuration() float64 {
 	rv := objc.Send[float64](h_.ID, objc.Sel("minimumAllowedDuration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: minimumAllowedDuration */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The minimum duration if the sample type has a restricted duration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/healthkit/hksampletype/minimumallowedduration
-func (h_ HKSampleType) SetMinimumAllowedDuration(value float64) {
-	objc.Send[objc.ID](h_.ID, objc.Sel("setMinimumAllowedDuration:"), value)
-}
+/* debug [class.gen.go]: End class HKSampleType */
 
 
 

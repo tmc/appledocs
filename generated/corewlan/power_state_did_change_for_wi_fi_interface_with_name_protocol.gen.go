@@ -16,3 +16,4 @@ var powerStateDidChangeForWiFiInterfaceWithNameProtocol *objc.Protocol
 func init() {
 	powerStateDidChangeForWiFiInterfaceWithNameProtocol = objc.GetProtocol("powerStateDidChangeForWiFiInterfaceWithName:")
 }
+

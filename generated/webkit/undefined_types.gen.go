@@ -9,24 +9,16 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AudiovisualMediaTypes = _undefined // referenced in WebKit
-	Configuration = _undefined // referenced in WebKit
-	DataDetectorTypes = _undefined // referenced in WebKit
-	FindInteraction = _undefined // referenced in WebKit
-	FullscreenState = _undefined // referenced in WebKit
-	InactiveSchedulingPolicy = _undefined // referenced in WebKit
-	KeyModifierFlags = _undefined // referenced in WebKit
-	NavigationDelegate = _undefined // referenced in WebKit
-	NavigationType = _undefined // referenced in WebKit
-	Permission = _undefined // referenced in WebKit
-	SelectionAffinity = _undefined // referenced in WebKit
-	SelectionGranularity = _undefined // referenced in WebKit
-	UIDelegate = _undefined // referenced in WebKit
-	UserInterfaceDirectionPolicy = _undefined // referenced in WebKit
-	UserScriptInjectionTime = _undefined // referenced in WebKit
-	WebExtensionControllerDelegate = _undefined // referenced in WebKit
-	WebExtensionWindow = _undefined // referenced in WebKit
+	EventModifierFlags   = _undefined // referenced in WebKit
+	FindInteraction      = _undefined // referenced in WebKit
+	Image                = _undefined // referenced in WebKit
+	KeyCommand           = _undefined // referenced in WebKit
+	KeyModifierFlags     = _undefined // referenced in WebKit
+	MenuElement          = _undefined // referenced in WebKit
+	MenuItem             = _undefined // referenced in WebKit
+	Rect                 = _undefined // referenced in WebKit
+	SelectionAffinity    = _undefined // referenced in WebKit
+	String               = _undefined // referenced in WebKit
+	URL                  = _undefined // referenced in WebKit
 	WritingToolsBehavior = _undefined // referenced in WebKit
 )
-
-

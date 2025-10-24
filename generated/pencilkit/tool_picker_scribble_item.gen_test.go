@@ -15,4 +15,3 @@ func ExampleNewToolPickerScribbleItem() {
 	_ = pencilkit.NewToolPickerScribbleItem()
 	// Output:
 }
-

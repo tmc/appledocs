@@ -37,7 +37,6 @@ type IINEndWorkoutIntent interface {
 //
 // SiriKit creates an object when the user asks to finish an in-progress workout. Finishing a workout stops it and records any progress made toward the workout’s goals. Use this intent object to validate the workout parameters. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object that indicates it’s possible to end the workout. For the successful handling of the intent, SiriKit launches your app and passes it an object your app must then use to end the workout.
 
-
 // A request to end the current workout that also validates workout parameters and saves the results.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINEndWorkoutIntent() INEndWorkoutIntent {
 	return getINEndWorkoutIntentClass().New()
 }
 
-
-
 // Initializes an intent object with the specified workout name.
 //
 // [Full Topic]
@@ -99,8 +96,6 @@ func NewINEndWorkoutIntentWithWorkoutName(workoutName INSpeakableString) INEndWo
 	return rv
 }
 
-
-
 // The name of the workout.
 //
 // [Full Topic]
@@ -110,7 +105,6 @@ func (i_ INEndWorkoutIntent) WorkoutName() INSpeakableString {
 	return rv
 }
 
-
 // The name of the workout.
 //
 // [Full Topic]
@@ -118,5 +112,3 @@ func (i_ INEndWorkoutIntent) WorkoutName() INSpeakableString {
 func (i_ INEndWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
 }
-
-

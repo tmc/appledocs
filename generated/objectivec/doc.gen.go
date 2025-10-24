@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for ObjectiveC. DO NOT EDIT.
 
 // Package objectivec provides Go bindings for the ObjectiveC framework.

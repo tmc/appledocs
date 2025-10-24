@@ -20,3 +20,4 @@ var accelerationStructureCommandEncoderWithDescriptorProtocol *objc.Protocol
 func init() {
 	accelerationStructureCommandEncoderWithDescriptorProtocol = objc.GetProtocol("accelerationStructureCommandEncoderWithDescriptor:")
 }
+

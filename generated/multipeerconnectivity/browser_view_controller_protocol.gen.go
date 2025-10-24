@@ -20,3 +20,4 @@ var browserViewControllerProtocol *objc.Protocol
 func init() {
 	browserViewControllerProtocol = objc.GetProtocol("browserViewController:")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRMediaPlaybackClusterRewindParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMediaPlaybackClusterRewindParams
@@ -85,8 +83,6 @@ func NewMTRMediaPlaybackClusterRewindParams() MTRMediaPlaybackClusterRewindParam
 	return getMTRMediaPlaybackClusterRewindParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/audioadvanceunmuted
 func (m_ MTRMediaPlaybackClusterRewindParams) AudioAdvanceUnmuted() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRMediaPlaybackClusterRewindParams) AudioAdvanceUnmuted() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/audioadvanceunmuted
 func (m_ MTRMediaPlaybackClusterRewindParams) SetAudioAdvanceUnmuted(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAudioAdvanceUnmuted:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRMediaPlaybackClusterRewindParams) ServerSideProcessingTimeout() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/serversideprocessingtimeout
 func (m_ MTRMediaPlaybackClusterRewindParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRMediaPlaybackClusterRewindParams) TimedInvokeTimeoutMs() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmediaplaybackclusterrewindparams/timedinvoketimeoutms
 func (m_ MTRMediaPlaybackClusterRewindParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

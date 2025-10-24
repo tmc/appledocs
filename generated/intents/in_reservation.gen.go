@@ -36,7 +36,6 @@ type IINReservation interface {
 
 // A parent class referenced by other Intents classes.
 
-
 // A parent class referenced by other Intents classes. [Full Topic]
 type INReservation struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (i_ INReservation) Autorelease() INReservation {
 func NewINReservation() INReservation {
 	return getINReservationClass().New()
 }
-
-
-
-

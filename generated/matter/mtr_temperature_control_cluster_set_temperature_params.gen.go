@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRTemperatureControlClusterSetTemperatureParams */
+
+
+/* debug [class_header]: Header for MTRTemperatureControlClusterSetTemperatureParams */
 // The class instance for the [MTRTemperatureControlClusterSetTemperatureParams] class.
 var (
 	MTRTemperatureControlClusterSetTemperatureParamsClass     _MTRTemperatureControlClusterSetTemperatureParamsClass
@@ -27,35 +31,38 @@ func getMTRTemperatureControlClusterSetTemperatureParamsClass() _MTRTemperatureC
 type _MTRTemperatureControlClusterSetTemperatureParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRTemperatureControlClusterSetTemperatureParams */
 // An interface definition for the [MTRTemperatureControlClusterSetTemperatureParams] class.
 type IMTRTemperatureControlClusterSetTemperatureParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRTemperatureControlClusterSetTemperatureParams */
 	// properties:
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
 	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
 	TargetTemperature() objc.IObject /* cross-framework: NSNumber */
 	SetTargetTemperature(value objc.IObject /* cross-framework: NSNumber */)
 	TargetTemperatureLevel() objc.IObject /* cross-framework: NSNumber */
 	SetTargetTemperatureLevel(value objc.IObject /* cross-framework: NSNumber */)
-	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
-	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRTemperatureControlClusterSetTemperatureParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams
-type MTRTemperatureControlClusterSetTemperatureParams struct {
-	objectivec.Object
-}
-
-// MTRTemperatureControlClusterSetTemperatureParamsFrom constructs a [MTRTemperatureControlClusterSetTemperatureParams] from an unsafe.Pointer.
-func MTRTemperatureControlClusterSetTemperatureParamsFrom(ptr unsafe.Pointer) MTRTemperatureControlClusterSetTemperatureParams {
-	return MTRTemperatureControlClusterSetTemperatureParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRTemperatureControlClusterSetTemperatureParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRTemperatureControlClusterSetTemperatureParamsClass) Alloc() MTRTemperatureControlClusterSetTemperatureParams {
 	rv := objc.Send[MTRTemperatureControlClusterSetTemperatureParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -63,7 +70,6 @@ func (mc _MTRTemperatureControlClusterSetTemperatureParamsClass) Alloc() MTRTemp
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRTemperatureControlClusterSetTemperatureParamsClass) New() MTRTemperatureControlClusterSetTemperatureParams {
 	rv := objc.Send[MTRTemperatureControlClusterSetTemperatureParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,57 +92,47 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) Autorelease() MTRTemp
 func NewMTRTemperatureControlClusterSetTemperatureParams() MTRTemperatureControlClusterSetTemperatureParams {
 	return getMTRTemperatureControlClusterSetTemperatureParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// Controls how much time, in seconds, we will allow for the server to process the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/serverSideProcessingTimeout
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// Controls how much time, in seconds, we will allow for the server to process the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/serverSideProcessingTimeout
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
+/* debug [class_struct]: Struct for MTRTemperatureControlClusterSetTemperatureParams */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperature
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetTemperature"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams
+type MTRTemperatureControlClusterSetTemperatureParams struct {
+	objectivec.Object
 }
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperature
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperature:"), value)
+// MTRTemperatureControlClusterSetTemperatureParamsFrom constructs a [MTRTemperatureControlClusterSetTemperatureParams] from an unsafe.Pointer.
+func MTRTemperatureControlClusterSetTemperatureParamsFrom(ptr unsafe.Pointer) MTRTemperatureControlClusterSetTemperatureParams {
+	return MTRTemperatureControlClusterSetTemperatureParams{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperatureLevel
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLevel() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetTemperatureLevel"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRTemperatureControlClusterSetTemperatureParams *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/targetTemperatureLevel
-func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperatureLevel:"), value)
-}
 
+/* debug [class_methods]: Class methods for MTRTemperatureControlClusterSetTemperatureParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRTemperatureControlClusterSetTemperatureParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRTemperatureControlClusterSetTemperatureParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRTemperatureControlClusterSetTemperatureParams */
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
@@ -145,7 +141,7 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureL
 func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timedInvokeTimeoutMs */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
@@ -154,7 +150,61 @@ func (m_ MTRTemperatureControlClusterSetTemperatureParams) TimedInvokeTimeoutMs(
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTemperatureControlClusterSetTemperatureParams/timedInvokeTimeoutMs
 func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
+}/* debug [instance_properties/setter]: timedInvokeTimeoutMs */
+
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtemperaturecontrolclustersettemperatureparams/serversideprocessingtimeout
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}/* debug [instance_properties/getter]: serverSideProcessingTimeout */
+
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtemperaturecontrolclustersettemperatureparams/serversideprocessingtimeout
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}/* debug [instance_properties/setter]: serverSideProcessingTimeout */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtemperaturecontrolclustersettemperatureparams/targettemperature
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperature() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetTemperature"))
+	return rv
+}/* debug [instance_properties/getter]: targetTemperature */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtemperaturecontrolclustersettemperatureparams/targettemperature
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperature(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperature:"), value)
+}/* debug [instance_properties/setter]: targetTemperature */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtemperaturecontrolclustersettemperatureparams/targettemperaturelevel
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) TargetTemperatureLevel() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("targetTemperatureLevel"))
+	return rv
+}/* debug [instance_properties/getter]: targetTemperatureLevel */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrtemperaturecontrolclustersettemperatureparams/targettemperaturelevel
+func (m_ MTRTemperatureControlClusterSetTemperatureParams) SetTargetTemperatureLevel(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTargetTemperatureLevel:"), value)
+}/* debug [instance_properties/setter]: targetTemperatureLevel */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRTemperatureControlClusterSetTemperatureParams */
 
 
 

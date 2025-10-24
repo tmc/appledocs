@@ -21,3 +21,4 @@ var OS_dispatch_queue_serial_executorProtocol *objc.Protocol
 func init() {
 	OS_dispatch_queue_serial_executorProtocol = objc.GetProtocol("OS_dispatch_queue_serial_executor")
 }
+

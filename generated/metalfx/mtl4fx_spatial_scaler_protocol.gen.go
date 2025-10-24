@@ -20,3 +20,4 @@ var MTL4FXSpatialScalerProtocol *objc.Protocol
 func init() {
 	MTL4FXSpatialScalerProtocol = objc.GetProtocol("MTL4FXSpatialScaler")
 }
+

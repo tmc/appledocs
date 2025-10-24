@@ -12,7 +12,7 @@ var _ = audiotoolbox.NewHeadTrackedSpatialAudio
 // ExampleNewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy demonstrates how to create a HeadTrackedSpatialAudio instance using NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy.
 func ExampleNewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy() {
 	_ = audiotoolbox.NewHeadTrackedSpatialAudioWithSoundStageSizeAnchoringStrategy(
-		audiotoolbox.SoundStageSize{}, // soundStageSize SoundStageSize
+		audiotoolbox.SoundStageSize{},      // soundStageSize SoundStageSize
 		audiotoolbox.CAAnchoringStrategy{}, // anchoringStrategy CAAnchoringStrategy
 	)
 	// Output:

@@ -20,3 +20,4 @@ var objectAtIndexedSubscriptProtocol *objc.Protocol
 func init() {
 	objectAtIndexedSubscriptProtocol = objc.GetProtocol("objectAtIndexedSubscript:")
 }
+

@@ -21,3 +21,4 @@ var autoreleaseProtocol *objc.Protocol
 func init() {
 	autoreleaseProtocol = objc.GetProtocol("autorelease")
 }
+

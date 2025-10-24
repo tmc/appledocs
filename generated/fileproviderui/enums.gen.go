@@ -2,7 +2,9 @@
 
 package fileproviderui
 
+/* debug [enums.gen.go]: Generating 1 enums for FileProviderUI */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum FPUIExtensionErrorCode (2 cases) */
 // FPUIExtensionErrorCode - The error codes for errors raised by the File Provider UI extension.
 //
 // [Full Topic]: https://developer.apple.com/documentation/FileProviderUI/FPUIExtensionErrorCode

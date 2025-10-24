@@ -2,7 +2,9 @@
 
 package devicediscoveryextension
 
+/* debug [enums.gen.go]: Generating 8 enums for DeviceDiscoveryExtension */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum DDDeviceCategory (7 cases) */
 // DDDeviceCategory - An option that determines the icon for the device in the picker UI.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/Category-swift.enum
@@ -38,11 +40,7 @@ const (
 	DDDeviceCategoryTVWithMediaBox DDDeviceCategory = 0
 )
 
-// DDDeviceMediaPlaybackState - States that indicate the status of a device’s media playback.
-//
-// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum
-type DDDeviceMediaPlaybackState uint
-
+/* debug [enums.gen.go]: Processing enum DDDeviceProtocol (2 cases) */
 // DDDeviceProtocol - An identifier for the manner in which an app interacts with a device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/Protocol-swift.enum
@@ -59,6 +57,7 @@ const (
 	DDDeviceProtocolInvalid DDDeviceProtocol = 0
 )
 
+/* debug [enums.gen.go]: Processing enum DDDeviceWiFiAwareServiceRole (2 cases) */
 // DDDeviceWiFiAwareServiceRole enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/WiFiAwareServiceRole-swift.enum
@@ -73,6 +72,28 @@ const (
 	DDDeviceWiFiAwareServiceRoleSubscriber DDDeviceWiFiAwareServiceRole = 0
 )
 
+/* debug [enums.gen.go]: Processing enum DDDeviceMediaPlaybackState (3 cases) */
+// DDDeviceMediaPlaybackState - States that indicate the status of a device’s media playback.
+//
+// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum
+type DDDeviceMediaPlaybackState uint
+
+const (
+	// DDDeviceMediaPlaybackStateNoContent - A state that indicates when the device plays no content.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum/noContent
+	DDDeviceMediaPlaybackStateNoContent DDDeviceMediaPlaybackState = 0
+	// DDDeviceMediaPlaybackStatePaused - A state that indicates when content playback for the device pauses.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum/paused
+	DDDeviceMediaPlaybackStatePaused DDDeviceMediaPlaybackState = 0
+	// DDDeviceMediaPlaybackStatePlaying - A state that indicates when the device plays media.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDevice/MediaPlaybackState-swift.enum/playing
+	DDDeviceMediaPlaybackStatePlaying DDDeviceMediaPlaybackState = 0
+)
+
+/* debug [enums.gen.go]: Processing enum DDEventType (4 cases) */
 // DDEventType - Identifiers for the types of events that occur in the device discovery life cycle.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceEvent/EventType-swift.enum
@@ -97,6 +118,7 @@ const (
 	DDEventTypeUnknown DDEventType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum DDDeviceState (5 cases) */
 // DDDeviceState - A state that represents the level of user interaction with the device.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceState
@@ -125,24 +147,7 @@ const (
 	DDDeviceStateInvalidating DDDeviceState = 0
 )
 
-// DDDeviceSupports enum type
-//
-// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceSupports
-type DDDeviceSupports uint
-
-const (
-	// DDDeviceSupportsBluetoothHID - Device supports bring up of classic transport profiles when low energy transport for peripheral is connected.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceSupports/bluetoothHID
-	DDDeviceSupportsBluetoothHID DDDeviceSupports = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceSupports/bluetoothPairingLE
-	DDDeviceSupportsBluetoothPairingLE DDDeviceSupports = 0
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceSupports/bluetoothTransportBridging
-	DDDeviceSupportsBluetoothTransportBridging DDDeviceSupports = 0
-)
-
+/* debug [enums.gen.go]: Processing enum DDErrorCode (9 cases) */
 // DDErrorCode - Codes that identify errors that can occur during the framework’s use.
 //
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDError/Code
@@ -185,6 +190,25 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDError/Code/unsupported
 	DDErrorCodeUnsupported DDErrorCode = 0
+)
+
+/* debug [enums.gen.go]: Processing enum DDDeviceSupports (3 cases) */
+// DDDeviceSupports enum type
+//
+// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceSupports
+type DDDeviceSupports uint
+
+const (
+	// DDDeviceSupportsBluetoothHID - Device supports bring up of classic transport profiles when low energy transport for peripheral is connected.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceSupports/bluetoothHID
+	DDDeviceSupportsBluetoothHID DDDeviceSupports = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceSupports/bluetoothPairingLE
+	DDDeviceSupportsBluetoothPairingLE DDDeviceSupports = 0
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceSupports/bluetoothTransportBridging
+	DDDeviceSupportsBluetoothTransportBridging DDDeviceSupports = 0
 )
 
 

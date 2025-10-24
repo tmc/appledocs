@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class CNChangeHistoryAddSubgroupToGroupEvent */
+
+
+/* debug [class_header]: Header for CNChangeHistoryAddSubgroupToGroupEvent */
 // The class instance for the [CNChangeHistoryAddSubgroupToGroupEvent] class.
 var (
 	CNChangeHistoryAddSubgroupToGroupEventClass     _CNChangeHistoryAddSubgroupToGroupEventClass
@@ -25,36 +29,32 @@ func getCNChangeHistoryAddSubgroupToGroupEventClass() _CNChangeHistoryAddSubgrou
 type _CNChangeHistoryAddSubgroupToGroupEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNChangeHistoryAddSubgroupToGroupEvent */
 // An interface definition for the [CNChangeHistoryAddSubgroupToGroupEvent] class.
 type ICNChangeHistoryAddSubgroupToGroupEvent interface {
 	ICNChangeHistoryEvent
+	
+/* debug [class_interface_properties]: Properties for CNChangeHistoryAddSubgroupToGroupEvent */
 	// properties:
 	Group() ICNGroup
 	Subgroup() ICNGroup
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNChangeHistoryAddSubgroupToGroupEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that represents a user adding a subgroup to a group.
 
 
-// An object that represents a user adding a subgroup to a group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent
-type CNChangeHistoryAddSubgroupToGroupEvent struct {
-	CNChangeHistoryEvent
-}
-
-// CNChangeHistoryAddSubgroupToGroupEventFrom constructs a [CNChangeHistoryAddSubgroupToGroupEvent] from an unsafe.Pointer.
-//
-// An object that represents a user adding a subgroup to a group.
-func CNChangeHistoryAddSubgroupToGroupEventFrom(ptr unsafe.Pointer) CNChangeHistoryAddSubgroupToGroupEvent {
-	return CNChangeHistoryAddSubgroupToGroupEvent{
-		CNChangeHistoryEvent: CNChangeHistoryEventFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CNChangeHistoryAddSubgroupToGroupEvent */
 // Alloc allocates a new instance without initialization.
 func (cc _CNChangeHistoryAddSubgroupToGroupEventClass) Alloc() CNChangeHistoryAddSubgroupToGroupEvent {
 	rv := objc.Send[CNChangeHistoryAddSubgroupToGroupEvent](objc.ID(cc.class), objc.Sel("alloc"))
@@ -62,7 +62,6 @@ func (cc _CNChangeHistoryAddSubgroupToGroupEventClass) Alloc() CNChangeHistoryAd
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNChangeHistoryAddSubgroupToGroupEventClass) New() CNChangeHistoryAddSubgroupToGroupEvent {
 	rv := objc.Send[CNChangeHistoryAddSubgroupToGroupEvent](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,8 +84,54 @@ func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Autorelease() CNChangeHistoryAd
 func NewCNChangeHistoryAddSubgroupToGroupEvent() CNChangeHistoryAddSubgroupToGroupEvent {
 	return getCNChangeHistoryAddSubgroupToGroupEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CNChangeHistoryAddSubgroupToGroupEvent */
+// An object that represents a user adding a subgroup to a group.
+
+
+// An object that represents a user adding a subgroup to a group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNChangeHistoryAddSubgroupToGroupEvent
+type CNChangeHistoryAddSubgroupToGroupEvent struct {
+	CNChangeHistoryEvent
+}
+
+// CNChangeHistoryAddSubgroupToGroupEventFrom constructs a [CNChangeHistoryAddSubgroupToGroupEvent] from an unsafe.Pointer.
+//
+// An object that represents a user adding a subgroup to a group.
+func CNChangeHistoryAddSubgroupToGroupEventFrom(ptr unsafe.Pointer) CNChangeHistoryAddSubgroupToGroupEvent {
+	return CNChangeHistoryAddSubgroupToGroupEvent{
+		CNChangeHistoryEvent: CNChangeHistoryEventFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CNChangeHistoryAddSubgroupToGroupEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CNChangeHistoryAddSubgroupToGroupEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNChangeHistoryAddSubgroupToGroupEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNChangeHistoryAddSubgroupToGroupEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNChangeHistoryAddSubgroupToGroupEvent */
 
 // The group where the user added a subgroup.
 //
@@ -95,7 +140,7 @@ func NewCNChangeHistoryAddSubgroupToGroupEvent() CNChangeHistoryAddSubgroupToGro
 func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("group"))
 	return rv
-}
+}/* debug [instance_properties/getter]: group */
 
 
 // The subgroup that the user added to the group.
@@ -105,7 +150,12 @@ func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Group() ICNGroup {
 func (c_ CNChangeHistoryAddSubgroupToGroupEvent) Subgroup() ICNGroup {
 	rv := objc.Send[CNGroup](c_.ID, objc.Sel("subgroup"))
 	return rv
-}
+}/* debug [instance_properties/getter]: subgroup */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CNChangeHistoryAddSubgroupToGroupEvent */
 
 
 

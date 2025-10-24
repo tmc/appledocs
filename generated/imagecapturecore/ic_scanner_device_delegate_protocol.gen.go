@@ -15,3 +15,4 @@ var ICScannerDeviceDelegateProtocol *objc.Protocol
 func init() {
 	ICScannerDeviceDelegateProtocol = objc.GetProtocol("ICScannerDeviceDelegate")
 }
+

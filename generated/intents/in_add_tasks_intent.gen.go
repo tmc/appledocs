@@ -45,7 +45,6 @@ type IINAddTasksIntent interface {
 //
 // Siri creates an instance of when the user asks to add one or more tasks to a task list. Alternatively, if the user asks to create a note, and your app or Intents extension doesn’t support , SiriKit uses this intent instead. The intent contains the tasks to add and the target task list, and can also include location or time triggers that you assign to each of the new tasks. To process the request, your handler must adopt the protocol. is available to both Siri Intents and Siri Suggestions and doesn’t require an unlocked device before processing.
 
-
 // A request to add tasks to an existing task list.
 //
 // [Full Topic]
@@ -94,8 +93,6 @@ func NewINAddTasksIntent() INAddTasksIntent {
 	return getINAddTasksIntentClass().New()
 }
 
-
-
 // The priority for the new task.
 //
 // [Full Topic]
@@ -105,7 +102,6 @@ func (i_ INAddTasksIntent) Priority() unsafe.Pointer {
 	return rv
 }
 
-
 // The priority for the new task.
 //
 // [Full Topic]
@@ -113,7 +109,6 @@ func (i_ INAddTasksIntent) Priority() unsafe.Pointer {
 func (i_ INAddTasksIntent) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPriority:"), value)
 }
-
 
 // The location-based trigger to associate with each of the new tasks.
 //
@@ -124,7 +119,6 @@ func (i_ INAddTasksIntent) SpatialEventTrigger() unsafe.Pointer {
 	return rv
 }
 
-
 // The location-based trigger to associate with each of the new tasks.
 //
 // [Full Topic]
@@ -132,7 +126,6 @@ func (i_ INAddTasksIntent) SpatialEventTrigger() unsafe.Pointer {
 func (i_ INAddTasksIntent) SetSpatialEventTrigger(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpatialEventTrigger:"), value)
 }
-
 
 // The task list to receive the new tasks.
 //
@@ -143,7 +136,6 @@ func (i_ INAddTasksIntent) TargetTaskList() unsafe.Pointer {
 	return rv
 }
 
-
 // The task list to receive the new tasks.
 //
 // [Full Topic]
@@ -151,7 +143,6 @@ func (i_ INAddTasksIntent) TargetTaskList() unsafe.Pointer {
 func (i_ INAddTasksIntent) SetTargetTaskList(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTargetTaskList:"), value)
 }
-
 
 // An array of strings containing the titles of the new tasks.
 //
@@ -162,7 +153,6 @@ func (i_ INAddTasksIntent) TaskTitles() INSpeakableString {
 	return rv
 }
 
-
 // An array of strings containing the titles of the new tasks.
 //
 // [Full Topic]
@@ -170,7 +160,6 @@ func (i_ INAddTasksIntent) TaskTitles() INSpeakableString {
 func (i_ INAddTasksIntent) SetTaskTitles(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
 }
-
 
 // The time-based trigger to associate with each of the new tasks.
 //
@@ -181,7 +170,6 @@ func (i_ INAddTasksIntent) TemporalEventTrigger() unsafe.Pointer {
 	return rv
 }
 
-
 // The time-based trigger to associate with each of the new tasks.
 //
 // [Full Topic]
@@ -189,6 +177,3 @@ func (i_ INAddTasksIntent) TemporalEventTrigger() unsafe.Pointer {
 func (i_ INAddTasksIntent) SetTemporalEventTrigger(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTemporalEventTrigger:"), value)
 }
-
-
-

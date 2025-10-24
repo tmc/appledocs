@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams
@@ -83,8 +81,6 @@ func NewMTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams() MTRGrou
 	return getMTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/groupkeysetids
 func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) GroupKeySetIDs() unsafe.Pointer {
@@ -92,13 +88,11 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) GroupKe
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/groupkeysetids
 func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) SetGroupKeySetIDs(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetIDs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) TimedIn
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclusterkeysetreadallindicesresponseparams/timedinvoketimeoutms
 func (m_ MTRGroupKeyManagementClusterKeySetReadAllIndicesResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

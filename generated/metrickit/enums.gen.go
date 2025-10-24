@@ -2,7 +2,9 @@
 
 package metrickit
 
+/* debug [enums.gen.go]: Generating 1 enums for MetricKit */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum MXErrorCode (6 cases) */
 // MXErrorCode - Error codes for error values from app metrics.
 //
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXError/Code

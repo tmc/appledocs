@@ -15,12 +15,3 @@ func ExampleNewCKFetchRecordChangesOperation() {
 	_ = cloudkit.NewCKFetchRecordChangesOperation()
 	// Output:
 }
-// ExampleNewCKFetchRecordChangesOperationWithRecordZoneIDPreviousServerChangeToken demonstrates how to create a CKFetchRecordChangesOperation instance using NewCKFetchRecordChangesOperationWithRecordZoneIDPreviousServerChangeToken.
-// Creates an operation for fetching changes in the specified record zone.
-func ExampleNewCKFetchRecordChangesOperationWithRecordZoneIDPreviousServerChangeToken() {
-	_ = cloudkit.NewCKFetchRecordChangesOperationWithRecordZoneIDPreviousServerChangeToken(
-		cloudkit.CKRecordZoneID{}, // recordZoneID CKRecordZoneID
-		cloudkit.CKServerChangeToken{}, // previousServerChangeToken CKServerChangeToken
-	)
-	// Output:
-}

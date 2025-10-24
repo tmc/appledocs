@@ -20,3 +20,4 @@ var pixelBufferProtocol *objc.Protocol
 func init() {
 	pixelBufferProtocol = objc.GetProtocol("pixelBuffer")
 }
+

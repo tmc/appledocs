@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterEnergyEVSEMode */
+
+
+/* debug [class_header]: Header for MTRClusterEnergyEVSEMode */
 // The class instance for the [MTRClusterEnergyEVSEMode] class.
 var (
 	MTRClusterEnergyEVSEModeClass     _MTRClusterEnergyEVSEModeClass
@@ -26,42 +30,32 @@ func getMTRClusterEnergyEVSEModeClass() _MTRClusterEnergyEVSEModeClass {
 type _MTRClusterEnergyEVSEModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterEnergyEVSEMode */
 // An interface definition for the [MTRClusterEnergyEVSEMode] class.
 type IMTRClusterEnergyEVSEMode interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterEnergyEVSEMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterEnergyEVSEMode */
 	// methods:
 	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTREnergyEVSEModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Energy EVSE Mode Attributes and commands for selecting a mode from a list of supported options.
 
 
-// Cluster Energy EVSE Mode Attributes and commands for selecting a mode from a list of supported options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode
-type MTRClusterEnergyEVSEMode struct {
-	MTRGenericCluster
-}
-
-// MTRClusterEnergyEVSEModeFrom constructs a [MTRClusterEnergyEVSEMode] from an unsafe.Pointer.
-//
-// Cluster Energy EVSE Mode Attributes and commands for selecting a mode from a list of supported options.
-func MTRClusterEnergyEVSEModeFrom(ptr unsafe.Pointer) MTRClusterEnergyEVSEMode {
-	return MTRClusterEnergyEVSEMode{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterEnergyEVSEMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterEnergyEVSEModeClass) Alloc() MTRClusterEnergyEVSEMode {
 	rv := objc.Send[MTRClusterEnergyEVSEMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +63,6 @@ func (mc _MTRClusterEnergyEVSEModeClass) Alloc() MTRClusterEnergyEVSEMode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterEnergyEVSEModeClass) New() MTRClusterEnergyEVSEMode {
 	rv := objc.Send[MTRClusterEnergyEVSEMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,8 +85,35 @@ func (m_ MTRClusterEnergyEVSEMode) Autorelease() MTRClusterEnergyEVSEMode {
 func NewMTRClusterEnergyEVSEMode() MTRClusterEnergyEVSEMode {
 	return getMTRClusterEnergyEVSEModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTRClusterEnergyEVSEMode */
+// Cluster Energy EVSE Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Energy EVSE Mode Attributes and commands for selecting a mode from a list of supported options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode
+type MTRClusterEnergyEVSEMode struct {
+	MTRGenericCluster
+}
+
+// MTRClusterEnergyEVSEModeFrom constructs a [MTRClusterEnergyEVSEMode] from an unsafe.Pointer.
+//
+// Cluster Energy EVSE Mode Attributes and commands for selecting a mode from a list of supported options.
+func MTRClusterEnergyEVSEModeFrom(ptr unsafe.Pointer) MTRClusterEnergyEVSEMode {
+	return MTRClusterEnergyEVSEMode{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterEnergyEVSEMode */
 
 // For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
 //
@@ -104,15 +124,29 @@ func NewMTRClusterEnergyEVSEModeWithDeviceEndpointIDQueue(device IMTRDevice, end
 	rv := objc.Send[MTRClusterEnergyEVSEMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewMTRClusterEnergyEVSEModeWithDeviceEndpointIDQueue */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for MTRClusterEnergyEVSEMode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRClusterEnergyEVSEMode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRClusterEnergyEVSEMode */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
 func (m_ MTRClusterEnergyEVSEMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTREnergyEVSEModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
-}
+}/* debug [instance_methods/method]: ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion */
 
 
 // [Full Topic]
@@ -120,54 +154,16 @@ func (m_ MTRClusterEnergyEVSEMode) ChangeToModeWithParamsExpectedValuesExpectedV
 func (m_ MTRClusterEnergyEVSEMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadAttributeAcceptedCommandListWithParams */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterEnergyEVSEMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterEnergyEVSEMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterEnergyEVSEMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterEnergyEVSEMode */
 
 

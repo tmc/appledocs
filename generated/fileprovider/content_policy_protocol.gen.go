@@ -18,3 +18,4 @@ var contentPolicyProtocol *objc.Protocol
 func init() {
 	contentPolicyProtocol = objc.GetProtocol("contentPolicy")
 }
+

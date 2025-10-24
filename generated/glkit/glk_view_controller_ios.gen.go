@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
 // iOS-only methods for GLKViewController
@@ -20,11 +19,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/delegate
-func (g_ GLKViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](g_.ID, objc.Sel("delegate"))
+func (g_ GLKViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (g_ GLKViewController) SetDelegate(value objc.ID) {
+func (g_ GLKViewController) SetDelegate(value unsafe.Pointer) {
 	g_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -99,7 +98,7 @@ func (g_ GLKViewController) SetResumeOnDidBecomeActive(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceFirstResume
 func (g_ GLKViewController) TimeSinceFirstResume() float64 {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceFirstResume"))
+	rv := objc.Send[float64](g_.ID, objc.Sel("timeSinceFirstResume"))
 	return rv
 }
 
@@ -108,7 +107,7 @@ func (g_ GLKViewController) TimeSinceFirstResume() float64 {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastDraw
 func (g_ GLKViewController) TimeSinceLastDraw() float64 {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceLastDraw"))
+	rv := objc.Send[float64](g_.ID, objc.Sel("timeSinceLastDraw"))
 	return rv
 }
 
@@ -117,7 +116,7 @@ func (g_ GLKViewController) TimeSinceLastDraw() float64 {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastResume
 func (g_ GLKViewController) TimeSinceLastResume() float64 {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceLastResume"))
+	rv := objc.Send[float64](g_.ID, objc.Sel("timeSinceLastResume"))
 	return rv
 }
 
@@ -126,9 +125,10 @@ func (g_ GLKViewController) TimeSinceLastResume() float64 {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKViewController/timeSinceLastUpdate
 func (g_ GLKViewController) TimeSinceLastUpdate() float64 {
-	rv := objc.Send[TimeInterval](g_.ID, objc.Sel("timeSinceLastUpdate"))
+	rv := objc.Send[float64](g_.ID, objc.Sel("timeSinceLastUpdate"))
 	return rv
 }
+
 
 
 

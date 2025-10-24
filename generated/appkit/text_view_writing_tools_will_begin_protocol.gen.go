@@ -15,3 +15,4 @@ var textViewWritingToolsWillBeginProtocol *objc.Protocol
 func init() {
 	textViewWritingToolsWillBeginProtocol = objc.GetProtocol("textViewWritingToolsWillBegin:")
 }
+

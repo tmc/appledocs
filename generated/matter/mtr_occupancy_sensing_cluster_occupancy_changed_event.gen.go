@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTROccupancySensingClusterOccupancyChangedEvent */
+
+
+/* debug [class_header]: Header for MTROccupancySensingClusterOccupancyChangedEvent */
 // The class instance for the [MTROccupancySensingClusterOccupancyChangedEvent] class.
 var (
 	MTROccupancySensingClusterOccupancyChangedEventClass     _MTROccupancySensingClusterOccupancyChangedEventClass
@@ -27,29 +31,32 @@ func getMTROccupancySensingClusterOccupancyChangedEventClass() _MTROccupancySens
 type _MTROccupancySensingClusterOccupancyChangedEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTROccupancySensingClusterOccupancyChangedEvent */
 // An interface definition for the [MTROccupancySensingClusterOccupancyChangedEvent] class.
 type IMTROccupancySensingClusterOccupancyChangedEvent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTROccupancySensingClusterOccupancyChangedEvent */
 	// properties:
 	Occupancy() objc.IObject /* cross-framework: NSNumber */
 	SetOccupancy(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTROccupancySensingClusterOccupancyChangedEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent
-type MTROccupancySensingClusterOccupancyChangedEvent struct {
-	objectivec.Object
-}
-
-// MTROccupancySensingClusterOccupancyChangedEventFrom constructs a [MTROccupancySensingClusterOccupancyChangedEvent] from an unsafe.Pointer.
-func MTROccupancySensingClusterOccupancyChangedEventFrom(ptr unsafe.Pointer) MTROccupancySensingClusterOccupancyChangedEvent {
-	return MTROccupancySensingClusterOccupancyChangedEvent{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTROccupancySensingClusterOccupancyChangedEvent */
 // Alloc allocates a new instance without initialization.
 func (mc _MTROccupancySensingClusterOccupancyChangedEventClass) Alloc() MTROccupancySensingClusterOccupancyChangedEvent {
 	rv := objc.Send[MTROccupancySensingClusterOccupancyChangedEvent](objc.ID(mc.class), objc.Sel("alloc"))
@@ -57,7 +64,6 @@ func (mc _MTROccupancySensingClusterOccupancyChangedEventClass) Alloc() MTROccup
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTROccupancySensingClusterOccupancyChangedEventClass) New() MTROccupancySensingClusterOccupancyChangedEvent {
 	rv := objc.Send[MTROccupancySensingClusterOccupancyChangedEvent](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -80,22 +86,66 @@ func (m_ MTROccupancySensingClusterOccupancyChangedEvent) Autorelease() MTROccup
 func NewMTROccupancySensingClusterOccupancyChangedEvent() MTROccupancySensingClusterOccupancyChangedEvent {
 	return getMTROccupancySensingClusterOccupancyChangedEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MTROccupancySensingClusterOccupancyChangedEvent */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent
+type MTROccupancySensingClusterOccupancyChangedEvent struct {
+	objectivec.Object
+}
+
+// MTROccupancySensingClusterOccupancyChangedEventFrom constructs a [MTROccupancySensingClusterOccupancyChangedEvent] from an unsafe.Pointer.
+func MTROccupancySensingClusterOccupancyChangedEventFrom(ptr unsafe.Pointer) MTROccupancySensingClusterOccupancyChangedEvent {
+	return MTROccupancySensingClusterOccupancyChangedEvent{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTROccupancySensingClusterOccupancyChangedEvent *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTROccupancySensingClusterOccupancyChangedEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTROccupancySensingClusterOccupancyChangedEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTROccupancySensingClusterOccupancyChangedEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTROccupancySensingClusterOccupancyChangedEvent */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent/occupancy
 func (m_ MTROccupancySensingClusterOccupancyChangedEvent) Occupancy() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("occupancy"))
 	return rv
-}
+}/* debug [instance_properties/getter]: occupancy */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROccupancySensingClusterOccupancyChangedEvent/occupancy
 func (m_ MTROccupancySensingClusterOccupancyChangedEvent) SetOccupancy(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOccupancy:"), value)
-}
+}/* debug [instance_properties/setter]: occupancy */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTROccupancySensingClusterOccupancyChangedEvent */
 
 
 

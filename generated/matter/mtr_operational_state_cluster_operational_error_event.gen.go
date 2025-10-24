@@ -36,8 +36,6 @@ type IMTROperationalStateClusterOperationalErrorEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalStateClusterOperationalErrorEvent
 type MTROperationalStateClusterOperationalErrorEvent struct {
@@ -80,8 +78,6 @@ func NewMTROperationalStateClusterOperationalErrorEvent() MTROperationalStateClu
 	return getMTROperationalStateClusterOperationalErrorEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalerrorevent/errorstate
 func (m_ MTROperationalStateClusterOperationalErrorEvent) ErrorState() IMTROperationalStateClusterErrorStateStruct {
@@ -89,12 +85,8 @@ func (m_ MTROperationalStateClusterOperationalErrorEvent) ErrorState() IMTROpera
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclusteroperationalerrorevent/errorstate
 func (m_ MTROperationalStateClusterOperationalErrorEvent) SetErrorState(value IMTROperationalStateClusterErrorStateStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorState:"), value)
 }
-
-
-

@@ -9,30 +9,19 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AudioBufferList = _undefined // referenced in AVFAudio
-	AudioCommonFormat = _undefined // referenced in AVFAudio
 	AudioConverterInputBlock = _undefined // referenced in AVFAudio
-	AudioConverterOutputStatus = _undefined // referenced in AVFAudio
-	AudioConverterPrimeMethod = _undefined // referenced in AVFAudio
 	AudioEngineManualRenderingBlock = _undefined // referenced in AVFAudio
-	AudioEngineManualRenderingMode = _undefined // referenced in AVFAudio
-	AudioEnvironmentDistanceAttenuationModel = _undefined // referenced in AVFAudio
-	AudioFormatDescription = _undefined // referenced in AVFAudio
-	AudioFramePosition = _undefined // referenced in AVFAudio
-	AudioNodeBus = _undefined // referenced in AVFAudio
-	AudioSessionChannelDescription = _undefined // referenced in AVFAudio
-	AudioTimeStamp = _undefined // referenced in AVFAudio
-	AudioUnitEQFilterParameters = _undefined // referenced in AVFAudio
-	AudioVoiceProcessingOtherAudioDuckingConfiguration = _undefined // referenced in AVFAudio
+	AudioFormatDescriptionRef = _undefined // referenced in AVFAudio
+	AudioIONodeInputBlock = _undefined // referenced in AVFAudio
+	AudioNodeTapBlock = _undefined // referenced in AVFAudio
+	AudioSequencerUserCallback = _undefined // referenced in AVFAudio
+	AudioSinkNodeReceiverBlock = _undefined // referenced in AVFAudio
+	AudioSourceNodeRenderBlock = _undefined // referenced in AVFAudio
+	Data = _undefined // referenced in AVFAudio
 	MIDIEventListBlock = _undefined // referenced in AVFAudio
 	MIDIPlayerCompletionHandler = _undefined // referenced in AVFAudio
-	MusicSequence = _undefined // referenced in AVFAudio
-	MusicTrack = _undefined // referenced in AVFAudio
-	Orientation = _undefined // referenced in AVFAudio
-	PolarPattern = _undefined // referenced in AVFAudio
+	MusicEventEnumerationBlock = _undefined // referenced in AVFAudio
 	SpeechSynthesisProviderOutputBlock = _undefined // referenced in AVFAudio
-	SpeechSynthesisVoiceGender = _undefined // referenced in AVFAudio
-	SpeechSynthesisVoiceQuality = _undefined // referenced in AVFAudio
 	SpeechSynthesizerBufferCallback = _undefined // referenced in AVFAudio
 	SpeechSynthesizerMarkerCallback = _undefined // referenced in AVFAudio
 )

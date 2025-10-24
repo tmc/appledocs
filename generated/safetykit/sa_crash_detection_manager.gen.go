@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SACrashDetectionManager */
+
+
+/* debug [class_header]: Header for SACrashDetectionManager */
 // The class instance for the [SACrashDetectionManager] class.
 var (
 	SACrashDetectionManagerClass     _SACrashDetectionManagerClass
@@ -26,38 +30,34 @@ func getSACrashDetectionManagerClass() _SACrashDetectionManagerClass {
 type _SACrashDetectionManagerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SACrashDetectionManager */
 // An interface definition for the [SACrashDetectionManager] class.
 type ISACrashDetectionManager interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for SACrashDetectionManager */
 	// properties:
 	AuthorizationStatus() SAAuthorizationStatus
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SACrashDetectionManager */
 	// methods:
-	RequestAuthorizationWithCompletionHandler(handler unsafe.Pointer)
+	RequestAuthorizationWithCompletionHandler(handler func(unsafe.Pointer, unsafe.Pointer))
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Provides registration and management of Crash Detection events.
-//
-// Use this class to determine Crash Detection availabilty on iPhone, detect authorization status, and register for Crash Detection events. Not all iPhones support Crash Detection, so verify that returns . Check the value of to determine if the person designates this app on their iPhone to receive Crash Detection events. If the value is not , set and call to request authorization. After your app has authorization to receive Crash Detection events, adopt and implement . If a vehicular crash occurs, the system calls the method with the Crash Detection event.
+/* debug [class_interface]: End interface */
 
 
-// Provides registration and management of Crash Detection events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager
-type SACrashDetectionManager struct {
-	objectivec.Object
-}
 
-// SACrashDetectionManagerFrom constructs a [SACrashDetectionManager] from an unsafe.Pointer.
-//
-// Provides registration and management of Crash Detection events.
-func SACrashDetectionManagerFrom(ptr unsafe.Pointer) SACrashDetectionManager {
-	return SACrashDetectionManager{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SACrashDetectionManager */
 // Alloc allocates a new instance without initialization.
 func (sc _SACrashDetectionManagerClass) Alloc() SACrashDetectionManager {
 	rv := objc.Send[SACrashDetectionManager](objc.ID(sc.class), objc.Sel("alloc"))
@@ -65,7 +65,6 @@ func (sc _SACrashDetectionManagerClass) Alloc() SACrashDetectionManager {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SACrashDetectionManagerClass) New() SACrashDetectionManager {
 	rv := objc.Send[SACrashDetectionManager](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +87,44 @@ func (s_ SACrashDetectionManager) Autorelease() SACrashDetectionManager {
 func NewSACrashDetectionManager() SACrashDetectionManager {
 	return getSACrashDetectionManagerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SACrashDetectionManager */
+// Provides registration and management of Crash Detection events.
+//
+// Use this class to determine Crash Detection availabilty on iPhone, detect authorization status, and register for Crash Detection events. Not all iPhones support Crash Detection, so verify that returns . Check the value of to determine if the person designates this app on their iPhone to receive Crash Detection events. If the value is not , set and call to request authorization. After your app has authorization to receive Crash Detection events, adopt and implement . If a vehicular crash occurs, the system calls the method with the Crash Detection event.
+
+
+// Provides registration and management of Crash Detection events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager
+type SACrashDetectionManager struct {
+	objectivec.Object
+}
+
+// SACrashDetectionManagerFrom constructs a [SACrashDetectionManager] from an unsafe.Pointer.
+//
+// Provides registration and management of Crash Detection events.
+func SACrashDetectionManagerFrom(ptr unsafe.Pointer) SACrashDetectionManager {
+	return SACrashDetectionManager{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SACrashDetectionManager *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SACrashDetectionManager */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SACrashDetectionManager */
 
 // A Boolean value that indicates if Crash Detection is available.
 //
@@ -98,16 +133,26 @@ func NewSACrashDetectionManager() SACrashDetectionManager {
 func (sc _SACrashDetectionManagerClass) Available() bool {
 	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("available"))
 	return rv
-}
+}/* debug [class_properties_class/property]: available */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SACrashDetectionManager */
 
 // Requests permission to access Crash Detection information.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/requestAuthorization(completionHandler:)
-func (s_ SACrashDetectionManager) RequestAuthorizationWithCompletionHandler(handler unsafe.Pointer) {
+func (s_ SACrashDetectionManager) RequestAuthorizationWithCompletionHandler(handler func(unsafe.Pointer, unsafe.Pointer)) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("requestAuthorizationWithCompletionHandler:"), handler)
-}
+}/* debug [instance_methods/method]: RequestAuthorizationWithCompletionHandler */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SACrashDetectionManager */
 
 // A value that indicates if the person authorized the app to receive Crash Detection events.
 //
@@ -116,26 +161,26 @@ func (s_ SACrashDetectionManager) RequestAuthorizationWithCompletionHandler(hand
 func (s_ SACrashDetectionManager) AuthorizationStatus() SAAuthorizationStatus {
 	rv := objc.Send[SAAuthorizationStatus](s_.ID, objc.Sel("authorizationStatus"))
 	return rv
-}
+}/* debug [instance_properties/getter]: authorizationStatus */
 
 
 // The object that receives Crash Detection events.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/delegate
-func (s_ SACrashDetectionManager) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+func (s_ SACrashDetectionManager) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // The object that receives Crash Detection events.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SafetyKit/SACrashDetectionManager/delegate
-func (s_ SACrashDetectionManager) SetDelegate(value objc.ID) {
+func (s_ SACrashDetectionManager) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
+}/* debug [instance_properties/setter]: delegate */
 
 
 // A Boolean value that indicates if Crash Detection is available.
@@ -145,7 +190,12 @@ func (s_ SACrashDetectionManager) SetDelegate(value objc.ID) {
 func (s_ SACrashDetectionManager) Available() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("available"))
 	return rv
-}
+}/* debug [instance_properties/getter]: available */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class SACrashDetectionManager */
 
 
 

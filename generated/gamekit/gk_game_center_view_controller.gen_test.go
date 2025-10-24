@@ -13,7 +13,7 @@ var _ = gamekit.NewGameCenterViewController
 // Creates a view controller that presents the specified Game Center content.
 func ExampleNewGameCenterViewControllerWithState() {
 	_ = gamekit.NewGameCenterViewControllerWithState(
-		gamekit.GameCenterViewControllerState /* not a class type */{}, // state GameCenterViewControllerState /* not a class type */
+		gamekit.GameCenterViewControllerState{}, // state GameCenterViewControllerState
 	)
 	// Output:
 }

@@ -33,8 +33,6 @@ type IINHangUpCallIntent interface {
 	SetCallIdentifier(value string)
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INHangUpCallIntent
 type INHangUpCallIntent struct {
@@ -79,8 +77,6 @@ func NewINHangUpCallIntent() INHangUpCallIntent {
 	return getINHangUpCallIntentClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inhangupcallintent/callidentifier
 func (i_ INHangUpCallIntent) CallIdentifier() string {
@@ -88,12 +84,8 @@ func (i_ INHangUpCallIntent) CallIdentifier() string {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inhangupcallintent/callidentifier
 func (i_ INHangUpCallIntent) SetCallIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallIdentifier:"), objc.String(value))
 }
-
-
-

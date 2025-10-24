@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPNowPlayingInfoLanguageOption */
+
+
+/* debug [class_header]: Header for MPNowPlayingInfoLanguageOption */
 // The class instance for the [NowPlayingInfoLanguageOption] class.
 var (
 	NowPlayingInfoLanguageOptionClass     _NowPlayingInfoLanguageOptionClass
@@ -27,41 +31,37 @@ func getNowPlayingInfoLanguageOptionClass() _NowPlayingInfoLanguageOptionClass {
 type _NowPlayingInfoLanguageOptionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NowPlayingInfoLanguageOption */
 // An interface definition for the [NowPlayingInfoLanguageOption] class.
 type INowPlayingInfoLanguageOption interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NowPlayingInfoLanguageOption */
 	// properties:
 	DisplayName() objc.IObject /* cross-framework: NSString */
 	Identifier() objc.IObject /* cross-framework: NSString */
 	LanguageOptionCharacteristics() []string
 	LanguageOptionType() NowPlayingInfoLanguageOptionType
 	LanguageTag() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NowPlayingInfoLanguageOption */
 	// methods:
 	IsAutomaticAudibleLanguageOption() bool
 	IsAutomaticLegibleLanguageOption() bool
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A set of interfaces for setting the language option for the Now Playing item.
-//
-// The and classes provide interfaces for setting information about language options, for example, audio and subtitles, in the Now Playing information area.
+/* debug [class_interface]: End interface */
 
 
-// A set of interfaces for setting the language option for the Now Playing item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption
-type NowPlayingInfoLanguageOption struct {
-	objectivec.Object
-}
 
-// NowPlayingInfoLanguageOptionFrom constructs a [NowPlayingInfoLanguageOption] from an unsafe.Pointer.
-//
-// A set of interfaces for setting the language option for the Now Playing item.
-func NowPlayingInfoLanguageOptionFrom(ptr unsafe.Pointer) NowPlayingInfoLanguageOption {
-	return NowPlayingInfoLanguageOption{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NowPlayingInfoLanguageOption */
 // Alloc allocates a new instance without initialization.
 func (nc _NowPlayingInfoLanguageOptionClass) Alloc() NowPlayingInfoLanguageOption {
 	rv := objc.Send[NowPlayingInfoLanguageOption](objc.ID(nc.class), objc.Sel("alloc"))
@@ -69,7 +69,6 @@ func (nc _NowPlayingInfoLanguageOptionClass) Alloc() NowPlayingInfoLanguageOptio
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NowPlayingInfoLanguageOptionClass) New() NowPlayingInfoLanguageOption {
 	rv := objc.Send[NowPlayingInfoLanguageOption](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,8 +91,35 @@ func (n_ NowPlayingInfoLanguageOption) Autorelease() NowPlayingInfoLanguageOptio
 func NewNowPlayingInfoLanguageOption() NowPlayingInfoLanguageOption {
 	return getNowPlayingInfoLanguageOptionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for NowPlayingInfoLanguageOption */
+// A set of interfaces for setting the language option for the Now Playing item.
+//
+// The and classes provide interfaces for setting information about language options, for example, audio and subtitles, in the Now Playing information area.
+
+
+// A set of interfaces for setting the language option for the Now Playing item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoLanguageOption
+type NowPlayingInfoLanguageOption struct {
+	objectivec.Object
+}
+
+// NowPlayingInfoLanguageOptionFrom constructs a [NowPlayingInfoLanguageOption] from an unsafe.Pointer.
+//
+// A set of interfaces for setting the language option for the Now Playing item.
+func NowPlayingInfoLanguageOptionFrom(ptr unsafe.Pointer) NowPlayingInfoLanguageOption {
+	return NowPlayingInfoLanguageOption{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NowPlayingInfoLanguageOption */
 
 // Creates a single language option.
 //
@@ -104,9 +130,23 @@ func NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNam
 	rv := objc.Send[NowPlayingInfoLanguageOption](instance.ID, objc.Sel("initWithType:languageTag:characteristics:displayName:identifier:"), languageOptionType, languageTag, languageOptionCharacteristics, displayName, identifier)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNameIdentifier */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for NowPlayingInfoLanguageOption */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NowPlayingInfoLanguageOption */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NowPlayingInfoLanguageOption */
 
 // Returns a Boolean value that determines whether to use the best audible language option based on the system preferences.
 //
@@ -115,7 +155,7 @@ func NewNowPlayingInfoLanguageOptionWithTypeLanguageTagCharacteristicsDisplayNam
 func (n_ NowPlayingInfoLanguageOption) IsAutomaticAudibleLanguageOption() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isAutomaticAudibleLanguageOption"))
 	return rv
-}
+}/* debug [instance_methods/method]: IsAutomaticAudibleLanguageOption */
 
 
 // Returns a Boolean value that determines whether to use the best legible language option based on the system preferences.
@@ -125,8 +165,13 @@ func (n_ NowPlayingInfoLanguageOption) IsAutomaticAudibleLanguageOption() bool {
 func (n_ NowPlayingInfoLanguageOption) IsAutomaticLegibleLanguageOption() bool {
 	rv := objc.Send[bool](n_.ID, objc.Sel("isAutomaticLegibleLanguageOption"))
 	return rv
-}
+}/* debug [instance_methods/method]: IsAutomaticLegibleLanguageOption */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NowPlayingInfoLanguageOption */
 
 // The display name for a language option.
 //
@@ -135,7 +180,7 @@ func (n_ NowPlayingInfoLanguageOption) IsAutomaticLegibleLanguageOption() bool {
 func (n_ NowPlayingInfoLanguageOption) DisplayName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("displayName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: displayName */
 
 
 // The unique identifier for the language option.
@@ -145,7 +190,7 @@ func (n_ NowPlayingInfoLanguageOption) DisplayName() objc.IObject /* cross-frame
 func (n_ NowPlayingInfoLanguageOption) Identifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("identifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: identifier */
 
 
 // The characteristics that describe the content of the language option.
@@ -155,7 +200,7 @@ func (n_ NowPlayingInfoLanguageOption) Identifier() objc.IObject /* cross-framew
 func (n_ NowPlayingInfoLanguageOption) LanguageOptionCharacteristics() []string {
 	rv := objc.Send[[]string](n_.ID, objc.Sel("languageOptionCharacteristics"))
 	return rv
-}
+}/* debug [instance_properties/getter]: languageOptionCharacteristics */
 
 
 // The type of language option.
@@ -165,7 +210,7 @@ func (n_ NowPlayingInfoLanguageOption) LanguageOptionCharacteristics() []string 
 func (n_ NowPlayingInfoLanguageOption) LanguageOptionType() NowPlayingInfoLanguageOptionType {
 	rv := objc.Send[NowPlayingInfoLanguageOptionType](n_.ID, objc.Sel("languageOptionType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: languageOptionType */
 
 
 // The abbreviated language code for the language option.
@@ -175,6 +220,11 @@ func (n_ NowPlayingInfoLanguageOption) LanguageOptionType() NowPlayingInfoLangua
 func (n_ NowPlayingInfoLanguageOption) LanguageTag() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("languageTag"))
 	return rv
-}
+}/* debug [instance_properties/getter]: languageTag */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPNowPlayingInfoLanguageOption */
 
 

@@ -18,3 +18,4 @@ var domainVersionProtocol *objc.Protocol
 func init() {
 	domainVersionProtocol = objc.GetProtocol("domainVersion")
 }
+

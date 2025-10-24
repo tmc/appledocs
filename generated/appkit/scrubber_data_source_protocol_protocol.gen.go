@@ -17,8 +17,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSScrubberDataSource
 type PScrubberDataSource interface {
 	// Required methods
-	NumberOfItemsForScrubber(scrubber IScrubber) int
-	ScrubberViewForItemAtIndex(scrubber IScrubber, index int) ScrubberItemView
+	NumberOfItemsForScrubber(scrubber IScrubber) int/* debug [protocol_interface/required_method]: NumberOfItemsForScrubber */
+	ScrubberViewForItemAtIndex(scrubber IScrubber, index int) ScrubberItemView/* debug [protocol_interface/required_method]: ScrubberViewForItemAtIndex */
 }
 
 // ScrubberDataSource is a delegate implementation builder for the PScrubberDataSource protocol.

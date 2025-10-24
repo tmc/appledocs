@@ -15,3 +15,4 @@ var optionsForSharingServiceProtocol *objc.Protocol
 func init() {
 	optionsForSharingServiceProtocol = objc.GetProtocol("optionsForSharingService:")
 }
+

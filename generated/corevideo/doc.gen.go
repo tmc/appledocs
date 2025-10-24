@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for CoreVideo. DO NOT EDIT.
 
 // Package corevideo provides Go bindings for the CoreVideo framework.

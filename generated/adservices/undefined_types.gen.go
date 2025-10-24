@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	String = _undefined // referenced in AdServices
 )
-
-

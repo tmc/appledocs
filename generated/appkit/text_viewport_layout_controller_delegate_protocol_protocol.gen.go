@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // PTextViewportLayoutControllerDelegate is the NSTextViewportLayoutControllerDelegate protocol interface.
@@ -17,8 +19,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSTextViewportLayoutControllerDelegate
 type PTextViewportLayoutControllerDelegate interface {
 	// Required methods
-	TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(textViewportLayoutController ITextViewportLayoutController, textLayoutFragment ITextLayoutFragment)
-	ViewportBoundsForTextViewportLayoutController(textViewportLayoutController ITextViewportLayoutController) corefoundation.CGRect
+	TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment(textViewportLayoutController ITextViewportLayoutController, textLayoutFragment ITextLayoutFragment)/* debug [protocol_interface/required_method]: TextViewportLayoutControllerConfigureRenderingSurfaceForTextLayoutFragment */
+	ViewportBoundsForTextViewportLayoutController(textViewportLayoutController ITextViewportLayoutController) corefoundation.CGRect/* debug [protocol_interface/required_method]: ViewportBoundsForTextViewportLayoutController */
 	// Optional methods
 	TextViewportLayoutControllerDidLayout(textViewportLayoutController ITextViewportLayoutController)
 	HasTextViewportLayoutControllerDidLayout() bool

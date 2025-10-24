@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -21,11 +20,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/delegate
-func (c_ CNContactPickerViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
+func (c_ CNContactPickerViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (c_ CNContactPickerViewController) SetDelegate(value objc.ID) {
+func (c_ CNContactPickerViewController) SetDelegate(value unsafe.Pointer) {
 	c_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -45,11 +44,11 @@ func (c_ CNContactPickerViewController) SetDisplayedPropertyKeys(value []string)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForEnablingContact
-func (c_ CNContactPickerViewController) PredicateForEnablingContact() objc.IObject /* cross-framework: Predicate */ {
+func (c_ CNContactPickerViewController) PredicateForEnablingContact() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForEnablingContact"))
 	return rv
 }
-func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value objc.IObject /* cross-framework: Predicate */) {
+func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value foundation.Predicate) {
 	c_.ID.Send(objc.RegisterName("setPredicateForEnablingContact:"), value)
 }
 
@@ -57,11 +56,11 @@ func (c_ CNContactPickerViewController) SetPredicateForEnablingContact(value obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfContact
-func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() objc.IObject /* cross-framework: Predicate */ {
+func (c_ CNContactPickerViewController) PredicateForSelectionOfContact() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForSelectionOfContact"))
 	return rv
 }
-func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value objc.IObject /* cross-framework: Predicate */) {
+func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value foundation.Predicate) {
 	c_.ID.Send(objc.RegisterName("setPredicateForSelectionOfContact:"), value)
 }
 
@@ -69,11 +68,11 @@ func (c_ CNContactPickerViewController) SetPredicateForSelectionOfContact(value 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactPickerViewController/predicateForSelectionOfProperty
-func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() objc.IObject /* cross-framework: Predicate */ {
+func (c_ CNContactPickerViewController) PredicateForSelectionOfProperty() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](c_.ID, objc.Sel("predicateForSelectionOfProperty"))
 	return rv
 }
-func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value objc.IObject /* cross-framework: Predicate */) {
+func (c_ CNContactPickerViewController) SetPredicateForSelectionOfProperty(value foundation.Predicate) {
 	c_.ID.Send(objc.RegisterName("setPredicateForSelectionOfProperty:"), value)
 }
 

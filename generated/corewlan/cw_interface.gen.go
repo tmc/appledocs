@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/securityfoundation"
 )
 
+/* debug [class.gen.go]: Generating class CWInterface */
+
+
+/* debug [class_header]: Header for CWInterface */
 // The class instance for the [CWInterface] class.
 var (
 	CWInterfaceClass     _CWInterfaceClass
@@ -28,23 +32,33 @@ func getCWInterfaceClass() _CWInterfaceClass {
 type _CWInterfaceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CWInterface */
 // An interface definition for the [CWInterface] class.
 type ICWInterface interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CWInterface */
 	// properties:
 	InterfaceName() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CWInterface */
 	// methods:
 	ActivePHYMode() CWPHYMode
 	AssociateToNetworkPasswordError(network ICWNetwork, password objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool
 	AssociateToEnterpriseNetworkIdentityUsernamePasswordError(network ICWNetwork, identity unsafe.Pointer, username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool
-	Bssid() objc.IObject /* cross-framework: String */
+	Bssid() foundation.String
 	CachedScanResults() unsafe.Pointer
-	CommitConfigurationAuthorizationError(configuration ICWConfiguration, authorization objc.IObject /* cross-framework: SFAuthorization */, error_ unsafe.Pointer) bool
+	CommitConfigurationAuthorizationError(configuration ICWConfiguration, authorization securityfoundation.SFAuthorization, error_ unsafe.Pointer) bool
 	Configuration() ICWConfiguration
-	CountryCode() objc.IObject /* cross-framework: String */
+	CountryCode() foundation.String
 	Disassociate()
-	HardwareAddress() objc.IObject /* cross-framework: String */
+	HardwareAddress() foundation.String
 	InterfaceMode() CWInterfaceMode
 	NoiseMeasurement() int
 	PowerOn() bool
@@ -59,34 +73,20 @@ type ICWInterface interface {
 	SetPowerError(power bool, error_ unsafe.Pointer) bool
 	SetWEPKeyFlagsIndexError(key objc.IObject /* cross-framework: NSData */, flags CWCipherKeyFlags, index int, error_ unsafe.Pointer) bool
 	SetWLANChannelError(channel ICWChannel, error_ unsafe.Pointer) bool
-	Ssid() objc.IObject /* cross-framework: String */
-	SsidData() objc.IObject /* cross-framework: Data */
+	Ssid() foundation.String
+	SsidData() foundation.Data
 	SupportedWLANChannels() unsafe.Pointer
 	TransmitPower() int
 	TransmitRate() float64
 	WlanChannel() ICWChannel
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Encapsulates an IEEE 802.11 interface.
-//
-// Provides access to various WLAN interface parameters, and operations such as scanning for networks, association, and creating computer-to-computer (ad-hoc) networks.
+/* debug [class_interface]: End interface */
 
 
-// Encapsulates an IEEE 802.11 interface.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface
-type CWInterface struct {
-	objectivec.Object
-}
 
-// CWInterfaceFrom constructs a [CWInterface] from an unsafe.Pointer.
-//
-// Encapsulates an IEEE 802.11 interface.
-func CWInterfaceFrom(ptr unsafe.Pointer) CWInterface {
-	return CWInterface{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CWInterface */
 // Alloc allocates a new instance without initialization.
 func (cc _CWInterfaceClass) Alloc() CWInterface {
 	rv := objc.Send[CWInterface](objc.ID(cc.class), objc.Sel("alloc"))
@@ -94,7 +94,6 @@ func (cc _CWInterfaceClass) Alloc() CWInterface {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CWInterfaceClass) New() CWInterface {
 	rv := objc.Send[CWInterface](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -117,8 +116,35 @@ func (c_ CWInterface) Autorelease() CWInterface {
 func NewCWInterface() CWInterface {
 	return getCWInterfaceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CWInterface */
+// Encapsulates an IEEE 802.11 interface.
+//
+// Provides access to various WLAN interface parameters, and operations such as scanning for networks, association, and creating computer-to-computer (ad-hoc) networks.
+
+
+// Encapsulates an IEEE 802.11 interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface
+type CWInterface struct {
+	objectivec.Object
+}
+
+// CWInterfaceFrom constructs a [CWInterface] from an unsafe.Pointer.
+//
+// Encapsulates an IEEE 802.11 interface.
+func CWInterfaceFrom(ptr unsafe.Pointer) CWInterface {
+	return CWInterface{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CWInterface */
 
 // Convenience method for getting an CWInterface object with the specified name.
 //
@@ -129,7 +155,7 @@ func NewCWInterfaceWithInterfaceName(name objc.IObject /* cross-framework: NSStr
 	rv := objc.Send[CWInterface](instance.ID, objc.Sel("initWithInterfaceName:"), name)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCWInterfaceWithInterfaceName */
 
 
 // An instance method for obtaining an CWInterface object.
@@ -139,9 +165,13 @@ func NewCWInterfaceWithInterfaceName(name objc.IObject /* cross-framework: NSStr
 func NewCWInterfaceWithName(name objc.IObject /* cross-framework: NSString */) CWInterface {
 	rv := objc.Send[CWInterface](objc.ID(getCWInterfaceClass().class), objc.Sel("interfaceWithName:"), name)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCWInterfaceWithName */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for CWInterface */
 
 // An instance method for obtaining an CWInterface object.
 //
@@ -150,7 +180,7 @@ func NewCWInterfaceWithName(name objc.IObject /* cross-framework: NSString */) C
 func (cc _CWInterfaceClass) InterfaceWithName(name objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("interfaceWithName:"), name)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=InterfaceWithName) */
 
 
 // Convenience method for getting an CWInterface object for the default WLAN interface.
@@ -160,7 +190,7 @@ func (cc _CWInterfaceClass) InterfaceWithName(name objc.IObject /* cross-framewo
 func (cc _CWInterfaceClass) Interface() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("interface"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Interface) */
 
 
 // Returns the list of BSD names for WLAN interfaces available on the current system.
@@ -170,8 +200,18 @@ func (cc _CWInterfaceClass) Interface() unsafe.Pointer {
 func (cc _CWInterfaceClass) InterfaceNames() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("interfaceNames"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=InterfaceNames) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CWInterface */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CWInterface */
 
 // The current active PHY modes for the interface.
 //
@@ -180,7 +220,7 @@ func (cc _CWInterfaceClass) InterfaceNames() unsafe.Pointer {
 func (c_ CWInterface) ActivePHYMode() CWPHYMode {
 	rv := objc.Send[CWPHYMode](c_.ID, objc.Sel("activePHYMode"))
 	return rv
-}
+}/* debug [instance_methods/method]: ActivePHYMode */
 
 
 // Associates to a given network using the given network passphrase.
@@ -190,7 +230,7 @@ func (c_ CWInterface) ActivePHYMode() CWPHYMode {
 func (c_ CWInterface) AssociateToNetworkPasswordError(network ICWNetwork, password objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("associateToNetwork:password:error:"), network, password, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: AssociateToNetworkPasswordError */
 
 
 // Connects to the given enterprise network.
@@ -200,17 +240,17 @@ func (c_ CWInterface) AssociateToNetworkPasswordError(network ICWNetwork, passwo
 func (c_ CWInterface) AssociateToEnterpriseNetworkIdentityUsernamePasswordError(network ICWNetwork, identity unsafe.Pointer, username objc.IObject /* cross-framework: NSString */, password objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("associateToEnterpriseNetwork:identity:username:password:error:"), network, identity, username, password, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: AssociateToEnterpriseNetworkIdentityUsernamePasswordError */
 
 
 // The current basic service set identifier (BSSID) for the interface, returned as a UTF-8 string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/bssid()
-func (c_ CWInterface) Bssid() objc.IObject /* cross-framework: String */ {
+func (c_ CWInterface) Bssid() foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("bssid"))
 	return rv
-}
+}/* debug [instance_methods/method]: Bssid */
 
 
 // The networks currently in the scan cache for the WLAN interface.
@@ -220,17 +260,17 @@ func (c_ CWInterface) Bssid() objc.IObject /* cross-framework: String */ {
 func (c_ CWInterface) CachedScanResults() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("cachedScanResults"))
 	return rv
-}
+}/* debug [instance_methods/method]: CachedScanResults */
 
 
 // Commit a configuration for the given WLAN interface.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/commitConfiguration(_:authorization:)
-func (c_ CWInterface) CommitConfigurationAuthorizationError(configuration ICWConfiguration, authorization objc.IObject /* cross-framework: SFAuthorization */, error_ unsafe.Pointer) bool {
+func (c_ CWInterface) CommitConfigurationAuthorizationError(configuration ICWConfiguration, authorization securityfoundation.SFAuthorization, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("commitConfiguration:authorization:error:"), configuration, authorization, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: CommitConfigurationAuthorizationError */
 
 
 // The current configuration for the given WLAN interface.
@@ -240,17 +280,17 @@ func (c_ CWInterface) CommitConfigurationAuthorizationError(configuration ICWCon
 func (c_ CWInterface) Configuration() ICWConfiguration {
 	rv := objc.Send[CWConfiguration](c_.ID, objc.Sel("configuration"))
 	return rv
-}
+}/* debug [instance_methods/method]: Configuration */
 
 
 // The current country code (ISO/IEC 3166-1:1997) for the interface.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/countryCode()
-func (c_ CWInterface) CountryCode() objc.IObject /* cross-framework: String */ {
+func (c_ CWInterface) CountryCode() foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("countryCode"))
 	return rv
-}
+}/* debug [instance_methods/method]: CountryCode */
 
 
 // Disassociates from the current network.
@@ -259,17 +299,17 @@ func (c_ CWInterface) CountryCode() objc.IObject /* cross-framework: String */ {
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/disassociate()
 func (c_ CWInterface) Disassociate() {
 	objc.Send[objc.ID](c_.ID, objc.Sel("disassociate"))
-}
+}/* debug [instance_methods/method]: Disassociate */
 
 
 // The hardware media access control (MAC) address for the interface, returned as a UTF-8 string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/hardwareAddress()
-func (c_ CWInterface) HardwareAddress() objc.IObject /* cross-framework: String */ {
+func (c_ CWInterface) HardwareAddress() foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("hardwareAddress"))
 	return rv
-}
+}/* debug [instance_methods/method]: HardwareAddress */
 
 
 // The current mode for the interface.
@@ -279,7 +319,7 @@ func (c_ CWInterface) HardwareAddress() objc.IObject /* cross-framework: String 
 func (c_ CWInterface) InterfaceMode() CWInterfaceMode {
 	rv := objc.Send[CWInterfaceMode](c_.ID, objc.Sel("interfaceMode"))
 	return rv
-}
+}/* debug [instance_methods/method]: InterfaceMode */
 
 
 // The current aggregate noise measurement (dBm) for the interface.
@@ -289,7 +329,7 @@ func (c_ CWInterface) InterfaceMode() CWInterfaceMode {
 func (c_ CWInterface) NoiseMeasurement() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("noiseMeasurement"))
 	return rv
-}
+}/* debug [instance_methods/method]: NoiseMeasurement */
 
 
 // The interface power state is set to “ON”.
@@ -299,7 +339,7 @@ func (c_ CWInterface) NoiseMeasurement() int {
 func (c_ CWInterface) PowerOn() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("powerOn"))
 	return rv
-}
+}/* debug [instance_methods/method]: PowerOn */
 
 
 // The current aggregate received signal strength indication (RSSI) measurement (dBm) for the interface.
@@ -309,7 +349,7 @@ func (c_ CWInterface) PowerOn() bool {
 func (c_ CWInterface) RssiValue() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("rssiValue"))
 	return rv
-}
+}/* debug [instance_methods/method]: RssiValue */
 
 
 // Scans for networks.
@@ -319,7 +359,7 @@ func (c_ CWInterface) RssiValue() int {
 func (c_ CWInterface) ScanForNetworksWithNameError(networkName objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scanForNetworksWithName:error:"), networkName, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanForNetworksWithNameError */
 
 
 // Scans for networks with the name you specify, optionally including hidden networks.
@@ -329,7 +369,7 @@ func (c_ CWInterface) ScanForNetworksWithNameError(networkName objc.IObject /* c
 func (c_ CWInterface) ScanForNetworksWithNameIncludeHiddenError(networkName objc.IObject /* cross-framework: NSString */, includeHidden bool, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scanForNetworksWithName:includeHidden:error:"), networkName, includeHidden, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanForNetworksWithNameIncludeHiddenError */
 
 
 // Scans for networks.
@@ -339,7 +379,7 @@ func (c_ CWInterface) ScanForNetworksWithNameIncludeHiddenError(networkName objc
 func (c_ CWInterface) ScanForNetworksWithSSIDError(ssid objc.IObject /* cross-framework: NSData */, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scanForNetworksWithSSID:error:"), ssid, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanForNetworksWithSSIDError */
 
 
 // Scans for networks with the SSID you specify, optionally including hidden networks.
@@ -349,7 +389,7 @@ func (c_ CWInterface) ScanForNetworksWithSSIDError(ssid objc.IObject /* cross-fr
 func (c_ CWInterface) ScanForNetworksWithSSIDIncludeHiddenError(ssid objc.IObject /* cross-framework: NSData */, includeHidden bool, error_ unsafe.Pointer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scanForNetworksWithSSID:includeHidden:error:"), ssid, includeHidden, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ScanForNetworksWithSSIDIncludeHiddenError */
 
 
 // The current security mode for the interface.
@@ -359,7 +399,7 @@ func (c_ CWInterface) ScanForNetworksWithSSIDIncludeHiddenError(ssid objc.IObjec
 func (c_ CWInterface) Security() CWSecurity {
 	rv := objc.Send[CWSecurity](c_.ID, objc.Sel("security"))
 	return rv
-}
+}/* debug [instance_methods/method]: Security */
 
 
 // The interface has its corresponding network service enabled.
@@ -369,7 +409,7 @@ func (c_ CWInterface) Security() CWSecurity {
 func (c_ CWInterface) ServiceActive() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("serviceActive"))
 	return rv
-}
+}/* debug [instance_methods/method]: ServiceActive */
 
 
 // Sets the interface pairwise primary key (PMK).
@@ -379,7 +419,7 @@ func (c_ CWInterface) ServiceActive() bool {
 func (c_ CWInterface) SetPairwiseMasterKeyError(key objc.IObject /* cross-framework: NSData */, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setPairwiseMasterKey:error:"), key, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: SetPairwiseMasterKeyError */
 
 
 // Sets the interface power state.
@@ -389,7 +429,7 @@ func (c_ CWInterface) SetPairwiseMasterKeyError(key objc.IObject /* cross-framew
 func (c_ CWInterface) SetPowerError(power bool, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setPower:error:"), power, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: SetPowerError */
 
 
 // Sets the interface WEP key.
@@ -399,7 +439,7 @@ func (c_ CWInterface) SetPowerError(power bool, error_ unsafe.Pointer) bool {
 func (c_ CWInterface) SetWEPKeyFlagsIndexError(key objc.IObject /* cross-framework: NSData */, flags CWCipherKeyFlags, index int, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setWEPKey:flags:index:error:"), key, flags, index, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: SetWEPKeyFlagsIndexError */
 
 
 // Sets the interface channel.
@@ -409,27 +449,27 @@ func (c_ CWInterface) SetWEPKeyFlagsIndexError(key objc.IObject /* cross-framewo
 func (c_ CWInterface) SetWLANChannelError(channel ICWChannel, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("setWLANChannel:error:"), channel, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: SetWLANChannelError */
 
 
 // The current service set identifier (SSID) for the interface, encoded as a string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/ssid()
-func (c_ CWInterface) Ssid() objc.IObject /* cross-framework: String */ {
+func (c_ CWInterface) Ssid() foundation.String {
 	rv := objc.Send[foundation.String](c_.ID, objc.Sel("ssid"))
 	return rv
-}
+}/* debug [instance_methods/method]: Ssid */
 
 
 // The current service set identifier (SSID) for the interface, returned as data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreWLAN/CWInterface/ssidData()
-func (c_ CWInterface) SsidData() objc.IObject /* cross-framework: Data */ {
+func (c_ CWInterface) SsidData() foundation.Data {
 	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("ssidData"))
 	return rv
-}
+}/* debug [instance_methods/method]: SsidData */
 
 
 // An array of channels supported by the interface for the active country code.
@@ -439,7 +479,7 @@ func (c_ CWInterface) SsidData() objc.IObject /* cross-framework: Data */ {
 func (c_ CWInterface) SupportedWLANChannels() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supportedWLANChannels"))
 	return rv
-}
+}/* debug [instance_methods/method]: SupportedWLANChannels */
 
 
 // The current transmit power (mW) for the interface.
@@ -449,7 +489,7 @@ func (c_ CWInterface) SupportedWLANChannels() unsafe.Pointer {
 func (c_ CWInterface) TransmitPower() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("transmitPower"))
 	return rv
-}
+}/* debug [instance_methods/method]: TransmitPower */
 
 
 // The current transmit rate (Mbps) for the interface.
@@ -459,7 +499,7 @@ func (c_ CWInterface) TransmitPower() int {
 func (c_ CWInterface) TransmitRate() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("transmitRate"))
 	return rv
-}
+}/* debug [instance_methods/method]: TransmitRate */
 
 
 // The current channel for the interface.
@@ -469,8 +509,13 @@ func (c_ CWInterface) TransmitRate() float64 {
 func (c_ CWInterface) WlanChannel() ICWChannel {
 	rv := objc.Send[CWChannel](c_.ID, objc.Sel("wlanChannel"))
 	return rv
-}
+}/* debug [instance_methods/method]: WlanChannel */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CWInterface */
 
 // The BSD name of the interface.
 //
@@ -479,6 +524,11 @@ func (c_ CWInterface) WlanChannel() ICWChannel {
 func (c_ CWInterface) InterfaceName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("interfaceName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: interfaceName */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CWInterface */
 
 

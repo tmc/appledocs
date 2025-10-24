@@ -15,3 +15,4 @@ var FSVolumeOperationsProtocol *objc.Protocol
 func init() {
 	FSVolumeOperationsProtocol = objc.GetProtocol("FSVolumeOperations")
 }
+

@@ -1,0 +1,18 @@
+// Code generated from Apple documentation for Foundation. DO NOT EDIT.
+
+package foundation
+
+import "github.com/ebitengine/purego/objc"
+
+// URLHandleClientProtocol is the NSURLHandleClient protocol.
+//
+// Availability:
+//   - macOS 10.0+ (Deprecated in 10.4)
+//
+// Use this protocol when registering custom classes that conform to NSURLHandleClient.
+var URLHandleClientProtocol *objc.Protocol
+
+func init() {
+	URLHandleClientProtocol = objc.GetProtocol("NSURLHandleClient")
+}
+

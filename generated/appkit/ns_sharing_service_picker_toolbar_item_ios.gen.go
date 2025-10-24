@@ -19,11 +19,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePickerToolbarItem/activityItemsConfiguration
-func (s_ SharingServicePickerToolbarItem) ActivityItemsConfiguration() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("activityItemsConfiguration"))
+func (s_ SharingServicePickerToolbarItem) ActivityItemsConfiguration() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("activityItemsConfiguration"))
 	return rv
 }
-func (s_ SharingServicePickerToolbarItem) SetActivityItemsConfiguration(value objc.ID) {
+func (s_ SharingServicePickerToolbarItem) SetActivityItemsConfiguration(value unsafe.Pointer) {
 	s_.ID.Send(objc.RegisterName("setActivityItemsConfiguration:"), value)
 }
 

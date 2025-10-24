@@ -15,6 +15,15 @@ import (
 // iOS-only methods for TKSmartCardTokenRegistrationManager
 
 
+// Registers a smartcard with a specific token ID.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKSmartCardTokenRegistrationManager/registerSmartCard(tokenID:promptMessage:)
+func (t_ TKSmartCardTokenRegistrationManager) RegisterSmartCardWithTokenIDPromptMessageError(tokenID objc.IObject /* cross-framework: NSString */, promptMessage objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("registerSmartCardWithTokenID:promptMessage:error:"), tokenID, promptMessage, error_)
+	return rv
+}
+
 // Unregisters a smartcard for the provided token ID.
 //
 // [Full Topic]

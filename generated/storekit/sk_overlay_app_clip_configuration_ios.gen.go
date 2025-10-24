@@ -5,15 +5,11 @@
 package storekit
 
 import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // iOS-only methods for OverlayAppClipConfiguration
-
 
 // Returns the object associated with the key.
 //
@@ -28,11 +24,35 @@ func (o_ OverlayAppClipConfiguration) AdditionalValueForKey(key objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/setAdditionalValue(_:forKey:)
-func (o_ OverlayAppClipConfiguration) SetAdditionalValueForKey(value objectivec.IObject, key objc.IObject /* cross-framework: NSString */) {
+func (o_ OverlayAppClipConfiguration) SetAdditionalValueForKey(value objc.IObject, key objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAdditionalValue:forKey:"), value, key)
 }
 
 // iOS-only properties
+
+// A token you use to represent an ad campaign and measure its effectiveness.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/campaignToken
+func (o_ OverlayAppClipConfiguration) CampaignToken() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("campaignToken"))
+	return rv
+}
+func (o_ OverlayAppClipConfiguration) SetCampaignToken(value objc.IObject /* cross-framework: NSString */) {
+	o_.ID.Send(objc.RegisterName("setCampaignToken:"), value)
+}
+
+// An identifier for a parent app’s custom product page.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKOverlay/AppClipConfiguration/customProductPageIdentifier
+func (o_ OverlayAppClipConfiguration) CustomProductPageIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("customProductPageIdentifier"))
+	return rv
+}
+func (o_ OverlayAppClipConfiguration) SetCustomProductPageIdentifier(value objc.IObject /* cross-framework: NSString */) {
+	o_.ID.Send(objc.RegisterName("setCustomProductPageIdentifier:"), value)
+}
 
 // The release ID of the latest version of your parent app as displayed in App Store Connect.
 //
@@ -69,7 +89,3 @@ func (o_ OverlayAppClipConfiguration) ProviderToken() objc.IObject /* cross-fram
 func (o_ OverlayAppClipConfiguration) SetProviderToken(value objc.IObject /* cross-framework: NSString */) {
 	o_.ID.Send(objc.RegisterName("setProviderToken:"), value)
 }
-
-
-
-

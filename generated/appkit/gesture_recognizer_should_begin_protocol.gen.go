@@ -15,3 +15,4 @@ var gestureRecognizerShouldBeginProtocol *objc.Protocol
 func init() {
 	gestureRecognizerShouldBeginProtocol = objc.GetProtocol("gestureRecognizerShouldBegin:")
 }
+

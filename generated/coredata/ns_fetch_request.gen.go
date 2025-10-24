@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/cloudkit"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [FetchRequest] class.
@@ -77,7 +77,6 @@ type IFetchRequest interface {
 //
 // An instance of collects the criteria needed to select and optionally to sort a group of managed objects held in an persistent store. A fetch request contains an or an entity name that specifies which entity to search. It frequently also contains: An predicate that specifies which properties to filter by and the constraints on selection, such as, . If you don’t specify a predicate, then the system fetches all instances of the entity that you specified, subject to other constraints. For more information, see . An array of sort descriptors that specify how to order the returned objects, such as ascending by last name and then by first name. You can also specify other aspects of a fetch request: Use to perform the fetch directly on the managed object context that’s associated with the current queue. Or use one of the methods such as to execute the fetch. In , you can use a property wrapper to execute the fetch and assign the results to a property. First, create the request: Then use a property wrapper with the request to declare a property that receives the objects that the fetch returns: You often predefine fetch requests in an managed object model to provide an API to retrieve a stored fetch request by name. Stored fetch requests can include placeholders for variable substitution, and serve as templates for later completion. Fetch request templates allow you to predefine queries with variables to substitute at runtime.
 
-
 // A description of search criteria used to retrieve data from a persistent store.
 //
 // [Full Topic]
@@ -126,8 +125,6 @@ func NewFetchRequest() FetchRequest {
 	return getFetchRequestClass().New()
 }
 
-
-
 // Initializes a fetch request configured with a given entity name.
 //
 // [Full Topic]
@@ -139,8 +136,6 @@ func NewFetchRequestWithEntityName(entityName objc.IObject /* cross-framework: N
 	return rv
 }
 
-
-
 // Returns a fetch request configured with a given entity name.
 //
 // [Full Topic]
@@ -149,7 +144,6 @@ func (fc _FetchRequestClass) FetchRequestWithEntityName(entityName objc.IObject 
 	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("fetchRequestWithEntityName:"), entityName)
 	return rv
 }
-
 
 // Executes the fetch request against the managed object context that is associated with the current queue.
 //
@@ -160,7 +154,6 @@ func (f_ FetchRequest) Execute(error_ unsafe.Pointer) []objc.ID {
 	return rv
 }
 
-
 // An array of persistent stores specified for the fetch request.
 //
 // [Full Topic]
@@ -169,7 +162,6 @@ func (f_ FetchRequest) AffectedStores() []IPersistentStore {
 	rv := objc.Send[[]PersistentStore](f_.ID, objc.Sel("affectedStores"))
 	return rv
 }
-
 
 // An array of persistent stores specified for the fetch request.
 //
@@ -189,7 +181,6 @@ func (f_ FetchRequest) SetAffectedStores(value []IPersistentStore) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), nsArray)
 }
 
-
 // The entity specified for the fetch request.
 //
 // [Full Topic]
@@ -199,7 +190,6 @@ func (f_ FetchRequest) Entity() IEntityDescription {
 	return rv
 }
 
-
 // The entity specified for the fetch request.
 //
 // [Full Topic]
@@ -207,7 +197,6 @@ func (f_ FetchRequest) Entity() IEntityDescription {
 func (f_ FetchRequest) SetEntity(value IEntityDescription) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setEntity:"), value)
 }
-
 
 // The name of the entity the request is configured to fetch.
 //
@@ -218,7 +207,6 @@ func (f_ FetchRequest) EntityName() objc.IObject /* cross-framework: NSString */
 	return rv
 }
 
-
 // The batch size of the objects specified in the fetch request.
 //
 // [Full Topic]
@@ -228,7 +216,6 @@ func (f_ FetchRequest) FetchBatchSize() uint {
 	return rv
 }
 
-
 // The batch size of the objects specified in the fetch request.
 //
 // [Full Topic]
@@ -236,7 +223,6 @@ func (f_ FetchRequest) FetchBatchSize() uint {
 func (f_ FetchRequest) SetFetchBatchSize(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
-
 
 // The fetch limit of the fetch request.
 //
@@ -247,7 +233,6 @@ func (f_ FetchRequest) FetchLimit() uint {
 	return rv
 }
 
-
 // The fetch limit of the fetch request.
 //
 // [Full Topic]
@@ -255,7 +240,6 @@ func (f_ FetchRequest) FetchLimit() uint {
 func (f_ FetchRequest) SetFetchLimit(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
-
 
 // The fetch offset of the fetch request.
 //
@@ -266,7 +250,6 @@ func (f_ FetchRequest) FetchOffset() uint {
 	return rv
 }
 
-
 // The fetch offset of the fetch request.
 //
 // [Full Topic]
@@ -274,7 +257,6 @@ func (f_ FetchRequest) FetchOffset() uint {
 func (f_ FetchRequest) SetFetchOffset(value uint) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
-
 
 // The predicate used to filter rows being returned by a query containing a GROUP BY directive.
 //
@@ -285,7 +267,6 @@ func (f_ FetchRequest) HavingPredicate() objc.IObject /* cross-framework: Predic
 	return rv
 }
 
-
 // The predicate used to filter rows being returned by a query containing a GROUP BY directive.
 //
 // [Full Topic]
@@ -293,7 +274,6 @@ func (f_ FetchRequest) HavingPredicate() objc.IObject /* cross-framework: Predic
 func (f_ FetchRequest) SetHavingPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHavingPredicate:"), value)
 }
-
 
 // A Boolean value that indicates whether, when the fetch is executed, it matches against currently unsaved changes in the managed object context.
 //
@@ -304,7 +284,6 @@ func (f_ FetchRequest) IncludesPendingChanges() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether, when the fetch is executed, it matches against currently unsaved changes in the managed object context.
 //
 // [Full Topic]
@@ -312,7 +291,6 @@ func (f_ FetchRequest) IncludesPendingChanges() bool {
 func (f_ FetchRequest) SetIncludesPendingChanges(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesPendingChanges:"), value)
 }
-
 
 // A Boolean value that indicates whether, when the fetch is executed, property data is obtained from the persistent store.
 //
@@ -323,7 +301,6 @@ func (f_ FetchRequest) IncludesPropertyValues() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether, when the fetch is executed, property data is obtained from the persistent store.
 //
 // [Full Topic]
@@ -331,7 +308,6 @@ func (f_ FetchRequest) IncludesPropertyValues() bool {
 func (f_ FetchRequest) SetIncludesPropertyValues(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesPropertyValues:"), value)
 }
-
 
 // A Boolean value that indicates whether the fetch request includes subentities in the results.
 //
@@ -342,7 +318,6 @@ func (f_ FetchRequest) IncludesSubentities() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the fetch request includes subentities in the results.
 //
 // [Full Topic]
@@ -350,7 +325,6 @@ func (f_ FetchRequest) IncludesSubentities() bool {
 func (f_ FetchRequest) SetIncludesSubentities(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIncludesSubentities:"), value)
 }
-
 
 // The predicate of the fetch request.
 //
@@ -361,7 +335,6 @@ func (f_ FetchRequest) Predicate() objc.IObject /* cross-framework: Predicate */
 	return rv
 }
 
-
 // The predicate of the fetch request.
 //
 // [Full Topic]
@@ -369,7 +342,6 @@ func (f_ FetchRequest) Predicate() objc.IObject /* cross-framework: Predicate */
 func (f_ FetchRequest) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
-
 
 // A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
 //
@@ -380,7 +352,6 @@ func (f_ FetchRequest) PropertiesToFetch() objc.IObject /* cross-framework: NSAr
 	return rv
 }
 
-
 // A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
 //
 // [Full Topic]
@@ -388,7 +359,6 @@ func (f_ FetchRequest) PropertiesToFetch() objc.IObject /* cross-framework: NSAr
 func (f_ FetchRequest) SetPropertiesToFetch(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertiesToFetch:"), value)
 }
-
 
 // An array of objects that indicates how data should be grouped before a select statement is run in a SQL database.
 //
@@ -399,7 +369,6 @@ func (f_ FetchRequest) PropertiesToGroupBy() objc.IObject /* cross-framework: NS
 	return rv
 }
 
-
 // An array of objects that indicates how data should be grouped before a select statement is run in a SQL database.
 //
 // [Full Topic]
@@ -407,7 +376,6 @@ func (f_ FetchRequest) PropertiesToGroupBy() objc.IObject /* cross-framework: NS
 func (f_ FetchRequest) SetPropertiesToGroupBy(value objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPropertiesToGroupBy:"), value)
 }
-
 
 // The relationship key paths to prefetch along with the entity for the request.
 //
@@ -417,7 +385,6 @@ func (f_ FetchRequest) RelationshipKeyPathsForPrefetching() []string {
 	rv := objc.Send[[]string](f_.ID, objc.Sel("relationshipKeyPathsForPrefetching"))
 	return rv
 }
-
 
 // The relationship key paths to prefetch along with the entity for the request.
 //
@@ -437,7 +404,6 @@ func (f_ FetchRequest) SetRelationshipKeyPathsForPrefetching(value []string) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setRelationshipKeyPathsForPrefetching:"), nsArray)
 }
 
-
 // The result type of the fetch request.
 //
 // [Full Topic]
@@ -447,7 +413,6 @@ func (f_ FetchRequest) ResultType() FetchRequestResultType {
 	return rv
 }
 
-
 // The result type of the fetch request.
 //
 // [Full Topic]
@@ -455,7 +420,6 @@ func (f_ FetchRequest) ResultType() FetchRequestResultType {
 func (f_ FetchRequest) SetResultType(value FetchRequestResultType) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResultType:"), value)
 }
-
 
 // A Boolean value that indicates whether the fetch request returns only distinct values for the fields specified by .
 //
@@ -466,7 +430,6 @@ func (f_ FetchRequest) ReturnsDistinctResults() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the fetch request returns only distinct values for the fields specified by .
 //
 // [Full Topic]
@@ -474,7 +437,6 @@ func (f_ FetchRequest) ReturnsDistinctResults() bool {
 func (f_ FetchRequest) SetReturnsDistinctResults(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReturnsDistinctResults:"), value)
 }
-
 
 // A Boolean value that indicates whether the objects resulting from a fetch request are faults.
 //
@@ -485,7 +447,6 @@ func (f_ FetchRequest) ReturnsObjectsAsFaults() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the objects resulting from a fetch request are faults.
 //
 // [Full Topic]
@@ -493,7 +454,6 @@ func (f_ FetchRequest) ReturnsObjectsAsFaults() bool {
 func (f_ FetchRequest) SetReturnsObjectsAsFaults(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setReturnsObjectsAsFaults:"), value)
 }
-
 
 // A Boolean value that indicates whether the property values of fetched objects will be updated with the current values in the persistent store.
 //
@@ -504,7 +464,6 @@ func (f_ FetchRequest) ShouldRefreshRefetchedObjects() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the property values of fetched objects will be updated with the current values in the persistent store.
 //
 // [Full Topic]
@@ -512,7 +471,6 @@ func (f_ FetchRequest) ShouldRefreshRefetchedObjects() bool {
 func (f_ FetchRequest) SetShouldRefreshRefetchedObjects(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setShouldRefreshRefetchedObjects:"), value)
 }
-
 
 // The sort descriptors of the fetch request.
 //
@@ -522,7 +480,6 @@ func (f_ FetchRequest) SortDescriptors() []objectivec.IObject {
 	rv := objc.Send[[]objc.ID](f_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
-
 
 // The sort descriptors of the fetch request.
 //
@@ -541,5 +498,3 @@ func (f_ FetchRequest) SetSortDescriptors(value []objectivec.IObject) {
 	}
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSortDescriptors:"), nsArray)
 }
-
-

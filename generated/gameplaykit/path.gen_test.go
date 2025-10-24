@@ -14,7 +14,7 @@ var _ = gameplaykit.NewPath
 func ExampleNewPathWithGraphNodesRadius() {
 	_ = gameplaykit.NewPathWithGraphNodesRadius(
 		[]gameplaykit.GraphNode{}, // graphNodes []GraphNode
-		0.0, // radius float32
+		0.0,                       // radius float32
 	)
 	// Output:
 }

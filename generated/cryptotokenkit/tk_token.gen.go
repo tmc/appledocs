@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class TKToken */
+
+
+/* debug [class_header]: Header for TKToken */
 // The class instance for the [TKToken] class.
 var (
 	TKTokenClass     _TKTokenClass
@@ -26,40 +30,35 @@ func getTKTokenClass() _TKTokenClass {
 type _TKTokenClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TKToken */
 // An interface definition for the [TKToken] class.
 type ITKToken interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for TKToken */
 	// properties:
-	Configuration() unsafe.Pointer
-	SetConfiguration(value unsafe.Pointer)
+	Configuration() ITKTokenConfiguration
 	Delegate() unsafe.Pointer
 	SetDelegate(value unsafe.Pointer)
 	KeychainContents() ITKTokenKeychainContents
-	SetKeychainContents(value ITKTokenKeychainContents)
 	TokenDriver() ITKTokenDriver
-	SetTokenDriver(value ITKTokenDriver)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TKToken */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A representation of a hardware-based cryptographic token.
 
 
-// A representation of a hardware-based cryptographic token.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken
-type TKToken struct {
-	objectivec.Object
-}
-
-// TKTokenFrom constructs a [TKToken] from an unsafe.Pointer.
-//
-// A representation of a hardware-based cryptographic token.
-func TKTokenFrom(ptr unsafe.Pointer) TKToken {
-	return TKToken{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for TKToken */
 // Alloc allocates a new instance without initialization.
 func (tc _TKTokenClass) Alloc() TKToken {
 	rv := objc.Send[TKToken](objc.ID(tc.class), objc.Sel("alloc"))
@@ -67,7 +66,6 @@ func (tc _TKTokenClass) Alloc() TKToken {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TKTokenClass) New() TKToken {
 	rv := objc.Send[TKToken](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,95 +88,117 @@ func (t_ TKToken) Autorelease() TKToken {
 func NewTKToken() TKToken {
 	return getTKTokenClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for TKToken */
+// A representation of a hardware-based cryptographic token.
+
+
+// A representation of a hardware-based cryptographic token.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken
+type TKToken struct {
+	objectivec.Object
+}
+
+// TKTokenFrom constructs a [TKToken] from an unsafe.Pointer.
+//
+// A representation of a hardware-based cryptographic token.
+func TKTokenFrom(ptr unsafe.Pointer) TKToken {
+	return TKToken{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TKToken */
 
 // Initializes a token with the driver you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/init(tokenDriver:instanceID:)
-func NewTKTokenWithTokenDriverInstanceID(tokenDriver ITKTokenDriver, instanceID unsafe.Pointer) TKToken {
+func NewTKTokenWithTokenDriverInstanceID(tokenDriver ITKTokenDriver, instanceID TKTokenInstanceID /* typedef */) TKToken {
 	instance := getTKTokenClass().Alloc()
 	rv := objc.Send[TKToken](instance.ID, objc.Sel("initWithTokenDriver:instanceID:"), tokenDriver, instanceID)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewTKTokenWithTokenDriverInstanceID */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for TKToken */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TKToken */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TKToken */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TKToken */
 
 // The current configuration for a token.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.property
-func (t_ TKToken) Configuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("configuration"))
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/configuration-swift.property
+func (t_ TKToken) Configuration() ITKTokenConfiguration {
+	rv := objc.Send[TKTokenConfiguration](t_.ID, objc.Sel("configuration"))
 	return rv
-}
-
-
-// The current configuration for a token.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/configuration-swift.property
-func (t_ TKToken) SetConfiguration(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setConfiguration:"), value)
-}
+}/* debug [instance_properties/getter]: configuration */
 
 
 // The token delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/delegate
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/delegate
 func (t_ TKToken) Delegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // The token delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/delegate
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/delegate
 func (t_ TKToken) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
-}
+}/* debug [instance_properties/setter]: delegate */
 
 
 // The contents of the keychain for this token.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/keychainContents
 func (t_ TKToken) KeychainContents() ITKTokenKeychainContents {
 	rv := objc.Send[TKTokenKeychainContents](t_.ID, objc.Sel("keychainContents"))
 	return rv
-}
-
-
-// The contents of the keychain for this token.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/keychaincontents
-func (t_ TKToken) SetKeychainContents(value ITKTokenKeychainContents) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setKeychainContents:"), value)
-}
+}/* debug [instance_properties/getter]: keychainContents */
 
 
 // The token driver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/tokendriver
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKToken/tokenDriver
 func (t_ TKToken) TokenDriver() ITKTokenDriver {
 	rv := objc.Send[TKTokenDriver](t_.ID, objc.Sel("tokenDriver"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tokenDriver */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The token driver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/cryptotokenkit/tktoken/tokendriver
-func (t_ TKToken) SetTokenDriver(value ITKTokenDriver) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenDriver:"), value)
-}
+/* debug [class.gen.go]: End class TKToken */
 
 

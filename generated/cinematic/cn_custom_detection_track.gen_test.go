@@ -13,7 +13,7 @@ var _ = cinematic.NewCNCustomDetectionTrack
 // Initializes a custom detection track with an array of detections, optionally applying smoothing.
 func ExampleNewCNCustomDetectionTrackWithDetectionsSmooth() {
 	_ = cinematic.NewCNCustomDetectionTrackWithDetectionsSmooth(
-		[]cinematic.ICNDetection{}, // detections []ICNDetection
+		[]cinematic.CNDetection{}, // detections []CNDetection
 		false, // applySmoothing bool
 	)
 	// Output:

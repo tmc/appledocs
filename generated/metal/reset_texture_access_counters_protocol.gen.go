@@ -20,3 +20,4 @@ var resetTextureAccessCountersProtocol *objc.Protocol
 func init() {
 	resetTextureAccessCountersProtocol = objc.GetProtocol("resetTextureAccessCounters:")
 }
+

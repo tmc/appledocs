@@ -15,3 +15,4 @@ var setAccessibilityMarkerGroupUIElementProtocol *objc.Protocol
 func init() {
 	setAccessibilityMarkerGroupUIElementProtocol = objc.GetProtocol("setAccessibilityMarkerGroupUIElement")
 }
+

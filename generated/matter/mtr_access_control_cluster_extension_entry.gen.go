@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRAccessControlClusterExtensionEntry] class.
@@ -37,8 +37,6 @@ type IMTRAccessControlClusterExtensionEntry interface {
 	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterExtensionEntry
@@ -84,8 +82,6 @@ func NewMTRAccessControlClusterExtensionEntry() MTRAccessControlClusterExtension
 	return getMTRAccessControlClusterExtensionEntryClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusterextensionentry/data
 func (m_ MTRAccessControlClusterExtensionEntry) Data() objc.IObject /* cross-framework: Data */ {
@@ -93,13 +89,11 @@ func (m_ MTRAccessControlClusterExtensionEntry) Data() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusterextensionentry/data
 func (m_ MTRAccessControlClusterExtensionEntry) SetData(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setData:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusterextensionentry/fabricindex
@@ -108,12 +102,8 @@ func (m_ MTRAccessControlClusterExtensionEntry) FabricIndex() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusterextensionentry/fabricindex
 func (m_ MTRAccessControlClusterExtensionEntry) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
-
-

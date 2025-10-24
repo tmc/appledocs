@@ -15,3 +15,4 @@ var TextFinderClientProtocol *objc.Protocol
 func init() {
 	TextFinderClientProtocol = objc.GetProtocol("NSTextFinderClient")
 }
+

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class EASession */
+
+
+/* debug [class_header]: Header for EASession */
 // The class instance for the [EASession] class.
 var (
 	EASessionClass     _EASessionClass
@@ -27,39 +31,34 @@ func getEASessionClass() _EASessionClass {
 type _EASessionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EASession */
 // An interface definition for the [EASession] class.
 type IEASession interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for EASession */
 	// properties:
 	Accessory() IEAAccessory
-	InputStream() objc.IObject /* cross-framework: InputStream */
+	InputStream() foundation.InputStream
+	OutputStream() foundation.OutputStream
 	ProtocolString() objc.IObject /* cross-framework: NSString */
-	OutputStream() objc.IObject /* cross-framework: OutputStream */
-	SetOutputStream(value objc.IObject /* cross-framework: OutputStream */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EASession */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The object you use to manage communications between your app and a connected hardware accessory.
-//
-// An object creates a communications channel between your app and a connected hardware accessory. The manufacturer of the device must share the accessory’s supported protocols with you. When you create your session, specify one of these protocols to initiate communication with the accessory. After initializing an object, use the provided output and input streams to transfer data to and from the accessory using that protocol. After creating a session object, immediately retrieve and configure the stream objects provided by the session. Streams send events to their associated delegate to notify it of changes in the stream status. For example, streams notify the delegate when data is waiting to be read or when more space is available for writing data. For more information about how to use stream objects, see . When sending and receiving data using the provided streams, it is your responsibility to ensure the data is formatted according to the specified protocol. The class has no knowledge of specific accessory protocols and doesn’t attempt to format the data in any way before or after transferring it.
+/* debug [class_interface]: End interface */
 
 
-// The object you use to manage communications between your app and a connected hardware accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession
-type EASession struct {
-	objectivec.Object
-}
 
-// EASessionFrom constructs a [EASession] from an unsafe.Pointer.
-//
-// The object you use to manage communications between your app and a connected hardware accessory.
-func EASessionFrom(ptr unsafe.Pointer) EASession {
-	return EASession{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for EASession */
 // Alloc allocates a new instance without initialization.
 func (ec _EASessionClass) Alloc() EASession {
 	rv := objc.Send[EASession](objc.ID(ec.class), objc.Sel("alloc"))
@@ -67,7 +66,6 @@ func (ec _EASessionClass) Alloc() EASession {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EASessionClass) New() EASession {
 	rv := objc.Send[EASession](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,8 +88,35 @@ func (e_ EASession) Autorelease() EASession {
 func NewEASession() EASession {
 	return getEASessionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for EASession */
+// The object you use to manage communications between your app and a connected hardware accessory.
+//
+// An object creates a communications channel between your app and a connected hardware accessory. The manufacturer of the device must share the accessory’s supported protocols with you. When you create your session, specify one of these protocols to initiate communication with the accessory. After initializing an object, use the provided output and input streams to transfer data to and from the accessory using that protocol. After creating a session object, immediately retrieve and configure the stream objects provided by the session. Streams send events to their associated delegate to notify it of changes in the stream status. For example, streams notify the delegate when data is waiting to be read or when more space is available for writing data. For more information about how to use stream objects, see . When sending and receiving data using the provided streams, it is your responsibility to ensure the data is formatted according to the specified protocol. The class has no knowledge of specific accessory protocols and doesn’t attempt to format the data in any way before or after transferring it.
+
+
+// The object you use to manage communications between your app and a connected hardware accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession
+type EASession struct {
+	objectivec.Object
+}
+
+// EASessionFrom constructs a [EASession] from an unsafe.Pointer.
+//
+// The object you use to manage communications between your app and a connected hardware accessory.
+func EASessionFrom(ptr unsafe.Pointer) EASession {
+	return EASession{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EASession */
 
 // Initializes the session for the specified accessory and protocol.
 //
@@ -102,9 +127,28 @@ func NewEASessionWithAccessoryForProtocol(accessory IEAAccessory, protocolString
 	rv := objc.Send[EASession](instance.ID, objc.Sel("initWithAccessory:forProtocol:"), accessory, protocolString)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewEASessionWithAccessoryForProtocol */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for EASession */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EASession */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EASession */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EASession */
 
 // The accessory attached to the session.
 //
@@ -113,17 +157,27 @@ func NewEASessionWithAccessoryForProtocol(accessory IEAAccessory, protocolString
 func (e_ EASession) Accessory() IEAAccessory {
 	rv := objc.Send[EAAccessory](e_.ID, objc.Sel("accessory"))
 	return rv
-}
+}/* debug [instance_properties/getter]: accessory */
 
 
 // The stream to use for receiving data from the accessory.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/inputStream
-func (e_ EASession) InputStream() objc.IObject /* cross-framework: InputStream */ {
+func (e_ EASession) InputStream() foundation.InputStream {
 	rv := objc.Send[foundation.InputStream](e_.ID, objc.Sel("inputStream"))
 	return rv
-}
+}/* debug [instance_properties/getter]: inputStream */
+
+
+// The stream to use for sending data to the accessory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EASession/outputStream
+func (e_ EASession) OutputStream() foundation.OutputStream {
+	rv := objc.Send[foundation.OutputStream](e_.ID, objc.Sel("outputStream"))
+	return rv
+}/* debug [instance_properties/getter]: outputStream */
 
 
 // The protocol being used for communication with the accessory.
@@ -133,25 +187,11 @@ func (e_ EASession) InputStream() objc.IObject /* cross-framework: InputStream *
 func (e_ EASession) ProtocolString() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("protocolString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: protocolString */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The stream to use for sending data to the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/easession/outputstream
-func (e_ EASession) OutputStream() objc.IObject /* cross-framework: OutputStream */ {
-	rv := objc.Send[foundation.OutputStream](e_.ID, objc.Sel("outputStream"))
-	return rv
-}
-
-
-// The stream to use for sending data to the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/easession/outputstream
-func (e_ EASession) SetOutputStream(value objc.IObject /* cross-framework: OutputStream */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setOutputStream:"), value)
-}
+/* debug [class.gen.go]: End class EASession */
 
 

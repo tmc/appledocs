@@ -20,3 +20,4 @@ var visitDeleteGroupEventProtocol *objc.Protocol
 func init() {
 	visitDeleteGroupEventProtocol = objc.GetProtocol("visitDeleteGroupEvent:")
 }
+

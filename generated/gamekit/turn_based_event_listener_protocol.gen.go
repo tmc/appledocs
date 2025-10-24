@@ -21,3 +21,4 @@ var TurnBasedEventListenerProtocol *objc.Protocol
 func init() {
 	TurnBasedEventListenerProtocol = objc.GetProtocol("GKTurnBasedEventListener")
 }
+

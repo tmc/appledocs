@@ -34,7 +34,7 @@ func ExampleNewColorWithRedGreenBlueAlpha() {
 		0.0, // red float64
 		0.0, // green float64
 		0.0, // blue float64
-		0.0, // alpha float64
+		1.0, // alpha float64
 	)
 	// Output:
 }
@@ -45,7 +45,7 @@ func ExampleNewColorWithRedGreenBlueAlphaColorSpace() {
 		0.0, // red float64
 		0.0, // green float64
 		0.0, // blue float64
-		0.0, // alpha float64
+		1.0, // alpha float64
 		coreimage.ColorSpaceRef /* not a class type */{}, // colorSpace ColorSpaceRef /* not a class type */
 	)
 	// Output:

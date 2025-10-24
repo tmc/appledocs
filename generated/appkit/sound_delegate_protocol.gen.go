@@ -15,3 +15,4 @@ var SoundDelegateProtocol *objc.Protocol
 func init() {
 	SoundDelegateProtocol = objc.GetProtocol("NSSoundDelegate")
 }
+

@@ -18,3 +18,4 @@ var widgetPerformUpdateWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	widgetPerformUpdateWithCompletionHandlerProtocol = objc.GetProtocol("widgetPerformUpdateWithCompletionHandler:")
 }
+

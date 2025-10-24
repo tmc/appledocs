@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSCNNConvolutionGradientState */
+
+
+/* debug [class_header]: Header for MPSCNNConvolutionGradientState */
 // The class instance for the [CNNConvolutionGradientState] class.
 var (
 	CNNConvolutionGradientStateClass     _CNNConvolutionGradientStateClass
@@ -26,29 +29,38 @@ func getCNNConvolutionGradientStateClass() _CNNConvolutionGradientStateClass {
 type _CNNConvolutionGradientStateClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNNConvolutionGradientState */
 // An interface definition for the [CNNConvolutionGradientState] class.
 type ICNNConvolutionGradientState interface {
-	objectivec.IObject
+	IGradientState
+	
+/* debug [class_interface_properties]: Properties for CNNConvolutionGradientState */
 	// properties:
+	GradientForBiases() Buffer get /* not a class type */
+	SetGradientForBiases(value Buffer get /* not a class type */)
+	GradientForWeights() Buffer get /* not a class type */
+	SetGradientForWeights(value Buffer get /* not a class type */)
+	Convolution() IMPSCNNConvolution
+	SetConvolution(value IMPSCNNConvolution)
+	GradientForWeightsLayout() CNNConvolutionWeightsLayout get /* not a class type */
+	SetGradientForWeightsLayout(value CNNConvolutionWeightsLayout get /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNNConvolutionGradientState */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A parent class referenced by other MetalPerformanceShaders classes.
 
 
-// A parent class referenced by other MetalPerformanceShaders classes. [Full Topic]
-type CNNConvolutionGradientState struct {
-	objectivec.Object
-}
-
-// CNNConvolutionGradientStateFrom constructs a [CNNConvolutionGradientState] from an unsafe.Pointer.
-//
-// A parent class referenced by other MetalPerformanceShaders classes.
-func CNNConvolutionGradientStateFrom(ptr unsafe.Pointer) CNNConvolutionGradientState {
-	return CNNConvolutionGradientState{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CNNConvolutionGradientState */
 // Alloc allocates a new instance without initialization.
 func (cc _CNNConvolutionGradientStateClass) Alloc() CNNConvolutionGradientState {
 	rv := objc.Send[CNNConvolutionGradientState](objc.ID(cc.class), objc.Sel("alloc"))
@@ -56,7 +68,6 @@ func (cc _CNNConvolutionGradientStateClass) Alloc() CNNConvolutionGradientState 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNNConvolutionGradientStateClass) New() CNNConvolutionGradientState {
 	rv := objc.Send[CNNConvolutionGradientState](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,7 +90,118 @@ func (c_ CNNConvolutionGradientState) Autorelease() CNNConvolutionGradientState 
 func NewCNNConvolutionGradientState() CNNConvolutionGradientState {
 	return getCNNConvolutionGradientStateClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for CNNConvolutionGradientState */
+// An object that exposes a gradient convolution kernel’s gradient with respect to weights and biases.
+
+
+// An object that exposes a gradient convolution kernel’s gradient with respect to weights and biases.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSCNNConvolutionGradientState
+type CNNConvolutionGradientState struct {
+	GradientState
+}
+
+// CNNConvolutionGradientStateFrom constructs a [CNNConvolutionGradientState] from an unsafe.Pointer.
+//
+// An object that exposes a gradient convolution kernel’s gradient with respect to weights and biases.
+func CNNConvolutionGradientStateFrom(ptr unsafe.Pointer) CNNConvolutionGradientState {
+	return CNNConvolutionGradientState{
+		GradientState: GradientStateFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CNNConvolutionGradientState *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CNNConvolutionGradientState */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNNConvolutionGradientState */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNNConvolutionGradientState */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNNConvolutionGradientState */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate/2947887-gradientforbiases
+func (c_ CNNConvolutionGradientState) GradientForBiases() Buffer get /* not a class type */ {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("gradientForBiases"))
+	return rv
+}/* debug [instance_properties/getter]: gradientForBiases */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate/2947887-gradientforbiases
+func (c_ CNNConvolutionGradientState) SetGradientForBiases(value Buffer get /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGradientForBiases:"), value)
+}/* debug [instance_properties/setter]: gradientForBiases */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate/2947889-gradientforweights
+func (c_ CNNConvolutionGradientState) GradientForWeights() Buffer get /* not a class type */ {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("gradientForWeights"))
+	return rv
+}/* debug [instance_properties/getter]: gradientForWeights */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate/2947889-gradientforweights
+func (c_ CNNConvolutionGradientState) SetGradientForWeights(value Buffer get /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGradientForWeights:"), value)
+}/* debug [instance_properties/setter]: gradientForWeights */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate/2953958-convolution
+func (c_ CNNConvolutionGradientState) Convolution() IMPSCNNConvolution {
+	rv := objc.Send[CNNConvolution](c_.ID, objc.Sel("convolution"))
+	return rv
+}/* debug [instance_properties/getter]: convolution */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate/2953958-convolution
+func (c_ CNNConvolutionGradientState) SetConvolution(value IMPSCNNConvolution) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setConvolution:"), value)
+}/* debug [instance_properties/setter]: convolution */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate/3325841-gradientforweightslayout
+func (c_ CNNConvolutionGradientState) GradientForWeightsLayout() CNNConvolutionWeightsLayout get /* not a class type */ {
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("gradientForWeightsLayout"))
+	return rv
+}/* debug [instance_properties/getter]: gradientForWeightsLayout */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpscnnconvolutiongradientstate/3325841-gradientforweightslayout
+func (c_ CNNConvolutionGradientState) SetGradientForWeightsLayout(value CNNConvolutionWeightsLayout get /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setGradientForWeightsLayout:"), value)
+}/* debug [instance_properties/setter]: gradientForWeightsLayout */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSCNNConvolutionGradientState */
 
 
 

@@ -21,3 +21,4 @@ var superclassProtocol *objc.Protocol
 func init() {
 	superclassProtocol = objc.GetProtocol("superclass")
 }
+

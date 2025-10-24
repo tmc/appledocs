@@ -33,8 +33,6 @@ type IMTRClusterApplicationLauncher interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterApplicationLauncher
 type MTRClusterApplicationLauncher struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterApplicationLauncher) Autorelease() MTRClusterApplicationLaunc
 func NewMTRClusterApplicationLauncher() MTRClusterApplicationLauncher {
 	return getMTRClusterApplicationLauncherClass().New()
 }
-
-
-
-

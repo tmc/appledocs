@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput */
+
+
+/* debug [class_header]: Header for ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput */
 // The class instance for the [AuthorizationPublicKeyCredentialLargeBlobAssertionInput] class.
 var (
 	AuthorizationPublicKeyCredentialLargeBlobAssertionInputClass     _AuthorizationPublicKeyCredentialLargeBlobAssertionInputClass
@@ -27,29 +30,33 @@ func getAuthorizationPublicKeyCredentialLargeBlobAssertionInputClass() _Authoriz
 type _AuthorizationPublicKeyCredentialLargeBlobAssertionInputClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
 // An interface definition for the [AuthorizationPublicKeyCredentialLargeBlobAssertionInput] class.
 type IAuthorizationPublicKeyCredentialLargeBlobAssertionInput interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
 	// properties:
 	DataToWrite() objc.IObject /* cross-framework: NSData */
 	SetDataToWrite(value objc.IObject /* cross-framework: NSData */)
+	Operation() AuthorizationPublicKeyCredentialLargeBlobAssertionOperation
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class
-type AuthorizationPublicKeyCredentialLargeBlobAssertionInput struct {
-	objectivec.Object
-}
-
-// AuthorizationPublicKeyCredentialLargeBlobAssertionInputFrom constructs a [AuthorizationPublicKeyCredentialLargeBlobAssertionInput] from an unsafe.Pointer.
-func AuthorizationPublicKeyCredentialLargeBlobAssertionInputFrom(ptr unsafe.Pointer) AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
-	return AuthorizationPublicKeyCredentialLargeBlobAssertionInput{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
 // Alloc allocates a new instance without initialization.
 func (ac _AuthorizationPublicKeyCredentialLargeBlobAssertionInputClass) Alloc() AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
 	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobAssertionInput](objc.ID(ac.class), objc.Sel("alloc"))
@@ -57,7 +64,6 @@ func (ac _AuthorizationPublicKeyCredentialLargeBlobAssertionInputClass) Alloc() 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AuthorizationPublicKeyCredentialLargeBlobAssertionInputClass) New() AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
 	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobAssertionInput](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -80,32 +86,84 @@ func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) Autorelease() 
 func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInput() AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
 	return getAuthorizationPublicKeyCredentialLargeBlobAssertionInputClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
 
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class
+type AuthorizationPublicKeyCredentialLargeBlobAssertionInput struct {
+	objectivec.Object
+}
+
+// AuthorizationPublicKeyCredentialLargeBlobAssertionInputFrom constructs a [AuthorizationPublicKeyCredentialLargeBlobAssertionInput] from an unsafe.Pointer.
+func AuthorizationPublicKeyCredentialLargeBlobAssertionInputFrom(ptr unsafe.Pointer) AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
+	return AuthorizationPublicKeyCredentialLargeBlobAssertionInput{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/initWithOperation:
-func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(operation AuthorizationPublicKeyCredentialLargeBlobAssertionOperation /* not a class type */) AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
+func NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(operation AuthorizationPublicKeyCredentialLargeBlobAssertionOperation) AuthorizationPublicKeyCredentialLargeBlobAssertionInput {
 	instance := getAuthorizationPublicKeyCredentialLargeBlobAssertionInputClass().Alloc()
 	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobAssertionInput](instance.ID, objc.Sel("initWithOperation:"), operation)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AuthorizationPublicKeyCredentialLargeBlobAssertionInput */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/dataToWrite
 func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) DataToWrite() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](a_.ID, objc.Sel("dataToWrite"))
 	return rv
-}
+}/* debug [instance_properties/getter]: dataToWrite */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/dataToWrite
 func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) SetDataToWrite(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDataToWrite:"), value)
-}
+}/* debug [instance_properties/setter]: dataToWrite */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput-c.class/operation
+func (a_ AuthorizationPublicKeyCredentialLargeBlobAssertionInput) Operation() AuthorizationPublicKeyCredentialLargeBlobAssertionOperation {
+	rv := objc.Send[AuthorizationPublicKeyCredentialLargeBlobAssertionOperation](a_.ID, objc.Sel("operation"))
+	return rv
+}/* debug [instance_properties/getter]: operation */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class ASAuthorizationPublicKeyCredentialLargeBlobAssertionInput */
 
 

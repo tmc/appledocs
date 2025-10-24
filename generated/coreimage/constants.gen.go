@@ -6,6 +6,9 @@ package coreimage
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat
 const (
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/RGBX8
+	kCIFormatRGBX8 CIFormat = 0 // TODO: Extract actual value from SDK
 	// kCIFormatA16 - A 16-bit-per-pixel, fixed-point pixel format in which the sole component is alpha.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/A16
@@ -18,10 +21,6 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/ABGR8
 	kCIFormatABGR8 CIFormat = 0 // TODO: Extract actual value from SDK
-	// kCIFormatARGB8 - A 32-bit-per-pixel, fixed-point pixel format in which the alpha value precedes the red, green, and blue color components.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/ARGB8
-	kCIFormatARGB8 CIFormat = 0 // TODO: Extract actual value from SDK
 	// kCIFormatAf - A 32-bit-per-pixel, full-width floating-point pixel format in which the sole component is alpha.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/Af
@@ -30,6 +29,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/Ah
 	kCIFormatAh CIFormat = 0 // TODO: Extract actual value from SDK
+	// kCIFormatARGB8 - A 32-bit-per-pixel, fixed-point pixel format in which the alpha value precedes the red, green, and blue color components.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/ARGB8
+	kCIFormatARGB8 CIFormat = 0 // TODO: Extract actual value from SDK
 	// kCIFormatBGRA8 - A 32-bit-per-pixel, fixed-point pixel format in which the blue, green, and red color components precede the alpha value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/BGRA8
@@ -74,6 +77,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/R8
 	kCIFormatR8 CIFormat = 0 // TODO: Extract actual value from SDK
+	// kCIFormatRf - A 32-bit-per-pixel, floating-point pixel format in which the sole component is a red color value.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/Rf
+	kCIFormatRf CIFormat = 0 // TODO: Extract actual value from SDK
 	// kCIFormatRG16 - A 32-bit-per-pixel, fixed-point pixel format with only red and green color components.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/RG16
@@ -105,8 +112,11 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/RGBX16
 	kCIFormatRGBX16 CIFormat = 0 // TODO: Extract actual value from SDK
 	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/RGBX8
-	kCIFormatRGBX8 CIFormat = 0 // TODO: Extract actual value from SDK
+	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/rgbXf
+	kCIFormatRGBXf CIFormat = 0 // TODO: Extract actual value from SDK
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/rgbXh
+	kCIFormatRGBXh CIFormat = 0 // TODO: Extract actual value from SDK
 	// kCIFormatRGf - A 64-bit-per-pixel, floating-point pixel format with only red and green color components.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/RGf
@@ -115,19 +125,9 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/RGh
 	kCIFormatRGh CIFormat = 0 // TODO: Extract actual value from SDK
-	// kCIFormatRf - A 32-bit-per-pixel, floating-point pixel format in which the sole component is a red color value.
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/Rf
-	kCIFormatRf CIFormat = 0 // TODO: Extract actual value from SDK
 	// kCIFormatRh - A 16-bit-per-pixel, floating-point pixel format in which the sole component is a red color value.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/Rh
 	kCIFormatRh CIFormat = 0 // TODO: Extract actual value from SDK
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/rgbXf
-	kCIFormatRGBXf CIFormat = 0 // TODO: Extract actual value from SDK
-	//
-	// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIFormat/rgbXh
-	kCIFormatRGBXh CIFormat = 0 // TODO: Extract actual value from SDK
 )
 

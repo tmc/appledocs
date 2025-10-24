@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MPMediaItem */
+
+
+/* debug [class_header]: Header for MPMediaItem */
 // The class instance for the [MediaItem] class.
 var (
 	MediaItemClass     _MediaItemClass
@@ -26,10 +30,16 @@ func getMediaItemClass() _MediaItemClass {
 type _MediaItemClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MediaItem */
 // An interface definition for the [MediaItem] class.
 type IMediaItem interface {
 	IMediaEntity
+	
+/* debug [class_interface_properties]: Properties for MediaItem */
 	// properties:
 	MPMediaEntityPropertyPersistentID() objc.IObject /* cross-framework: NSString */
 	Composer() objc.IObject /* cross-framework: NSString */
@@ -45,31 +55,19 @@ type IMediaItem interface {
 	IsPreorder() bool
 	SetIsPreorder(value bool)
 	MPMediaItemPropertyPersistentID() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MediaItem */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A collection of properties that represents a single item in the media library.
-//
-// A media item has an overall unique identifier, accessed using the property key, as well as specific identifiers for its metadata. These identifiers persists across application launches. A media item can have a wide range of metadata associated with it. You access this metadata using the method along with the property keys described in this document. You can also access metadata in a batch fashion using the method. Anytime the app accesses more than one property, enumerating over a set of property keys is more efficient than fetching each individual property. defines both of these methods, the abstract superclass of , and described in . You use attributes of media items to build media queries for searching the Media library. , , and describe these attributes. In addition, describes the property, and describes media queries.
+/* debug [class_interface]: End interface */
 
 
-// A collection of properties that represents a single item in the media library.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem
-type MediaItem struct {
-	MediaEntity
-}
 
-// MediaItemFrom constructs a [MediaItem] from an unsafe.Pointer.
-//
-// A collection of properties that represents a single item in the media library.
-func MediaItemFrom(ptr unsafe.Pointer) MediaItem {
-	return MediaItem{
-		MediaEntity: MediaEntityFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MediaItem */
 // Alloc allocates a new instance without initialization.
 func (mc _MediaItemClass) Alloc() MediaItem {
 	rv := objc.Send[MediaItem](objc.ID(mc.class), objc.Sel("alloc"))
@@ -77,7 +75,6 @@ func (mc _MediaItemClass) Alloc() MediaItem {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MediaItemClass) New() MediaItem {
 	rv := objc.Send[MediaItem](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -100,28 +97,76 @@ func (m_ MediaItem) Autorelease() MediaItem {
 func NewMediaItem() MediaItem {
 	return getMediaItemClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for MediaItem */
+// A collection of properties that represents a single item in the media library.
+//
+// A media item has an overall unique identifier, accessed using the property key, as well as specific identifiers for its metadata. These identifiers persists across application launches. A media item can have a wide range of metadata associated with it. You access this metadata using the method along with the property keys described in this document. You can also access metadata in a batch fashion using the method. Anytime the app accesses more than one property, enumerating over a set of property keys is more efficient than fetching each individual property. defines both of these methods, the abstract superclass of , and described in . You use attributes of media items to build media queries for searching the Media library. , , and describe these attributes. In addition, describes the property, and describes media queries.
+
+
+// A collection of properties that represents a single item in the media library.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem
+type MediaItem struct {
+	MediaEntity
+}
+
+// MediaItemFrom constructs a [MediaItem] from an unsafe.Pointer.
+//
+// A collection of properties that represents a single item in the media library.
+func MediaItemFrom(ptr unsafe.Pointer) MediaItem {
+	return MediaItem{
+		MediaEntity: MediaEntityFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MediaItem *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MediaItem */
 
 // Obtains the persistent identifier key for a specified grouping type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/persistentIDProperty(forGroupingType:)
-func (mc _MediaItemClass) PersistentIDPropertyForGroupingType(groupingType MediaGrouping) objc.IObject /* cross-framework: String */ {
+func (mc _MediaItemClass) PersistentIDPropertyForGroupingType(groupingType MediaGrouping) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(mc.class), objc.Sel("persistentIDPropertyForGroupingType:"), groupingType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PersistentIDPropertyForGroupingType) */
 
 
 // Obtains the title key for a specified grouping type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/titleProperty(forGroupingType:)
-func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType MediaGrouping) objc.IObject /* cross-framework: String */ {
+func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType MediaGrouping) foundation.String {
 	rv := objc.Send[foundation.String](objc.ID(mc.class), objc.Sel("titlePropertyForGroupingType:"), groupingType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TitlePropertyForGroupingType) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MediaItem */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MediaItem */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MediaItem */
 
 // The persistent identifier for a media entity.
 //
@@ -130,7 +175,7 @@ func (mc _MediaItemClass) TitlePropertyForGroupingType(groupingType MediaGroupin
 func (m_ MediaItem) MPMediaEntityPropertyPersistentID() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MPMediaEntityPropertyPersistentID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaEntityPropertyPersistentID */
 
 
 // The musical composer for the media item.
@@ -140,7 +185,7 @@ func (m_ MediaItem) MPMediaEntityPropertyPersistentID() objc.IObject /* cross-fr
 func (m_ MediaItem) Composer() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("composer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: composer */
 
 
 // The musical composer for the media item.
@@ -149,7 +194,7 @@ func (m_ MediaItem) Composer() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/composer
 func (m_ MediaItem) SetComposer(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setComposer:"), value)
-}
+}/* debug [instance_properties/setter]: composer */
 
 
 // A Boolean value that indicates whether the media item has a protected asset.
@@ -159,7 +204,7 @@ func (m_ MediaItem) SetComposer(value objc.IObject /* cross-framework: NSString 
 func (m_ MediaItem) HasProtectedAsset() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("hasProtectedAsset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hasProtectedAsset */
 
 
 // A Boolean value that indicates whether the media item has a protected asset.
@@ -168,7 +213,7 @@ func (m_ MediaItem) HasProtectedAsset() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/hasprotectedasset
 func (m_ MediaItem) SetHasProtectedAsset(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHasProtectedAsset:"), value)
-}
+}/* debug [instance_properties/setter]: hasProtectedAsset */
 
 
 // A Boolean value that indicates whether the media item is an iCloud Music Library item.
@@ -178,7 +223,7 @@ func (m_ MediaItem) SetHasProtectedAsset(value bool) {
 func (m_ MediaItem) IsCloudItem() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCloudItem"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isCloudItem */
 
 
 // A Boolean value that indicates whether the media item is an iCloud Music Library item.
@@ -187,7 +232,7 @@ func (m_ MediaItem) IsCloudItem() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isclouditem
 func (m_ MediaItem) SetIsCloudItem(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCloudItem:"), value)
-}
+}/* debug [instance_properties/setter]: isCloudItem */
 
 
 // A Boolean value that indicates whether the media item is part of a compilation.
@@ -197,7 +242,7 @@ func (m_ MediaItem) SetIsCloudItem(value bool) {
 func (m_ MediaItem) IsCompilation() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isCompilation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isCompilation */
 
 
 // A Boolean value that indicates whether the media item is part of a compilation.
@@ -206,7 +251,7 @@ func (m_ MediaItem) IsCompilation() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/iscompilation
 func (m_ MediaItem) SetIsCompilation(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsCompilation:"), value)
-}
+}/* debug [instance_properties/setter]: isCompilation */
 
 
 // A Boolean value that indicates whether the media item has explicit (adult) lyrics or language.
@@ -216,7 +261,7 @@ func (m_ MediaItem) SetIsCompilation(value bool) {
 func (m_ MediaItem) IsExplicitItem() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isExplicitItem"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isExplicitItem */
 
 
 // A Boolean value that indicates whether the media item has explicit (adult) lyrics or language.
@@ -225,7 +270,7 @@ func (m_ MediaItem) IsExplicitItem() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/isexplicititem
 func (m_ MediaItem) SetIsExplicitItem(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsExplicitItem:"), value)
-}
+}/* debug [instance_properties/setter]: isExplicitItem */
 
 
 // A Boolean value that indicates whether the media item is a preorder.
@@ -235,7 +280,7 @@ func (m_ MediaItem) SetIsExplicitItem(value bool) {
 func (m_ MediaItem) IsPreorder() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isPreorder"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isPreorder */
 
 
 // A Boolean value that indicates whether the media item is a preorder.
@@ -244,7 +289,7 @@ func (m_ MediaItem) IsPreorder() bool {
 // [Full Topic]: https://developer.apple.com/documentation/mediaplayer/mpmediaitem/ispreorder
 func (m_ MediaItem) SetIsPreorder(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsPreorder:"), value)
-}
+}/* debug [instance_properties/setter]: isPreorder */
 
 
 // The key for the persistent identifier for the media item.
@@ -254,6 +299,11 @@ func (m_ MediaItem) SetIsPreorder(value bool) {
 func (m_ MediaItem) MPMediaItemPropertyPersistentID() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("MPMediaItemPropertyPersistentID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyPersistentID */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPMediaItem */
 
 

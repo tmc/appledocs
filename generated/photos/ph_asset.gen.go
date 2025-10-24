@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
@@ -33,11 +33,11 @@ type _PHAssetClass struct {
 type IPHAsset interface {
 	IPHObject
 	// properties:
-	AddedDate() objc.IObject /* cross-framework: NSDate */
+	AddedDate() objc.IObject                  /* cross-framework: NSDate */
 	AdjustmentFormatIdentifier() objc.IObject /* cross-framework: NSString */
-	BurstIdentifier() objc.IObject /* cross-framework: NSString */
+	BurstIdentifier() objc.IObject            /* cross-framework: NSString */
 	BurstSelectionTypes() PHAssetBurstSelectionType
-	ContentType() objc.IObject /* cross-framework: UTType */
+	ContentType() objc.IObject  /* cross-framework: UTType */
 	CreationDate() objc.IObject /* cross-framework: NSDate */
 	Duration() float64
 	HasAdjustments() bool
@@ -68,7 +68,6 @@ type IPHAsset interface {
 // A representation of an image, video, or Live Photo in the Photos library.
 //
 // You fetch assets to begin working with them. Use the class methods listed in Fetching Assets to retrieve one or more instances representing the assets you want to display or edit. Assets contain only metadata. The underlying image or video data for any given asset might not be stored on the local device. However, depending on how you plan to use this data, you may not need to download all of it. If you need to populate a collection view with thumbnail images, the Photos framework can manage downloading, generating, and caching thumbnails for each asset. For details, see . Asset objects are immutable. To edit an asset’s metadata (such as marking it as a favorite photo), create a object within a photo library change block. For more details on using change requests and change blocks to update the photo library, see .
-
 
 // A representation of an image, video, or Live Photo in the Photos library.
 //
@@ -118,8 +117,6 @@ func NewPHAsset() PHAsset {
 	return getPHAssetClass().New()
 }
 
-
-
 // Retrieves assets from the specified asset collection.
 //
 // [Full Topic]
@@ -128,7 +125,6 @@ func (pc _PHAssetClass) FetchAssetsInAssetCollectionOptions(assetCollection IPHA
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsInAssetCollection:options:"), assetCollection, options)
 	return rv
 }
-
 
 // Retrieves all assets matching the specified options.
 //
@@ -139,7 +135,6 @@ func (pc _PHAssetClass) FetchAssetsWithOptions(options IPHFetchOptions) unsafe.P
 	return rv
 }
 
-
 // Retrieves assets with the specified media type.
 //
 // [Full Topic]
@@ -148,7 +143,6 @@ func (pc _PHAssetClass) FetchAssetsWithMediaTypeOptions(mediaType PHAssetMediaTy
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithMediaType:options:"), mediaType, options)
 	return rv
 }
-
 
 // Retrieves assets using URLs provided by the Assets Library framework.
 //
@@ -159,7 +153,6 @@ func (pc _PHAssetClass) FetchAssetsWithALAssetURLsOptions(assetURLs []objc.IObje
 	return rv
 }
 
-
 // Retrieves assets with the specified burst photo sequence identifier.
 //
 // [Full Topic]
@@ -168,7 +161,6 @@ func (pc _PHAssetClass) FetchAssetsWithBurstIdentifierOptions(burstIdentifier ob
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchAssetsWithBurstIdentifier:options:"), burstIdentifier, options)
 	return rv
 }
-
 
 // Retrieves assets with the specified local-device-specific unique identifiers.
 //
@@ -179,7 +171,6 @@ func (pc _PHAssetClass) FetchAssetsWithLocalIdentifiersOptions(identifiers []str
 	return rv
 }
 
-
 // Retrieves assets marked as key assets in the specified asset collection.
 //
 // [Full Topic]
@@ -188,7 +179,6 @@ func (pc _PHAssetClass) FetchKeyAssetsInAssetCollectionOptions(assetCollection I
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("fetchKeyAssetsInAssetCollection:options:"), assetCollection, options)
 	return rv
 }
-
 
 // Returns whether the asset supports the specified editing operation.
 //
@@ -199,7 +189,6 @@ func (p_ PHAsset) CanPerformEditOperation(editOperation PHAssetEditOperation) bo
 	return rv
 }
 
-
 // Cancels a request for editing the asset’s content.
 //
 // [Full Topic]
@@ -207,7 +196,6 @@ func (p_ PHAsset) CanPerformEditOperation(editOperation PHAssetEditOperation) bo
 func (p_ PHAsset) CancelContentEditingInputRequest(requestID PHContentEditingInputRequestID /* typedef */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("cancelContentEditingInputRequest:"), requestID)
 }
-
 
 // Requests asset information for beginning a content editing session.
 //
@@ -218,7 +206,6 @@ func (p_ PHAsset) RequestContentEditingInputWithOptionsCompletionHandler(options
 	return rv
 }
 
-
 // The date and time this asset was added to the photo library (from the device that was used to add this asset)
 //
 // [Full Topic]
@@ -227,7 +214,6 @@ func (p_ PHAsset) AddedDate() objc.IObject /* cross-framework: NSDate */ {
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("addedDate"))
 	return rv
 }
-
 
 // The identifier that describes the adjustment format.
 //
@@ -238,7 +224,6 @@ func (p_ PHAsset) AdjustmentFormatIdentifier() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // The unique identifier shared by photo assets from the same burst sequence.
 //
 // [Full Topic]
@@ -247,7 +232,6 @@ func (p_ PHAsset) BurstIdentifier() objc.IObject /* cross-framework: NSString */
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("burstIdentifier"))
 	return rv
 }
-
 
 // The selection type of the asset in a burst photo sequence.
 //
@@ -258,7 +242,6 @@ func (p_ PHAsset) BurstSelectionTypes() PHAssetBurstSelectionType {
 	return rv
 }
 
-
 // The type of image or video data that is presented for the asset
 //
 // [Full Topic]
@@ -267,7 +250,6 @@ func (p_ PHAsset) ContentType() objc.IObject /* cross-framework: UTType */ {
 	rv := objc.Send[uniformtypeidentifiers.UTType](p_.ID, objc.Sel("contentType"))
 	return rv
 }
-
 
 // The date and time of the asset’s creation.
 //
@@ -278,7 +260,6 @@ func (p_ PHAsset) CreationDate() objc.IObject /* cross-framework: NSDate */ {
 	return rv
 }
 
-
 // The duration, in seconds, of the video asset.
 //
 // [Full Topic]
@@ -287,7 +268,6 @@ func (p_ PHAsset) Duration() float64 {
 	rv := objc.Send[TimeInterval](p_.ID, objc.Sel("duration"))
 	return rv
 }
-
 
 // A Boolean value that indicates whether the asset contains adjustment data.
 //
@@ -298,7 +278,6 @@ func (p_ PHAsset) HasAdjustments() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user marks the asset as a favorite.
 //
 // [Full Topic]
@@ -307,7 +286,6 @@ func (p_ PHAsset) Favorite() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("favorite"))
 	return rv
 }
-
 
 // A Boolean value that indicates whether the user hides the asset.
 //
@@ -318,7 +296,6 @@ func (p_ PHAsset) Hidden() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user hides the sync failure message.
 //
 // [Full Topic]
@@ -327,7 +304,6 @@ func (p_ PHAsset) SyncFailureHidden() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("syncFailureHidden"))
 	return rv
 }
-
 
 // The location information for the asset.
 //
@@ -338,7 +314,6 @@ func (p_ PHAsset) Location() objc.IObject /* cross-framework: Location */ {
 	return rv
 }
 
-
 // The subtypes of the asset, identifying special kinds of assets, such as panoramic photo or high-frame-rate video.
 //
 // [Full Topic]
@@ -347,7 +322,6 @@ func (p_ PHAsset) MediaSubtypes() PHAssetMediaSubtype {
 	rv := objc.Send[PHAssetMediaSubtype](p_.ID, objc.Sel("mediaSubtypes"))
 	return rv
 }
-
 
 // The type of the asset, such as video or audio.
 //
@@ -358,7 +332,6 @@ func (p_ PHAsset) MediaType() PHAssetMediaType {
 	return rv
 }
 
-
 // The date and time of the asset’s last modification.
 //
 // [Full Topic]
@@ -367,7 +340,6 @@ func (p_ PHAsset) ModificationDate() objc.IObject /* cross-framework: NSDate */ 
 	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("modificationDate"))
 	return rv
 }
-
 
 // The height, in pixels, of the asset’s image or video data.
 //
@@ -378,7 +350,6 @@ func (p_ PHAsset) PixelHeight() uint {
 	return rv
 }
 
-
 // The width, in pixels, of the asset’s image or video data.
 //
 // [Full Topic]
@@ -387,7 +358,6 @@ func (p_ PHAsset) PixelWidth() uint {
 	rv := objc.Send[uint](p_.ID, objc.Sel("pixelWidth"))
 	return rv
 }
-
 
 // An enumerated value that describes how to present an asset to the user.
 //
@@ -398,7 +368,6 @@ func (p_ PHAsset) PlaybackStyle() PHAssetPlaybackStyle {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the asset is the representative photo from a burst photo sequence.
 //
 // [Full Topic]
@@ -407,7 +376,6 @@ func (p_ PHAsset) RepresentsBurst() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("representsBurst"))
 	return rv
 }
-
 
 // The means by which the asset enters the user’s Photos library.
 //
@@ -418,7 +386,6 @@ func (p_ PHAsset) SourceType() PHAssetSourceType {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user marks the asset as a favorite.
 //
 // [Full Topic]
@@ -428,7 +395,6 @@ func (p_ PHAsset) IsFavorite() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user marks the asset as a favorite.
 //
 // [Full Topic]
@@ -436,7 +402,6 @@ func (p_ PHAsset) IsFavorite() bool {
 func (p_ PHAsset) SetIsFavorite(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFavorite:"), value)
 }
-
 
 // A Boolean value that indicates whether the user hides the asset.
 //
@@ -447,7 +412,6 @@ func (p_ PHAsset) IsHidden() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user hides the asset.
 //
 // [Full Topic]
@@ -455,7 +419,6 @@ func (p_ PHAsset) IsHidden() bool {
 func (p_ PHAsset) SetIsHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHidden:"), value)
 }
-
 
 // A Boolean value that indicates whether the user hides the sync failure message.
 //
@@ -466,7 +429,6 @@ func (p_ PHAsset) IsSyncFailureHidden() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the user hides the sync failure message.
 //
 // [Full Topic]
@@ -474,5 +436,3 @@ func (p_ PHAsset) IsSyncFailureHidden() bool {
 func (p_ PHAsset) SetIsSyncFailureHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsSyncFailureHidden:"), value)
 }
-
-

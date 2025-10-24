@@ -15,3 +15,4 @@ var pageUpAndModifySelectionProtocol *objc.Protocol
 func init() {
 	pageUpAndModifySelectionProtocol = objc.GetProtocol("pageUpAndModifySelection:")
 }
+

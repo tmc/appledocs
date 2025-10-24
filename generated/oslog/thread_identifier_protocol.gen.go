@@ -21,3 +21,4 @@ var threadIdentifierProtocol *objc.Protocol
 func init() {
 	threadIdentifierProtocol = objc.GetProtocol("threadIdentifier")
 }
+

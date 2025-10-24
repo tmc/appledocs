@@ -15,3 +15,4 @@ var MenuItemValidationProtocol *objc.Protocol
 func init() {
 	MenuItemValidationProtocol = objc.GetProtocol("NSMenuItemValidation")
 }
+

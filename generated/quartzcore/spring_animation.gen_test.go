@@ -13,7 +13,7 @@ var _ = quartzcore.NewSpringAnimation
 func ExampleNewSpringAnimationWithPerceptualDurationBounce() {
 	_ = quartzcore.NewSpringAnimationWithPerceptualDurationBounce(
 		quartzcore.TimeInterval(0.0), // perceptualDuration TimeInterval
-		0.0, // bounce float64
+		0.0,                          // bounce float64
 	)
 	// Output:
 }

@@ -21,3 +21,4 @@ var cancelAuthenticationChallengeProtocol *objc.Protocol
 func init() {
 	cancelAuthenticationChallengeProtocol = objc.GetProtocol("cancelAuthenticationChallenge:")
 }
+

@@ -18,3 +18,4 @@ var modifyItemProtocol *objc.Protocol
 func init() {
 	modifyItemProtocol = objc.GetProtocol("modifyItem:")
 }
+

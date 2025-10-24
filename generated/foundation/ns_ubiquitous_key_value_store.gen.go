@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSUbiquitousKeyValueStore */
+
+
+/* debug [class_header]: Header for NSUbiquitousKeyValueStore */
 // The class instance for the [UbiquitousKeyValueStore] class.
 var (
 	UbiquitousKeyValueStoreClass     _UbiquitousKeyValueStoreClass
@@ -26,39 +30,35 @@ func getUbiquitousKeyValueStoreClass() _UbiquitousKeyValueStoreClass {
 type _UbiquitousKeyValueStoreClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for UbiquitousKeyValueStore */
 // An interface definition for the [UbiquitousKeyValueStore] class.
 type IUbiquitousKeyValueStore interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for UbiquitousKeyValueStore */
 	// properties:
 	DictionaryRepresentation() IString
 	SetDictionaryRepresentation(value IString)
 	NSUbiquitousKeyValueStoreChangeReasonKey() IString
 	NSUbiquitousKeyValueStoreQuotaViolationChange() int
 	SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for UbiquitousKeyValueStore */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
-//
-// Use the iCloud key-value store to make preference, configuration, and app-state data available to every instance of your app on every device connected to a user’s iCloud account. You can store scalar values such as , as well as values containing any of the property list object types: , , , , , and . Changes your app writes to the key-value store object are initially held in memory, then written to disk by the system at appropriate times. If you write to the key-value store object when the user is not signed into an iCloud account, the data is stored locally until the next synchronization opportunity. When the user signs into an iCloud account, the system automatically reconciles your local, on-disk keys and values with those on the iCloud server. Any device running your app, and attached to the same iCloud account, can upload key-value changes to iCloud. To keep track of such changes, register for the notification during app launch. Then, obtain the keys and values from iCloud (which may be newer than those that are local) by calling the method. You need not call the method again during your app’s life cycle, unless your app design requires fast-as-possible upload to iCloud after you change a value. For more information on adopting key-value storage in your app, see in . Avoid using this class for data that is essential to your app’s behavior when offline; instead, store such data directly into the local user defaults database. The total amount of space available in your app’s key-value store, for a given user, is 1 MB. There is a per-key value size limit of 1 MB, and a maximum of 1024 keys. If you attempt to write data that exceeds these quotas, the write attempt fails and no change is made to your iCloud key-value storage. In this scenario, the system posts the notification with a change reason of . The maximum length for key strings for the iCloud key-value store is 64 bytes using UTF8 encoding. Attempting to write a value to a longer key name results in a runtime error. To use this class, you must distribute your app through the App Store or Mac App Store, and you must request the entitlement in your Xcode project. For more on this, see in . This class is not meant to be subclassed.
+/* debug [class_interface]: End interface */
 
 
-// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore
-type UbiquitousKeyValueStore struct {
-	objectivec.Object
-}
 
-// UbiquitousKeyValueStoreFrom constructs a [UbiquitousKeyValueStore] from an unsafe.Pointer.
-//
-// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
-func UbiquitousKeyValueStoreFrom(ptr unsafe.Pointer) UbiquitousKeyValueStore {
-	return UbiquitousKeyValueStore{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for UbiquitousKeyValueStore */
 // Alloc allocates a new instance without initialization.
 func (uc _UbiquitousKeyValueStoreClass) Alloc() UbiquitousKeyValueStore {
 	rv := objc.Send[UbiquitousKeyValueStore](objc.ID(uc.class), objc.Sel("alloc"))
@@ -66,7 +66,6 @@ func (uc _UbiquitousKeyValueStoreClass) Alloc() UbiquitousKeyValueStore {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _UbiquitousKeyValueStoreClass) New() UbiquitousKeyValueStore {
 	rv := objc.Send[UbiquitousKeyValueStore](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,8 +88,54 @@ func (u_ UbiquitousKeyValueStore) Autorelease() UbiquitousKeyValueStore {
 func NewUbiquitousKeyValueStore() UbiquitousKeyValueStore {
 	return getUbiquitousKeyValueStoreClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for UbiquitousKeyValueStore */
+// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
+//
+// Use the iCloud key-value store to make preference, configuration, and app-state data available to every instance of your app on every device connected to a user’s iCloud account. You can store scalar values such as , as well as values containing any of the property list object types: , , , , , and . Changes your app writes to the key-value store object are initially held in memory, then written to disk by the system at appropriate times. If you write to the key-value store object when the user is not signed into an iCloud account, the data is stored locally until the next synchronization opportunity. When the user signs into an iCloud account, the system automatically reconciles your local, on-disk keys and values with those on the iCloud server. Any device running your app, and attached to the same iCloud account, can upload key-value changes to iCloud. To keep track of such changes, register for the notification during app launch. Then, obtain the keys and values from iCloud (which may be newer than those that are local) by calling the method. You need not call the method again during your app’s life cycle, unless your app design requires fast-as-possible upload to iCloud after you change a value. For more information on adopting key-value storage in your app, see in . Avoid using this class for data that is essential to your app’s behavior when offline; instead, store such data directly into the local user defaults database. The total amount of space available in your app’s key-value store, for a given user, is 1 MB. There is a per-key value size limit of 1 MB, and a maximum of 1024 keys. If you attempt to write data that exceeds these quotas, the write attempt fails and no change is made to your iCloud key-value storage. In this scenario, the system posts the notification with a change reason of . The maximum length for key strings for the iCloud key-value store is 64 bytes using UTF8 encoding. Attempting to write a value to a longer key name results in a runtime error. To use this class, you must distribute your app through the App Store or Mac App Store, and you must request the entitlement in your Xcode project. For more on this, see in . This class is not meant to be subclassed.
+
+
+// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUbiquitousKeyValueStore
+type UbiquitousKeyValueStore struct {
+	objectivec.Object
+}
+
+// UbiquitousKeyValueStoreFrom constructs a [UbiquitousKeyValueStore] from an unsafe.Pointer.
+//
+// An iCloud-based container of key-value pairs you use to share data among instances of your app running on a user’s connected devices.
+func UbiquitousKeyValueStoreFrom(ptr unsafe.Pointer) UbiquitousKeyValueStore {
+	return UbiquitousKeyValueStore{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for UbiquitousKeyValueStore *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for UbiquitousKeyValueStore */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for UbiquitousKeyValueStore */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for UbiquitousKeyValueStore */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for UbiquitousKeyValueStore */
 
 // A dictionary containing all of the key-value pairs in the key-value store.
 //
@@ -99,7 +144,7 @@ func NewUbiquitousKeyValueStore() UbiquitousKeyValueStore {
 func (u_ UbiquitousKeyValueStore) DictionaryRepresentation() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("dictionaryRepresentation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: dictionaryRepresentation */
 
 
 // A dictionary containing all of the key-value pairs in the key-value store.
@@ -108,7 +153,7 @@ func (u_ UbiquitousKeyValueStore) DictionaryRepresentation() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestore/dictionaryrepresentation
 func (u_ UbiquitousKeyValueStore) SetDictionaryRepresentation(value IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDictionaryRepresentation:"), value)
-}
+}/* debug [instance_properties/setter]: dictionaryRepresentation */
 
 
 // [Full Topic]
@@ -116,7 +161,7 @@ func (u_ UbiquitousKeyValueStore) SetDictionaryRepresentation(value IString) {
 func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreChangeReasonKey() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("NSUbiquitousKeyValueStoreChangeReasonKey"))
 	return rv
-}
+}/* debug [instance_properties/getter]: NSUbiquitousKeyValueStoreChangeReasonKey */
 
 
 // [Full Topic]
@@ -124,14 +169,19 @@ func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreChangeReasonKey() ISt
 func (u_ UbiquitousKeyValueStore) NSUbiquitousKeyValueStoreQuotaViolationChange() int {
 	rv := objc.Send[int](u_.ID, objc.Sel("NSUbiquitousKeyValueStoreQuotaViolationChange"))
 	return rv
-}
+}/* debug [instance_properties/getter]: NSUbiquitousKeyValueStoreQuotaViolationChange */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsubiquitouskeyvaluestorequotaviolationchange
 func (u_ UbiquitousKeyValueStore) SetNSUbiquitousKeyValueStoreQuotaViolationChange(value int) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setNSUbiquitousKeyValueStoreQuotaViolationChange:"), value)
-}
+}/* debug [instance_properties/setter]: NSUbiquitousKeyValueStoreQuotaViolationChange */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSUbiquitousKeyValueStore */
 
 
 

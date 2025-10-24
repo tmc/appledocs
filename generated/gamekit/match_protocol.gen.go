@@ -8,9 +8,9 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
-//   - iOS 8.0+
-//   - iPadOS 8.0+
-//   - macOS 10.10+
+//   - iOS 4.1+
+//   - iPadOS 4.1+
+//   - macOS 10.8+
 //   - tvOS 9.0+
 //   - visionOS 1.0+
 //
@@ -20,3 +20,4 @@ var matchProtocol *objc.Protocol
 func init() {
 	matchProtocol = objc.GetProtocol("match:")
 }
+

@@ -20,3 +20,4 @@ var IndirectRenderCommandProtocol *objc.Protocol
 func init() {
 	IndirectRenderCommandProtocol = objc.GetProtocol("MTLIndirectRenderCommand")
 }
+

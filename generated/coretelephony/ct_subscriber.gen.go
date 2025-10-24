@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CTSubscriber */
+
+
+/* debug [class_header]: Header for CTSubscriber */
 // The class instance for the [Subscriber] class.
 var (
 	SubscriberClass     _SubscriberClass
@@ -27,39 +31,33 @@ func getSubscriberClass() _SubscriberClass {
 type _SubscriberClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Subscriber */
 // An interface definition for the [Subscriber] class.
 type ISubscriber interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Subscriber */
 	// properties:
-	CarrierToken() objc.IObject /* cross-framework: Data */
-	SetCarrierToken(value objc.IObject /* cross-framework: Data */)
-	Delegate() SubscriberDelegate /* not a class type */
-	SetDelegate(value SubscriberDelegate /* not a class type */)
 	IsSIMInserted() bool
 	SetIsSIMInserted(value bool)
 	CTSubscriberTokenRefreshed() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Subscriber */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A cellular network subscriber.
 
 
-// A cellular network subscriber.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber
-type Subscriber struct {
-	objectivec.Object
-}
-
-// SubscriberFrom constructs a [Subscriber] from an unsafe.Pointer.
-//
-// A cellular network subscriber.
-func SubscriberFrom(ptr unsafe.Pointer) Subscriber {
-	return Subscriber{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Subscriber */
 // Alloc allocates a new instance without initialization.
 func (sc _SubscriberClass) Alloc() Subscriber {
 	rv := objc.Send[Subscriber](objc.ID(sc.class), objc.Sel("alloc"))
@@ -67,7 +65,6 @@ func (sc _SubscriberClass) Alloc() Subscriber {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SubscriberClass) New() Subscriber {
 	rv := objc.Send[Subscriber](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,46 +87,52 @@ func (s_ Subscriber) Autorelease() Subscriber {
 func NewSubscriber() Subscriber {
 	return getSubscriberClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A data object containing authorization information about the subscriber.
+/* debug [class_struct]: Struct for Subscriber */
+// A cellular network subscriber.
+
+
+// A cellular network subscriber.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) CarrierToken() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](s_.ID, objc.Sel("carrierToken"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTSubscriber
+type Subscriber struct {
+	objectivec.Object
 }
 
-
-// A data object containing authorization information about the subscriber.
+// SubscriberFrom constructs a [Subscriber] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/carriertoken
-func (s_ Subscriber) SetCarrierToken(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCarrierToken:"), value)
+// A cellular network subscriber.
+func SubscriberFrom(ptr unsafe.Pointer) Subscriber {
+	return Subscriber{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// A delegate that receives updates on the subscriber information.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/delegate
-func (s_ Subscriber) Delegate() SubscriberDelegate /* not a class type */ {
-	rv := objc.Send[SubscriberDelegate](s_.ID, objc.Sel("delegate"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for Subscriber *//* debug [class_init_methods]: End init methods */
 
 
-// A delegate that receives updates on the subscriber information.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/delegate
-func (s_ Subscriber) SetDelegate(value SubscriberDelegate /* not a class type */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
 
+/* debug [class_methods]: Class methods for Subscriber */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Subscriber */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Subscriber */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Subscriber */
 
 // A Boolean property that indicates whether a SIM is present.
 //
@@ -138,7 +141,7 @@ func (s_ Subscriber) SetDelegate(value SubscriberDelegate /* not a class type */
 func (s_ Subscriber) IsSIMInserted() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSIMInserted"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isSIMInserted */
 
 
 // A Boolean property that indicates whether a SIM is present.
@@ -147,7 +150,7 @@ func (s_ Subscriber) IsSIMInserted() bool {
 // [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctsubscriber/issiminserted
 func (s_ Subscriber) SetIsSIMInserted(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSIMInserted:"), value)
-}
+}/* debug [instance_properties/setter]: isSIMInserted */
 
 
 // The name of the notification indicating that the carrier token is available.
@@ -157,6 +160,11 @@ func (s_ Subscriber) SetIsSIMInserted(value bool) {
 func (s_ Subscriber) CTSubscriberTokenRefreshed() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("CTSubscriberTokenRefreshed"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CTSubscriberTokenRefreshed */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CTSubscriber */
 
 

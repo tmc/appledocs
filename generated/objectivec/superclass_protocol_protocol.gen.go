@@ -18,3 +18,4 @@ package objectivec
 // See: doc://com.apple.objectivec/documentation/ObjectiveC/NSObjectProtocol/superclass
 type Psuperclass interface {
 }
+

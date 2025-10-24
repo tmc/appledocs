@@ -10,8 +10,7 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	ColorRef = _undefined // referenced in Accessibility
-	Importance = _undefined // referenced in Accessibility
-	Language = _undefined // referenced in Accessibility
+	ImageRef = _undefined // referenced in Accessibility
 )
 
 

@@ -20,3 +20,4 @@ var presentAfterMinimumDurationProtocol *objc.Protocol
 func init() {
 	presentAfterMinimumDurationProtocol = objc.GetProtocol("presentAfterMinimumDuration:")
 }
+

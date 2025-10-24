@@ -33,8 +33,6 @@ type IMTRBaseClusterTestCluster interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterTestCluster
 type MTRBaseClusterTestCluster struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterTestCluster) Autorelease() MTRBaseClusterTestCluster {
 func NewMTRBaseClusterTestCluster() MTRBaseClusterTestCluster {
 	return getMTRBaseClusterTestClusterClass().New()
 }
-
-
-
-

@@ -15,3 +15,4 @@ var anchoringViewForSharingServiceProtocol *objc.Protocol
 func init() {
 	anchoringViewForSharingServiceProtocol = objc.GetProtocol("anchoringViewForSharingService:")
 }
+

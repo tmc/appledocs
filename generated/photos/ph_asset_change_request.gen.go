@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHAssetChangeRequest] class.
@@ -50,7 +50,6 @@ type IPHAssetChangeRequest interface {
 // A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.
 //
 // You use the class to request changes for objects. To make changes to assets in the Photos library, create a change request by using the appropriate class method for the change you want to perform. Call one of the methods listed in Adding New Assets to create a new asset from an image or video file. Call the method to delete existing assets. Call the method to modify an asset’s content or metadata. A change request for creating or modifying an asset works like a mutable version of the asset object. Use the change request’s properties to request changes to the corresponding properties of the asset itself. For example, the following code uses the property of a change request to mark an asset as a favorite: After Photos runs the change block and calls your completion handler, the asset’s state reflects the changes that you requested in the block. If you create or use a change request object outside a photo library change block, Photos raises an Objective-C exception. For details on change blocks, see .
-
 
 // A request to create, delete, change metadata for, or edit the content of a Photos asset, for use in a photo library change block.
 //
@@ -100,8 +99,6 @@ func NewPHAssetChangeRequest() PHAssetChangeRequest {
 	return getPHAssetChangeRequestClass().New()
 }
 
-
-
 // The output of an asset content editing session.
 //
 // [Full Topic]
@@ -111,7 +108,6 @@ func (p_ PHAssetChangeRequest) ContentEditingOutput() IPHContentEditingOutput {
 	return rv
 }
 
-
 // The output of an asset content editing session.
 //
 // [Full Topic]
@@ -119,7 +115,6 @@ func (p_ PHAssetChangeRequest) ContentEditingOutput() IPHContentEditingOutput {
 func (p_ PHAssetChangeRequest) SetContentEditingOutput(value IPHContentEditingOutput) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentEditingOutput:"), value)
 }
-
 
 // The date and time at which the asset claims to have been originally created.
 //
@@ -130,7 +125,6 @@ func (p_ PHAssetChangeRequest) CreationDate() objc.IObject /* cross-framework: D
 	return rv
 }
 
-
 // The date and time at which the asset claims to have been originally created.
 //
 // [Full Topic]
@@ -138,7 +132,6 @@ func (p_ PHAssetChangeRequest) CreationDate() objc.IObject /* cross-framework: D
 func (p_ PHAssetChangeRequest) SetCreationDate(value objc.IObject /* cross-framework: Date */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCreationDate:"), value)
 }
-
 
 // A Boolean value that indicates whether the asset is marked as one of the user’s favorites.
 //
@@ -149,7 +142,6 @@ func (p_ PHAssetChangeRequest) IsFavorite() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the asset is marked as one of the user’s favorites.
 //
 // [Full Topic]
@@ -157,7 +149,6 @@ func (p_ PHAssetChangeRequest) IsFavorite() bool {
 func (p_ PHAssetChangeRequest) SetIsFavorite(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFavorite:"), value)
 }
-
 
 // A Boolean value that indicates whether the asset is hidden in collections.
 //
@@ -168,7 +159,6 @@ func (p_ PHAssetChangeRequest) IsHidden() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the asset is hidden in collections.
 //
 // [Full Topic]
@@ -176,7 +166,6 @@ func (p_ PHAssetChangeRequest) IsHidden() bool {
 func (p_ PHAssetChangeRequest) SetIsHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsHidden:"), value)
 }
-
 
 // The location information saved with the asset.
 //
@@ -187,7 +176,6 @@ func (p_ PHAssetChangeRequest) Location() objc.IObject /* cross-framework: Locat
 	return rv
 }
 
-
 // The location information saved with the asset.
 //
 // [Full Topic]
@@ -195,7 +183,6 @@ func (p_ PHAssetChangeRequest) Location() objc.IObject /* cross-framework: Locat
 func (p_ PHAssetChangeRequest) SetLocation(value objc.IObject /* cross-framework: Location */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocation:"), value)
 }
-
 
 // A placeholder object for the asset that the change request creates.
 //
@@ -206,7 +193,6 @@ func (p_ PHAssetChangeRequest) PlaceholderForCreatedAsset() IPHObjectPlaceholder
 	return rv
 }
 
-
 // A placeholder object for the asset that the change request creates.
 //
 // [Full Topic]
@@ -214,6 +200,3 @@ func (p_ PHAssetChangeRequest) PlaceholderForCreatedAsset() IPHObjectPlaceholder
 func (p_ PHAssetChangeRequest) SetPlaceholderForCreatedAsset(value IPHObjectPlaceholder) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderForCreatedAsset:"), value)
 }
-
-
-

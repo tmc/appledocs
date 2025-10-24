@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // devicePairingStartedProtocol is the devicePairingStarted: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to devicePairingStarted:.
 var devicePairingStartedProtocol *objc.Protocol
 
 func init() {
 	devicePairingStartedProtocol = objc.GetProtocol("devicePairingStarted:")
 }
+

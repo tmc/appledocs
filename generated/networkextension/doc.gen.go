@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for NetworkExtension. DO NOT EDIT.
 
 // Package networkextension provides Go bindings for the NetworkExtension framework.
 //
-// Customize and extend core networking features.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to NetworkExtension without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/NetworkExtension
 package networkextension
 
 import (

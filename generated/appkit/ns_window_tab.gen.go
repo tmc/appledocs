@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSWindowTab */
+
+
+/* debug [class_header]: Header for NSWindowTab */
 // The class instance for the [WindowTab] class.
 var (
 	WindowTabClass     _WindowTabClass
@@ -27,15 +30,21 @@ func getWindowTabClass() _WindowTabClass {
 type _WindowTabClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for WindowTab */
 // An interface definition for the [WindowTab] class.
 type IWindowTab interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for WindowTab */
 	// properties:
 	Tab() IWindowTab
 	SetTab(value IWindowTab)
-	TabbingIdentifier() unsafe.Pointer
-	SetTabbingIdentifier(value unsafe.Pointer)
+	TabbingIdentifier() objectivec.IObject
+	SetTabbingIdentifier(value objectivec.IObject)
 	AccessoryView() IView
 	SetAccessoryView(value IView)
 	AttributedTitle() foundation.AttributedString
@@ -44,29 +53,19 @@ type IWindowTab interface {
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	ToolTip() objc.IObject /* cross-framework: NSString */
 	SetToolTip(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for WindowTab */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A tab associated with a window that is part of a tabbing group.
-//
-// describes the way a window displays as part of a tabbed window group. The properties of are configurable at any time, but only take effect when the associated displays in a tab. AppKit automatically creates an instance of for each . You can access a window’s tab object using the property.
+/* debug [class_interface]: End interface */
 
 
-// A tab associated with a window that is part of a tabbing group.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab
-type WindowTab struct {
-	objectivec.Object
-}
 
-// WindowTabFrom constructs a [WindowTab] from an unsafe.Pointer.
-//
-// A tab associated with a window that is part of a tabbing group.
-func WindowTabFrom(ptr unsafe.Pointer) WindowTab {
-	return WindowTab{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for WindowTab */
 // Alloc allocates a new instance without initialization.
 func (wc _WindowTabClass) Alloc() WindowTab {
 	rv := objc.Send[WindowTab](objc.ID(wc.class), objc.Sel("alloc"))
@@ -74,7 +73,6 @@ func (wc _WindowTabClass) Alloc() WindowTab {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (wc _WindowTabClass) New() WindowTab {
 	rv := objc.Send[WindowTab](objc.ID(wc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,8 +95,54 @@ func (w_ WindowTab) Autorelease() WindowTab {
 func NewWindowTab() WindowTab {
 	return getWindowTabClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for WindowTab */
+// A tab associated with a window that is part of a tabbing group.
+//
+// describes the way a window displays as part of a tabbed window group. The properties of are configurable at any time, but only take effect when the associated displays in a tab. AppKit automatically creates an instance of for each . You can access a window’s tab object using the property.
+
+
+// A tab associated with a window that is part of a tabbing group.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab
+type WindowTab struct {
+	objectivec.Object
+}
+
+// WindowTabFrom constructs a [WindowTab] from an unsafe.Pointer.
+//
+// A tab associated with a window that is part of a tabbing group.
+func WindowTabFrom(ptr unsafe.Pointer) WindowTab {
+	return WindowTab{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for WindowTab *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for WindowTab */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for WindowTab */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for WindowTab */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for WindowTab */
 
 // An object that represents information about a window when it displays as a tab.
 //
@@ -107,7 +151,7 @@ func NewWindowTab() WindowTab {
 func (w_ WindowTab) Tab() IWindowTab {
 	rv := objc.Send[WindowTab](w_.ID, objc.Sel("tab"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tab */
 
 
 // An object that represents information about a window when it displays as a tab.
@@ -116,26 +160,26 @@ func (w_ WindowTab) Tab() IWindowTab {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tab
 func (w_ WindowTab) SetTab(value IWindowTab) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTab:"), value)
-}
+}/* debug [instance_properties/setter]: tab */
 
 
 // A value that allows a group of related windows.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.property
-func (w_ WindowTab) TabbingIdentifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](w_.ID, objc.Sel("tabbingIdentifier"))
+func (w_ WindowTab) TabbingIdentifier() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](w_.ID, objc.Sel("tabbingIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tabbingIdentifier */
 
 
 // A value that allows a group of related windows.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.property
-func (w_ WindowTab) SetTabbingIdentifier(value unsafe.Pointer) {
+func (w_ WindowTab) SetTabbingIdentifier(value objectivec.IObject) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingIdentifier:"), value)
-}
+}/* debug [instance_properties/setter]: tabbingIdentifier */
 
 
 // An optional accessory view for the tab.
@@ -145,7 +189,7 @@ func (w_ WindowTab) SetTabbingIdentifier(value unsafe.Pointer) {
 func (w_ WindowTab) AccessoryView() IView {
 	rv := objc.Send[View](w_.ID, objc.Sel("accessoryView"))
 	return rv
-}
+}/* debug [instance_properties/getter]: accessoryView */
 
 
 // An optional accessory view for the tab.
@@ -154,7 +198,7 @@ func (w_ WindowTab) AccessoryView() IView {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/accessoryview
 func (w_ WindowTab) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessoryView:"), value)
-}
+}/* debug [instance_properties/setter]: accessoryView */
 
 
 // The title for the window tab, specified as an attributed string.
@@ -164,7 +208,7 @@ func (w_ WindowTab) SetAccessoryView(value IView) {
 func (w_ WindowTab) AttributedTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedTitle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: attributedTitle */
 
 
 // The title for the window tab, specified as an attributed string.
@@ -173,7 +217,7 @@ func (w_ WindowTab) AttributedTitle() foundation.AttributedString {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/attributedtitle
 func (w_ WindowTab) SetAttributedTitle(value foundation.AttributedString) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
-}
+}/* debug [instance_properties/setter]: attributedTitle */
 
 
 // The title for the window tab.
@@ -183,7 +227,7 @@ func (w_ WindowTab) SetAttributedTitle(value foundation.AttributedString) {
 func (w_ WindowTab) Title() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("title"))
 	return rv
-}
+}/* debug [instance_properties/getter]: title */
 
 
 // The title for the window tab.
@@ -192,7 +236,7 @@ func (w_ WindowTab) Title() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/title
 func (w_ WindowTab) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
-}
+}/* debug [instance_properties/setter]: title */
 
 
 // The tooltip for this window tab.
@@ -202,7 +246,7 @@ func (w_ WindowTab) SetTitle(value objc.IObject /* cross-framework: NSString */)
 func (w_ WindowTab) ToolTip() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("toolTip"))
 	return rv
-}
+}/* debug [instance_properties/getter]: toolTip */
 
 
 // The tooltip for this window tab.
@@ -211,7 +255,12 @@ func (w_ WindowTab) ToolTip() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/tooltip
 func (w_ WindowTab) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), value)
-}
+}/* debug [instance_properties/setter]: toolTip */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSWindowTab */
 
 
 

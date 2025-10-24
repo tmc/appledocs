@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [AtomicStore] class.
@@ -46,7 +46,6 @@ type IAtomicStore interface {
 // An abstract superclass that you subclass to create a Core Data atomic store.
 //
 // Use an atomic store to handle data sets that can be expressed in memory. The atomic store API favors simplicity over performance. This class provides default implementations of some utility methods. Create a custom atomic store subclass when you have a custom file format that you want to integrate with a Core Data app. When you create a subclass, override the following methods: Also override the following properties and methods of , from which the atomic store class inherits: provides a default dictionary of metadata. This dictionary contains the store type and identifier ( and ) as well as store versioning information. Subclasses must ensure that the metadata is saved along with the store data.
-
 
 // An abstract superclass that you subclass to create a Core Data atomic store.
 //
@@ -96,8 +95,6 @@ func NewAtomicStore() AtomicStore {
 	return getAtomicStoreClass().New()
 }
 
-
-
 // Saves the cache nodes.
 //
 // [Full Topic]
@@ -106,7 +103,6 @@ func (a_ AtomicStore) Save(error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("save:"), error_)
 	return rv
 }
-
 
 // The unique identifier for the persistent store.
 //
@@ -117,7 +113,6 @@ func (a_ AtomicStore) Identifier() objc.IObject /* cross-framework: NSString */ 
 	return rv
 }
 
-
 // The unique identifier for the persistent store.
 //
 // [Full Topic]
@@ -125,7 +120,6 @@ func (a_ AtomicStore) Identifier() objc.IObject /* cross-framework: NSString */ 
 func (a_ AtomicStore) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 // The metadata for the persistent store.
 //
@@ -136,7 +130,6 @@ func (a_ AtomicStore) Metadata() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The metadata for the persistent store.
 //
 // [Full Topic]
@@ -144,7 +137,6 @@ func (a_ AtomicStore) Metadata() objc.IObject /* cross-framework: NSString */ {
 func (a_ AtomicStore) SetMetadata(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), value)
 }
-
 
 // The type string of the persistent store.
 //
@@ -155,7 +147,6 @@ func (a_ AtomicStore) Type() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The type string of the persistent store.
 //
 // [Full Topic]
@@ -163,7 +154,6 @@ func (a_ AtomicStore) Type() objc.IObject /* cross-framework: NSString */ {
 func (a_ AtomicStore) SetType(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setType:"), value)
 }
-
 
 // A key that identifies the store type.
 //
@@ -174,7 +164,6 @@ func (a_ AtomicStore) NSStoreTypeKey() objc.IObject /* cross-framework: NSString
 	return rv
 }
 
-
 // A key that provides the store’s UUID.
 //
 // [Full Topic]
@@ -183,6 +172,3 @@ func (a_ AtomicStore) NSStoreUUIDKey() objc.IObject /* cross-framework: NSString
 	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("NSStoreUUIDKey"))
 	return rv
 }
-
-
-

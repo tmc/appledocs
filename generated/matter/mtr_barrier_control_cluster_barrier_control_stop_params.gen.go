@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRBarrierControlClusterBarrierControlStopParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBarrierControlClusterBarrierControlStopParams
@@ -83,8 +81,6 @@ func NewMTRBarrierControlClusterBarrierControlStopParams() MTRBarrierControlClus
 	return getMTRBarrierControlClusterBarrierControlStopParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolstopparams/serversideprocessingtimeout
 func (m_ MTRBarrierControlClusterBarrierControlStopParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRBarrierControlClusterBarrierControlStopParams) ServerSideProcessingT
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolstopparams/serversideprocessingtimeout
 func (m_ MTRBarrierControlClusterBarrierControlStopParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolstopparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRBarrierControlClusterBarrierControlStopParams) TimedInvokeTimeoutMs(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbarriercontrolclusterbarriercontrolstopparams/timedinvoketimeoutms
 func (m_ MTRBarrierControlClusterBarrierControlStopParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

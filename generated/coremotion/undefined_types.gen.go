@@ -28,7 +28,6 @@ type (
 	MotionActivityQueryHandler = _undefined // referenced in CoreMotion
 	PedometerEventHandler = _undefined // referenced in CoreMotion
 	PedometerHandler = _undefined // referenced in CoreMotion
-	String = _undefined // referenced in CoreMotion
 	TremorResultHandler = _undefined // referenced in CoreMotion
 )
 

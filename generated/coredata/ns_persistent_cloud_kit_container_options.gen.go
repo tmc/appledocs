@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -41,7 +41,6 @@ type IPersistentCloudKitContainerOptions interface {
 // An object that customizes how a store description aligns with a CloudKit database.
 //
 // Use to customize the behavior of an or to create additional store descriptions that sync to other containers. For more information about setting up multiple stores, see .
-
 
 // An object that customizes how a store description aligns with a CloudKit database.
 //
@@ -89,8 +88,6 @@ func NewPersistentCloudKitContainerOptions() PersistentCloudKitContainerOptions 
 	return getPersistentCloudKitContainerOptionsClass().New()
 }
 
-
-
 // Initializes container options using the given CloudKit container identifier.
 //
 // [Full Topic]
@@ -102,8 +99,6 @@ func NewPersistentCloudKitContainerOptionsWithContainerIdentifier(containerIdent
 	return rv
 }
 
-
-
 // The identifier of the CloudKit container associated with a given store description.
 //
 // [Full Topic]
@@ -112,7 +107,6 @@ func (p_ PersistentCloudKitContainerOptions) ContainerIdentifier() objc.IObject 
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("containerIdentifier"))
 	return rv
 }
-
 
 // The database scope — public, private, or shared — to use for a specified store in a persistent CloudKit container.
 //
@@ -123,7 +117,6 @@ func (p_ PersistentCloudKitContainerOptions) DatabaseScope() unsafe.Pointer {
 	return rv
 }
 
-
 // The database scope — public, private, or shared — to use for a specified store in a persistent CloudKit container.
 //
 // [Full Topic]
@@ -131,5 +124,3 @@ func (p_ PersistentCloudKitContainerOptions) DatabaseScope() unsafe.Pointer {
 func (p_ PersistentCloudKitContainerOptions) SetDatabaseScope(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDatabaseScope:"), value)
 }
-
-

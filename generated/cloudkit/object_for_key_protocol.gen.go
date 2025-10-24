@@ -21,3 +21,4 @@ var objectForKeyProtocol *objc.Protocol
 func init() {
 	objectForKeyProtocol = objc.GetProtocol("objectForKey:")
 }
+

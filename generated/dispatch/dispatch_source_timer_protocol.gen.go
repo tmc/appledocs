@@ -6,9 +6,19 @@ import "github.com/ebitengine/purego/objc"
 
 // DispatchSourceTimerProtocol is the DispatchSourceTimer protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//   - watchOS +
+//
 // Use this protocol when registering custom classes that conform to DispatchSourceTimer.
 var DispatchSourceTimerProtocol *objc.Protocol
 
 func init() {
 	DispatchSourceTimerProtocol = objc.GetProtocol("DispatchSourceTimer")
 }
+

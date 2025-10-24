@@ -11,6 +11,7 @@ import "github.com/ebitengine/purego/objc"
 //   - iOS 8.0+
 //   - iPadOS 8.0+
 //   - macOS 10.11+
+//   - tvOS +
 //   - visionOS 1.0+
 //
 // Use this protocol when registering custom classes that conform to MTLCommandEncoder.
@@ -19,3 +20,4 @@ var CommandEncoderProtocol *objc.Protocol
 func init() {
 	CommandEncoderProtocol = objc.GetProtocol("MTLCommandEncoder")
 }
+

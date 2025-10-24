@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRActivatedCarbonFilterMonitoringClusterResetConditionParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRActivatedCarbonFilterMonitoringClusterResetConditionParams
@@ -83,8 +81,6 @@ func NewMTRActivatedCarbonFilterMonitoringClusterResetConditionParams() MTRActiv
 	return getMTRActivatedCarbonFilterMonitoringClusterResetConditionParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterresetconditionparams/serversideprocessingtimeout
 func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) ServerSi
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterresetconditionparams/serversideprocessingtimeout
 func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterresetconditionparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) TimedInv
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtractivatedcarbonfiltermonitoringclusterresetconditionparams/timedinvoketimeoutms
 func (m_ MTRActivatedCarbonFilterMonitoringClusterResetConditionParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

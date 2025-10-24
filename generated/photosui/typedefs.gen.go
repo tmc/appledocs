@@ -8,4 +8,3 @@ package photosui
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectCategory
 // PHProjectCategory is a string typedef
 type PHProjectCategory = string
-

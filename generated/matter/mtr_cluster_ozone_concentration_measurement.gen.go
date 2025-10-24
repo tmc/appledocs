@@ -33,8 +33,6 @@ type IMTRClusterOzoneConcentrationMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOzoneConcentrationMeasurement
 type MTRClusterOzoneConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterOzoneConcentrationMeasurement) Autorelease() MTRClusterOzoneC
 func NewMTRClusterOzoneConcentrationMeasurement() MTRClusterOzoneConcentrationMeasurement {
 	return getMTRClusterOzoneConcentrationMeasurementClass().New()
 }
-
-
-
-

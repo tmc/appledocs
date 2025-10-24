@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class showFeedback */
+
+
+/* debug [class_header]: Header for showFeedback */
 // The class instance for the [showFeedback] class.
 var (
 	ShowFeedbackClass     _showFeedbackClass
@@ -26,25 +30,30 @@ func getshowFeedbackClass() _showFeedbackClass {
 type _showFeedbackClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for showFeedback */
 // An interface definition for the [showFeedback] class.
 type IshowFeedback interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for showFeedback */
+	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for showFeedback */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPasskeyDisplay/showFeedback
-type showFeedback struct {
-	objectivec.Object
-}
-
-// showFeedbackFrom constructs a [showFeedback] from an unsafe.Pointer.
-func showFeedbackFrom(ptr unsafe.Pointer) showFeedback {
-	return showFeedback{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for showFeedback */
 // Alloc allocates a new instance without initialization.
 func (sc _showFeedbackClass) Alloc() showFeedback {
 	rv := objc.Send[showFeedback](objc.ID(sc.class), objc.Sel("alloc"))
@@ -52,7 +61,6 @@ func (sc _showFeedbackClass) Alloc() showFeedback {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _showFeedbackClass) New() showFeedback {
 	rv := objc.Send[showFeedback](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -75,7 +83,51 @@ func (s_ showFeedback) Autorelease() showFeedback {
 func NewshowFeedback() showFeedback {
 	return getshowFeedbackClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for showFeedback */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetoothUI/IOBluetoothPasskeyDisplay/showFeedback
+type showFeedback struct {
+	objectivec.Object
+}
+
+// showFeedbackFrom constructs a [showFeedback] from an unsafe.Pointer.
+func showFeedbackFrom(ptr unsafe.Pointer) showFeedback {
+	return showFeedback{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for showFeedback *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for showFeedback */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for showFeedback */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for showFeedback */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for showFeedback */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class showFeedback */
 
 
 

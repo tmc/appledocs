@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -45,7 +45,6 @@ type IPersistentHistoryChange interface {
 }
 
 // A change representing the insertion, update, or deletion of a managed object in the persistent store.
-
 
 // A change representing the insertion, update, or deletion of a managed object in the persistent store.
 //
@@ -93,8 +92,6 @@ func NewPersistentHistoryChange() PersistentHistoryChange {
 	return getPersistentHistoryChangeClass().New()
 }
 
-
-
 // The change’s numeric identifier.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (p_ PersistentHistoryChange) ChangeID() int64 {
 	rv := objc.Send[int64](p_.ID, objc.Sel("changeID"))
 	return rv
 }
-
 
 // A dictionary of attributes marked for preservation after deletion, and their values when deleted.
 //
@@ -114,7 +110,6 @@ func (p_ PersistentHistoryChange) Tombstone() objc.IObject /* cross-framework: N
 	return rv
 }
 
-
 // The set of properties that were updated on the managed object.
 //
 // [Full Topic]
@@ -123,7 +118,6 @@ func (p_ PersistentHistoryChange) UpdatedProperties() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("updatedProperties"))
 	return rv
 }
-
 
 // The type of change to the managed object in the persistent store.
 //
@@ -134,7 +128,6 @@ func (p_ PersistentHistoryChange) ChangeType() PersistentHistoryChangeType /* no
 	return rv
 }
 
-
 // The type of change to the managed object in the persistent store.
 //
 // [Full Topic]
@@ -142,7 +135,6 @@ func (p_ PersistentHistoryChange) ChangeType() PersistentHistoryChangeType /* no
 func (p_ PersistentHistoryChange) SetChangeType(value PersistentHistoryChangeType /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangeType:"), value)
 }
-
 
 // The identifier of the managed object that changed. (swift)
 //
@@ -153,7 +145,6 @@ func (p_ PersistentHistoryChange) ChangedObjectID() IManagedObjectID {
 	return rv
 }
 
-
 // The identifier of the managed object that changed. (swift)
 //
 // [Full Topic]
@@ -161,7 +152,6 @@ func (p_ PersistentHistoryChange) ChangedObjectID() IManagedObjectID {
 func (p_ PersistentHistoryChange) SetChangedObjectID(value IManagedObjectID) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setChangedObjectID:"), value)
 }
-
 
 // The persistent history transaction containing this change.
 //
@@ -172,7 +162,6 @@ func (p_ PersistentHistoryChange) Transaction() IPersistentHistoryTransaction {
 	return rv
 }
 
-
 // The persistent history transaction containing this change.
 //
 // [Full Topic]
@@ -180,6 +169,3 @@ func (p_ PersistentHistoryChange) Transaction() IPersistentHistoryTransaction {
 func (p_ PersistentHistoryChange) SetTransaction(value IPersistentHistoryTransaction) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransaction:"), value)
 }
-
-
-

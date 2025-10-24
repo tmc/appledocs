@@ -18,3 +18,4 @@ var touchBarProtocol *objc.Protocol
 func init() {
 	touchBarProtocol = objc.GetProtocol("touchBar")
 }
+

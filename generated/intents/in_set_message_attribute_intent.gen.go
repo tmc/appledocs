@@ -37,7 +37,6 @@ type IINSetMessageAttributeIntent interface {
 //
 // Siri creates an object when the user asks to modify the attributes of one or more messages. Attributes represent information about the message such as whether the user read or flagged the message. This intent object includes the messages to modify and which attributes to change. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results of modifying the messages.
 
-
 // A request to modify the attributes of a message.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINSetMessageAttributeIntent() INSetMessageAttributeIntent {
 	return getINSetMessageAttributeIntentClass().New()
 }
 
-
-
 // Initializes the set message attribute intent object with the specified identifiers and attribute.
 //
 // [Full Topic]
@@ -99,8 +96,6 @@ func NewINSetMessageAttributeIntentWithIdentifiersAttribute(identifiers []string
 	return rv
 }
 
-
-
 // The attribute to apply to the messages.
 //
 // [Full Topic]
@@ -110,7 +105,6 @@ func (i_ INSetMessageAttributeIntent) Attribute() unsafe.Pointer {
 	return rv
 }
 
-
 // The array of message identifiers.
 //
 // [Full Topic]
@@ -119,5 +113,3 @@ func (i_ INSetMessageAttributeIntent) Identifiers() []string {
 	rv := objc.Send[[]string](i_.ID, objc.Sel("identifiers"))
 	return rv
 }
-
-

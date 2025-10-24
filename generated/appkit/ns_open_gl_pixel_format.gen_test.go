@@ -9,6 +9,14 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewOpenGLPixelFormat
 
+// ExampleNewOpenGLPixelFormatWithAttributes demonstrates how to create a OpenGLPixelFormat instance using NewOpenGLPixelFormatWithAttributes.
+// Returns an OpenGL pixel format object initialized with specified pixel format attributes.
+func ExampleNewOpenGLPixelFormatWithAttributes() {
+	_ = appkit.NewOpenGLPixelFormatWithAttributes(
+		appkit.NSOpenGLPixelFormatAttribute /* typedef */{}, // attribs NSOpenGLPixelFormatAttribute /* typedef */
+	)
+	// Output:
+}
 // ExampleNewOpenGLPixelFormatWithCGLPixelFormatObj demonstrates how to create a OpenGLPixelFormat instance using NewOpenGLPixelFormatWithCGLPixelFormatObj.
 // Returns an OpenGL pixel format object initialized with using an existing CGL pixel format object.
 func ExampleNewOpenGLPixelFormatWithCGLPixelFormatObj() {

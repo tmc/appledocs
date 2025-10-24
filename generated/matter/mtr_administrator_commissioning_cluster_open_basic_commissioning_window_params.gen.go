@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams int
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams
@@ -85,8 +83,6 @@ func NewMTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams()
 	return getMTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/commissioningtimeout
 func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) CommissioningTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams)
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/commissioningtimeout
 func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetCommissioningTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams)
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/serversideprocessingtimeout
 func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams)
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropenbasiccommissioningwindowparams/timedinvoketimeoutms
 func (m_ MTRAdministratorCommissioningClusterOpenBasicCommissioningWindowParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

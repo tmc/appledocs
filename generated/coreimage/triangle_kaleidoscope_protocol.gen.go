@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // TriangleKaleidoscopeProtocol is the CITriangleKaleidoscope protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CITriangleKaleidoscope.
 var TriangleKaleidoscopeProtocol *objc.Protocol
 
 func init() {
 	TriangleKaleidoscopeProtocol = objc.GetProtocol("CITriangleKaleidoscope")
 }
+

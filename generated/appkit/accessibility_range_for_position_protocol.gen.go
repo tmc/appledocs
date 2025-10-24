@@ -15,3 +15,4 @@ var accessibilityRangeForPositionProtocol *objc.Protocol
 func init() {
 	accessibilityRangeForPositionProtocol = objc.GetProtocol("accessibilityRangeForPosition:")
 }
+

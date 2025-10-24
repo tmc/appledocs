@@ -20,3 +20,4 @@ var parameterBufferSizeAndAlignProtocol *objc.Protocol
 func init() {
 	parameterBufferSizeAndAlignProtocol = objc.GetProtocol("parameterBufferSizeAndAlign")
 }
+

@@ -17,20 +17,22 @@ func ExampleNewBeaconIdentityConditionWithUUID() {
 	)
 	// Output:
 }
+
 // ExampleNewBeaconIdentityConditionWithUUIDMajor demonstrates how to create a BeaconIdentityCondition instance using NewBeaconIdentityConditionWithUUIDMajor.
 // Creates a new beacon identity condition with the identifier and major value you specify.
 func ExampleNewBeaconIdentityConditionWithUUIDMajor() {
 	_ = corelocation.NewBeaconIdentityConditionWithUUIDMajor(
-		corelocation.UUID{}, // uuid UUID
+		corelocation.UUID{},             // uuid UUID
 		corelocation.BeaconMajorValue{}, // major BeaconMajorValue
 	)
 	// Output:
 }
+
 // ExampleNewBeaconIdentityConditionWithUUIDMajorMinor demonstrates how to create a BeaconIdentityCondition instance using NewBeaconIdentityConditionWithUUIDMajorMinor.
 // Creates a new beacon identity condition with the identifier, and major and minor values you specify.
 func ExampleNewBeaconIdentityConditionWithUUIDMajorMinor() {
 	_ = corelocation.NewBeaconIdentityConditionWithUUIDMajorMinor(
-		corelocation.UUID{}, // uuid UUID
+		corelocation.UUID{},             // uuid UUID
 		corelocation.BeaconMajorValue{}, // major BeaconMajorValue
 		corelocation.BeaconMinorValue{}, // minor BeaconMinorValue
 	)

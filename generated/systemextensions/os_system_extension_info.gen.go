@@ -6,11 +6,14 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class OSSystemExtensionInfo */
+
+/* debug [class_header]: Header for OSSystemExtensionInfo */
 // The class instance for the [OSSystemExtensionInfo] class.
 var (
 	OSSystemExtensionInfoClass     _OSSystemExtensionInfoClass
@@ -28,31 +31,29 @@ type _OSSystemExtensionInfoClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for OSSystemExtensionInfo */
 // An interface definition for the [OSSystemExtensionInfo] class.
 type IOSSystemExtensionInfo interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for OSSystemExtensionInfo */
 	// properties:
-	BundleIdentifier() objc.IObject /* cross-framework: NSString */
+	BundleIdentifier() objc.IObject   /* cross-framework: NSString */
 	BundleShortVersion() objc.IObject /* cross-framework: NSString */
-	SetBundleShortVersion(value objc.IObject /* cross-framework: NSString */)
-	BundleVersion() objc.IObject /* cross-framework: NSString */
-	SetBundleVersion(value objc.IObject /* cross-framework: NSString */)
+	BundleVersion() objc.IObject      /* cross-framework: NSString */
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for OSSystemExtensionInfo */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
+/* debug [class_interface]: End interface */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo
-type OSSystemExtensionInfo struct {
-	objectivec.Object
-}
-
-// OSSystemExtensionInfoFrom constructs a [OSSystemExtensionInfo] from an unsafe.Pointer.
-func OSSystemExtensionInfoFrom(ptr unsafe.Pointer) OSSystemExtensionInfo {
-	return OSSystemExtensionInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for OSSystemExtensionInfo */
 // Alloc allocates a new instance without initialization.
 func (oc _OSSystemExtensionInfoClass) Alloc() OSSystemExtensionInfo {
 	rv := objc.Send[OSSystemExtensionInfo](objc.ID(oc.class), objc.Sel("alloc"))
@@ -60,7 +61,6 @@ func (oc _OSSystemExtensionInfoClass) Alloc() OSSystemExtensionInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSSystemExtensionInfoClass) New() OSSystemExtensionInfo {
 	rv := objc.Send[OSSystemExtensionInfo](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,44 +84,57 @@ func NewOSSystemExtensionInfo() OSSystemExtensionInfo {
 	return getOSSystemExtensionInfoClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for OSSystemExtensionInfo */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo
+type OSSystemExtensionInfo struct {
+	objectivec.Object
+}
+
+// OSSystemExtensionInfoFrom constructs a [OSSystemExtensionInfo] from an unsafe.Pointer.
+func OSSystemExtensionInfoFrom(ptr unsafe.Pointer) OSSystemExtensionInfo {
+	return OSSystemExtensionInfo{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for OSSystemExtensionInfo */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for OSSystemExtensionInfo */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for OSSystemExtensionInfo */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for OSSystemExtensionInfo */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for OSSystemExtensionInfo */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleIdentifier
 func (o_ OSSystemExtensionInfo) BundleIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleIdentifier"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: bundleIdentifier */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleshortversion
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleShortVersion
 func (o_ OSSystemExtensionInfo) BundleShortVersion() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleShortVersion"))
 	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleshortversion
-func (o_ OSSystemExtensionInfo) SetBundleShortVersion(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleShortVersion:"), value)
-}
-
+} /* debug [instance_properties/getter]: bundleShortVersion */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleversion
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionInfo/bundleVersion
 func (o_ OSSystemExtensionInfo) BundleVersion() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleVersion"))
 	return rv
-}
+} /* debug [instance_properties/getter]: bundleVersion */
 
+/* debug [instance_properties]: End instance properties */
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensioninfo/bundleversion
-func (o_ OSSystemExtensionInfo) SetBundleVersion(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleVersion:"), value)
-}
-
-
-
+/* debug [class.gen.go]: End class OSSystemExtensionInfo */

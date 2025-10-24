@@ -30,8 +30,8 @@ func (v_ Value) CGAffineTransformValue() corefoundation.CGAffineTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgPointValue
-func (v_ Value) CGPointValue() objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[objc.ID](v_.ID, objc.Sel("CGPointValue"))
+func (v_ Value) CGPointValue() corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](v_.ID, objc.Sel("CGPointValue"))
 	return rv
 }
 
@@ -39,8 +39,8 @@ func (v_ Value) CGPointValue() objc.IObject /* cross-framework: Point */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgRectValue
-func (v_ Value) CGRectValue() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[objc.ID](v_.ID, objc.Sel("CGRectValue"))
+func (v_ Value) CGRectValue() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](v_.ID, objc.Sel("CGRectValue"))
 	return rv
 }
 
@@ -48,8 +48,8 @@ func (v_ Value) CGRectValue() objc.IObject /* cross-framework: Rect */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/cgSizeValue
-func (v_ Value) CGSizeValue() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[objc.ID](v_.ID, objc.Sel("CGSizeValue"))
+func (v_ Value) CGSizeValue() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](v_.ID, objc.Sel("CGSizeValue"))
 	return rv
 }
 

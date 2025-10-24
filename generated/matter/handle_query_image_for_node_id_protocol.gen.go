@@ -21,3 +21,4 @@ var handleQueryImageForNodeIDProtocol *objc.Protocol
 func init() {
 	handleQueryImageForNodeIDProtocol = objc.GetProtocol("handleQueryImageForNodeID:")
 }
+

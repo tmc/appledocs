@@ -19,8 +19,8 @@ func ExampleNewString() {
 // Returns an initialized   object that contains a given number of characters from a given C array of UTF-16 code units.
 func ExampleNewStringWithCharactersLength() {
 	_ = foundation.NewStringWithCharactersLength(
-		foundation.Unichar /* typedef */{}, // characters Unichar /* typedef */
-		0, // length uint
+		foundation.unichar /* typedef */{}, // characters unichar /* typedef */
+		10, // length uint
 	)
 	// Output:
 }
@@ -28,8 +28,8 @@ func ExampleNewStringWithCharactersLength() {
 // Returns an initialized   object that contains a given number of characters from a given C array of UTF-16 code units.
 func ExampleNewStringWithCharactersNoCopyLengthFreeWhenDone() {
 	_ = foundation.NewStringWithCharactersNoCopyLengthFreeWhenDone(
-		foundation.Unichar /* typedef */{}, // characters Unichar /* typedef */
-		0, // length uint
+		foundation.unichar /* typedef */{}, // characters unichar /* typedef */
+		10, // length uint
 		false, // freeBuffer bool
 	)
 	// Output:

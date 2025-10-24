@@ -18,3 +18,4 @@ var enumerateItemsForObserverProtocol *objc.Protocol
 func init() {
 	enumerateItemsForObserverProtocol = objc.GetProtocol("enumerateItemsForObserver:")
 }
+

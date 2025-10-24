@@ -15,3 +15,4 @@ var alertShowHelpProtocol *objc.Protocol
 func init() {
 	alertShowHelpProtocol = objc.GetProtocol("alertShowHelp:")
 }
+

@@ -15,3 +15,4 @@ var controlTextDidChangeProtocol *objc.Protocol
 func init() {
 	controlTextDidChangeProtocol = objc.GetProtocol("controlTextDidChange:")
 }
+

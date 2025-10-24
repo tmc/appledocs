@@ -52,7 +52,6 @@ type IMTRDeviceStorageBehaviorConfiguration interface {
 
 // Class that configures how MTRDevice objects persist their attributes to storage, so as to not overwhelm the underlying storage system.
 
-
 // Class that configures how MTRDevice objects persist their attributes to storage, so as to not overwhelm the underlying storage system.
 //
 // [Full Topic]
@@ -99,8 +98,6 @@ func NewMTRDeviceStorageBehaviorConfiguration() MTRDeviceStorageBehaviorConfigur
 	return getMTRDeviceStorageBehaviorConfigurationClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/devicereportingexcessivelyintervalthreshold
 func (m_ MTRDeviceStorageBehaviorConfiguration) DeviceReportingExcessivelyIntervalThreshold() float64 {
@@ -108,13 +105,11 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) DeviceReportingExcessivelyInterv
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/devicereportingexcessivelyintervalthreshold
 func (m_ MTRDeviceStorageBehaviorConfiguration) SetDeviceReportingExcessivelyIntervalThreshold(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDeviceReportingExcessivelyIntervalThreshold:"), value)
 }
-
 
 // If disableStorageBehaviorOptimization is set to YES, then all the waiting mechanism as described above
 //
@@ -125,7 +120,6 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) DisableStorageBehaviorOptimizati
 	return rv
 }
 
-
 // If disableStorageBehaviorOptimization is set to YES, then all the waiting mechanism as described above
 //
 // [Full Topic]
@@ -134,7 +128,6 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) SetDisableStorageBehaviorOptimiz
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDisableStorageBehaviorOptimization:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/recentreporttimesmaxcount
 func (m_ MTRDeviceStorageBehaviorConfiguration) RecentReportTimesMaxCount() int {
@@ -142,13 +135,11 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) RecentReportTimesMaxCount() int 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/recentreporttimesmaxcount
 func (m_ MTRDeviceStorageBehaviorConfiguration) SetRecentReportTimesMaxCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRecentReportTimesMaxCount:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/reporttopersistencedelaymaxmultiplier
@@ -157,13 +148,11 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) ReportToPersistenceDelayMaxMulti
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/reporttopersistencedelaymaxmultiplier
 func (m_ MTRDeviceStorageBehaviorConfiguration) SetReportToPersistenceDelayMaxMultiplier(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReportToPersistenceDelayMaxMultiplier:"), value)
 }
-
 
 // If any of these properties are set to be out of the documented limits, these default values will
 //
@@ -174,7 +163,6 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) ReportToPersistenceDelayTime() f
 	return rv
 }
 
-
 // If any of these properties are set to be out of the documented limits, these default values will
 //
 // [Full Topic]
@@ -183,7 +171,6 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) SetReportToPersistenceDelayTime(
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReportToPersistenceDelayTime:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/reporttopersistencedelaytimemax
 func (m_ MTRDeviceStorageBehaviorConfiguration) ReportToPersistenceDelayTimeMax() float64 {
@@ -191,13 +178,11 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) ReportToPersistenceDelayTimeMax(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/reporttopersistencedelaytimemax
 func (m_ MTRDeviceStorageBehaviorConfiguration) SetReportToPersistenceDelayTimeMax(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReportToPersistenceDelayTimeMax:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/timebetweenreportstooshortminthreshold
@@ -206,13 +191,11 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) TimeBetweenReportsTooShortMinThr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/timebetweenreportstooshortminthreshold
 func (m_ MTRDeviceStorageBehaviorConfiguration) SetTimeBetweenReportsTooShortMinThreshold(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeBetweenReportsTooShortMinThreshold:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/timebetweenreportstooshortthreshold
@@ -221,12 +204,8 @@ func (m_ MTRDeviceStorageBehaviorConfiguration) TimeBetweenReportsTooShortThresh
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicestoragebehaviorconfiguration/timebetweenreportstooshortthreshold
 func (m_ MTRDeviceStorageBehaviorConfiguration) SetTimeBetweenReportsTooShortThreshold(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimeBetweenReportsTooShortThreshold:"), value)
 }
-
-
-

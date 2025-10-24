@@ -16,3 +16,4 @@ var IOExtensionDeviceSourceProtocol *objc.Protocol
 func init() {
 	IOExtensionDeviceSourceProtocol = objc.GetProtocol("CMIOExtensionDeviceSource")
 }
+

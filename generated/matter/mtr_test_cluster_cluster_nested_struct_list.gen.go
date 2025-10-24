@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterNestedStructList] class.
@@ -47,8 +47,6 @@ type IMTRTestClusterClusterNestedStructList interface {
 	SetG(value unsafe.Pointer)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterNestedStructList
@@ -94,8 +92,6 @@ func NewMTRTestClusterClusterNestedStructList() MTRTestClusterClusterNestedStruc
 	return getMTRTestClusterClusterNestedStructListClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/a
 func (m_ MTRTestClusterClusterNestedStructList) A() objc.IObject /* cross-framework: NSNumber */ {
@@ -103,13 +99,11 @@ func (m_ MTRTestClusterClusterNestedStructList) A() objc.IObject /* cross-framew
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/a
 func (m_ MTRTestClusterClusterNestedStructList) SetA(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/b
@@ -118,13 +112,11 @@ func (m_ MTRTestClusterClusterNestedStructList) B() objc.IObject /* cross-framew
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/b
 func (m_ MTRTestClusterClusterNestedStructList) SetB(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setB:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/c
@@ -133,13 +125,11 @@ func (m_ MTRTestClusterClusterNestedStructList) C() IMTRTestClusterClusterSimple
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/c
 func (m_ MTRTestClusterClusterNestedStructList) SetC(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/d
@@ -148,13 +138,11 @@ func (m_ MTRTestClusterClusterNestedStructList) D() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/d
 func (m_ MTRTestClusterClusterNestedStructList) SetD(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setD:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/e
@@ -163,13 +151,11 @@ func (m_ MTRTestClusterClusterNestedStructList) E() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/e
 func (m_ MTRTestClusterClusterNestedStructList) SetE(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/f
@@ -178,13 +164,11 @@ func (m_ MTRTestClusterClusterNestedStructList) F() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/f
 func (m_ MTRTestClusterClusterNestedStructList) SetF(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setF:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/g
@@ -193,12 +177,8 @@ func (m_ MTRTestClusterClusterNestedStructList) G() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstructlist/g
 func (m_ MTRTestClusterClusterNestedStructList) SetG(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setG:"), value)
 }
-
-
-

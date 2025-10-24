@@ -15,3 +15,4 @@ var applicationWillHideProtocol *objc.Protocol
 func init() {
 	applicationWillHideProtocol = objc.GetProtocol("applicationWillHide:")
 }
+

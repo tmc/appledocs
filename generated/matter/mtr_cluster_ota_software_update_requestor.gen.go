@@ -33,8 +33,6 @@ type IMTRClusterOtaSoftwareUpdateRequestor interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOtaSoftwareUpdateRequestor-22dfp
 type MTRClusterOtaSoftwareUpdateRequestor struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterOtaSoftwareUpdateRequestor) Autorelease() MTRClusterOtaSoftwa
 func NewMTRClusterOtaSoftwareUpdateRequestor() MTRClusterOtaSoftwareUpdateRequestor {
 	return getMTRClusterOtaSoftwareUpdateRequestorClass().New()
 }
-
-
-
-

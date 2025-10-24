@@ -15,3 +15,4 @@ var setIntAttributeProtocol *objc.Protocol
 func init() {
 	setIntAttributeProtocol = objc.GetProtocol("setIntAttribute:")
 }
+

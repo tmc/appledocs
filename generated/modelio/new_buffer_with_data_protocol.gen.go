@@ -20,3 +20,4 @@ var newBufferWithDataProtocol *objc.Protocol
 func init() {
 	newBufferWithDataProtocol = objc.GetProtocol("newBufferWithData:")
 }
+

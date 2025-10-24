@@ -15,3 +15,4 @@ var windowDidEndLiveResizeProtocol *objc.Protocol
 func init() {
 	windowDidEndLiveResizeProtocol = objc.GetProtocol("windowDidEndLiveResize:")
 }
+

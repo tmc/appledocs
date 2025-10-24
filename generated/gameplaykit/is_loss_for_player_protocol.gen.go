@@ -20,3 +20,4 @@ var isLossForPlayerProtocol *objc.Protocol
 func init() {
 	isLossForPlayerProtocol = objc.GetProtocol("isLossForPlayer:")
 }
+

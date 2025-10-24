@@ -15,3 +15,4 @@ var closeItemProtocol *objc.Protocol
 func init() {
 	closeItemProtocol = objc.GetProtocol("closeItem:")
 }
+

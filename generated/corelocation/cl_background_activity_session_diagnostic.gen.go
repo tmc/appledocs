@@ -34,8 +34,6 @@ type IBackgroundActivitySessionDiagnostic interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLBackgroundActivitySessionDiagnostic
 type BackgroundActivitySessionDiagnostic struct {
@@ -77,6 +75,3 @@ func (b_ BackgroundActivitySessionDiagnostic) Autorelease() BackgroundActivitySe
 func NewBackgroundActivitySessionDiagnostic() BackgroundActivitySessionDiagnostic {
 	return getBackgroundActivitySessionDiagnosticClass().New()
 }
-
-
-

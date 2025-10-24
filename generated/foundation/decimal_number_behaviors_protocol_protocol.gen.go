@@ -3,9 +3,10 @@
 package foundation
 
 import (
-	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PDecimalNumberBehaviors is the NSDecimalNumberBehaviors protocol interface.
@@ -24,7 +25,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSDecimalNumberBehaviors
 type PDecimalNumberBehaviors interface {
 	// Required methods
-	ExceptionDuringOperationErrorLeftOperandRightOperand(operation objc.SEL, error_ CalculationError, leftOperand IDecimalNumber, rightOperand IDecimalNumber) DecimalNumber
-	RoundingMode() RoundingMode
-	Scale() unsafe.Pointer
+	ExceptionDuringOperationErrorLeftOperandRightOperand(operation objc.SEL, error_ CalculationError, leftOperand IDecimalNumber, rightOperand IDecimalNumber) DecimalNumber/* debug [protocol_interface/required_method]: ExceptionDuringOperationErrorLeftOperandRightOperand */
+	RoundingMode() RoundingMode/* debug [protocol_interface/required_method]: RoundingMode */
+	Scale() objectivec.IObject/* debug [protocol_interface/required_method]: Scale */
 }

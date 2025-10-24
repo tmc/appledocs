@@ -41,7 +41,6 @@ type IINDeleteTasksIntent interface {
 //
 // Siri creates an object when the user marks one or more tasks for deletion. The intent object can contain the task information. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated task information.
 
-
 // A request to delete one or more tasks.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINDeleteTasksIntent() INDeleteTasksIntent {
 	return getINDeleteTasksIntentClass().New()
 }
 
-
-
 // A Boolean value that indicates whether to delete all the tasks from a task list.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INDeleteTasksIntent) All() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether to delete all the tasks from a task list.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INDeleteTasksIntent) All() bool {
 func (i_ INDeleteTasksIntent) SetAll(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAll:"), value)
 }
-
 
 // The task list from which to delete tasks.
 //
@@ -120,7 +115,6 @@ func (i_ INDeleteTasksIntent) TaskList() unsafe.Pointer {
 	return rv
 }
 
-
 // The task list from which to delete tasks.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INDeleteTasksIntent) TaskList() unsafe.Pointer {
 func (i_ INDeleteTasksIntent) SetTaskList(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskList:"), value)
 }
-
 
 // The tasks to delete from a task list.
 //
@@ -139,7 +132,6 @@ func (i_ INDeleteTasksIntent) Tasks() unsafe.Pointer {
 	return rv
 }
 
-
 // The tasks to delete from a task list.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INDeleteTasksIntent) Tasks() unsafe.Pointer {
 func (i_ INDeleteTasksIntent) SetTasks(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTasks:"), value)
 }
-
-
-

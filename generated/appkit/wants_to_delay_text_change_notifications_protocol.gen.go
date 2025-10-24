@@ -15,3 +15,4 @@ var wantsToDelayTextChangeNotificationsProtocol *objc.Protocol
 func init() {
 	wantsToDelayTextChangeNotificationsProtocol = objc.GetProtocol("wantsToDelayTextChangeNotifications")
 }
+

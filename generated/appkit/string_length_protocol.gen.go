@@ -15,3 +15,4 @@ var stringLengthProtocol *objc.Protocol
 func init() {
 	stringLengthProtocol = objc.GetProtocol("stringLength")
 }
+

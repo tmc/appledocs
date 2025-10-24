@@ -6,11 +6,14 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class WKFrameInfo */
+
+/* debug [class_header]: Header for WKFrameInfo */
 // The class instance for the [FrameInfo] class.
 var (
 	FrameInfoClass     _FrameInfoClass
@@ -28,42 +31,32 @@ type _FrameInfoClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for FrameInfo */
 // An interface definition for the [FrameInfo] class.
 type IFrameInfo interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for FrameInfo */
 	// properties:
 	MainFrame() bool
+	Request() foundation.URLRequest
+	SecurityOrigin() IWKSecurityOrigin
+	WebView() IWKWebView
 	IsMainFrame() bool
 	SetIsMainFrame(value bool)
-	Request() objc.IObject /* cross-framework: URLRequest */
-	SetRequest(value objc.IObject /* cross-framework: URLRequest */)
-	SecurityOrigin() IWKSecurityOrigin
-	SetSecurityOrigin(value IWKSecurityOrigin)
-	WebView() IWKWebView
-	SetWebView(value IWKWebView)
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for FrameInfo */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// An object that contains information about a frame on a webpage.
-//
-// An instance of this class is a transient, data-only object; it does not uniquely identify a frame across multiple delegate method calls.
+/* debug [class_interface]: End interface */
 
-
-// An object that contains information about a frame on a webpage.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo
-type FrameInfo struct {
-	objectivec.Object
-}
-
-// FrameInfoFrom constructs a [FrameInfo] from an unsafe.Pointer.
-//
-// An object that contains information about a frame on a webpage.
-func FrameInfoFrom(ptr unsafe.Pointer) FrameInfo {
-	return FrameInfo{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for FrameInfo */
 // Alloc allocates a new instance without initialization.
 func (fc _FrameInfoClass) Alloc() FrameInfo {
 	rv := objc.Send[FrameInfo](objc.ID(fc.class), objc.Sel("alloc"))
@@ -71,7 +64,6 @@ func (fc _FrameInfoClass) Alloc() FrameInfo {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FrameInfoClass) New() FrameInfo {
 	rv := objc.Send[FrameInfo](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,7 +87,42 @@ func NewFrameInfo() FrameInfo {
 	return getFrameInfoClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for FrameInfo */
+// An object that contains information about a frame on a webpage.
+//
+// An instance of this class is a transient, data-only object; it does not uniquely identify a frame across multiple delegate method calls.
+
+// An object that contains information about a frame on a webpage.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo
+type FrameInfo struct {
+	objectivec.Object
+}
+
+// FrameInfoFrom constructs a [FrameInfo] from an unsafe.Pointer.
+//
+// An object that contains information about a frame on a webpage.
+func FrameInfoFrom(ptr unsafe.Pointer) FrameInfo {
+	return FrameInfo{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for FrameInfo */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for FrameInfo */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for FrameInfo */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for FrameInfo */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for FrameInfo */
 
 // A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
 //
@@ -104,8 +131,34 @@ func NewFrameInfo() FrameInfo {
 func (f_ FrameInfo) MainFrame() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("mainFrame"))
 	return rv
-}
+} /* debug [instance_properties/getter]: mainFrame */
 
+// The frame’s current request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo/request
+func (f_ FrameInfo) Request() foundation.URLRequest {
+	rv := objc.Send[foundation.URLRequest](f_.ID, objc.Sel("request"))
+	return rv
+} /* debug [instance_properties/getter]: request */
+
+// The frame’s security origin.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo/securityOrigin
+func (f_ FrameInfo) SecurityOrigin() IWKSecurityOrigin {
+	rv := objc.Send[SecurityOrigin](f_.ID, objc.Sel("securityOrigin"))
+	return rv
+} /* debug [instance_properties/getter]: securityOrigin */
+
+// The web view that contains this frame and the containing webpage.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/WebKit/WKFrameInfo/webView
+func (f_ FrameInfo) WebView() IWKWebView {
+	rv := objc.Send[WebView](f_.ID, objc.Sel("webView"))
+	return rv
+} /* debug [instance_properties/getter]: webView */
 
 // A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
 //
@@ -114,8 +167,7 @@ func (f_ FrameInfo) MainFrame() bool {
 func (f_ FrameInfo) IsMainFrame() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isMainFrame"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: isMainFrame */
 
 // A Boolean value indicating whether the frame is the web site’s main frame or a subframe.
 //
@@ -123,64 +175,8 @@ func (f_ FrameInfo) IsMainFrame() bool {
 // [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/ismainframe
 func (f_ FrameInfo) SetIsMainFrame(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsMainFrame:"), value)
-}
+} /* debug [instance_properties/setter]: isMainFrame */
 
+/* debug [instance_properties]: End instance properties */
 
-// The frame’s current request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/request
-func (f_ FrameInfo) Request() objc.IObject /* cross-framework: URLRequest */ {
-	rv := objc.Send[foundation.URLRequest](f_.ID, objc.Sel("request"))
-	return rv
-}
-
-
-// The frame’s current request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/request
-func (f_ FrameInfo) SetRequest(value objc.IObject /* cross-framework: URLRequest */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setRequest:"), value)
-}
-
-
-// The frame’s security origin.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
-func (f_ FrameInfo) SecurityOrigin() IWKSecurityOrigin {
-	rv := objc.Send[SecurityOrigin](f_.ID, objc.Sel("securityOrigin"))
-	return rv
-}
-
-
-// The frame’s security origin.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/securityorigin
-func (f_ FrameInfo) SetSecurityOrigin(value IWKSecurityOrigin) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setSecurityOrigin:"), value)
-}
-
-
-// The web view that contains this frame and the containing webpage.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/webview
-func (f_ FrameInfo) WebView() IWKWebView {
-	rv := objc.Send[WebView](f_.ID, objc.Sel("webView"))
-	return rv
-}
-
-
-// The web view that contains this frame and the containing webpage.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/webkit/wkframeinfo/webview
-func (f_ FrameInfo) SetWebView(value IWKWebView) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setWebView:"), value)
-}
-
-
-
+/* debug [class.gen.go]: End class WKFrameInfo */

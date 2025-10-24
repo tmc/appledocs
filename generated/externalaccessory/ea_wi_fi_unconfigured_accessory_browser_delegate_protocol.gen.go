@@ -20,3 +20,4 @@ var EAWiFiUnconfiguredAccessoryBrowserDelegateProtocol *objc.Protocol
 func init() {
 	EAWiFiUnconfiguredAccessoryBrowserDelegateProtocol = objc.GetProtocol("EAWiFiUnconfiguredAccessoryBrowserDelegate")
 }
+

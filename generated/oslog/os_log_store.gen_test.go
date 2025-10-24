@@ -15,3 +15,4 @@ func ExampleNewOSLogStore() {
 	// Output:
 }
 
+

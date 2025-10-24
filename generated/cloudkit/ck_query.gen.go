@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,7 +44,6 @@ type ICKQuery interface {
 // A query that describes the criteria to apply when searching for records in a database.
 //
 // You create a query as the first step in the search process. The query stores the search parameters, including the type of records to search, the match criteria (predicate) to apply, and the sort parameters to apply to the results. Then you use the query to initialize an instance of , which you execute to generate the results. Always designate a record type and predicate when you create a query object. The record type narrows the scope of the search to one type of record, and the predicate defines the conditions for matching records of that type. Predicates usually compare one or more fields of a record to constant values, but you can create predicates that return all records of a specific type or perform more nuanced searches. Because you can’t change the record type and predicate after initialization, you can use the same query to initialize multiple instances of , each of which targets a different database or record zone.
-
 
 // A query that describes the criteria to apply when searching for records in a database.
 //
@@ -92,8 +91,6 @@ func NewCKQuery() CKQuery {
 	return getCKQueryClass().New()
 }
 
-
-
 // The predicate to use for matching records.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (c_ CKQuery) Predicate() objc.IObject /* cross-framework: Predicate */ {
 	return rv
 }
 
-
 // The predicate to use for matching records.
 //
 // [Full Topic]
@@ -111,7 +107,6 @@ func (c_ CKQuery) Predicate() objc.IObject /* cross-framework: Predicate */ {
 func (c_ CKQuery) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPredicate:"), value)
 }
-
 
 // The record type to search.
 //
@@ -122,7 +117,6 @@ func (c_ CKQuery) RecordType() unsafe.Pointer {
 	return rv
 }
 
-
 // The record type to search.
 //
 // [Full Topic]
@@ -130,7 +124,6 @@ func (c_ CKQuery) RecordType() unsafe.Pointer {
 func (c_ CKQuery) SetRecordType(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRecordType:"), value)
 }
-
 
 // The sort descriptors for organizing the query’s results.
 //
@@ -141,7 +134,6 @@ func (c_ CKQuery) SortDescriptors() objc.IObject /* cross-framework: SortDescrip
 	return rv
 }
 
-
 // The sort descriptors for organizing the query’s results.
 //
 // [Full Topic]
@@ -149,6 +141,3 @@ func (c_ CKQuery) SortDescriptors() objc.IObject /* cross-framework: SortDescrip
 func (c_ CKQuery) SetSortDescriptors(value objc.IObject /* cross-framework: SortDescriptor */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSortDescriptors:"), value)
 }
-
-
-

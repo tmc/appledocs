@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,7 +37,6 @@ type IPHLocalIdentifierMapping interface {
 }
 
 // An object that contains the local identifier result from looking up a cloud identifier, or an error indicating why the lookup failed.
-
 
 // An object that contains the local identifier result from looking up a cloud identifier, or an error indicating why the lookup failed.
 //
@@ -85,8 +84,6 @@ func NewPHLocalIdentifierMapping() PHLocalIdentifierMapping {
 	return getPHLocalIdentifierMappingClass().New()
 }
 
-
-
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
 // [Full Topic]
@@ -95,6 +92,3 @@ func (p_ PHLocalIdentifierMapping) PHLocalIdentifierNotFound() objc.IObject /* c
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
 	return rv
 }
-
-
-

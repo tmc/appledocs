@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // ColorCurvesProtocol is the CIColorCurves protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIColorCurves.
 var ColorCurvesProtocol *objc.Protocol
 
 func init() {
 	ColorCurvesProtocol = objc.GetProtocol("CIColorCurves")
 }
+

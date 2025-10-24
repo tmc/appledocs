@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRBasicClusterStartUpEvent] class.
@@ -35,8 +35,6 @@ type IMTRBasicClusterStartUpEvent interface {
 	SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicClusterStartUpEvent
@@ -82,8 +80,6 @@ func NewMTRBasicClusterStartUpEvent() MTRBasicClusterStartUpEvent {
 	return getMTRBasicClusterStartUpEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterstartupevent/softwareversion
 func (m_ MTRBasicClusterStartUpEvent) SoftwareVersion() objc.IObject /* cross-framework: NSNumber */ {
@@ -91,12 +87,8 @@ func (m_ MTRBasicClusterStartUpEvent) SoftwareVersion() objc.IObject /* cross-fr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterstartupevent/softwareversion
 func (m_ MTRBasicClusterStartUpEvent) SetSoftwareVersion(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSoftwareVersion:"), value)
 }
-
-
-

@@ -15,3 +15,4 @@ var representedElementKindProtocol *objc.Protocol
 func init() {
 	representedElementKindProtocol = objc.GetProtocol("representedElementKind")
 }
+

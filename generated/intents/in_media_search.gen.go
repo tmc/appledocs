@@ -56,7 +56,6 @@ type IINMediaSearch interface {
 
 // An object that describes a media type to search for, such as a station name, song name, or album name.
 
-
 // An object that describes a media type to search for, such as a station name, song name, or album name.
 //
 // [Full Topic]
@@ -103,8 +102,6 @@ func NewINMediaSearch() INMediaSearch {
 	return getINMediaSearchClass().New()
 }
 
-
-
 // The activity names to search for.
 //
 // [Full Topic]
@@ -114,7 +111,6 @@ func (i_ INMediaSearch) ActivityNames() string {
 	return rv
 }
 
-
 // The activity names to search for.
 //
 // [Full Topic]
@@ -122,7 +118,6 @@ func (i_ INMediaSearch) ActivityNames() string {
 func (i_ INMediaSearch) SetActivityNames(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setActivityNames:"), objc.String(value))
 }
-
 
 // The name of the album to search for.
 //
@@ -133,7 +128,6 @@ func (i_ INMediaSearch) AlbumName() string {
 	return rv
 }
 
-
 // The name of the album to search for.
 //
 // [Full Topic]
@@ -141,7 +135,6 @@ func (i_ INMediaSearch) AlbumName() string {
 func (i_ INMediaSearch) SetAlbumName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAlbumName:"), objc.String(value))
 }
-
 
 // The name of the artist to search for.
 //
@@ -152,7 +145,6 @@ func (i_ INMediaSearch) ArtistName() string {
 	return rv
 }
 
-
 // The name of the artist to search for.
 //
 // [Full Topic]
@@ -160,7 +152,6 @@ func (i_ INMediaSearch) ArtistName() string {
 func (i_ INMediaSearch) SetArtistName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setArtistName:"), objc.String(value))
 }
-
 
 // The media genres to search.
 //
@@ -171,7 +162,6 @@ func (i_ INMediaSearch) GenreNames() string {
 	return rv
 }
 
-
 // The media genres to search.
 //
 // [Full Topic]
@@ -179,7 +169,6 @@ func (i_ INMediaSearch) GenreNames() string {
 func (i_ INMediaSearch) SetGenreNames(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGenreNames:"), objc.String(value))
 }
-
 
 // The unique media identifier to search for.
 //
@@ -190,7 +179,6 @@ func (i_ INMediaSearch) MediaIdentifier() string {
 	return rv
 }
 
-
 // The unique media identifier to search for.
 //
 // [Full Topic]
@@ -198,7 +186,6 @@ func (i_ INMediaSearch) MediaIdentifier() string {
 func (i_ INMediaSearch) SetMediaIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaIdentifier:"), objc.String(value))
 }
-
 
 // The name of the media to search for.
 //
@@ -209,7 +196,6 @@ func (i_ INMediaSearch) MediaName() string {
 	return rv
 }
 
-
 // The name of the media to search for.
 //
 // [Full Topic]
@@ -217,7 +203,6 @@ func (i_ INMediaSearch) MediaName() string {
 func (i_ INMediaSearch) SetMediaName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaName:"), objc.String(value))
 }
-
 
 // The type of media to search for.
 //
@@ -228,7 +213,6 @@ func (i_ INMediaSearch) MediaType() unsafe.Pointer {
 	return rv
 }
 
-
 // The type of media to search for.
 //
 // [Full Topic]
@@ -236,7 +220,6 @@ func (i_ INMediaSearch) MediaType() unsafe.Pointer {
 func (i_ INMediaSearch) SetMediaType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaType:"), value)
 }
-
 
 // The moods to search for.
 //
@@ -247,7 +230,6 @@ func (i_ INMediaSearch) MoodNames() string {
 	return rv
 }
 
-
 // The moods to search for.
 //
 // [Full Topic]
@@ -255,7 +237,6 @@ func (i_ INMediaSearch) MoodNames() string {
 func (i_ INMediaSearch) SetMoodNames(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMoodNames:"), objc.String(value))
 }
-
 
 // A reference for the media item to search for.
 //
@@ -266,7 +247,6 @@ func (i_ INMediaSearch) Reference() unsafe.Pointer {
 	return rv
 }
 
-
 // A reference for the media item to search for.
 //
 // [Full Topic]
@@ -274,7 +254,6 @@ func (i_ INMediaSearch) Reference() unsafe.Pointer {
 func (i_ INMediaSearch) SetReference(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReference:"), value)
 }
-
 
 // The release date to search for.
 //
@@ -285,7 +264,6 @@ func (i_ INMediaSearch) ReleaseDate() INDateComponentsRange {
 	return rv
 }
 
-
 // The release date to search for.
 //
 // [Full Topic]
@@ -293,7 +271,6 @@ func (i_ INMediaSearch) ReleaseDate() INDateComponentsRange {
 func (i_ INMediaSearch) SetReleaseDate(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReleaseDate:"), value)
 }
-
 
 // The sort order for the found media items.
 //
@@ -304,7 +281,6 @@ func (i_ INMediaSearch) SortOrder() unsafe.Pointer {
 	return rv
 }
 
-
 // The sort order for the found media items.
 //
 // [Full Topic]
@@ -312,6 +288,3 @@ func (i_ INMediaSearch) SortOrder() unsafe.Pointer {
 func (i_ INMediaSearch) SetSortOrder(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSortOrder:"), value)
 }
-
-
-

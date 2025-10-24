@@ -15,3 +15,4 @@ var firstRectForCharacterRangeProtocol *objc.Protocol
 func init() {
 	firstRectForCharacterRangeProtocol = objc.GetProtocol("firstRectForCharacterRange:")
 }
+

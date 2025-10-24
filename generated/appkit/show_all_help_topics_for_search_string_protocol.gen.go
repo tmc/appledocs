@@ -15,3 +15,4 @@ var showAllHelpTopicsForSearchStringProtocol *objc.Protocol
 func init() {
 	showAllHelpTopicsForSearchStringProtocol = objc.GetProtocol("showAllHelpTopicsForSearchString:")
 }
+

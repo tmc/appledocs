@@ -47,7 +47,6 @@ type IINSetTaskAttributeIntent interface {
 //
 // Siri creates an object when the user marks a task as complete or changes the triggers used to generate reminders for the task. The intent object can contain the task information and values for any changed attributes. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated task information.
 
-
 // A request to modify the attributes of a task.
 //
 // [Full Topic]
@@ -96,8 +95,6 @@ func NewINSetTaskAttributeIntent() INSetTaskAttributeIntent {
 	return getINSetTaskAttributeIntentClass().New()
 }
 
-
-
 // The priority for the task.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func (i_ INSetTaskAttributeIntent) Priority() unsafe.Pointer {
 	return rv
 }
 
-
 // The priority for the task.
 //
 // [Full Topic]
@@ -115,7 +111,6 @@ func (i_ INSetTaskAttributeIntent) Priority() unsafe.Pointer {
 func (i_ INSetTaskAttributeIntent) SetPriority(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPriority:"), value)
 }
-
 
 // The location-based trigger to apply to the task.
 //
@@ -126,7 +121,6 @@ func (i_ INSetTaskAttributeIntent) SpatialEventTrigger() unsafe.Pointer {
 	return rv
 }
 
-
 // The location-based trigger to apply to the task.
 //
 // [Full Topic]
@@ -134,7 +128,6 @@ func (i_ INSetTaskAttributeIntent) SpatialEventTrigger() unsafe.Pointer {
 func (i_ INSetTaskAttributeIntent) SetSpatialEventTrigger(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSpatialEventTrigger:"), value)
 }
-
 
 // The status to apply to the task.
 //
@@ -145,7 +138,6 @@ func (i_ INSetTaskAttributeIntent) Status() unsafe.Pointer {
 	return rv
 }
 
-
 // The status to apply to the task.
 //
 // [Full Topic]
@@ -153,7 +145,6 @@ func (i_ INSetTaskAttributeIntent) Status() unsafe.Pointer {
 func (i_ INSetTaskAttributeIntent) SetStatus(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // The task targetted for modification.
 //
@@ -164,7 +155,6 @@ func (i_ INSetTaskAttributeIntent) TargetTask() unsafe.Pointer {
 	return rv
 }
 
-
 // The task targetted for modification.
 //
 // [Full Topic]
@@ -172,7 +162,6 @@ func (i_ INSetTaskAttributeIntent) TargetTask() unsafe.Pointer {
 func (i_ INSetTaskAttributeIntent) SetTargetTask(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTargetTask:"), value)
 }
-
 
 // The title for the task.
 //
@@ -183,7 +172,6 @@ func (i_ INSetTaskAttributeIntent) TaskTitle() INSpeakableString {
 	return rv
 }
 
-
 // The title for the task.
 //
 // [Full Topic]
@@ -191,7 +179,6 @@ func (i_ INSetTaskAttributeIntent) TaskTitle() INSpeakableString {
 func (i_ INSetTaskAttributeIntent) SetTaskTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitle:"), value)
 }
-
 
 // The time-based trigger to apply to the task.
 //
@@ -202,7 +189,6 @@ func (i_ INSetTaskAttributeIntent) TemporalEventTrigger() unsafe.Pointer {
 	return rv
 }
 
-
 // The time-based trigger to apply to the task.
 //
 // [Full Topic]
@@ -210,6 +196,3 @@ func (i_ INSetTaskAttributeIntent) TemporalEventTrigger() unsafe.Pointer {
 func (i_ INSetTaskAttributeIntent) SetTemporalEventTrigger(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTemporalEventTrigger:"), value)
 }
-
-
-

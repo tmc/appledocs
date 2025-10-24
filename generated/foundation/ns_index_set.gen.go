@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSIndexSet */
+
+
+/* debug [class_header]: Header for NSIndexSet */
 // The class instance for the [IndexSet] class.
 var (
 	IndexSetClass     _IndexSetClass
@@ -26,14 +30,24 @@ func getIndexSetClass() _IndexSetClass {
 type _IndexSetClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for IndexSet */
 // An interface definition for the [IndexSet] class.
 type IIndexSet interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for IndexSet */
 	// properties:
 	Count() uint
 	FirstIndex() uint
 	LastIndex() uint
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for IndexSet */
 	// methods:
 	ContainsIndexes(indexSet IIndexSet) bool
 	ContainsIndex(value uint) bool
@@ -45,7 +59,7 @@ type IIndexSet interface {
 	EnumerateRangesUsingBlock(block unsafe.Pointer)
 	EnumerateRangesInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework: Range */, opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateRangesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
-	GetIndexesMaxCountInIndexRange(indexBuffer uint, bufferSize uint, range_ objc.IObject /* cross-framework: RangePointer */) uint
+	GetIndexesMaxCountInIndexRange(indexBuffer uint, bufferSize uint, range_ RangePointer /* typedef */) uint
 	IndexInRangeOptionsPassingTest(range_ objc.IObject /* cross-framework: Range */, opts EnumerationOptions, predicate unsafe.Pointer) uint
 	IndexWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint
 	IndexPassingTest(predicate unsafe.Pointer) uint
@@ -58,28 +72,14 @@ type IIndexSet interface {
 	IndexesPassingTest(predicate unsafe.Pointer) IIndexSet
 	IntersectsIndexesInRange(range_ objc.IObject /* cross-framework: Range */) bool
 	IsEqualToIndexSet(indexSet IIndexSet) bool
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An immutable collection of unique integer values that represent indexes in another collection.
-//
-// In Swift, this type bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class represents an immutable collection of unique unsigned integers, known as because of the way they are used. This collection is referred to as an . Indexes must be in the range . You use index sets in your code to store indexes into some other data structure. For example, given an object, you could use an index set to identify a subset of objects in that array. You should not use index sets to store an arbitrary collection of integer values because index sets store indexes as sorted ranges. This makes them more efficient than storing a collection of individual integers. It also means that each index value can only appear once in the index set. The designated initializers of the class are: , , and . You must not subclass the class. The mutable subclass of is .
+/* debug [class_interface]: End interface */
 
 
-// An immutable collection of unique integer values that represent indexes in another collection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet
-type IndexSet struct {
-	objectivec.Object
-}
 
-// IndexSetFrom constructs a [IndexSet] from an unsafe.Pointer.
-//
-// An immutable collection of unique integer values that represent indexes in another collection.
-func IndexSetFrom(ptr unsafe.Pointer) IndexSet {
-	return IndexSet{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for IndexSet */
 // Alloc allocates a new instance without initialization.
 func (ic _IndexSetClass) Alloc() IndexSet {
 	rv := objc.Send[IndexSet](objc.ID(ic.class), objc.Sel("alloc"))
@@ -87,7 +87,6 @@ func (ic _IndexSetClass) Alloc() IndexSet {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _IndexSetClass) New() IndexSet {
 	rv := objc.Send[IndexSet](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -110,8 +109,35 @@ func (i_ IndexSet) Autorelease() IndexSet {
 func NewIndexSet() IndexSet {
 	return getIndexSetClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for IndexSet */
+// An immutable collection of unique integer values that represent indexes in another collection.
+//
+// In Swift, this type bridges to ; use when you need reference semantics or other Foundation-specific behavior. The class represents an immutable collection of unique unsigned integers, known as because of the way they are used. This collection is referred to as an . Indexes must be in the range . You use index sets in your code to store indexes into some other data structure. For example, given an object, you could use an index set to identify a subset of objects in that array. You should not use index sets to store an arbitrary collection of integer values because index sets store indexes as sorted ranges. This makes them more efficient than storing a collection of individual integers. It also means that each index value can only appear once in the index set. The designated initializers of the class are: , , and . You must not subclass the class. The mutable subclass of is .
+
+
+// An immutable collection of unique integer values that represent indexes in another collection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet
+type IndexSet struct {
+	objectivec.Object
+}
+
+// IndexSetFrom constructs a [IndexSet] from an unsafe.Pointer.
+//
+// An immutable collection of unique integer values that represent indexes in another collection.
+func IndexSetFrom(ptr unsafe.Pointer) IndexSet {
+	return IndexSet{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for IndexSet */
 
 // Initializes an allocated object with an index.
 //
@@ -122,7 +148,7 @@ func NewIndexSetWithIndex(value uint) IndexSet {
 	rv := objc.Send[IndexSet](instance.ID, objc.Sel("initWithIndex:"), value)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewIndexSetWithIndex */
 
 
 // Initializes an allocated object with an index set.
@@ -134,7 +160,7 @@ func NewIndexSetWithIndexSet(indexSet IIndexSet) IndexSet {
 	rv := objc.Send[IndexSet](instance.ID, objc.Sel("initWithIndexSet:"), indexSet)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewIndexSetWithIndexSet */
 
 
 // Initializes an allocated object with an index range.
@@ -146,39 +172,53 @@ func NewIndexSetWithIndexesInRange(range_ objc.IObject /* cross-framework: Range
 	rv := objc.Send[IndexSet](instance.ID, objc.Sel("initWithIndexesInRange:"), range_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewIndexSetWithIndexesInRange */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for IndexSet */
 
 // Creates an empty index set.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSet
-func (ic _IndexSetClass) IndexSet() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSet"))
+func (ic _IndexSetClass) IndexSet() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(ic.class), objc.Sel("indexSet"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=IndexSet) */
 
 
 // Creates an index set with an index.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSetWithIndex:
-func (ic _IndexSetClass) IndexSetWithIndex(value uint) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSetWithIndex:"), value)
+func (ic _IndexSetClass) IndexSetWithIndex(value uint) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(ic.class), objc.Sel("indexSetWithIndex:"), value)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=IndexSetWithIndex) */
 
 
 // Creates an index set with an index range.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/indexSetWithIndexesInRange:
-func (ic _IndexSetClass) IndexSetWithIndexesInRange(range_ objc.IObject /* cross-framework: Range */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(ic.class), objc.Sel("indexSetWithIndexesInRange:"), range_)
+func (ic _IndexSetClass) IndexSetWithIndexesInRange(range_ objc.IObject /* cross-framework: Range */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(ic.class), objc.Sel("indexSetWithIndexesInRange:"), range_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=IndexSetWithIndexesInRange) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for IndexSet */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for IndexSet */
 
 // Indicates whether the receiving index set contains a superset of the indexes in another index set.
 //
@@ -187,7 +227,7 @@ func (ic _IndexSetClass) IndexSetWithIndexesInRange(range_ objc.IObject /* cross
 func (i_ IndexSet) ContainsIndexes(indexSet IIndexSet) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("containsIndexes:"), indexSet)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainsIndexes */
 
 
 // Indicates whether the index set contains a specific index.
@@ -197,7 +237,7 @@ func (i_ IndexSet) ContainsIndexes(indexSet IIndexSet) bool {
 func (i_ IndexSet) ContainsIndex(value uint) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("containsIndex:"), value)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainsIndex */
 
 
 // Indicates whether the index set contains the indexes represented by an index range.
@@ -207,7 +247,7 @@ func (i_ IndexSet) ContainsIndex(value uint) bool {
 func (i_ IndexSet) ContainsIndexesInRange(range_ objc.IObject /* cross-framework: Range */) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("containsIndexesInRange:"), range_)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainsIndexesInRange */
 
 
 // Returns the number of indexes in the index set that are members of a given range.
@@ -217,7 +257,7 @@ func (i_ IndexSet) ContainsIndexesInRange(range_ objc.IObject /* cross-framework
 func (i_ IndexSet) CountOfIndexesInRange(range_ objc.IObject /* cross-framework: Range */) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("countOfIndexesInRange:"), range_)
 	return rv
-}
+}/* debug [instance_methods/method]: CountOfIndexesInRange */
 
 
 // Executes a given Block using each object in the index set.
@@ -226,7 +266,7 @@ func (i_ IndexSet) CountOfIndexesInRange(range_ objc.IObject /* cross-framework:
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(_:)
 func (i_ IndexSet) EnumerateIndexesUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesUsingBlock:"), block)
-}
+}/* debug [instance_methods/method]: EnumerateIndexesUsingBlock */
 
 
 // Executes a given Block using the indexes in the specified range, using the specified enumeration options.
@@ -235,7 +275,7 @@ func (i_ IndexSet) EnumerateIndexesUsingBlock(block unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(in:options:using:)
 func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework: Range */, opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesInRange:options:usingBlock:"), range_, opts, block)
-}
+}/* debug [instance_methods/method]: EnumerateIndexesInRangeOptionsUsingBlock */
 
 
 // Executes a given Block over the index set’s indexes, using the specified enumeration options.
@@ -244,7 +284,7 @@ func (i_ IndexSet) EnumerateIndexesInRangeOptionsUsingBlock(range_ objc.IObject 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerate(options:using:)
 func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateIndexesWithOptions:usingBlock:"), opts, block)
-}
+}/* debug [instance_methods/method]: EnumerateIndexesWithOptionsUsingBlock */
 
 
 // Executes a given block using each object in the index set, in the specified ranges.
@@ -253,7 +293,7 @@ func (i_ IndexSet) EnumerateIndexesWithOptionsUsingBlock(opts EnumerationOptions
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerateRanges(_:)
 func (i_ IndexSet) EnumerateRangesUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateRangesUsingBlock:"), block)
-}
+}/* debug [instance_methods/method]: EnumerateRangesUsingBlock */
 
 
 // Enumerates over the ranges in the range of objects using the block
@@ -262,7 +302,7 @@ func (i_ IndexSet) EnumerateRangesUsingBlock(block unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerateRanges(in:options:using:)
 func (i_ IndexSet) EnumerateRangesInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework: Range */, opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateRangesInRange:options:usingBlock:"), range_, opts, block)
-}
+}/* debug [instance_methods/method]: EnumerateRangesInRangeOptionsUsingBlock */
 
 
 // Executes a given block using each object in the index set, in the specified ranges.
@@ -271,17 +311,17 @@ func (i_ IndexSet) EnumerateRangesInRangeOptionsUsingBlock(range_ objc.IObject /
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/enumerateRanges(options:using:)
 func (i_ IndexSet) EnumerateRangesWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("enumerateRangesWithOptions:usingBlock:"), opts, block)
-}
+}/* debug [instance_methods/method]: EnumerateRangesWithOptionsUsingBlock */
 
 
 // The index set fills an index buffer with the indexes contained both in the index set and in an index range, returning the number of indexes copied.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSIndexSet/getIndexes(_:maxCount:inIndexRange:)
-func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer uint, bufferSize uint, range_ objc.IObject /* cross-framework: RangePointer */) uint {
+func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer uint, bufferSize uint, range_ RangePointer /* typedef */) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("getIndexes:maxCount:inIndexRange:"), indexBuffer, bufferSize, range_)
 	return rv
-}
+}/* debug [instance_methods/method]: GetIndexesMaxCountInIndexRange */
 
 
 // Returns the index of the first object in the specified range that passes the predicate Block test.
@@ -291,7 +331,7 @@ func (i_ IndexSet) GetIndexesMaxCountInIndexRange(indexBuffer uint, bufferSize u
 func (i_ IndexSet) IndexInRangeOptionsPassingTest(range_ objc.IObject /* cross-framework: Range */, opts EnumerationOptions, predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexInRange:options:passingTest:"), range_, opts, predicate)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexInRangeOptionsPassingTest */
 
 
 // Returns the index of the first object that passes the predicate Block test using the specified enumeration options.
@@ -301,7 +341,7 @@ func (i_ IndexSet) IndexInRangeOptionsPassingTest(range_ objc.IObject /* cross-f
 func (i_ IndexSet) IndexWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexWithOptions:passingTest:"), opts, predicate)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexWithOptionsPassingTest */
 
 
 // Returns the index of the first object that passes the predicate Block test.
@@ -311,7 +351,7 @@ func (i_ IndexSet) IndexWithOptionsPassingTest(opts EnumerationOptions, predicat
 func (i_ IndexSet) IndexPassingTest(predicate unsafe.Pointer) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexPassingTest:"), predicate)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexPassingTest */
 
 
 // Returns either the closest index in the index set that is greater than a specific index or the not-found indicator.
@@ -321,7 +361,7 @@ func (i_ IndexSet) IndexPassingTest(predicate unsafe.Pointer) uint {
 func (i_ IndexSet) IndexGreaterThanIndex(value uint) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexGreaterThanIndex:"), value)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexGreaterThanIndex */
 
 
 // Returns either the closest index in the index set that is greater than or equal to a specific index or the not-found indicator.
@@ -331,7 +371,7 @@ func (i_ IndexSet) IndexGreaterThanIndex(value uint) uint {
 func (i_ IndexSet) IndexGreaterThanOrEqualToIndex(value uint) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexGreaterThanOrEqualToIndex:"), value)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexGreaterThanOrEqualToIndex */
 
 
 // Returns either the closest index in the index set that is less than a specific index or the not-found indicator.
@@ -341,7 +381,7 @@ func (i_ IndexSet) IndexGreaterThanOrEqualToIndex(value uint) uint {
 func (i_ IndexSet) IndexLessThanIndex(value uint) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexLessThanIndex:"), value)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexLessThanIndex */
 
 
 // Returns either the closest index in the index set that is less than or equal to a specific index or the not-found indicator.
@@ -351,7 +391,7 @@ func (i_ IndexSet) IndexLessThanIndex(value uint) uint {
 func (i_ IndexSet) IndexLessThanOrEqualToIndex(value uint) uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("indexLessThanOrEqualToIndex:"), value)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexLessThanOrEqualToIndex */
 
 
 // Returns an containing the receiving index set’s objects in the specified range that pass the Block test.
@@ -361,7 +401,7 @@ func (i_ IndexSet) IndexLessThanOrEqualToIndex(value uint) uint {
 func (i_ IndexSet) IndexesInRangeOptionsPassingTest(range_ objc.IObject /* cross-framework: Range */, opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesInRange:options:passingTest:"), range_, opts, predicate)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexesInRangeOptionsPassingTest */
 
 
 // Returns an containing the receiving index set’s objects that pass the Block test using the specified enumeration options.
@@ -371,7 +411,7 @@ func (i_ IndexSet) IndexesInRangeOptionsPassingTest(range_ objc.IObject /* cross
 func (i_ IndexSet) IndexesWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesWithOptions:passingTest:"), opts, predicate)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexesWithOptionsPassingTest */
 
 
 // Returns an containing the receiving index set’s objects that pass the Block test.
@@ -381,7 +421,7 @@ func (i_ IndexSet) IndexesWithOptionsPassingTest(opts EnumerationOptions, predic
 func (i_ IndexSet) IndexesPassingTest(predicate unsafe.Pointer) IIndexSet {
 	rv := objc.Send[IndexSet](i_.ID, objc.Sel("indexesPassingTest:"), predicate)
 	return rv
-}
+}/* debug [instance_methods/method]: IndexesPassingTest */
 
 
 // Indicates whether the index set contains any of the indexes in a range.
@@ -391,7 +431,7 @@ func (i_ IndexSet) IndexesPassingTest(predicate unsafe.Pointer) IIndexSet {
 func (i_ IndexSet) IntersectsIndexesInRange(range_ objc.IObject /* cross-framework: Range */) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("intersectsIndexesInRange:"), range_)
 	return rv
-}
+}/* debug [instance_methods/method]: IntersectsIndexesInRange */
 
 
 // Indicates whether the indexes in the receiving index set are the same indexes contained in another index set.
@@ -401,8 +441,13 @@ func (i_ IndexSet) IntersectsIndexesInRange(range_ objc.IObject /* cross-framewo
 func (i_ IndexSet) IsEqualToIndexSet(indexSet IIndexSet) bool {
 	rv := objc.Send[bool](i_.ID, objc.Sel("isEqualToIndexSet:"), indexSet)
 	return rv
-}
+}/* debug [instance_methods/method]: IsEqualToIndexSet */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for IndexSet */
 
 // The number of indexes in the index set.
 //
@@ -411,7 +456,7 @@ func (i_ IndexSet) IsEqualToIndexSet(indexSet IIndexSet) bool {
 func (i_ IndexSet) Count() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("count"))
 	return rv
-}
+}/* debug [instance_properties/getter]: count */
 
 
 // The first index in the index set.
@@ -421,7 +466,7 @@ func (i_ IndexSet) Count() uint {
 func (i_ IndexSet) FirstIndex() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("firstIndex"))
 	return rv
-}
+}/* debug [instance_properties/getter]: firstIndex */
 
 
 // The last index in the index set.
@@ -431,6 +476,11 @@ func (i_ IndexSet) FirstIndex() uint {
 func (i_ IndexSet) LastIndex() uint {
 	rv := objc.Send[uint](i_.ID, objc.Sel("lastIndex"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lastIndex */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSIndexSet */
 
 

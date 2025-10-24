@@ -36,8 +36,6 @@ type IMTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent interface
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent
 type MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent struct {
@@ -80,8 +78,6 @@ func NewMTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent() MTREl
 	return getMTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementperiodrangesevent/ranges
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent) Ranges() unsafe.Pointer {
@@ -89,12 +85,8 @@ func (m_ MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent) Range
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalpowermeasurementclustermeasurementperiodrangesevent/ranges
 func (m_ MTRElectricalPowerMeasurementClusterMeasurementPeriodRangesEvent) SetRanges(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setRanges:"), value)
 }
-
-
-

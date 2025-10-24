@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // FlashTransitionProtocol is the CIFlashTransition protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIFlashTransition.
 var FlashTransitionProtocol *objc.Protocol
 
 func init() {
 	FlashTransitionProtocol = objc.GetProtocol("CIFlashTransition")
 }
+

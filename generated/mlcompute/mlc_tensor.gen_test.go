@@ -13,9 +13,9 @@ var _ = mlcompute.NewCTensor
 // Creates a tensor without data, with the sequence length, number of feature channels, and batch size you specify.
 func ExampleNewCTensorWithSequenceLengthFeatureChannelCountBatchSize() {
 	_ = mlcompute.NewCTensorWithSequenceLengthFeatureChannelCountBatchSize(
-		0, // sequenceLength uint
-		0, // featureChannelCount uint
-		0, // batchSize uint
+		10, // sequenceLength uint
+		10, // featureChannelCount uint
+		10, // batchSize uint
 	)
 	// Output:
 }
@@ -23,9 +23,9 @@ func ExampleNewCTensorWithSequenceLengthFeatureChannelCountBatchSize() {
 // Creates a tensor with the sequence length, number of feature channels, batch size, and random initializer type you specify.
 func ExampleNewCTensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitializerType() {
 	_ = mlcompute.NewCTensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitializerType(
-		0, // sequenceLength uint
-		0, // featureChannelCount uint
-		0, // batchSize uint
+		10, // sequenceLength uint
+		10, // featureChannelCount uint
+		10, // batchSize uint
 		mlcompute.CRandomInitializerType{}, // randomInitializerType CRandomInitializerType
 	)
 	// Output:
@@ -34,10 +34,10 @@ func ExampleNewCTensorWithSequenceLengthFeatureChannelCountBatchSizeRandomInitia
 // Creates a tensor without data, with the sizes and number of feature channels you specify.
 func ExampleNewCTensorWithWidthHeightFeatureChannelCountBatchSize() {
 	_ = mlcompute.NewCTensorWithWidthHeightFeatureChannelCountBatchSize(
-		0, // width uint
-		0, // height uint
-		0, // featureChannelCount uint
-		0, // batchSize uint
+		100, // width uint
+		100, // height uint
+		10, // featureChannelCount uint
+		10, // batchSize uint
 	)
 	// Output:
 }
@@ -45,10 +45,10 @@ func ExampleNewCTensorWithWidthHeightFeatureChannelCountBatchSize() {
 // Creates a tensor with the sizes and number of feature channels, and filled with the data and type you specify.
 func ExampleNewCTensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType() {
 	_ = mlcompute.NewCTensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDataType(
-		0, // width uint
-		0, // height uint
-		0, // featureChannelCount uint
-		0, // batchSize uint
+		100, // width uint
+		100, // height uint
+		10, // featureChannelCount uint
+		10, // batchSize uint
 		0.0, // fillData float32
 		mlcompute.CDataType{}, // dataType CDataType
 	)
@@ -58,10 +58,10 @@ func ExampleNewCTensorWithWidthHeightFeatureChannelCountBatchSizeFillWithDataDat
 // Creates a tensor with the sizes, number of feature channels, and random data using the random initializer type you specify.
 func ExampleNewCTensorWithWidthHeightFeatureChannelCountBatchSizeRandomInitializerType() {
 	_ = mlcompute.NewCTensorWithWidthHeightFeatureChannelCountBatchSizeRandomInitializerType(
-		0, // width uint
-		0, // height uint
-		0, // featureChannelCount uint
-		0, // batchSize uint
+		100, // width uint
+		100, // height uint
+		10, // featureChannelCount uint
+		10, // batchSize uint
 		mlcompute.CRandomInitializerType{}, // randomInitializerType CRandomInitializerType
 	)
 	// Output:

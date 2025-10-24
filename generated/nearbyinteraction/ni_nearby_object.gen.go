@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NINearbyObject */
+
+
+/* debug [class_header]: Header for NINearbyObject */
 // The class instance for the [NINearbyObject] class.
 var (
 	NINearbyObjectClass     _NINearbyObjectClass
@@ -26,38 +30,30 @@ func getNINearbyObjectClass() _NINearbyObjectClass {
 type _NINearbyObjectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NINearbyObject */
 // An interface definition for the [NINearbyObject] class.
 type ININearbyObject interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NINearbyObject */
 	// properties:
-	DiscoveryToken() objc.IObject /* cross-framework: NIDiscoveryToken */
-	SetDiscoveryToken(value objc.IObject /* cross-framework: NIDiscoveryToken */)
-	HorizontalAngle() float32
-	SetHorizontalAngle(value float32)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NINearbyObject */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Location information for a peer device in an interaction session.
-//
-// A nearby object refers to a peer Apple device or third-party accessory. When the framework is ready to provide your app with information about a nearby object’s relative position, it calls your delegate’s implementation. If a session can’t provide peer direction or distance, it sets the values to . In Objective-C, the session uses the and values to indicate missing direction or distance. For more information, see .
+/* debug [class_interface]: End interface */
 
 
-// Location information for a peer device in an interaction session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject
-type NINearbyObject struct {
-	objectivec.Object
-}
 
-// NINearbyObjectFrom constructs a [NINearbyObject] from an unsafe.Pointer.
-//
-// Location information for a peer device in an interaction session.
-func NINearbyObjectFrom(ptr unsafe.Pointer) NINearbyObject {
-	return NINearbyObject{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NINearbyObject */
 // Alloc allocates a new instance without initialization.
 func (nc _NINearbyObjectClass) Alloc() NINearbyObject {
 	rv := objc.Send[NINearbyObject](objc.ID(nc.class), objc.Sel("alloc"))
@@ -65,7 +61,6 @@ func (nc _NINearbyObjectClass) Alloc() NINearbyObject {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NINearbyObjectClass) New() NINearbyObject {
 	rv := objc.Send[NINearbyObject](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,44 +83,57 @@ func (n_ NINearbyObject) Autorelease() NINearbyObject {
 func NewNINearbyObject() NINearbyObject {
 	return getNINearbyObjectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A unique identifier for a peer device in the session.
+/* debug [class_struct]: Struct for NINearbyObject */
+// Location information for a peer device in an interaction session.
+//
+// A nearby object refers to a peer Apple device or third-party accessory. When the framework is ready to provide your app with information about a nearby object’s relative position, it calls your delegate’s implementation. If a session can’t provide peer direction or distance, it sets the values to . In Objective-C, the session uses the and values to indicate missing direction or distance. For more information, see .
+
+
+// Location information for a peer device in an interaction session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/discoverytoken
-func (n_ NINearbyObject) DiscoveryToken() objc.IObject /* cross-framework: NIDiscoveryToken */ {
-	rv := objc.Send[NIDiscoveryToken](n_.ID, objc.Sel("discoveryToken"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NINearbyObject
+type NINearbyObject struct {
+	objectivec.Object
 }
 
-
-// A unique identifier for a peer device in the session.
+// NINearbyObjectFrom constructs a [NINearbyObject] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/discoverytoken
-func (n_ NINearbyObject) SetDiscoveryToken(value objc.IObject /* cross-framework: NIDiscoveryToken */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDiscoveryToken:"), value)
+// Location information for a peer device in an interaction session.
+func NINearbyObjectFrom(ptr unsafe.Pointer) NINearbyObject {
+	return NINearbyObject{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// An angle in radians that indicates the azimuthal direction to the nearby object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
-func (n_ NINearbyObject) HorizontalAngle() float32 {
-	rv := objc.Send[float32](n_.ID, objc.Sel("horizontalAngle"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for NINearbyObject *//* debug [class_init_methods]: End init methods */
 
 
-// An angle in radians that indicates the azimuthal direction to the nearby object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/nearbyinteraction/ninearbyobject/horizontalangle-hsg
-func (n_ NINearbyObject) SetHorizontalAngle(value float32) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setHorizontalAngle:"), value)
-}
+
+/* debug [class_methods]: Class methods for NINearbyObject */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NINearbyObject */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NINearbyObject */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NINearbyObject */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NINearbyObject */
 
 

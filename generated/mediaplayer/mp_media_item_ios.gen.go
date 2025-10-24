@@ -29,8 +29,8 @@ func (m_ MediaItem) AlbumArtist() objc.IObject /* cross-framework: NSString */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumArtistPersistentID
-func (m_ MediaItem) AlbumArtistPersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("albumArtistPersistentID"))
+func (m_ MediaItem) AlbumArtistPersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("albumArtistPersistentID"))
 	return rv
 }
 
@@ -38,8 +38,8 @@ func (m_ MediaItem) AlbumArtistPersistentID() objc.IObject /* cross-framework: M
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/albumPersistentID
-func (m_ MediaItem) AlbumPersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("albumPersistentID"))
+func (m_ MediaItem) AlbumPersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("albumPersistentID"))
 	return rv
 }
 
@@ -83,8 +83,8 @@ func (m_ MediaItem) Artist() objc.IObject /* cross-framework: NSString */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/artistPersistentID
-func (m_ MediaItem) ArtistPersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("artistPersistentID"))
+func (m_ MediaItem) ArtistPersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("artistPersistentID"))
 	return rv
 }
 
@@ -120,7 +120,7 @@ func (m_ MediaItem) BeatsPerMinute() uint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/bookmarkTime
 func (m_ MediaItem) BookmarkTime() float64 {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("bookmarkTime"))
+	rv := objc.Send[float64](m_.ID, objc.Sel("bookmarkTime"))
 	return rv
 }
 
@@ -137,8 +137,8 @@ func (m_ MediaItem) Comments() objc.IObject /* cross-framework: NSString */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/composerPersistentID
-func (m_ MediaItem) ComposerPersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("composerPersistentID"))
+func (m_ MediaItem) ComposerPersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("composerPersistentID"))
 	return rv
 }
 
@@ -182,8 +182,8 @@ func (m_ MediaItem) Genre() objc.IObject /* cross-framework: NSString */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/genrePersistentID
-func (m_ MediaItem) GenrePersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("genrePersistentID"))
+func (m_ MediaItem) GenrePersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("genrePersistentID"))
 	return rv
 }
 
@@ -263,17 +263,8 @@ func (m_ MediaItem) MediaType() MediaType {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/persistentID
-func (m_ MediaItem) PersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("persistentID"))
-	return rv
-}
-
-// The number of times the user plays the media item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/playCount
-func (m_ MediaItem) PlayCount() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("playCount"))
+func (m_ MediaItem) PersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("persistentID"))
 	return rv
 }
 
@@ -282,7 +273,7 @@ func (m_ MediaItem) PlayCount() uint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/playbackDuration
 func (m_ MediaItem) PlaybackDuration() float64 {
-	rv := objc.Send[TimeInterval](m_.ID, objc.Sel("playbackDuration"))
+	rv := objc.Send[float64](m_.ID, objc.Sel("playbackDuration"))
 	return rv
 }
 
@@ -295,12 +286,21 @@ func (m_ MediaItem) PlaybackStoreID() objc.IObject /* cross-framework: NSString 
 	return rv
 }
 
+// The number of times the user plays the media item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/playCount
+func (m_ MediaItem) PlayCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("playCount"))
+	return rv
+}
+
 // The persistent identifier for an audio podcast.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaItem/podcastPersistentID
-func (m_ MediaItem) PodcastPersistentID() objc.IObject /* cross-framework: MediaEntityPersistentID */ {
-	rv := objc.Send[MediaEntityPersistentID](m_.ID, objc.Sel("podcastPersistentID"))
+func (m_ MediaItem) PodcastPersistentID() MediaEntityPersistentID /* typedef */ {
+	rv := objc.Send[uint64](m_.ID, objc.Sel("podcastPersistentID"))
 	return rv
 }
 

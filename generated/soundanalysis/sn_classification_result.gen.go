@@ -7,10 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coremedia"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class SNClassificationResult */
+
+/* debug [class_header]: Header for SNClassificationResult */
 // The class instance for the [SNClassificationResult] class.
 var (
 	SNClassificationResultClass     _SNClassificationResultClass
@@ -28,36 +30,29 @@ type _SNClassificationResultClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for SNClassificationResult */
 // An interface definition for the [SNClassificationResult] class.
 type ISNClassificationResult interface {
 	objectivec.IObject
+
+	/* debug [class_interface_properties]: Properties for SNClassificationResult */
 	// properties:
-	Classifications() []ISNClassification
-	TimeRange() objc.IObject /* cross-framework: TimeRange */
-	SetTimeRange(value objc.IObject /* cross-framework: TimeRange */)
+	Classifications() []SNClassification
+	TimeRange() TimeRange /* not a class type */
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for SNClassificationResult */
 	// methods:
+	ClassificationForIdentifier(identifier objc.IObject /* cross-framework: NSString */) ISNClassification
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// A result that contains the highest-ranking classifications in a time range.
-//
-// An represents the predictions that a sound classification model made for a time span in an audio file or stream. Each result contains one or more classification predictions and a time range within the audio data. An audio analyzer, such as and , produces an each time it recognizes a sound for any of its instances.
+/* debug [class_interface]: End interface */
 
-
-// A result that contains the highest-ranking classifications in a time range.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassificationResult
-type SNClassificationResult struct {
-	objectivec.Object
-}
-
-// SNClassificationResultFrom constructs a [SNClassificationResult] from an unsafe.Pointer.
-//
-// A result that contains the highest-ranking classifications in a time range.
-func SNClassificationResultFrom(ptr unsafe.Pointer) SNClassificationResult {
-	return SNClassificationResult{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SNClassificationResult */
 // Alloc allocates a new instance without initialization.
 func (sc _SNClassificationResultClass) Alloc() SNClassificationResult {
 	rv := objc.Send[SNClassificationResult](objc.ID(sc.class), objc.Sel("alloc"))
@@ -65,7 +60,6 @@ func (sc _SNClassificationResultClass) Alloc() SNClassificationResult {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SNClassificationResultClass) New() SNClassificationResult {
 	rv := objc.Send[SNClassificationResult](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,35 +83,71 @@ func NewSNClassificationResult() SNClassificationResult {
 	return getSNClassificationResultClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for SNClassificationResult */
+// A result that contains the highest-ranking classifications in a time range.
+//
+// An represents the predictions that a sound classification model made for a time span in an audio file or stream. Each result contains one or more classification predictions and a time range within the audio data. An audio analyzer, such as and , produces an each time it recognizes a sound for any of its instances.
+
+// A result that contains the highest-ranking classifications in a time range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassificationResult
+type SNClassificationResult struct {
+	objectivec.Object
+}
+
+// SNClassificationResultFrom constructs a [SNClassificationResult] from an unsafe.Pointer.
+//
+// A result that contains the highest-ranking classifications in a time range.
+func SNClassificationResultFrom(ptr unsafe.Pointer) SNClassificationResult {
+	return SNClassificationResult{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for SNClassificationResult */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for SNClassificationResult */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for SNClassificationResult */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for SNClassificationResult */
+
+// Returns the classification for an identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassificationResult/classification(forIdentifier:)
+func (s_ SNClassificationResult) ClassificationForIdentifier(identifier objc.IObject /* cross-framework: NSString */) ISNClassification {
+	rv := objc.Send[SNClassification](s_.ID, objc.Sel("classificationForIdentifier:"), identifier)
+	return rv
+} /* debug [instance_methods/method]: ClassificationForIdentifier */
+
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for SNClassificationResult */
 
 // A sorted array of the request’s top classification candidates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassificationResult/classifications
-func (s_ SNClassificationResult) Classifications() []ISNClassification {
+func (s_ SNClassificationResult) Classifications() []SNClassification {
 	rv := objc.Send[[]SNClassification](s_.ID, objc.Sel("classifications"))
 	return rv
-}
-
+} /* debug [instance_properties/getter]: classifications */
 
 // The time span that corresponds to the result’s classifications.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
-func (s_ SNClassificationResult) TimeRange() objc.IObject /* cross-framework: TimeRange */ {
-	rv := objc.Send[coremedia.TimeRange](s_.ID, objc.Sel("timeRange"))
+// [Full Topic]: https://developer.apple.com/documentation/SoundAnalysis/SNClassificationResult/timeRange
+func (s_ SNClassificationResult) TimeRange() TimeRange /* not a class type */ {
+	rv := objc.Send[TimeRange](s_.ID, objc.Sel("timeRange"))
 	return rv
-}
+} /* debug [instance_properties/getter]: timeRange */
 
+/* debug [instance_properties]: End instance properties */
 
-// The time span that corresponds to the result’s classifications.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/soundanalysis/snclassificationresult/timerange
-func (s_ SNClassificationResult) SetTimeRange(value objc.IObject /* cross-framework: TimeRange */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTimeRange:"), value)
-}
-
-
-
+/* debug [class.gen.go]: End class SNClassificationResult */

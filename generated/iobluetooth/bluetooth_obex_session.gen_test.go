@@ -13,11 +13,12 @@ var _ = iobluetooth.NewBluetoothOBEXSession
 // Initializes a Bluetooth-based OBEX Session using a Bluetooth device.
 func ExampleNewBluetoothOBEXSessionWithDeviceChannelID() {
 	_ = iobluetooth.NewBluetoothOBEXSessionWithDeviceChannelID(
-		iobluetooth.IOBluetoothDevice{}, // inDevice IOBluetoothDevice
+		iobluetooth.IOBluetoothDevice{},        // inDevice IOBluetoothDevice
 		iobluetooth.BluetoothRFCOMMChannelID{}, // inChannelID BluetoothRFCOMMChannelID
 	)
 	// Output:
 }
+
 // ExampleNewBluetoothOBEXSessionWithSDPServiceRecord demonstrates how to create a BluetoothOBEXSession instance using NewBluetoothOBEXSessionWithSDPServiceRecord.
 // Initializes a Bluetooth-based OBEX Session using an SDP service record.
 func ExampleNewBluetoothOBEXSessionWithSDPServiceRecord() {

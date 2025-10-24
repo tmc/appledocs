@@ -19,3 +19,4 @@ var shouldResetHistoryProtocol *objc.Protocol
 func init() {
 	shouldResetHistoryProtocol = objc.GetProtocol("shouldResetHistory")
 }
+

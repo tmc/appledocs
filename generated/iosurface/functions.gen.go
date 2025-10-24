@@ -2,6 +2,7 @@
 
 package iosurface
 
+/* debug [functions.gen.go]: Generating 51 functions for IOSurface */
 import (
 	"unsafe"
 
@@ -15,15 +16,14 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_IOSurfaceDecrementUseCount func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceIncrementUseCount func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceAlignProperty func(unsafe.Pointer, uintptr) uintptr
+	_IOSurfaceAlignProperty func(StringRef, uintptr) uintptr
 	_IOSurfaceAllowsPixelSizeCasting func(SurfaceRef) unsafe.Pointer
-	_IOSurfaceCopyAllValues func(SurfaceRef) unsafe.Pointer
-	_IOSurfaceCopyValue func(SurfaceRef, unsafe.Pointer) unsafe.Pointer
-	_IOSurfaceCreate func(unsafe.Pointer) SurfaceRef
+	_IOSurfaceCopyAllValues func(SurfaceRef) DictionaryRef
+	_IOSurfaceCopyValue func(SurfaceRef, StringRef) TypeRef
+	_IOSurfaceCreate func(DictionaryRef) SurfaceRef
 	_IOSurfaceCreateMachPort func(SurfaceRef) unsafe.Pointer
 	_IOSurfaceCreateXPCObject func(SurfaceRef) unsafe.Pointer
+	_IOSurfaceDecrementUseCount func(SurfaceRef)
 	_IOSurfaceGetAllocSize func(SurfaceRef) uintptr
 	_IOSurfaceGetBaseAddress func(SurfaceRef) unsafe.Pointer
 	_IOSurfaceGetBaseAddressOfPlane func(SurfaceRef, uintptr) unsafe.Pointer
@@ -40,32 +40,33 @@ var (
 	_IOSurfaceGetHeight func(SurfaceRef) uintptr
 	_IOSurfaceGetHeightOfPlane func(SurfaceRef, uintptr) uintptr
 	_IOSurfaceGetID func(SurfaceRef) SurfaceID
-	_IOSurfaceGetNameOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) unsafe.Pointer
+	_IOSurfaceGetNameOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) SurfaceComponentName
 	_IOSurfaceGetNumberOfComponentsOfPlane func(SurfaceRef, uintptr) uintptr
 	_IOSurfaceGetPixelFormat func(SurfaceRef) unsafe.Pointer
 	_IOSurfaceGetPlaneCount func(SurfaceRef) uintptr
-	_IOSurfaceGetPropertyAlignment func(unsafe.Pointer) uintptr
-	_IOSurfaceGetPropertyMaximum func(unsafe.Pointer) uintptr
-	_IOSurfaceGetRangeOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) unsafe.Pointer
+	_IOSurfaceGetPropertyAlignment func(StringRef) uintptr
+	_IOSurfaceGetPropertyMaximum func(StringRef) uintptr
+	_IOSurfaceGetRangeOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) SurfaceComponentRange
 	_IOSurfaceGetSeed func(SurfaceRef) uint32
-	_IOSurfaceGetSubsampling func(SurfaceRef) unsafe.Pointer
-	_IOSurfaceGetTypeID func() unsafe.Pointer
-	_IOSurfaceGetTypeOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) unsafe.Pointer
+	_IOSurfaceGetSubsampling func(SurfaceRef) SurfaceSubsampling
+	_IOSurfaceGetTypeID func() TypeID
+	_IOSurfaceGetTypeOfComponentOfPlane func(SurfaceRef, uintptr, uintptr) SurfaceComponentType
 	_IOSurfaceGetUseCount func(SurfaceRef) int32
 	_IOSurfaceGetWidth func(SurfaceRef) uintptr
 	_IOSurfaceGetWidthOfPlane func(SurfaceRef, uintptr) uintptr
+	_IOSurfaceIncrementUseCount func(SurfaceRef)
 	_IOSurfaceIsInUse func(SurfaceRef) unsafe.Pointer
-	_IOSurfaceLock func(SurfaceRef, unsafe.Pointer, []uint32) unsafe.Pointer
+	_IOSurfaceLock func(SurfaceRef, SurfaceLockOptions, []uint32) unsafe.Pointer
 	_IOSurfaceLookup func(SurfaceID) SurfaceRef
 	_IOSurfaceLookupFromMachPort func(unsafe.Pointer) SurfaceRef
 	_IOSurfaceLookupFromXPCObject func(unsafe.Pointer) SurfaceRef
 	_IOSurfaceRemoveAllValues func(SurfaceRef)
-	_IOSurfaceRemoveValue func(SurfaceRef, unsafe.Pointer)
+	_IOSurfaceRemoveValue func(SurfaceRef, StringRef)
 	_IOSurfaceSetOwnershipIdentity func(SurfaceRef, unsafe.Pointer, int, uint32) unsafe.Pointer
 	_IOSurfaceSetPurgeable func(SurfaceRef, uint32, []uint32) unsafe.Pointer
-	_IOSurfaceSetValue func(SurfaceRef, unsafe.Pointer, unsafe.Pointer)
-	_IOSurfaceSetValues func(SurfaceRef, unsafe.Pointer)
-	_IOSurfaceUnlock func(SurfaceRef, unsafe.Pointer, []uint32) unsafe.Pointer
+	_IOSurfaceSetValue func(SurfaceRef, StringRef, TypeRef)
+	_IOSurfaceSetValues func(SurfaceRef, DictionaryRef)
+	_IOSurfaceUnlock func(SurfaceRef, SurfaceLockOptions, []uint32) unsafe.Pointer
 )
 
 func init() {
@@ -73,8 +74,6 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
-	tryRegister(&_IOSurfaceDecrementUseCount, lib, "IOSurfaceDecrementUseCount")
-	tryRegister(&_IOSurfaceIncrementUseCount, lib, "IOSurfaceIncrementUseCount")
 	tryRegister(&_IOSurfaceAlignProperty, lib, "IOSurfaceAlignProperty")
 	tryRegister(&_IOSurfaceAllowsPixelSizeCasting, lib, "IOSurfaceAllowsPixelSizeCasting")
 	tryRegister(&_IOSurfaceCopyAllValues, lib, "IOSurfaceCopyAllValues")
@@ -82,6 +81,7 @@ func init() {
 	tryRegister(&_IOSurfaceCreate, lib, "IOSurfaceCreate")
 	tryRegister(&_IOSurfaceCreateMachPort, lib, "IOSurfaceCreateMachPort")
 	tryRegister(&_IOSurfaceCreateXPCObject, lib, "IOSurfaceCreateXPCObject")
+	tryRegister(&_IOSurfaceDecrementUseCount, lib, "IOSurfaceDecrementUseCount")
 	tryRegister(&_IOSurfaceGetAllocSize, lib, "IOSurfaceGetAllocSize")
 	tryRegister(&_IOSurfaceGetBaseAddress, lib, "IOSurfaceGetBaseAddress")
 	tryRegister(&_IOSurfaceGetBaseAddressOfPlane, lib, "IOSurfaceGetBaseAddressOfPlane")
@@ -112,6 +112,7 @@ func init() {
 	tryRegister(&_IOSurfaceGetUseCount, lib, "IOSurfaceGetUseCount")
 	tryRegister(&_IOSurfaceGetWidth, lib, "IOSurfaceGetWidth")
 	tryRegister(&_IOSurfaceGetWidthOfPlane, lib, "IOSurfaceGetWidthOfPlane")
+	tryRegister(&_IOSurfaceIncrementUseCount, lib, "IOSurfaceIncrementUseCount")
 	tryRegister(&_IOSurfaceIsInUse, lib, "IOSurfaceIsInUse")
 	tryRegister(&_IOSurfaceLock, lib, "IOSurfaceLock")
 	tryRegister(&_IOSurfaceLookup, lib, "IOSurfaceLookup")
@@ -140,28 +141,6 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
-// Decrements the per-process usage count for an .
-//
-// Added in macOS 10.6.
-// Decrements the per-process usage count for an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iosurface/1419377-iosurfacedecrementusecount
-func IOSurfaceDecrementUseCount(buffer unsafe.Pointer, p1 unsafe.Pointer) unsafe.Pointer {
-	return _IOSurfaceDecrementUseCount(buffer, p1)
-}
-
-// Increments the per-process usage count for an .
-//
-// Added in macOS 10.6.
-// Increments the per-process usage count for an .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/iosurface/1419455-iosurfaceincrementusecount
-func IOSurfaceIncrementUseCount(buffer unsafe.Pointer, p1 unsafe.Pointer) unsafe.Pointer {
-	return _IOSurfaceIncrementUseCount(buffer, p1)
-}
-
 // Returns the smallest aligned value greater than or equal to the specified value.
 //
 // Added in macOS 10.6.
@@ -169,9 +148,9 @@ func IOSurfaceIncrementUseCount(buffer unsafe.Pointer, p1 unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceAlignProperty(_:_:)
-func IOSurfaceAlignProperty(property unsafe.Pointer, value uintptr) uintptr {
+func IOSurfaceAlignProperty(property StringRef, value uintptr) uintptr {
 	return _IOSurfaceAlignProperty(property, value)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceAlignProperty */
 
 // IOSurfaceAllowsPixelSizeCasting is a IOSurface function.
 //
@@ -180,16 +159,16 @@ func IOSurfaceAlignProperty(property unsafe.Pointer, value uintptr) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceAllowsPixelSizeCasting(_:)
 func IOSurfaceAllowsPixelSizeCasting(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceAllowsPixelSizeCasting(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceAllowsPixelSizeCasting */
 
 // IOSurfaceCopyAllValues is a IOSurface function.
 //
 // Added in macOS 10.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCopyAllValues(_:)
-func IOSurfaceCopyAllValues(buffer SurfaceRef) unsafe.Pointer {
+func IOSurfaceCopyAllValues(buffer SurfaceRef) DictionaryRef {
 	return _IOSurfaceCopyAllValues(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceCopyAllValues */
 
 // Retrieves a value from the dictionary associated with the buffer.
 //
@@ -198,9 +177,9 @@ func IOSurfaceCopyAllValues(buffer SurfaceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCopyValue(_:_:)
-func IOSurfaceCopyValue(buffer SurfaceRef, key unsafe.Pointer) unsafe.Pointer {
+func IOSurfaceCopyValue(buffer SurfaceRef, key StringRef) TypeRef {
 	return _IOSurfaceCopyValue(buffer, key)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceCopyValue */
 
 // Creates a brand new IOSurface object
 //
@@ -209,9 +188,9 @@ func IOSurfaceCopyValue(buffer SurfaceRef, key unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCreate(_:)
-func IOSurfaceCreate(properties unsafe.Pointer) SurfaceRef {
+func IOSurfaceCreate(properties DictionaryRef) SurfaceRef {
 	return _IOSurfaceCreate(properties)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceCreate */
 
 // Returns a mach_port_t that holds a reference to the IOSurface.
 //
@@ -222,7 +201,7 @@ func IOSurfaceCreate(properties unsafe.Pointer) SurfaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCreateMachPort(_:)
 func IOSurfaceCreateMachPort(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceCreateMachPort(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceCreateMachPort */
 
 // Returns an xpc_object_t that holds a reference to the IOSurface.
 //
@@ -233,7 +212,18 @@ func IOSurfaceCreateMachPort(buffer SurfaceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceCreateXPCObject(_:)
 func IOSurfaceCreateXPCObject(aSurface SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceCreateXPCObject(aSurface)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceCreateXPCObject */
+
+// Decrements the per-process usage count for an .
+//
+// Added in macOS 10.6.
+// Decrements the per-process usage count for an .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceDecrementUseCount(_:)
+func IOSurfaceDecrementUseCount(buffer SurfaceRef) {
+	_IOSurfaceDecrementUseCount(buffer)
+}/* debug [functions.gen.go/function]: IOSurfaceDecrementUseCount */
 
 // Returns the total allocation size of the buffer including all planes.
 //
@@ -244,7 +234,7 @@ func IOSurfaceCreateXPCObject(aSurface SurfaceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetAllocSize(_:)
 func IOSurfaceGetAllocSize(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetAllocSize(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetAllocSize */
 
 // Returns the address of the first byte of data in a particular buffer.
 //
@@ -255,7 +245,7 @@ func IOSurfaceGetAllocSize(buffer SurfaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBaseAddress(_:)
 func IOSurfaceGetBaseAddress(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceGetBaseAddress(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetBaseAddress */
 
 // Returns the address of the first byte of data in the specified plane.
 //
@@ -266,7 +256,7 @@ func IOSurfaceGetBaseAddress(buffer SurfaceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBaseAddressOfPlane(_:_:)
 func IOSurfaceGetBaseAddressOfPlane(buffer SurfaceRef, planeIndex uintptr) unsafe.Pointer {
 	return _IOSurfaceGetBaseAddressOfPlane(buffer, planeIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetBaseAddressOfPlane */
 
 // IOSurfaceGetBitDepthOfComponentOfPlane is a IOSurface function.
 //
@@ -275,7 +265,7 @@ func IOSurfaceGetBaseAddressOfPlane(buffer SurfaceRef, planeIndex uintptr) unsaf
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBitDepthOfComponentOfPlane(_:_:_:)
 func IOSurfaceGetBitDepthOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) uintptr {
 	return _IOSurfaceGetBitDepthOfComponentOfPlane(buffer, planeIndex, componentIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetBitDepthOfComponentOfPlane */
 
 // IOSurfaceGetBitOffsetOfComponentOfPlane is a IOSurface function.
 //
@@ -284,7 +274,7 @@ func IOSurfaceGetBitDepthOfComponentOfPlane(buffer SurfaceRef, planeIndex uintpt
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBitOffsetOfComponentOfPlane(_:_:_:)
 func IOSurfaceGetBitOffsetOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) uintptr {
 	return _IOSurfaceGetBitOffsetOfComponentOfPlane(buffer, planeIndex, componentIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetBitOffsetOfComponentOfPlane */
 
 // Returns the length (in bytes) of each element in a particular buffer.
 //
@@ -295,7 +285,7 @@ func IOSurfaceGetBitOffsetOfComponentOfPlane(buffer SurfaceRef, planeIndex uintp
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBytesPerElement(_:)
 func IOSurfaceGetBytesPerElement(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetBytesPerElement(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetBytesPerElement */
 
 // Returns the size of each element (in bytes) in the specified plane.
 //
@@ -306,7 +296,7 @@ func IOSurfaceGetBytesPerElement(buffer SurfaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBytesPerElementOfPlane(_:_:)
 func IOSurfaceGetBytesPerElementOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetBytesPerElementOfPlane(buffer, planeIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetBytesPerElementOfPlane */
 
 // Returns the length (in bytes) of each row in a particular buffer.
 //
@@ -317,7 +307,7 @@ func IOSurfaceGetBytesPerElementOfPlane(buffer SurfaceRef, planeIndex uintptr) u
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBytesPerRow(_:)
 func IOSurfaceGetBytesPerRow(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetBytesPerRow(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetBytesPerRow */
 
 // Returns the size of each row (in bytes) in the specified plane.
 //
@@ -328,7 +318,7 @@ func IOSurfaceGetBytesPerRow(buffer SurfaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetBytesPerRowOfPlane(_:_:)
 func IOSurfaceGetBytesPerRowOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetBytesPerRowOfPlane(buffer, planeIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetBytesPerRowOfPlane */
 
 // Returns the height (in pixels) of each element in a particular buffer.
 //
@@ -339,7 +329,7 @@ func IOSurfaceGetBytesPerRowOfPlane(buffer SurfaceRef, planeIndex uintptr) uintp
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetElementHeight(_:)
 func IOSurfaceGetElementHeight(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetElementHeight(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetElementHeight */
 
 // Returns the height (in pixels) of each element in the specified plane.
 //
@@ -350,7 +340,7 @@ func IOSurfaceGetElementHeight(buffer SurfaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetElementHeightOfPlane(_:_:)
 func IOSurfaceGetElementHeightOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetElementHeightOfPlane(buffer, planeIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetElementHeightOfPlane */
 
 // Returns the width (in pixels) of each element in a particular buffer.
 //
@@ -361,7 +351,7 @@ func IOSurfaceGetElementHeightOfPlane(buffer SurfaceRef, planeIndex uintptr) uin
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetElementWidth(_:)
 func IOSurfaceGetElementWidth(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetElementWidth(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetElementWidth */
 
 // Returns the width (in pixels) of each element in the specified plane.
 //
@@ -372,7 +362,7 @@ func IOSurfaceGetElementWidth(buffer SurfaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetElementWidthOfPlane(_:_:)
 func IOSurfaceGetElementWidthOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetElementWidthOfPlane(buffer, planeIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetElementWidthOfPlane */
 
 // Returns the height of the IOSurface buffer in pixels.
 //
@@ -383,7 +373,7 @@ func IOSurfaceGetElementWidthOfPlane(buffer SurfaceRef, planeIndex uintptr) uint
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetHeight(_:)
 func IOSurfaceGetHeight(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetHeight(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetHeight */
 
 // Returns the height of the specified plane (in pixels).
 //
@@ -394,7 +384,7 @@ func IOSurfaceGetHeight(buffer SurfaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetHeightOfPlane(_:_:)
 func IOSurfaceGetHeightOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetHeightOfPlane(buffer, planeIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetHeightOfPlane */
 
 // Retrieves the unique value for an .
 //
@@ -405,16 +395,16 @@ func IOSurfaceGetHeightOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetID(_:)
 func IOSurfaceGetID(buffer SurfaceRef) SurfaceID {
 	return _IOSurfaceGetID(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetID */
 
 // IOSurfaceGetNameOfComponentOfPlane is a IOSurface function.
 //
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetNameOfComponentOfPlane(_:_:_:)
-func IOSurfaceGetNameOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
+func IOSurfaceGetNameOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) SurfaceComponentName {
 	return _IOSurfaceGetNameOfComponentOfPlane(buffer, planeIndex, componentIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetNameOfComponentOfPlane */
 
 // IOSurfaceGetNumberOfComponentsOfPlane is a IOSurface function.
 //
@@ -423,7 +413,7 @@ func IOSurfaceGetNameOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, c
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetNumberOfComponentsOfPlane(_:_:)
 func IOSurfaceGetNumberOfComponentsOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetNumberOfComponentsOfPlane(buffer, planeIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetNumberOfComponentsOfPlane */
 
 // Returns an unsigned integer that contains the traditional macOS buffer format.
 //
@@ -434,7 +424,7 @@ func IOSurfaceGetNumberOfComponentsOfPlane(buffer SurfaceRef, planeIndex uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetPixelFormat(_:)
 func IOSurfaceGetPixelFormat(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceGetPixelFormat(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetPixelFormat */
 
 // IOSurfaceGetPlaneCount is a IOSurface function.
 //
@@ -443,7 +433,7 @@ func IOSurfaceGetPixelFormat(buffer SurfaceRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetPlaneCount(_:)
 func IOSurfaceGetPlaneCount(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetPlaneCount(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetPlaneCount */
 
 // Returns the alignment requirements for a property (if any).
 //
@@ -452,9 +442,9 @@ func IOSurfaceGetPlaneCount(buffer SurfaceRef) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetPropertyAlignment(_:)
-func IOSurfaceGetPropertyAlignment(property unsafe.Pointer) uintptr {
+func IOSurfaceGetPropertyAlignment(property StringRef) uintptr {
 	return _IOSurfaceGetPropertyAlignment(property)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetPropertyAlignment */
 
 // Returns the maximum value for a given property that is guaranteed to be compatible with all of the current devices (GPUs, etc.) in the system.
 //
@@ -463,18 +453,18 @@ func IOSurfaceGetPropertyAlignment(property unsafe.Pointer) uintptr {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetPropertyMaximum(_:)
-func IOSurfaceGetPropertyMaximum(property unsafe.Pointer) uintptr {
+func IOSurfaceGetPropertyMaximum(property StringRef) uintptr {
 	return _IOSurfaceGetPropertyMaximum(property)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetPropertyMaximum */
 
 // IOSurfaceGetRangeOfComponentOfPlane is a IOSurface function.
 //
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetRangeOfComponentOfPlane(_:_:_:)
-func IOSurfaceGetRangeOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
+func IOSurfaceGetRangeOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) SurfaceComponentRange {
 	return _IOSurfaceGetRangeOfComponentOfPlane(buffer, planeIndex, componentIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetRangeOfComponentOfPlane */
 
 // IOSurfaceGetSeed is a IOSurface function.
 //
@@ -483,34 +473,34 @@ func IOSurfaceGetRangeOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, 
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetSeed(_:)
 func IOSurfaceGetSeed(buffer SurfaceRef) uint32 {
 	return _IOSurfaceGetSeed(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetSeed */
 
 // IOSurfaceGetSubsampling is a IOSurface function.
 //
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetSubsampling(_:)
-func IOSurfaceGetSubsampling(buffer SurfaceRef) unsafe.Pointer {
+func IOSurfaceGetSubsampling(buffer SurfaceRef) SurfaceSubsampling {
 	return _IOSurfaceGetSubsampling(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetSubsampling */
 
 // IOSurfaceGetTypeID is a IOSurface function.
 //
 // Added in macOS 10.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetTypeID()
-func IOSurfaceGetTypeID() unsafe.Pointer {
+func IOSurfaceGetTypeID() TypeID {
 	return _IOSurfaceGetTypeID()
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetTypeID */
 
 // IOSurfaceGetTypeOfComponentOfPlane is a IOSurface function.
 //
 // Added in macOS 10.13.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetTypeOfComponentOfPlane(_:_:_:)
-func IOSurfaceGetTypeOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) unsafe.Pointer {
+func IOSurfaceGetTypeOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, componentIndex uintptr) SurfaceComponentType {
 	return _IOSurfaceGetTypeOfComponentOfPlane(buffer, planeIndex, componentIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetTypeOfComponentOfPlane */
 
 // Returns the per-process usage count for an .
 //
@@ -521,7 +511,7 @@ func IOSurfaceGetTypeOfComponentOfPlane(buffer SurfaceRef, planeIndex uintptr, c
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetUseCount(_:)
 func IOSurfaceGetUseCount(buffer SurfaceRef) int32 {
 	return _IOSurfaceGetUseCount(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetUseCount */
 
 // Returns the width of the IOSurface buffer in pixels.
 //
@@ -532,7 +522,7 @@ func IOSurfaceGetUseCount(buffer SurfaceRef) int32 {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetWidth(_:)
 func IOSurfaceGetWidth(buffer SurfaceRef) uintptr {
 	return _IOSurfaceGetWidth(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetWidth */
 
 // Returns the width of the specified plane (in pixels).
 //
@@ -543,7 +533,18 @@ func IOSurfaceGetWidth(buffer SurfaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceGetWidthOfPlane(_:_:)
 func IOSurfaceGetWidthOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 	return _IOSurfaceGetWidthOfPlane(buffer, planeIndex)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceGetWidthOfPlane */
+
+// Increments the per-process usage count for an .
+//
+// Added in macOS 10.6.
+// Increments the per-process usage count for an .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceIncrementUseCount(_:)
+func IOSurfaceIncrementUseCount(buffer SurfaceRef) {
+	_IOSurfaceIncrementUseCount(buffer)
+}/* debug [functions.gen.go/function]: IOSurfaceIncrementUseCount */
 
 // Returns true of an IOSurface is in use by any process in the system, otherwise false.
 //
@@ -554,7 +555,7 @@ func IOSurfaceGetWidthOfPlane(buffer SurfaceRef, planeIndex uintptr) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceIsInUse(_:)
 func IOSurfaceIsInUse(buffer SurfaceRef) unsafe.Pointer {
 	return _IOSurfaceIsInUse(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceIsInUse */
 
 // “Lock” an IOSurface for reading or writing.
 //
@@ -563,9 +564,9 @@ func IOSurfaceIsInUse(buffer SurfaceRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLock(_:_:_:)
-func IOSurfaceLock(buffer SurfaceRef, options unsafe.Pointer, seed []uint32) unsafe.Pointer {
+func IOSurfaceLock(buffer SurfaceRef, options SurfaceLockOptions, seed []uint32) unsafe.Pointer {
 	return _IOSurfaceLock(buffer, options, seed)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceLock */
 
 // Performs an atomic lookup and retain of an IOSurface by its IOSurfaceID.
 //
@@ -576,7 +577,7 @@ func IOSurfaceLock(buffer SurfaceRef, options unsafe.Pointer, seed []uint32) uns
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLookup(_:)
 func IOSurfaceLookup(csid SurfaceID) SurfaceRef {
 	return _IOSurfaceLookup(csid)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceLookup */
 
 // Recreates an IOSurfaceRef from a mach port.
 //
@@ -587,7 +588,7 @@ func IOSurfaceLookup(csid SurfaceID) SurfaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLookupFromMachPort(_:)
 func IOSurfaceLookupFromMachPort(port unsafe.Pointer) SurfaceRef {
 	return _IOSurfaceLookupFromMachPort(port)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceLookupFromMachPort */
 
 // IOSurfaceLookupFromXPCObject is a IOSurface function.
 //
@@ -596,7 +597,7 @@ func IOSurfaceLookupFromMachPort(port unsafe.Pointer) SurfaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceLookupFromXPCObject(_:)
 func IOSurfaceLookupFromXPCObject(xobj unsafe.Pointer) SurfaceRef {
 	return _IOSurfaceLookupFromXPCObject(xobj)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceLookupFromXPCObject */
 
 // IOSurfaceRemoveAllValues is a IOSurface function.
 //
@@ -605,7 +606,7 @@ func IOSurfaceLookupFromXPCObject(xobj unsafe.Pointer) SurfaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceRemoveAllValues(_:)
 func IOSurfaceRemoveAllValues(buffer SurfaceRef) {
 	_IOSurfaceRemoveAllValues(buffer)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceRemoveAllValues */
 
 // Deletes a value in the dictionary associated with the buffer.
 //
@@ -614,9 +615,9 @@ func IOSurfaceRemoveAllValues(buffer SurfaceRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceRemoveValue(_:_:)
-func IOSurfaceRemoveValue(buffer SurfaceRef, key unsafe.Pointer) {
+func IOSurfaceRemoveValue(buffer SurfaceRef, key StringRef) {
 	_IOSurfaceRemoveValue(buffer, key)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceRemoveValue */
 
 // IOSurfaceSetOwnershipIdentity is a IOSurface function.
 //
@@ -625,7 +626,7 @@ func IOSurfaceRemoveValue(buffer SurfaceRef, key unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetOwnershipIdentity(_:_:_:_:)
 func IOSurfaceSetOwnershipIdentity(buffer SurfaceRef, task_id_token unsafe.Pointer, newLedgerTag int, newLedgerOptions uint32) unsafe.Pointer {
 	return _IOSurfaceSetOwnershipIdentity(buffer, task_id_token, newLedgerTag, newLedgerOptions)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceSetOwnershipIdentity */
 
 // IOSurfaceSetPurgeable is a IOSurface function.
 //
@@ -634,7 +635,7 @@ func IOSurfaceSetOwnershipIdentity(buffer SurfaceRef, task_id_token unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetPurgeable(_:_:_:)
 func IOSurfaceSetPurgeable(buffer SurfaceRef, newState uint32, oldState []uint32) unsafe.Pointer {
 	return _IOSurfaceSetPurgeable(buffer, newState, oldState)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceSetPurgeable */
 
 // Sets a value in the dictionary associated with the buffer.
 //
@@ -643,18 +644,18 @@ func IOSurfaceSetPurgeable(buffer SurfaceRef, newState uint32, oldState []uint32
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetValue(_:_:_:)
-func IOSurfaceSetValue(buffer SurfaceRef, key unsafe.Pointer, value unsafe.Pointer) {
+func IOSurfaceSetValue(buffer SurfaceRef, key StringRef, value TypeRef) {
 	_IOSurfaceSetValue(buffer, key, value)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceSetValue */
 
 // IOSurfaceSetValues is a IOSurface function.
 //
 // Added in macOS 10.6.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceSetValues(_:_:)
-func IOSurfaceSetValues(buffer SurfaceRef, keysAndValues unsafe.Pointer) {
+func IOSurfaceSetValues(buffer SurfaceRef, keysAndValues DictionaryRef) {
 	_IOSurfaceSetValues(buffer, keysAndValues)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceSetValues */
 
 // “Unlock” an for reading or writing.
 //
@@ -663,9 +664,10 @@ func IOSurfaceSetValues(buffer SurfaceRef, keysAndValues unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOSurface/IOSurfaceUnlock(_:_:_:)
-func IOSurfaceUnlock(buffer SurfaceRef, options unsafe.Pointer, seed []uint32) unsafe.Pointer {
+func IOSurfaceUnlock(buffer SurfaceRef, options SurfaceLockOptions, seed []uint32) unsafe.Pointer {
 	return _IOSurfaceUnlock(buffer, options, seed)
-}
+}/* debug [functions.gen.go/function]: IOSurfaceUnlock */
+
 
 
 

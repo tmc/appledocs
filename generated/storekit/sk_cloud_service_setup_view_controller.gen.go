@@ -7,9 +7,11 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class SKCloudServiceSetupViewController */
+
+/* debug [class_header]: Header for SKCloudServiceSetupViewController */
 // The class instance for the [CloudServiceSetupViewController] class.
 var (
 	CloudServiceSetupViewControllerClass     _CloudServiceSetupViewControllerClass
@@ -27,35 +29,26 @@ type _CloudServiceSetupViewControllerClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for CloudServiceSetupViewController */
 // An interface definition for the [CloudServiceSetupViewController] class.
 type ICloudServiceSetupViewController interface {
-	appkit.IViewController
+	IViewController
+
+	/* debug [class_interface_properties]: Properties for CloudServiceSetupViewController */
 	// properties:
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for CloudServiceSetupViewController */
 	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
-//
-// Use the view that this view controller presents to allow customers to set up cloud services that are associated with their iTunes Store account, like an Apple Music subscription. To enable the Apple Music subscriber setup flow in particular, you first request the current set of capabilities from . Then, present the setup view controller only when the capability is enabled and the capability is disabled. For information about other capabilities that you can enable by using this view controller, see .
+/* debug [class_interface]: End interface */
 
-
-// A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceSetupViewController
-type CloudServiceSetupViewController struct {
-	appkit.ViewController
-}
-
-// CloudServiceSetupViewControllerFrom constructs a [CloudServiceSetupViewController] from an unsafe.Pointer.
-//
-// A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
-func CloudServiceSetupViewControllerFrom(ptr unsafe.Pointer) CloudServiceSetupViewController {
-	return CloudServiceSetupViewController{
-		ViewController: appkit.ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CloudServiceSetupViewController */
 // Alloc allocates a new instance without initialization.
 func (cc _CloudServiceSetupViewControllerClass) Alloc() CloudServiceSetupViewController {
 	rv := objc.Send[CloudServiceSetupViewController](objc.ID(cc.class), objc.Sel("alloc"))
@@ -63,7 +56,6 @@ func (cc _CloudServiceSetupViewControllerClass) Alloc() CloudServiceSetupViewCon
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CloudServiceSetupViewControllerClass) New() CloudServiceSetupViewController {
 	rv := objc.Send[CloudServiceSetupViewController](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,5 +79,44 @@ func NewCloudServiceSetupViewController() CloudServiceSetupViewController {
 	return getCloudServiceSetupViewControllerClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
 
+/* debug [class_struct]: Struct for CloudServiceSetupViewController */
+// A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
+//
+// Use the view that this view controller presents to allow customers to set up cloud services that are associated with their iTunes Store account, like an Apple Music subscription. To enable the Apple Music subscriber setup flow in particular, you first request the current set of capabilities from . Then, present the setup view controller only when the capability is enabled and the capability is disabled. For information about other capabilities that you can enable by using this view controller, see .
 
+// A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/StoreKit/SKCloudServiceSetupViewController
+type CloudServiceSetupViewController struct {
+	ViewController
+}
+
+// CloudServiceSetupViewControllerFrom constructs a [CloudServiceSetupViewController] from an unsafe.Pointer.
+//
+// A view controller that helps people perform setup for a cloud service, like an Apple Music subscription.
+func CloudServiceSetupViewControllerFrom(ptr unsafe.Pointer) CloudServiceSetupViewController {
+	return CloudServiceSetupViewController{
+		ViewController: ViewControllerFrom(ptr),
+	}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for CloudServiceSetupViewController */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for CloudServiceSetupViewController */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for CloudServiceSetupViewController */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for CloudServiceSetupViewController */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for CloudServiceSetupViewController */
+/* debug [instance_properties]: End instance properties */
+
+/* debug [class.gen.go]: End class SKCloudServiceSetupViewController */

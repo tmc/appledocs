@@ -36,7 +36,6 @@ type IViewController interface {
 
 // A parent class referenced by other CoreAudioKit classes.
 
-
 // A parent class referenced by other CoreAudioKit classes. [Full Topic]
 type ViewController struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (v_ ViewController) Autorelease() ViewController {
 func NewViewController() ViewController {
 	return getViewControllerClass().New()
 }
-
-
-
-

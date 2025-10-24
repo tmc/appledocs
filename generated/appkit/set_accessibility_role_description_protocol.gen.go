@@ -15,3 +15,4 @@ var setAccessibilityRoleDescriptionProtocol *objc.Protocol
 func init() {
 	setAccessibilityRoleDescriptionProtocol = objc.GetProtocol("setAccessibilityRoleDescription")
 }
+

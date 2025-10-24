@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class TKTokenSession */
+
+
+/* debug [class_header]: Header for TKTokenSession */
 // The class instance for the [TKTokenSession] class.
 var (
 	TKTokenSessionClass     _TKTokenSessionClass
@@ -26,37 +30,33 @@ func getTKTokenSessionClass() _TKTokenSessionClass {
 type _TKTokenSessionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TKTokenSession */
 // An interface definition for the [TKTokenSession] class.
 type ITKTokenSession interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for TKTokenSession */
 	// properties:
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
+	Delegate() unsafe.Pointer
+	SetDelegate(value unsafe.Pointer)
 	Token() ITKToken
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TKTokenSession */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A token session that manages the authentication state of a token.
-//
-// A token session communicates with its delegate to perform operations with its token that are bound to the authentication state. A session is always instantiated by a instance through the token’s delegate when the framework detects access to the token from a new authentication session.
+/* debug [class_interface]: End interface */
 
 
-// A token session that manages the authentication state of a token.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession
-type TKTokenSession struct {
-	objectivec.Object
-}
 
-// TKTokenSessionFrom constructs a [TKTokenSession] from an unsafe.Pointer.
-//
-// A token session that manages the authentication state of a token.
-func TKTokenSessionFrom(ptr unsafe.Pointer) TKTokenSession {
-	return TKTokenSession{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for TKTokenSession */
 // Alloc allocates a new instance without initialization.
 func (tc _TKTokenSessionClass) Alloc() TKTokenSession {
 	rv := objc.Send[TKTokenSession](objc.ID(tc.class), objc.Sel("alloc"))
@@ -64,7 +64,6 @@ func (tc _TKTokenSessionClass) Alloc() TKTokenSession {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TKTokenSessionClass) New() TKTokenSession {
 	rv := objc.Send[TKTokenSession](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,8 +86,35 @@ func (t_ TKTokenSession) Autorelease() TKTokenSession {
 func NewTKTokenSession() TKTokenSession {
 	return getTKTokenSessionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for TKTokenSession */
+// A token session that manages the authentication state of a token.
+//
+// A token session communicates with its delegate to perform operations with its token that are bound to the authentication state. A session is always instantiated by a instance through the token’s delegate when the framework detects access to the token from a new authentication session.
+
+
+// A token session that manages the authentication state of a token.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession
+type TKTokenSession struct {
+	objectivec.Object
+}
+
+// TKTokenSessionFrom constructs a [TKTokenSession] from an unsafe.Pointer.
+//
+// A token session that manages the authentication state of a token.
+func TKTokenSessionFrom(ptr unsafe.Pointer) TKTokenSession {
+	return TKTokenSession{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TKTokenSession */
 
 // Initializes a token session with the specified token.
 //
@@ -99,27 +125,46 @@ func NewTKTokenSessionWithToken(token ITKToken) TKTokenSession {
 	rv := objc.Send[TKTokenSession](instance.ID, objc.Sel("initWithToken:"), token)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewTKTokenSessionWithToken */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for TKTokenSession */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TKTokenSession */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TKTokenSession */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TKTokenSession */
 
 // The token session delegate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/delegate
-func (t_ TKTokenSession) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
+func (t_ TKTokenSession) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: delegate */
 
 
 // The token session delegate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CryptoTokenKit/TKTokenSession/delegate
-func (t_ TKTokenSession) SetDelegate(value objc.ID) {
+func (t_ TKTokenSession) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
-}
+}/* debug [instance_properties/setter]: delegate */
 
 
 // The token to which the session is bound.
@@ -129,6 +174,11 @@ func (t_ TKTokenSession) SetDelegate(value objc.ID) {
 func (t_ TKTokenSession) Token() ITKToken {
 	rv := objc.Send[TKToken](t_.ID, objc.Sel("token"))
 	return rv
-}
+}/* debug [instance_properties/getter]: token */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class TKTokenSession */
 
 

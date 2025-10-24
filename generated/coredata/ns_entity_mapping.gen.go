@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -59,7 +59,6 @@ type IEntityMapping interface {
 
 // A mapping instance that specifies how to map an entity from a source to a destination managed object model.
 
-
 // A mapping instance that specifies how to map an entity from a source to a destination managed object model.
 //
 // [Full Topic]
@@ -106,8 +105,6 @@ func NewEntityMapping() EntityMapping {
 	return getEntityMappingClass().New()
 }
 
-
-
 // The mapping type for the entity mapping.
 //
 // [Full Topic]
@@ -117,7 +114,6 @@ func (e_ EntityMapping) MappingType() EntityMappingType {
 	return rv
 }
 
-
 // The mapping type for the entity mapping.
 //
 // [Full Topic]
@@ -125,7 +121,6 @@ func (e_ EntityMapping) MappingType() EntityMappingType {
 func (e_ EntityMapping) SetMappingType(value EntityMappingType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setMappingType:"), value)
 }
-
 
 // The array of attribute mappings for the entity mapping.
 //
@@ -136,7 +131,6 @@ func (e_ EntityMapping) AttributeMappings() IPropertyMapping {
 	return rv
 }
 
-
 // The array of attribute mappings for the entity mapping.
 //
 // [Full Topic]
@@ -144,7 +138,6 @@ func (e_ EntityMapping) AttributeMappings() IPropertyMapping {
 func (e_ EntityMapping) SetAttributeMappings(value IPropertyMapping) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAttributeMappings:"), value)
 }
-
 
 // The destination entity name for the entity mapping.
 //
@@ -155,7 +148,6 @@ func (e_ EntityMapping) DestinationEntityName() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // The destination entity name for the entity mapping.
 //
 // [Full Topic]
@@ -163,7 +155,6 @@ func (e_ EntityMapping) DestinationEntityName() objc.IObject /* cross-framework:
 func (e_ EntityMapping) SetDestinationEntityName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDestinationEntityName:"), value)
 }
-
 
 // The version hash for the destination entity for the entity mapping.
 //
@@ -174,7 +165,6 @@ func (e_ EntityMapping) DestinationEntityVersionHash() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // The version hash for the destination entity for the entity mapping.
 //
 // [Full Topic]
@@ -182,7 +172,6 @@ func (e_ EntityMapping) DestinationEntityVersionHash() objc.IObject /* cross-fra
 func (e_ EntityMapping) SetDestinationEntityVersionHash(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setDestinationEntityVersionHash:"), value)
 }
-
 
 // The class name of the migration policy for the entity mapping.
 //
@@ -193,7 +182,6 @@ func (e_ EntityMapping) EntityMigrationPolicyClassName() objc.IObject /* cross-f
 	return rv
 }
 
-
 // The class name of the migration policy for the entity mapping.
 //
 // [Full Topic]
@@ -201,7 +189,6 @@ func (e_ EntityMapping) EntityMigrationPolicyClassName() objc.IObject /* cross-f
 func (e_ EntityMapping) SetEntityMigrationPolicyClassName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setEntityMigrationPolicyClassName:"), value)
 }
-
 
 // The name of the entity mapping.
 //
@@ -212,7 +199,6 @@ func (e_ EntityMapping) Name() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The name of the entity mapping.
 //
 // [Full Topic]
@@ -220,7 +206,6 @@ func (e_ EntityMapping) Name() objc.IObject /* cross-framework: NSString */ {
 func (e_ EntityMapping) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
-
 
 // The array of relationship mappings for the entity mapping.
 //
@@ -231,7 +216,6 @@ func (e_ EntityMapping) RelationshipMappings() IPropertyMapping {
 	return rv
 }
 
-
 // The array of relationship mappings for the entity mapping.
 //
 // [Full Topic]
@@ -239,7 +223,6 @@ func (e_ EntityMapping) RelationshipMappings() IPropertyMapping {
 func (e_ EntityMapping) SetRelationshipMappings(value IPropertyMapping) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setRelationshipMappings:"), value)
 }
-
 
 // The source entity name for the entity mapping.
 //
@@ -250,7 +233,6 @@ func (e_ EntityMapping) SourceEntityName() objc.IObject /* cross-framework: NSSt
 	return rv
 }
 
-
 // The source entity name for the entity mapping.
 //
 // [Full Topic]
@@ -258,7 +240,6 @@ func (e_ EntityMapping) SourceEntityName() objc.IObject /* cross-framework: NSSt
 func (e_ EntityMapping) SetSourceEntityName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceEntityName:"), value)
 }
-
 
 // The version hash of the source entity for the entity mapping.
 //
@@ -269,7 +250,6 @@ func (e_ EntityMapping) SourceEntityVersionHash() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The version hash of the source entity for the entity mapping.
 //
 // [Full Topic]
@@ -277,7 +257,6 @@ func (e_ EntityMapping) SourceEntityVersionHash() objc.IObject /* cross-framewor
 func (e_ EntityMapping) SetSourceEntityVersionHash(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceEntityVersionHash:"), value)
 }
-
 
 // The source expression for the entity mapping.
 //
@@ -288,7 +267,6 @@ func (e_ EntityMapping) SourceExpression() objc.IObject /* cross-framework: Expr
 	return rv
 }
 
-
 // The source expression for the entity mapping.
 //
 // [Full Topic]
@@ -296,7 +274,6 @@ func (e_ EntityMapping) SourceExpression() objc.IObject /* cross-framework: Expr
 func (e_ EntityMapping) SetSourceExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSourceExpression:"), value)
 }
-
 
 // The user info dictionary for the entity mapping.
 //
@@ -307,7 +284,6 @@ func (e_ EntityMapping) UserInfo() unsafe.Pointer {
 	return rv
 }
 
-
 // The user info dictionary for the entity mapping.
 //
 // [Full Topic]
@@ -315,6 +291,3 @@ func (e_ EntityMapping) UserInfo() unsafe.Pointer {
 func (e_ EntityMapping) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUserInfo:"), value)
 }
-
-
-

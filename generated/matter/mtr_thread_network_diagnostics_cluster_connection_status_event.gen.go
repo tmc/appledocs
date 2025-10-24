@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +36,6 @@ type IMTRThreadNetworkDiagnosticsClusterConnectionStatusEvent interface {
 	SetConnectionStatus(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent
@@ -81,8 +79,6 @@ func NewMTRThreadNetworkDiagnosticsClusterConnectionStatusEvent() MTRThreadNetwo
 	return getMTRThreadNetworkDiagnosticsClusterConnectionStatusEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
 func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStatus() objc.IObject /* cross-framework: NSNumber */ {
@@ -90,12 +86,8 @@ func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) ConnectionStat
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterconnectionstatusevent/connectionstatus
 func (m_ MTRThreadNetworkDiagnosticsClusterConnectionStatusEvent) SetConnectionStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnectionStatus:"), value)
 }
-
-
-

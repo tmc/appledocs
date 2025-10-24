@@ -3,9 +3,10 @@
 package appkit
 
 import (
-	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // PAnimatablePropertyContainer is the NSAnimatablePropertyContainer protocol interface.
@@ -21,6 +22,6 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAnimatablePropertyContainer
 type PAnimatablePropertyContainer interface {
 	// Required methods
-	AnimationForKey(key objc.IObject /* cross-framework: AnimatablePropertyKey */) objc.ID
-	Animator() unsafe.Pointer
+	AnimationForKey(key AnimatablePropertyKey /* typedef */) objc.ID/* debug [protocol_interface/required_method]: AnimationForKey */
+	Animator() objectivec.IObject/* debug [protocol_interface/required_method]: Animator */
 }

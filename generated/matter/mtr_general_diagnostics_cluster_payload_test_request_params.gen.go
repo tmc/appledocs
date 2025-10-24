@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
+
+
+/* debug [class_header]: Header for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
 // The class instance for the [MTRGeneralDiagnosticsClusterPayloadTestRequestParams] class.
 var (
 	MTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass     _MTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass
@@ -27,37 +31,40 @@ func getMTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass() _MTRGeneralD
 type _MTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
 // An interface definition for the [MTRGeneralDiagnosticsClusterPayloadTestRequestParams] class.
 type IMTRGeneralDiagnosticsClusterPayloadTestRequestParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
 	// properties:
-	Count() objc.IObject /* cross-framework: NSNumber */
-	SetCount(value objc.IObject /* cross-framework: NSNumber */)
 	EnableKey() objc.IObject /* cross-framework: NSData */
 	SetEnableKey(value objc.IObject /* cross-framework: NSData */)
-	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
-	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
 	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+	Count() objc.IObject /* cross-framework: NSNumber */
+	SetCount(value objc.IObject /* cross-framework: NSNumber */)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
 	Value() objc.IObject /* cross-framework: NSNumber */
 	SetValue(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams
-type MTRGeneralDiagnosticsClusterPayloadTestRequestParams struct {
-	objectivec.Object
-}
-
-// MTRGeneralDiagnosticsClusterPayloadTestRequestParamsFrom constructs a [MTRGeneralDiagnosticsClusterPayloadTestRequestParams] from an unsafe.Pointer.
-func MTRGeneralDiagnosticsClusterPayloadTestRequestParamsFrom(ptr unsafe.Pointer) MTRGeneralDiagnosticsClusterPayloadTestRequestParams {
-	return MTRGeneralDiagnosticsClusterPayloadTestRequestParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass) Alloc() MTRGeneralDiagnosticsClusterPayloadTestRequestParams {
 	rv := objc.Send[MTRGeneralDiagnosticsClusterPayloadTestRequestParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -65,7 +72,6 @@ func (mc _MTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass) Alloc() MTR
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass) New() MTRGeneralDiagnosticsClusterPayloadTestRequestParams {
 	rv := objc.Send[MTRGeneralDiagnosticsClusterPayloadTestRequestParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,56 +94,61 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Autorelease() MTR
 func NewMTRGeneralDiagnosticsClusterPayloadTestRequestParams() MTRGeneralDiagnosticsClusterPayloadTestRequestParams {
 	return getMTRGeneralDiagnosticsClusterPayloadTestRequestParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/count
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("count"))
-	return rv
-}
+/* debug [class_struct]: Struct for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/count
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams
+type MTRGeneralDiagnosticsClusterPayloadTestRequestParams struct {
+	objectivec.Object
 }
 
+// MTRGeneralDiagnosticsClusterPayloadTestRequestParamsFrom constructs a [MTRGeneralDiagnosticsClusterPayloadTestRequestParams] from an unsafe.Pointer.
+func MTRGeneralDiagnosticsClusterPayloadTestRequestParamsFrom(ptr unsafe.Pointer) MTRGeneralDiagnosticsClusterPayloadTestRequestParams {
+	return MTRGeneralDiagnosticsClusterPayloadTestRequestParams{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRGeneralDiagnosticsClusterPayloadTestRequestParams *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/enableKey
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) EnableKey() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("enableKey"))
 	return rv
-}
+}/* debug [instance_properties/getter]: enableKey */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/enableKey
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetEnableKey(value objc.IObject /* cross-framework: NSData */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnableKey:"), value)
-}
-
-
-// Controls how much time, in seconds, we will allow for the server to process the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/serverSideProcessingTimeout
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
-
-
-// Controls how much time, in seconds, we will allow for the server to process the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/serverSideProcessingTimeout
-func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
+}/* debug [instance_properties/setter]: enableKey */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
@@ -147,7 +158,7 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProc
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timedInvokeTimeoutMs */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
@@ -156,22 +167,61 @@ func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) TimedInvokeTimeou
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/timedInvokeTimeoutMs
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
+}/* debug [instance_properties/setter]: timedInvokeTimeoutMs */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/value
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterpayloadtestrequestparams/count
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Count() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("count"))
+	return rv
+}/* debug [instance_properties/getter]: count */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterpayloadtestrequestparams/count
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetCount(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCount:"), value)
+}/* debug [instance_properties/setter]: count */
+
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterpayloadtestrequestparams/serversideprocessingtimeout
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}/* debug [instance_properties/getter]: serverSideProcessingTimeout */
+
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterpayloadtestrequestparams/serversideprocessingtimeout
+func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}/* debug [instance_properties/setter]: serverSideProcessingTimeout */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterpayloadtestrequestparams/value
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) Value() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: value */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterPayloadTestRequestParams/value
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusterpayloadtestrequestparams/value
 func (m_ MTRGeneralDiagnosticsClusterPayloadTestRequestParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
-}
+}/* debug [instance_properties/setter]: value */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRGeneralDiagnosticsClusterPayloadTestRequestParams */
 
 
 

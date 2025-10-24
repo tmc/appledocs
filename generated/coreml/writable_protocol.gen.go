@@ -21,3 +21,4 @@ var WritableProtocol *objc.Protocol
 func init() {
 	WritableProtocol = objc.GetProtocol("MLWritable")
 }
+

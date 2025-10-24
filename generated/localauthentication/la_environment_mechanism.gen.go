@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class LAEnvironmentMechanism */
+
+
+/* debug [class_header]: Header for LAEnvironmentMechanism */
 // The class instance for the [EnvironmentMechanism] class.
 var (
 	EnvironmentMechanismClass     _EnvironmentMechanismClass
@@ -27,30 +31,33 @@ func getEnvironmentMechanismClass() _EnvironmentMechanismClass {
 type _EnvironmentMechanismClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EnvironmentMechanism */
 // An interface definition for the [EnvironmentMechanism] class.
 type IEnvironmentMechanism interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for EnvironmentMechanism */
 	// properties:
 	IconSystemName() objc.IObject /* cross-framework: NSString */
 	IsUsable() bool
 	LocalizedName() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EnvironmentMechanism */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism
-type EnvironmentMechanism struct {
-	objectivec.Object
-}
-
-// EnvironmentMechanismFrom constructs a [EnvironmentMechanism] from an unsafe.Pointer.
-func EnvironmentMechanismFrom(ptr unsafe.Pointer) EnvironmentMechanism {
-	return EnvironmentMechanism{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for EnvironmentMechanism */
 // Alloc allocates a new instance without initialization.
 func (ec _EnvironmentMechanismClass) Alloc() EnvironmentMechanism {
 	rv := objc.Send[EnvironmentMechanism](objc.ID(ec.class), objc.Sel("alloc"))
@@ -58,7 +65,6 @@ func (ec _EnvironmentMechanismClass) Alloc() EnvironmentMechanism {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EnvironmentMechanismClass) New() EnvironmentMechanism {
 	rv := objc.Send[EnvironmentMechanism](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,8 +87,47 @@ func (e_ EnvironmentMechanism) Autorelease() EnvironmentMechanism {
 func NewEnvironmentMechanism() EnvironmentMechanism {
 	return getEnvironmentMechanismClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for EnvironmentMechanism */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LAEnvironment/Mechanism
+type EnvironmentMechanism struct {
+	objectivec.Object
+}
+
+// EnvironmentMechanismFrom constructs a [EnvironmentMechanism] from an unsafe.Pointer.
+func EnvironmentMechanismFrom(ptr unsafe.Pointer) EnvironmentMechanism {
+	return EnvironmentMechanism{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EnvironmentMechanism *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for EnvironmentMechanism */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EnvironmentMechanism */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EnvironmentMechanism */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EnvironmentMechanism */
 
 // Name of the SF Symbol representing this authentication mechanism.
 //
@@ -91,7 +136,7 @@ func NewEnvironmentMechanism() EnvironmentMechanism {
 func (e_ EnvironmentMechanism) IconSystemName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("iconSystemName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: iconSystemName */
 
 
 // [Full Topic]
@@ -99,7 +144,7 @@ func (e_ EnvironmentMechanism) IconSystemName() objc.IObject /* cross-framework:
 func (e_ EnvironmentMechanism) IsUsable() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isUsable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isUsable */
 
 
 // The localized name of the authentication mechanism, e.g. “Touch ID”, “Face ID” etc.
@@ -109,7 +154,12 @@ func (e_ EnvironmentMechanism) IsUsable() bool {
 func (e_ EnvironmentMechanism) LocalizedName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("localizedName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localizedName */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class LAEnvironmentMechanism */
 
 
 

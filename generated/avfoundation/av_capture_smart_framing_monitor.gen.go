@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureSmartFramingMonitor */
+
+
+/* debug [class_header]: Header for AVCaptureSmartFramingMonitor */
 // The class instance for the [CaptureSmartFramingMonitor] class.
 var (
 	CaptureSmartFramingMonitorClass     _CaptureSmartFramingMonitorClass
@@ -26,46 +30,36 @@ func getCaptureSmartFramingMonitorClass() _CaptureSmartFramingMonitorClass {
 type _CaptureSmartFramingMonitorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureSmartFramingMonitor */
 // An interface definition for the [CaptureSmartFramingMonitor] class.
 type ICaptureSmartFramingMonitor interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CaptureSmartFramingMonitor */
 	// properties:
 	SmartFramingMonitor() IAVCaptureSmartFramingMonitor
 	SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor)
 	VideoZoomFactor() float64
 	SetVideoZoomFactor(value float64)
-	EnabledFramings() objc.IObject /* cross-framework: CaptureFraming */
-	SetEnabledFramings(value objc.IObject /* cross-framework: CaptureFraming */)
 	IsMonitoring() bool
 	SetIsMonitoring(value bool)
-	RecommendedFraming() objc.IObject /* cross-framework: CaptureFraming */
-	SetRecommendedFraming(value objc.IObject /* cross-framework: CaptureFraming */)
-	SupportedFramings() objc.IObject /* cross-framework: CaptureFraming */
-	SetSupportedFramings(value objc.IObject /* cross-framework: CaptureFraming */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureSmartFramingMonitor */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object associated with a capture device that monitors the scene and suggests an optimal framing.
-//
-// A smart framing monitor observes its associated device for objects of interest entering and exiting the camera’s field of view and recommends an optimal framing for good photographic composition. This framing recommendation consists of an aspect ratio and zoom factor. You may respond to the device’s framing recommendation by calling and setting on the associated device in whatever order best matches your animation between old and new framings.
+/* debug [class_interface]: End interface */
 
 
-// An object associated with a capture device that monitors the scene and suggests an optimal framing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSmartFramingMonitor
-type CaptureSmartFramingMonitor struct {
-	objectivec.Object
-}
 
-// CaptureSmartFramingMonitorFrom constructs a [CaptureSmartFramingMonitor] from an unsafe.Pointer.
-//
-// An object associated with a capture device that monitors the scene and suggests an optimal framing.
-func CaptureSmartFramingMonitorFrom(ptr unsafe.Pointer) CaptureSmartFramingMonitor {
-	return CaptureSmartFramingMonitor{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CaptureSmartFramingMonitor */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureSmartFramingMonitorClass) Alloc() CaptureSmartFramingMonitor {
 	rv := objc.Send[CaptureSmartFramingMonitor](objc.ID(cc.class), objc.Sel("alloc"))
@@ -73,7 +67,6 @@ func (cc _CaptureSmartFramingMonitorClass) Alloc() CaptureSmartFramingMonitor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureSmartFramingMonitorClass) New() CaptureSmartFramingMonitor {
 	rv := objc.Send[CaptureSmartFramingMonitor](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -96,8 +89,54 @@ func (c_ CaptureSmartFramingMonitor) Autorelease() CaptureSmartFramingMonitor {
 func NewCaptureSmartFramingMonitor() CaptureSmartFramingMonitor {
 	return getCaptureSmartFramingMonitorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CaptureSmartFramingMonitor */
+// An object associated with a capture device that monitors the scene and suggests an optimal framing.
+//
+// A smart framing monitor observes its associated device for objects of interest entering and exiting the camera’s field of view and recommends an optimal framing for good photographic composition. This framing recommendation consists of an aspect ratio and zoom factor. You may respond to the device’s framing recommendation by calling and setting on the associated device in whatever order best matches your animation between old and new framings.
+
+
+// An object associated with a capture device that monitors the scene and suggests an optimal framing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSmartFramingMonitor
+type CaptureSmartFramingMonitor struct {
+	objectivec.Object
+}
+
+// CaptureSmartFramingMonitorFrom constructs a [CaptureSmartFramingMonitor] from an unsafe.Pointer.
+//
+// An object associated with a capture device that monitors the scene and suggests an optimal framing.
+func CaptureSmartFramingMonitorFrom(ptr unsafe.Pointer) CaptureSmartFramingMonitor {
+	return CaptureSmartFramingMonitor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CaptureSmartFramingMonitor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CaptureSmartFramingMonitor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CaptureSmartFramingMonitor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CaptureSmartFramingMonitor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureSmartFramingMonitor */
 
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
 //
@@ -106,7 +145,7 @@ func NewCaptureSmartFramingMonitor() CaptureSmartFramingMonitor {
 func (c_ CaptureSmartFramingMonitor) SmartFramingMonitor() IAVCaptureSmartFramingMonitor {
 	rv := objc.Send[CaptureSmartFramingMonitor](c_.ID, objc.Sel("smartFramingMonitor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: smartFramingMonitor */
 
 
 // A monitor owned by the device that recommends an optimal framing based on the content in the scene.
@@ -115,7 +154,7 @@ func (c_ CaptureSmartFramingMonitor) SmartFramingMonitor() IAVCaptureSmartFramin
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/smartframingmonitor
 func (c_ CaptureSmartFramingMonitor) SetSmartFramingMonitor(value IAVCaptureSmartFramingMonitor) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setSmartFramingMonitor:"), value)
-}
+}/* debug [instance_properties/setter]: smartFramingMonitor */
 
 
 // A value that controls the cropping and enlargement of images captured by the device.
@@ -125,7 +164,7 @@ func (c_ CaptureSmartFramingMonitor) SetSmartFramingMonitor(value IAVCaptureSmar
 func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("videoZoomFactor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: videoZoomFactor */
 
 
 // A value that controls the cropping and enlargement of images captured by the device.
@@ -134,26 +173,7 @@ func (c_ CaptureSmartFramingMonitor) VideoZoomFactor() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/videozoomfactor
 func (c_ CaptureSmartFramingMonitor) SetVideoZoomFactor(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setVideoZoomFactor:"), value)
-}
-
-
-// An array of framings that the monitor is allowed to suggest.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-func (c_ CaptureSmartFramingMonitor) EnabledFramings() objc.IObject /* cross-framework: CaptureFraming */ {
-	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("enabledFramings"))
-	return rv
-}
-
-
-// An array of framings that the monitor is allowed to suggest.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/enabledframings
-func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value objc.IObject /* cross-framework: CaptureFraming */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabledFramings:"), value)
-}
+}/* debug [instance_properties/setter]: videoZoomFactor */
 
 
 // Yes when the receiver is actively monitoring.
@@ -163,7 +183,7 @@ func (c_ CaptureSmartFramingMonitor) SetEnabledFramings(value objc.IObject /* cr
 func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isMonitoring"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isMonitoring */
 
 
 // Yes when the receiver is actively monitoring.
@@ -172,45 +192,11 @@ func (c_ CaptureSmartFramingMonitor) IsMonitoring() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/ismonitoring
 func (c_ CaptureSmartFramingMonitor) SetIsMonitoring(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsMonitoring:"), value)
-}
+}/* debug [instance_properties/setter]: isMonitoring */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The latest recommended framing from the monitor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/recommendedframing
-func (c_ CaptureSmartFramingMonitor) RecommendedFraming() objc.IObject /* cross-framework: CaptureFraming */ {
-	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("recommendedFraming"))
-	return rv
-}
-
-
-// The latest recommended framing from the monitor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/recommendedframing
-func (c_ CaptureSmartFramingMonitor) SetRecommendedFraming(value objc.IObject /* cross-framework: CaptureFraming */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRecommendedFraming:"), value)
-}
-
-
-// An array of framings supported by the monitor in its current configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-func (c_ CaptureSmartFramingMonitor) SupportedFramings() objc.IObject /* cross-framework: CaptureFraming */ {
-	rv := objc.Send[CaptureFraming](c_.ID, objc.Sel("supportedFramings"))
-	return rv
-}
-
-
-// An array of framings supported by the monitor in its current configuration.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesmartframingmonitor/supportedframings
-func (c_ CaptureSmartFramingMonitor) SetSupportedFramings(value objc.IObject /* cross-framework: CaptureFraming */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedFramings:"), value)
-}
-
+/* debug [class.gen.go]: End class AVCaptureSmartFramingMonitor */
 
 

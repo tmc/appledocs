@@ -16,3 +16,4 @@ var SpellServerDelegateProtocol *objc.Protocol
 func init() {
 	SpellServerDelegateProtocol = objc.GetProtocol("NSSpellServerDelegate")
 }
+

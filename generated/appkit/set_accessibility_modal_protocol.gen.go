@@ -15,3 +15,4 @@ var setAccessibilityModalProtocol *objc.Protocol
 func init() {
 	setAccessibilityModalProtocol = objc.GetProtocol("setAccessibilityModal")
 }
+

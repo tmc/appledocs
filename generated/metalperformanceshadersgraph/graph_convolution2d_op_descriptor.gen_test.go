@@ -22,7 +22,7 @@ func ExampleNewGraphConvolution2DOpDescriptorWithStrideInXStrideInYDilationRateI
 		0, // paddingRight uint
 		0, // paddingTop uint
 		0, // paddingBottom uint
-		metalperformanceshadersgraph.GraphPaddingStyle{}, // paddingStyle GraphPaddingStyle
+		metalperformanceshadersgraph.GraphPaddingStyle{},          // paddingStyle GraphPaddingStyle
 		metalperformanceshadersgraph.GraphTensorNamedDataLayout{}, // dataLayout GraphTensorNamedDataLayout
 		metalperformanceshadersgraph.GraphTensorNamedDataLayout{}, // weightsLayout GraphTensorNamedDataLayout
 	)

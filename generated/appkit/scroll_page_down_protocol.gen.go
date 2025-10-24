@@ -15,3 +15,4 @@ var scrollPageDownProtocol *objc.Protocol
 func init() {
 	scrollPageDownProtocol = objc.GetProtocol("scrollPageDown:")
 }
+

@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MLCYOLOLossLayer */
+
+
+/* debug [class_header]: Header for MLCYOLOLossLayer */
 // The class instance for the [CYOLOLossLayer] class.
 var (
 	CYOLOLossLayerClass     _CYOLOLossLayerClass
@@ -25,36 +29,31 @@ func getCYOLOLossLayerClass() _CYOLOLossLayerClass {
 type _CYOLOLossLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CYOLOLossLayer */
 // An interface definition for the [CYOLOLossLayer] class.
 type ICYOLOLossLayer interface {
 	ICLossLayer
+	
+/* debug [class_interface_properties]: Properties for CYOLOLossLayer */
 	// properties:
-	YoloLossDescriptor() CYOLOLossDescriptor /* not a class type */
-	SetYoloLossDescriptor(value CYOLOLossDescriptor /* not a class type */)
+	YoloLossDescriptor() IMLCYOLOLossDescriptor
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CYOLOLossLayer */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A layer that estimates loss for the YOLO algorithm.
 
 
-// A layer that estimates loss for the YOLO algorithm.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCYOLOLossLayer
-type CYOLOLossLayer struct {
-	CLossLayer
-}
-
-// CYOLOLossLayerFrom constructs a [CYOLOLossLayer] from an unsafe.Pointer.
-//
-// A layer that estimates loss for the YOLO algorithm.
-func CYOLOLossLayerFrom(ptr unsafe.Pointer) CYOLOLossLayer {
-	return CYOLOLossLayer{
-		CLossLayer: CLossLayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CYOLOLossLayer */
 // Alloc allocates a new instance without initialization.
 func (cc _CYOLOLossLayerClass) Alloc() CYOLOLossLayer {
 	rv := objc.Send[CYOLOLossLayer](objc.ID(cc.class), objc.Sel("alloc"))
@@ -62,7 +61,6 @@ func (cc _CYOLOLossLayerClass) Alloc() CYOLOLossLayer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CYOLOLossLayerClass) New() CYOLOLossLayer {
 	rv := objc.Send[CYOLOLossLayer](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,27 +83,88 @@ func (c_ CYOLOLossLayer) Autorelease() CYOLOLossLayer {
 func NewCYOLOLossLayer() CYOLOLossLayer {
 	return getCYOLOLossLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CYOLOLossLayer */
+// A layer that estimates loss for the YOLO algorithm.
+
+
+// A layer that estimates loss for the YOLO algorithm.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCYOLOLossLayer
+type CYOLOLossLayer struct {
+	CLossLayer
+}
+
+// CYOLOLossLayerFrom constructs a [CYOLOLossLayer] from an unsafe.Pointer.
+//
+// A layer that estimates loss for the YOLO algorithm.
+func CYOLOLossLayerFrom(ptr unsafe.Pointer) CYOLOLossLayer {
+	return CYOLOLossLayer{
+		CLossLayer: CLossLayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CYOLOLossLayer */
+
+// Creates a YOLO loss layer with the descriptor you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCYOLOLossLayer/init(descriptor:)
+func NewCYOLOLossLayerWithDescriptor(lossDescriptor IMLCYOLOLossDescriptor) CYOLOLossLayer {
+	rv := objc.Send[CYOLOLossLayer](objc.ID(getCYOLOLossLayerClass().class), objc.Sel("layerWithDescriptor:"), lossDescriptor)
+	return rv
+}/* debug [class_init_methods/constructor]: NewCYOLOLossLayerWithDescriptor */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CYOLOLossLayer */
+
+// Creates a YOLO loss layer with the descriptor you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCYOLOLossLayer/init(descriptor:)
+func (cc _CYOLOLossLayerClass) LayerWithDescriptor(lossDescriptor IMLCYOLOLossDescriptor) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithDescriptor:"), lossDescriptor)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithDescriptor) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CYOLOLossLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CYOLOLossLayer */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CYOLOLossLayer */
 
 // The configuration object you use to create the YOLO loss layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcyololosslayer/yololossdescriptor
-func (c_ CYOLOLossLayer) YoloLossDescriptor() CYOLOLossDescriptor /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCYOLOLossLayer/yoloLossDescriptor
+func (c_ CYOLOLossLayer) YoloLossDescriptor() IMLCYOLOLossDescriptor {
 	rv := objc.Send[CYOLOLossDescriptor](c_.ID, objc.Sel("yoloLossDescriptor"))
 	return rv
-}
+}/* debug [instance_properties/getter]: yoloLossDescriptor */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The configuration object you use to create the YOLO loss layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcyololosslayer/yololossdescriptor
-func (c_ CYOLOLossLayer) SetYoloLossDescriptor(value CYOLOLossDescriptor /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setYoloLossDescriptor:"), value)
-}
-
-
+/* debug [class.gen.go]: End class MLCYOLOLossLayer */
 
 

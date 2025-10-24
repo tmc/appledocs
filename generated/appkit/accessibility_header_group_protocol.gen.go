@@ -15,3 +15,4 @@ var accessibilityHeaderGroupProtocol *objc.Protocol
 func init() {
 	accessibilityHeaderGroupProtocol = objc.GetProtocol("accessibilityHeaderGroup")
 }
+

@@ -15,3 +15,4 @@ var draggedImageLocationProtocol *objc.Protocol
 func init() {
 	draggedImageLocationProtocol = objc.GetProtocol("draggedImageLocation")
 }
+

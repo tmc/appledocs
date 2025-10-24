@@ -19,3 +19,4 @@ var CSSearchableIndexDelegateProtocol *objc.Protocol
 func init() {
 	CSSearchableIndexDelegateProtocol = objc.GetProtocol("CSSearchableIndexDelegate")
 }
+

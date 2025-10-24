@@ -33,8 +33,6 @@ type IMTRClusterColorControl interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterColorControl
 type MTRClusterColorControl struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterColorControl) Autorelease() MTRClusterColorControl {
 func NewMTRClusterColorControl() MTRClusterColorControl {
 	return getMTRClusterColorControlClass().New()
 }
-
-
-
-

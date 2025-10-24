@@ -33,8 +33,6 @@ type IMTRClusterValveConfigurationAndControl interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterValveConfigurationAndControl
 type MTRClusterValveConfigurationAndControl struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterValveConfigurationAndControl) Autorelease() MTRClusterValveCo
 func NewMTRClusterValveConfigurationAndControl() MTRClusterValveConfigurationAndControl {
 	return getMTRClusterValveConfigurationAndControlClass().New()
 }
-
-
-
-

@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // MorphologyRectangleMaximumProtocol is the CIMorphologyRectangleMaximum protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIMorphologyRectangleMaximum.
 var MorphologyRectangleMaximumProtocol *objc.Protocol
 
 func init() {
 	MorphologyRectangleMaximumProtocol = objc.GetProtocol("CIMorphologyRectangleMaximum")
 }
+

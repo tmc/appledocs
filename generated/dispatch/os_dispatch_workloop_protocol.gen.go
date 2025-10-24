@@ -21,3 +21,4 @@ var OS_dispatch_workloopProtocol *objc.Protocol
 func init() {
 	OS_dispatch_workloopProtocol = objc.GetProtocol("OS_dispatch_workloop")
 }
+

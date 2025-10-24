@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestListStructOctet] class.
@@ -37,8 +37,6 @@ type IMTRTestClusterClusterTestListStructOctet interface {
 	SetMember2(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestListStructOctet
@@ -84,8 +82,6 @@ func NewMTRTestClusterClusterTestListStructOctet() MTRTestClusterClusterTestList
 	return getMTRTestClusterClusterTestListStructOctetClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructoctet/member1
 func (m_ MTRTestClusterClusterTestListStructOctet) Member1() objc.IObject /* cross-framework: NSNumber */ {
@@ -93,13 +89,11 @@ func (m_ MTRTestClusterClusterTestListStructOctet) Member1() objc.IObject /* cro
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructoctet/member1
 func (m_ MTRTestClusterClusterTestListStructOctet) SetMember1(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMember1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructoctet/member2
@@ -108,12 +102,8 @@ func (m_ MTRTestClusterClusterTestListStructOctet) Member2() objc.IObject /* cro
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestliststructoctet/member2
 func (m_ MTRTestClusterClusterTestListStructOctet) SetMember2(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMember2:"), value)
 }
-
-
-

@@ -15,3 +15,4 @@ var baseWritingDirectionAtLocationProtocol *objc.Protocol
 func init() {
 	baseWritingDirectionAtLocationProtocol = objc.GetProtocol("baseWritingDirectionAtLocation:")
 }
+

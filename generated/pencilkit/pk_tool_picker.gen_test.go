@@ -19,7 +19,7 @@ func ExampleNewToolPicker() {
 // Creates a new tool picker with the tools you specify.
 func ExampleNewToolPickerWithToolItems() {
 	_ = pencilkit.NewToolPickerWithToolItems(
-		[]pencilkit.IToolPickerItem{}, // items []IToolPickerItem
+		[]pencilkit.ToolPickerItem{}, // items []ToolPickerItem
 	)
 	// Output:
 }

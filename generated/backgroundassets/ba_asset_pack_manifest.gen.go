@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class BAAssetPackManifest */
+
+
+/* debug [class_header]: Header for BAAssetPackManifest */
 // The class instance for the [BAAssetPackManifest] class.
 var (
 	BAAssetPackManifestClass     _BAAssetPackManifestClass
@@ -27,37 +30,30 @@ func getBAAssetPackManifestClass() _BAAssetPackManifestClass {
 type _BAAssetPackManifestClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for BAAssetPackManifest */
 // An interface definition for the [BAAssetPackManifest] class.
 type IBAAssetPackManifest interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for BAAssetPackManifest */
 	// properties:
-	AssetPacks() unsafe.Pointer
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for BAAssetPackManifest */
 	// methods:
-	AllDownloads() unsafe.Pointer
-	AllDownloadsForContentRequest(contentRequest BAContentRequest) unsafe.Pointer
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A representation of a manifest that lists asset packs that are available to download.
-//
-// This class applies only when you want to manage your asset packs manually. Don’t use this class if you want to opt in to automatic management of asset packs.
+/* debug [class_interface]: End interface */
 
 
-// A representation of a manifest that lists asset packs that are available to download.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest
-type BAAssetPackManifest struct {
-	objectivec.Object
-}
 
-// BAAssetPackManifestFrom constructs a [BAAssetPackManifest] from an unsafe.Pointer.
-//
-// A representation of a manifest that lists asset packs that are available to download.
-func BAAssetPackManifestFrom(ptr unsafe.Pointer) BAAssetPackManifest {
-	return BAAssetPackManifest{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for BAAssetPackManifest */
 // Alloc allocates a new instance without initialization.
 func (bc _BAAssetPackManifestClass) Alloc() BAAssetPackManifest {
 	rv := objc.Send[BAAssetPackManifest](objc.ID(bc.class), objc.Sel("alloc"))
@@ -65,7 +61,6 @@ func (bc _BAAssetPackManifestClass) Alloc() BAAssetPackManifest {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _BAAssetPackManifestClass) New() BAAssetPackManifest {
 	rv := objc.Send[BAAssetPackManifest](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,61 +83,58 @@ func (b_ BAAssetPackManifest) Autorelease() BAAssetPackManifest {
 func NewBAAssetPackManifest() BAAssetPackManifest {
 	return getBAAssetPackManifestClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// Initializes a representation of a manifest in memory from JSON-encoded data.
+/* debug [class_struct]: Struct for BAAssetPackManifest */
+// A representation of a manifest that lists asset packs that are available to download.
+//
+// This class applies only when you want to manage your asset packs manually. Don’t use this class if you want to opt in to automatic management of asset packs.
+
+
+// A representation of a manifest that lists asset packs that are available to download.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initFromData:applicationGroupIdentifier:error:
-func NewBAAssetPackManifestFromDataApplicationGroupIdentifierError(data objc.IObject /* cross-framework: NSData */, applicationGroupIdentifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) BAAssetPackManifest {
-	instance := getBAAssetPackManifestClass().Alloc()
-	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initFromData:applicationGroupIdentifier:error:"), data, applicationGroupIdentifier, error_)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest
+type BAAssetPackManifest struct {
+	objectivec.Object
 }
 
-
-// Initializes a representation of a manifest in memory given a URL to the manifest’s representation as a JSON file on disk.
+// BAAssetPackManifestFrom constructs a [BAAssetPackManifest] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/initWithContentsOfURL:applicationGroupIdentifier:error:
-func NewBAAssetPackManifestWithContentsOfURLApplicationGroupIdentifierError(URL objc.IObject /* cross-framework: NSURL */, applicationGroupIdentifier objc.IObject /* cross-framework: NSString */, error_ unsafe.Pointer) BAAssetPackManifest {
-	instance := getBAAssetPackManifestClass().Alloc()
-	rv := objc.Send[BAAssetPackManifest](instance.ID, objc.Sel("initWithContentsOfURL:applicationGroupIdentifier:error:"), URL, applicationGroupIdentifier, error_)
-	rv.Autorelease()
-	return rv
+// A representation of a manifest that lists asset packs that are available to download.
+func BAAssetPackManifestFrom(ptr unsafe.Pointer) BAAssetPackManifest {
+	return BAAssetPackManifest{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-// Creates download objects for every asset pack in this manifest.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/allDownloads
-func (b_ BAAssetPackManifest) AllDownloads() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("allDownloads"))
-	return rv
-}
+/* debug [class_init_methods]: Init methods for BAAssetPackManifest *//* debug [class_init_methods]: End init methods */
 
 
-// Creates download objects for every asset pack in this manifest.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/allDownloadsForContentRequest:
-func (b_ BAAssetPackManifest) AllDownloadsForContentRequest(contentRequest BAContentRequest) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("allDownloadsForContentRequest:"), contentRequest)
-	return rv
-}
+
+/* debug [class_methods]: Class methods for BAAssetPackManifest */
+/* debug [class_methods]: End class methods */
 
 
-// The asset packs that are available to download.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/BackgroundAssets/BAAssetPackManifest/assetPacks
-func (b_ BAAssetPackManifest) AssetPacks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](b_.ID, objc.Sel("assetPacks"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for BAAssetPackManifest */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for BAAssetPackManifest */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for BAAssetPackManifest */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class BAAssetPackManifest */
+
 
 

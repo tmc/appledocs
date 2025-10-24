@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AMWorkspace */
+
+
+/* debug [class_header]: Header for AMWorkspace */
 // The class instance for the [AMWorkspace] class.
 var (
 	AMWorkspaceClass     _AMWorkspaceClass
@@ -27,35 +30,30 @@ func getAMWorkspaceClass() _AMWorkspaceClass {
 type _AMWorkspaceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AMWorkspace */
 // An interface definition for the [AMWorkspace] class.
 type IAMWorkspace interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AMWorkspace */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AMWorkspace */
 	// methods:
-	RunWorkflowAtPathWithInputError(path objc.IObject /* cross-framework: NSString */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A workspace for running an Automator workflow.
-//
-// The class provides access to the shared workspace in the Automator framework, where you can run workflows without a workflow controller. Use to access the shared workspace and to run your workflow in it.
+/* debug [class_interface]: End interface */
 
 
-// A workspace for running an Automator workflow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace
-type AMWorkspace struct {
-	objectivec.Object
-}
 
-// AMWorkspaceFrom constructs a [AMWorkspace] from an unsafe.Pointer.
-//
-// A workspace for running an Automator workflow.
-func AMWorkspaceFrom(ptr unsafe.Pointer) AMWorkspace {
-	return AMWorkspace{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AMWorkspace */
 // Alloc allocates a new instance without initialization.
 func (ac _AMWorkspaceClass) Alloc() AMWorkspace {
 	rv := objc.Send[AMWorkspace](objc.ID(ac.class), objc.Sel("alloc"))
@@ -63,7 +61,6 @@ func (ac _AMWorkspaceClass) Alloc() AMWorkspace {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AMWorkspaceClass) New() AMWorkspace {
 	rv := objc.Send[AMWorkspace](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,36 +83,59 @@ func (a_ AMWorkspace) Autorelease() AMWorkspace {
 func NewAMWorkspace() AMWorkspace {
 	return getAMWorkspaceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The shared workspace object.
+/* debug [class_struct]: Struct for AMWorkspace */
+// A workspace for running an Automator workflow.
+//
+// The class provides access to the shared workspace in the Automator framework, where you can run workflows without a workflow controller. Use to access the shared workspace and to run your workflow in it.
+
+
+// A workspace for running an Automator workflow.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
-func (ac _AMWorkspaceClass) SharedWorkspace() AMWorkspace {
-	rv := objc.Send[AMWorkspace](objc.ID(ac.class), objc.Sel("sharedWorkspace"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace
+type AMWorkspace struct {
+	objectivec.Object
 }
 
-// Loads and runs the specified workflow file.
+// AMWorkspaceFrom constructs a [AMWorkspace] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/runWorkflow(atPath:withInput:)
-func (a_ AMWorkspace) RunWorkflowAtPathWithInputError(path objc.IObject /* cross-framework: NSString */, input objectivec.IObject, error_ unsafe.Pointer) objc.ID {
-	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runWorkflowAtPath:withInput:error:"), path, input, error_)
-	return rv
+// A workspace for running an Automator workflow.
+func AMWorkspaceFrom(ptr unsafe.Pointer) AMWorkspace {
+	return AMWorkspace{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The shared workspace object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Automator/AMWorkspace/shared
-func (a_ AMWorkspace) SharedWorkspace() IAMWorkspace {
-	rv := objc.Send[AMWorkspace](a_.ID, objc.Sel("sharedWorkspace"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for AMWorkspace *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AMWorkspace */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AMWorkspace */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AMWorkspace */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AMWorkspace */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AMWorkspace */
+
 
 
 

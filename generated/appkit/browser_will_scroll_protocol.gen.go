@@ -15,3 +15,4 @@ var browserWillScrollProtocol *objc.Protocol
 func init() {
 	browserWillScrollProtocol = objc.GetProtocol("browserWillScroll:")
 }
+

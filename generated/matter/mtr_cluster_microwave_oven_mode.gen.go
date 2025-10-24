@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterMicrowaveOvenMode */
+
+
+/* debug [class_header]: Header for MTRClusterMicrowaveOvenMode */
 // The class instance for the [MTRClusterMicrowaveOvenMode] class.
 var (
 	MTRClusterMicrowaveOvenModeClass     _MTRClusterMicrowaveOvenModeClass
@@ -26,41 +30,31 @@ func getMTRClusterMicrowaveOvenModeClass() _MTRClusterMicrowaveOvenModeClass {
 type _MTRClusterMicrowaveOvenModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterMicrowaveOvenMode */
 // An interface definition for the [MTRClusterMicrowaveOvenMode] class.
 type IMTRClusterMicrowaveOvenMode interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterMicrowaveOvenMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterMicrowaveOvenMode */
 	// methods:
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
 	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Microwave Oven Mode Attributes and commands for selecting a mode from a list of supported options.
 
 
-// Cluster Microwave Oven Mode Attributes and commands for selecting a mode from a list of supported options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode
-type MTRClusterMicrowaveOvenMode struct {
-	MTRGenericCluster
-}
-
-// MTRClusterMicrowaveOvenModeFrom constructs a [MTRClusterMicrowaveOvenMode] from an unsafe.Pointer.
-//
-// Cluster Microwave Oven Mode Attributes and commands for selecting a mode from a list of supported options.
-func MTRClusterMicrowaveOvenModeFrom(ptr unsafe.Pointer) MTRClusterMicrowaveOvenMode {
-	return MTRClusterMicrowaveOvenMode{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterMicrowaveOvenMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterMicrowaveOvenModeClass) Alloc() MTRClusterMicrowaveOvenMode {
 	rv := objc.Send[MTRClusterMicrowaveOvenMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -68,7 +62,6 @@ func (mc _MTRClusterMicrowaveOvenModeClass) Alloc() MTRClusterMicrowaveOvenMode 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterMicrowaveOvenModeClass) New() MTRClusterMicrowaveOvenMode {
 	rv := objc.Send[MTRClusterMicrowaveOvenMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,75 +84,66 @@ func (m_ MTRClusterMicrowaveOvenMode) Autorelease() MTRClusterMicrowaveOvenMode 
 func NewMTRClusterMicrowaveOvenMode() MTRClusterMicrowaveOvenMode {
 	return getMTRClusterMicrowaveOvenModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The queue is currently unused, but may be used in the future for calling completions for command invocations if commands are added to this cluster.
+/* debug [class_struct]: Struct for MTRClusterMicrowaveOvenMode */
+// Cluster Microwave Oven Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Microwave Oven Mode Attributes and commands for selecting a mode from a list of supported options.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/init(device:endpointID:queue:)
-func NewMTRClusterMicrowaveOvenModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterMicrowaveOvenMode {
-	instance := getMTRClusterMicrowaveOvenModeClass().Alloc()
-	rv := objc.Send[MTRClusterMicrowaveOvenMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode
+type MTRClusterMicrowaveOvenMode struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
+// MTRClusterMicrowaveOvenModeFrom constructs a [MTRClusterMicrowaveOvenMode] from an unsafe.Pointer.
+//
+// Cluster Microwave Oven Mode Attributes and commands for selecting a mode from a list of supported options.
+func MTRClusterMicrowaveOvenModeFrom(ptr unsafe.Pointer) MTRClusterMicrowaveOvenMode {
+	return MTRClusterMicrowaveOvenMode{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRClusterMicrowaveOvenMode *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
 
+/* debug [class_methods]: Class methods for MTRClusterMicrowaveOvenMode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRClusterMicrowaveOvenMode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRClusterMicrowaveOvenMode */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeCurrentMode(with:)
 func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadAttributeCurrentModeWithParams */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterMicrowaveOvenMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterMicrowaveOvenMode */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterMicrowaveOvenMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterMicrowaveOvenMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
-	return rv
-}
 
 

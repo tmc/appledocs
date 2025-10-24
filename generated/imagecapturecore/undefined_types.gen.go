@@ -9,14 +9,10 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AnyHashable = _undefined // referenced in ImageCaptureCore
-	Bool = _undefined // referenced in ImageCaptureCore
-	ICDeviceTypeMask = _undefined // referenced in ImageCaptureCore
-	ICEXIFOrientationType = _undefined // referenced in ImageCaptureCore
-	ICScannerFunctionalUnit = _undefined // referenced in ImageCaptureCore
-	ICScannerTransferMode = _undefined // referenced in ImageCaptureCore
-	UInt32 = _undefined // referenced in ImageCaptureCore
-	Void = _undefined // referenced in ImageCaptureCore
+	Float = _undefined // referenced in ImageCaptureCore
+	Image = _undefined // referenced in ImageCaptureCore
+	Rect = _undefined // referenced in ImageCaptureCore
+	Size = _undefined // referenced in ImageCaptureCore
 )
 
 

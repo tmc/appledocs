@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NEURLFilter */
+
+
+/* debug [class_header]: Header for NEURLFilter */
 // The class instance for the [NEURLFilter] class.
 var (
 	NEURLFilterClass     _NEURLFilterClass
@@ -26,34 +31,30 @@ func getNEURLFilterClass() _NEURLFilterClass {
 type _NEURLFilterClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEURLFilter */
 // An interface definition for the [NEURLFilter] class.
 type INEURLFilter interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NEURLFilter */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NEURLFilter */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
-//
-// When using networking frameworks other than WebKit or Foundation’s , use the API to evaluate URLs before potentially connecting to a restricted or malicious site. Call the class method to check a URL and honor the “allow” or “deny” verdict. Don’t connect to any URL that receives a “deny” verdict.
+/* debug [class_interface]: End interface */
 
 
-// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEURLFilter
-type NEURLFilter struct {
-	objectivec.Object
-}
 
-// NEURLFilterFrom constructs a [NEURLFilter] from an unsafe.Pointer.
-//
-// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
-func NEURLFilterFrom(ptr unsafe.Pointer) NEURLFilter {
-	return NEURLFilter{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NEURLFilter */
 // Alloc allocates a new instance without initialization.
 func (nc _NEURLFilterClass) Alloc() NEURLFilter {
 	rv := objc.Send[NEURLFilter](objc.ID(nc.class), objc.Sel("alloc"))
@@ -61,7 +62,6 @@ func (nc _NEURLFilterClass) Alloc() NEURLFilter {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEURLFilterClass) New() NEURLFilter {
 	rv := objc.Send[NEURLFilter](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,7 +84,67 @@ func (n_ NEURLFilter) Autorelease() NEURLFilter {
 func NewNEURLFilter() NEURLFilter {
 	return getNEURLFilterClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for NEURLFilter */
+// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
+//
+// When using networking frameworks other than WebKit or Foundation’s , use the API to evaluate URLs before potentially connecting to a restricted or malicious site. Call the class method to check a URL and honor the “allow” or “deny” verdict. Don’t connect to any URL that receives a “deny” verdict.
+
+
+// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEURLFilter
+type NEURLFilter struct {
+	objectivec.Object
+}
+
+// NEURLFilterFrom constructs a [NEURLFilter] from an unsafe.Pointer.
+//
+// A class used to voluntarily validate URLs for apps that don’t use WebKit or the URL session API.
+func NEURLFilterFrom(ptr unsafe.Pointer) NEURLFilter {
+	return NEURLFilter{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NEURLFilter *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NEURLFilter */
+
+// Determines if accessing the specified URL is allowed or denied.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEURLFilter/verdictForURL:completionHandler:
+func (nc _NEURLFilterClass) VerdictForURLCompletionHandler(url objc.IObject /* cross-framework: NSURL */, completionHandler NEURLFilterVerdict) {
+	objc.Send[objc.ID](objc.ID(nc.class), objc.Sel("verdictForURL:completionHandler:"), url, completionHandler)
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=VerdictForURLCompletionHandler) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NEURLFilter */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NEURLFilter */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEURLFilter */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NEURLFilter */
 
 
 

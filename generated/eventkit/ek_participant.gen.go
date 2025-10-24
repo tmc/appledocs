@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/addressbook"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class EKParticipant */
+
+
+/* debug [class_header]: Header for EKParticipant */
 // The class instance for the [EKParticipant] class.
 var (
 	EKParticipantClass     _EKParticipantClass
@@ -27,12 +30,18 @@ func getEKParticipantClass() _EKParticipantClass {
 type _EKParticipantClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EKParticipant */
 // An interface definition for the [EKParticipant] class.
 type IEKParticipant interface {
 	IEKObject
+	
+/* debug [class_interface_properties]: Properties for EKParticipant */
 	// properties:
-	ContactPredicate() objc.IObject /* cross-framework: Predicate */
+	ContactPredicate() foundation.Predicate
 	CurrentUser() bool
 	Name() objc.IObject /* cross-framework: NSString */
 	ParticipantRole() EKParticipantRole
@@ -41,31 +50,19 @@ type IEKParticipant interface {
 	URL() objc.IObject /* cross-framework: NSURL */
 	IsCurrentUser() bool
 	SetIsCurrentUser(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EKParticipant */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A class that represents person, group, or room invited to a calendar event.
-//
-// Do not create objects directly. Instead, use the property attendees on to return an array of objects. EventKit cannot add participants to an event nor change participant information. Use the properties in this class to get information about a participant. A participant can be a person, group, room, or other resource.
+/* debug [class_interface]: End interface */
 
 
-// A class that represents person, group, or room invited to a calendar event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant
-type EKParticipant struct {
-	EKObject
-}
 
-// EKParticipantFrom constructs a [EKParticipant] from an unsafe.Pointer.
-//
-// A class that represents person, group, or room invited to a calendar event.
-func EKParticipantFrom(ptr unsafe.Pointer) EKParticipant {
-	return EKParticipant{
-		EKObject: EKObjectFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for EKParticipant */
 // Alloc allocates a new instance without initialization.
 func (ec _EKParticipantClass) Alloc() EKParticipant {
 	rv := objc.Send[EKParticipant](objc.ID(ec.class), objc.Sel("alloc"))
@@ -73,7 +70,6 @@ func (ec _EKParticipantClass) Alloc() EKParticipant {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EKParticipantClass) New() EKParticipant {
 	rv := objc.Send[EKParticipant](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -96,17 +92,65 @@ func (e_ EKParticipant) Autorelease() EKParticipant {
 func NewEKParticipant() EKParticipant {
 	return getEKParticipantClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for EKParticipant */
+// A class that represents person, group, or room invited to a calendar event.
+//
+// Do not create objects directly. Instead, use the property attendees on to return an array of objects. EventKit cannot add participants to an event nor change participant information. Use the properties in this class to get information about a participant. A participant can be a person, group, room, or other resource.
+
+
+// A class that represents person, group, or room invited to a calendar event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant
+type EKParticipant struct {
+	EKObject
+}
+
+// EKParticipantFrom constructs a [EKParticipant] from an unsafe.Pointer.
+//
+// A class that represents person, group, or room invited to a calendar event.
+func EKParticipantFrom(ptr unsafe.Pointer) EKParticipant {
+	return EKParticipant{
+		EKObject: EKObjectFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EKParticipant *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for EKParticipant */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EKParticipant */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EKParticipant */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EKParticipant */
 
 // A predicate to use with the Contacts framework to retrieve the corresponding contact instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKParticipant/contactPredicate
-func (e_ EKParticipant) ContactPredicate() objc.IObject /* cross-framework: Predicate */ {
+func (e_ EKParticipant) ContactPredicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](e_.ID, objc.Sel("contactPredicate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: contactPredicate */
 
 
 // A Boolean value indicating whether this participant represents the owner of this account.
@@ -116,7 +160,7 @@ func (e_ EKParticipant) ContactPredicate() objc.IObject /* cross-framework: Pred
 func (e_ EKParticipant) CurrentUser() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("currentUser"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentUser */
 
 
 // The participant’s name.
@@ -126,7 +170,7 @@ func (e_ EKParticipant) CurrentUser() bool {
 func (e_ EKParticipant) Name() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("name"))
 	return rv
-}
+}/* debug [instance_properties/getter]: name */
 
 
 // The participant’s role in the event.
@@ -136,7 +180,7 @@ func (e_ EKParticipant) Name() objc.IObject /* cross-framework: NSString */ {
 func (e_ EKParticipant) ParticipantRole() EKParticipantRole {
 	rv := objc.Send[EKParticipantRole](e_.ID, objc.Sel("participantRole"))
 	return rv
-}
+}/* debug [instance_properties/getter]: participantRole */
 
 
 // The participant’s attendance status.
@@ -146,7 +190,7 @@ func (e_ EKParticipant) ParticipantRole() EKParticipantRole {
 func (e_ EKParticipant) ParticipantStatus() EKParticipantStatus {
 	rv := objc.Send[EKParticipantStatus](e_.ID, objc.Sel("participantStatus"))
 	return rv
-}
+}/* debug [instance_properties/getter]: participantStatus */
 
 
 // The participant’s type.
@@ -156,7 +200,7 @@ func (e_ EKParticipant) ParticipantStatus() EKParticipantStatus {
 func (e_ EKParticipant) ParticipantType() EKParticipantType {
 	rv := objc.Send[EKParticipantType](e_.ID, objc.Sel("participantType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: participantType */
 
 
 // The URL representing this participant.
@@ -166,7 +210,7 @@ func (e_ EKParticipant) ParticipantType() EKParticipantType {
 func (e_ EKParticipant) URL() objc.IObject /* cross-framework: NSURL */ {
 	rv := objc.Send[foundation.NSURL](e_.ID, objc.Sel("URL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: URL */
 
 
 // A Boolean value indicating whether this participant represents the owner of this account.
@@ -176,7 +220,7 @@ func (e_ EKParticipant) URL() objc.IObject /* cross-framework: NSURL */ {
 func (e_ EKParticipant) IsCurrentUser() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isCurrentUser"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isCurrentUser */
 
 
 // A Boolean value indicating whether this participant represents the owner of this account.
@@ -185,6 +229,11 @@ func (e_ EKParticipant) IsCurrentUser() bool {
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekparticipant/iscurrentuser
 func (e_ EKParticipant) SetIsCurrentUser(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsCurrentUser:"), value)
-}
+}/* debug [instance_properties/setter]: isCurrentUser */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class EKParticipant */
 
 

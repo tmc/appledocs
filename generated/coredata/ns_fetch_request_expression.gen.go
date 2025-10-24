@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FetchRequestExpression] class.
@@ -53,7 +53,6 @@ type IFetchRequestExpression interface {
 // An expression that evaluates the result of a fetch request on a managed object context.
 //
 // inherits from , which provides most of the basic behavior. The first argument must be an expression which evaluates to an object, and the second must be an expression which evaluates to an object. If you simply want the count for the request, the argument should be .
-
 
 // An expression that evaluates the result of a fetch request on a managed object context.
 //
@@ -103,8 +102,6 @@ func NewFetchRequestExpression() FetchRequestExpression {
 	return getFetchRequestExpressionClass().New()
 }
 
-
-
 // Returns an expression which will evaluate to the result of executing a fetch request on a context.
 //
 // [Full Topic]
@@ -113,7 +110,6 @@ func (fc _FetchRequestExpressionClass) ExpressionForFetchContextCountOnly(fetch 
 	rv := objc.Send[Expression](objc.ID(fc.class), objc.Sel("expressionForFetch:context:countOnly:"), fetch, context, countFlag)
 	return rv
 }
-
 
 // The expression for the receiver’s managed object context.
 //
@@ -124,7 +120,6 @@ func (f_ FetchRequestExpression) ContextExpression() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // Returns a Boolean value that indicates whether the receiver represents a count-only fetch request.
 //
 // [Full Topic]
@@ -133,7 +128,6 @@ func (f_ FetchRequestExpression) CountOnlyRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("countOnlyRequest"))
 	return rv
 }
-
 
 // The expression for the receiver’s fetch request.
 //
@@ -144,7 +138,6 @@ func (f_ FetchRequestExpression) RequestExpression() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // An array of persistent stores specified for the fetch request.
 //
 // [Full Topic]
@@ -154,7 +147,6 @@ func (f_ FetchRequestExpression) AffectedStores() IPersistentStore {
 	return rv
 }
 
-
 // An array of persistent stores specified for the fetch request.
 //
 // [Full Topic]
@@ -162,7 +154,6 @@ func (f_ FetchRequestExpression) AffectedStores() IPersistentStore {
 func (f_ FetchRequestExpression) SetAffectedStores(value IPersistentStore) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
 }
-
 
 // The batch size of the objects specified in the fetch request.
 //
@@ -173,7 +164,6 @@ func (f_ FetchRequestExpression) FetchBatchSize() int {
 	return rv
 }
 
-
 // The batch size of the objects specified in the fetch request.
 //
 // [Full Topic]
@@ -181,7 +171,6 @@ func (f_ FetchRequestExpression) FetchBatchSize() int {
 func (f_ FetchRequestExpression) SetFetchBatchSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
-
 
 // The fetch limit of the fetch request.
 //
@@ -192,7 +181,6 @@ func (f_ FetchRequestExpression) FetchLimit() int {
 	return rv
 }
 
-
 // The fetch limit of the fetch request.
 //
 // [Full Topic]
@@ -200,7 +188,6 @@ func (f_ FetchRequestExpression) FetchLimit() int {
 func (f_ FetchRequestExpression) SetFetchLimit(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
-
 
 // The fetch offset of the fetch request.
 //
@@ -211,7 +198,6 @@ func (f_ FetchRequestExpression) FetchOffset() int {
 	return rv
 }
 
-
 // The fetch offset of the fetch request.
 //
 // [Full Topic]
@@ -219,7 +205,6 @@ func (f_ FetchRequestExpression) FetchOffset() int {
 func (f_ FetchRequestExpression) SetFetchOffset(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
-
 
 // The predicate of the fetch request.
 //
@@ -230,7 +215,6 @@ func (f_ FetchRequestExpression) Predicate() objc.IObject /* cross-framework: Pr
 	return rv
 }
 
-
 // The predicate of the fetch request.
 //
 // [Full Topic]
@@ -238,7 +222,6 @@ func (f_ FetchRequestExpression) Predicate() objc.IObject /* cross-framework: Pr
 func (f_ FetchRequestExpression) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
-
 
 // Returns a Boolean value that indicates whether the receiver represents a count-only fetch request.
 //
@@ -249,7 +232,6 @@ func (f_ FetchRequestExpression) IsCountOnlyRequest() bool {
 	return rv
 }
 
-
 // Returns a Boolean value that indicates whether the receiver represents a count-only fetch request.
 //
 // [Full Topic]
@@ -257,7 +239,6 @@ func (f_ FetchRequestExpression) IsCountOnlyRequest() bool {
 func (f_ FetchRequestExpression) SetIsCountOnlyRequest(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsCountOnlyRequest:"), value)
 }
-
 
 // This constant specifies the fetch request expression type.
 //
@@ -267,6 +248,3 @@ func (f_ FetchRequestExpression) NSFetchRequestExpressionType() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("NSFetchRequestExpressionType"))
 	return rv
 }
-
-
-

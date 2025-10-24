@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class CBCharacteristic */
+
+
+/* debug [class_header]: Header for CBCharacteristic */
 // The class instance for the [CBCharacteristic] class.
 var (
 	CBCharacteristicClass     _CBCharacteristicClass
@@ -26,42 +30,36 @@ func getCBCharacteristicClass() _CBCharacteristicClass {
 type _CBCharacteristicClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CBCharacteristic */
 // An interface definition for the [CBCharacteristic] class.
 type ICBCharacteristic interface {
 	ICBAttribute
+	
+/* debug [class_interface_properties]: Properties for CBCharacteristic */
 	// properties:
-	Descriptors() []ICBDescriptor
+	Descriptors() []CBDescriptor
 	IsBroadcasted() bool
 	IsNotifying() bool
 	Properties() CBCharacteristicProperties
 	Service() ICBService
 	Value() objc.IObject /* cross-framework: NSData */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CBCharacteristic */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A characteristic of a remote peripheral’s service.
-//
-// and its subclass represent further information about a peripheral’s service. In particular, objects represent the characteristics of a remote peripheral’s service. A characteristic contains a single value and any number of descriptors describing that value. The properties of a characteristic determine how you can use a characteristic’s value, and how you access the descriptors.
+/* debug [class_interface]: End interface */
 
 
-// A characteristic of a remote peripheral’s service.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic
-type CBCharacteristic struct {
-	CBAttribute
-}
 
-// CBCharacteristicFrom constructs a [CBCharacteristic] from an unsafe.Pointer.
-//
-// A characteristic of a remote peripheral’s service.
-func CBCharacteristicFrom(ptr unsafe.Pointer) CBCharacteristic {
-	return CBCharacteristic{
-		CBAttribute: CBAttributeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CBCharacteristic */
 // Alloc allocates a new instance without initialization.
 func (cc _CBCharacteristicClass) Alloc() CBCharacteristic {
 	rv := objc.Send[CBCharacteristic](objc.ID(cc.class), objc.Sel("alloc"))
@@ -69,7 +67,6 @@ func (cc _CBCharacteristicClass) Alloc() CBCharacteristic {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CBCharacteristicClass) New() CBCharacteristic {
 	rv := objc.Send[CBCharacteristic](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,17 +89,65 @@ func (c_ CBCharacteristic) Autorelease() CBCharacteristic {
 func NewCBCharacteristic() CBCharacteristic {
 	return getCBCharacteristicClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CBCharacteristic */
+// A characteristic of a remote peripheral’s service.
+//
+// and its subclass represent further information about a peripheral’s service. In particular, objects represent the characteristics of a remote peripheral’s service. A characteristic contains a single value and any number of descriptors describing that value. The properties of a characteristic determine how you can use a characteristic’s value, and how you access the descriptors.
+
+
+// A characteristic of a remote peripheral’s service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic
+type CBCharacteristic struct {
+	CBAttribute
+}
+
+// CBCharacteristicFrom constructs a [CBCharacteristic] from an unsafe.Pointer.
+//
+// A characteristic of a remote peripheral’s service.
+func CBCharacteristicFrom(ptr unsafe.Pointer) CBCharacteristic {
+	return CBCharacteristic{
+		CBAttribute: CBAttributeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CBCharacteristic *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CBCharacteristic */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CBCharacteristic */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CBCharacteristic */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CBCharacteristic */
 
 // A list of the descriptors discovered in this characteristic.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreBluetooth/CBCharacteristic/descriptors
-func (c_ CBCharacteristic) Descriptors() []ICBDescriptor {
+func (c_ CBCharacteristic) Descriptors() []CBDescriptor {
 	rv := objc.Send[[]CBDescriptor](c_.ID, objc.Sel("descriptors"))
 	return rv
-}
+}/* debug [instance_properties/getter]: descriptors */
 
 
 // A Boolean value that indicates whether the characteristic the service broadcasts this characteristic.
@@ -112,7 +157,7 @@ func (c_ CBCharacteristic) Descriptors() []ICBDescriptor {
 func (c_ CBCharacteristic) IsBroadcasted() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isBroadcasted"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isBroadcasted */
 
 
 // A Boolean value that indicates whether the characteristic is currently notifying a subscribed central of its value.
@@ -122,7 +167,7 @@ func (c_ CBCharacteristic) IsBroadcasted() bool {
 func (c_ CBCharacteristic) IsNotifying() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isNotifying"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isNotifying */
 
 
 // The properties of the characteristic.
@@ -132,7 +177,7 @@ func (c_ CBCharacteristic) IsNotifying() bool {
 func (c_ CBCharacteristic) Properties() CBCharacteristicProperties {
 	rv := objc.Send[CBCharacteristicProperties](c_.ID, objc.Sel("properties"))
 	return rv
-}
+}/* debug [instance_properties/getter]: properties */
 
 
 // The service to which this characteristic belongs.
@@ -142,7 +187,7 @@ func (c_ CBCharacteristic) Properties() CBCharacteristicProperties {
 func (c_ CBCharacteristic) Service() ICBService {
 	rv := objc.Send[CBService](c_.ID, objc.Sel("service"))
 	return rv
-}
+}/* debug [instance_properties/getter]: service */
 
 
 // The value of the characteristic.
@@ -152,7 +197,12 @@ func (c_ CBCharacteristic) Service() ICBService {
 func (c_ CBCharacteristic) Value() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: value */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CBCharacteristic */
 
 
 

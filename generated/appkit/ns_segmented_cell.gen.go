@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class NSSegmentedCell */
+
+
+/* debug [class_header]: Header for NSSegmentedCell */
 // The class instance for the [SegmentedCell] class.
 var (
 	SegmentedCellClass     _SegmentedCellClass
@@ -27,10 +30,16 @@ func getSegmentedCellClass() _SegmentedCellClass {
 type _SegmentedCellClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SegmentedCell */
 // An interface definition for the [SegmentedCell] class.
 type ISegmentedCell interface {
 	IActionCell
+	
+/* debug [class_interface_properties]: Properties for SegmentedCell */
 	// properties:
 	SegmentCount() int
 	SetSegmentCount(value int)
@@ -40,8 +49,12 @@ type ISegmentedCell interface {
 	SetSelectedSegment(value int)
 	TrackingMode() SegmentSwitchTracking
 	SetTrackingMode(value SegmentSwitchTracking)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SegmentedCell */
 	// methods:
-	DrawSegmentInFrameWithView(segment int, frame objc.IObject /* cross-framework: Rect */, controlView IView)
+	DrawSegmentInFrameWithView(segment int, frame Rect /* not a class type */, controlView IView)
 	ImageForSegment(segment int) IImage
 	ImageScalingForSegment(segment int) ImageScaling
 	InteriorBackgroundStyleForSegment(segment int) BackgroundStyle
@@ -64,30 +77,14 @@ type ISegmentedCell interface {
 	TagForSegment(segment int) int
 	ToolTipForSegment(segment int) foundation.String
 	WidthForSegment(segment int) float64
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
-//
-// Use the methods of to customize the attributes of a segmented control. To customize the appearance of individual segments, you can also subclass and override the method.
+/* debug [class_interface]: End interface */
 
 
-// An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell
-type SegmentedCell struct {
-	ActionCell
-}
 
-// SegmentedCellFrom constructs a [SegmentedCell] from an unsafe.Pointer.
-//
-// An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
-func SegmentedCellFrom(ptr unsafe.Pointer) SegmentedCell {
-	return SegmentedCell{
-		ActionCell: ActionCellFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for SegmentedCell */
 // Alloc allocates a new instance without initialization.
 func (sc _SegmentedCellClass) Alloc() SegmentedCell {
 	rv := objc.Send[SegmentedCell](objc.ID(sc.class), objc.Sel("alloc"))
@@ -95,7 +92,6 @@ func (sc _SegmentedCellClass) Alloc() SegmentedCell {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SegmentedCellClass) New() SegmentedCell {
 	rv := objc.Send[SegmentedCell](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -118,16 +114,59 @@ func (s_ SegmentedCell) Autorelease() SegmentedCell {
 func NewSegmentedCell() SegmentedCell {
 	return getSegmentedCellClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for SegmentedCell */
+// An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
+//
+// Use the methods of to customize the attributes of a segmented control. To customize the appearance of individual segments, you can also subclass and override the method.
+
+
+// An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell
+type SegmentedCell struct {
+	ActionCell
+}
+
+// SegmentedCellFrom constructs a [SegmentedCell] from an unsafe.Pointer.
+//
+// An object implements the appearance and behavior of a horizontal button divided into multiple segments. This class is used in conjunction with the class to implement a segmented control.
+func SegmentedCellFrom(ptr unsafe.Pointer) SegmentedCell {
+	return SegmentedCell{
+		ActionCell: ActionCellFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SegmentedCell *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SegmentedCell */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SegmentedCell */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SegmentedCell */
 
 // Draws the image and label of the segment in the specified view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/drawSegment(_:inFrame:with:)
-func (s_ SegmentedCell) DrawSegmentInFrameWithView(segment int, frame objc.IObject /* cross-framework: Rect */, controlView IView) {
+func (s_ SegmentedCell) DrawSegmentInFrameWithView(segment int, frame Rect /* not a class type */, controlView IView) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawSegment:inFrame:withView:"), segment, frame, controlView)
-}
+}/* debug [instance_methods/method]: DrawSegmentInFrameWithView */
 
 
 // Returns the image associated with the specified segment.
@@ -137,7 +176,7 @@ func (s_ SegmentedCell) DrawSegmentInFrameWithView(segment int, frame objc.IObje
 func (s_ SegmentedCell) ImageForSegment(segment int) IImage {
 	rv := objc.Send[Image](s_.ID, objc.Sel("imageForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: ImageForSegment */
 
 
 // Returns the image scaling mode associated with the specified segment.
@@ -147,7 +186,7 @@ func (s_ SegmentedCell) ImageForSegment(segment int) IImage {
 func (s_ SegmentedCell) ImageScalingForSegment(segment int) ImageScaling {
 	rv := objc.Send[ImageScaling](s_.ID, objc.Sel("imageScalingForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: ImageScalingForSegment */
 
 
 // Returns the interior background style for the specified segment.
@@ -157,7 +196,7 @@ func (s_ SegmentedCell) ImageScalingForSegment(segment int) ImageScaling {
 func (s_ SegmentedCell) InteriorBackgroundStyleForSegment(segment int) BackgroundStyle {
 	rv := objc.Send[BackgroundStyle](s_.ID, objc.Sel("interiorBackgroundStyleForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: InteriorBackgroundStyleForSegment */
 
 
 // Returns a Boolean value indicating whether the specified segment is enabled.
@@ -167,7 +206,7 @@ func (s_ SegmentedCell) InteriorBackgroundStyleForSegment(segment int) Backgroun
 func (s_ SegmentedCell) IsEnabledForSegment(segment int) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabledForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: IsEnabledForSegment */
 
 
 // Returns a Boolean value indicating whether the specified segment is selected,
@@ -177,7 +216,7 @@ func (s_ SegmentedCell) IsEnabledForSegment(segment int) bool {
 func (s_ SegmentedCell) IsSelectedForSegment(segment int) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isSelectedForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: IsSelectedForSegment */
 
 
 // Returns the label of the specified segment.
@@ -187,7 +226,7 @@ func (s_ SegmentedCell) IsSelectedForSegment(segment int) bool {
 func (s_ SegmentedCell) LabelForSegment(segment int) foundation.String {
 	rv := objc.Send[foundation.String](s_.ID, objc.Sel("labelForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: LabelForSegment */
 
 
 // Selects the next segment.
@@ -196,7 +235,7 @@ func (s_ SegmentedCell) LabelForSegment(segment int) foundation.String {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/makeNextSegmentKey()
 func (s_ SegmentedCell) MakeNextSegmentKey() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("makeNextSegmentKey"))
-}
+}/* debug [instance_methods/method]: MakeNextSegmentKey */
 
 
 // Selects the previous segment.
@@ -205,7 +244,7 @@ func (s_ SegmentedCell) MakeNextSegmentKey() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/makePreviousSegmentKey()
 func (s_ SegmentedCell) MakePreviousSegmentKey() {
 	objc.Send[objc.ID](s_.ID, objc.Sel("makePreviousSegmentKey"))
-}
+}/* debug [instance_methods/method]: MakePreviousSegmentKey */
 
 
 // Returns the menu for the specified segment.
@@ -215,7 +254,7 @@ func (s_ SegmentedCell) MakePreviousSegmentKey() {
 func (s_ SegmentedCell) MenuForSegment(segment int) IMenu {
 	rv := objc.Send[Menu](s_.ID, objc.Sel("menuForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: MenuForSegment */
 
 
 // Selects the segment with the specified tag.
@@ -225,7 +264,7 @@ func (s_ SegmentedCell) MenuForSegment(segment int) IMenu {
 func (s_ SegmentedCell) SelectSegmentWithTag(tag int) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("selectSegmentWithTag:"), tag)
 	return rv
-}
+}/* debug [instance_methods/method]: SelectSegmentWithTag */
 
 
 // Sets the enabled state of the specified segment
@@ -234,7 +273,7 @@ func (s_ SegmentedCell) SelectSegmentWithTag(tag int) bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setEnabled(_:forSegment:)
 func (s_ SegmentedCell) SetEnabledForSegment(enabled bool, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:forSegment:"), enabled, segment)
-}
+}/* debug [instance_methods/method]: SetEnabledForSegment */
 
 
 // Sets the image for the specified segment.
@@ -243,7 +282,7 @@ func (s_ SegmentedCell) SetEnabledForSegment(enabled bool, segment int) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setImage(_:forSegment:)
 func (s_ SegmentedCell) SetImageForSegment(image IImage, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:forSegment:"), image, segment)
-}
+}/* debug [instance_methods/method]: SetImageForSegment */
 
 
 // Sets the image scaling mode for the specified segment.
@@ -252,7 +291,7 @@ func (s_ SegmentedCell) SetImageForSegment(image IImage, segment int) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setImageScaling(_:forSegment:)
 func (s_ SegmentedCell) SetImageScalingForSegment(scaling ImageScaling, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImageScaling:forSegment:"), scaling, segment)
-}
+}/* debug [instance_methods/method]: SetImageScalingForSegment */
 
 
 // Sets the label for the specified segment.
@@ -261,7 +300,7 @@ func (s_ SegmentedCell) SetImageScalingForSegment(scaling ImageScaling, segment 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setLabel(_:forSegment:)
 func (s_ SegmentedCell) SetLabelForSegment(label objc.IObject /* cross-framework: NSString */, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:forSegment:"), label, segment)
-}
+}/* debug [instance_methods/method]: SetLabelForSegment */
 
 
 // Sets the menu for the specified segment.
@@ -270,7 +309,7 @@ func (s_ SegmentedCell) SetLabelForSegment(label objc.IObject /* cross-framework
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setMenu(_:forSegment:)
 func (s_ SegmentedCell) SetMenuForSegment(menu IMenu, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMenu:forSegment:"), menu, segment)
-}
+}/* debug [instance_methods/method]: SetMenuForSegment */
 
 
 // Sets the selection state of the specified segment.
@@ -279,7 +318,7 @@ func (s_ SegmentedCell) SetMenuForSegment(menu IMenu, segment int) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setSelected(_:forSegment:)
 func (s_ SegmentedCell) SetSelectedForSegment(selected bool, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelected:forSegment:"), selected, segment)
-}
+}/* debug [instance_methods/method]: SetSelectedForSegment */
 
 
 // Sets the tag for the specified segment.
@@ -288,7 +327,7 @@ func (s_ SegmentedCell) SetSelectedForSegment(selected bool, segment int) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setTag(_:forSegment:)
 func (s_ SegmentedCell) SetTagForSegment(tag int, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTag:forSegment:"), tag, segment)
-}
+}/* debug [instance_methods/method]: SetTagForSegment */
 
 
 // Sets the tooltip for the specified segment.
@@ -297,7 +336,7 @@ func (s_ SegmentedCell) SetTagForSegment(tag int, segment int) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setToolTip(_:forSegment:)
 func (s_ SegmentedCell) SetToolTipForSegment(toolTip objc.IObject /* cross-framework: NSString */, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setToolTip:forSegment:"), toolTip, segment)
-}
+}/* debug [instance_methods/method]: SetToolTipForSegment */
 
 
 // Sets the width of the specified segment.
@@ -306,7 +345,7 @@ func (s_ SegmentedCell) SetToolTipForSegment(toolTip objc.IObject /* cross-frame
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/setWidth(_:forSegment:)
 func (s_ SegmentedCell) SetWidthForSegment(width float64, segment int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setWidth:forSegment:"), width, segment)
-}
+}/* debug [instance_methods/method]: SetWidthForSegment */
 
 
 // Returns the tag of the specified segment.
@@ -316,7 +355,7 @@ func (s_ SegmentedCell) SetWidthForSegment(width float64, segment int) {
 func (s_ SegmentedCell) TagForSegment(segment int) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("tagForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: TagForSegment */
 
 
 // Returns the tooltip of the specified segment.
@@ -326,7 +365,7 @@ func (s_ SegmentedCell) TagForSegment(segment int) int {
 func (s_ SegmentedCell) ToolTipForSegment(segment int) foundation.String {
 	rv := objc.Send[foundation.String](s_.ID, objc.Sel("toolTipForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: ToolTipForSegment */
 
 
 // Returns the width of the specified segment.
@@ -336,8 +375,13 @@ func (s_ SegmentedCell) ToolTipForSegment(segment int) foundation.String {
 func (s_ SegmentedCell) WidthForSegment(segment int) float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("widthForSegment:"), segment)
 	return rv
-}
+}/* debug [instance_methods/method]: WidthForSegment */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SegmentedCell */
 
 // The number of segments in the segmented control.
 //
@@ -346,7 +390,7 @@ func (s_ SegmentedCell) WidthForSegment(segment int) float64 {
 func (s_ SegmentedCell) SegmentCount() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segmentCount */
 
 
 // The number of segments in the segmented control.
@@ -355,7 +399,7 @@ func (s_ SegmentedCell) SegmentCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/segmentCount
 func (s_ SegmentedCell) SetSegmentCount(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
-}
+}/* debug [instance_properties/setter]: segmentCount */
 
 
 // The visual style used to display the segmented control.
@@ -365,7 +409,7 @@ func (s_ SegmentedCell) SetSegmentCount(value int) {
 func (s_ SegmentedCell) SegmentStyle() SegmentStyle {
 	rv := objc.Send[SegmentStyle](s_.ID, objc.Sel("segmentStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segmentStyle */
 
 
 // The visual style used to display the segmented control.
@@ -374,7 +418,7 @@ func (s_ SegmentedCell) SegmentStyle() SegmentStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/segmentStyle
 func (s_ SegmentedCell) SetSegmentStyle(value SegmentStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentStyle:"), value)
-}
+}/* debug [instance_properties/setter]: segmentStyle */
 
 
 // The index of the selected segment of the control, or if no segment is selected.
@@ -384,7 +428,7 @@ func (s_ SegmentedCell) SetSegmentStyle(value SegmentStyle) {
 func (s_ SegmentedCell) SelectedSegment() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
 	return rv
-}
+}/* debug [instance_properties/getter]: selectedSegment */
 
 
 // The index of the selected segment of the control, or if no segment is selected.
@@ -393,7 +437,7 @@ func (s_ SegmentedCell) SelectedSegment() int {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/selectedSegment
 func (s_ SegmentedCell) SetSelectedSegment(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
-}
+}/* debug [instance_properties/setter]: selectedSegment */
 
 
 // The tracking mode used for the segments of the control.
@@ -403,7 +447,7 @@ func (s_ SegmentedCell) SetSelectedSegment(value int) {
 func (s_ SegmentedCell) TrackingMode() SegmentSwitchTracking {
 	rv := objc.Send[SegmentSwitchTracking](s_.ID, objc.Sel("trackingMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: trackingMode */
 
 
 // The tracking mode used for the segments of the control.
@@ -412,7 +456,12 @@ func (s_ SegmentedCell) TrackingMode() SegmentSwitchTracking {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedCell/trackingMode
 func (s_ SegmentedCell) SetTrackingMode(value SegmentSwitchTracking) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackingMode:"), value)
-}
+}/* debug [instance_properties/setter]: trackingMode */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSSegmentedCell */
 
 
 

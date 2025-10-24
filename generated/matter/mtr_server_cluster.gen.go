@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRServerCluster interface {
 	SetClusterRevision(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRServerCluster
@@ -87,8 +85,6 @@ func NewMTRServerCluster() MTRServerCluster {
 	return getMTRServerClusterClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/accessgrants
 func (m_ MTRServerCluster) AccessGrants() IMTRAccessGrant {
@@ -96,13 +92,11 @@ func (m_ MTRServerCluster) AccessGrants() IMTRAccessGrant {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/accessgrants
 func (m_ MTRServerCluster) SetAccessGrants(value IMTRAccessGrant) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAccessGrants:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/attributes
@@ -111,13 +105,11 @@ func (m_ MTRServerCluster) Attributes() IMTRServerAttribute {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/attributes
 func (m_ MTRServerCluster) SetAttributes(value IMTRServerAttribute) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributes:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterid
@@ -126,13 +118,11 @@ func (m_ MTRServerCluster) ClusterID() objc.IObject /* cross-framework: NSNumber
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterid
 func (m_ MTRServerCluster) SetClusterID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClusterID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterrevision
@@ -141,12 +131,8 @@ func (m_ MTRServerCluster) ClusterRevision() objc.IObject /* cross-framework: NS
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrservercluster/clusterrevision
 func (m_ MTRServerCluster) SetClusterRevision(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setClusterRevision:"), value)
 }
-
-
-

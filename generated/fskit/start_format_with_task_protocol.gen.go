@@ -15,3 +15,4 @@ var startFormatWithTaskProtocol *objc.Protocol
 func init() {
 	startFormatWithTaskProtocol = objc.GetProtocol("startFormatWithTask:")
 }
+

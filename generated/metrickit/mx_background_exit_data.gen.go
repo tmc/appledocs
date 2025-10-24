@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MXBackgroundExitData */
+
+
+/* debug [class_header]: Header for MXBackgroundExitData */
 // The class instance for the [MXBackgroundExitData] class.
 var (
 	MXBackgroundExitDataClass     _MXBackgroundExitDataClass
@@ -26,54 +30,42 @@ func getMXBackgroundExitDataClass() _MXBackgroundExitDataClass {
 type _MXBackgroundExitDataClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MXBackgroundExitData */
 // An interface definition for the [MXBackgroundExitData] class.
 type IMXBackgroundExitData interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MXBackgroundExitData */
 	// properties:
+	CumulativeAbnormalExitCount() uint
+	CumulativeAppWatchdogExitCount() uint
+	CumulativeBackgroundTaskAssertionTimeoutExitCount() uint
+	CumulativeBadAccessExitCount() uint
+	CumulativeCPUResourceLimitExitCount() uint
+	CumulativeIllegalInstructionExitCount() uint
+	CumulativeMemoryPressureExitCount() uint
+	CumulativeMemoryResourceLimitExitCount() uint
+	CumulativeNormalAppExitCount() uint
+	CumulativeSuspendedWithLockedFileExitCount() uint
 	BackgroundExitData() IMXBackgroundExitData
 	SetBackgroundExitData(value IMXBackgroundExitData)
-	CumulativeAbnormalExitCount() int
-	SetCumulativeAbnormalExitCount(value int)
-	CumulativeAppWatchdogExitCount() int
-	SetCumulativeAppWatchdogExitCount(value int)
-	CumulativeBackgroundTaskAssertionTimeoutExitCount() int
-	SetCumulativeBackgroundTaskAssertionTimeoutExitCount(value int)
-	CumulativeBadAccessExitCount() int
-	SetCumulativeBadAccessExitCount(value int)
-	CumulativeCPUResourceLimitExitCount() int
-	SetCumulativeCPUResourceLimitExitCount(value int)
-	CumulativeIllegalInstructionExitCount() int
-	SetCumulativeIllegalInstructionExitCount(value int)
-	CumulativeMemoryPressureExitCount() int
-	SetCumulativeMemoryPressureExitCount(value int)
-	CumulativeMemoryResourceLimitExitCount() int
-	SetCumulativeMemoryResourceLimitExitCount(value int)
-	CumulativeNormalAppExitCount() int
-	SetCumulativeNormalAppExitCount(value int)
-	CumulativeSuspendedWithLockedFileExitCount() int
-	SetCumulativeSuspendedWithLockedFileExitCount(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MXBackgroundExitData */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object representing counts for the different types of background app exits.
 
 
-// An object representing counts for the different types of background app exits.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData
-type MXBackgroundExitData struct {
-	objectivec.Object
-}
-
-// MXBackgroundExitDataFrom constructs a [MXBackgroundExitData] from an unsafe.Pointer.
-//
-// An object representing counts for the different types of background app exits.
-func MXBackgroundExitDataFrom(ptr unsafe.Pointer) MXBackgroundExitData {
-	return MXBackgroundExitData{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MXBackgroundExitData */
 // Alloc allocates a new instance without initialization.
 func (mc _MXBackgroundExitDataClass) Alloc() MXBackgroundExitData {
 	rv := objc.Send[MXBackgroundExitData](objc.ID(mc.class), objc.Sel("alloc"))
@@ -81,7 +73,6 @@ func (mc _MXBackgroundExitDataClass) Alloc() MXBackgroundExitData {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MXBackgroundExitDataClass) New() MXBackgroundExitData {
 	rv := objc.Send[MXBackgroundExitData](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -104,7 +95,151 @@ func (m_ MXBackgroundExitData) Autorelease() MXBackgroundExitData {
 func NewMXBackgroundExitData() MXBackgroundExitData {
 	return getMXBackgroundExitDataClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MXBackgroundExitData */
+// An object representing counts for the different types of background app exits.
+
+
+// An object representing counts for the different types of background app exits.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData
+type MXBackgroundExitData struct {
+	objectivec.Object
+}
+
+// MXBackgroundExitDataFrom constructs a [MXBackgroundExitData] from an unsafe.Pointer.
+//
+// An object representing counts for the different types of background app exits.
+func MXBackgroundExitDataFrom(ptr unsafe.Pointer) MXBackgroundExitData {
+	return MXBackgroundExitData{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MXBackgroundExitData *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MXBackgroundExitData */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MXBackgroundExitData */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MXBackgroundExitData */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MXBackgroundExitData */
+
+// The number of times the app exited abnormally from the background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeAbnormalExitCount
+func (m_ MXBackgroundExitData) CumulativeAbnormalExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeAbnormalExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeAbnormalExitCount */
+
+
+// The number of times the system watchdog terminated the app from the background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeAppWatchdogExitCount
+func (m_ MXBackgroundExitData) CumulativeAppWatchdogExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeAppWatchdogExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeAppWatchdogExitCount */
+
+
+// The number of times the system terminated the app from the background for exceeding the allocated time for a background task.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeBackgroundTaskAssertionTimeoutExitCount
+func (m_ MXBackgroundExitData) CumulativeBackgroundTaskAssertionTimeoutExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeBackgroundTaskAssertionTimeoutExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeBackgroundTaskAssertionTimeoutExitCount */
+
+
+// The number of times the system terminated the app from the background for attempting an invalid memory access.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeBadAccessExitCount
+func (m_ MXBackgroundExitData) CumulativeBadAccessExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeBadAccessExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeBadAccessExitCount */
+
+
+// The number of times the system terminated the app from the background for using too much CPU time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeCPUResourceLimitExitCount
+func (m_ MXBackgroundExitData) CumulativeCPUResourceLimitExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeCPUResourceLimitExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeCPUResourceLimitExitCount */
+
+
+// The number of times the system terminated the app from the background for attempting to execute an illegal or undefined instruction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeIllegalInstructionExitCount
+func (m_ MXBackgroundExitData) CumulativeIllegalInstructionExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeIllegalInstructionExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeIllegalInstructionExitCount */
+
+
+// The number of times the system terminated the app from the background to free up memory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeMemoryPressureExitCount
+func (m_ MXBackgroundExitData) CumulativeMemoryPressureExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeMemoryPressureExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeMemoryPressureExitCount */
+
+
+// The number of times the system terminated the app from the background for using too much memory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeMemoryResourceLimitExitCount
+func (m_ MXBackgroundExitData) CumulativeMemoryResourceLimitExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeMemoryResourceLimitExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeMemoryResourceLimitExitCount */
+
+
+// The number of times the app exited normally from the background.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeNormalAppExitCount
+func (m_ MXBackgroundExitData) CumulativeNormalAppExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeNormalAppExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeNormalAppExitCount */
+
+
+// The number of times the system terminated the app from the background while being suspended and having file locks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXBackgroundExitData/cumulativeSuspendedWithLockedFileExitCount
+func (m_ MXBackgroundExitData) CumulativeSuspendedWithLockedFileExitCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("cumulativeSuspendedWithLockedFileExitCount"))
+	return rv
+}/* debug [instance_properties/getter]: cumulativeSuspendedWithLockedFileExitCount */
 
 
 // The metrics for the background app exits.
@@ -114,7 +249,7 @@ func NewMXBackgroundExitData() MXBackgroundExitData {
 func (m_ MXBackgroundExitData) BackgroundExitData() IMXBackgroundExitData {
 	rv := objc.Send[MXBackgroundExitData](m_.ID, objc.Sel("backgroundExitData"))
 	return rv
-}
+}/* debug [instance_properties/getter]: backgroundExitData */
 
 
 // The metrics for the background app exits.
@@ -123,197 +258,12 @@ func (m_ MXBackgroundExitData) BackgroundExitData() IMXBackgroundExitData {
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxappexitmetric/backgroundexitdata
 func (m_ MXBackgroundExitData) SetBackgroundExitData(value IMXBackgroundExitData) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBackgroundExitData:"), value)
-}
+}/* debug [instance_properties/setter]: backgroundExitData */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The number of times the app exited abnormally from the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativeabnormalexitcount
-func (m_ MXBackgroundExitData) CumulativeAbnormalExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeAbnormalExitCount"))
-	return rv
-}
-
-
-// The number of times the app exited abnormally from the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativeabnormalexitcount
-func (m_ MXBackgroundExitData) SetCumulativeAbnormalExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeAbnormalExitCount:"), value)
-}
-
-
-// The number of times the system watchdog terminated the app from the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativeappwatchdogexitcount
-func (m_ MXBackgroundExitData) CumulativeAppWatchdogExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeAppWatchdogExitCount"))
-	return rv
-}
-
-
-// The number of times the system watchdog terminated the app from the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativeappwatchdogexitcount
-func (m_ MXBackgroundExitData) SetCumulativeAppWatchdogExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeAppWatchdogExitCount:"), value)
-}
-
-
-// The number of times the system terminated the app from the background for exceeding the allocated time for a background task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativebackgroundtaskassertiontimeoutexitcount
-func (m_ MXBackgroundExitData) CumulativeBackgroundTaskAssertionTimeoutExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeBackgroundTaskAssertionTimeoutExitCount"))
-	return rv
-}
-
-
-// The number of times the system terminated the app from the background for exceeding the allocated time for a background task.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativebackgroundtaskassertiontimeoutexitcount
-func (m_ MXBackgroundExitData) SetCumulativeBackgroundTaskAssertionTimeoutExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeBackgroundTaskAssertionTimeoutExitCount:"), value)
-}
-
-
-// The number of times the system terminated the app from the background for attempting an invalid memory access.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativebadaccessexitcount
-func (m_ MXBackgroundExitData) CumulativeBadAccessExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeBadAccessExitCount"))
-	return rv
-}
-
-
-// The number of times the system terminated the app from the background for attempting an invalid memory access.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativebadaccessexitcount
-func (m_ MXBackgroundExitData) SetCumulativeBadAccessExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeBadAccessExitCount:"), value)
-}
-
-
-// The number of times the system terminated the app from the background for using too much CPU time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativecpuresourcelimitexitcount
-func (m_ MXBackgroundExitData) CumulativeCPUResourceLimitExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeCPUResourceLimitExitCount"))
-	return rv
-}
-
-
-// The number of times the system terminated the app from the background for using too much CPU time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativecpuresourcelimitexitcount
-func (m_ MXBackgroundExitData) SetCumulativeCPUResourceLimitExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeCPUResourceLimitExitCount:"), value)
-}
-
-
-// The number of times the system terminated the app from the background for attempting to execute an illegal or undefined instruction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativeillegalinstructionexitcount
-func (m_ MXBackgroundExitData) CumulativeIllegalInstructionExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeIllegalInstructionExitCount"))
-	return rv
-}
-
-
-// The number of times the system terminated the app from the background for attempting to execute an illegal or undefined instruction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativeillegalinstructionexitcount
-func (m_ MXBackgroundExitData) SetCumulativeIllegalInstructionExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeIllegalInstructionExitCount:"), value)
-}
-
-
-// The number of times the system terminated the app from the background to free up memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativememorypressureexitcount
-func (m_ MXBackgroundExitData) CumulativeMemoryPressureExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeMemoryPressureExitCount"))
-	return rv
-}
-
-
-// The number of times the system terminated the app from the background to free up memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativememorypressureexitcount
-func (m_ MXBackgroundExitData) SetCumulativeMemoryPressureExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeMemoryPressureExitCount:"), value)
-}
-
-
-// The number of times the system terminated the app from the background for using too much memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativememoryresourcelimitexitcount
-func (m_ MXBackgroundExitData) CumulativeMemoryResourceLimitExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeMemoryResourceLimitExitCount"))
-	return rv
-}
-
-
-// The number of times the system terminated the app from the background for using too much memory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativememoryresourcelimitexitcount
-func (m_ MXBackgroundExitData) SetCumulativeMemoryResourceLimitExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeMemoryResourceLimitExitCount:"), value)
-}
-
-
-// The number of times the app exited normally from the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativenormalappexitcount
-func (m_ MXBackgroundExitData) CumulativeNormalAppExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeNormalAppExitCount"))
-	return rv
-}
-
-
-// The number of times the app exited normally from the background.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativenormalappexitcount
-func (m_ MXBackgroundExitData) SetCumulativeNormalAppExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeNormalAppExitCount:"), value)
-}
-
-
-// The number of times the system terminated the app from the background while being suspended and having file locks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativesuspendedwithlockedfileexitcount
-func (m_ MXBackgroundExitData) CumulativeSuspendedWithLockedFileExitCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("cumulativeSuspendedWithLockedFileExitCount"))
-	return rv
-}
-
-
-// The number of times the system terminated the app from the background while being suspended and having file locks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxbackgroundexitdata/cumulativesuspendedwithlockedfileexitcount
-func (m_ MXBackgroundExitData) SetCumulativeSuspendedWithLockedFileExitCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCumulativeSuspendedWithLockedFileExitCount:"), value)
-}
+/* debug [class.gen.go]: End class MXBackgroundExitData */
 
 
 

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRDoorLockClusterSetAliroReaderConfigParams */
+
+
+/* debug [class_header]: Header for MTRDoorLockClusterSetAliroReaderConfigParams */
 // The class instance for the [MTRDoorLockClusterSetAliroReaderConfigParams] class.
 var (
 	MTRDoorLockClusterSetAliroReaderConfigParamsClass     _MTRDoorLockClusterSetAliroReaderConfigParamsClass
@@ -27,39 +31,42 @@ func getMTRDoorLockClusterSetAliroReaderConfigParamsClass() _MTRDoorLockClusterS
 type _MTRDoorLockClusterSetAliroReaderConfigParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRDoorLockClusterSetAliroReaderConfigParams */
 // An interface definition for the [MTRDoorLockClusterSetAliroReaderConfigParams] class.
 type IMTRDoorLockClusterSetAliroReaderConfigParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRDoorLockClusterSetAliroReaderConfigParams */
 	// properties:
-	GroupIdentifier() objc.IObject /* cross-framework: NSData */
-	SetGroupIdentifier(value objc.IObject /* cross-framework: NSData */)
-	GroupResolvingKey() objc.IObject /* cross-framework: NSData */
-	SetGroupResolvingKey(value objc.IObject /* cross-framework: NSData */)
-	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
-	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
-	SigningKey() objc.IObject /* cross-framework: NSData */
-	SetSigningKey(value objc.IObject /* cross-framework: NSData */)
 	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
-	VerificationKey() objc.IObject /* cross-framework: NSData */
-	SetVerificationKey(value objc.IObject /* cross-framework: NSData */)
+	GroupIdentifier() foundation.Data
+	SetGroupIdentifier(value foundation.Data)
+	GroupResolvingKey() foundation.Data
+	SetGroupResolvingKey(value foundation.Data)
+	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
+	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
+	SigningKey() foundation.Data
+	SetSigningKey(value foundation.Data)
+	VerificationKey() foundation.Data
+	SetVerificationKey(value foundation.Data)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRDoorLockClusterSetAliroReaderConfigParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams
-type MTRDoorLockClusterSetAliroReaderConfigParams struct {
-	objectivec.Object
-}
-
-// MTRDoorLockClusterSetAliroReaderConfigParamsFrom constructs a [MTRDoorLockClusterSetAliroReaderConfigParams] from an unsafe.Pointer.
-func MTRDoorLockClusterSetAliroReaderConfigParamsFrom(ptr unsafe.Pointer) MTRDoorLockClusterSetAliroReaderConfigParams {
-	return MTRDoorLockClusterSetAliroReaderConfigParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRDoorLockClusterSetAliroReaderConfigParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRDoorLockClusterSetAliroReaderConfigParamsClass) Alloc() MTRDoorLockClusterSetAliroReaderConfigParams {
 	rv := objc.Send[MTRDoorLockClusterSetAliroReaderConfigParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -67,7 +74,6 @@ func (mc _MTRDoorLockClusterSetAliroReaderConfigParamsClass) Alloc() MTRDoorLock
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRDoorLockClusterSetAliroReaderConfigParamsClass) New() MTRDoorLockClusterSetAliroReaderConfigParams {
 	rv := objc.Send[MTRDoorLockClusterSetAliroReaderConfigParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,72 +96,47 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) Autorelease() MTRDoorLock
 func NewMTRDoorLockClusterSetAliroReaderConfigParams() MTRDoorLockClusterSetAliroReaderConfigParams {
 	return getMTRDoorLockClusterSetAliroReaderConfigParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupIdentifier
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupIdentifier() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("groupIdentifier"))
-	return rv
-}
+/* debug [class_struct]: Struct for MTRDoorLockClusterSetAliroReaderConfigParams */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupIdentifier
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupIdentifier(value objc.IObject /* cross-framework: NSData */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupIdentifier:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams
+type MTRDoorLockClusterSetAliroReaderConfigParams struct {
+	objectivec.Object
 }
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupResolvingKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupResolvingKey() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("groupResolvingKey"))
-	return rv
+// MTRDoorLockClusterSetAliroReaderConfigParamsFrom constructs a [MTRDoorLockClusterSetAliroReaderConfigParams] from an unsafe.Pointer.
+func MTRDoorLockClusterSetAliroReaderConfigParamsFrom(ptr unsafe.Pointer) MTRDoorLockClusterSetAliroReaderConfigParams {
+	return MTRDoorLockClusterSetAliroReaderConfigParams{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/groupResolvingKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupResolvingKey(value objc.IObject /* cross-framework: NSData */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupResolvingKey:"), value)
-}
+
+/* debug [class_init_methods]: Init methods for MTRDoorLockClusterSetAliroReaderConfigParams *//* debug [class_init_methods]: End init methods */
 
 
-// Controls how much time, in seconds, we will allow for the server to process the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
-}
+
+/* debug [class_methods]: Class methods for MTRDoorLockClusterSetAliroReaderConfigParams */
+/* debug [class_methods]: End class methods */
 
 
-// Controls how much time, in seconds, we will allow for the server to process the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/serverSideProcessingTimeout
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
+
+/* debug [class_properties_class]: Class properties for MTRDoorLockClusterSetAliroReaderConfigParams */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/signingKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SigningKey() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("signingKey"))
-	return rv
-}
+
+/* debug [instance_methods]: Instance methods for MTRDoorLockClusterSetAliroReaderConfigParams */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/signingKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetSigningKey(value objc.IObject /* cross-framework: NSData */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSigningKey:"), value)
-}
 
+/* debug [instance_properties]: Instance properties for MTRDoorLockClusterSetAliroReaderConfigParams */
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
@@ -164,7 +145,7 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetSigningKey(value objc.
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timedInvokeTimeoutMs */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
@@ -173,22 +154,91 @@ func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) TimedInvokeTimeoutMs() ob
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/timedInvokeTimeoutMs
 func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
+}/* debug [instance_properties/setter]: timedInvokeTimeoutMs */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/verificationKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) VerificationKey() objc.IObject /* cross-framework: NSData */ {
-	rv := objc.Send[foundation.NSData](m_.ID, objc.Sel("verificationKey"))
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/groupidentifier
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupIdentifier() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("groupIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: groupIdentifier */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterSetAliroReaderConfigParams/verificationKey
-func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetVerificationKey(value objc.IObject /* cross-framework: NSData */) {
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/groupidentifier
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupIdentifier(value foundation.Data) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupIdentifier:"), value)
+}/* debug [instance_properties/setter]: groupIdentifier */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/groupresolvingkey
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) GroupResolvingKey() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("groupResolvingKey"))
+	return rv
+}/* debug [instance_properties/getter]: groupResolvingKey */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/groupresolvingkey
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetGroupResolvingKey(value foundation.Data) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupResolvingKey:"), value)
+}/* debug [instance_properties/setter]: groupResolvingKey */
+
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}/* debug [instance_properties/getter]: serverSideProcessingTimeout */
+
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/serversideprocessingtimeout
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}/* debug [instance_properties/setter]: serverSideProcessingTimeout */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/signingkey
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SigningKey() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("signingKey"))
+	return rv
+}/* debug [instance_properties/getter]: signingKey */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/signingkey
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetSigningKey(value foundation.Data) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSigningKey:"), value)
+}/* debug [instance_properties/setter]: signingKey */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/verificationkey
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) VerificationKey() foundation.Data {
+	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("verificationKey"))
+	return rv
+}/* debug [instance_properties/getter]: verificationKey */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclustersetaliroreaderconfigparams/verificationkey
+func (m_ MTRDoorLockClusterSetAliroReaderConfigParams) SetVerificationKey(value foundation.Data) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setVerificationKey:"), value)
-}
+}/* debug [instance_properties/setter]: verificationKey */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRDoorLockClusterSetAliroReaderConfigParams */
 
 
 

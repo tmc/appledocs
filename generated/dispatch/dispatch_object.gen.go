@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class DispatchObject */
+
+
+/* debug [class_header]: Header for DispatchObject */
 // The class instance for the [DispatchObject] class.
 var (
 	DispatchObjectClass     _DispatchObjectClass
@@ -25,36 +29,30 @@ func getDispatchObjectClass() _DispatchObjectClass {
 type _DispatchObjectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DispatchObject */
 // An interface definition for the [DispatchObject] class.
 type IDispatchObject interface {
 	IOS_object
+	
+/* debug [class_interface_properties]: Properties for DispatchObject */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DispatchObject */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The base class for most dispatch types.
-//
-// There are many types of dispatch objects, including , , and . The base dispatch object interfaces allow you to manage memory, pause and resume execution, define object context, log task data, and more.
+/* debug [class_interface]: End interface */
 
 
-// The base class for most dispatch types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject
-type DispatchObject struct {
-	OS_object
-}
 
-// DispatchObjectFrom constructs a [DispatchObject] from an unsafe.Pointer.
-//
-// The base class for most dispatch types.
-func DispatchObjectFrom(ptr unsafe.Pointer) DispatchObject {
-	return DispatchObject{
-		OS_object: OS_objectFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for DispatchObject */
 // Alloc allocates a new instance without initialization.
 func (dc _DispatchObjectClass) Alloc() DispatchObject {
 	rv := objc.Send[DispatchObject](objc.ID(dc.class), objc.Sel("alloc"))
@@ -62,7 +60,6 @@ func (dc _DispatchObjectClass) Alloc() DispatchObject {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DispatchObjectClass) New() DispatchObject {
 	rv := objc.Send[DispatchObject](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,7 +82,60 @@ func (d_ DispatchObject) Autorelease() DispatchObject {
 func NewDispatchObject() DispatchObject {
 	return getDispatchObjectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for DispatchObject */
+// The base class for most dispatch types.
+//
+// There are many types of dispatch objects, including , , and . The base dispatch object interfaces allow you to manage memory, pause and resume execution, define object context, log task data, and more.
+
+
+// The base class for most dispatch types.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Dispatch/DispatchObject
+type DispatchObject struct {
+	OS_object
+}
+
+// DispatchObjectFrom constructs a [DispatchObject] from an unsafe.Pointer.
+//
+// The base class for most dispatch types.
+func DispatchObjectFrom(ptr unsafe.Pointer) DispatchObject {
+	return DispatchObject{
+		OS_object: OS_objectFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DispatchObject *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for DispatchObject */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DispatchObject */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DispatchObject */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DispatchObject */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class DispatchObject */
 
 
 

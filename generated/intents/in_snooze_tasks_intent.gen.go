@@ -41,7 +41,6 @@ type IINSnoozeTasksIntent interface {
 //
 // Siri creates an object when the user marks one or more tasks for snoozing. The intent object can contain the task information. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated task information.
 
-
 // A request to snooze one or more tasks.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINSnoozeTasksIntent() INSnoozeTasksIntent {
 	return getINSnoozeTasksIntentClass().New()
 }
 
-
-
 // A Boolean value that indicates whether to snooze all of the tasks.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INSnoozeTasksIntent) All() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether to snooze all of the tasks.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INSnoozeTasksIntent) All() bool {
 func (i_ INSnoozeTasksIntent) SetAll(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAll:"), value)
 }
-
 
 // The next time after the current time that triggers a task to snooze.
 //
@@ -120,7 +115,6 @@ func (i_ INSnoozeTasksIntent) NextTriggerTime() INDateComponentsRange {
 	return rv
 }
 
-
 // The next time after the current time that triggers a task to snooze.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INSnoozeTasksIntent) NextTriggerTime() INDateComponentsRange {
 func (i_ INSnoozeTasksIntent) SetNextTriggerTime(value INDateComponentsRange) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNextTriggerTime:"), value)
 }
-
 
 // An array of tasks to snooze.
 //
@@ -139,7 +132,6 @@ func (i_ INSnoozeTasksIntent) Tasks() unsafe.Pointer {
 	return rv
 }
 
-
 // An array of tasks to snooze.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INSnoozeTasksIntent) Tasks() unsafe.Pointer {
 func (i_ INSnoozeTasksIntent) SetTasks(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTasks:"), value)
 }
-
-
-

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,7 +42,6 @@ type IINParameter interface {
 // A parameter of an interaction object.
 //
 // Use a parameter object to identify a property of an object. To fetch the value of the property, use the method of the object. You use parameters when configuring a custom user interface for your Siri or Maps interactions. SiriKit passes parameter objects to you during the configuration of your interface. When configuring your interface, you can also create parameter objects to represent properties that you display in addition to the ones that SiriKit provides.
-
 
 // A parameter of an interaction object.
 //
@@ -90,8 +89,6 @@ func NewINParameter() INParameter {
 	return getINParameterClass().New()
 }
 
-
-
 // The type of object represented by this parameter.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INParameter) ParameterClass() objc.Class {
 	return rv
 }
 
-
 // The type of object represented by this parameter.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INParameter) ParameterClass() objc.Class {
 func (i_ INParameter) SetParameterClass(value objc.Class) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParameterClass:"), value)
 }
-
 
 // The key path to a property of an interaction object.
 //
@@ -120,7 +115,6 @@ func (i_ INParameter) ParameterKeyPath() objc.IObject /* cross-framework: NSStri
 	return rv
 }
 
-
 // The key path to a property of an interaction object.
 //
 // [Full Topic]
@@ -128,6 +122,3 @@ func (i_ INParameter) ParameterKeyPath() objc.IObject /* cross-framework: NSStri
 func (i_ INParameter) SetParameterKeyPath(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParameterKeyPath:"), value)
 }
-
-
-

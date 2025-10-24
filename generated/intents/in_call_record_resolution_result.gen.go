@@ -35,7 +35,6 @@ type IINCallRecordResolutionResult interface {
 //
 // You return an object when resolving parameters containing an value. The can be different than the original . This flexibility allows app extensions to apply business logic constraints. Use to continue with a value. For additional resolution operators, see .
 
-
 // A resolution result for the details of a call.
 //
 // [Full Topic]
@@ -83,7 +82,3 @@ func (i_ INCallRecordResolutionResult) Autorelease() INCallRecordResolutionResul
 func NewINCallRecordResolutionResult() INCallRecordResolutionResult {
 	return getINCallRecordResolutionResultClass().New()
 }
-
-
-
-

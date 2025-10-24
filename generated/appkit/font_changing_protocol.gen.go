@@ -15,3 +15,4 @@ var FontChangingProtocol *objc.Protocol
 func init() {
 	FontChangingProtocol = objc.GetProtocol("NSFontChanging")
 }
+

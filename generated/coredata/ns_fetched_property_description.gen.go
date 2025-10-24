@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [FetchedPropertyDescription] class.
@@ -49,7 +49,6 @@ type IFetchedPropertyDescription interface {
 // A description object used to define which properties are fetched from Core Data.
 //
 // An example might be a iTunes playlist, if expressed as a property of a containing object. Songs don’t belong to a particular playlist, especially in the case that they’re on a remote server. The playlist may remain even after the songs have been deleted, or the remote server has become inaccessible. Note, however, that unlike a playlist a fetched property is static—it does not dynamically update itself as objects in the destination entity change. The effect of a fetched property is similar to executing a fetch request yourself and placing the results in a transient attribute, although with the framework managing the details. In particular, a fetched property is not fetched until it is requested, and the results are then cached until the object is turned into a fault. You use ( ) to manually refresh the properties—this causes the fetch request associated with this property to be executed again when the object fault is next fired. Unlike other relationships, which are all sets, fetched properties are represented by an ordered object just as if you executed the fetch request yourself. The fetch request associated with the property can have a sort ordering. The value for a fetched property of a managed object does not support .
-
 
 // A description object used to define which properties are fetched from Core Data.
 //
@@ -99,8 +98,6 @@ func NewFetchedPropertyDescription() FetchedPropertyDescription {
 	return getFetchedPropertyDescriptionClass().New()
 }
 
-
-
 // The fetch request of the receiver.
 //
 // [Full Topic]
@@ -110,7 +107,6 @@ func (f_ FetchedPropertyDescription) FetchRequest() IFetchRequest {
 	return rv
 }
 
-
 // The fetch request of the receiver.
 //
 // [Full Topic]
@@ -118,7 +114,6 @@ func (f_ FetchedPropertyDescription) FetchRequest() IFetchRequest {
 func (f_ FetchedPropertyDescription) SetFetchRequest(value IFetchRequest) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchRequest:"), value)
 }
-
 
 // An array of persistent stores specified for the fetch request.
 //
@@ -129,7 +124,6 @@ func (f_ FetchedPropertyDescription) AffectedStores() IPersistentStore {
 	return rv
 }
 
-
 // An array of persistent stores specified for the fetch request.
 //
 // [Full Topic]
@@ -137,7 +131,6 @@ func (f_ FetchedPropertyDescription) AffectedStores() IPersistentStore {
 func (f_ FetchedPropertyDescription) SetAffectedStores(value IPersistentStore) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setAffectedStores:"), value)
 }
-
 
 // The batch size of the objects specified in the fetch request.
 //
@@ -148,7 +141,6 @@ func (f_ FetchedPropertyDescription) FetchBatchSize() int {
 	return rv
 }
 
-
 // The batch size of the objects specified in the fetch request.
 //
 // [Full Topic]
@@ -156,7 +148,6 @@ func (f_ FetchedPropertyDescription) FetchBatchSize() int {
 func (f_ FetchedPropertyDescription) SetFetchBatchSize(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
-
 
 // The fetch limit of the fetch request.
 //
@@ -167,7 +158,6 @@ func (f_ FetchedPropertyDescription) FetchLimit() int {
 	return rv
 }
 
-
 // The fetch limit of the fetch request.
 //
 // [Full Topic]
@@ -175,7 +165,6 @@ func (f_ FetchedPropertyDescription) FetchLimit() int {
 func (f_ FetchedPropertyDescription) SetFetchLimit(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchLimit:"), value)
 }
-
 
 // The fetch offset of the fetch request.
 //
@@ -186,7 +175,6 @@ func (f_ FetchedPropertyDescription) FetchOffset() int {
 	return rv
 }
 
-
 // The fetch offset of the fetch request.
 //
 // [Full Topic]
@@ -194,7 +182,6 @@ func (f_ FetchedPropertyDescription) FetchOffset() int {
 func (f_ FetchedPropertyDescription) SetFetchOffset(value int) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setFetchOffset:"), value)
 }
-
 
 // The predicate of the fetch request.
 //
@@ -205,7 +192,6 @@ func (f_ FetchedPropertyDescription) Predicate() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The predicate of the fetch request.
 //
 // [Full Topic]
@@ -213,6 +199,3 @@ func (f_ FetchedPropertyDescription) Predicate() objc.IObject /* cross-framework
 func (f_ FetchedPropertyDescription) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setPredicate:"), value)
 }
-
-
-

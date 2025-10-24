@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterSimpleStruct] class.
@@ -49,8 +49,6 @@ type IMTRTestClusterClusterSimpleStruct interface {
 	SetH(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterSimpleStruct
@@ -96,8 +94,6 @@ func NewMTRTestClusterClusterSimpleStruct() MTRTestClusterClusterSimpleStruct {
 	return getMTRTestClusterClusterSimpleStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/a
 func (m_ MTRTestClusterClusterSimpleStruct) A() objc.IObject /* cross-framework: NSNumber */ {
@@ -105,13 +101,11 @@ func (m_ MTRTestClusterClusterSimpleStruct) A() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/a
 func (m_ MTRTestClusterClusterSimpleStruct) SetA(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/b
@@ -120,13 +114,11 @@ func (m_ MTRTestClusterClusterSimpleStruct) B() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/b
 func (m_ MTRTestClusterClusterSimpleStruct) SetB(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setB:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/c
@@ -135,13 +127,11 @@ func (m_ MTRTestClusterClusterSimpleStruct) C() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/c
 func (m_ MTRTestClusterClusterSimpleStruct) SetC(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/d
@@ -150,13 +140,11 @@ func (m_ MTRTestClusterClusterSimpleStruct) D() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/d
 func (m_ MTRTestClusterClusterSimpleStruct) SetD(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setD:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
@@ -165,13 +153,11 @@ func (m_ MTRTestClusterClusterSimpleStruct) E() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/e
 func (m_ MTRTestClusterClusterSimpleStruct) SetE(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setE:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/f
@@ -180,13 +166,11 @@ func (m_ MTRTestClusterClusterSimpleStruct) F() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/f
 func (m_ MTRTestClusterClusterSimpleStruct) SetF(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setF:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/g
@@ -195,13 +179,11 @@ func (m_ MTRTestClusterClusterSimpleStruct) G() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/g
 func (m_ MTRTestClusterClusterSimpleStruct) SetG(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setG:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/h
@@ -210,12 +192,8 @@ func (m_ MTRTestClusterClusterSimpleStruct) H() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustersimplestruct/h
 func (m_ MTRTestClusterClusterSimpleStruct) SetH(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setH:"), value)
 }
-
-
-

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CNFetchResult */
+
+
+/* debug [class_header]: Header for CNFetchResult */
 // The class instance for the [CNFetchResult] class.
 var (
 	CNFetchResultClass     _CNFetchResultClass
@@ -27,35 +31,32 @@ func getCNFetchResultClass() _CNFetchResultClass {
 type _CNFetchResultClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CNFetchResult */
 // An interface definition for the [CNFetchResult] class.
 type ICNFetchResult interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CNFetchResult */
 	// properties:
-	Value() unsafe.Pointer
-	CurrentHistoryToken() objc.IObject /* cross-framework: Data */
-	SetCurrentHistoryToken(value objc.IObject /* cross-framework: Data */)
+	CurrentHistoryToken() objc.IObject /* cross-framework: NSData */
+	Value() objectivec.IObject
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CNFetchResult */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that represents the result of a change-history fetch request.
 
 
-// An object that represents the result of a change-history fetch request.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult
-type CNFetchResult struct {
-	objectivec.Object
-}
-
-// CNFetchResultFrom constructs a [CNFetchResult] from an unsafe.Pointer.
-//
-// An object that represents the result of a change-history fetch request.
-func CNFetchResultFrom(ptr unsafe.Pointer) CNFetchResult {
-	return CNFetchResult{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CNFetchResult */
 // Alloc allocates a new instance without initialization.
 func (cc _CNFetchResultClass) Alloc() CNFetchResult {
 	rv := objc.Send[CNFetchResult](objc.ID(cc.class), objc.Sel("alloc"))
@@ -63,7 +64,6 @@ func (cc _CNFetchResultClass) Alloc() CNFetchResult {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CNFetchResultClass) New() CNFetchResult {
 	rv := objc.Send[CNFetchResult](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,36 +86,76 @@ func (c_ CNFetchResult) Autorelease() CNFetchResult {
 func NewCNFetchResult() CNFetchResult {
 	return getCNFetchResultClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for CNFetchResult */
+// An object that represents the result of a change-history fetch request.
+
+
+// An object that represents the result of a change-history fetch request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult
+type CNFetchResult struct {
+	objectivec.Object
+}
+
+// CNFetchResultFrom constructs a [CNFetchResult] from an unsafe.Pointer.
+//
+// An object that represents the result of a change-history fetch request.
+func CNFetchResultFrom(ptr unsafe.Pointer) CNFetchResult {
+	return CNFetchResult{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CNFetchResult *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CNFetchResult */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CNFetchResult */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CNFetchResult */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CNFetchResult */
+
+// An opaque token that indicates a point in history in the user’s Contacts database.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult/currentHistoryToken
+func (c_ CNFetchResult) CurrentHistoryToken() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](c_.ID, objc.Sel("currentHistoryToken"))
+	return rv
+}/* debug [instance_properties/getter]: currentHistoryToken */
 
 
 // The result of the fetch request, expressed as the value type you specify.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Contacts/CNFetchResult/value
-func (c_ CNFetchResult) Value() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("value"))
+func (c_ CNFetchResult) Value() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: value */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// An opaque token that indicates a point in history in the user’s Contacts database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnfetchresult/currenthistorytoken
-func (c_ CNFetchResult) CurrentHistoryToken() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](c_.ID, objc.Sel("currentHistoryToken"))
-	return rv
-}
-
-
-// An opaque token that indicates a point in history in the user’s Contacts database.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/contacts/cnfetchresult/currenthistorytoken
-func (c_ CNFetchResult) SetCurrentHistoryToken(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCurrentHistoryToken:"), value)
-}
+/* debug [class.gen.go]: End class CNFetchResult */
 
 
 

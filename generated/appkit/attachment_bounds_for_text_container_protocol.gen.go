@@ -15,3 +15,4 @@ var attachmentBoundsForTextContainerProtocol *objc.Protocol
 func init() {
 	attachmentBoundsForTextContainerProtocol = objc.GetProtocol("attachmentBoundsForTextContainer:")
 }
+

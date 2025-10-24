@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class EKVirtualConferenceDescriptor */
+
+
+/* debug [class_header]: Header for EKVirtualConferenceDescriptor */
 // The class instance for the [EKVirtualConferenceDescriptor] class.
 var (
 	EKVirtualConferenceDescriptorClass     _EKVirtualConferenceDescriptorClass
@@ -27,37 +31,33 @@ func getEKVirtualConferenceDescriptorClass() _EKVirtualConferenceDescriptorClass
 type _EKVirtualConferenceDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EKVirtualConferenceDescriptor */
 // An interface definition for the [EKVirtualConferenceDescriptor] class.
 type IEKVirtualConferenceDescriptor interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for EKVirtualConferenceDescriptor */
 	// properties:
 	ConferenceDetails() objc.IObject /* cross-framework: NSString */
 	Title() objc.IObject /* cross-framework: NSString */
-	URLDescriptors() []IEKVirtualConferenceURLDescriptor
+	URLDescriptors() []EKVirtualConferenceURLDescriptor
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EKVirtualConferenceDescriptor */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Details about a virtual conference that uses a custom room type.
-//
-// When users add events to their calendars and use one of the room types that your provider defines, EventKit requests a virtual conference descriptor from your provider. Each virtual conference descriptor contains: A user-visible name for the virtual conference One or more URLs that the users open to join the virtual conference Optional details about the conference that may be helpful to users Calendar uses the first URL that you provide as the preferred way for users to join a virtual conference and displays additional URLs as links in the virtual conference details.
+/* debug [class_interface]: End interface */
 
 
-// Details about a virtual conference that uses a custom room type.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor
-type EKVirtualConferenceDescriptor struct {
-	objectivec.Object
-}
 
-// EKVirtualConferenceDescriptorFrom constructs a [EKVirtualConferenceDescriptor] from an unsafe.Pointer.
-//
-// Details about a virtual conference that uses a custom room type.
-func EKVirtualConferenceDescriptorFrom(ptr unsafe.Pointer) EKVirtualConferenceDescriptor {
-	return EKVirtualConferenceDescriptor{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for EKVirtualConferenceDescriptor */
 // Alloc allocates a new instance without initialization.
 func (ec _EKVirtualConferenceDescriptorClass) Alloc() EKVirtualConferenceDescriptor {
 	rv := objc.Send[EKVirtualConferenceDescriptor](objc.ID(ec.class), objc.Sel("alloc"))
@@ -65,7 +65,6 @@ func (ec _EKVirtualConferenceDescriptorClass) Alloc() EKVirtualConferenceDescrip
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EKVirtualConferenceDescriptorClass) New() EKVirtualConferenceDescriptor {
 	rv := objc.Send[EKVirtualConferenceDescriptor](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,21 +87,67 @@ func (e_ EKVirtualConferenceDescriptor) Autorelease() EKVirtualConferenceDescrip
 func NewEKVirtualConferenceDescriptor() EKVirtualConferenceDescriptor {
 	return getEKVirtualConferenceDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for EKVirtualConferenceDescriptor */
+// Details about a virtual conference that uses a custom room type.
+//
+// When users add events to their calendars and use one of the room types that your provider defines, EventKit requests a virtual conference descriptor from your provider. Each virtual conference descriptor contains: A user-visible name for the virtual conference One or more URLs that the users open to join the virtual conference Optional details about the conference that may be helpful to users Calendar uses the first URL that you provide as the preferred way for users to join a virtual conference and displays additional URLs as links in the virtual conference details.
+
+
+// Details about a virtual conference that uses a custom room type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor
+type EKVirtualConferenceDescriptor struct {
+	objectivec.Object
+}
+
+// EKVirtualConferenceDescriptorFrom constructs a [EKVirtualConferenceDescriptor] from an unsafe.Pointer.
+//
+// Details about a virtual conference that uses a custom room type.
+func EKVirtualConferenceDescriptorFrom(ptr unsafe.Pointer) EKVirtualConferenceDescriptor {
+	return EKVirtualConferenceDescriptor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EKVirtualConferenceDescriptor */
 
 // Creates an object that describes a virtual conference, including a name and URL to join the conference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/init(title:urlDescriptors:conferenceDetails:)
-func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(title objc.IObject /* cross-framework: NSString */, URLDescriptors []IEKVirtualConferenceURLDescriptor, conferenceDetails objc.IObject /* cross-framework: NSString */) EKVirtualConferenceDescriptor {
+func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(title objc.IObject /* cross-framework: NSString */, URLDescriptors []EKVirtualConferenceURLDescriptor, conferenceDetails objc.IObject /* cross-framework: NSString */) EKVirtualConferenceDescriptor {
 	instance := getEKVirtualConferenceDescriptorClass().Alloc()
 	rv := objc.Send[EKVirtualConferenceDescriptor](instance.ID, objc.Sel("initWithTitle:URLDescriptors:conferenceDetails:"), title, URLDescriptors, conferenceDetails)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for EKVirtualConferenceDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EKVirtualConferenceDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EKVirtualConferenceDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EKVirtualConferenceDescriptor */
 
 // Additional information about the conference that users may find helpful.
 //
@@ -111,7 +156,7 @@ func NewEKVirtualConferenceDescriptorWithTitleURLDescriptorsConferenceDetails(ti
 func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("conferenceDetails"))
 	return rv
-}
+}/* debug [instance_properties/getter]: conferenceDetails */
 
 
 // The user-visible name of the virtual conference.
@@ -121,16 +166,21 @@ func (e_ EKVirtualConferenceDescriptor) ConferenceDetails() objc.IObject /* cros
 func (e_ EKVirtualConferenceDescriptor) Title() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("title"))
 	return rv
-}
+}/* debug [instance_properties/getter]: title */
 
 
 // An array that contains objects with details about where to join the virtual conference.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKVirtualConferenceDescriptor/urlDescriptors
-func (e_ EKVirtualConferenceDescriptor) URLDescriptors() []IEKVirtualConferenceURLDescriptor {
+func (e_ EKVirtualConferenceDescriptor) URLDescriptors() []EKVirtualConferenceURLDescriptor {
 	rv := objc.Send[[]EKVirtualConferenceURLDescriptor](e_.ID, objc.Sel("URLDescriptors"))
 	return rv
-}
+}/* debug [instance_properties/getter]: URLDescriptors */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class EKVirtualConferenceDescriptor */
 
 

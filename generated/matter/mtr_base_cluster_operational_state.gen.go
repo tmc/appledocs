@@ -33,8 +33,6 @@ type IMTRBaseClusterOperationalState interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterOperationalState
 type MTRBaseClusterOperationalState struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterOperationalState) Autorelease() MTRBaseClusterOperational
 func NewMTRBaseClusterOperationalState() MTRBaseClusterOperationalState {
 	return getMTRBaseClusterOperationalStateClass().New()
 }
-
-
-
-

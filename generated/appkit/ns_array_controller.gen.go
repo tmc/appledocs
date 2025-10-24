@@ -7,11 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/cloudkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSArrayController */
+
+
+/* debug [class_header]: Header for NSArrayController */
 // The class instance for the [ArrayController] class.
 var (
 	ArrayControllerClass     _ArrayControllerClass
@@ -28,10 +31,16 @@ func getArrayControllerClass() _ArrayControllerClass {
 type _ArrayControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ArrayController */
 // An interface definition for the [ArrayController] class.
 type IArrayController interface {
 	IObjectController
+	
+/* debug [class_interface_properties]: Properties for ArrayController */
 	// properties:
 	AlwaysUsesMultipleValuesMarker() bool
 	SetAlwaysUsesMultipleValuesMarker(value bool)
@@ -57,6 +66,10 @@ type IArrayController interface {
 	SetSelectsInsertedObjects(value bool)
 	SortDescriptors() []objc.IObject
 	SetSortDescriptors(value []objc.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ArrayController */
 	// methods:
 	Add(sender objc.IObject)
 	AddObjects(objects objc.IObject /* cross-framework: NSArray */)
@@ -78,30 +91,14 @@ type IArrayController interface {
 	RemoveSelectionIndexes(indexes foundation.IndexSet) bool
 	SelectNext(sender objc.IObject)
 	SelectPrevious(sender objc.IObject)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A bindings-compatible controller that manages a collection of objects.
-//
-// Typically the collection that an manages is an array, however, if the controller manages a relationship of a managed object (see ) the collection may be a set. provides selection management and sorting capabilities.
+/* debug [class_interface]: End interface */
 
 
-// A bindings-compatible controller that manages a collection of objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController
-type ArrayController struct {
-	ObjectController
-}
 
-// ArrayControllerFrom constructs a [ArrayController] from an unsafe.Pointer.
-//
-// A bindings-compatible controller that manages a collection of objects.
-func ArrayControllerFrom(ptr unsafe.Pointer) ArrayController {
-	return ArrayController{
-		ObjectController: ObjectControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ArrayController */
 // Alloc allocates a new instance without initialization.
 func (ac _ArrayControllerClass) Alloc() ArrayController {
 	rv := objc.Send[ArrayController](objc.ID(ac.class), objc.Sel("alloc"))
@@ -109,7 +106,6 @@ func (ac _ArrayControllerClass) Alloc() ArrayController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _ArrayControllerClass) New() ArrayController {
 	rv := objc.Send[ArrayController](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -132,8 +128,51 @@ func (a_ ArrayController) Autorelease() ArrayController {
 func NewArrayController() ArrayController {
 	return getArrayControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ArrayController */
+// A bindings-compatible controller that manages a collection of objects.
+//
+// Typically the collection that an manages is an array, however, if the controller manages a relationship of a managed object (see ) the collection may be a set. provides selection management and sorting capabilities.
+
+
+// A bindings-compatible controller that manages a collection of objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController
+type ArrayController struct {
+	ObjectController
+}
+
+// ArrayControllerFrom constructs a [ArrayController] from an unsafe.Pointer.
+//
+// A bindings-compatible controller that manages a collection of objects.
+func ArrayControllerFrom(ptr unsafe.Pointer) ArrayController {
+	return ArrayController{
+		ObjectController: ObjectControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ArrayController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ArrayController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ArrayController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ArrayController */
 
 // Creates and adds a new object to the receiver’s content and arranged objects.
 //
@@ -141,7 +180,7 @@ func NewArrayController() ArrayController {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/add(_:)
 func (a_ ArrayController) Add(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("add:"), sender)
-}
+}/* debug [instance_methods/method]: Add */
 
 
 // Adds to the receiver’s content collection.
@@ -150,7 +189,7 @@ func (a_ ArrayController) Add(sender objc.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/add(contentsOf:)
 func (a_ ArrayController) AddObjects(objects objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObjects:"), objects)
-}
+}/* debug [instance_methods/method]: AddObjects */
 
 
 // Adds to the receiver’s content collection and the arranged objects array.
@@ -159,7 +198,7 @@ func (a_ ArrayController) AddObjects(objects objc.IObject /* cross-framework: NS
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/addObject(_:)
 func (a_ ArrayController) AddObject(object objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("addObject:"), object)
-}
+}/* debug [instance_methods/method]: AddObject */
 
 
 // Adds the specified objects from the receiver’s content array to the current selection.
@@ -169,7 +208,7 @@ func (a_ ArrayController) AddObject(object objc.IObject) {
 func (a_ ArrayController) AddSelectedObjects(objects objc.IObject /* cross-framework: NSArray */) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addSelectedObjects:"), objects)
 	return rv
-}
+}/* debug [instance_methods/method]: AddSelectedObjects */
 
 
 // Adds the objects at the specified indexes in the receiver’s content array to the current selection.
@@ -179,7 +218,7 @@ func (a_ ArrayController) AddSelectedObjects(objects objc.IObject /* cross-frame
 func (a_ ArrayController) AddSelectionIndexes(indexes foundation.IndexSet) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("addSelectionIndexes:"), indexes)
 	return rv
-}
+}/* debug [instance_methods/method]: AddSelectionIndexes */
 
 
 // Returns a given array, appropriately sorted and filtered.
@@ -189,7 +228,7 @@ func (a_ ArrayController) AddSelectionIndexes(indexes foundation.IndexSet) bool 
 func (a_ ArrayController) ArrangeObjects(objects objc.IObject /* cross-framework: NSArray */) foundation.Array {
 	rv := objc.Send[foundation.Array](a_.ID, objc.Sel("arrangeObjects:"), objects)
 	return rv
-}
+}/* debug [instance_methods/method]: ArrangeObjects */
 
 
 // Invoked when any criteria for arranging objects change.
@@ -198,7 +237,7 @@ func (a_ ArrayController) ArrangeObjects(objects objc.IObject /* cross-framework
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/didChangeArrangementCriteria()
 func (a_ ArrayController) DidChangeArrangementCriteria() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("didChangeArrangementCriteria"))
-}
+}/* debug [instance_methods/method]: DidChangeArrangementCriteria */
 
 
 // Creates a new object and inserts it into the receiver’s content array.
@@ -207,7 +246,7 @@ func (a_ ArrayController) DidChangeArrangementCriteria() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/insert(_:)
 func (a_ ArrayController) Insert(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insert:"), sender)
-}
+}/* debug [instance_methods/method]: Insert */
 
 
 // Inserts into the receiver’s arranged objects array at the location specified by , and adds it to the receiver’s content collection.
@@ -216,7 +255,7 @@ func (a_ ArrayController) Insert(sender objc.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/insert(_:atArrangedObjectIndex:)
 func (a_ ArrayController) InsertObjectAtArrangedObjectIndex(object objc.IObject, index uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insertObject:atArrangedObjectIndex:"), object, index)
-}
+}/* debug [instance_methods/method]: InsertObjectAtArrangedObjectIndex */
 
 
 // Inserts s into the receiver’s arranged objects array at the locations specified in , and adds it to the receiver’s content collection.
@@ -225,7 +264,7 @@ func (a_ ArrayController) InsertObjectAtArrangedObjectIndex(object objc.IObject,
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/insert(contentsOf:atArrangedObjectIndexes:)
 func (a_ ArrayController) InsertObjectsAtArrangedObjectIndexes(objects objc.IObject /* cross-framework: NSArray */, indexes foundation.IndexSet) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("insertObjects:atArrangedObjectIndexes:"), objects, indexes)
-}
+}/* debug [instance_methods/method]: InsertObjectsAtArrangedObjectIndexes */
 
 
 // Triggers filtering of the receiver’s content.
@@ -234,7 +273,7 @@ func (a_ ArrayController) InsertObjectsAtArrangedObjectIndexes(objects objc.IObj
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/rearrangeObjects()
 func (a_ ArrayController) RearrangeObjects() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("rearrangeObjects"))
-}
+}/* debug [instance_methods/method]: RearrangeObjects */
 
 
 // Removes the receiver’s selected objects from the content collection.
@@ -243,7 +282,7 @@ func (a_ ArrayController) RearrangeObjects() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/remove(_:)
 func (a_ ArrayController) Remove(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("remove:"), sender)
-}
+}/* debug [instance_methods/method]: Remove */
 
 
 // Removes the object at the specified in the receiver’s arranged objects from the receiver’s content array.
@@ -252,7 +291,7 @@ func (a_ ArrayController) Remove(sender objc.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/remove(atArrangedObjectIndex:)
 func (a_ ArrayController) RemoveObjectAtArrangedObjectIndex(index uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObjectAtArrangedObjectIndex:"), index)
-}
+}/* debug [instance_methods/method]: RemoveObjectAtArrangedObjectIndex */
 
 
 // Removes the objects at the specified in the receiver’s arranged objects from the content array.
@@ -261,7 +300,7 @@ func (a_ ArrayController) RemoveObjectAtArrangedObjectIndex(index uint) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/remove(atArrangedObjectIndexes:)
 func (a_ ArrayController) RemoveObjectsAtArrangedObjectIndexes(indexes foundation.IndexSet) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObjectsAtArrangedObjectIndexes:"), indexes)
-}
+}/* debug [instance_methods/method]: RemoveObjectsAtArrangedObjectIndexes */
 
 
 // Removes from the receiver’s content collection.
@@ -270,7 +309,7 @@ func (a_ ArrayController) RemoveObjectsAtArrangedObjectIndexes(indexes foundatio
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/remove(contentsOf:)
 func (a_ ArrayController) RemoveObjects(objects objc.IObject /* cross-framework: NSArray */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObjects:"), objects)
-}
+}/* debug [instance_methods/method]: RemoveObjects */
 
 
 // Removes from the receiver’s content collection.
@@ -279,7 +318,7 @@ func (a_ ArrayController) RemoveObjects(objects objc.IObject /* cross-framework:
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/removeObject(_:)
 func (a_ ArrayController) RemoveObject(object objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("removeObject:"), object)
-}
+}/* debug [instance_methods/method]: RemoveObject */
 
 
 // Removes the specified objects from the receiver’s current selection.
@@ -289,7 +328,7 @@ func (a_ ArrayController) RemoveObject(object objc.IObject) {
 func (a_ ArrayController) RemoveSelectedObjects(objects objc.IObject /* cross-framework: NSArray */) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeSelectedObjects:"), objects)
 	return rv
-}
+}/* debug [instance_methods/method]: RemoveSelectedObjects */
 
 
 // Removes the object as the specified indexes from the receiver’s current selection.
@@ -299,7 +338,7 @@ func (a_ ArrayController) RemoveSelectedObjects(objects objc.IObject /* cross-fr
 func (a_ ArrayController) RemoveSelectionIndexes(indexes foundation.IndexSet) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("removeSelectionIndexes:"), indexes)
 	return rv
-}
+}/* debug [instance_methods/method]: RemoveSelectionIndexes */
 
 
 // Selects the next object, relative to the current selection, in the receiver’s arranged content.
@@ -308,7 +347,7 @@ func (a_ ArrayController) RemoveSelectionIndexes(indexes foundation.IndexSet) bo
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/selectNext(_:)
 func (a_ ArrayController) SelectNext(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectNext:"), sender)
-}
+}/* debug [instance_methods/method]: SelectNext */
 
 
 // Selects the previous object, relative to the current selection, in the receiver’s arranged content.
@@ -317,8 +356,13 @@ func (a_ ArrayController) SelectNext(sender objc.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/selectPrevious(_:)
 func (a_ ArrayController) SelectPrevious(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("selectPrevious:"), sender)
-}
+}/* debug [instance_methods/method]: SelectPrevious */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ArrayController */
 
 // A Boolean value that indicates whether the receiver always returns the multiple values marker when multiple objects are selected
 //
@@ -327,7 +371,7 @@ func (a_ ArrayController) SelectPrevious(sender objc.IObject) {
 func (a_ ArrayController) AlwaysUsesMultipleValuesMarker() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("alwaysUsesMultipleValuesMarker"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alwaysUsesMultipleValuesMarker */
 
 
 // A Boolean value that indicates whether the receiver always returns the multiple values marker when multiple objects are selected
@@ -336,7 +380,7 @@ func (a_ ArrayController) AlwaysUsesMultipleValuesMarker() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/alwaysUsesMultipleValuesMarker
 func (a_ ArrayController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAlwaysUsesMultipleValuesMarker:"), value)
-}
+}/* debug [instance_properties/setter]: alwaysUsesMultipleValuesMarker */
 
 
 // An array containing the receiver’s content objects arranged using .
@@ -346,7 +390,7 @@ func (a_ ArrayController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 func (a_ ArrayController) ArrangedObjects() objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("arrangedObjects"))
 	return rv
-}
+}/* debug [instance_properties/getter]: arrangedObjects */
 
 
 // A Boolean that indicates if the receiver automatically rearranges its content to correspond to the current sort descriptors and filter predicates
@@ -356,7 +400,7 @@ func (a_ ArrayController) ArrangedObjects() objc.ID {
 func (a_ ArrayController) AutomaticallyRearrangesObjects() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("automaticallyRearrangesObjects"))
 	return rv
-}
+}/* debug [instance_properties/getter]: automaticallyRearrangesObjects */
 
 
 // A Boolean that indicates if the receiver automatically rearranges its content to correspond to the current sort descriptors and filter predicates
@@ -365,7 +409,7 @@ func (a_ ArrayController) AutomaticallyRearrangesObjects() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/automaticallyRearrangesObjects
 func (a_ ArrayController) SetAutomaticallyRearrangesObjects(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAutomaticallyRearrangesObjects:"), value)
-}
+}/* debug [instance_properties/setter]: automaticallyRearrangesObjects */
 
 
 // An array of key paths that trigger automatic content sorting or filtering
@@ -375,7 +419,7 @@ func (a_ ArrayController) SetAutomaticallyRearrangesObjects(value bool) {
 func (a_ ArrayController) AutomaticRearrangementKeyPaths() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("automaticRearrangementKeyPaths"))
 	return rv
-}
+}/* debug [instance_properties/getter]: automaticRearrangementKeyPaths */
 
 
 // A Boolean value that indicates whether the receiver requires that the content array attempt to maintain a selection
@@ -385,7 +429,7 @@ func (a_ ArrayController) AutomaticRearrangementKeyPaths() []string {
 func (a_ ArrayController) AvoidsEmptySelection() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("avoidsEmptySelection"))
 	return rv
-}
+}/* debug [instance_properties/getter]: avoidsEmptySelection */
 
 
 // A Boolean value that indicates whether the receiver requires that the content array attempt to maintain a selection
@@ -394,7 +438,7 @@ func (a_ ArrayController) AvoidsEmptySelection() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/avoidsEmptySelection
 func (a_ ArrayController) SetAvoidsEmptySelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAvoidsEmptySelection:"), value)
-}
+}/* debug [instance_properties/setter]: avoidsEmptySelection */
 
 
 // Returns a Boolean value that indicates whether an object can be inserted into the receiver’s content collection.
@@ -404,7 +448,7 @@ func (a_ ArrayController) SetAvoidsEmptySelection(value bool) {
 func (a_ ArrayController) CanInsert() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canInsert"))
 	return rv
-}
+}/* debug [instance_properties/getter]: canInsert */
 
 
 // A Boolean value indicating whether the next object, relative to the current selection, in the receiver’s content array can be selected
@@ -414,7 +458,7 @@ func (a_ ArrayController) CanInsert() bool {
 func (a_ ArrayController) CanSelectNext() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canSelectNext"))
 	return rv
-}
+}/* debug [instance_properties/getter]: canSelectNext */
 
 
 // A Boolean value indicating whether the previous object, relative to the current selection, in the receiver’s content array can be selected
@@ -424,7 +468,7 @@ func (a_ ArrayController) CanSelectNext() bool {
 func (a_ ArrayController) CanSelectPrevious() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("canSelectPrevious"))
 	return rv
-}
+}/* debug [instance_properties/getter]: canSelectPrevious */
 
 
 // A Boolean value that indicates whether the receiver automatically clears an existing filter predicate when new items are inserted or added to the content
@@ -434,7 +478,7 @@ func (a_ ArrayController) CanSelectPrevious() bool {
 func (a_ ArrayController) ClearsFilterPredicateOnInsertion() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("clearsFilterPredicateOnInsertion"))
 	return rv
-}
+}/* debug [instance_properties/getter]: clearsFilterPredicateOnInsertion */
 
 
 // A Boolean value that indicates whether the receiver automatically clears an existing filter predicate when new items are inserted or added to the content
@@ -443,7 +487,7 @@ func (a_ ArrayController) ClearsFilterPredicateOnInsertion() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/clearsFilterPredicateOnInsertion
 func (a_ ArrayController) SetClearsFilterPredicateOnInsertion(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setClearsFilterPredicateOnInsertion:"), value)
-}
+}/* debug [instance_properties/setter]: clearsFilterPredicateOnInsertion */
 
 
 // A predicate used by the receiver to filter the array controller contents
@@ -453,7 +497,7 @@ func (a_ ArrayController) SetClearsFilterPredicateOnInsertion(value bool) {
 func (a_ ArrayController) FilterPredicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](a_.ID, objc.Sel("filterPredicate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: filterPredicate */
 
 
 // A predicate used by the receiver to filter the array controller contents
@@ -462,7 +506,7 @@ func (a_ ArrayController) FilterPredicate() foundation.Predicate {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/filterPredicate
 func (a_ ArrayController) SetFilterPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setFilterPredicate:"), value)
-}
+}/* debug [instance_properties/setter]: filterPredicate */
 
 
 // A Boolean value that indicates whether the receiver will attempt to preserve the current selection when the content changes
@@ -472,7 +516,7 @@ func (a_ ArrayController) SetFilterPredicate(value foundation.Predicate) {
 func (a_ ArrayController) PreservesSelection() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("preservesSelection"))
 	return rv
-}
+}/* debug [instance_properties/getter]: preservesSelection */
 
 
 // A Boolean value that indicates whether the receiver will attempt to preserve the current selection when the content changes
@@ -481,7 +525,7 @@ func (a_ ArrayController) PreservesSelection() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/preservesSelection
 func (a_ ArrayController) SetPreservesSelection(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setPreservesSelection:"), value)
-}
+}/* debug [instance_properties/setter]: preservesSelection */
 
 
 // An array containing the receiver’s selected objects
@@ -491,7 +535,7 @@ func (a_ ArrayController) SetPreservesSelection(value bool) {
 func (a_ ArrayController) SelectedObjects() objc.IObject /* cross-framework: NSArray */ {
 	rv := objc.Send[foundation.NSArray](a_.ID, objc.Sel("selectedObjects"))
 	return rv
-}
+}/* debug [instance_properties/getter]: selectedObjects */
 
 
 // The index of the first object in the receiver’s selection
@@ -501,7 +545,7 @@ func (a_ ArrayController) SelectedObjects() objc.IObject /* cross-framework: NSA
 func (a_ ArrayController) SelectionIndex() uint {
 	rv := objc.Send[uint](a_.ID, objc.Sel("selectionIndex"))
 	return rv
-}
+}/* debug [instance_properties/getter]: selectionIndex */
 
 
 // An index set containing the indexes of the receiver’s currently selected objects in the content array
@@ -511,7 +555,7 @@ func (a_ ArrayController) SelectionIndex() uint {
 func (a_ ArrayController) SelectionIndexes() foundation.IndexSet {
 	rv := objc.Send[foundation.IndexSet](a_.ID, objc.Sel("selectionIndexes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: selectionIndexes */
 
 
 // A Boolean value that indicates whether the receiver automatically selects inserted objects
@@ -521,7 +565,7 @@ func (a_ ArrayController) SelectionIndexes() foundation.IndexSet {
 func (a_ ArrayController) SelectsInsertedObjects() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("selectsInsertedObjects"))
 	return rv
-}
+}/* debug [instance_properties/getter]: selectsInsertedObjects */
 
 
 // A Boolean value that indicates whether the receiver automatically selects inserted objects
@@ -530,7 +574,7 @@ func (a_ ArrayController) SelectsInsertedObjects() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/selectsInsertedObjects
 func (a_ ArrayController) SetSelectsInsertedObjects(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelectsInsertedObjects:"), value)
-}
+}/* debug [instance_properties/setter]: selectsInsertedObjects */
 
 
 // An array of sort descriptor objects, used by the receiver to arrange its content.
@@ -540,7 +584,7 @@ func (a_ ArrayController) SetSelectsInsertedObjects(value bool) {
 func (a_ ArrayController) SortDescriptors() []objc.IObject {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortDescriptors"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sortDescriptors */
 
 
 // An array of sort descriptor objects, used by the receiver to arrange its content.
@@ -548,7 +592,6 @@ func (a_ ArrayController) SortDescriptors() []objc.IObject {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSArrayController/sortDescriptors
 func (a_ ArrayController) SetSortDescriptors(value []objc.IObject) {
-	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
 		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
@@ -559,7 +602,12 @@ func (a_ ArrayController) SetSortDescriptors(value []objc.IObject) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSortDescriptors:"), nsArray)
-}
+}/* debug [instance_properties/setter]: sortDescriptors */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSArrayController */
 
 
 

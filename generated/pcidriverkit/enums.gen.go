@@ -2,7 +2,9 @@
 
 package pcidriverkit
 
+/* debug [enums.gen.go]: Generating 9 enums for PCIDriverKit */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum IOPCIBARType (5 cases) */
 // IOPCIBARType enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCIBARType
@@ -26,6 +28,7 @@ const (
 	kPCIBARTypeM64PF IOPCIBARType = 0
 )
 
+/* debug [enums.gen.go]: Processing enum IOPCILinkSpeed (5 cases) */
 // IOPCILinkSpeed enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCILinkSpeed
@@ -49,6 +52,7 @@ const (
 	kPCILinkSpeed_8_GTs IOPCILinkSpeed = 0
 )
 
+/* debug [enums.gen.go]: Processing enum IOPCIMemoryRange (7 cases) */
 // IOPCIMemoryRange enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCIMemoryRange
@@ -78,6 +82,7 @@ const (
 	kPCIMemoryRangeExpansionROM IOPCIMemoryRange = 0
 )
 
+/* debug [enums.gen.go]: Processing enum IOPCISaveDeviceStateOptions (1 cases) */
 // IOPCISaveDeviceStateOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/IOPCISaveDeviceStateOptions
@@ -89,6 +94,7 @@ const (
 	kPCIConfigShadowPermanent IOPCISaveDeviceStateOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum tIOPCIAccessOptions (1 cases) */
 // tIOPCIAccessOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCIAccessOptions
@@ -100,6 +106,7 @@ const (
 	kIOPCIAccessLatencyTolerantHint tIOPCIAccessOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum tIOPCIDeviceResetOptions (2 cases) */
 // tIOPCIDeviceResetOptions enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCIDeviceResetOptions
@@ -107,10 +114,14 @@ type tIOPCIDeviceResetOptions uint
 
 const (
 	//
+	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCIDeviceResetOptions/kIOPCIDeviceResetOptionNone
+	kIOPCIDeviceResetOptionNone tIOPCIDeviceResetOptions = 0
+	//
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCIDeviceResetOptions/kIOPCIDeviceResetOptionTerminate
 	kIOPCIDeviceResetOptionTerminate tIOPCIDeviceResetOptions = 0
 )
 
+/* debug [enums.gen.go]: Processing enum tIOPCIDeviceResetTypes (5 cases) */
 // tIOPCIDeviceResetTypes enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCIDeviceResetTypes
@@ -134,6 +145,7 @@ const (
 	kIOPCIDeviceResetTypeWarmResetEnable tIOPCIDeviceResetTypes = 0
 )
 
+/* debug [enums.gen.go]: Processing enum tIOPCILinkControlASPMBits (4 cases) */
 // tIOPCILinkControlASPMBits enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCILinkControlASPMBits
@@ -154,6 +166,7 @@ const (
 	kIOPCILinkControlASPMBitsL1 tIOPCILinkControlASPMBits = 0
 )
 
+/* debug [enums.gen.go]: Processing enum tIOPCILinkSpeed (5 cases) */
 // tIOPCILinkSpeed enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCILinkSpeed
@@ -176,5 +189,3 @@ const (
 	// [Full Topic]: https://developer.apple.com/documentation/PCIDriverKit/tIOPCILinkSpeed/kIOPCILinkSpeed_8_GTs
 	kIOPCILinkSpeed_8_GTs tIOPCILinkSpeed = 0
 )
-
-

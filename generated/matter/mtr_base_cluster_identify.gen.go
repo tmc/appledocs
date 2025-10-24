@@ -33,8 +33,6 @@ type IMTRBaseClusterIdentify interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterIdentify
 type MTRBaseClusterIdentify struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterIdentify) Autorelease() MTRBaseClusterIdentify {
 func NewMTRBaseClusterIdentify() MTRBaseClusterIdentify {
 	return getMTRBaseClusterIdentifyClass().New()
 }
-
-
-
-

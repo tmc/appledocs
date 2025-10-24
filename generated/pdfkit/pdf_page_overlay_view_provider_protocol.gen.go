@@ -20,3 +20,4 @@ var PDFPageOverlayViewProviderProtocol *objc.Protocol
 func init() {
 	PDFPageOverlayViewProviderProtocol = objc.GetProtocol("PDFPageOverlayViewProvider")
 }
+

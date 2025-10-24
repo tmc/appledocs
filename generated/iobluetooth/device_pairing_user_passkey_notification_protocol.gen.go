@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // devicePairingUserPasskeyNotificationProtocol is the devicePairingUserPasskeyNotification: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to devicePairingUserPasskeyNotification:.
 var devicePairingUserPasskeyNotificationProtocol *objc.Protocol
 
 func init() {
 	devicePairingUserPasskeyNotificationProtocol = objc.GetProtocol("devicePairingUserPasskeyNotification:")
 }
+

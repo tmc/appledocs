@@ -12,7 +12,7 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSPasteboardTypeOwner
 type PPasteboardTypeOwner interface {
 	// Required methods
-	PasteboardProvideDataForType(sender IPasteboard, type_ objc.IObject /* cross-framework: PasteboardType */)
+	PasteboardProvideDataForType(sender IPasteboard, type_ PasteboardType /* typedef */)/* debug [protocol_interface/required_method]: PasteboardProvideDataForType */
 	// Optional methods
 	PasteboardChangedOwner(sender IPasteboard)
 	HasPasteboardChangedOwner() bool

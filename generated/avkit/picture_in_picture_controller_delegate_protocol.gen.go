@@ -20,3 +20,4 @@ var PictureInPictureControllerDelegateProtocol *objc.Protocol
 func init() {
 	PictureInPictureControllerDelegateProtocol = objc.GetProtocol("AVPictureInPictureControllerDelegate")
 }
+

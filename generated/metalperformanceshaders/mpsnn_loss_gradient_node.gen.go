@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNLossGradientNode */
+
+
+/* debug [class_header]: Header for MPSNNLossGradientNode */
 // The class instance for the [LossGradientNode] class.
 var (
 	LossGradientNodeClass     _LossGradientNodeClass
@@ -25,47 +30,50 @@ func getLossGradientNodeClass() _LossGradientNodeClass {
 type _LossGradientNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for LossGradientNode */
 // An interface definition for the [LossGradientNode] class.
 type ILossGradientNode interface {
 	IGradientFilterNode
+	
+/* debug [class_interface_properties]: Properties for LossGradientNode */
 	// properties:
-	Epsilon() float32
-	ReductionType() CNNReductionType /* not a class type */
-	Delta() float32
-	SetDelta(value float32)
-	IsLabelsGradientFilter() bool
-	SetIsLabelsGradientFilter(value bool)
-	LabelSmoothing() float32
-	SetLabelSmoothing(value float32)
-	LossType() CNNLossType /* not a class type */
-	SetLossType(value CNNLossType /* not a class type */)
-	NumberOfClasses() int
-	SetNumberOfClasses(value int)
-	PropertyCallBack() LossCallback /* not a class type */
-	SetPropertyCallBack(value LossCallback /* not a class type */)
-	ReduceAcrossBatch() bool
-	SetReduceAcrossBatch(value bool)
-	Weight() float32
-	SetWeight(value float32)
+	Delta() objectivec.IObject
+	SetDelta(value objectivec.IObject)
+	Epsilon() objectivec.IObject
+	SetEpsilon(value objectivec.IObject)
+	IsLabelsGradientFilter() objectivec.IObject
+	SetIsLabelsGradientFilter(value objectivec.IObject)
+	LabelSmoothing() objectivec.IObject
+	SetLabelSmoothing(value objectivec.IObject)
+	LossType() CNNLossType get /* not a class type */
+	SetLossType(value CNNLossType get /* not a class type */)
+	NumberOfClasses() objectivec.IObject
+	SetNumberOfClasses(value objectivec.IObject)
+	PropertyCallBack() LossCallback get set /* not a class type */
+	SetPropertyCallBack(value LossCallback get set /* not a class type */)
+	ReductionType() CNNReductionType get /* not a class type */
+	SetReductionType(value CNNReductionType get /* not a class type */)
+	Weight() objectivec.IObject
+	SetWeight(value objectivec.IObject)
+	ReduceAcrossBatch() objectivec.IObject
+	SetReduceAcrossBatch(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for LossGradientNode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode
-type LossGradientNode struct {
-	GradientFilterNode
-}
-
-// LossGradientNodeFrom constructs a [LossGradientNode] from an unsafe.Pointer.
-func LossGradientNodeFrom(ptr unsafe.Pointer) LossGradientNode {
-	return LossGradientNode{
-		GradientFilterNode: GradientFilterNodeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for LossGradientNode */
 // Alloc allocates a new instance without initialization.
 func (lc _LossGradientNodeClass) Alloc() LossGradientNode {
 	rv := objc.Send[LossGradientNode](objc.ID(lc.class), objc.Sel("alloc"))
@@ -73,7 +81,6 @@ func (lc _LossGradientNodeClass) Alloc() LossGradientNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (lc _LossGradientNodeClass) New() LossGradientNode {
 	rv := objc.Send[LossGradientNode](objc.ID(lc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -96,151 +103,257 @@ func (l_ LossGradientNode) Autorelease() LossGradientNode {
 func NewLossGradientNode() LossGradientNode {
 	return getLossGradientNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for LossGradientNode */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode/nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:
-func (lc _LossGradientNodeClass) NodeWithSourcesGradientStateLossDescriptorIsLabelsGradientFilter(sourceNodes []IImageNode, gradientState GradientStateNode /* not a class type */, descriptor CNNLossDescriptor /* not a class type */, isLabelsGradientFilter bool) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:"), sourceNodes, gradientState, descriptor, isLabelsGradientFilter)
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode
+type LossGradientNode struct {
+	GradientFilterNode
 }
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode/epsilon
-func (l_ LossGradientNode) Epsilon() float32 {
-	rv := objc.Send[float32](l_.ID, objc.Sel("epsilon"))
-	return rv
+// LossGradientNodeFrom constructs a [LossGradientNode] from an unsafe.Pointer.
+func LossGradientNodeFrom(ptr unsafe.Pointer) LossGradientNode {
+	return LossGradientNode{
+		GradientFilterNode: GradientFilterNodeFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
+
+
+/* debug [class_init_methods]: Init methods for LossGradientNode */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNLossGradientNode/reductionType
-func (l_ LossGradientNode) ReductionType() CNNReductionType /* not a class type */ {
-	rv := objc.Send[CNNReductionType](l_.ID, objc.Sel("reductionType"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131855-initwithsourcegradient
+func NewLossGradientNodeWithSourceGradientSourceImageLabelsGradientStateLossDescriptorIsLabelsGradientFilter(sourceGradient IImageNode, sourceImage IImageNode, labels IImageNode, gradientState IGradientStateNode, descriptor ICNNLossDescriptor, isLabelsGradientFilter bool) LossGradientNode {
+	instance := getLossGradientNodeClass().Alloc()
+	rv := objc.Send[LossGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:labels:gradientState:lossDescriptor:isLabelsGradientFilter:"), sourceGradient, sourceImage, labels, gradientState, descriptor, isLabelsGradientFilter)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewLossGradientNodeWithSourceGradientSourceImageLabelsGradientStateLossDescriptorIsLabelsGradientFilter */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/delta
-func (l_ LossGradientNode) Delta() float32 {
-	rv := objc.Send[float32](l_.ID, objc.Sel("delta"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131856-initwithsourcegradient
+func NewLossGradientNodeWithSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter(sourceGradient IImageNode, sourceImage IImageNode, labels IImageNode, weights IImageNode, gradientState IGradientStateNode, descriptor ICNNLossDescriptor, isLabelsGradientFilter bool) LossGradientNode {
+	instance := getLossGradientNodeClass().Alloc()
+	rv := objc.Send[LossGradientNode](instance.ID, objc.Sel("initWithSourceGradient:sourceImage:labels:weights:gradientState:lossDescriptor:isLabelsGradientFilter:"), sourceGradient, sourceImage, labels, weights, gradientState, descriptor, isLabelsGradientFilter)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewLossGradientNodeWithSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/delta
-func (l_ LossGradientNode) SetDelta(value float32) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131857-initwithsources
+func NewLossGradientNodeWithSourcesGradientStateLossDescriptorIsLabelsGradientFilter(sourceNodes unsafe.Pointer, gradientState IGradientStateNode, descriptor ICNNLossDescriptor, isLabelsGradientFilter bool) LossGradientNode {
+	instance := getLossGradientNodeClass().Alloc()
+	rv := objc.Send[LossGradientNode](instance.ID, objc.Sel("initWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:"), sourceNodes, gradientState, descriptor, isLabelsGradientFilter)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewLossGradientNodeWithSourcesGradientStateLossDescriptorIsLabelsGradientFilter */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for LossGradientNode */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131861-nodewithsourcegradient
+func (lc _LossGradientNodeClass) NodeWithSourceGradientSourceImageLabelsGradientStateLossDescriptorIsLabelsGradientFilter(sourceGradient IImageNode, sourceImage IImageNode, labels IImageNode, gradientState IGradientStateNode, descriptor ICNNLossDescriptor, isLabelsGradientFilter bool) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(lc.class), objc.Sel("nodeWithSourceGradient:sourceImage:labels:gradientState:lossDescriptor:isLabelsGradientFilter:"), sourceGradient, sourceImage, labels, gradientState, descriptor, isLabelsGradientFilter)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceGradientSourceImageLabelsGradientStateLossDescriptorIsLabelsGradientFilter) */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131862-nodewithsourcegradient
+func (lc _LossGradientNodeClass) NodeWithSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter(sourceGradient IImageNode, sourceImage IImageNode, labels IImageNode, weights IImageNode, gradientState IGradientStateNode, descriptor ICNNLossDescriptor, isLabelsGradientFilter bool) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(lc.class), objc.Sel("nodeWithSourceGradient:sourceImage:labels:weights:gradientState:lossDescriptor:isLabelsGradientFilter:"), sourceGradient, sourceImage, labels, weights, gradientState, descriptor, isLabelsGradientFilter)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceGradientSourceImageLabelsWeightsGradientStateLossDescriptorIsLabelsGradientFilter) */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131863-nodewithsources
+func (lc _LossGradientNodeClass) NodeWithSourcesGradientStateLossDescriptorIsLabelsGradientFilter(sourceNodes unsafe.Pointer, gradientState IGradientStateNode, descriptor ICNNLossDescriptor, isLabelsGradientFilter bool) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(lc.class), objc.Sel("nodeWithSources:gradientState:lossDescriptor:isLabelsGradientFilter:"), sourceNodes, gradientState, descriptor, isLabelsGradientFilter)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourcesGradientStateLossDescriptorIsLabelsGradientFilter) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for LossGradientNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for LossGradientNode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for LossGradientNode */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131853-delta
+func (l_ LossGradientNode) Delta() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("delta"))
+	return rv
+}/* debug [instance_properties/getter]: delta */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131853-delta
+func (l_ LossGradientNode) SetDelta(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setDelta:"), value)
-}
+}/* debug [instance_properties/setter]: delta */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/islabelsgradientfilter
-func (l_ LossGradientNode) IsLabelsGradientFilter() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("isLabelsGradientFilter"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131854-epsilon
+func (l_ LossGradientNode) Epsilon() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("epsilon"))
 	return rv
-}
+}/* debug [instance_properties/getter]: epsilon */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/islabelsgradientfilter
-func (l_ LossGradientNode) SetIsLabelsGradientFilter(value bool) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131854-epsilon
+func (l_ LossGradientNode) SetEpsilon(value objectivec.IObject) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setEpsilon:"), value)
+}/* debug [instance_properties/setter]: epsilon */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131858-islabelsgradientfilter
+func (l_ LossGradientNode) IsLabelsGradientFilter() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("isLabelsGradientFilter"))
+	return rv
+}/* debug [instance_properties/getter]: isLabelsGradientFilter */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131858-islabelsgradientfilter
+func (l_ LossGradientNode) SetIsLabelsGradientFilter(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setIsLabelsGradientFilter:"), value)
-}
+}/* debug [instance_properties/setter]: isLabelsGradientFilter */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/labelsmoothing
-func (l_ LossGradientNode) LabelSmoothing() float32 {
-	rv := objc.Send[float32](l_.ID, objc.Sel("labelSmoothing"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131859-labelsmoothing
+func (l_ LossGradientNode) LabelSmoothing() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("labelSmoothing"))
 	return rv
-}
+}/* debug [instance_properties/getter]: labelSmoothing */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/labelsmoothing
-func (l_ LossGradientNode) SetLabelSmoothing(value float32) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131859-labelsmoothing
+func (l_ LossGradientNode) SetLabelSmoothing(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLabelSmoothing:"), value)
-}
+}/* debug [instance_properties/setter]: labelSmoothing */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/losstype
-func (l_ LossGradientNode) LossType() CNNLossType /* not a class type */ {
-	rv := objc.Send[CNNLossType](l_.ID, objc.Sel("lossType"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131860-losstype
+func (l_ LossGradientNode) LossType() CNNLossType get /* not a class type */ {
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("lossType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lossType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/losstype
-func (l_ LossGradientNode) SetLossType(value CNNLossType /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131860-losstype
+func (l_ LossGradientNode) SetLossType(value CNNLossType get /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setLossType:"), value)
-}
+}/* debug [instance_properties/setter]: lossType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/numberofclasses
-func (l_ LossGradientNode) NumberOfClasses() int {
-	rv := objc.Send[int](l_.ID, objc.Sel("numberOfClasses"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131864-numberofclasses
+func (l_ LossGradientNode) NumberOfClasses() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("numberOfClasses"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfClasses */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/numberofclasses
-func (l_ LossGradientNode) SetNumberOfClasses(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131864-numberofclasses
+func (l_ LossGradientNode) SetNumberOfClasses(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setNumberOfClasses:"), value)
-}
+}/* debug [instance_properties/setter]: numberOfClasses */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/propertycallback
-func (l_ LossGradientNode) PropertyCallBack() LossCallback /* not a class type */ {
-	rv := objc.Send[LossCallback](l_.ID, objc.Sel("propertyCallBack"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131865-propertycallback
+func (l_ LossGradientNode) PropertyCallBack() LossCallback get set /* not a class type */ {
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("propertyCallBack"))
 	return rv
-}
+}/* debug [instance_properties/getter]: propertyCallBack */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/propertycallback
-func (l_ LossGradientNode) SetPropertyCallBack(value LossCallback /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131865-propertycallback
+func (l_ LossGradientNode) SetPropertyCallBack(value LossCallback get set /* not a class type */) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setPropertyCallBack:"), value)
-}
+}/* debug [instance_properties/setter]: propertyCallBack */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/reduceacrossbatch
-func (l_ LossGradientNode) ReduceAcrossBatch() bool {
-	rv := objc.Send[bool](l_.ID, objc.Sel("reduceAcrossBatch"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131866-reductiontype
+func (l_ LossGradientNode) ReductionType() CNNReductionType get /* not a class type */ {
+	rv := objc.Send[objc.ID](l_.ID, objc.Sel("reductionType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: reductionType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/reduceacrossbatch
-func (l_ LossGradientNode) SetReduceAcrossBatch(value bool) {
-	objc.Send[objc.ID](l_.ID, objc.Sel("setReduceAcrossBatch:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131866-reductiontype
+func (l_ LossGradientNode) SetReductionType(value CNNReductionType get /* not a class type */) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setReductionType:"), value)
+}/* debug [instance_properties/setter]: reductionType */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/weight
-func (l_ LossGradientNode) Weight() float32 {
-	rv := objc.Send[float32](l_.ID, objc.Sel("weight"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131867-weight
+func (l_ LossGradientNode) Weight() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("weight"))
 	return rv
-}
+}/* debug [instance_properties/getter]: weight */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/weight
-func (l_ LossGradientNode) SetWeight(value float32) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3131867-weight
+func (l_ LossGradientNode) SetWeight(value objectivec.IObject) {
 	objc.Send[objc.ID](l_.ID, objc.Sel("setWeight:"), value)
-}
+}/* debug [instance_properties/setter]: weight */
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3547988-reduceacrossbatch
+func (l_ LossGradientNode) ReduceAcrossBatch() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](l_.ID, objc.Sel("reduceAcrossBatch"))
+	return rv
+}/* debug [instance_properties/getter]: reduceAcrossBatch */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnlossgradientnode/3547988-reduceacrossbatch
+func (l_ LossGradientNode) SetReduceAcrossBatch(value objectivec.IObject) {
+	objc.Send[objc.ID](l_.ID, objc.Sel("setReduceAcrossBatch:"), value)
+}/* debug [instance_properties/setter]: reduceAcrossBatch */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNNLossGradientNode */
 
 

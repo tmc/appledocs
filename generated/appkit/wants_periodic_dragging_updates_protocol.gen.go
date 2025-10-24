@@ -15,3 +15,4 @@ var wantsPeriodicDraggingUpdatesProtocol *objc.Protocol
 func init() {
 	wantsPeriodicDraggingUpdatesProtocol = objc.GetProtocol("wantsPeriodicDraggingUpdates")
 }
+

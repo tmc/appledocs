@@ -33,8 +33,6 @@ type IMTRBaseClusterFixedLabel interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterFixedLabel
 type MTRBaseClusterFixedLabel struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterFixedLabel) Autorelease() MTRBaseClusterFixedLabel {
 func NewMTRBaseClusterFixedLabel() MTRBaseClusterFixedLabel {
 	return getMTRBaseClusterFixedLabelClass().New()
 }
-
-
-
-

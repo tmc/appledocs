@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // PerspectiveTransformProtocol is the CIPerspectiveTransform protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIPerspectiveTransform.
 var PerspectiveTransformProtocol *objc.Protocol
 
 func init() {
 	PerspectiveTransformProtocol = objc.GetProtocol("CIPerspectiveTransform")
 }
+

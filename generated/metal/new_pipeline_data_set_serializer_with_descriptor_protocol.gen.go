@@ -20,3 +20,4 @@ var newPipelineDataSetSerializerWithDescriptorProtocol *objc.Protocol
 func init() {
 	newPipelineDataSetSerializerWithDescriptorProtocol = objc.GetProtocol("newPipelineDataSetSerializerWithDescriptor:")
 }
+

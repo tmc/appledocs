@@ -21,7 +21,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXDiagnosticPayload/appLaunchDiagnostics
-func (m_ MXDiagnosticPayload) AppLaunchDiagnostics() []IMXAppLaunchDiagnostic {
+func (m_ MXDiagnosticPayload) AppLaunchDiagnostics() []MXAppLaunchDiagnostic {
 	rv := objc.Send[[]MXAppLaunchDiagnostic](m_.ID, objc.Sel("appLaunchDiagnostics"))
 	return rv
 }

@@ -33,8 +33,6 @@ type IMTRClusterAudioOutput interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterAudioOutput
 type MTRClusterAudioOutput struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterAudioOutput) Autorelease() MTRClusterAudioOutput {
 func NewMTRClusterAudioOutput() MTRClusterAudioOutput {
 	return getMTRClusterAudioOutputClass().New()
 }
-
-
-
-

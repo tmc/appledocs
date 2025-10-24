@@ -10,7 +10,5 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	INUIAddVoiceShortcutButtonDelegate = _undefined // referenced in IntentsUI
-	INUIAddVoiceShortcutButtonStyle = _undefined // referenced in IntentsUI
+	INUIAddVoiceShortcutButtonStyle    = _undefined // referenced in IntentsUI
 )
-
-

@@ -15,3 +15,4 @@ var AccessibilityRowProtocol *objc.Protocol
 func init() {
 	AccessibilityRowProtocol = objc.GetProtocol("NSAccessibilityRow")
 }
+

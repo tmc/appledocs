@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRAccessControlClusterAccessControlEntryChangedEvent interface {
 	SetLatestValue(value IMTRAccessControlClusterAccessControlEntryStruct)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAccessControlClusterAccessControlEntryChangedEvent
@@ -89,8 +87,6 @@ func NewMTRAccessControlClusterAccessControlEntryChangedEvent() MTRAccessControl
 	return getMTRAccessControlClusterAccessControlEntryChangedEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminnodeid
 func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminNodeID() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminNodeID() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminnodeid
 func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminNodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminNodeID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminpasscodeid
@@ -113,13 +107,11 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) AdminPasscodeID(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/adminpasscodeid
 func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetAdminPasscodeID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAdminPasscodeID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/changetype
@@ -128,13 +120,11 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) ChangeType() obj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/changetype
 func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetChangeType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setChangeType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/fabricindex
@@ -143,13 +133,11 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) FabricIndex() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/fabricindex
 func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/latestvalue
@@ -158,12 +146,8 @@ func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) LatestValue() IM
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtraccesscontrolclusteraccesscontrolentrychangedevent/latestvalue
 func (m_ MTRAccessControlClusterAccessControlEntryChangedEvent) SetLatestValue(value IMTRAccessControlClusterAccessControlEntryStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLatestValue:"), value)
 }
-
-
-

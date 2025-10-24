@@ -20,3 +20,4 @@ var queryTimestampFrequencyProtocol *objc.Protocol
 func init() {
 	queryTimestampFrequencyProtocol = objc.GetProtocol("queryTimestampFrequency")
 }
+

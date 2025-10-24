@@ -2,15 +2,8 @@
 
 // Package foundationmodels provides Go bindings for the FoundationModels framework.
 //
-// Perform tasks with the on-device model that specializes in language understanding, structured output, and tool calling.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to FoundationModels without requiring cgo.
-
-// Perform tasks with the on-device model that specializes in language understanding, structured output, and tool calling.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FoundationModels
 package foundationmodels
 
 import (
@@ -19,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/FoundationModels.framework/FoundationModels"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

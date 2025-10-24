@@ -44,7 +44,6 @@ type IPHVideoRequestOptions interface {
 
 // A set of options affecting the delivery of video asset data that you request from an image manager.
 
-
 // A set of options affecting the delivery of video asset data that you request from an image manager.
 //
 // [Full Topic]
@@ -91,8 +90,6 @@ func NewPHVideoRequestOptions() PHVideoRequestOptions {
 	return getPHVideoRequestOptionsClass().New()
 }
 
-
-
 // A mode specifying the requested video quality and delivery priority.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (p_ PHVideoRequestOptions) DeliveryMode() unsafe.Pointer {
 	return rv
 }
 
-
 // A mode specifying the requested video quality and delivery priority.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (p_ PHVideoRequestOptions) DeliveryMode() unsafe.Pointer {
 func (p_ PHVideoRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
-
 
 // A Boolean value that specifies whether Photos can download the requested video from iCloud.
 //
@@ -121,7 +116,6 @@ func (p_ PHVideoRequestOptions) IsNetworkAccessAllowed() bool {
 	return rv
 }
 
-
 // A Boolean value that specifies whether Photos can download the requested video from iCloud.
 //
 // [Full Topic]
@@ -129,7 +123,6 @@ func (p_ PHVideoRequestOptions) IsNetworkAccessAllowed() bool {
 func (p_ PHVideoRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
 }
-
 
 // A block Photos calls periodically while downloading the video.
 //
@@ -140,7 +133,6 @@ func (p_ PHVideoRequestOptions) ProgressHandler() unsafe.Pointer {
 	return rv
 }
 
-
 // A block Photos calls periodically while downloading the video.
 //
 // [Full Topic]
@@ -148,7 +140,6 @@ func (p_ PHVideoRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHVideoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
-
 
 // The version of the video to request.
 //
@@ -159,7 +150,6 @@ func (p_ PHVideoRequestOptions) Version() unsafe.Pointer {
 	return rv
 }
 
-
 // The version of the video to request.
 //
 // [Full Topic]
@@ -167,7 +157,3 @@ func (p_ PHVideoRequestOptions) Version() unsafe.Pointer {
 func (p_ PHVideoRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
-
-
-
-

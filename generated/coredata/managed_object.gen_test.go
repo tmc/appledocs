@@ -13,7 +13,7 @@ var _ = coredata.NewManagedObject
 // Initializes a managed object from an entity description and inserts it into the specified managed object context.
 func ExampleNewManagedObjectWithEntityInsertIntoManagedObjectContext() {
 	_ = coredata.NewManagedObjectWithEntityInsertIntoManagedObjectContext(
-		coredata.NSEntityDescription{}, // entity NSEntityDescription
+		coredata.NSEntityDescription{},    // entity NSEntityDescription
 		coredata.NSManagedObjectContext{}, // context NSManagedObjectContext
 	)
 	// Output:

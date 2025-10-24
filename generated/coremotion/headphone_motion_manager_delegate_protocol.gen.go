@@ -19,3 +19,4 @@ var HeadphoneMotionManagerDelegateProtocol *objc.Protocol
 func init() {
 	HeadphoneMotionManagerDelegateProtocol = objc.GetProtocol("CMHeadphoneMotionManagerDelegate")
 }
+

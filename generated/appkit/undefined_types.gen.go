@@ -9,15 +9,11 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	ActivationPolicy = _undefined // referenced in AppKit
 	AlignmentOptions = _undefined // referenced in AppKit
 	AppearanceCustomization = _undefined // referenced in AppKit
 	AttributeType = _undefined // referenced in AppKit
 	AttributedString = _undefined // referenced in AppKit
 	AttributedStringKey = _undefined // referenced in AppKit
-	AutomaticModeOptions = _undefined // referenced in AppKit
-	AutosaveName = _undefined // referenced in AppKit
-	BarButtonItem = _undefined // referenced in AppKit
 	CollectionLayoutGroupCustomItemProvider = _undefined // referenced in AppKit
 	CollectionLayoutSectionVisibleItemsInvalidationHandler = _undefined // referenced in AppKit
 	CollectionViewCompositionalLayoutSectionProvider = _undefined // referenced in AppKit
@@ -35,8 +31,6 @@ type (
 	EdgeInsets = _undefined // referenced in AppKit
 	EventRef = _undefined // referenced in AppKit
 	FileWrapper = _undefined // referenced in AppKit
-	FindBarPosition = _undefined // referenced in AppKit
-	Identifier = _undefined // referenced in AppKit
 	ImageRef = _undefined // referenced in AppKit
 	IndexPath = _undefined // referenced in AppKit
 	InterfaceStyle = _undefined // referenced in AppKit
@@ -44,18 +38,10 @@ type (
 	LPBufferObj = _undefined // referenced in AppKit
 	LPixelFormatObj = _undefined // referenced in AppKit
 	LayerContentsGravity = _undefined // referenced in AppKit
-	LineCapStyle = _undefined // referenced in AppKit
-	LineJoinStyle = _undefined // referenced in AppKit
 	MenuElement = _undefined // referenced in AppKit
-	Mode = _undefined // referenced in AppKit
-	Name = _undefined // referenced in AppKit
-	Options = _undefined // referenced in AppKit
-	Point = _undefined // referenced in AppKit
 	PointPointer = _undefined // referenced in AppKit
-	PointingDeviceType = _undefined // referenced in AppKit
 	PopoverBehavior = _undefined // referenced in AppKit
 	Predicate = _undefined // referenced in AppKit
-	PresentationStyle = _undefined // referenced in AppKit
 	Range = _undefined // referenced in AppKit
 	RangePointer = _undefined // referenced in AppKit
 	Rect = _undefined // referenced in AppKit
@@ -63,21 +49,15 @@ type (
 	RectEdge = _undefined // referenced in AppKit
 	RectPointer = _undefined // referenced in AppKit
 	RunLoopMode = _undefined // referenced in AppKit
-	SelectionMode = _undefined // referenced in AppKit
-	Selector = _undefined // referenced in AppKit
 	Set = _undefined // referenced in AppKit
 	Size = _undefined // referenced in AppKit
 	SizeArray = _undefined // referenced in AppKit
-	SpecialKey = _undefined // referenced in AppKit
 	StoryboardControllerCreator = _undefined // referenced in AppKit
 	String = _undefined // referenced in AppKit
 	StringEncoding = _undefined // referenced in AppKit
-	Style = _undefined // referenced in AppKit
-	SymbolConfiguration = _undefined // referenced in AppKit
 	SymbolContentTransition = _undefined // referenced in AppKit
 	SymbolEffect = _undefined // referenced in AppKit
 	SymbolEffectOptions = _undefined // referenced in AppKit
-	TabbingIdentifier = _undefined // referenced in AppKit
 	TableViewDiffableDataSourceCellProvider = _undefined // referenced in AppKit
 	TableViewDiffableDataSourceRowProvider = _undefined // referenced in AppKit
 	TableViewDiffableDataSourceSectionHeaderViewProvider = _undefined // referenced in AppKit
@@ -86,11 +66,8 @@ type (
 	TextInputClient = _undefined // referenced in AppKit
 	TextInputSourceIdentifier = _undefined // referenced in AppKit
 	TextSuggestionsDelegate = _undefined // referenced in AppKit
-	ToolbarStyle = _undefined // referenced in AppKit
 	TrackingAreaOptions = _undefined // referenced in AppKit
 	URL = _undefined // referenced in AppKit
-	VisibilityPriority = _undefined // referenced in AppKit
-	WindingRule = _undefined // referenced in AppKit
 )
 
 

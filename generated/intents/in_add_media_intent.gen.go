@@ -43,7 +43,6 @@ type IINAddMediaIntent interface {
 //
 // Siri creates an object when the user asks to add a media item. The intents object contains the media to add. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object that contains the media to add.
 
-
 // A request to add a media item.
 //
 // [Full Topic]
@@ -92,8 +91,6 @@ func NewINAddMediaIntent() INAddMediaIntent {
 	return getINAddMediaIntentClass().New()
 }
 
-
-
 // The location for the media to add.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (i_ INAddMediaIntent) MediaDestination() unsafe.Pointer {
 	return rv
 }
 
-
 // The location for the media to add.
 //
 // [Full Topic]
@@ -111,7 +107,6 @@ func (i_ INAddMediaIntent) MediaDestination() unsafe.Pointer {
 func (i_ INAddMediaIntent) SetMediaDestination(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaDestination:"), value)
 }
-
 
 // The media content to add.
 //
@@ -122,7 +117,6 @@ func (i_ INAddMediaIntent) MediaItems() INMediaItem {
 	return rv
 }
 
-
 // The media content to add.
 //
 // [Full Topic]
@@ -130,7 +124,6 @@ func (i_ INAddMediaIntent) MediaItems() INMediaItem {
 func (i_ INAddMediaIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
-
 
 // The location to search for the media item to add.
 //
@@ -141,7 +134,6 @@ func (i_ INAddMediaIntent) MediaSearch() INMediaSearch {
 	return rv
 }
 
-
 // The location to search for the media item to add.
 //
 // [Full Topic]
@@ -149,6 +141,3 @@ func (i_ INAddMediaIntent) MediaSearch() INMediaSearch {
 func (i_ INAddMediaIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
-
-
-

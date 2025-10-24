@@ -20,3 +20,4 @@ var ActionProtocol *objc.Protocol
 func init() {
 	ActionProtocol = objc.GetProtocol("CAAction")
 }
+

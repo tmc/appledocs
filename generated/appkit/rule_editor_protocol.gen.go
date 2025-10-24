@@ -15,3 +15,4 @@ var ruleEditorProtocol *objc.Protocol
 func init() {
 	ruleEditorProtocol = objc.GetProtocol("ruleEditor:")
 }
+

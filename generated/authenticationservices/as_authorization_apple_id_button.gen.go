@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class ASAuthorizationAppleIDButton */
+
+
+/* debug [class_header]: Header for ASAuthorizationAppleIDButton */
 // The class instance for the [AuthorizationAppleIDButton] class.
 var (
 	AuthorizationAppleIDButtonClass     _AuthorizationAppleIDButtonClass
@@ -26,38 +30,32 @@ func getAuthorizationAppleIDButtonClass() _AuthorizationAppleIDButtonClass {
 type _AuthorizationAppleIDButtonClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AuthorizationAppleIDButton */
 // An interface definition for the [AuthorizationAppleIDButton] class.
 type IAuthorizationAppleIDButton interface {
 	appkit.IControl
+	
+/* debug [class_interface_properties]: Properties for AuthorizationAppleIDButton */
 	// properties:
 	CornerRadius() float64
 	SetCornerRadius(value float64)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AuthorizationAppleIDButton */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A control you add to your interface that enables users to initiate the Sign In with Apple flow.
-//
-// Choose one of the built-in button styles and types, and change the corner radius of the button by setting the property, but don’t otherwise modify the style of the button. Don’t use an Apple ID authorization button for any purpose other than to initiate the Sign In with Apple flow. After the user taps the button, create a request using the provider, and then use an instance of to execute the request. For more information about which Sign in with Apple buttons are available on different Apple platforms, see .
+/* debug [class_interface]: End interface */
 
 
-// A control you add to your interface that enables users to initiate the Sign In with Apple flow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton
-type AuthorizationAppleIDButton struct {
-	appkit.Control
-}
 
-// AuthorizationAppleIDButtonFrom constructs a [AuthorizationAppleIDButton] from an unsafe.Pointer.
-//
-// A control you add to your interface that enables users to initiate the Sign In with Apple flow.
-func AuthorizationAppleIDButtonFrom(ptr unsafe.Pointer) AuthorizationAppleIDButton {
-	return AuthorizationAppleIDButton{
-		Control: appkit.ControlFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for AuthorizationAppleIDButton */
 // Alloc allocates a new instance without initialization.
 func (ac _AuthorizationAppleIDButtonClass) Alloc() AuthorizationAppleIDButton {
 	rv := objc.Send[AuthorizationAppleIDButton](objc.ID(ac.class), objc.Sel("alloc"))
@@ -65,7 +63,6 @@ func (ac _AuthorizationAppleIDButtonClass) Alloc() AuthorizationAppleIDButton {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AuthorizationAppleIDButtonClass) New() AuthorizationAppleIDButton {
 	rv := objc.Send[AuthorizationAppleIDButton](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +85,37 @@ func (a_ AuthorizationAppleIDButton) Autorelease() AuthorizationAppleIDButton {
 func NewAuthorizationAppleIDButton() AuthorizationAppleIDButton {
 	return getAuthorizationAppleIDButtonClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for AuthorizationAppleIDButton */
+// A control you add to your interface that enables users to initiate the Sign In with Apple flow.
+//
+// Choose one of the built-in button styles and types, and change the corner radius of the button by setting the property, but don’t otherwise modify the style of the button. Don’t use an Apple ID authorization button for any purpose other than to initiate the Sign In with Apple flow. After the user taps the button, create a request using the provider, and then use an instance of to execute the request. For more information about which Sign in with Apple buttons are available on different Apple platforms, see .
+
+
+// A control you add to your interface that enables users to initiate the Sign In with Apple flow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton
+type AuthorizationAppleIDButton struct {
+	appkit.Control
+}
+
+// AuthorizationAppleIDButtonFrom constructs a [AuthorizationAppleIDButton] from an unsafe.Pointer.
+//
+// A control you add to your interface that enables users to initiate the Sign In with Apple flow.
+func AuthorizationAppleIDButtonFrom(ptr unsafe.Pointer) AuthorizationAppleIDButton {
+	return AuthorizationAppleIDButton{
+		Control: appkit.ControlFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AuthorizationAppleIDButton */
 
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
@@ -100,7 +126,7 @@ func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButton
 	rv := objc.Send[AuthorizationAppleIDButton](instance.ID, objc.Sel("initWithAuthorizationButtonType:authorizationButtonStyle:"), type_, style)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButtonStyle */
 
 
 // Creates a new Sign In with Apple authorization button with the given type and style.
@@ -110,9 +136,13 @@ func NewAuthorizationAppleIDButtonWithAuthorizationButtonTypeAuthorizationButton
 func NewAuthorizationAppleIDButtonWithTypeStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) AuthorizationAppleIDButton {
 	rv := objc.Send[AuthorizationAppleIDButton](objc.ID(getAuthorizationAppleIDButtonClass().class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewAuthorizationAppleIDButtonWithTypeStyle */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for AuthorizationAppleIDButton */
 
 // Creates a new Sign In with Apple authorization button with the given type and style.
 //
@@ -121,8 +151,23 @@ func NewAuthorizationAppleIDButtonWithTypeStyle(type_ AuthorizationAppleIDButton
 func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ AuthorizationAppleIDButtonType, style AuthorizationAppleIDButtonStyle) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(ac.class), objc.Sel("buttonWithType:style:"), type_, style)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ButtonWithTypeStyle) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AuthorizationAppleIDButton */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AuthorizationAppleIDButton */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AuthorizationAppleIDButton */
 
 // The radius, in points, for the rounded corners on the Apple ID sign-in button.
 //
@@ -131,7 +176,7 @@ func (ac _AuthorizationAppleIDButtonClass) ButtonWithTypeStyle(type_ Authorizati
 func (a_ AuthorizationAppleIDButton) CornerRadius() float64 {
 	rv := objc.Send[float64](a_.ID, objc.Sel("cornerRadius"))
 	return rv
-}
+}/* debug [instance_properties/getter]: cornerRadius */
 
 
 // The radius, in points, for the rounded corners on the Apple ID sign-in button.
@@ -140,6 +185,11 @@ func (a_ AuthorizationAppleIDButton) CornerRadius() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAuthorizationAppleIDButton/cornerRadius
 func (a_ AuthorizationAppleIDButton) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCornerRadius:"), value)
-}
+}/* debug [instance_properties/setter]: cornerRadius */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class ASAuthorizationAppleIDButton */
 
 

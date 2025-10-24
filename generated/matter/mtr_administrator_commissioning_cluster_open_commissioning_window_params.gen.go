@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -51,8 +51,6 @@ type IMTRAdministratorCommissioningClusterOpenCommissioningWindowParams interfac
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRAdministratorCommissioningClusterOpenCommissioningWindowParams
 type MTRAdministratorCommissioningClusterOpenCommissioningWindowParams struct {
@@ -95,8 +93,6 @@ func NewMTRAdministratorCommissioningClusterOpenCommissioningWindowParams() MTRA
 	return getMTRAdministratorCommissioningClusterOpenCommissioningWindowParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/commissioningtimeout
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) CommissioningTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -104,13 +100,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Comm
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/commissioningtimeout
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetCommissioningTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCommissioningTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/discriminator
@@ -119,13 +113,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Disc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/discriminator
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetDiscriminator(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDiscriminator:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/iterations
@@ -134,13 +126,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Iter
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/iterations
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetIterations(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIterations:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/pakepasscodeverifier
@@ -149,13 +139,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Pake
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/pakepasscodeverifier
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetPakePasscodeVerifier(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPakePasscodeVerifier:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/pakeverifier
@@ -164,13 +152,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Pake
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/pakeverifier
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetPakeVerifier(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPakeVerifier:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/salt
@@ -179,13 +165,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Salt
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/salt
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetSalt(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSalt:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/serversideprocessingtimeout
@@ -194,13 +178,11 @@ func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Serv
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/serversideprocessingtimeout
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/timedinvoketimeoutms
@@ -209,12 +191,8 @@ func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) Time
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtradministratorcommissioningclusteropencommissioningwindowparams/timedinvoketimeoutms
 func (m_ MTRAdministratorCommissioningClusterOpenCommissioningWindowParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

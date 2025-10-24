@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRDeviceControllerFactoryParams */
+
+
+/* debug [class_header]: Header for MTRDeviceControllerFactoryParams */
 // The class instance for the [MTRDeviceControllerFactoryParams] class.
 var (
 	MTRDeviceControllerFactoryParamsClass     _MTRDeviceControllerFactoryParamsClass
@@ -27,39 +31,41 @@ func getMTRDeviceControllerFactoryParamsClass() _MTRDeviceControllerFactoryParam
 type _MTRDeviceControllerFactoryParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRDeviceControllerFactoryParams */
 // An interface definition for the [MTRDeviceControllerFactoryParams] class.
 type IMTRDeviceControllerFactoryParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRDeviceControllerFactoryParams */
 	// properties:
-	ProductAttestationAuthorityCertificates() []objc.IObject /* cross-framework: Data */
-	SetProductAttestationAuthorityCertificates(value []objc.IObject /* cross-framework: Data */)
-	CertificationDeclarationCertificates() objc.IObject /* cross-framework: Data */
-	SetCertificationDeclarationCertificates(value objc.IObject /* cross-framework: Data */)
+	CertificationDeclarationCertificates() []foundation.Data
+	SetCertificationDeclarationCertificates(value []foundation.Data)
 	OtaProviderDelegate() unsafe.Pointer
 	SetOtaProviderDelegate(value unsafe.Pointer)
 	Port() objc.IObject /* cross-framework: NSNumber */
 	SetPort(value objc.IObject /* cross-framework: NSNumber */)
+	ProductAttestationAuthorityCertificates() []foundation.Data
+	SetProductAttestationAuthorityCertificates(value []foundation.Data)
 	ShouldStartServer() bool
 	SetShouldStartServer(value bool)
 	Storage() unsafe.Pointer
-	SetStorage(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRDeviceControllerFactoryParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams
-type MTRDeviceControllerFactoryParams struct {
-	objectivec.Object
-}
-
-// MTRDeviceControllerFactoryParamsFrom constructs a [MTRDeviceControllerFactoryParams] from an unsafe.Pointer.
-func MTRDeviceControllerFactoryParamsFrom(ptr unsafe.Pointer) MTRDeviceControllerFactoryParams {
-	return MTRDeviceControllerFactoryParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRDeviceControllerFactoryParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRDeviceControllerFactoryParamsClass) Alloc() MTRDeviceControllerFactoryParams {
 	rv := objc.Send[MTRDeviceControllerFactoryParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -67,7 +73,6 @@ func (mc _MTRDeviceControllerFactoryParamsClass) Alloc() MTRDeviceControllerFact
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRDeviceControllerFactoryParamsClass) New() MTRDeviceControllerFactoryParams {
 	rv := objc.Send[MTRDeviceControllerFactoryParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,21 +95,124 @@ func (m_ MTRDeviceControllerFactoryParams) Autorelease() MTRDeviceControllerFact
 func NewMTRDeviceControllerFactoryParams() MTRDeviceControllerFactoryParams {
 	return getMTRDeviceControllerFactoryParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRDeviceControllerFactoryParams */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
-func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificates() []objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[[]foundation.Data](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams
+type MTRDeviceControllerFactoryParams struct {
+	objectivec.Object
 }
 
+// MTRDeviceControllerFactoryParamsFrom constructs a [MTRDeviceControllerFactoryParams] from an unsafe.Pointer.
+func MTRDeviceControllerFactoryParamsFrom(ptr unsafe.Pointer) MTRDeviceControllerFactoryParams {
+	return MTRDeviceControllerFactoryParams{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRDeviceControllerFactoryParams */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/init(storage:)
+func NewMTRDeviceControllerFactoryParamsWithStorage(storage unsafe.Pointer) MTRDeviceControllerFactoryParams {
+	instance := getMTRDeviceControllerFactoryParamsClass().Alloc()
+	rv := objc.Send[MTRDeviceControllerFactoryParams](instance.ID, objc.Sel("initWithStorage:"), storage)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewMTRDeviceControllerFactoryParamsWithStorage */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRDeviceControllerFactoryParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRDeviceControllerFactoryParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRDeviceControllerFactoryParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRDeviceControllerFactoryParams */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/certificationDeclarationCertificates
+func (m_ MTRDeviceControllerFactoryParams) CertificationDeclarationCertificates() []foundation.Data {
+	rv := objc.Send[[]foundation.Data](m_.ID, objc.Sel("certificationDeclarationCertificates"))
+	return rv
+}/* debug [instance_properties/getter]: certificationDeclarationCertificates */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/certificationDeclarationCertificates
+func (m_ MTRDeviceControllerFactoryParams) SetCertificationDeclarationCertificates(value []foundation.Data) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), nsArray)
+}/* debug [instance_properties/setter]: certificationDeclarationCertificates */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/otaProviderDelegate
+func (m_ MTRDeviceControllerFactoryParams) OtaProviderDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("otaProviderDelegate"))
+	return rv
+}/* debug [instance_properties/getter]: otaProviderDelegate */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/otaProviderDelegate
+func (m_ MTRDeviceControllerFactoryParams) SetOtaProviderDelegate(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOtaProviderDelegate:"), value)
+}/* debug [instance_properties/setter]: otaProviderDelegate */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/port
+func (m_ MTRDeviceControllerFactoryParams) Port() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("port"))
+	return rv
+}/* debug [instance_properties/getter]: port */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/port
+func (m_ MTRDeviceControllerFactoryParams) SetPort(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPort:"), value)
+}/* debug [instance_properties/setter]: port */
+
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
-func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertificates(value []objc.IObject /* cross-framework: Data */) {
-	// Convert Go slice to NSArray
+func (m_ MTRDeviceControllerFactoryParams) ProductAttestationAuthorityCertificates() []foundation.Data {
+	rv := objc.Send[[]foundation.Data](m_.ID, objc.Sel("productAttestationAuthorityCertificates"))
+	return rv
+}/* debug [instance_properties/getter]: productAttestationAuthorityCertificates */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/productAttestationAuthorityCertificates
+func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertificates(value []foundation.Data) {
 	var nsArray objc.ID
 	if len(value) > 0 {
 		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
@@ -115,82 +223,34 @@ func (m_ MTRDeviceControllerFactoryParams) SetProductAttestationAuthorityCertifi
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](m_.ID, objc.Sel("setProductAttestationAuthorityCertificates:"), nsArray)
-}
+}/* debug [instance_properties/setter]: productAttestationAuthorityCertificates */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerFactoryParams) CertificationDeclarationCertificates() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("certificationDeclarationCertificates"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/certificationdeclarationcertificates
-func (m_ MTRDeviceControllerFactoryParams) SetCertificationDeclarationCertificates(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCertificationDeclarationCertificates:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/otaproviderdelegate
-func (m_ MTRDeviceControllerFactoryParams) OtaProviderDelegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("otaProviderDelegate"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/otaproviderdelegate
-func (m_ MTRDeviceControllerFactoryParams) SetOtaProviderDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOtaProviderDelegate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/port
-func (m_ MTRDeviceControllerFactoryParams) Port() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("port"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/port
-func (m_ MTRDeviceControllerFactoryParams) SetPort(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPort:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/shouldstartserver
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/shouldStartServer
 func (m_ MTRDeviceControllerFactoryParams) ShouldStartServer() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("shouldStartServer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shouldStartServer */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/shouldstartserver
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/shouldStartServer
 func (m_ MTRDeviceControllerFactoryParams) SetShouldStartServer(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShouldStartServer:"), value)
-}
+}/* debug [instance_properties/setter]: shouldStartServer */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/storage
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerFactoryParams/storage
 func (m_ MTRDeviceControllerFactoryParams) Storage() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("storage"))
 	return rv
-}
+}/* debug [instance_properties/getter]: storage */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerfactoryparams/storage
-func (m_ MTRDeviceControllerFactoryParams) SetStorage(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStorage:"), value)
-}
-
+/* debug [class.gen.go]: End class MTRDeviceControllerFactoryParams */
 
 

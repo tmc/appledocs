@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // SobelGradientsProtocol is the CISobelGradients protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CISobelGradients.
 var SobelGradientsProtocol *objc.Protocol
 
 func init() {
 	SobelGradientsProtocol = objc.GetProtocol("CISobelGradients")
 }
+

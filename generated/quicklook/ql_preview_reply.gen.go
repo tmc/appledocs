@@ -7,11 +7,16 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
+/* debug [class.gen.go]: Generating class QLPreviewReply */
+
+
+/* debug [class_header]: Header for QLPreviewReply */
 // The class instance for the [PreviewReply] class.
 var (
 	PreviewReplyClass     _PreviewReplyClass
@@ -28,29 +33,30 @@ func getPreviewReplyClass() _PreviewReplyClass {
 type _PreviewReplyClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PreviewReply */
 // An interface definition for the [PreviewReply] class.
 type IPreviewReply interface {
 	objectivec.IObject
-	Attachments() unsafe.Pointer
-	SetAttachments(value unsafe.Pointer)
-	StringEncoding() unsafe.Pointer
-	SetStringEncoding(value unsafe.Pointer)
-	Title() string
-	SetTitle(value string)
-}
+	
+/* debug [class_interface_properties]: Properties for PreviewReply */
+	// properties:
+/* debug [class_interface_properties]: End properties */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply
-type PreviewReply struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for PreviewReply */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// PreviewReplyFrom constructs a [PreviewReply] from an unsafe.Pointer.
-func PreviewReplyFrom(ptr unsafe.Pointer) PreviewReply {
-	return PreviewReply{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for PreviewReply */
 // Alloc allocates a new instance without initialization.
 func (pc _PreviewReplyClass) Alloc() PreviewReply {
 	rv := objc.Send[PreviewReply](objc.ID(pc.class), objc.Sel("alloc"))
@@ -58,7 +64,6 @@ func (pc _PreviewReplyClass) Alloc() PreviewReply {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PreviewReplyClass) New() PreviewReply {
 	rv := objc.Send[PreviewReply](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -81,97 +86,91 @@ func (p_ PreviewReply) Autorelease() PreviewReply {
 func NewPreviewReply() PreviewReply {
 	return getPreviewReplyClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-//
+
+/* debug [class_struct]: Struct for PreviewReply */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply
+type PreviewReply struct {
+	objectivec.Object
+}
+
+// PreviewReplyFrom constructs a [PreviewReply] from an unsafe.Pointer.
+func PreviewReplyFrom(ptr unsafe.Pointer) PreviewReply {
+	return PreviewReply{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PreviewReply */
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initForPDFWithPageSize:documentCreationBlock:
-func NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock(defaultPageSize coregraphics.CGSize, documentCreationBlock unsafe.Pointer) PreviewReply {
+func NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock(defaultPageSize corefoundation.CGSize, documentCreationBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initForPDFWithPageSize:documentCreationBlock:"), defaultPageSize, documentCreationBlock)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPreviewReplyForPDFWithPageSizeDocumentCreationBlock */
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initWithContextSize:isBitmap:drawingBlock:
-func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize coregraphics.CGSize, isBitmap bool, drawingBlock unsafe.Pointer) PreviewReply {
+func NewPreviewReplyWithContextSizeIsBitmapDrawingBlock(contextSize corefoundation.CGSize, isBitmap bool, drawingBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithContextSize:isBitmap:drawingBlock:"), contextSize, isBitmap, drawingBlock)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPreviewReplyWithContextSizeIsBitmapDrawingBlock */
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/initWithDataOfContentType:contentSize:dataCreationBlock:
-func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType unsafe.Pointer, contentSize coregraphics.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
+func NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock(contentType uniformtypeidentifiers.UTType, contentSize corefoundation.CGSize, dataCreationBlock unsafe.Pointer) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithDataOfContentType:contentSize:dataCreationBlock:"), contentType, contentSize, dataCreationBlock)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPreviewReplyWithDataOfContentTypeContentSizeDataCreationBlock */
 
-//
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/init(fileURL:)
-func NewPreviewReplyWithFileURL(fileURL foundation.IURL) PreviewReply {
+func NewPreviewReplyWithFileURL(fileURL objc.IObject /* cross-framework: NSURL */) PreviewReply {
 	instance := getPreviewReplyClass().Alloc()
 	rv := objc.Send[PreviewReply](instance.ID, objc.Sel("initWithFileURL:"), fileURL)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPreviewReplyWithFileURL */
+
+/* debug [class_init_methods]: End init methods */
 
 
-// Attachments for HTML data previews. The keys of the dictionary are the attachment identifiers (eg foo) that can be referenced with the cid:id URL (eg cid:foo).
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/attachments
-func (p_ PreviewReply) Attachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attachments"))
-	return rv
-}
+
+/* debug [class_methods]: Class methods for PreviewReply */
+/* debug [class_methods]: End class methods */
 
 
-// SetAttachments sets the value of the attachments property.
-// Attachments for HTML data previews. The keys of the dictionary are the attachment identifiers (eg foo) that can be referenced with the cid:id URL (eg cid:foo).
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/attachments
-func (p_ PreviewReply) SetAttachments(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAttachments:"), value)
-}
-
-// String encoding for text or html based previews. Defaults to NSUTF8StringEncoding.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/stringEncoding-1k9kb
-func (p_ PreviewReply) StringEncoding() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("stringEncoding"))
-	return rv
-}
+/* debug [class_properties_class]: Class properties for PreviewReply */
+/* debug [class_properties_class]: End class properties */
 
 
-// SetStringEncoding sets the value of the stringEncoding property.
-// String encoding for text or html based previews. Defaults to NSUTF8StringEncoding.
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/stringEncoding-1k9kb
-func (p_ PreviewReply) SetStringEncoding(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setStringEncoding:"), value)
-}
-
-// Custom display title for the preview. If left as the empty string, QuickLook will use the file name.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/title
-func (p_ PreviewReply) Title() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("title"))
-	return rv
-}
+/* debug [instance_methods]: Instance methods for PreviewReply */
+/* debug [instance_methods]: End instance methods */
 
 
-// SetTitle sets the value of the title property.
-// Custom display title for the preview. If left as the empty string, QuickLook will use the file name.
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewReply/title
-func (p_ PreviewReply) SetTitle(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), objc.String(value))
-}
+/* debug [instance_properties]: Instance properties for PreviewReply */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class QLPreviewReply */
 
 

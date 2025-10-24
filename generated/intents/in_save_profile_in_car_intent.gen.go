@@ -41,7 +41,6 @@ type IINSaveProfileInCarIntent interface {
 //
 // Automotive vendors whose cars support the saving of seat and other environment settings can add support for this intent to an Intents extension that they ship with their automotive apps. When users engage Siri to save the current environment settings, SiriKit creates an object and delivers it to the app’s Intents extension. You use the intent object to get the name or index of the profile to use when saving the settings. You’re responsible for determining which settings to save and restore with user profiles. You can save seat-related settings, climate control settings, defroster settings, radio settings, other settings in your vehicle, or any combination of those settings. Siri handles only the name or index of the profile and doesn’t ask you to provide a list of the settings that you saved. The object that handles this intent must adopt the protocol. Use this intent object to resolve the audio source details and to create an object indicating the results of changing the audio source.
 
-
 // A request to save the user’s vehicle environment settings in a CarPlay-enabled vehicle.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINSaveProfileInCarIntent() INSaveProfileInCarIntent {
 	return getINSaveProfileInCarIntentClass().New()
 }
 
-
-
 // The name to assign to the profile.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INSaveProfileInCarIntent) ProfileLabel() string {
 	return rv
 }
 
-
 // The name to assign to the profile.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INSaveProfileInCarIntent) ProfileLabel() string {
 func (i_ INSaveProfileInCarIntent) SetProfileLabel(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), objc.String(value))
 }
-
 
 // The name to assign to the profile.
 //
@@ -120,7 +115,6 @@ func (i_ INSaveProfileInCarIntent) ProfileName() string {
 	return rv
 }
 
-
 // The name to assign to the profile.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INSaveProfileInCarIntent) ProfileName() string {
 func (i_ INSaveProfileInCarIntent) SetProfileName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), objc.String(value))
 }
-
 
 // The profile index in which to save the settings.
 //
@@ -139,7 +132,6 @@ func (i_ INSaveProfileInCarIntent) ProfileNumber() int {
 	return rv
 }
 
-
 // The profile index in which to save the settings.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INSaveProfileInCarIntent) ProfileNumber() int {
 func (i_ INSaveProfileInCarIntent) SetProfileNumber(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileNumber:"), value)
 }
-
-
-

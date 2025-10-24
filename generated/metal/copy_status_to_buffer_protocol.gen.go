@@ -20,3 +20,4 @@ var copyStatusToBufferProtocol *objc.Protocol
 func init() {
 	copyStatusToBufferProtocol = objc.GetProtocol("copyStatusToBuffer:")
 }
+

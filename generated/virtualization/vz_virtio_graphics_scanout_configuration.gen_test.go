@@ -13,8 +13,8 @@ var _ = virtualization.NewVZVirtioGraphicsScanoutConfiguration
 // Creates a Virtio graphics device with the specified dimensions.
 func ExampleNewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels() {
 	_ = virtualization.NewVZVirtioGraphicsScanoutConfigurationWithWidthInPixelsHeightInPixels(
-		0, // widthInPixels int
-		0, // heightInPixels int
+		100, // widthInPixels int
+		100, // heightInPixels int
 	)
 	// Output:
 }

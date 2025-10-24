@@ -15,3 +15,4 @@ var ColorPickingCustomProtocol *objc.Protocol
 func init() {
 	ColorPickingCustomProtocol = objc.GetProtocol("NSColorPickingCustom")
 }
+

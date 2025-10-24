@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestNullableOptionalResponseParams] class.
@@ -43,8 +43,6 @@ type IMTRTestClusterClusterTestNullableOptionalResponseParams interface {
 	SetWasPresent(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestNullableOptionalResponseParams
@@ -90,8 +88,6 @@ func NewMTRTestClusterClusterTestNullableOptionalResponseParams() MTRTestCluster
 	return getMTRTestClusterClusterTestNullableOptionalResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/originalvalue
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) OriginalValue() objc.IObject /* cross-framework: NSNumber */ {
@@ -99,13 +95,11 @@ func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) OriginalValue(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/originalvalue
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetOriginalValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOriginalValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/timedinvoketimeoutms
@@ -114,13 +108,11 @@ func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) TimedInvokeTim
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/value
@@ -129,13 +121,11 @@ func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) Value() objc.I
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/value
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/wasnull
@@ -144,13 +134,11 @@ func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) WasNull() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/wasnull
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/waspresent
@@ -159,12 +147,8 @@ func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) WasPresent() o
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestnullableoptionalresponseparams/waspresent
 func (m_ MTRTestClusterClusterTestNullableOptionalResponseParams) SetWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWasPresent:"), value)
 }
-
-
-

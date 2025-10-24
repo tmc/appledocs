@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
@@ -47,7 +47,6 @@ type IPHAssetResourceCreationOptions interface {
 // A set of options affecting the creation of a new Photos asset from underlying resources.
 //
 // You use this class when creating an asset for addition to the Photos library with a object.
-
 
 // A set of options affecting the creation of a new Photos asset from underlying resources.
 //
@@ -95,8 +94,6 @@ func NewPHAssetResourceCreationOptions() PHAssetResourceCreationOptions {
 	return getPHAssetResourceCreationOptionsClass().New()
 }
 
-
-
 // The type of data being provided for this asset resource. If not specified, one will be inferred from the PHAssetResourceType or file URL extension (if provided).
 //
 // [Full Topic]
@@ -106,7 +103,6 @@ func (p_ PHAssetResourceCreationOptions) ContentType() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // The type of data being provided for this asset resource. If not specified, one will be inferred from the PHAssetResourceType or file URL extension (if provided).
 //
 // [Full Topic]
@@ -114,7 +110,6 @@ func (p_ PHAssetResourceCreationOptions) ContentType() objc.IObject /* cross-fra
 func (p_ PHAssetResourceCreationOptions) SetContentType(value objc.IObject /* cross-framework: UTType */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentType:"), value)
 }
-
 
 // The filename for the asset resource being created.
 //
@@ -125,7 +120,6 @@ func (p_ PHAssetResourceCreationOptions) OriginalFilename() objc.IObject /* cros
 	return rv
 }
 
-
 // The filename for the asset resource being created.
 //
 // [Full Topic]
@@ -133,7 +127,6 @@ func (p_ PHAssetResourceCreationOptions) OriginalFilename() objc.IObject /* cros
 func (p_ PHAssetResourceCreationOptions) SetOriginalFilename(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOriginalFilename:"), value)
 }
-
 
 // A Boolean value that determines whether Photos moves or duplicates files when creating an asset resource.
 //
@@ -144,7 +137,6 @@ func (p_ PHAssetResourceCreationOptions) ShouldMoveFile() bool {
 	return rv
 }
 
-
 // A Boolean value that determines whether Photos moves or duplicates files when creating an asset resource.
 //
 // [Full Topic]
@@ -152,7 +144,6 @@ func (p_ PHAssetResourceCreationOptions) ShouldMoveFile() bool {
 func (p_ PHAssetResourceCreationOptions) SetShouldMoveFile(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShouldMoveFile:"), value)
 }
-
 
 // The uniform type identifier for the resource.
 //
@@ -163,7 +154,6 @@ func (p_ PHAssetResourceCreationOptions) UniformTypeIdentifier() objc.IObject /*
 	return rv
 }
 
-
 // The uniform type identifier for the resource.
 //
 // [Full Topic]
@@ -171,6 +161,3 @@ func (p_ PHAssetResourceCreationOptions) UniformTypeIdentifier() objc.IObject /*
 func (p_ PHAssetResourceCreationOptions) SetUniformTypeIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUniformTypeIdentifier:"), value)
 }
-
-
-

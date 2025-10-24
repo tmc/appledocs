@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRModeSelectClusterModeOptionStruct interface {
 	SetSemanticTags(value unsafe.Pointer)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRModeSelectClusterModeOptionStruct
@@ -85,8 +83,6 @@ func NewMTRModeSelectClusterModeOptionStruct() MTRModeSelectClusterModeOptionStr
 	return getMTRModeSelectClusterModeOptionStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
 func (m_ MTRModeSelectClusterModeOptionStruct) Label() objc.IObject /* cross-framework: NSString */ {
@@ -94,13 +90,11 @@ func (m_ MTRModeSelectClusterModeOptionStruct) Label() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/label
 func (m_ MTRModeSelectClusterModeOptionStruct) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLabel:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/mode
@@ -109,13 +103,11 @@ func (m_ MTRModeSelectClusterModeOptionStruct) Mode() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/mode
 func (m_ MTRModeSelectClusterModeOptionStruct) SetMode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/semantictags
@@ -124,12 +116,8 @@ func (m_ MTRModeSelectClusterModeOptionStruct) SemanticTags() unsafe.Pointer {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmodeselectclustermodeoptionstruct/semantictags
 func (m_ MTRModeSelectClusterModeOptionStruct) SetSemanticTags(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSemanticTags:"), value)
 }
-
-
-

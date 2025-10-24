@@ -15,3 +15,4 @@ var inlinePredictionTypeProtocol *objc.Protocol
 func init() {
 	inlinePredictionTypeProtocol = objc.GetProtocol("inlinePredictionType")
 }
+

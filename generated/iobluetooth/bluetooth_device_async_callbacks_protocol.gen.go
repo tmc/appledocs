@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // BluetoothDeviceAsyncCallbacksProtocol is the IOBluetoothDeviceAsyncCallbacks protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to IOBluetoothDeviceAsyncCallbacks.
 var BluetoothDeviceAsyncCallbacksProtocol *objc.Protocol
 
 func init() {
 	BluetoothDeviceAsyncCallbacksProtocol = objc.GetProtocol("IOBluetoothDeviceAsyncCallbacks")
 }
+

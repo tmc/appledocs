@@ -20,3 +20,4 @@ var objectsProtocol *objc.Protocol
 func init() {
 	objectsProtocol = objc.GetProtocol("objects")
 }
+

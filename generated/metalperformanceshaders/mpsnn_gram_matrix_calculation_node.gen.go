@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNGramMatrixCalculationNode */
+
+
+/* debug [class_header]: Header for MPSNNGramMatrixCalculationNode */
 // The class instance for the [GramMatrixCalculationNode] class.
 var (
 	GramMatrixCalculationNodeClass     _GramMatrixCalculationNodeClass
@@ -25,33 +30,34 @@ func getGramMatrixCalculationNodeClass() _GramMatrixCalculationNodeClass {
 type _GramMatrixCalculationNodeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GramMatrixCalculationNode */
 // An interface definition for the [GramMatrixCalculationNode] class.
 type IGramMatrixCalculationNode interface {
 	IFilterNode
+	
+/* debug [class_interface_properties]: Properties for GramMatrixCalculationNode */
 	// properties:
-	PropertyCallBack() objc.ID
-	SetPropertyCallBack(value objc.ID)
-	Alpha() float32
-	SetAlpha(value float32)
+	Alpha() objectivec.IObject
+	SetAlpha(value objectivec.IObject)
+	PropertyCallBack() GramMatrixCallback get set /* not a class type */
+	SetPropertyCallBack(value GramMatrixCallback get set /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GramMatrixCalculationNode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode
-type GramMatrixCalculationNode struct {
-	FilterNode
-}
-
-// GramMatrixCalculationNodeFrom constructs a [GramMatrixCalculationNode] from an unsafe.Pointer.
-func GramMatrixCalculationNodeFrom(ptr unsafe.Pointer) GramMatrixCalculationNode {
-	return GramMatrixCalculationNode{
-		FilterNode: FilterNodeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GramMatrixCalculationNode */
 // Alloc allocates a new instance without initialization.
 func (gc _GramMatrixCalculationNodeClass) Alloc() GramMatrixCalculationNode {
 	rv := objc.Send[GramMatrixCalculationNode](objc.ID(gc.class), objc.Sel("alloc"))
@@ -59,7 +65,6 @@ func (gc _GramMatrixCalculationNodeClass) Alloc() GramMatrixCalculationNode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GramMatrixCalculationNodeClass) New() GramMatrixCalculationNode {
 	rv := objc.Send[GramMatrixCalculationNode](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,55 +87,119 @@ func (g_ GramMatrixCalculationNode) Autorelease() GramMatrixCalculationNode {
 func NewGramMatrixCalculationNode() GramMatrixCalculationNode {
 	return getGramMatrixCalculationNodeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for GramMatrixCalculationNode */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/init(source:)
-func NewGramMatrixCalculationNodeWithSource(sourceNode IMPSNNImageNode) GramMatrixCalculationNode {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode
+type GramMatrixCalculationNode struct {
+	FilterNode
+}
+
+// GramMatrixCalculationNodeFrom constructs a [GramMatrixCalculationNode] from an unsafe.Pointer.
+func GramMatrixCalculationNodeFrom(ptr unsafe.Pointer) GramMatrixCalculationNode {
+	return GramMatrixCalculationNode{
+		FilterNode: FilterNodeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GramMatrixCalculationNode */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/3114095-initwithsource
+func NewGramMatrixCalculationNodeWithSource(sourceNode IImageNode) GramMatrixCalculationNode {
 	instance := getGramMatrixCalculationNodeClass().Alloc()
 	rv := objc.Send[GramMatrixCalculationNode](instance.ID, objc.Sel("initWithSource:"), sourceNode)
 	rv.Autorelease()
 	return rv
-}
-
+}/* debug [class_init_methods/constructor]: NewGramMatrixCalculationNodeWithSource */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/nodeWithSource:alpha:
-func (gc _GramMatrixCalculationNodeClass) NodeWithSourceAlpha(sourceNode IMPSNNImageNode, alpha float32) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(gc.class), objc.Sel("nodeWithSource:alpha:"), sourceNode, alpha)
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/3114096-initwithsource
+func NewGramMatrixCalculationNodeWithSourceAlpha(sourceNode IImageNode, alpha float32) GramMatrixCalculationNode {
+	instance := getGramMatrixCalculationNodeClass().Alloc()
+	rv := objc.Send[GramMatrixCalculationNode](instance.ID, objc.Sel("initWithSource:alpha:"), sourceNode, alpha)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewGramMatrixCalculationNodeWithSourceAlpha */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GramMatrixCalculationNode */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/3114097-nodewithsource
+func (gc _GramMatrixCalculationNodeClass) NodeWithSource(sourceNode IImageNode) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(gc.class), objc.Sel("nodeWithSource:"), sourceNode)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSource) */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/propertyCallBack
-func (g_ GramMatrixCalculationNode) PropertyCallBack() objc.ID {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/3114098-nodewithsource
+func (gc _GramMatrixCalculationNodeClass) NodeWithSourceAlpha(sourceNode IImageNode, alpha float32) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(gc.class), objc.Sel("nodeWithSource:alpha:"), sourceNode, alpha)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NodeWithSourceAlpha) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GramMatrixCalculationNode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GramMatrixCalculationNode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GramMatrixCalculationNode */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/3114094-alpha
+func (g_ GramMatrixCalculationNode) Alpha() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](g_.ID, objc.Sel("alpha"))
+	return rv
+}/* debug [instance_properties/getter]: alpha */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/3114094-alpha
+func (g_ GramMatrixCalculationNode) SetAlpha(value objectivec.IObject) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)
+}/* debug [instance_properties/setter]: alpha */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/3131844-propertycallback
+func (g_ GramMatrixCalculationNode) PropertyCallBack() GramMatrixCallback get set /* not a class type */ {
 	rv := objc.Send[objc.ID](g_.ID, objc.Sel("propertyCallBack"))
 	return rv
-}
+}/* debug [instance_properties/getter]: propertyCallBack */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNGramMatrixCalculationNode/propertyCallBack
-func (g_ GramMatrixCalculationNode) SetPropertyCallBack(value objc.ID) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/3131844-propertycallback
+func (g_ GramMatrixCalculationNode) SetPropertyCallBack(value GramMatrixCallback get set /* not a class type */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setPropertyCallBack:"), value)
-}
+}/* debug [instance_properties/setter]: propertyCallBack */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/alpha
-func (g_ GramMatrixCalculationNode) Alpha() float32 {
-	rv := objc.Send[float32](g_.ID, objc.Sel("alpha"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnngrammatrixcalculationnode/alpha
-func (g_ GramMatrixCalculationNode) SetAlpha(value float32) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setAlpha:"), value)
-}
+/* debug [class.gen.go]: End class MPSNNGramMatrixCalculationNode */
 
 

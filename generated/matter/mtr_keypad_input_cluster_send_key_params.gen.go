@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRKeypadInputClusterSendKeyParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRKeypadInputClusterSendKeyParams
@@ -85,8 +83,6 @@ func NewMTRKeypadInputClusterSendKeyParams() MTRKeypadInputClusterSendKeyParams 
 	return getMTRKeypadInputClusterSendKeyParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/keycode
 func (m_ MTRKeypadInputClusterSendKeyParams) KeyCode() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRKeypadInputClusterSendKeyParams) KeyCode() objc.IObject /* cross-fra
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/keycode
 func (m_ MTRKeypadInputClusterSendKeyParams) SetKeyCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyCode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/serversideprocessingtimeout
@@ -109,13 +103,11 @@ func (m_ MTRKeypadInputClusterSendKeyParams) ServerSideProcessingTimeout() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/serversideprocessingtimeout
 func (m_ MTRKeypadInputClusterSendKeyParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRKeypadInputClusterSendKeyParams) TimedInvokeTimeoutMs() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrkeypadinputclustersendkeyparams/timedinvoketimeoutms
 func (m_ MTRKeypadInputClusterSendKeyParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

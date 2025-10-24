@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class trustUsesSystemKeychain */
+
+
+/* debug [class_header]: Header for trustUsesSystemKeychain */
 // The class instance for the [trustUsesSystemKeychain] class.
 var (
 	TrustUsesSystemKeychainClass     _trustUsesSystemKeychainClass
@@ -26,27 +30,30 @@ func gettrustUsesSystemKeychainClass() _trustUsesSystemKeychainClass {
 type _trustUsesSystemKeychainClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for trustUsesSystemKeychain */
 // An interface definition for the [trustUsesSystemKeychain] class.
 type ItrustUsesSystemKeychain interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for trustUsesSystemKeychain */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for trustUsesSystemKeychain */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustUsesSystemKeychain-c.ivar
-type trustUsesSystemKeychain struct {
-	objectivec.Object
-}
-
-// trustUsesSystemKeychainFrom constructs a [trustUsesSystemKeychain] from an unsafe.Pointer.
-func trustUsesSystemKeychainFrom(ptr unsafe.Pointer) trustUsesSystemKeychain {
-	return trustUsesSystemKeychain{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for trustUsesSystemKeychain */
 // Alloc allocates a new instance without initialization.
 func (tc _trustUsesSystemKeychainClass) Alloc() trustUsesSystemKeychain {
 	rv := objc.Send[trustUsesSystemKeychain](objc.ID(tc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (tc _trustUsesSystemKeychainClass) Alloc() trustUsesSystemKeychain {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _trustUsesSystemKeychainClass) New() trustUsesSystemKeychain {
 	rv := objc.Send[trustUsesSystemKeychain](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (t_ trustUsesSystemKeychain) Autorelease() trustUsesSystemKeychain {
 func NewtrustUsesSystemKeychain() trustUsesSystemKeychain {
 	return gettrustUsesSystemKeychainClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for trustUsesSystemKeychain */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODConfiguration/trustUsesSystemKeychain-c.ivar
+type trustUsesSystemKeychain struct {
+	objectivec.Object
+}
+
+// trustUsesSystemKeychainFrom constructs a [trustUsesSystemKeychain] from an unsafe.Pointer.
+func trustUsesSystemKeychainFrom(ptr unsafe.Pointer) trustUsesSystemKeychain {
+	return trustUsesSystemKeychain{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for trustUsesSystemKeychain *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for trustUsesSystemKeychain */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for trustUsesSystemKeychain */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for trustUsesSystemKeychain */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for trustUsesSystemKeychain */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class trustUsesSystemKeychain */
 
 
 

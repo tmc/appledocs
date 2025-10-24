@@ -13,7 +13,7 @@ var _ = gameplaykit.NewCompositeBehavior
 // Creates a composite behavior from the specified individual behaviors.
 func ExampleNewCompositeBehaviorWithBehaviors() {
 	_ = gameplaykit.NewCompositeBehaviorWithBehaviors(
-		[]gameplaykit.IBehavior{}, // behaviors []IBehavior
+		[]gameplaykit.Behavior{}, // behaviors []Behavior
 	)
 	// Output:
 }

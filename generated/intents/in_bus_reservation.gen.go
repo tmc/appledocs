@@ -37,7 +37,6 @@ type IINBusReservation interface {
 
 // The information that describes a bus reservation.
 
-
 // The information that describes a bus reservation.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINBusReservation() INBusReservation {
 	return getINBusReservationClass().New()
 }
 
-
-
 // Information describing a bus trip.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INBusReservation) BusTrip() unsafe.Pointer {
 	return rv
 }
 
-
 // Information describing a bus trip.
 //
 // [Full Topic]
@@ -105,7 +101,6 @@ func (i_ INBusReservation) BusTrip() unsafe.Pointer {
 func (i_ INBusReservation) SetBusTrip(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setBusTrip:"), value)
 }
-
 
 // Seat information for the bus reservation.
 //
@@ -116,7 +111,6 @@ func (i_ INBusReservation) ReservedSeat() INSeat {
 	return rv
 }
 
-
 // Seat information for the bus reservation.
 //
 // [Full Topic]
@@ -124,6 +118,3 @@ func (i_ INBusReservation) ReservedSeat() INSeat {
 func (i_ INBusReservation) SetReservedSeat(value INSeat) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservedSeat:"), value)
 }
-
-
-

@@ -2,12 +2,8 @@
 
 // Package bundleresources provides Go bindings for the BundleResources framework.
 //
-// Resources located in an app, framework, or plugin bundle.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to BundleResources without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/BundleResources
 package bundleresources
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/BundleResources.framework/BundleResources"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

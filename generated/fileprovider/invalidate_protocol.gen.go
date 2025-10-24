@@ -18,3 +18,4 @@ var invalidateProtocol *objc.Protocol
 func init() {
 	invalidateProtocol = objc.GetProtocol("invalidate")
 }
+

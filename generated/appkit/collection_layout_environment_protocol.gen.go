@@ -15,3 +15,4 @@ var CollectionLayoutEnvironmentProtocol *objc.Protocol
 func init() {
 	CollectionLayoutEnvironmentProtocol = objc.GetProtocol("NSCollectionLayoutEnvironment")
 }
+

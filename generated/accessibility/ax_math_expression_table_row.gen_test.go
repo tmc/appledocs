@@ -12,7 +12,7 @@ var _ = accessibility.NewAXMathExpressionTableRow
 // ExampleNewAXMathExpressionTableRowWithExpressions demonstrates how to create a AXMathExpressionTableRow instance using NewAXMathExpressionTableRowWithExpressions.
 func ExampleNewAXMathExpressionTableRowWithExpressions() {
 	_ = accessibility.NewAXMathExpressionTableRowWithExpressions(
-		[]accessibility.IAXMathExpression{}, // expressions []IAXMathExpression
+		[]accessibility.AXMathExpression{}, // expressions []AXMathExpression
 	)
 	// Output:
 }

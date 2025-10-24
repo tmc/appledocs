@@ -15,3 +15,4 @@ var markedRangeProtocol *objc.Protocol
 func init() {
 	markedRangeProtocol = objc.GetProtocol("markedRange")
 }
+

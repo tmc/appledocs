@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mActionArgument1 */
+
+
+/* debug [class_header]: Header for mActionArgument1 */
 // The class instance for the [mActionArgument1] class.
 var (
 	MActionArgument1Class     _mActionArgument1Class
@@ -26,27 +30,30 @@ func getmActionArgument1Class() _mActionArgument1Class {
 type _mActionArgument1Class struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mActionArgument1 */
 // An interface definition for the [mActionArgument1] class.
 type ImActionArgument1 interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mActionArgument1 */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mActionArgument1 */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mActionArgument1
-type mActionArgument1 struct {
-	objectivec.Object
-}
-
-// mActionArgument1From constructs a [mActionArgument1] from an unsafe.Pointer.
-func mActionArgument1From(ptr unsafe.Pointer) mActionArgument1 {
-	return mActionArgument1{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mActionArgument1 */
 // Alloc allocates a new instance without initialization.
 func (mc _mActionArgument1Class) Alloc() mActionArgument1 {
 	rv := objc.Send[mActionArgument1](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mActionArgument1Class) Alloc() mActionArgument1 {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mActionArgument1Class) New() mActionArgument1 {
 	rv := objc.Send[mActionArgument1](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mActionArgument1) Autorelease() mActionArgument1 {
 func NewmActionArgument1() mActionArgument1 {
 	return getmActionArgument1Class().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mActionArgument1 */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mActionArgument1
+type mActionArgument1 struct {
+	objectivec.Object
+}
+
+// mActionArgument1From constructs a [mActionArgument1] from an unsafe.Pointer.
+func mActionArgument1From(ptr unsafe.Pointer) mActionArgument1 {
+	return mActionArgument1{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mActionArgument1 *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mActionArgument1 */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mActionArgument1 */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mActionArgument1 */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mActionArgument1 */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mActionArgument1 */
 
 
 

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureBracketedStillImageSettings */
+
+
+/* debug [class_header]: Header for AVCaptureBracketedStillImageSettings */
 // The class instance for the [CaptureBracketedStillImageSettings] class.
 var (
 	CaptureBracketedStillImageSettingsClass     _CaptureBracketedStillImageSettingsClass
@@ -26,29 +30,30 @@ func getCaptureBracketedStillImageSettingsClass() _CaptureBracketedStillImageSet
 type _CaptureBracketedStillImageSettingsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureBracketedStillImageSettings */
 // An interface definition for the [CaptureBracketedStillImageSettings] class.
 type ICaptureBracketedStillImageSettings interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CaptureBracketedStillImageSettings */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureBracketedStillImageSettings */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A parent class referenced by other AVFoundation classes.
 
 
-// A parent class referenced by other AVFoundation classes. [Full Topic]
-type CaptureBracketedStillImageSettings struct {
-	objectivec.Object
-}
-
-// CaptureBracketedStillImageSettingsFrom constructs a [CaptureBracketedStillImageSettings] from an unsafe.Pointer.
-//
-// A parent class referenced by other AVFoundation classes.
-func CaptureBracketedStillImageSettingsFrom(ptr unsafe.Pointer) CaptureBracketedStillImageSettings {
-	return CaptureBracketedStillImageSettings{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CaptureBracketedStillImageSettings */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureBracketedStillImageSettingsClass) Alloc() CaptureBracketedStillImageSettings {
 	rv := objc.Send[CaptureBracketedStillImageSettings](objc.ID(cc.class), objc.Sel("alloc"))
@@ -56,7 +61,6 @@ func (cc _CaptureBracketedStillImageSettingsClass) Alloc() CaptureBracketedStill
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureBracketedStillImageSettingsClass) New() CaptureBracketedStillImageSettings {
 	rv := objc.Send[CaptureBracketedStillImageSettings](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,7 +83,56 @@ func (c_ CaptureBracketedStillImageSettings) Autorelease() CaptureBracketedStill
 func NewCaptureBracketedStillImageSettings() CaptureBracketedStillImageSettings {
 	return getCaptureBracketedStillImageSettingsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for CaptureBracketedStillImageSettings */
+// The abstract superclass for bracketed photo capture settings.
+
+
+// The abstract superclass for bracketed photo capture settings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureBracketedStillImageSettings
+type CaptureBracketedStillImageSettings struct {
+	objectivec.Object
+}
+
+// CaptureBracketedStillImageSettingsFrom constructs a [CaptureBracketedStillImageSettings] from an unsafe.Pointer.
+//
+// The abstract superclass for bracketed photo capture settings.
+func CaptureBracketedStillImageSettingsFrom(ptr unsafe.Pointer) CaptureBracketedStillImageSettings {
+	return CaptureBracketedStillImageSettings{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CaptureBracketedStillImageSettings *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CaptureBracketedStillImageSettings */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CaptureBracketedStillImageSettings */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CaptureBracketedStillImageSettings */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureBracketedStillImageSettings */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVCaptureBracketedStillImageSettings */
 
 
 

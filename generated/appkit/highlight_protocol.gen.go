@@ -15,3 +15,4 @@ var highlightProtocol *objc.Protocol
 func init() {
 	highlightProtocol = objc.GetProtocol("highlight:")
 }
+

@@ -19,3 +19,4 @@ var PlayerViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	PlayerViewControllerDelegateProtocol = objc.GetProtocol("AVPlayerViewControllerDelegate")
 }
+

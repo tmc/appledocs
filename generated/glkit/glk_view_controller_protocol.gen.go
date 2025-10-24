@@ -17,3 +17,4 @@ var glkViewControllerProtocol *objc.Protocol
 func init() {
 	glkViewControllerProtocol = objc.GetProtocol("glkViewController:")
 }
+

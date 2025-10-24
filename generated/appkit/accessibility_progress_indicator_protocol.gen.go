@@ -15,3 +15,4 @@ var AccessibilityProgressIndicatorProtocol *objc.Protocol
 func init() {
 	AccessibilityProgressIndicatorProtocol = objc.GetProtocol("NSAccessibilityProgressIndicator")
 }
+

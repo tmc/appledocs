@@ -10,6 +10,7 @@ import "github.com/ebitengine/purego/objc"
 //   - Mac Catalyst 17.0+
 //   - iOS 17.0+
 //   - iPadOS 17.0+
+//   - macOS +
 //   - visionOS 1.0+
 //   - watchOS 2.0+
 //
@@ -19,3 +20,4 @@ var HKWorkoutSessionDelegateProtocol *objc.Protocol
 func init() {
 	HKWorkoutSessionDelegateProtocol = objc.GetProtocol("HKWorkoutSessionDelegate")
 }
+

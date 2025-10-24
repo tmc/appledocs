@@ -15,3 +15,4 @@ var NCWidgetListViewDelegateProtocol *objc.Protocol
 func init() {
 	NCWidgetListViewDelegateProtocol = objc.GetProtocol("NCWidgetListViewDelegate")
 }
+

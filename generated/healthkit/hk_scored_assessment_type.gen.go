@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class HKScoredAssessmentType */
+
+
+/* debug [class_header]: Header for HKScoredAssessmentType */
 // The class instance for the [HKScoredAssessmentType] class.
 var (
 	HKScoredAssessmentTypeClass     _HKScoredAssessmentTypeClass
@@ -25,29 +29,30 @@ func getHKScoredAssessmentTypeClass() _HKScoredAssessmentTypeClass {
 type _HKScoredAssessmentTypeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for HKScoredAssessmentType */
 // An interface definition for the [HKScoredAssessmentType] class.
 type IHKScoredAssessmentType interface {
 	IHKSampleType
+	
+/* debug [class_interface_properties]: Properties for HKScoredAssessmentType */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for HKScoredAssessmentType */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKScoredAssessmentType
-type HKScoredAssessmentType struct {
-	HKSampleType
-}
-
-// HKScoredAssessmentTypeFrom constructs a [HKScoredAssessmentType] from an unsafe.Pointer.
-func HKScoredAssessmentTypeFrom(ptr unsafe.Pointer) HKScoredAssessmentType {
-	return HKScoredAssessmentType{
-		HKSampleType: HKSampleTypeFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for HKScoredAssessmentType */
 // Alloc allocates a new instance without initialization.
 func (hc _HKScoredAssessmentTypeClass) Alloc() HKScoredAssessmentType {
 	rv := objc.Send[HKScoredAssessmentType](objc.ID(hc.class), objc.Sel("alloc"))
@@ -55,7 +60,6 @@ func (hc _HKScoredAssessmentTypeClass) Alloc() HKScoredAssessmentType {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (hc _HKScoredAssessmentTypeClass) New() HKScoredAssessmentType {
 	rv := objc.Send[HKScoredAssessmentType](objc.ID(hc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -78,7 +82,53 @@ func (h_ HKScoredAssessmentType) Autorelease() HKScoredAssessmentType {
 func NewHKScoredAssessmentType() HKScoredAssessmentType {
 	return getHKScoredAssessmentTypeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for HKScoredAssessmentType */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/HealthKit/HKScoredAssessmentType
+type HKScoredAssessmentType struct {
+	HKSampleType
+}
+
+// HKScoredAssessmentTypeFrom constructs a [HKScoredAssessmentType] from an unsafe.Pointer.
+func HKScoredAssessmentTypeFrom(ptr unsafe.Pointer) HKScoredAssessmentType {
+	return HKScoredAssessmentType{
+		HKSampleType: HKSampleTypeFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for HKScoredAssessmentType *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for HKScoredAssessmentType */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for HKScoredAssessmentType */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for HKScoredAssessmentType */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for HKScoredAssessmentType */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class HKScoredAssessmentType */
 
 
 

@@ -6,6 +6,46 @@ import (
 )
 
 // Type aliases and typedefs
+// BluetoothDeviceRef - An object that represents a Bluetooth I/O device.
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceRef
+// IOBluetoothDeviceRef has base type: struct OpaqueIOBluetoothObjectRef *
+type BluetoothDeviceRef uintptr
+// BluetoothL2CAPChannelRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelRef
+// IOBluetoothL2CAPChannelRef has base type: struct OpaqueIOBluetoothObjectRef *
+type BluetoothL2CAPChannelRef uintptr
+// BluetoothObjectRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObjectRef
+// IOBluetoothObjectRef has base type: struct OpaqueIOBluetoothObjectRef *
+type BluetoothObjectRef uintptr
+// BluetoothRFCOMMChannelRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannelRef
+// IOBluetoothRFCOMMChannelRef has base type: struct OpaqueIOBluetoothObjectRef *
+type BluetoothRFCOMMChannelRef uintptr
+// BluetoothSDPDataElementRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElementRef
+// IOBluetoothSDPDataElementRef has base type: struct OpaqueIOBluetoothObjectRef *
+type BluetoothSDPDataElementRef uintptr
+// BluetoothSDPServiceRecordRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecordRef
+// IOBluetoothSDPServiceRecordRef has base type: struct OpaqueIOBluetoothObjectRef *
+type BluetoothSDPServiceRecordRef uintptr
+// BluetoothSDPUUIDRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUIDRef
+// IOBluetoothSDPUUIDRef has base type: struct OpaqueIOBluetoothObjectRef *
+type BluetoothSDPUUIDRef uintptr
+// BluetoothUserNotificationRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationRef
+// IOBluetoothUserNotificationRef has base type: struct OpaqueIOBluetoothObjectRef *
+type BluetoothUserNotificationRef uintptr
 // BluetoothAFHMode type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothAFHMode
@@ -166,16 +206,16 @@ type BluetoothHCIEventStatus uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIExtendedInquiryResponseDataType
 // BluetoothHCIExtendedInquiryResponseDataType has base type: uint8_t
 type BluetoothHCIExtendedInquiryResponseDataType uintptr
-// BluetoothHCIFECRequired type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIFECRequired
-// BluetoothHCIFECRequired has base type: uint8_t
-type BluetoothHCIFECRequired uintptr
 // BluetoothHCIFailedContactCount type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIFailedContactCount
 // BluetoothHCIFailedContactCount has base type: uint16_t
 type BluetoothHCIFailedContactCount uintptr
+// BluetoothHCIFECRequired type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIFECRequired
+// BluetoothHCIFECRequired has base type: uint8_t
+type BluetoothHCIFECRequired uintptr
 // BluetoothHCIFlowControlState type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIFlowControlState
@@ -376,11 +416,6 @@ type BluetoothHCIParkModeBeaconInterval uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIQoSFlags
 // BluetoothHCIQoSFlags has base type: uint8_t
 type BluetoothHCIQoSFlags uintptr
-// BluetoothHCIRSSIValue type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIRSSIValue
-// BluetoothHCIRSSIValue has base type: SInt8
-type BluetoothHCIRSSIValue uintptr
 // BluetoothHCIReadStoredLinkKeysFlag type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIReadStoredLinkKeysFlag
@@ -421,6 +456,11 @@ type BluetoothHCIRetransmissionEffort uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIRole
 // BluetoothHCIRole has base type: uint8_t
 type BluetoothHCIRole uintptr
+// BluetoothHCIRSSIValue type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIRSSIValue
+// BluetoothHCIRSSIValue has base type: SInt8
+type BluetoothHCIRSSIValue uintptr
 // BluetoothHCISCODataByteCount type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCISCODataByteCount
@@ -511,16 +551,16 @@ type BluetoothIOCapability uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothKeyFlag
 // BluetoothKeyFlag has base type: uint8_t
 type BluetoothKeyFlag uintptr
-// BluetoothKeyType type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothKeyType
-// BluetoothKeyType has base type: uint8_t
-type BluetoothKeyType uintptr
 // BluetoothKeypressNotificationType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothKeypressNotificationType
 // BluetoothKeypressNotificationType has base type: uint8_t
 type BluetoothKeypressNotificationType uintptr
+// BluetoothKeyType type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothKeyType
+// BluetoothKeyType has base type: uint8_t
+type BluetoothKeyType uintptr
 // BluetoothL2CAPByteCount type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothL2CAPByteCount
@@ -571,6 +611,11 @@ type BluetoothL2CAPPSM uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothLAP
 // BluetoothLAP has base type: uint32_t
 type BluetoothLAP uintptr
+// BluetoothLinkType type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothLinkType
+// BluetoothLinkType has base type: uint8_t
+type BluetoothLinkType uintptr
 // BluetoothLMPHandle type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothLMPHandle
@@ -586,11 +631,6 @@ type BluetoothLMPSubversion uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothLMPVersion
 // BluetoothLMPVersion has base type: uint8_t
 type BluetoothLMPVersion uintptr
-// BluetoothLinkType type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothLinkType
-// BluetoothLinkType has base type: uint8_t
-type BluetoothLinkType uintptr
 // BluetoothManufacturerName type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothManufacturerName
@@ -611,11 +651,6 @@ type BluetoothNumericValue uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothOOBDataPresence
 // BluetoothOOBDataPresence has base type: uint8_t
 type BluetoothOOBDataPresence uintptr
-// BluetoothPINType type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothPINType
-// BluetoothPINType has base type: uint8_t
-type BluetoothPINType uintptr
 // BluetoothPacketType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothPacketType
@@ -641,6 +676,16 @@ type BluetoothPageScanRepetitionMode uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothPasskey
 // BluetoothPasskey has base type: uint32_t
 type BluetoothPasskey uintptr
+// BluetoothPINType type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothPINType
+// BluetoothPINType has base type: uint8_t
+type BluetoothPINType uintptr
+// BluetoothReasonCode type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothReasonCode
+// BluetoothReasonCode has base type: uint8_t
+type BluetoothReasonCode uintptr
 // BluetoothRFCOMMChannelID type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothRFCOMMChannelID
@@ -651,11 +696,6 @@ type BluetoothRFCOMMChannelID uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothRFCOMMMTU
 // BluetoothRFCOMMMTU has base type: uint16_t
 type BluetoothRFCOMMMTU uintptr
-// BluetoothReasonCode type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothReasonCode
-// BluetoothReasonCode has base type: uint8_t
-type BluetoothReasonCode uintptr
 // BluetoothRole type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothRole
@@ -721,11 +761,6 @@ type BluetoothSimplePairingDebugMode uintptr
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothTransportInfoPtr
 // BluetoothTransportInfoPtr has base type: BluetoothTransportInfo *
 type BluetoothTransportInfoPtr uintptr
-// BluetoothDeviceRef - An object that represents a Bluetooth I/O device.
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceRef
-// IOBluetoothDeviceRef has base type: struct OpaqueIOBluetoothObjectRef *
-type BluetoothDeviceRef uintptr
 // BluetoothDeviceSearchOptions type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceSearchOptions
@@ -748,11 +783,6 @@ type BluetoothL2CAPChannelIncomingDataListener = func(unsafe.Pointer, unsafe.Poi
 // IOBluetoothL2CAPChannelIncomingEventListener is a callback function
 // C type: void (*)(struct OpaqueIOBluetoothObjectRef *, void *, struct IOBluetoothL2CAPChannelEvent *)
 type BluetoothL2CAPChannelIncomingEventListener = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-// BluetoothL2CAPChannelRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelRef
-// IOBluetoothL2CAPChannelRef has base type: struct OpaqueIOBluetoothObjectRef *
-type BluetoothL2CAPChannelRef uintptr
 // BluetoothOBEXSessionOpenConnectionCallback type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSessionOpenConnectionCallback
@@ -764,42 +794,12 @@ type BluetoothOBEXSessionOpenConnectionCallback = func(unsafe.Pointer, int32, un
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObjectID
 // IOBluetoothObjectID has base type: unsigned long
 type BluetoothObjectID uintptr
-// BluetoothObjectRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothObjectRef
-// IOBluetoothObjectRef has base type: struct OpaqueIOBluetoothObjectRef *
-type BluetoothObjectRef uintptr
-// BluetoothRFCOMMChannelRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothRFCOMMChannelRef
-// IOBluetoothRFCOMMChannelRef has base type: struct OpaqueIOBluetoothObjectRef *
-type BluetoothRFCOMMChannelRef uintptr
-// BluetoothSDPDataElementRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPDataElementRef
-// IOBluetoothSDPDataElementRef has base type: struct OpaqueIOBluetoothObjectRef *
-type BluetoothSDPDataElementRef uintptr
-// BluetoothSDPServiceRecordRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPServiceRecordRef
-// IOBluetoothSDPServiceRecordRef has base type: struct OpaqueIOBluetoothObjectRef *
-type BluetoothSDPServiceRecordRef uintptr
-// BluetoothSDPUUIDRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothSDPUUIDRef
-// IOBluetoothSDPUUIDRef has base type: struct OpaqueIOBluetoothObjectRef *
-type BluetoothSDPUUIDRef uintptr
 // BluetoothUserNotificationCallback - Callback function definition for user notifications.
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationCallback
 // IOBluetoothUserNotificationCallback is a callback function
 // C type: void (*)(void *, struct OpaqueIOBluetoothObjectRef *, struct OpaqueIOBluetoothObjectRef *)
 type BluetoothUserNotificationCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer)
-// BluetoothUserNotificationRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothUserNotificationRef
-// IOBluetoothUserNotificationRef has base type: struct OpaqueIOBluetoothObjectRef *
-type BluetoothUserNotificationRef uintptr
 // OBEXConstants type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXConstants

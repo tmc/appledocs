@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PToolbarDelegate is the NSToolbarDelegate protocol interface.
@@ -21,9 +23,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSToolbarDelegate
 type PToolbarDelegate interface {
 	// Optional methods
-	ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, flag bool) ToolbarItem
+	ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) ToolbarItem
 	HasToolbarItemForItemIdentifierWillBeInsertedIntoToolbar() bool
-	ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, index int) bool
+	ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, index int) bool
 	HasToolbarItemIdentifierCanBeInsertedAtIndex() bool
 	ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string
 	HasToolbarAllowedItemIdentifiers() bool
@@ -43,8 +45,8 @@ type PToolbarDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type ToolbarDelegate struct {
-	_ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar func(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, flag bool) ToolbarItem
-	_ToolbarItemIdentifierCanBeInsertedAtIndex func(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, index int) bool
+	_ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) ToolbarItem
+	_ToolbarItemIdentifierCanBeInsertedAtIndex func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, index int) bool
 	_ToolbarAllowedItemIdentifiers func(toolbar IToolbar) []string
 	_ToolbarDefaultItemIdentifiers func(toolbar IToolbar) []string
 	_ToolbarDidRemoveItem func(notification foundation.Notification)
@@ -56,14 +58,14 @@ type ToolbarDelegate struct {
 // SetToolbarItemForItemIdentifierWillBeInsertedIntoToolbar sets the handler for the ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar delegate method.
 //
 // Asks the delegate for the toolbar item associated with the specified identifier.
-func (d *ToolbarDelegate) SetToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(f func(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, flag bool) ToolbarItem) {
+func (d *ToolbarDelegate) SetToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(f func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) ToolbarItem) {
 	d._ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar = f
 }
 
 // SetToolbarItemIdentifierCanBeInsertedAtIndex sets the handler for the ToolbarItemIdentifierCanBeInsertedAtIndex delegate method.
 //
 // Asks the delegate for a Boolean value that indicates whether the toolbar can place the item at the specified position.
-func (d *ToolbarDelegate) SetToolbarItemIdentifierCanBeInsertedAtIndex(f func(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, index int) bool) {
+func (d *ToolbarDelegate) SetToolbarItemIdentifierCanBeInsertedAtIndex(f func(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, index int) bool) {
 	d._ToolbarItemIdentifierCanBeInsertedAtIndex = f
 }
 
@@ -110,7 +112,7 @@ func (d *ToolbarDelegate) SetToolbarWillAddItem(f func(notification foundation.N
 }
 
 // ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar implements the PToolbarDelegate interface.
-func (d *ToolbarDelegate) ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, flag bool) ToolbarItem {
+func (d *ToolbarDelegate) ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) ToolbarItem {
 	if d._ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar != nil {
 		return d._ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar, itemIdentifier, flag)
 	}
@@ -124,7 +126,7 @@ func (d *ToolbarDelegate) HasToolbarItemForItemIdentifierWillBeInsertedIntoToolb
 }
 
 // ToolbarItemIdentifierCanBeInsertedAtIndex implements the PToolbarDelegate interface.
-func (d *ToolbarDelegate) ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, index int) bool {
+func (d *ToolbarDelegate) ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, index int) bool {
 	if d._ToolbarItemIdentifierCanBeInsertedAtIndex != nil {
 		return d._ToolbarItemIdentifierCanBeInsertedAtIndex(toolbar, itemIdentifier, index)
 	}

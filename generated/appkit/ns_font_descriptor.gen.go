@@ -7,11 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSFontDescriptor */
+
+
+/* debug [class_header]: Header for NSFontDescriptor */
 // The class instance for the [FontDescriptor] class.
 var (
 	FontDescriptorClass     _FontDescriptorClass
@@ -28,52 +31,48 @@ func getFontDescriptorClass() _FontDescriptorClass {
 type _FontDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FontDescriptor */
 // An interface definition for the [FontDescriptor] class.
 type IFontDescriptor interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for FontDescriptor */
 	// properties:
 	FontAttributes() foundation.IDictionary
-	Matrix() objc.IObject /* cross-framework: AffineTransform */
+	Matrix() foundation.AffineTransform
 	PointSize() float64
 	PostscriptName() objc.IObject /* cross-framework: NSString */
 	RequiresFontAssetRequest() bool
 	SymbolicTraits() FontDescriptorSymbolicTraits
-	NSFontFamilyClassMask() unsafe.Pointer
-	SetNSFontFamilyClassMask(value unsafe.Pointer)
+	NSFontFamilyClassMask() objectivec.IObject
+	SetNSFontFamilyClassMask(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FontDescriptor */
 	// methods:
 	FontDescriptorByAddingAttributes(attributes foundation.IDictionary) IFontDescriptor
 	MatchingFontDescriptorWithMandatoryKeys(mandatoryKeys unsafe.Pointer) IFontDescriptor
 	MatchingFontDescriptorsWithMandatoryKeys(mandatoryKeys unsafe.Pointer) []FontDescriptor
-	ObjectForKey(attribute objc.IObject /* cross-framework: FontDescriptorAttributeName */) objc.ID
-	FontDescriptorWithDesign(design objc.IObject /* cross-framework: FontDescriptorSystemDesign */) unsafe.Pointer
+	ObjectForKey(attribute FontDescriptorAttributeName /* typedef */) objc.ID
+	FontDescriptorWithDesign(design FontDescriptorSystemDesign /* typedef */) objectivec.IObject
 	FontDescriptorWithFace(newFace objc.IObject /* cross-framework: NSString */) IFontDescriptor
 	FontDescriptorWithFamily(newFamily objc.IObject /* cross-framework: NSString */) IFontDescriptor
-	FontDescriptorWithMatrix(matrix objc.IObject /* cross-framework: AffineTransform */) IFontDescriptor
+	FontDescriptorWithMatrix(matrix foundation.AffineTransform) IFontDescriptor
 	FontDescriptorWithSize(newPointSize float64) IFontDescriptor
 	FontDescriptorWithSymbolicTraits(symbolicTraits FontDescriptorSymbolicTraits) IFontDescriptor
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A dictionary of attributes that describe a font.
-//
-// A font descriptor can be used to create or modify an object. The system provides a font matching capability, so that you can partially describe a font by creating a font descriptor with, for example, just a family name. You can then find all the available fonts on the system with a matching family name using . There are several ways to create a new object. You can use and , , , or . to create a font descriptor based on either your custom attributes dictionary or on a specific font’s name and size. Alternatively you can use one of the instance methods (such as ) to create a modified version of an existing descriptor. The latter methods are useful if you have an existing descriptor and simply want to change one aspect. All attributes in the attributes dictionary are optional.
+/* debug [class_interface]: End interface */
 
 
-// A dictionary of attributes that describe a font.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor
-type FontDescriptor struct {
-	objectivec.Object
-}
 
-// FontDescriptorFrom constructs a [FontDescriptor] from an unsafe.Pointer.
-//
-// A dictionary of attributes that describe a font.
-func FontDescriptorFrom(ptr unsafe.Pointer) FontDescriptor {
-	return FontDescriptor{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for FontDescriptor */
 // Alloc allocates a new instance without initialization.
 func (fc _FontDescriptorClass) Alloc() FontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("alloc"))
@@ -81,7 +80,6 @@ func (fc _FontDescriptorClass) Alloc() FontDescriptor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FontDescriptorClass) New() FontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -104,8 +102,35 @@ func (f_ FontDescriptor) Autorelease() FontDescriptor {
 func NewFontDescriptor() FontDescriptor {
 	return getFontDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for FontDescriptor */
+// A dictionary of attributes that describe a font.
+//
+// A font descriptor can be used to create or modify an object. The system provides a font matching capability, so that you can partially describe a font by creating a font descriptor with, for example, just a family name. You can then find all the available fonts on the system with a matching family name using . There are several ways to create a new object. You can use and , , , or . to create a font descriptor based on either your custom attributes dictionary or on a specific font’s name and size. Alternatively you can use one of the instance methods (such as ) to create a modified version of an existing descriptor. The latter methods are useful if you have an existing descriptor and simply want to change one aspect. All attributes in the attributes dictionary are optional.
+
+
+// A dictionary of attributes that describe a font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor
+type FontDescriptor struct {
+	objectivec.Object
+}
+
+// FontDescriptorFrom constructs a [FontDescriptor] from an unsafe.Pointer.
+//
+// A dictionary of attributes that describe a font.
+func FontDescriptorFrom(ptr unsafe.Pointer) FontDescriptor {
+	return FontDescriptor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FontDescriptor */
 
 // Initializes and returns a new font descriptor with the specified attributes.
 //
@@ -116,17 +141,17 @@ func NewFontDescriptorWithFontAttributes(attributes foundation.IDictionary) Font
 	rv := objc.Send[FontDescriptor](instance.ID, objc.Sel("initWithFontAttributes:"), attributes)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewFontDescriptorWithFontAttributes */
 
 
 // Returns a font descriptor with the name and matrix attributes set to the given values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/init(name:matrix:)
-func NewFontDescriptorWithNameMatrix(fontName objc.IObject /* cross-framework: NSString */, matrix objc.IObject /* cross-framework: AffineTransform */) FontDescriptor {
+func NewFontDescriptorWithNameMatrix(fontName objc.IObject /* cross-framework: NSString */, matrix foundation.AffineTransform) FontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(getFontDescriptorClass().class), objc.Sel("fontDescriptorWithName:matrix:"), fontName, matrix)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewFontDescriptorWithNameMatrix */
 
 
 // Returns a font descriptor with the name and size attributes set to the given values.
@@ -136,9 +161,13 @@ func NewFontDescriptorWithNameMatrix(fontName objc.IObject /* cross-framework: N
 func NewFontDescriptorWithNameSize(fontName objc.IObject /* cross-framework: NSString */, size float64) FontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(getFontDescriptorClass().class), objc.Sel("fontDescriptorWithName:size:"), fontName, size)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewFontDescriptorWithNameSize */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for FontDescriptor */
 
 // Returns a font descriptor with a dictionary of attributes.
 //
@@ -147,17 +176,17 @@ func NewFontDescriptorWithNameSize(fontName objc.IObject /* cross-framework: NSS
 func (fc _FontDescriptorClass) FontDescriptorWithFontAttributes(attributes foundation.IDictionary) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("fontDescriptorWithFontAttributes:"), attributes)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=FontDescriptorWithFontAttributes) */
 
 
 // Returns a font descriptor with the name and matrix attributes set to the given values.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/init(name:matrix:)
-func (fc _FontDescriptorClass) FontDescriptorWithNameMatrix(fontName objc.IObject /* cross-framework: NSString */, matrix objc.IObject /* cross-framework: AffineTransform */) IFontDescriptor {
+func (fc _FontDescriptorClass) FontDescriptorWithNameMatrix(fontName objc.IObject /* cross-framework: NSString */, matrix foundation.AffineTransform) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("fontDescriptorWithName:matrix:"), fontName, matrix)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=FontDescriptorWithNameMatrix) */
 
 
 // Returns a font descriptor with the name and size attributes set to the given values.
@@ -167,18 +196,28 @@ func (fc _FontDescriptorClass) FontDescriptorWithNameMatrix(fontName objc.IObjec
 func (fc _FontDescriptorClass) FontDescriptorWithNameSize(fontName objc.IObject /* cross-framework: NSString */, size float64) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("fontDescriptorWithName:size:"), fontName, size)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=FontDescriptorWithNameSize) */
 
 
 // Returns a font descriptor that contains the text style.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/preferredFontDescriptor(forTextStyle:options:)
-func (fc _FontDescriptorClass) PreferredFontDescriptorForTextStyleOptions(style objc.IObject /* cross-framework: FontTextStyle */, options foundation.IDictionary) IFontDescriptor {
+func (fc _FontDescriptorClass) PreferredFontDescriptorForTextStyleOptions(style FontTextStyle /* typedef */, options foundation.IDictionary) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](objc.ID(fc.class), objc.Sel("preferredFontDescriptorForTextStyle:options:"), style, options)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PreferredFontDescriptorForTextStyleOptions) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FontDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FontDescriptor */
 
 // Returns a new font descriptor based on the current object, but with the specified attributes taking precedence over the existing ones.
 //
@@ -187,7 +226,7 @@ func (fc _FontDescriptorClass) PreferredFontDescriptorForTextStyleOptions(style 
 func (f_ FontDescriptor) FontDescriptorByAddingAttributes(attributes foundation.IDictionary) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorByAddingAttributes:"), attributes)
 	return rv
-}
+}/* debug [instance_methods/method]: FontDescriptorByAddingAttributes */
 
 
 // Returns a normalized font descriptor whose specified attributes match those of the receiver.
@@ -197,7 +236,7 @@ func (f_ FontDescriptor) FontDescriptorByAddingAttributes(attributes foundation.
 func (f_ FontDescriptor) MatchingFontDescriptorWithMandatoryKeys(mandatoryKeys unsafe.Pointer) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("matchingFontDescriptorWithMandatoryKeys:"), mandatoryKeys)
 	return rv
-}
+}/* debug [instance_methods/method]: MatchingFontDescriptorWithMandatoryKeys */
 
 
 // Returns all the fonts available on the system whose specified attributes match those of the receiver.
@@ -207,27 +246,27 @@ func (f_ FontDescriptor) MatchingFontDescriptorWithMandatoryKeys(mandatoryKeys u
 func (f_ FontDescriptor) MatchingFontDescriptorsWithMandatoryKeys(mandatoryKeys unsafe.Pointer) []FontDescriptor {
 	rv := objc.Send[[]FontDescriptor](f_.ID, objc.Sel("matchingFontDescriptorsWithMandatoryKeys:"), mandatoryKeys)
 	return rv
-}
+}/* debug [instance_methods/method]: MatchingFontDescriptorsWithMandatoryKeys */
 
 
 // Returns the font attribute specified by the given key.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/object(forKey:)
-func (f_ FontDescriptor) ObjectForKey(attribute objc.IObject /* cross-framework: FontDescriptorAttributeName */) objc.ID {
+func (f_ FontDescriptor) ObjectForKey(attribute FontDescriptorAttributeName /* typedef */) objc.ID {
 	rv := objc.Send[objc.ID](f_.ID, objc.Sel("objectForKey:"), attribute)
 	return rv
-}
+}/* debug [instance_methods/method]: ObjectForKey */
 
 
 // Returns a new font descriptor based on the current object, but with the specified design style.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/withDesign(_:)
-func (f_ FontDescriptor) FontDescriptorWithDesign(design objc.IObject /* cross-framework: FontDescriptorSystemDesign */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("fontDescriptorWithDesign:"), design)
+func (f_ FontDescriptor) FontDescriptorWithDesign(design FontDescriptorSystemDesign /* typedef */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("fontDescriptorWithDesign:"), design)
 	return rv
-}
+}/* debug [instance_methods/method]: FontDescriptorWithDesign */
 
 
 // Returns a new font descriptor based on the current object, but with the specified face.
@@ -237,7 +276,7 @@ func (f_ FontDescriptor) FontDescriptorWithDesign(design objc.IObject /* cross-f
 func (f_ FontDescriptor) FontDescriptorWithFace(newFace objc.IObject /* cross-framework: NSString */) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithFace:"), newFace)
 	return rv
-}
+}/* debug [instance_methods/method]: FontDescriptorWithFace */
 
 
 // Returns a new font descriptor based on the current object, but with the specified font family.
@@ -247,17 +286,17 @@ func (f_ FontDescriptor) FontDescriptorWithFace(newFace objc.IObject /* cross-fr
 func (f_ FontDescriptor) FontDescriptorWithFamily(newFamily objc.IObject /* cross-framework: NSString */) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithFamily:"), newFamily)
 	return rv
-}
+}/* debug [instance_methods/method]: FontDescriptorWithFamily */
 
 
 // Returns a new font descriptor based on the current object, but with the specified font matrix.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/withMatrix(_:)
-func (f_ FontDescriptor) FontDescriptorWithMatrix(matrix objc.IObject /* cross-framework: AffineTransform */) IFontDescriptor {
+func (f_ FontDescriptor) FontDescriptorWithMatrix(matrix foundation.AffineTransform) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithMatrix:"), matrix)
 	return rv
-}
+}/* debug [instance_methods/method]: FontDescriptorWithMatrix */
 
 
 // Returns a new font descriptor based on the current object, but with the specified point size.
@@ -267,7 +306,7 @@ func (f_ FontDescriptor) FontDescriptorWithMatrix(matrix objc.IObject /* cross-f
 func (f_ FontDescriptor) FontDescriptorWithSize(newPointSize float64) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithSize:"), newPointSize)
 	return rv
-}
+}/* debug [instance_methods/method]: FontDescriptorWithSize */
 
 
 // Returns a new font descriptor based on the current object, but with the specified symbolic traits taking precedence over the existing ones.
@@ -277,8 +316,13 @@ func (f_ FontDescriptor) FontDescriptorWithSize(newPointSize float64) IFontDescr
 func (f_ FontDescriptor) FontDescriptorWithSymbolicTraits(symbolicTraits FontDescriptorSymbolicTraits) IFontDescriptor {
 	rv := objc.Send[FontDescriptor](f_.ID, objc.Sel("fontDescriptorWithSymbolicTraits:"), symbolicTraits)
 	return rv
-}
+}/* debug [instance_methods/method]: FontDescriptorWithSymbolicTraits */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FontDescriptor */
 
 // The receiver’s dictionary of attributes.
 //
@@ -287,17 +331,17 @@ func (f_ FontDescriptor) FontDescriptorWithSymbolicTraits(symbolicTraits FontDes
 func (f_ FontDescriptor) FontAttributes() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](f_.ID, objc.Sel("fontAttributes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fontAttributes */
 
 
 // The current transform matrix of the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/matrix
-func (f_ FontDescriptor) Matrix() objc.IObject /* cross-framework: AffineTransform */ {
-	rv := objc.Send[corefoundation.AffineTransform](f_.ID, objc.Sel("matrix"))
+func (f_ FontDescriptor) Matrix() foundation.AffineTransform {
+	rv := objc.Send[foundation.AffineTransform](f_.ID, objc.Sel("matrix"))
 	return rv
-}
+}/* debug [instance_properties/getter]: matrix */
 
 
 // The point size of the receiver.
@@ -307,7 +351,7 @@ func (f_ FontDescriptor) Matrix() objc.IObject /* cross-framework: AffineTransfo
 func (f_ FontDescriptor) PointSize() float64 {
 	rv := objc.Send[float64](f_.ID, objc.Sel("pointSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pointSize */
 
 
 // The PostScript name of the receiver.
@@ -317,7 +361,7 @@ func (f_ FontDescriptor) PointSize() float64 {
 func (f_ FontDescriptor) PostscriptName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("postscriptName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: postscriptName */
 
 
 // [Full Topic]
@@ -325,7 +369,7 @@ func (f_ FontDescriptor) PostscriptName() objc.IObject /* cross-framework: NSStr
 func (f_ FontDescriptor) RequiresFontAssetRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("requiresFontAssetRequest"))
 	return rv
-}
+}/* debug [instance_properties/getter]: requiresFontAssetRequest */
 
 
 // A bit mask that describes the traits of the receiver.
@@ -335,25 +379,30 @@ func (f_ FontDescriptor) RequiresFontAssetRequest() bool {
 func (f_ FontDescriptor) SymbolicTraits() FontDescriptorSymbolicTraits {
 	rv := objc.Send[FontDescriptorSymbolicTraits](f_.ID, objc.Sel("symbolicTraits"))
 	return rv
-}
+}/* debug [instance_properties/getter]: symbolicTraits */
 
 
 // Constant you use to access
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontfamilyclassmask
-func (f_ FontDescriptor) NSFontFamilyClassMask() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("NSFontFamilyClassMask"))
+func (f_ FontDescriptor) NSFontFamilyClassMask() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](f_.ID, objc.Sel("NSFontFamilyClassMask"))
 	return rv
-}
+}/* debug [instance_properties/getter]: NSFontFamilyClassMask */
 
 
 // Constant you use to access
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontfamilyclassmask
-func (f_ FontDescriptor) SetNSFontFamilyClassMask(value unsafe.Pointer) {
+func (f_ FontDescriptor) SetNSFontFamilyClassMask(value objectivec.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setNSFontFamilyClassMask:"), value)
-}
+}/* debug [instance_properties/setter]: NSFontFamilyClassMask */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSFontDescriptor */
 
 

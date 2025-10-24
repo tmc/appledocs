@@ -21,3 +21,4 @@ var cacheProtocol *objc.Protocol
 func init() {
 	cacheProtocol = objc.GetProtocol("cache:")
 }
+

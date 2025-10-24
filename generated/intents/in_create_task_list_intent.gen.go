@@ -41,7 +41,6 @@ type IINCreateTaskListIntent interface {
 //
 // Siri creates an object when the user asks to create a new task list. The intent object can contain the title of the task list, a set of initial tasks, and possibly the group in which to create the task list. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated task list.
 
-
 // A request to create a new task list.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINCreateTaskListIntent() INCreateTaskListIntent {
 	return getINCreateTaskListIntentClass().New()
 }
 
-
-
 // The group that contains the task list.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INCreateTaskListIntent) GroupName() INSpeakableString {
 	return rv
 }
 
-
 // The group that contains the task list.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INCreateTaskListIntent) GroupName() INSpeakableString {
 func (i_ INCreateTaskListIntent) SetGroupName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
-
 
 // An array of strings containing the titles for individual tasks to add to the new task list.
 //
@@ -120,7 +115,6 @@ func (i_ INCreateTaskListIntent) TaskTitles() INSpeakableString {
 	return rv
 }
 
-
 // An array of strings containing the titles for individual tasks to add to the new task list.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INCreateTaskListIntent) TaskTitles() INSpeakableString {
 func (i_ INCreateTaskListIntent) SetTaskTitles(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTaskTitles:"), value)
 }
-
 
 // The title of the task list.
 //
@@ -139,7 +132,6 @@ func (i_ INCreateTaskListIntent) Title() INSpeakableString {
 	return rv
 }
 
-
 // The title of the task list.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INCreateTaskListIntent) Title() INSpeakableString {
 func (i_ INCreateTaskListIntent) SetTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)
 }
-
-
-

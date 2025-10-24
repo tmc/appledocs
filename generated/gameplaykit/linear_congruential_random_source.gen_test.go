@@ -15,6 +15,7 @@ func ExampleNewLinearCongruentialRandomSource() {
 	_ = gameplaykit.NewLinearCongruentialRandomSource()
 	// Output:
 }
+
 // ExampleNewLinearCongruentialRandomSourceWithSeed demonstrates how to create a LinearCongruentialRandomSource instance using NewLinearCongruentialRandomSourceWithSeed.
 // Initializes a random source with the specified seed value.
 func ExampleNewLinearCongruentialRandomSourceWithSeed() {

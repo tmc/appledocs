@@ -20,3 +20,4 @@ var newArgumentEncoderWithBufferIndexProtocol *objc.Protocol
 func init() {
 	newArgumentEncoderWithBufferIndexProtocol = objc.GetProtocol("newArgumentEncoderWithBufferIndex:")
 }
+

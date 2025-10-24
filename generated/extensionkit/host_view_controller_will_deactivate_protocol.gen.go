@@ -18,3 +18,4 @@ var hostViewControllerWillDeactivateProtocol *objc.Protocol
 func init() {
 	hostViewControllerWillDeactivateProtocol = objc.GetProtocol("hostViewControllerWillDeactivate")
 }
+

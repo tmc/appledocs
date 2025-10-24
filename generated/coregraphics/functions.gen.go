@@ -2,11 +2,11 @@
 
 package coregraphics
 
+/* debug [functions.gen.go]: Generating 727 functions for CoreGraphics */
 import (
 	"unsafe"
 
 	"github.com/ebitengine/purego"
-	corefoundation "github.com/tmc/appledocs/generated/corefoundation"
 )
 
 
@@ -18,7 +18,7 @@ import (
 var (
 	_CGAcquireDisplayFadeReservation func(DisplayReservationInterval, unsafe.Pointer) Error
 	_CGAffineTransformConcat func(AffineTransform, AffineTransform) AffineTransform
-	_CGAffineTransformDecompose func(AffineTransform) AffineTransformComponents
+	_CGAffineTransformDecompose func(AffineTransform) uintptr
 	_CGAffineTransformEqualToTransform func(AffineTransform, AffineTransform) bool
 	_CGAffineTransformInvert func(AffineTransform) AffineTransform
 	_CGAffineTransformIsIdentity func(AffineTransform) bool
@@ -26,7 +26,7 @@ var (
 	_CGAffineTransformMakeRotation func(float64) AffineTransform
 	_CGAffineTransformMakeScale func(float64, float64) AffineTransform
 	_CGAffineTransformMakeTranslation func(float64, float64) AffineTransform
-	_CGAffineTransformMakeWithComponents func(AffineTransformComponents) AffineTransform
+	_CGAffineTransformMakeWithComponents func(uintptr) AffineTransform
 	_CGAffineTransformRotate func(AffineTransform, float64) AffineTransform
 	_CGAffineTransformScale func(AffineTransform, float64, float64) AffineTransform
 	_CGAffineTransformTranslate func(AffineTransform, float64, float64) AffineTransform
@@ -53,7 +53,7 @@ var (
 	_CGColorGetNumberOfComponents func(ColorRef) uintptr
 	_CGColorGetPattern func(ColorRef) PatternRef
 	_CGColorGetTypeID func() TypeID
-	_CGColorConversionInfoConvertData func(ColorConversionInfoRef, uintptr, uintptr, unsafe.Pointer, ColorBufferFormat, unsafe.Pointer, ColorBufferFormat, DictionaryRef) bool
+	_CGColorConversionInfoConvertData func(ColorConversionInfoRef, uintptr, uintptr, unsafe.Pointer, CGColorBufferFormat, unsafe.Pointer, CGColorBufferFormat, DictionaryRef) bool
 	_CGColorConversionInfoCreateWithOptions func(ColorSpaceRef, ColorSpaceRef, DictionaryRef) ColorConversionInfoRef
 	_CGColorConversionInfoCreate func(ColorSpaceRef, ColorSpaceRef) ColorConversionInfoRef
 	_CGColorConversionInfoCreateForToneMapping func(ColorSpaceRef, float32, ColorSpaceRef, float32, ToneMapping, DictionaryRef, unsafe.Pointer) ColorConversionInfoRef
@@ -249,20 +249,20 @@ var (
 	_CGContextEOFillPath func(ContextRef)
 	_CGContextFillPath func(ContextRef)
 	_CGContextFillRects func(ContextRef, unsafe.Pointer, uintptr)
-	_CGContextGetContentToneMappingInfo func(ContextRef) ContentToneMappingInfo
+	_CGContextGetContentToneMappingInfo func(ContextRef) CGContentToneMappingInfo
 	_CGContextGetEDRTargetHeadroom func(ContextRef) float32
 	_CGContextGetTextPosition func(ContextRef) Point
 	_CGContextMoveToPoint func(ContextRef, float64, float64)
 	_CGContextRelease func(ContextRef)
 	_CGContextRetain func(ContextRef) ContextRef
-	_CGContextSetContentToneMappingInfo func(ContextRef, ContentToneMappingInfo)
+	_CGContextSetContentToneMappingInfo func(ContextRef, CGContentToneMappingInfo)
 	_CGContextSetInterpolationQuality func(ContextRef, InterpolationQuality)
 	_CGContextSetLineDash func(ContextRef, float64, []float64, uintptr)
 	_CGContextSetTextMatrix func(ContextRef, AffineTransform)
 	_CGContextSetTextPosition func(ContextRef, float64, float64)
 	_CGContextShowGlyphsAtPositions func(ContextRef, unsafe.Pointer, unsafe.Pointer, uintptr)
 	_CGContextStrokeLineSegments func(ContextRef, unsafe.Pointer, uintptr)
-	_CGConvertColorDataWithFormat func(uintptr, uintptr, unsafe.Pointer, ColorDataFormat, unsafe.Pointer, ColorDataFormat, DictionaryRef) bool
+	_CGConvertColorDataWithFormat func(uintptr, uintptr, unsafe.Pointer, CGColorDataFormat, unsafe.Pointer, CGColorDataFormat, DictionaryRef) bool
 	_CGCursorIsDrawnInFramebuffer func() unsafe.Pointer
 	_CGCursorIsVisible func() unsafe.Pointer
 	_CGDataConsumerCreateWithCFData func(MutableDataRef) DataConsumerRef
@@ -400,15 +400,15 @@ var (
 	_CGEventSourceCreate func(EventSourceStateID) EventSourceRef
 	_CGEventSourceKeyState func(EventSourceStateID, KeyCode) bool
 	_CGEventSourceGetKeyboardType func(EventSourceRef) EventSourceKeyboardType
-	_CGEventSourceGetLocalEventsSuppressionInterval func(EventSourceRef) TimeInterval
+	_CGEventSourceGetLocalEventsSuppressionInterval func(EventSourceRef) float64
 	_CGEventSourceGetPixelsPerLine func(EventSourceRef) float64
-	_CGEventSourceSecondsSinceLastEventType func(EventSourceStateID, EventType) TimeInterval
+	_CGEventSourceSecondsSinceLastEventType func(EventSourceStateID, EventType) float64
 	_CGEventSourceSetLocalEventsFilterDuringSuppressionState func(EventSourceRef, EventFilterMask, EventSuppressionState)
 	_CGEventSourceGetSourceStateID func(EventSourceRef) EventSourceStateID
 	_CGEventSourceGetTypeID func() TypeID
 	_CGEventSourceGetUserData func(EventSourceRef) int64
 	_CGEventSourceSetKeyboardType func(EventSourceRef, EventSourceKeyboardType)
-	_CGEventSourceSetLocalEventsSuppressionInterval func(EventSourceRef, TimeInterval)
+	_CGEventSourceSetLocalEventsSuppressionInterval func(EventSourceRef, float64)
 	_CGEventSourceSetPixelsPerLine func(EventSourceRef, float64)
 	_CGEventSourceSetUserData func(EventSourceRef, int64)
 	_CGFontGetAscent func(FontRef) int
@@ -717,7 +717,7 @@ var (
 	_CGSetDisplayTransferByFormula func(DirectDisplayID, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue, GammaValue) Error
 	_CGSetDisplayTransferByTable func(DirectDisplayID, uint32, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) Error
 	_CGSetLocalEventsFilterDuringSuppressionState func(EventFilterMask, EventSuppressionState) Error
-	_CGSetLocalEventsSuppressionInterval func(TimeInterval) Error
+	_CGSetLocalEventsSuppressionInterval func(float64) Error
 	_CGShadingGetContentHeadroom func(ShadingRef) float32
 	_CGShadingCreateAxialWithContentHeadroom func(float32, ColorSpaceRef, Point, Point, FunctionRef, bool, bool) ShadingRef
 	_CGShadingCreateAxial func(ColorSpaceRef, Point, Point, FunctionRef, bool, bool) ShadingRef
@@ -1502,7 +1502,7 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAcquireDisplayFadeReservation(_:_:)
 func CGAcquireDisplayFadeReservation(seconds DisplayReservationInterval, token unsafe.Pointer) Error {
 	return _CGAcquireDisplayFadeReservation(seconds, token)
-}
+}/* debug [functions.gen.go/function]: CGAcquireDisplayFadeReservation */
 
 // Returns an affine transformation matrix constructed by combining two existing affine transforms.
 //
@@ -1513,16 +1513,16 @@ func CGAcquireDisplayFadeReservation(seconds DisplayReservationInterval, token u
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformConcat(_:_:)
 func CGAffineTransformConcat(t1 AffineTransform, t2 AffineTransform) AffineTransform {
 	return _CGAffineTransformConcat(t1, t2)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformConcat */
 
 // CGAffineTransformDecompose is a CoreGraphics function.
 //
 // Added in macOS 13.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformDecompose
-func CGAffineTransformDecompose(transform AffineTransform) AffineTransformComponents {
+func CGAffineTransformDecompose(transform AffineTransform) uintptr {
 	return _CGAffineTransformDecompose(transform)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformDecompose */
 
 // Checks whether two affine transforms are equal.
 //
@@ -1533,7 +1533,7 @@ func CGAffineTransformDecompose(transform AffineTransform) AffineTransformCompon
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformEqualToTransform(_:_:)
 func CGAffineTransformEqualToTransform(t1 AffineTransform, t2 AffineTransform) bool {
 	return _CGAffineTransformEqualToTransform(t1, t2)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformEqualToTransform */
 
 // Returns an affine transformation matrix constructed by inverting an existing affine transform.
 //
@@ -1544,7 +1544,7 @@ func CGAffineTransformEqualToTransform(t1 AffineTransform, t2 AffineTransform) b
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformInvert(_:)
 func CGAffineTransformInvert(t AffineTransform) AffineTransform {
 	return _CGAffineTransformInvert(t)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformInvert */
 
 // Checks whether an affine transform is the identity transform.
 //
@@ -1555,7 +1555,7 @@ func CGAffineTransformInvert(t AffineTransform) AffineTransform {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformIsIdentity(_:)
 func CGAffineTransformIsIdentity(t AffineTransform) bool {
 	return _CGAffineTransformIsIdentity(t)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformIsIdentity */
 
 // Returns an affine transformation matrix constructed from values you provide.
 //
@@ -1566,7 +1566,7 @@ func CGAffineTransformIsIdentity(t AffineTransform) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformMake(_:_:_:_:_:_:)
 func CGAffineTransformMake(a float64, b float64, c float64, d float64, tx float64, ty float64) AffineTransform {
 	return _CGAffineTransformMake(a, b, c, d, tx, ty)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformMake */
 
 // Returns an affine transformation matrix constructed from a rotation value you provide.
 //
@@ -1577,7 +1577,7 @@ func CGAffineTransformMake(a float64, b float64, c float64, d float64, tx float6
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformMakeRotation(_:)
 func CGAffineTransformMakeRotation(angle float64) AffineTransform {
 	return _CGAffineTransformMakeRotation(angle)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformMakeRotation */
 
 // Returns an affine transformation matrix constructed from scaling values you provide.
 //
@@ -1588,7 +1588,7 @@ func CGAffineTransformMakeRotation(angle float64) AffineTransform {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformMakeScale(_:_:)
 func CGAffineTransformMakeScale(sx float64, sy float64) AffineTransform {
 	return _CGAffineTransformMakeScale(sx, sy)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformMakeScale */
 
 // Returns an affine transformation matrix constructed from translation values you provide.
 //
@@ -1599,16 +1599,16 @@ func CGAffineTransformMakeScale(sx float64, sy float64) AffineTransform {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformMakeTranslation(_:_:)
 func CGAffineTransformMakeTranslation(tx float64, ty float64) AffineTransform {
 	return _CGAffineTransformMakeTranslation(tx, ty)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformMakeTranslation */
 
 // CGAffineTransformMakeWithComponents is a CoreGraphics function.
 //
 // Added in macOS 13.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformMakeWithComponents
-func CGAffineTransformMakeWithComponents(components AffineTransformComponents) AffineTransform {
+func CGAffineTransformMakeWithComponents(components uintptr) AffineTransform {
 	return _CGAffineTransformMakeWithComponents(components)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformMakeWithComponents */
 
 // Returns an affine transformation matrix constructed by rotating an existing affine transform.
 //
@@ -1619,7 +1619,7 @@ func CGAffineTransformMakeWithComponents(components AffineTransformComponents) A
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformRotate(_:_:)
 func CGAffineTransformRotate(t AffineTransform, angle float64) AffineTransform {
 	return _CGAffineTransformRotate(t, angle)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformRotate */
 
 // Returns an affine transformation matrix constructed by scaling an existing affine transform.
 //
@@ -1630,7 +1630,7 @@ func CGAffineTransformRotate(t AffineTransform, angle float64) AffineTransform {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformScale(_:_:_:)
 func CGAffineTransformScale(t AffineTransform, sx float64, sy float64) AffineTransform {
 	return _CGAffineTransformScale(t, sx, sy)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformScale */
 
 // Returns an affine transformation matrix constructed by translating an existing affine transform.
 //
@@ -1641,7 +1641,7 @@ func CGAffineTransformScale(t AffineTransform, sx float64, sy float64) AffineTra
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAffineTransformTranslate(_:_:_:)
 func CGAffineTransformTranslate(t AffineTransform, tx float64, ty float64) AffineTransform {
 	return _CGAffineTransformTranslate(t, tx, ty)
-}
+}/* debug [functions.gen.go/function]: CGAffineTransformTranslate */
 
 // Connects or disconnects the mouse and cursor while an application is in the foreground.
 //
@@ -1652,7 +1652,7 @@ func CGAffineTransformTranslate(t AffineTransform, tx float64, ty float64) Affin
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGAssociateMouseAndMouseCursorPosition(_:)
 func CGAssociateMouseAndMouseCursorPosition(connected unsafe.Pointer) Error {
 	return _CGAssociateMouseAndMouseCursorPosition(connected)
-}
+}/* debug [functions.gen.go/function]: CGAssociateMouseAndMouseCursorPosition */
 
 // Begins a new set of display configuration changes.
 //
@@ -1663,7 +1663,7 @@ func CGAssociateMouseAndMouseCursorPosition(connected unsafe.Pointer) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBeginDisplayConfiguration(_:)
 func CGBeginDisplayConfiguration(config unsafe.Pointer) Error {
 	return _CGBeginDisplayConfiguration(config)
-}
+}/* debug [functions.gen.go/function]: CGBeginDisplayConfiguration */
 
 // CGBitmapContextCreateAdaptive is a CoreGraphics function.
 //
@@ -1672,7 +1672,7 @@ func CGBeginDisplayConfiguration(config unsafe.Pointer) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapContextCreateAdaptive
 func CGBitmapContextCreateAdaptive(width uintptr, height uintptr, auxiliaryInfo DictionaryRef, onResolve bool) ContextRef {
 	return _CGBitmapContextCreateAdaptive(width, height, auxiliaryInfo, onResolve)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextCreateAdaptive */
 
 // Cancels a set of display configuration changes.
 //
@@ -1683,7 +1683,7 @@ func CGBitmapContextCreateAdaptive(width uintptr, height uintptr, auxiliaryInfo 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCancelDisplayConfiguration(_:)
 func CGCancelDisplayConfiguration(config DisplayConfigRef) Error {
 	return _CGCancelDisplayConfiguration(config)
-}
+}/* debug [functions.gen.go/function]: CGCancelDisplayConfiguration */
 
 // Obtains exclusive use of all active displays, preventing other applications and system services from using the display or changing its configuration.
 //
@@ -1694,7 +1694,7 @@ func CGCancelDisplayConfiguration(config DisplayConfigRef) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCaptureAllDisplays()
 func CGCaptureAllDisplays() Error {
 	return _CGCaptureAllDisplays()
-}
+}/* debug [functions.gen.go/function]: CGCaptureAllDisplays */
 
 // Captures all attached displays, using the specified options.
 //
@@ -1705,7 +1705,7 @@ func CGCaptureAllDisplays() Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCaptureAllDisplaysWithOptions(_:)
 func CGCaptureAllDisplaysWithOptions(options CaptureOptions) Error {
 	return _CGCaptureAllDisplaysWithOptions(options)
-}
+}/* debug [functions.gen.go/function]: CGCaptureAllDisplaysWithOptions */
 
 // Returns the value of the alpha component associated with a color.
 //
@@ -1716,7 +1716,7 @@ func CGCaptureAllDisplaysWithOptions(options CaptureOptions) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/alpha
 func CGColorGetAlpha(color ColorRef) float64 {
 	return _CGColorGetAlpha(color)
-}
+}/* debug [functions.gen.go/function]: CGColorGetAlpha */
 
 // Returns the color space associated with a color.
 //
@@ -1727,7 +1727,7 @@ func CGColorGetAlpha(color ColorRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/colorSpace
 func CGColorGetColorSpace(color ColorRef) ColorSpaceRef {
 	return _CGColorGetColorSpace(color)
-}
+}/* debug [functions.gen.go/function]: CGColorGetColorSpace */
 
 // CGColorGetContentHeadroom is a CoreGraphics function.
 //
@@ -1736,7 +1736,7 @@ func CGColorGetColorSpace(color ColorRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/contentHeadroom
 func CGColorGetContentHeadroom(color ColorRef) float32 {
 	return _CGColorGetContentHeadroom(color)
-}
+}/* debug [functions.gen.go/function]: CGColorGetContentHeadroom */
 
 // Creates a new color in a different color space that matches the provided color.
 //
@@ -1747,7 +1747,7 @@ func CGColorGetContentHeadroom(color ColorRef) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/converted(to:intent:options:)
 func CGColorCreateCopyByMatchingToColorSpace(p0 ColorSpaceRef, intent ColorRenderingIntent, color ColorRef, options DictionaryRef) ColorRef {
 	return _CGColorCreateCopyByMatchingToColorSpace(p0, intent, color, options)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateCopyByMatchingToColorSpace */
 
 // Creates a copy of an existing color.
 //
@@ -1758,7 +1758,7 @@ func CGColorCreateCopyByMatchingToColorSpace(p0 ColorSpaceRef, intent ColorRende
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/copy()
 func CGColorCreateCopy(color ColorRef) ColorRef {
 	return _CGColorCreateCopy(color)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateCopy */
 
 // Creates a copy of an existing color, substituting a new alpha value.
 //
@@ -1769,7 +1769,7 @@ func CGColorCreateCopy(color ColorRef) ColorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/copy(alpha:)
 func CGColorCreateCopyWithAlpha(color ColorRef, alpha float64) ColorRef {
 	return _CGColorCreateCopyWithAlpha(color, alpha)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateCopyWithAlpha */
 
 // Creates a color using a list of intensity values (including alpha) and an associated color space.
 //
@@ -1780,7 +1780,7 @@ func CGColorCreateCopyWithAlpha(color ColorRef, alpha float64) ColorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(colorSpace:components:)
 func CGColorCreate(space ColorSpaceRef, components []float64) ColorRef {
 	return _CGColorCreate(space, components)
-}
+}/* debug [functions.gen.go/function]: CGColorCreate */
 
 // Creates a color in the Generic CMYK color space.
 //
@@ -1791,7 +1791,7 @@ func CGColorCreate(space ColorSpaceRef, components []float64) ColorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(genericCMYKCyan:magenta:yellow:black:alpha:)
 func CGColorCreateGenericCMYK(cyan float64, magenta float64, yellow float64, black float64, alpha float64) ColorRef {
 	return _CGColorCreateGenericCMYK(cyan, magenta, yellow, black, alpha)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateGenericCMYK */
 
 // Creates a color in the Generic gray color space with a gamma ramp of 2.2.
 //
@@ -1802,7 +1802,7 @@ func CGColorCreateGenericCMYK(cyan float64, magenta float64, yellow float64, bla
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(genericGrayGamma2_2Gray:alpha:)
 func CGColorCreateGenericGrayGamma2_2(gray float64, alpha float64) ColorRef {
 	return _CGColorCreateGenericGrayGamma2_2(gray, alpha)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateGenericGrayGamma2_2 */
 
 // Creates a color in the Generic gray color space.
 //
@@ -1813,7 +1813,7 @@ func CGColorCreateGenericGrayGamma2_2(gray float64, alpha float64) ColorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(gray:alpha:)
 func CGColorCreateGenericGray(gray float64, alpha float64) ColorRef {
 	return _CGColorCreateGenericGray(gray, alpha)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateGenericGray */
 
 // CGColorCreateWithContentHeadroom is a CoreGraphics function.
 //
@@ -1822,7 +1822,7 @@ func CGColorCreateGenericGray(gray float64, alpha float64) ColorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(headroom:colorSpace:red:green:blue:alpha:)
 func CGColorCreateWithContentHeadroom(headroom float32, space ColorSpaceRef, red float64, green float64, blue float64, alpha float64) ColorRef {
 	return _CGColorCreateWithContentHeadroom(headroom, space, red, green, blue, alpha)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateWithContentHeadroom */
 
 // Creates a color using a list of intensity values (including alpha), a pattern color space, and a pattern.
 //
@@ -1833,7 +1833,7 @@ func CGColorCreateWithContentHeadroom(headroom float32, space ColorSpaceRef, red
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(patternSpace:pattern:components:)
 func CGColorCreateWithPattern(space ColorSpaceRef, pattern PatternRef, components []float64) ColorRef {
 	return _CGColorCreateWithPattern(space, pattern, components)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateWithPattern */
 
 // Creates a color in the Generic RGB color space.
 //
@@ -1844,7 +1844,7 @@ func CGColorCreateWithPattern(space ColorSpaceRef, pattern PatternRef, component
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(red:green:blue:alpha:)
 func CGColorCreateGenericRGB(red float64, green float64, blue float64, alpha float64) ColorRef {
 	return _CGColorCreateGenericRGB(red, green, blue, alpha)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateGenericRGB */
 
 // Creates a color in the sRGB color space.
 //
@@ -1855,7 +1855,7 @@ func CGColorCreateGenericRGB(red float64, green float64, blue float64, alpha flo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/init(srgbRed:green:blue:alpha:)
 func CGColorCreateSRGB(red float64, green float64, blue float64, alpha float64) ColorRef {
 	return _CGColorCreateSRGB(red, green, blue, alpha)
-}
+}/* debug [functions.gen.go/function]: CGColorCreateSRGB */
 
 // Returns the number of color components (including alpha) associated with a color.
 //
@@ -1866,7 +1866,7 @@ func CGColorCreateSRGB(red float64, green float64, blue float64, alpha float64) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/numberOfComponents
 func CGColorGetNumberOfComponents(color ColorRef) uintptr {
 	return _CGColorGetNumberOfComponents(color)
-}
+}/* debug [functions.gen.go/function]: CGColorGetNumberOfComponents */
 
 // Returns the pattern associated with a color in a pattern color space.
 //
@@ -1877,7 +1877,7 @@ func CGColorGetNumberOfComponents(color ColorRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/pattern
 func CGColorGetPattern(color ColorRef) PatternRef {
 	return _CGColorGetPattern(color)
-}
+}/* debug [functions.gen.go/function]: CGColorGetPattern */
 
 // Returns the Core Foundation type identifier for a color data type.
 //
@@ -1888,16 +1888,16 @@ func CGColorGetPattern(color ColorRef) PatternRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColor/typeID
 func CGColorGetTypeID() TypeID {
 	return _CGColorGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGColorGetTypeID */
 
 // CGColorConversionInfoConvertData is a CoreGraphics function.
 //
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/convert(width:height:to:format:from:format:options:)
-func CGColorConversionInfoConvertData(info ColorConversionInfoRef, width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format ColorBufferFormat, src_data unsafe.Pointer, src_format ColorBufferFormat, options DictionaryRef) bool {
+func CGColorConversionInfoConvertData(info ColorConversionInfoRef, width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format CGColorBufferFormat, src_data unsafe.Pointer, src_format CGColorBufferFormat, options DictionaryRef) bool {
 	return _CGColorConversionInfoConvertData(info, width, height, dst_data, dst_format, src_data, src_format, options)
-}
+}/* debug [functions.gen.go/function]: CGColorConversionInfoConvertData */
 
 // CGColorConversionInfoCreateWithOptions is a CoreGraphics function.
 //
@@ -1906,7 +1906,7 @@ func CGColorConversionInfoConvertData(info ColorConversionInfoRef, width uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(optionsSrc:dst:options:)
 func CGColorConversionInfoCreateWithOptions(src ColorSpaceRef, dst ColorSpaceRef, options DictionaryRef) ColorConversionInfoRef {
 	return _CGColorConversionInfoCreateWithOptions(src, dst, options)
-}
+}/* debug [functions.gen.go/function]: CGColorConversionInfoCreateWithOptions */
 
 // Creates a conversion between two specified color spaces.
 //
@@ -1917,7 +1917,7 @@ func CGColorConversionInfoCreateWithOptions(src ColorSpaceRef, dst ColorSpaceRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(src:dst:)
 func CGColorConversionInfoCreate(src ColorSpaceRef, dst ColorSpaceRef) ColorConversionInfoRef {
 	return _CGColorConversionInfoCreate(src, dst)
-}
+}/* debug [functions.gen.go/function]: CGColorConversionInfoCreate */
 
 // CGColorConversionInfoCreateForToneMapping is a CoreGraphics function.
 //
@@ -1926,7 +1926,7 @@ func CGColorConversionInfoCreate(src ColorSpaceRef, dst ColorSpaceRef) ColorConv
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/init(src:srcHeadroom:dst:dstHeadroom:toneMapping:options:_:)
 func CGColorConversionInfoCreateForToneMapping(from ColorSpaceRef, source_headroom float32, to ColorSpaceRef, target_headroom float32, method ToneMapping, options DictionaryRef, error_ unsafe.Pointer) ColorConversionInfoRef {
 	return _CGColorConversionInfoCreateForToneMapping(from, source_headroom, to, target_headroom, method, options, error_)
-}
+}/* debug [functions.gen.go/function]: CGColorConversionInfoCreateForToneMapping */
 
 // Returns the Core Foundation type identifier for a color conversion info data type.
 //
@@ -1937,7 +1937,7 @@ func CGColorConversionInfoCreateForToneMapping(from ColorSpaceRef, source_headro
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfo/typeID
 func CGColorConversionInfoGetTypeID() TypeID {
 	return _CGColorConversionInfoGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGColorConversionInfoGetTypeID */
 
 // Creates a conversion between an arbitrary number of specified color spaces.
 //
@@ -1948,7 +1948,7 @@ func CGColorConversionInfoGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfoCreateFromList
 func CGColorConversionInfoCreateFromList(options DictionaryRef, p1 ColorSpaceRef, p2 ColorConversionInfoTransformType, p3 ColorRenderingIntent) ColorConversionInfoRef {
 	return _CGColorConversionInfoCreateFromList(options, p1, p2, p3)
-}
+}/* debug [functions.gen.go/function]: CGColorConversionInfoCreateFromList */
 
 // CGColorConversionInfoCreateFromListWithArguments is a CoreGraphics function.
 //
@@ -1957,7 +1957,7 @@ func CGColorConversionInfoCreateFromList(options DictionaryRef, p1 ColorSpaceRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorConversionInfoCreateFromListWithArguments
 func CGColorConversionInfoCreateFromListWithArguments(options DictionaryRef, p1 ColorSpaceRef, p2 ColorConversionInfoTransformType, p3 ColorRenderingIntent, p4 unsafe.Pointer) ColorConversionInfoRef {
 	return _CGColorConversionInfoCreateFromListWithArguments(options, p1, p2, p3, p4)
-}
+}/* debug [functions.gen.go/function]: CGColorConversionInfoCreateFromListWithArguments */
 
 // Indicates whether two colors are equal.
 //
@@ -1968,7 +1968,7 @@ func CGColorConversionInfoCreateFromListWithArguments(options DictionaryRef, p1 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorEqualToColor
 func CGColorEqualToColor(color1 ColorRef, color2 ColorRef) bool {
 	return _CGColorEqualToColor(color1, color2)
-}
+}/* debug [functions.gen.go/function]: CGColorEqualToColor */
 
 // Returns the values of the color components (including alpha) associated with a color.
 //
@@ -1979,7 +1979,7 @@ func CGColorEqualToColor(color1 ColorRef, color2 ColorRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorGetComponents
 func CGColorGetComponents(color ColorRef) []float64 {
 	return _CGColorGetComponents(color)
-}
+}/* debug [functions.gen.go/function]: CGColorGetComponents */
 
 // Returns a color object that represents a constant color.
 //
@@ -1990,7 +1990,7 @@ func CGColorGetComponents(color ColorRef) []float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorGetConstantColor
 func CGColorGetConstantColor(colorName StringRef) ColorRef {
 	return _CGColorGetConstantColor(colorName)
-}
+}/* debug [functions.gen.go/function]: CGColorGetConstantColor */
 
 // Decrements the retain count of a color.
 //
@@ -2001,7 +2001,7 @@ func CGColorGetConstantColor(colorName StringRef) ColorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorRelease
 func CGColorRelease(color ColorRef) {
 	_CGColorRelease(color)
-}
+}/* debug [functions.gen.go/function]: CGColorRelease */
 
 // Increments the retain count of a color.
 //
@@ -2012,7 +2012,7 @@ func CGColorRelease(color ColorRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorRetain
 func CGColorRetain(color ColorRef) ColorRef {
 	return _CGColorRetain(color)
-}
+}/* debug [functions.gen.go/function]: CGColorRetain */
 
 // Returns the base color space of a pattern or indexed color space.
 //
@@ -2023,7 +2023,7 @@ func CGColorRetain(color ColorRef) ColorRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/baseColorSpace
 func CGColorSpaceGetBaseColorSpace(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceGetBaseColorSpace(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceGetBaseColorSpace */
 
 // Returns a copy of the ICC profile data of the provided color space.
 //
@@ -2034,7 +2034,7 @@ func CGColorSpaceGetBaseColorSpace(space ColorSpaceRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/copyICCData()
 func CGColorSpaceCopyICCData(space ColorSpaceRef) DataRef {
 	return _CGColorSpaceCopyICCData(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCopyICCData */
 
 // Returns a copy of the color space’s properties.
 //
@@ -2045,7 +2045,7 @@ func CGColorSpaceCopyICCData(space ColorSpaceRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/copyPropertyList()
 func CGColorSpaceCopyPropertyList(space ColorSpaceRef) PropertyListRef {
 	return _CGColorSpaceCopyPropertyList(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCopyPropertyList */
 
 // Returns a copy of the ICC profile of the provided color space.
 //
@@ -2058,7 +2058,7 @@ func CGColorSpaceCopyPropertyList(space ColorSpaceRef) PropertyListRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/iccData
 func CGColorSpaceCopyICCProfile(space ColorSpaceRef) DataRef {
 	return _CGColorSpaceCopyICCProfile(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCopyICCProfile */
 
 // Creates a calibrated grayscale color space.
 //
@@ -2069,7 +2069,7 @@ func CGColorSpaceCopyICCProfile(space ColorSpaceRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(calibratedGrayWhitePoint:blackPoint:gamma:)
 func CGColorSpaceCreateCalibratedGray(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, gamma unsafe.Pointer) ColorSpaceRef {
 	return _CGColorSpaceCreateCalibratedGray(whitePoint, blackPoint, gamma)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateCalibratedGray */
 
 // Creates a calibrated RGB color space.
 //
@@ -2080,7 +2080,7 @@ func CGColorSpaceCreateCalibratedGray(whitePoint unsafe.Pointer, blackPoint unsa
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(calibratedRGBWhitePoint:blackPoint:gamma:matrix:)
 func CGColorSpaceCreateCalibratedRGB(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, gamma unsafe.Pointer, matrix unsafe.Pointer, p4 unsafe.Pointer) ColorSpaceRef {
 	return _CGColorSpaceCreateCalibratedRGB(whitePoint, blackPoint, gamma, matrix, p4)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateCalibratedRGB */
 
 // Creates a device-independent color space that is defined according to the ICC color profile specification.
 //
@@ -2091,7 +2091,7 @@ func CGColorSpaceCreateCalibratedRGB(whitePoint unsafe.Pointer, blackPoint unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccBasedNComponents:range:profile:alternate:)
 func CGColorSpaceCreateICCBased(nComponents uintptr, range_ []float64, profile DataProviderRef, alternate ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateICCBased(nComponents, range_, profile, alternate)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateICCBased */
 
 // Creates an ICC-based color space using the ICC profile contained in the specified data.
 //
@@ -2102,7 +2102,7 @@ func CGColorSpaceCreateICCBased(nComponents uintptr, range_ []float64, profile D
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccData:)
 func CGColorSpaceCreateWithICCData(data TypeRef) ColorSpaceRef {
 	return _CGColorSpaceCreateWithICCData(data)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateWithICCData */
 
 // Creates an ICC-based color space using the ICC profile contained in the specified data.
 //
@@ -2115,7 +2115,7 @@ func CGColorSpaceCreateWithICCData(data TypeRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(iccProfileData:)
 func CGColorSpaceCreateWithICCProfile(data DataRef) ColorSpaceRef {
 	return _CGColorSpaceCreateWithICCProfile(data)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateWithICCProfile */
 
 // Creates an indexed color space, consisting of colors specified by a color lookup table.
 //
@@ -2126,7 +2126,7 @@ func CGColorSpaceCreateWithICCProfile(data DataRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(indexedBaseSpace:last:colorTable:)
 func CGColorSpaceCreateIndexed(baseSpace ColorSpaceRef, lastIndex uintptr, colorTable unsafe.Pointer) ColorSpaceRef {
 	return _CGColorSpaceCreateIndexed(baseSpace, lastIndex, colorTable)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateIndexed */
 
 // Creates a device-independent color space that is relative to human color perception, according to the CIE L*a*b* standard.
 //
@@ -2137,7 +2137,7 @@ func CGColorSpaceCreateIndexed(baseSpace ColorSpaceRef, lastIndex uintptr, color
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(labWhitePoint:blackPoint:range:)
 func CGColorSpaceCreateLab(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer, range_ unsafe.Pointer, p3 unsafe.Pointer) ColorSpaceRef {
 	return _CGColorSpaceCreateLab(whitePoint, blackPoint, range_, p3)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateLab */
 
 // Creates a specified type of Quartz color space.
 //
@@ -2148,7 +2148,7 @@ func CGColorSpaceCreateLab(whitePoint unsafe.Pointer, blackPoint unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(name:)
 func CGColorSpaceCreateWithName(name StringRef) ColorSpaceRef {
 	return _CGColorSpaceCreateWithName(name)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateWithName */
 
 // Creates a pattern color space.
 //
@@ -2159,7 +2159,7 @@ func CGColorSpaceCreateWithName(name StringRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(patternBaseSpace:)
 func CGColorSpaceCreatePattern(baseSpace ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreatePattern(baseSpace)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreatePattern */
 
 // Creates a platform-specific color space.
 //
@@ -2172,7 +2172,7 @@ func CGColorSpaceCreatePattern(baseSpace ColorSpaceRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(platformColorSpaceRef:)
 func CGColorSpaceCreateWithPlatformColorSpace(ref unsafe.Pointer) ColorSpaceRef {
 	return _CGColorSpaceCreateWithPlatformColorSpace(ref)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateWithPlatformColorSpace */
 
 // Creates a color space from a property list.
 //
@@ -2183,7 +2183,7 @@ func CGColorSpaceCreateWithPlatformColorSpace(ref unsafe.Pointer) ColorSpaceRef 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/init(propertyListPlist:)
 func CGColorSpaceCreateWithPropertyList(plist PropertyListRef) ColorSpaceRef {
 	return _CGColorSpaceCreateWithPropertyList(plist)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateWithPropertyList */
 
 // CGColorSpaceIsHDR is a CoreGraphics function.
 //
@@ -2192,7 +2192,7 @@ func CGColorSpaceCreateWithPropertyList(plist PropertyListRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/isHDR()
 func CGColorSpaceIsHDR(p0 ColorSpaceRef) bool {
 	return _CGColorSpaceIsHDR(p0)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceIsHDR */
 
 // Returns whether the RGB color space covers a significant portion of the NTSC color gamut.
 //
@@ -2203,7 +2203,7 @@ func CGColorSpaceIsHDR(p0 ColorSpaceRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/isWideGamutRGB
 func CGColorSpaceIsWideGamutRGB(p0 ColorSpaceRef) bool {
 	return _CGColorSpaceIsWideGamutRGB(p0)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceIsWideGamutRGB */
 
 // Returns the color space model of the provided color space.
 //
@@ -2214,7 +2214,7 @@ func CGColorSpaceIsWideGamutRGB(p0 ColorSpaceRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/model
 func CGColorSpaceGetModel(space ColorSpaceRef) ColorSpaceModel {
 	return _CGColorSpaceGetModel(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceGetModel */
 
 // Returns the name used to create the specified color space.
 //
@@ -2225,7 +2225,7 @@ func CGColorSpaceGetModel(space ColorSpaceRef) ColorSpaceModel {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/name
 func CGColorSpaceCopyName(space ColorSpaceRef) StringRef {
 	return _CGColorSpaceCopyName(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCopyName */
 
 // Returns the number of color components in a color space.
 //
@@ -2236,7 +2236,7 @@ func CGColorSpaceCopyName(space ColorSpaceRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/numberOfComponents
 func CGColorSpaceGetNumberOfComponents(space ColorSpaceRef) uintptr {
 	return _CGColorSpaceGetNumberOfComponents(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceGetNumberOfComponents */
 
 // Returns a Boolean indicating whether the color space can be used as a destination color space.
 //
@@ -2247,7 +2247,7 @@ func CGColorSpaceGetNumberOfComponents(space ColorSpaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/supportsOutput
 func CGColorSpaceSupportsOutput(space ColorSpaceRef) bool {
 	return _CGColorSpaceSupportsOutput(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceSupportsOutput */
 
 // Returns the Core Foundation type identifier for Quartz color spaces.
 //
@@ -2258,7 +2258,7 @@ func CGColorSpaceSupportsOutput(space ColorSpaceRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpace/typeID
 func CGColorSpaceGetTypeID() TypeID {
 	return _CGColorSpaceGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceGetTypeID */
 
 // CGColorSpaceCopyBaseColorSpace is a CoreGraphics function.
 //
@@ -2267,7 +2267,7 @@ func CGColorSpaceGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCopyBaseColorSpace(_:)
 func CGColorSpaceCopyBaseColorSpace(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCopyBaseColorSpace(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCopyBaseColorSpace */
 
 // CGColorSpaceCreateCopyWithStandardRange is a CoreGraphics function.
 //
@@ -2276,7 +2276,7 @@ func CGColorSpaceCopyBaseColorSpace(space ColorSpaceRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateCopyWithStandardRange(_:)
 func CGColorSpaceCreateCopyWithStandardRange(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateCopyWithStandardRange(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateCopyWithStandardRange */
 
 // Creates a device-dependent CMYK color space.
 //
@@ -2287,7 +2287,7 @@ func CGColorSpaceCreateCopyWithStandardRange(space ColorSpaceRef) ColorSpaceRef 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateDeviceCMYK()
 func CGColorSpaceCreateDeviceCMYK() ColorSpaceRef {
 	return _CGColorSpaceCreateDeviceCMYK()
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateDeviceCMYK */
 
 // Creates a device-dependent grayscale color space.
 //
@@ -2298,7 +2298,7 @@ func CGColorSpaceCreateDeviceCMYK() ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateDeviceGray()
 func CGColorSpaceCreateDeviceGray() ColorSpaceRef {
 	return _CGColorSpaceCreateDeviceGray()
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateDeviceGray */
 
 // Creates a device-dependent RGB color space.
 //
@@ -2309,7 +2309,7 @@ func CGColorSpaceCreateDeviceGray() ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateDeviceRGB()
 func CGColorSpaceCreateDeviceRGB() ColorSpaceRef {
 	return _CGColorSpaceCreateDeviceRGB()
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateDeviceRGB */
 
 // CGColorSpaceCreateExtended is a CoreGraphics function.
 //
@@ -2318,7 +2318,7 @@ func CGColorSpaceCreateDeviceRGB() ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateExtended(_:)
 func CGColorSpaceCreateExtended(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateExtended(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateExtended */
 
 // CGColorSpaceCreateExtendedLinearized is a CoreGraphics function.
 //
@@ -2327,7 +2327,7 @@ func CGColorSpaceCreateExtended(space ColorSpaceRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateExtendedLinearized(_:)
 func CGColorSpaceCreateExtendedLinearized(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateExtendedLinearized(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateExtendedLinearized */
 
 // CGColorSpaceCreateLinearized is a CoreGraphics function.
 //
@@ -2336,7 +2336,7 @@ func CGColorSpaceCreateExtendedLinearized(space ColorSpaceRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateLinearized(_:)
 func CGColorSpaceCreateLinearized(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceCreateLinearized(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateLinearized */
 
 // CGColorSpaceCreateWithColorSyncProfile is a CoreGraphics function.
 //
@@ -2345,7 +2345,7 @@ func CGColorSpaceCreateLinearized(space ColorSpaceRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceCreateWithColorSyncProfile(_:_:)
 func CGColorSpaceCreateWithColorSyncProfile(p0 ColorSyncProfileRef, options DictionaryRef) ColorSpaceRef {
 	return _CGColorSpaceCreateWithColorSyncProfile(p0, options)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceCreateWithColorSyncProfile */
 
 // Copies the entries in the color table of an indexed color space.
 //
@@ -2356,7 +2356,7 @@ func CGColorSpaceCreateWithColorSyncProfile(p0 ColorSyncProfileRef, options Dict
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceGetColorTable
 func CGColorSpaceGetColorTable(space ColorSpaceRef, table unsafe.Pointer) {
 	_CGColorSpaceGetColorTable(space, table)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceGetColorTable */
 
 // Returns the number of entries in the color table of an indexed color space.
 //
@@ -2367,7 +2367,7 @@ func CGColorSpaceGetColorTable(space ColorSpaceRef, table unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceGetColorTableCount
 func CGColorSpaceGetColorTableCount(space ColorSpaceRef) uintptr {
 	return _CGColorSpaceGetColorTableCount(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceGetColorTableCount */
 
 // CGColorSpaceGetName is a CoreGraphics function.
 //
@@ -2376,7 +2376,7 @@ func CGColorSpaceGetColorTableCount(space ColorSpaceRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceGetName
 func CGColorSpaceGetName(space ColorSpaceRef) StringRef {
 	return _CGColorSpaceGetName(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceGetName */
 
 // CGColorSpaceIsHLGBased is a CoreGraphics function.
 //
@@ -2385,7 +2385,7 @@ func CGColorSpaceGetName(space ColorSpaceRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceIsHLGBased(_:)
 func CGColorSpaceIsHLGBased(s ColorSpaceRef) bool {
 	return _CGColorSpaceIsHLGBased(s)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceIsHLGBased */
 
 // CGColorSpaceIsPQBased is a CoreGraphics function.
 //
@@ -2394,7 +2394,7 @@ func CGColorSpaceIsHLGBased(s ColorSpaceRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceIsPQBased(_:)
 func CGColorSpaceIsPQBased(s ColorSpaceRef) bool {
 	return _CGColorSpaceIsPQBased(s)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceIsPQBased */
 
 // Decrements the retain count of a color space.
 //
@@ -2405,7 +2405,7 @@ func CGColorSpaceIsPQBased(s ColorSpaceRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceRelease
 func CGColorSpaceRelease(space ColorSpaceRef) {
 	_CGColorSpaceRelease(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceRelease */
 
 // Increments the retain count of a color space.
 //
@@ -2416,7 +2416,7 @@ func CGColorSpaceRelease(space ColorSpaceRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceRetain
 func CGColorSpaceRetain(space ColorSpaceRef) ColorSpaceRef {
 	return _CGColorSpaceRetain(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceRetain */
 
 // CGColorSpaceUsesExtendedRange is a CoreGraphics function.
 //
@@ -2425,7 +2425,7 @@ func CGColorSpaceRetain(space ColorSpaceRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceUsesExtendedRange(_:)
 func CGColorSpaceUsesExtendedRange(space ColorSpaceRef) bool {
 	return _CGColorSpaceUsesExtendedRange(space)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceUsesExtendedRange */
 
 // CGColorSpaceUsesITUR_2100TF is a CoreGraphics function.
 //
@@ -2434,7 +2434,7 @@ func CGColorSpaceUsesExtendedRange(space ColorSpaceRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGColorSpaceUsesITUR_2100TF(_:)
 func CGColorSpaceUsesITUR_2100TF(p0 ColorSpaceRef) bool {
 	return _CGColorSpaceUsesITUR_2100TF(p0)
-}
+}/* debug [functions.gen.go/function]: CGColorSpaceUsesITUR_2100TF */
 
 // Completes a set of display configuration changes.
 //
@@ -2445,7 +2445,7 @@ func CGColorSpaceUsesITUR_2100TF(p0 ColorSpaceRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCompleteDisplayConfiguration(_:_:)
 func CGCompleteDisplayConfiguration(config DisplayConfigRef, option ConfigureOption) Error {
 	return _CGCompleteDisplayConfiguration(config, option)
-}
+}/* debug [functions.gen.go/function]: CGCompleteDisplayConfiguration */
 
 // Modifies the settings of the built-in fade effect that occurs during a display configuration.
 //
@@ -2456,7 +2456,7 @@ func CGCompleteDisplayConfiguration(config DisplayConfigRef, option ConfigureOpt
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayFadeEffect(_:_:_:_:_:_:)
 func CGConfigureDisplayFadeEffect(config DisplayConfigRef, fadeOutSeconds DisplayFadeInterval, fadeInSeconds DisplayFadeInterval, fadeRed float32, fadeGreen float32, fadeBlue float32) Error {
 	return _CGConfigureDisplayFadeEffect(config, fadeOutSeconds, fadeInSeconds, fadeRed, fadeGreen, fadeBlue)
-}
+}/* debug [functions.gen.go/function]: CGConfigureDisplayFadeEffect */
 
 // Changes the configuration of a mirroring set.
 //
@@ -2467,7 +2467,7 @@ func CGConfigureDisplayFadeEffect(config DisplayConfigRef, fadeOutSeconds Displa
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayMirrorOfDisplay(_:_:_:)
 func CGConfigureDisplayMirrorOfDisplay(config DisplayConfigRef, display DirectDisplayID, master DirectDisplayID) Error {
 	return _CGConfigureDisplayMirrorOfDisplay(config, display, master)
-}
+}/* debug [functions.gen.go/function]: CGConfigureDisplayMirrorOfDisplay */
 
 // Configures the display mode of a display.
 
@@ -2477,7 +2477,7 @@ func CGConfigureDisplayMirrorOfDisplay(config DisplayConfigRef, display DirectDi
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayMode(_:_:_:)
 func CGConfigureDisplayMode(config DisplayConfigRef, display DirectDisplayID, mode DictionaryRef) Error {
 	return _CGConfigureDisplayMode(config, display, mode)
-}
+}/* debug [functions.gen.go/function]: CGConfigureDisplayMode */
 
 // Configures the origin of a display relative to the global display coordinate space.
 //
@@ -2488,7 +2488,7 @@ func CGConfigureDisplayMode(config DisplayConfigRef, display DirectDisplayID, mo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayOrigin(_:_:_:_:)
 func CGConfigureDisplayOrigin(config DisplayConfigRef, display DirectDisplayID, x int32, y int32) Error {
 	return _CGConfigureDisplayOrigin(config, display, x, y)
-}
+}/* debug [functions.gen.go/function]: CGConfigureDisplayOrigin */
 
 // Enables or disables stereo operation for a display, as part of a display configuration.
 //
@@ -2499,7 +2499,7 @@ func CGConfigureDisplayOrigin(config DisplayConfigRef, display DirectDisplayID, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayStereoOperation(_:_:_:_:)
 func CGConfigureDisplayStereoOperation(config DisplayConfigRef, display DirectDisplayID, stereo unsafe.Pointer, forceBlueLine unsafe.Pointer) Error {
 	return _CGConfigureDisplayStereoOperation(config, display, stereo, forceBlueLine)
-}
+}/* debug [functions.gen.go/function]: CGConfigureDisplayStereoOperation */
 
 // Configures the display mode of a display.
 //
@@ -2510,7 +2510,7 @@ func CGConfigureDisplayStereoOperation(config DisplayConfigRef, display DirectDi
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConfigureDisplayWithDisplayMode(_:_:_:_:)
 func CGConfigureDisplayWithDisplayMode(config DisplayConfigRef, display DirectDisplayID, mode DisplayModeRef, options DictionaryRef) Error {
 	return _CGConfigureDisplayWithDisplayMode(config, display, mode, options)
-}
+}/* debug [functions.gen.go/function]: CGConfigureDisplayWithDisplayMode */
 
 // Sets a destination to jump to when a point in the current page of a PDF graphics context is clicked.
 //
@@ -2521,7 +2521,7 @@ func CGConfigureDisplayWithDisplayMode(config DisplayConfigRef, display DirectDi
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addDestination(_:at:)
 func CGPDFContextAddDestinationAtPoint(context ContextRef, name StringRef, point Point) {
 	_CGPDFContextAddDestinationAtPoint(context, name, point)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextAddDestinationAtPoint */
 
 // Associates custom metadata with the PDF document.
 //
@@ -2532,7 +2532,7 @@ func CGPDFContextAddDestinationAtPoint(context ContextRef, name StringRef, point
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addDocumentMetadata(_:)
 func CGPDFContextAddDocumentMetadata(context ContextRef, metadata DataRef) {
 	_CGPDFContextAddDocumentMetadata(context, metadata)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextAddDocumentMetadata */
 
 // Adds an ellipse that fits inside the specified rectangle.
 //
@@ -2543,7 +2543,7 @@ func CGPDFContextAddDocumentMetadata(context ContextRef, metadata DataRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addEllipse(in:)
 func CGContextAddEllipseInRect(c ContextRef, rect Rect) {
 	_CGContextAddEllipseInRect(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextAddEllipseInRect */
 
 // Adds a previously created path object to the current path in a graphics context.
 //
@@ -2554,7 +2554,7 @@ func CGContextAddEllipseInRect(c ContextRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addPath(_:)
 func CGContextAddPath(c ContextRef, path PathRef) {
 	_CGContextAddPath(c, path)
-}
+}/* debug [functions.gen.go/function]: CGContextAddPath */
 
 // Adds a rectangular path to the current path.
 //
@@ -2565,7 +2565,7 @@ func CGContextAddPath(c ContextRef, path PathRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/addRect(_:)
 func CGContextAddRect(c ContextRef, rect Rect) {
 	_CGContextAddRect(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextAddRect */
 
 // Returns the alpha information associated with the context, which indicates how a bitmap context handles the alpha component.
 //
@@ -2576,7 +2576,7 @@ func CGContextAddRect(c ContextRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/alphaInfo
 func CGBitmapContextGetAlphaInfo(context ContextRef) ImageAlphaInfo {
 	return _CGBitmapContextGetAlphaInfo(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetAlphaInfo */
 
 // Begins a new page in a PDF graphics context.
 //
@@ -2587,7 +2587,7 @@ func CGBitmapContextGetAlphaInfo(context ContextRef) ImageAlphaInfo {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPDFPage(_:)
 func CGPDFContextBeginPage(context ContextRef, pageInfo DictionaryRef) {
 	_CGPDFContextBeginPage(context, pageInfo)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextBeginPage */
 
 // Starts a new page in a page-based graphics context.
 //
@@ -2598,7 +2598,7 @@ func CGPDFContextBeginPage(context ContextRef, pageInfo DictionaryRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPage(mediaBox:)
 func CGContextBeginPage(c ContextRef, mediaBox unsafe.Pointer) {
 	_CGContextBeginPage(c, mediaBox)
-}
+}/* debug [functions.gen.go/function]: CGContextBeginPage */
 
 // Creates a new empty path in a graphics context.
 //
@@ -2609,7 +2609,7 @@ func CGContextBeginPage(c ContextRef, mediaBox unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginPath()
 func CGContextBeginPath(c ContextRef) {
 	_CGContextBeginPath(c)
-}
+}/* debug [functions.gen.go/function]: CGContextBeginPath */
 
 // Begins a transparency layer.
 //
@@ -2620,7 +2620,7 @@ func CGContextBeginPath(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginTransparencyLayer(auxiliaryInfo:)
 func CGContextBeginTransparencyLayer(c ContextRef, auxiliaryInfo DictionaryRef) {
 	_CGContextBeginTransparencyLayer(c, auxiliaryInfo)
-}
+}/* debug [functions.gen.go/function]: CGContextBeginTransparencyLayer */
 
 // Begins a transparency layer whose contents are bounded by the specified rectangle.
 //
@@ -2631,7 +2631,7 @@ func CGContextBeginTransparencyLayer(c ContextRef, auxiliaryInfo DictionaryRef) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/beginTransparencyLayer(in:auxiliaryInfo:)
 func CGContextBeginTransparencyLayerWithRect(c ContextRef, rect Rect, auxInfo DictionaryRef) {
 	_CGContextBeginTransparencyLayerWithRect(c, rect, auxInfo)
-}
+}/* debug [functions.gen.go/function]: CGContextBeginTransparencyLayerWithRect */
 
 // Obtains the bitmap information associated with a bitmap graphics context.
 //
@@ -2642,7 +2642,7 @@ func CGContextBeginTransparencyLayerWithRect(c ContextRef, rect Rect, auxInfo Di
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitmapInfo
 func CGBitmapContextGetBitmapInfo(context ContextRef) BitmapInfo {
 	return _CGBitmapContextGetBitmapInfo(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetBitmapInfo */
 
 // Returns the bits per component of a bitmap context.
 //
@@ -2653,7 +2653,7 @@ func CGBitmapContextGetBitmapInfo(context ContextRef) BitmapInfo {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitsPerComponent
 func CGBitmapContextGetBitsPerComponent(context ContextRef) uintptr {
 	return _CGBitmapContextGetBitsPerComponent(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetBitsPerComponent */
 
 // Returns the bits per pixel of a bitmap context.
 //
@@ -2664,7 +2664,7 @@ func CGBitmapContextGetBitsPerComponent(context ContextRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bitsPerPixel
 func CGBitmapContextGetBitsPerPixel(context ContextRef) uintptr {
 	return _CGBitmapContextGetBitsPerPixel(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetBitsPerPixel */
 
 // Returns the bounding box of a clipping path.
 //
@@ -2675,7 +2675,7 @@ func CGBitmapContextGetBitsPerPixel(context ContextRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/boundingBoxOfClipPath
 func CGContextGetClipBoundingBox(c ContextRef) Rect {
 	return _CGContextGetClipBoundingBox(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetClipBoundingBox */
 
 // Returns the smallest rectangle that contains the current path.
 //
@@ -2686,7 +2686,7 @@ func CGContextGetClipBoundingBox(c ContextRef) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/boundingBoxOfPath
 func CGContextGetPathBoundingBox(c ContextRef) Rect {
 	return _CGContextGetPathBoundingBox(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetPathBoundingBox */
 
 // Returns the bytes per row of a bitmap context.
 //
@@ -2697,7 +2697,7 @@ func CGContextGetPathBoundingBox(c ContextRef) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/bytesPerRow
 func CGBitmapContextGetBytesPerRow(context ContextRef) uintptr {
 	return _CGBitmapContextGetBytesPerRow(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetBytesPerRow */
 
 // Paints a transparent rectangle.
 //
@@ -2708,7 +2708,7 @@ func CGBitmapContextGetBytesPerRow(context ContextRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clear(_:)
 func CGContextClearRect(c ContextRef, rect Rect) {
 	_CGContextClearRect(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextClearRect */
 
 // Sets the clipping path to the intersection of the current clipping path with the area defined by the specified rectangle.
 //
@@ -2719,7 +2719,7 @@ func CGContextClearRect(c ContextRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clip(to:)-7cbwq
 func CGContextClipToRect(c ContextRef, rect Rect) {
 	_CGContextClipToRect(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextClipToRect */
 
 // Maps a mask into the specified rectangle and intersects it with the current clipping area of the graphics context.
 //
@@ -2730,7 +2730,7 @@ func CGContextClipToRect(c ContextRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/clip(to:mask:)
 func CGContextClipToMask(c ContextRef, rect Rect, mask ImageRef) {
 	_CGContextClipToMask(c, rect, mask)
-}
+}/* debug [functions.gen.go/function]: CGContextClipToMask */
 
 // Closes a PDF document.
 //
@@ -2741,7 +2741,7 @@ func CGContextClipToMask(c ContextRef, rect Rect, mask ImageRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/closePDF()
 func CGPDFContextClose(context ContextRef) {
 	_CGPDFContextClose(context)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextClose */
 
 // Closes and terminates the current path’s subpath.
 //
@@ -2752,7 +2752,7 @@ func CGPDFContextClose(context ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/closePath()
 func CGContextClosePath(c ContextRef) {
 	_CGContextClosePath(c)
-}
+}/* debug [functions.gen.go/function]: CGContextClosePath */
 
 // Returns the color space of a bitmap context.
 //
@@ -2763,7 +2763,7 @@ func CGContextClosePath(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/colorSpace
 func CGBitmapContextGetColorSpace(context ContextRef) ColorSpaceRef {
 	return _CGBitmapContextGetColorSpace(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetColorSpace */
 
 // Transforms the user coordinate system in a context using a specified matrix.
 //
@@ -2774,7 +2774,7 @@ func CGBitmapContextGetColorSpace(context ContextRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/concatenate(_:)
 func CGContextConcatCTM(c ContextRef, transform AffineTransform) {
 	_CGContextConcatCTM(c, transform)
-}
+}/* debug [functions.gen.go/function]: CGContextConcatCTM */
 
 // Returns a size that is transformed from user space coordinates to device space coordinates.
 //
@@ -2785,7 +2785,7 @@ func CGContextConcatCTM(c ContextRef, transform AffineTransform) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-224h2
 func CGContextConvertSizeToDeviceSpace(c ContextRef, size Size) Size {
 	return _CGContextConvertSizeToDeviceSpace(c, size)
-}
+}/* debug [functions.gen.go/function]: CGContextConvertSizeToDeviceSpace */
 
 // Returns a point that is transformed from user space coordinates to device space coordinates.
 //
@@ -2796,7 +2796,7 @@ func CGContextConvertSizeToDeviceSpace(c ContextRef, size Size) Size {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-53m7u
 func CGContextConvertPointToDeviceSpace(c ContextRef, point Point) Point {
 	return _CGContextConvertPointToDeviceSpace(c, point)
-}
+}/* debug [functions.gen.go/function]: CGContextConvertPointToDeviceSpace */
 
 // Returns a rectangle that is transformed from user space coordinate to device space coordinates.
 //
@@ -2807,7 +2807,7 @@ func CGContextConvertPointToDeviceSpace(c ContextRef, point Point) Point {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToDeviceSpace(_:)-91x5g
 func CGContextConvertRectToDeviceSpace(c ContextRef, rect Rect) Rect {
 	return _CGContextConvertRectToDeviceSpace(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextConvertRectToDeviceSpace */
 
 // Returns a rectangle that is transformed from device space coordinate to user space coordinates.
 //
@@ -2818,7 +2818,7 @@ func CGContextConvertRectToDeviceSpace(c ContextRef, rect Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-1hk5r
 func CGContextConvertRectToUserSpace(c ContextRef, rect Rect) Rect {
 	return _CGContextConvertRectToUserSpace(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextConvertRectToUserSpace */
 
 // Returns a point that is transformed from device space coordinates to user space coordinates.
 //
@@ -2829,7 +2829,7 @@ func CGContextConvertRectToUserSpace(c ContextRef, rect Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-3mtg3
 func CGContextConvertPointToUserSpace(c ContextRef, point Point) Point {
 	return _CGContextConvertPointToUserSpace(c, point)
-}
+}/* debug [functions.gen.go/function]: CGContextConvertPointToUserSpace */
 
 // Returns a size that is transformed from device space coordinates to user space coordinates.
 //
@@ -2840,7 +2840,7 @@ func CGContextConvertPointToUserSpace(c ContextRef, point Point) Point {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/convertToUserSpace(_:)-693ur
 func CGContextConvertSizeToUserSpace(c ContextRef, size Size) Size {
 	return _CGContextConvertSizeToUserSpace(c, size)
-}
+}/* debug [functions.gen.go/function]: CGContextConvertSizeToUserSpace */
 
 // Returns the current transformation matrix.
 //
@@ -2851,7 +2851,7 @@ func CGContextConvertSizeToUserSpace(c ContextRef, size Size) Size {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/ctm
 func CGContextGetCTM(c ContextRef) AffineTransform {
 	return _CGContextGetCTM(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetCTM */
 
 // Returns the current point in a non-empty path.
 //
@@ -2862,7 +2862,7 @@ func CGContextGetCTM(c ContextRef) AffineTransform {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/currentPointOfPath
 func CGContextGetPathCurrentPoint(c ContextRef) Point {
 	return _CGContextGetPathCurrentPoint(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetPathCurrentPoint */
 
 // Returns a pointer to the image data associated with a bitmap context.
 //
@@ -2873,7 +2873,7 @@ func CGContextGetPathCurrentPoint(c ContextRef) Point {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/data
 func CGBitmapContextGetData(context ContextRef) unsafe.Pointer {
 	return _CGBitmapContextGetData(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetData */
 
 // Paints a gradient fill that varies along the line defined by the provided starting and ending points.
 //
@@ -2884,7 +2884,7 @@ func CGBitmapContextGetData(context ContextRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawLinearGradient(_:start:end:options:)
 func CGContextDrawLinearGradient(c ContextRef, gradient GradientRef, startPoint Point, endPoint Point, options GradientDrawingOptions) {
 	_CGContextDrawLinearGradient(c, gradient, startPoint, endPoint, options)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawLinearGradient */
 
 // Draws the content of a PDF page into the current graphics context.
 //
@@ -2895,7 +2895,7 @@ func CGContextDrawLinearGradient(c ContextRef, gradient GradientRef, startPoint 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawPDFPage(_:)
 func CGContextDrawPDFPage(c ContextRef, page PDFPageRef) {
 	_CGContextDrawPDFPage(c, page)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawPDFPage */
 
 // Draws the current path using the provided drawing mode.
 //
@@ -2906,7 +2906,7 @@ func CGContextDrawPDFPage(c ContextRef, page PDFPageRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawPath(using:)
 func CGContextDrawPath(c ContextRef, mode PathDrawingMode) {
 	_CGContextDrawPath(c, mode)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawPath */
 
 // Paints a gradient fill that varies along the area defined by the provided starting and ending circles.
 //
@@ -2917,7 +2917,7 @@ func CGContextDrawPath(c ContextRef, mode PathDrawingMode) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawRadialGradient(_:startCenter:startRadius:endCenter:endRadius:options:)
 func CGContextDrawRadialGradient(c ContextRef, gradient GradientRef, startCenter Point, startRadius float64, endCenter Point, endRadius float64, options GradientDrawingOptions) {
 	_CGContextDrawRadialGradient(c, gradient, startCenter, startRadius, endCenter, endRadius, options)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawRadialGradient */
 
 // Fills the clipping path of a context with the specified shading.
 //
@@ -2928,7 +2928,7 @@ func CGContextDrawRadialGradient(c ContextRef, gradient GradientRef, startCenter
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/drawShading(_:)
 func CGContextDrawShading(c ContextRef, shading ShadingRef) {
 	_CGContextDrawShading(c, shading)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawShading */
 
 // Ends the current page in the PDF graphics context.
 //
@@ -2939,7 +2939,7 @@ func CGContextDrawShading(c ContextRef, shading ShadingRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endPDFPage()
 func CGPDFContextEndPage(context ContextRef) {
 	_CGPDFContextEndPage(context)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextEndPage */
 
 // Ends the current page in a page-based graphics context.
 //
@@ -2950,7 +2950,7 @@ func CGPDFContextEndPage(context ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endPage()
 func CGContextEndPage(c ContextRef) {
 	_CGContextEndPage(c)
-}
+}/* debug [functions.gen.go/function]: CGContextEndPage */
 
 // Ends a transparency layer.
 //
@@ -2961,7 +2961,7 @@ func CGContextEndPage(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/endTransparencyLayer()
 func CGContextEndTransparencyLayer(c ContextRef) {
 	_CGContextEndTransparencyLayer(c)
-}
+}/* debug [functions.gen.go/function]: CGContextEndTransparencyLayer */
 
 // Paints the area contained within the provided rectangle, using the fill color in the current graphics state.
 //
@@ -2972,7 +2972,7 @@ func CGContextEndTransparencyLayer(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/fill(_:)-7a0rk
 func CGContextFillRect(c ContextRef, rect Rect) {
 	_CGContextFillRect(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextFillRect */
 
 // Paints the area of the ellipse that fits inside the provided rectangle, using the fill color in the current graphics state.
 //
@@ -2983,7 +2983,7 @@ func CGContextFillRect(c ContextRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/fillEllipse(in:)
 func CGContextFillEllipseInRect(c ContextRef, rect Rect) {
 	_CGContextFillEllipseInRect(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextFillEllipseInRect */
 
 // Forces all pending drawing operations in a window context to be rendered immediately to the destination device.
 //
@@ -2994,7 +2994,7 @@ func CGContextFillEllipseInRect(c ContextRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/flush()
 func CGContextFlush(c ContextRef) {
 	_CGContextFlush(c)
-}
+}/* debug [functions.gen.go/function]: CGContextFlush */
 
 // Returns the height in pixels of a bitmap context.
 //
@@ -3005,7 +3005,7 @@ func CGContextFlush(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/height
 func CGBitmapContextGetHeight(context ContextRef) uintptr {
 	return _CGBitmapContextGetHeight(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetHeight */
 
 // Creates a URL-based PDF graphics context.
 //
@@ -3016,7 +3016,7 @@ func CGBitmapContextGetHeight(context ContextRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(_:mediaBox:_:)
 func CGPDFContextCreateWithURL(url URLRef, mediaBox unsafe.Pointer, auxiliaryInfo DictionaryRef) ContextRef {
 	return _CGPDFContextCreateWithURL(url, mediaBox, auxiliaryInfo)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextCreateWithURL */
 
 // Creates a PDF graphics context.
 //
@@ -3027,7 +3027,7 @@ func CGPDFContextCreateWithURL(url URLRef, mediaBox unsafe.Pointer, auxiliaryInf
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(consumer:mediaBox:_:)
 func CGPDFContextCreate(consumer DataConsumerRef, mediaBox unsafe.Pointer, auxiliaryInfo DictionaryRef) ContextRef {
 	return _CGPDFContextCreate(consumer, mediaBox, auxiliaryInfo)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextCreate */
 
 // CGBitmapContextCreate is a CoreGraphics function.
 //
@@ -3036,7 +3036,7 @@ func CGPDFContextCreate(consumer DataConsumerRef, mediaBox unsafe.Pointer, auxil
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:)-10b3i
 func CGBitmapContextCreate(data unsafe.Pointer, width uintptr, height uintptr, bitsPerComponent uintptr, bytesPerRow uintptr, space ColorSpaceRef, bitmapInfo BitmapInfo) ContextRef {
 	return _CGBitmapContextCreate(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextCreate */
 
 // CGBitmapContextCreateWithData is a CoreGraphics function.
 //
@@ -3045,7 +3045,7 @@ func CGBitmapContextCreate(data unsafe.Pointer, width uintptr, height uintptr, b
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/init(data:width:height:bitsPerComponent:bytesPerRow:space:bitmapInfo:releaseCallback:releaseInfo:)-4yzt5
 func CGBitmapContextCreateWithData(data unsafe.Pointer, width uintptr, height uintptr, bitsPerComponent uintptr, bytesPerRow uintptr, space ColorSpaceRef, bitmapInfo BitmapInfo, releaseCallback BitmapContextReleaseDataCallback, releaseInfo unsafe.Pointer) ContextRef {
 	return _CGBitmapContextCreateWithData(data, width, height, bitsPerComponent, bytesPerRow, space, bitmapInfo, releaseCallback, releaseInfo)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextCreateWithData */
 
 // Returns the current level of interpolation quality for a graphics context.
 //
@@ -3056,7 +3056,7 @@ func CGBitmapContextCreateWithData(data unsafe.Pointer, width uintptr, height ui
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/interpolationQuality
 func CGContextGetInterpolationQuality(c ContextRef) InterpolationQuality {
 	return _CGContextGetInterpolationQuality(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetInterpolationQuality */
 
 // Indicates whether the current path contains any subpaths.
 //
@@ -3067,7 +3067,7 @@ func CGContextGetInterpolationQuality(c ContextRef) InterpolationQuality {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/isPathEmpty
 func CGContextIsPathEmpty(c ContextRef) bool {
 	return _CGContextIsPathEmpty(c)
-}
+}/* debug [functions.gen.go/function]: CGContextIsPathEmpty */
 
 // Creates and returns a CGImage from the pixel data in a bitmap graphics context.
 //
@@ -3078,7 +3078,7 @@ func CGContextIsPathEmpty(c ContextRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/makeImage()
 func CGBitmapContextCreateImage(context ContextRef) ImageRef {
 	return _CGBitmapContextCreateImage(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextCreateImage */
 
 // Returns a path object built from the current path information in a graphics context.
 //
@@ -3089,7 +3089,7 @@ func CGBitmapContextCreateImage(context ContextRef) ImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/path
 func CGContextCopyPath(c ContextRef) PathRef {
 	return _CGContextCopyPath(c)
-}
+}/* debug [functions.gen.go/function]: CGContextCopyPath */
 
 // Checks to see whether the specified point is contained in the current path.
 //
@@ -3100,7 +3100,7 @@ func CGContextCopyPath(c ContextRef) PathRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/pathContains(_:mode:)
 func CGContextPathContainsPoint(c ContextRef, point Point, mode PathDrawingMode) bool {
 	return _CGContextPathContainsPoint(c, point, mode)
-}
+}/* debug [functions.gen.go/function]: CGContextPathContainsPoint */
 
 // Replaces the path in the graphics context with the stroked version of the path.
 //
@@ -3111,7 +3111,7 @@ func CGContextPathContainsPoint(c ContextRef, point Point, mode PathDrawingMode)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/replacePathWithStrokedPath()
 func CGContextReplacePathWithStrokedPath(c ContextRef) {
 	_CGContextReplacePathWithStrokedPath(c)
-}
+}/* debug [functions.gen.go/function]: CGContextReplacePathWithStrokedPath */
 
 // CGContextResetClip is a CoreGraphics function.
 //
@@ -3120,7 +3120,7 @@ func CGContextReplacePathWithStrokedPath(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/resetClip()
 func CGContextResetClip(c ContextRef) {
 	_CGContextResetClip(c)
-}
+}/* debug [functions.gen.go/function]: CGContextResetClip */
 
 // Sets the current graphics state to the state most recently saved.
 //
@@ -3131,7 +3131,7 @@ func CGContextResetClip(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/restoreGState()
 func CGContextRestoreGState(c ContextRef) {
 	_CGContextRestoreGState(c)
-}
+}/* debug [functions.gen.go/function]: CGContextRestoreGState */
 
 // Rotates the user coordinate system in a context.
 //
@@ -3142,7 +3142,7 @@ func CGContextRestoreGState(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/rotate(by:)
 func CGContextRotateCTM(c ContextRef, angle float64) {
 	_CGContextRotateCTM(c, angle)
-}
+}/* debug [functions.gen.go/function]: CGContextRotateCTM */
 
 // Pushes a copy of the current graphics state onto the graphics state stack for the context.
 //
@@ -3153,7 +3153,7 @@ func CGContextRotateCTM(c ContextRef, angle float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/saveGState()
 func CGContextSaveGState(c ContextRef) {
 	_CGContextSaveGState(c)
-}
+}/* debug [functions.gen.go/function]: CGContextSaveGState */
 
 // Changes the scale of the user coordinate system in a context.
 //
@@ -3164,7 +3164,7 @@ func CGContextSaveGState(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/scaleBy(x:y:)
 func CGContextScaleCTM(c ContextRef, sx float64, sy float64) {
 	_CGContextScaleCTM(c, sx, sy)
-}
+}/* debug [functions.gen.go/function]: CGContextScaleCTM */
 
 // Sets the font and font size in a graphics context.
 
@@ -3174,7 +3174,7 @@ func CGContextScaleCTM(c ContextRef, sx float64, sy float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/selectFont(name:size:textEncoding:)
 func CGContextSelectFont(c ContextRef, name unsafe.Pointer, size float64, textEncoding TextEncoding) {
 	_CGContextSelectFont(c, name, size, textEncoding)
-}
+}/* debug [functions.gen.go/function]: CGContextSelectFont */
 
 // Sets whether or not to allow antialiasing for a graphics context.
 //
@@ -3185,7 +3185,7 @@ func CGContextSelectFont(c ContextRef, name unsafe.Pointer, size float64, textEn
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsAntialiasing(_:)
 func CGContextSetAllowsAntialiasing(c ContextRef, allowsAntialiasing bool) {
 	_CGContextSetAllowsAntialiasing(c, allowsAntialiasing)
-}
+}/* debug [functions.gen.go/function]: CGContextSetAllowsAntialiasing */
 
 // Sets whether or not to allow font smoothing for a graphics context.
 //
@@ -3196,7 +3196,7 @@ func CGContextSetAllowsAntialiasing(c ContextRef, allowsAntialiasing bool) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSmoothing(_:)
 func CGContextSetAllowsFontSmoothing(c ContextRef, allowsFontSmoothing bool) {
 	_CGContextSetAllowsFontSmoothing(c, allowsFontSmoothing)
-}
+}/* debug [functions.gen.go/function]: CGContextSetAllowsFontSmoothing */
 
 // Sets whether or not to allow subpixel positioning for a graphics context.
 //
@@ -3207,7 +3207,7 @@ func CGContextSetAllowsFontSmoothing(c ContextRef, allowsFontSmoothing bool) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSubpixelPositioning(_:)
 func CGContextSetAllowsFontSubpixelPositioning(c ContextRef, allowsFontSubpixelPositioning bool) {
 	_CGContextSetAllowsFontSubpixelPositioning(c, allowsFontSubpixelPositioning)
-}
+}/* debug [functions.gen.go/function]: CGContextSetAllowsFontSubpixelPositioning */
 
 // Sets whether or not to allow subpixel quantization for a graphics context.
 //
@@ -3218,7 +3218,7 @@ func CGContextSetAllowsFontSubpixelPositioning(c ContextRef, allowsFontSubpixelP
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAllowsFontSubpixelQuantization(_:)
 func CGContextSetAllowsFontSubpixelQuantization(c ContextRef, allowsFontSubpixelQuantization bool) {
 	_CGContextSetAllowsFontSubpixelQuantization(c, allowsFontSubpixelQuantization)
-}
+}/* debug [functions.gen.go/function]: CGContextSetAllowsFontSubpixelQuantization */
 
 // Sets the opacity level for objects drawn in a graphics context.
 //
@@ -3229,7 +3229,7 @@ func CGContextSetAllowsFontSubpixelQuantization(c ContextRef, allowsFontSubpixel
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setAlpha(_:)
 func CGContextSetAlpha(c ContextRef, alpha float64) {
 	_CGContextSetAlpha(c, alpha)
-}
+}/* debug [functions.gen.go/function]: CGContextSetAlpha */
 
 // Sets how sample values are composited by a graphics context.
 //
@@ -3240,7 +3240,7 @@ func CGContextSetAlpha(c ContextRef, alpha float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setBlendMode(_:)
 func CGContextSetBlendMode(c ContextRef, mode BlendMode) {
 	_CGContextSetBlendMode(c, mode)
-}
+}/* debug [functions.gen.go/function]: CGContextSetBlendMode */
 
 // Sets the current character spacing.
 //
@@ -3251,7 +3251,7 @@ func CGContextSetBlendMode(c ContextRef, mode BlendMode) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setCharacterSpacing(_:)
 func CGContextSetCharacterSpacing(c ContextRef, spacing float64) {
 	_CGContextSetCharacterSpacing(c, spacing)
-}
+}/* debug [functions.gen.go/function]: CGContextSetCharacterSpacing */
 
 // Sets a destination to jump to when a rectangle in the current PDF page is clicked.
 //
@@ -3262,7 +3262,7 @@ func CGContextSetCharacterSpacing(c ContextRef, spacing float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setDestination(_:for:)
 func CGPDFContextSetDestinationForRect(context ContextRef, name StringRef, rect Rect) {
 	_CGPDFContextSetDestinationForRect(context, name, rect)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextSetDestinationForRect */
 
 // CGContextSetEDRTargetHeadroom is a CoreGraphics function.
 //
@@ -3271,7 +3271,7 @@ func CGPDFContextSetDestinationForRect(context ContextRef, name StringRef, rect 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setEDRTargetHeadroom(_:)
 func CGContextSetEDRTargetHeadroom(c ContextRef, headroom float32) bool {
 	return _CGContextSetEDRTargetHeadroom(c, headroom)
-}
+}/* debug [functions.gen.go/function]: CGContextSetEDRTargetHeadroom */
 
 // Sets the current fill color.
 //
@@ -3282,7 +3282,7 @@ func CGContextSetEDRTargetHeadroom(c ContextRef, headroom float32) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(_:)-756dy
 func CGContextSetFillColor(c ContextRef, components []float64) {
 	_CGContextSetFillColor(c, components)
-}
+}/* debug [functions.gen.go/function]: CGContextSetFillColor */
 
 // Sets the current fill color in a graphics context, using a CGColor.
 //
@@ -3293,7 +3293,7 @@ func CGContextSetFillColor(c ContextRef, components []float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(_:)-8lhn8
 func CGContextSetFillColorWithColor(c ContextRef, color ColorRef) {
 	_CGContextSetFillColorWithColor(c, color)
-}
+}/* debug [functions.gen.go/function]: CGContextSetFillColorWithColor */
 
 // Sets the current fill color to a value in the DeviceCMYK color space.
 //
@@ -3304,7 +3304,7 @@ func CGContextSetFillColorWithColor(c ContextRef, color ColorRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(cyan:magenta:yellow:black:alpha:)
 func CGContextSetCMYKFillColor(c ContextRef, cyan float64, magenta float64, yellow float64, black float64, alpha float64) {
 	_CGContextSetCMYKFillColor(c, cyan, magenta, yellow, black, alpha)
-}
+}/* debug [functions.gen.go/function]: CGContextSetCMYKFillColor */
 
 // Sets the current fill color to a value in the DeviceGray color space.
 //
@@ -3315,7 +3315,7 @@ func CGContextSetCMYKFillColor(c ContextRef, cyan float64, magenta float64, yell
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(gray:alpha:)
 func CGContextSetGrayFillColor(c ContextRef, gray float64, alpha float64) {
 	_CGContextSetGrayFillColor(c, gray, alpha)
-}
+}/* debug [functions.gen.go/function]: CGContextSetGrayFillColor */
 
 // Sets the current fill color to a value in the DeviceRGB color space.
 //
@@ -3326,7 +3326,7 @@ func CGContextSetGrayFillColor(c ContextRef, gray float64, alpha float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColor(red:green:blue:alpha:)
 func CGContextSetRGBFillColor(c ContextRef, red float64, green float64, blue float64, alpha float64) {
 	_CGContextSetRGBFillColor(c, red, green, blue, alpha)
-}
+}/* debug [functions.gen.go/function]: CGContextSetRGBFillColor */
 
 // Sets the fill color space in a graphics context.
 //
@@ -3337,7 +3337,7 @@ func CGContextSetRGBFillColor(c ContextRef, red float64, green float64, blue flo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillColorSpace(_:)
 func CGContextSetFillColorSpace(c ContextRef, space ColorSpaceRef) {
 	_CGContextSetFillColorSpace(c, space)
-}
+}/* debug [functions.gen.go/function]: CGContextSetFillColorSpace */
 
 // Sets the fill pattern in the specified graphics context.
 //
@@ -3348,7 +3348,7 @@ func CGContextSetFillColorSpace(c ContextRef, space ColorSpaceRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFillPattern(_:colorComponents:)
 func CGContextSetFillPattern(c ContextRef, pattern PatternRef, components []float64) {
 	_CGContextSetFillPattern(c, pattern, components)
-}
+}/* debug [functions.gen.go/function]: CGContextSetFillPattern */
 
 // Sets the accuracy of curved paths in a graphics context.
 //
@@ -3359,7 +3359,7 @@ func CGContextSetFillPattern(c ContextRef, pattern PatternRef, components []floa
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFlatness(_:)
 func CGContextSetFlatness(c ContextRef, flatness float64) {
 	_CGContextSetFlatness(c, flatness)
-}
+}/* debug [functions.gen.go/function]: CGContextSetFlatness */
 
 // Sets the platform font in a graphics context.
 //
@@ -3370,7 +3370,7 @@ func CGContextSetFlatness(c ContextRef, flatness float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFont(_:)
 func CGContextSetFont(c ContextRef, font FontRef) {
 	_CGContextSetFont(c, font)
-}
+}/* debug [functions.gen.go/function]: CGContextSetFont */
 
 // Sets the current font size.
 //
@@ -3381,7 +3381,7 @@ func CGContextSetFont(c ContextRef, font FontRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setFontSize(_:)
 func CGContextSetFontSize(c ContextRef, size float64) {
 	_CGContextSetFontSize(c, size)
-}
+}/* debug [functions.gen.go/function]: CGContextSetFontSize */
 
 // Sets the style for the endpoints of lines drawn in a graphics context.
 //
@@ -3392,7 +3392,7 @@ func CGContextSetFontSize(c ContextRef, size float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineCap(_:)
 func CGContextSetLineCap(c ContextRef, cap_ LineCap) {
 	_CGContextSetLineCap(c, cap_)
-}
+}/* debug [functions.gen.go/function]: CGContextSetLineCap */
 
 // Sets the style for the joins of connected lines in a graphics context.
 //
@@ -3403,7 +3403,7 @@ func CGContextSetLineCap(c ContextRef, cap_ LineCap) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineJoin(_:)
 func CGContextSetLineJoin(c ContextRef, join LineJoin) {
 	_CGContextSetLineJoin(c, join)
-}
+}/* debug [functions.gen.go/function]: CGContextSetLineJoin */
 
 // Sets the line width for a graphics context.
 //
@@ -3414,7 +3414,7 @@ func CGContextSetLineJoin(c ContextRef, join LineJoin) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setLineWidth(_:)
 func CGContextSetLineWidth(c ContextRef, width float64) {
 	_CGContextSetLineWidth(c, width)
-}
+}/* debug [functions.gen.go/function]: CGContextSetLineWidth */
 
 // Sets the miter limit for the joins of connected lines in a graphics context.
 //
@@ -3425,7 +3425,7 @@ func CGContextSetLineWidth(c ContextRef, width float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setMiterLimit(_:)
 func CGContextSetMiterLimit(c ContextRef, limit float64) {
 	_CGContextSetMiterLimit(c, limit)
-}
+}/* debug [functions.gen.go/function]: CGContextSetMiterLimit */
 
 // Sets the pattern phase of a context.
 //
@@ -3436,7 +3436,7 @@ func CGContextSetMiterLimit(c ContextRef, limit float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setPatternPhase(_:)
 func CGContextSetPatternPhase(c ContextRef, phase Size) {
 	_CGContextSetPatternPhase(c, phase)
-}
+}/* debug [functions.gen.go/function]: CGContextSetPatternPhase */
 
 // Sets the rendering intent in the current graphics state.
 //
@@ -3447,7 +3447,7 @@ func CGContextSetPatternPhase(c ContextRef, phase Size) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setRenderingIntent(_:)
 func CGContextSetRenderingIntent(c ContextRef, intent ColorRenderingIntent) {
 	_CGContextSetRenderingIntent(c, intent)
-}
+}/* debug [functions.gen.go/function]: CGContextSetRenderingIntent */
 
 // Enables shadowing in a graphics context.
 //
@@ -3458,7 +3458,7 @@ func CGContextSetRenderingIntent(c ContextRef, intent ColorRenderingIntent) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShadow(offset:blur:)
 func CGContextSetShadow(c ContextRef, offset Size, blur float64) {
 	_CGContextSetShadow(c, offset, blur)
-}
+}/* debug [functions.gen.go/function]: CGContextSetShadow */
 
 // Enables shadowing with color a graphics context.
 //
@@ -3469,7 +3469,7 @@ func CGContextSetShadow(c ContextRef, offset Size, blur float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShadow(offset:blur:color:)
 func CGContextSetShadowWithColor(c ContextRef, offset Size, blur float64, color ColorRef) {
 	_CGContextSetShadowWithColor(c, offset, blur, color)
-}
+}/* debug [functions.gen.go/function]: CGContextSetShadowWithColor */
 
 // Sets antialiasing on or off for a graphics context.
 //
@@ -3480,7 +3480,7 @@ func CGContextSetShadowWithColor(c ContextRef, offset Size, blur float64, color 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldAntialias(_:)
 func CGContextSetShouldAntialias(c ContextRef, shouldAntialias bool) {
 	_CGContextSetShouldAntialias(c, shouldAntialias)
-}
+}/* debug [functions.gen.go/function]: CGContextSetShouldAntialias */
 
 // Enables or disables font smoothing in a graphics context.
 //
@@ -3491,7 +3491,7 @@ func CGContextSetShouldAntialias(c ContextRef, shouldAntialias bool) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSmoothFonts(_:)
 func CGContextSetShouldSmoothFonts(c ContextRef, shouldSmoothFonts bool) {
 	_CGContextSetShouldSmoothFonts(c, shouldSmoothFonts)
-}
+}/* debug [functions.gen.go/function]: CGContextSetShouldSmoothFonts */
 
 // Enables or disables subpixel positioning in a graphics context.
 //
@@ -3502,7 +3502,7 @@ func CGContextSetShouldSmoothFonts(c ContextRef, shouldSmoothFonts bool) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSubpixelPositionFonts(_:)
 func CGContextSetShouldSubpixelPositionFonts(c ContextRef, shouldSubpixelPositionFonts bool) {
 	_CGContextSetShouldSubpixelPositionFonts(c, shouldSubpixelPositionFonts)
-}
+}/* debug [functions.gen.go/function]: CGContextSetShouldSubpixelPositionFonts */
 
 // Enables or disables subpixel quantization in a graphics context.
 //
@@ -3513,7 +3513,7 @@ func CGContextSetShouldSubpixelPositionFonts(c ContextRef, shouldSubpixelPositio
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setShouldSubpixelQuantizeFonts(_:)
 func CGContextSetShouldSubpixelQuantizeFonts(c ContextRef, shouldSubpixelQuantizeFonts bool) {
 	_CGContextSetShouldSubpixelQuantizeFonts(c, shouldSubpixelQuantizeFonts)
-}
+}/* debug [functions.gen.go/function]: CGContextSetShouldSubpixelQuantizeFonts */
 
 // Sets the current stroke color in a context, using a CGColor.
 //
@@ -3524,7 +3524,7 @@ func CGContextSetShouldSubpixelQuantizeFonts(c ContextRef, shouldSubpixelQuantiz
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(_:)-1sskg
 func CGContextSetStrokeColorWithColor(c ContextRef, color ColorRef) {
 	_CGContextSetStrokeColorWithColor(c, color)
-}
+}/* debug [functions.gen.go/function]: CGContextSetStrokeColorWithColor */
 
 // Sets the current stroke color.
 //
@@ -3535,7 +3535,7 @@ func CGContextSetStrokeColorWithColor(c ContextRef, color ColorRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(_:)-4pd8p
 func CGContextSetStrokeColor(c ContextRef, components []float64) {
 	_CGContextSetStrokeColor(c, components)
-}
+}/* debug [functions.gen.go/function]: CGContextSetStrokeColor */
 
 // Sets the current stroke color to a value in the DeviceCMYK color space.
 //
@@ -3546,7 +3546,7 @@ func CGContextSetStrokeColor(c ContextRef, components []float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(cyan:magenta:yellow:black:alpha:)
 func CGContextSetCMYKStrokeColor(c ContextRef, cyan float64, magenta float64, yellow float64, black float64, alpha float64) {
 	_CGContextSetCMYKStrokeColor(c, cyan, magenta, yellow, black, alpha)
-}
+}/* debug [functions.gen.go/function]: CGContextSetCMYKStrokeColor */
 
 // Sets the current stroke color to a value in the DeviceGray color space.
 //
@@ -3557,7 +3557,7 @@ func CGContextSetCMYKStrokeColor(c ContextRef, cyan float64, magenta float64, ye
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(gray:alpha:)
 func CGContextSetGrayStrokeColor(c ContextRef, gray float64, alpha float64) {
 	_CGContextSetGrayStrokeColor(c, gray, alpha)
-}
+}/* debug [functions.gen.go/function]: CGContextSetGrayStrokeColor */
 
 // Sets the current stroke color to a value in the DeviceRGB color space.
 //
@@ -3568,7 +3568,7 @@ func CGContextSetGrayStrokeColor(c ContextRef, gray float64, alpha float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColor(red:green:blue:alpha:)
 func CGContextSetRGBStrokeColor(c ContextRef, red float64, green float64, blue float64, alpha float64) {
 	_CGContextSetRGBStrokeColor(c, red, green, blue, alpha)
-}
+}/* debug [functions.gen.go/function]: CGContextSetRGBStrokeColor */
 
 // Sets the stroke color space in a graphics context.
 //
@@ -3579,7 +3579,7 @@ func CGContextSetRGBStrokeColor(c ContextRef, red float64, green float64, blue f
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokeColorSpace(_:)
 func CGContextSetStrokeColorSpace(c ContextRef, space ColorSpaceRef) {
 	_CGContextSetStrokeColorSpace(c, space)
-}
+}/* debug [functions.gen.go/function]: CGContextSetStrokeColorSpace */
 
 // Sets the stroke pattern in the specified graphics context.
 //
@@ -3590,7 +3590,7 @@ func CGContextSetStrokeColorSpace(c ContextRef, space ColorSpaceRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setStrokePattern(_:colorComponents:)
 func CGContextSetStrokePattern(c ContextRef, pattern PatternRef, components []float64) {
 	_CGContextSetStrokePattern(c, pattern, components)
-}
+}/* debug [functions.gen.go/function]: CGContextSetStrokePattern */
 
 // Sets the current text drawing mode.
 //
@@ -3601,7 +3601,7 @@ func CGContextSetStrokePattern(c ContextRef, pattern PatternRef, components []fl
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setTextDrawingMode(_:)
 func CGContextSetTextDrawingMode(c ContextRef, mode TextDrawingMode) {
 	_CGContextSetTextDrawingMode(c, mode)
-}
+}/* debug [functions.gen.go/function]: CGContextSetTextDrawingMode */
 
 // Sets the URL associated with a rectangle in a PDF graphics context.
 //
@@ -3612,7 +3612,7 @@ func CGContextSetTextDrawingMode(c ContextRef, mode TextDrawingMode) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/setURL(_:for:)
 func CGPDFContextSetURLForRect(context ContextRef, url URLRef, rect Rect) {
 	_CGPDFContextSetURLForRect(context, url, rect)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextSetURLForRect */
 
 // Displays an array of glyphs at the current text position.
 
@@ -3622,7 +3622,7 @@ func CGPDFContextSetURLForRect(context ContextRef, url URLRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphs(g:count:)
 func CGContextShowGlyphs(c ContextRef, g unsafe.Pointer, count uintptr) {
 	_CGContextShowGlyphs(c, g, count)
-}
+}/* debug [functions.gen.go/function]: CGContextShowGlyphs */
 
 // Displays an array of glyphs at a position you specify.
 
@@ -3632,7 +3632,7 @@ func CGContextShowGlyphs(c ContextRef, g unsafe.Pointer, count uintptr) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphsAtPoint(x:y:glyphs:count:)
 func CGContextShowGlyphsAtPoint(c ContextRef, x float64, y float64, glyphs unsafe.Pointer, count uintptr) {
 	_CGContextShowGlyphsAtPoint(c, x, y, glyphs, count)
-}
+}/* debug [functions.gen.go/function]: CGContextShowGlyphsAtPoint */
 
 // Draws an array of glyphs with varying offsets.
 
@@ -3642,7 +3642,7 @@ func CGContextShowGlyphsAtPoint(c ContextRef, x float64, y float64, glyphs unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showGlyphsWithAdvances(glyphs:advances:count:)
 func CGContextShowGlyphsWithAdvances(c ContextRef, glyphs unsafe.Pointer, advances unsafe.Pointer, count uintptr) {
 	_CGContextShowGlyphsWithAdvances(c, glyphs, advances, count)
-}
+}/* debug [functions.gen.go/function]: CGContextShowGlyphsWithAdvances */
 
 // Displays a character array at the current text position, a point specified by the current text matrix.
 
@@ -3652,7 +3652,7 @@ func CGContextShowGlyphsWithAdvances(c ContextRef, glyphs unsafe.Pointer, advanc
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showText(string:length:)
 func CGContextShowText(c ContextRef, string_ unsafe.Pointer, length uintptr) {
 	_CGContextShowText(c, string_, length)
-}
+}/* debug [functions.gen.go/function]: CGContextShowText */
 
 // Displays a character string at a position you specify.
 
@@ -3662,7 +3662,7 @@ func CGContextShowText(c ContextRef, string_ unsafe.Pointer, length uintptr) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/showTextAtPoint(x:y:string:length:)
 func CGContextShowTextAtPoint(c ContextRef, x float64, y float64, string_ unsafe.Pointer, length uintptr) {
 	_CGContextShowTextAtPoint(c, x, y, string_, length)
-}
+}/* debug [functions.gen.go/function]: CGContextShowTextAtPoint */
 
 // Paints a rectangular path.
 //
@@ -3673,7 +3673,7 @@ func CGContextShowTextAtPoint(c ContextRef, x float64, y float64, string_ unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/stroke(_:)
 func CGContextStrokeRect(c ContextRef, rect Rect) {
 	_CGContextStrokeRect(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextStrokeRect */
 
 // Paints a rectangular path, using the specified line width.
 //
@@ -3684,7 +3684,7 @@ func CGContextStrokeRect(c ContextRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/stroke(_:width:)
 func CGContextStrokeRectWithWidth(c ContextRef, rect Rect, width float64) {
 	_CGContextStrokeRectWithWidth(c, rect, width)
-}
+}/* debug [functions.gen.go/function]: CGContextStrokeRectWithWidth */
 
 // Strokes an ellipse that fits inside the specified rectangle.
 //
@@ -3695,7 +3695,7 @@ func CGContextStrokeRectWithWidth(c ContextRef, rect Rect, width float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/strokeEllipse(in:)
 func CGContextStrokeEllipseInRect(c ContextRef, rect Rect) {
 	_CGContextStrokeEllipseInRect(c, rect)
-}
+}/* debug [functions.gen.go/function]: CGContextStrokeEllipseInRect */
 
 // Paints a line along the current path.
 //
@@ -3706,7 +3706,7 @@ func CGContextStrokeEllipseInRect(c ContextRef, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/strokePath()
 func CGContextStrokePath(c ContextRef) {
 	_CGContextStrokePath(c)
-}
+}/* debug [functions.gen.go/function]: CGContextStrokePath */
 
 // Marks a window context for update.
 //
@@ -3717,7 +3717,7 @@ func CGContextStrokePath(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/synchronize()
 func CGContextSynchronize(c ContextRef) {
 	_CGContextSynchronize(c)
-}
+}/* debug [functions.gen.go/function]: CGContextSynchronize */
 
 // CGContextSynchronizeAttributes is a CoreGraphics function.
 //
@@ -3726,7 +3726,7 @@ func CGContextSynchronize(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/synchronizeAttributes()
 func CGContextSynchronizeAttributes(c ContextRef) {
 	_CGContextSynchronizeAttributes(c)
-}
+}/* debug [functions.gen.go/function]: CGContextSynchronizeAttributes */
 
 // Returns the current text matrix.
 //
@@ -3737,7 +3737,7 @@ func CGContextSynchronizeAttributes(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/textMatrix
 func CGContextGetTextMatrix(c ContextRef) AffineTransform {
 	return _CGContextGetTextMatrix(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetTextMatrix */
 
 // Changes the origin of the user coordinate system in a context.
 //
@@ -3748,7 +3748,7 @@ func CGContextGetTextMatrix(c ContextRef) AffineTransform {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/translateBy(x:y:)
 func CGContextTranslateCTM(c ContextRef, tx float64, ty float64) {
 	_CGContextTranslateCTM(c, tx, ty)
-}
+}/* debug [functions.gen.go/function]: CGContextTranslateCTM */
 
 // Returns the type identifier for a graphics context.
 //
@@ -3759,7 +3759,7 @@ func CGContextTranslateCTM(c ContextRef, tx float64, ty float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/typeID
 func CGContextGetTypeID() TypeID {
 	return _CGContextGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGContextGetTypeID */
 
 // Returns an affine transform that maps user space coordinates to device space coordinates.
 //
@@ -3770,7 +3770,7 @@ func CGContextGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/userSpaceToDeviceSpaceTransform
 func CGContextGetUserSpaceToDeviceSpaceTransform(c ContextRef) AffineTransform {
 	return _CGContextGetUserSpaceToDeviceSpaceTransform(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetUserSpaceToDeviceSpaceTransform */
 
 // Returns the width in pixels of a bitmap context.
 //
@@ -3781,7 +3781,7 @@ func CGContextGetUserSpaceToDeviceSpaceTransform(c ContextRef) AffineTransform {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContext/width
 func CGBitmapContextGetWidth(context ContextRef) uintptr {
 	return _CGBitmapContextGetWidth(context)
-}
+}/* debug [functions.gen.go/function]: CGBitmapContextGetWidth */
 
 // Adds an arc of a circle to the current path, possibly preceded by a straight line segment
 //
@@ -3792,7 +3792,7 @@ func CGBitmapContextGetWidth(context ContextRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddArc
 func CGContextAddArc(c ContextRef, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise int) {
 	_CGContextAddArc(c, x, y, radius, startAngle, endAngle, clockwise)
-}
+}/* debug [functions.gen.go/function]: CGContextAddArc */
 
 // Adds an arc of a circle to the current path, using a radius and tangent points.
 //
@@ -3803,7 +3803,7 @@ func CGContextAddArc(c ContextRef, x float64, y float64, radius float64, startAn
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddArcToPoint
 func CGContextAddArcToPoint(c ContextRef, x1 float64, y1 float64, x2 float64, y2 float64, radius float64) {
 	_CGContextAddArcToPoint(c, x1, y1, x2, y2, radius)
-}
+}/* debug [functions.gen.go/function]: CGContextAddArcToPoint */
 
 // Appends a cubic Bézier curve from the current point, using the provided control points and end point .
 //
@@ -3814,7 +3814,7 @@ func CGContextAddArcToPoint(c ContextRef, x1 float64, y1 float64, x2 float64, y2
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddCurveToPoint
 func CGContextAddCurveToPoint(c ContextRef, cp1x float64, cp1y float64, cp2x float64, cp2y float64, x float64, y float64) {
 	_CGContextAddCurveToPoint(c, cp1x, cp1y, cp2x, cp2y, x, y)
-}
+}/* debug [functions.gen.go/function]: CGContextAddCurveToPoint */
 
 // Appends a straight line segment from the current point to the provided point .
 //
@@ -3825,7 +3825,7 @@ func CGContextAddCurveToPoint(c ContextRef, cp1x float64, cp1y float64, cp2x flo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddLineToPoint
 func CGContextAddLineToPoint(c ContextRef, x float64, y float64) {
 	_CGContextAddLineToPoint(c, x, y)
-}
+}/* debug [functions.gen.go/function]: CGContextAddLineToPoint */
 
 // Adds a sequence of connected straight-line segments to the current path.
 //
@@ -3836,7 +3836,7 @@ func CGContextAddLineToPoint(c ContextRef, x float64, y float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddLines
 func CGContextAddLines(c ContextRef, points unsafe.Pointer, count uintptr) {
 	_CGContextAddLines(c, points, count)
-}
+}/* debug [functions.gen.go/function]: CGContextAddLines */
 
 // Appends a quadratic Bézier curve from the current point, using a control point and an end point you specify.
 //
@@ -3847,7 +3847,7 @@ func CGContextAddLines(c ContextRef, points unsafe.Pointer, count uintptr) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddQuadCurveToPoint
 func CGContextAddQuadCurveToPoint(c ContextRef, cpx float64, cpy float64, x float64, y float64) {
 	_CGContextAddQuadCurveToPoint(c, cpx, cpy, x, y)
-}
+}/* debug [functions.gen.go/function]: CGContextAddQuadCurveToPoint */
 
 // Adds a set of rectangular paths to the current path.
 //
@@ -3858,7 +3858,7 @@ func CGContextAddQuadCurveToPoint(c ContextRef, cpx float64, cpy float64, x floa
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextAddRects
 func CGContextAddRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 	_CGContextAddRects(c, rects, count)
-}
+}/* debug [functions.gen.go/function]: CGContextAddRects */
 
 // Modifies the current clipping path, using the nonzero winding number rule.
 //
@@ -3869,7 +3869,7 @@ func CGContextAddRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextClip
 func CGContextClip(c ContextRef) {
 	_CGContextClip(c)
-}
+}/* debug [functions.gen.go/function]: CGContextClip */
 
 // Sets the clipping path to the intersection of the current clipping path with the region defined by an array of rectangles.
 //
@@ -3880,7 +3880,7 @@ func CGContextClip(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextClipToRects
 func CGContextClipToRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 	_CGContextClipToRects(c, rects, count)
-}
+}/* debug [functions.gen.go/function]: CGContextClipToRects */
 
 // CGContextDrawConicGradient is a CoreGraphics function.
 //
@@ -3889,7 +3889,7 @@ func CGContextClipToRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawConicGradient(_:_:_:_:)
 func CGContextDrawConicGradient(c ContextRef, gradient GradientRef, center Point, angle float64) {
 	_CGContextDrawConicGradient(c, gradient, center, angle)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawConicGradient */
 
 // Draws an image into a graphics context.
 //
@@ -3900,7 +3900,7 @@ func CGContextDrawConicGradient(c ContextRef, gradient GradientRef, center Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawImage
 func CGContextDrawImage(c ContextRef, rect Rect, image ImageRef) {
 	_CGContextDrawImage(c, rect, image)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawImage */
 
 // CGContextDrawImageApplyingToneMapping is a CoreGraphics function.
 //
@@ -3909,7 +3909,7 @@ func CGContextDrawImage(c ContextRef, rect Rect, image ImageRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawImageApplyingToneMapping
 func CGContextDrawImageApplyingToneMapping(c ContextRef, r Rect, image ImageRef, method ToneMapping, options DictionaryRef) bool {
 	return _CGContextDrawImageApplyingToneMapping(c, r, image, method, options)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawImageApplyingToneMapping */
 
 // Draws the contents of a CGLayer object at the specified point.
 //
@@ -3920,7 +3920,7 @@ func CGContextDrawImageApplyingToneMapping(c ContextRef, r Rect, image ImageRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawLayerAtPoint
 func CGContextDrawLayerAtPoint(context ContextRef, point Point, layer LayerRef) {
 	_CGContextDrawLayerAtPoint(context, point, layer)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawLayerAtPoint */
 
 // Draws the contents of a layer object into the specified rectangle.
 //
@@ -3931,7 +3931,7 @@ func CGContextDrawLayerAtPoint(context ContextRef, point Point, layer LayerRef) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawLayerInRect
 func CGContextDrawLayerInRect(context ContextRef, rect Rect, layer LayerRef) {
 	_CGContextDrawLayerInRect(context, rect, layer)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawLayerInRect */
 
 // CGContextDrawPDFDocument is a CoreGraphics function.
 //
@@ -3942,7 +3942,7 @@ func CGContextDrawLayerInRect(context ContextRef, rect Rect, layer LayerRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawPDFDocument
 func CGContextDrawPDFDocument(c ContextRef, rect Rect, document PDFDocumentRef, page int) {
 	_CGContextDrawPDFDocument(c, rect, document, page)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawPDFDocument */
 
 // Repeatedly draws an image, scaled to the provided rectangle, to fill the current clip region.
 //
@@ -3953,7 +3953,7 @@ func CGContextDrawPDFDocument(c ContextRef, rect Rect, document PDFDocumentRef, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextDrawTiledImage
 func CGContextDrawTiledImage(c ContextRef, rect Rect, image ImageRef) {
 	_CGContextDrawTiledImage(c, rect, image)
-}
+}/* debug [functions.gen.go/function]: CGContextDrawTiledImage */
 
 // Modifies the current clipping path, using the even-odd rule.
 //
@@ -3964,7 +3964,7 @@ func CGContextDrawTiledImage(c ContextRef, rect Rect, image ImageRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextEOClip
 func CGContextEOClip(c ContextRef) {
 	_CGContextEOClip(c)
-}
+}/* debug [functions.gen.go/function]: CGContextEOClip */
 
 // Paints the area within the current path, using the even-odd fill rule.
 //
@@ -3975,7 +3975,7 @@ func CGContextEOClip(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextEOFillPath
 func CGContextEOFillPath(c ContextRef) {
 	_CGContextEOFillPath(c)
-}
+}/* debug [functions.gen.go/function]: CGContextEOFillPath */
 
 // Paints the area within the current path, using the nonzero winding number rule.
 //
@@ -3986,7 +3986,7 @@ func CGContextEOFillPath(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextFillPath
 func CGContextFillPath(c ContextRef) {
 	_CGContextFillPath(c)
-}
+}/* debug [functions.gen.go/function]: CGContextFillPath */
 
 // Paints the areas contained within the provided rectangles, using the fill color in the current graphics state.
 //
@@ -3997,16 +3997,16 @@ func CGContextFillPath(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextFillRects
 func CGContextFillRects(c ContextRef, rects unsafe.Pointer, count uintptr) {
 	_CGContextFillRects(c, rects, count)
-}
+}/* debug [functions.gen.go/function]: CGContextFillRects */
 
 // CGContextGetContentToneMappingInfo is a CoreGraphics function.
 //
 // Added in macOS 26.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextGetContentToneMappingInfo
-func CGContextGetContentToneMappingInfo(c ContextRef) ContentToneMappingInfo {
+func CGContextGetContentToneMappingInfo(c ContextRef) CGContentToneMappingInfo {
 	return _CGContextGetContentToneMappingInfo(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetContentToneMappingInfo */
 
 // CGContextGetEDRTargetHeadroom is a CoreGraphics function.
 //
@@ -4015,7 +4015,7 @@ func CGContextGetContentToneMappingInfo(c ContextRef) ContentToneMappingInfo {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextGetEDRTargetHeadroom(_:)
 func CGContextGetEDRTargetHeadroom(c ContextRef) float32 {
 	return _CGContextGetEDRTargetHeadroom(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetEDRTargetHeadroom */
 
 // CGContextGetTextPosition is a CoreGraphics function.
 //
@@ -4024,7 +4024,7 @@ func CGContextGetEDRTargetHeadroom(c ContextRef) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextGetTextPosition
 func CGContextGetTextPosition(c ContextRef) Point {
 	return _CGContextGetTextPosition(c)
-}
+}/* debug [functions.gen.go/function]: CGContextGetTextPosition */
 
 // Begins a new subpath at the point you specify.
 //
@@ -4035,7 +4035,7 @@ func CGContextGetTextPosition(c ContextRef) Point {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextMoveToPoint
 func CGContextMoveToPoint(c ContextRef, x float64, y float64) {
 	_CGContextMoveToPoint(c, x, y)
-}
+}/* debug [functions.gen.go/function]: CGContextMoveToPoint */
 
 // Decrements the retain count of a graphics context.
 //
@@ -4046,7 +4046,7 @@ func CGContextMoveToPoint(c ContextRef, x float64, y float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextRelease
 func CGContextRelease(c ContextRef) {
 	_CGContextRelease(c)
-}
+}/* debug [functions.gen.go/function]: CGContextRelease */
 
 // Increments the retain count of a graphics context.
 //
@@ -4057,16 +4057,16 @@ func CGContextRelease(c ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextRetain
 func CGContextRetain(c ContextRef) ContextRef {
 	return _CGContextRetain(c)
-}
+}/* debug [functions.gen.go/function]: CGContextRetain */
 
 // CGContextSetContentToneMappingInfo is a CoreGraphics function.
 //
 // Added in macOS 26.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetContentToneMappingInfo
-func CGContextSetContentToneMappingInfo(c ContextRef, info ContentToneMappingInfo) {
+func CGContextSetContentToneMappingInfo(c ContextRef, info CGContentToneMappingInfo) {
 	_CGContextSetContentToneMappingInfo(c, info)
-}
+}/* debug [functions.gen.go/function]: CGContextSetContentToneMappingInfo */
 
 // Sets the level of interpolation quality for a graphics context.
 //
@@ -4077,7 +4077,7 @@ func CGContextSetContentToneMappingInfo(c ContextRef, info ContentToneMappingInf
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetInterpolationQuality
 func CGContextSetInterpolationQuality(c ContextRef, quality InterpolationQuality) {
 	_CGContextSetInterpolationQuality(c, quality)
-}
+}/* debug [functions.gen.go/function]: CGContextSetInterpolationQuality */
 
 // Sets the pattern for dashed lines in a graphics context.
 //
@@ -4088,7 +4088,7 @@ func CGContextSetInterpolationQuality(c ContextRef, quality InterpolationQuality
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetLineDash
 func CGContextSetLineDash(c ContextRef, phase float64, lengths []float64, count uintptr) {
 	_CGContextSetLineDash(c, phase, lengths, count)
-}
+}/* debug [functions.gen.go/function]: CGContextSetLineDash */
 
 // Sets the current text matrix.
 //
@@ -4099,7 +4099,7 @@ func CGContextSetLineDash(c ContextRef, phase float64, lengths []float64, count 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetTextMatrix
 func CGContextSetTextMatrix(c ContextRef, t AffineTransform) {
 	_CGContextSetTextMatrix(c, t)
-}
+}/* debug [functions.gen.go/function]: CGContextSetTextMatrix */
 
 // Sets the location at which text is drawn.
 //
@@ -4110,7 +4110,7 @@ func CGContextSetTextMatrix(c ContextRef, t AffineTransform) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextSetTextPosition
 func CGContextSetTextPosition(c ContextRef, x float64, y float64) {
 	_CGContextSetTextPosition(c, x, y)
-}
+}/* debug [functions.gen.go/function]: CGContextSetTextPosition */
 
 // Draws glyphs at the provided position.
 //
@@ -4121,7 +4121,7 @@ func CGContextSetTextPosition(c ContextRef, x float64, y float64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextShowGlyphsAtPositions
 func CGContextShowGlyphsAtPositions(c ContextRef, glyphs unsafe.Pointer, Lpositions unsafe.Pointer, count uintptr) {
 	_CGContextShowGlyphsAtPositions(c, glyphs, Lpositions, count)
-}
+}/* debug [functions.gen.go/function]: CGContextShowGlyphsAtPositions */
 
 // Strokes a sequence of line segments.
 //
@@ -4132,16 +4132,16 @@ func CGContextShowGlyphsAtPositions(c ContextRef, glyphs unsafe.Pointer, Lpositi
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGContextStrokeLineSegments
 func CGContextStrokeLineSegments(c ContextRef, points unsafe.Pointer, count uintptr) {
 	_CGContextStrokeLineSegments(c, points, count)
-}
+}/* debug [functions.gen.go/function]: CGContextStrokeLineSegments */
 
 // CGConvertColorDataWithFormat is a CoreGraphics function.
 //
 // Added in macOS .
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGConvertColorDataWithFormat(_:_:_:_:_:_:_:)
-func CGConvertColorDataWithFormat(width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format ColorDataFormat, src_data unsafe.Pointer, src_format ColorDataFormat, options DictionaryRef) bool {
+func CGConvertColorDataWithFormat(width uintptr, height uintptr, dst_data unsafe.Pointer, dst_format CGColorDataFormat, src_data unsafe.Pointer, src_format CGColorDataFormat, options DictionaryRef) bool {
 	return _CGConvertColorDataWithFormat(width, height, dst_data, dst_format, src_data, src_format, options)
-}
+}/* debug [functions.gen.go/function]: CGConvertColorDataWithFormat */
 
 // Returns a Boolean value indicating whether the mouse cursor is drawn in framebuffer memory.
 
@@ -4151,7 +4151,7 @@ func CGConvertColorDataWithFormat(width uintptr, height uintptr, dst_data unsafe
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCursorIsDrawnInFramebuffer()
 func CGCursorIsDrawnInFramebuffer() unsafe.Pointer {
 	return _CGCursorIsDrawnInFramebuffer()
-}
+}/* debug [functions.gen.go/function]: CGCursorIsDrawnInFramebuffer */
 
 // Returns a Boolean value indicating whether the mouse cursor is visible.
 
@@ -4161,7 +4161,7 @@ func CGCursorIsDrawnInFramebuffer() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGCursorIsVisible()
 func CGCursorIsVisible() unsafe.Pointer {
 	return _CGCursorIsVisible()
-}
+}/* debug [functions.gen.go/function]: CGCursorIsVisible */
 
 // Creates a data consumer that writes to a CFData object.
 //
@@ -4172,7 +4172,7 @@ func CGCursorIsVisible() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(data:)
 func CGDataConsumerCreateWithCFData(data MutableDataRef) DataConsumerRef {
 	return _CGDataConsumerCreateWithCFData(data)
-}
+}/* debug [functions.gen.go/function]: CGDataConsumerCreateWithCFData */
 
 // Creates a data consumer that uses callback functions to write data.
 //
@@ -4183,7 +4183,7 @@ func CGDataConsumerCreateWithCFData(data MutableDataRef) DataConsumerRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(info:cbks:)
 func CGDataConsumerCreate(info unsafe.Pointer, cbks unsafe.Pointer) DataConsumerRef {
 	return _CGDataConsumerCreate(info, cbks)
-}
+}/* debug [functions.gen.go/function]: CGDataConsumerCreate */
 
 // Creates a data consumer that writes data to a location specified by a URL.
 //
@@ -4194,7 +4194,7 @@ func CGDataConsumerCreate(info unsafe.Pointer, cbks unsafe.Pointer) DataConsumer
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/init(url:)
 func CGDataConsumerCreateWithURL(url URLRef) DataConsumerRef {
 	return _CGDataConsumerCreateWithURL(url)
-}
+}/* debug [functions.gen.go/function]: CGDataConsumerCreateWithURL */
 
 // Returns the Core Foundation type identifier for Core Graphics data consumers.
 //
@@ -4205,7 +4205,7 @@ func CGDataConsumerCreateWithURL(url URLRef) DataConsumerRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumer/typeID
 func CGDataConsumerGetTypeID() TypeID {
 	return _CGDataConsumerGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGDataConsumerGetTypeID */
 
 // Decrements the retain count of a data consumer.
 //
@@ -4216,7 +4216,7 @@ func CGDataConsumerGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumerRelease
 func CGDataConsumerRelease(consumer DataConsumerRef) {
 	_CGDataConsumerRelease(consumer)
-}
+}/* debug [functions.gen.go/function]: CGDataConsumerRelease */
 
 // Increments the retain count of a data consumer.
 //
@@ -4227,7 +4227,7 @@ func CGDataConsumerRelease(consumer DataConsumerRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataConsumerRetain
 func CGDataConsumerRetain(consumer DataConsumerRef) DataConsumerRef {
 	return _CGDataConsumerRetain(consumer)
-}
+}/* debug [functions.gen.go/function]: CGDataConsumerRetain */
 
 // Returns a copy of the provider’s data.
 //
@@ -4238,7 +4238,7 @@ func CGDataConsumerRetain(consumer DataConsumerRef) DataConsumerRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/data
 func CGDataProviderCopyData(provider DataProviderRef) DataRef {
 	return _CGDataProviderCopyData(provider)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderCopyData */
 
 // CGDataProviderGetInfo is a CoreGraphics function.
 //
@@ -4247,7 +4247,7 @@ func CGDataProviderCopyData(provider DataProviderRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/info
 func CGDataProviderGetInfo(provider DataProviderRef) unsafe.Pointer {
 	return _CGDataProviderGetInfo(provider)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderGetInfo */
 
 // Creates a data provider that reads from a CFData object.
 //
@@ -4258,7 +4258,7 @@ func CGDataProviderGetInfo(provider DataProviderRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(data:)
 func CGDataProviderCreateWithCFData(data DataRef) DataProviderRef {
 	return _CGDataProviderCreateWithCFData(data)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderCreateWithCFData */
 
 // Creates a direct-access data provider that uses data your program supplies.
 //
@@ -4269,7 +4269,7 @@ func CGDataProviderCreateWithCFData(data DataRef) DataProviderRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(dataInfo:data:size:releaseData:)
 func CGDataProviderCreateWithData(info unsafe.Pointer, data unsafe.Pointer, size uintptr, releaseData DataProviderReleaseDataCallback) DataProviderRef {
 	return _CGDataProviderCreateWithData(info, data, size, releaseData)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderCreateWithData */
 
 // Creates a direct-access data provider.
 //
@@ -4280,7 +4280,7 @@ func CGDataProviderCreateWithData(info unsafe.Pointer, data unsafe.Pointer, size
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(directInfo:size:callbacks:)
 func CGDataProviderCreateDirect(info unsafe.Pointer, size unsafe.Pointer, callbacks unsafe.Pointer) DataProviderRef {
 	return _CGDataProviderCreateDirect(info, size, callbacks)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderCreateDirect */
 
 // Creates a direct-access data provider that uses a file to supply data.
 //
@@ -4291,7 +4291,7 @@ func CGDataProviderCreateDirect(info unsafe.Pointer, size unsafe.Pointer, callba
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(filename:)
 func CGDataProviderCreateWithFilename(filename unsafe.Pointer) DataProviderRef {
 	return _CGDataProviderCreateWithFilename(filename)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderCreateWithFilename */
 
 // Creates a sequential-access data provider.
 //
@@ -4302,7 +4302,7 @@ func CGDataProviderCreateWithFilename(filename unsafe.Pointer) DataProviderRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(sequentialInfo:callbacks:)
 func CGDataProviderCreateSequential(info unsafe.Pointer, callbacks unsafe.Pointer) DataProviderRef {
 	return _CGDataProviderCreateSequential(info, callbacks)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderCreateSequential */
 
 // Creates a direct-access data provider that uses a URL to supply data.
 //
@@ -4313,7 +4313,7 @@ func CGDataProviderCreateSequential(info unsafe.Pointer, callbacks unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/init(url:)
 func CGDataProviderCreateWithURL(url URLRef) DataProviderRef {
 	return _CGDataProviderCreateWithURL(url)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderCreateWithURL */
 
 // Returns the Core Foundation type identifier for data providers.
 //
@@ -4324,7 +4324,7 @@ func CGDataProviderCreateWithURL(url URLRef) DataProviderRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProvider/typeID
 func CGDataProviderGetTypeID() TypeID {
 	return _CGDataProviderGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGDataProviderGetTypeID */
 
 // Decrements the retain count of a data provider.
 //
@@ -4335,7 +4335,7 @@ func CGDataProviderGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProviderRelease
 func CGDataProviderRelease(provider DataProviderRef) {
 	_CGDataProviderRelease(provider)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderRelease */
 
 // Increments the retain count of a data provider.
 //
@@ -4346,7 +4346,7 @@ func CGDataProviderRelease(provider DataProviderRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDataProviderRetain
 func CGDataProviderRetain(provider DataProviderRef) DataProviderRef {
 	return _CGDataProviderRetain(provider)
-}
+}/* debug [functions.gen.go/function]: CGDataProviderRetain */
 
 // Returns the GPU device instance that’s currently driving a display.
 //
@@ -4357,7 +4357,7 @@ func CGDataProviderRetain(provider DataProviderRef) DataProviderRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDirectDisplayCopyCurrentMetalDevice(_:)
 func CGDirectDisplayCopyCurrentMetalDevice(display DirectDisplayID) unsafe.Pointer {
 	return _CGDirectDisplayCopyCurrentMetalDevice(display)
-}
+}/* debug [functions.gen.go/function]: CGDirectDisplayCopyCurrentMetalDevice */
 
 // Returns information about the currently available display modes.
 
@@ -4367,7 +4367,7 @@ func CGDirectDisplayCopyCurrentMetalDevice(display DirectDisplayID) unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayAvailableModes(_:)
 func CGDisplayAvailableModes(dsp DirectDisplayID) ArrayRef {
 	return _CGDisplayAvailableModes(dsp)
-}
+}/* debug [functions.gen.go/function]: CGDisplayAvailableModes */
 
 // Returns information about the display mode closest to a specified depth and screen size.
 
@@ -4377,7 +4377,7 @@ func CGDisplayAvailableModes(dsp DirectDisplayID) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBestModeForParameters(_:_:_:_:_:)
 func CGDisplayBestModeForParameters(display DirectDisplayID, bitsPerPixel uintptr, width uintptr, height uintptr, exactMatch unsafe.Pointer) DictionaryRef {
 	return _CGDisplayBestModeForParameters(display, bitsPerPixel, width, height, exactMatch)
-}
+}/* debug [functions.gen.go/function]: CGDisplayBestModeForParameters */
 
 // Returns information about the display mode closest to a specified depth, screen size, and refresh rate.
 
@@ -4387,7 +4387,7 @@ func CGDisplayBestModeForParameters(display DirectDisplayID, bitsPerPixel uintpt
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBestModeForParametersAndRefreshRate(_:_:_:_:_:_:)
 func CGDisplayBestModeForParametersAndRefreshRate(display DirectDisplayID, bitsPerPixel uintptr, width uintptr, height uintptr, refreshRate RefreshRate, exactMatch unsafe.Pointer) DictionaryRef {
 	return _CGDisplayBestModeForParametersAndRefreshRate(display, bitsPerPixel, width, height, refreshRate, exactMatch)
-}
+}/* debug [functions.gen.go/function]: CGDisplayBestModeForParametersAndRefreshRate */
 
 // Returns the bounds of a display in the global display coordinate space.
 //
@@ -4398,7 +4398,7 @@ func CGDisplayBestModeForParametersAndRefreshRate(display DirectDisplayID, bitsP
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBounds(_:)
 func CGDisplayBounds(display DirectDisplayID) Rect {
 	return _CGDisplayBounds(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayBounds */
 
 // Obtains exclusive use of a display, preventing other applications and system services from using the display or changing its configuration.
 //
@@ -4409,7 +4409,7 @@ func CGDisplayBounds(display DirectDisplayID) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCapture(_:)
 func CGDisplayCapture(display DirectDisplayID) Error {
 	return _CGDisplayCapture(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayCapture */
 
 // Obtains exclusive use of a display for an application using the options you specify.
 //
@@ -4420,7 +4420,7 @@ func CGDisplayCapture(display DirectDisplayID) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCaptureWithOptions(_:_:)
 func CGDisplayCaptureWithOptions(display DirectDisplayID, options CaptureOptions) Error {
 	return _CGDisplayCaptureWithOptions(display, options)
-}
+}/* debug [functions.gen.go/function]: CGDisplayCaptureWithOptions */
 
 // Returns information about the currently available display modes.
 //
@@ -4431,7 +4431,7 @@ func CGDisplayCaptureWithOptions(display DirectDisplayID, options CaptureOptions
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCopyAllDisplayModes(_:_:)
 func CGDisplayCopyAllDisplayModes(display DirectDisplayID, options DictionaryRef) ArrayRef {
 	return _CGDisplayCopyAllDisplayModes(display, options)
-}
+}/* debug [functions.gen.go/function]: CGDisplayCopyAllDisplayModes */
 
 // Returns the color space for a display.
 //
@@ -4442,7 +4442,7 @@ func CGDisplayCopyAllDisplayModes(display DirectDisplayID, options DictionaryRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCopyColorSpace(_:)
 func CGDisplayCopyColorSpace(display DirectDisplayID) ColorSpaceRef {
 	return _CGDisplayCopyColorSpace(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayCopyColorSpace */
 
 // Returns information about a display’s current configuration.
 //
@@ -4453,7 +4453,7 @@ func CGDisplayCopyColorSpace(display DirectDisplayID) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCopyDisplayMode(_:)
 func CGDisplayCopyDisplayMode(display DirectDisplayID) DisplayModeRef {
 	return _CGDisplayCopyDisplayMode(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayCopyDisplayMode */
 
 // Returns an image containing the contents of the specified display.
 
@@ -4463,7 +4463,7 @@ func CGDisplayCopyDisplayMode(display DirectDisplayID) DisplayModeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCreateImage(_:)
 func CGDisplayCreateImage(displayID DirectDisplayID) ImageRef {
 	return _CGDisplayCreateImage(displayID)
-}
+}/* debug [functions.gen.go/function]: CGDisplayCreateImage */
 
 // Returns an image containing the contents of a portion of the specified display.
 
@@ -4473,7 +4473,7 @@ func CGDisplayCreateImage(displayID DirectDisplayID) ImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCreateImage(_:rect:)
 func CGDisplayCreateImageForRect(display DirectDisplayID, rect Rect) ImageRef {
 	return _CGDisplayCreateImageForRect(display, rect)
-}
+}/* debug [functions.gen.go/function]: CGDisplayCreateImageForRect */
 
 // Returns information about the current display mode.
 
@@ -4483,7 +4483,7 @@ func CGDisplayCreateImageForRect(display DirectDisplayID, rect Rect) ImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayCurrentMode(_:)
 func CGDisplayCurrentMode(display DirectDisplayID) DictionaryRef {
 	return _CGDisplayCurrentMode(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayCurrentMode */
 
 // Performs a single fade operation.
 //
@@ -4494,7 +4494,7 @@ func CGDisplayCurrentMode(display DirectDisplayID) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayFade(_:_:_:_:_:_:_:_:)
 func CGDisplayFade(token DisplayFadeReservationToken, duration DisplayFadeInterval, startBlend DisplayBlendFraction, endBlend DisplayBlendFraction, redBlend float32, greenBlend float32, blueBlend float32, synchronous unsafe.Pointer) Error {
 	return _CGDisplayFade(token, duration, startBlend, endBlend, redBlend, greenBlend, blueBlend, synchronous)
-}
+}/* debug [functions.gen.go/function]: CGDisplayFade */
 
 // Returns a Boolean value indicating whether a fade operation is currently in progress.
 
@@ -4504,7 +4504,7 @@ func CGDisplayFade(token DisplayFadeReservationToken, duration DisplayFadeInterv
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayFadeOperationInProgress()
 func CGDisplayFadeOperationInProgress() unsafe.Pointer {
 	return _CGDisplayFadeOperationInProgress()
-}
+}/* debug [functions.gen.go/function]: CGDisplayFadeOperationInProgress */
 
 // Returns the capacity, or number of entries, in the gamma table for a display.
 //
@@ -4515,7 +4515,7 @@ func CGDisplayFadeOperationInProgress() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayGammaTableCapacity(_:)
 func CGDisplayGammaTableCapacity(display DirectDisplayID) uint32 {
 	return _CGDisplayGammaTableCapacity(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayGammaTableCapacity */
 
 // Returns a graphics context suitable for drawing to a captured display.
 //
@@ -4526,7 +4526,7 @@ func CGDisplayGammaTableCapacity(display DirectDisplayID) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayGetDrawingContext(_:)
 func CGDisplayGetDrawingContext(display DirectDisplayID) ContextRef {
 	return _CGDisplayGetDrawingContext(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayGetDrawingContext */
 
 // Hides the mouse cursor, and increments the hide cursor count.
 //
@@ -4537,7 +4537,7 @@ func CGDisplayGetDrawingContext(display DirectDisplayID) ContextRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayHideCursor(_:)
 func CGDisplayHideCursor(display DirectDisplayID) Error {
 	return _CGDisplayHideCursor(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayHideCursor */
 
 // Maps a display ID to an OpenGL display mask.
 //
@@ -4548,7 +4548,7 @@ func CGDisplayHideCursor(display DirectDisplayID) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIDToOpenGLDisplayMask(_:)
 func CGDisplayIDToOpenGLDisplayMask(display DirectDisplayID) OpenGLDisplayMask {
 	return _CGDisplayIDToOpenGLDisplayMask(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIDToOpenGLDisplayMask */
 
 // Returns the I/O Kit service port of the specified display.
 
@@ -4558,7 +4558,7 @@ func CGDisplayIDToOpenGLDisplayMask(display DirectDisplayID) OpenGLDisplayMask {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIOServicePort(_:)
 func CGDisplayIOServicePort(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIOServicePort(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIOServicePort */
 
 // Returns a Boolean value indicating whether a display is active.
 //
@@ -4569,7 +4569,7 @@ func CGDisplayIOServicePort(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsActive(_:)
 func CGDisplayIsActive(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsActive(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsActive */
 
 // Returns a Boolean value indicating whether a display is always in a mirroring set.
 //
@@ -4580,7 +4580,7 @@ func CGDisplayIsActive(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsAlwaysInMirrorSet(_:)
 func CGDisplayIsAlwaysInMirrorSet(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsAlwaysInMirrorSet(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsAlwaysInMirrorSet */
 
 // Returns a Boolean value indicating whether a display is sleeping (and is therefore not drawable).
 //
@@ -4591,7 +4591,7 @@ func CGDisplayIsAlwaysInMirrorSet(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsAsleep(_:)
 func CGDisplayIsAsleep(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsAsleep(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsAsleep */
 
 // Returns a Boolean value indicating whether a display is built-in, such as the internal display in portable systems.
 //
@@ -4602,7 +4602,7 @@ func CGDisplayIsAsleep(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsBuiltin(_:)
 func CGDisplayIsBuiltin(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsBuiltin(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsBuiltin */
 
 // Returns a Boolean value indicating whether a display is captured.
 
@@ -4612,7 +4612,7 @@ func CGDisplayIsBuiltin(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsCaptured(_:)
 func CGDisplayIsCaptured(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsCaptured(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsCaptured */
 
 // Returns a Boolean value indicating whether a display is in a hardware mirroring set.
 //
@@ -4623,7 +4623,7 @@ func CGDisplayIsCaptured(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsInHWMirrorSet(_:)
 func CGDisplayIsInHWMirrorSet(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsInHWMirrorSet(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsInHWMirrorSet */
 
 // Returns a Boolean value indicating whether a display is in a mirroring set.
 //
@@ -4634,7 +4634,7 @@ func CGDisplayIsInHWMirrorSet(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsInMirrorSet(_:)
 func CGDisplayIsInMirrorSet(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsInMirrorSet(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsInMirrorSet */
 
 // Returns a Boolean value indicating whether a display is the main display.
 //
@@ -4645,7 +4645,7 @@ func CGDisplayIsInMirrorSet(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsMain(_:)
 func CGDisplayIsMain(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsMain(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsMain */
 
 // Returns a Boolean value indicating whether a display is connected or online.
 //
@@ -4656,7 +4656,7 @@ func CGDisplayIsMain(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsOnline(_:)
 func CGDisplayIsOnline(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsOnline(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsOnline */
 
 // Returns a Boolean value indicating whether a display is running in a stereo graphics mode.
 //
@@ -4667,7 +4667,7 @@ func CGDisplayIsOnline(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayIsStereo(_:)
 func CGDisplayIsStereo(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayIsStereo(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayIsStereo */
 
 // For a secondary display in a mirroring set, returns the primary display.
 //
@@ -4678,7 +4678,7 @@ func CGDisplayIsStereo(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMirrorsDisplay(_:)
 func CGDisplayMirrorsDisplay(display DirectDisplayID) DirectDisplayID {
 	return _CGDisplayMirrorsDisplay(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayMirrorsDisplay */
 
 // Returns the height of the specified display mode.
 //
@@ -4689,7 +4689,7 @@ func CGDisplayMirrorsDisplay(display DirectDisplayID) DirectDisplayID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/height
 func CGDisplayModeGetHeight(mode DisplayModeRef) uintptr {
 	return _CGDisplayModeGetHeight(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeGetHeight */
 
 // Returns the I/O Kit display mode ID of the specified display mode.
 //
@@ -4700,7 +4700,7 @@ func CGDisplayModeGetHeight(mode DisplayModeRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/ioDisplayModeID
 func CGDisplayModeGetIODisplayModeID(mode DisplayModeRef) int32 {
 	return _CGDisplayModeGetIODisplayModeID(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeGetIODisplayModeID */
 
 // Returns the I/O Kit flags of the specified display mode.
 //
@@ -4711,7 +4711,7 @@ func CGDisplayModeGetIODisplayModeID(mode DisplayModeRef) int32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/ioFlags
 func CGDisplayModeGetIOFlags(mode DisplayModeRef) uint32 {
 	return _CGDisplayModeGetIOFlags(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeGetIOFlags */
 
 // Returns a Boolean value indicating whether the specified display mode is usable for a desktop graphical user interface.
 //
@@ -4722,7 +4722,7 @@ func CGDisplayModeGetIOFlags(mode DisplayModeRef) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/isUsableForDesktopGUI()
 func CGDisplayModeIsUsableForDesktopGUI(mode DisplayModeRef) bool {
 	return _CGDisplayModeIsUsableForDesktopGUI(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeIsUsableForDesktopGUI */
 
 // Returns the pixel encoding of the specified display mode.
 //
@@ -4735,7 +4735,7 @@ func CGDisplayModeIsUsableForDesktopGUI(mode DisplayModeRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/pixelEncoding
 func CGDisplayModeCopyPixelEncoding(mode DisplayModeRef) StringRef {
 	return _CGDisplayModeCopyPixelEncoding(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeCopyPixelEncoding */
 
 // CGDisplayModeGetPixelHeight is a CoreGraphics function.
 //
@@ -4744,7 +4744,7 @@ func CGDisplayModeCopyPixelEncoding(mode DisplayModeRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/pixelHeight
 func CGDisplayModeGetPixelHeight(mode DisplayModeRef) uintptr {
 	return _CGDisplayModeGetPixelHeight(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeGetPixelHeight */
 
 // CGDisplayModeGetPixelWidth is a CoreGraphics function.
 //
@@ -4753,7 +4753,7 @@ func CGDisplayModeGetPixelHeight(mode DisplayModeRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/pixelWidth
 func CGDisplayModeGetPixelWidth(mode DisplayModeRef) uintptr {
 	return _CGDisplayModeGetPixelWidth(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeGetPixelWidth */
 
 // Returns the refresh rate of the specified display mode.
 //
@@ -4764,7 +4764,7 @@ func CGDisplayModeGetPixelWidth(mode DisplayModeRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/refreshRate
 func CGDisplayModeGetRefreshRate(mode DisplayModeRef) float64 {
 	return _CGDisplayModeGetRefreshRate(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeGetRefreshRate */
 
 // Returns the type identifier of Quartz display modes.
 //
@@ -4775,7 +4775,7 @@ func CGDisplayModeGetRefreshRate(mode DisplayModeRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/typeID
 func CGDisplayModeGetTypeID() TypeID {
 	return _CGDisplayModeGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeGetTypeID */
 
 // Returns the width of the specified display mode.
 //
@@ -4786,7 +4786,7 @@ func CGDisplayModeGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMode/width
 func CGDisplayModeGetWidth(mode DisplayModeRef) uintptr {
 	return _CGDisplayModeGetWidth(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeGetWidth */
 
 // Releases a Core Graphics display mode.
 //
@@ -4797,7 +4797,7 @@ func CGDisplayModeGetWidth(mode DisplayModeRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayModeRelease
 func CGDisplayModeRelease(mode DisplayModeRef) {
 	_CGDisplayModeRelease(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeRelease */
 
 // Retains a Core Graphics display mode.
 //
@@ -4808,7 +4808,7 @@ func CGDisplayModeRelease(mode DisplayModeRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayModeRetain
 func CGDisplayModeRetain(mode DisplayModeRef) DisplayModeRef {
 	return _CGDisplayModeRetain(mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModeRetain */
 
 // Returns the model number of a display monitor.
 //
@@ -4819,7 +4819,7 @@ func CGDisplayModeRetain(mode DisplayModeRef) DisplayModeRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayModelNumber(_:)
 func CGDisplayModelNumber(display DirectDisplayID) uint32 {
 	return _CGDisplayModelNumber(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayModelNumber */
 
 // Moves the mouse cursor to a specified point relative to the upper-left corner of the display.
 //
@@ -4830,7 +4830,7 @@ func CGDisplayModelNumber(display DirectDisplayID) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayMoveCursorToPoint(_:_:)
 func CGDisplayMoveCursorToPoint(display DirectDisplayID, point Point) Error {
 	return _CGDisplayMoveCursorToPoint(display, point)
-}
+}/* debug [functions.gen.go/function]: CGDisplayMoveCursorToPoint */
 
 // Returns the display height in pixel units.
 //
@@ -4841,7 +4841,7 @@ func CGDisplayMoveCursorToPoint(display DirectDisplayID, point Point) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayPixelsHigh(_:)
 func CGDisplayPixelsHigh(display DirectDisplayID) uintptr {
 	return _CGDisplayPixelsHigh(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayPixelsHigh */
 
 // Returns the display width in pixel units.
 //
@@ -4852,7 +4852,7 @@ func CGDisplayPixelsHigh(display DirectDisplayID) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayPixelsWide(_:)
 func CGDisplayPixelsWide(display DirectDisplayID) uintptr {
 	return _CGDisplayPixelsWide(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayPixelsWide */
 
 // Returns the primary display in a hardware mirroring set.
 //
@@ -4863,7 +4863,7 @@ func CGDisplayPixelsWide(display DirectDisplayID) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayPrimaryDisplay(_:)
 func CGDisplayPrimaryDisplay(display DirectDisplayID) DirectDisplayID {
 	return _CGDisplayPrimaryDisplay(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayPrimaryDisplay */
 
 // Registers a callback function to be invoked whenever a local display is reconfigured.
 //
@@ -4874,7 +4874,7 @@ func CGDisplayPrimaryDisplay(display DirectDisplayID) DirectDisplayID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayRegisterReconfigurationCallback(_:_:)
 func CGDisplayRegisterReconfigurationCallback(callback DisplayReconfigurationCallBack, userInfo unsafe.Pointer) Error {
 	return _CGDisplayRegisterReconfigurationCallback(callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGDisplayRegisterReconfigurationCallback */
 
 // Releases a captured display.
 //
@@ -4885,7 +4885,7 @@ func CGDisplayRegisterReconfigurationCallback(callback DisplayReconfigurationCal
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayRelease(_:)
 func CGDisplayRelease(display DirectDisplayID) Error {
 	return _CGDisplayRelease(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayRelease */
 
 // Removes the registration of a callback function that’s invoked whenever a local display is reconfigured.
 //
@@ -4896,7 +4896,7 @@ func CGDisplayRelease(display DirectDisplayID) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayRemoveReconfigurationCallback(_:_:)
 func CGDisplayRemoveReconfigurationCallback(callback DisplayReconfigurationCallBack, userInfo unsafe.Pointer) Error {
 	return _CGDisplayRemoveReconfigurationCallback(callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGDisplayRemoveReconfigurationCallback */
 
 // Restores the gamma tables to the values in the user’s ColorSync display profile.
 //
@@ -4907,7 +4907,7 @@ func CGDisplayRemoveReconfigurationCallback(callback DisplayReconfigurationCallB
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayRestoreColorSyncSettings()
 func CGDisplayRestoreColorSyncSettings() {
 	_CGDisplayRestoreColorSyncSettings()
-}
+}/* debug [functions.gen.go/function]: CGDisplayRestoreColorSyncSettings */
 
 // Returns the rotation angle of a display in degrees.
 //
@@ -4918,7 +4918,7 @@ func CGDisplayRestoreColorSyncSettings() {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayRotation(_:)
 func CGDisplayRotation(display DirectDisplayID) float64 {
 	return _CGDisplayRotation(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayRotation */
 
 // Returns the width and height of a display in millimeters.
 //
@@ -4929,7 +4929,7 @@ func CGDisplayRotation(display DirectDisplayID) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayScreenSize(_:)
 func CGDisplayScreenSize(display DirectDisplayID) Size {
 	return _CGDisplayScreenSize(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayScreenSize */
 
 // Returns the serial number of a display monitor.
 //
@@ -4940,7 +4940,7 @@ func CGDisplayScreenSize(display DirectDisplayID) Size {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySerialNumber(_:)
 func CGDisplaySerialNumber(display DirectDisplayID) uint32 {
 	return _CGDisplaySerialNumber(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplaySerialNumber */
 
 // Switches a display to a different mode.
 //
@@ -4951,7 +4951,7 @@ func CGDisplaySerialNumber(display DirectDisplayID) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySetDisplayMode(_:_:_:)
 func CGDisplaySetDisplayMode(display DirectDisplayID, mode DisplayModeRef, options DictionaryRef) Error {
 	return _CGDisplaySetDisplayMode(display, mode, options)
-}
+}/* debug [functions.gen.go/function]: CGDisplaySetDisplayMode */
 
 // Immediately enables or disables stereo operation for a display.
 //
@@ -4962,7 +4962,7 @@ func CGDisplaySetDisplayMode(display DirectDisplayID, mode DisplayModeRef, optio
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySetStereoOperation(_:_:_:_:)
 func CGDisplaySetStereoOperation(display DirectDisplayID, stereo unsafe.Pointer, forceBlueLine unsafe.Pointer, option ConfigureOption) Error {
 	return _CGDisplaySetStereoOperation(display, stereo, forceBlueLine, option)
-}
+}/* debug [functions.gen.go/function]: CGDisplaySetStereoOperation */
 
 // Decrements the hide cursor count, and shows the mouse cursor if the count is .
 //
@@ -4973,7 +4973,7 @@ func CGDisplaySetStereoOperation(display DirectDisplayID, stereo unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayShowCursor(_:)
 func CGDisplayShowCursor(display DirectDisplayID) Error {
 	return _CGDisplayShowCursor(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayShowCursor */
 
 // Creates a new display stream whose updates are delivered to a dispatch queue.
 
@@ -4983,7 +4983,7 @@ func CGDisplayShowCursor(display DirectDisplayID) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/init(dispatchQueueDisplay:outputWidth:outputHeight:pixelFormat:properties:queue:handler:)
 func CGDisplayStreamCreateWithDispatchQueue(display DirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat int32, properties DictionaryRef, queue unsafe.Pointer, handler DisplayStreamFrameAvailableHandler) DisplayStreamRef {
 	return _CGDisplayStreamCreateWithDispatchQueue(display, outputWidth, outputHeight, pixelFormat, properties, queue, handler)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamCreateWithDispatchQueue */
 
 // Creates a new display stream to be used with a .
 
@@ -4993,7 +4993,7 @@ func CGDisplayStreamCreateWithDispatchQueue(display DirectDisplayID, outputWidth
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/init(display:outputWidth:outputHeight:pixelFormat:properties:handler:)
 func CGDisplayStreamCreate(display DirectDisplayID, outputWidth uintptr, outputHeight uintptr, pixelFormat int32, properties DictionaryRef, handler DisplayStreamFrameAvailableHandler) DisplayStreamRef {
 	return _CGDisplayStreamCreate(display, outputWidth, outputHeight, pixelFormat, properties, handler)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamCreate */
 
 // Gets the run loop source for a display stream.
 
@@ -5003,7 +5003,7 @@ func CGDisplayStreamCreate(display DirectDisplayID, outputWidth uintptr, outputH
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/runLoopSource
 func CGDisplayStreamGetRunLoopSource(displayStream DisplayStreamRef) RunLoopSourceRef {
 	return _CGDisplayStreamGetRunLoopSource(displayStream)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamGetRunLoopSource */
 
 // Tells a stream to start sending updates.
 
@@ -5013,7 +5013,7 @@ func CGDisplayStreamGetRunLoopSource(displayStream DisplayStreamRef) RunLoopSour
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/start()
 func CGDisplayStreamStart(displayStream DisplayStreamRef) Error {
 	return _CGDisplayStreamStart(displayStream)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamStart */
 
 // Tells a stream to stop sending updates.
 
@@ -5023,7 +5023,7 @@ func CGDisplayStreamStart(displayStream DisplayStreamRef) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/stop()
 func CGDisplayStreamStop(displayStream DisplayStreamRef) Error {
 	return _CGDisplayStreamStop(displayStream)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamStop */
 
 // Returns the type identifier of a Quartz display stream.
 
@@ -5033,7 +5033,7 @@ func CGDisplayStreamStop(displayStream DisplayStreamRef) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream/typeID
 func CGDisplayStreamGetTypeID() TypeID {
 	return _CGDisplayStreamGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamGetTypeID */
 
 // Returns the number of frames that have been dropped since the last call to your update handler.
 
@@ -5043,7 +5043,7 @@ func CGDisplayStreamGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/dropCount
 func CGDisplayStreamUpdateGetDropCount(updateRef DisplayStreamUpdateRef) uintptr {
 	return _CGDisplayStreamUpdateGetDropCount(updateRef)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamUpdateGetDropCount */
 
 // Return the movement delta values for a single update.
 
@@ -5053,7 +5053,7 @@ func CGDisplayStreamUpdateGetDropCount(updateRef DisplayStreamUpdateRef) uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/getMovedRectsDelta(dx:dy:)
 func CGDisplayStreamUpdateGetMovedRectsDelta(updateRef DisplayStreamUpdateRef, dx []float64, dy []float64) {
 	_CGDisplayStreamUpdateGetMovedRectsDelta(updateRef, dx, dy)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamUpdateGetMovedRectsDelta */
 
 // Returns an array of rectangles that describe where the frame has changed since the previous frame.
 
@@ -5063,7 +5063,7 @@ func CGDisplayStreamUpdateGetMovedRectsDelta(updateRef DisplayStreamUpdateRef, d
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/getRects(_:rectCount:)
 func CGDisplayStreamUpdateGetRects(updateRef DisplayStreamUpdateRef, rectType DisplayStreamUpdateRectType, rectCount unsafe.Pointer) unsafe.Pointer {
 	return _CGDisplayStreamUpdateGetRects(updateRef, rectType, rectCount)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamUpdateGetRects */
 
 // Combines two updates into a new update that includes the metadata for both source updates.
 
@@ -5073,7 +5073,7 @@ func CGDisplayStreamUpdateGetRects(updateRef DisplayStreamUpdateRef, rectType Di
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/init(mergedUpdateFirstUpdate:secondUpdate:)
 func CGDisplayStreamUpdateCreateMergedUpdate(firstUpdate DisplayStreamUpdateRef, secondUpdate DisplayStreamUpdateRef) DisplayStreamUpdateRef {
 	return _CGDisplayStreamUpdateCreateMergedUpdate(firstUpdate, secondUpdate)
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamUpdateCreateMergedUpdate */
 
 // Returns the type identifier of a Quartz display stream update.
 
@@ -5083,7 +5083,7 @@ func CGDisplayStreamUpdateCreateMergedUpdate(firstUpdate DisplayStreamUpdateRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStreamUpdate/typeID
 func CGDisplayStreamUpdateGetTypeID() TypeID {
 	return _CGDisplayStreamUpdateGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGDisplayStreamUpdateGetTypeID */
 
 // Switches a display to a different mode.
 
@@ -5093,7 +5093,7 @@ func CGDisplayStreamUpdateGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplaySwitchToMode(_:_:)
 func CGDisplaySwitchToMode(display DirectDisplayID, mode DictionaryRef) Error {
 	return _CGDisplaySwitchToMode(display, mode)
-}
+}/* debug [functions.gen.go/function]: CGDisplaySwitchToMode */
 
 // Returns the logical unit number of a display.
 //
@@ -5104,7 +5104,7 @@ func CGDisplaySwitchToMode(display DirectDisplayID, mode DictionaryRef) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayUnitNumber(_:)
 func CGDisplayUnitNumber(display DirectDisplayID) uint32 {
 	return _CGDisplayUnitNumber(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayUnitNumber */
 
 // Returns a Boolean value indicating whether Quartz is using OpenGL-based window acceleration (Quartz Extreme) to render in a display.
 //
@@ -5115,7 +5115,7 @@ func CGDisplayUnitNumber(display DirectDisplayID) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayUsesOpenGLAcceleration(_:)
 func CGDisplayUsesOpenGLAcceleration(display DirectDisplayID) unsafe.Pointer {
 	return _CGDisplayUsesOpenGLAcceleration(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayUsesOpenGLAcceleration */
 
 // Returns the vendor number of the specified display’s monitor.
 //
@@ -5126,7 +5126,7 @@ func CGDisplayUsesOpenGLAcceleration(display DirectDisplayID) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayVendorNumber(_:)
 func CGDisplayVendorNumber(display DirectDisplayID) uint32 {
 	return _CGDisplayVendorNumber(display)
-}
+}/* debug [functions.gen.go/function]: CGDisplayVendorNumber */
 
 // CGEXRToneMappingGammaGetDefaultOptions is a CoreGraphics function.
 //
@@ -5135,7 +5135,7 @@ func CGDisplayVendorNumber(display DirectDisplayID) uint32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEXRToneMappingGammaGetDefaultOptions
 func CGEXRToneMappingGammaGetDefaultOptions() DictionaryRef {
 	return _CGEXRToneMappingGammaGetDefaultOptions()
-}
+}/* debug [functions.gen.go/function]: CGEXRToneMappingGammaGetDefaultOptions */
 
 // Enables or disables the merging of actual key and mouse state with the application-specified state in a synthetic event.
 
@@ -5145,7 +5145,7 @@ func CGEXRToneMappingGammaGetDefaultOptions() DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEnableEventStateCombining(_:)
 func CGEnableEventStateCombining(combineState unsafe.Pointer) Error {
 	return _CGEnableEventStateCombining(combineState)
-}
+}/* debug [functions.gen.go/function]: CGEnableEventStateCombining */
 
 // CGErrorSetCallback is a CoreGraphics function.
 //
@@ -5154,7 +5154,7 @@ func CGEnableEventStateCombining(combineState unsafe.Pointer) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGErrorSetCallback(_:)
 func CGErrorSetCallback(callback ErrorCallback) {
 	_CGErrorSetCallback(callback)
-}
+}/* debug [functions.gen.go/function]: CGErrorSetCallback */
 
 // Returns a copy of an existing Quartz event.
 //
@@ -5165,7 +5165,7 @@ func CGErrorSetCallback(callback ErrorCallback) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/copy()
 func CGEventCreateCopy(event EventRef) EventRef {
 	return _CGEventCreateCopy(event)
-}
+}/* debug [functions.gen.go/function]: CGEventCreateCopy */
 
 // Returns the event flags of a Quartz event.
 //
@@ -5176,7 +5176,7 @@ func CGEventCreateCopy(event EventRef) EventRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/flags
 func CGEventGetFlags(event EventRef) EventFlags {
 	return _CGEventGetFlags(event)
-}
+}/* debug [functions.gen.go/function]: CGEventGetFlags */
 
 // Returns the floating-point value of a field in a Quartz event.
 //
@@ -5187,7 +5187,7 @@ func CGEventGetFlags(event EventRef) EventFlags {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/getDoubleValueField(_:)
 func CGEventGetDoubleValueField(event EventRef, field EventField) float64 {
 	return _CGEventGetDoubleValueField(event, field)
-}
+}/* debug [functions.gen.go/function]: CGEventGetDoubleValueField */
 
 // Returns the integer value of a field in a Quartz event.
 //
@@ -5198,7 +5198,7 @@ func CGEventGetDoubleValueField(event EventRef, field EventField) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/getIntegerValueField(_:)
 func CGEventGetIntegerValueField(event EventRef, field EventField) int64 {
 	return _CGEventGetIntegerValueField(event, field)
-}
+}/* debug [functions.gen.go/function]: CGEventGetIntegerValueField */
 
 // Returns a new Quartz keyboard event.
 //
@@ -5209,7 +5209,7 @@ func CGEventGetIntegerValueField(event EventRef, field EventField) int64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(keyboardEventSource:virtualKey:keyDown:)
 func CGEventCreateKeyboardEvent(source EventSourceRef, virtualKey KeyCode, keyDown bool) EventRef {
 	return _CGEventCreateKeyboardEvent(source, virtualKey, keyDown)
-}
+}/* debug [functions.gen.go/function]: CGEventCreateKeyboardEvent */
 
 // Returns a new Quartz mouse event.
 //
@@ -5220,7 +5220,7 @@ func CGEventCreateKeyboardEvent(source EventSourceRef, virtualKey KeyCode, keyDo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(mouseEventSource:mouseType:mouseCursorPosition:mouseButton:)
 func CGEventCreateMouseEvent(source EventSourceRef, mouseType EventType, mouseCursorPosition Point, mouseButton MouseButton) EventRef {
 	return _CGEventCreateMouseEvent(source, mouseType, mouseCursorPosition, mouseButton)
-}
+}/* debug [functions.gen.go/function]: CGEventCreateMouseEvent */
 
 // CGEventCreateScrollWheelEvent2 is a CoreGraphics function.
 //
@@ -5229,7 +5229,7 @@ func CGEventCreateMouseEvent(source EventSourceRef, mouseType EventType, mouseCu
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(scrollWheelEvent2Source:units:wheelCount:wheel1:wheel2:wheel3:)
 func CGEventCreateScrollWheelEvent2(source EventSourceRef, units ScrollEventUnit, wheelCount uint32, wheel1 int32, wheel2 int32, wheel3 int32) EventRef {
 	return _CGEventCreateScrollWheelEvent2(source, units, wheelCount, wheel1, wheel2, wheel3)
-}
+}/* debug [functions.gen.go/function]: CGEventCreateScrollWheelEvent2 */
 
 // Returns a new Quartz event.
 //
@@ -5240,7 +5240,7 @@ func CGEventCreateScrollWheelEvent2(source EventSourceRef, units ScrollEventUnit
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(source:)
 func CGEventCreate(source EventSourceRef) EventRef {
 	return _CGEventCreate(source)
-}
+}/* debug [functions.gen.go/function]: CGEventCreate */
 
 // Returns a Quartz event created from a flattened data representation of the event.
 //
@@ -5251,7 +5251,7 @@ func CGEventCreate(source EventSourceRef) EventRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/init(withDataAllocator:data:)
 func CGEventCreateFromData(allocator AllocatorRef, data DataRef) EventRef {
 	return _CGEventCreateFromData(allocator, data)
-}
+}/* debug [functions.gen.go/function]: CGEventCreateFromData */
 
 // Returns the Unicode string associated with a Quartz keyboard event.
 //
@@ -5262,7 +5262,7 @@ func CGEventCreateFromData(allocator AllocatorRef, data DataRef) EventRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/keyboardGetUnicodeString(maxStringLength:actualStringLength:unicodeString:)
 func CGEventKeyboardGetUnicodeString(event EventRef, maxStringLength unsafe.Pointer, actualStringLength unsafe.Pointer, unicodeString unsafe.Pointer) {
 	_CGEventKeyboardGetUnicodeString(event, maxStringLength, actualStringLength, unicodeString)
-}
+}/* debug [functions.gen.go/function]: CGEventKeyboardGetUnicodeString */
 
 // Sets the Unicode string associated with a Quartz keyboard event.
 //
@@ -5273,7 +5273,7 @@ func CGEventKeyboardGetUnicodeString(event EventRef, maxStringLength unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/keyboardSetUnicodeString(stringLength:unicodeString:)
 func CGEventKeyboardSetUnicodeString(event EventRef, stringLength unsafe.Pointer, unicodeString unsafe.Pointer) {
 	_CGEventKeyboardSetUnicodeString(event, stringLength, unicodeString)
-}
+}/* debug [functions.gen.go/function]: CGEventKeyboardSetUnicodeString */
 
 // Returns the location of a Quartz mouse event.
 //
@@ -5284,7 +5284,7 @@ func CGEventKeyboardSetUnicodeString(event EventRef, stringLength unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/location
 func CGEventGetLocation(event EventRef) Point {
 	return _CGEventGetLocation(event)
-}
+}/* debug [functions.gen.go/function]: CGEventGetLocation */
 
 // Posts a Quartz event into the event stream at a specified location.
 //
@@ -5295,7 +5295,7 @@ func CGEventGetLocation(event EventRef) Point {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/post(tap:)
 func CGEventPost(tap EventTapLocation, event EventRef) {
 	_CGEventPost(tap, event)
-}
+}/* debug [functions.gen.go/function]: CGEventPost */
 
 // Posts a Quartz event into the event stream for a specific application.
 //
@@ -5306,7 +5306,7 @@ func CGEventPost(tap EventTapLocation, event EventRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/postToPSN(processSerialNumber:)
 func CGEventPostToPSN(processSerialNumber unsafe.Pointer, event EventRef) {
 	_CGEventPostToPSN(processSerialNumber, event)
-}
+}/* debug [functions.gen.go/function]: CGEventPostToPSN */
 
 // CGEventPostToPid is a CoreGraphics function.
 //
@@ -5315,7 +5315,7 @@ func CGEventPostToPSN(processSerialNumber unsafe.Pointer, event EventRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/postToPid(_:)
 func CGEventPostToPid(pid unsafe.Pointer, event EventRef) {
 	_CGEventPostToPid(pid, event)
-}
+}/* debug [functions.gen.go/function]: CGEventPostToPid */
 
 // Sets the floating-point value of a field in a Quartz event.
 //
@@ -5326,7 +5326,7 @@ func CGEventPostToPid(pid unsafe.Pointer, event EventRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/setDoubleValueField(_:value:)
 func CGEventSetDoubleValueField(event EventRef, field EventField, value float64) {
 	_CGEventSetDoubleValueField(event, field, value)
-}
+}/* debug [functions.gen.go/function]: CGEventSetDoubleValueField */
 
 // Sets the integer value of a field in a Quartz event.
 //
@@ -5337,7 +5337,7 @@ func CGEventSetDoubleValueField(event EventRef, field EventField, value float64)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/setIntegerValueField(_:value:)
 func CGEventSetIntegerValueField(event EventRef, field EventField, value int64) {
 	_CGEventSetIntegerValueField(event, field, value)
-}
+}/* debug [functions.gen.go/function]: CGEventSetIntegerValueField */
 
 // Sets the event source of a Quartz event.
 //
@@ -5348,7 +5348,7 @@ func CGEventSetIntegerValueField(event EventRef, field EventField, value int64) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/setSource(_:)
 func CGEventSetSource(event EventRef, source EventSourceRef) {
 	_CGEventSetSource(event, source)
-}
+}/* debug [functions.gen.go/function]: CGEventSetSource */
 
 // Creates an event tap.
 //
@@ -5359,7 +5359,7 @@ func CGEventSetSource(event EventRef, source EventSourceRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreate(tap:place:options:eventsOfInterest:callback:userInfo:)
 func CGEventTapCreate(tap EventTapLocation, place EventTapPlacement, options EventTapOptions, eventsOfInterest EventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
 	return _CGEventTapCreate(tap, place, options, eventsOfInterest, callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGEventTapCreate */
 
 // Creates an event tap for a specified process.
 //
@@ -5370,7 +5370,7 @@ func CGEventTapCreate(tap EventTapLocation, place EventTapPlacement, options Eve
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreateForPSN(processSerialNumber:place:options:eventsOfInterest:callback:userInfo:)
 func CGEventTapCreateForPSN(processSerialNumber unsafe.Pointer, place EventTapPlacement, options EventTapOptions, eventsOfInterest EventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
 	return _CGEventTapCreateForPSN(processSerialNumber, place, options, eventsOfInterest, callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGEventTapCreateForPSN */
 
 // CGEventTapCreateForPid is a CoreGraphics function.
 //
@@ -5379,7 +5379,7 @@ func CGEventTapCreateForPSN(processSerialNumber unsafe.Pointer, place EventTapPl
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapCreateForPid(pid:place:options:eventsOfInterest:callback:userInfo:)
 func CGEventTapCreateForPid(pid unsafe.Pointer, place EventTapPlacement, options EventTapOptions, eventsOfInterest EventMask, callback EventTapCallBack, userInfo unsafe.Pointer) MachPortRef {
 	return _CGEventTapCreateForPid(pid, place, options, eventsOfInterest, callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGEventTapCreateForPid */
 
 // Enables or disables an event tap.
 //
@@ -5390,7 +5390,7 @@ func CGEventTapCreateForPid(pid unsafe.Pointer, place EventTapPlacement, options
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapEnable(tap:enable:)
 func CGEventTapEnable(tap MachPortRef, enable bool) {
 	_CGEventTapEnable(tap, enable)
-}
+}/* debug [functions.gen.go/function]: CGEventTapEnable */
 
 // Returns a Boolean value indicating whether an event tap is enabled.
 //
@@ -5401,7 +5401,7 @@ func CGEventTapEnable(tap MachPortRef, enable bool) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapIsEnabled(tap:)
 func CGEventTapIsEnabled(tap MachPortRef) bool {
 	return _CGEventTapIsEnabled(tap)
-}
+}/* debug [functions.gen.go/function]: CGEventTapIsEnabled */
 
 // Posts a Quartz event from an event tap into the event stream.
 //
@@ -5412,7 +5412,7 @@ func CGEventTapIsEnabled(tap MachPortRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/tapPostEvent(_:)
 func CGEventTapPostEvent(proxy EventTapProxy, event EventRef) {
 	_CGEventTapPostEvent(proxy, event)
-}
+}/* debug [functions.gen.go/function]: CGEventTapPostEvent */
 
 // Returns the timestamp of a Quartz event.
 //
@@ -5423,7 +5423,7 @@ func CGEventTapPostEvent(proxy EventTapProxy, event EventRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/timestamp
 func CGEventGetTimestamp(event EventRef) EventTimestamp {
 	return _CGEventGetTimestamp(event)
-}
+}/* debug [functions.gen.go/function]: CGEventGetTimestamp */
 
 // Returns the event type of a Quartz event (left mouse down, for example).
 //
@@ -5434,7 +5434,7 @@ func CGEventGetTimestamp(event EventRef) EventTimestamp {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/type
 func CGEventGetType(event EventRef) EventType {
 	return _CGEventGetType(event)
-}
+}/* debug [functions.gen.go/function]: CGEventGetType */
 
 // Returns the type identifier for the opaque type .
 //
@@ -5445,7 +5445,7 @@ func CGEventGetType(event EventRef) EventType {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/typeID
 func CGEventGetTypeID() TypeID {
 	return _CGEventGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGEventGetTypeID */
 
 // Returns the location of a Quartz mouse event.
 //
@@ -5456,7 +5456,7 @@ func CGEventGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEvent/unflippedLocation
 func CGEventGetUnflippedLocation(event EventRef) Point {
 	return _CGEventGetUnflippedLocation(event)
-}
+}/* debug [functions.gen.go/function]: CGEventGetUnflippedLocation */
 
 // Returns a flattened data representation of a Quartz event.
 //
@@ -5467,7 +5467,7 @@ func CGEventGetUnflippedLocation(event EventRef) Point {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventCreateData
 func CGEventCreateData(allocator AllocatorRef, event EventRef) DataRef {
 	return _CGEventCreateData(allocator, event)
-}
+}/* debug [functions.gen.go/function]: CGEventCreateData */
 
 // Returns a new Quartz scrolling event.
 //
@@ -5478,7 +5478,7 @@ func CGEventCreateData(allocator AllocatorRef, event EventRef) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventCreateScrollWheelEvent
 func CGEventCreateScrollWheelEvent(source EventSourceRef, units ScrollEventUnit, wheelCount uint32, wheel1 int32) EventRef {
 	return _CGEventCreateScrollWheelEvent(source, units, wheelCount, wheel1)
-}
+}/* debug [functions.gen.go/function]: CGEventCreateScrollWheelEvent */
 
 // Sets the event flags of a Quartz event.
 //
@@ -5489,7 +5489,7 @@ func CGEventCreateScrollWheelEvent(source EventSourceRef, units ScrollEventUnit,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetFlags
 func CGEventSetFlags(event EventRef, flags EventFlags) {
 	_CGEventSetFlags(event, flags)
-}
+}/* debug [functions.gen.go/function]: CGEventSetFlags */
 
 // Sets the location of a Quartz mouse event.
 //
@@ -5500,7 +5500,7 @@ func CGEventSetFlags(event EventRef, flags EventFlags) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetLocation
 func CGEventSetLocation(event EventRef, location Point) {
 	_CGEventSetLocation(event, location)
-}
+}/* debug [functions.gen.go/function]: CGEventSetLocation */
 
 // Sets the timestamp of a Quartz event.
 //
@@ -5511,7 +5511,7 @@ func CGEventSetLocation(event EventRef, location Point) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetTimestamp
 func CGEventSetTimestamp(event EventRef, timestamp EventTimestamp) {
 	_CGEventSetTimestamp(event, timestamp)
-}
+}/* debug [functions.gen.go/function]: CGEventSetTimestamp */
 
 // Sets the event type of a Quartz event (left mouse down, for example).
 //
@@ -5522,7 +5522,7 @@ func CGEventSetTimestamp(event EventRef, timestamp EventTimestamp) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSetType
 func CGEventSetType(event EventRef, type_ EventType) {
 	_CGEventSetType(event, type_)
-}
+}/* debug [functions.gen.go/function]: CGEventSetType */
 
 // Returns a Boolean value indicating the current button state of a Quartz event source.
 //
@@ -5533,7 +5533,7 @@ func CGEventSetType(event EventRef, type_ EventType) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/buttonState(_:button:)
 func CGEventSourceButtonState(stateID EventSourceStateID, button MouseButton) bool {
 	return _CGEventSourceButtonState(stateID, button)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceButtonState */
 
 // Returns a count of events of a given type seen since the window server started.
 //
@@ -5544,7 +5544,7 @@ func CGEventSourceButtonState(stateID EventSourceStateID, button MouseButton) bo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/counterForEventType(_:eventType:)
 func CGEventSourceCounterForEventType(stateID EventSourceStateID, eventType EventType) uint32 {
 	return _CGEventSourceCounterForEventType(stateID, eventType)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceCounterForEventType */
 
 // Returns the current flags of a Quartz event source.
 //
@@ -5555,7 +5555,7 @@ func CGEventSourceCounterForEventType(stateID EventSourceStateID, eventType Even
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/flagsState(_:)
 func CGEventSourceFlagsState(stateID EventSourceStateID) EventFlags {
 	return _CGEventSourceFlagsState(stateID)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceFlagsState */
 
 // Returns the mask that indicates which classes of local hardware events are enabled during event suppression.
 //
@@ -5566,7 +5566,7 @@ func CGEventSourceFlagsState(stateID EventSourceStateID) EventFlags {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/getLocalEventsFilterDuringSuppressionState(_:)
 func CGEventSourceGetLocalEventsFilterDuringSuppressionState(source EventSourceRef, state EventSuppressionState) EventFilterMask {
 	return _CGEventSourceGetLocalEventsFilterDuringSuppressionState(source, state)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceGetLocalEventsFilterDuringSuppressionState */
 
 // Returns a Quartz event source created from an existing Quartz event.
 //
@@ -5577,7 +5577,7 @@ func CGEventSourceGetLocalEventsFilterDuringSuppressionState(source EventSourceR
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/init(event:)
 func CGEventCreateSourceFromEvent(event EventRef) EventSourceRef {
 	return _CGEventCreateSourceFromEvent(event)
-}
+}/* debug [functions.gen.go/function]: CGEventCreateSourceFromEvent */
 
 // Returns a Quartz event source created with a specified source state.
 //
@@ -5588,7 +5588,7 @@ func CGEventCreateSourceFromEvent(event EventRef) EventSourceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/init(stateID:)
 func CGEventSourceCreate(stateID EventSourceStateID) EventSourceRef {
 	return _CGEventSourceCreate(stateID)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceCreate */
 
 // Returns a Boolean value indicating the current keyboard state of a Quartz event source.
 //
@@ -5599,7 +5599,7 @@ func CGEventSourceCreate(stateID EventSourceStateID) EventSourceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/keyState(_:key:)
 func CGEventSourceKeyState(stateID EventSourceStateID, key KeyCode) bool {
 	return _CGEventSourceKeyState(stateID, key)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceKeyState */
 
 // Returns the keyboard type to be used with a Quartz event source.
 //
@@ -5610,7 +5610,7 @@ func CGEventSourceKeyState(stateID EventSourceStateID, key KeyCode) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/keyboardType
 func CGEventSourceGetKeyboardType(source EventSourceRef) EventSourceKeyboardType {
 	return _CGEventSourceGetKeyboardType(source)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceGetKeyboardType */
 
 // Returns the interval that local hardware events may be suppressed following the posting of a Quartz event.
 //
@@ -5619,9 +5619,9 @@ func CGEventSourceGetKeyboardType(source EventSourceRef) EventSourceKeyboardType
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/localEventsSuppressionInterval
-func CGEventSourceGetLocalEventsSuppressionInterval(source EventSourceRef) TimeInterval {
+func CGEventSourceGetLocalEventsSuppressionInterval(source EventSourceRef) float64 {
 	return _CGEventSourceGetLocalEventsSuppressionInterval(source)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceGetLocalEventsSuppressionInterval */
 
 // Gets the scale of pixels per line in a scrolling event source.
 //
@@ -5632,7 +5632,7 @@ func CGEventSourceGetLocalEventsSuppressionInterval(source EventSourceRef) TimeI
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/pixelsPerLine
 func CGEventSourceGetPixelsPerLine(source EventSourceRef) float64 {
 	return _CGEventSourceGetPixelsPerLine(source)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceGetPixelsPerLine */
 
 // Returns the elapsed time since the last event for a Quartz event source.
 //
@@ -5641,9 +5641,9 @@ func CGEventSourceGetPixelsPerLine(source EventSourceRef) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/secondsSinceLastEventType(_:eventType:)
-func CGEventSourceSecondsSinceLastEventType(stateID EventSourceStateID, eventType EventType) TimeInterval {
+func CGEventSourceSecondsSinceLastEventType(stateID EventSourceStateID, eventType EventType) float64 {
 	return _CGEventSourceSecondsSinceLastEventType(stateID, eventType)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceSecondsSinceLastEventType */
 
 // Sets the mask that indicates which classes of local hardware events are enabled during event suppression.
 //
@@ -5654,7 +5654,7 @@ func CGEventSourceSecondsSinceLastEventType(stateID EventSourceStateID, eventTyp
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/setLocalEventsFilterDuringSuppressionState(_:state:)
 func CGEventSourceSetLocalEventsFilterDuringSuppressionState(source EventSourceRef, filter EventFilterMask, state EventSuppressionState) {
 	_CGEventSourceSetLocalEventsFilterDuringSuppressionState(source, filter, state)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceSetLocalEventsFilterDuringSuppressionState */
 
 // Returns the source state associated with a Quartz event source.
 //
@@ -5665,7 +5665,7 @@ func CGEventSourceSetLocalEventsFilterDuringSuppressionState(source EventSourceR
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/sourceStateID
 func CGEventSourceGetSourceStateID(source EventSourceRef) EventSourceStateID {
 	return _CGEventSourceGetSourceStateID(source)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceGetSourceStateID */
 
 // Returns the type identifier for the opaque type .
 //
@@ -5676,7 +5676,7 @@ func CGEventSourceGetSourceStateID(source EventSourceRef) EventSourceStateID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/typeID
 func CGEventSourceGetTypeID() TypeID {
 	return _CGEventSourceGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGEventSourceGetTypeID */
 
 // Returns the 64-bit user-specified data for a Quartz event source.
 //
@@ -5687,7 +5687,7 @@ func CGEventSourceGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSource/userData
 func CGEventSourceGetUserData(source EventSourceRef) int64 {
 	return _CGEventSourceGetUserData(source)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceGetUserData */
 
 // Sets the keyboard type to be used with a Quartz event source.
 //
@@ -5698,7 +5698,7 @@ func CGEventSourceGetUserData(source EventSourceRef) int64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetKeyboardType
 func CGEventSourceSetKeyboardType(source EventSourceRef, keyboardType EventSourceKeyboardType) {
 	_CGEventSourceSetKeyboardType(source, keyboardType)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceSetKeyboardType */
 
 // Sets the interval that local hardware events may be suppressed following the posting of a Quartz event.
 //
@@ -5707,9 +5707,9 @@ func CGEventSourceSetKeyboardType(source EventSourceRef, keyboardType EventSourc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetLocalEventsSuppressionInterval
-func CGEventSourceSetLocalEventsSuppressionInterval(source EventSourceRef, seconds TimeInterval) {
+func CGEventSourceSetLocalEventsSuppressionInterval(source EventSourceRef, seconds float64) {
 	_CGEventSourceSetLocalEventsSuppressionInterval(source, seconds)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceSetLocalEventsSuppressionInterval */
 
 // Sets the scale of pixels per line in a scrolling event source.
 //
@@ -5720,7 +5720,7 @@ func CGEventSourceSetLocalEventsSuppressionInterval(source EventSourceRef, secon
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetPixelsPerLine
 func CGEventSourceSetPixelsPerLine(source EventSourceRef, pixelsPerLine float64) {
 	_CGEventSourceSetPixelsPerLine(source, pixelsPerLine)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceSetPixelsPerLine */
 
 // Sets the 64-bit user-specified data for a Quartz event source.
 //
@@ -5731,7 +5731,7 @@ func CGEventSourceSetPixelsPerLine(source EventSourceRef, pixelsPerLine float64)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGEventSourceSetUserData
 func CGEventSourceSetUserData(source EventSourceRef, userData int64) {
 	_CGEventSourceSetUserData(source, userData)
-}
+}/* debug [functions.gen.go/function]: CGEventSourceSetUserData */
 
 // Returns the ascent of a font.
 //
@@ -5742,7 +5742,7 @@ func CGEventSourceSetUserData(source EventSourceRef, userData int64) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/ascent
 func CGFontGetAscent(font FontRef) int {
 	return _CGFontGetAscent(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetAscent */
 
 // Determines whether Core Graphics can create a subset of the font in PostScript format.
 //
@@ -5753,7 +5753,7 @@ func CGFontGetAscent(font FontRef) int {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/canCreatePostScriptSubset(_:)
 func CGFontCanCreatePostScriptSubset(font FontRef, format FontPostScriptFormat) bool {
 	return _CGFontCanCreatePostScriptSubset(font, format)
-}
+}/* debug [functions.gen.go/function]: CGFontCanCreatePostScriptSubset */
 
 // Returns the cap height of a font.
 //
@@ -5764,7 +5764,7 @@ func CGFontCanCreatePostScriptSubset(font FontRef, format FontPostScriptFormat) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/capHeight
 func CGFontGetCapHeight(font FontRef) int {
 	return _CGFontGetCapHeight(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetCapHeight */
 
 // Creates a copy of a font using a variation specification dictionary.
 //
@@ -5775,7 +5775,7 @@ func CGFontGetCapHeight(font FontRef) int {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/copy(withVariations:)
 func CGFontCreateCopyWithVariations(font FontRef, variations DictionaryRef) FontRef {
 	return _CGFontCreateCopyWithVariations(font, variations)
-}
+}/* debug [functions.gen.go/function]: CGFontCreateCopyWithVariations */
 
 // Creates a PostScript encoding of a font.
 //
@@ -5786,7 +5786,7 @@ func CGFontCreateCopyWithVariations(font FontRef, variations DictionaryRef) Font
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/createPostScriptEncoding(encoding:)
 func CGFontCreatePostScriptEncoding(font FontRef, encoding unsafe.Pointer, p2 unsafe.Pointer) DataRef {
 	return _CGFontCreatePostScriptEncoding(font, encoding, p2)
-}
+}/* debug [functions.gen.go/function]: CGFontCreatePostScriptEncoding */
 
 // Creates a subset of the font in the specified PostScript format.
 //
@@ -5797,7 +5797,7 @@ func CGFontCreatePostScriptEncoding(font FontRef, encoding unsafe.Pointer, p2 un
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/createPostScriptSubset(subsetName:format:glyphs:count:encoding:)
 func CGFontCreatePostScriptSubset(font FontRef, subsetName StringRef, format FontPostScriptFormat, glyphs unsafe.Pointer, count uintptr, encoding unsafe.Pointer, p6 unsafe.Pointer) DataRef {
 	return _CGFontCreatePostScriptSubset(font, subsetName, format, glyphs, count, encoding, p6)
-}
+}/* debug [functions.gen.go/function]: CGFontCreatePostScriptSubset */
 
 // Returns the descent of a font.
 //
@@ -5808,7 +5808,7 @@ func CGFontCreatePostScriptSubset(font FontRef, subsetName StringRef, format Fon
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/descent
 func CGFontGetDescent(font FontRef) int {
 	return _CGFontGetDescent(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetDescent */
 
 // Returns the bounding box of a font.
 //
@@ -5819,7 +5819,7 @@ func CGFontGetDescent(font FontRef) int {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/fontBBox
 func CGFontGetFontBBox(font FontRef) Rect {
 	return _CGFontGetFontBBox(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetFontBBox */
 
 // Returns the full name associated with a font object.
 //
@@ -5830,7 +5830,7 @@ func CGFontGetFontBBox(font FontRef) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/fullName
 func CGFontCopyFullName(font FontRef) StringRef {
 	return _CGFontCopyFullName(font)
-}
+}/* debug [functions.gen.go/function]: CGFontCopyFullName */
 
 // Gets the advance width of each glyph in the provided array.
 //
@@ -5841,7 +5841,7 @@ func CGFontCopyFullName(font FontRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphAdvances(glyphs:count:advances:)
 func CGFontGetGlyphAdvances(font FontRef, glyphs unsafe.Pointer, count uintptr, advances []int) bool {
 	return _CGFontGetGlyphAdvances(font, glyphs, count, advances)
-}
+}/* debug [functions.gen.go/function]: CGFontGetGlyphAdvances */
 
 // Get the bounding box of each glyph in an array.
 //
@@ -5852,7 +5852,7 @@ func CGFontGetGlyphAdvances(font FontRef, glyphs unsafe.Pointer, count uintptr, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphBBoxes(glyphs:count:bboxes:)
 func CGFontGetGlyphBBoxes(font FontRef, glyphs unsafe.Pointer, count uintptr, bboxes unsafe.Pointer) bool {
 	return _CGFontGetGlyphBBoxes(font, glyphs, count, bboxes)
-}
+}/* debug [functions.gen.go/function]: CGFontGetGlyphBBoxes */
 
 // Returns the glyph for the glyph name associated with the specified font object.
 //
@@ -5863,7 +5863,7 @@ func CGFontGetGlyphBBoxes(font FontRef, glyphs unsafe.Pointer, count uintptr, bb
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/getGlyphWithGlyphName(name:)
 func CGFontGetGlyphWithGlyphName(font FontRef, name StringRef) Glyph {
 	return _CGFontGetGlyphWithGlyphName(font, name)
-}
+}/* debug [functions.gen.go/function]: CGFontGetGlyphWithGlyphName */
 
 // Creates a font object corresponding to the font specified by a PostScript or full name.
 //
@@ -5874,7 +5874,7 @@ func CGFontGetGlyphWithGlyphName(font FontRef, name StringRef) Glyph {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/init(_:)-1p4b
 func CGFontCreateWithFontName(name StringRef) FontRef {
 	return _CGFontCreateWithFontName(name)
-}
+}/* debug [functions.gen.go/function]: CGFontCreateWithFontName */
 
 // Creates a font object from data supplied from a data provider.
 //
@@ -5885,7 +5885,7 @@ func CGFontCreateWithFontName(name StringRef) FontRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/init(_:)-9aour
 func CGFontCreateWithDataProvider(provider DataProviderRef) FontRef {
 	return _CGFontCreateWithDataProvider(provider)
-}
+}/* debug [functions.gen.go/function]: CGFontCreateWithDataProvider */
 
 // Returns the italic angle of a font.
 //
@@ -5896,7 +5896,7 @@ func CGFontCreateWithDataProvider(provider DataProviderRef) FontRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/italicAngle
 func CGFontGetItalicAngle(font FontRef) float64 {
 	return _CGFontGetItalicAngle(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetItalicAngle */
 
 // Returns the leading of a font.
 //
@@ -5907,7 +5907,7 @@ func CGFontGetItalicAngle(font FontRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/leading
 func CGFontGetLeading(font FontRef) int {
 	return _CGFontGetLeading(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetLeading */
 
 // Returns the glyph name of the specified glyph in the specified font.
 //
@@ -5918,7 +5918,7 @@ func CGFontGetLeading(font FontRef) int {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/name(for:)
 func CGFontCopyGlyphNameForGlyph(font FontRef, glyph Glyph) StringRef {
 	return _CGFontCopyGlyphNameForGlyph(font, glyph)
-}
+}/* debug [functions.gen.go/function]: CGFontCopyGlyphNameForGlyph */
 
 // Returns the number of glyphs in a font.
 //
@@ -5929,7 +5929,7 @@ func CGFontCopyGlyphNameForGlyph(font FontRef, glyph Glyph) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/numberOfGlyphs
 func CGFontGetNumberOfGlyphs(font FontRef) uintptr {
 	return _CGFontGetNumberOfGlyphs(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetNumberOfGlyphs */
 
 // Obtains the PostScript name of a font.
 //
@@ -5940,7 +5940,7 @@ func CGFontGetNumberOfGlyphs(font FontRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/postScriptName
 func CGFontCopyPostScriptName(font FontRef) StringRef {
 	return _CGFontCopyPostScriptName(font)
-}
+}/* debug [functions.gen.go/function]: CGFontCopyPostScriptName */
 
 // Returns the thickness of the dominant vertical stems of glyphs in a font.
 //
@@ -5951,7 +5951,7 @@ func CGFontCopyPostScriptName(font FontRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/stemV
 func CGFontGetStemV(font FontRef) float64 {
 	return _CGFontGetStemV(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetStemV */
 
 // Returns the font table that corresponds to the provided tag.
 //
@@ -5962,7 +5962,7 @@ func CGFontGetStemV(font FontRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/table(for:)
 func CGFontCopyTableForTag(font FontRef, tag uint32) DataRef {
 	return _CGFontCopyTableForTag(font, tag)
-}
+}/* debug [functions.gen.go/function]: CGFontCopyTableForTag */
 
 // Returns an array of tags that correspond to the font tables for a font.
 //
@@ -5973,7 +5973,7 @@ func CGFontCopyTableForTag(font FontRef, tag uint32) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/tableTags
 func CGFontCopyTableTags(font FontRef) ArrayRef {
 	return _CGFontCopyTableTags(font)
-}
+}/* debug [functions.gen.go/function]: CGFontCopyTableTags */
 
 // Returns the Core Foundation type identifier for Core Graphics fonts.
 //
@@ -5984,7 +5984,7 @@ func CGFontCopyTableTags(font FontRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/typeID
 func CGFontGetTypeID() TypeID {
 	return _CGFontGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGFontGetTypeID */
 
 // Returns the number of glyph space units per em for the provided font.
 //
@@ -5995,7 +5995,7 @@ func CGFontGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/unitsPerEm
 func CGFontGetUnitsPerEm(font FontRef) int {
 	return _CGFontGetUnitsPerEm(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetUnitsPerEm */
 
 // Returns an array of the variation axis dictionaries for a font.
 //
@@ -6006,7 +6006,7 @@ func CGFontGetUnitsPerEm(font FontRef) int {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/variationAxes
 func CGFontCopyVariationAxes(font FontRef) ArrayRef {
 	return _CGFontCopyVariationAxes(font)
-}
+}/* debug [functions.gen.go/function]: CGFontCopyVariationAxes */
 
 // Returns the variation specification dictionary for a font.
 //
@@ -6017,7 +6017,7 @@ func CGFontCopyVariationAxes(font FontRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/variations
 func CGFontCopyVariations(font FontRef) DictionaryRef {
 	return _CGFontCopyVariations(font)
-}
+}/* debug [functions.gen.go/function]: CGFontCopyVariations */
 
 // Returns the x-height of a font.
 //
@@ -6028,7 +6028,7 @@ func CGFontCopyVariations(font FontRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFont/xHeight
 func CGFontGetXHeight(font FontRef) int {
 	return _CGFontGetXHeight(font)
-}
+}/* debug [functions.gen.go/function]: CGFontGetXHeight */
 
 // Creates a font object from an Apple Type Services (ATS) font.
 //
@@ -6041,7 +6041,7 @@ func CGFontGetXHeight(font FontRef) int {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFontCreateWithPlatformFont
 func CGFontCreateWithPlatformFont(platformFontReference unsafe.Pointer) FontRef {
 	return _CGFontCreateWithPlatformFont(platformFontReference)
-}
+}/* debug [functions.gen.go/function]: CGFontCreateWithPlatformFont */
 
 // Decrements the retain count of a font.
 //
@@ -6052,7 +6052,7 @@ func CGFontCreateWithPlatformFont(platformFontReference unsafe.Pointer) FontRef 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFontRelease
 func CGFontRelease(font FontRef) {
 	_CGFontRelease(font)
-}
+}/* debug [functions.gen.go/function]: CGFontRelease */
 
 // Increments the retain count of a font.
 //
@@ -6063,7 +6063,7 @@ func CGFontRelease(font FontRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFontRetain
 func CGFontRetain(font FontRef) FontRef {
 	return _CGFontRetain(font)
-}
+}/* debug [functions.gen.go/function]: CGFontRetain */
 
 // Creates a Core Graphics function.
 //
@@ -6074,7 +6074,7 @@ func CGFontRetain(font FontRef) FontRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunction/init(info:domainDimension:domain:rangeDimension:range:callbacks:)
 func CGFunctionCreate(info unsafe.Pointer, domainDimension uintptr, domain []float64, rangeDimension uintptr, range_ []float64, callbacks unsafe.Pointer) FunctionRef {
 	return _CGFunctionCreate(info, domainDimension, domain, rangeDimension, range_, callbacks)
-}
+}/* debug [functions.gen.go/function]: CGFunctionCreate */
 
 // Returns the type identifier for Core Graphics function objects.
 //
@@ -6085,7 +6085,7 @@ func CGFunctionCreate(info unsafe.Pointer, domainDimension uintptr, domain []flo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunction/typeID
 func CGFunctionGetTypeID() TypeID {
 	return _CGFunctionGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGFunctionGetTypeID */
 
 // Decrements the retain count of a function object.
 //
@@ -6096,7 +6096,7 @@ func CGFunctionGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunctionRelease
 func CGFunctionRelease(function FunctionRef) {
 	_CGFunctionRelease(function)
-}
+}/* debug [functions.gen.go/function]: CGFunctionRelease */
 
 // Increments the retain count of a function object.
 //
@@ -6107,7 +6107,7 @@ func CGFunctionRelease(function FunctionRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunctionRetain
 func CGFunctionRetain(function FunctionRef) FunctionRef {
 	return _CGFunctionRetain(function)
-}
+}/* debug [functions.gen.go/function]: CGFunctionRetain */
 
 // Provides a list of displays that are active for drawing.
 //
@@ -6118,7 +6118,7 @@ func CGFunctionRetain(function FunctionRef) FunctionRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetActiveDisplayList(_:_:_:)
 func CGGetActiveDisplayList(maxDisplays uint32, activeDisplays unsafe.Pointer, displayCount []uint32) Error {
 	return _CGGetActiveDisplayList(maxDisplays, activeDisplays, displayCount)
-}
+}/* debug [functions.gen.go/function]: CGGetActiveDisplayList */
 
 // Gets the coefficients of the gamma transfer formula for a display.
 //
@@ -6129,7 +6129,7 @@ func CGGetActiveDisplayList(maxDisplays uint32, activeDisplays unsafe.Pointer, d
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplayTransferByFormula(_:_:_:_:_:_:_:_:_:_:)
 func CGGetDisplayTransferByFormula(display DirectDisplayID, redMin unsafe.Pointer, redMax unsafe.Pointer, redGamma unsafe.Pointer, greenMin unsafe.Pointer, greenMax unsafe.Pointer, greenGamma unsafe.Pointer, blueMin unsafe.Pointer, blueMax unsafe.Pointer, blueGamma unsafe.Pointer) Error {
 	return _CGGetDisplayTransferByFormula(display, redMin, redMax, redGamma, greenMin, greenMax, greenGamma, blueMin, blueMax, blueGamma)
-}
+}/* debug [functions.gen.go/function]: CGGetDisplayTransferByFormula */
 
 // Gets the values in the RGB gamma tables for a display.
 //
@@ -6140,7 +6140,7 @@ func CGGetDisplayTransferByFormula(display DirectDisplayID, redMin unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplayTransferByTable(_:_:_:_:_:_:)
 func CGGetDisplayTransferByTable(display DirectDisplayID, capacity uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer, sampleCount []uint32) Error {
 	return _CGGetDisplayTransferByTable(display, capacity, redTable, greenTable, blueTable, sampleCount)
-}
+}/* debug [functions.gen.go/function]: CGGetDisplayTransferByTable */
 
 // Provides a list of displays that corresponds to the bits set in an OpenGL display mask.
 //
@@ -6151,7 +6151,7 @@ func CGGetDisplayTransferByTable(display DirectDisplayID, capacity uint32, redTa
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithOpenGLDisplayMask(_:_:_:_:)
 func CGGetDisplaysWithOpenGLDisplayMask(mask OpenGLDisplayMask, maxDisplays uint32, displays unsafe.Pointer, matchingDisplayCount []uint32) Error {
 	return _CGGetDisplaysWithOpenGLDisplayMask(mask, maxDisplays, displays, matchingDisplayCount)
-}
+}/* debug [functions.gen.go/function]: CGGetDisplaysWithOpenGLDisplayMask */
 
 // Provides a list of online displays with bounds that include the specified point.
 //
@@ -6162,7 +6162,7 @@ func CGGetDisplaysWithOpenGLDisplayMask(mask OpenGLDisplayMask, maxDisplays uint
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithPoint(_:_:_:_:)
 func CGGetDisplaysWithPoint(point Point, maxDisplays uint32, displays unsafe.Pointer, matchingDisplayCount []uint32) Error {
 	return _CGGetDisplaysWithPoint(point, maxDisplays, displays, matchingDisplayCount)
-}
+}/* debug [functions.gen.go/function]: CGGetDisplaysWithPoint */
 
 // Gets a list of online displays with bounds that intersect the specified rectangle.
 //
@@ -6173,7 +6173,7 @@ func CGGetDisplaysWithPoint(point Point, maxDisplays uint32, displays unsafe.Poi
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetDisplaysWithRect(_:_:_:_:)
 func CGGetDisplaysWithRect(rect Rect, maxDisplays uint32, displays unsafe.Pointer, matchingDisplayCount []uint32) Error {
 	return _CGGetDisplaysWithRect(rect, maxDisplays, displays, matchingDisplayCount)
-}
+}/* debug [functions.gen.go/function]: CGGetDisplaysWithRect */
 
 // Gets a list of currently installed event taps.
 //
@@ -6184,7 +6184,7 @@ func CGGetDisplaysWithRect(rect Rect, maxDisplays uint32, displays unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetEventTapList(_:_:_:)
 func CGGetEventTapList(maxNumberOfTaps uint32, tapList unsafe.Pointer, eventTapCount []uint32) Error {
 	return _CGGetEventTapList(maxNumberOfTaps, tapList, eventTapCount)
-}
+}/* debug [functions.gen.go/function]: CGGetEventTapList */
 
 // Reports the change in mouse position since the last mouse movement event received by the application.
 //
@@ -6195,7 +6195,7 @@ func CGGetEventTapList(maxNumberOfTaps uint32, tapList unsafe.Pointer, eventTapC
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetLastMouseDelta
 func CGGetLastMouseDelta(deltaX unsafe.Pointer, deltaY unsafe.Pointer) {
 	_CGGetLastMouseDelta(deltaX, deltaY)
-}
+}/* debug [functions.gen.go/function]: CGGetLastMouseDelta */
 
 // Provides a list of displays that are online (active, mirrored, or sleeping).
 //
@@ -6206,7 +6206,7 @@ func CGGetLastMouseDelta(deltaX unsafe.Pointer, deltaY unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGetOnlineDisplayList(_:_:_:)
 func CGGetOnlineDisplayList(maxDisplays uint32, onlineDisplays unsafe.Pointer, displayCount []uint32) Error {
 	return _CGGetOnlineDisplayList(maxDisplays, onlineDisplays, displayCount)
-}
+}/* debug [functions.gen.go/function]: CGGetOnlineDisplayList */
 
 // CGGradientGetContentHeadroom is a CoreGraphics function.
 //
@@ -6215,7 +6215,7 @@ func CGGetOnlineDisplayList(maxDisplays uint32, onlineDisplays unsafe.Pointer, d
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/contentHeadroom
 func CGGradientGetContentHeadroom(gradient GradientRef) float32 {
 	return _CGGradientGetContentHeadroom(gradient)
-}
+}/* debug [functions.gen.go/function]: CGGradientGetContentHeadroom */
 
 // Creates a CGGradient object from a color space and the provided color components and locations.
 //
@@ -6226,7 +6226,7 @@ func CGGradientGetContentHeadroom(gradient GradientRef) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(colorSpace:colorComponents:locations:count:)
 func CGGradientCreateWithColorComponents(space ColorSpaceRef, components []float64, locations []float64, count uintptr) GradientRef {
 	return _CGGradientCreateWithColorComponents(space, components, locations, count)
-}
+}/* debug [functions.gen.go/function]: CGGradientCreateWithColorComponents */
 
 // Creates a gradient object from a color space and the provided color objects and locations.
 //
@@ -6237,7 +6237,7 @@ func CGGradientCreateWithColorComponents(space ColorSpaceRef, components []float
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(colorsSpace:colors:locations:)
 func CGGradientCreateWithColors(space ColorSpaceRef, colors ArrayRef, locations []float64) GradientRef {
 	return _CGGradientCreateWithColors(space, colors, locations)
-}
+}/* debug [functions.gen.go/function]: CGGradientCreateWithColors */
 
 // CGGradientCreateWithContentHeadroom is a CoreGraphics function.
 //
@@ -6246,7 +6246,7 @@ func CGGradientCreateWithColors(space ColorSpaceRef, colors ArrayRef, locations 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/init(headroom:colorSpace:colorComponents:locations:count:)
 func CGGradientCreateWithContentHeadroom(headroom float32, space ColorSpaceRef, components []float64, locations []float64, count uintptr) GradientRef {
 	return _CGGradientCreateWithContentHeadroom(headroom, space, components, locations, count)
-}
+}/* debug [functions.gen.go/function]: CGGradientCreateWithContentHeadroom */
 
 // Returns the Core Foundation type identifier for CGGradient objects.
 //
@@ -6257,7 +6257,7 @@ func CGGradientCreateWithContentHeadroom(headroom float32, space ColorSpaceRef, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradient/typeID
 func CGGradientGetTypeID() TypeID {
 	return _CGGradientGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGGradientGetTypeID */
 
 // Decrements the retain count of a CGGradient object.
 //
@@ -6268,7 +6268,7 @@ func CGGradientGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradientRelease
 func CGGradientRelease(gradient GradientRef) {
 	_CGGradientRelease(gradient)
-}
+}/* debug [functions.gen.go/function]: CGGradientRelease */
 
 // Increments the retain count of a CGGradient object.
 //
@@ -6279,7 +6279,7 @@ func CGGradientRelease(gradient GradientRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGGradientRetain
 func CGGradientRetain(gradient GradientRef) GradientRef {
 	return _CGGradientRetain(gradient)
-}
+}/* debug [functions.gen.go/function]: CGGradientRetain */
 
 // Returns the alpha channel information for a bitmap image.
 //
@@ -6290,7 +6290,7 @@ func CGGradientRetain(gradient GradientRef) GradientRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/alphaInfo
 func CGImageGetAlphaInfo(image ImageRef) ImageAlphaInfo {
 	return _CGImageGetAlphaInfo(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetAlphaInfo */
 
 // Returns the bitmap information for a bitmap image.
 //
@@ -6301,7 +6301,7 @@ func CGImageGetAlphaInfo(image ImageRef) ImageAlphaInfo {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitmapInfo
 func CGImageGetBitmapInfo(image ImageRef) BitmapInfo {
 	return _CGImageGetBitmapInfo(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetBitmapInfo */
 
 // Returns the number of bits allocated for a single color component of a bitmap image.
 //
@@ -6312,7 +6312,7 @@ func CGImageGetBitmapInfo(image ImageRef) BitmapInfo {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitsPerComponent
 func CGImageGetBitsPerComponent(image ImageRef) uintptr {
 	return _CGImageGetBitsPerComponent(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetBitsPerComponent */
 
 // Returns the number of bits allocated for a single pixel in a bitmap image.
 //
@@ -6323,7 +6323,7 @@ func CGImageGetBitsPerComponent(image ImageRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bitsPerPixel
 func CGImageGetBitsPerPixel(image ImageRef) uintptr {
 	return _CGImageGetBitsPerPixel(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetBitsPerPixel */
 
 // CGImageGetByteOrderInfo is a CoreGraphics function.
 //
@@ -6332,7 +6332,7 @@ func CGImageGetBitsPerPixel(image ImageRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/byteOrderInfo
 func CGImageGetByteOrderInfo(image ImageRef) ImageByteOrderInfo {
 	return _CGImageGetByteOrderInfo(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetByteOrderInfo */
 
 // Returns the number of bytes allocated for a single row of a bitmap image.
 //
@@ -6343,7 +6343,7 @@ func CGImageGetByteOrderInfo(image ImageRef) ImageByteOrderInfo {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/bytesPerRow
 func CGImageGetBytesPerRow(image ImageRef) uintptr {
 	return _CGImageGetBytesPerRow(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetBytesPerRow */
 
 // CGImageCalculateContentAverageLightLevel is a CoreGraphics function.
 //
@@ -6352,7 +6352,7 @@ func CGImageGetBytesPerRow(image ImageRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/calculatedContentAverageLightLevel
 func CGImageCalculateContentAverageLightLevel(image ImageRef) float32 {
 	return _CGImageCalculateContentAverageLightLevel(image)
-}
+}/* debug [functions.gen.go/function]: CGImageCalculateContentAverageLightLevel */
 
 // CGImageCalculateContentHeadroom is a CoreGraphics function.
 //
@@ -6361,7 +6361,7 @@ func CGImageCalculateContentAverageLightLevel(image ImageRef) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/calculatedContentHeadroom
 func CGImageCalculateContentHeadroom(image ImageRef) float32 {
 	return _CGImageCalculateContentHeadroom(image)
-}
+}/* debug [functions.gen.go/function]: CGImageCalculateContentHeadroom */
 
 // Return the color space for a bitmap image.
 //
@@ -6372,7 +6372,7 @@ func CGImageCalculateContentHeadroom(image ImageRef) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/colorSpace
 func CGImageGetColorSpace(image ImageRef) ColorSpaceRef {
 	return _CGImageGetColorSpace(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetColorSpace */
 
 // CGImageContainsImageSpecificToneMappingMetadata is a CoreGraphics function.
 //
@@ -6381,7 +6381,7 @@ func CGImageGetColorSpace(image ImageRef) ColorSpaceRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/containsImageSpecificToneMappingMetadata
 func CGImageContainsImageSpecificToneMappingMetadata(image ImageRef) bool {
 	return _CGImageContainsImageSpecificToneMappingMetadata(image)
-}
+}/* debug [functions.gen.go/function]: CGImageContainsImageSpecificToneMappingMetadata */
 
 // CGImageGetContentAverageLightLevel is a CoreGraphics function.
 //
@@ -6390,7 +6390,7 @@ func CGImageContainsImageSpecificToneMappingMetadata(image ImageRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/contentAverageLightLevel
 func CGImageGetContentAverageLightLevel(image ImageRef) float32 {
 	return _CGImageGetContentAverageLightLevel(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetContentAverageLightLevel */
 
 // CGImageGetContentHeadroom is a CoreGraphics function.
 //
@@ -6399,7 +6399,7 @@ func CGImageGetContentAverageLightLevel(image ImageRef) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/contentHeadroom
 func CGImageGetContentHeadroom(image ImageRef) float32 {
 	return _CGImageGetContentHeadroom(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetContentHeadroom */
 
 // Creates a copy of a bitmap image.
 //
@@ -6410,7 +6410,7 @@ func CGImageGetContentHeadroom(image ImageRef) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy()
 func CGImageCreateCopy(image ImageRef) ImageRef {
 	return _CGImageCreateCopy(image)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateCopy */
 
 // Creates a copy of a bitmap image, replacing its colorspace.
 //
@@ -6421,7 +6421,7 @@ func CGImageCreateCopy(image ImageRef) ImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy(colorSpace:)
 func CGImageCreateCopyWithColorSpace(image ImageRef, space ColorSpaceRef) ImageRef {
 	return _CGImageCreateCopyWithColorSpace(image, space)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateCopyWithColorSpace */
 
 // CGImageCreateCopyWithContentAverageLightLevel is a CoreGraphics function.
 //
@@ -6430,7 +6430,7 @@ func CGImageCreateCopyWithColorSpace(image ImageRef, space ColorSpaceRef) ImageR
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copy(contentAverageLightLevel:)
 func CGImageCreateCopyWithContentAverageLightLevel(image ImageRef, avll float32) ImageRef {
 	return _CGImageCreateCopyWithContentAverageLightLevel(image, avll)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateCopyWithContentAverageLightLevel */
 
 // CGImageCreateCopyWithCalculatedHDRStats is a CoreGraphics function.
 //
@@ -6439,7 +6439,7 @@ func CGImageCreateCopyWithContentAverageLightLevel(image ImageRef, avll float32)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/copyWithCalculatedHDRStats()
 func CGImageCreateCopyWithCalculatedHDRStats(image ImageRef) ImageRef {
 	return _CGImageCreateCopyWithCalculatedHDRStats(image)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateCopyWithCalculatedHDRStats */
 
 // Creates a bitmap image using the data contained within a subregion of an existing bitmap image.
 //
@@ -6450,7 +6450,7 @@ func CGImageCreateCopyWithCalculatedHDRStats(image ImageRef) ImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/cropping(to:)
 func CGImageCreateWithImageInRect(image ImageRef, rect Rect) ImageRef {
 	return _CGImageCreateWithImageInRect(image, rect)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateWithImageInRect */
 
 // Returns the data provider for a bitmap image or image mask.
 //
@@ -6461,7 +6461,7 @@ func CGImageCreateWithImageInRect(image ImageRef, rect Rect) ImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/dataProvider
 func CGImageGetDataProvider(image ImageRef) DataProviderRef {
 	return _CGImageGetDataProvider(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetDataProvider */
 
 // Returns the decode array for a bitmap image.
 //
@@ -6472,7 +6472,7 @@ func CGImageGetDataProvider(image ImageRef) DataProviderRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/decode
 func CGImageGetDecode(image ImageRef) []float64 {
 	return _CGImageGetDecode(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetDecode */
 
 // Returns the height of a bitmap image.
 //
@@ -6483,7 +6483,7 @@ func CGImageGetDecode(image ImageRef) []float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/height
 func CGImageGetHeight(image ImageRef) uintptr {
 	return _CGImageGetHeight(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetHeight */
 
 // CGImageCreateWithContentHeadroom is a CoreGraphics function.
 //
@@ -6492,7 +6492,7 @@ func CGImageGetHeight(image ImageRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(headroom:width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)
 func CGImageCreateWithContentHeadroom(headroom float32, width uintptr, height uintptr, bitsPerComponent uintptr, bitsPerPixel uintptr, bytesPerRow uintptr, space ColorSpaceRef, bitmapInfo BitmapInfo, provider DataProviderRef, decode []float64, shouldInterpolate bool, intent ColorRenderingIntent) ImageRef {
 	return _CGImageCreateWithContentHeadroom(headroom, width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateWithContentHeadroom */
 
 // Creates a bitmap image using JPEG-encoded data supplied by a data provider.
 //
@@ -6503,7 +6503,7 @@ func CGImageCreateWithContentHeadroom(headroom float32, width uintptr, height ui
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(jpegDataProviderSource:decode:shouldInterpolate:intent:)
 func CGImageCreateWithJPEGDataProvider(source DataProviderRef, decode []float64, shouldInterpolate bool, intent ColorRenderingIntent) ImageRef {
 	return _CGImageCreateWithJPEGDataProvider(source, decode, shouldInterpolate, intent)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateWithJPEGDataProvider */
 
 // Creates a bitmap image mask from data supplied by a data provider.
 //
@@ -6514,7 +6514,7 @@ func CGImageCreateWithJPEGDataProvider(source DataProviderRef, decode []float64,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(maskWidth:height:bitsPerComponent:bitsPerPixel:bytesPerRow:provider:decode:shouldInterpolate:)
 func CGImageMaskCreate(width uintptr, height uintptr, bitsPerComponent uintptr, bitsPerPixel uintptr, bytesPerRow uintptr, provider DataProviderRef, decode []float64, shouldInterpolate bool) ImageRef {
 	return _CGImageMaskCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, provider, decode, shouldInterpolate)
-}
+}/* debug [functions.gen.go/function]: CGImageMaskCreate */
 
 // Creates a bitmap image using PNG-encoded data supplied by a data provider.
 //
@@ -6525,7 +6525,7 @@ func CGImageMaskCreate(width uintptr, height uintptr, bitsPerComponent uintptr, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(pngDataProviderSource:decode:shouldInterpolate:intent:)
 func CGImageCreateWithPNGDataProvider(source DataProviderRef, decode []float64, shouldInterpolate bool, intent ColorRenderingIntent) ImageRef {
 	return _CGImageCreateWithPNGDataProvider(source, decode, shouldInterpolate, intent)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateWithPNGDataProvider */
 
 // Creates a bitmap image from data supplied by a data provider.
 //
@@ -6536,7 +6536,7 @@ func CGImageCreateWithPNGDataProvider(source DataProviderRef, decode []float64, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(width:height:bitsPerComponent:bitsPerPixel:bytesPerRow:space:bitmapInfo:provider:decode:shouldInterpolate:intent:)
 func CGImageCreate(width uintptr, height uintptr, bitsPerComponent uintptr, bitsPerPixel uintptr, bytesPerRow uintptr, space ColorSpaceRef, bitmapInfo BitmapInfo, provider DataProviderRef, decode []float64, shouldInterpolate bool, intent ColorRenderingIntent) ImageRef {
 	return _CGImageCreate(width, height, bitsPerComponent, bitsPerPixel, bytesPerRow, space, bitmapInfo, provider, decode, shouldInterpolate, intent)
-}
+}/* debug [functions.gen.go/function]: CGImageCreate */
 
 // Returns a composite image of the specified windows.
 
@@ -6546,7 +6546,7 @@ func CGImageCreate(width uintptr, height uintptr, bitsPerComponent uintptr, bits
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/init(windowListFromArrayScreenBounds:windowArray:imageOption:)
 func CGWindowListCreateImageFromArray(screenBounds Rect, windowArray ArrayRef, imageOption WindowImageOption) ImageRef {
 	return _CGWindowListCreateImageFromArray(screenBounds, windowArray, imageOption)
-}
+}/* debug [functions.gen.go/function]: CGWindowListCreateImageFromArray */
 
 // Returns whether a bitmap image is an image mask.
 //
@@ -6557,7 +6557,7 @@ func CGWindowListCreateImageFromArray(screenBounds Rect, windowArray ArrayRef, i
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/isMask
 func CGImageIsMask(image ImageRef) bool {
 	return _CGImageIsMask(image)
-}
+}/* debug [functions.gen.go/function]: CGImageIsMask */
 
 // Creates a bitmap image from an existing image and an image mask.
 //
@@ -6568,7 +6568,7 @@ func CGImageIsMask(image ImageRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/masking(_:)
 func CGImageCreateWithMask(image ImageRef, mask ImageRef) ImageRef {
 	return _CGImageCreateWithMask(image, mask)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateWithMask */
 
 // CGImageGetPixelFormatInfo is a CoreGraphics function.
 //
@@ -6577,7 +6577,7 @@ func CGImageCreateWithMask(image ImageRef, mask ImageRef) ImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/pixelFormatInfo
 func CGImageGetPixelFormatInfo(image ImageRef) ImagePixelFormatInfo {
 	return _CGImageGetPixelFormatInfo(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetPixelFormatInfo */
 
 // Returns the rendering intent setting for a bitmap image.
 //
@@ -6588,7 +6588,7 @@ func CGImageGetPixelFormatInfo(image ImageRef) ImagePixelFormatInfo {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/renderingIntent
 func CGImageGetRenderingIntent(image ImageRef) ColorRenderingIntent {
 	return _CGImageGetRenderingIntent(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetRenderingIntent */
 
 // Returns the interpolation setting for a bitmap image.
 //
@@ -6599,7 +6599,7 @@ func CGImageGetRenderingIntent(image ImageRef) ColorRenderingIntent {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/shouldInterpolate
 func CGImageGetShouldInterpolate(image ImageRef) bool {
 	return _CGImageGetShouldInterpolate(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetShouldInterpolate */
 
 // CGImageShouldToneMap is a CoreGraphics function.
 //
@@ -6608,7 +6608,7 @@ func CGImageGetShouldInterpolate(image ImageRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/shouldToneMap
 func CGImageShouldToneMap(image ImageRef) bool {
 	return _CGImageShouldToneMap(image)
-}
+}/* debug [functions.gen.go/function]: CGImageShouldToneMap */
 
 // Returns the type identifier for CGImage objects.
 //
@@ -6619,7 +6619,7 @@ func CGImageShouldToneMap(image ImageRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/typeID
 func CGImageGetTypeID() TypeID {
 	return _CGImageGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGImageGetTypeID */
 
 // The Universal Type Identifier for the image.
 //
@@ -6630,7 +6630,7 @@ func CGImageGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/utType
 func CGImageGetUTType(image ImageRef) StringRef {
 	return _CGImageGetUTType(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetUTType */
 
 // Returns the width of a bitmap image, in pixels.
 //
@@ -6641,7 +6641,7 @@ func CGImageGetUTType(image ImageRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImage/width
 func CGImageGetWidth(image ImageRef) uintptr {
 	return _CGImageGetWidth(image)
-}
+}/* debug [functions.gen.go/function]: CGImageGetWidth */
 
 // CGImageCreateCopyWithContentHeadroom is a CoreGraphics function.
 //
@@ -6650,7 +6650,7 @@ func CGImageGetWidth(image ImageRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageCreateCopyWithContentHeadroom(_:_:)
 func CGImageCreateCopyWithContentHeadroom(headroom float32, image ImageRef) ImageRef {
 	return _CGImageCreateCopyWithContentHeadroom(headroom, image)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateCopyWithContentHeadroom */
 
 // Creates a bitmap image by masking an existing bitmap image with the provided color values.
 //
@@ -6661,7 +6661,7 @@ func CGImageCreateCopyWithContentHeadroom(headroom float32, image ImageRef) Imag
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageCreateWithMaskingColors
 func CGImageCreateWithMaskingColors(image ImageRef, components []float64) ImageRef {
 	return _CGImageCreateWithMaskingColors(image, components)
-}
+}/* debug [functions.gen.go/function]: CGImageCreateWithMaskingColors */
 
 // Decrements the retain count of a bitmap image.
 //
@@ -6672,7 +6672,7 @@ func CGImageCreateWithMaskingColors(image ImageRef, components []float64) ImageR
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageRelease
 func CGImageRelease(image ImageRef) {
 	_CGImageRelease(image)
-}
+}/* debug [functions.gen.go/function]: CGImageRelease */
 
 // Increments the retain count of a bitmap image.
 //
@@ -6683,7 +6683,7 @@ func CGImageRelease(image ImageRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGImageRetain
 func CGImageRetain(image ImageRef) ImageRef {
 	return _CGImageRetain(image)
-}
+}/* debug [functions.gen.go/function]: CGImageRetain */
 
 // Turns off local hardware events in the current session.
 
@@ -6693,7 +6693,7 @@ func CGImageRetain(image ImageRef) ImageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGInhibitLocalEvents(_:)
 func CGInhibitLocalEvents(inhibit unsafe.Pointer) Error {
 	return _CGInhibitLocalEvents(inhibit)
-}
+}/* debug [functions.gen.go/function]: CGInhibitLocalEvents */
 
 // Returns the graphics context associated with a layer object.
 //
@@ -6704,7 +6704,7 @@ func CGInhibitLocalEvents(inhibit unsafe.Pointer) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/context
 func CGLayerGetContext(layer LayerRef) ContextRef {
 	return _CGLayerGetContext(layer)
-}
+}/* debug [functions.gen.go/function]: CGLayerGetContext */
 
 // Creates a layer object that is associated with a graphics context.
 //
@@ -6715,7 +6715,7 @@ func CGLayerGetContext(layer LayerRef) ContextRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/init(_:size:auxiliaryInfo:)
 func CGLayerCreateWithContext(context ContextRef, size Size, auxiliaryInfo DictionaryRef) LayerRef {
 	return _CGLayerCreateWithContext(context, size, auxiliaryInfo)
-}
+}/* debug [functions.gen.go/function]: CGLayerCreateWithContext */
 
 // Returns the width and height of a layer object.
 //
@@ -6726,7 +6726,7 @@ func CGLayerCreateWithContext(context ContextRef, size Size, auxiliaryInfo Dicti
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/size
 func CGLayerGetSize(layer LayerRef) Size {
 	return _CGLayerGetSize(layer)
-}
+}/* debug [functions.gen.go/function]: CGLayerGetSize */
 
 // Returns the unique type identifier used for objects.
 //
@@ -6737,7 +6737,7 @@ func CGLayerGetSize(layer LayerRef) Size {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayer/typeID
 func CGLayerGetTypeID() TypeID {
 	return _CGLayerGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGLayerGetTypeID */
 
 // Decrements the retain count of a layer object.
 //
@@ -6748,7 +6748,7 @@ func CGLayerGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayerRelease
 func CGLayerRelease(layer LayerRef) {
 	_CGLayerRelease(layer)
-}
+}/* debug [functions.gen.go/function]: CGLayerRelease */
 
 // Increments the retain count of a layer object.
 //
@@ -6759,7 +6759,7 @@ func CGLayerRelease(layer LayerRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGLayerRetain
 func CGLayerRetain(layer LayerRef) LayerRef {
 	return _CGLayerRetain(layer)
-}
+}/* debug [functions.gen.go/function]: CGLayerRetain */
 
 // Returns the display ID of the main display.
 //
@@ -6770,7 +6770,7 @@ func CGLayerRetain(layer LayerRef) LayerRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMainDisplayID()
 func CGMainDisplayID() DirectDisplayID {
 	return _CGMainDisplayID()
-}
+}/* debug [functions.gen.go/function]: CGMainDisplayID */
 
 // Closes and completes a subpath in a mutable graphics path.
 //
@@ -6781,7 +6781,7 @@ func CGMainDisplayID() DirectDisplayID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMutablePath/closeSubpath()
 func CGPathCloseSubpath(path MutablePathRef) {
 	_CGPathCloseSubpath(path)
-}
+}/* debug [functions.gen.go/function]: CGPathCloseSubpath */
 
 // Creates a mutable graphics path.
 //
@@ -6792,7 +6792,7 @@ func CGPathCloseSubpath(path MutablePathRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGMutablePath/init()
 func CGPathCreateMutable() MutablePathRef {
 	return _CGPathCreateMutable()
-}
+}/* debug [functions.gen.go/function]: CGPathCreateMutable */
 
 // Maps an OpenGL display mask to a display ID.
 //
@@ -6803,7 +6803,7 @@ func CGPathCreateMutable() MutablePathRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGOpenGLDisplayMaskToDisplayID(_:)
 func CGOpenGLDisplayMaskToDisplayID(mask OpenGLDisplayMask) DirectDisplayID {
 	return _CGOpenGLDisplayMaskToDisplayID(mask)
-}
+}/* debug [functions.gen.go/function]: CGOpenGLDisplayMaskToDisplayID */
 
 // CGPDFArrayApplyBlock is a CoreGraphics function.
 //
@@ -6812,7 +6812,7 @@ func CGOpenGLDisplayMaskToDisplayID(mask OpenGLDisplayMask) DirectDisplayID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayApplyBlock(_:_:_:)
 func CGPDFArrayApplyBlock(array PDFArrayRef, block PDFArrayApplierBlock, info unsafe.Pointer) {
 	_CGPDFArrayApplyBlock(array, block, info)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayApplyBlock */
 
 // Returns whether an object at a given index in a PDF array is another PDF array and, if so, retrieves that array.
 //
@@ -6823,7 +6823,7 @@ func CGPDFArrayApplyBlock(array PDFArrayRef, block PDFArrayApplierBlock, info un
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetArray(_:_:_:)
 func CGPDFArrayGetArray(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetArray(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetArray */
 
 // Returns whether an object at a given index in a PDF array is a PDF Boolean and, if so, retrieves that Boolean.
 //
@@ -6834,7 +6834,7 @@ func CGPDFArrayGetArray(array PDFArrayRef, index uintptr, value unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetBoolean(_:_:_:)
 func CGPDFArrayGetBoolean(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetBoolean(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetBoolean */
 
 // Returns the number of items in a PDF array.
 //
@@ -6845,7 +6845,7 @@ func CGPDFArrayGetBoolean(array PDFArrayRef, index uintptr, value unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetCount(_:)
 func CGPDFArrayGetCount(array PDFArrayRef) uintptr {
 	return _CGPDFArrayGetCount(array)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetCount */
 
 // Returns whether an object at a given index in a PDF array is a PDF dictionary and, if so, retrieves that dictionary.
 //
@@ -6856,7 +6856,7 @@ func CGPDFArrayGetCount(array PDFArrayRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetDictionary(_:_:_:)
 func CGPDFArrayGetDictionary(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetDictionary(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetDictionary */
 
 // Returns whether an object at a given index in a PDF array is a PDF integer and, if so, retrieves that object.
 //
@@ -6867,7 +6867,7 @@ func CGPDFArrayGetDictionary(array PDFArrayRef, index uintptr, value unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetInteger(_:_:_:)
 func CGPDFArrayGetInteger(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetInteger(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetInteger */
 
 // Returns whether an object at a given index in a PDF array is a PDF name reference (represented as a constant C string) and, if so, retrieves that name.
 //
@@ -6878,7 +6878,7 @@ func CGPDFArrayGetInteger(array PDFArrayRef, index uintptr, value unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetName(_:_:_:)
 func CGPDFArrayGetName(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetName(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetName */
 
 // Returns whether an object at a given index in a Quartz PDF array is a PDF null.
 //
@@ -6889,7 +6889,7 @@ func CGPDFArrayGetName(array PDFArrayRef, index uintptr, value unsafe.Pointer) b
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetNull(_:_:)
 func CGPDFArrayGetNull(array PDFArrayRef, index uintptr) bool {
 	return _CGPDFArrayGetNull(array, index)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetNull */
 
 // Returns whether an object at a given index in a PDF array is a PDF number and, if so, retrieves that object.
 //
@@ -6900,7 +6900,7 @@ func CGPDFArrayGetNull(array PDFArrayRef, index uintptr) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetNumber(_:_:_:)
 func CGPDFArrayGetNumber(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetNumber(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetNumber */
 
 // Returns whether an object at a given index in a PDF array is a PDF object and, if so, retrieves that object.
 //
@@ -6911,7 +6911,7 @@ func CGPDFArrayGetNumber(array PDFArrayRef, index uintptr, value unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetObject(_:_:_:)
 func CGPDFArrayGetObject(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetObject(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetObject */
 
 // Returns whether an object at a given index in a PDF array is a PDF stream and, if so, retrieves that stream.
 //
@@ -6922,7 +6922,7 @@ func CGPDFArrayGetObject(array PDFArrayRef, index uintptr, value unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetStream(_:_:_:)
 func CGPDFArrayGetStream(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetStream(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetStream */
 
 // Returns whether an object at a given index in a PDF array is a PDF string and, if so, retrieves that string.
 //
@@ -6933,7 +6933,7 @@ func CGPDFArrayGetStream(array PDFArrayRef, index uintptr, value unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFArrayGetString(_:_:_:)
 func CGPDFArrayGetString(array PDFArrayRef, index uintptr, value unsafe.Pointer) bool {
 	return _CGPDFArrayGetString(array, index, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFArrayGetString */
 
 // Creates a content stream object from a PDF page object.
 //
@@ -6944,7 +6944,7 @@ func CGPDFArrayGetString(array PDFArrayRef, index uintptr, value unsafe.Pointer)
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamCreateWithPage(_:)
 func CGPDFContentStreamCreateWithPage(page PDFPageRef) PDFContentStreamRef {
 	return _CGPDFContentStreamCreateWithPage(page)
-}
+}/* debug [functions.gen.go/function]: CGPDFContentStreamCreateWithPage */
 
 // Creates a PDF content stream object from an existing PDF content stream object.
 //
@@ -6955,7 +6955,7 @@ func CGPDFContentStreamCreateWithPage(page PDFPageRef) PDFContentStreamRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamCreateWithStream(_:_:_:)
 func CGPDFContentStreamCreateWithStream(stream PDFStreamRef, streamResources PDFDictionaryRef, parent PDFContentStreamRef) PDFContentStreamRef {
 	return _CGPDFContentStreamCreateWithStream(stream, streamResources, parent)
-}
+}/* debug [functions.gen.go/function]: CGPDFContentStreamCreateWithStream */
 
 // Gets the specified resource from a PDF content stream object.
 //
@@ -6966,7 +6966,7 @@ func CGPDFContentStreamCreateWithStream(stream PDFStreamRef, streamResources PDF
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamGetResource(_:_:_:)
 func CGPDFContentStreamGetResource(cs PDFContentStreamRef, category unsafe.Pointer, name unsafe.Pointer) PDFObjectRef {
 	return _CGPDFContentStreamGetResource(cs, category, name)
-}
+}/* debug [functions.gen.go/function]: CGPDFContentStreamGetResource */
 
 // Gets the array of PDF content streams contained in a PDF content stream object.
 //
@@ -6977,7 +6977,7 @@ func CGPDFContentStreamGetResource(cs PDFContentStreamRef, category unsafe.Point
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamGetStreams(_:)
 func CGPDFContentStreamGetStreams(cs PDFContentStreamRef) ArrayRef {
 	return _CGPDFContentStreamGetStreams(cs)
-}
+}/* debug [functions.gen.go/function]: CGPDFContentStreamGetStreams */
 
 // Decrements the retain count of a PDF content stream object.
 //
@@ -6988,7 +6988,7 @@ func CGPDFContentStreamGetStreams(cs PDFContentStreamRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamRelease(_:)
 func CGPDFContentStreamRelease(cs PDFContentStreamRef) {
 	_CGPDFContentStreamRelease(cs)
-}
+}/* debug [functions.gen.go/function]: CGPDFContentStreamRelease */
 
 // Increments the retain count of a PDF content stream object.
 //
@@ -6999,7 +6999,7 @@ func CGPDFContentStreamRelease(cs PDFContentStreamRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContentStreamRetain(_:)
 func CGPDFContentStreamRetain(cs PDFContentStreamRef) PDFContentStreamRef {
 	return _CGPDFContentStreamRetain(cs)
-}
+}/* debug [functions.gen.go/function]: CGPDFContentStreamRetain */
 
 // CGPDFContextBeginTag is a CoreGraphics function.
 //
@@ -7008,7 +7008,7 @@ func CGPDFContentStreamRetain(cs PDFContentStreamRef) PDFContentStreamRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextBeginTag(_:_:_:)
 func CGPDFContextBeginTag(context ContextRef, tagType PDFTagType, tagProperties DictionaryRef) {
 	_CGPDFContextBeginTag(context, tagType, tagProperties)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextBeginTag */
 
 // CGPDFContextEndTag is a CoreGraphics function.
 //
@@ -7017,7 +7017,7 @@ func CGPDFContextBeginTag(context ContextRef, tagType PDFTagType, tagProperties 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextEndTag(_:)
 func CGPDFContextEndTag(context ContextRef) {
 	_CGPDFContextEndTag(context)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextEndTag */
 
 // CGPDFContextSetIDTree is a CoreGraphics function.
 //
@@ -7026,7 +7026,7 @@ func CGPDFContextEndTag(context ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextSetIDTree(_:_:)
 func CGPDFContextSetIDTree(context ContextRef, IDTreeDictionary PDFDictionaryRef) {
 	_CGPDFContextSetIDTree(context, IDTreeDictionary)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextSetIDTree */
 
 // CGPDFContextSetOutline is a CoreGraphics function.
 //
@@ -7035,7 +7035,7 @@ func CGPDFContextSetIDTree(context ContextRef, IDTreeDictionary PDFDictionaryRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextSetOutline(_:_:)
 func CGPDFContextSetOutline(context ContextRef, outline DictionaryRef) {
 	_CGPDFContextSetOutline(context, outline)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextSetOutline */
 
 // CGPDFContextSetPageTagStructureTree is a CoreGraphics function.
 //
@@ -7044,7 +7044,7 @@ func CGPDFContextSetOutline(context ContextRef, outline DictionaryRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextSetPageTagStructureTree(_:_:)
 func CGPDFContextSetPageTagStructureTree(context ContextRef, pageTagStructureTreeDictionary DictionaryRef) {
 	_CGPDFContextSetPageTagStructureTree(context, pageTagStructureTreeDictionary)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextSetPageTagStructureTree */
 
 // CGPDFContextSetParentTree is a CoreGraphics function.
 //
@@ -7053,7 +7053,7 @@ func CGPDFContextSetPageTagStructureTree(context ContextRef, pageTagStructureTre
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFContextSetParentTree(_:_:)
 func CGPDFContextSetParentTree(context ContextRef, parentTreeDictionary PDFDictionaryRef) {
 	_CGPDFContextSetParentTree(context, parentTreeDictionary)
-}
+}/* debug [functions.gen.go/function]: CGPDFContextSetParentTree */
 
 // CGPDFDictionaryApplyBlock is a CoreGraphics function.
 //
@@ -7062,7 +7062,7 @@ func CGPDFContextSetParentTree(context ContextRef, parentTreeDictionary PDFDicti
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryApplyBlock(_:_:_:)
 func CGPDFDictionaryApplyBlock(dict PDFDictionaryRef, block PDFDictionaryApplierBlock, info unsafe.Pointer) {
 	_CGPDFDictionaryApplyBlock(dict, block, info)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryApplyBlock */
 
 // Applies a function to each entry in a dictionary.
 //
@@ -7073,7 +7073,7 @@ func CGPDFDictionaryApplyBlock(dict PDFDictionaryRef, block PDFDictionaryApplier
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryApplyFunction(_:_:_:)
 func CGPDFDictionaryApplyFunction(dict PDFDictionaryRef, function PDFDictionaryApplierFunction, info unsafe.Pointer) {
 	_CGPDFDictionaryApplyFunction(dict, function, info)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryApplyFunction */
 
 // Returns whether there is a PDF array associated with a specified key in a PDF dictionary and, if so, retrieves that array.
 //
@@ -7084,7 +7084,7 @@ func CGPDFDictionaryApplyFunction(dict PDFDictionaryRef, function PDFDictionaryA
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetArray(_:_:_:)
 func CGPDFDictionaryGetArray(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetArray(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetArray */
 
 // Returns whether there is a PDF Boolean value associated with a specified key in a PDF dictionary and, if so, retrieves the Boolean value.
 //
@@ -7095,7 +7095,7 @@ func CGPDFDictionaryGetArray(dict PDFDictionaryRef, key unsafe.Pointer, value un
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetBoolean(_:_:_:)
 func CGPDFDictionaryGetBoolean(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetBoolean(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetBoolean */
 
 // Returns the number of entries in a PDF dictionary.
 //
@@ -7106,7 +7106,7 @@ func CGPDFDictionaryGetBoolean(dict PDFDictionaryRef, key unsafe.Pointer, value 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetCount(_:)
 func CGPDFDictionaryGetCount(dict PDFDictionaryRef) uintptr {
 	return _CGPDFDictionaryGetCount(dict)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetCount */
 
 // Returns whether there is another PDF dictionary associated with a specified key in a PDF dictionary and, if so, retrieves that dictionary.
 //
@@ -7117,7 +7117,7 @@ func CGPDFDictionaryGetCount(dict PDFDictionaryRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetDictionary(_:_:_:)
 func CGPDFDictionaryGetDictionary(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetDictionary(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetDictionary */
 
 // Returns whether there is a PDF integer associated with a specified key in a PDF dictionary and, if so, retrieves that integer.
 //
@@ -7128,7 +7128,7 @@ func CGPDFDictionaryGetDictionary(dict PDFDictionaryRef, key unsafe.Pointer, val
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetInteger(_:_:_:)
 func CGPDFDictionaryGetInteger(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetInteger(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetInteger */
 
 // Returns whether an object with a specified key in a PDF dictionary is a PDF name reference (represented as a constant C string) and, if so, retrieves that name.
 //
@@ -7139,7 +7139,7 @@ func CGPDFDictionaryGetInteger(dict PDFDictionaryRef, key unsafe.Pointer, value 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetName(_:_:_:)
 func CGPDFDictionaryGetName(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetName(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetName */
 
 // Returns whether there is a PDF number associated with a specified key in a PDF dictionary and, if so, retrieves that number.
 //
@@ -7150,7 +7150,7 @@ func CGPDFDictionaryGetName(dict PDFDictionaryRef, key unsafe.Pointer, value uns
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetNumber(_:_:_:)
 func CGPDFDictionaryGetNumber(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetNumber(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetNumber */
 
 // Returns whether there is a PDF object associated with a specified key in a PDF dictionary and, if so, retrieves that object.
 //
@@ -7161,7 +7161,7 @@ func CGPDFDictionaryGetNumber(dict PDFDictionaryRef, key unsafe.Pointer, value u
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetObject(_:_:_:)
 func CGPDFDictionaryGetObject(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetObject(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetObject */
 
 // Returns whether there is a PDF stream associated with a specified key in a PDF dictionary and, if so, retrieves that stream.
 //
@@ -7172,7 +7172,7 @@ func CGPDFDictionaryGetObject(dict PDFDictionaryRef, key unsafe.Pointer, value u
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetStream(_:_:_:)
 func CGPDFDictionaryGetStream(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetStream(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetStream */
 
 // Returns whether there is a PDF string associated with a specified key in a PDF dictionary and, if so, retrieves that string.
 //
@@ -7183,7 +7183,7 @@ func CGPDFDictionaryGetStream(dict PDFDictionaryRef, key unsafe.Pointer, value u
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDictionaryGetString(_:_:_:)
 func CGPDFDictionaryGetString(dict PDFDictionaryRef, key unsafe.Pointer, value unsafe.Pointer) bool {
 	return _CGPDFDictionaryGetString(dict, key, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFDictionaryGetString */
 
 // CGPDFDocumentGetAccessPermissions is a CoreGraphics function.
 //
@@ -7192,7 +7192,7 @@ func CGPDFDictionaryGetString(dict PDFDictionaryRef, key unsafe.Pointer, value u
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/accessPermissions
 func CGPDFDocumentGetAccessPermissions(document PDFDocumentRef) PDFAccessPermissions {
 	return _CGPDFDocumentGetAccessPermissions(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetAccessPermissions */
 
 // Returns whether the specified PDF document allows copying.
 //
@@ -7203,7 +7203,7 @@ func CGPDFDocumentGetAccessPermissions(document PDFDocumentRef) PDFAccessPermiss
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/allowsCopying
 func CGPDFDocumentAllowsCopying(document PDFDocumentRef) bool {
 	return _CGPDFDocumentAllowsCopying(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentAllowsCopying */
 
 // Returns whether a PDF document allows printing.
 //
@@ -7214,7 +7214,7 @@ func CGPDFDocumentAllowsCopying(document PDFDocumentRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/allowsPrinting
 func CGPDFDocumentAllowsPrinting(document PDFDocumentRef) bool {
 	return _CGPDFDocumentAllowsPrinting(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentAllowsPrinting */
 
 // Returns the document catalog of a Core Graphics PDF document.
 //
@@ -7225,7 +7225,7 @@ func CGPDFDocumentAllowsPrinting(document PDFDocumentRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/catalog
 func CGPDFDocumentGetCatalog(document PDFDocumentRef) PDFDictionaryRef {
 	return _CGPDFDocumentGetCatalog(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetCatalog */
 
 // Gets the file identifier for a PDF document.
 //
@@ -7236,7 +7236,7 @@ func CGPDFDocumentGetCatalog(document PDFDocumentRef) PDFDictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/fileIdentifier
 func CGPDFDocumentGetID(document PDFDocumentRef) PDFArrayRef {
 	return _CGPDFDocumentGetID(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetID */
 
 // Returns the major and minor version numbers of a Core Graphics PDF document.
 //
@@ -7247,7 +7247,7 @@ func CGPDFDocumentGetID(document PDFDocumentRef) PDFArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/getVersion(majorVersion:minorVersion:)
 func CGPDFDocumentGetVersion(document PDFDocumentRef, majorVersion []int, minorVersion []int) {
 	_CGPDFDocumentGetVersion(document, majorVersion, minorVersion)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetVersion */
 
 // Gets the information dictionary for a PDF document.
 //
@@ -7258,7 +7258,7 @@ func CGPDFDocumentGetVersion(document PDFDocumentRef, majorVersion []int, minorV
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/info
 func CGPDFDocumentGetInfo(document PDFDocumentRef) PDFDictionaryRef {
 	return _CGPDFDocumentGetInfo(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetInfo */
 
 // Creates a Core Graphics PDF document using data specified by a URL.
 //
@@ -7269,7 +7269,7 @@ func CGPDFDocumentGetInfo(document PDFDocumentRef) PDFDictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/init(_:)-2gtsd
 func CGPDFDocumentCreateWithURL(url URLRef) PDFDocumentRef {
 	return _CGPDFDocumentCreateWithURL(url)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentCreateWithURL */
 
 // Creates a Core Graphics PDF document using a data provider.
 //
@@ -7280,7 +7280,7 @@ func CGPDFDocumentCreateWithURL(url URLRef) PDFDocumentRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/init(_:)-gbq6
 func CGPDFDocumentCreateWithProvider(provider DataProviderRef) PDFDocumentRef {
 	return _CGPDFDocumentCreateWithProvider(provider)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentCreateWithProvider */
 
 // Returns whether the specified PDF file is encrypted.
 //
@@ -7291,7 +7291,7 @@ func CGPDFDocumentCreateWithProvider(provider DataProviderRef) PDFDocumentRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/isEncrypted
 func CGPDFDocumentIsEncrypted(document PDFDocumentRef) bool {
 	return _CGPDFDocumentIsEncrypted(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentIsEncrypted */
 
 // Returns whether the specified PDF document is currently unlocked.
 //
@@ -7302,7 +7302,7 @@ func CGPDFDocumentIsEncrypted(document PDFDocumentRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/isUnlocked
 func CGPDFDocumentIsUnlocked(document PDFDocumentRef) bool {
 	return _CGPDFDocumentIsUnlocked(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentIsUnlocked */
 
 // Returns the number of pages in a PDF document.
 //
@@ -7313,7 +7313,7 @@ func CGPDFDocumentIsUnlocked(document PDFDocumentRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/numberOfPages
 func CGPDFDocumentGetNumberOfPages(document PDFDocumentRef) uintptr {
 	return _CGPDFDocumentGetNumberOfPages(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetNumberOfPages */
 
 // CGPDFDocumentGetOutline is a CoreGraphics function.
 //
@@ -7322,7 +7322,7 @@ func CGPDFDocumentGetNumberOfPages(document PDFDocumentRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/outline
 func CGPDFDocumentGetOutline(document PDFDocumentRef) DictionaryRef {
 	return _CGPDFDocumentGetOutline(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetOutline */
 
 // Returns a page from a Core Graphics PDF document.
 //
@@ -7333,7 +7333,7 @@ func CGPDFDocumentGetOutline(document PDFDocumentRef) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/page(at:)
 func CGPDFDocumentGetPage(document PDFDocumentRef, pageNumber uintptr) PDFPageRef {
 	return _CGPDFDocumentGetPage(document, pageNumber)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetPage */
 
 // Returns the type identifier for Core Graphics PDF documents.
 //
@@ -7344,7 +7344,7 @@ func CGPDFDocumentGetPage(document PDFDocumentRef, pageNumber uintptr) PDFPageRe
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/typeID
 func CGPDFDocumentGetTypeID() TypeID {
 	return _CGPDFDocumentGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetTypeID */
 
 // Unlocks an encrypted PDF document when a valid password is supplied.
 //
@@ -7355,7 +7355,7 @@ func CGPDFDocumentGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocument/unlockWithPassword(_:)
 func CGPDFDocumentUnlockWithPassword(document PDFDocumentRef, password unsafe.Pointer) bool {
 	return _CGPDFDocumentUnlockWithPassword(document, password)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentUnlockWithPassword */
 
 // Returns the art box of a page in a PDF document.
 //
@@ -7368,7 +7368,7 @@ func CGPDFDocumentUnlockWithPassword(document PDFDocumentRef, password unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetArtBox
 func CGPDFDocumentGetArtBox(document PDFDocumentRef, page int) Rect {
 	return _CGPDFDocumentGetArtBox(document, page)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetArtBox */
 
 // Returns the bleed box of a page in a PDF document.
 //
@@ -7381,7 +7381,7 @@ func CGPDFDocumentGetArtBox(document PDFDocumentRef, page int) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetBleedBox
 func CGPDFDocumentGetBleedBox(document PDFDocumentRef, page int) Rect {
 	return _CGPDFDocumentGetBleedBox(document, page)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetBleedBox */
 
 // Returns the crop box of a page in a PDF document.
 //
@@ -7394,7 +7394,7 @@ func CGPDFDocumentGetBleedBox(document PDFDocumentRef, page int) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetCropBox
 func CGPDFDocumentGetCropBox(document PDFDocumentRef, page int) Rect {
 	return _CGPDFDocumentGetCropBox(document, page)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetCropBox */
 
 // Returns the media box of a page in a PDF document.
 //
@@ -7407,7 +7407,7 @@ func CGPDFDocumentGetCropBox(document PDFDocumentRef, page int) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetMediaBox
 func CGPDFDocumentGetMediaBox(document PDFDocumentRef, page int) Rect {
 	return _CGPDFDocumentGetMediaBox(document, page)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetMediaBox */
 
 // Returns the rotation angle of a page in a PDF document.
 //
@@ -7420,7 +7420,7 @@ func CGPDFDocumentGetMediaBox(document PDFDocumentRef, page int) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetRotationAngle
 func CGPDFDocumentGetRotationAngle(document PDFDocumentRef, page int) int {
 	return _CGPDFDocumentGetRotationAngle(document, page)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetRotationAngle */
 
 // Returns the trim box of a page in a PDF document.
 //
@@ -7433,7 +7433,7 @@ func CGPDFDocumentGetRotationAngle(document PDFDocumentRef, page int) int {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentGetTrimBox
 func CGPDFDocumentGetTrimBox(document PDFDocumentRef, page int) Rect {
 	return _CGPDFDocumentGetTrimBox(document, page)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentGetTrimBox */
 
 // Decrements the retain count of a PDF document.
 //
@@ -7444,7 +7444,7 @@ func CGPDFDocumentGetTrimBox(document PDFDocumentRef, page int) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentRelease
 func CGPDFDocumentRelease(document PDFDocumentRef) {
 	_CGPDFDocumentRelease(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentRelease */
 
 // Increments the retain count of a Core Graphics PDF document.
 //
@@ -7455,7 +7455,7 @@ func CGPDFDocumentRelease(document PDFDocumentRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFDocumentRetain
 func CGPDFDocumentRetain(document PDFDocumentRef) PDFDocumentRef {
 	return _CGPDFDocumentRetain(document)
-}
+}/* debug [functions.gen.go/function]: CGPDFDocumentRetain */
 
 // Returns the PDF type identifier of an object.
 //
@@ -7466,7 +7466,7 @@ func CGPDFDocumentRetain(document PDFDocumentRef) PDFDocumentRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFObjectGetType(_:)
 func CGPDFObjectGetType(object PDFObjectRef) PDFObjectType {
 	return _CGPDFObjectGetType(object)
-}
+}/* debug [functions.gen.go/function]: CGPDFObjectGetType */
 
 // Returns whether an object is of a given type and if it is, retrieves its value.
 //
@@ -7477,7 +7477,7 @@ func CGPDFObjectGetType(object PDFObjectRef) PDFObjectType {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFObjectGetValue(_:_:_:)
 func CGPDFObjectGetValue(object PDFObjectRef, type_ PDFObjectType, value unsafe.Pointer) bool {
 	return _CGPDFObjectGetValue(object, type_, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFObjectGetValue */
 
 // Creates an empty PDF operator table.
 //
@@ -7488,7 +7488,7 @@ func CGPDFObjectGetValue(object PDFObjectRef, type_ PDFObjectType, value unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFOperatorTableCreate()
 func CGPDFOperatorTableCreate() PDFOperatorTableRef {
 	return _CGPDFOperatorTableCreate()
-}
+}/* debug [functions.gen.go/function]: CGPDFOperatorTableCreate */
 
 // Decrements the retain count of a CGPDFOperatorTable object.
 //
@@ -7499,7 +7499,7 @@ func CGPDFOperatorTableCreate() PDFOperatorTableRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFOperatorTableRelease(_:)
 func CGPDFOperatorTableRelease(table PDFOperatorTableRef) {
 	_CGPDFOperatorTableRelease(table)
-}
+}/* debug [functions.gen.go/function]: CGPDFOperatorTableRelease */
 
 // Increments the retain count of a CGPDFOperatorTable object.
 //
@@ -7510,7 +7510,7 @@ func CGPDFOperatorTableRelease(table PDFOperatorTableRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFOperatorTableRetain(_:)
 func CGPDFOperatorTableRetain(table PDFOperatorTableRef) PDFOperatorTableRef {
 	return _CGPDFOperatorTableRetain(table)
-}
+}/* debug [functions.gen.go/function]: CGPDFOperatorTableRetain */
 
 // Sets a callback function for a PDF operator.
 //
@@ -7521,7 +7521,7 @@ func CGPDFOperatorTableRetain(table PDFOperatorTableRef) PDFOperatorTableRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFOperatorTableSetCallback(_:_:_:)
 func CGPDFOperatorTableSetCallback(table PDFOperatorTableRef, name unsafe.Pointer, callback PDFOperatorCallback) {
 	_CGPDFOperatorTableSetCallback(table, name, callback)
-}
+}/* debug [functions.gen.go/function]: CGPDFOperatorTableSetCallback */
 
 // Returns the dictionary of a PDF page.
 //
@@ -7532,7 +7532,7 @@ func CGPDFOperatorTableSetCallback(table PDFOperatorTableRef, name unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/dictionary
 func CGPDFPageGetDictionary(page PDFPageRef) PDFDictionaryRef {
 	return _CGPDFPageGetDictionary(page)
-}
+}/* debug [functions.gen.go/function]: CGPDFPageGetDictionary */
 
 // Returns the document for a page.
 //
@@ -7543,7 +7543,7 @@ func CGPDFPageGetDictionary(page PDFPageRef) PDFDictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/document
 func CGPDFPageGetDocument(page PDFPageRef) PDFDocumentRef {
 	return _CGPDFPageGetDocument(page)
-}
+}/* debug [functions.gen.go/function]: CGPDFPageGetDocument */
 
 // Returns the rectangle that represents a type of box for a content region or page dimensions of a PDF page.
 //
@@ -7554,7 +7554,7 @@ func CGPDFPageGetDocument(page PDFPageRef) PDFDocumentRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/getBoxRect(_:)
 func CGPDFPageGetBoxRect(page PDFPageRef, box PDFBox) Rect {
 	return _CGPDFPageGetBoxRect(page, box)
-}
+}/* debug [functions.gen.go/function]: CGPDFPageGetBoxRect */
 
 // Returns the affine transform that maps a box to a given rectangle on a PDF page.
 //
@@ -7565,7 +7565,7 @@ func CGPDFPageGetBoxRect(page PDFPageRef, box PDFBox) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/getDrawingTransform(_:rect:rotate:preserveAspectRatio:)
 func CGPDFPageGetDrawingTransform(page PDFPageRef, box PDFBox, rect Rect, rotate int, preserveAspectRatio bool) AffineTransform {
 	return _CGPDFPageGetDrawingTransform(page, box, rect, rotate, preserveAspectRatio)
-}
+}/* debug [functions.gen.go/function]: CGPDFPageGetDrawingTransform */
 
 // Returns the page number of the specified PDF page.
 //
@@ -7576,7 +7576,7 @@ func CGPDFPageGetDrawingTransform(page PDFPageRef, box PDFBox, rect Rect, rotate
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/pageNumber
 func CGPDFPageGetPageNumber(page PDFPageRef) uintptr {
 	return _CGPDFPageGetPageNumber(page)
-}
+}/* debug [functions.gen.go/function]: CGPDFPageGetPageNumber */
 
 // Returns the rotation angle of a PDF page, in degrees.
 //
@@ -7587,7 +7587,7 @@ func CGPDFPageGetPageNumber(page PDFPageRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/rotationAngle
 func CGPDFPageGetRotationAngle(page PDFPageRef) int {
 	return _CGPDFPageGetRotationAngle(page)
-}
+}/* debug [functions.gen.go/function]: CGPDFPageGetRotationAngle */
 
 // Returns the CFType ID for PDF page objects.
 //
@@ -7598,7 +7598,7 @@ func CGPDFPageGetRotationAngle(page PDFPageRef) int {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPage/typeID
 func CGPDFPageGetTypeID() TypeID {
 	return _CGPDFPageGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGPDFPageGetTypeID */
 
 // Decrements the retain count of a PDF page.
 //
@@ -7609,7 +7609,7 @@ func CGPDFPageGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPageRelease
 func CGPDFPageRelease(page PDFPageRef) {
 	_CGPDFPageRelease(page)
-}
+}/* debug [functions.gen.go/function]: CGPDFPageRelease */
 
 // Increments the retain count of a PDF page.
 //
@@ -7620,7 +7620,7 @@ func CGPDFPageRelease(page PDFPageRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFPageRetain
 func CGPDFPageRetain(page PDFPageRef) PDFPageRef {
 	return _CGPDFPageRetain(page)
-}
+}/* debug [functions.gen.go/function]: CGPDFPageRetain */
 
 // Creates a PDF scanner.
 //
@@ -7631,7 +7631,7 @@ func CGPDFPageRetain(page PDFPageRef) PDFPageRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerCreate(_:_:_:)
 func CGPDFScannerCreate(cs PDFContentStreamRef, table PDFOperatorTableRef, info unsafe.Pointer) PDFScannerRef {
 	return _CGPDFScannerCreate(cs, table, info)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerCreate */
 
 // Returns the content stream associated with a PDF scanner object.
 //
@@ -7642,7 +7642,7 @@ func CGPDFScannerCreate(cs PDFContentStreamRef, table PDFOperatorTableRef, info 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerGetContentStream(_:)
 func CGPDFScannerGetContentStream(scanner PDFScannerRef) PDFContentStreamRef {
 	return _CGPDFScannerGetContentStream(scanner)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerGetContentStream */
 
 // Retrieves an array object from the scanner stack.
 //
@@ -7653,7 +7653,7 @@ func CGPDFScannerGetContentStream(scanner PDFScannerRef) PDFContentStreamRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopArray(_:_:)
 func CGPDFScannerPopArray(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopArray(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopArray */
 
 // Retrieves a Boolean object from the scanner stack.
 //
@@ -7664,7 +7664,7 @@ func CGPDFScannerPopArray(scanner PDFScannerRef, value unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopBoolean(_:_:)
 func CGPDFScannerPopBoolean(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopBoolean(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopBoolean */
 
 // Retrieves a PDF dictionary object from the scanner stack.
 //
@@ -7675,7 +7675,7 @@ func CGPDFScannerPopBoolean(scanner PDFScannerRef, value unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopDictionary(_:_:)
 func CGPDFScannerPopDictionary(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopDictionary(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopDictionary */
 
 // Retrieves an integer object from the scanner stack.
 //
@@ -7686,7 +7686,7 @@ func CGPDFScannerPopDictionary(scanner PDFScannerRef, value unsafe.Pointer) bool
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopInteger(_:_:)
 func CGPDFScannerPopInteger(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopInteger(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopInteger */
 
 // Retrieves a character string from the scanner stack.
 //
@@ -7697,7 +7697,7 @@ func CGPDFScannerPopInteger(scanner PDFScannerRef, value unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopName(_:_:)
 func CGPDFScannerPopName(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopName(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopName */
 
 // Retrieves a real value object from the scanner stack.
 //
@@ -7708,7 +7708,7 @@ func CGPDFScannerPopName(scanner PDFScannerRef, value unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopNumber(_:_:)
 func CGPDFScannerPopNumber(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopNumber(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopNumber */
 
 // Retrieves an object from the scanner stack.
 //
@@ -7719,7 +7719,7 @@ func CGPDFScannerPopNumber(scanner PDFScannerRef, value unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopObject(_:_:)
 func CGPDFScannerPopObject(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopObject(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopObject */
 
 // Retrieves a PDF stream object from the scanner stack.
 //
@@ -7730,7 +7730,7 @@ func CGPDFScannerPopObject(scanner PDFScannerRef, value unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopStream(_:_:)
 func CGPDFScannerPopStream(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopStream(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopStream */
 
 // Retrieves a string object from the scanner stack.
 //
@@ -7741,7 +7741,7 @@ func CGPDFScannerPopStream(scanner PDFScannerRef, value unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerPopString(_:_:)
 func CGPDFScannerPopString(scanner PDFScannerRef, value unsafe.Pointer) bool {
 	return _CGPDFScannerPopString(scanner, value)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerPopString */
 
 // Decrements the retain count of a scanner object.
 //
@@ -7752,7 +7752,7 @@ func CGPDFScannerPopString(scanner PDFScannerRef, value unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerRelease(_:)
 func CGPDFScannerRelease(scanner PDFScannerRef) {
 	_CGPDFScannerRelease(scanner)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerRelease */
 
 // Increments the retain count of a scanner object.
 //
@@ -7763,7 +7763,7 @@ func CGPDFScannerRelease(scanner PDFScannerRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerRetain(_:)
 func CGPDFScannerRetain(scanner PDFScannerRef) PDFScannerRef {
 	return _CGPDFScannerRetain(scanner)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerRetain */
 
 // Parses the content stream of a PDF scanner object.
 //
@@ -7774,7 +7774,7 @@ func CGPDFScannerRetain(scanner PDFScannerRef) PDFScannerRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerScan(_:)
 func CGPDFScannerScan(scanner PDFScannerRef) bool {
 	return _CGPDFScannerScan(scanner)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerScan */
 
 // CGPDFScannerStop is a CoreGraphics function.
 //
@@ -7783,7 +7783,7 @@ func CGPDFScannerScan(scanner PDFScannerRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFScannerStop(_:)
 func CGPDFScannerStop(s PDFScannerRef) {
 	_CGPDFScannerStop(s)
-}
+}/* debug [functions.gen.go/function]: CGPDFScannerStop */
 
 // Returns the data associated with a PDF stream.
 //
@@ -7794,7 +7794,7 @@ func CGPDFScannerStop(s PDFScannerRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStreamCopyData(_:_:)
 func CGPDFStreamCopyData(stream PDFStreamRef, format unsafe.Pointer) DataRef {
 	return _CGPDFStreamCopyData(stream, format)
-}
+}/* debug [functions.gen.go/function]: CGPDFStreamCopyData */
 
 // Returns the dictionary associated with a PDF stream.
 //
@@ -7805,7 +7805,7 @@ func CGPDFStreamCopyData(stream PDFStreamRef, format unsafe.Pointer) DataRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStreamGetDictionary(_:)
 func CGPDFStreamGetDictionary(stream PDFStreamRef) PDFDictionaryRef {
 	return _CGPDFStreamGetDictionary(stream)
-}
+}/* debug [functions.gen.go/function]: CGPDFStreamGetDictionary */
 
 // Converts a string to a date.
 //
@@ -7816,7 +7816,7 @@ func CGPDFStreamGetDictionary(stream PDFStreamRef) PDFDictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringCopyDate(_:)
 func CGPDFStringCopyDate(string_ PDFStringRef) DateRef {
 	return _CGPDFStringCopyDate(string_)
-}
+}/* debug [functions.gen.go/function]: CGPDFStringCopyDate */
 
 // Returns a CFString object that represents a PDF string as a text string.
 //
@@ -7827,7 +7827,7 @@ func CGPDFStringCopyDate(string_ PDFStringRef) DateRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringCopyTextString(_:)
 func CGPDFStringCopyTextString(string_ PDFStringRef) StringRef {
 	return _CGPDFStringCopyTextString(string_)
-}
+}/* debug [functions.gen.go/function]: CGPDFStringCopyTextString */
 
 // Returns a pointer to the bytes of a PDF string.
 //
@@ -7838,7 +7838,7 @@ func CGPDFStringCopyTextString(string_ PDFStringRef) StringRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringGetBytePtr(_:)
 func CGPDFStringGetBytePtr(string_ PDFStringRef) unsafe.Pointer {
 	return _CGPDFStringGetBytePtr(string_)
-}
+}/* debug [functions.gen.go/function]: CGPDFStringGetBytePtr */
 
 // Returns the number of bytes in a PDF string.
 //
@@ -7849,7 +7849,7 @@ func CGPDFStringGetBytePtr(string_ PDFStringRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFStringGetLength(_:)
 func CGPDFStringGetLength(string_ PDFStringRef) uintptr {
 	return _CGPDFStringGetLength(string_)
-}
+}/* debug [functions.gen.go/function]: CGPDFStringGetLength */
 
 // CGPDFTagTypeGetName is a CoreGraphics function.
 //
@@ -7858,7 +7858,7 @@ func CGPDFStringGetLength(string_ PDFStringRef) uintptr {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPDFTagType/name
 func CGPDFTagTypeGetName(tagType PDFTagType) unsafe.Pointer {
 	return _CGPDFTagTypeGetName(tagType)
-}
+}/* debug [functions.gen.go/function]: CGPDFTagTypeGetName */
 
 // Tells a PostScript converter to abort a conversion at the next available opportunity.
 //
@@ -7869,7 +7869,7 @@ func CGPDFTagTypeGetName(tagType PDFTagType) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/abort()
 func CGPSConverterAbort(converter PSConverterRef) bool {
 	return _CGPSConverterAbort(converter)
-}
+}/* debug [functions.gen.go/function]: CGPSConverterAbort */
 
 // Uses a PostScript converter to convert PostScript data to PDF data.
 //
@@ -7880,7 +7880,7 @@ func CGPSConverterAbort(converter PSConverterRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/convert(_:consumer:options:)
 func CGPSConverterConvert(converter PSConverterRef, provider DataProviderRef, consumer DataConsumerRef, options DictionaryRef) bool {
 	return _CGPSConverterConvert(converter, provider, consumer, options)
-}
+}/* debug [functions.gen.go/function]: CGPSConverterConvert */
 
 // Creates a new PostScript converter.
 //
@@ -7891,7 +7891,7 @@ func CGPSConverterConvert(converter PSConverterRef, provider DataProviderRef, co
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/init(info:callbacks:options:)
 func CGPSConverterCreate(info unsafe.Pointer, callbacks unsafe.Pointer, options DictionaryRef) PSConverterRef {
 	return _CGPSConverterCreate(info, callbacks, options)
-}
+}/* debug [functions.gen.go/function]: CGPSConverterCreate */
 
 // Checks whether the converter is currently converting data.
 //
@@ -7902,7 +7902,7 @@ func CGPSConverterCreate(info unsafe.Pointer, callbacks unsafe.Pointer, options 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/isConverting
 func CGPSConverterIsConverting(converter PSConverterRef) bool {
 	return _CGPSConverterIsConverting(converter)
-}
+}/* debug [functions.gen.go/function]: CGPSConverterIsConverting */
 
 // Returns the Core Foundation type identifier for PostScript converters.
 //
@@ -7913,7 +7913,7 @@ func CGPSConverterIsConverting(converter PSConverterRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPSConverter/typeID
 func CGPSConverterGetTypeID() TypeID {
 	return _CGPSConverterGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGPSConverterGetTypeID */
 
 // For each element in a graphics path, calls a custom applier function.
 //
@@ -7924,7 +7924,7 @@ func CGPSConverterGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/apply(info:function:)
 func CGPathApply(path PathRef, info unsafe.Pointer, function PathApplierFunction) {
 	_CGPathApply(path, info, function)
-}
+}/* debug [functions.gen.go/function]: CGPathApply */
 
 // CGPathApplyWithBlock is a CoreGraphics function.
 //
@@ -7933,7 +7933,7 @@ func CGPathApply(path PathRef, info unsafe.Pointer, function PathApplierFunction
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/applyWithBlock(_:)
 func CGPathApplyWithBlock(path PathRef, block PathApplyBlock) {
 	_CGPathApplyWithBlock(path, block)
-}
+}/* debug [functions.gen.go/function]: CGPathApplyWithBlock */
 
 // Returns the bounding box containing all points in a graphics path.
 //
@@ -7944,7 +7944,7 @@ func CGPathApplyWithBlock(path PathRef, block PathApplyBlock) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/boundingBox
 func CGPathGetBoundingBox(path PathRef) Rect {
 	return _CGPathGetBoundingBox(path)
-}
+}/* debug [functions.gen.go/function]: CGPathGetBoundingBox */
 
 // Returns the bounding box of a graphics path.
 //
@@ -7955,7 +7955,7 @@ func CGPathGetBoundingBox(path PathRef) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/boundingBoxOfPath
 func CGPathGetPathBoundingBox(path PathRef) Rect {
 	return _CGPathGetPathBoundingBox(path)
-}
+}/* debug [functions.gen.go/function]: CGPathGetPathBoundingBox */
 
 // Creates an immutable copy of a graphics path.
 //
@@ -7966,7 +7966,7 @@ func CGPathGetPathBoundingBox(path PathRef) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/copy()
 func CGPathCreateCopy(path PathRef) PathRef {
 	return _CGPathCreateCopy(path)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopy */
 
 // Creates an immutable copy of a graphics path transformed by a transformation matrix.
 //
@@ -7977,7 +7977,7 @@ func CGPathCreateCopy(path PathRef) PathRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/copy(using:)
 func CGPathCreateCopyByTransformingPath(path PathRef, transform unsafe.Pointer) PathRef {
 	return _CGPathCreateCopyByTransformingPath(path, transform)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyByTransformingPath */
 
 // Returns the current point in a graphics path.
 //
@@ -7988,7 +7988,7 @@ func CGPathCreateCopyByTransformingPath(path PathRef, transform unsafe.Pointer) 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/currentPoint
 func CGPathGetCurrentPoint(path PathRef) Point {
 	return _CGPathGetCurrentPoint(path)
-}
+}/* debug [functions.gen.go/function]: CGPathGetCurrentPoint */
 
 // Create an immutable path of an ellipse.
 //
@@ -7999,7 +7999,7 @@ func CGPathGetCurrentPoint(path PathRef) Point {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(ellipseIn:transform:)
 func CGPathCreateWithEllipseInRect(rect Rect, transform unsafe.Pointer) PathRef {
 	return _CGPathCreateWithEllipseInRect(rect, transform)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateWithEllipseInRect */
 
 // Create an immutable path of a rectangle.
 //
@@ -8010,7 +8010,7 @@ func CGPathCreateWithEllipseInRect(rect Rect, transform unsafe.Pointer) PathRef 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(rect:transform:)
 func CGPathCreateWithRect(rect Rect, transform unsafe.Pointer) PathRef {
 	return _CGPathCreateWithRect(rect, transform)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateWithRect */
 
 // Create an immutable path of a rounded rectangle.
 //
@@ -8021,7 +8021,7 @@ func CGPathCreateWithRect(rect Rect, transform unsafe.Pointer) PathRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/init(roundedRect:cornerWidth:cornerHeight:transform:)
 func CGPathCreateWithRoundedRect(rect Rect, cornerWidth float64, cornerHeight float64, transform unsafe.Pointer) PathRef {
 	return _CGPathCreateWithRoundedRect(rect, cornerWidth, cornerHeight, transform)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateWithRoundedRect */
 
 // Indicates whether or not a graphics path is empty.
 //
@@ -8032,7 +8032,7 @@ func CGPathCreateWithRoundedRect(rect Rect, cornerWidth float64, cornerHeight fl
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/isEmpty
 func CGPathIsEmpty(path PathRef) bool {
 	return _CGPathIsEmpty(path)
-}
+}/* debug [functions.gen.go/function]: CGPathIsEmpty */
 
 // Indicates whether or not a graphics path represents a rectangle.
 //
@@ -8043,7 +8043,7 @@ func CGPathIsEmpty(path PathRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/isRect(_:)
 func CGPathIsRect(path PathRef, rect unsafe.Pointer) bool {
 	return _CGPathIsRect(path, rect)
-}
+}/* debug [functions.gen.go/function]: CGPathIsRect */
 
 // Creates a mutable copy of an existing graphics path.
 //
@@ -8054,7 +8054,7 @@ func CGPathIsRect(path PathRef, rect unsafe.Pointer) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/mutableCopy()
 func CGPathCreateMutableCopy(path PathRef) MutablePathRef {
 	return _CGPathCreateMutableCopy(path)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateMutableCopy */
 
 // Creates a mutable copy of a graphics path transformed by a transformation matrix.
 //
@@ -8065,7 +8065,7 @@ func CGPathCreateMutableCopy(path PathRef) MutablePathRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/mutableCopy(using:)
 func CGPathCreateMutableCopyByTransformingPath(path PathRef, transform unsafe.Pointer) MutablePathRef {
 	return _CGPathCreateMutableCopyByTransformingPath(path, transform)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateMutableCopyByTransformingPath */
 
 // Returns the Core Foundation type identifier for Core Graphics paths.
 //
@@ -8076,7 +8076,7 @@ func CGPathCreateMutableCopyByTransformingPath(path PathRef, transform unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPath/typeID
 func CGPathGetTypeID() TypeID {
 	return _CGPathGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGPathGetTypeID */
 
 // Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
 //
@@ -8087,7 +8087,7 @@ func CGPathGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddArc
 func CGPathAddArc(path MutablePathRef, m unsafe.Pointer, x float64, y float64, radius float64, startAngle float64, endAngle float64, clockwise bool) {
 	_CGPathAddArc(path, m, x, y, radius, startAngle, endAngle, clockwise)
-}
+}/* debug [functions.gen.go/function]: CGPathAddArc */
 
 // Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
 //
@@ -8098,7 +8098,7 @@ func CGPathAddArc(path MutablePathRef, m unsafe.Pointer, x float64, y float64, r
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddArcToPoint
 func CGPathAddArcToPoint(path MutablePathRef, m unsafe.Pointer, x1 float64, y1 float64, x2 float64, y2 float64, radius float64) {
 	_CGPathAddArcToPoint(path, m, x1, y1, x2, y2, radius)
-}
+}/* debug [functions.gen.go/function]: CGPathAddArcToPoint */
 
 // Appends a cubic Bézier curve to a mutable graphics path.
 //
@@ -8109,7 +8109,7 @@ func CGPathAddArcToPoint(path MutablePathRef, m unsafe.Pointer, x1 float64, y1 f
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddCurveToPoint
 func CGPathAddCurveToPoint(path MutablePathRef, m unsafe.Pointer, cp1x float64, cp1y float64, cp2x float64, cp2y float64, x float64, y float64) {
 	_CGPathAddCurveToPoint(path, m, cp1x, cp1y, cp2x, cp2y, x, y)
-}
+}/* debug [functions.gen.go/function]: CGPathAddCurveToPoint */
 
 // Adds to a path an ellipse that fits inside a rectangle.
 //
@@ -8120,7 +8120,7 @@ func CGPathAddCurveToPoint(path MutablePathRef, m unsafe.Pointer, cp1x float64, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddEllipseInRect
 func CGPathAddEllipseInRect(path MutablePathRef, m unsafe.Pointer, rect Rect) {
 	_CGPathAddEllipseInRect(path, m, rect)
-}
+}/* debug [functions.gen.go/function]: CGPathAddEllipseInRect */
 
 // Appends a line segment to a mutable graphics path.
 //
@@ -8131,7 +8131,7 @@ func CGPathAddEllipseInRect(path MutablePathRef, m unsafe.Pointer, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddLineToPoint
 func CGPathAddLineToPoint(path MutablePathRef, m unsafe.Pointer, x float64, y float64) {
 	_CGPathAddLineToPoint(path, m, x, y)
-}
+}/* debug [functions.gen.go/function]: CGPathAddLineToPoint */
 
 // Appends an array of new line segments to a mutable graphics path.
 //
@@ -8142,7 +8142,7 @@ func CGPathAddLineToPoint(path MutablePathRef, m unsafe.Pointer, x float64, y fl
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddLines
 func CGPathAddLines(path MutablePathRef, m unsafe.Pointer, points unsafe.Pointer, count uintptr) {
 	_CGPathAddLines(path, m, points, count)
-}
+}/* debug [functions.gen.go/function]: CGPathAddLines */
 
 // Appends a path to onto a mutable graphics path.
 //
@@ -8153,7 +8153,7 @@ func CGPathAddLines(path MutablePathRef, m unsafe.Pointer, points unsafe.Pointer
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddPath
 func CGPathAddPath(path1 MutablePathRef, m unsafe.Pointer, path2 PathRef) {
 	_CGPathAddPath(path1, m, path2)
-}
+}/* debug [functions.gen.go/function]: CGPathAddPath */
 
 // Appends a quadratic Bézier curve to a mutable graphics path.
 //
@@ -8164,7 +8164,7 @@ func CGPathAddPath(path1 MutablePathRef, m unsafe.Pointer, path2 PathRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddQuadCurveToPoint
 func CGPathAddQuadCurveToPoint(path MutablePathRef, m unsafe.Pointer, cpx float64, cpy float64, x float64, y float64) {
 	_CGPathAddQuadCurveToPoint(path, m, cpx, cpy, x, y)
-}
+}/* debug [functions.gen.go/function]: CGPathAddQuadCurveToPoint */
 
 // Appends a rectangle to a mutable graphics path.
 //
@@ -8175,7 +8175,7 @@ func CGPathAddQuadCurveToPoint(path MutablePathRef, m unsafe.Pointer, cpx float6
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRect
 func CGPathAddRect(path MutablePathRef, m unsafe.Pointer, rect Rect) {
 	_CGPathAddRect(path, m, rect)
-}
+}/* debug [functions.gen.go/function]: CGPathAddRect */
 
 // Appends an array of rectangles to a mutable graphics path.
 //
@@ -8186,7 +8186,7 @@ func CGPathAddRect(path MutablePathRef, m unsafe.Pointer, rect Rect) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRects
 func CGPathAddRects(path MutablePathRef, m unsafe.Pointer, rects unsafe.Pointer, count uintptr) {
 	_CGPathAddRects(path, m, rects, count)
-}
+}/* debug [functions.gen.go/function]: CGPathAddRects */
 
 // Appends an arc to a mutable graphics path, possibly preceded by a straight line segment.
 //
@@ -8197,7 +8197,7 @@ func CGPathAddRects(path MutablePathRef, m unsafe.Pointer, rects unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRelativeArc
 func CGPathAddRelativeArc(path MutablePathRef, matrix unsafe.Pointer, x float64, y float64, radius float64, startAngle float64, delta float64) {
 	_CGPathAddRelativeArc(path, matrix, x, y, radius, startAngle, delta)
-}
+}/* debug [functions.gen.go/function]: CGPathAddRelativeArc */
 
 // Appends a rounded rectangle to a mutable graphics path.
 //
@@ -8208,7 +8208,7 @@ func CGPathAddRelativeArc(path MutablePathRef, matrix unsafe.Pointer, x float64,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathAddRoundedRect
 func CGPathAddRoundedRect(path MutablePathRef, transform unsafe.Pointer, rect Rect, cornerWidth float64, cornerHeight float64) {
 	_CGPathAddRoundedRect(path, transform, rect, cornerWidth, cornerHeight)
-}
+}/* debug [functions.gen.go/function]: CGPathAddRoundedRect */
 
 // Checks whether a point is contained in a graphics path.
 //
@@ -8219,7 +8219,7 @@ func CGPathAddRoundedRect(path MutablePathRef, transform unsafe.Pointer, rect Re
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathContainsPoint
 func CGPathContainsPoint(path PathRef, m unsafe.Pointer, point Point, eoFill bool) bool {
 	return _CGPathContainsPoint(path, m, point, eoFill)
-}
+}/* debug [functions.gen.go/function]: CGPathContainsPoint */
 
 // Creates a dashed copy of another path.
 //
@@ -8230,7 +8230,7 @@ func CGPathContainsPoint(path PathRef, m unsafe.Pointer, point Point, eoFill boo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByDashingPath
 func CGPathCreateCopyByDashingPath(path PathRef, transform unsafe.Pointer, phase float64, lengths []float64, count uintptr) PathRef {
 	return _CGPathCreateCopyByDashingPath(path, transform, phase, lengths, count)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyByDashingPath */
 
 // CGPathCreateCopyByFlattening is a CoreGraphics function.
 //
@@ -8239,7 +8239,7 @@ func CGPathCreateCopyByDashingPath(path PathRef, transform unsafe.Pointer, phase
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByFlattening
 func CGPathCreateCopyByFlattening(path PathRef, flatteningThreshold float64) PathRef {
 	return _CGPathCreateCopyByFlattening(path, flatteningThreshold)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyByFlattening */
 
 // CGPathCreateCopyByIntersectingPath is a CoreGraphics function.
 //
@@ -8248,7 +8248,7 @@ func CGPathCreateCopyByFlattening(path PathRef, flatteningThreshold float64) Pat
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByIntersectingPath
 func CGPathCreateCopyByIntersectingPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
 	return _CGPathCreateCopyByIntersectingPath(path, maskPath, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyByIntersectingPath */
 
 // CGPathCreateCopyByNormalizing is a CoreGraphics function.
 //
@@ -8257,7 +8257,7 @@ func CGPathCreateCopyByIntersectingPath(path PathRef, maskPath PathRef, evenOddF
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByNormalizing
 func CGPathCreateCopyByNormalizing(path PathRef, evenOddFillRule bool) PathRef {
 	return _CGPathCreateCopyByNormalizing(path, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyByNormalizing */
 
 // Creates a stroked copy of another path.
 //
@@ -8268,7 +8268,7 @@ func CGPathCreateCopyByNormalizing(path PathRef, evenOddFillRule bool) PathRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByStrokingPath
 func CGPathCreateCopyByStrokingPath(path PathRef, transform unsafe.Pointer, lineWidth float64, lineCap LineCap, lineJoin LineJoin, miterLimit float64) PathRef {
 	return _CGPathCreateCopyByStrokingPath(path, transform, lineWidth, lineCap, lineJoin, miterLimit)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyByStrokingPath */
 
 // CGPathCreateCopyBySubtractingPath is a CoreGraphics function.
 //
@@ -8277,7 +8277,7 @@ func CGPathCreateCopyByStrokingPath(path PathRef, transform unsafe.Pointer, line
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyBySubtractingPath
 func CGPathCreateCopyBySubtractingPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
 	return _CGPathCreateCopyBySubtractingPath(path, maskPath, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyBySubtractingPath */
 
 // CGPathCreateCopyBySymmetricDifferenceOfPath is a CoreGraphics function.
 //
@@ -8286,7 +8286,7 @@ func CGPathCreateCopyBySubtractingPath(path PathRef, maskPath PathRef, evenOddFi
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyBySymmetricDifferenceOfPath
 func CGPathCreateCopyBySymmetricDifferenceOfPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
 	return _CGPathCreateCopyBySymmetricDifferenceOfPath(path, maskPath, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyBySymmetricDifferenceOfPath */
 
 // CGPathCreateCopyByUnioningPath is a CoreGraphics function.
 //
@@ -8295,7 +8295,7 @@ func CGPathCreateCopyBySymmetricDifferenceOfPath(path PathRef, maskPath PathRef,
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyByUnioningPath
 func CGPathCreateCopyByUnioningPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
 	return _CGPathCreateCopyByUnioningPath(path, maskPath, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyByUnioningPath */
 
 // CGPathCreateCopyOfLineByIntersectingPath is a CoreGraphics function.
 //
@@ -8304,7 +8304,7 @@ func CGPathCreateCopyByUnioningPath(path PathRef, maskPath PathRef, evenOddFillR
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyOfLineByIntersectingPath
 func CGPathCreateCopyOfLineByIntersectingPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
 	return _CGPathCreateCopyOfLineByIntersectingPath(path, maskPath, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyOfLineByIntersectingPath */
 
 // CGPathCreateCopyOfLineBySubtractingPath is a CoreGraphics function.
 //
@@ -8313,7 +8313,7 @@ func CGPathCreateCopyOfLineByIntersectingPath(path PathRef, maskPath PathRef, ev
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateCopyOfLineBySubtractingPath
 func CGPathCreateCopyOfLineBySubtractingPath(path PathRef, maskPath PathRef, evenOddFillRule bool) PathRef {
 	return _CGPathCreateCopyOfLineBySubtractingPath(path, maskPath, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateCopyOfLineBySubtractingPath */
 
 // CGPathCreateSeparateComponents is a CoreGraphics function.
 //
@@ -8322,7 +8322,7 @@ func CGPathCreateCopyOfLineBySubtractingPath(path PathRef, maskPath PathRef, eve
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathCreateSeparateComponents
 func CGPathCreateSeparateComponents(path PathRef, evenOddFillRule bool) ArrayRef {
 	return _CGPathCreateSeparateComponents(path, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathCreateSeparateComponents */
 
 // Indicates whether two graphics paths are equivalent.
 //
@@ -8333,7 +8333,7 @@ func CGPathCreateSeparateComponents(path PathRef, evenOddFillRule bool) ArrayRef
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathEqualToPath
 func CGPathEqualToPath(path1 PathRef, path2 PathRef) bool {
 	return _CGPathEqualToPath(path1, path2)
-}
+}/* debug [functions.gen.go/function]: CGPathEqualToPath */
 
 // CGPathIntersectsPath is a CoreGraphics function.
 //
@@ -8342,7 +8342,7 @@ func CGPathEqualToPath(path1 PathRef, path2 PathRef) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathIntersectsPath
 func CGPathIntersectsPath(path1 PathRef, path2 PathRef, evenOddFillRule bool) bool {
 	return _CGPathIntersectsPath(path1, path2, evenOddFillRule)
-}
+}/* debug [functions.gen.go/function]: CGPathIntersectsPath */
 
 // Starts a new subpath at a specified location in a mutable graphics path.
 //
@@ -8353,7 +8353,7 @@ func CGPathIntersectsPath(path1 PathRef, path2 PathRef, evenOddFillRule bool) bo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathMoveToPoint
 func CGPathMoveToPoint(path MutablePathRef, m unsafe.Pointer, x float64, y float64) {
 	_CGPathMoveToPoint(path, m, x, y)
-}
+}/* debug [functions.gen.go/function]: CGPathMoveToPoint */
 
 // Decrements the retain count of a graphics path.
 //
@@ -8364,7 +8364,7 @@ func CGPathMoveToPoint(path MutablePathRef, m unsafe.Pointer, x float64, y float
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathRelease
 func CGPathRelease(path PathRef) {
 	_CGPathRelease(path)
-}
+}/* debug [functions.gen.go/function]: CGPathRelease */
 
 // Increments the retain count of a graphics path.
 //
@@ -8375,7 +8375,7 @@ func CGPathRelease(path PathRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPathRetain
 func CGPathRetain(path PathRef) PathRef {
 	return _CGPathRetain(path)
-}
+}/* debug [functions.gen.go/function]: CGPathRetain */
 
 // Creates a pattern object.
 //
@@ -8386,7 +8386,7 @@ func CGPathRetain(path PathRef) PathRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPattern/init(info:bounds:matrix:xStep:yStep:tiling:isColored:callbacks:)
 func CGPatternCreate(info unsafe.Pointer, bounds Rect, matrix AffineTransform, xStep float64, yStep float64, tiling PatternTiling, isColored bool, callbacks unsafe.Pointer) PatternRef {
 	return _CGPatternCreate(info, bounds, matrix, xStep, yStep, tiling, isColored, callbacks)
-}
+}/* debug [functions.gen.go/function]: CGPatternCreate */
 
 // Returns the type identifier for Core Graphics patterns.
 //
@@ -8397,7 +8397,7 @@ func CGPatternCreate(info unsafe.Pointer, bounds Rect, matrix AffineTransform, x
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPattern/typeID
 func CGPatternGetTypeID() TypeID {
 	return _CGPatternGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGPatternGetTypeID */
 
 // Decrements the retain count of a Core Graphics pattern.
 //
@@ -8408,7 +8408,7 @@ func CGPatternGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternRelease
 func CGPatternRelease(pattern PatternRef) {
 	_CGPatternRelease(pattern)
-}
+}/* debug [functions.gen.go/function]: CGPatternRelease */
 
 // Increments the retain count of a Core Graphics pattern.
 //
@@ -8419,7 +8419,7 @@ func CGPatternRelease(pattern PatternRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPatternRetain
 func CGPatternRetain(pattern PatternRef) PatternRef {
 	return _CGPatternRetain(pattern)
-}
+}/* debug [functions.gen.go/function]: CGPatternRetain */
 
 // Returns the point resulting from an affine transformation of an existing point.
 //
@@ -8430,7 +8430,7 @@ func CGPatternRetain(pattern PatternRef) PatternRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPointApplyAffineTransform(_:_:)
 func CGPointApplyAffineTransform(point Point, t AffineTransform) Point {
 	return _CGPointApplyAffineTransform(point, t)
-}
+}/* debug [functions.gen.go/function]: CGPointApplyAffineTransform */
 
 // Returns a dictionary representation of the specified point.
 //
@@ -8441,7 +8441,7 @@ func CGPointApplyAffineTransform(point Point, t AffineTransform) Point {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPointCreateDictionaryRepresentation(_:)
 func CGPointCreateDictionaryRepresentation(point Point) DictionaryRef {
 	return _CGPointCreateDictionaryRepresentation(point)
-}
+}/* debug [functions.gen.go/function]: CGPointCreateDictionaryRepresentation */
 
 // Returns whether two points are equal.
 //
@@ -8452,7 +8452,7 @@ func CGPointCreateDictionaryRepresentation(point Point) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPointEqualToPoint(_:_:)
 func CGPointEqualToPoint(point1 Point, point2 Point) bool {
 	return _CGPointEqualToPoint(point1, point2)
-}
+}/* debug [functions.gen.go/function]: CGPointEqualToPoint */
 
 // Fills in a point using the contents of the specified dictionary.
 //
@@ -8463,7 +8463,7 @@ func CGPointEqualToPoint(point1 Point, point2 Point) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPointMakeWithDictionaryRepresentation(_:_:)
 func CGPointMakeWithDictionaryRepresentation(dict DictionaryRef, point unsafe.Pointer) bool {
 	return _CGPointMakeWithDictionaryRepresentation(dict, point)
-}
+}/* debug [functions.gen.go/function]: CGPointMakeWithDictionaryRepresentation */
 
 // Synthesizes a low-level keyboard event on the local machine.
 
@@ -8473,7 +8473,7 @@ func CGPointMakeWithDictionaryRepresentation(dict DictionaryRef, point unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPostKeyboardEvent(_:_:_:)
 func CGPostKeyboardEvent(keyChar CharCode, virtualKey KeyCode, keyDown unsafe.Pointer) Error {
 	return _CGPostKeyboardEvent(keyChar, virtualKey, keyDown)
-}
+}/* debug [functions.gen.go/function]: CGPostKeyboardEvent */
 
 // Synthesizes a low-level mouse-button event on the local machine.
 //
@@ -8486,7 +8486,7 @@ func CGPostKeyboardEvent(keyChar CharCode, virtualKey KeyCode, keyDown unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPostMouseEvent
 func CGPostMouseEvent(mouseCursorPosition Point, updateMouseCursorPosition unsafe.Pointer, buttonCount ButtonCount, mouseButtonDown unsafe.Pointer) Error {
 	return _CGPostMouseEvent(mouseCursorPosition, updateMouseCursorPosition, buttonCount, mouseButtonDown)
-}
+}/* debug [functions.gen.go/function]: CGPostMouseEvent */
 
 // Synthesizes a low-level scrolling event on the local machine.
 //
@@ -8499,7 +8499,7 @@ func CGPostMouseEvent(mouseCursorPosition Point, updateMouseCursorPosition unsaf
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPostScrollWheelEvent
 func CGPostScrollWheelEvent(wheelCount WheelCount, wheel1 int32) Error {
 	return _CGPostScrollWheelEvent(wheelCount, wheel1)
-}
+}/* debug [functions.gen.go/function]: CGPostScrollWheelEvent */
 
 // CGPreflightListenEventAccess is a CoreGraphics function.
 //
@@ -8508,7 +8508,7 @@ func CGPostScrollWheelEvent(wheelCount WheelCount, wheel1 int32) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPreflightListenEventAccess()
 func CGPreflightListenEventAccess() bool {
 	return _CGPreflightListenEventAccess()
-}
+}/* debug [functions.gen.go/function]: CGPreflightListenEventAccess */
 
 // CGPreflightPostEventAccess is a CoreGraphics function.
 //
@@ -8517,7 +8517,7 @@ func CGPreflightListenEventAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPreflightPostEventAccess()
 func CGPreflightPostEventAccess() bool {
 	return _CGPreflightPostEventAccess()
-}
+}/* debug [functions.gen.go/function]: CGPreflightPostEventAccess */
 
 // CGPreflightScreenCaptureAccess is a CoreGraphics function.
 //
@@ -8526,7 +8526,7 @@ func CGPreflightPostEventAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGPreflightScreenCaptureAccess()
 func CGPreflightScreenCaptureAccess() bool {
 	return _CGPreflightScreenCaptureAccess()
-}
+}/* debug [functions.gen.go/function]: CGPreflightScreenCaptureAccess */
 
 // Applies an affine transform to a rectangle.
 //
@@ -8537,7 +8537,7 @@ func CGPreflightScreenCaptureAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectApplyAffineTransform(_:_:)
 func CGRectApplyAffineTransform(rect Rect, t AffineTransform) Rect {
 	return _CGRectApplyAffineTransform(rect, t)
-}
+}/* debug [functions.gen.go/function]: CGRectApplyAffineTransform */
 
 // Returns whether a rectangle contains a specified point.
 //
@@ -8548,7 +8548,7 @@ func CGRectApplyAffineTransform(rect Rect, t AffineTransform) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectContainsPoint(_:_:)
 func CGRectContainsPoint(rect Rect, point Point) bool {
 	return _CGRectContainsPoint(rect, point)
-}
+}/* debug [functions.gen.go/function]: CGRectContainsPoint */
 
 // Returns whether the first rectangle contains the second rectangle.
 //
@@ -8559,7 +8559,7 @@ func CGRectContainsPoint(rect Rect, point Point) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectContainsRect(_:_:)
 func CGRectContainsRect(rect1 Rect, rect2 Rect) bool {
 	return _CGRectContainsRect(rect1, rect2)
-}
+}/* debug [functions.gen.go/function]: CGRectContainsRect */
 
 // Returns a dictionary representation of the provided rectangle.
 //
@@ -8570,7 +8570,7 @@ func CGRectContainsRect(rect1 Rect, rect2 Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectCreateDictionaryRepresentation(_:)
 func CGRectCreateDictionaryRepresentation(p0 Rect) DictionaryRef {
 	return _CGRectCreateDictionaryRepresentation(p0)
-}
+}/* debug [functions.gen.go/function]: CGRectCreateDictionaryRepresentation */
 
 // Divides a source rectangle into two component rectangles.
 //
@@ -8581,7 +8581,7 @@ func CGRectCreateDictionaryRepresentation(p0 Rect) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectDivide
 func CGRectDivide(rect Rect, slice unsafe.Pointer, remainder unsafe.Pointer, amount float64, edge RectEdge) {
 	_CGRectDivide(rect, slice, remainder, amount, edge)
-}
+}/* debug [functions.gen.go/function]: CGRectDivide */
 
 // Returns whether two rectangles are equal in size and position.
 //
@@ -8592,7 +8592,7 @@ func CGRectDivide(rect Rect, slice unsafe.Pointer, remainder unsafe.Pointer, amo
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectEqualToRect(_:_:)
 func CGRectEqualToRect(rect1 Rect, rect2 Rect) bool {
 	return _CGRectEqualToRect(rect1, rect2)
-}
+}/* debug [functions.gen.go/function]: CGRectEqualToRect */
 
 // Returns the height of a rectangle.
 //
@@ -8603,7 +8603,7 @@ func CGRectEqualToRect(rect1 Rect, rect2 Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectGetHeight(_:)
 func CGRectGetHeight(rect Rect) float64 {
 	return _CGRectGetHeight(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectGetHeight */
 
 // Returns the largest value of the x-coordinate for the rectangle.
 //
@@ -8614,7 +8614,7 @@ func CGRectGetHeight(rect Rect) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectGetMaxX(_:)
 func CGRectGetMaxX(rect Rect) float64 {
 	return _CGRectGetMaxX(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectGetMaxX */
 
 // Returns the largest value for the y-coordinate of the rectangle.
 //
@@ -8625,7 +8625,7 @@ func CGRectGetMaxX(rect Rect) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectGetMaxY(_:)
 func CGRectGetMaxY(rect Rect) float64 {
 	return _CGRectGetMaxY(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectGetMaxY */
 
 // Returns the x- coordinate that establishes the center of a rectangle.
 //
@@ -8636,7 +8636,7 @@ func CGRectGetMaxY(rect Rect) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectGetMidX(_:)
 func CGRectGetMidX(rect Rect) float64 {
 	return _CGRectGetMidX(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectGetMidX */
 
 // Returns the y-coordinate that establishes the center of the rectangle.
 //
@@ -8647,7 +8647,7 @@ func CGRectGetMidX(rect Rect) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectGetMidY(_:)
 func CGRectGetMidY(rect Rect) float64 {
 	return _CGRectGetMidY(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectGetMidY */
 
 // Returns the smallest value for the x-coordinate of the rectangle.
 //
@@ -8658,7 +8658,7 @@ func CGRectGetMidY(rect Rect) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectGetMinX(_:)
 func CGRectGetMinX(rect Rect) float64 {
 	return _CGRectGetMinX(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectGetMinX */
 
 // Returns the smallest value for the y-coordinate of the rectangle.
 //
@@ -8669,7 +8669,7 @@ func CGRectGetMinX(rect Rect) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectGetMinY(_:)
 func CGRectGetMinY(rect Rect) float64 {
 	return _CGRectGetMinY(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectGetMinY */
 
 // Returns the width of a rectangle.
 //
@@ -8680,7 +8680,7 @@ func CGRectGetMinY(rect Rect) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectGetWidth(_:)
 func CGRectGetWidth(rect Rect) float64 {
 	return _CGRectGetWidth(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectGetWidth */
 
 // Returns a rectangle that is smaller or larger than the source rectangle, with the same center point.
 //
@@ -8691,7 +8691,7 @@ func CGRectGetWidth(rect Rect) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectInset(_:_:_:)
 func CGRectInset(rect Rect, dx float64, dy float64) Rect {
 	return _CGRectInset(rect, dx, dy)
-}
+}/* debug [functions.gen.go/function]: CGRectInset */
 
 // Returns the smallest rectangle that results from converting the source rectangle values to integers.
 //
@@ -8702,7 +8702,7 @@ func CGRectInset(rect Rect, dx float64, dy float64) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIntegral(_:)
 func CGRectIntegral(rect Rect) Rect {
 	return _CGRectIntegral(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectIntegral */
 
 // Returns the intersection of two rectangles.
 //
@@ -8713,7 +8713,7 @@ func CGRectIntegral(rect Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIntersection(_:_:)
 func CGRectIntersection(r1 Rect, r2 Rect) Rect {
 	return _CGRectIntersection(r1, r2)
-}
+}/* debug [functions.gen.go/function]: CGRectIntersection */
 
 // Returns whether two rectangles intersect.
 //
@@ -8724,7 +8724,7 @@ func CGRectIntersection(r1 Rect, r2 Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIntersectsRect(_:_:)
 func CGRectIntersectsRect(rect1 Rect, rect2 Rect) bool {
 	return _CGRectIntersectsRect(rect1, rect2)
-}
+}/* debug [functions.gen.go/function]: CGRectIntersectsRect */
 
 // Returns whether a rectangle has zero width or height, or is a null rectangle.
 //
@@ -8735,7 +8735,7 @@ func CGRectIntersectsRect(rect1 Rect, rect2 Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIsEmpty(_:)
 func CGRectIsEmpty(rect Rect) bool {
 	return _CGRectIsEmpty(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectIsEmpty */
 
 // Returns whether a rectangle is infinite.
 //
@@ -8746,7 +8746,7 @@ func CGRectIsEmpty(rect Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIsInfinite(_:)
 func CGRectIsInfinite(rect Rect) bool {
 	return _CGRectIsInfinite(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectIsInfinite */
 
 // Returns whether the rectangle is equal to the null rectangle.
 //
@@ -8757,7 +8757,7 @@ func CGRectIsInfinite(rect Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectIsNull(_:)
 func CGRectIsNull(rect Rect) bool {
 	return _CGRectIsNull(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectIsNull */
 
 // Fills in a rectangle using the contents of the specified dictionary.
 //
@@ -8768,7 +8768,7 @@ func CGRectIsNull(rect Rect) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectMakeWithDictionaryRepresentation(_:_:)
 func CGRectMakeWithDictionaryRepresentation(dict DictionaryRef, rect unsafe.Pointer) bool {
 	return _CGRectMakeWithDictionaryRepresentation(dict, rect)
-}
+}/* debug [functions.gen.go/function]: CGRectMakeWithDictionaryRepresentation */
 
 // Returns a rectangle with an origin that is offset from that of the source rectangle.
 //
@@ -8779,7 +8779,7 @@ func CGRectMakeWithDictionaryRepresentation(dict DictionaryRef, rect unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectOffset(_:_:_:)
 func CGRectOffset(rect Rect, dx float64, dy float64) Rect {
 	return _CGRectOffset(rect, dx, dy)
-}
+}/* debug [functions.gen.go/function]: CGRectOffset */
 
 // Returns a rectangle with a positive width and height.
 //
@@ -8790,7 +8790,7 @@ func CGRectOffset(rect Rect, dx float64, dy float64) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectStandardize(_:)
 func CGRectStandardize(rect Rect) Rect {
 	return _CGRectStandardize(rect)
-}
+}/* debug [functions.gen.go/function]: CGRectStandardize */
 
 // Returns the smallest rectangle that contains the two source rectangles.
 //
@@ -8801,7 +8801,7 @@ func CGRectStandardize(rect Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRectUnion(_:_:)
 func CGRectUnion(r1 Rect, r2 Rect) Rect {
 	return _CGRectUnion(r1, r2)
-}
+}/* debug [functions.gen.go/function]: CGRectUnion */
 
 // Registers a callback function to be invoked when local displays are refreshed or modified.
 
@@ -8811,7 +8811,7 @@ func CGRectUnion(r1 Rect, r2 Rect) Rect {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRegisterScreenRefreshCallback(_:_:)
 func CGRegisterScreenRefreshCallback(callback ScreenRefreshCallback, userInfo unsafe.Pointer) Error {
 	return _CGRegisterScreenRefreshCallback(callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGRegisterScreenRefreshCallback */
 
 // Releases all captured displays.
 //
@@ -8822,7 +8822,7 @@ func CGRegisterScreenRefreshCallback(callback ScreenRefreshCallback, userInfo un
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGReleaseAllDisplays()
 func CGReleaseAllDisplays() Error {
 	return _CGReleaseAllDisplays()
-}
+}/* debug [functions.gen.go/function]: CGReleaseAllDisplays */
 
 // Releases a display fade reservation, and unfades the display if needed.
 //
@@ -8833,7 +8833,7 @@ func CGReleaseAllDisplays() Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGReleaseDisplayFadeReservation(_:)
 func CGReleaseDisplayFadeReservation(token DisplayFadeReservationToken) Error {
 	return _CGReleaseDisplayFadeReservation(token)
-}
+}/* debug [functions.gen.go/function]: CGReleaseDisplayFadeReservation */
 
 // Deallocates a list of rectangles that represent changed areas on local displays.
 
@@ -8843,7 +8843,7 @@ func CGReleaseDisplayFadeReservation(token DisplayFadeReservationToken) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGReleaseScreenRefreshRects(_:)
 func CGReleaseScreenRefreshRects(rects unsafe.Pointer) {
 	_CGReleaseScreenRefreshRects(rects)
-}
+}/* debug [functions.gen.go/function]: CGReleaseScreenRefreshRects */
 
 // CGRenderingBufferLockBytePtr is a CoreGraphics function.
 //
@@ -8852,7 +8852,7 @@ func CGReleaseScreenRefreshRects(rects unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferLockBytePtr
 func CGRenderingBufferLockBytePtr(provider RenderingBufferProviderRef) unsafe.Pointer {
 	return _CGRenderingBufferLockBytePtr(provider)
-}
+}/* debug [functions.gen.go/function]: CGRenderingBufferLockBytePtr */
 
 // CGRenderingBufferProviderCreate is a CoreGraphics function.
 //
@@ -8861,7 +8861,7 @@ func CGRenderingBufferLockBytePtr(provider RenderingBufferProviderRef) unsafe.Po
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderCreate
 func CGRenderingBufferProviderCreate(info unsafe.Pointer, size uintptr) RenderingBufferProviderRef {
 	return _CGRenderingBufferProviderCreate(info, size)
-}
+}/* debug [functions.gen.go/function]: CGRenderingBufferProviderCreate */
 
 // CGRenderingBufferProviderCreateWithCFData is a CoreGraphics function.
 //
@@ -8870,7 +8870,7 @@ func CGRenderingBufferProviderCreate(info unsafe.Pointer, size uintptr) Renderin
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderCreateWithCFData
 func CGRenderingBufferProviderCreateWithCFData(data MutableDataRef) RenderingBufferProviderRef {
 	return _CGRenderingBufferProviderCreateWithCFData(data)
-}
+}/* debug [functions.gen.go/function]: CGRenderingBufferProviderCreateWithCFData */
 
 // CGRenderingBufferProviderGetSize is a CoreGraphics function.
 //
@@ -8879,7 +8879,7 @@ func CGRenderingBufferProviderCreateWithCFData(data MutableDataRef) RenderingBuf
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderGetSize
 func CGRenderingBufferProviderGetSize(provider RenderingBufferProviderRef) uintptr {
 	return _CGRenderingBufferProviderGetSize(provider)
-}
+}/* debug [functions.gen.go/function]: CGRenderingBufferProviderGetSize */
 
 // CGRenderingBufferProviderGetTypeID is a CoreGraphics function.
 //
@@ -8888,7 +8888,7 @@ func CGRenderingBufferProviderGetSize(provider RenderingBufferProviderRef) uintp
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProviderGetTypeID
 func CGRenderingBufferProviderGetTypeID() TypeID {
 	return _CGRenderingBufferProviderGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGRenderingBufferProviderGetTypeID */
 
 // CGRenderingBufferUnlockBytePtr is a CoreGraphics function.
 //
@@ -8897,7 +8897,7 @@ func CGRenderingBufferProviderGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferUnlockBytePtr
 func CGRenderingBufferUnlockBytePtr(provider RenderingBufferProviderRef) {
 	_CGRenderingBufferUnlockBytePtr(provider)
-}
+}/* debug [functions.gen.go/function]: CGRenderingBufferUnlockBytePtr */
 
 // CGRequestListenEventAccess is a CoreGraphics function.
 //
@@ -8906,7 +8906,7 @@ func CGRenderingBufferUnlockBytePtr(provider RenderingBufferProviderRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRequestListenEventAccess()
 func CGRequestListenEventAccess() bool {
 	return _CGRequestListenEventAccess()
-}
+}/* debug [functions.gen.go/function]: CGRequestListenEventAccess */
 
 // CGRequestPostEventAccess is a CoreGraphics function.
 //
@@ -8915,7 +8915,7 @@ func CGRequestListenEventAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRequestPostEventAccess()
 func CGRequestPostEventAccess() bool {
 	return _CGRequestPostEventAccess()
-}
+}/* debug [functions.gen.go/function]: CGRequestPostEventAccess */
 
 // CGRequestScreenCaptureAccess is a CoreGraphics function.
 //
@@ -8924,7 +8924,7 @@ func CGRequestPostEventAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRequestScreenCaptureAccess()
 func CGRequestScreenCaptureAccess() bool {
 	return _CGRequestScreenCaptureAccess()
-}
+}/* debug [functions.gen.go/function]: CGRequestScreenCaptureAccess */
 
 // Restores the permanent display configuration settings for the current user.
 //
@@ -8935,7 +8935,7 @@ func CGRequestScreenCaptureAccess() bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRestorePermanentDisplayConfiguration()
 func CGRestorePermanentDisplayConfiguration() {
 	_CGRestorePermanentDisplayConfiguration()
-}
+}/* debug [functions.gen.go/function]: CGRestorePermanentDisplayConfiguration */
 
 // Registers a callback function to be invoked when an area of the display is moved.
 
@@ -8945,7 +8945,7 @@ func CGRestorePermanentDisplayConfiguration() {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGScreenRegisterMoveCallback(_:_:)
 func CGScreenRegisterMoveCallback(callback ScreenUpdateMoveCallback, userInfo unsafe.Pointer) Error {
 	return _CGScreenRegisterMoveCallback(callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGScreenRegisterMoveCallback */
 
 // Removes a previously registered callback function invoked when an area of the display is moved.
 
@@ -8955,7 +8955,7 @@ func CGScreenRegisterMoveCallback(callback ScreenUpdateMoveCallback, userInfo un
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGScreenUnregisterMoveCallback(_:_:)
 func CGScreenUnregisterMoveCallback(callback ScreenUpdateMoveCallback, userInfo unsafe.Pointer) {
 	_CGScreenUnregisterMoveCallback(callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGScreenUnregisterMoveCallback */
 
 // Returns information about the caller’s window server session.
 //
@@ -8966,7 +8966,7 @@ func CGScreenUnregisterMoveCallback(callback ScreenUpdateMoveCallback, userInfo 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSessionCopyCurrentDictionary()
 func CGSessionCopyCurrentDictionary() DictionaryRef {
 	return _CGSessionCopyCurrentDictionary()
-}
+}/* debug [functions.gen.go/function]: CGSessionCopyCurrentDictionary */
 
 // Sets the byte values in the 8-bit RGB gamma tables for a display.
 //
@@ -8977,7 +8977,7 @@ func CGSessionCopyCurrentDictionary() DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetDisplayTransferByByteTable(_:_:_:_:_:)
 func CGSetDisplayTransferByByteTable(display DirectDisplayID, tableSize uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) Error {
 	return _CGSetDisplayTransferByByteTable(display, tableSize, redTable, greenTable, blueTable)
-}
+}/* debug [functions.gen.go/function]: CGSetDisplayTransferByByteTable */
 
 // Sets the gamma function for a display by specifying the coefficients of the gamma transfer formula.
 //
@@ -8988,7 +8988,7 @@ func CGSetDisplayTransferByByteTable(display DirectDisplayID, tableSize uint32, 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetDisplayTransferByFormula(_:_:_:_:_:_:_:_:_:_:)
 func CGSetDisplayTransferByFormula(display DirectDisplayID, redMin GammaValue, redMax GammaValue, redGamma GammaValue, greenMin GammaValue, greenMax GammaValue, greenGamma GammaValue, blueMin GammaValue, blueMax GammaValue, blueGamma GammaValue) Error {
 	return _CGSetDisplayTransferByFormula(display, redMin, redMax, redGamma, greenMin, greenMax, greenGamma, blueMin, blueMax, blueGamma)
-}
+}/* debug [functions.gen.go/function]: CGSetDisplayTransferByFormula */
 
 // Sets the color gamma function for a display by specifying the values in the RGB gamma tables.
 //
@@ -8999,7 +8999,7 @@ func CGSetDisplayTransferByFormula(display DirectDisplayID, redMin GammaValue, r
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetDisplayTransferByTable(_:_:_:_:_:)
 func CGSetDisplayTransferByTable(display DirectDisplayID, tableSize uint32, redTable unsafe.Pointer, greenTable unsafe.Pointer, blueTable unsafe.Pointer) Error {
 	return _CGSetDisplayTransferByTable(display, tableSize, redTable, greenTable, blueTable)
-}
+}/* debug [functions.gen.go/function]: CGSetDisplayTransferByTable */
 
 // Filters local hardware events from the keyboard and mouse during the short interval after a synthetic event is posted.
 
@@ -9009,7 +9009,7 @@ func CGSetDisplayTransferByTable(display DirectDisplayID, tableSize uint32, redT
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetLocalEventsFilterDuringSuppressionState(_:_:)
 func CGSetLocalEventsFilterDuringSuppressionState(filter EventFilterMask, state EventSuppressionState) Error {
 	return _CGSetLocalEventsFilterDuringSuppressionState(filter, state)
-}
+}/* debug [functions.gen.go/function]: CGSetLocalEventsFilterDuringSuppressionState */
 
 // Sets the time interval in seconds that local hardware events are suppressed after posting a synthetic event.
 
@@ -9017,9 +9017,9 @@ func CGSetLocalEventsFilterDuringSuppressionState(filter EventFilterMask, state 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSetLocalEventsSuppressionInterval(_:)
-func CGSetLocalEventsSuppressionInterval(seconds TimeInterval) Error {
+func CGSetLocalEventsSuppressionInterval(seconds float64) Error {
 	return _CGSetLocalEventsSuppressionInterval(seconds)
-}
+}/* debug [functions.gen.go/function]: CGSetLocalEventsSuppressionInterval */
 
 // CGShadingGetContentHeadroom is a CoreGraphics function.
 //
@@ -9028,7 +9028,7 @@ func CGSetLocalEventsSuppressionInterval(seconds TimeInterval) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/contentHeadroom
 func CGShadingGetContentHeadroom(shading ShadingRef) float32 {
 	return _CGShadingGetContentHeadroom(shading)
-}
+}/* debug [functions.gen.go/function]: CGShadingGetContentHeadroom */
 
 // CGShadingCreateAxialWithContentHeadroom is a CoreGraphics function.
 //
@@ -9037,7 +9037,7 @@ func CGShadingGetContentHeadroom(shading ShadingRef) float32 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(axialHeadroom:space:start:end:function:extendStart:extendEnd:)
 func CGShadingCreateAxialWithContentHeadroom(headroom float32, space ColorSpaceRef, start Point, end Point, function FunctionRef, extendStart bool, extendEnd bool) ShadingRef {
 	return _CGShadingCreateAxialWithContentHeadroom(headroom, space, start, end, function, extendStart, extendEnd)
-}
+}/* debug [functions.gen.go/function]: CGShadingCreateAxialWithContentHeadroom */
 
 // Creates a shading object to use for axial shading.
 //
@@ -9048,7 +9048,7 @@ func CGShadingCreateAxialWithContentHeadroom(headroom float32, space ColorSpaceR
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(axialSpace:start:end:function:extendStart:extendEnd:)
 func CGShadingCreateAxial(space ColorSpaceRef, start Point, end Point, function FunctionRef, extendStart bool, extendEnd bool) ShadingRef {
 	return _CGShadingCreateAxial(space, start, end, function, extendStart, extendEnd)
-}
+}/* debug [functions.gen.go/function]: CGShadingCreateAxial */
 
 // CGShadingCreateRadialWithContentHeadroom is a CoreGraphics function.
 //
@@ -9057,7 +9057,7 @@ func CGShadingCreateAxial(space ColorSpaceRef, start Point, end Point, function 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(radialHeadroom:space:start:startRadius:end:endRadius:function:extendStart:extendEnd:)
 func CGShadingCreateRadialWithContentHeadroom(headroom float32, space ColorSpaceRef, start Point, startRadius float64, end Point, endRadius float64, function FunctionRef, extendStart bool, extendEnd bool) ShadingRef {
 	return _CGShadingCreateRadialWithContentHeadroom(headroom, space, start, startRadius, end, endRadius, function, extendStart, extendEnd)
-}
+}/* debug [functions.gen.go/function]: CGShadingCreateRadialWithContentHeadroom */
 
 // Creates a shading object to use for radial shading.
 //
@@ -9068,7 +9068,7 @@ func CGShadingCreateRadialWithContentHeadroom(headroom float32, space ColorSpace
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/init(radialSpace:start:startRadius:end:endRadius:function:extendStart:extendEnd:)
 func CGShadingCreateRadial(space ColorSpaceRef, start Point, startRadius float64, end Point, endRadius float64, function FunctionRef, extendStart bool, extendEnd bool) ShadingRef {
 	return _CGShadingCreateRadial(space, start, startRadius, end, endRadius, function, extendStart, extendEnd)
-}
+}/* debug [functions.gen.go/function]: CGShadingCreateRadial */
 
 // Returns the Core Foundation type identifier for Core Graphics shading objects.
 //
@@ -9079,7 +9079,7 @@ func CGShadingCreateRadial(space ColorSpaceRef, start Point, startRadius float64
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShading/typeID
 func CGShadingGetTypeID() TypeID {
 	return _CGShadingGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CGShadingGetTypeID */
 
 // Decrements the retain count of a shading object.
 //
@@ -9090,7 +9090,7 @@ func CGShadingGetTypeID() TypeID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShadingRelease
 func CGShadingRelease(shading ShadingRef) {
 	_CGShadingRelease(shading)
-}
+}/* debug [functions.gen.go/function]: CGShadingRelease */
 
 // Increments the retain count of a shading object.
 //
@@ -9101,7 +9101,7 @@ func CGShadingRelease(shading ShadingRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShadingRetain
 func CGShadingRetain(shading ShadingRef) ShadingRef {
 	return _CGShadingRetain(shading)
-}
+}/* debug [functions.gen.go/function]: CGShadingRetain */
 
 // Returns the window ID of the shield window for a captured display.
 //
@@ -9112,7 +9112,7 @@ func CGShadingRetain(shading ShadingRef) ShadingRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShieldingWindowID(_:)
 func CGShieldingWindowID(display DirectDisplayID) WindowID {
 	return _CGShieldingWindowID(display)
-}
+}/* debug [functions.gen.go/function]: CGShieldingWindowID */
 
 // Returns the window level of the shield window for a captured display.
 //
@@ -9123,7 +9123,7 @@ func CGShieldingWindowID(display DirectDisplayID) WindowID {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGShieldingWindowLevel()
 func CGShieldingWindowLevel() WindowLevel {
 	return _CGShieldingWindowLevel()
-}
+}/* debug [functions.gen.go/function]: CGShieldingWindowLevel */
 
 // Returns the height and width resulting from a transformation of an existing height and width.
 //
@@ -9134,7 +9134,7 @@ func CGShieldingWindowLevel() WindowLevel {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSizeApplyAffineTransform(_:_:)
 func CGSizeApplyAffineTransform(size Size, t AffineTransform) Size {
 	return _CGSizeApplyAffineTransform(size, t)
-}
+}/* debug [functions.gen.go/function]: CGSizeApplyAffineTransform */
 
 // Returns a dictionary representation of the specified size.
 //
@@ -9145,7 +9145,7 @@ func CGSizeApplyAffineTransform(size Size, t AffineTransform) Size {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSizeCreateDictionaryRepresentation(_:)
 func CGSizeCreateDictionaryRepresentation(size Size) DictionaryRef {
 	return _CGSizeCreateDictionaryRepresentation(size)
-}
+}/* debug [functions.gen.go/function]: CGSizeCreateDictionaryRepresentation */
 
 // Returns whether two sizes are equal.
 //
@@ -9156,7 +9156,7 @@ func CGSizeCreateDictionaryRepresentation(size Size) DictionaryRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSizeEqualToSize(_:_:)
 func CGSizeEqualToSize(size1 Size, size2 Size) bool {
 	return _CGSizeEqualToSize(size1, size2)
-}
+}/* debug [functions.gen.go/function]: CGSizeEqualToSize */
 
 // Fills in a size using the contents of the specified dictionary.
 //
@@ -9167,7 +9167,7 @@ func CGSizeEqualToSize(size1 Size, size2 Size) bool {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGSizeMakeWithDictionaryRepresentation(_:_:)
 func CGSizeMakeWithDictionaryRepresentation(dict DictionaryRef, size unsafe.Pointer) bool {
 	return _CGSizeMakeWithDictionaryRepresentation(dict, size)
-}
+}/* debug [functions.gen.go/function]: CGSizeMakeWithDictionaryRepresentation */
 
 // Removes a previously registered callback function invoked when local displays are refreshed or modified.
 
@@ -9177,7 +9177,7 @@ func CGSizeMakeWithDictionaryRepresentation(dict DictionaryRef, size unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGUnregisterScreenRefreshCallback(_:_:)
 func CGUnregisterScreenRefreshCallback(callback ScreenRefreshCallback, userInfo unsafe.Pointer) {
 	_CGUnregisterScreenRefreshCallback(callback, userInfo)
-}
+}/* debug [functions.gen.go/function]: CGUnregisterScreenRefreshCallback */
 
 // Waits for screen refresh operations.
 
@@ -9187,7 +9187,7 @@ func CGUnregisterScreenRefreshCallback(callback ScreenRefreshCallback, userInfo 
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWaitForScreenRefreshRects(_:_:)
 func CGWaitForScreenRefreshRects(rects unsafe.Pointer, count []uint32) Error {
 	return _CGWaitForScreenRefreshRects(rects, count)
-}
+}/* debug [functions.gen.go/function]: CGWaitForScreenRefreshRects */
 
 // Waits for screen update operations.
 
@@ -9197,7 +9197,7 @@ func CGWaitForScreenRefreshRects(rects unsafe.Pointer, count []uint32) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWaitForScreenUpdateRects(_:_:_:_:_:)
 func CGWaitForScreenUpdateRects(requestedOperations ScreenUpdateOperation, currentOperation unsafe.Pointer, rects unsafe.Pointer, rectCount unsafe.Pointer, delta unsafe.Pointer) Error {
 	return _CGWaitForScreenUpdateRects(requestedOperations, currentOperation, rects, rectCount, delta)
-}
+}/* debug [functions.gen.go/function]: CGWaitForScreenUpdateRects */
 
 // Moves the mouse cursor without generating events.
 //
@@ -9208,7 +9208,7 @@ func CGWaitForScreenUpdateRects(requestedOperations ScreenUpdateOperation, curre
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWarpMouseCursorPosition(_:)
 func CGWarpMouseCursorPosition(newCursorPosition Point) Error {
 	return _CGWarpMouseCursorPosition(newCursorPosition)
-}
+}/* debug [functions.gen.go/function]: CGWarpMouseCursorPosition */
 
 // Returns the window level that corresponds to one of the standard window types.
 //
@@ -9219,7 +9219,7 @@ func CGWarpMouseCursorPosition(newCursorPosition Point) Error {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowLevelForKey(_:)
 func CGWindowLevelForKey(key WindowLevelKey) WindowLevel {
 	return _CGWindowLevelForKey(key)
-}
+}/* debug [functions.gen.go/function]: CGWindowLevelForKey */
 
 // Generates and returns information about the selected windows in the current user session.
 //
@@ -9230,7 +9230,7 @@ func CGWindowLevelForKey(key WindowLevelKey) WindowLevel {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListCopyWindowInfo(_:_:)
 func CGWindowListCopyWindowInfo(option WindowListOption, relativeToWindow WindowID) ArrayRef {
 	return _CGWindowListCopyWindowInfo(option, relativeToWindow)
-}
+}/* debug [functions.gen.go/function]: CGWindowListCopyWindowInfo */
 
 // Returns the list of window IDs associated with the specified windows in the current user session.
 //
@@ -9241,7 +9241,7 @@ func CGWindowListCopyWindowInfo(option WindowListOption, relativeToWindow Window
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListCreate
 func CGWindowListCreate(option WindowListOption, relativeToWindow WindowID) ArrayRef {
 	return _CGWindowListCreate(option, relativeToWindow)
-}
+}/* debug [functions.gen.go/function]: CGWindowListCreate */
 
 // Generates and returns information about windows with the specified window IDs.
 //
@@ -9252,7 +9252,7 @@ func CGWindowListCreate(option WindowListOption, relativeToWindow WindowID) Arra
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListCreateDescriptionFromArray(_:)
 func CGWindowListCreateDescriptionFromArray(windowArray ArrayRef) ArrayRef {
 	return _CGWindowListCreateDescriptionFromArray(windowArray)
-}
+}/* debug [functions.gen.go/function]: CGWindowListCreateDescriptionFromArray */
 
 // Returns a composite image based on a dynamically generated list of windows.
 
@@ -9262,7 +9262,7 @@ func CGWindowListCreateDescriptionFromArray(windowArray ArrayRef) ArrayRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowListCreateImage(_:_:_:_:)
 func CGWindowListCreateImage(screenBounds Rect, listOption WindowListOption, windowID WindowID, imageOption WindowImageOption) ImageRef {
 	return _CGWindowListCreateImage(screenBounds, listOption, windowID, imageOption)
-}
+}/* debug [functions.gen.go/function]: CGWindowListCreateImage */
 
 // Returns a Core Foundation Mach port (CFMachPort) that corresponds to the macOS window server.
 
@@ -9272,7 +9272,7 @@ func CGWindowListCreateImage(screenBounds Rect, listOption WindowListOption, win
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowServerCFMachPort()
 func CGWindowServerCFMachPort() MachPortRef {
 	return _CGWindowServerCFMachPort()
-}
+}/* debug [functions.gen.go/function]: CGWindowServerCFMachPort */
 
 // CGWindowServerCreateServerPort is a CoreGraphics function.
 //
@@ -9281,7 +9281,8 @@ func CGWindowServerCFMachPort() MachPortRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGWindowServerCreateServerPort()
 func CGWindowServerCreateServerPort() MachPortRef {
 	return _CGWindowServerCreateServerPort()
-}
+}/* debug [functions.gen.go/function]: CGWindowServerCreateServerPort */
+
 
 
 

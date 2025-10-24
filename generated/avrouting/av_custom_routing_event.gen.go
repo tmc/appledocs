@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCustomRoutingEvent */
+
+
+/* debug [class_header]: Header for AVCustomRoutingEvent */
 // The class instance for the [CustomRoutingEvent] class.
 var (
 	CustomRoutingEventClass     _CustomRoutingEventClass
@@ -26,38 +30,30 @@ func getCustomRoutingEventClass() _CustomRoutingEventClass {
 type _CustomRoutingEventClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CustomRoutingEvent */
 // An interface definition for the [CustomRoutingEvent] class.
 type ICustomRoutingEvent interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CustomRoutingEvent */
 	// properties:
-	Reason() CustomRoutingEventReason /* not a class type */
-	SetReason(value CustomRoutingEventReason /* not a class type */)
-	Route() IAVCustomDeviceRoute
-	SetRoute(value IAVCustomDeviceRoute)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CustomRoutingEvent */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents an event that occurs on a route.
-//
-// Depending on the route’s reason, apps establish or tear down a connection to a specified route.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents an event that occurs on a route.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent
-type CustomRoutingEvent struct {
-	objectivec.Object
-}
 
-// CustomRoutingEventFrom constructs a [CustomRoutingEvent] from an unsafe.Pointer.
-//
-// An object that represents an event that occurs on a route.
-func CustomRoutingEventFrom(ptr unsafe.Pointer) CustomRoutingEvent {
-	return CustomRoutingEvent{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CustomRoutingEvent */
 // Alloc allocates a new instance without initialization.
 func (cc _CustomRoutingEventClass) Alloc() CustomRoutingEvent {
 	rv := objc.Send[CustomRoutingEvent](objc.ID(cc.class), objc.Sel("alloc"))
@@ -65,7 +61,6 @@ func (cc _CustomRoutingEventClass) Alloc() CustomRoutingEvent {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CustomRoutingEventClass) New() CustomRoutingEvent {
 	rv := objc.Send[CustomRoutingEvent](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,45 +83,57 @@ func (c_ CustomRoutingEvent) Autorelease() CustomRoutingEvent {
 func NewCustomRoutingEvent() CustomRoutingEvent {
 	return getCustomRoutingEventClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A reason for an event, such as a user request to activate or deactivate a route.
+/* debug [class_struct]: Struct for CustomRoutingEvent */
+// An object that represents an event that occurs on a route.
+//
+// Depending on the route’s reason, apps establish or tear down a connection to a specified route.
+
+
+// An object that represents an event that occurs on a route.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomRoutingEvent) Reason() CustomRoutingEventReason /* not a class type */ {
-	rv := objc.Send[CustomRoutingEventReason](c_.ID, objc.Sel("reason"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingEvent
+type CustomRoutingEvent struct {
+	objectivec.Object
 }
 
-
-// A reason for an event, such as a user request to activate or deactivate a route.
+// CustomRoutingEventFrom constructs a [CustomRoutingEvent] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/reason
-func (c_ CustomRoutingEvent) SetReason(value CustomRoutingEventReason /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setReason:"), value)
+// An object that represents an event that occurs on a route.
+func CustomRoutingEventFrom(ptr unsafe.Pointer) CustomRoutingEvent {
+	return CustomRoutingEvent{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// A route for the event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
-func (c_ CustomRoutingEvent) Route() IAVCustomDeviceRoute {
-	rv := objc.Send[CustomDeviceRoute](c_.ID, objc.Sel("route"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for CustomRoutingEvent *//* debug [class_init_methods]: End init methods */
 
 
-// A route for the event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avrouting/avcustomroutingevent/route
-func (c_ CustomRoutingEvent) SetRoute(value IAVCustomDeviceRoute) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setRoute:"), value)
-}
 
+/* debug [class_methods]: Class methods for CustomRoutingEvent */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CustomRoutingEvent */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CustomRoutingEvent */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CustomRoutingEvent */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVCustomRoutingEvent */
 
 

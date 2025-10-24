@@ -15,3 +15,4 @@ var outlineViewSelectionDidChangeProtocol *objc.Protocol
 func init() {
 	outlineViewSelectionDidChangeProtocol = objc.GetProtocol("outlineViewSelectionDidChange:")
 }
+

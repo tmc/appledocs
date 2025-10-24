@@ -37,7 +37,6 @@ type IINStartWorkoutIntentResponse interface {
 //
 // Use an object to specify whether your app is able to start a workout. The response object contains only the response code that indicates whether to launch your app or whether there was a problem. You create an object in the and methods of your start workout handler object. For more information about implementing your handler object, see .
 
-
 // Your app’s response to a start workout intent.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINStartWorkoutIntentResponse() INStartWorkoutIntentResponse {
 	return getINStartWorkoutIntentResponseClass().New()
 }
 
-
-
 // The code that indicates whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INStartWorkoutIntentResponse) Code() unsafe.Pointer {
 	return rv
 }
 
-
 // The code that indicates whether you successfully handled the intent.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INStartWorkoutIntentResponse) Code() unsafe.Pointer {
 func (i_ INStartWorkoutIntentResponse) SetCode(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCode:"), value)
 }
-
-
-

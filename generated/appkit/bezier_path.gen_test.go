@@ -12,7 +12,7 @@ var _ = appkit.NewBezierPath
 // ExampleNewBezierPathWithCGPath demonstrates how to create a BezierPath instance using NewBezierPathWithCGPath.
 func ExampleNewBezierPathWithCGPath() {
 	_ = appkit.NewBezierPathWithCGPath(
-		appkit.PathRef /* not a class type */{}, // cgPath PathRef /* not a class type */
+		appkit.PathRef /* not a class type */ {}, // cgPath PathRef /* not a class type */
 	)
 	// Output:
 }

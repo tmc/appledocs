@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRBasicClusterLeaveEvent] class.
@@ -35,8 +35,6 @@ type IMTRBasicClusterLeaveEvent interface {
 	SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicClusterLeaveEvent
@@ -82,8 +80,6 @@ func NewMTRBasicClusterLeaveEvent() MTRBasicClusterLeaveEvent {
 	return getMTRBasicClusterLeaveEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterleaveevent/fabricindex
 func (m_ MTRBasicClusterLeaveEvent) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
@@ -91,12 +87,8 @@ func (m_ MTRBasicClusterLeaveEvent) FabricIndex() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicclusterleaveevent/fabricindex
 func (m_ MTRBasicClusterLeaveEvent) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
-
-

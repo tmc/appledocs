@@ -33,8 +33,6 @@ type IMTRClusterActivatedCarbonFilterMonitoring interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterActivatedCarbonFilterMonitoring
 type MTRClusterActivatedCarbonFilterMonitoring struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterActivatedCarbonFilterMonitoring) Autorelease() MTRClusterActi
 func NewMTRClusterActivatedCarbonFilterMonitoring() MTRClusterActivatedCarbonFilterMonitoring {
 	return getMTRClusterActivatedCarbonFilterMonitoringClass().New()
 }
-
-
-
-

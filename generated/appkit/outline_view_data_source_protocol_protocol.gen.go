@@ -3,8 +3,13 @@
 package appkit
 
 import (
+	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/vision"
 )
 
 // POutlineViewDataSource is the NSOutlineViewDataSource protocol interface.
@@ -17,13 +22,13 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSOutlineViewDataSource
 type POutlineViewDataSource interface {
 	// Optional methods
-	OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info objc.IObject, item objc.IObject, index int) bool
+	OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) bool
 	HasOutlineViewAcceptDropItemChildIndex() bool
 	OutlineViewChildOfItem(outlineView IOutlineView, index int, item objc.IObject) objc.ID
 	HasOutlineViewChildOfItem() bool
-	OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, operation DragOperation)
+	OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)
 	HasOutlineViewDraggingSessionEndedAtPointOperation() bool
-	OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, draggedItems objc.IObject /* cross-framework: NSArray */)
+	OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, draggedItems objc.IObject /* cross-framework: NSArray */)
 	HasOutlineViewDraggingSessionWillBeginAtPointForItems() bool
 	OutlineViewIsItemExpandable(outlineView IOutlineView, item objc.IObject) bool
 	HasOutlineViewIsItemExpandable() bool
@@ -35,7 +40,7 @@ type POutlineViewDataSource interface {
 	HasOutlineViewNumberOfChildrenOfItem() bool
 	OutlineViewObjectValueForTableColumnByItem(outlineView IOutlineView, tableColumn ITableColumn, item objc.IObject) objc.ID
 	HasOutlineViewObjectValueForTableColumnByItem() bool
-	OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objc.IObject) objc.ID
+	OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objc.IObject) unsafe.Pointer
 	HasOutlineViewPasteboardWriterForItem() bool
 	OutlineViewPersistentObjectForItem(outlineView IOutlineView, item objc.IObject) objc.ID
 	HasOutlineViewPersistentObjectForItem() bool
@@ -43,9 +48,9 @@ type POutlineViewDataSource interface {
 	HasOutlineViewSetObjectValueForTableColumnByItem() bool
 	OutlineViewSortDescriptorsDidChange(outlineView IOutlineView, oldDescriptors []objc.IObject)
 	HasOutlineViewSortDescriptorsDidChange() bool
-	OutlineViewUpdateDraggingItemsForDrag(outlineView IOutlineView, draggingInfo objc.IObject)
+	OutlineViewUpdateDraggingItemsForDrag(outlineView IOutlineView, draggingInfo unsafe.Pointer)
 	HasOutlineViewUpdateDraggingItemsForDrag() bool
-	OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info objc.IObject, item objc.IObject, index int) DragOperation
+	OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) DragOperation
 	HasOutlineViewValidateDropProposedItemProposedChildIndex() bool
 	OutlineViewWriteItemsToPasteboard(outlineView IOutlineView, items objc.IObject /* cross-framework: NSArray */, pasteboard IPasteboard) bool
 	HasOutlineViewWriteItemsToPasteboard() bool
@@ -55,28 +60,28 @@ type POutlineViewDataSource interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type OutlineViewDataSource struct {
-	_OutlineViewAcceptDropItemChildIndex func(outlineView IOutlineView, info objc.IObject, item objc.IObject, index int) bool
+	_OutlineViewAcceptDropItemChildIndex func(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) bool
 	_OutlineViewChildOfItem func(outlineView IOutlineView, index int, item objc.IObject) objc.ID
-	_OutlineViewDraggingSessionEndedAtPointOperation func(outlineView IOutlineView, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, operation DragOperation)
-	_OutlineViewDraggingSessionWillBeginAtPointForItems func(outlineView IOutlineView, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, draggedItems objc.IObject /* cross-framework: NSArray */)
+	_OutlineViewDraggingSessionEndedAtPointOperation func(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)
+	_OutlineViewDraggingSessionWillBeginAtPointForItems func(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, draggedItems objc.IObject /* cross-framework: NSArray */)
 	_OutlineViewIsItemExpandable func(outlineView IOutlineView, item objc.IObject) bool
 	_OutlineViewItemForPersistentObject func(outlineView IOutlineView, object objc.IObject) objc.ID
 	_OutlineViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItems func(outlineView IOutlineView, dropDestination objc.IObject /* cross-framework: NSURL */, items objc.IObject /* cross-framework: NSArray */) []string
 	_OutlineViewNumberOfChildrenOfItem func(outlineView IOutlineView, item objc.IObject) int
 	_OutlineViewObjectValueForTableColumnByItem func(outlineView IOutlineView, tableColumn ITableColumn, item objc.IObject) objc.ID
-	_OutlineViewPasteboardWriterForItem func(outlineView IOutlineView, item objc.IObject) objc.ID
+	_OutlineViewPasteboardWriterForItem func(outlineView IOutlineView, item objc.IObject) unsafe.Pointer
 	_OutlineViewPersistentObjectForItem func(outlineView IOutlineView, item objc.IObject) objc.ID
 	_OutlineViewSetObjectValueForTableColumnByItem func(outlineView IOutlineView, object objc.IObject, tableColumn ITableColumn, item objc.IObject)
 	_OutlineViewSortDescriptorsDidChange func(outlineView IOutlineView, oldDescriptors []objc.IObject)
-	_OutlineViewUpdateDraggingItemsForDrag func(outlineView IOutlineView, draggingInfo objc.IObject)
-	_OutlineViewValidateDropProposedItemProposedChildIndex func(outlineView IOutlineView, info objc.IObject, item objc.IObject, index int) DragOperation
+	_OutlineViewUpdateDraggingItemsForDrag func(outlineView IOutlineView, draggingInfo unsafe.Pointer)
+	_OutlineViewValidateDropProposedItemProposedChildIndex func(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) DragOperation
 	_OutlineViewWriteItemsToPasteboard func(outlineView IOutlineView, items objc.IObject /* cross-framework: NSArray */, pasteboard IPasteboard) bool
 }
 
 // SetOutlineViewAcceptDropItemChildIndex sets the handler for the OutlineViewAcceptDropItemChildIndex delegate method.
 //
 // Returns a Boolean value that indicates whether a drop operation was successful.
-func (d *OutlineViewDataSource) SetOutlineViewAcceptDropItemChildIndex(f func(outlineView IOutlineView, info objc.IObject, item objc.IObject, index int) bool) {
+func (d *OutlineViewDataSource) SetOutlineViewAcceptDropItemChildIndex(f func(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) bool) {
 	d._OutlineViewAcceptDropItemChildIndex = f
 }
 
@@ -90,14 +95,14 @@ func (d *OutlineViewDataSource) SetOutlineViewChildOfItem(f func(outlineView IOu
 // SetOutlineViewDraggingSessionEndedAtPointOperation sets the handler for the OutlineViewDraggingSessionEndedAtPointOperation delegate method.
 //
 // Implement this method to know when the given dragging session has ended.
-func (d *OutlineViewDataSource) SetOutlineViewDraggingSessionEndedAtPointOperation(f func(outlineView IOutlineView, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, operation DragOperation)) {
+func (d *OutlineViewDataSource) SetOutlineViewDraggingSessionEndedAtPointOperation(f func(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, operation DragOperation)) {
 	d._OutlineViewDraggingSessionEndedAtPointOperation = f
 }
 
 // SetOutlineViewDraggingSessionWillBeginAtPointForItems sets the handler for the OutlineViewDraggingSessionWillBeginAtPointForItems delegate method.
 //
 // Implement this method know when the given dragging session is about to begin and potentially modify the dragging session.
-func (d *OutlineViewDataSource) SetOutlineViewDraggingSessionWillBeginAtPointForItems(f func(outlineView IOutlineView, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, draggedItems objc.IObject /* cross-framework: NSArray */)) {
+func (d *OutlineViewDataSource) SetOutlineViewDraggingSessionWillBeginAtPointForItems(f func(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, draggedItems objc.IObject /* cross-framework: NSArray */)) {
 	d._OutlineViewDraggingSessionWillBeginAtPointForItems = f
 }
 
@@ -139,7 +144,7 @@ func (d *OutlineViewDataSource) SetOutlineViewObjectValueForTableColumnByItem(f 
 // SetOutlineViewPasteboardWriterForItem sets the handler for the OutlineViewPasteboardWriterForItem delegate method.
 //
 // Implement this method to enable the table to be an   that supports dragging multiple items.
-func (d *OutlineViewDataSource) SetOutlineViewPasteboardWriterForItem(f func(outlineView IOutlineView, item objc.IObject) objc.ID) {
+func (d *OutlineViewDataSource) SetOutlineViewPasteboardWriterForItem(f func(outlineView IOutlineView, item objc.IObject) unsafe.Pointer) {
 	d._OutlineViewPasteboardWriterForItem = f
 }
 
@@ -167,14 +172,14 @@ func (d *OutlineViewDataSource) SetOutlineViewSortDescriptorsDidChange(f func(ou
 // SetOutlineViewUpdateDraggingItemsForDrag sets the handler for the OutlineViewUpdateDraggingItemsForDrag delegate method.
 //
 // Implement this method to enable the table to update dragging items as they are dragged over the view.
-func (d *OutlineViewDataSource) SetOutlineViewUpdateDraggingItemsForDrag(f func(outlineView IOutlineView, draggingInfo objc.IObject)) {
+func (d *OutlineViewDataSource) SetOutlineViewUpdateDraggingItemsForDrag(f func(outlineView IOutlineView, draggingInfo unsafe.Pointer)) {
 	d._OutlineViewUpdateDraggingItemsForDrag = f
 }
 
 // SetOutlineViewValidateDropProposedItemProposedChildIndex sets the handler for the OutlineViewValidateDropProposedItemProposedChildIndex delegate method.
 //
 // Used by an outline view to determine a valid drop target.
-func (d *OutlineViewDataSource) SetOutlineViewValidateDropProposedItemProposedChildIndex(f func(outlineView IOutlineView, info objc.IObject, item objc.IObject, index int) DragOperation) {
+func (d *OutlineViewDataSource) SetOutlineViewValidateDropProposedItemProposedChildIndex(f func(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) DragOperation) {
 	d._OutlineViewValidateDropProposedItemProposedChildIndex = f
 }
 
@@ -186,7 +191,7 @@ func (d *OutlineViewDataSource) SetOutlineViewWriteItemsToPasteboard(f func(outl
 }
 
 // OutlineViewAcceptDropItemChildIndex implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info objc.IObject, item objc.IObject, index int) bool {
+func (d *OutlineViewDataSource) OutlineViewAcceptDropItemChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) bool {
 	if d._OutlineViewAcceptDropItemChildIndex != nil {
 		return d._OutlineViewAcceptDropItemChildIndex(outlineView, info, item, index)
 	}
@@ -214,7 +219,7 @@ func (d *OutlineViewDataSource) HasOutlineViewChildOfItem() bool {
 }
 
 // OutlineViewDraggingSessionEndedAtPointOperation implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, operation DragOperation) {
+func (d *OutlineViewDataSource) OutlineViewDraggingSessionEndedAtPointOperation(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, operation DragOperation) {
 	if d._OutlineViewDraggingSessionEndedAtPointOperation != nil {
 		d._OutlineViewDraggingSessionEndedAtPointOperation(outlineView, session, screenPoint, operation)
 	}
@@ -226,7 +231,7 @@ func (d *OutlineViewDataSource) HasOutlineViewDraggingSessionEndedAtPointOperati
 }
 
 // OutlineViewDraggingSessionWillBeginAtPointForItems implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, draggedItems objc.IObject /* cross-framework: NSArray */) {
+func (d *OutlineViewDataSource) OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView IOutlineView, session IDraggingSession, screenPoint vision.Point, draggedItems objc.IObject /* cross-framework: NSArray */) {
 	if d._OutlineViewDraggingSessionWillBeginAtPointForItems != nil {
 		d._OutlineViewDraggingSessionWillBeginAtPointForItems(outlineView, session, screenPoint, draggedItems)
 	}
@@ -308,11 +313,11 @@ func (d *OutlineViewDataSource) HasOutlineViewObjectValueForTableColumnByItem() 
 }
 
 // OutlineViewPasteboardWriterForItem implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objc.IObject) objc.ID {
+func (d *OutlineViewDataSource) OutlineViewPasteboardWriterForItem(outlineView IOutlineView, item objc.IObject) unsafe.Pointer {
 	if d._OutlineViewPasteboardWriterForItem != nil {
 		return d._OutlineViewPasteboardWriterForItem(outlineView, item)
 	}
-	var zero objc.ID
+	var zero unsafe.Pointer
 	return zero
 }
 
@@ -360,7 +365,7 @@ func (d *OutlineViewDataSource) HasOutlineViewSortDescriptorsDidChange() bool {
 }
 
 // OutlineViewUpdateDraggingItemsForDrag implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewUpdateDraggingItemsForDrag(outlineView IOutlineView, draggingInfo objc.IObject) {
+func (d *OutlineViewDataSource) OutlineViewUpdateDraggingItemsForDrag(outlineView IOutlineView, draggingInfo unsafe.Pointer) {
 	if d._OutlineViewUpdateDraggingItemsForDrag != nil {
 		d._OutlineViewUpdateDraggingItemsForDrag(outlineView, draggingInfo)
 	}
@@ -372,7 +377,7 @@ func (d *OutlineViewDataSource) HasOutlineViewUpdateDraggingItemsForDrag() bool 
 }
 
 // OutlineViewValidateDropProposedItemProposedChildIndex implements the POutlineViewDataSource interface.
-func (d *OutlineViewDataSource) OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info objc.IObject, item objc.IObject, index int) DragOperation {
+func (d *OutlineViewDataSource) OutlineViewValidateDropProposedItemProposedChildIndex(outlineView IOutlineView, info unsafe.Pointer, item objc.IObject, index int) DragOperation {
 	if d._OutlineViewValidateDropProposedItemProposedChildIndex != nil {
 		return d._OutlineViewValidateDropProposedItemProposedChildIndex(outlineView, info, item, index)
 	}

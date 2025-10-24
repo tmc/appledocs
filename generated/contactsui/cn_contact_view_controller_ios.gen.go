@@ -8,9 +8,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/contacts"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for CNContactViewController
@@ -66,11 +66,11 @@ func (c_ CNContactViewController) SetAlternateName(value objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/contactStore
-func (c_ CNContactViewController) ContactStore() objc.IObject /* cross-framework: CNContactStore */ {
+func (c_ CNContactViewController) ContactStore() contacts.CNContactStore {
 	rv := objc.Send[contacts.CNContactStore](c_.ID, objc.Sel("contactStore"))
 	return rv
 }
-func (c_ CNContactViewController) SetContactStore(value objc.IObject /* cross-framework: CNContactStore */) {
+func (c_ CNContactViewController) SetContactStore(value contacts.CNContactStore) {
 	c_.ID.Send(objc.RegisterName("setContactStore:"), value)
 }
 
@@ -78,11 +78,11 @@ func (c_ CNContactViewController) SetContactStore(value objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/delegate
-func (c_ CNContactViewController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
+func (c_ CNContactViewController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (c_ CNContactViewController) SetDelegate(value objc.ID) {
+func (c_ CNContactViewController) SetDelegate(value unsafe.Pointer) {
 	c_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -114,11 +114,11 @@ func (c_ CNContactViewController) SetMessage(value objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentContainer
-func (c_ CNContactViewController) ParentContainer() objc.IObject /* cross-framework: CNContainer */ {
+func (c_ CNContactViewController) ParentContainer() contacts.CNContainer {
 	rv := objc.Send[contacts.CNContainer](c_.ID, objc.Sel("parentContainer"))
 	return rv
 }
-func (c_ CNContactViewController) SetParentContainer(value objc.IObject /* cross-framework: CNContainer */) {
+func (c_ CNContactViewController) SetParentContainer(value contacts.CNContainer) {
 	c_.ID.Send(objc.RegisterName("setParentContainer:"), value)
 }
 
@@ -126,11 +126,11 @@ func (c_ CNContactViewController) SetParentContainer(value objc.IObject /* cross
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ContactsUI/CNContactViewController/parentGroup
-func (c_ CNContactViewController) ParentGroup() objc.IObject /* cross-framework: CNGroup */ {
+func (c_ CNContactViewController) ParentGroup() contacts.CNGroup {
 	rv := objc.Send[contacts.CNGroup](c_.ID, objc.Sel("parentGroup"))
 	return rv
 }
-func (c_ CNContactViewController) SetParentGroup(value objc.IObject /* cross-framework: CNGroup */) {
+func (c_ CNContactViewController) SetParentGroup(value contacts.CNGroup) {
 	c_.ID.Send(objc.RegisterName("setParentGroup:"), value)
 }
 

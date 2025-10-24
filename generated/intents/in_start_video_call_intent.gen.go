@@ -37,7 +37,6 @@ type IINStartVideoCallIntent interface {
 //
 // The system creates objects to let you know when the user wants to place a video call using your app. A video call intent object contains the users to include in the call. It’s up to you to match the information in this object to contacts in your app and to initiate the resulting call. Your Intents extension receives this intent when the user tries to initiate a call from the Siri interface. If your app supports CallKit, you may also receive this intent when the user tries to initiate a call from system interfaces such as the Recents tab of the Phone app. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler confirms the request and creates an object to indicate that it’s possible to begin the call. Don’t try to initiate calls directly from your Intents extension. SiriKit launches your app and passes it an object that your app must then use to initiate the call. SiriKit places an object in the user activity object with this intent. For calls initiated through Siri, the interaction object also includes the response provided by your Intents extension. For a list of other intents in the VoIP calling domain, see .
 
-
 // A request to start a video call with one or more users.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINStartVideoCallIntent() INStartVideoCallIntent {
 	return getINStartVideoCallIntentClass().New()
 }
 
-
-
 // The users to call.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INStartVideoCallIntent) Contacts() INPerson {
 	return rv
 }
 
-
 // The users to call.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INStartVideoCallIntent) Contacts() INPerson {
 func (i_ INStartVideoCallIntent) SetContacts(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContacts:"), value)
 }
-
-
-

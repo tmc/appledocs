@@ -14,7 +14,7 @@ var _ = gameplaykit.NewOctree
 func ExampleNewOctreeWithBoundingBoxMinimumCellSize() {
 	_ = gameplaykit.NewOctreeWithBoundingBoxMinimumCellSize(
 		gameplaykit.Box{}, // box Box
-		0.0, // minCellSize float32
+		0.0,               // minCellSize float32
 	)
 	// Output:
 }

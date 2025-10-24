@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRBasicInformationClusterProductAppearanceStruct interface {
 	SetPrimaryColor(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBasicInformationClusterProductAppearanceStruct
@@ -83,8 +81,6 @@ func NewMTRBasicInformationClusterProductAppearanceStruct() MTRBasicInformationC
 	return getMTRBasicInformationClusterProductAppearanceStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
 func (m_ MTRBasicInformationClusterProductAppearanceStruct) Finish() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRBasicInformationClusterProductAppearanceStruct) Finish() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/finish
 func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetFinish(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFinish:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
@@ -107,12 +101,8 @@ func (m_ MTRBasicInformationClusterProductAppearanceStruct) PrimaryColor() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbasicinformationclusterproductappearancestruct/primarycolor
 func (m_ MTRBasicInformationClusterProductAppearanceStruct) SetPrimaryColor(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPrimaryColor:"), value)
 }
-
-
-

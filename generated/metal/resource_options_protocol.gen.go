@@ -20,3 +20,4 @@ var resourceOptionsProtocol *objc.Protocol
 func init() {
 	resourceOptionsProtocol = objc.GetProtocol("resourceOptions")
 }
+

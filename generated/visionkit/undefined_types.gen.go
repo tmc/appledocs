@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	DocumentCameraViewControllerDelegate = _undefined // referenced in VisionKit
 )
-
-

@@ -17,6 +17,7 @@ func ExampleNewGameCenterViewControllerWithAchievementID() {
 	)
 	// Output:
 }
+
 // ExampleNewGameCenterViewControllerWithLeaderboardSetID demonstrates how to create a GameCenterViewController instance using NewGameCenterViewControllerWithLeaderboardSetID.
 // Creates a view controller that presents a leaderboard set.
 func ExampleNewGameCenterViewControllerWithLeaderboardSetID() {
@@ -25,6 +26,7 @@ func ExampleNewGameCenterViewControllerWithLeaderboardSetID() {
 	)
 	// Output:
 }
+
 // ExampleNewGameCenterViewControllerWithPlayer demonstrates how to create a GameCenterViewController instance using NewGameCenterViewControllerWithPlayer.
 // Creates a view controller that presents a player’s Game Center profile.
 func ExampleNewGameCenterViewControllerWithPlayer() {
@@ -33,6 +35,7 @@ func ExampleNewGameCenterViewControllerWithPlayer() {
 	)
 	// Output:
 }
+
 // ExampleNewGameCenterViewControllerWithState demonstrates how to create a GameCenterViewController instance using NewGameCenterViewControllerWithState.
 // Creates a view controller that presents the specified Game Center content.
 func ExampleNewGameCenterViewControllerWithState() {

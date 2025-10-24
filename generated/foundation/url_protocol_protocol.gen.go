@@ -21,3 +21,4 @@ var URLProtocolProtocol *objc.Protocol
 func init() {
 	URLProtocolProtocol = objc.GetProtocol("URLProtocol:")
 }
+

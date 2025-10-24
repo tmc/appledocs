@@ -38,7 +38,6 @@ type IINUpcomingMediaManager interface {
 //
 // Use this class to provide Siri a list of media intents for content that the user hasn’t listened to or watched, but might be interested in. For example, a podcast app may provide the latest episodes of the podcast, or a video app may provide the most recent episodes of TV shows, or suggest new movies.
 
-
 // The manager object you use to suggest media to the user.
 //
 // [Full Topic]
@@ -85,8 +84,6 @@ func NewINUpcomingMediaManager() INUpcomingMediaManager {
 	return getINUpcomingMediaManagerClass().New()
 }
 
-
-
 // The shared upcoming media manager.
 //
 // [Full Topic]
@@ -104,7 +101,6 @@ func (i_ INUpcomingMediaManager) SetPredictionModeForType(mode INUpcomingMediaPr
 	objc.Send[objc.ID](i_.ID, objc.Sel("setPredictionMode:forType:"), mode, type_)
 }
 
-
 // Provides Siri with a list of media intents to suggest to the user.
 //
 // [Full Topic]
@@ -112,7 +108,6 @@ func (i_ INUpcomingMediaManager) SetPredictionModeForType(mode INUpcomingMediaPr
 func (i_ INUpcomingMediaManager) SetSuggestedMediaIntents(intents unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSuggestedMediaIntents:"), intents)
 }
-
 
 // The shared upcoming media manager.
 //
@@ -122,6 +117,3 @@ func (i_ INUpcomingMediaManager) SharedManager() INUpcomingMediaManager {
 	rv := objc.Send[INUpcomingMediaManager](i_.ID, objc.Sel("sharedManager"))
 	return rv
 }
-
-
-

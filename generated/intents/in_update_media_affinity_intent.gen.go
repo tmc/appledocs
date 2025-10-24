@@ -43,7 +43,6 @@ type IINUpdateMediaAffinityIntent interface {
 //
 // Siri creates an object when the user expresses a preference for or disinterest in a media item. The intent object contains the media to update. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the media to update.
 
-
 // A request to update the user’s affinity for a media item.
 //
 // [Full Topic]
@@ -92,8 +91,6 @@ func NewINUpdateMediaAffinityIntent() INUpdateMediaAffinityIntent {
 	return getINUpdateMediaAffinityIntentClass().New()
 }
 
-
-
 // The user’s affinity for the media item.
 //
 // [Full Topic]
@@ -103,7 +100,6 @@ func (i_ INUpdateMediaAffinityIntent) AffinityType() unsafe.Pointer {
 	return rv
 }
 
-
 // The user’s affinity for the media item.
 //
 // [Full Topic]
@@ -111,7 +107,6 @@ func (i_ INUpdateMediaAffinityIntent) AffinityType() unsafe.Pointer {
 func (i_ INUpdateMediaAffinityIntent) SetAffinityType(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAffinityType:"), value)
 }
-
 
 // The media items to update.
 //
@@ -122,7 +117,6 @@ func (i_ INUpdateMediaAffinityIntent) MediaItems() INMediaItem {
 	return rv
 }
 
-
 // The media items to update.
 //
 // [Full Topic]
@@ -130,7 +124,6 @@ func (i_ INUpdateMediaAffinityIntent) MediaItems() INMediaItem {
 func (i_ INUpdateMediaAffinityIntent) SetMediaItems(value INMediaItem) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaItems:"), value)
 }
-
 
 // The type of item to search for.
 //
@@ -141,7 +134,6 @@ func (i_ INUpdateMediaAffinityIntent) MediaSearch() INMediaSearch {
 	return rv
 }
 
-
 // The type of item to search for.
 //
 // [Full Topic]
@@ -149,6 +141,3 @@ func (i_ INUpdateMediaAffinityIntent) MediaSearch() INMediaSearch {
 func (i_ INUpdateMediaAffinityIntent) SetMediaSearch(value INMediaSearch) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMediaSearch:"), value)
 }
-
-
-

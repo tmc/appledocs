@@ -8,8 +8,13 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VNFeaturePrintObservation */
+
+
+/* debug [class_header]: Header for VNFeaturePrintObservation */
 // The class instance for the [FeaturePrintObservation] class.
 var (
 	FeaturePrintObservationClass     _FeaturePrintObservationClass
@@ -26,40 +31,34 @@ func getFeaturePrintObservationClass() _FeaturePrintObservationClass {
 type _FeaturePrintObservationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FeaturePrintObservation */
 // An interface definition for the [FeaturePrintObservation] class.
 type IFeaturePrintObservation interface {
 	IObservation
+	
+/* debug [class_interface_properties]: Properties for FeaturePrintObservation */
 	// properties:
-	Data() objc.IObject /* cross-framework: Data */
-	SetData(value objc.IObject /* cross-framework: Data */)
-	ElementCount() int
-	SetElementCount(value int)
-	ElementType() ElementType /* not a class type */
-	SetElementType(value ElementType /* not a class type */)
+	Data() objc.IObject /* cross-framework: NSData */
+	ElementCount() uint
+	ElementType() ElementType
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FeaturePrintObservation */
 	// methods:
+	ComputeDistanceToFeaturePrintObservationError(outDistance objectivec.IObject, featurePrint IVNFeaturePrintObservation, error_ objectivec.IObject) bool
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An observation that provides the recognized feature print.
 
 
-// An observation that provides the recognized feature print.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFeaturePrintObservation
-type FeaturePrintObservation struct {
-	Observation
-}
-
-// FeaturePrintObservationFrom constructs a [FeaturePrintObservation] from an unsafe.Pointer.
-//
-// An observation that provides the recognized feature print.
-func FeaturePrintObservationFrom(ptr unsafe.Pointer) FeaturePrintObservation {
-	return FeaturePrintObservation{
-		Observation: ObservationFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for FeaturePrintObservation */
 // Alloc allocates a new instance without initialization.
 func (fc _FeaturePrintObservationClass) Alloc() FeaturePrintObservation {
 	rv := objc.Send[FeaturePrintObservation](objc.ID(fc.class), objc.Sel("alloc"))
@@ -67,7 +66,6 @@ func (fc _FeaturePrintObservationClass) Alloc() FeaturePrintObservation {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FeaturePrintObservationClass) New() FeaturePrintObservation {
 	rv := objc.Send[FeaturePrintObservation](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,64 +88,98 @@ func (f_ FeaturePrintObservation) Autorelease() FeaturePrintObservation {
 func NewFeaturePrintObservation() FeaturePrintObservation {
 	return getFeaturePrintObservationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The feature print data.
+/* debug [class_struct]: Struct for FeaturePrintObservation */
+// An observation that provides the recognized feature print.
+
+
+// An observation that provides the recognized feature print.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/data
-func (f_ FeaturePrintObservation) Data() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](f_.ID, objc.Sel("data"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFeaturePrintObservation
+type FeaturePrintObservation struct {
+	Observation
+}
+
+// FeaturePrintObservationFrom constructs a [FeaturePrintObservation] from an unsafe.Pointer.
+//
+// An observation that provides the recognized feature print.
+func FeaturePrintObservationFrom(ptr unsafe.Pointer) FeaturePrintObservation {
+	return FeaturePrintObservation{
+		Observation: ObservationFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FeaturePrintObservation *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for FeaturePrintObservation */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FeaturePrintObservation */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FeaturePrintObservation */
+
+// Computes the distance between two feature print observations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFeaturePrintObservation/computeDistance(_:to:)
+func (f_ FeaturePrintObservation) ComputeDistanceToFeaturePrintObservationError(outDistance objectivec.IObject, featurePrint IVNFeaturePrintObservation, error_ objectivec.IObject) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("computeDistance:toFeaturePrintObservation:error:"), outDistance, featurePrint, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: ComputeDistanceToFeaturePrintObservationError */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FeaturePrintObservation */
 
 // The feature print data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/data
-func (f_ FeaturePrintObservation) SetData(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setData:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFeaturePrintObservation/data
+func (f_ FeaturePrintObservation) Data() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("data"))
+	return rv
+}/* debug [instance_properties/getter]: data */
 
 
 // The total number of elements in the data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/elementcount
-func (f_ FeaturePrintObservation) ElementCount() int {
-	rv := objc.Send[int](f_.ID, objc.Sel("elementCount"))
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFeaturePrintObservation/elementCount
+func (f_ FeaturePrintObservation) ElementCount() uint {
+	rv := objc.Send[uint](f_.ID, objc.Sel("elementCount"))
 	return rv
-}
-
-
-// The total number of elements in the data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/elementcount
-func (f_ FeaturePrintObservation) SetElementCount(value int) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setElementCount:"), value)
-}
+}/* debug [instance_properties/getter]: elementCount */
 
 
 // The type of each element in the data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/elementtype
-func (f_ FeaturePrintObservation) ElementType() ElementType /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFeaturePrintObservation/elementType
+func (f_ FeaturePrintObservation) ElementType() ElementType {
 	rv := objc.Send[ElementType](f_.ID, objc.Sel("elementType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: elementType */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The type of each element in the data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfeatureprintobservation/elementtype
-func (f_ FeaturePrintObservation) SetElementType(value ElementType /* not a class type */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setElementType:"), value)
-}
+/* debug [class.gen.go]: End class VNFeaturePrintObservation */
 
 
 

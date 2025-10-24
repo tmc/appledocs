@@ -15,3 +15,4 @@ var didReplaceCharactersProtocol *objc.Protocol
 func init() {
 	didReplaceCharactersProtocol = objc.GetProtocol("didReplaceCharacters")
 }
+

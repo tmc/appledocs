@@ -16,6 +16,15 @@ import (
 
 // iOS-only properties
 
+// An array of reasons that contribute to the convergence status.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NearbyInteraction/NIAlgorithmConvergence/reasons
+func (n_ NIAlgorithmConvergence) Reasons() []string {
+	rv := objc.Send[[]string](n_.ID, objc.Sel("reasons"))
+	return rv
+}
+
 // The current state of the framework’s Camera Assistance feature.
 //
 // [Full Topic]

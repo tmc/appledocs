@@ -3,8 +3,11 @@
 package appkit
 
 import (
+	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PBrowserDelegate is the NSBrowserDelegate protocol interface.
@@ -17,7 +20,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSBrowserDelegate
 type PBrowserDelegate interface {
 	// Optional methods
-	BrowserAcceptDropAtRowColumnDropOperation(browser IBrowser, info objc.IObject, row int, column int, dropOperation BrowserDropOperation) bool
+	BrowserAcceptDropAtRowColumnDropOperation(browser IBrowser, info unsafe.Pointer, row int, column int, dropOperation BrowserDropOperation) bool
 	HasBrowserAcceptDropAtRowColumnDropOperation() bool
 	BrowserCanDragRowsWithIndexesInColumnWithEvent(browser IBrowser, rowIndexes foundation.IndexSet, column int, event IEvent) bool
 	HasBrowserCanDragRowsWithIndexesInColumnWithEvent() bool
@@ -71,7 +74,7 @@ type PBrowserDelegate interface {
 	HasBrowserTitleOfColumn() bool
 	BrowserTypeSelectStringForRowInColumn(browser IBrowser, row int, column int) foundation.String
 	HasBrowserTypeSelectStringForRowInColumn() bool
-	BrowserValidateDropProposedRowColumnDropOperation(browser IBrowser, info objc.IObject, row int, column int, dropOperation BrowserDropOperation) DragOperation
+	BrowserValidateDropProposedRowColumnDropOperation(browser IBrowser, info unsafe.Pointer, row int, column int, dropOperation BrowserDropOperation) DragOperation
 	HasBrowserValidateDropProposedRowColumnDropOperation() bool
 	BrowserWillDisplayCellAtRowColumn(sender IBrowser, cell objc.IObject, row int, column int)
 	HasBrowserWillDisplayCellAtRowColumn() bool
@@ -91,7 +94,7 @@ type PBrowserDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type BrowserDelegate struct {
-	_BrowserAcceptDropAtRowColumnDropOperation func(browser IBrowser, info objc.IObject, row int, column int, dropOperation BrowserDropOperation) bool
+	_BrowserAcceptDropAtRowColumnDropOperation func(browser IBrowser, info unsafe.Pointer, row int, column int, dropOperation BrowserDropOperation) bool
 	_BrowserCanDragRowsWithIndexesInColumnWithEvent func(browser IBrowser, rowIndexes foundation.IndexSet, column int, event IEvent) bool
 	_BrowserChildOfItem func(browser IBrowser, index int, item objc.IObject) objc.ID
 	_BrowserCreateRowsForColumnInMatrix func(sender IBrowser, column int, matrix IMatrix)
@@ -118,7 +121,7 @@ type BrowserDelegate struct {
 	_BrowserSizeToFitWidthOfColumn func(browser IBrowser, columnIndex int) float64
 	_BrowserTitleOfColumn func(sender IBrowser, column int) foundation.String
 	_BrowserTypeSelectStringForRowInColumn func(browser IBrowser, row int, column int) foundation.String
-	_BrowserValidateDropProposedRowColumnDropOperation func(browser IBrowser, info objc.IObject, row int, column int, dropOperation BrowserDropOperation) DragOperation
+	_BrowserValidateDropProposedRowColumnDropOperation func(browser IBrowser, info unsafe.Pointer, row int, column int, dropOperation BrowserDropOperation) DragOperation
 	_BrowserWillDisplayCellAtRowColumn func(sender IBrowser, cell objc.IObject, row int, column int)
 	_BrowserWriteRowsWithIndexesInColumnToPasteboard func(browser IBrowser, rowIndexes foundation.IndexSet, column int, pasteboard IPasteboard) bool
 	_BrowserColumnConfigurationDidChange func(notification foundation.Notification)
@@ -130,7 +133,7 @@ type BrowserDelegate struct {
 // SetBrowserAcceptDropAtRowColumnDropOperation sets the handler for the BrowserAcceptDropAtRowColumnDropOperation delegate method.
 //
 // Sent to the delegate during a dragging session to determine whether to accept the drop.
-func (d *BrowserDelegate) SetBrowserAcceptDropAtRowColumnDropOperation(f func(browser IBrowser, info objc.IObject, row int, column int, dropOperation BrowserDropOperation) bool) {
+func (d *BrowserDelegate) SetBrowserAcceptDropAtRowColumnDropOperation(f func(browser IBrowser, info unsafe.Pointer, row int, column int, dropOperation BrowserDropOperation) bool) {
 	d._BrowserAcceptDropAtRowColumnDropOperation = f
 }
 
@@ -319,7 +322,7 @@ func (d *BrowserDelegate) SetBrowserTypeSelectStringForRowInColumn(f func(browse
 // SetBrowserValidateDropProposedRowColumnDropOperation sets the handler for the BrowserValidateDropProposedRowColumnDropOperation delegate method.
 //
 // Sent to the delegate during a dragging session to determine whether a drop should be accepted and to obtain the drop location. This method is required for a browser to be a drag destination.
-func (d *BrowserDelegate) SetBrowserValidateDropProposedRowColumnDropOperation(f func(browser IBrowser, info objc.IObject, row int, column int, dropOperation BrowserDropOperation) DragOperation) {
+func (d *BrowserDelegate) SetBrowserValidateDropProposedRowColumnDropOperation(f func(browser IBrowser, info unsafe.Pointer, row int, column int, dropOperation BrowserDropOperation) DragOperation) {
 	d._BrowserValidateDropProposedRowColumnDropOperation = f
 }
 
@@ -366,7 +369,7 @@ func (d *BrowserDelegate) SetRootItemForBrowser(f func(browser IBrowser) objc.ID
 }
 
 // BrowserAcceptDropAtRowColumnDropOperation implements the PBrowserDelegate interface.
-func (d *BrowserDelegate) BrowserAcceptDropAtRowColumnDropOperation(browser IBrowser, info objc.IObject, row int, column int, dropOperation BrowserDropOperation) bool {
+func (d *BrowserDelegate) BrowserAcceptDropAtRowColumnDropOperation(browser IBrowser, info unsafe.Pointer, row int, column int, dropOperation BrowserDropOperation) bool {
 	if d._BrowserAcceptDropAtRowColumnDropOperation != nil {
 		return d._BrowserAcceptDropAtRowColumnDropOperation(browser, info, row, column, dropOperation)
 	}
@@ -738,7 +741,7 @@ func (d *BrowserDelegate) HasBrowserTypeSelectStringForRowInColumn() bool {
 }
 
 // BrowserValidateDropProposedRowColumnDropOperation implements the PBrowserDelegate interface.
-func (d *BrowserDelegate) BrowserValidateDropProposedRowColumnDropOperation(browser IBrowser, info objc.IObject, row int, column int, dropOperation BrowserDropOperation) DragOperation {
+func (d *BrowserDelegate) BrowserValidateDropProposedRowColumnDropOperation(browser IBrowser, info unsafe.Pointer, row int, column int, dropOperation BrowserDropOperation) DragOperation {
 	if d._BrowserValidateDropProposedRowColumnDropOperation != nil {
 		return d._BrowserValidateDropProposedRowColumnDropOperation(browser, info, row, column, dropOperation)
 	}

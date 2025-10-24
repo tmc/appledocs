@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +36,6 @@ type IMTRBooleanStateConfigurationClusterSensorFaultEvent interface {
 	SetSensorFault(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBooleanStateConfigurationClusterSensorFaultEvent
@@ -81,8 +79,6 @@ func NewMTRBooleanStateConfigurationClusterSensorFaultEvent() MTRBooleanStateCon
 	return getMTRBooleanStateConfigurationClusterSensorFaultEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersensorfaultevent/sensorfault
 func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SensorFault() objc.IObject /* cross-framework: NSNumber */ {
@@ -90,12 +86,8 @@ func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SensorFault() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrbooleanstateconfigurationclustersensorfaultevent/sensorfault
 func (m_ MTRBooleanStateConfigurationClusterSensorFaultEvent) SetSensorFault(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSensorFault:"), value)
 }
-
-
-

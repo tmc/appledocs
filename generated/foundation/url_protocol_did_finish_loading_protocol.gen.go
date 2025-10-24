@@ -21,3 +21,4 @@ var URLProtocolDidFinishLoadingProtocol *objc.Protocol
 func init() {
 	URLProtocolDidFinishLoadingProtocol = objc.GetProtocol("URLProtocolDidFinishLoading:")
 }
+

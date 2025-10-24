@@ -36,7 +36,6 @@ type IINIntentResponse interface {
 
 // A parent class referenced by other Intents classes.
 
-
 // A parent class referenced by other Intents classes. [Full Topic]
 type INIntentResponse struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (i_ INIntentResponse) Autorelease() INIntentResponse {
 func NewINIntentResponse() INIntentResponse {
 	return getINIntentResponseClass().New()
 }
-
-
-
-

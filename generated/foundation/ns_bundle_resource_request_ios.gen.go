@@ -30,6 +30,14 @@ func (b_ BundleResourceRequest) ConditionallyBeginAccessingResourcesWithCompleti
 	objc.Send[objc.ID](b_.ID, objc.Sel("conditionallyBeginAccessingResourcesWithCompletionHandler:"), completionHandler)
 }
 
+// Informs the system that you have finished accessing the resources marked with the tags managed by the request.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSBundleResourceRequest/endAccessingResources()
+func (b_ BundleResourceRequest) EndAccessingResources() {
+	objc.Send[objc.ID](b_.ID, objc.Sel("endAccessingResources"))
+}
+
 // iOS-only properties
 
 

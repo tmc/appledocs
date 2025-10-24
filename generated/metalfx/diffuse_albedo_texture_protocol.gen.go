@@ -19,3 +19,4 @@ var diffuseAlbedoTextureProtocol *objc.Protocol
 func init() {
 	diffuseAlbedoTextureProtocol = objc.GetProtocol("diffuseAlbedoTexture")
 }
+

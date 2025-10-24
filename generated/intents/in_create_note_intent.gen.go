@@ -41,7 +41,6 @@ type IINCreateNoteIntent interface {
 //
 // Siri creates an object when the user asks to create a new note. (If the user asks to add a task and none of your Intents app extensions declare support for the class, SiriKit uses this intent as a substitute). The intent object contains the content of the note and possibly additional information, such as the name of the folder in which to create the note. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the updated note.
 
-
 // A request to create a new note.
 //
 // [Full Topic]
@@ -90,8 +89,6 @@ func NewINCreateNoteIntent() INCreateNoteIntent {
 	return getINCreateNoteIntentClass().New()
 }
 
-
-
 // The main content of the note.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INCreateNoteIntent) Content() unsafe.Pointer {
 	return rv
 }
 
-
 // The main content of the note.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INCreateNoteIntent) Content() unsafe.Pointer {
 func (i_ INCreateNoteIntent) SetContent(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setContent:"), value)
 }
-
 
 // The group that contains the note.
 //
@@ -120,7 +115,6 @@ func (i_ INCreateNoteIntent) GroupName() INSpeakableString {
 	return rv
 }
 
-
 // The group that contains the note.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INCreateNoteIntent) GroupName() INSpeakableString {
 func (i_ INCreateNoteIntent) SetGroupName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setGroupName:"), value)
 }
-
 
 // The title text for the note.
 //
@@ -139,7 +132,6 @@ func (i_ INCreateNoteIntent) Title() INSpeakableString {
 	return rv
 }
 
-
 // The title text for the note.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INCreateNoteIntent) Title() INSpeakableString {
 func (i_ INCreateNoteIntent) SetTitle(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setTitle:"), value)
 }
-
-
-

@@ -6,6 +6,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PFilePromiseProviderDelegate is the NSFilePromiseProviderDelegate protocol interface.
@@ -18,8 +20,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSFilePromiseProviderDelegate
 type PFilePromiseProviderDelegate interface {
 	// Required methods
-	FilePromiseProviderFileNameForType(filePromiseProvider IFilePromiseProvider, fileType objc.IObject /* cross-framework: NSString */) foundation.String
-	FilePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider IFilePromiseProvider, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer)
+	FilePromiseProviderFileNameForType(filePromiseProvider IFilePromiseProvider, fileType objc.IObject /* cross-framework: NSString */) foundation.String/* debug [protocol_interface/required_method]: FilePromiseProviderFileNameForType */
+	FilePromiseProviderWritePromiseToURLCompletionHandler(filePromiseProvider IFilePromiseProvider, url objc.IObject /* cross-framework: NSURL */, completionHandler unsafe.Pointer)/* debug [protocol_interface/required_method]: FilePromiseProviderWritePromiseToURLCompletionHandler */
 	// Optional methods
 	OperationQueueForFilePromiseProvider(filePromiseProvider IFilePromiseProvider) foundation.OperationQueue
 	HasOperationQueueForFilePromiseProvider() bool

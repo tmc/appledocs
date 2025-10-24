@@ -15,3 +15,4 @@ var wantsToHandleMouseEventsProtocol *objc.Protocol
 func init() {
 	wantsToHandleMouseEventsProtocol = objc.GetProtocol("wantsToHandleMouseEvents")
 }
+

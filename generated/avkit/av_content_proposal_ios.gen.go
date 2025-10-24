@@ -9,8 +9,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
-	"github.com/tmc/appledocs/generated/avfoundation"
-	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/corevideo"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -25,7 +24,7 @@ import (
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/automaticAcceptanceInterval
 func (c_ ContentProposal) AutomaticAcceptanceInterval() float64 {
-	rv := objc.Send[TimeInterval](c_.ID, objc.Sel("automaticAcceptanceInterval"))
+	rv := objc.Send[float64](c_.ID, objc.Sel("automaticAcceptanceInterval"))
 	return rv
 }
 func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value float64) {
@@ -36,8 +35,8 @@ func (c_ ContentProposal) SetAutomaticAcceptanceInterval(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/contentTimeForTransition
-func (c_ ContentProposal) ContentTimeForTransition() Time /* not a class type */ {
-	rv := objc.Send[Time](c_.ID, objc.Sel("contentTimeForTransition"))
+func (c_ ContentProposal) ContentTimeForTransition() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](c_.ID, objc.Sel("contentTimeForTransition"))
 	return rv
 }
 
@@ -45,11 +44,11 @@ func (c_ ContentProposal) ContentTimeForTransition() Time /* not a class type */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/metadata
-func (c_ ContentProposal) Metadata() []objc.IObject /* cross-framework: MetadataItem */ {
+func (c_ ContentProposal) Metadata() []avfoundation.MetadataItem {
 	rv := objc.Send[[]avfoundation.MetadataItem](c_.ID, objc.Sel("metadata"))
 	return rv
 }
-func (c_ ContentProposal) SetMetadata(value []objc.IObject /* cross-framework: MetadataItem */) {
+func (c_ ContentProposal) SetMetadata(value []avfoundation.MetadataItem) {
 	c_.ID.Send(objc.RegisterName("setMetadata:"), value)
 }
 
@@ -57,7 +56,7 @@ func (c_ ContentProposal) SetMetadata(value []objc.IObject /* cross-framework: M
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVContentProposal/previewImage
-func (c_ ContentProposal) PreviewImage() objc.IObject /* cross-framework: Image */ {
+func (c_ ContentProposal) PreviewImage() appkit.Image {
 	rv := objc.Send[appkit.Image](c_.ID, objc.Sel("previewImage"))
 	return rv
 }

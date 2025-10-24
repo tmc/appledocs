@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTROperationalStateClusterErrorStateStruct interface {
 	SetErrorStateLabel(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTROperationalStateClusterErrorStateStruct
@@ -85,8 +83,6 @@ func NewMTROperationalStateClusterErrorStateStruct() MTROperationalStateClusterE
 	return getMTROperationalStateClusterErrorStateStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatedetails
 func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() objc.IObject /* cross-framework: NSString */ {
@@ -94,13 +90,11 @@ func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateDetails() objc.IO
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatedetails
 func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateDetails(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateDetails:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstateid
@@ -109,13 +103,11 @@ func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateID() objc.IObject
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstateid
 func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateID:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatelabel
@@ -124,12 +116,8 @@ func (m_ MTROperationalStateClusterErrorStateStruct) ErrorStateLabel() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtroperationalstateclustererrorstatestruct/errorstatelabel
 func (m_ MTROperationalStateClusterErrorStateStruct) SetErrorStateLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorStateLabel:"), value)
 }
-
-
-

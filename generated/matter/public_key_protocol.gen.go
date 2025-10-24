@@ -21,3 +21,4 @@ var publicKeyProtocol *objc.Protocol
 func init() {
 	publicKeyProtocol = objc.GetProtocol("publicKey")
 }
+

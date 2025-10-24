@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class EKObject */
+
+
+/* debug [class_header]: Header for EKObject */
 // The class instance for the [EKObject] class.
 var (
 	EKObjectClass     _EKObjectClass
@@ -26,41 +30,37 @@ func getEKObjectClass() _EKObjectClass {
 type _EKObjectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EKObject */
 // An interface definition for the [EKObject] class.
 type IEKObject interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for EKObject */
 	// properties:
 	HasChanges() bool
 	New() bool
 	IsNew() bool
 	SetIsNew(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EKObject */
 	// methods:
 	Refresh() bool
 	Reset()
 	Rollback()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An abstract superclass for all EventKit classes that have persistent instances.
-//
-// provides fine control when saving and restoring property settings. For example, you can find out if a persistent object was modified locally and whether it needs to be saved. If the object has changed in the event store since it was fetched, you can refresh the local copy by keeping local changes or by removing local changes. You can also roll back the object to the state when it was first fetched.
+/* debug [class_interface]: End interface */
 
 
-// An abstract superclass for all EventKit classes that have persistent instances.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject
-type EKObject struct {
-	objectivec.Object
-}
 
-// EKObjectFrom constructs a [EKObject] from an unsafe.Pointer.
-//
-// An abstract superclass for all EventKit classes that have persistent instances.
-func EKObjectFrom(ptr unsafe.Pointer) EKObject {
-	return EKObject{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for EKObject */
 // Alloc allocates a new instance without initialization.
 func (ec _EKObjectClass) Alloc() EKObject {
 	rv := objc.Send[EKObject](objc.ID(ec.class), objc.Sel("alloc"))
@@ -68,7 +68,6 @@ func (ec _EKObjectClass) Alloc() EKObject {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EKObjectClass) New() EKObject {
 	rv := objc.Send[EKObject](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,8 +90,49 @@ func (e_ EKObject) Autorelease() EKObject {
 func NewEKObject() EKObject {
 	return getEKObjectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for EKObject */
+// An abstract superclass for all EventKit classes that have persistent instances.
+//
+// provides fine control when saving and restoring property settings. For example, you can find out if a persistent object was modified locally and whether it needs to be saved. If the object has changed in the event store since it was fetched, you can refresh the local copy by keeping local changes or by removing local changes. You can also roll back the object to the state when it was first fetched.
+
+
+// An abstract superclass for all EventKit classes that have persistent instances.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject
+type EKObject struct {
+	objectivec.Object
+}
+
+// EKObjectFrom constructs a [EKObject] from an unsafe.Pointer.
+//
+// An abstract superclass for all EventKit classes that have persistent instances.
+func EKObjectFrom(ptr unsafe.Pointer) EKObject {
+	return EKObject{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EKObject *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for EKObject */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EKObject */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EKObject */
 
 // Merges changes to this object with the latest saved values.
 //
@@ -101,7 +141,7 @@ func NewEKObject() EKObject {
 func (e_ EKObject) Refresh() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("refresh"))
 	return rv
-}
+}/* debug [instance_methods/method]: Refresh */
 
 
 // Returns this object to its saved state.
@@ -110,7 +150,7 @@ func (e_ EKObject) Refresh() bool {
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/reset()
 func (e_ EKObject) Reset() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("reset"))
-}
+}/* debug [instance_methods/method]: Reset */
 
 
 // Rolls back the property values of this object to its original state when it was first fetched.
@@ -119,8 +159,13 @@ func (e_ EKObject) Reset() {
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKObject/rollback()
 func (e_ EKObject) Rollback() {
 	objc.Send[objc.ID](e_.ID, objc.Sel("rollback"))
-}
+}/* debug [instance_methods/method]: Rollback */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EKObject */
 
 // Returns whether this object or any of the objects it contains has uncommitted changes.
 //
@@ -129,7 +174,7 @@ func (e_ EKObject) Rollback() {
 func (e_ EKObject) HasChanges() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("hasChanges"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hasChanges */
 
 
 // A Boolean value that indicates whether this object has ever been saved.
@@ -139,7 +184,7 @@ func (e_ EKObject) HasChanges() bool {
 func (e_ EKObject) New() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("new"))
 	return rv
-}
+}/* debug [instance_properties/getter]: new */
 
 
 // A Boolean value that indicates whether this object has ever been saved.
@@ -149,7 +194,7 @@ func (e_ EKObject) New() bool {
 func (e_ EKObject) IsNew() bool {
 	rv := objc.Send[bool](e_.ID, objc.Sel("isNew"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isNew */
 
 
 // A Boolean value that indicates whether this object has ever been saved.
@@ -158,7 +203,12 @@ func (e_ EKObject) IsNew() bool {
 // [Full Topic]: https://developer.apple.com/documentation/eventkit/ekobject/isnew
 func (e_ EKObject) SetIsNew(value bool) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setIsNew:"), value)
-}
+}/* debug [instance_properties/setter]: isNew */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class EKObject */
 
 
 

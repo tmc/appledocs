@@ -7,10 +7,10 @@ import "github.com/ebitengine/purego/objc"
 // functionHandleWithFunctionProtocol is the functionHandleWithFunction: protocol.
 //
 // Availability:
-//   - Mac Catalyst 15.0+
-//   - iOS 15.0+
-//   - iPadOS 15.0+
-//   - macOS 12.0+
+//   - Mac Catalyst 14.0+
+//   - iOS 14.0+
+//   - iPadOS 14.0+
+//   - macOS 11.0+
 //   - tvOS 16.0+
 //   - visionOS 1.0+
 //
@@ -20,3 +20,4 @@ var functionHandleWithFunctionProtocol *objc.Protocol
 func init() {
 	functionHandleWithFunctionProtocol = objc.GetProtocol("functionHandleWithFunction:")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -36,8 +36,6 @@ type IMTRValveConfigurationAndControlClusterValveFaultEvent interface {
 	SetValveFault(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRValveConfigurationAndControlClusterValveFaultEvent
@@ -81,8 +79,6 @@ func NewMTRValveConfigurationAndControlClusterValveFaultEvent() MTRValveConfigur
 	return getMTRValveConfigurationAndControlClusterValveFaultEventClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvefaultevent/valvefault
 func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) ValveFault() objc.IObject /* cross-framework: NSNumber */ {
@@ -90,12 +86,8 @@ func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) ValveFault() obj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrvalveconfigurationandcontrolclustervalvefaultevent/valvefault
 func (m_ MTRValveConfigurationAndControlClusterValveFaultEvent) SetValveFault(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValveFault:"), value)
 }
-
-
-

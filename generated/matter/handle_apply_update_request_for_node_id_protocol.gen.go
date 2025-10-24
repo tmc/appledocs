@@ -21,3 +21,4 @@ var handleApplyUpdateRequestForNodeIDProtocol *objc.Protocol
 func init() {
 	handleApplyUpdateRequestForNodeIDProtocol = objc.GetProtocol("handleApplyUpdateRequestForNodeID:")
 }
+

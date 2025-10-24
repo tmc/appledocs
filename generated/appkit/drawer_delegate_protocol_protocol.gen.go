@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PDrawerDelegate is the NSDrawerDelegate protocol interface.
@@ -29,7 +31,7 @@ type PDrawerDelegate interface {
 	HasDrawerWillClose() bool
 	DrawerWillOpen(notification foundation.Notification)
 	HasDrawerWillOpen() bool
-	DrawerWillResizeContentsToSize(sender IDrawer, contentSize objc.IObject /* cross-framework: Size */) corefoundation.Size
+	DrawerWillResizeContentsToSize(sender IDrawer, contentSize Size /* not a class type */) Size
 	HasDrawerWillResizeContentsToSize() bool
 }
 
@@ -43,7 +45,7 @@ type DrawerDelegate struct {
 	_DrawerShouldOpen func(sender IDrawer) bool
 	_DrawerWillClose func(notification foundation.Notification)
 	_DrawerWillOpen func(notification foundation.Notification)
-	_DrawerWillResizeContentsToSize func(sender IDrawer, contentSize objc.IObject /* cross-framework: Size */) corefoundation.Size
+	_DrawerWillResizeContentsToSize func(sender IDrawer, contentSize Size /* not a class type */) Size
 }
 
 // SetDrawerDidClose sets the handler for the DrawerDidClose delegate method.
@@ -91,7 +93,7 @@ func (d *DrawerDelegate) SetDrawerWillOpen(f func(notification foundation.Notifi
 // SetDrawerWillResizeContentsToSize sets the handler for the DrawerWillResizeContentsToSize delegate method.
 //
 // Invoked when the user resizes the drawer or parent.
-func (d *DrawerDelegate) SetDrawerWillResizeContentsToSize(f func(sender IDrawer, contentSize objc.IObject /* cross-framework: Size */) corefoundation.Size) {
+func (d *DrawerDelegate) SetDrawerWillResizeContentsToSize(f func(sender IDrawer, contentSize Size /* not a class type */) Size) {
 	d._DrawerWillResizeContentsToSize = f
 }
 
@@ -172,11 +174,11 @@ func (d *DrawerDelegate) HasDrawerWillOpen() bool {
 }
 
 // DrawerWillResizeContentsToSize implements the PDrawerDelegate interface.
-func (d *DrawerDelegate) DrawerWillResizeContentsToSize(sender IDrawer, contentSize objc.IObject /* cross-framework: Size */) corefoundation.Size {
+func (d *DrawerDelegate) DrawerWillResizeContentsToSize(sender IDrawer, contentSize Size /* not a class type */) Size {
 	if d._DrawerWillResizeContentsToSize != nil {
 		return d._DrawerWillResizeContentsToSize(sender, contentSize)
 	}
-	var zero corefoundation.Size
+	var zero Size
 	return zero
 }
 

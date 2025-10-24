@@ -19,7 +19,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/lastProcessedDate()
-func (m_ MovementDisorderManager) LastProcessedDate() objc.IObject /* cross-framework: Date */ {
+func (m_ MovementDisorderManager) LastProcessedDate() foundation.Date {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("lastProcessedDate"))
 	return rv
 }
@@ -36,7 +36,7 @@ func (m_ MovementDisorderManager) MonitorKinesiasForDuration(duration float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMMovementDisorderManager/monitorKinesiasExpirationDate()
-func (m_ MovementDisorderManager) MonitorKinesiasExpirationDate() objc.IObject /* cross-framework: Date */ {
+func (m_ MovementDisorderManager) MonitorKinesiasExpirationDate() foundation.Date {
 	rv := objc.Send[foundation.Date](m_.ID, objc.Sel("monitorKinesiasExpirationDate"))
 	return rv
 }

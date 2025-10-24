@@ -2,12 +2,8 @@
 
 // Package geotoolbox provides Go bindings for the GeoToolbox framework.
 //
-// Determine place descriptor information for map coordinates.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to GeoToolbox without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/GeoToolbox
 package geotoolbox
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/GeoToolbox.framework/GeoToolbox"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

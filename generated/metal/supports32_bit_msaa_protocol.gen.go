@@ -20,3 +20,4 @@ var supports32BitMSAAProtocol *objc.Protocol
 func init() {
 	supports32BitMSAAProtocol = objc.GetProtocol("supports32BitMSAA")
 }
+

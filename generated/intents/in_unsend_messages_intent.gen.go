@@ -33,8 +33,6 @@ type IINUnsendMessagesIntent interface {
 	SetMessageIdentifiers(value string)
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INUnsendMessagesIntent
 type INUnsendMessagesIntent struct {
@@ -79,8 +77,6 @@ func NewINUnsendMessagesIntent() INUnsendMessagesIntent {
 	return getINUnsendMessagesIntentClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inunsendmessagesintent/messageidentifiers
 func (i_ INUnsendMessagesIntent) MessageIdentifiers() string {
@@ -88,12 +84,8 @@ func (i_ INUnsendMessagesIntent) MessageIdentifiers() string {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inunsendmessagesintent/messageidentifiers
 func (i_ INUnsendMessagesIntent) SetMessageIdentifiers(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMessageIdentifiers:"), objc.String(value))
 }
-
-
-

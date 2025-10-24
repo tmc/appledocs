@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSURLResponse */
+
+
+/* debug [class_header]: Header for NSURLResponse */
 // The class instance for the [URLResponse] class.
 var (
 	URLResponseClass     _URLResponseClass
@@ -26,12 +30,18 @@ func getURLResponseClass() _URLResponseClass {
 type _URLResponseClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for URLResponse */
 // An interface definition for the [URLResponse] class.
 type IURLResponse interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for URLResponse */
 	// properties:
-	ExpectedContentLength() unsafe.Pointer
+	ExpectedContentLength() objectivec.IObject
 	MIMEType() IString
 	SuggestedFilename() IString
 	SetSuggestedFilename(value IString)
@@ -39,29 +49,19 @@ type IURLResponse interface {
 	SetTextEncodingName(value IString)
 	Url() IURL
 	SetUrl(value IURL)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for URLResponse */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
-//
-// The related class is a commonly used subclass of whose objects represent a response to an HTTP URL load request and store additional protocol-specific information such as the response headers. Whenever you make an HTTP request, the object you get back is actually an instance of the class.
+/* debug [class_interface]: End interface */
 
 
-// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse
-type URLResponse struct {
-	objectivec.Object
-}
 
-// URLResponseFrom constructs a [URLResponse] from an unsafe.Pointer.
-//
-// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
-func URLResponseFrom(ptr unsafe.Pointer) URLResponse {
-	return URLResponse{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for URLResponse */
 // Alloc allocates a new instance without initialization.
 func (uc _URLResponseClass) Alloc() URLResponse {
 	rv := objc.Send[URLResponse](objc.ID(uc.class), objc.Sel("alloc"))
@@ -69,7 +69,6 @@ func (uc _URLResponseClass) Alloc() URLResponse {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (uc _URLResponseClass) New() URLResponse {
 	rv := objc.Send[URLResponse](objc.ID(uc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,17 +91,63 @@ func (u_ URLResponse) Autorelease() URLResponse {
 func NewURLResponse() URLResponse {
 	return getURLResponseClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for URLResponse */
+// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
+//
+// The related class is a commonly used subclass of whose objects represent a response to an HTTP URL load request and store additional protocol-specific information such as the response headers. Whenever you make an HTTP request, the object you get back is actually an instance of the class.
+
+
+// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse
+type URLResponse struct {
+	objectivec.Object
+}
+
+// URLResponseFrom constructs a [URLResponse] from an unsafe.Pointer.
+//
+// The metadata associated with the response to a URL load request, independent of protocol and URL scheme.
+func URLResponseFrom(ptr unsafe.Pointer) URLResponse {
+	return URLResponse{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for URLResponse *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for URLResponse */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for URLResponse */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for URLResponse */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for URLResponse */
 
 // The expected length of the response’s content.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLResponse/expectedContentLength
-func (u_ URLResponse) ExpectedContentLength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("expectedContentLength"))
+func (u_ URLResponse) ExpectedContentLength() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](u_.ID, objc.Sel("expectedContentLength"))
 	return rv
-}
+}/* debug [instance_properties/getter]: expectedContentLength */
 
 
 // The MIME type of the response.
@@ -112,7 +157,7 @@ func (u_ URLResponse) ExpectedContentLength() unsafe.Pointer {
 func (u_ URLResponse) MIMEType() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("MIMEType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MIMEType */
 
 
 // A suggested filename for the response data.
@@ -122,7 +167,7 @@ func (u_ URLResponse) MIMEType() IString {
 func (u_ URLResponse) SuggestedFilename() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("suggestedFilename"))
 	return rv
-}
+}/* debug [instance_properties/getter]: suggestedFilename */
 
 
 // A suggested filename for the response data.
@@ -131,7 +176,7 @@ func (u_ URLResponse) SuggestedFilename() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/suggestedfilename
 func (u_ URLResponse) SetSuggestedFilename(value IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setSuggestedFilename:"), value)
-}
+}/* debug [instance_properties/setter]: suggestedFilename */
 
 
 // The name of the text encoding provided by the response’s originating source.
@@ -141,7 +186,7 @@ func (u_ URLResponse) SetSuggestedFilename(value IString) {
 func (u_ URLResponse) TextEncodingName() IString {
 	rv := objc.Send[String](u_.ID, objc.Sel("textEncodingName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: textEncodingName */
 
 
 // The name of the text encoding provided by the response’s originating source.
@@ -150,7 +195,7 @@ func (u_ URLResponse) TextEncodingName() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/textencodingname
 func (u_ URLResponse) SetTextEncodingName(value IString) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTextEncodingName:"), value)
-}
+}/* debug [instance_properties/setter]: textEncodingName */
 
 
 // The URL for the response.
@@ -160,7 +205,7 @@ func (u_ URLResponse) SetTextEncodingName(value IString) {
 func (u_ URLResponse) Url() IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("url"))
 	return rv
-}
+}/* debug [instance_properties/getter]: url */
 
 
 // The URL for the response.
@@ -169,7 +214,12 @@ func (u_ URLResponse) Url() IURL {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlresponse/url
 func (u_ URLResponse) SetUrl(value IURL) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setUrl:"), value)
-}
+}/* debug [instance_properties/setter]: url */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSURLResponse */
 
 
 

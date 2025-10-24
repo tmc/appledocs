@@ -15,3 +15,4 @@ var candidateListTouchBarItemProtocol *objc.Protocol
 func init() {
 	candidateListTouchBarItemProtocol = objc.GetProtocol("candidateListTouchBarItem:")
 }
+

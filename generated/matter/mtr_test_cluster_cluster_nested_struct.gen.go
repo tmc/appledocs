@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterNestedStruct] class.
@@ -39,8 +39,6 @@ type IMTRTestClusterClusterNestedStruct interface {
 	SetC(value IMTRTestClusterClusterSimpleStruct)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterNestedStruct
@@ -86,8 +84,6 @@ func NewMTRTestClusterClusterNestedStruct() MTRTestClusterClusterNestedStruct {
 	return getMTRTestClusterClusterNestedStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/a
 func (m_ MTRTestClusterClusterNestedStruct) A() objc.IObject /* cross-framework: NSNumber */ {
@@ -95,13 +91,11 @@ func (m_ MTRTestClusterClusterNestedStruct) A() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/a
 func (m_ MTRTestClusterClusterNestedStruct) SetA(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setA:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/b
@@ -110,13 +104,11 @@ func (m_ MTRTestClusterClusterNestedStruct) B() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/b
 func (m_ MTRTestClusterClusterNestedStruct) SetB(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setB:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/c
@@ -125,12 +117,8 @@ func (m_ MTRTestClusterClusterNestedStruct) C() IMTRTestClusterClusterSimpleStru
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclusternestedstruct/c
 func (m_ MTRTestClusterClusterNestedStruct) SetC(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setC:"), value)
 }
-
-
-

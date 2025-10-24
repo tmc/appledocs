@@ -8,4 +8,3 @@ import (
 
 // Suppress unused import errors
 var _ = matter.NewMTRBaseClusterDishwasherAlarm
-

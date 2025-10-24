@@ -15,3 +15,4 @@ var tableViewColumnDidMoveProtocol *objc.Protocol
 func init() {
 	tableViewColumnDidMoveProtocol = objc.GetProtocol("tableViewColumnDidMove:")
 }
+

@@ -21,3 +21,4 @@ var CodingProtocol *objc.Protocol
 func init() {
 	CodingProtocol = objc.GetProtocol("NSCoding")
 }
+

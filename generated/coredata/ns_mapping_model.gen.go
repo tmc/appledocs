@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,7 +39,6 @@ type IMappingModel interface {
 }
 
 // A model instance that specifies how to map a model from a source to a destination managed object model.
-
 
 // A model instance that specifies how to map a model from a source to a destination managed object model.
 //
@@ -88,8 +86,6 @@ func NewMappingModel() MappingModel {
 	return getMappingModelClass().New()
 }
 
-
-
 // Returns the mapping model that will translate data from the source to the destination model.
 //
 // [Full Topic]
@@ -98,8 +94,6 @@ func NewMappingModelFromBundlesForSourceModelDestinationModel(bundles []objc.IOb
 	rv := objc.Send[MappingModel](objc.ID(getMappingModelClass().class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }
-
-
 
 // Returns a newly created mapping model that will migrate data from the source to the destination model.
 //
@@ -110,7 +104,6 @@ func (mc _MappingModelClass) InferredMappingModelForSourceModelDestinationModelE
 	return rv
 }
 
-
 // Returns the mapping model that will translate data from the source to the destination model.
 //
 // [Full Topic]
@@ -119,7 +112,6 @@ func (mc _MappingModelClass) MappingModelFromBundlesForSourceModelDestinationMod
 	rv := objc.Send[MappingModel](objc.ID(mc.class), objc.Sel("mappingModelFromBundles:forSourceModel:destinationModel:"), bundles, sourceModel, destinationModel)
 	return rv
 }
-
 
 // The entity mappings for the mapping model.
 //
@@ -130,7 +122,6 @@ func (m_ MappingModel) EntityMappings() IEntityMapping {
 	return rv
 }
 
-
 // The entity mappings for the mapping model.
 //
 // [Full Topic]
@@ -138,7 +129,6 @@ func (m_ MappingModel) EntityMappings() IEntityMapping {
 func (m_ MappingModel) SetEntityMappings(value IEntityMapping) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityMappings:"), value)
 }
-
 
 // The entity mappings for the mapping model, keyed by name.
 //
@@ -149,7 +139,6 @@ func (m_ MappingModel) EntityMappingsByName() IEntityMapping {
 	return rv
 }
 
-
 // The entity mappings for the mapping model, keyed by name.
 //
 // [Full Topic]
@@ -157,5 +146,3 @@ func (m_ MappingModel) EntityMappingsByName() IEntityMapping {
 func (m_ MappingModel) SetEntityMappingsByName(value IEntityMapping) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEntityMappingsByName:"), value)
 }
-
-

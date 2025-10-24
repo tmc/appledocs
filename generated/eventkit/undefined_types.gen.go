@@ -11,7 +11,6 @@ type _undefined = int
 type (
 	ColorRef = _undefined // referenced in EventKit
 	ComparisonResult = _undefined // referenced in EventKit
-	Predicate = _undefined // referenced in EventKit
 )
 
 

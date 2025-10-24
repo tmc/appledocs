@@ -20,3 +20,4 @@ var physicalInputProfileProtocol *objc.Protocol
 func init() {
 	physicalInputProfileProtocol = objc.GetProtocol("physicalInputProfile")
 }
+

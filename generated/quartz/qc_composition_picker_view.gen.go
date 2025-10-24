@@ -8,8 +8,14 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class QCCompositionPickerView */
+
+
+/* debug [class_header]: Header for QCCompositionPickerView */
 // The class instance for the [QCCompositionPickerView] class.
 var (
 	QCCompositionPickerViewClass     _QCCompositionPickerViewClass
@@ -26,36 +32,30 @@ func getQCCompositionPickerViewClass() _QCCompositionPickerViewClass {
 type _QCCompositionPickerViewClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for QCCompositionPickerView */
 // An interface definition for the [QCCompositionPickerView] class.
 type IQCCompositionPickerView interface {
 	appkit.IView
+	
+/* debug [class_interface_properties]: Properties for QCCompositionPickerView */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for QCCompositionPickerView */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
-//
-// Note that the composition picker view does not automatically refresh its content when the composition repository is updated. It’s your responsibility to perform any necessary updating.
+/* debug [class_interface]: End interface */
 
 
-// The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerView
-type QCCompositionPickerView struct {
-	appkit.View
-}
 
-// QCCompositionPickerViewFrom constructs a [QCCompositionPickerView] from an unsafe.Pointer.
-//
-// The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
-func QCCompositionPickerViewFrom(ptr unsafe.Pointer) QCCompositionPickerView {
-	return QCCompositionPickerView{
-		View: appkit.ViewFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for QCCompositionPickerView */
 // Alloc allocates a new instance without initialization.
 func (qc _QCCompositionPickerViewClass) Alloc() QCCompositionPickerView {
 	rv := objc.Send[QCCompositionPickerView](objc.ID(qc.class), objc.Sel("alloc"))
@@ -63,7 +63,6 @@ func (qc _QCCompositionPickerViewClass) Alloc() QCCompositionPickerView {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (qc _QCCompositionPickerViewClass) New() QCCompositionPickerView {
 	rv := objc.Send[QCCompositionPickerView](objc.ID(qc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,7 +85,60 @@ func (q_ QCCompositionPickerView) Autorelease() QCCompositionPickerView {
 func NewQCCompositionPickerView() QCCompositionPickerView {
 	return getQCCompositionPickerViewClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for QCCompositionPickerView */
+// The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
+//
+// Note that the composition picker view does not automatically refresh its content when the composition repository is updated. It’s your responsibility to perform any necessary updating.
+
+
+// The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Quartz/QCCompositionPickerView
+type QCCompositionPickerView struct {
+	appkit.View
+}
+
+// QCCompositionPickerViewFrom constructs a [QCCompositionPickerView] from an unsafe.Pointer.
+//
+// The class allows users to browse compositions that are in the Quartz Composer composition repository, and to preview them. You can set the default input parameters for a composition preview by using the method setDefaultValue:forInputKey:.
+func QCCompositionPickerViewFrom(ptr unsafe.Pointer) QCCompositionPickerView {
+	return QCCompositionPickerView{
+		View: appkit.ViewFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for QCCompositionPickerView *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for QCCompositionPickerView */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for QCCompositionPickerView */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for QCCompositionPickerView */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for QCCompositionPickerView */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class QCCompositionPickerView */
 
 
 

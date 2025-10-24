@@ -21,3 +21,4 @@ var OS_nw_proxy_configProtocol *objc.Protocol
 func init() {
 	OS_nw_proxy_configProtocol = objc.GetProtocol("OS_nw_proxy_config")
 }
+

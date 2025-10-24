@@ -7,11 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/avfaudio"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVContinuityDevice */
+
+
+/* debug [class_header]: Header for AVContinuityDevice */
 // The class instance for the [ContinuityDevice] class.
 var (
 	ContinuityDeviceClass     _ContinuityDeviceClass
@@ -28,40 +30,32 @@ func getContinuityDeviceClass() _ContinuityDeviceClass {
 type _ContinuityDeviceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ContinuityDevice */
 // An interface definition for the [ContinuityDevice] class.
 type IContinuityDevice interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for ContinuityDevice */
 	// properties:
-	AudioSessionInputs() objc.IObject /* cross-framework: AudioSessionPortDescription */
-	SetAudioSessionInputs(value objc.IObject /* cross-framework: AudioSessionPortDescription */)
-	ConnectionID() objc.IObject /* cross-framework: UUID */
-	SetConnectionID(value objc.IObject /* cross-framework: UUID */)
 	IsConnected() bool
 	SetIsConnected(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ContinuityDevice */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.
-//
-// Each continuity device instance represents another iOS device that’s nearby. Your app can access the other device’s cameras and microphones with its and properties, respectively.
+/* debug [class_interface]: End interface */
 
 
-// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice
-type ContinuityDevice struct {
-	objectivec.Object
-}
 
-// ContinuityDeviceFrom constructs a [ContinuityDevice] from an unsafe.Pointer.
-//
-// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.
-func ContinuityDeviceFrom(ptr unsafe.Pointer) ContinuityDevice {
-	return ContinuityDevice{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for ContinuityDevice */
 // Alloc allocates a new instance without initialization.
 func (cc _ContinuityDeviceClass) Alloc() ContinuityDevice {
 	rv := objc.Send[ContinuityDevice](objc.ID(cc.class), objc.Sel("alloc"))
@@ -69,7 +63,6 @@ func (cc _ContinuityDeviceClass) Alloc() ContinuityDevice {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ContinuityDeviceClass) New() ContinuityDevice {
 	rv := objc.Send[ContinuityDevice](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,46 +85,54 @@ func (c_ ContinuityDevice) Autorelease() ContinuityDevice {
 func NewContinuityDevice() ContinuityDevice {
 	return getContinuityDeviceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// An array of the continuity device’s audio session port descriptions that’s available to your app.
+/* debug [class_struct]: Struct for ContinuityDevice */
+// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.
+//
+// Each continuity device instance represents another iOS device that’s nearby. Your app can access the other device’s cameras and microphones with its and properties, respectively.
+
+
+// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/audiosessioninputs
-func (c_ ContinuityDevice) AudioSessionInputs() objc.IObject /* cross-framework: AudioSessionPortDescription */ {
-	rv := objc.Send[avfaudio.AudioSessionPortDescription](c_.ID, objc.Sel("audioSessionInputs"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVContinuityDevice
+type ContinuityDevice struct {
+	objectivec.Object
 }
 
-
-// An array of the continuity device’s audio session port descriptions that’s available to your app.
+// ContinuityDeviceFrom constructs a [ContinuityDevice] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/audiosessioninputs
-func (c_ ContinuityDevice) SetAudioSessionInputs(value objc.IObject /* cross-framework: AudioSessionPortDescription */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAudioSessionInputs:"), value)
+// A class that represents a physical iOS device that’s nearby and can provide access to its cameras and microphones.
+func ContinuityDeviceFrom(ptr unsafe.Pointer) ContinuityDevice {
+	return ContinuityDevice{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// A universally unique value that identifies a specific continuity device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/connectionid
-func (c_ ContinuityDevice) ConnectionID() objc.IObject /* cross-framework: UUID */ {
-	rv := objc.Send[foundation.UUID](c_.ID, objc.Sel("connectionID"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for ContinuityDevice *//* debug [class_init_methods]: End init methods */
 
 
-// A universally unique value that identifies a specific continuity device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/connectionid
-func (c_ ContinuityDevice) SetConnectionID(value objc.IObject /* cross-framework: UUID */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setConnectionID:"), value)
-}
 
+/* debug [class_methods]: Class methods for ContinuityDevice */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ContinuityDevice */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ContinuityDevice */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ContinuityDevice */
 
 // A Boolean value that indicates whether you can use the continuity device because it’s connected to the system.
 //
@@ -140,7 +141,7 @@ func (c_ ContinuityDevice) SetConnectionID(value objc.IObject /* cross-framework
 func (c_ ContinuityDevice) IsConnected() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isConnected"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isConnected */
 
 
 // A Boolean value that indicates whether you can use the continuity device because it’s connected to the system.
@@ -149,6 +150,11 @@ func (c_ ContinuityDevice) IsConnected() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcontinuitydevice/isconnected
 func (c_ ContinuityDevice) SetIsConnected(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConnected:"), value)
-}
+}/* debug [instance_properties/setter]: isConnected */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVContinuityDevice */
 
 

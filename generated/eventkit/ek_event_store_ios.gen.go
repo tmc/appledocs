@@ -21,7 +21,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/EventKit/EKEventStore/calendars
-func (e_ EKEventStore) Calendars() []IEKCalendar {
+func (e_ EKEventStore) Calendars() []EKCalendar {
 	rv := objc.Send[[]EKCalendar](e_.ID, objc.Sel("calendars"))
 	return rv
 }

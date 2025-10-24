@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class LASecret */
+
+
+/* debug [class_header]: Header for LASecret */
 // The class instance for the [Secret] class.
 var (
 	SecretClass     _SecretClass
@@ -26,35 +30,31 @@ func getSecretClass() _SecretClass {
 type _SecretClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for Secret */
 // An interface definition for the [Secret] class.
 type ISecret interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for Secret */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for Secret */
 	// methods:
 	LoadDataWithCompletion(handler unsafe.Pointer)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Data that’s protected by a persisted right.
-//
-// You create instances when you store an ; you can’t create them directly.
+/* debug [class_interface]: End interface */
 
 
-// Data that’s protected by a persisted right.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LASecret
-type Secret struct {
-	objectivec.Object
-}
 
-// SecretFrom constructs a [Secret] from an unsafe.Pointer.
-//
-// Data that’s protected by a persisted right.
-func SecretFrom(ptr unsafe.Pointer) Secret {
-	return Secret{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for Secret */
 // Alloc allocates a new instance without initialization.
 func (sc _SecretClass) Alloc() Secret {
 	rv := objc.Send[Secret](objc.ID(sc.class), objc.Sel("alloc"))
@@ -62,7 +62,6 @@ func (sc _SecretClass) Alloc() Secret {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SecretClass) New() Secret {
 	rv := objc.Send[Secret](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -85,8 +84,49 @@ func (s_ Secret) Autorelease() Secret {
 func NewSecret() Secret {
 	return getSecretClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for Secret */
+// Data that’s protected by a persisted right.
+//
+// You create instances when you store an ; you can’t create them directly.
+
+
+// Data that’s protected by a persisted right.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LASecret
+type Secret struct {
+	objectivec.Object
+}
+
+// SecretFrom constructs a [Secret] from an unsafe.Pointer.
+//
+// Data that’s protected by a persisted right.
+func SecretFrom(ptr unsafe.Pointer) Secret {
+	return Secret{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for Secret *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for Secret */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for Secret */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for Secret */
 
 // Retrieves data stored in a secret.
 //
@@ -94,7 +134,18 @@ func NewSecret() Secret {
 // [Full Topic]: https://developer.apple.com/documentation/LocalAuthentication/LASecret/loadData(completion:)
 func (s_ Secret) LoadDataWithCompletion(handler unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("loadDataWithCompletion:"), handler)
-}
+}/* debug [instance_methods/method]: LoadDataWithCompletion */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for Secret */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class LASecret */
+
 
 
 

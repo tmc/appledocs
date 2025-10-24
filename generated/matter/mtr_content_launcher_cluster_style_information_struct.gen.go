@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRContentLauncherClusterStyleInformationStruct interface {
 	SetSize(value IMTRContentLauncherClusterDimensionStruct)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRContentLauncherClusterStyleInformationStruct
@@ -87,8 +85,6 @@ func NewMTRContentLauncherClusterStyleInformationStruct() MTRContentLauncherClus
 	return getMTRContentLauncherClusterStyleInformationStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/color
 func (m_ MTRContentLauncherClusterStyleInformationStruct) Color() objc.IObject /* cross-framework: NSString */ {
@@ -96,13 +92,11 @@ func (m_ MTRContentLauncherClusterStyleInformationStruct) Color() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/color
 func (m_ MTRContentLauncherClusterStyleInformationStruct) SetColor(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setColor:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/imageurl-8k1s1
@@ -111,13 +105,11 @@ func (m_ MTRContentLauncherClusterStyleInformationStruct) ImageURL() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/imageurl-8k1s1
 func (m_ MTRContentLauncherClusterStyleInformationStruct) SetImageURL(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageURL:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/imageurl-8jrvl
@@ -126,13 +118,11 @@ func (m_ MTRContentLauncherClusterStyleInformationStruct) ImageUrl() objc.IObjec
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/imageurl-8jrvl
 func (m_ MTRContentLauncherClusterStyleInformationStruct) SetImageUrl(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setImageUrl:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/size
@@ -141,12 +131,8 @@ func (m_ MTRContentLauncherClusterStyleInformationStruct) Size() IMTRContentLaun
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontentlauncherclusterstyleinformationstruct/size
 func (m_ MTRContentLauncherClusterStyleInformationStruct) SetSize(value IMTRContentLauncherClusterDimensionStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSize:"), value)
 }
-
-
-

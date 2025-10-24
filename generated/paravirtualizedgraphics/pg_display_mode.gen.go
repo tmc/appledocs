@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PGDisplayMode */
+
+
+/* debug [class_header]: Header for PGDisplayMode */
 // The class instance for the [PGDisplayMode] class.
 var (
 	PGDisplayModeClass     _PGDisplayModeClass
@@ -26,34 +30,32 @@ func getPGDisplayModeClass() _PGDisplayModeClass {
 type _PGDisplayModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PGDisplayMode */
 // An interface definition for the [PGDisplayMode] class.
 type IPGDisplayMode interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PGDisplayMode */
 	// properties:
 	RefreshRate() float64
-	SizeInPixels() unsafe.Pointer
+	SizeInPixels() objc.IObject /* cross-framework: PGDisplayCoord_t */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PGDisplayMode */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A description of a supported display mode.
 
 
-// A description of a supported display mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayMode
-type PGDisplayMode struct {
-	objectivec.Object
-}
-
-// PGDisplayModeFrom constructs a [PGDisplayMode] from an unsafe.Pointer.
-//
-// A description of a supported display mode.
-func PGDisplayModeFrom(ptr unsafe.Pointer) PGDisplayMode {
-	return PGDisplayMode{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PGDisplayMode */
 // Alloc allocates a new instance without initialization.
 func (pc _PGDisplayModeClass) Alloc() PGDisplayMode {
 	rv := objc.Send[PGDisplayMode](objc.ID(pc.class), objc.Sel("alloc"))
@@ -61,7 +63,6 @@ func (pc _PGDisplayModeClass) Alloc() PGDisplayMode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PGDisplayModeClass) New() PGDisplayMode {
 	rv := objc.Send[PGDisplayMode](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,21 +85,65 @@ func (p_ PGDisplayMode) Autorelease() PGDisplayMode {
 func NewPGDisplayMode() PGDisplayMode {
 	return getPGDisplayModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PGDisplayMode */
+// A description of a supported display mode.
+
+
+// A description of a supported display mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayMode
+type PGDisplayMode struct {
+	objectivec.Object
+}
+
+// PGDisplayModeFrom constructs a [PGDisplayMode] from an unsafe.Pointer.
+//
+// A description of a supported display mode.
+func PGDisplayModeFrom(ptr unsafe.Pointer) PGDisplayMode {
+	return PGDisplayMode{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PGDisplayMode */
 
 // Creates a new display mode.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayMode/init(sizeInPixels:refreshRateInHz:)
-func NewPGDisplayModeWithSizeInPixelsRefreshRateInHz(sizeInPixels unsafe.Pointer, refreshRateInHz float64) PGDisplayMode {
+func NewPGDisplayModeWithSizeInPixelsRefreshRateInHz(sizeInPixels objc.IObject /* cross-framework: PGDisplayCoord_t */, refreshRateInHz float64) PGDisplayMode {
 	instance := getPGDisplayModeClass().Alloc()
 	rv := objc.Send[PGDisplayMode](instance.ID, objc.Sel("initWithSizeInPixels:refreshRateInHz:"), sizeInPixels, refreshRateInHz)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPGDisplayModeWithSizeInPixelsRefreshRateInHz */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for PGDisplayMode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PGDisplayMode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PGDisplayMode */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PGDisplayMode */
 
 // The mode’s refresh rate.
 //
@@ -107,16 +152,21 @@ func NewPGDisplayModeWithSizeInPixelsRefreshRateInHz(sizeInPixels unsafe.Pointer
 func (p_ PGDisplayMode) RefreshRate() float64 {
 	rv := objc.Send[float64](p_.ID, objc.Sel("refreshRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: refreshRate */
 
 
 // The display mode’s dimensions in pixels.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ParavirtualizedGraphics/PGDisplayMode/sizeInPixels
-func (p_ PGDisplayMode) SizeInPixels() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sizeInPixels"))
+func (p_ PGDisplayMode) SizeInPixels() objc.IObject /* cross-framework: PGDisplayCoord_t */ {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("sizeInPixels"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sizeInPixels */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PGDisplayMode */
 
 

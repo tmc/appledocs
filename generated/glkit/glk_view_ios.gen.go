@@ -33,11 +33,11 @@ func (g_ GLKView) SetContext(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/delegate
-func (g_ GLKView) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](g_.ID, objc.Sel("delegate"))
+func (g_ GLKView) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (g_ GLKView) SetDelegate(value objc.ID) {
+func (g_ GLKView) SetDelegate(value unsafe.Pointer) {
 	g_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -123,7 +123,7 @@ func (g_ GLKView) SetEnableSetNeedsDisplay(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKView/snapshot
-func (g_ GLKView) Snapshot() objc.IObject /* cross-framework: Image */ {
+func (g_ GLKView) Snapshot() appkit.Image {
 	rv := objc.Send[appkit.Image](g_.ID, objc.Sel("snapshot"))
 	return rv
 }

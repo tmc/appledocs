@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewMatrixRandomMTGP32
 
+// ExampleMatrixRandomMTGP32_SynchronizeState demonstrates using SynchronizeState on a MatrixRandomMTGP32 instance.
+func ExampleMatrixRandomMTGP32_SynchronizeState() {
+	obj := metalperformanceshaders.NewMatrixRandomMTGP32()
+	obj.SynchronizeState()
+	// Output:
+	}
+

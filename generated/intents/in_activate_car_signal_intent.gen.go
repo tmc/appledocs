@@ -39,7 +39,6 @@ type IINActivateCarSignalIntent interface {
 //
 // When the user asks for an audible or visual signal from the car, Siri creates an object. This intent object can contain the name of the user’s car and the signal options. Use this object to trigger audible and visual signals from the car. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the results.
 
-
 // A request to activate the signals on the user’s car.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewINActivateCarSignalIntent() INActivateCarSignalIntent {
 	return getINActivateCarSignalIntentClass().New()
 }
 
-
-
 // A name that identifies the user’s car.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (i_ INActivateCarSignalIntent) CarName() INSpeakableString {
 	return rv
 }
 
-
 // A name that identifies the user’s car.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (i_ INActivateCarSignalIntent) CarName() INSpeakableString {
 func (i_ INActivateCarSignalIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
-
 
 // The set of signals to activate.
 //
@@ -118,7 +113,6 @@ func (i_ INActivateCarSignalIntent) Signals() unsafe.Pointer {
 	return rv
 }
 
-
 // The set of signals to activate.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (i_ INActivateCarSignalIntent) Signals() unsafe.Pointer {
 func (i_ INActivateCarSignalIntent) SetSignals(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setSignals:"), value)
 }
-
-
-

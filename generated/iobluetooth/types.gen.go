@@ -12,442 +12,936 @@ import (
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothAFHHostChannelClassification
 type BluetoothAFHHostChannelClassification struct {
-}// BluetoothAFHResults
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothAFHHostChannelClassification */
+
+// BluetoothAFHResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothAFHResults
 type BluetoothAFHResults struct {
-}// BluetoothDeviceAddress
+	AfhMap uint8
+	Handle BluetoothConnectionHandle
+	Mode BluetoothAFHMode
+}/* debug [types.gen.go/struct]: BluetoothAFHResults */
+
+// BluetoothDeviceAddress
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothDeviceAddress
 type BluetoothDeviceAddress struct {
-}// BluetoothEnhancedSynchronousConnectionInfo
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothDeviceAddress */
+
+// BluetoothEnhancedSynchronousConnectionInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothEnhancedSynchronousConnectionInfo
 type BluetoothEnhancedSynchronousConnectionInfo struct {
-}// BluetoothEventFilterCondition
+	InputBandwidth BluetoothHCIInputBandwidth
+	InputCodedDataSize BluetoothHCIInputCodedDataSize
+	InputCodingFormat BluetoothHCIInputCodingFormat
+	InputDataPath BluetoothHCIInputDataPath
+	InputPCMDataFormat BluetoothHCIInputPCMDataFormat
+	InputPCMSampelPayloadMSBPosition BluetoothHCIInputPCMSamplePayloadMSBPosition
+	InputTransportUnitSize BluetoothHCIInputTransportUnitSize
+	MaxLatency BluetoothHCIMaxLatency
+	OutputBandwidth BluetoothHCIOutputBandwidth
+	OutputCodedDataSize BluetoothHCIOutputCodedDataSize
+	OutputCodingFormat BluetoothHCIOutputCodingFormat
+	OutputDataPath BluetoothHCIOutputDataPath
+	OutputPCMDataFormat BluetoothHCIOutputPCMDataFormat
+	OutputPCMSampelPayloadMSBPosition BluetoothHCIOutputPCMSamplePayloadMSBPosition
+	OutputTransportUnitSize BluetoothHCIOutputTransportUnitSize
+	PacketType BluetoothPacketType
+	ReceiveBandWidth BluetoothHCIReceiveBandwidth
+	ReceiveCodecFrameSize BluetoothHCIReceiveCodecFrameSize
+	ReceiveCodingFormat BluetoothHCIReceiveCodingFormat
+	RetransmissionEffort BluetoothHCIRetransmissionEffort
+	TransmitBandWidth BluetoothHCITransmitBandwidth
+	TransmitCodecFrameSize BluetoothHCITransmitCodecFrameSize
+	TransmitCodingFormat BluetoothHCITransmitCodingFormat
+	VoiceSetting BluetoothHCIVoiceSetting
+}/* debug [types.gen.go/struct]: BluetoothEnhancedSynchronousConnectionInfo */
+
+// BluetoothEventFilterCondition
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothEventFilterCondition
 type BluetoothEventFilterCondition struct {
-}// BluetoothHCIAcceptSynchronousConnectionRequestParams
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothEventFilterCondition */
+
+// BluetoothHCIAcceptSynchronousConnectionRequestParams
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIAcceptSynchronousConnectionRequestParams
 type BluetoothHCIAcceptSynchronousConnectionRequestParams struct {
-}// BluetoothHCIAutomaticFlushTimeoutInfo
+	ContentFormat uint16
+	MaxLatency uint16
+	PacketType uint16
+	ReceiveBandwidth uint32
+	RetransmissionEffort uint8
+	TransmitBandwidth uint32
+}/* debug [types.gen.go/struct]: BluetoothHCIAcceptSynchronousConnectionRequestParams */
+
+// BluetoothHCIAutomaticFlushTimeoutInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIAutomaticFlushTimeoutInfo
 type BluetoothHCIAutomaticFlushTimeoutInfo struct {
-}// BluetoothHCIBufferSize
+	Handle BluetoothConnectionHandle
+	Timeout BluetoothHCIAutomaticFlushTimeout
+}/* debug [types.gen.go/struct]: BluetoothHCIAutomaticFlushTimeoutInfo */
+
+// BluetoothHCIBufferSize
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIBufferSize
 type BluetoothHCIBufferSize struct {
-}// BluetoothHCICurrentInquiryAccessCodes
+	ACLDataPacketLength uint16
+	SCODataPacketLength uint8
+	TotalNumACLDataPackets uint16
+	TotalNumSCODataPackets uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIBufferSize */
+
+// BluetoothHCICurrentInquiryAccessCodes
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCICurrentInquiryAccessCodes
 type BluetoothHCICurrentInquiryAccessCodes struct {
-}// BluetoothHCICurrentInquiryAccessCodesForWrite
+	Codes BluetoothHCIInquiryAccessCode
+	Count BluetoothHCIInquiryAccessCodeCount
+}/* debug [types.gen.go/struct]: BluetoothHCICurrentInquiryAccessCodes */
+
+// BluetoothHCICurrentInquiryAccessCodesForWrite
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCICurrentInquiryAccessCodesForWrite
 type BluetoothHCICurrentInquiryAccessCodesForWrite struct {
-}// BluetoothHCIEncryptionKeySizeInfo
+	Codes uint8
+	Count BluetoothHCIInquiryAccessCodeCount
+}/* debug [types.gen.go/struct]: BluetoothHCICurrentInquiryAccessCodesForWrite */
+
+// BluetoothHCIEncryptionKeySizeInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEncryptionKeySizeInfo
 type BluetoothHCIEncryptionKeySizeInfo struct {
-}// BluetoothHCIEnhancedAcceptSynchronousConnectionRequestParams
+	Handle BluetoothConnectionHandle
+	KeySize BluetoothHCIEncryptionKeySize
+}/* debug [types.gen.go/struct]: BluetoothHCIEncryptionKeySizeInfo */
+
+// BluetoothHCIEnhancedAcceptSynchronousConnectionRequestParams
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEnhancedAcceptSynchronousConnectionRequestParams
 type BluetoothHCIEnhancedAcceptSynchronousConnectionRequestParams struct {
-}// BluetoothHCIEnhancedSetupSynchronousConnectionParams
+	InputBandwidth uint32
+	InputCodedDataSize uint16
+	InputCodingFormat uint64
+	InputDataPath uint8
+	InputPCMDataFormat uint8
+	InputPCMSamplePayloadMSBPosition uint8
+	InputTransportUnitSize uint8
+	MaxLatency uint16
+	OutputBandwidth uint32
+	OutputCodedDataSize uint16
+	OutputCodingFormat uint64
+	OutputDataPath uint8
+	OutputPCMDataFormat uint8
+	OutputPCMSamplePayloadMSBPosition uint8
+	OutputTransportUnitSize uint8
+	PacketType uint16
+	ReceiveBandwidth uint32
+	ReceiveCodecFrameSize uint16
+	ReceiveCodingFormat uint64
+	RetransmissionEffort uint8
+	TransmitBandwidth uint32
+	TransmitCodecFrameSize uint16
+	TransmitCodingFormat uint64
+}/* debug [types.gen.go/struct]: BluetoothHCIEnhancedAcceptSynchronousConnectionRequestParams */
+
+// BluetoothHCIEnhancedSetupSynchronousConnectionParams
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEnhancedSetupSynchronousConnectionParams
 type BluetoothHCIEnhancedSetupSynchronousConnectionParams struct {
-}// BluetoothHCIEventAuthenticationCompleteResults
+	InputBandwidth uint32
+	InputCodedDataSize uint16
+	InputCodingFormat uint64
+	InputDataPath uint8
+	InputPCMDataFormat uint8
+	InputPCMSamplePayloadMSBPosition uint8
+	InputTransportUnitSize uint8
+	MaxLatency uint16
+	OutputBandwidth uint32
+	OutputCodedDataSize uint16
+	OutputCodingFormat uint64
+	OutputDataPath uint8
+	OutputPCMDataFormat uint8
+	OutputPCMSamplePayloadMSBPosition uint8
+	OutputTransportUnitSize uint8
+	PacketType uint16
+	ReceiveBandwidth uint32
+	ReceiveCodecFrameSize uint16
+	ReceiveCodingFormat uint64
+	RetransmissionEffort uint8
+	TransmitBandwidth uint32
+	TransmitCodecFrameSize uint16
+	TransmitCodingFormat uint64
+}/* debug [types.gen.go/struct]: BluetoothHCIEnhancedSetupSynchronousConnectionParams */
+
+// BluetoothHCIEventAuthenticationCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventAuthenticationCompleteResults
 type BluetoothHCIEventAuthenticationCompleteResults struct {
-}// BluetoothHCIEventChangeConnectionLinkKeyCompleteResults
+	ConnectionHandle BluetoothConnectionHandle
+}/* debug [types.gen.go/struct]: BluetoothHCIEventAuthenticationCompleteResults */
+
+// BluetoothHCIEventChangeConnectionLinkKeyCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventChangeConnectionLinkKeyCompleteResults
 type BluetoothHCIEventChangeConnectionLinkKeyCompleteResults struct {
-}// BluetoothHCIEventConnectionCompleteResults
+	ConnectionHandle BluetoothConnectionHandle
+}/* debug [types.gen.go/struct]: BluetoothHCIEventChangeConnectionLinkKeyCompleteResults */
+
+// BluetoothHCIEventConnectionCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventConnectionCompleteResults
 type BluetoothHCIEventConnectionCompleteResults struct {
-}// BluetoothHCIEventConnectionPacketTypeResults
+	ConnectionHandle BluetoothConnectionHandle
+	DeviceAddress BluetoothDeviceAddress
+	EncryptionMode BluetoothHCIEncryptionMode
+	LinkType BluetoothLinkType
+}/* debug [types.gen.go/struct]: BluetoothHCIEventConnectionCompleteResults */
+
+// BluetoothHCIEventConnectionPacketTypeResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventConnectionPacketTypeResults
 type BluetoothHCIEventConnectionPacketTypeResults struct {
-}// BluetoothHCIEventConnectionRequestResults
+	ConnectionHandle BluetoothConnectionHandle
+	PacketType BluetoothPacketType
+}/* debug [types.gen.go/struct]: BluetoothHCIEventConnectionPacketTypeResults */
+
+// BluetoothHCIEventConnectionRequestResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventConnectionRequestResults
 type BluetoothHCIEventConnectionRequestResults struct {
-}// BluetoothHCIEventDataBufferOverflowResults
+	ClassOfDevice BluetoothClassOfDevice
+	DeviceAddress BluetoothDeviceAddress
+	LinkType BluetoothLinkType
+}/* debug [types.gen.go/struct]: BluetoothHCIEventConnectionRequestResults */
+
+// BluetoothHCIEventDataBufferOverflowResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventDataBufferOverflowResults
 type BluetoothHCIEventDataBufferOverflowResults struct {
-}// BluetoothHCIEventDisconnectionCompleteResults
+	LinkType BluetoothLinkType
+}/* debug [types.gen.go/struct]: BluetoothHCIEventDataBufferOverflowResults */
+
+// BluetoothHCIEventDisconnectionCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventDisconnectionCompleteResults
 type BluetoothHCIEventDisconnectionCompleteResults struct {
-}// BluetoothHCIEventEncryptionChangeResults
+	ConnectionHandle BluetoothConnectionHandle
+	Reason BluetoothReasonCode
+}/* debug [types.gen.go/struct]: BluetoothHCIEventDisconnectionCompleteResults */
+
+// BluetoothHCIEventEncryptionChangeResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventEncryptionChangeResults
 type BluetoothHCIEventEncryptionChangeResults struct {
-}// BluetoothHCIEventEncryptionKeyRefreshCompleteResults
+	ConnectionHandle BluetoothConnectionHandle
+	Enable BluetoothEncryptionEnable
+}/* debug [types.gen.go/struct]: BluetoothHCIEventEncryptionChangeResults */
+
+// BluetoothHCIEventEncryptionKeyRefreshCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventEncryptionKeyRefreshCompleteResults
 type BluetoothHCIEventEncryptionKeyRefreshCompleteResults struct {
-}// BluetoothHCIEventFlowSpecificationData
+	ConnectionHandle BluetoothConnectionHandle
+}/* debug [types.gen.go/struct]: BluetoothHCIEventEncryptionKeyRefreshCompleteResults */
+
+// BluetoothHCIEventFlowSpecificationData
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventFlowSpecificationData
 type BluetoothHCIEventFlowSpecificationData struct {
-}// BluetoothHCIEventFlushOccurredResults
+	AccessLatency uint32
+	ConnectionHandle BluetoothConnectionHandle
+	Flags uint8
+	FlowDirection uint8
+	PeakBandwidth uint32
+	ServiceType uint8
+	TokenBucketSize uint32
+	TokenRate uint32
+}/* debug [types.gen.go/struct]: BluetoothHCIEventFlowSpecificationData */
+
+// BluetoothHCIEventFlushOccurredResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventFlushOccurredResults
 type BluetoothHCIEventFlushOccurredResults struct {
-}// BluetoothHCIEventHardwareErrorResults
+	ConnectionHandle BluetoothConnectionHandle
+}/* debug [types.gen.go/struct]: BluetoothHCIEventFlushOccurredResults */
+
+// BluetoothHCIEventHardwareErrorResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventHardwareErrorResults
 type BluetoothHCIEventHardwareErrorResults struct {
-}// BluetoothHCIEventLEConnectionCompleteResults
+	Error BluetoothHCIStatus
+}/* debug [types.gen.go/struct]: BluetoothHCIEventHardwareErrorResults */
+
+// BluetoothHCIEventLEConnectionCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventLEConnectionCompleteResults
 type BluetoothHCIEventLEConnectionCompleteResults struct {
-}// BluetoothHCIEventLEConnectionUpdateCompleteResults
+	ConnectionHandle BluetoothConnectionHandle
+	ConnInterval uint16
+	ConnLatency uint16
+	MasterClockAccuracy uint8
+	PeerAddress BluetoothDeviceAddress
+	PeerAddressType uint8
+	Role uint8
+	SupervisionTimeout uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIEventLEConnectionCompleteResults */
+
+// BluetoothHCIEventLEConnectionUpdateCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventLEConnectionUpdateCompleteResults
 type BluetoothHCIEventLEConnectionUpdateCompleteResults struct {
-}// BluetoothHCIEventLEEnhancedConnectionCompleteResults
+	ConnectionHandle BluetoothConnectionHandle
+	ConnInterval uint16
+	ConnLatency uint16
+	SupervisionTimeout uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIEventLEConnectionUpdateCompleteResults */
+
+// BluetoothHCIEventLEEnhancedConnectionCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventLEEnhancedConnectionCompleteResults
 type BluetoothHCIEventLEEnhancedConnectionCompleteResults struct {
-}// BluetoothHCIEventLELongTermKeyRequestResults
+	ConnectionHandle BluetoothConnectionHandle
+	ConnInterval uint16
+	ConnLatency uint16
+	LocalResolvablePrivateAddress BluetoothDeviceAddress
+	MasterClockAccuracy uint8
+	PeerAddress BluetoothDeviceAddress
+	PeerAddressType uint8
+	PeerResolvablePrivateAddress BluetoothDeviceAddress
+	Role uint8
+	SupervisionTimeout uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIEventLEEnhancedConnectionCompleteResults */
+
+// BluetoothHCIEventLELongTermKeyRequestResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventLELongTermKeyRequestResults
 type BluetoothHCIEventLELongTermKeyRequestResults struct {
-}// BluetoothHCIEventLEMetaResults
+	ConnectionHandle BluetoothConnectionHandle
+	Ediv uint16
+	RandomNumber uint8
+}/* debug [types.gen.go/struct]: BluetoothHCIEventLELongTermKeyRequestResults */
+
+// BluetoothHCIEventLEMetaResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventLEMetaResults
 type BluetoothHCIEventLEMetaResults struct {
-}// BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResults
+	Data uint8
+	Length uint8
+}/* debug [types.gen.go/struct]: BluetoothHCIEventLEMetaResults */
+
+// BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResults
 type BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResults struct {
-}// BluetoothHCIEventLinkKeyNotificationResults
+	ConnectionHandle BluetoothConnectionHandle
+	UsedFeatures BluetoothHCISupportedFeatures
+}/* debug [types.gen.go/struct]: BluetoothHCIEventLEReadRemoteUsedFeaturesCompleteResults */
+
+// BluetoothHCIEventLinkKeyNotificationResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventLinkKeyNotificationResults
 type BluetoothHCIEventLinkKeyNotificationResults struct {
-}// BluetoothHCIEventMasterLinkKeyCompleteResults
+	DeviceAddress BluetoothDeviceAddress
+	KeyType BluetoothKeyType
+	LinkKey BluetoothKey
+}/* debug [types.gen.go/struct]: BluetoothHCIEventLinkKeyNotificationResults */
+
+// BluetoothHCIEventMasterLinkKeyCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventMasterLinkKeyCompleteResults
 type BluetoothHCIEventMasterLinkKeyCompleteResults struct {
-}// BluetoothHCIEventMaxSlotsChangeResults
+	ConnectionHandle BluetoothConnectionHandle
+	KeyFlag BluetoothKeyFlag
+}/* debug [types.gen.go/struct]: BluetoothHCIEventMasterLinkKeyCompleteResults */
+
+// BluetoothHCIEventMaxSlotsChangeResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventMaxSlotsChangeResults
 type BluetoothHCIEventMaxSlotsChangeResults struct {
-}// BluetoothHCIEventModeChangeResults
+	ConnectionHandle BluetoothConnectionHandle
+	MaxSlots BluetoothMaxSlots
+}/* debug [types.gen.go/struct]: BluetoothHCIEventMaxSlotsChangeResults */
+
+// BluetoothHCIEventModeChangeResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventModeChangeResults
 type BluetoothHCIEventModeChangeResults struct {
-}// BluetoothHCIEventPageScanModeChangeResults
+	ConnectionHandle BluetoothConnectionHandle
+	Mode BluetoothHCIConnectionMode
+	ModeInterval BluetoothHCIModeInterval
+}/* debug [types.gen.go/struct]: BluetoothHCIEventModeChangeResults */
+
+// BluetoothHCIEventPageScanModeChangeResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventPageScanModeChangeResults
 type BluetoothHCIEventPageScanModeChangeResults struct {
-}// BluetoothHCIEventPageScanRepetitionModeChangeResults
+	DeviceAddress BluetoothDeviceAddress
+	PageScanMode BluetoothPageScanMode
+}/* debug [types.gen.go/struct]: BluetoothHCIEventPageScanModeChangeResults */
+
+// BluetoothHCIEventPageScanRepetitionModeChangeResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventPageScanRepetitionModeChangeResults
 type BluetoothHCIEventPageScanRepetitionModeChangeResults struct {
-}// BluetoothHCIEventQoSSetupCompleteResults
+	DeviceAddress BluetoothDeviceAddress
+	PageScanRepetitionMode BluetoothPageScanRepetitionMode
+}/* debug [types.gen.go/struct]: BluetoothHCIEventPageScanRepetitionModeChangeResults */
+
+// BluetoothHCIEventQoSSetupCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventQoSSetupCompleteResults
 type BluetoothHCIEventQoSSetupCompleteResults struct {
-}// BluetoothHCIEventQoSViolationResults
+	ConnectionHandle BluetoothConnectionHandle
+	SetupParams BluetoothHCIQualityOfServiceSetupParams
+}/* debug [types.gen.go/struct]: BluetoothHCIEventQoSSetupCompleteResults */
+
+// BluetoothHCIEventQoSViolationResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventQoSViolationResults
 type BluetoothHCIEventQoSViolationResults struct {
-}// BluetoothHCIEventReadClockOffsetResults
+	ConnectionHandle BluetoothConnectionHandle
+}/* debug [types.gen.go/struct]: BluetoothHCIEventQoSViolationResults */
+
+// BluetoothHCIEventReadClockOffsetResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventReadClockOffsetResults
 type BluetoothHCIEventReadClockOffsetResults struct {
-}// BluetoothHCIEventReadExtendedFeaturesResults
+	ClockOffset BluetoothClockOffset
+	ConnectionHandle BluetoothConnectionHandle
+}/* debug [types.gen.go/struct]: BluetoothHCIEventReadClockOffsetResults */
+
+// BluetoothHCIEventReadExtendedFeaturesResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventReadExtendedFeaturesResults
 type BluetoothHCIEventReadExtendedFeaturesResults struct {
-}// BluetoothHCIEventReadRemoteExtendedFeaturesResults
+	ConnectionHandle BluetoothConnectionHandle
+	SupportedFeaturesInfo BluetoothHCIExtendedFeaturesInfo
+}/* debug [types.gen.go/struct]: BluetoothHCIEventReadExtendedFeaturesResults */
+
+// BluetoothHCIEventReadRemoteExtendedFeaturesResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventReadRemoteExtendedFeaturesResults
 type BluetoothHCIEventReadRemoteExtendedFeaturesResults struct {
-}// BluetoothHCIEventReadRemoteSupportedFeaturesResults
+	ConnectionHandle BluetoothConnectionHandle
+	Error BluetoothHCIStatus
+	LmpFeatures BluetoothHCISupportedFeatures
+	MaxPage BluetoothHCIPageNumber
+	Page BluetoothHCIPageNumber
+}/* debug [types.gen.go/struct]: BluetoothHCIEventReadRemoteExtendedFeaturesResults */
+
+// BluetoothHCIEventReadRemoteSupportedFeaturesResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventReadRemoteSupportedFeaturesResults
 type BluetoothHCIEventReadRemoteSupportedFeaturesResults struct {
-}// BluetoothHCIEventReadRemoteVersionInfoResults
+	ConnectionHandle BluetoothConnectionHandle
+	Error BluetoothHCIStatus
+	LmpFeatures BluetoothHCISupportedFeatures
+}/* debug [types.gen.go/struct]: BluetoothHCIEventReadRemoteSupportedFeaturesResults */
+
+// BluetoothHCIEventReadRemoteVersionInfoResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventReadRemoteVersionInfoResults
 type BluetoothHCIEventReadRemoteVersionInfoResults struct {
-}// BluetoothHCIEventReadSupportedFeaturesResults
+	ConnectionHandle BluetoothConnectionHandle
+	LmpSubversion BluetoothLMPSubversion
+	LmpVersion BluetoothLMPVersion
+	ManufacturerName BluetoothManufacturerName
+}/* debug [types.gen.go/struct]: BluetoothHCIEventReadRemoteVersionInfoResults */
+
+// BluetoothHCIEventReadSupportedFeaturesResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventReadSupportedFeaturesResults
 type BluetoothHCIEventReadSupportedFeaturesResults struct {
-}// BluetoothHCIEventRemoteNameRequestResults
+	ConnectionHandle BluetoothConnectionHandle
+	SupportedFeatures BluetoothHCISupportedFeatures
+}/* debug [types.gen.go/struct]: BluetoothHCIEventReadSupportedFeaturesResults */
+
+// BluetoothHCIEventRemoteNameRequestResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventRemoteNameRequestResults
 type BluetoothHCIEventRemoteNameRequestResults struct {
-}// BluetoothHCIEventReturnLinkKeysResults
+	DeviceAddress BluetoothDeviceAddress
+	DeviceName BluetoothDeviceName
+}/* debug [types.gen.go/struct]: BluetoothHCIEventRemoteNameRequestResults */
+
+// BluetoothHCIEventReturnLinkKeysResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventReturnLinkKeysResults
 type BluetoothHCIEventReturnLinkKeysResults struct {
-}// BluetoothHCIEventRoleChangeResults
+	LinkKeys unsafe.Pointer
+	DeviceAddress BluetoothDeviceAddress
+	LinkKey BluetoothKey
+	NumLinkKeys uint8
+}/* debug [types.gen.go/struct]: BluetoothHCIEventReturnLinkKeysResults */
+
+// BluetoothHCIEventRoleChangeResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventRoleChangeResults
 type BluetoothHCIEventRoleChangeResults struct {
-}// BluetoothHCIEventSimplePairingCompleteResults
+	ConnectionHandle BluetoothConnectionHandle
+	DeviceAddress BluetoothDeviceAddress
+	Role BluetoothRole
+}/* debug [types.gen.go/struct]: BluetoothHCIEventRoleChangeResults */
+
+// BluetoothHCIEventSimplePairingCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventSimplePairingCompleteResults
 type BluetoothHCIEventSimplePairingCompleteResults struct {
-}// BluetoothHCIEventSniffSubratingResults
+	DeviceAddress BluetoothDeviceAddress
+}/* debug [types.gen.go/struct]: BluetoothHCIEventSimplePairingCompleteResults */
+
+// BluetoothHCIEventSniffSubratingResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventSniffSubratingResults
 type BluetoothHCIEventSniffSubratingResults struct {
-}// BluetoothHCIEventSynchronousConnectionChangedResults
+	ConnectionHandle BluetoothConnectionHandle
+	MaxReceiveLatency uint16
+	MaxTransmitLatency uint16
+	MinLocalTimeout uint16
+	MinRemoteTimeout uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIEventSniffSubratingResults */
+
+// BluetoothHCIEventSynchronousConnectionChangedResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventSynchronousConnectionChangedResults
 type BluetoothHCIEventSynchronousConnectionChangedResults struct {
-}// BluetoothHCIEventSynchronousConnectionCompleteResults
+	ConnectionHandle BluetoothConnectionHandle
+	ReceivePacketLength uint16
+	RetransmissionWindow uint8
+	TransmissionInterval uint8
+	TransmitPacketLength uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIEventSynchronousConnectionChangedResults */
+
+// BluetoothHCIEventSynchronousConnectionCompleteResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventSynchronousConnectionCompleteResults
 type BluetoothHCIEventSynchronousConnectionCompleteResults struct {
-}// BluetoothHCIEventVendorSpecificResults
+	AirMode BluetoothAirMode
+	ConnectionHandle BluetoothConnectionHandle
+	DeviceAddress BluetoothDeviceAddress
+	LinkType BluetoothLinkType
+	ReceivePacketLength uint16
+	RetransmissionWindow uint8
+	TransmissionInterval uint8
+	TransmitPacketLength uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIEventSynchronousConnectionCompleteResults */
+
+// BluetoothHCIEventVendorSpecificResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIEventVendorSpecificResults
 type BluetoothHCIEventVendorSpecificResults struct {
-}// BluetoothHCIExtendedFeaturesInfo
+	Data uint8
+	Length uint8
+}/* debug [types.gen.go/struct]: BluetoothHCIEventVendorSpecificResults */
+
+// BluetoothHCIExtendedFeaturesInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIExtendedFeaturesInfo
 type BluetoothHCIExtendedFeaturesInfo struct {
-}// BluetoothHCIExtendedInquiryResponse
+	Data uint8
+	MaxPage BluetoothHCIPageNumber
+	Page BluetoothHCIPageNumber
+}/* debug [types.gen.go/struct]: BluetoothHCIExtendedFeaturesInfo */
+
+// BluetoothHCIExtendedInquiryResponse
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIExtendedInquiryResponse
 type BluetoothHCIExtendedInquiryResponse struct {
-}// BluetoothHCIExtendedInquiryResult
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothHCIExtendedInquiryResponse */
+
+// BluetoothHCIExtendedInquiryResult
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIExtendedInquiryResult
 type BluetoothHCIExtendedInquiryResult struct {
-}// BluetoothHCIFailedContactInfo
+	ClassOfDevice BluetoothClassOfDevice
+	ClockOffset BluetoothClockOffset
+	DeviceAddress BluetoothDeviceAddress
+	ExtendedInquiryResponse BluetoothHCIExtendedInquiryResponse
+	NumberOfReponses uint8
+	PageScanRepetitionMode BluetoothPageScanRepetitionMode
+	Reserved uint8
+	RSSIValue BluetoothHCIRSSIValue
+}/* debug [types.gen.go/struct]: BluetoothHCIExtendedInquiryResult */
+
+// BluetoothHCIFailedContactInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIFailedContactInfo
 type BluetoothHCIFailedContactInfo struct {
-}// BluetoothHCIInquiryAccessCode
+	Count BluetoothHCIFailedContactCount
+	Handle BluetoothConnectionHandle
+}/* debug [types.gen.go/struct]: BluetoothHCIFailedContactInfo */
+
+// BluetoothHCIInquiryAccessCode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIInquiryAccessCode
 type BluetoothHCIInquiryAccessCode struct {
-}// BluetoothHCIInquiryResult
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothHCIInquiryAccessCode */
+
+// BluetoothHCIInquiryResult
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIInquiryResult
 type BluetoothHCIInquiryResult struct {
-}// BluetoothHCIInquiryResults
+	ClassOfDevice BluetoothClassOfDevice
+	ClockOffset BluetoothClockOffset
+	DeviceAddress BluetoothDeviceAddress
+	PageScanMode BluetoothHCIPageScanMode
+	PageScanPeriodMode BluetoothHCIPageScanPeriodMode
+	PageScanRepetitionMode BluetoothPageScanRepetitionMode
+}/* debug [types.gen.go/struct]: BluetoothHCIInquiryResult */
+
+// BluetoothHCIInquiryResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIInquiryResults
 type BluetoothHCIInquiryResults struct {
-}// BluetoothHCIInquiryWithRSSIResult
+	Count ItemCount
+	Results BluetoothHCIInquiryResult
+}/* debug [types.gen.go/struct]: BluetoothHCIInquiryResults */
+
+// BluetoothHCIInquiryWithRSSIResult
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIInquiryWithRSSIResult
 type BluetoothHCIInquiryWithRSSIResult struct {
-}// BluetoothHCIInquiryWithRSSIResults
+	ClassOfDevice BluetoothClassOfDevice
+	ClockOffset BluetoothClockOffset
+	DeviceAddress BluetoothDeviceAddress
+	PageScanRepetitionMode BluetoothPageScanRepetitionMode
+	Reserved uint8
+	RSSIValue BluetoothHCIRSSIValue
+}/* debug [types.gen.go/struct]: BluetoothHCIInquiryWithRSSIResult */
+
+// BluetoothHCIInquiryWithRSSIResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIInquiryWithRSSIResults
 type BluetoothHCIInquiryWithRSSIResults struct {
-}// BluetoothHCILEBufferSize
+	Count ItemCount
+	Results BluetoothHCIInquiryWithRSSIResult
+}/* debug [types.gen.go/struct]: BluetoothHCIInquiryWithRSSIResults */
+
+// BluetoothHCILEBufferSize
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCILEBufferSize
 type BluetoothHCILEBufferSize struct {
-}// BluetoothHCILinkPolicySettingsInfo
+	ACLDataPacketLength uint16
+	TotalNumACLDataPackets uint8
+}/* debug [types.gen.go/struct]: BluetoothHCILEBufferSize */
+
+// BluetoothHCILinkPolicySettingsInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCILinkPolicySettingsInfo
 type BluetoothHCILinkPolicySettingsInfo struct {
-}// BluetoothHCILinkQualityInfo
+	Handle BluetoothConnectionHandle
+	Settings BluetoothHCILinkPolicySettings
+}/* debug [types.gen.go/struct]: BluetoothHCILinkPolicySettingsInfo */
+
+// BluetoothHCILinkQualityInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCILinkQualityInfo
 type BluetoothHCILinkQualityInfo struct {
-}// BluetoothHCILinkSupervisionTimeout
+	Handle BluetoothConnectionHandle
+	QualityValue BluetoothHCILinkQuality
+}/* debug [types.gen.go/struct]: BluetoothHCILinkQualityInfo */
+
+// BluetoothHCILinkSupervisionTimeout
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCILinkSupervisionTimeout
 type BluetoothHCILinkSupervisionTimeout struct {
-}// BluetoothHCIQualityOfServiceSetupParams
+	Handle BluetoothConnectionHandle
+	Timeout uint16
+}/* debug [types.gen.go/struct]: BluetoothHCILinkSupervisionTimeout */
+
+// BluetoothHCIQualityOfServiceSetupParams
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIQualityOfServiceSetupParams
 type BluetoothHCIQualityOfServiceSetupParams struct {
-}// BluetoothHCIRSSIInfo
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIRSSIInfo
-type BluetoothHCIRSSIInfo struct {
-}// BluetoothHCIReadExtendedInquiryResponseResults
+	DelayVariation uint32
+	Flags uint8
+	Latency uint32
+	PeakBandwidth uint32
+	ServiceType uint8
+	TokenRate uint32
+}/* debug [types.gen.go/struct]: BluetoothHCIQualityOfServiceSetupParams */
+
+// BluetoothHCIReadExtendedInquiryResponseResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIReadExtendedInquiryResponseResults
 type BluetoothHCIReadExtendedInquiryResponseResults struct {
-}// BluetoothHCIReadLMPHandleResults
+	ExtendedInquiryResponse BluetoothHCIExtendedInquiryResponse
+	OutFECRequired BluetoothHCIFECRequired
+}/* debug [types.gen.go/struct]: BluetoothHCIReadExtendedInquiryResponseResults */
+
+// BluetoothHCIReadLMPHandleResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIReadLMPHandleResults
 type BluetoothHCIReadLMPHandleResults struct {
-}// BluetoothHCIReadLocalOOBDataResults
+	Handle BluetoothConnectionHandle
+	Lmp_handle BluetoothLMPHandle
+	Reserved uint32
+}/* debug [types.gen.go/struct]: BluetoothHCIReadLMPHandleResults */
+
+// BluetoothHCIReadLocalOOBDataResults
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIReadLocalOOBDataResults
 type BluetoothHCIReadLocalOOBDataResults struct {
-}// BluetoothHCIRequestCallbackInfo
+	Hash BluetoothHCISimplePairingOOBData
+	Randomizer BluetoothHCISimplePairingOOBData
+}/* debug [types.gen.go/struct]: BluetoothHCIReadLocalOOBDataResults */
+
+// BluetoothHCIRequestCallbackInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIRequestCallbackInfo
 type BluetoothHCIRequestCallbackInfo struct {
-}// BluetoothHCIRoleInfo
+	AsyncIDRefCon unsafe.Pointer
+	InternalRefCon unsafe.Pointer
+	Reserved unsafe.Pointer
+	UserCallback unsafe.Pointer
+	UserRefCon unsafe.Pointer
+}/* debug [types.gen.go/struct]: BluetoothHCIRequestCallbackInfo */
+
+// BluetoothHCIRoleInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIRoleInfo
 type BluetoothHCIRoleInfo struct {
-}// BluetoothHCIScanActivity
+	Handle BluetoothConnectionHandle
+	Role uint8
+}/* debug [types.gen.go/struct]: BluetoothHCIRoleInfo */
+
+// BluetoothHCIRSSIInfo
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIRSSIInfo
+type BluetoothHCIRSSIInfo struct {
+	Handle BluetoothConnectionHandle
+	RSSIValue BluetoothHCIRSSIValue
+}/* debug [types.gen.go/struct]: BluetoothHCIRSSIInfo */
+
+// BluetoothHCIScanActivity
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIScanActivity
 type BluetoothHCIScanActivity struct {
-}// BluetoothHCISetupSynchronousConnectionParams
+	ScanInterval uint16
+	ScanWindow uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIScanActivity */
+
+// BluetoothHCISetupSynchronousConnectionParams
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCISetupSynchronousConnectionParams
 type BluetoothHCISetupSynchronousConnectionParams struct {
-}// BluetoothHCISimplePairingOOBData
+	MaxLatency uint16
+	PacketType uint16
+	ReceiveBandwidth uint32
+	RetransmissionEffort uint8
+	TransmitBandwidth uint32
+	VoiceSetting uint16
+}/* debug [types.gen.go/struct]: BluetoothHCISetupSynchronousConnectionParams */
+
+// BluetoothHCISimplePairingOOBData
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCISimplePairingOOBData
 type BluetoothHCISimplePairingOOBData struct {
-}// BluetoothHCIStoredLinkKeysInfo
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothHCISimplePairingOOBData */
+
+// BluetoothHCIStoredLinkKeysInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIStoredLinkKeysInfo
 type BluetoothHCIStoredLinkKeysInfo struct {
-}// BluetoothHCISupportedCommands
+	MaxNumLinkKeysAllowedInDevice uint16
+	NumLinkKeysRead uint16
+}/* debug [types.gen.go/struct]: BluetoothHCIStoredLinkKeysInfo */
+
+// BluetoothHCISupportedCommands
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCISupportedCommands
 type BluetoothHCISupportedCommands struct {
-}// BluetoothHCISupportedFeatures
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothHCISupportedCommands */
+
+// BluetoothHCISupportedFeatures
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCISupportedFeatures
 type BluetoothHCISupportedFeatures struct {
-}// BluetoothHCITransmitPowerLevelInfo
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothHCISupportedFeatures */
+
+// BluetoothHCITransmitPowerLevelInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCITransmitPowerLevelInfo
 type BluetoothHCITransmitPowerLevelInfo struct {
-}// BluetoothHCIVersionInfo
+	Handle BluetoothConnectionHandle
+	Level BluetoothHCITransmitPowerLevel
+}/* debug [types.gen.go/struct]: BluetoothHCITransmitPowerLevelInfo */
+
+// BluetoothHCIVersionInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothHCIVersionInfo
 type BluetoothHCIVersionInfo struct {
-}// BluetoothIOCapabilityResponse
+	HciRevision uint16
+	HciVersion uint8
+	LmpSubVersion BluetoothLMPSubversion
+	LmpVersion BluetoothLMPVersion
+	ManufacturerName BluetoothManufacturerName
+}/* debug [types.gen.go/struct]: BluetoothHCIVersionInfo */
+
+// BluetoothIOCapabilityResponse
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothIOCapabilityResponse
 type BluetoothIOCapabilityResponse struct {
-}// BluetoothIRK
+	AuthenticationRequirements BluetoothAuthenticationRequirements
+	DeviceAddress BluetoothDeviceAddress
+	IoCapability BluetoothIOCapability
+	OOBDataPresence BluetoothOOBDataPresence
+}/* debug [types.gen.go/struct]: BluetoothIOCapabilityResponse */
+
+// BluetoothIRK
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothIRK
 type BluetoothIRK struct {
-}// BluetoothKey
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothIRK */
+
+// BluetoothKey
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothKey
 type BluetoothKey struct {
-}// BluetoothKeypressNotification
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothKey */
+
+// BluetoothKeypressNotification
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothKeypressNotification
 type BluetoothKeypressNotification struct {
-}// BluetoothL2CAPQualityOfServiceOptions
+	DeviceAddress BluetoothDeviceAddress
+	NotificationType BluetoothKeypressNotificationType
+}/* debug [types.gen.go/struct]: BluetoothKeypressNotification */
+
+// BluetoothL2CAPQualityOfServiceOptions
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothL2CAPQualityOfServiceOptions
 type BluetoothL2CAPQualityOfServiceOptions struct {
-}// BluetoothL2CAPRetransmissionAndFlowControlOptions
+	DelayVariation uint32
+	Flags uint8
+	Latency uint32
+	PeakBandwidth uint32
+	ServiceType uint8
+	TokenBucketSize uint32
+	TokenRate uint32
+}/* debug [types.gen.go/struct]: BluetoothL2CAPQualityOfServiceOptions */
+
+// BluetoothL2CAPRetransmissionAndFlowControlOptions
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothL2CAPRetransmissionAndFlowControlOptions
 type BluetoothL2CAPRetransmissionAndFlowControlOptions struct {
-}// BluetoothPINCode
+	Flags uint8
+	MaxPDUPayloadSize uint16
+	MaxTransmit uint8
+	MonitorTimeout uint16
+	RetransmissionTimeout uint16
+	TxWindowSize uint8
+}/* debug [types.gen.go/struct]: BluetoothL2CAPRetransmissionAndFlowControlOptions */
+
+// BluetoothPINCode
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothPINCode
 type BluetoothPINCode struct {
-}// BluetoothReadClockInfo
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothPINCode */
+
+// BluetoothReadClockInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothReadClockInfo
@@ -455,134 +949,291 @@ type BluetoothReadClockInfo struct {
 	Accuracy uint16
 	Clock uint32
 	Handle BluetoothConnectionHandle
-}// BluetoothRemoteHostSupportedFeaturesNotification
+}/* debug [types.gen.go/struct]: BluetoothReadClockInfo */
+
+// BluetoothRemoteHostSupportedFeaturesNotification
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothRemoteHostSupportedFeaturesNotification
 type BluetoothRemoteHostSupportedFeaturesNotification struct {
-	DeviceAddress unsafe.Pointer
-	HostSupportedFeatures unsafe.Pointer
-}// BluetoothSetEventMask
+	DeviceAddress BluetoothDeviceAddress
+	HostSupportedFeatures BluetoothHCISupportedFeatures
+}/* debug [types.gen.go/struct]: BluetoothRemoteHostSupportedFeaturesNotification */
+
+// BluetoothSetEventMask
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothSetEventMask
 type BluetoothSetEventMask struct {
-}// BluetoothSynchronousConnectionInfo
+	Data uint8
+}/* debug [types.gen.go/struct]: BluetoothSetEventMask */
+
+// BluetoothSynchronousConnectionInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothSynchronousConnectionInfo
 type BluetoothSynchronousConnectionInfo struct {
-}// BluetoothTransportInfo
+	MaxLatency BluetoothHCIMaxLatency
+	PacketType BluetoothPacketType
+	ReceiveBandWidth BluetoothHCIReceiveBandwidth
+	RetransmissionEffort BluetoothHCIRetransmissionEffort
+	TransmitBandWidth BluetoothHCITransmitBandwidth
+	VoiceSetting BluetoothHCIVoiceSetting
+}/* debug [types.gen.go/struct]: BluetoothSynchronousConnectionInfo */
+
+// BluetoothTransportInfo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothTransportInfo
 type BluetoothTransportInfo struct {
-}// BluetoothUserConfirmationRequest
+	ProductID uint32
+	ProductName unsafe.Pointer
+	TotalDataBytesReceived uint64
+	TotalDataBytesSent uint64
+	TotalSCOBytesReceived uint64
+	TotalSCOBytesSent uint64
+	Type uint32
+	VendorID uint32
+	VendorName unsafe.Pointer
+}/* debug [types.gen.go/struct]: BluetoothTransportInfo */
+
+// BluetoothUserConfirmationRequest
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothUserConfirmationRequest
 type BluetoothUserConfirmationRequest struct {
-}// BluetoothUserPasskeyNotification
+	DeviceAddress BluetoothDeviceAddress
+	NumericValue BluetoothNumericValue
+}/* debug [types.gen.go/struct]: BluetoothUserConfirmationRequest */
+
+// BluetoothUserPasskeyNotification
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/BluetoothUserPasskeyNotification
 type BluetoothUserPasskeyNotification struct {
-}// IOBluetoothDeviceSearchAttributes - Structure used to search for particular devices.
+	DeviceAddress BluetoothDeviceAddress
+	Passkey BluetoothPasskey
+}/* debug [types.gen.go/struct]: BluetoothUserPasskeyNotification */
+
+// IOBluetoothDeviceSearchAttributes - Structure used to search for particular devices.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceSearchAttributes
 type IOBluetoothDeviceSearchAttributes struct {
-}// IOBluetoothDeviceSearchDeviceAttributes - Structure used to search for particular devices.
+	AttributeList IOBluetoothDeviceSearchDeviceAttributes
+	DeviceAttributeCount ItemCount
+	MaxResults ItemCount
+	Options BluetoothDeviceSearchOptions
+}/* debug [types.gen.go/struct]: IOBluetoothDeviceSearchAttributes */
+
+// IOBluetoothDeviceSearchDeviceAttributes - Structure used to search for particular devices.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDeviceSearchDeviceAttributes
 type IOBluetoothDeviceSearchDeviceAttributes struct {
-}// IOBluetoothL2CAPChannelDataBlock
+	Address BluetoothDeviceAddress
+	DeviceClassMajor BluetoothDeviceClassMajor
+	DeviceClassMinor BluetoothDeviceClassMinor
+	Name BluetoothDeviceName
+	ServiceClassMajor BluetoothServiceClassMajor
+}/* debug [types.gen.go/struct]: IOBluetoothDeviceSearchDeviceAttributes */
+
+// IOBluetoothL2CAPChannelDataBlock
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelDataBlock
 type IOBluetoothL2CAPChannelDataBlock struct {
-}// IOBluetoothL2CAPChannelEvent
+	DataPtr unsafe.Pointer
+	DataSize uintptr
+}/* debug [types.gen.go/struct]: IOBluetoothL2CAPChannelDataBlock */
+
+// IOBluetoothL2CAPChannelEvent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothL2CAPChannelEvent
 type IOBluetoothL2CAPChannelEvent struct {
-}// OBEXAbortCommandData - Part of the OBEXSessionEvent structure.
+	EventType BluetoothL2CAPChannelEventType
+	Status int
+	U unsafe.Pointer
+	Data BluetoothL2CAPChannelDataBlock
+	Padding unsafe.Pointer
+	WriteRefCon unsafe.Pointer
+}/* debug [types.gen.go/struct]: IOBluetoothL2CAPChannelEvent */
+
+// OBEXAbortCommandData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAbortCommandData
 type OBEXAbortCommandData struct {
-}// OBEXAbortCommandResponseData - Part of the OBEXSessionEvent structure.
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+}/* debug [types.gen.go/struct]: OBEXAbortCommandData */
+
+// OBEXAbortCommandResponseData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXAbortCommandResponseData
 type OBEXAbortCommandResponseData struct {
-}// OBEXConnectCommandData - Part of the OBEXSessionEvent structure.
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+	ServerResponseOpCode OBEXOpCode
+}/* debug [types.gen.go/struct]: OBEXAbortCommandResponseData */
+
+// OBEXConnectCommandData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXConnectCommandData
 type OBEXConnectCommandData struct {
-}// OBEXConnectCommandResponseData - Part of the OBEXSessionEvent structure.
+	Flags OBEXFlags
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+	MaxPacketSize OBEXMaxPacketLength
+	Version OBEXVersion
+}/* debug [types.gen.go/struct]: OBEXConnectCommandData */
+
+// OBEXConnectCommandResponseData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXConnectCommandResponseData
 type OBEXConnectCommandResponseData struct {
-}// OBEXDisconnectCommandData - Part of the OBEXSessionEvent structure.
+	Flags OBEXFlags
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+	MaxPacketSize OBEXMaxPacketLength
+	ServerResponseOpCode OBEXOpCode
+	Version OBEXVersion
+}/* debug [types.gen.go/struct]: OBEXConnectCommandResponseData */
+
+// OBEXDisconnectCommandData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXDisconnectCommandData
 type OBEXDisconnectCommandData struct {
-}// OBEXDisconnectCommandResponseData - Part of the OBEXSessionEvent structure.
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+}/* debug [types.gen.go/struct]: OBEXDisconnectCommandData */
+
+// OBEXDisconnectCommandResponseData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXDisconnectCommandResponseData
 type OBEXDisconnectCommandResponseData struct {
-}// OBEXErrorData - Part of the OBEXSessionEvent structure.
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+	ServerResponseOpCode OBEXOpCode
+}/* debug [types.gen.go/struct]: OBEXDisconnectCommandResponseData */
+
+// OBEXErrorData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXErrorData
 type OBEXErrorData struct {
-}// OBEXGetCommandData - Part of the OBEXSessionEvent structure.
+	DataLength uintptr
+	DataPtr unsafe.Pointer
+	Error OBEXError
+}/* debug [types.gen.go/struct]: OBEXErrorData */
+
+// OBEXGetCommandData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXGetCommandData
 type OBEXGetCommandData struct {
-}// OBEXGetCommandResponseData - Part of the OBEXSessionEvent structure.
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+}/* debug [types.gen.go/struct]: OBEXGetCommandData */
+
+// OBEXGetCommandResponseData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXGetCommandResponseData
 type OBEXGetCommandResponseData struct {
-}// OBEXPutCommandData - Part of the OBEXSessionEvent structure.
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+	ServerResponseOpCode OBEXOpCode
+}/* debug [types.gen.go/struct]: OBEXGetCommandResponseData */
+
+// OBEXPutCommandData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXPutCommandData
 type OBEXPutCommandData struct {
-}// OBEXPutCommandResponseData - Part of the OBEXSessionEvent structure.
+	BodyDataLeftToSend uintptr
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+}/* debug [types.gen.go/struct]: OBEXPutCommandData */
+
+// OBEXPutCommandResponseData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXPutCommandResponseData
 type OBEXPutCommandResponseData struct {
-}// OBEXSessionEvent
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+	ServerResponseOpCode OBEXOpCode
+}/* debug [types.gen.go/struct]: OBEXPutCommandResponseData */
+
+// OBEXSessionEvent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSessionEvent
 type OBEXSessionEvent struct {
-}// OBEXSetPathCommandData - Part of the OBEXSessionEvent structure.
+	IsEndOfEventData unsafe.Pointer
+	RefCon unsafe.Pointer
+	Reserved1 unsafe.Pointer
+	Reserved2 unsafe.Pointer
+	Session OBEXSessionRef
+	Type OBEXSessionEventType
+	U unsafe.Pointer
+	AbortCommandData OBEXAbortCommandData
+	AbortCommandResponseData OBEXAbortCommandResponseData
+	ConnectCommandData OBEXConnectCommandData
+	ConnectCommandResponseData OBEXConnectCommandResponseData
+	DisconnectCommandData OBEXDisconnectCommandData
+	DisconnectCommandResponseData OBEXDisconnectCommandResponseData
+	ErrorData OBEXErrorData
+	GetCommandData OBEXGetCommandData
+	GetCommandResponseData OBEXGetCommandResponseData
+	PutCommandData OBEXPutCommandData
+	PutCommandResponseData OBEXPutCommandResponseData
+	SetPathCommandData OBEXSetPathCommandData
+	SetPathCommandResponseData OBEXSetPathCommandResponseData
+}/* debug [types.gen.go/struct]: OBEXSessionEvent */
+
+// OBEXSetPathCommandData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSetPathCommandData
 type OBEXSetPathCommandData struct {
-}// OBEXSetPathCommandResponseData - Part of the OBEXSessionEvent structure.
+	Constants OBEXConstants
+	Flags OBEXFlags
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+}/* debug [types.gen.go/struct]: OBEXSetPathCommandData */
+
+// OBEXSetPathCommandResponseData - Part of the OBEXSessionEvent structure.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSetPathCommandResponseData
 type OBEXSetPathCommandResponseData struct {
-}// OBEXTransportEvent
+	Constants OBEXConstants
+	Flags OBEXFlags
+	HeaderDataLength uintptr
+	HeaderDataPtr unsafe.Pointer
+	ServerResponseOpCode OBEXOpCode
+}/* debug [types.gen.go/struct]: OBEXSetPathCommandResponseData */
+
+// OBEXTransportEvent
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXTransportEvent
 type OBEXTransportEvent struct {
-}
+	DataLength uintptr
+	DataPtr unsafe.Pointer
+	Status OBEXError
+	Type OBEXTransportEventType
+}/* debug [types.gen.go/struct]: OBEXTransportEvent */
+
+
 
 
 

@@ -8,6 +8,7 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
+//   - macOS +
 //
 // Use this protocol when registering custom classes that conform to CALayoutManager.
 var LayoutManagerProtocol *objc.Protocol
@@ -15,3 +16,4 @@ var LayoutManagerProtocol *objc.Protocol
 func init() {
 	LayoutManagerProtocol = objc.GetProtocol("CALayoutManager")
 }
+

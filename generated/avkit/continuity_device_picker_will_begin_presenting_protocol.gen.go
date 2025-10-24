@@ -15,3 +15,4 @@ var continuityDevicePickerWillBeginPresentingProtocol *objc.Protocol
 func init() {
 	continuityDevicePickerWillBeginPresentingProtocol = objc.GetProtocol("continuityDevicePickerWillBeginPresenting:")
 }
+

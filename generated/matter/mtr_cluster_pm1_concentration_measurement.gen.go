@@ -33,8 +33,6 @@ type IMTRClusterPM1ConcentrationMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterPM1ConcentrationMeasurement
 type MTRClusterPM1ConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterPM1ConcentrationMeasurement) Autorelease() MTRClusterPM1Conce
 func NewMTRClusterPM1ConcentrationMeasurement() MTRClusterPM1ConcentrationMeasurement {
 	return getMTRClusterPM1ConcentrationMeasurementClass().New()
 }
-
-
-
-

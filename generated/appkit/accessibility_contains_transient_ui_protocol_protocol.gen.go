@@ -12,7 +12,7 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityContainsTransientUI
 type PAccessibilityContainsTransientUI interface {
 	// Required methods
-	AccessibilityPerformShowAlternateUI() bool
-	AccessibilityPerformShowDefaultUI() bool
-	IsAccessibilityAlternateUIVisible() bool
+	AccessibilityPerformShowAlternateUI() bool/* debug [protocol_interface/required_method]: AccessibilityPerformShowAlternateUI */
+	AccessibilityPerformShowDefaultUI() bool/* debug [protocol_interface/required_method]: AccessibilityPerformShowDefaultUI */
+	IsAccessibilityAlternateUIVisible() bool/* debug [protocol_interface/required_method]: IsAccessibilityAlternateUIVisible */
 }

@@ -14,4 +14,3 @@ func ExampleNewTapDescription() {
 	_ = coreaudio.NewTapDescription()
 	// Output:
 }
-

@@ -12,7 +12,7 @@ var _ = authenticationservices.NewAuthorizationPublicKeyCredentialLargeBlobAsser
 // ExampleNewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation demonstrates how to create a AuthorizationPublicKeyCredentialLargeBlobAssertionInput instance using NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation.
 func ExampleNewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation() {
 	_ = authenticationservices.NewAuthorizationPublicKeyCredentialLargeBlobAssertionInputWithOperation(
-		authenticationservices.AuthorizationPublicKeyCredentialLargeBlobAssertionOperation /* not a class type */{}, // operation AuthorizationPublicKeyCredentialLargeBlobAssertionOperation /* not a class type */
+		authenticationservices.AuthorizationPublicKeyCredentialLargeBlobAssertionOperation{}, // operation AuthorizationPublicKeyCredentialLargeBlobAssertionOperation
 	)
 	// Output:
 }

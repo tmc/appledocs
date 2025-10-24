@@ -9,9 +9,8 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in JavaScriptCore
-	JSGlobalContextRef = _undefined // referenced in JavaScriptCore
-	Void = _undefined // referenced in JavaScriptCore
+	AllocatorRef = _undefined // referenced in JavaScriptCore
+	StringRef = _undefined // referenced in JavaScriptCore
 )
 
 

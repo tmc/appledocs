@@ -47,7 +47,6 @@ type IINSetProfileInCarIntent interface {
 //
 // Automotive vendors whose cars support the saving of seat and other environment settings can add support for this intent to an Intents extension that they ship with their automotive apps. When users want to restore settings from a profile, SiriKit creates an object and delivers it to the app’s Intents extension. You use the intent object to get the name or index of the profile whose settings you use to configure the vehicle. You’re responsible for determining which settings to save and restore with user profiles. You can restore seat-related settings, climate control settings, defroster settings, radio settings, other settings in your vehicle, or any combination of those settings. Siri handles only the name or index of the profile and doesn’t ask you to provide a list of the settings that you restored. Users can restore settings regardless for whether the profile was originally created through Siri or through your vehicle’s built-in interface. The object that handles this intent must adopt the protocol. Use this intent object to resolve the profile information and to create an object indicating the results of restoring the profile.
 
-
 // A request to change the user’s vehicle environment settings to the ones from the specified profile.
 //
 // [Full Topic]
@@ -96,8 +95,6 @@ func NewINSetProfileInCarIntent() INSetProfileInCarIntent {
 	return getINSetProfileInCarIntentClass().New()
 }
 
-
-
 // The name of the car associated with the profile.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func (i_ INSetProfileInCarIntent) CarName() INSpeakableString {
 	return rv
 }
 
-
 // The name of the car associated with the profile.
 //
 // [Full Topic]
@@ -116,7 +112,6 @@ func (i_ INSetProfileInCarIntent) SetCarName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCarName:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/defaultprofile-19jwc
 func (i_ INSetProfileInCarIntent) DefaultProfile() int {
@@ -124,13 +119,11 @@ func (i_ INSetProfileInCarIntent) DefaultProfile() int {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/insetprofileincarintent/defaultprofile-19jwc
 func (i_ INSetProfileInCarIntent) SetDefaultProfile(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDefaultProfile:"), value)
 }
-
 
 // A Boolean value indicating whether to make the profile the default profile.
 //
@@ -141,7 +134,6 @@ func (i_ INSetProfileInCarIntent) IsDefaultProfile() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether to make the profile the default profile.
 //
 // [Full Topic]
@@ -149,7 +141,6 @@ func (i_ INSetProfileInCarIntent) IsDefaultProfile() bool {
 func (i_ INSetProfileInCarIntent) SetIsDefaultProfile(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIsDefaultProfile:"), value)
 }
-
 
 // The name assigned to the profile.
 //
@@ -160,7 +151,6 @@ func (i_ INSetProfileInCarIntent) ProfileLabel() string {
 	return rv
 }
 
-
 // The name assigned to the profile.
 //
 // [Full Topic]
@@ -168,7 +158,6 @@ func (i_ INSetProfileInCarIntent) ProfileLabel() string {
 func (i_ INSetProfileInCarIntent) SetProfileLabel(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileLabel:"), objc.String(value))
 }
-
 
 // The name assigned to the profile.
 //
@@ -179,7 +168,6 @@ func (i_ INSetProfileInCarIntent) ProfileName() string {
 	return rv
 }
 
-
 // The name assigned to the profile.
 //
 // [Full Topic]
@@ -187,7 +175,6 @@ func (i_ INSetProfileInCarIntent) ProfileName() string {
 func (i_ INSetProfileInCarIntent) SetProfileName(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileName:"), objc.String(value))
 }
-
 
 // The profile index from which to restore the settings.
 //
@@ -198,7 +185,6 @@ func (i_ INSetProfileInCarIntent) ProfileNumber() int {
 	return rv
 }
 
-
 // The profile index from which to restore the settings.
 //
 // [Full Topic]
@@ -206,6 +192,3 @@ func (i_ INSetProfileInCarIntent) ProfileNumber() int {
 func (i_ INSetProfileInCarIntent) SetProfileNumber(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setProfileNumber:"), value)
 }
-
-
-

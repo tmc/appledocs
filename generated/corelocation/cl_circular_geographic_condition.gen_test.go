@@ -13,8 +13,8 @@ var _ = corelocation.NewCircularGeographicCondition
 // Creates a new circular geographic condition with the center point and radius you provide.
 func ExampleNewCircularGeographicConditionWithCenterRadius() {
 	_ = corelocation.NewCircularGeographicConditionWithCenterRadius(
-		corelocation.CLLocationCoordinate2D /* not a class type */{}, // center CLLocationCoordinate2D /* not a class type */
-		corelocation.LocationDistance /* not a class type */{}, // radius LocationDistance /* not a class type */
+		corelocation.CLLocationCoordinate2D /* not a class type */ {}, // center CLLocationCoordinate2D /* not a class type */
+		corelocation.LocationDistance /* not a class type */ {},       // radius LocationDistance /* not a class type */
 	)
 	// Output:
 }

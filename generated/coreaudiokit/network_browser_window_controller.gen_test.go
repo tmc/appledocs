@@ -15,4 +15,3 @@ func ExampleNewNetworkBrowserWindowController() {
 	_ = coreaudiokit.NewNetworkBrowserWindowController()
 	// Output:
 }
-

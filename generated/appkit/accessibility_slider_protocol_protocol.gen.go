@@ -5,6 +5,8 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PAccessibilitySlider is the NSAccessibilitySlider protocol interface.
@@ -17,8 +19,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilitySlider
 type PAccessibilitySlider interface {
 	// Required methods
-	AccessibilityLabel() foundation.String
-	AccessibilityPerformDecrement() bool
-	AccessibilityPerformIncrement() bool
-	AccessibilityValue() objc.ID
+	AccessibilityLabel() foundation.String/* debug [protocol_interface/required_method]: AccessibilityLabel */
+	AccessibilityPerformDecrement() bool/* debug [protocol_interface/required_method]: AccessibilityPerformDecrement */
+	AccessibilityPerformIncrement() bool/* debug [protocol_interface/required_method]: AccessibilityPerformIncrement */
+	AccessibilityValue() objc.ID/* debug [protocol_interface/required_method]: AccessibilityValue */
 }

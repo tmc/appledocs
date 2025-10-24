@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for OSLog. DO NOT EDIT.
 
 // Package oslog provides Go bindings for the OSLog framework.
 //
-// A unified logging system for the reading of historical data.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to OSLog without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/OSLog
 package oslog
 
 import (

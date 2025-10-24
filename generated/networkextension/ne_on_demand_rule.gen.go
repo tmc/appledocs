@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NEOnDemandRule */
+
+
+/* debug [class_header]: Header for NEOnDemandRule */
 // The class instance for the [NEOnDemandRule] class.
 var (
 	NEOnDemandRuleClass     _NEOnDemandRuleClass
@@ -27,40 +31,41 @@ func getNEOnDemandRuleClass() _NEOnDemandRuleClass {
 type _NEOnDemandRuleClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEOnDemandRule */
 // An interface definition for the [NEOnDemandRule] class.
 type INEOnDemandRule interface {
 	objectivec.IObject
-	Action() unsafe.Pointer
-	SetAction(value unsafe.Pointer)
-	DnsSearchDomainMatch() string
-	SetDnsSearchDomainMatch(value string)
-	DnsServerAddressMatch() string
-	SetDnsServerAddressMatch(value string)
-	InterfaceTypeMatch() unsafe.Pointer
-	SetInterfaceTypeMatch(value unsafe.Pointer)
-	ProbeURL() foundation.URL
-	SetProbeURL(value foundation.IURL)
-	SsidMatch() string
-	SetSsidMatch(value string)
-}
+	
+/* debug [class_interface_properties]: Properties for NEOnDemandRule */
+	// properties:
+	Action() NEOnDemandRuleAction
+	DNSSearchDomainMatch() []string
+	SetDNSSearchDomainMatch(value []string)
+	DNSServerAddressMatch() []string
+	SetDNSServerAddressMatch(value []string)
+	InterfaceTypeMatch() NEOnDemandRuleInterfaceType
+	SetInterfaceTypeMatch(value NEOnDemandRuleInterfaceType)
+	ProbeURL() objc.IObject /* cross-framework: NSURL */
+	SetProbeURL(value objc.IObject /* cross-framework: NSURL */)
+	SSIDMatch() []string
+	SetSSIDMatch(value []string)
+/* debug [class_interface_properties]: End properties */
 
-// A base class shared by all VPN On Demand rules.
-//
-// Each rule is defined by a single action and a set of optional matching conditions. The action defines how the system should trigger the VPN when the conditions are met, such as connecting automatically for all connections, connecting conditionally, or disconnecting. The optional conditions describe parameters of a network. Some common rules include disconnecting the VPN on a trusted, internal network, and triggering on all other networks. When rules are defined in an array, they are evaluated in order and the action of the first rule to match all conditions is chosen. Instances of the class should be created through one of its subclasses: , , , or .
-//
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule
-type NEOnDemandRule struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for NEOnDemandRule */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// NEOnDemandRuleFrom constructs a [NEOnDemandRule] from an unsafe.Pointer.
-//
-// A base class shared by all VPN On Demand rules.
-func NEOnDemandRuleFrom(ptr unsafe.Pointer) NEOnDemandRule {
-	return NEOnDemandRule{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for NEOnDemandRule */
 // Alloc allocates a new instance without initialization.
 func (nc _NEOnDemandRuleClass) Alloc() NEOnDemandRule {
 	rv := objc.Send[NEOnDemandRule](objc.ID(nc.class), objc.Sel("alloc"))
@@ -68,7 +73,6 @@ func (nc _NEOnDemandRuleClass) Alloc() NEOnDemandRule {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEOnDemandRuleClass) New() NEOnDemandRule {
 	rv := objc.Send[NEOnDemandRule](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,115 +95,190 @@ func (n_ NEOnDemandRule) Autorelease() NEOnDemandRule {
 func NewNEOnDemandRule() NEOnDemandRule {
 	return getNEOnDemandRuleClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for NEOnDemandRule */
+// A base class shared by all VPN On Demand rules.
+//
+// Each rule is defined by a single action and a set of optional matching conditions. The action defines how the system should trigger the VPN when the conditions are met, such as connecting automatically for all connections, connecting conditionally, or disconnecting. The optional conditions describe parameters of a network. Some common rules include disconnecting the VPN on a trusted, internal network, and triggering on all other networks. When rules are defined in an array, they are evaluated in order and the action of the first rule to match all conditions is chosen. Instances of the class should be created through one of its subclasses: , , , or .
+
+
+// A base class shared by all VPN On Demand rules.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule
+type NEOnDemandRule struct {
+	objectivec.Object
+}
+
+// NEOnDemandRuleFrom constructs a [NEOnDemandRule] from an unsafe.Pointer.
+//
+// A base class shared by all VPN On Demand rules.
+func NEOnDemandRuleFrom(ptr unsafe.Pointer) NEOnDemandRule {
+	return NEOnDemandRule{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NEOnDemandRule *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NEOnDemandRule */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NEOnDemandRule */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NEOnDemandRule */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEOnDemandRule */
 
 // The action of the On Demand Rule.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/action
-func (n_ NEOnDemandRule) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("action"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/action
+func (n_ NEOnDemandRule) Action() NEOnDemandRuleAction {
+	rv := objc.Send[NEOnDemandRuleAction](n_.ID, objc.Sel("action"))
 	return rv
-}
+}/* debug [instance_properties/getter]: action */
 
-
-// SetAction sets the value of the action property.
-// The action of the On Demand Rule.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/action
-func (n_ NEOnDemandRule) SetAction(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setAction:"), value)
-}
 
 // DNS search domains that identify a network.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/dnssearchdomainmatch
-func (n_ NEOnDemandRule) DnsSearchDomainMatch() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("dnsSearchDomainMatch"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/dnsSearchDomainMatch
+func (n_ NEOnDemandRule) DNSSearchDomainMatch() []string {
+	rv := objc.Send[[]string](n_.ID, objc.Sel("DNSSearchDomainMatch"))
 	return rv
-}
+}/* debug [instance_properties/getter]: DNSSearchDomainMatch */
 
 
-// SetDnsSearchDomainMatch sets the value of the dnsSearchDomainMatch property.
 // DNS search domains that identify a network.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/dnssearchdomainmatch
-func (n_ NEOnDemandRule) SetDnsSearchDomainMatch(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsSearchDomainMatch:"), objc.String(value))
-}
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/dnsSearchDomainMatch
+func (n_ NEOnDemandRule) SetDNSSearchDomainMatch(value []string) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDNSSearchDomainMatch:"), nsArray)
+}/* debug [instance_properties/setter]: DNSSearchDomainMatch */
+
 
 // DNS server addresses that identify a network.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/dnsserveraddressmatch
-func (n_ NEOnDemandRule) DnsServerAddressMatch() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("dnsServerAddressMatch"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/dnsServerAddressMatch
+func (n_ NEOnDemandRule) DNSServerAddressMatch() []string {
+	rv := objc.Send[[]string](n_.ID, objc.Sel("DNSServerAddressMatch"))
 	return rv
-}
+}/* debug [instance_properties/getter]: DNSServerAddressMatch */
 
 
-// SetDnsServerAddressMatch sets the value of the dnsServerAddressMatch property.
 // DNS server addresses that identify a network.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/dnsserveraddressmatch
-func (n_ NEOnDemandRule) SetDnsServerAddressMatch(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDnsServerAddressMatch:"), objc.String(value))
-}
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/dnsServerAddressMatch
+func (n_ NEOnDemandRule) SetDNSServerAddressMatch(value []string) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDNSServerAddressMatch:"), nsArray)
+}/* debug [instance_properties/setter]: DNSServerAddressMatch */
+
 
 // An interface type to identify a network.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/interfacetypematch
-func (n_ NEOnDemandRule) InterfaceTypeMatch() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("interfaceTypeMatch"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/interfaceTypeMatch
+func (n_ NEOnDemandRule) InterfaceTypeMatch() NEOnDemandRuleInterfaceType {
+	rv := objc.Send[NEOnDemandRuleInterfaceType](n_.ID, objc.Sel("interfaceTypeMatch"))
 	return rv
-}
+}/* debug [instance_properties/getter]: interfaceTypeMatch */
 
 
-// SetInterfaceTypeMatch sets the value of the interfaceTypeMatch property.
 // An interface type to identify a network.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/interfacetypematch
-func (n_ NEOnDemandRule) SetInterfaceTypeMatch(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/interfaceTypeMatch
+func (n_ NEOnDemandRule) SetInterfaceTypeMatch(value NEOnDemandRuleInterfaceType) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setInterfaceTypeMatch:"), value)
-}
+}/* debug [instance_properties/setter]: interfaceTypeMatch */
+
 
 // A URL to probe when all other network identifiers match to validate that an expected resource is available.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/probeurl
-func (n_ NEOnDemandRule) ProbeURL() foundation.URL {
-	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("probeURL"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/probeURL
+func (n_ NEOnDemandRule) ProbeURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](n_.ID, objc.Sel("probeURL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: probeURL */
 
 
-// SetProbeURL sets the value of the probeURL property.
 // A URL to probe when all other network identifiers match to validate that an expected resource is available.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/probeurl
-func (n_ NEOnDemandRule) SetProbeURL(value foundation.IURL) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/probeURL
+func (n_ NEOnDemandRule) SetProbeURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setProbeURL:"), value)
-}
+}/* debug [instance_properties/setter]: probeURL */
+
 
 // SSIDs that identify a network.
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/ssidmatch
-func (n_ NEOnDemandRule) SsidMatch() string {
-	rv := objc.Send[string](n_.ID, objc.Sel("ssidMatch"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/ssidMatch
+func (n_ NEOnDemandRule) SSIDMatch() []string {
+	rv := objc.Send[[]string](n_.ID, objc.Sel("SSIDMatch"))
 	return rv
-}
+}/* debug [instance_properties/getter]: SSIDMatch */
 
 
-// SetSsidMatch sets the value of the ssidMatch property.
 // SSIDs that identify a network.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/neondemandrule/ssidmatch
-func (n_ NEOnDemandRule) SetSsidMatch(value string) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setSsidMatch:"), objc.String(value))
-}
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEOnDemandRule/ssidMatch
+func (n_ NEOnDemandRule) SetSSIDMatch(value []string) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSSIDMatch:"), nsArray)
+}/* debug [instance_properties/setter]: SSIDMatch */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NEOnDemandRule */
 
 
 

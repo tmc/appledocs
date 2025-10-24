@@ -15,3 +15,4 @@ var activeCompressionOptionsProtocol *objc.Protocol
 func init() {
 	activeCompressionOptionsProtocol = objc.GetProtocol("activeCompressionOptions")
 }
+

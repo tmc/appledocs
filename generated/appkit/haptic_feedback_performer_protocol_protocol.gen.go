@@ -12,5 +12,5 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSHapticFeedbackPerformer
 type PHapticFeedbackPerformer interface {
 	// Required methods
-	PerformFeedbackPatternPerformanceTime(pattern HapticFeedbackPattern, performanceTime HapticFeedbackPerformanceTime)
+	PerformFeedbackPatternPerformanceTime(pattern HapticFeedbackPattern, performanceTime HapticFeedbackPerformanceTime)/* debug [protocol_interface/required_method]: PerformFeedbackPatternPerformanceTime */
 }

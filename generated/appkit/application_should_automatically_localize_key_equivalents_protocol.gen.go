@@ -15,3 +15,4 @@ var applicationShouldAutomaticallyLocalizeKeyEquivalentsProtocol *objc.Protocol
 func init() {
 	applicationShouldAutomaticallyLocalizeKeyEquivalentsProtocol = objc.GetProtocol("applicationShouldAutomaticallyLocalizeKeyEquivalents:")
 }
+

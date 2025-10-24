@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for QuickLook. DO NOT EDIT.
 
 // Package quicklook provides Go bindings for the QuickLook framework.
 //
-// Create previews of files to use inside your app, or perform simple edits on previews.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to QuickLook without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/QuickLook
 package quicklook
 
 import (

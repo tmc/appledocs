@@ -17,6 +17,7 @@ func ExampleNewMusicPlayerMediaItemQueueDescriptorWithItemCollection() {
 	)
 	// Output:
 }
+
 // ExampleNewMusicPlayerMediaItemQueueDescriptorWithQuery demonstrates how to create a MusicPlayerMediaItemQueueDescriptor instance using NewMusicPlayerMediaItemQueueDescriptorWithQuery.
 // Creates a new queue descriptor using the designated query.
 func ExampleNewMusicPlayerMediaItemQueueDescriptorWithQuery() {

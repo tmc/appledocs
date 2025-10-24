@@ -7,10 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corevideo"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVSampleCursor */
+
+
+/* debug [class_header]: Header for AVSampleCursor */
 // The class instance for the [SampleCursor] class.
 var (
 	SampleCursorClass     _SampleCursorClass
@@ -27,58 +31,51 @@ func getSampleCursorClass() _SampleCursorClass {
 type _SampleCursorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for SampleCursor */
 // An interface definition for the [SampleCursor] class.
 type ISampleCursor interface {
 	objectivec.IObject
-	CurrentChunkInfo() unsafe.Pointer
-	SetCurrentChunkInfo(value unsafe.Pointer)
-	CurrentChunkStorageRange() unsafe.Pointer
-	SetCurrentChunkStorageRange(value unsafe.Pointer)
-	CurrentChunkStorageURL() foundation.URL
-	SetCurrentChunkStorageURL(value foundation.IURL)
-	CurrentSampleAudioDependencyInfo() unsafe.Pointer
-	SetCurrentSampleAudioDependencyInfo(value unsafe.Pointer)
-	CurrentSampleDependencyAttachments() unsafe.Pointer
-	SetCurrentSampleDependencyAttachments(value unsafe.Pointer)
-	CurrentSampleDependencyInfo() unsafe.Pointer
-	SetCurrentSampleDependencyInfo(value unsafe.Pointer)
-	CurrentSampleDuration() unsafe.Pointer
-	SetCurrentSampleDuration(value unsafe.Pointer)
-	CurrentSampleIndexInChunk() unsafe.Pointer
-	SetCurrentSampleIndexInChunk(value unsafe.Pointer)
-	CurrentSampleStorageRange() unsafe.Pointer
-	SetCurrentSampleStorageRange(value unsafe.Pointer)
-	CurrentSampleSyncInfo() unsafe.Pointer
-	SetCurrentSampleSyncInfo(value unsafe.Pointer)
-	DecodeTimeStamp() unsafe.Pointer
-	SetDecodeTimeStamp(value unsafe.Pointer)
-	PresentationTimeStamp() unsafe.Pointer
-	SetPresentationTimeStamp(value unsafe.Pointer)
+	
+/* debug [class_interface_properties]: Properties for SampleCursor */
+	// properties:
+	CurrentChunkInfo() objc.IObject /* cross-framework: AVSampleCursorChunkInfo */
+	CurrentChunkStorageRange() objc.IObject /* cross-framework: AVSampleCursorStorageRange */
+	CurrentChunkStorageURL() objc.IObject /* cross-framework: NSURL */
+	CurrentSampleAudioDependencyInfo() objc.IObject /* cross-framework: AVSampleCursorAudioDependencyInfo */
+	CurrentSampleDependencyAttachments() objc.IObject /* cross-framework: NSDictionary */
+	CurrentSampleDependencyInfo() objc.IObject /* cross-framework: AVSampleCursorDependencyInfo */
+	CurrentSampleDuration() objc.IObject /* cross-framework: Time */
+	CurrentSampleIndexInChunk() int64
+	CurrentSampleStorageRange() objc.IObject /* cross-framework: AVSampleCursorStorageRange */
+	CurrentSampleSyncInfo() objc.IObject /* cross-framework: AVSampleCursorSyncInfo */
+	DecodeTimeStamp() objc.IObject /* cross-framework: Time */
+	PresentationTimeStamp() objc.IObject /* cross-framework: Time */
 	SamplesRequiredForDecoderRefresh() int
-	SetSamplesRequiredForDecoderRefresh(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for SampleCursor */
+	// methods:
+	ComparePositionInDecodeOrderWithPositionOfCursor(cursor IAVSampleCursor) ComparisonResult /* not a class type */
+	CopyCurrentSampleFormatDescription() FormatDescriptionRef /* not a class type */
+	SamplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor(cursor IAVSampleCursor) bool
+	SamplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor(cursor IAVSampleCursor) bool
+	StepByDecodeTimeWasPinned(deltaDecodeTime objc.IObject /* cross-framework: Time */, outWasPinned objectivec.IObject) objc.IObject /* cross-framework: Time */
+	StepByPresentationTimeWasPinned(deltaPresentationTime objc.IObject /* cross-framework: Time */, outWasPinned objectivec.IObject) objc.IObject /* cross-framework: Time */
+	StepInDecodeOrderByCount(stepCount int64) int64
+	StepInPresentationOrderByCount(stepCount int64) int64
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that provides information about the media sample at the cursor’s current position.
-//
-// You position a sample cursor at a specific media sample in a sequence of samples contained in a higher-level object, like an . You can move it to a new position in that sequence either backwards or forwards, either in decode order or in presentation order. You can also request moving it according to a count of samples or a delta in time. Use a sample cursor to get information about the media sample such as its duration, timestamps, dependency information, and so on. You can also use them to synchronously to perform I/O in order to load media data of one or more media samples into memory.
+/* debug [class_interface]: End interface */
 
 
-// An object that provides information about the media sample at the cursor’s current position.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor
-type SampleCursor struct {
-	objectivec.Object
-}
 
-// SampleCursorFrom constructs a [SampleCursor] from an unsafe.Pointer.
-//
-// An object that provides information about the media sample at the cursor’s current position.
-func SampleCursorFrom(ptr unsafe.Pointer) SampleCursor {
-	return SampleCursor{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for SampleCursor */
 // Alloc allocates a new instance without initialization.
 func (sc _SampleCursorClass) Alloc() SampleCursor {
 	rv := objc.Send[SampleCursor](objc.ID(sc.class), objc.Sel("alloc"))
@@ -86,7 +83,6 @@ func (sc _SampleCursorClass) Alloc() SampleCursor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (sc _SampleCursorClass) New() SampleCursor {
 	rv := objc.Send[SampleCursor](objc.ID(sc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -109,254 +105,268 @@ func (s_ SampleCursor) Autorelease() SampleCursor {
 func NewSampleCursor() SampleCursor {
 	return getSampleCursorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A value that provides information about the chunk of samples to which the current sample belongs.
+/* debug [class_struct]: Struct for SampleCursor */
+// An object that provides information about the media sample at the cursor’s current position.
+//
+// You position a sample cursor at a specific media sample in a sequence of samples contained in a higher-level object, like an . You can move it to a new position in that sequence either backwards or forwards, either in decode order or in presentation order. You can also request moving it according to a count of samples or a delta in time. Use a sample cursor to get information about the media sample such as its duration, timestamps, dependency information, and so on. You can also use them to synchronously to perform I/O in order to load media data of one or more media samples into memory.
+
+
+// An object that provides information about the media sample at the cursor’s current position.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkinfo
-func (s_ SampleCursor) CurrentChunkInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentChunkInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor
+type SampleCursor struct {
+	objectivec.Object
+}
+
+// SampleCursorFrom constructs a [SampleCursor] from an unsafe.Pointer.
+//
+// An object that provides information about the media sample at the cursor’s current position.
+func SampleCursorFrom(ptr unsafe.Pointer) SampleCursor {
+	return SampleCursor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for SampleCursor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for SampleCursor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for SampleCursor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for SampleCursor */
+
+// Compares the relative positions of two sample cursors and returns their relative positions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/comparePositionInDecodeOrder(withPositionOf:)
+func (s_ SampleCursor) ComparePositionInDecodeOrderWithPositionOfCursor(cursor IAVSampleCursor) ComparisonResult /* not a class type */ {
+	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("comparePositionInDecodeOrderWithPositionOfCursor:"), cursor)
 	return rv
-}
+}/* debug [instance_methods/method]: ComparePositionInDecodeOrderWithPositionOfCursor */
 
+
+// Returns the format description of the sample at the cursor’s current position.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/copyCurrentSampleFormatDescription()
+func (s_ SampleCursor) CopyCurrentSampleFormatDescription() FormatDescriptionRef /* not a class type */ {
+	rv := objc.Send[FormatDescriptionRef](s_.ID, objc.Sel("copyCurrentSampleFormatDescription"))
+	return rv
+}/* debug [instance_methods/method]: CopyCurrentSampleFormatDescription */
+
+
+// Determines whether a sample earlier in decode order can have a presentation timestamp later than that of the specified sample cursor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/maySamplesWithEarlierDecodeTimeStampsHavePresentationTimeStamps(laterThan:)
+func (s_ SampleCursor) SamplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor(cursor IAVSampleCursor) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("samplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor:"), cursor)
+	return rv
+}/* debug [instance_methods/method]: SamplesWithEarlierDecodeTimeStampsMayHaveLaterPresentationTimeStampsThanCursor */
+
+
+// Determines whether a sample later in decode order can have a presentation timestamp earlier than that of the specified sample cursor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/maySamplesWithLaterDecodeTimeStampsHavePresentationTimeStamps(earlierThan:)
+func (s_ SampleCursor) SamplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor(cursor IAVSampleCursor) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("samplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor:"), cursor)
+	return rv
+}/* debug [instance_methods/method]: SamplesWithLaterDecodeTimeStampsMayHaveEarlierPresentationTimeStampsThanCursor */
+
+
+// Moves the cursor by a given delta time on the decode timeline.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/step(byDecodeTime:wasPinned:)
+func (s_ SampleCursor) StepByDecodeTimeWasPinned(deltaDecodeTime objc.IObject /* cross-framework: Time */, outWasPinned objectivec.IObject) objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("stepByDecodeTime:wasPinned:"), deltaDecodeTime, outWasPinned)
+	return rv
+}/* debug [instance_methods/method]: StepByDecodeTimeWasPinned */
+
+
+// Moves the cursor by a given delta time on the presentation timeline.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/step(byPresentationTime:wasPinned:)
+func (s_ SampleCursor) StepByPresentationTimeWasPinned(deltaPresentationTime objc.IObject /* cross-framework: Time */, outWasPinned objectivec.IObject) objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("stepByPresentationTime:wasPinned:"), deltaPresentationTime, outWasPinned)
+	return rv
+}/* debug [instance_methods/method]: StepByPresentationTimeWasPinned */
+
+
+// Moves the cursor a given number of samples in decode order.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/stepInDecodeOrder(byCount:)
+func (s_ SampleCursor) StepInDecodeOrderByCount(stepCount int64) int64 {
+	rv := objc.Send[int64](s_.ID, objc.Sel("stepInDecodeOrderByCount:"), stepCount)
+	return rv
+}/* debug [instance_methods/method]: StepInDecodeOrderByCount */
+
+
+// Moves the cursor a given number of samples in presentation order.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/stepInPresentationOrder(byCount:)
+func (s_ SampleCursor) StepInPresentationOrderByCount(stepCount int64) int64 {
+	rv := objc.Send[int64](s_.ID, objc.Sel("stepInPresentationOrderByCount:"), stepCount)
+	return rv
+}/* debug [instance_methods/method]: StepInPresentationOrderByCount */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for SampleCursor */
 
 // A value that provides information about the chunk of samples to which the current sample belongs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkinfo
-func (s_ SampleCursor) SetCurrentChunkInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentChunkInfo:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentChunkInfo
+func (s_ SampleCursor) CurrentChunkInfo() objc.IObject /* cross-framework: AVSampleCursorChunkInfo */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentChunkInfo"))
+	return rv
+}/* debug [instance_properties/getter]: currentChunkInfo */
 
 
 // The sample range in the storage container to load together with the current sample as a chunk.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstoragerange
-func (s_ SampleCursor) CurrentChunkStorageRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentChunkStorageRange"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentChunkStorageRange
+func (s_ SampleCursor) CurrentChunkStorageRange() objc.IObject /* cross-framework: AVSampleCursorStorageRange */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentChunkStorageRange"))
 	return rv
-}
-
-
-// The sample range in the storage container to load together with the current sample as a chunk.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstoragerange
-func (s_ SampleCursor) SetCurrentChunkStorageRange(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentChunkStorageRange:"), value)
-}
+}/* debug [instance_properties/getter]: currentChunkStorageRange */
 
 
 // The URL of the storage container of the current sample and other samples to load in the same operation as a chunk.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstorageurl
-func (s_ SampleCursor) CurrentChunkStorageURL() foundation.URL {
-	rv := objc.Send[foundation.URL](s_.ID, objc.Sel("currentChunkStorageURL"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentChunkStorageURL
+func (s_ SampleCursor) CurrentChunkStorageURL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](s_.ID, objc.Sel("currentChunkStorageURL"))
 	return rv
-}
-
-
-// The URL of the storage container of the current sample and other samples to load in the same operation as a chunk.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentchunkstorageurl
-func (s_ SampleCursor) SetCurrentChunkStorageURL(value foundation.IURL) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentChunkStorageURL:"), value)
-}
+}/* debug [instance_properties/getter]: currentChunkStorageURL */
 
 
 // The independent decodability information for the audio sample.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleaudiodependencyinfo
-func (s_ SampleCursor) CurrentSampleAudioDependencyInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleAudioDependencyInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentSampleAudioDependencyInfo
+func (s_ SampleCursor) CurrentSampleAudioDependencyInfo() objc.IObject /* cross-framework: AVSampleCursorAudioDependencyInfo */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentSampleAudioDependencyInfo"))
 	return rv
-}
-
-
-// The independent decodability information for the audio sample.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleaudiodependencyinfo
-func (s_ SampleCursor) SetCurrentSampleAudioDependencyInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleAudioDependencyInfo:"), value)
-}
+}/* debug [instance_properties/getter]: currentSampleAudioDependencyInfo */
 
 
 // A dictionary of dependency-related sample buffer attachments.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampledependencyattachments
-func (s_ SampleCursor) CurrentSampleDependencyAttachments() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleDependencyAttachments"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentSampleDependencyAttachments
+func (s_ SampleCursor) CurrentSampleDependencyAttachments() objc.IObject /* cross-framework: NSDictionary */ {
+	rv := objc.Send[foundation.NSDictionary](s_.ID, objc.Sel("currentSampleDependencyAttachments"))
 	return rv
-}
-
-
-// A dictionary of dependency-related sample buffer attachments.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampledependencyattachments
-func (s_ SampleCursor) SetCurrentSampleDependencyAttachments(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleDependencyAttachments:"), value)
-}
+}/* debug [instance_properties/getter]: currentSampleDependencyAttachments */
 
 
 // The dependency information that describes relationships between a media sample and other media samples in the same sample sequence.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampledependencyinfo
-func (s_ SampleCursor) CurrentSampleDependencyInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleDependencyInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentSampleDependencyInfo
+func (s_ SampleCursor) CurrentSampleDependencyInfo() objc.IObject /* cross-framework: AVSampleCursorDependencyInfo */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentSampleDependencyInfo"))
 	return rv
-}
-
-
-// The dependency information that describes relationships between a media sample and other media samples in the same sample sequence.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampledependencyinfo
-func (s_ SampleCursor) SetCurrentSampleDependencyInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleDependencyInfo:"), value)
-}
+}/* debug [instance_properties/getter]: currentSampleDependencyInfo */
 
 
 // The decode duration of the sample at the cursor’s current position.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleduration
-func (s_ SampleCursor) CurrentSampleDuration() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleDuration"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentSampleDuration
+func (s_ SampleCursor) CurrentSampleDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("currentSampleDuration"))
 	return rv
-}
-
-
-// The decode duration of the sample at the cursor’s current position.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleduration
-func (s_ SampleCursor) SetCurrentSampleDuration(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleDuration:"), value)
-}
+}/* debug [instance_properties/getter]: currentSampleDuration */
 
 
 // The index of the current sample within the chunk to which it belongs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleindexinchunk
-func (s_ SampleCursor) CurrentSampleIndexInChunk() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleIndexInChunk"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentSampleIndexInChunk
+func (s_ SampleCursor) CurrentSampleIndexInChunk() int64 {
+	rv := objc.Send[int64](s_.ID, objc.Sel("currentSampleIndexInChunk"))
 	return rv
-}
-
-
-// The index of the current sample within the chunk to which it belongs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsampleindexinchunk
-func (s_ SampleCursor) SetCurrentSampleIndexInChunk(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleIndexInChunk:"), value)
-}
+}/* debug [instance_properties/getter]: currentSampleIndexInChunk */
 
 
 // The offset and length of the current sample in the current chunk storage URL.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsamplestoragerange
-func (s_ SampleCursor) CurrentSampleStorageRange() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleStorageRange"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentSampleStorageRange
+func (s_ SampleCursor) CurrentSampleStorageRange() objc.IObject /* cross-framework: AVSampleCursorStorageRange */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentSampleStorageRange"))
 	return rv
-}
-
-
-// The offset and length of the current sample in the current chunk storage URL.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsamplestoragerange
-func (s_ SampleCursor) SetCurrentSampleStorageRange(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleStorageRange:"), value)
-}
+}/* debug [instance_properties/getter]: currentSampleStorageRange */
 
 
 // The synchronization information for the current sample for consideration when resynchronizing a decoder.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsamplesyncinfo
-func (s_ SampleCursor) CurrentSampleSyncInfo() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("currentSampleSyncInfo"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/currentSampleSyncInfo
+func (s_ SampleCursor) CurrentSampleSyncInfo() objc.IObject /* cross-framework: AVSampleCursorSyncInfo */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("currentSampleSyncInfo"))
 	return rv
-}
-
-
-// The synchronization information for the current sample for consideration when resynchronizing a decoder.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/currentsamplesyncinfo
-func (s_ SampleCursor) SetCurrentSampleSyncInfo(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentSampleSyncInfo:"), value)
-}
+}/* debug [instance_properties/getter]: currentSampleSyncInfo */
 
 
 // The decode timestamp of the sample at the current position of the cursor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/decodetimestamp
-func (s_ SampleCursor) DecodeTimeStamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("decodeTimeStamp"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/decodeTimeStamp
+func (s_ SampleCursor) DecodeTimeStamp() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("decodeTimeStamp"))
 	return rv
-}
-
-
-// The decode timestamp of the sample at the current position of the cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/decodetimestamp
-func (s_ SampleCursor) SetDecodeTimeStamp(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDecodeTimeStamp:"), value)
-}
+}/* debug [instance_properties/getter]: decodeTimeStamp */
 
 
 // The presentation timestamp of the sample at the current position of the cursor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/presentationtimestamp
-func (s_ SampleCursor) PresentationTimeStamp() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("presentationTimeStamp"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/presentationTimeStamp
+func (s_ SampleCursor) PresentationTimeStamp() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](s_.ID, objc.Sel("presentationTimeStamp"))
 	return rv
-}
-
-
-// The presentation timestamp of the sample at the current position of the cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/presentationtimestamp
-func (s_ SampleCursor) SetPresentationTimeStamp(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPresentationTimeStamp:"), value)
-}
+}/* debug [instance_properties/getter]: presentationTimeStamp */
 
 
 // The number of samples prior to the current sample, in decode order, the decoder requires to achieve a coherent output at the current decode time.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/samplesrequiredfordecoderrefresh
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVSampleCursor/samplesRequiredForDecoderRefresh
 func (s_ SampleCursor) SamplesRequiredForDecoderRefresh() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("samplesRequiredForDecoderRefresh"))
 	return rv
-}
+}/* debug [instance_properties/getter]: samplesRequiredForDecoderRefresh */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The number of samples prior to the current sample, in decode order, the decoder requires to achieve a coherent output at the current decode time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avsamplecursor/samplesrequiredfordecoderrefresh
-func (s_ SampleCursor) SetSamplesRequiredForDecoderRefresh(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSamplesRequiredForDecoderRefresh:"), value)
-}
+/* debug [class.gen.go]: End class AVSampleCursor */
 
 
 

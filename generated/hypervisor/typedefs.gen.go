@@ -13,6 +13,16 @@ type Hv_allocate_flags_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_capability_t
 // hv_capability_t has base type: uint64_t
 type Hv_capability_t uintptr
+// Hv_exception_address_t - Type of a vCPU exception virtual address.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_exception_address_t
+// hv_exception_address_t has base type: uint64_t
+type Hv_exception_address_t uintptr
+// Hv_exception_syndrome_t - Type of a vCPU exception syndrome.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_exception_syndrome_t
+// hv_exception_syndrome_t has base type: uint64_t
+type Hv_exception_syndrome_t uintptr
 // Hv_gic_config_t - An alias for this value type’s equivalent Hypervisor generic interrupt controller (GIC) configuration’s reference type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_gic_config_t
@@ -43,11 +53,26 @@ type Hv_ipa_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_memory_flags_t
 // hv_memory_flags_t has base type: uint64_t
 type Hv_memory_flags_t uintptr
+// Hv_msr_flags_t - The type representing the native Model-Specific Register (MSR) permissions.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_msr_flags_t
+// hv_msr_flags_t has base type: uint32_t
+type Hv_msr_flags_t uintptr
 // Hv_return_t - The return type of framework functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_return_t
 // hv_return_t has base type: mach_error_t
 type Hv_return_t uintptr
+// Hv_shadow_flags_t - Shadow VMCS permissions for the set shadow access function.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_shadow_flags_t
+// hv_shadow_flags_t has base type: uint64_t
+type Hv_shadow_flags_t uintptr
+// Hv_simd_fp_uchar16_t - The value that represents an ARM SIMD and FP register.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_simd_fp_uchar16_t
+// hv_simd_fp_uchar16_t has base type: unsigned char __attribute__((ext_vector_type(16)))
+type Hv_simd_fp_uchar16_t uintptr
 // Hv_sme_zt0_uchar64_t type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_sme_zt0_uchar64_t
@@ -58,6 +83,11 @@ type Hv_sme_zt0_uchar64_t uintptr
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_uvaddr_t
 // hv_uvaddr_t has base type: const void *
 type Hv_uvaddr_t uintptr
+// Hv_vcpu_config_t - The type that defines a vCPU configuration.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_config_t
+// hv_vcpu_config_t has base type: NSObject<OS_hv_vcpu_config> *
+type Hv_vcpu_config_t uintptr
 // Hv_vcpu_options_t - Options for creating a new vCPU instance.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vcpu_options_t
@@ -86,4 +116,9 @@ type Hv_vm_options_t uintptr
 //
 // [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vm_space_t
 type Hv_vm_space_t uint32
+// Hv_vmx_msr_info_t - The type that describes Move to Status Register (MSR) information fields.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Hypervisor/hv_vmx_msr_info_t
+// hv_vmx_msr_info_t has base type: uint64_t
+type Hv_vmx_msr_info_t uintptr
 

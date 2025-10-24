@@ -20,3 +20,4 @@ var gpuResourceIDProtocol *objc.Protocol
 func init() {
 	gpuResourceIDProtocol = objc.GetProtocol("gpuResourceID")
 }
+

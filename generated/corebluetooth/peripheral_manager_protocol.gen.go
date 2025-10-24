@@ -21,3 +21,4 @@ var peripheralManagerProtocol *objc.Protocol
 func init() {
 	peripheralManagerProtocol = objc.GetProtocol("peripheralManager:")
 }
+

@@ -20,3 +20,4 @@ var setVertexIntersectionFunctionTableProtocol *objc.Protocol
 func init() {
 	setVertexIntersectionFunctionTableProtocol = objc.GetProtocol("setVertexIntersectionFunctionTable:")
 }
+

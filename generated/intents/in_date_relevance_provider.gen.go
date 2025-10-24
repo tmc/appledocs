@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -37,7 +37,6 @@ type IINDateRelevanceProvider interface {
 }
 
 // The provider class that specifies a relevant day and time.
-
 
 // The provider class that specifies a relevant day and time.
 //
@@ -85,8 +84,6 @@ func NewINDateRelevanceProvider() INDateRelevanceProvider {
 	return getINDateRelevanceProviderClass().New()
 }
 
-
-
 // The relevant start date.
 //
 // [Full Topic]
@@ -95,7 +92,6 @@ func (i_ INDateRelevanceProvider) StartDate() foundation.NSDate {
 	rv := objc.Send[foundation.NSDate](i_.ID, objc.Sel("startDate"))
 	return rv
 }
-
 
 // The relevant end date.
 //
@@ -106,7 +102,6 @@ func (i_ INDateRelevanceProvider) EndDate() foundation.Date {
 	return rv
 }
 
-
 // The relevant end date.
 //
 // [Full Topic]
@@ -114,6 +109,3 @@ func (i_ INDateRelevanceProvider) EndDate() foundation.Date {
 func (i_ INDateRelevanceProvider) SetEndDate(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEndDate:"), value)
 }
-
-
-

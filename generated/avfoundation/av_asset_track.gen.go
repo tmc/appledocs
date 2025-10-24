@@ -7,12 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/coremedia"
-	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/corevideo"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVAssetTrack */
+
+
+/* debug [class_header]: Header for AVAssetTrack */
 // The class instance for the [AssetTrack] class.
 var (
 	AssetTrackClass     _AssetTrackClass
@@ -29,30 +31,44 @@ func getAssetTrackClass() _AssetTrackClass {
 type _AssetTrackClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AssetTrack */
 // An interface definition for the [AssetTrack] class.
 type IAssetTrack interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AssetTrack */
 	// properties:
-	AvailableTrackAssociationTypes() []string
-	Segments() []IAssetTrackSegment
-	TimeRange() objc.IObject /* cross-framework: TimeRange */
 	Asset() IAVAsset
-	SetAsset(value IAVAsset)
-	AvailableMetadataFormats() MetadataFormat /* not a class type */
-	SetAvailableMetadataFormats(value MetadataFormat /* not a class type */)
+	AvailableMetadataFormats() []string
+	AvailableTrackAssociationTypes() []string
 	CanProvideSampleCursors() bool
-	SetCanProvideSampleCursors(value bool)
-	CommonMetadata() IAVMetadataItem
-	SetCommonMetadata(value IAVMetadataItem)
+	CommonMetadata() []MetadataItem
 	EstimatedDataRate() float32
-	SetEstimatedDataRate(value float32)
 	ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */
-	SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */)
-	FormatDescriptions() unsafe.Pointer
-	SetFormatDescriptions(value unsafe.Pointer)
+	FormatDescriptions() objc.IObject /* cross-framework: NSArray */
 	HasAudioSampleDependencies() bool
-	SetHasAudioSampleDependencies(value bool)
+	Decodable() bool
+	Enabled() bool
+	Playable() bool
+	SelfContained() bool
+	LanguageCode() objc.IObject /* cross-framework: NSString */
+	MediaType() MediaType /* typedef */
+	Metadata() []MetadataItem
+	MinFrameDuration() objc.IObject /* cross-framework: Time */
+	NaturalSize() corefoundation.CGSize
+	NaturalTimeScale() TimeScale /* not a class type */
+	NominalFrameRate() float32
+	PreferredTransform() corefoundation.CGAffineTransform
+	PreferredVolume() float32
+	RequiresFrameReordering() bool
+	Segments() []AssetTrackSegment
+	TimeRange() TimeRange /* not a class type */
+	TotalSampleDataLength() objectivec.IObject
+	TrackID() PersistentTrackID /* not a class type */
 	IsDecodable() bool
 	SetIsDecodable(value bool)
 	IsEnabled() bool
@@ -61,53 +77,26 @@ type IAssetTrack interface {
 	SetIsPlayable(value bool)
 	IsSelfContained() bool
 	SetIsSelfContained(value bool)
-	LanguageCode() objc.IObject /* cross-framework: NSString */
-	SetLanguageCode(value objc.IObject /* cross-framework: NSString */)
-	MediaType() MediaType /* not a class type */
-	SetMediaType(value MediaType /* not a class type */)
-	Metadata() IAVMetadataItem
-	SetMetadata(value IAVMetadataItem)
-	MinFrameDuration() objc.IObject /* cross-framework: Time */
-	SetMinFrameDuration(value objc.IObject /* cross-framework: Time */)
-	NaturalSize() objc.IObject /* cross-framework: Size */
-	SetNaturalSize(value objc.IObject /* cross-framework: Size */)
-	NaturalTimeScale() TimeScale /* not a class type */
-	SetNaturalTimeScale(value TimeScale /* not a class type */)
-	NominalFrameRate() float32
-	SetNominalFrameRate(value float32)
-	PreferredTransform() objc.IObject /* cross-framework: AffineTransform */
-	SetPreferredTransform(value objc.IObject /* cross-framework: AffineTransform */)
-	PreferredVolume() float32
-	SetPreferredVolume(value float32)
-	RequiresFrameReordering() bool
-	SetRequiresFrameReordering(value bool)
-	TotalSampleDataLength() unsafe.Pointer
-	SetTotalSampleDataLength(value unsafe.Pointer)
-	TrackID() PersistentTrackID /* not a class type */
-	SetTrackID(value PersistentTrackID /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AssetTrack */
 	// methods:
+	LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType TrackAssociationType /* typedef */, completionHandler unsafe.Pointer)
+	LoadMetadataForFormatCompletionHandler(format MetadataFormat /* typedef */, completionHandler unsafe.Pointer)
+	LoadSamplePresentationTimeForTrackTimeCompletionHandler(trackTime objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer)
+	LoadSegmentForTrackTimeCompletionHandler(trackTime objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer)
+	MakeSampleCursorWithPresentationTimeStamp(presentationTimeStamp objc.IObject /* cross-framework: Time */) ISampleCursor
+	MakeSampleCursorAtFirstSampleInDecodeOrder() ISampleCursor
+	MakeSampleCursorAtLastSampleInDecodeOrder() ISampleCursor
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that models a track of media that an asset contains.
-//
-// An asset contains one or more tracks of media that the framework models using the class. A track object holds the uniformly typed media that an asset provides such as audio, video, or closed captions. A track, like its containing , doesn’t load all of its media upon creation. Instead, it defers loading its data until you perform an operation that requires it. Because loading the data can take time, an asset track adopts the protocol so you can load its property values asynchronously by calling the method.
+/* debug [class_interface]: End interface */
 
 
-// An object that models a track of media that an asset contains.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack
-type AssetTrack struct {
-	objectivec.Object
-}
 
-// AssetTrackFrom constructs a [AssetTrack] from an unsafe.Pointer.
-//
-// An object that models a track of media that an asset contains.
-func AssetTrackFrom(ptr unsafe.Pointer) AssetTrack {
-	return AssetTrack{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AssetTrack */
 // Alloc allocates a new instance without initialization.
 func (ac _AssetTrackClass) Alloc() AssetTrack {
 	rv := objc.Send[AssetTrack](objc.ID(ac.class), objc.Sel("alloc"))
@@ -115,7 +104,6 @@ func (ac _AssetTrackClass) Alloc() AssetTrack {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AssetTrackClass) New() AssetTrack {
 	rv := objc.Send[AssetTrack](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -138,7 +126,139 @@ func (a_ AssetTrack) Autorelease() AssetTrack {
 func NewAssetTrack() AssetTrack {
 	return getAssetTrackClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for AssetTrack */
+// An object that models a track of media that an asset contains.
+//
+// An asset contains one or more tracks of media that the framework models using the class. A track object holds the uniformly typed media that an asset provides such as audio, video, or closed captions. A track, like its containing , doesn’t load all of its media upon creation. Instead, it defers loading its data until you perform an operation that requires it. Because loading the data can take time, an asset track adopts the protocol so you can load its property values asynchronously by calling the method.
+
+
+// An object that models a track of media that an asset contains.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack
+type AssetTrack struct {
+	objectivec.Object
+}
+
+// AssetTrackFrom constructs a [AssetTrack] from an unsafe.Pointer.
+//
+// An object that models a track of media that an asset contains.
+func AssetTrackFrom(ptr unsafe.Pointer) AssetTrack {
+	return AssetTrack{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AssetTrack *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AssetTrack */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AssetTrack */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AssetTrack */
+
+// Loads associated tracks that have the specified association type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/loadAssociatedTracks(ofType:completionHandler:)
+func (a_ AssetTrack) LoadAssociatedTracksOfTypeCompletionHandler(trackAssociationType TrackAssociationType /* typedef */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("loadAssociatedTracksOfType:completionHandler:"), trackAssociationType, completionHandler)
+}/* debug [instance_methods/method]: LoadAssociatedTracksOfTypeCompletionHandler */
+
+
+// Loads metadata items that a track contains for the specified format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/loadMetadata(for:completionHandler:)
+func (a_ AssetTrack) LoadMetadataForFormatCompletionHandler(format MetadataFormat /* typedef */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("loadMetadataForFormat:completionHandler:"), format, completionHandler)
+}/* debug [instance_methods/method]: LoadMetadataForFormatCompletionHandler */
+
+
+// Loads a sample presentation time that maps to the specified track time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/loadSamplePresentationTime(forTrackTime:completionHandler:)
+func (a_ AssetTrack) LoadSamplePresentationTimeForTrackTimeCompletionHandler(trackTime objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("loadSamplePresentationTimeForTrackTime:completionHandler:"), trackTime, completionHandler)
+}/* debug [instance_methods/method]: LoadSamplePresentationTimeForTrackTimeCompletionHandler */
+
+
+// Loads a segment with a target time range that contains, or is closest to, the specified track time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/loadSegment(forTrackTime:completionHandler:)
+func (a_ AssetTrack) LoadSegmentForTrackTimeCompletionHandler(trackTime objc.IObject /* cross-framework: Time */, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("loadSegmentForTrackTime:completionHandler:"), trackTime, completionHandler)
+}/* debug [instance_methods/method]: LoadSegmentForTrackTimeCompletionHandler */
+
+
+// Creates a sample cursor and positions it at or near the specified presentation timestamp.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/makeSampleCursor(presentationTimeStamp:)
+func (a_ AssetTrack) MakeSampleCursorWithPresentationTimeStamp(presentationTimeStamp objc.IObject /* cross-framework: Time */) ISampleCursor {
+	rv := objc.Send[SampleCursor](a_.ID, objc.Sel("makeSampleCursorWithPresentationTimeStamp:"), presentationTimeStamp)
+	return rv
+}/* debug [instance_methods/method]: MakeSampleCursorWithPresentationTimeStamp */
+
+
+// Creates a sample cursor and positions it at the track’s first media sample in decode order.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/makeSampleCursorAtFirstSampleInDecodeOrder()
+func (a_ AssetTrack) MakeSampleCursorAtFirstSampleInDecodeOrder() ISampleCursor {
+	rv := objc.Send[SampleCursor](a_.ID, objc.Sel("makeSampleCursorAtFirstSampleInDecodeOrder"))
+	return rv
+}/* debug [instance_methods/method]: MakeSampleCursorAtFirstSampleInDecodeOrder */
+
+
+// Creates a sample cursor and positions it at the track’s last media sample in decode order.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/makeSampleCursorAtLastSampleInDecodeOrder()
+func (a_ AssetTrack) MakeSampleCursorAtLastSampleInDecodeOrder() ISampleCursor {
+	rv := objc.Send[SampleCursor](a_.ID, objc.Sel("makeSampleCursorAtLastSampleInDecodeOrder"))
+	return rv
+}/* debug [instance_methods/method]: MakeSampleCursorAtLastSampleInDecodeOrder */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AssetTrack */
+
+// The asset object that contains this track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/asset
+func (a_ AssetTrack) Asset() IAVAsset {
+	rv := objc.Send[Asset](a_.ID, objc.Sel("asset"))
+	return rv
+}/* debug [instance_properties/getter]: asset */
+
+
+// An array of metadata formats available for the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/availableMetadataFormats
+func (a_ AssetTrack) AvailableMetadataFormats() []string {
+	rv := objc.Send[[]string](a_.ID, objc.Sel("availableMetadataFormats"))
+	return rv
+}/* debug [instance_properties/getter]: availableMetadataFormats */
 
 
 // An array of association types that the track uses to associate with other tracks.
@@ -148,179 +268,247 @@ func NewAssetTrack() AssetTrack {
 func (a_ AssetTrack) AvailableTrackAssociationTypes() []string {
 	rv := objc.Send[[]string](a_.ID, objc.Sel("availableTrackAssociationTypes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: availableTrackAssociationTypes */
+
+
+// A Boolean value that indicates whether the track can provide instances of sample cursors to traverse its media samples and discover information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/canProvideSampleCursors
+func (a_ AssetTrack) CanProvideSampleCursors() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("canProvideSampleCursors"))
+	return rv
+}/* debug [instance_properties/getter]: canProvideSampleCursors */
+
+
+// An array of metadata items for all common metadata keys that have a value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/commonMetadata
+func (a_ AssetTrack) CommonMetadata() []MetadataItem {
+	rv := objc.Send[[]MetadataItem](a_.ID, objc.Sel("commonMetadata"))
+	return rv
+}/* debug [instance_properties/getter]: commonMetadata */
+
+
+// The estimated data rate, in bits per second, of the media that the track references.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/estimatedDataRate
+func (a_ AssetTrack) EstimatedDataRate() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("estimatedDataRate"))
+	return rv
+}/* debug [instance_properties/getter]: estimatedDataRate */
+
+
+// The language tag of the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/extendedLanguageTag
+func (a_ AssetTrack) ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("extendedLanguageTag"))
+	return rv
+}/* debug [instance_properties/getter]: extendedLanguageTag */
+
+
+// The format descriptions of the media samples that a track references.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/formatDescriptions
+func (a_ AssetTrack) FormatDescriptions() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](a_.ID, objc.Sel("formatDescriptions"))
+	return rv
+}/* debug [instance_properties/getter]: formatDescriptions */
+
+
+// A Boolean value that indicates whether the track has sample dependencies.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/hasAudioSampleDependencies
+func (a_ AssetTrack) HasAudioSampleDependencies() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("hasAudioSampleDependencies"))
+	return rv
+}/* debug [instance_properties/getter]: hasAudioSampleDependencies */
+
+
+// A Boolean value that indicates whether the track is decodable in the current environment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/isDecodable
+func (a_ AssetTrack) Decodable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("decodable"))
+	return rv
+}/* debug [instance_properties/getter]: decodable */
+
+
+// A Boolean value that indicates whether the track’s container enables it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/isEnabled
+func (a_ AssetTrack) Enabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("enabled"))
+	return rv
+}/* debug [instance_properties/getter]: enabled */
+
+
+// A Boolean value that indicates whether the track is playable in the current environment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/isPlayable
+func (a_ AssetTrack) Playable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("playable"))
+	return rv
+}/* debug [instance_properties/getter]: playable */
+
+
+// A Boolean value that indicates whether this track references sample data only within its container file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/isSelfContained
+func (a_ AssetTrack) SelfContained() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("selfContained"))
+	return rv
+}/* debug [instance_properties/getter]: selfContained */
+
+
+// The language code of the track.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/languageCode
+func (a_ AssetTrack) LanguageCode() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("languageCode"))
+	return rv
+}/* debug [instance_properties/getter]: languageCode */
+
+
+// The type of media that a track presents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/mediaType
+func (a_ AssetTrack) MediaType() MediaType /* typedef */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("mediaType"))
+	return rv
+}/* debug [instance_properties/getter]: mediaType */
+
+
+// An array of metadata items for all metadata identifiers that have a value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/metadata
+func (a_ AssetTrack) Metadata() []MetadataItem {
+	rv := objc.Send[[]MetadataItem](a_.ID, objc.Sel("metadata"))
+	return rv
+}/* debug [instance_properties/getter]: metadata */
+
+
+// The minimum duration of the track’s frames.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/minFrameDuration
+func (a_ AssetTrack) MinFrameDuration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](a_.ID, objc.Sel("minFrameDuration"))
+	return rv
+}/* debug [instance_properties/getter]: minFrameDuration */
+
+
+// The natural dimensions of the media data that the track references.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/naturalSize
+func (a_ AssetTrack) NaturalSize() corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](a_.ID, objc.Sel("naturalSize"))
+	return rv
+}/* debug [instance_properties/getter]: naturalSize */
+
+
+// The natural time scale of the media that a track references.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/naturalTimeScale
+func (a_ AssetTrack) NaturalTimeScale() TimeScale /* not a class type */ {
+	rv := objc.Send[TimeScale](a_.ID, objc.Sel("naturalTimeScale"))
+	return rv
+}/* debug [instance_properties/getter]: naturalTimeScale */
+
+
+// The frame rate of the track, in frames per second.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/nominalFrameRate
+func (a_ AssetTrack) NominalFrameRate() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("nominalFrameRate"))
+	return rv
+}/* debug [instance_properties/getter]: nominalFrameRate */
+
+
+// The track’s transform preference to apply to its visual content during presentation or processing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/preferredTransform
+func (a_ AssetTrack) PreferredTransform() corefoundation.CGAffineTransform {
+	rv := objc.Send[corefoundation.CGAffineTransform](a_.ID, objc.Sel("preferredTransform"))
+	return rv
+}/* debug [instance_properties/getter]: preferredTransform */
+
+
+// The track’s volume preference for playing its audible media.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/preferredVolume
+func (a_ AssetTrack) PreferredVolume() float32 {
+	rv := objc.Send[float32](a_.ID, objc.Sel("preferredVolume"))
+	return rv
+}/* debug [instance_properties/getter]: preferredVolume */
+
+
+// A Boolean value that indicates whether samples in the track may have different presentation and decode timestamps.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/requiresFrameReordering
+func (a_ AssetTrack) RequiresFrameReordering() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("requiresFrameReordering"))
+	return rv
+}/* debug [instance_properties/getter]: requiresFrameReordering */
 
 
 // The time mappings from the track’s media samples to its timeline.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/segments
-func (a_ AssetTrack) Segments() []IAssetTrackSegment {
+func (a_ AssetTrack) Segments() []AssetTrackSegment {
 	rv := objc.Send[[]AssetTrackSegment](a_.ID, objc.Sel("segments"))
 	return rv
-}
+}/* debug [instance_properties/getter]: segments */
 
 
 // The time range of the track within the overall timeline of the asset.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/timeRange
-func (a_ AssetTrack) TimeRange() objc.IObject /* cross-framework: TimeRange */ {
-	rv := objc.Send[coremedia.TimeRange](a_.ID, objc.Sel("timeRange"))
+func (a_ AssetTrack) TimeRange() TimeRange /* not a class type */ {
+	rv := objc.Send[TimeRange](a_.ID, objc.Sel("timeRange"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeRange */
 
 
-// The asset object that contains this track.
+// The total number of bytes of sample data the track requires.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/asset
-func (a_ AssetTrack) Asset() IAVAsset {
-	rv := objc.Send[Asset](a_.ID, objc.Sel("asset"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/totalSampleDataLength
+func (a_ AssetTrack) TotalSampleDataLength() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](a_.ID, objc.Sel("totalSampleDataLength"))
 	return rv
-}
+}/* debug [instance_properties/getter]: totalSampleDataLength */
 
 
-// The asset object that contains this track.
+// The persistent unique identifier for this track.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/asset
-func (a_ AssetTrack) SetAsset(value IAVAsset) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAsset:"), value)
-}
-
-
-// An array of metadata formats available for the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/availablemetadataformats
-func (a_ AssetTrack) AvailableMetadataFormats() MetadataFormat /* not a class type */ {
-	rv := objc.Send[MetadataFormat](a_.ID, objc.Sel("availableMetadataFormats"))
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVAssetTrack/trackID
+func (a_ AssetTrack) TrackID() PersistentTrackID /* not a class type */ {
+	rv := objc.Send[PersistentTrackID](a_.ID, objc.Sel("trackID"))
 	return rv
-}
-
-
-// An array of metadata formats available for the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/availablemetadataformats
-func (a_ AssetTrack) SetAvailableMetadataFormats(value MetadataFormat /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setAvailableMetadataFormats:"), value)
-}
-
-
-// A Boolean value that indicates whether the track can provide instances of sample cursors to traverse its media samples and discover information.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/canprovidesamplecursors
-func (a_ AssetTrack) CanProvideSampleCursors() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("canProvideSampleCursors"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the track can provide instances of sample cursors to traverse its media samples and discover information.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/canprovidesamplecursors
-func (a_ AssetTrack) SetCanProvideSampleCursors(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCanProvideSampleCursors:"), value)
-}
-
-
-// An array of metadata items for all common metadata keys that have a value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/commonmetadata
-func (a_ AssetTrack) CommonMetadata() IAVMetadataItem {
-	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("commonMetadata"))
-	return rv
-}
-
-
-// An array of metadata items for all common metadata keys that have a value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/commonmetadata
-func (a_ AssetTrack) SetCommonMetadata(value IAVMetadataItem) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCommonMetadata:"), value)
-}
-
-
-// The estimated data rate, in bits per second, of the media that the track references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/estimateddatarate
-func (a_ AssetTrack) EstimatedDataRate() float32 {
-	rv := objc.Send[float32](a_.ID, objc.Sel("estimatedDataRate"))
-	return rv
-}
-
-
-// The estimated data rate, in bits per second, of the media that the track references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/estimateddatarate
-func (a_ AssetTrack) SetEstimatedDataRate(value float32) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setEstimatedDataRate:"), value)
-}
-
-
-// The language tag of the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/extendedlanguagetag
-func (a_ AssetTrack) ExtendedLanguageTag() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("extendedLanguageTag"))
-	return rv
-}
-
-
-// The language tag of the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/extendedlanguagetag
-func (a_ AssetTrack) SetExtendedLanguageTag(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setExtendedLanguageTag:"), value)
-}
-
-
-// The format descriptions of the media samples that a track references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/formatdescriptions
-func (a_ AssetTrack) FormatDescriptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("formatDescriptions"))
-	return rv
-}
-
-
-// The format descriptions of the media samples that a track references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/formatdescriptions
-func (a_ AssetTrack) SetFormatDescriptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setFormatDescriptions:"), value)
-}
-
-
-// A Boolean value that indicates whether the track has sample dependencies.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/hasaudiosampledependencies
-func (a_ AssetTrack) HasAudioSampleDependencies() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("hasAudioSampleDependencies"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the track has sample dependencies.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/hasaudiosampledependencies
-func (a_ AssetTrack) SetHasAudioSampleDependencies(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setHasAudioSampleDependencies:"), value)
-}
+}/* debug [instance_properties/getter]: trackID */
 
 
 // A Boolean value that indicates whether the track is decodable in the current environment.
@@ -330,7 +518,7 @@ func (a_ AssetTrack) SetHasAudioSampleDependencies(value bool) {
 func (a_ AssetTrack) IsDecodable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isDecodable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isDecodable */
 
 
 // A Boolean value that indicates whether the track is decodable in the current environment.
@@ -339,7 +527,7 @@ func (a_ AssetTrack) IsDecodable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isdecodable
 func (a_ AssetTrack) SetIsDecodable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsDecodable:"), value)
-}
+}/* debug [instance_properties/setter]: isDecodable */
 
 
 // A Boolean value that indicates whether the track’s container enables it.
@@ -349,7 +537,7 @@ func (a_ AssetTrack) SetIsDecodable(value bool) {
 func (a_ AssetTrack) IsEnabled() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isEnabled */
 
 
 // A Boolean value that indicates whether the track’s container enables it.
@@ -358,7 +546,7 @@ func (a_ AssetTrack) IsEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isenabled
 func (a_ AssetTrack) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isEnabled */
 
 
 // A Boolean value that indicates whether the track is playable in the current environment.
@@ -368,7 +556,7 @@ func (a_ AssetTrack) SetIsEnabled(value bool) {
 func (a_ AssetTrack) IsPlayable() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isPlayable"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isPlayable */
 
 
 // A Boolean value that indicates whether the track is playable in the current environment.
@@ -377,7 +565,7 @@ func (a_ AssetTrack) IsPlayable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isplayable
 func (a_ AssetTrack) SetIsPlayable(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsPlayable:"), value)
-}
+}/* debug [instance_properties/setter]: isPlayable */
 
 
 // A Boolean value that indicates whether this track references sample data only within its container file.
@@ -387,7 +575,7 @@ func (a_ AssetTrack) SetIsPlayable(value bool) {
 func (a_ AssetTrack) IsSelfContained() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("isSelfContained"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isSelfContained */
 
 
 // A Boolean value that indicates whether this track references sample data only within its container file.
@@ -396,235 +584,12 @@ func (a_ AssetTrack) IsSelfContained() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/isselfcontained
 func (a_ AssetTrack) SetIsSelfContained(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsSelfContained:"), value)
-}
+}/* debug [instance_properties/setter]: isSelfContained */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The language code of the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/languagecode
-func (a_ AssetTrack) LanguageCode() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("languageCode"))
-	return rv
-}
-
-
-// The language code of the track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/languagecode
-func (a_ AssetTrack) SetLanguageCode(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setLanguageCode:"), value)
-}
-
-
-// The type of media that a track presents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/mediatype
-func (a_ AssetTrack) MediaType() MediaType /* not a class type */ {
-	rv := objc.Send[MediaType](a_.ID, objc.Sel("mediaType"))
-	return rv
-}
-
-
-// The type of media that a track presents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/mediatype
-func (a_ AssetTrack) SetMediaType(value MediaType /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMediaType:"), value)
-}
-
-
-// An array of metadata items for all metadata identifiers that have a value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/metadata
-func (a_ AssetTrack) Metadata() IAVMetadataItem {
-	rv := objc.Send[MetadataItem](a_.ID, objc.Sel("metadata"))
-	return rv
-}
-
-
-// An array of metadata items for all metadata identifiers that have a value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/metadata
-func (a_ AssetTrack) SetMetadata(value IAVMetadataItem) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMetadata:"), value)
-}
-
-
-// The minimum duration of the track’s frames.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/minframeduration
-func (a_ AssetTrack) MinFrameDuration() objc.IObject /* cross-framework: Time */ {
-	rv := objc.Send[coremedia.Time](a_.ID, objc.Sel("minFrameDuration"))
-	return rv
-}
-
-
-// The minimum duration of the track’s frames.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/minframeduration
-func (a_ AssetTrack) SetMinFrameDuration(value objc.IObject /* cross-framework: Time */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMinFrameDuration:"), value)
-}
-
-
-// The natural dimensions of the media data that the track references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/naturalsize
-func (a_ AssetTrack) NaturalSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](a_.ID, objc.Sel("naturalSize"))
-	return rv
-}
-
-
-// The natural dimensions of the media data that the track references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/naturalsize
-func (a_ AssetTrack) SetNaturalSize(value objc.IObject /* cross-framework: Size */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setNaturalSize:"), value)
-}
-
-
-// The natural time scale of the media that a track references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/naturaltimescale
-func (a_ AssetTrack) NaturalTimeScale() TimeScale /* not a class type */ {
-	rv := objc.Send[TimeScale](a_.ID, objc.Sel("naturalTimeScale"))
-	return rv
-}
-
-
-// The natural time scale of the media that a track references.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/naturaltimescale
-func (a_ AssetTrack) SetNaturalTimeScale(value TimeScale /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setNaturalTimeScale:"), value)
-}
-
-
-// The frame rate of the track, in frames per second.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/nominalframerate
-func (a_ AssetTrack) NominalFrameRate() float32 {
-	rv := objc.Send[float32](a_.ID, objc.Sel("nominalFrameRate"))
-	return rv
-}
-
-
-// The frame rate of the track, in frames per second.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/nominalframerate
-func (a_ AssetTrack) SetNominalFrameRate(value float32) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setNominalFrameRate:"), value)
-}
-
-
-// The track’s transform preference to apply to its visual content during presentation or processing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/preferredtransform
-func (a_ AssetTrack) PreferredTransform() objc.IObject /* cross-framework: AffineTransform */ {
-	rv := objc.Send[corefoundation.AffineTransform](a_.ID, objc.Sel("preferredTransform"))
-	return rv
-}
-
-
-// The track’s transform preference to apply to its visual content during presentation or processing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/preferredtransform
-func (a_ AssetTrack) SetPreferredTransform(value objc.IObject /* cross-framework: AffineTransform */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredTransform:"), value)
-}
-
-
-// The track’s volume preference for playing its audible media.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/preferredvolume
-func (a_ AssetTrack) PreferredVolume() float32 {
-	rv := objc.Send[float32](a_.ID, objc.Sel("preferredVolume"))
-	return rv
-}
-
-
-// The track’s volume preference for playing its audible media.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/preferredvolume
-func (a_ AssetTrack) SetPreferredVolume(value float32) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPreferredVolume:"), value)
-}
-
-
-// A Boolean value that indicates whether samples in the track may have different presentation and decode timestamps.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/requiresframereordering
-func (a_ AssetTrack) RequiresFrameReordering() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("requiresFrameReordering"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether samples in the track may have different presentation and decode timestamps.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/requiresframereordering
-func (a_ AssetTrack) SetRequiresFrameReordering(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setRequiresFrameReordering:"), value)
-}
-
-
-// The total number of bytes of sample data the track requires.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/totalsampledatalength
-func (a_ AssetTrack) TotalSampleDataLength() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("totalSampleDataLength"))
-	return rv
-}
-
-
-// The total number of bytes of sample data the track requires.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/totalsampledatalength
-func (a_ AssetTrack) SetTotalSampleDataLength(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTotalSampleDataLength:"), value)
-}
-
-
-// The persistent unique identifier for this track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/trackid
-func (a_ AssetTrack) TrackID() PersistentTrackID /* not a class type */ {
-	rv := objc.Send[PersistentTrackID](a_.ID, objc.Sel("trackID"))
-	return rv
-}
-
-
-// The persistent unique identifier for this track.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avassettrack/trackid
-func (a_ AssetTrack) SetTrackID(value PersistentTrackID /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setTrackID:"), value)
-}
+/* debug [class.gen.go]: End class AVAssetTrack */
 
 
 

@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
@@ -33,11 +32,11 @@ func (m_ MediaPickerController) SetAllowsPickingMultipleItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPMediaPickerController/delegate
-func (m_ MediaPickerController) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
+func (m_ MediaPickerController) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (m_ MediaPickerController) SetDelegate(value objc.ID) {
+func (m_ MediaPickerController) SetDelegate(value unsafe.Pointer) {
 	m_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 

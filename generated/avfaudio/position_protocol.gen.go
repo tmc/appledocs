@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // positionProtocol is the position protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to position.
 var positionProtocol *objc.Protocol
 
 func init() {
 	positionProtocol = objc.GetProtocol("position")
 }
+

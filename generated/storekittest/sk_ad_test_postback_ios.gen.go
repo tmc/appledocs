@@ -5,15 +5,11 @@
 package storekittest
 
 import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // iOS-only methods for AdTestPostback
-
 
 // iOS-only properties
 
@@ -168,11 +164,7 @@ func (a_ AdTestPostback) TransactionIdentifier() objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/StoreKitTest/SKAdTestPostback/version
-func (a_ AdTestPostback) Version() objc.IObject /* cross-framework: AdTestPostbackVersion */ {
-	rv := objc.Send[AdTestPostbackVersion](a_.ID, objc.Sel("version"))
+func (a_ AdTestPostback) Version() AdTestPostbackVersion /* typedef */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("version"))
 	return rv
 }
-
-
-
-

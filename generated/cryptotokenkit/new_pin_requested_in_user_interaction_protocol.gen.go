@@ -8,7 +8,12 @@ import "github.com/ebitengine/purego/objc"
 //
 // Availability:
 //   - Mac Catalyst 13.1+
+//   - iOS +
+//   - iPadOS +
 //   - macOS 10.11+
+//   - tvOS +
+//   - visionOS +
+//   - watchOS +
 //
 // Use this protocol when registering custom classes that conform to newPINRequestedInUserInteraction:.
 var newPINRequestedInUserInteractionProtocol *objc.Protocol
@@ -16,3 +21,4 @@ var newPINRequestedInUserInteractionProtocol *objc.Protocol
 func init() {
 	newPINRequestedInUserInteractionProtocol = objc.GetProtocol("newPINRequestedInUserInteraction:")
 }
+

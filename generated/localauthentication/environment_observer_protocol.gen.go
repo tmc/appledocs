@@ -20,3 +20,4 @@ var EnvironmentObserverProtocol *objc.Protocol
 func init() {
 	EnvironmentObserverProtocol = objc.GetProtocol("LAEnvironmentObserver")
 }
+

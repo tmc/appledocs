@@ -15,3 +15,4 @@ var selectionShouldChangeInOutlineViewProtocol *objc.Protocol
 func init() {
 	selectionShouldChangeInOutlineViewProtocol = objc.GetProtocol("selectionShouldChangeInOutlineView:")
 }
+

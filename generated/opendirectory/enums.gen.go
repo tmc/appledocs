@@ -2,7 +2,9 @@
 
 package opendirectory
 
+/* debug [enums.gen.go]: Generating 1 enums for OpenDirectory */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum ODFrameworkErrors (64 cases) */
 // ODFrameworkErrors enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/OpenDirectory/ODFrameworkErrors

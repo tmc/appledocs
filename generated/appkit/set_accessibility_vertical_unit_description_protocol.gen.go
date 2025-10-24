@@ -15,3 +15,4 @@ var setAccessibilityVerticalUnitDescriptionProtocol *objc.Protocol
 func init() {
 	setAccessibilityVerticalUnitDescriptionProtocol = objc.GetProtocol("setAccessibilityVerticalUnitDescription")
 }
+

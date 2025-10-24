@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class NEFilterBrowserFlow */
+
+
+/* debug [class_header]: Header for NEFilterBrowserFlow */
 // The class instance for the [NEFilterBrowserFlow] class.
 var (
 	NEFilterBrowserFlowClass     _NEFilterBrowserFlowClass
@@ -26,40 +30,30 @@ func getNEFilterBrowserFlowClass() _NEFilterBrowserFlowClass {
 type _NEFilterBrowserFlowClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEFilterBrowserFlow */
 // An interface definition for the [NEFilterBrowserFlow] class.
 type INEFilterBrowserFlow interface {
 	INEFilterFlow
+	
+/* debug [class_interface_properties]: Properties for NEFilterBrowserFlow */
 	// properties:
-	ParentURL() objc.IObject /* cross-framework: URL */
-	SetParentURL(value objc.IObject /* cross-framework: URL */)
-	Request() objc.IObject /* cross-framework: URLRequest */
-	SetRequest(value objc.IObject /* cross-framework: URLRequest */)
-	Response() objc.IObject /* cross-framework: URLResponse */
-	SetResponse(value objc.IObject /* cross-framework: URLResponse */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NEFilterBrowserFlow */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A flow of network data, originating from a WebKit-based browser, that the filter examines.
 
 
-// A flow of network data, originating from a WebKit-based browser, that the filter examines.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterBrowserFlow
-type NEFilterBrowserFlow struct {
-	NEFilterFlow
-}
-
-// NEFilterBrowserFlowFrom constructs a [NEFilterBrowserFlow] from an unsafe.Pointer.
-//
-// A flow of network data, originating from a WebKit-based browser, that the filter examines.
-func NEFilterBrowserFlowFrom(ptr unsafe.Pointer) NEFilterBrowserFlow {
-	return NEFilterBrowserFlow{
-		NEFilterFlow: NEFilterFlowFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for NEFilterBrowserFlow */
 // Alloc allocates a new instance without initialization.
 func (nc _NEFilterBrowserFlowClass) Alloc() NEFilterBrowserFlow {
 	rv := objc.Send[NEFilterBrowserFlow](objc.ID(nc.class), objc.Sel("alloc"))
@@ -67,7 +61,6 @@ func (nc _NEFilterBrowserFlowClass) Alloc() NEFilterBrowserFlow {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEFilterBrowserFlowClass) New() NEFilterBrowserFlow {
 	rv := objc.Send[NEFilterBrowserFlow](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,64 +83,57 @@ func (n_ NEFilterBrowserFlow) Autorelease() NEFilterBrowserFlow {
 func NewNEFilterBrowserFlow() NEFilterBrowserFlow {
 	return getNEFilterBrowserFlowClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A URL of the web page that’s responsible for the flow’s creation.
+/* debug [class_struct]: Struct for NEFilterBrowserFlow */
+// A flow of network data, originating from a WebKit-based browser, that the filter examines.
+
+
+// A flow of network data, originating from a WebKit-based browser, that the filter examines.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/parenturl
-func (n_ NEFilterBrowserFlow) ParentURL() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](n_.ID, objc.Sel("parentURL"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEFilterBrowserFlow
+type NEFilterBrowserFlow struct {
+	NEFilterFlow
 }
 
-
-// A URL of the web page that’s responsible for the flow’s creation.
+// NEFilterBrowserFlowFrom constructs a [NEFilterBrowserFlow] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/parenturl
-func (n_ NEFilterBrowserFlow) SetParentURL(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setParentURL:"), value)
+// A flow of network data, originating from a WebKit-based browser, that the filter examines.
+func NEFilterBrowserFlowFrom(ptr unsafe.Pointer) NEFilterBrowserFlow {
+	return NEFilterBrowserFlow{
+		NEFilterFlow: NEFilterFlowFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// An HTTP request of the flow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/request
-func (n_ NEFilterBrowserFlow) Request() objc.IObject /* cross-framework: URLRequest */ {
-	rv := objc.Send[foundation.URLRequest](n_.ID, objc.Sel("request"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for NEFilterBrowserFlow *//* debug [class_init_methods]: End init methods */
 
 
-// An HTTP request of the flow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/request
-func (n_ NEFilterBrowserFlow) SetRequest(value objc.IObject /* cross-framework: URLRequest */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setRequest:"), value)
-}
+
+/* debug [class_methods]: Class methods for NEFilterBrowserFlow */
+/* debug [class_methods]: End class methods */
 
 
-// An HTTP response of the flow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/response
-func (n_ NEFilterBrowserFlow) Response() objc.IObject /* cross-framework: URLResponse */ {
-	rv := objc.Send[foundation.URLResponse](n_.ID, objc.Sel("response"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for NEFilterBrowserFlow */
+/* debug [class_properties_class]: End class properties */
 
 
-// An HTTP response of the flow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nefilterbrowserflow/response
-func (n_ NEFilterBrowserFlow) SetResponse(value objc.IObject /* cross-framework: URLResponse */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setResponse:"), value)
-}
 
+/* debug [instance_methods]: Instance methods for NEFilterBrowserFlow */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEFilterBrowserFlow */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NEFilterBrowserFlow */
 
 

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSTermOfAddress */
+
+
+/* debug [class_header]: Header for NSTermOfAddress */
 // The class instance for the [TermOfAddress] class.
 var (
 	TermOfAddressClass     _TermOfAddressClass
@@ -26,36 +30,32 @@ func getTermOfAddressClass() _TermOfAddressClass {
 type _TermOfAddressClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TermOfAddress */
 // An interface definition for the [TermOfAddress] class.
 type ITermOfAddress interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for TermOfAddress */
 	// properties:
 	LanguageIdentifier() IString
 	Pronouns() []MorphologyPronoun
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TermOfAddress */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The type for representing grammatical gender in localized text.
-//
-// Many languages rely on gender for their grammar. Without knowing the subject’s gender or pronoun preferences, some localized strings may have grammatical errors, resulting in a poor user experience. is a type that enables the system to make pronoun substitutions in localized text based on gender. You don’t create instances of this type directly. Instead, use the predefined types to specify the gender to use when referring to people in translated text. Or define your own pronoun terms for a specific language when the predefined types are insufficient. For example, to substitute the masculine pronoun , for the neutral pronoun , do the following: If the , , and terms of address are insufficient, create your own term of address specifying the pronouns and language. For examples of how to use terms of address, see:
+/* debug [class_interface]: End interface */
 
 
-// The type for representing grammatical gender in localized text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress
-type TermOfAddress struct {
-	objectivec.Object
-}
 
-// TermOfAddressFrom constructs a [TermOfAddress] from an unsafe.Pointer.
-//
-// The type for representing grammatical gender in localized text.
-func TermOfAddressFrom(ptr unsafe.Pointer) TermOfAddress {
-	return TermOfAddress{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for TermOfAddress */
 // Alloc allocates a new instance without initialization.
 func (tc _TermOfAddressClass) Alloc() TermOfAddress {
 	rv := objc.Send[TermOfAddress](objc.ID(tc.class), objc.Sel("alloc"))
@@ -63,7 +63,6 @@ func (tc _TermOfAddressClass) Alloc() TermOfAddress {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TermOfAddressClass) New() TermOfAddress {
 	rv := objc.Send[TermOfAddress](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,55 +85,101 @@ func (t_ TermOfAddress) Autorelease() TermOfAddress {
 func NewTermOfAddress() TermOfAddress {
 	return getTermOfAddressClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for TermOfAddress */
+// The type for representing grammatical gender in localized text.
+//
+// Many languages rely on gender for their grammar. Without knowing the subject’s gender or pronoun preferences, some localized strings may have grammatical errors, resulting in a poor user experience. is a type that enables the system to make pronoun substitutions in localized text based on gender. You don’t create instances of this type directly. Instead, use the predefined types to specify the gender to use when referring to people in translated text. Or define your own pronoun terms for a specific language when the predefined types are insufficient. For example, to substitute the masculine pronoun , for the neutral pronoun , do the following: If the , , and terms of address are insufficient, create your own term of address specifying the pronouns and language. For examples of how to use terms of address, see:
+
+
+// The type for representing grammatical gender in localized text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress
+type TermOfAddress struct {
+	objectivec.Object
+}
+
+// TermOfAddressFrom constructs a [TermOfAddress] from an unsafe.Pointer.
+//
+// The type for representing grammatical gender in localized text.
+func TermOfAddressFrom(ptr unsafe.Pointer) TermOfAddress {
+	return TermOfAddress{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TermOfAddress *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for TermOfAddress */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/currentUser
-func (tc _TermOfAddressClass) CurrentUser() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("currentUser"))
+func (tc _TermOfAddressClass) CurrentUser() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(tc.class), objc.Sel("currentUser"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CurrentUser) */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/feminine
-func (tc _TermOfAddressClass) Feminine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("feminine"))
+func (tc _TermOfAddressClass) Feminine() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(tc.class), objc.Sel("feminine"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Feminine) */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/localizedForLanguageIdentifier:withPronouns:
-func (tc _TermOfAddressClass) LocalizedForLanguageIdentifierWithPronouns(language IString, pronouns []MorphologyPronoun) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("localizedForLanguageIdentifier:withPronouns:"), language, pronouns)
+func (tc _TermOfAddressClass) LocalizedForLanguageIdentifierWithPronouns(language IString, pronouns []MorphologyPronoun) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(tc.class), objc.Sel("localizedForLanguageIdentifier:withPronouns:"), language, pronouns)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedForLanguageIdentifierWithPronouns) */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/masculine
-func (tc _TermOfAddressClass) Masculine() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("masculine"))
+func (tc _TermOfAddressClass) Masculine() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(tc.class), objc.Sel("masculine"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Masculine) */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/neutral
-func (tc _TermOfAddressClass) Neutral() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("neutral"))
+func (tc _TermOfAddressClass) Neutral() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(tc.class), objc.Sel("neutral"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Neutral) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TermOfAddress */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TermOfAddress */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TermOfAddress */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/languageIdentifier
 func (t_ TermOfAddress) LanguageIdentifier() IString {
 	rv := objc.Send[String](t_.ID, objc.Sel("languageIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: languageIdentifier */
 
 
 // [Full Topic]
@@ -142,7 +187,12 @@ func (t_ TermOfAddress) LanguageIdentifier() IString {
 func (t_ TermOfAddress) Pronouns() []MorphologyPronoun {
 	rv := objc.Send[[]MorphologyPronoun](t_.ID, objc.Sel("pronouns"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pronouns */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSTermOfAddress */
 
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRFanControlClusterStepParams interface {
 	SetWrap(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRFanControlClusterStepParams
@@ -89,8 +87,6 @@ func NewMTRFanControlClusterStepParams() MTRFanControlClusterStepParams {
 	return getMTRFanControlClusterStepParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/direction
 func (m_ MTRFanControlClusterStepParams) Direction() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRFanControlClusterStepParams) Direction() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/direction
 func (m_ MTRFanControlClusterStepParams) SetDirection(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDirection:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/lowestoff
@@ -113,13 +107,11 @@ func (m_ MTRFanControlClusterStepParams) LowestOff() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/lowestoff
 func (m_ MTRFanControlClusterStepParams) SetLowestOff(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLowestOff:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/serversideprocessingtimeout
@@ -128,13 +120,11 @@ func (m_ MTRFanControlClusterStepParams) ServerSideProcessingTimeout() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/serversideprocessingtimeout
 func (m_ MTRFanControlClusterStepParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/timedinvoketimeoutms
@@ -143,13 +133,11 @@ func (m_ MTRFanControlClusterStepParams) TimedInvokeTimeoutMs() objc.IObject /* 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/timedinvoketimeoutms
 func (m_ MTRFanControlClusterStepParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/wrap
@@ -158,12 +146,8 @@ func (m_ MTRFanControlClusterStepParams) Wrap() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrfancontrolclusterstepparams/wrap
 func (m_ MTRFanControlClusterStepParams) SetWrap(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setWrap:"), value)
 }
-
-
-

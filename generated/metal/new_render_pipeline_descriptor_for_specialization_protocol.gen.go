@@ -20,3 +20,4 @@ var newRenderPipelineDescriptorForSpecializationProtocol *objc.Protocol
 func init() {
 	newRenderPipelineDescriptorForSpecializationProtocol = objc.GetProtocol("newRenderPipelineDescriptorForSpecialization")
 }
+

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,7 +42,6 @@ type IINDateComponentsRange interface {
 // A span of time.
 //
 // Use an object to specify date- or time-related information when responding to an intent. For example, a ride service might use this object to specify possible pickup times for the user. You create date components range objects when providing a response that includes a time span. Use this object to specify a range of times to include in the corresponding response. When displaying the date range information to the user, Siri or Maps formats the information appropriately.
-
 
 // A span of time.
 //
@@ -90,8 +89,6 @@ func NewINDateComponentsRange() INDateComponentsRange {
 	return getINDateComponentsRangeClass().New()
 }
 
-
-
 // The end date of the range.
 //
 // [Full Topic]
@@ -101,7 +98,6 @@ func (i_ INDateComponentsRange) EndDateComponents() foundation.DateComponents {
 	return rv
 }
 
-
 // The end date of the range.
 //
 // [Full Topic]
@@ -109,7 +105,6 @@ func (i_ INDateComponentsRange) EndDateComponents() foundation.DateComponents {
 func (i_ INDateComponentsRange) SetEndDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEndDateComponents:"), value)
 }
-
 
 // The rule for repeating the date range.
 //
@@ -120,7 +115,6 @@ func (i_ INDateComponentsRange) RecurrenceRule() unsafe.Pointer {
 	return rv
 }
 
-
 // The rule for repeating the date range.
 //
 // [Full Topic]
@@ -128,7 +122,6 @@ func (i_ INDateComponentsRange) RecurrenceRule() unsafe.Pointer {
 func (i_ INDateComponentsRange) SetRecurrenceRule(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRecurrenceRule:"), value)
 }
-
 
 // The start date of the range.
 //
@@ -139,7 +132,6 @@ func (i_ INDateComponentsRange) StartDateComponents() foundation.DateComponents 
 	return rv
 }
 
-
 // The start date of the range.
 //
 // [Full Topic]
@@ -147,6 +139,3 @@ func (i_ INDateComponentsRange) StartDateComponents() foundation.DateComponents 
 func (i_ INDateComponentsRange) SetStartDateComponents(value foundation.IDateComponents) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setStartDateComponents:"), value)
 }
-
-
-

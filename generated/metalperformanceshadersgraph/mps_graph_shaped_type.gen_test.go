@@ -13,8 +13,8 @@ var _ = metalperformanceshadersgraph.NewGraphShapedType
 // Initializes a shaped type.
 func ExampleNewGraphShapedTypeWithShapeDataType() {
 	_ = metalperformanceshadersgraph.NewGraphShapedTypeWithShapeDataType(
-		metalperformanceshadersgraph.Shape /* not a class type */{}, // shape Shape /* not a class type */
-		metalperformanceshadersgraph.DataType /* not a class type */{}, // dataType DataType /* not a class type */
+		metalperformanceshadersgraph.Shape /* not a class type */ {},    // shape Shape /* not a class type */
+		metalperformanceshadersgraph.DataType /* not a class type */ {}, // dataType DataType /* not a class type */
 	)
 	// Output:
 }

@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class CMGyroData */
+
+
+/* debug [class_header]: Header for CMGyroData */
 // The class instance for the [GyroData] class.
 var (
 	GyroDataClass     _GyroDataClass
@@ -25,37 +29,31 @@ func getGyroDataClass() _GyroDataClass {
 type _GyroDataClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GyroData */
 // An interface definition for the [GyroData] class.
 type IGyroData interface {
 	ILogItem
+	
+/* debug [class_interface_properties]: Properties for GyroData */
 	// properties:
-	RotationRate() CMRotationRate /* not a class type */
+	RotationRate() objc.IObject /* cross-framework: CMRotationRate */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GyroData */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A single measurement of the device’s rotation rate.
-//
-// An application receives or samples objects at regular intervals after calling the method or the method of the class.
+/* debug [class_interface]: End interface */
 
 
-// A single measurement of the device’s rotation rate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData
-type GyroData struct {
-	LogItem
-}
 
-// GyroDataFrom constructs a [GyroData] from an unsafe.Pointer.
-//
-// A single measurement of the device’s rotation rate.
-func GyroDataFrom(ptr unsafe.Pointer) GyroData {
-	return GyroData{
-		LogItem: LogItemFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GyroData */
 // Alloc allocates a new instance without initialization.
 func (gc _GyroDataClass) Alloc() GyroData {
 	rv := objc.Send[GyroData](objc.ID(gc.class), objc.Sel("alloc"))
@@ -63,7 +61,6 @@ func (gc _GyroDataClass) Alloc() GyroData {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GyroDataClass) New() GyroData {
 	rv := objc.Send[GyroData](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,17 +83,70 @@ func (g_ GyroData) Autorelease() GyroData {
 func NewGyroData() GyroData {
 	return getGyroDataClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GyroData */
+// A single measurement of the device’s rotation rate.
+//
+// An application receives or samples objects at regular intervals after calling the method or the method of the class.
+
+
+// A single measurement of the device’s rotation rate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData
+type GyroData struct {
+	LogItem
+}
+
+// GyroDataFrom constructs a [GyroData] from an unsafe.Pointer.
+//
+// A single measurement of the device’s rotation rate.
+func GyroDataFrom(ptr unsafe.Pointer) GyroData {
+	return GyroData{
+		LogItem: LogItemFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GyroData *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GyroData */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GyroData */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GyroData */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GyroData */
 
 // The rotation rate as measured by the device’s gyroscope.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMGyroData/rotationRate
-func (g_ GyroData) RotationRate() CMRotationRate /* not a class type */ {
-	rv := objc.Send[RotationRate](g_.ID, objc.Sel("rotationRate"))
+func (g_ GyroData) RotationRate() objc.IObject /* cross-framework: CMRotationRate */ {
+	rv := objc.Send[objc.ID](g_.ID, objc.Sel("rotationRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rotationRate */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CMGyroData */
 
 
 

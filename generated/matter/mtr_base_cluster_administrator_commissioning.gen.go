@@ -33,8 +33,6 @@ type IMTRBaseClusterAdministratorCommissioning interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterAdministratorCommissioning
 type MTRBaseClusterAdministratorCommissioning struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterAdministratorCommissioning) Autorelease() MTRBaseClusterA
 func NewMTRBaseClusterAdministratorCommissioning() MTRBaseClusterAdministratorCommissioning {
 	return getMTRBaseClusterAdministratorCommissioningClass().New()
 }
-
-
-
-

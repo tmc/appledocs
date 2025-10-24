@@ -16,3 +16,4 @@ var didResumeProtocol *objc.Protocol
 func init() {
 	didResumeProtocol = objc.GetProtocol("didResume")
 }
+

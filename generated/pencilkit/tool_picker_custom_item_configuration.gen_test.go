@@ -14,7 +14,7 @@ var _ = pencilkit.NewToolPickerCustomItemConfiguration
 func ExampleNewToolPickerCustomItemConfigurationWithIdentifierName() {
 	_ = pencilkit.NewToolPickerCustomItemConfigurationWithIdentifierName(
 		"identifier", // identifier string
-		"name", // name string
+		"name",       // name string
 	)
 	// Output:
 }

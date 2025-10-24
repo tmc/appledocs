@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRElectricalMeasurementClusterGetProfileInfoCommandParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalMeasurementClusterGetProfileInfoCommandParams
@@ -83,8 +81,6 @@ func NewMTRElectricalMeasurementClusterGetProfileInfoCommandParams() MTRElectric
 	return getMTRElectricalMeasurementClusterGetProfileInfoCommandParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinfocommandparams/serversideprocessingtimeout
 func (m_ MTRElectricalMeasurementClusterGetProfileInfoCommandParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRElectricalMeasurementClusterGetProfileInfoCommandParams) ServerSideP
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinfocommandparams/serversideprocessingtimeout
 func (m_ MTRElectricalMeasurementClusterGetProfileInfoCommandParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinfocommandparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRElectricalMeasurementClusterGetProfileInfoCommandParams) TimedInvoke
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalmeasurementclustergetprofileinfocommandparams/timedinvoketimeoutms
 func (m_ MTRElectricalMeasurementClusterGetProfileInfoCommandParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

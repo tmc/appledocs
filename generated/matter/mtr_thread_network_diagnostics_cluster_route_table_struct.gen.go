@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
+
+
+/* debug [class_header]: Header for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
 // The class instance for the [MTRThreadNetworkDiagnosticsClusterRouteTableStruct] class.
 var (
 	MTRThreadNetworkDiagnosticsClusterRouteTableStructClass     _MTRThreadNetworkDiagnosticsClusterRouteTableStructClass
@@ -27,47 +30,30 @@ func getMTRThreadNetworkDiagnosticsClusterRouteTableStructClass() _MTRThreadNetw
 type _MTRThreadNetworkDiagnosticsClusterRouteTableStructClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterRouteTableStruct] class.
 type IMTRThreadNetworkDiagnosticsClusterRouteTableStruct interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
 	// properties:
-	Age() objc.IObject /* cross-framework: NSNumber */
-	SetAge(value objc.IObject /* cross-framework: NSNumber */)
-	Allocated() objc.IObject /* cross-framework: NSNumber */
-	SetAllocated(value objc.IObject /* cross-framework: NSNumber */)
-	ExtAddress() objc.IObject /* cross-framework: NSNumber */
-	SetExtAddress(value objc.IObject /* cross-framework: NSNumber */)
-	LinkEstablished() objc.IObject /* cross-framework: NSNumber */
-	SetLinkEstablished(value objc.IObject /* cross-framework: NSNumber */)
-	LqiIn() objc.IObject /* cross-framework: NSNumber */
-	SetLqiIn(value objc.IObject /* cross-framework: NSNumber */)
-	LqiOut() objc.IObject /* cross-framework: NSNumber */
-	SetLqiOut(value objc.IObject /* cross-framework: NSNumber */)
-	NextHop() objc.IObject /* cross-framework: NSNumber */
-	SetNextHop(value objc.IObject /* cross-framework: NSNumber */)
-	PathCost() objc.IObject /* cross-framework: NSNumber */
-	SetPathCost(value objc.IObject /* cross-framework: NSNumber */)
-	Rloc16() objc.IObject /* cross-framework: NSNumber */
-	SetRloc16(value objc.IObject /* cross-framework: NSNumber */)
-	RouterId() objc.IObject /* cross-framework: NSNumber */
-	SetRouterId(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDiagnosticsClusterRouteTableStruct
-type MTRThreadNetworkDiagnosticsClusterRouteTableStruct struct {
-	objectivec.Object
-}
-
-// MTRThreadNetworkDiagnosticsClusterRouteTableStructFrom constructs a [MTRThreadNetworkDiagnosticsClusterRouteTableStruct] from an unsafe.Pointer.
-func MTRThreadNetworkDiagnosticsClusterRouteTableStructFrom(ptr unsafe.Pointer) MTRThreadNetworkDiagnosticsClusterRouteTableStruct {
-	return MTRThreadNetworkDiagnosticsClusterRouteTableStruct{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRThreadNetworkDiagnosticsClusterRouteTableStructClass) Alloc() MTRThreadNetworkDiagnosticsClusterRouteTableStruct {
 	rv := objc.Send[MTRThreadNetworkDiagnosticsClusterRouteTableStruct](objc.ID(mc.class), objc.Sel("alloc"))
@@ -75,7 +61,6 @@ func (mc _MTRThreadNetworkDiagnosticsClusterRouteTableStructClass) Alloc() MTRTh
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRThreadNetworkDiagnosticsClusterRouteTableStructClass) New() MTRThreadNetworkDiagnosticsClusterRouteTableStruct {
 	rv := objc.Send[MTRThreadNetworkDiagnosticsClusterRouteTableStruct](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -98,157 +83,53 @@ func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) Autorelease() MTRTh
 func NewMTRThreadNetworkDiagnosticsClusterRouteTableStruct() MTRThreadNetworkDiagnosticsClusterRouteTableStruct {
 	return getMTRThreadNetworkDiagnosticsClusterRouteTableStructClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/age
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) Age() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("age"))
-	return rv
+/* debug [class_struct]: Struct for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
+// A parent class referenced by other Matter classes.
+
+
+// A parent class referenced by other Matter classes. [Full Topic]
+type MTRThreadNetworkDiagnosticsClusterRouteTableStruct struct {
+	objectivec.Object
 }
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/age
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetAge(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAge:"), value)
+// MTRThreadNetworkDiagnosticsClusterRouteTableStructFrom constructs a [MTRThreadNetworkDiagnosticsClusterRouteTableStruct] from an unsafe.Pointer.
+//
+// A parent class referenced by other Matter classes.
+func MTRThreadNetworkDiagnosticsClusterRouteTableStructFrom(ptr unsafe.Pointer) MTRThreadNetworkDiagnosticsClusterRouteTableStruct {
+	return MTRThreadNetworkDiagnosticsClusterRouteTableStruct{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/allocated
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) Allocated() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("allocated"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRThreadNetworkDiagnosticsClusterRouteTableStruct *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/allocated
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetAllocated(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAllocated:"), value)
-}
+
+/* debug [class_methods]: Class methods for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/extaddress
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) ExtAddress() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("extAddress"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/extaddress
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetExtAddress(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtAddress:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/linkestablished
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) LinkEstablished() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("linkEstablished"))
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/linkestablished
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetLinkEstablished(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLinkEstablished:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/lqiin
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) LqiIn() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("lqiIn"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/lqiin
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetLqiIn(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLqiIn:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/lqiout
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) LqiOut() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("lqiOut"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/lqiout
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetLqiOut(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLqiOut:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/nexthop
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) NextHop() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("nextHop"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/nexthop
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetNextHop(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNextHop:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/pathcost
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) PathCost() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("pathCost"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/pathcost
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetPathCost(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPathCost:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/rloc16
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) Rloc16() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rloc16"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/rloc16
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetRloc16(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRloc16:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/routerid
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) RouterId() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("routerId"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterroutetablestruct/routerid
-func (m_ MTRThreadNetworkDiagnosticsClusterRouteTableStruct) SetRouterId(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRouterId:"), value)
-}
+/* debug [class.gen.go]: End class MTRThreadNetworkDiagnosticsClusterRouteTableStruct */
 
 
 

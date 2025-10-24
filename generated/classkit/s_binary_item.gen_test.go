@@ -13,8 +13,8 @@ var _ = classkit.NewSBinaryItem
 // Initializes a new binary activity item of the given type.
 func ExampleNewSBinaryItemWithIdentifierTitleType() {
 	_ = classkit.NewSBinaryItemWithIdentifierTitleType(
-		"identifier", // identifier string
-		"title", // title string
+		"identifier",                // identifier string
+		"title",                     // title string
 		classkit.SBinaryValueType{}, // valueType SBinaryValueType
 	)
 	// Output:

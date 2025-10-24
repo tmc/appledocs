@@ -15,3 +15,4 @@ var FSManageableResourceMaintenanceOperationsProtocol *objc.Protocol
 func init() {
 	FSManageableResourceMaintenanceOperationsProtocol = objc.GetProtocol("FSManageableResourceMaintenanceOperations")
 }
+

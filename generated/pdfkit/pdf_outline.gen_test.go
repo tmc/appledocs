@@ -15,3 +15,11 @@ func ExampleNewPDFOutline() {
 	_ = pdfkit.NewPDFOutline()
 	// Output:
 }
+// ExamplePDFOutline_RemoveFromParent demonstrates using RemoveFromParent on a PDFOutline instance.
+// Removes the outline object from its parent (does nothing if outline object is the root outline object).
+func ExamplePDFOutline_RemoveFromParent() {
+	obj := pdfkit.NewPDFOutline()
+	obj.RemoveFromParent()
+	// Output:
+	}
+

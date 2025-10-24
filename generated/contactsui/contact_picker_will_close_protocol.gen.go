@@ -15,3 +15,4 @@ var contactPickerWillCloseProtocol *objc.Protocol
 func init() {
 	contactPickerWillCloseProtocol = objc.GetProtocol("contactPickerWillClose:")
 }
+

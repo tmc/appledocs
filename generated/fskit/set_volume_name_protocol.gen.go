@@ -15,3 +15,4 @@ var setVolumeNameProtocol *objc.Protocol
 func init() {
 	setVolumeNameProtocol = objc.GetProtocol("setVolumeName:")
 }
+

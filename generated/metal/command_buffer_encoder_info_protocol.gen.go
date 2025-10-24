@@ -20,3 +20,4 @@ var CommandBufferEncoderInfoProtocol *objc.Protocol
 func init() {
 	CommandBufferEncoderInfoProtocol = objc.GetProtocol("MTLCommandBufferEncoderInfo")
 }
+

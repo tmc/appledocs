@@ -33,8 +33,6 @@ type IMTRClusterCarbonDioxideConcentrationMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterCarbonDioxideConcentrationMeasurement
 type MTRClusterCarbonDioxideConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterCarbonDioxideConcentrationMeasurement) Autorelease() MTRClust
 func NewMTRClusterCarbonDioxideConcentrationMeasurement() MTRClusterCarbonDioxideConcentrationMeasurement {
 	return getMTRClusterCarbonDioxideConcentrationMeasurementClass().New()
 }
-
-
-
-

@@ -1,3 +1,4 @@
+
 // Code generated from Apple documentation for CoreGraphics. DO NOT EDIT.
 
 // Package coregraphics provides Go bindings for the CoreGraphics framework.

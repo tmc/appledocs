@@ -20,3 +20,4 @@ var removeObjectProtocol *objc.Protocol
 func init() {
 	removeObjectProtocol = objc.GetProtocol("removeObject:")
 }
+

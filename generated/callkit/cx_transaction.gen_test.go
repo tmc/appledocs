@@ -13,8 +13,9 @@ var _ = callkit.NewCXTransaction
 // Initializes a new transaction with the specified actions.
 func ExampleNewCXTransactionWithActions() {
 	_ = callkit.NewCXTransactionWithActions(
-		[]callkit.ICXAction{}, // actions []ICXAction
+		[]callkit.CXAction{}, // actions []CXAction
 	)
 	// Output:
 }
+
 

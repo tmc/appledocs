@@ -13,7 +13,6 @@ type (
 	BundleRef = _undefined // referenced in ColorSync
 	DataRef = _undefined // referenced in ColorSync
 	DictionaryRef = _undefined // referenced in ColorSync
-	ErrorRef = _undefined // referenced in ColorSync
 	StringRef = _undefined // referenced in ColorSync
 	TypeID = _undefined // referenced in ColorSync
 	TypeRef = _undefined // referenced in ColorSync

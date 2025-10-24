@@ -15,3 +15,4 @@ var FileProviderExternalVolumeHandlingProtocol *objc.Protocol
 func init() {
 	FileProviderExternalVolumeHandlingProtocol = objc.GetProtocol("NSFileProviderExternalVolumeHandling")
 }
+

@@ -32,11 +32,11 @@ func (c_ CanvasView) SetAllowsFingerDrawing(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/delegate
-func (c_ CanvasView) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("delegate"))
+func (c_ CanvasView) Delegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("delegate"))
 	return rv
 }
-func (c_ CanvasView) SetDelegate(value objc.ID) {
+func (c_ CanvasView) SetDelegate(value unsafe.Pointer) {
 	c_.ID.Send(objc.RegisterName("setDelegate:"), value)
 }
 
@@ -56,7 +56,7 @@ func (c_ CanvasView) SetDrawing(value IPKDrawing) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PencilKit/PKCanvasView/drawingGestureRecognizer
-func (c_ CanvasView) DrawingGestureRecognizer() objc.IObject /* cross-framework: GestureRecognizer */ {
+func (c_ CanvasView) DrawingGestureRecognizer() appkit.GestureRecognizer {
 	rv := objc.Send[appkit.GestureRecognizer](c_.ID, objc.Sel("drawingGestureRecognizer"))
 	return rv
 }

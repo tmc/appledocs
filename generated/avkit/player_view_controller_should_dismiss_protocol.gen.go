@@ -15,3 +15,4 @@ var playerViewControllerShouldDismissProtocol *objc.Protocol
 func init() {
 	playerViewControllerShouldDismissProtocol = objc.GetProtocol("playerViewControllerShouldDismiss:")
 }
+

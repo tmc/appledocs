@@ -15,3 +15,4 @@ var UserInterfaceItemSearchingProtocol *objc.Protocol
 func init() {
 	UserInterfaceItemSearchingProtocol = objc.GetProtocol("NSUserInterfaceItemSearching")
 }
+

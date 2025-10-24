@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // roundedMarkersProtocol is the roundedMarkers protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to roundedMarkers.
 var roundedMarkersProtocol *objc.Protocol
 
 func init() {
 	roundedMarkersProtocol = objc.GetProtocol("roundedMarkers")
 }
+

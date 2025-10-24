@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for ScreenTime. DO NOT EDIT.
 
 // Package screentime provides Go bindings for the ScreenTime framework.
 //
-// Share and manage web-usage data, and observe changes made by a parent or guardian.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ScreenTime without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/ScreenTime
 package screentime
 
 import (

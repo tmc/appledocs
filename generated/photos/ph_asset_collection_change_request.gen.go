@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHAssetCollectionChangeRequest] class.
@@ -41,7 +41,6 @@ type IPHAssetCollectionChangeRequest interface {
 // A request to create, delete, or modify a Photos asset collection, for use in a photo library change block.
 //
 // You use the class to request changes for objects. To make changes to asset collections (such as user-created albums) in the Photos library, create a change request using the appropriate class method for the change you want to perform. Call the method to create a new asset collection. Call the method to delete existing asset collections. Call the or method to modify a collection’s metadata or list of member assets. Before creating a change request, use the method to verify that the collection allows the edit operation you’re requesting. If you attempt to perform an unsupported edit operation, Photos throws an exception. A change request for creating or modifying an asset collection works like a mutable version of the asset collection object. Use the change request’s properties and instance methods to request changes to the asset collection itself. For example, the following code removes an asset from an album. After Photos runs the change block and calls your completion handler, the asset collection’s state reflects the changes you requested in the block. If you create or use a change request object outside a photo library change block, Photos raises an Objective-C exception. For details on change blocks, see .
-
 
 // A request to create, delete, or modify a Photos asset collection, for use in a photo library change block.
 //
@@ -91,8 +90,6 @@ func NewPHAssetCollectionChangeRequest() PHAssetCollectionChangeRequest {
 	return getPHAssetCollectionChangeRequestClass().New()
 }
 
-
-
 // A placeholder object for the asset collection that the change request creates.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (p_ PHAssetCollectionChangeRequest) PlaceholderForCreatedAssetCollection() 
 	return rv
 }
 
-
 // A placeholder object for the asset collection that the change request creates.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (p_ PHAssetCollectionChangeRequest) PlaceholderForCreatedAssetCollection() 
 func (p_ PHAssetCollectionChangeRequest) SetPlaceholderForCreatedAssetCollection(value IPHObjectPlaceholder) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaceholderForCreatedAssetCollection:"), value)
 }
-
 
 // The displayed name of the asset collection.
 //
@@ -121,7 +116,6 @@ func (p_ PHAssetCollectionChangeRequest) Title() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The displayed name of the asset collection.
 //
 // [Full Topic]
@@ -129,6 +123,3 @@ func (p_ PHAssetCollectionChangeRequest) Title() objc.IObject /* cross-framework
 func (p_ PHAssetCollectionChangeRequest) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
-
-
-

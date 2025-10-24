@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSTextCheckingResult */
+
+
+/* debug [class_header]: Header for NSTextCheckingResult */
 // The class instance for the [TextCheckingResult] class.
 var (
 	TextCheckingResultClass     _TextCheckingResultClass
@@ -26,10 +30,16 @@ func getTextCheckingResultClass() _TextCheckingResultClass {
 type _TextCheckingResultClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TextCheckingResult */
 // An interface definition for the [TextCheckingResult] class.
 type ITextCheckingResult interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for TextCheckingResult */
 	// properties:
 	AddressComponents() IDictionary
 	AlternativeStrings() []string
@@ -47,32 +57,22 @@ type ITextCheckingResult interface {
 	TimeZone() ITimeZone
 	URL() IURL
 	NSNotFound() int
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TextCheckingResult */
 	// methods:
 	ResultByAdjustingRangesWithOffset(offset int) ITextCheckingResult
 	RangeAtIndex(idx uint) objc.IObject /* cross-framework: Range */
 	RangeWithName(name IString) objc.IObject /* cross-framework: Range */
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
-//
-// On both iOS and macOS, instances of are returned by the class and the class to indicate the discovery of content. In those cases, what is found may be a match for a regular expression or a date, address, phone number, and so on. In macOS, instances of are returned by the object to describe the results of spelling, grammar, or text-substitution actions.
+/* debug [class_interface]: End interface */
 
 
-// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult
-type TextCheckingResult struct {
-	objectivec.Object
-}
 
-// TextCheckingResultFrom constructs a [TextCheckingResult] from an unsafe.Pointer.
-//
-// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
-func TextCheckingResultFrom(ptr unsafe.Pointer) TextCheckingResult {
-	return TextCheckingResult{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for TextCheckingResult */
 // Alloc allocates a new instance without initialization.
 func (tc _TextCheckingResultClass) Alloc() TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("alloc"))
@@ -80,7 +80,6 @@ func (tc _TextCheckingResultClass) Alloc() TextCheckingResult {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TextCheckingResultClass) New() TextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -103,8 +102,39 @@ func (t_ TextCheckingResult) Autorelease() TextCheckingResult {
 func NewTextCheckingResult() TextCheckingResult {
 	return getTextCheckingResultClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for TextCheckingResult */
+// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
+//
+// On both iOS and macOS, instances of are returned by the class and the class to indicate the discovery of content. In those cases, what is found may be a match for a regular expression or a date, address, phone number, and so on. In macOS, instances of are returned by the object to describe the results of spelling, grammar, or text-substitution actions.
+
+
+// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult
+type TextCheckingResult struct {
+	objectivec.Object
+}
+
+// TextCheckingResultFrom constructs a [TextCheckingResult] from an unsafe.Pointer.
+//
+// An occurrence of textual content found during the analysis of a block of text, such as when matching a regular expression.
+func TextCheckingResultFrom(ptr unsafe.Pointer) TextCheckingResult {
+	return TextCheckingResult{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TextCheckingResult *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for TextCheckingResult */
 
 // Creates and returns a text checking result with the specified address components.
 //
@@ -113,7 +143,7 @@ func NewTextCheckingResult() TextCheckingResult {
 func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(range_ objc.IObject /* cross-framework: Range */, components IDictionary) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("addressCheckingResultWithRange:components:"), range_, components)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AddressCheckingResultWithRangeComponents) */
 
 
 // Creates and returns a text checking result after detecting a possible correction.
@@ -123,7 +153,7 @@ func (tc _TextCheckingResultClass) AddressCheckingResultWithRangeComponents(rang
 func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementString(range_ objc.IObject /* cross-framework: Range */, replacementString IString) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("correctionCheckingResultWithRange:replacementString:"), range_, replacementString)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CorrectionCheckingResultWithRangeReplacementString) */
 
 
 // [Full Topic]
@@ -131,7 +161,7 @@ func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementS
 func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementStringAlternativeStrings(range_ objc.IObject /* cross-framework: Range */, replacementString IString, alternativeStrings []string) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("correctionCheckingResultWithRange:replacementString:alternativeStrings:"), range_, replacementString, alternativeStrings)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CorrectionCheckingResultWithRangeReplacementStringAlternativeStrings) */
 
 
 // Creates and returns a text checking result with the specified dash corrected replacement string.
@@ -141,7 +171,7 @@ func (tc _TextCheckingResultClass) CorrectionCheckingResultWithRangeReplacementS
 func (tc _TextCheckingResultClass) DashCheckingResultWithRangeReplacementString(range_ objc.IObject /* cross-framework: Range */, replacementString IString) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("dashCheckingResultWithRange:replacementString:"), range_, replacementString)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DashCheckingResultWithRangeReplacementString) */
 
 
 // Creates and returns a text checking result with the specified date.
@@ -151,7 +181,7 @@ func (tc _TextCheckingResultClass) DashCheckingResultWithRangeReplacementString(
 func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDate(range_ objc.IObject /* cross-framework: Range */, date IDate) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("dateCheckingResultWithRange:date:"), range_, date)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateCheckingResultWithRangeDate) */
 
 
 // Creates and returns a text checking result with the specified date, time zone, and duration.
@@ -161,7 +191,7 @@ func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDate(range_ objc.I
 func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDateTimeZoneDuration(range_ objc.IObject /* cross-framework: Range */, date IDate, timeZone ITimeZone, duration float64) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("dateCheckingResultWithRange:date:timeZone:duration:"), range_, date, timeZone, duration)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateCheckingResultWithRangeDateTimeZoneDuration) */
 
 
 // Creates and returns a text checking result with the specified array of grammatical errors.
@@ -171,7 +201,7 @@ func (tc _TextCheckingResultClass) DateCheckingResultWithRangeDateTimeZoneDurati
 func (tc _TextCheckingResultClass) GrammarCheckingResultWithRangeDetails(range_ objc.IObject /* cross-framework: Range */, details IDictionary) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("grammarCheckingResultWithRange:details:"), range_, details)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=GrammarCheckingResultWithRangeDetails) */
 
 
 // Creates and returns a text checking result with the specified URL.
@@ -181,7 +211,7 @@ func (tc _TextCheckingResultClass) GrammarCheckingResultWithRangeDetails(range_ 
 func (tc _TextCheckingResultClass) LinkCheckingResultWithRangeURL(range_ objc.IObject /* cross-framework: Range */, url IURL) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("linkCheckingResultWithRange:URL:"), range_, url)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LinkCheckingResultWithRangeURL) */
 
 
 // Creates and returns a text checking result with the specified orthography.
@@ -191,7 +221,7 @@ func (tc _TextCheckingResultClass) LinkCheckingResultWithRangeURL(range_ objc.IO
 func (tc _TextCheckingResultClass) OrthographyCheckingResultWithRangeOrthography(range_ objc.IObject /* cross-framework: Range */, orthography IOrthography) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("orthographyCheckingResultWithRange:orthography:"), range_, orthography)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=OrthographyCheckingResultWithRangeOrthography) */
 
 
 // Creates and returns a text checking result with the specified phone number.
@@ -201,7 +231,7 @@ func (tc _TextCheckingResultClass) OrthographyCheckingResultWithRangeOrthography
 func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber(range_ objc.IObject /* cross-framework: Range */, phoneNumber IString) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("phoneNumberCheckingResultWithRange:phoneNumber:"), range_, phoneNumber)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PhoneNumberCheckingResultWithRangePhoneNumber) */
 
 
 // Creates and returns a text checking result with the specified quote-balanced replacement string.
@@ -211,17 +241,17 @@ func (tc _TextCheckingResultClass) PhoneNumberCheckingResultWithRangePhoneNumber
 func (tc _TextCheckingResultClass) QuoteCheckingResultWithRangeReplacementString(range_ objc.IObject /* cross-framework: Range */, replacementString IString) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("quoteCheckingResultWithRange:replacementString:"), range_, replacementString)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=QuoteCheckingResultWithRangeReplacementString) */
 
 
 // Creates and returns a type checking result with the specified regular expression data.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/regularExpressionCheckingResult(ranges:count:regularExpression:)
-func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCountRegularExpression(ranges objc.IObject /* cross-framework: RangePointer */, count uint, regularExpression IRegularExpression) ITextCheckingResult {
+func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCountRegularExpression(ranges RangePointer /* typedef */, count uint, regularExpression IRegularExpression) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("regularExpressionCheckingResultWithRanges:count:regularExpression:"), ranges, count, regularExpression)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RegularExpressionCheckingResultWithRangesCountRegularExpression) */
 
 
 // Creates and returns a text checking result with the specified replacement string.
@@ -231,7 +261,7 @@ func (tc _TextCheckingResultClass) RegularExpressionCheckingResultWithRangesCoun
 func (tc _TextCheckingResultClass) ReplacementCheckingResultWithRangeReplacementString(range_ objc.IObject /* cross-framework: Range */, replacementString IString) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("replacementCheckingResultWithRange:replacementString:"), range_, replacementString)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ReplacementCheckingResultWithRangeReplacementString) */
 
 
 // Creates and returns a text checking result with the range of a misspelled word.
@@ -241,7 +271,7 @@ func (tc _TextCheckingResultClass) ReplacementCheckingResultWithRangeReplacement
 func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ objc.IObject /* cross-framework: Range */) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("spellCheckingResultWithRange:"), range_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SpellCheckingResultWithRange) */
 
 
 // Creates and returns a text checking result with the specified transit information.
@@ -251,8 +281,18 @@ func (tc _TextCheckingResultClass) SpellCheckingResultWithRange(range_ objc.IObj
 func (tc _TextCheckingResultClass) TransitInformationCheckingResultWithRangeComponents(range_ objc.IObject /* cross-framework: Range */, components IDictionary) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](objc.ID(tc.class), objc.Sel("transitInformationCheckingResultWithRange:components:"), range_, components)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=TransitInformationCheckingResultWithRangeComponents) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TextCheckingResult */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TextCheckingResult */
 
 // Returns a new text checking result after adjusting the ranges as specified by the offset.
 //
@@ -261,7 +301,7 @@ func (tc _TextCheckingResultClass) TransitInformationCheckingResultWithRangeComp
 func (t_ TextCheckingResult) ResultByAdjustingRangesWithOffset(offset int) ITextCheckingResult {
 	rv := objc.Send[TextCheckingResult](t_.ID, objc.Sel("resultByAdjustingRangesWithOffset:"), offset)
 	return rv
-}
+}/* debug [instance_methods/method]: ResultByAdjustingRangesWithOffset */
 
 
 // Returns the result type that the range represents.
@@ -271,7 +311,7 @@ func (t_ TextCheckingResult) ResultByAdjustingRangesWithOffset(offset int) IText
 func (t_ TextCheckingResult) RangeAtIndex(idx uint) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("rangeAtIndex:"), idx)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeAtIndex */
 
 
 // [Full Topic]
@@ -279,8 +319,13 @@ func (t_ TextCheckingResult) RangeAtIndex(idx uint) objc.IObject /* cross-framew
 func (t_ TextCheckingResult) RangeWithName(name IString) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("rangeWithName:"), name)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeWithName */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TextCheckingResult */
 
 // The address dictionary of a type checking result.
 //
@@ -289,7 +334,7 @@ func (t_ TextCheckingResult) RangeWithName(name IString) objc.IObject /* cross-f
 func (t_ TextCheckingResult) AddressComponents() IDictionary {
 	rv := objc.Send[Dictionary](t_.ID, objc.Sel("addressComponents"))
 	return rv
-}
+}/* debug [instance_properties/getter]: addressComponents */
 
 
 // [Full Topic]
@@ -297,7 +342,7 @@ func (t_ TextCheckingResult) AddressComponents() IDictionary {
 func (t_ TextCheckingResult) AlternativeStrings() []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("alternativeStrings"))
 	return rv
-}
+}/* debug [instance_properties/getter]: alternativeStrings */
 
 
 // A dictionary containing the components of a type checking result.
@@ -307,7 +352,7 @@ func (t_ TextCheckingResult) AlternativeStrings() []string {
 func (t_ TextCheckingResult) Components() IDictionary {
 	rv := objc.Send[Dictionary](t_.ID, objc.Sel("components"))
 	return rv
-}
+}/* debug [instance_properties/getter]: components */
 
 
 // The date component of a type checking result.
@@ -317,7 +362,7 @@ func (t_ TextCheckingResult) Components() IDictionary {
 func (t_ TextCheckingResult) Date() IDate {
 	rv := objc.Send[Date](t_.ID, objc.Sel("date"))
 	return rv
-}
+}/* debug [instance_properties/getter]: date */
 
 
 // The duration component of a type checking result.
@@ -325,9 +370,9 @@ func (t_ TextCheckingResult) Date() IDate {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTextCheckingResult/duration
 func (t_ TextCheckingResult) Duration() float64 {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("duration"))
+	rv := objc.Send[float64](t_.ID, objc.Sel("duration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: duration */
 
 
 // The details of a located grammatical type checking result.
@@ -337,7 +382,7 @@ func (t_ TextCheckingResult) Duration() float64 {
 func (t_ TextCheckingResult) GrammarDetails() IDictionary {
 	rv := objc.Send[Dictionary](t_.ID, objc.Sel("grammarDetails"))
 	return rv
-}
+}/* debug [instance_properties/getter]: grammarDetails */
 
 
 // Returns the number of ranges.
@@ -347,7 +392,7 @@ func (t_ TextCheckingResult) GrammarDetails() IDictionary {
 func (t_ TextCheckingResult) NumberOfRanges() uint {
 	rv := objc.Send[uint](t_.ID, objc.Sel("numberOfRanges"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfRanges */
 
 
 // The detected orthography of a type checking result.
@@ -357,7 +402,7 @@ func (t_ TextCheckingResult) NumberOfRanges() uint {
 func (t_ TextCheckingResult) Orthography() IOrthography {
 	rv := objc.Send[Orthography](t_.ID, objc.Sel("orthography"))
 	return rv
-}
+}/* debug [instance_properties/getter]: orthography */
 
 
 // The phone number of a type checking result.
@@ -367,7 +412,7 @@ func (t_ TextCheckingResult) Orthography() IOrthography {
 func (t_ TextCheckingResult) PhoneNumber() IString {
 	rv := objc.Send[String](t_.ID, objc.Sel("phoneNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: phoneNumber */
 
 
 // Returns the range of the result that the receiver represents.
@@ -377,7 +422,7 @@ func (t_ TextCheckingResult) PhoneNumber() IString {
 func (t_ TextCheckingResult) Range() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](t_.ID, objc.Sel("range"))
 	return rv
-}
+}/* debug [instance_properties/getter]: range */
 
 
 // The regular expression of a type checking result.
@@ -387,7 +432,7 @@ func (t_ TextCheckingResult) Range() objc.IObject /* cross-framework: Range */ {
 func (t_ TextCheckingResult) RegularExpression() IRegularExpression {
 	rv := objc.Send[RegularExpression](t_.ID, objc.Sel("regularExpression"))
 	return rv
-}
+}/* debug [instance_properties/getter]: regularExpression */
 
 
 // A replacement string from one of a number of replacement checking results.
@@ -397,7 +442,7 @@ func (t_ TextCheckingResult) RegularExpression() IRegularExpression {
 func (t_ TextCheckingResult) ReplacementString() IString {
 	rv := objc.Send[String](t_.ID, objc.Sel("replacementString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: replacementString */
 
 
 // Returns the text checking result type that the receiver represents.
@@ -407,7 +452,7 @@ func (t_ TextCheckingResult) ReplacementString() IString {
 func (t_ TextCheckingResult) ResultType() TextCheckingType {
 	rv := objc.Send[TextCheckingType](t_.ID, objc.Sel("resultType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: resultType */
 
 
 // The time zone component of a type checking result.
@@ -417,7 +462,7 @@ func (t_ TextCheckingResult) ResultType() TextCheckingType {
 func (t_ TextCheckingResult) TimeZone() ITimeZone {
 	rv := objc.Send[TimeZone](t_.ID, objc.Sel("timeZone"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeZone */
 
 
 // The URL of a type checking result.
@@ -427,7 +472,7 @@ func (t_ TextCheckingResult) TimeZone() ITimeZone {
 func (t_ TextCheckingResult) URL() IURL {
 	rv := objc.Send[URL](t_.ID, objc.Sel("URL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: URL */
 
 
 // A value indicating that a requested item couldn’t be found or doesn’t exist.
@@ -437,7 +482,12 @@ func (t_ TextCheckingResult) URL() IURL {
 func (t_ TextCheckingResult) NSNotFound() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("NSNotFound"))
 	return rv
-}
+}/* debug [instance_properties/getter]: NSNotFound */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSTextCheckingResult */
 
 
 

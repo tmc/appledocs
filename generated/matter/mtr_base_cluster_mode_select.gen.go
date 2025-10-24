@@ -33,8 +33,6 @@ type IMTRBaseClusterModeSelect interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterModeSelect
 type MTRBaseClusterModeSelect struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterModeSelect) Autorelease() MTRBaseClusterModeSelect {
 func NewMTRBaseClusterModeSelect() MTRBaseClusterModeSelect {
 	return getMTRBaseClusterModeSelectClass().New()
 }
-
-
-
-

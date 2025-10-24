@@ -10,5 +10,5 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSColorChanging
 type PColorChanging interface {
 	// Required methods
-	ChangeColor(sender IColorPanel)
+	ChangeColor(sender IColorPanel)/* debug [protocol_interface/required_method]: ChangeColor */
 }

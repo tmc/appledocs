@@ -15,3 +15,4 @@ var ruleEditorRowsDidChangeProtocol *objc.Protocol
 func init() {
 	ruleEditorRowsDidChangeProtocol = objc.GetProtocol("ruleEditorRowsDidChange:")
 }
+

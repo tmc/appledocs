@@ -37,7 +37,6 @@ type IINPaymentStatusResolutionResult interface {
 //
 // An object is what you return when resolving parameters containing an value. Use the creation method that best reflects your ability to resolve the parameter successfully. For additional resolution options, see .
 
-
 // A resolution result for the payment status of a bill during a search.
 //
 // [Full Topic]
@@ -85,7 +84,3 @@ func (i_ INPaymentStatusResolutionResult) Autorelease() INPaymentStatusResolutio
 func NewINPaymentStatusResolutionResult() INPaymentStatusResolutionResult {
 	return getINPaymentStatusResolutionResultClass().New()
 }
-
-
-
-

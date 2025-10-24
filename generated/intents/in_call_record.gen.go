@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -55,7 +55,6 @@ type IINCallRecord interface {
 //
 // An object stores details about calls made by the user through your app. You use call record objects to communicate basic information about calls to SiriKit. A call record identifies the type of call, the duration of the call, the date and time of the call, and the person on the other end of the call. You create call record objects when reporting search results back to SiriKit and when identifying voicemails to play.
 
-
 // The details about a call handled by your app.
 //
 // [Full Topic]
@@ -102,8 +101,6 @@ func NewINCallRecord() INCallRecord {
 	return getINCallRecordClass().New()
 }
 
-
-
 // The audio and video capabilities of the call.
 //
 // [Full Topic]
@@ -113,7 +110,6 @@ func (i_ INCallRecord) CallCapability() INCallCapability {
 	return rv
 }
 
-
 // The audio and video capabilities of the call.
 //
 // [Full Topic]
@@ -121,7 +117,6 @@ func (i_ INCallRecord) CallCapability() INCallCapability {
 func (i_ INCallRecord) SetCallCapability(value INCallCapability) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallCapability:"), value)
 }
-
 
 // The duration (measured in seconds) of the call.
 //
@@ -132,7 +127,6 @@ func (i_ INCallRecord) CallDuration() float64 {
 	return rv
 }
 
-
 // The duration (measured in seconds) of the call.
 //
 // [Full Topic]
@@ -140,7 +134,6 @@ func (i_ INCallRecord) CallDuration() float64 {
 func (i_ INCallRecord) SetCallDuration(value float64) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallDuration:"), value)
 }
-
 
 // The type of call that resulted from the attempt.
 //
@@ -151,7 +144,6 @@ func (i_ INCallRecord) CallRecordType() INCallRecordType {
 	return rv
 }
 
-
 // The type of call that resulted from the attempt.
 //
 // [Full Topic]
@@ -159,7 +151,6 @@ func (i_ INCallRecord) CallRecordType() INCallRecordType {
 func (i_ INCallRecord) SetCallRecordType(value INCallRecordType) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallRecordType:"), value)
 }
-
 
 // The person who participated in the call with the current user.
 //
@@ -170,7 +161,6 @@ func (i_ INCallRecord) Caller() INPerson {
 	return rv
 }
 
-
 // The person who participated in the call with the current user.
 //
 // [Full Topic]
@@ -178,7 +168,6 @@ func (i_ INCallRecord) Caller() INPerson {
 func (i_ INCallRecord) SetCaller(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCaller:"), value)
 }
-
 
 // The date and time at which the call was initiated.
 //
@@ -189,7 +178,6 @@ func (i_ INCallRecord) DateCreated() foundation.Date {
 	return rv
 }
 
-
 // The date and time at which the call was initiated.
 //
 // [Full Topic]
@@ -197,7 +185,6 @@ func (i_ INCallRecord) DateCreated() foundation.Date {
 func (i_ INCallRecord) SetDateCreated(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDateCreated:"), value)
 }
-
 
 // A unique string that you can use to locate the call in your app.
 //
@@ -208,7 +195,6 @@ func (i_ INCallRecord) Identifier() string {
 	return rv
 }
 
-
 // A unique string that you can use to locate the call in your app.
 //
 // [Full Topic]
@@ -216,7 +202,6 @@ func (i_ INCallRecord) Identifier() string {
 func (i_ INCallRecord) SetIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setIdentifier:"), objc.String(value))
 }
-
 
 // The number of calls in the call record.
 //
@@ -227,7 +212,6 @@ func (i_ INCallRecord) NumberOfCalls() int {
 	return rv
 }
 
-
 // The number of calls in the call record.
 //
 // [Full Topic]
@@ -235,7 +219,6 @@ func (i_ INCallRecord) NumberOfCalls() int {
 func (i_ INCallRecord) SetNumberOfCalls(value int) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setNumberOfCalls:"), value)
 }
-
 
 // The recipient of the user’s call request.
 //
@@ -246,7 +229,6 @@ func (i_ INCallRecord) Participants() INPerson {
 	return rv
 }
 
-
 // The recipient of the user’s call request.
 //
 // [Full Topic]
@@ -254,7 +236,6 @@ func (i_ INCallRecord) Participants() INPerson {
 func (i_ INCallRecord) SetParticipants(value INPerson) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setParticipants:"), value)
 }
-
 
 // A Boolean value indicating whether the user has seen the call.
 //
@@ -265,7 +246,6 @@ func (i_ INCallRecord) Unseen() bool {
 	return rv
 }
 
-
 // A Boolean value indicating whether the user has seen the call.
 //
 // [Full Topic]
@@ -273,6 +253,3 @@ func (i_ INCallRecord) Unseen() bool {
 func (i_ INCallRecord) SetUnseen(value bool) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setUnseen:"), value)
 }
-
-
-

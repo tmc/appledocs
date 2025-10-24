@@ -2,12 +2,8 @@
 
 // Package systemconfiguration provides Go bindings for the SystemConfiguration framework.
 //
-// Allow applications to access a device’s network configuration settings. Determine the reachability of the device, such as whether Wi-Fi or cell connectivity are active.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to SystemConfiguration without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/SystemConfiguration
 package systemconfiguration
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/SystemConfiguration.framework/SystemConfiguration"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

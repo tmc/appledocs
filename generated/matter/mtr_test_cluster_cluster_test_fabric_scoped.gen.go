@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestFabricScoped] class.
@@ -49,8 +49,6 @@ type IMTRTestClusterClusterTestFabricScoped interface {
 	SetOptionalFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestFabricScoped
@@ -96,8 +94,6 @@ func NewMTRTestClusterClusterTestFabricScoped() MTRTestClusterClusterTestFabricS
 	return getMTRTestClusterClusterTestFabricScopedClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricindex
 func (m_ MTRTestClusterClusterTestFabricScoped) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
@@ -105,13 +101,11 @@ func (m_ MTRTestClusterClusterTestFabricScoped) FabricIndex() objc.IObject /* cr
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricindex
 func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitivecharstring
@@ -120,13 +114,11 @@ func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveCharString() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitivecharstring
 func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveCharString(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveCharString:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitiveint8u
@@ -135,13 +127,11 @@ func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveInt8u() objc.IObj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitiveint8u
 func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveInt8u:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitiveint8ulist
@@ -150,13 +140,11 @@ func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveInt8uList() unsaf
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitiveint8ulist
 func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveInt8uList(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveInt8uList:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitivestruct
@@ -165,13 +153,11 @@ func (m_ MTRTestClusterClusterTestFabricScoped) FabricSensitiveStruct() IMTRTest
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/fabricsensitivestruct
 func (m_ MTRTestClusterClusterTestFabricScoped) SetFabricSensitiveStruct(value IMTRTestClusterClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricSensitiveStruct:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/nullablefabricsensitiveint8u
@@ -180,13 +166,11 @@ func (m_ MTRTestClusterClusterTestFabricScoped) NullableFabricSensitiveInt8u() o
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/nullablefabricsensitiveint8u
 func (m_ MTRTestClusterClusterTestFabricScoped) SetNullableFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableFabricSensitiveInt8u:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/nullableoptionalfabricsensitiveint8u
@@ -195,13 +179,11 @@ func (m_ MTRTestClusterClusterTestFabricScoped) NullableOptionalFabricSensitiveI
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/nullableoptionalfabricsensitiveint8u
 func (m_ MTRTestClusterClusterTestFabricScoped) SetNullableOptionalFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalFabricSensitiveInt8u:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/optionalfabricsensitiveint8u
@@ -210,12 +192,8 @@ func (m_ MTRTestClusterClusterTestFabricScoped) OptionalFabricSensitiveInt8u() o
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestfabricscoped/optionalfabricsensitiveint8u
 func (m_ MTRTestClusterClusterTestFabricScoped) SetOptionalFabricSensitiveInt8u(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalFabricSensitiveInt8u:"), value)
 }
-
-
-

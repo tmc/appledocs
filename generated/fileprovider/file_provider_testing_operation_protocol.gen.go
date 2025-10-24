@@ -18,3 +18,4 @@ var FileProviderTestingOperationProtocol *objc.Protocol
 func init() {
 	FileProviderTestingOperationProtocol = objc.GetProtocol("NSFileProviderTestingOperation")
 }
+

@@ -40,7 +40,7 @@ func ExampleNewIndexPathWithIndex() {
 func ExampleNewIndexPathWithIndexesLength() {
 	_ = foundation.NewIndexPathWithIndexesLength(
 		[]foundation.uint{}, // indexes []uint
-		0, // length uint
+		10, // length uint
 	)
 	// Output:
 }

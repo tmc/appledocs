@@ -2,10 +2,10 @@
 
 package cryptokit
 
+/* debug [functions.gen.go]: Generating 0 functions for CryptoKit */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // CryptoKit Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

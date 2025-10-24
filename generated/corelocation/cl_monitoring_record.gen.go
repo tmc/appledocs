@@ -38,7 +38,6 @@ type IMonitoringRecord interface {
 //
 // When handling a new , the available for the indicated identifier from the contains the prior event. The updates with the new event when the handling is complete.
 
-
 // An object that represents a condition and its associated information that a location monitor is monitoring.
 //
 // [Full Topic]
@@ -84,7 +83,3 @@ func (m_ MonitoringRecord) Autorelease() MonitoringRecord {
 func NewMonitoringRecord() MonitoringRecord {
 	return getMonitoringRecordClass().New()
 }
-
-
-
-

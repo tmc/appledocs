@@ -20,11 +20,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GameController/GCEventInteraction/handledEventTypes
-func (g_ GCEventInteraction) HandledEventTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("handledEventTypes"))
+func (g_ GCEventInteraction) HandledEventTypes() GCUIEventTypes {
+	rv := objc.Send[GCUIEventTypes](g_.ID, objc.Sel("handledEventTypes"))
 	return rv
 }
-func (g_ GCEventInteraction) SetHandledEventTypes(value unsafe.Pointer) {
+func (g_ GCEventInteraction) SetHandledEventTypes(value GCUIEventTypes) {
 	g_.ID.Send(objc.RegisterName("setHandledEventTypes:"), value)
 }
 

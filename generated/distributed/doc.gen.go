@@ -2,12 +2,8 @@
 
 // Package distributed provides Go bindings for the Distributed framework.
 //
-// Build systems that run distributed code across multiple processes and devices.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to Distributed without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/Distributed
 package distributed
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/Distributed.framework/Distributed"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

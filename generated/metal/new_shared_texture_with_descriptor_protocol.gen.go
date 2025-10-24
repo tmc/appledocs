@@ -20,3 +20,4 @@ var newSharedTextureWithDescriptorProtocol *objc.Protocol
 func init() {
 	newSharedTextureWithDescriptorProtocol = objc.GetProtocol("newSharedTextureWithDescriptor:")
 }
+

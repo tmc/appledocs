@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVCapturePhotoOutput */
+
+
+/* debug [class_header]: Header for AVCapturePhotoOutput */
 // The class instance for the [CapturePhotoOutput] class.
 var (
 	CapturePhotoOutputClass     _CapturePhotoOutputClass
@@ -26,37 +31,48 @@ func getCapturePhotoOutputClass() _CapturePhotoOutputClass {
 type _CapturePhotoOutputClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CapturePhotoOutput */
 // An interface definition for the [CapturePhotoOutput] class.
 type ICapturePhotoOutput interface {
 	ICaptureOutput
-	CapturePhotoWithSettingsDelegate(settings IAVCapturePhotoSettings, delegate objectivec.IObject)
+	
+/* debug [class_interface_properties]: Properties for CapturePhotoOutput */
+	// properties:
+	AvailablePhotoPixelFormatTypes() []foundation.Number
+	AvailablePhotoCodecTypes() []string
+	AvailablePhotoFileTypes() []string
+	CaptureReadiness() CapturePhotoOutputCaptureReadiness
 	ConstantColorEnabled() bool
 	SetConstantColorEnabled(value bool)
+	ConstantColorSupported() bool
+	FastCapturePrioritizationEnabled() bool
+	SetFastCapturePrioritizationEnabled(value bool)
+	FastCapturePrioritizationSupported() bool
+	SetFastCapturePrioritizationSupported(value bool)
+	HighResolutionCaptureEnabled() bool
+	SetHighResolutionCaptureEnabled(value bool)
+	ResponsiveCaptureEnabled() bool
+	SetResponsiveCaptureEnabled(value bool)
+	ResponsiveCaptureSupported() bool
+	ShutterSoundSuppressionSupported() bool
+	ZeroShutterLagEnabled() bool
+	SetZeroShutterLagEnabled(value bool)
+	ZeroShutterLagSupported() bool
+	MaxPhotoDimensions() VideoDimensions /* not a class type */
+	SetMaxPhotoDimensions(value VideoDimensions /* not a class type */)
+	MaxPhotoQualityPrioritization() CapturePhotoQualityPrioritization
+	SetMaxPhotoQualityPrioritization(value CapturePhotoQualityPrioritization)
+	PreservesLivePhotoCaptureSuspendedOnSessionStop() bool
+	SetPreservesLivePhotoCaptureSuspendedOnSessionStop(value bool)
+	SupportedFlashModes() []foundation.Number
 	ActiveColorSpace() CaptureColorSpace
-	SetActiveColorSpace(value ICaptureColorSpace)
-	PortraitEffectsMatte() AVPortraitEffectsMatte
+	SetActiveColorSpace(value CaptureColorSpace)
+	PortraitEffectsMatte() IAVPortraitEffectsMatte
 	SetPortraitEffectsMatte(value IAVPortraitEffectsMatte)
-	AvailableLivePhotoVideoCodecTypes() VideoCodecType
-	SetAvailableLivePhotoVideoCodecTypes(value VideoCodecType)
-	AvailablePhotoCodecTypes() VideoCodecType
-	SetAvailablePhotoCodecTypes(value VideoCodecType)
-	AvailablePhotoFileTypes() FileType
-	SetAvailablePhotoFileTypes(value FileType)
-	AvailablePhotoPixelFormatTypes() unsafe.Pointer
-	SetAvailablePhotoPixelFormatTypes(value unsafe.Pointer)
-	AvailableRawPhotoCodecTypes() VideoCodecType
-	SetAvailableRawPhotoCodecTypes(value VideoCodecType)
-	AvailableRawPhotoFileTypes() FileType
-	SetAvailableRawPhotoFileTypes(value FileType)
-	AvailableRawPhotoPixelFormatTypes() unsafe.Pointer
-	SetAvailableRawPhotoPixelFormatTypes(value unsafe.Pointer)
-	AvailableSemanticSegmentationMatteTypes() unsafe.Pointer
-	SetAvailableSemanticSegmentationMatteTypes(value unsafe.Pointer)
-	CaptureReadiness() unsafe.Pointer
-	SetCaptureReadiness(value unsafe.Pointer)
-	EnabledSemanticSegmentationMatteTypes() unsafe.Pointer
-	SetEnabledSemanticSegmentationMatteTypes(value unsafe.Pointer)
 	IsAppleProRAWEnabled() bool
 	SetIsAppleProRAWEnabled(value bool)
 	IsAppleProRAWSupported() bool
@@ -89,8 +105,6 @@ type ICapturePhotoOutput interface {
 	SetIsFastCapturePrioritizationEnabled(value bool)
 	IsFastCapturePrioritizationSupported() bool
 	SetIsFastCapturePrioritizationSupported(value bool)
-	IsFlashScene() bool
-	SetIsFlashScene(value bool)
 	IsHighResolutionCaptureEnabled() bool
 	SetIsHighResolutionCaptureEnabled(value bool)
 	IsLensStabilizationDuringBracketedCaptureSupported() bool
@@ -123,48 +137,26 @@ type ICapturePhotoOutput interface {
 	SetIsZeroShutterLagEnabled(value bool)
 	IsZeroShutterLagSupported() bool
 	SetIsZeroShutterLagSupported(value bool)
-	MaxBracketedCapturePhotoCount() int
-	SetMaxBracketedCapturePhotoCount(value int)
-	MaxPhotoDimensions() unsafe.Pointer
-	SetMaxPhotoDimensions(value unsafe.Pointer)
-	MaxPhotoQualityPrioritization() unsafe.Pointer
-	SetMaxPhotoQualityPrioritization(value unsafe.Pointer)
-	PhotoSettingsForSceneMonitoring() AVCapturePhotoSettings
-	SetPhotoSettingsForSceneMonitoring(value IAVCapturePhotoSettings)
-	PreparedPhotoSettingsArray() AVCapturePhotoSettings
-	SetPreparedPhotoSettingsArray(value IAVCapturePhotoSettings)
-	PreservesLivePhotoCaptureSuspendedOnSessionStop() bool
-	SetPreservesLivePhotoCaptureSuspendedOnSessionStop(value bool)
-	SupportedFlashModes() unsafe.Pointer
-	SetSupportedFlashModes(value unsafe.Pointer)
-	FlashMode() unsafe.Pointer
-	SetFlashMode(value unsafe.Pointer)
-	UniqueID() unsafe.Pointer
-	SetUniqueID(value unsafe.Pointer)
+	FlashMode() objectivec.IObject
+	SetFlashMode(value objectivec.IObject)
+	UniqueID() objectivec.IObject
+	SetUniqueID(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CapturePhotoOutput */
+	// methods:
+	CapturePhotoWithSettingsDelegate(settings IAVCapturePhotoSettings, delegate unsafe.Pointer)
+	SupportedPhotoPixelFormatTypesForFileType(fileType FileType /* typedef */) []foundation.Number
+	SupportedPhotoCodecTypesForFileType(fileType FileType /* typedef */) []string
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A capture output for still image, Live Photos, and other photography workflows.
-//
-// provides an interface for capture workflows related to still photography. In addition to basic capture of still images, a photo output supports RAW-format capture, bracketed capture of multiple images, Live Photos, and wide-gamut color. You can output captured photos in a variety of formats and codecs, including RAW format DNG files, HEVC format HEIF files, and JPEG files. To capture photos with the class, follow these steps: Create an object. Use its properties to determine supported capture settings and to enable certain features (for example, whether to capture Live Photos). Create and configure an object to choose features and settings for a specific capture (for example, whether to enable image stabilization or flash). Capture an image by passing your photo settings object to the method along with a delegate object implementing the protocol. The photo capture output then calls your delegate to notify you of significant events during the capture process. Some photo capture settings, such as the property, include options for automatic behavior. For such settings, the photo output determines whether to use that feature at the moment of capture—you don’t know when requesting a capture whether the feature will be enabled when the capture completes. When the photo capture output calls your methods with information about the completed or in-progress capture, it also provides an object that details which automatic features are set for that capture. The resolved settings object’s property matches the value of the object you used to request capture. Enabling certain photo features (Live Photo capture and high resolution capture) requires a reconfiguration of the capture render pipeline. To opt into these features, set the , , and properties before calling your object’s method. Changing any of these properties while the session is running disrupts the capture render pipeline: Live Photo captures in progress end immediately, unfulfilled photo requests abort, and video preview temporarily freezes. Using a photo capture output adds other requirements to your object: A capture session can’t support both Live Photo capture and movie file output. If your capture session includes an object, the property becomes . (As an alternative, you can use the class to output video buffers at the same resolution as a simultaneous Live Photo capture). A capture session can’t contain both an object and an object. The class includes all functionality of (and deprecates) the class. The class implicitly supports wide-gamut color photography. If the source object’s value is , the capture output produces photos with wide color information (unless your object specifies an output format that doesn’t support wide color).
+/* debug [class_interface]: End interface */
 
 
-// A capture output for still image, Live Photos, and other photography workflows.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput
-type CapturePhotoOutput struct {
-	CaptureOutput
-}
 
-// CapturePhotoOutputFrom constructs a [CapturePhotoOutput] from an unsafe.Pointer.
-//
-// A capture output for still image, Live Photos, and other photography workflows.
-func CapturePhotoOutputFrom(ptr unsafe.Pointer) CapturePhotoOutput {
-	return CapturePhotoOutput{
-		CaptureOutput: CaptureOutputFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CapturePhotoOutput */
 // Alloc allocates a new instance without initialization.
 func (cc _CapturePhotoOutputClass) Alloc() CapturePhotoOutput {
 	rv := objc.Send[CapturePhotoOutput](objc.ID(cc.class), objc.Sel("alloc"))
@@ -172,7 +164,6 @@ func (cc _CapturePhotoOutputClass) Alloc() CapturePhotoOutput {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CapturePhotoOutputClass) New() CapturePhotoOutput {
 	rv := objc.Send[CapturePhotoOutput](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -195,16 +186,165 @@ func (c_ CapturePhotoOutput) Autorelease() CapturePhotoOutput {
 func NewCapturePhotoOutput() CapturePhotoOutput {
 	return getCapturePhotoOutputClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CapturePhotoOutput */
+// A capture output for still image, Live Photos, and other photography workflows.
+//
+// provides an interface for capture workflows related to still photography. In addition to basic capture of still images, a photo output supports RAW-format capture, bracketed capture of multiple images, Live Photos, and wide-gamut color. You can output captured photos in a variety of formats and codecs, including RAW format DNG files, HEVC format HEIF files, and JPEG files. To capture photos with the class, follow these steps: Create an object. Use its properties to determine supported capture settings and to enable certain features (for example, whether to capture Live Photos). Create and configure an object to choose features and settings for a specific capture (for example, whether to enable image stabilization or flash). Capture an image by passing your photo settings object to the method along with a delegate object implementing the protocol. The photo capture output then calls your delegate to notify you of significant events during the capture process. Some photo capture settings, such as the property, include options for automatic behavior. For such settings, the photo output determines whether to use that feature at the moment of capture—you don’t know when requesting a capture whether the feature will be enabled when the capture completes. When the photo capture output calls your methods with information about the completed or in-progress capture, it also provides an object that details which automatic features are set for that capture. The resolved settings object’s property matches the value of the object you used to request capture. Enabling certain photo features (Live Photo capture and high resolution capture) requires a reconfiguration of the capture render pipeline. To opt into these features, set the , , and properties before calling your object’s method. Changing any of these properties while the session is running disrupts the capture render pipeline: Live Photo captures in progress end immediately, unfulfilled photo requests abort, and video preview temporarily freezes. Using a photo capture output adds other requirements to your object: A capture session can’t support both Live Photo capture and movie file output. If your capture session includes an object, the property becomes . (As an alternative, you can use the class to output video buffers at the same resolution as a simultaneous Live Photo capture). A capture session can’t contain both an object and an object. The class includes all functionality of (and deprecates) the class. The class implicitly supports wide-gamut color photography. If the source object’s value is , the capture output produces photos with wide color information (unless your object specifies an output format that doesn’t support wide color).
+
+
+// A capture output for still image, Live Photos, and other photography workflows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput
+type CapturePhotoOutput struct {
+	CaptureOutput
+}
+
+// CapturePhotoOutputFrom constructs a [CapturePhotoOutput] from an unsafe.Pointer.
+//
+// A capture output for still image, Live Photos, and other photography workflows.
+func CapturePhotoOutputFrom(ptr unsafe.Pointer) CapturePhotoOutput {
+	return CapturePhotoOutput{
+		CaptureOutput: CaptureOutputFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CapturePhotoOutput */
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CapturePhotoOutput */
+
+// Returns data in digital negative (DNG) format corresponding to the captured RAW photo in the specified sample buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/dngPhotoDataRepresentation(forRawSampleBuffer:previewPhotoSampleBuffer:)
+func (cc _CapturePhotoOutputClass) DNGPhotoDataRepresentationForRawSampleBufferPreviewPhotoSampleBuffer(rawSampleBuffer SampleBufferRef /* not a class type */, previewPhotoSampleBuffer SampleBufferRef /* not a class type */) foundation.Data {
+	rv := objc.Send[foundation.Data](objc.ID(cc.class), objc.Sel("DNGPhotoDataRepresentationForRawSampleBuffer:previewPhotoSampleBuffer:"), rawSampleBuffer, previewPhotoSampleBuffer)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DNGPhotoDataRepresentationForRawSampleBufferPreviewPhotoSampleBuffer) */
+
+
+// Returns a Boolean value that indicates whether the pixel format is an Apple ProRAW format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isAppleProRAWPixelFormat(_:)
+func (cc _CapturePhotoOutputClass) IsAppleProRAWPixelFormat(pixelFormat uint32 /* not a class type */) bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isAppleProRAWPixelFormat:"), pixelFormat)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=IsAppleProRAWPixelFormat) */
+
+
+// Returns a Boolean value that indicates whether the pixel format is a Bayer RAW format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isBayerRAWPixelFormat(_:)
+func (cc _CapturePhotoOutputClass) IsBayerRAWPixelFormat(pixelFormat uint32 /* not a class type */) bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("isBayerRAWPixelFormat:"), pixelFormat)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=IsBayerRAWPixelFormat) */
+
+
+// Returns data in JPEG format corresponding to the captured photo in the specified sample buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/jpegPhotoDataRepresentation(forJPEGSampleBuffer:previewPhotoSampleBuffer:)
+func (cc _CapturePhotoOutputClass) JPEGPhotoDataRepresentationForJPEGSampleBufferPreviewPhotoSampleBuffer(JPEGSampleBuffer SampleBufferRef /* not a class type */, previewPhotoSampleBuffer SampleBufferRef /* not a class type */) foundation.Data {
+	rv := objc.Send[foundation.Data](objc.ID(cc.class), objc.Sel("JPEGPhotoDataRepresentationForJPEGSampleBuffer:previewPhotoSampleBuffer:"), JPEGSampleBuffer, previewPhotoSampleBuffer)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=JPEGPhotoDataRepresentationForJPEGSampleBufferPreviewPhotoSampleBuffer) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CapturePhotoOutput */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CapturePhotoOutput */
 
 // Initiates a photo capture using the specified settings.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/capturePhoto(with:delegate:)
-func (c_ CapturePhotoOutput) CapturePhotoWithSettingsDelegate(settings IAVCapturePhotoSettings, delegate objectivec.IObject) {
+func (c_ CapturePhotoOutput) CapturePhotoWithSettingsDelegate(settings IAVCapturePhotoSettings, delegate unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("capturePhotoWithSettings:delegate:"), settings, delegate)
-}
+}/* debug [instance_methods/method]: CapturePhotoWithSettingsDelegate */
+
+
+// Returns the list of uncompressed pixel formats supported for photo data in the specified file type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/supportedPhotoPixelFormatTypesForFileType:
+func (c_ CapturePhotoOutput) SupportedPhotoPixelFormatTypesForFileType(fileType FileType /* typedef */) []foundation.Number {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("supportedPhotoPixelFormatTypesForFileType:"), fileType)
+	return rv
+}/* debug [instance_methods/method]: SupportedPhotoPixelFormatTypesForFileType */
+
+
+// Returns the list of photo codecs (such as JPEG or HEVC) supported for photo data in the specified file type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/supportedPhotoCodecTypes(for:)
+func (c_ CapturePhotoOutput) SupportedPhotoCodecTypesForFileType(fileType FileType /* typedef */) []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("supportedPhotoCodecTypesForFileType:"), fileType)
+	return rv
+}/* debug [instance_methods/method]: SupportedPhotoCodecTypesForFileType */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CapturePhotoOutput */
+
+// The pixel formats the capture output supports for photo capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/availablePhotoPixelFormatTypes-6eyb
+func (c_ CapturePhotoOutput) AvailablePhotoPixelFormatTypes() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("availablePhotoPixelFormatTypes"))
+	return rv
+}/* debug [instance_properties/getter]: availablePhotoPixelFormatTypes */
+
+
+// The compression codecs this capture output currently supports for photo capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/availablePhotoCodecTypes
+func (c_ CapturePhotoOutput) AvailablePhotoCodecTypes() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("availablePhotoCodecTypes"))
+	return rv
+}/* debug [instance_properties/getter]: availablePhotoCodecTypes */
+
+
+// The list of file types currently supported for photo capture and output.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/availablePhotoFileTypes
+func (c_ CapturePhotoOutput) AvailablePhotoFileTypes() []string {
+	rv := objc.Send[[]string](c_.ID, objc.Sel("availablePhotoFileTypes"))
+	return rv
+}/* debug [instance_properties/getter]: availablePhotoFileTypes */
+
+
+// A value that specifies whether the photo output is ready to respond to new capture requests in a timely manner.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/captureReadiness-swift.property
+func (c_ CapturePhotoOutput) CaptureReadiness() CapturePhotoOutputCaptureReadiness {
+	rv := objc.Send[CapturePhotoOutputCaptureReadiness](c_.ID, objc.Sel("captureReadiness"))
+	return rv
+}/* debug [instance_properties/getter]: captureReadiness */
 
 
 // A Boolean value that indicates whether the photo output configures the render pipeline to perform constant color capture.
@@ -214,7 +354,7 @@ func (c_ CapturePhotoOutput) CapturePhotoWithSettingsDelegate(settings IAVCaptur
 func (c_ CapturePhotoOutput) ConstantColorEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("constantColorEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: constantColorEnabled */
 
 
 // A Boolean value that indicates whether the photo output configures the render pipeline to perform constant color capture.
@@ -223,7 +363,209 @@ func (c_ CapturePhotoOutput) ConstantColorEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isConstantColorEnabled
 func (c_ CapturePhotoOutput) SetConstantColorEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConstantColorEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: constantColorEnabled */
+
+
+// A Boolean value that indicates whether a photo output supports constant color capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isConstantColorSupported
+func (c_ CapturePhotoOutput) ConstantColorSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("constantColorSupported"))
+	return rv
+}/* debug [instance_properties/getter]: constantColorSupported */
+
+
+// A Boolean value that indicates whether the output enables fast capture prioritization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isFastCapturePrioritizationEnabled
+func (c_ CapturePhotoOutput) FastCapturePrioritizationEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("fastCapturePrioritizationEnabled"))
+	return rv
+}/* debug [instance_properties/getter]: fastCapturePrioritizationEnabled */
+
+
+// A Boolean value that indicates whether the output enables fast capture prioritization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isFastCapturePrioritizationEnabled
+func (c_ CapturePhotoOutput) SetFastCapturePrioritizationEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFastCapturePrioritizationEnabled:"), value)
+}/* debug [instance_properties/setter]: fastCapturePrioritizationEnabled */
+
+
+// A Boolean value that indicates whether the photo output supports fast capture prioritization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isFastCapturePrioritizationSupported
+func (c_ CapturePhotoOutput) FastCapturePrioritizationSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("fastCapturePrioritizationSupported"))
+	return rv
+}/* debug [instance_properties/getter]: fastCapturePrioritizationSupported */
+
+
+// A Boolean value that indicates whether the photo output supports fast capture prioritization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isFastCapturePrioritizationSupported
+func (c_ CapturePhotoOutput) SetFastCapturePrioritizationSupported(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setFastCapturePrioritizationSupported:"), value)
+}/* debug [instance_properties/setter]: fastCapturePrioritizationSupported */
+
+
+// A Boolean value that specifies whether to configure the capture pipeline for high resolution still image capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isHighResolutionCaptureEnabled
+func (c_ CapturePhotoOutput) HighResolutionCaptureEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("highResolutionCaptureEnabled"))
+	return rv
+}/* debug [instance_properties/getter]: highResolutionCaptureEnabled */
+
+
+// A Boolean value that specifies whether to configure the capture pipeline for high resolution still image capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isHighResolutionCaptureEnabled
+func (c_ CapturePhotoOutput) SetHighResolutionCaptureEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setHighResolutionCaptureEnabled:"), value)
+}/* debug [instance_properties/setter]: highResolutionCaptureEnabled */
+
+
+// A Boolean value that indicates whether the photo output configuration enables responsive capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isResponsiveCaptureEnabled
+func (c_ CapturePhotoOutput) ResponsiveCaptureEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("responsiveCaptureEnabled"))
+	return rv
+}/* debug [instance_properties/getter]: responsiveCaptureEnabled */
+
+
+// A Boolean value that indicates whether the photo output configuration enables responsive capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isResponsiveCaptureEnabled
+func (c_ CapturePhotoOutput) SetResponsiveCaptureEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResponsiveCaptureEnabled:"), value)
+}/* debug [instance_properties/setter]: responsiveCaptureEnabled */
+
+
+// A Boolean value that indicates whether the photo output supports responsive capture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isResponsiveCaptureSupported
+func (c_ CapturePhotoOutput) ResponsiveCaptureSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("responsiveCaptureSupported"))
+	return rv
+}/* debug [instance_properties/getter]: responsiveCaptureSupported */
+
+
+// A Boolean value that indicates whether the photo output supports suppressing the system shutter sound.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isShutterSoundSuppressionSupported
+func (c_ CapturePhotoOutput) ShutterSoundSuppressionSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("shutterSoundSuppressionSupported"))
+	return rv
+}/* debug [instance_properties/getter]: shutterSoundSuppressionSupported */
+
+
+// A Boolean value that indicates whether the photo output configuration enables zero shutter lag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isZeroShutterLagEnabled
+func (c_ CapturePhotoOutput) ZeroShutterLagEnabled() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("zeroShutterLagEnabled"))
+	return rv
+}/* debug [instance_properties/getter]: zeroShutterLagEnabled */
+
+
+// A Boolean value that indicates whether the photo output configuration enables zero shutter lag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isZeroShutterLagEnabled
+func (c_ CapturePhotoOutput) SetZeroShutterLagEnabled(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setZeroShutterLagEnabled:"), value)
+}/* debug [instance_properties/setter]: zeroShutterLagEnabled */
+
+
+// A Boolean value that indicates whether the photo output supports zero shutter lag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/isZeroShutterLagSupported
+func (c_ CapturePhotoOutput) ZeroShutterLagSupported() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("zeroShutterLagSupported"))
+	return rv
+}/* debug [instance_properties/getter]: zeroShutterLagSupported */
+
+
+// The maximum resolution of the requested photo.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/maxPhotoDimensions
+func (c_ CapturePhotoOutput) MaxPhotoDimensions() VideoDimensions /* not a class type */ {
+	rv := objc.Send[VideoDimensions](c_.ID, objc.Sel("maxPhotoDimensions"))
+	return rv
+}/* debug [instance_properties/getter]: maxPhotoDimensions */
+
+
+// The maximum resolution of the requested photo.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/maxPhotoDimensions
+func (c_ CapturePhotoOutput) SetMaxPhotoDimensions(value VideoDimensions /* not a class type */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxPhotoDimensions:"), value)
+}/* debug [instance_properties/setter]: maxPhotoDimensions */
+
+
+// The highest quality the photo output should prepare to deliver on a capture-by-capture basis.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/maxPhotoQualityPrioritization
+func (c_ CapturePhotoOutput) MaxPhotoQualityPrioritization() CapturePhotoQualityPrioritization {
+	rv := objc.Send[CapturePhotoQualityPrioritization](c_.ID, objc.Sel("maxPhotoQualityPrioritization"))
+	return rv
+}/* debug [instance_properties/getter]: maxPhotoQualityPrioritization */
+
+
+// The highest quality the photo output should prepare to deliver on a capture-by-capture basis.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/maxPhotoQualityPrioritization
+func (c_ CapturePhotoOutput) SetMaxPhotoQualityPrioritization(value CapturePhotoQualityPrioritization) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxPhotoQualityPrioritization:"), value)
+}/* debug [instance_properties/setter]: maxPhotoQualityPrioritization */
+
+
+// A Boolean value that indicates whether to preserve the suspended state of Live Photo capture when the session stops.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/preservesLivePhotoCaptureSuspendedOnSessionStop
+func (c_ CapturePhotoOutput) PreservesLivePhotoCaptureSuspendedOnSessionStop() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("preservesLivePhotoCaptureSuspendedOnSessionStop"))
+	return rv
+}/* debug [instance_properties/getter]: preservesLivePhotoCaptureSuspendedOnSessionStop */
+
+
+// A Boolean value that indicates whether to preserve the suspended state of Live Photo capture when the session stops.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/preservesLivePhotoCaptureSuspendedOnSessionStop
+func (c_ CapturePhotoOutput) SetPreservesLivePhotoCaptureSuspendedOnSessionStop(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesLivePhotoCaptureSuspendedOnSessionStop:"), value)
+}/* debug [instance_properties/setter]: preservesLivePhotoCaptureSuspendedOnSessionStop */
+
+
+// The flash settings this capture output currently supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCapturePhotoOutput/supportedFlashModes-4u69s
+func (c_ CapturePhotoOutput) SupportedFlashModes() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](c_.ID, objc.Sel("supportedFlashModes"))
+	return rv
+}/* debug [instance_properties/getter]: supportedFlashModes */
 
 
 // The currently active color space for capture.
@@ -233,26 +575,26 @@ func (c_ CapturePhotoOutput) SetConstantColorEnabled(value bool) {
 func (c_ CapturePhotoOutput) ActiveColorSpace() CaptureColorSpace {
 	rv := objc.Send[CaptureColorSpace](c_.ID, objc.Sel("activeColorSpace"))
 	return rv
-}
+}/* debug [instance_properties/getter]: activeColorSpace */
 
 
 // The currently active color space for capture.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturedevice/activecolorspace
-func (c_ CapturePhotoOutput) SetActiveColorSpace(value ICaptureColorSpace) {
+func (c_ CapturePhotoOutput) SetActiveColorSpace(value CaptureColorSpace) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setActiveColorSpace:"), value)
-}
+}/* debug [instance_properties/setter]: activeColorSpace */
 
 
 // The portrait effects matte captured with the photo.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/portraiteffectsmatte
-func (c_ CapturePhotoOutput) PortraitEffectsMatte() AVPortraitEffectsMatte {
-	rv := objc.Send[AVPortraitEffectsMatte](c_.ID, objc.Sel("portraitEffectsMatte"))
+func (c_ CapturePhotoOutput) PortraitEffectsMatte() IAVPortraitEffectsMatte {
+	rv := objc.Send[PortraitEffectsMatte](c_.ID, objc.Sel("portraitEffectsMatte"))
 	return rv
-}
+}/* debug [instance_properties/getter]: portraitEffectsMatte */
 
 
 // The portrait effects matte captured with the photo.
@@ -261,193 +603,7 @@ func (c_ CapturePhotoOutput) PortraitEffectsMatte() AVPortraitEffectsMatte {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephoto/portraiteffectsmatte
 func (c_ CapturePhotoOutput) SetPortraitEffectsMatte(value IAVPortraitEffectsMatte) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPortraitEffectsMatte:"), value)
-}
-
-
-// An array of video codecs currently available for Live Photo movie captures.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablelivephotovideocodectypes
-func (c_ CapturePhotoOutput) AvailableLivePhotoVideoCodecTypes() VideoCodecType {
-	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableLivePhotoVideoCodecTypes"))
-	return rv
-}
-
-
-// An array of video codecs currently available for Live Photo movie captures.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablelivephotovideocodectypes
-func (c_ CapturePhotoOutput) SetAvailableLivePhotoVideoCodecTypes(value VideoCodecType) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableLivePhotoVideoCodecTypes:"), value)
-}
-
-
-// The compression codecs this capture output currently supports for photo capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotocodectypes
-func (c_ CapturePhotoOutput) AvailablePhotoCodecTypes() VideoCodecType {
-	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availablePhotoCodecTypes"))
-	return rv
-}
-
-
-// The compression codecs this capture output currently supports for photo capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotocodectypes
-func (c_ CapturePhotoOutput) SetAvailablePhotoCodecTypes(value VideoCodecType) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoCodecTypes:"), value)
-}
-
-
-// The list of file types currently supported for photo capture and output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotofiletypes
-func (c_ CapturePhotoOutput) AvailablePhotoFileTypes() FileType {
-	rv := objc.Send[FileType](c_.ID, objc.Sel("availablePhotoFileTypes"))
-	return rv
-}
-
-
-// The list of file types currently supported for photo capture and output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotofiletypes
-func (c_ CapturePhotoOutput) SetAvailablePhotoFileTypes(value FileType) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoFileTypes:"), value)
-}
-
-
-// The pixel formats the capture output supports for photo capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotopixelformattypes-3ydgm
-func (c_ CapturePhotoOutput) AvailablePhotoPixelFormatTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availablePhotoPixelFormatTypes"))
-	return rv
-}
-
-
-// The pixel formats the capture output supports for photo capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablephotopixelformattypes-3ydgm
-func (c_ CapturePhotoOutput) SetAvailablePhotoPixelFormatTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailablePhotoPixelFormatTypes:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotocodectypes
-func (c_ CapturePhotoOutput) AvailableRawPhotoCodecTypes() VideoCodecType {
-	rv := objc.Send[VideoCodecType](c_.ID, objc.Sel("availableRawPhotoCodecTypes"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotocodectypes
-func (c_ CapturePhotoOutput) SetAvailableRawPhotoCodecTypes(value VideoCodecType) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoCodecTypes:"), value)
-}
-
-
-// The list of file types currently supported for RAW format capture and output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotofiletypes
-func (c_ CapturePhotoOutput) AvailableRawPhotoFileTypes() FileType {
-	rv := objc.Send[FileType](c_.ID, objc.Sel("availableRawPhotoFileTypes"))
-	return rv
-}
-
-
-// The list of file types currently supported for RAW format capture and output.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotofiletypes
-func (c_ CapturePhotoOutput) SetAvailableRawPhotoFileTypes(value FileType) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoFileTypes:"), value)
-}
-
-
-// The pixel formats the capture output supports for RAW photo capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotopixelformattypes-9t9k5
-func (c_ CapturePhotoOutput) AvailableRawPhotoPixelFormatTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableRawPhotoPixelFormatTypes"))
-	return rv
-}
-
-
-// The pixel formats the capture output supports for RAW photo capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablerawphotopixelformattypes-9t9k5
-func (c_ CapturePhotoOutput) SetAvailableRawPhotoPixelFormatTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableRawPhotoPixelFormatTypes:"), value)
-}
-
-
-// An array of semantic segmentation matte types that may be captured and delivered along with the primary photo.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablesemanticsegmentationmattetypes
-func (c_ CapturePhotoOutput) AvailableSemanticSegmentationMatteTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("availableSemanticSegmentationMatteTypes"))
-	return rv
-}
-
-
-// An array of semantic segmentation matte types that may be captured and delivered along with the primary photo.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/availablesemanticsegmentationmattetypes
-func (c_ CapturePhotoOutput) SetAvailableSemanticSegmentationMatteTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setAvailableSemanticSegmentationMatteTypes:"), value)
-}
-
-
-// A value that specifies whether the photo output is ready to respond to new capture requests in a timely manner.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
-func (c_ CapturePhotoOutput) CaptureReadiness() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("captureReadiness"))
-	return rv
-}
-
-
-// A value that specifies whether the photo output is ready to respond to new capture requests in a timely manner.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/capturereadiness-swift.property
-func (c_ CapturePhotoOutput) SetCaptureReadiness(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setCaptureReadiness:"), value)
-}
-
-
-// The semantic segmentation matte types that the photo render pipeline delivers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/enabledsemanticsegmentationmattetypes
-func (c_ CapturePhotoOutput) EnabledSemanticSegmentationMatteTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("enabledSemanticSegmentationMatteTypes"))
-	return rv
-}
-
-
-// The semantic segmentation matte types that the photo render pipeline delivers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/enabledsemanticsegmentationmattetypes
-func (c_ CapturePhotoOutput) SetEnabledSemanticSegmentationMatteTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEnabledSemanticSegmentationMatteTypes:"), value)
-}
+}/* debug [instance_properties/setter]: portraitEffectsMatte */
 
 
 // A Boolean value that indicates whether you’ve configured the photo output to deliver Apple ProRAW formats.
@@ -457,7 +613,7 @@ func (c_ CapturePhotoOutput) SetEnabledSemanticSegmentationMatteTypes(value unsa
 func (c_ CapturePhotoOutput) IsAppleProRAWEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAppleProRAWEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAppleProRAWEnabled */
 
 
 // A Boolean value that indicates whether you’ve configured the photo output to deliver Apple ProRAW formats.
@@ -466,7 +622,7 @@ func (c_ CapturePhotoOutput) IsAppleProRAWEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isappleprorawenabled
 func (c_ CapturePhotoOutput) SetIsAppleProRAWEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAppleProRAWEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isAppleProRAWEnabled */
 
 
 // A Boolean value that indicates whether the current device and configuration supports Apple ProRAW pixel formats.
@@ -476,7 +632,7 @@ func (c_ CapturePhotoOutput) SetIsAppleProRAWEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsAppleProRAWSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAppleProRAWSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAppleProRAWSupported */
 
 
 // A Boolean value that indicates whether the current device and configuration supports Apple ProRAW pixel formats.
@@ -485,7 +641,7 @@ func (c_ CapturePhotoOutput) IsAppleProRAWSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isappleprorawsupported
 func (c_ CapturePhotoOutput) SetIsAppleProRAWSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAppleProRAWSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isAppleProRAWSupported */
 
 
 // A Boolean value that indicates the enabled state of automatic deferred photo delivery.
@@ -495,7 +651,7 @@ func (c_ CapturePhotoOutput) SetIsAppleProRAWSupported(value bool) {
 func (c_ CapturePhotoOutput) IsAutoDeferredPhotoDeliveryEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoDeferredPhotoDeliveryEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAutoDeferredPhotoDeliveryEnabled */
 
 
 // A Boolean value that indicates the enabled state of automatic deferred photo delivery.
@@ -504,7 +660,7 @@ func (c_ CapturePhotoOutput) IsAutoDeferredPhotoDeliveryEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautodeferredphotodeliveryenabled
 func (c_ CapturePhotoOutput) SetIsAutoDeferredPhotoDeliveryEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoDeferredPhotoDeliveryEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isAutoDeferredPhotoDeliveryEnabled */
 
 
 // A Boolean value that indicates whether the photo output supports deferred photo delivery.
@@ -514,7 +670,7 @@ func (c_ CapturePhotoOutput) SetIsAutoDeferredPhotoDeliveryEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsAutoDeferredPhotoDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoDeferredPhotoDeliverySupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAutoDeferredPhotoDeliverySupported */
 
 
 // A Boolean value that indicates whether the photo output supports deferred photo delivery.
@@ -523,7 +679,7 @@ func (c_ CapturePhotoOutput) IsAutoDeferredPhotoDeliverySupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautodeferredphotodeliverysupported
 func (c_ CapturePhotoOutput) SetIsAutoDeferredPhotoDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoDeferredPhotoDeliverySupported:"), value)
-}
+}/* debug [instance_properties/setter]: isAutoDeferredPhotoDeliverySupported */
 
 
 // A Boolean value indicating whether the capture output supports automatic red-eye reduction.
@@ -533,7 +689,7 @@ func (c_ CapturePhotoOutput) SetIsAutoDeferredPhotoDeliverySupported(value bool)
 func (c_ CapturePhotoOutput) IsAutoRedEyeReductionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isAutoRedEyeReductionSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAutoRedEyeReductionSupported */
 
 
 // A Boolean value indicating whether the capture output supports automatic red-eye reduction.
@@ -542,7 +698,7 @@ func (c_ CapturePhotoOutput) IsAutoRedEyeReductionSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isautoredeyereductionsupported
 func (c_ CapturePhotoOutput) SetIsAutoRedEyeReductionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAutoRedEyeReductionSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isAutoRedEyeReductionSupported */
 
 
 // A Boolean value indicating whether the capture output currently supports delivery of camera calibration data.
@@ -552,7 +708,7 @@ func (c_ CapturePhotoOutput) SetIsAutoRedEyeReductionSupported(value bool) {
 func (c_ CapturePhotoOutput) IsCameraCalibrationDataDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraCalibrationDataDeliverySupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isCameraCalibrationDataDeliverySupported */
 
 
 // A Boolean value indicating whether the capture output currently supports delivery of camera calibration data.
@@ -561,7 +717,7 @@ func (c_ CapturePhotoOutput) IsCameraCalibrationDataDeliverySupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscameracalibrationdatadeliverysupported
 func (c_ CapturePhotoOutput) SetIsCameraCalibrationDataDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraCalibrationDataDeliverySupported:"), value)
-}
+}/* debug [instance_properties/setter]: isCameraCalibrationDataDeliverySupported */
 
 
 // [Full Topic]
@@ -569,14 +725,14 @@ func (c_ CapturePhotoOutput) SetIsCameraCalibrationDataDeliverySupported(value b
 func (c_ CapturePhotoOutput) IsCameraSensorOrientationCompensationEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraSensorOrientationCompensationEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isCameraSensorOrientationCompensationEnabled */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscamerasensororientationcompensationenabled
 func (c_ CapturePhotoOutput) SetIsCameraSensorOrientationCompensationEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraSensorOrientationCompensationEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isCameraSensorOrientationCompensationEnabled */
 
 
 // [Full Topic]
@@ -584,14 +740,14 @@ func (c_ CapturePhotoOutput) SetIsCameraSensorOrientationCompensationEnabled(val
 func (c_ CapturePhotoOutput) IsCameraSensorOrientationCompensationSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isCameraSensorOrientationCompensationSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isCameraSensorOrientationCompensationSupported */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscamerasensororientationcompensationsupported
 func (c_ CapturePhotoOutput) SetIsCameraSensorOrientationCompensationSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsCameraSensorOrientationCompensationSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isCameraSensorOrientationCompensationSupported */
 
 
 // A Boolean value that indicates whether the photo output configures the render pipeline to perform constant color capture.
@@ -601,7 +757,7 @@ func (c_ CapturePhotoOutput) SetIsCameraSensorOrientationCompensationSupported(v
 func (c_ CapturePhotoOutput) IsConstantColorEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isConstantColorEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isConstantColorEnabled */
 
 
 // A Boolean value that indicates whether the photo output configures the render pipeline to perform constant color capture.
@@ -610,7 +766,7 @@ func (c_ CapturePhotoOutput) IsConstantColorEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isconstantcolorenabled
 func (c_ CapturePhotoOutput) SetIsConstantColorEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConstantColorEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isConstantColorEnabled */
 
 
 // A Boolean value that indicates whether a photo output supports constant color capture.
@@ -620,7 +776,7 @@ func (c_ CapturePhotoOutput) SetIsConstantColorEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsConstantColorSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isConstantColorSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isConstantColorSupported */
 
 
 // A Boolean value that indicates whether a photo output supports constant color capture.
@@ -629,7 +785,7 @@ func (c_ CapturePhotoOutput) IsConstantColorSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isconstantcolorsupported
 func (c_ CapturePhotoOutput) SetIsConstantColorSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsConstantColorSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isConstantColorSupported */
 
 
 // A Boolean value that indicates whether the photo render pipeline can perform content-aware distortion correction.
@@ -639,7 +795,7 @@ func (c_ CapturePhotoOutput) SetIsConstantColorSupported(value bool) {
 func (c_ CapturePhotoOutput) IsContentAwareDistortionCorrectionEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContentAwareDistortionCorrectionEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isContentAwareDistortionCorrectionEnabled */
 
 
 // A Boolean value that indicates whether the photo render pipeline can perform content-aware distortion correction.
@@ -648,7 +804,7 @@ func (c_ CapturePhotoOutput) IsContentAwareDistortionCorrectionEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscontentawaredistortioncorrectionenabled
 func (c_ CapturePhotoOutput) SetIsContentAwareDistortionCorrectionEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContentAwareDistortionCorrectionEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isContentAwareDistortionCorrectionEnabled */
 
 
 // A Boolean value that indicates whether the session’s current configuration supports content-aware distortion correction.
@@ -658,7 +814,7 @@ func (c_ CapturePhotoOutput) SetIsContentAwareDistortionCorrectionEnabled(value 
 func (c_ CapturePhotoOutput) IsContentAwareDistortionCorrectionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isContentAwareDistortionCorrectionSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isContentAwareDistortionCorrectionSupported */
 
 
 // A Boolean value that indicates whether the session’s current configuration supports content-aware distortion correction.
@@ -667,7 +823,7 @@ func (c_ CapturePhotoOutput) IsContentAwareDistortionCorrectionSupported() bool 
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iscontentawaredistortioncorrectionsupported
 func (c_ CapturePhotoOutput) SetIsContentAwareDistortionCorrectionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsContentAwareDistortionCorrectionSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isContentAwareDistortionCorrectionSupported */
 
 
 // A Boolean value that specifies whether to configure the capture pipeline for depth data capture.
@@ -677,7 +833,7 @@ func (c_ CapturePhotoOutput) SetIsContentAwareDistortionCorrectionSupported(valu
 func (c_ CapturePhotoOutput) IsDepthDataDeliveryEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDepthDataDeliveryEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isDepthDataDeliveryEnabled */
 
 
 // A Boolean value that specifies whether to configure the capture pipeline for depth data capture.
@@ -686,7 +842,7 @@ func (c_ CapturePhotoOutput) IsDepthDataDeliveryEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isdepthdatadeliveryenabled
 func (c_ CapturePhotoOutput) SetIsDepthDataDeliveryEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDepthDataDeliveryEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isDepthDataDeliveryEnabled */
 
 
 // A Boolean value indicating whether the capture output currently supports depth data capture.
@@ -696,7 +852,7 @@ func (c_ CapturePhotoOutput) SetIsDepthDataDeliveryEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsDepthDataDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDepthDataDeliverySupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isDepthDataDeliverySupported */
 
 
 // A Boolean value indicating whether the capture output currently supports depth data capture.
@@ -705,7 +861,7 @@ func (c_ CapturePhotoOutput) IsDepthDataDeliverySupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isdepthdatadeliverysupported
 func (c_ CapturePhotoOutput) SetIsDepthDataDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsDepthDataDeliverySupported:"), value)
-}
+}/* debug [instance_properties/setter]: isDepthDataDeliverySupported */
 
 
 // A Boolean value that indicates whether the output enables fast capture prioritization.
@@ -715,7 +871,7 @@ func (c_ CapturePhotoOutput) SetIsDepthDataDeliverySupported(value bool) {
 func (c_ CapturePhotoOutput) IsFastCapturePrioritizationEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isFastCapturePrioritizationEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isFastCapturePrioritizationEnabled */
 
 
 // A Boolean value that indicates whether the output enables fast capture prioritization.
@@ -724,7 +880,7 @@ func (c_ CapturePhotoOutput) IsFastCapturePrioritizationEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isfastcaptureprioritizationenabled
 func (c_ CapturePhotoOutput) SetIsFastCapturePrioritizationEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFastCapturePrioritizationEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isFastCapturePrioritizationEnabled */
 
 
 // A Boolean value that indicates whether the photo output supports fast capture prioritization.
@@ -734,7 +890,7 @@ func (c_ CapturePhotoOutput) SetIsFastCapturePrioritizationEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsFastCapturePrioritizationSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isFastCapturePrioritizationSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isFastCapturePrioritizationSupported */
 
 
 // A Boolean value that indicates whether the photo output supports fast capture prioritization.
@@ -743,26 +899,7 @@ func (c_ CapturePhotoOutput) IsFastCapturePrioritizationSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isfastcaptureprioritizationsupported
 func (c_ CapturePhotoOutput) SetIsFastCapturePrioritizationSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFastCapturePrioritizationSupported:"), value)
-}
-
-
-// A Boolean value indicating whether the scene currently being previewed by the camera warrants use of the flash.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isflashscene
-func (c_ CapturePhotoOutput) IsFlashScene() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isFlashScene"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the scene currently being previewed by the camera warrants use of the flash.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isflashscene
-func (c_ CapturePhotoOutput) SetIsFlashScene(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsFlashScene:"), value)
-}
+}/* debug [instance_properties/setter]: isFastCapturePrioritizationSupported */
 
 
 // A Boolean value that specifies whether to configure the capture pipeline for high resolution still image capture.
@@ -772,7 +909,7 @@ func (c_ CapturePhotoOutput) SetIsFlashScene(value bool) {
 func (c_ CapturePhotoOutput) IsHighResolutionCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isHighResolutionCaptureEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isHighResolutionCaptureEnabled */
 
 
 // A Boolean value that specifies whether to configure the capture pipeline for high resolution still image capture.
@@ -781,7 +918,7 @@ func (c_ CapturePhotoOutput) IsHighResolutionCaptureEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/ishighresolutioncaptureenabled
 func (c_ CapturePhotoOutput) SetIsHighResolutionCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsHighResolutionCaptureEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isHighResolutionCaptureEnabled */
 
 
 // A Boolean value indicating whether the capture output currently supports lens stabilization during bracketed image capture.
@@ -791,7 +928,7 @@ func (c_ CapturePhotoOutput) SetIsHighResolutionCaptureEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsLensStabilizationDuringBracketedCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLensStabilizationDuringBracketedCaptureSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isLensStabilizationDuringBracketedCaptureSupported */
 
 
 // A Boolean value indicating whether the capture output currently supports lens stabilization during bracketed image capture.
@@ -800,7 +937,7 @@ func (c_ CapturePhotoOutput) IsLensStabilizationDuringBracketedCaptureSupported(
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islensstabilizationduringbracketedcapturesupported
 func (c_ CapturePhotoOutput) SetIsLensStabilizationDuringBracketedCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLensStabilizationDuringBracketedCaptureSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isLensStabilizationDuringBracketedCaptureSupported */
 
 
 // A Boolean value that indicates whether to automatically trim Live Photo movie captures to avoid excessive movement.
@@ -810,7 +947,7 @@ func (c_ CapturePhotoOutput) SetIsLensStabilizationDuringBracketedCaptureSupport
 func (c_ CapturePhotoOutput) IsLivePhotoAutoTrimmingEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLivePhotoAutoTrimmingEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isLivePhotoAutoTrimmingEnabled */
 
 
 // A Boolean value that indicates whether to automatically trim Live Photo movie captures to avoid excessive movement.
@@ -819,7 +956,7 @@ func (c_ CapturePhotoOutput) IsLivePhotoAutoTrimmingEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotoautotrimmingenabled
 func (c_ CapturePhotoOutput) SetIsLivePhotoAutoTrimmingEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLivePhotoAutoTrimmingEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isLivePhotoAutoTrimmingEnabled */
 
 
 // A Boolean value that indicates whether to configure the capture pipeline for Live Photo capture.
@@ -829,7 +966,7 @@ func (c_ CapturePhotoOutput) SetIsLivePhotoAutoTrimmingEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsLivePhotoCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLivePhotoCaptureEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isLivePhotoCaptureEnabled */
 
 
 // A Boolean value that indicates whether to configure the capture pipeline for Live Photo capture.
@@ -838,7 +975,7 @@ func (c_ CapturePhotoOutput) IsLivePhotoCaptureEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocaptureenabled
 func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLivePhotoCaptureEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isLivePhotoCaptureEnabled */
 
 
 // A Boolean value that indicates whether the capture output currently supports Live Photo capture.
@@ -848,7 +985,7 @@ func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsLivePhotoCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLivePhotoCaptureSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isLivePhotoCaptureSupported */
 
 
 // A Boolean value that indicates whether the capture output currently supports Live Photo capture.
@@ -857,7 +994,7 @@ func (c_ CapturePhotoOutput) IsLivePhotoCaptureSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocapturesupported
 func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLivePhotoCaptureSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isLivePhotoCaptureSupported */
 
 
 // A Boolean value that indicates whether Live Photo capture is currently in a suspended state.
@@ -867,7 +1004,7 @@ func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureSupported(value bool) {
 func (c_ CapturePhotoOutput) IsLivePhotoCaptureSuspended() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isLivePhotoCaptureSuspended"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isLivePhotoCaptureSuspended */
 
 
 // A Boolean value that indicates whether Live Photo capture is currently in a suspended state.
@@ -876,7 +1013,7 @@ func (c_ CapturePhotoOutput) IsLivePhotoCaptureSuspended() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/islivephotocapturesuspended
 func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureSuspended(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsLivePhotoCaptureSuspended:"), value)
-}
+}/* debug [instance_properties/setter]: isLivePhotoCaptureSuspended */
 
 
 // A Boolean value indicating whether the capture output generates a portrait effects matte.
@@ -886,7 +1023,7 @@ func (c_ CapturePhotoOutput) SetIsLivePhotoCaptureSuspended(value bool) {
 func (c_ CapturePhotoOutput) IsPortraitEffectsMatteDeliveryEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPortraitEffectsMatteDeliveryEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isPortraitEffectsMatteDeliveryEnabled */
 
 
 // A Boolean value indicating whether the capture output generates a portrait effects matte.
@@ -895,7 +1032,7 @@ func (c_ CapturePhotoOutput) IsPortraitEffectsMatteDeliveryEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isportraiteffectsmattedeliveryenabled
 func (c_ CapturePhotoOutput) SetIsPortraitEffectsMatteDeliveryEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPortraitEffectsMatteDeliveryEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isPortraitEffectsMatteDeliveryEnabled */
 
 
 // A Boolean value indicating whether the capture output currently supports delivery of a portrait effects matte.
@@ -905,7 +1042,7 @@ func (c_ CapturePhotoOutput) SetIsPortraitEffectsMatteDeliveryEnabled(value bool
 func (c_ CapturePhotoOutput) IsPortraitEffectsMatteDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isPortraitEffectsMatteDeliverySupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isPortraitEffectsMatteDeliverySupported */
 
 
 // A Boolean value indicating whether the capture output currently supports delivery of a portrait effects matte.
@@ -914,7 +1051,7 @@ func (c_ CapturePhotoOutput) IsPortraitEffectsMatteDeliverySupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isportraiteffectsmattedeliverysupported
 func (c_ CapturePhotoOutput) SetIsPortraitEffectsMatteDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsPortraitEffectsMatteDeliverySupported:"), value)
-}
+}/* debug [instance_properties/setter]: isPortraitEffectsMatteDeliverySupported */
 
 
 // A Boolean value that indicates whether the photo output configuration enables responsive capture.
@@ -924,7 +1061,7 @@ func (c_ CapturePhotoOutput) SetIsPortraitEffectsMatteDeliverySupported(value bo
 func (c_ CapturePhotoOutput) IsResponsiveCaptureEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isResponsiveCaptureEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isResponsiveCaptureEnabled */
 
 
 // A Boolean value that indicates whether the photo output configuration enables responsive capture.
@@ -933,7 +1070,7 @@ func (c_ CapturePhotoOutput) IsResponsiveCaptureEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isresponsivecaptureenabled
 func (c_ CapturePhotoOutput) SetIsResponsiveCaptureEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsResponsiveCaptureEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isResponsiveCaptureEnabled */
 
 
 // A Boolean value that indicates whether the photo output supports responsive capture.
@@ -943,7 +1080,7 @@ func (c_ CapturePhotoOutput) SetIsResponsiveCaptureEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsResponsiveCaptureSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isResponsiveCaptureSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isResponsiveCaptureSupported */
 
 
 // A Boolean value that indicates whether the photo output supports responsive capture.
@@ -952,7 +1089,7 @@ func (c_ CapturePhotoOutput) IsResponsiveCaptureSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isresponsivecapturesupported
 func (c_ CapturePhotoOutput) SetIsResponsiveCaptureSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsResponsiveCaptureSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isResponsiveCaptureSupported */
 
 
 // A Boolean value that indicates whether the photo output supports suppressing the system shutter sound.
@@ -962,7 +1099,7 @@ func (c_ CapturePhotoOutput) SetIsResponsiveCaptureSupported(value bool) {
 func (c_ CapturePhotoOutput) IsShutterSoundSuppressionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isShutterSoundSuppressionSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isShutterSoundSuppressionSupported */
 
 
 // A Boolean value that indicates whether the photo output supports suppressing the system shutter sound.
@@ -971,7 +1108,7 @@ func (c_ CapturePhotoOutput) IsShutterSoundSuppressionSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isshuttersoundsuppressionsupported
 func (c_ CapturePhotoOutput) SetIsShutterSoundSuppressionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsShutterSoundSuppressionSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isShutterSoundSuppressionSupported */
 
 
 // A Boolean value that indicates whether the photo output delivers photos from constituent cameras of a virtual device.
@@ -981,7 +1118,7 @@ func (c_ CapturePhotoOutput) SetIsShutterSoundSuppressionSupported(value bool) {
 func (c_ CapturePhotoOutput) IsVirtualDeviceConstituentPhotoDeliveryEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVirtualDeviceConstituentPhotoDeliveryEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isVirtualDeviceConstituentPhotoDeliveryEnabled */
 
 
 // A Boolean value that indicates whether the photo output delivers photos from constituent cameras of a virtual device.
@@ -990,7 +1127,7 @@ func (c_ CapturePhotoOutput) IsVirtualDeviceConstituentPhotoDeliveryEnabled() bo
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdeviceconstituentphotodeliveryenabled
 func (c_ CapturePhotoOutput) SetIsVirtualDeviceConstituentPhotoDeliveryEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVirtualDeviceConstituentPhotoDeliveryEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isVirtualDeviceConstituentPhotoDeliveryEnabled */
 
 
 // A Boolean value that indicates whether the photo output configuration supports delivery of photos from constituent cameras of a virtual device.
@@ -1000,7 +1137,7 @@ func (c_ CapturePhotoOutput) SetIsVirtualDeviceConstituentPhotoDeliveryEnabled(v
 func (c_ CapturePhotoOutput) IsVirtualDeviceConstituentPhotoDeliverySupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVirtualDeviceConstituentPhotoDeliverySupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isVirtualDeviceConstituentPhotoDeliverySupported */
 
 
 // A Boolean value that indicates whether the photo output configuration supports delivery of photos from constituent cameras of a virtual device.
@@ -1009,7 +1146,7 @@ func (c_ CapturePhotoOutput) IsVirtualDeviceConstituentPhotoDeliverySupported() 
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdeviceconstituentphotodeliverysupported
 func (c_ CapturePhotoOutput) SetIsVirtualDeviceConstituentPhotoDeliverySupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVirtualDeviceConstituentPhotoDeliverySupported:"), value)
-}
+}/* debug [instance_properties/setter]: isVirtualDeviceConstituentPhotoDeliverySupported */
 
 
 // A Boolean value that indicates whether the device supports virtual device image fusion.
@@ -1019,7 +1156,7 @@ func (c_ CapturePhotoOutput) SetIsVirtualDeviceConstituentPhotoDeliverySupported
 func (c_ CapturePhotoOutput) IsVirtualDeviceFusionSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isVirtualDeviceFusionSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isVirtualDeviceFusionSupported */
 
 
 // A Boolean value that indicates whether the device supports virtual device image fusion.
@@ -1028,7 +1165,7 @@ func (c_ CapturePhotoOutput) IsVirtualDeviceFusionSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/isvirtualdevicefusionsupported
 func (c_ CapturePhotoOutput) SetIsVirtualDeviceFusionSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsVirtualDeviceFusionSupported:"), value)
-}
+}/* debug [instance_properties/setter]: isVirtualDeviceFusionSupported */
 
 
 // A Boolean value that indicates whether the photo output configuration enables zero shutter lag.
@@ -1038,7 +1175,7 @@ func (c_ CapturePhotoOutput) SetIsVirtualDeviceFusionSupported(value bool) {
 func (c_ CapturePhotoOutput) IsZeroShutterLagEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isZeroShutterLagEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isZeroShutterLagEnabled */
 
 
 // A Boolean value that indicates whether the photo output configuration enables zero shutter lag.
@@ -1047,7 +1184,7 @@ func (c_ CapturePhotoOutput) IsZeroShutterLagEnabled() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iszeroshutterlagenabled
 func (c_ CapturePhotoOutput) SetIsZeroShutterLagEnabled(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsZeroShutterLagEnabled:"), value)
-}
+}/* debug [instance_properties/setter]: isZeroShutterLagEnabled */
 
 
 // A Boolean value that indicates whether the photo output supports zero shutter lag.
@@ -1057,7 +1194,7 @@ func (c_ CapturePhotoOutput) SetIsZeroShutterLagEnabled(value bool) {
 func (c_ CapturePhotoOutput) IsZeroShutterLagSupported() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isZeroShutterLagSupported"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isZeroShutterLagSupported */
 
 
 // A Boolean value that indicates whether the photo output supports zero shutter lag.
@@ -1066,178 +1203,49 @@ func (c_ CapturePhotoOutput) IsZeroShutterLagSupported() bool {
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/iszeroshutterlagsupported
 func (c_ CapturePhotoOutput) SetIsZeroShutterLagSupported(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIsZeroShutterLagSupported:"), value)
-}
-
-
-// The maximum number of images that the photo capture output can support in a single bracketed capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxbracketedcapturephotocount
-func (c_ CapturePhotoOutput) MaxBracketedCapturePhotoCount() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("maxBracketedCapturePhotoCount"))
-	return rv
-}
-
-
-// The maximum number of images that the photo capture output can support in a single bracketed capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxbracketedcapturephotocount
-func (c_ CapturePhotoOutput) SetMaxBracketedCapturePhotoCount(value int) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxBracketedCapturePhotoCount:"), value)
-}
-
-
-// The maximum resolution of the requested photo.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxphotodimensions
-func (c_ CapturePhotoOutput) MaxPhotoDimensions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maxPhotoDimensions"))
-	return rv
-}
-
-
-// The maximum resolution of the requested photo.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxphotodimensions
-func (c_ CapturePhotoOutput) SetMaxPhotoDimensions(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxPhotoDimensions:"), value)
-}
-
-
-// The highest quality the photo output should prepare to deliver on a capture-by-capture basis.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxphotoqualityprioritization
-func (c_ CapturePhotoOutput) MaxPhotoQualityPrioritization() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("maxPhotoQualityPrioritization"))
-	return rv
-}
-
-
-// The highest quality the photo output should prepare to deliver on a capture-by-capture basis.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/maxphotoqualityprioritization
-func (c_ CapturePhotoOutput) SetMaxPhotoQualityPrioritization(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxPhotoQualityPrioritization:"), value)
-}
-
-
-// A photo settings object that controls how the photo output detects and handles automatic flash and stabilization modes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/photosettingsforscenemonitoring
-func (c_ CapturePhotoOutput) PhotoSettingsForSceneMonitoring() AVCapturePhotoSettings {
-	rv := objc.Send[AVCapturePhotoSettings](c_.ID, objc.Sel("photoSettingsForSceneMonitoring"))
-	return rv
-}
-
-
-// A photo settings object that controls how the photo output detects and handles automatic flash and stabilization modes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/photosettingsforscenemonitoring
-func (c_ CapturePhotoOutput) SetPhotoSettingsForSceneMonitoring(value IAVCapturePhotoSettings) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPhotoSettingsForSceneMonitoring:"), value)
-}
-
-
-// An array of photo settings for which the photo output has prepared capture resources.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preparedphotosettingsarray
-func (c_ CapturePhotoOutput) PreparedPhotoSettingsArray() AVCapturePhotoSettings {
-	rv := objc.Send[AVCapturePhotoSettings](c_.ID, objc.Sel("preparedPhotoSettingsArray"))
-	return rv
-}
-
-
-// An array of photo settings for which the photo output has prepared capture resources.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preparedphotosettingsarray
-func (c_ CapturePhotoOutput) SetPreparedPhotoSettingsArray(value IAVCapturePhotoSettings) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreparedPhotoSettingsArray:"), value)
-}
-
-
-// A Boolean value that indicates whether to preserve the suspended state of Live Photo capture when the session stops.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preserveslivephotocapturesuspendedonsessionstop
-func (c_ CapturePhotoOutput) PreservesLivePhotoCaptureSuspendedOnSessionStop() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("preservesLivePhotoCaptureSuspendedOnSessionStop"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether to preserve the suspended state of Live Photo capture when the session stops.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/preserveslivephotocapturesuspendedonsessionstop
-func (c_ CapturePhotoOutput) SetPreservesLivePhotoCaptureSuspendedOnSessionStop(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setPreservesLivePhotoCaptureSuspendedOnSessionStop:"), value)
-}
-
-
-// A Swift array of flash settings this capture output currently supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/supportedflashmodes-1n6nm
-func (c_ CapturePhotoOutput) SupportedFlashModes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("supportedFlashModes"))
-	return rv
-}
-
-
-// A Swift array of flash settings this capture output currently supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotooutput/supportedflashmodes-1n6nm
-func (c_ CapturePhotoOutput) SetSupportedFlashModes(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedFlashModes:"), value)
-}
+}/* debug [instance_properties/setter]: isZeroShutterLagSupported */
 
 
 // A setting for whether to fire the flash when capturing photos.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/flashmode
-func (c_ CapturePhotoOutput) FlashMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("flashMode"))
+func (c_ CapturePhotoOutput) FlashMode() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("flashMode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: flashMode */
 
 
 // A setting for whether to fire the flash when capturing photos.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/flashmode
-func (c_ CapturePhotoOutput) SetFlashMode(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetFlashMode(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFlashMode:"), value)
-}
+}/* debug [instance_properties/setter]: flashMode */
 
 
 // A unique identifier for this photo settings instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/uniqueid
-func (c_ CapturePhotoOutput) UniqueID() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("uniqueID"))
+func (c_ CapturePhotoOutput) UniqueID() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("uniqueID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: uniqueID */
 
 
 // A unique identifier for this photo settings instance.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturephotosettings/uniqueid
-func (c_ CapturePhotoOutput) SetUniqueID(value unsafe.Pointer) {
+func (c_ CapturePhotoOutput) SetUniqueID(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setUniqueID:"), value)
-}
+}/* debug [instance_properties/setter]: uniqueID */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVCapturePhotoOutput */
 
 

@@ -18,3 +18,4 @@ var supportsExtendedDistanceMeasurementProtocol *objc.Protocol
 func init() {
 	supportsExtendedDistanceMeasurementProtocol = objc.GetProtocol("supportsExtendedDistanceMeasurement")
 }
+

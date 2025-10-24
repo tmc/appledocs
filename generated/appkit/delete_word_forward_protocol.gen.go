@@ -15,3 +15,4 @@ var deleteWordForwardProtocol *objc.Protocol
 func init() {
 	deleteWordForwardProtocol = objc.GetProtocol("deleteWordForward:")
 }
+

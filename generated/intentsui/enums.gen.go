@@ -7,5 +7,3 @@ package intentsui
 //
 // [Full Topic]: https://developer.apple.com/documentation/IntentsUI/INUIHostedViewContext
 type INUIHostedViewContext uint
-
-

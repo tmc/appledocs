@@ -33,8 +33,6 @@ type IMTRBaseClusterWakeOnLan interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterWakeOnLan-1dp5d
 type MTRBaseClusterWakeOnLan struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterWakeOnLan) Autorelease() MTRBaseClusterWakeOnLan {
 func NewMTRBaseClusterWakeOnLan() MTRBaseClusterWakeOnLan {
 	return getMTRBaseClusterWakeOnLanClass().New()
 }
-
-
-
-

@@ -22,7 +22,7 @@ func ExampleNewToolPickerEraserItemWithEraserType() {
 func ExampleNewToolPickerEraserItemWithEraserTypeWidth() {
 	_ = pencilkit.NewToolPickerEraserItemWithEraserTypeWidth(
 		pencilkit.EraserType{}, // eraserType EraserType
-		0.0, // width float64
+		100.0, // width float64
 	)
 	// Output:
 }

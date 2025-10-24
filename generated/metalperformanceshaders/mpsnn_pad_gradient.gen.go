@@ -7,9 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNPadGradient */
+
+
+/* debug [class_header]: Header for MPSNNPadGradient */
 // The class instance for the [PadGradient] class.
 var (
 	PadGradientClass     _PadGradientClass
@@ -26,29 +31,30 @@ func getPadGradientClass() _PadGradientClass {
 type _PadGradientClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PadGradient */
 // An interface definition for the [PadGradient] class.
 type IPadGradient interface {
 	ICNNGradientKernel
+	
+/* debug [class_interface_properties]: Properties for PadGradient */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PadGradient */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradient
-type PadGradient struct {
-	CNNGradientKernel
-}
-
-// PadGradientFrom constructs a [PadGradient] from an unsafe.Pointer.
-func PadGradientFrom(ptr unsafe.Pointer) PadGradient {
-	return PadGradient{
-		CNNGradientKernel: CNNGradientKernelFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for PadGradient */
 // Alloc allocates a new instance without initialization.
 func (pc _PadGradientClass) Alloc() PadGradient {
 	rv := objc.Send[PadGradient](objc.ID(pc.class), objc.Sel("alloc"))
@@ -56,7 +62,6 @@ func (pc _PadGradientClass) Alloc() PadGradient {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PadGradientClass) New() PadGradient {
 	rv := objc.Send[PadGradient](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,17 +84,73 @@ func (p_ PadGradient) Autorelease() PadGradient {
 func NewPadGradient() PadGradient {
 	return getPadGradientClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for PadGradient */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradient/init(device:)
-func NewPadGradientWithDevice(device objectivec.IObject) PadGradient {
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNPadGradient
+type PadGradient struct {
+	CNNGradientKernel
+}
+
+// PadGradientFrom constructs a [PadGradient] from an unsafe.Pointer.
+func PadGradientFrom(ptr unsafe.Pointer) PadGradient {
+	return PadGradient{
+		CNNGradientKernel: CNNGradientKernelFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PadGradient */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadgradient/3037435-initwithcoder
+func NewPadGradientWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) PadGradient {
+	instance := getPadGradientClass().Alloc()
+	rv := objc.Send[PadGradient](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewPadGradientWithCoderDevice */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnnpadgradient/3037436-initwithdevice
+func NewPadGradientWithDevice(device unsafe.Pointer) PadGradient {
 	instance := getPadGradientClass().Alloc()
 	rv := objc.Send[PadGradient](instance.ID, objc.Sel("initWithDevice:"), device)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPadGradientWithDevice */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PadGradient */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PadGradient */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PadGradient */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PadGradient */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNNPadGradient */
 
 

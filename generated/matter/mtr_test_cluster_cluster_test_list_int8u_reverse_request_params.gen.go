@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestListInt8UReverseRequestParams] class.
@@ -39,8 +39,6 @@ type IMTRTestClusterClusterTestListInt8UReverseRequestParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestListInt8UReverseRequestParams
@@ -86,8 +84,6 @@ func NewMTRTestClusterClusterTestListInt8UReverseRequestParams() MTRTestClusterC
 	return getMTRTestClusterClusterTestListInt8UReverseRequestParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/arg1
 func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) Arg1() unsafe.Pointer {
@@ -95,13 +91,11 @@ func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) Arg1() unsafe.P
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/arg1
 func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) SetArg1(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setArg1:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/serversideprocessingtimeout
@@ -110,13 +104,11 @@ func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) ServerSideProce
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/serversideprocessingtimeout
 func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/timedinvoketimeoutms
@@ -125,12 +117,8 @@ func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) TimedInvokeTime
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestlistint8ureverserequestparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestListInt8UReverseRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

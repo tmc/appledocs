@@ -7,14 +7,12 @@ package devicediscoveryextension
 import (
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // iOS-only methods for DDDevice
-
 
 // iOS-only properties
 
@@ -263,7 +261,3 @@ func (d_ DDDevice) WifiAwareVendorName() objc.IObject /* cross-framework: NSStri
 func (d_ DDDevice) SetWifiAwareVendorName(value objc.IObject /* cross-framework: NSString */) {
 	d_.ID.Send(objc.RegisterName("setWifiAwareVendorName:"), value)
 }
-
-
-
-

@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for CoreWLAN. DO NOT EDIT.
 
 // Package corewlan provides Go bindings for the CoreWLAN framework.
 //
-// Query AirPort interfaces and choose wireless networks.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CoreWLAN without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CoreWLAN
 package corewlan
 
 import (

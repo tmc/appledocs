@@ -18,3 +18,4 @@ var isMostRecentVersionDownloadedProtocol *objc.Protocol
 func init() {
 	isMostRecentVersionDownloadedProtocol = objc.GetProtocol("isMostRecentVersionDownloaded")
 }
+

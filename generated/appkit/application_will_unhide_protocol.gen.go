@@ -15,3 +15,4 @@ var applicationWillUnhideProtocol *objc.Protocol
 func init() {
 	applicationWillUnhideProtocol = objc.GetProtocol("applicationWillUnhide:")
 }
+

@@ -39,7 +39,6 @@ type IMergePolicy interface {
 //
 // A conflict is a mismatch between state held at two different layers in the Core Data stack. A conflict can arise when you save a managed object context and you have stale data at another layer. There are two places in which a conflict may occur: Between the managed object context layer and its in-memory cached state at the persistent store coordinator layer. Between the cached state at the persistent store coordinator and the external store (file, database, and so forth). Conflicts are represented by instances of .
 
-
 // A policy object that you use to resolve conflicts between the persistent store and in-memory versions of managed objects.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewMergePolicy() MergePolicy {
 	return getMergePolicyClass().New()
 }
 
-
-
 // The merge type.
 //
 // [Full Topic]
@@ -96,6 +93,3 @@ func (m_ MergePolicy) MergeType() MergePolicyType /* not a class type */ {
 	rv := objc.Send[MergePolicyType](m_.ID, objc.Sel("mergeType"))
 	return rv
 }
-
-
-

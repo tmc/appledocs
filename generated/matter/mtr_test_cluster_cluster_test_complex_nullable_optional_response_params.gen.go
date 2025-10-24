@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRTestClusterClusterTestComplexNullableOptionalResponseParams] class.
@@ -92,8 +92,6 @@ type IMTRTestClusterClusterTestComplexNullableOptionalResponseParams interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRTestClusterClusterTestComplexNullableOptionalResponseParams
 type MTRTestClusterClusterTestComplexNullableOptionalResponseParams struct {
@@ -138,8 +136,6 @@ func NewMTRTestClusterClusterTestComplexNullableOptionalResponseParams() MTRTest
 	return getMTRTestClusterClusterTestComplexNullableOptionalResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableintvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) NullableIntValue() objc.IObject /* cross-framework: NSNumber */ {
@@ -147,13 +143,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableintvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableIntValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableIntValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableintwasnull
@@ -162,13 +156,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableintwasnull
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableIntWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableIntWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablelistvalue
@@ -177,13 +169,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablelistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableListValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableListValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablelistwasnull
@@ -192,13 +182,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablelistwasnull
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableListWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableListWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintvalue
@@ -207,13 +195,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwasnull
@@ -222,13 +208,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwasnull
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwaspresent
@@ -237,13 +221,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalintwaspresent
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalIntWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalIntWasPresent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistvalue
@@ -252,13 +234,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalListValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwasnull
@@ -267,13 +247,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwasnull
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalListWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwaspresent
@@ -282,13 +260,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionallistwaspresent
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalListWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalListWasPresent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringvalue
@@ -297,13 +273,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwasnull
@@ -312,13 +286,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwasnull
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwaspresent
@@ -327,13 +299,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstringwaspresent
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStringWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStringWasPresent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructvalue
@@ -342,13 +312,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwasnull
@@ -357,13 +325,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwasnull
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwaspresent
@@ -372,13 +338,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullableoptionalstructwaspresent
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableOptionalStructWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableOptionalStructWasPresent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestringvalue
@@ -387,13 +351,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestringvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStringValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStringValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestringwasnull
@@ -402,13 +364,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestringwasnull
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStringWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStringWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestructvalue
@@ -417,13 +377,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestructvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStructValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestructwasnull
@@ -432,13 +390,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Nullabl
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/nullablestructwasnull
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetNullableStructWasNull(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNullableStructWasNull:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalintvalue
@@ -447,13 +403,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalintvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalIntValue(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalIntValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalintwaspresent
@@ -462,13 +416,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalintwaspresent
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalIntWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalIntWasPresent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionallistvalue
@@ -477,13 +429,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionallistvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalListValue(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalListValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionallistwaspresent
@@ -492,13 +442,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionallistwaspresent
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalListWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalListWasPresent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstringvalue
@@ -507,13 +455,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstringvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStringValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStringValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstringwaspresent
@@ -522,13 +468,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstringwaspresent
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStringWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStringWasPresent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstructvalue
@@ -537,13 +481,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstructvalue
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStructValue(value IMTRUnitTestingClusterSimpleStruct) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStructValue:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstructwaspresent
@@ -552,13 +494,11 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) Optiona
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/optionalstructwaspresent
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetOptionalStructWasPresent(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOptionalStructWasPresent:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/timedinvoketimeoutms
@@ -567,12 +507,8 @@ func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) TimedIn
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrtestclusterclustertestcomplexnullableoptionalresponseparams/timedinvoketimeoutms
 func (m_ MTRTestClusterClusterTestComplexNullableOptionalResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

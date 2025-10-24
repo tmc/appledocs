@@ -21,3 +21,4 @@ var unarchiverWillFinishProtocol *objc.Protocol
 func init() {
 	unarchiverWillFinishProtocol = objc.GetProtocol("unarchiverWillFinish:")
 }
+

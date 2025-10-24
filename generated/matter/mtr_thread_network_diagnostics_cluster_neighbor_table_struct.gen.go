@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
+
+
+/* debug [class_header]: Header for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
 // The class instance for the [MTRThreadNetworkDiagnosticsClusterNeighborTableStruct] class.
 var (
 	MTRThreadNetworkDiagnosticsClusterNeighborTableStructClass     _MTRThreadNetworkDiagnosticsClusterNeighborTableStructClass
@@ -27,55 +30,30 @@ func getMTRThreadNetworkDiagnosticsClusterNeighborTableStructClass() _MTRThreadN
 type _MTRThreadNetworkDiagnosticsClusterNeighborTableStructClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
 // An interface definition for the [MTRThreadNetworkDiagnosticsClusterNeighborTableStruct] class.
 type IMTRThreadNetworkDiagnosticsClusterNeighborTableStruct interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
 	// properties:
-	Age() objc.IObject /* cross-framework: NSNumber */
-	SetAge(value objc.IObject /* cross-framework: NSNumber */)
-	AverageRssi() objc.IObject /* cross-framework: NSNumber */
-	SetAverageRssi(value objc.IObject /* cross-framework: NSNumber */)
-	ExtAddress() objc.IObject /* cross-framework: NSNumber */
-	SetExtAddress(value objc.IObject /* cross-framework: NSNumber */)
-	FrameErrorRate() objc.IObject /* cross-framework: NSNumber */
-	SetFrameErrorRate(value objc.IObject /* cross-framework: NSNumber */)
-	FullNetworkData() objc.IObject /* cross-framework: NSNumber */
-	SetFullNetworkData(value objc.IObject /* cross-framework: NSNumber */)
-	FullThreadDevice() objc.IObject /* cross-framework: NSNumber */
-	SetFullThreadDevice(value objc.IObject /* cross-framework: NSNumber */)
-	IsChild() objc.IObject /* cross-framework: NSNumber */
-	SetIsChild(value objc.IObject /* cross-framework: NSNumber */)
-	LastRssi() objc.IObject /* cross-framework: NSNumber */
-	SetLastRssi(value objc.IObject /* cross-framework: NSNumber */)
-	LinkFrameCounter() objc.IObject /* cross-framework: NSNumber */
-	SetLinkFrameCounter(value objc.IObject /* cross-framework: NSNumber */)
-	Lqi() objc.IObject /* cross-framework: NSNumber */
-	SetLqi(value objc.IObject /* cross-framework: NSNumber */)
-	MessageErrorRate() objc.IObject /* cross-framework: NSNumber */
-	SetMessageErrorRate(value objc.IObject /* cross-framework: NSNumber */)
-	MleFrameCounter() objc.IObject /* cross-framework: NSNumber */
-	SetMleFrameCounter(value objc.IObject /* cross-framework: NSNumber */)
-	Rloc16() objc.IObject /* cross-framework: NSNumber */
-	SetRloc16(value objc.IObject /* cross-framework: NSNumber */)
-	RxOnWhenIdle() objc.IObject /* cross-framework: NSNumber */
-	SetRxOnWhenIdle(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRThreadNetworkDiagnosticsClusterNeighborTableStruct
-type MTRThreadNetworkDiagnosticsClusterNeighborTableStruct struct {
-	objectivec.Object
-}
-
-// MTRThreadNetworkDiagnosticsClusterNeighborTableStructFrom constructs a [MTRThreadNetworkDiagnosticsClusterNeighborTableStruct] from an unsafe.Pointer.
-func MTRThreadNetworkDiagnosticsClusterNeighborTableStructFrom(ptr unsafe.Pointer) MTRThreadNetworkDiagnosticsClusterNeighborTableStruct {
-	return MTRThreadNetworkDiagnosticsClusterNeighborTableStruct{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRThreadNetworkDiagnosticsClusterNeighborTableStructClass) Alloc() MTRThreadNetworkDiagnosticsClusterNeighborTableStruct {
 	rv := objc.Send[MTRThreadNetworkDiagnosticsClusterNeighborTableStruct](objc.ID(mc.class), objc.Sel("alloc"))
@@ -83,7 +61,6 @@ func (mc _MTRThreadNetworkDiagnosticsClusterNeighborTableStructClass) Alloc() MT
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRThreadNetworkDiagnosticsClusterNeighborTableStructClass) New() MTRThreadNetworkDiagnosticsClusterNeighborTableStruct {
 	rv := objc.Send[MTRThreadNetworkDiagnosticsClusterNeighborTableStruct](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -106,217 +83,53 @@ func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) Autorelease() MT
 func NewMTRThreadNetworkDiagnosticsClusterNeighborTableStruct() MTRThreadNetworkDiagnosticsClusterNeighborTableStruct {
 	return getMTRThreadNetworkDiagnosticsClusterNeighborTableStructClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/age
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) Age() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("age"))
-	return rv
+/* debug [class_struct]: Struct for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
+// A parent class referenced by other Matter classes.
+
+
+// A parent class referenced by other Matter classes. [Full Topic]
+type MTRThreadNetworkDiagnosticsClusterNeighborTableStruct struct {
+	objectivec.Object
 }
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/age
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetAge(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAge:"), value)
+// MTRThreadNetworkDiagnosticsClusterNeighborTableStructFrom constructs a [MTRThreadNetworkDiagnosticsClusterNeighborTableStruct] from an unsafe.Pointer.
+//
+// A parent class referenced by other Matter classes.
+func MTRThreadNetworkDiagnosticsClusterNeighborTableStructFrom(ptr unsafe.Pointer) MTRThreadNetworkDiagnosticsClusterNeighborTableStruct {
+	return MTRThreadNetworkDiagnosticsClusterNeighborTableStruct{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/averagerssi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) AverageRssi() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("averageRssi"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/averagerssi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetAverageRssi(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAverageRssi:"), value)
-}
+
+/* debug [class_methods]: Class methods for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/extaddress
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) ExtAddress() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("extAddress"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/extaddress
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetExtAddress(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setExtAddress:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/frameerrorrate
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) FrameErrorRate() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("frameErrorRate"))
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/frameerrorrate
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFrameErrorRate(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFrameErrorRate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/fullnetworkdata
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) FullNetworkData() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fullNetworkData"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/fullnetworkdata
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFullNetworkData(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFullNetworkData:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/fullthreaddevice
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) FullThreadDevice() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("fullThreadDevice"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/fullthreaddevice
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetFullThreadDevice(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setFullThreadDevice:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/ischild
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) IsChild() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("isChild"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/ischild
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetIsChild(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIsChild:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/lastrssi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) LastRssi() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("lastRssi"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/lastrssi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLastRssi(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLastRssi:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/linkframecounter
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) LinkFrameCounter() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("linkFrameCounter"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/linkframecounter
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLinkFrameCounter(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLinkFrameCounter:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/lqi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) Lqi() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("lqi"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/lqi
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetLqi(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setLqi:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/messageerrorrate
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) MessageErrorRate() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("messageErrorRate"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/messageerrorrate
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetMessageErrorRate(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMessageErrorRate:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/mleframecounter
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) MleFrameCounter() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("mleFrameCounter"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/mleframecounter
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetMleFrameCounter(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMleFrameCounter:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/rloc16
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) Rloc16() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rloc16"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/rloc16
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetRloc16(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRloc16:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/rxonwhenidle
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) RxOnWhenIdle() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("rxOnWhenIdle"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrthreadnetworkdiagnosticsclusterneighbortablestruct/rxonwhenidle
-func (m_ MTRThreadNetworkDiagnosticsClusterNeighborTableStruct) SetRxOnWhenIdle(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRxOnWhenIdle:"), value)
-}
+/* debug [class.gen.go]: End class MTRThreadNetworkDiagnosticsClusterNeighborTableStruct */
 
 
 

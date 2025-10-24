@@ -33,8 +33,6 @@ type IMTRClusterRVCOperationalState interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterRVCOperationalState
 type MTRClusterRVCOperationalState struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterRVCOperationalState) Autorelease() MTRClusterRVCOperationalSt
 func NewMTRClusterRVCOperationalState() MTRClusterRVCOperationalState {
 	return getMTRClusterRVCOperationalStateClass().New()
 }
-
-
-
-

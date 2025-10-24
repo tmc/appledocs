@@ -5,6 +5,10 @@ package appkit
 import (
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/coretelephony"
+
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // PSharingServiceDelegate is the NSSharingServiceDelegate protocol interface.
@@ -17,17 +21,17 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSSharingServiceDelegate
 type PSharingServiceDelegate interface {
 	// Optional methods
-	AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge(sharingService ISharingService, positioningRect objc.IObject /* cross-framework: Rect */, preferredEdge RectEdge /* not a class type */) View
+	AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge(sharingService ISharingService, positioningRect Rect /* not a class type */, preferredEdge RectEdge /* not a class type */) View
 	HasAnchoringViewForSharingServiceShowRelativeToRectPreferredEdge() bool
 	SharingServiceDidFailToShareItemsError(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */, error_ objc.IObject /* cross-framework: Error */)
 	HasSharingServiceDidFailToShareItemsError() bool
 	SharingServiceDidShareItems(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */)
 	HasSharingServiceDidShareItems() bool
-	SharingServiceSourceFrameOnScreenForShareItem(sharingService ISharingService, item objc.IObject) corefoundation.Rect
+	SharingServiceSourceFrameOnScreenForShareItem(sharingService ISharingService, item objc.IObject) Rect
 	HasSharingServiceSourceFrameOnScreenForShareItem() bool
 	SharingServiceSourceWindowForShareItemsSharingContentScope(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */, sharingContentScope SharingContentScope) Window
 	HasSharingServiceSourceWindowForShareItemsSharingContentScope() bool
-	SharingServiceTransitionImageForShareItemContentRect(sharingService ISharingService, item objc.IObject, contentRect objc.IObject /* cross-framework: Rect */) Image
+	SharingServiceTransitionImageForShareItemContentRect(sharingService ISharingService, item objc.IObject, contentRect Rect /* not a class type */) Image
 	HasSharingServiceTransitionImageForShareItemContentRect() bool
 	SharingServiceWillShareItems(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */)
 	HasSharingServiceWillShareItems() bool
@@ -37,17 +41,17 @@ type PSharingServiceDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type SharingServiceDelegate struct {
-	_AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge func(sharingService ISharingService, positioningRect objc.IObject /* cross-framework: Rect */, preferredEdge RectEdge /* not a class type */) View
+	_AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge func(sharingService ISharingService, positioningRect Rect /* not a class type */, preferredEdge RectEdge /* not a class type */) View
 	_SharingServiceDidFailToShareItemsError func(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */, error_ objc.IObject /* cross-framework: Error */)
 	_SharingServiceDidShareItems func(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */)
-	_SharingServiceSourceFrameOnScreenForShareItem func(sharingService ISharingService, item objc.IObject) corefoundation.Rect
+	_SharingServiceSourceFrameOnScreenForShareItem func(sharingService ISharingService, item objc.IObject) Rect
 	_SharingServiceSourceWindowForShareItemsSharingContentScope func(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */, sharingContentScope SharingContentScope) Window
-	_SharingServiceTransitionImageForShareItemContentRect func(sharingService ISharingService, item objc.IObject, contentRect objc.IObject /* cross-framework: Rect */) Image
+	_SharingServiceTransitionImageForShareItemContentRect func(sharingService ISharingService, item objc.IObject, contentRect Rect /* not a class type */) Image
 	_SharingServiceWillShareItems func(sharingService ISharingService, items objc.IObject /* cross-framework: NSArray */)
 }
 
 // SetAnchoringViewForSharingServiceShowRelativeToRectPreferredEdge sets the handler for the AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge delegate method.
-func (d *SharingServiceDelegate) SetAnchoringViewForSharingServiceShowRelativeToRectPreferredEdge(f func(sharingService ISharingService, positioningRect objc.IObject /* cross-framework: Rect */, preferredEdge RectEdge /* not a class type */) View) {
+func (d *SharingServiceDelegate) SetAnchoringViewForSharingServiceShowRelativeToRectPreferredEdge(f func(sharingService ISharingService, positioningRect Rect /* not a class type */, preferredEdge RectEdge /* not a class type */) View) {
 	d._AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge = f
 }
 
@@ -68,7 +72,7 @@ func (d *SharingServiceDelegate) SetSharingServiceDidShareItems(f func(sharingSe
 // SetSharingServiceSourceFrameOnScreenForShareItem sets the handler for the SharingServiceSourceFrameOnScreenForShareItem delegate method.
 //
 // Invoked when the sharing service is performed and the sharing window is displayed, to present a transition between the original items and the sharing window.
-func (d *SharingServiceDelegate) SetSharingServiceSourceFrameOnScreenForShareItem(f func(sharingService ISharingService, item objc.IObject) corefoundation.Rect) {
+func (d *SharingServiceDelegate) SetSharingServiceSourceFrameOnScreenForShareItem(f func(sharingService ISharingService, item objc.IObject) Rect) {
 	d._SharingServiceSourceFrameOnScreenForShareItem = f
 }
 
@@ -82,7 +86,7 @@ func (d *SharingServiceDelegate) SetSharingServiceSourceWindowForShareItemsShari
 // SetSharingServiceTransitionImageForShareItemContentRect sets the handler for the SharingServiceTransitionImageForShareItemContentRect delegate method.
 //
 // Invoked to allow returning a custom transition image when sharing an item.
-func (d *SharingServiceDelegate) SetSharingServiceTransitionImageForShareItemContentRect(f func(sharingService ISharingService, item objc.IObject, contentRect objc.IObject /* cross-framework: Rect */) Image) {
+func (d *SharingServiceDelegate) SetSharingServiceTransitionImageForShareItemContentRect(f func(sharingService ISharingService, item objc.IObject, contentRect Rect /* not a class type */) Image) {
 	d._SharingServiceTransitionImageForShareItemContentRect = f
 }
 
@@ -94,7 +98,7 @@ func (d *SharingServiceDelegate) SetSharingServiceWillShareItems(f func(sharingS
 }
 
 // AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge implements the PSharingServiceDelegate interface.
-func (d *SharingServiceDelegate) AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge(sharingService ISharingService, positioningRect objc.IObject /* cross-framework: Rect */, preferredEdge RectEdge /* not a class type */) View {
+func (d *SharingServiceDelegate) AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge(sharingService ISharingService, positioningRect Rect /* not a class type */, preferredEdge RectEdge /* not a class type */) View {
 	if d._AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge != nil {
 		return d._AnchoringViewForSharingServiceShowRelativeToRectPreferredEdge(sharingService, positioningRect, preferredEdge)
 	}
@@ -132,11 +136,11 @@ func (d *SharingServiceDelegate) HasSharingServiceDidShareItems() bool {
 }
 
 // SharingServiceSourceFrameOnScreenForShareItem implements the PSharingServiceDelegate interface.
-func (d *SharingServiceDelegate) SharingServiceSourceFrameOnScreenForShareItem(sharingService ISharingService, item objc.IObject) corefoundation.Rect {
+func (d *SharingServiceDelegate) SharingServiceSourceFrameOnScreenForShareItem(sharingService ISharingService, item objc.IObject) Rect {
 	if d._SharingServiceSourceFrameOnScreenForShareItem != nil {
 		return d._SharingServiceSourceFrameOnScreenForShareItem(sharingService, item)
 	}
-	var zero corefoundation.Rect
+	var zero Rect
 	return zero
 }
 
@@ -160,7 +164,7 @@ func (d *SharingServiceDelegate) HasSharingServiceSourceWindowForShareItemsShari
 }
 
 // SharingServiceTransitionImageForShareItemContentRect implements the PSharingServiceDelegate interface.
-func (d *SharingServiceDelegate) SharingServiceTransitionImageForShareItemContentRect(sharingService ISharingService, item objc.IObject, contentRect objc.IObject /* cross-framework: Rect */) Image {
+func (d *SharingServiceDelegate) SharingServiceTransitionImageForShareItemContentRect(sharingService ISharingService, item objc.IObject, contentRect Rect /* not a class type */) Image {
 	if d._SharingServiceTransitionImageForShareItemContentRect != nil {
 		return d._SharingServiceTransitionImageForShareItemContentRect(sharingService, item, contentRect)
 	}

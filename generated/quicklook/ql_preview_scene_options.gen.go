@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class QLPreviewSceneOptions */
+
+
+/* debug [class_header]: Header for QLPreviewSceneOptions */
 // The class instance for the [PreviewSceneOptions] class.
 var (
 	PreviewSceneOptionsClass     _PreviewSceneOptionsClass
@@ -26,28 +30,30 @@ func getPreviewSceneOptionsClass() _PreviewSceneOptionsClass {
 type _PreviewSceneOptionsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PreviewSceneOptions */
 // An interface definition for the [PreviewSceneOptions] class.
 type IPreviewSceneOptions interface {
 	objectivec.IObject
-	InitialPreviewIndex() int
-	SetInitialPreviewIndex(value int)
-}
+	
+/* debug [class_interface_properties]: Properties for PreviewSceneOptions */
+	// properties:
+/* debug [class_interface_properties]: End properties */
 
-// A class that represents the configuration for a preview scene activation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewSceneActivationConfiguration/Options
-type PreviewSceneOptions struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for PreviewSceneOptions */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// PreviewSceneOptionsFrom constructs a [PreviewSceneOptions] from an unsafe.Pointer.
-//
-// A class that represents the configuration for a preview scene activation.
-func PreviewSceneOptionsFrom(ptr unsafe.Pointer) PreviewSceneOptions {
-	return PreviewSceneOptions{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for PreviewSceneOptions */
 // Alloc allocates a new instance without initialization.
 func (pc _PreviewSceneOptionsClass) Alloc() PreviewSceneOptions {
 	rv := objc.Send[PreviewSceneOptions](objc.ID(pc.class), objc.Sel("alloc"))
@@ -55,7 +61,6 @@ func (pc _PreviewSceneOptionsClass) Alloc() PreviewSceneOptions {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PreviewSceneOptionsClass) New() PreviewSceneOptions {
 	rv := objc.Send[PreviewSceneOptions](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -78,26 +83,55 @@ func (p_ PreviewSceneOptions) Autorelease() PreviewSceneOptions {
 func NewPreviewSceneOptions() PreviewSceneOptions {
 	return getPreviewSceneOptionsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
-// The index of the item to preview.
+
+/* debug [class_struct]: Struct for PreviewSceneOptions */
+// A class that represents the configuration for a preview scene activation.
+
+
+// A class that represents the configuration for a preview scene activation.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewSceneActivationConfiguration/Options/initialPreviewIndex
-func (p_ PreviewSceneOptions) InitialPreviewIndex() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("initialPreviewIndex"))
-	return rv
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewSceneActivationConfiguration/Options
+type PreviewSceneOptions struct {
+	objectivec.Object
 }
 
-
-// SetInitialPreviewIndex sets the value of the initialPreviewIndex property.
-// The index of the item to preview.
-
+// PreviewSceneOptionsFrom constructs a [PreviewSceneOptions] from an unsafe.Pointer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/QuickLook/QLPreviewSceneActivationConfiguration/Options/initialPreviewIndex
-func (p_ PreviewSceneOptions) SetInitialPreviewIndex(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInitialPreviewIndex:"), value)
+// A class that represents the configuration for a preview scene activation.
+func PreviewSceneOptionsFrom(ptr unsafe.Pointer) PreviewSceneOptions {
+	return PreviewSceneOptions{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
+
+/* debug [class_init_methods]: Init methods for PreviewSceneOptions *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PreviewSceneOptions */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PreviewSceneOptions */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PreviewSceneOptions */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PreviewSceneOptions */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class QLPreviewSceneOptions */
 
 

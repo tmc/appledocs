@@ -18,3 +18,4 @@ var FileProviderDomainStateProtocol *objc.Protocol
 func init() {
 	FileProviderDomainStateProtocol = objc.GetProtocol("NSFileProviderDomainState")
 }
+

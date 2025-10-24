@@ -13,7 +13,7 @@ var _ = gameplaykit.NewGoal
 // Creates a goal whose effect is to make an agent align its orientation with that of other agents in a specified group.
 func ExampleNewGoalToAlignWithAgentsMaxDistanceMaxAngle() {
 	_ = gameplaykit.NewGoalToAlignWithAgentsMaxDistanceMaxAngle(
-		[]gameplaykit.IAgent{}, // agents []IAgent
+		[]gameplaykit.Agent{}, // agents []Agent
 		0.0, // maxDistance float32
 		0.0, // maxAngle float32
 	)
@@ -23,7 +23,7 @@ func ExampleNewGoalToAlignWithAgentsMaxDistanceMaxAngle() {
 // Creates a goal whose effect is to make an agent avoid colliding with the specified other agents, taking into account the other agents’ movement.
 func ExampleNewGoalToAvoidAgentsMaxPredictionTime() {
 	_ = gameplaykit.NewGoalToAvoidAgentsMaxPredictionTime(
-		[]gameplaykit.IAgent{}, // agents []IAgent
+		[]gameplaykit.Agent{}, // agents []Agent
 		0.0, // maxPredictionTime float64
 	)
 	// Output:
@@ -32,7 +32,7 @@ func ExampleNewGoalToAvoidAgentsMaxPredictionTime() {
 // Creates a goal whose effect is to make an agent avoid colliding with the specified static obstacles.
 func ExampleNewGoalToAvoidObstaclesMaxPredictionTime() {
 	_ = gameplaykit.NewGoalToAvoidObstaclesMaxPredictionTime(
-		[]gameplaykit.IObstacle{}, // obstacles []IObstacle
+		[]gameplaykit.Obstacle{}, // obstacles []Obstacle
 		0.0, // maxPredictionTime float64
 	)
 	// Output:
@@ -41,7 +41,7 @@ func ExampleNewGoalToAvoidObstaclesMaxPredictionTime() {
 // Creates a goal whose effect is to make an agent stay near the other agents in a specified group.
 func ExampleNewGoalToCohereWithAgentsMaxDistanceMaxAngle() {
 	_ = gameplaykit.NewGoalToCohereWithAgentsMaxDistanceMaxAngle(
-		[]gameplaykit.IAgent{}, // agents []IAgent
+		[]gameplaykit.Agent{}, // agents []Agent
 		0.0, // maxDistance float32
 		0.0, // maxAngle float32
 	)
@@ -59,7 +59,7 @@ func ExampleNewGoalToReachTargetSpeed() {
 // Creates a goal whose effect is to make an agent maintain the specified distance from other agents in a specified group.
 func ExampleNewGoalToSeparateFromAgentsMaxDistanceMaxAngle() {
 	_ = gameplaykit.NewGoalToSeparateFromAgentsMaxDistanceMaxAngle(
-		[]gameplaykit.IAgent{}, // agents []IAgent
+		[]gameplaykit.Agent{}, // agents []Agent
 		0.0, // maxDistance float32
 		0.0, // maxAngle float32
 	)

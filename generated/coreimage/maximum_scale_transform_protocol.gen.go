@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // MaximumScaleTransformProtocol is the CIMaximumScaleTransform protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIMaximumScaleTransform.
 var MaximumScaleTransformProtocol *objc.Protocol
 
 func init() {
 	MaximumScaleTransformProtocol = objc.GetProtocol("CIMaximumScaleTransform")
 }
+

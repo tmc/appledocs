@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mName */
+
+
+/* debug [class_header]: Header for mName */
 // The class instance for the [mName] class.
 var (
 	MNameClass     _mNameClass
@@ -26,27 +30,30 @@ func getmNameClass() _mNameClass {
 type _mNameClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mName */
 // An interface definition for the [mName] class.
 type ImName interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mName */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mName */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mName
-type mName struct {
-	objectivec.Object
-}
-
-// mNameFrom constructs a [mName] from an unsafe.Pointer.
-func mNameFrom(ptr unsafe.Pointer) mName {
-	return mName{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mName */
 // Alloc allocates a new instance without initialization.
 func (mc _mNameClass) Alloc() mName {
 	rv := objc.Send[mName](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mNameClass) Alloc() mName {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mNameClass) New() mName {
 	rv := objc.Send[mName](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mName) Autorelease() mName {
 func NewmName() mName {
 	return getmNameClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mName */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mName
+type mName struct {
+	objectivec.Object
+}
+
+// mNameFrom constructs a [mName] from an unsafe.Pointer.
+func mNameFrom(ptr unsafe.Pointer) mName {
+	return mName{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mName *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mName */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mName */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mName */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mName */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mName */
 
 
 

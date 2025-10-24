@@ -33,8 +33,6 @@ type IMTRBaseClusterRVCCleanMode interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterRVCCleanMode
 type MTRBaseClusterRVCCleanMode struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterRVCCleanMode) Autorelease() MTRBaseClusterRVCCleanMode {
 func NewMTRBaseClusterRVCCleanMode() MTRBaseClusterRVCCleanMode {
 	return getMTRBaseClusterRVCCleanModeClass().New()
 }
-
-
-
-

@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // BluetoothL2CAPChannelDelegateProtocol is the IOBluetoothL2CAPChannelDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to IOBluetoothL2CAPChannelDelegate.
 var BluetoothL2CAPChannelDelegateProtocol *objc.Protocol
 
 func init() {
 	BluetoothL2CAPChannelDelegateProtocol = objc.GetProtocol("IOBluetoothL2CAPChannelDelegate")
 }
+

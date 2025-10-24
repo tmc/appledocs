@@ -33,8 +33,6 @@ type IMTRBaseClusterMediaInput interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterMediaInput
 type MTRBaseClusterMediaInput struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterMediaInput) Autorelease() MTRBaseClusterMediaInput {
 func NewMTRBaseClusterMediaInput() MTRBaseClusterMediaInput {
 	return getMTRBaseClusterMediaInputClass().New()
 }
-
-
-
-

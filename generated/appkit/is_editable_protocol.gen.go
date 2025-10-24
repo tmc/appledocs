@@ -15,3 +15,4 @@ var isEditableProtocol *objc.Protocol
 func init() {
 	isEditableProtocol = objc.GetProtocol("isEditable")
 }
+

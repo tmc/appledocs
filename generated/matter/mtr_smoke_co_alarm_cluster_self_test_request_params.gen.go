@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRSmokeCOAlarmClusterSelfTestRequestParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterSelfTestRequestParams
@@ -83,8 +81,6 @@ func NewMTRSmokeCOAlarmClusterSelfTestRequestParams() MTRSmokeCOAlarmClusterSelf
 	return getMTRSmokeCOAlarmClusterSelfTestRequestParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterselftestrequestparams/serversideprocessingtimeout
 func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) ServerSideProcessingTimeou
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterselftestrequestparams/serversideprocessingtimeout
 func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterselftestrequestparams/timedinvoketimeoutms
@@ -107,12 +101,8 @@ func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) TimedInvokeTimeoutMs() obj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrsmokecoalarmclusterselftestrequestparams/timedinvoketimeoutms
 func (m_ MTRSmokeCOAlarmClusterSelfTestRequestParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

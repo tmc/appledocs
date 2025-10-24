@@ -15,3 +15,4 @@ var InputServiceProviderProtocol *objc.Protocol
 func init() {
 	InputServiceProviderProtocol = objc.GetProtocol("NSInputServiceProvider")
 }
+

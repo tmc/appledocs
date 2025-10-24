@@ -15,9 +15,10 @@ func ExampleNewVoronoiNoiseSourceWithFrequencyDisplacementDistanceEnabledSeed() 
 	_ = gameplaykit.NewVoronoiNoiseSourceWithFrequencyDisplacementDistanceEnabledSeed(
 		0.0, // frequency float64
 		0.0, // displacement float64
-		false, // distanceEnabled bool
+		true, // distanceEnabled bool
 		gameplaykit.int32 /* not a class type */{}, // seed int32 /* not a class type */
 	)
 	// Output:
 }
+
 

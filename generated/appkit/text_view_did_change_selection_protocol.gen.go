@@ -15,3 +15,4 @@ var textViewDidChangeSelectionProtocol *objc.Protocol
 func init() {
 	textViewDidChangeSelectionProtocol = objc.GetProtocol("textViewDidChangeSelection:")
 }
+

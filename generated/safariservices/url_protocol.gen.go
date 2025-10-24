@@ -18,3 +18,4 @@ var URLProtocol *objc.Protocol
 func init() {
 	URLProtocol = objc.GetProtocol("URL")
 }
+

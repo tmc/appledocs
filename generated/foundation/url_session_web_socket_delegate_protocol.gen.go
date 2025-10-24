@@ -21,3 +21,4 @@ var URLSessionWebSocketDelegateProtocol *objc.Protocol
 func init() {
 	URLSessionWebSocketDelegateProtocol = objc.GetProtocol("NSURLSessionWebSocketDelegate")
 }
+

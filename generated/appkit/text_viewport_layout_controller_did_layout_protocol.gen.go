@@ -15,3 +15,4 @@ var textViewportLayoutControllerDidLayoutProtocol *objc.Protocol
 func init() {
 	textViewportLayoutControllerDidLayoutProtocol = objc.GetProtocol("textViewportLayoutControllerDidLayout:")
 }
+

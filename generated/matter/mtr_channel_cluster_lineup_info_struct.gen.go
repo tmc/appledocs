@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -42,8 +42,6 @@ type IMTRChannelClusterLineupInfoStruct interface {
 	SetPostalCode(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterLineupInfoStruct
@@ -87,8 +85,6 @@ func NewMTRChannelClusterLineupInfoStruct() MTRChannelClusterLineupInfoStruct {
 	return getMTRChannelClusterLineupInfoStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
 func (m_ MTRChannelClusterLineupInfoStruct) LineupInfoType() objc.IObject /* cross-framework: NSNumber */ {
@@ -96,13 +92,11 @@ func (m_ MTRChannelClusterLineupInfoStruct) LineupInfoType() objc.IObject /* cro
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupinfotype
 func (m_ MTRChannelClusterLineupInfoStruct) SetLineupInfoType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupInfoType:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupname
@@ -111,13 +105,11 @@ func (m_ MTRChannelClusterLineupInfoStruct) LineupName() objc.IObject /* cross-f
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/lineupname
 func (m_ MTRChannelClusterLineupInfoStruct) SetLineupName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setLineupName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
@@ -126,13 +118,11 @@ func (m_ MTRChannelClusterLineupInfoStruct) OperatorName() objc.IObject /* cross
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/operatorname
 func (m_ MTRChannelClusterLineupInfoStruct) SetOperatorName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOperatorName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/postalcode
@@ -141,12 +131,8 @@ func (m_ MTRChannelClusterLineupInfoStruct) PostalCode() objc.IObject /* cross-f
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterlineupinfostruct/postalcode
 func (m_ MTRChannelClusterLineupInfoStruct) SetPostalCode(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setPostalCode:"), value)
 }
-
-
-

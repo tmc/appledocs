@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterOvenMode */
+
+
+/* debug [class_header]: Header for MTRClusterOvenMode */
 // The class instance for the [MTRClusterOvenMode] class.
 var (
 	MTRClusterOvenModeClass     _MTRClusterOvenModeClass
@@ -26,42 +30,31 @@ func getMTRClusterOvenModeClass() _MTRClusterOvenModeClass {
 type _MTRClusterOvenModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterOvenMode */
 // An interface definition for the [MTRClusterOvenMode] class.
 type IMTRClusterOvenMode interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterOvenMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterOvenMode */
 	// methods:
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTROvenModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
-	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
 	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Oven Mode Attributes and commands for selecting a mode from a list of supported options.
 
 
-// Cluster Oven Mode Attributes and commands for selecting a mode from a list of supported options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode
-type MTRClusterOvenMode struct {
-	MTRGenericCluster
-}
-
-// MTRClusterOvenModeFrom constructs a [MTRClusterOvenMode] from an unsafe.Pointer.
-//
-// Cluster Oven Mode Attributes and commands for selecting a mode from a list of supported options.
-func MTRClusterOvenModeFrom(ptr unsafe.Pointer) MTRClusterOvenMode {
-	return MTRClusterOvenMode{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterOvenMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterOvenModeClass) Alloc() MTRClusterOvenMode {
 	rv := objc.Send[MTRClusterOvenMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +62,6 @@ func (mc _MTRClusterOvenModeClass) Alloc() MTRClusterOvenMode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterOvenModeClass) New() MTRClusterOvenMode {
 	rv := objc.Send[MTRClusterOvenMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,82 +84,66 @@ func (m_ MTRClusterOvenMode) Autorelease() MTRClusterOvenMode {
 func NewMTRClusterOvenMode() MTRClusterOvenMode {
 	return getMTRClusterOvenModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRClusterOvenMode */
+// Cluster Oven Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Oven Mode Attributes and commands for selecting a mode from a list of supported options.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/init(device:endpointID:queue:)
-func NewMTRClusterOvenModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterOvenMode {
-	instance := getMTRClusterOvenModeClass().Alloc()
-	rv := objc.Send[MTRClusterOvenMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode
+type MTRClusterOvenMode struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterOvenMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTROvenModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
+// MTRClusterOvenModeFrom constructs a [MTRClusterOvenMode] from an unsafe.Pointer.
+//
+// Cluster Oven Mode Attributes and commands for selecting a mode from a list of supported options.
+func MTRClusterOvenModeFrom(ptr unsafe.Pointer) MTRClusterOvenMode {
+	return MTRClusterOvenMode{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/readAttributeAcceptedCommandList(with:)
-func (m_ MTRClusterOvenMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for MTRClusterOvenMode *//* debug [class_init_methods]: End init methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterOvenMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [class_methods]: Class methods for MTRClusterOvenMode */
+/* debug [class_methods]: End class methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterOvenMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for MTRClusterOvenMode */
+/* debug [class_properties_class]: End class properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterOvenMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
-	return rv
-}
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterOvenMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterOvenMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
+/* debug [instance_methods]: Instance methods for MTRClusterOvenMode */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOvenMode/readAttributeSupportedModes(with:)
 func (m_ MTRClusterOvenMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadAttributeSupportedModesWithParams */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRClusterOvenMode */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRClusterOvenMode */
+
 
 

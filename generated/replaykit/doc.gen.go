@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for ReplayKit. DO NOT EDIT.
 
 // Package replaykit provides Go bindings for the ReplayKit framework.
 //
-// Record or stream video from the screen, and audio from the app and microphone.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ReplayKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/ReplayKit
 package replaykit
 
 import (

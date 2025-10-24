@@ -15,3 +15,4 @@ var cellFrameForTextContainerProtocol *objc.Protocol
 func init() {
 	cellFrameForTextContainerProtocol = objc.GetProtocol("cellFrameForTextContainer:")
 }
+

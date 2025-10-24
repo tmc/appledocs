@@ -15,3 +15,4 @@ var compareProtocol *objc.Protocol
 func init() {
 	compareProtocol = objc.GetProtocol("compare:")
 }
+

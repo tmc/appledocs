@@ -15,3 +15,4 @@ var moveToBeginningOfParagraphProtocol *objc.Protocol
 func init() {
 	moveToBeginningOfParagraphProtocol = objc.GetProtocol("moveToBeginningOfParagraph:")
 }
+

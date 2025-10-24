@@ -12,6 +12,6 @@ package appkit
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityLayoutItem
 type PAccessibilityLayoutItem interface {
 	// Optional methods
-	SetAccessibilityFrame(frame objc.IObject /* cross-framework: Rect */)
+	SetAccessibilityFrame(frame Rect /* not a class type */)
 	HasSetAccessibilityFrame() bool
 }

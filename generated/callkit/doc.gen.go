@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for CallKit. DO NOT EDIT.
 
 // Package callkit provides Go bindings for the CallKit framework.
 //
-// Display the system-calling UI for your app’s VoIP services, and coordinate your calling services with other apps and the system.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to CallKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/CallKit
 package callkit
 
 import (

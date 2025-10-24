@@ -15,3 +15,4 @@ var drawerWillResizeContentsProtocol *objc.Protocol
 func init() {
 	drawerWillResizeContentsProtocol = objc.GetProtocol("drawerWillResizeContents:")
 }
+

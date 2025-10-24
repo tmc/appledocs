@@ -20,3 +20,4 @@ var classForPageProtocol *objc.Protocol
 func init() {
 	classForPageProtocol = objc.GetProtocol("classForPage")
 }
+

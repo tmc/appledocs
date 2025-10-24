@@ -28,8 +28,8 @@ func (c_ Coder) DecodeCGAffineTransformForKey(key IString) corefoundation.CGAffi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeCGPoint(forKey:)
-func (c_ Coder) DecodeCGPointForKey(key IString) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeCGPointForKey:"), key)
+func (c_ Coder) DecodeCGPointForKey(key IString) corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](c_.ID, objc.Sel("decodeCGPointForKey:"), key)
 	return rv
 }
 
@@ -37,8 +37,8 @@ func (c_ Coder) DecodeCGPointForKey(key IString) objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeCGRect(forKey:)
-func (c_ Coder) DecodeCGRectForKey(key IString) objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeCGRectForKey:"), key)
+func (c_ Coder) DecodeCGRectForKey(key IString) corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](c_.ID, objc.Sel("decodeCGRectForKey:"), key)
 	return rv
 }
 
@@ -46,8 +46,8 @@ func (c_ Coder) DecodeCGRectForKey(key IString) objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeCGSize(forKey:)
-func (c_ Coder) DecodeCGSizeForKey(key IString) objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("decodeCGSizeForKey:"), key)
+func (c_ Coder) DecodeCGSizeForKey(key IString) corefoundation.CGSize {
+	rv := objc.Send[corefoundation.CGSize](c_.ID, objc.Sel("decodeCGSizeForKey:"), key)
 	return rv
 }
 
@@ -91,7 +91,7 @@ func (c_ Coder) DecodeUIOffsetForKey(key IString) objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-10qhm
-func (c_ Coder) EncodeCGRectForKey(rect objc.IObject /* cross-framework: Rect */, key IString) {
+func (c_ Coder) EncodeCGRectForKey(rect corefoundation.CGRect, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeCGRect:forKey:"), rect, key)
 }
 
@@ -123,7 +123,7 @@ func (c_ Coder) EncodeUIEdgeInsetsForKey(insets EdgeInsets /* not a class type *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-6wq3n
-func (c_ Coder) EncodeCGSizeForKey(size objc.IObject /* cross-framework: Size */, key IString) {
+func (c_ Coder) EncodeCGSizeForKey(size corefoundation.CGSize, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeCGSize:forKey:"), size, key)
 }
 
@@ -139,7 +139,7 @@ func (c_ Coder) EncodeDirectionalEdgeInsetsForKey(insets objectivec.IObject, key
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-7z9kc
-func (c_ Coder) EncodeCGPointForKey(point objc.IObject /* cross-framework: Point */, key IString) {
+func (c_ Coder) EncodeCGPointForKey(point corefoundation.CGPoint, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeCGPoint:forKey:"), point, key)
 }
 

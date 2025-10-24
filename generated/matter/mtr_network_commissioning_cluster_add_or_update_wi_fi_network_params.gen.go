@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams
@@ -89,8 +87,6 @@ func NewMTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams() MTRNetworkC
 	return getMTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/breadcrumb
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Breadcrumb() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Breadcrumb(
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/breadcrumb
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetBreadcrumb(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBreadcrumb:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/credentials
@@ -113,13 +107,11 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Credentials
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/credentials
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetCredentials(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentials:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/serversideprocessingtimeout
@@ -128,13 +120,11 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) ServerSideP
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/serversideprocessingtimeout
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/ssid
@@ -143,13 +133,11 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) Ssid() objc
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/ssid
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetSsid(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSsid:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/timedinvoketimeoutms
@@ -158,12 +146,8 @@ func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) TimedInvoke
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusteraddorupdatewifinetworkparams/timedinvoketimeoutms
 func (m_ MTRNetworkCommissioningClusterAddOrUpdateWiFiNetworkParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

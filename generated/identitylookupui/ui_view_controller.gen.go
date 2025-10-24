@@ -36,7 +36,6 @@ type IViewController interface {
 
 // A parent class referenced by other IdentityLookupUI classes.
 
-
 // A parent class referenced by other IdentityLookupUI classes. [Full Topic]
 type ViewController struct {
 	objectivec.Object
@@ -79,7 +78,3 @@ func (v_ ViewController) Autorelease() ViewController {
 func NewViewController() ViewController {
 	return getViewControllerClass().New()
 }
-
-
-
-

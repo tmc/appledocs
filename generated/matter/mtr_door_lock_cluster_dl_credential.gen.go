@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRDoorLockClusterDlCredential] class.
@@ -37,8 +37,6 @@ type IMTRDoorLockClusterDlCredential interface {
 	SetCredentialType(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDoorLockClusterDlCredential
@@ -84,8 +82,6 @@ func NewMTRDoorLockClusterDlCredential() MTRDoorLockClusterDlCredential {
 	return getMTRDoorLockClusterDlCredentialClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdlcredential/credentialindex
 func (m_ MTRDoorLockClusterDlCredential) CredentialIndex() objc.IObject /* cross-framework: NSNumber */ {
@@ -93,13 +89,11 @@ func (m_ MTRDoorLockClusterDlCredential) CredentialIndex() objc.IObject /* cross
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdlcredential/credentialindex
 func (m_ MTRDoorLockClusterDlCredential) SetCredentialIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdlcredential/credentialtype
@@ -108,12 +102,8 @@ func (m_ MTRDoorLockClusterDlCredential) CredentialType() objc.IObject /* cross-
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrdoorlockclusterdlcredential/credentialtype
 func (m_ MTRDoorLockClusterDlCredential) SetCredentialType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCredentialType:"), value)
 }
-
-
-

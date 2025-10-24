@@ -10,7 +10,5 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	Element = _undefined // referenced in PHASE
-	Flags = _undefined // referenced in PHASE
+	Flags   = _undefined // referenced in PHASE
 )
-
-

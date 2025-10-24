@@ -16,3 +16,4 @@ var scanCacheUpdatedForWiFiInterfaceWithNameProtocol *objc.Protocol
 func init() {
 	scanCacheUpdatedForWiFiInterfaceWithNameProtocol = objc.GetProtocol("scanCacheUpdatedForWiFiInterfaceWithName:")
 }
+

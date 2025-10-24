@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GCVirtualControllerConfiguration */
+
+
+/* debug [class_header]: Header for GCVirtualControllerConfiguration */
 // The class instance for the [GCVirtualControllerConfiguration] class.
 var (
 	GCVirtualControllerConfigurationClass     _GCVirtualControllerConfigurationClass
@@ -26,38 +30,32 @@ func getGCVirtualControllerConfigurationClass() _GCVirtualControllerConfiguratio
 type _GCVirtualControllerConfigurationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GCVirtualControllerConfiguration */
 // An interface definition for the [GCVirtualControllerConfiguration] class.
 type IGCVirtualControllerConfiguration interface {
 	objectivec.IObject
-	Hidden() bool
-	SetHidden(value bool)
-	Elements() string
-	SetElements(value string)
+	
+/* debug [class_interface_properties]: Properties for GCVirtualControllerConfiguration */
+	// properties:
 	IsHidden() bool
 	SetIsHidden(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GCVirtualControllerConfiguration */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// The configuration of a virtual controller.
-//
-// You configure a virtual controller by specifying the input elements it contains. Then using the method, you can customize individual elements.
+/* debug [class_interface]: End interface */
 
 
-// The configuration of a virtual controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration
-type GCVirtualControllerConfiguration struct {
-	objectivec.Object
-}
 
-// GCVirtualControllerConfigurationFrom constructs a [GCVirtualControllerConfiguration] from an unsafe.Pointer.
-//
-// The configuration of a virtual controller.
-func GCVirtualControllerConfigurationFrom(ptr unsafe.Pointer) GCVirtualControllerConfiguration {
-	return GCVirtualControllerConfiguration{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GCVirtualControllerConfiguration */
 // Alloc allocates a new instance without initialization.
 func (gc _GCVirtualControllerConfigurationClass) Alloc() GCVirtualControllerConfiguration {
 	rv := objc.Send[GCVirtualControllerConfiguration](objc.ID(gc.class), objc.Sel("alloc"))
@@ -65,7 +63,6 @@ func (gc _GCVirtualControllerConfigurationClass) Alloc() GCVirtualControllerConf
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GCVirtualControllerConfigurationClass) New() GCVirtualControllerConfiguration {
 	rv := objc.Send[GCVirtualControllerConfiguration](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,46 +85,54 @@ func (g_ GCVirtualControllerConfiguration) Autorelease() GCVirtualControllerConf
 func NewGCVirtualControllerConfiguration() GCVirtualControllerConfiguration {
 	return getGCVirtualControllerConfigurationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A Boolean value that indicates whether the system or the app presents the virtual interface.
+/* debug [class_struct]: Struct for GCVirtualControllerConfiguration */
+// The configuration of a virtual controller.
+//
+// You configure a virtual controller by specifying the input elements it contains. Then using the method, you can customize individual elements.
+
+
+// The configuration of a virtual controller.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
-func (g_ GCVirtualControllerConfiguration) Hidden() bool {
-	rv := objc.Send[bool](g_.ID, objc.Sel("hidden"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration
+type GCVirtualControllerConfiguration struct {
+	objectivec.Object
 }
 
-
-// A Boolean value that indicates whether the system or the app presents the virtual interface.
+// GCVirtualControllerConfigurationFrom constructs a [GCVirtualControllerConfiguration] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GameController/GCVirtualController/Configuration/isHidden
-func (g_ GCVirtualControllerConfiguration) SetHidden(value bool) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setHidden:"), value)
+// The configuration of a virtual controller.
+func GCVirtualControllerConfigurationFrom(ptr unsafe.Pointer) GCVirtualControllerConfiguration {
+	return GCVirtualControllerConfiguration{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The input elements of a virtual controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
-func (g_ GCVirtualControllerConfiguration) Elements() string {
-	rv := objc.Send[string](g_.ID, objc.Sel("elements"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for GCVirtualControllerConfiguration *//* debug [class_init_methods]: End init methods */
 
 
-// The input elements of a virtual controller.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/elements
-func (g_ GCVirtualControllerConfiguration) SetElements(value string) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setElements:"), objc.String(value))
-}
 
+/* debug [class_methods]: Class methods for GCVirtualControllerConfiguration */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GCVirtualControllerConfiguration */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GCVirtualControllerConfiguration */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GCVirtualControllerConfiguration */
 
 // A Boolean value that indicates whether the system or the app presents the virtual interface.
 //
@@ -136,7 +141,7 @@ func (g_ GCVirtualControllerConfiguration) SetElements(value string) {
 func (g_ GCVirtualControllerConfiguration) IsHidden() bool {
 	rv := objc.Send[bool](g_.ID, objc.Sel("isHidden"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isHidden */
 
 
 // A Boolean value that indicates whether the system or the app presents the virtual interface.
@@ -145,7 +150,11 @@ func (g_ GCVirtualControllerConfiguration) IsHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/gamecontroller/gcvirtualcontroller/configuration/ishidden
 func (g_ GCVirtualControllerConfiguration) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
-}
+}/* debug [instance_properties/setter]: isHidden */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GCVirtualControllerConfiguration */
 
 

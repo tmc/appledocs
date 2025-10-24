@@ -15,12 +15,3 @@ func ExampleNewCKModifyRecordsOperation() {
 	_ = cloudkit.NewCKModifyRecordsOperation()
 	// Output:
 }
-// ExampleNewCKModifyRecordsOperationWithRecordsToSaveRecordIDsToDelete demonstrates how to create a CKModifyRecordsOperation instance using NewCKModifyRecordsOperationWithRecordsToSaveRecordIDsToDelete.
-// Creates an operation for modifying the specified records.
-func ExampleNewCKModifyRecordsOperationWithRecordsToSaveRecordIDsToDelete() {
-	_ = cloudkit.NewCKModifyRecordsOperationWithRecordsToSaveRecordIDsToDelete(
-		[]cloudkit.ICKRecord{}, // records []ICKRecord
-		[]cloudkit.ICKRecordID{}, // recordIDs []ICKRecordID
-	)
-	// Output:
-}

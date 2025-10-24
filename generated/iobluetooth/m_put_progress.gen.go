@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mPUTProgress */
+
+
+/* debug [class_header]: Header for mPUTProgress */
 // The class instance for the [mPUTProgress] class.
 var (
 	MPUTProgressClass     _mPUTProgressClass
@@ -26,27 +30,30 @@ func getmPUTProgressClass() _mPUTProgressClass {
 type _mPUTProgressClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mPUTProgress */
 // An interface definition for the [mPUTProgress] class.
 type ImPUTProgress interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mPUTProgress */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mPUTProgress */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mPUTProgress
-type mPUTProgress struct {
-	objectivec.Object
-}
-
-// mPUTProgressFrom constructs a [mPUTProgress] from an unsafe.Pointer.
-func mPUTProgressFrom(ptr unsafe.Pointer) mPUTProgress {
-	return mPUTProgress{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mPUTProgress */
 // Alloc allocates a new instance without initialization.
 func (mc _mPUTProgressClass) Alloc() mPUTProgress {
 	rv := objc.Send[mPUTProgress](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mPUTProgressClass) Alloc() mPUTProgress {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mPUTProgressClass) New() mPUTProgress {
 	rv := objc.Send[mPUTProgress](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mPUTProgress) Autorelease() mPUTProgress {
 func NewmPUTProgress() mPUTProgress {
 	return getmPUTProgressClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mPUTProgress */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mPUTProgress
+type mPUTProgress struct {
+	objectivec.Object
+}
+
+// mPUTProgressFrom constructs a [mPUTProgress] from an unsafe.Pointer.
+func mPUTProgressFrom(ptr unsafe.Pointer) mPUTProgress {
+	return mPUTProgress{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mPUTProgress *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mPUTProgress */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mPUTProgress */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mPUTProgress */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mPUTProgress */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mPUTProgress */
 
 
 

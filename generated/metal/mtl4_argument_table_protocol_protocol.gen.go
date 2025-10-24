@@ -1,0 +1,25 @@
+// Code generated from Apple documentation for Metal. DO NOT EDIT.
+
+package metal
+
+// PMTL4ArgumentTable is the MTL4ArgumentTable protocol interface.
+//
+// Provides a mechanism to manage and provide resource bindings for buffers, textures, sampler states and other Metal resources.
+//
+// Availability:
+//   - Mac Catalyst 26.0+
+//   - iOS 26.0+
+//   - iPadOS 26.0+
+//   - macOS 26.0+
+//   - tvOS 26.0+
+//   - visionOS 26.0+
+//
+// See: doc://com.apple.metal/documentation/Metal/MTL4ArgumentTable
+type PMTL4ArgumentTable interface {
+	// Required methods
+	SetAddressAttributeStrideAtIndex(gpuAddress GPUAddress /* typedef */, stride uint, bindingIndex uint)/* debug [protocol_interface/required_method]: SetAddressAttributeStrideAtIndex */
+	SetAddressAtIndex(gpuAddress GPUAddress /* typedef */, bindingIndex uint)/* debug [protocol_interface/required_method]: SetAddressAtIndex */
+	SetResourceAtBufferIndex(resourceID objc.IObject /* cross-framework: MTLResourceID */, bindingIndex uint)/* debug [protocol_interface/required_method]: SetResourceAtBufferIndex */
+	SetSamplerStateAtIndex(resourceID objc.IObject /* cross-framework: MTLResourceID */, bindingIndex uint)/* debug [protocol_interface/required_method]: SetSamplerStateAtIndex */
+	SetTextureAtIndex(resourceID objc.IObject /* cross-framework: MTLResourceID */, bindingIndex uint)/* debug [protocol_interface/required_method]: SetTextureAtIndex */
+}

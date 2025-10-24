@@ -15,3 +15,4 @@ var downloadShouldUseCredentialStorageProtocol *objc.Protocol
 func init() {
 	downloadShouldUseCredentialStorageProtocol = objc.GetProtocol("downloadShouldUseCredentialStorage:")
 }
+

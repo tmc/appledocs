@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for SafetyKit. DO NOT EDIT.
 
 // Package safetykit provides Go bindings for the SafetyKit framework.
 //
-// Detect and respond to car crash events in your app.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to SafetyKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/SafetyKit
 package safetykit
 
 import (

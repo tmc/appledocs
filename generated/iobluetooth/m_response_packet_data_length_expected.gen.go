@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mResponsePacketDataLengthExpected */
+
+
+/* debug [class_header]: Header for mResponsePacketDataLengthExpected */
 // The class instance for the [mResponsePacketDataLengthExpected] class.
 var (
 	MResponsePacketDataLengthExpectedClass     _mResponsePacketDataLengthExpectedClass
@@ -26,27 +30,30 @@ func getmResponsePacketDataLengthExpectedClass() _mResponsePacketDataLengthExpec
 type _mResponsePacketDataLengthExpectedClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mResponsePacketDataLengthExpected */
 // An interface definition for the [mResponsePacketDataLengthExpected] class.
 type ImResponsePacketDataLengthExpected interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mResponsePacketDataLengthExpected */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mResponsePacketDataLengthExpected */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mResponsePacketDataLengthExpected
-type mResponsePacketDataLengthExpected struct {
-	objectivec.Object
-}
-
-// mResponsePacketDataLengthExpectedFrom constructs a [mResponsePacketDataLengthExpected] from an unsafe.Pointer.
-func mResponsePacketDataLengthExpectedFrom(ptr unsafe.Pointer) mResponsePacketDataLengthExpected {
-	return mResponsePacketDataLengthExpected{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mResponsePacketDataLengthExpected */
 // Alloc allocates a new instance without initialization.
 func (mc _mResponsePacketDataLengthExpectedClass) Alloc() mResponsePacketDataLengthExpected {
 	rv := objc.Send[mResponsePacketDataLengthExpected](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mResponsePacketDataLengthExpectedClass) Alloc() mResponsePacketDataLen
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mResponsePacketDataLengthExpectedClass) New() mResponsePacketDataLengthExpected {
 	rv := objc.Send[mResponsePacketDataLengthExpected](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mResponsePacketDataLengthExpected) Autorelease() mResponsePacketDataLen
 func NewmResponsePacketDataLengthExpected() mResponsePacketDataLengthExpected {
 	return getmResponsePacketDataLengthExpectedClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mResponsePacketDataLengthExpected */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXSession/mResponsePacketDataLengthExpected
+type mResponsePacketDataLengthExpected struct {
+	objectivec.Object
+}
+
+// mResponsePacketDataLengthExpectedFrom constructs a [mResponsePacketDataLengthExpected] from an unsafe.Pointer.
+func mResponsePacketDataLengthExpectedFrom(ptr unsafe.Pointer) mResponsePacketDataLengthExpected {
+	return mResponsePacketDataLengthExpected{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mResponsePacketDataLengthExpected *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mResponsePacketDataLengthExpected */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mResponsePacketDataLengthExpected */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mResponsePacketDataLengthExpected */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mResponsePacketDataLengthExpected */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mResponsePacketDataLengthExpected */
 
 
 

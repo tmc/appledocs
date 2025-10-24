@@ -39,7 +39,6 @@ type IPersistentStoreRequest interface {
 
 // Criteria used to retrieve data from or save data to a persistent store.
 
-
 // Criteria used to retrieve data from or save data to a persistent store.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewPersistentStoreRequest() PersistentStoreRequest {
 	return getPersistentStoreRequestClass().New()
 }
 
-
-
 // The stores the request should be sent to.
 //
 // [Full Topic]
@@ -96,7 +93,6 @@ func (p_ PersistentStoreRequest) AffectedStores() []IPersistentStore {
 	rv := objc.Send[[]PersistentStore](p_.ID, objc.Sel("affectedStores"))
 	return rv
 }
-
 
 // The stores the request should be sent to.
 //
@@ -116,7 +112,6 @@ func (p_ PersistentStoreRequest) SetAffectedStores(value []IPersistentStore) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAffectedStores:"), nsArray)
 }
 
-
 // The type of the fetch request.
 //
 // [Full Topic]
@@ -125,6 +120,3 @@ func (p_ PersistentStoreRequest) RequestType() PersistentStoreRequestType {
 	rv := objc.Send[PersistentStoreRequestType](p_.ID, objc.Sel("requestType"))
 	return rv
 }
-
-
-

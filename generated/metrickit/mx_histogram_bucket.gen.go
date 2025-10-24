@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MXHistogramBucket */
+
+
+/* debug [class_header]: Header for MXHistogramBucket */
 // The class instance for the [MXHistogramBucket] class.
 var (
 	MXHistogramBucketClass     _MXHistogramBucketClass
@@ -27,40 +31,37 @@ func getMXHistogramBucketClass() _MXHistogramBucketClass {
 type _MXHistogramBucketClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MXHistogramBucket */
 // An interface definition for the [MXHistogramBucket] class.
 type IMXHistogramBucket interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MXHistogramBucket */
 	// properties:
+	BucketCount() uint
 	BucketEnd() unsafe.Pointer
 	BucketStart() unsafe.Pointer
-	BucketEnumerator() objc.IObject /* cross-framework: Enumerator */
-	SetBucketEnumerator(value objc.IObject /* cross-framework: Enumerator */)
+	BucketEnumerator() foundation.Enumerator
+	SetBucketEnumerator(value foundation.Enumerator)
 	TotalBucketCount() int
 	SetTotalBucketCount(value int)
-	BucketCount() int
-	SetBucketCount(value int)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MXHistogramBucket */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object representing a bucket of data in a histogram.
 
 
-// An object representing a bucket of data in a histogram.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogramBucket
-type MXHistogramBucket struct {
-	objectivec.Object
-}
-
-// MXHistogramBucketFrom constructs a [MXHistogramBucket] from an unsafe.Pointer.
-//
-// An object representing a bucket of data in a histogram.
-func MXHistogramBucketFrom(ptr unsafe.Pointer) MXHistogramBucket {
-	return MXHistogramBucket{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MXHistogramBucket */
 // Alloc allocates a new instance without initialization.
 func (mc _MXHistogramBucketClass) Alloc() MXHistogramBucket {
 	rv := objc.Send[MXHistogramBucket](objc.ID(mc.class), objc.Sel("alloc"))
@@ -68,7 +69,6 @@ func (mc _MXHistogramBucketClass) Alloc() MXHistogramBucket {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MXHistogramBucketClass) New() MXHistogramBucket {
 	rv := objc.Send[MXHistogramBucket](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,7 +91,61 @@ func (m_ MXHistogramBucket) Autorelease() MXHistogramBucket {
 func NewMXHistogramBucket() MXHistogramBucket {
 	return getMXHistogramBucketClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MXHistogramBucket */
+// An object representing a bucket of data in a histogram.
+
+
+// An object representing a bucket of data in a histogram.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogramBucket
+type MXHistogramBucket struct {
+	objectivec.Object
+}
+
+// MXHistogramBucketFrom constructs a [MXHistogramBucket] from an unsafe.Pointer.
+//
+// An object representing a bucket of data in a histogram.
+func MXHistogramBucketFrom(ptr unsafe.Pointer) MXHistogramBucket {
+	return MXHistogramBucket{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MXHistogramBucket *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MXHistogramBucket */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MXHistogramBucket */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MXHistogramBucket */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MXHistogramBucket */
+
+// An integer representing the number of samples in the bucket.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetricKit/MXHistogramBucket/bucketCount
+func (m_ MXHistogramBucket) BucketCount() uint {
+	rv := objc.Send[uint](m_.ID, objc.Sel("bucketCount"))
+	return rv
+}/* debug [instance_properties/getter]: bucketCount */
 
 
 // The value of the ending measurement for the bucket.
@@ -101,7 +155,7 @@ func NewMXHistogramBucket() MXHistogramBucket {
 func (m_ MXHistogramBucket) BucketEnd() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketEnd"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bucketEnd */
 
 
 // The value of the starting measurement for the bucket.
@@ -111,26 +165,26 @@ func (m_ MXHistogramBucket) BucketEnd() unsafe.Pointer {
 func (m_ MXHistogramBucket) BucketStart() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("bucketStart"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bucketStart */
 
 
 // An enumerator for the buckets containing the data in the histogram.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/bucketenumerator
-func (m_ MXHistogramBucket) BucketEnumerator() objc.IObject /* cross-framework: Enumerator */ {
+func (m_ MXHistogramBucket) BucketEnumerator() foundation.Enumerator {
 	rv := objc.Send[foundation.Enumerator](m_.ID, objc.Sel("bucketEnumerator"))
 	return rv
-}
+}/* debug [instance_properties/getter]: bucketEnumerator */
 
 
 // An enumerator for the buckets containing the data in the histogram.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/bucketenumerator
-func (m_ MXHistogramBucket) SetBucketEnumerator(value objc.IObject /* cross-framework: Enumerator */) {
+func (m_ MXHistogramBucket) SetBucketEnumerator(value foundation.Enumerator) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketEnumerator:"), value)
-}
+}/* debug [instance_properties/setter]: bucketEnumerator */
 
 
 // The total number of buckets in the histogram.
@@ -140,7 +194,7 @@ func (m_ MXHistogramBucket) SetBucketEnumerator(value objc.IObject /* cross-fram
 func (m_ MXHistogramBucket) TotalBucketCount() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("totalBucketCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: totalBucketCount */
 
 
 // The total number of buckets in the histogram.
@@ -149,26 +203,12 @@ func (m_ MXHistogramBucket) TotalBucketCount() int {
 // [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogram/totalbucketcount
 func (m_ MXHistogramBucket) SetTotalBucketCount(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTotalBucketCount:"), value)
-}
+}/* debug [instance_properties/setter]: totalBucketCount */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// An integer representing the number of samples in the bucket.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketcount
-func (m_ MXHistogramBucket) BucketCount() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("bucketCount"))
-	return rv
-}
-
-
-// An integer representing the number of samples in the bucket.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metrickit/mxhistogrambucket/bucketcount
-func (m_ MXHistogramBucket) SetBucketCount(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBucketCount:"), value)
-}
+/* debug [class.gen.go]: End class MXHistogramBucket */
 
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -41,7 +41,6 @@ type IPHCloudIdentifier interface {
 // An object that identifies an asset or collection that syncs through iCloud Photos.
 //
 // A cloud identifier is a type of identifier that behaves like a local identifier. Use cloud identifiers to identify objects that sync across devices through iCloud Photos. You can store, sync, and use cloud identifiers with devices synced with an iCloud account. You’re also able to use secure coding to encode and decode cloud identifiers. A local identifier is valid for referring to objects only in the context of a local device. These objects include , , and . Because a cloud identifier is universal, you can use it on any iCloud-synced device. Convert the cloud identifier back to a local identifier and perform a fetch to find the equivalent object on that device. Perform batch lookups of identifiers using and . Retrieving identifier mappings can be an expensive operation, so perform lookups sparingly. If a lookup fails, inspect the error property on or for details. See for additional error details.
-
 
 // An object that identifies an asset or collection that syncs through iCloud Photos.
 //
@@ -89,8 +88,6 @@ func NewPHCloudIdentifier() PHCloudIdentifier {
 	return getPHCloudIdentifierClass().New()
 }
 
-
-
 // A string version of the cloud identifier to use in serialization.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (p_ PHCloudIdentifier) StringValue() objc.IObject /* cross-framework: NSStr
 	return rv
 }
 
-
 // A string version of the cloud identifier to use in serialization.
 //
 // [Full Topic]
@@ -108,7 +104,6 @@ func (p_ PHCloudIdentifier) StringValue() objc.IObject /* cross-framework: NSStr
 func (p_ PHCloudIdentifier) SetStringValue(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setStringValue:"), value)
 }
-
 
 // A constant value that indicates that the system can’t resolve a local object from a global identifier.
 //
@@ -118,6 +113,3 @@ func (p_ PHCloudIdentifier) PHLocalIdentifierNotFound() objc.IObject /* cross-fr
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("PHLocalIdentifierNotFound"))
 	return rv
 }
-
-
-

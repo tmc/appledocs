@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // aspectRatioProtocol is the aspectRatio protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to aspectRatio.
 var aspectRatioProtocol *objc.Protocol
 
 func init() {
 	aspectRatioProtocol = objc.GetProtocol("aspectRatio")
 }
+

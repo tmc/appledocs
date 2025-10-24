@@ -6,9 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // rfcommChannelControlSignalsChangedProtocol is the rfcommChannelControlSignalsChanged: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to rfcommChannelControlSignalsChanged:.
 var rfcommChannelControlSignalsChangedProtocol *objc.Protocol
 
 func init() {
 	rfcommChannelControlSignalsChangedProtocol = objc.GetProtocol("rfcommChannelControlSignalsChanged:")
 }
+

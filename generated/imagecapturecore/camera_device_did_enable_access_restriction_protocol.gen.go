@@ -19,3 +19,4 @@ var cameraDeviceDidEnableAccessRestrictionProtocol *objc.Protocol
 func init() {
 	cameraDeviceDidEnableAccessRestrictionProtocol = objc.GetProtocol("cameraDeviceDidEnableAccessRestriction:")
 }
+

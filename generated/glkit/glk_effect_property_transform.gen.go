@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class GLKEffectPropertyTransform */
+
+
+/* debug [class_header]: Header for GLKEffectPropertyTransform */
 // The class instance for the [GLKEffectPropertyTransform] class.
 var (
 	GLKEffectPropertyTransformClass     _GLKEffectPropertyTransformClass
@@ -25,41 +29,35 @@ func getGLKEffectPropertyTransformClass() _GLKEffectPropertyTransformClass {
 type _GLKEffectPropertyTransformClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GLKEffectPropertyTransform */
 // An interface definition for the [GLKEffectPropertyTransform] class.
 type IGLKEffectPropertyTransform interface {
 	IGLKEffectProperty
+	
+/* debug [class_interface_properties]: Properties for GLKEffectPropertyTransform */
 	// properties:
 	ModelviewMatrix() GLKMatrix4 /* typedef */
 	SetModelviewMatrix(value GLKMatrix4 /* typedef */)
 	NormalMatrix() GLKMatrix3 /* typedef */
 	ProjectionMatrix() GLKMatrix4 /* typedef */
 	SetProjectionMatrix(value GLKMatrix4 /* typedef */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GLKEffectPropertyTransform */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Coordinate transform information for use in GLKit rendering effects.
-//
-// The class defines properties that provide the coordinate transformations to be performed when rendering the effect.
+/* debug [class_interface]: End interface */
 
 
-// Coordinate transform information for use in GLKit rendering effects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform
-type GLKEffectPropertyTransform struct {
-	GLKEffectProperty
-}
 
-// GLKEffectPropertyTransformFrom constructs a [GLKEffectPropertyTransform] from an unsafe.Pointer.
-//
-// Coordinate transform information for use in GLKit rendering effects.
-func GLKEffectPropertyTransformFrom(ptr unsafe.Pointer) GLKEffectPropertyTransform {
-	return GLKEffectPropertyTransform{
-		GLKEffectProperty: GLKEffectPropertyFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for GLKEffectPropertyTransform */
 // Alloc allocates a new instance without initialization.
 func (gc _GLKEffectPropertyTransformClass) Alloc() GLKEffectPropertyTransform {
 	rv := objc.Send[GLKEffectPropertyTransform](objc.ID(gc.class), objc.Sel("alloc"))
@@ -67,7 +65,6 @@ func (gc _GLKEffectPropertyTransformClass) Alloc() GLKEffectPropertyTransform {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GLKEffectPropertyTransformClass) New() GLKEffectPropertyTransform {
 	rv := objc.Send[GLKEffectPropertyTransform](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,17 +87,65 @@ func (g_ GLKEffectPropertyTransform) Autorelease() GLKEffectPropertyTransform {
 func NewGLKEffectPropertyTransform() GLKEffectPropertyTransform {
 	return getGLKEffectPropertyTransformClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GLKEffectPropertyTransform */
+// Coordinate transform information for use in GLKit rendering effects.
+//
+// The class defines properties that provide the coordinate transformations to be performed when rendering the effect.
+
+
+// Coordinate transform information for use in GLKit rendering effects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform
+type GLKEffectPropertyTransform struct {
+	GLKEffectProperty
+}
+
+// GLKEffectPropertyTransformFrom constructs a [GLKEffectPropertyTransform] from an unsafe.Pointer.
+//
+// Coordinate transform information for use in GLKit rendering effects.
+func GLKEffectPropertyTransformFrom(ptr unsafe.Pointer) GLKEffectPropertyTransform {
+	return GLKEffectPropertyTransform{
+		GLKEffectProperty: GLKEffectPropertyFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GLKEffectPropertyTransform *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GLKEffectPropertyTransform */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GLKEffectPropertyTransform */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GLKEffectPropertyTransform */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GLKEffectPropertyTransform */
 
 // The matrix used to transform position coordinates from world space to eye space.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
 func (g_ GLKEffectPropertyTransform) ModelviewMatrix() GLKMatrix4 /* typedef */ {
-	rv := objc.Send[GLKMatrix4](g_.ID, objc.Sel("modelviewMatrix"))
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("modelviewMatrix"))
 	return rv
-}
+}/* debug [instance_properties/getter]: modelviewMatrix */
 
 
 // The matrix used to transform position coordinates from world space to eye space.
@@ -109,7 +154,7 @@ func (g_ GLKEffectPropertyTransform) ModelviewMatrix() GLKMatrix4 /* typedef */ 
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/modelviewMatrix
 func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value GLKMatrix4 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setModelviewMatrix:"), value)
-}
+}/* debug [instance_properties/setter]: modelviewMatrix */
 
 
 // The matrix used to transform normal coordinates from world space to eye space.
@@ -117,9 +162,9 @@ func (g_ GLKEffectPropertyTransform) SetModelviewMatrix(value GLKMatrix4 /* type
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/normalMatrix
 func (g_ GLKEffectPropertyTransform) NormalMatrix() GLKMatrix3 /* typedef */ {
-	rv := objc.Send[GLKMatrix3](g_.ID, objc.Sel("normalMatrix"))
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("normalMatrix"))
 	return rv
-}
+}/* debug [instance_properties/getter]: normalMatrix */
 
 
 // The matrix used to transform position coordinates from eye space to projection space.
@@ -127,9 +172,9 @@ func (g_ GLKEffectPropertyTransform) NormalMatrix() GLKMatrix3 /* typedef */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
 func (g_ GLKEffectPropertyTransform) ProjectionMatrix() GLKMatrix4 /* typedef */ {
-	rv := objc.Send[GLKMatrix4](g_.ID, objc.Sel("projectionMatrix"))
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("projectionMatrix"))
 	return rv
-}
+}/* debug [instance_properties/getter]: projectionMatrix */
 
 
 // The matrix used to transform position coordinates from eye space to projection space.
@@ -138,7 +183,12 @@ func (g_ GLKEffectPropertyTransform) ProjectionMatrix() GLKMatrix4 /* typedef */
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKEffectPropertyTransform/projectionMatrix
 func (g_ GLKEffectPropertyTransform) SetProjectionMatrix(value GLKMatrix4 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setProjectionMatrix:"), value)
-}
+}/* debug [instance_properties/setter]: projectionMatrix */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GLKEffectPropertyTransform */
 
 
 

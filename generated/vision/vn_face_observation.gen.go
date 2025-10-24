@@ -7,10 +7,15 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class VNFaceObservation */
+
+
+/* debug [class_header]: Header for VNFaceObservation */
 // The class instance for the [FaceObservation] class.
 var (
 	FaceObservationClass     _FaceObservationClass
@@ -27,40 +32,37 @@ func getFaceObservationClass() _FaceObservationClass {
 type _FaceObservationClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FaceObservation */
 // An interface definition for the [FaceObservation] class.
 type IFaceObservation interface {
 	IDetectedObjectObservation
-	FaceCaptureQuality() foundation.Number
-	Landmarks() unsafe.Pointer
-	Results() VNFaceObservation
+	
+/* debug [class_interface_properties]: Properties for FaceObservation */
+	// properties:
+	FaceCaptureQuality() objc.IObject /* cross-framework: NSNumber */
+	Landmarks() IVNFaceLandmarks2D
+	Pitch() objc.IObject /* cross-framework: NSNumber */
+	Roll() objc.IObject /* cross-framework: NSNumber */
+	Yaw() objc.IObject /* cross-framework: NSNumber */
+	Results() IVNFaceObservation
 	SetResults(value IVNFaceObservation)
-	Pitch() foundation.Number
-	SetPitch(value foundation.INumber)
-	Roll() foundation.Number
-	SetRoll(value foundation.INumber)
-	Yaw() foundation.Number
-	SetYaw(value foundation.INumber)
-}
+/* debug [class_interface_properties]: End properties */
 
-// Face or facial-feature information that an image analysis request detects.
-//
-// This type of observation results from a . It contains information about facial landmarks and regions it finds in the image.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation
-type FaceObservation struct {
-	DetectedObjectObservation
-}
+	
+/* debug [class_interface_methods]: Methods for FaceObservation */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// FaceObservationFrom constructs a [FaceObservation] from an unsafe.Pointer.
-//
-// Face or facial-feature information that an image analysis request detects.
-func FaceObservationFrom(ptr unsafe.Pointer) FaceObservation {
-	return FaceObservation{
-		DetectedObjectObservation: DetectedObjectObservationFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for FaceObservation */
 // Alloc allocates a new instance without initialization.
 func (fc _FaceObservationClass) Alloc() FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(fc.class), objc.Sel("alloc"))
@@ -68,7 +70,6 @@ func (fc _FaceObservationClass) Alloc() FaceObservation {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FaceObservationClass) New() FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,131 +92,169 @@ func (f_ FaceObservation) Autorelease() FaceObservation {
 func NewFaceObservation() FaceObservation {
 	return getFaceObservationClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
+/* debug [class_struct]: Struct for FaceObservation */
+// Face or facial-feature information that an image analysis request detects.
+//
+// This type of observation results from a . It contains information about facial landmarks and regions it finds in the image.
+
+
+// Face or facial-feature information that an image analysis request detects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation
+type FaceObservation struct {
+	DetectedObjectObservation
+}
+
+// FaceObservationFrom constructs a [FaceObservation] from an unsafe.Pointer.
+//
+// Face or facial-feature information that an image analysis request detects.
+func FaceObservationFrom(ptr unsafe.Pointer) FaceObservation {
+	return FaceObservation{
+		DetectedObjectObservation: DetectedObjectObservationFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FaceObservation */
 
 // Creates an observation that contains the roll and yaw of the face.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.INumber, yaw foundation.INumber) FaceObservation {
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox corefoundation.CGRect, roll objc.IObject /* cross-framework: NSNumber */, yaw objc.IObject /* cross-framework: NSNumber */) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
 	return rv
-}
-
+}/* debug [class_init_methods/constructor]: NewFaceObservationWithRequestRevisionBoundingBoxRollYaw */
 
 
 // Creates an observation that contains the roll, yaw, and pitch of the face.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.INumber, yaw foundation.INumber, pitch foundation.INumber) FaceObservation {
+func NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox corefoundation.CGRect, roll objc.IObject /* cross-framework: NSNumber */, yaw objc.IObject /* cross-framework: NSNumber */, pitch objc.IObject /* cross-framework: NSNumber */) FaceObservation {
 	rv := objc.Send[FaceObservation](objc.ID(getFaceObservationClass().class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewFaceObservationWithRequestRevisionBoundingBoxRollYawPitch */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for FaceObservation */
 
 // Creates an observation that contains the roll and yaw of the face.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:)
-func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.INumber, yaw foundation.INumber) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
+func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYaw(requestRevision uint, boundingBox corefoundation.CGRect, roll objc.IObject /* cross-framework: NSNumber */, yaw objc.IObject /* cross-framework: NSNumber */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:"), requestRevision, boundingBox, roll, yaw)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=FaceObservationWithRequestRevisionBoundingBoxRollYaw) */
+
 
 // Creates an observation that contains the roll, yaw, and pitch of the face.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/init(requestRevision:boundingBox:roll:yaw:pitch:)
-func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox coregraphics.CGRect, roll foundation.INumber, yaw foundation.INumber, pitch foundation.INumber) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
+func (fc _FaceObservationClass) FaceObservationWithRequestRevisionBoundingBoxRollYawPitch(requestRevision uint, boundingBox corefoundation.CGRect, roll objc.IObject /* cross-framework: NSNumber */, yaw objc.IObject /* cross-framework: NSNumber */, pitch objc.IObject /* cross-framework: NSNumber */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(fc.class), objc.Sel("faceObservationWithRequestRevision:boundingBox:roll:yaw:pitch:"), requestRevision, boundingBox, roll, yaw, pitch)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=FaceObservationWithRequestRevisionBoundingBoxRollYawPitch) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FaceObservation */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FaceObservation */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FaceObservation */
 
 // A value that indicates the quality of the face capture.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/faceCaptureQuality-2o4xv
-func (f_ FaceObservation) FaceCaptureQuality() foundation.Number {
-	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("faceCaptureQuality"))
+func (f_ FaceObservation) FaceCaptureQuality() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](f_.ID, objc.Sel("faceCaptureQuality"))
 	return rv
-}
+}/* debug [instance_properties/getter]: faceCaptureQuality */
+
 
 // The facial features of the detected face.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/landmarks
-func (f_ FaceObservation) Landmarks() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("landmarks"))
+func (f_ FaceObservation) Landmarks() IVNFaceLandmarks2D {
+	rv := objc.Send[FaceLandmarks2D](f_.ID, objc.Sel("landmarks"))
 	return rv
-}
+}/* debug [instance_properties/getter]: landmarks */
+
+
+// The pitch angle of a face in radians.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/pitch
+func (f_ FaceObservation) Pitch() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](f_.ID, objc.Sel("pitch"))
+	return rv
+}/* debug [instance_properties/getter]: pitch */
+
+
+// The roll angle of a face in radians.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/roll
+func (f_ FaceObservation) Roll() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](f_.ID, objc.Sel("roll"))
+	return rv
+}/* debug [instance_properties/getter]: roll */
+
+
+// The yaw angle of a face in radians.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Vision/VNFaceObservation/yaw
+func (f_ FaceObservation) Yaw() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](f_.ID, objc.Sel("yaw"))
+	return rv
+}/* debug [instance_properties/getter]: yaw */
+
 
 // The results of the face-capture quality request.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
-func (f_ FaceObservation) Results() VNFaceObservation {
-	rv := objc.Send[VNFaceObservation](f_.ID, objc.Sel("results"))
+func (f_ FaceObservation) Results() IVNFaceObservation {
+	rv := objc.Send[FaceObservation](f_.ID, objc.Sel("results"))
 	return rv
-}
+}/* debug [instance_properties/getter]: results */
 
 
-// SetResults sets the value of the results property.
 // The results of the face-capture quality request.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/vision/vndetectfacecapturequalityrequest/results
 func (f_ FaceObservation) SetResults(value IVNFaceObservation) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setResults:"), value)
-}
+}/* debug [instance_properties/setter]: results */
 
-// The pitch angle of a face in radians.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
-func (f_ FaceObservation) Pitch() foundation.Number {
-	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("pitch"))
-	return rv
-}
+/* debug [instance_properties]: End instance properties */
 
 
-// SetPitch sets the value of the pitch property.
-// The pitch angle of a face in radians.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/pitch
-func (f_ FaceObservation) SetPitch(value foundation.INumber) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setPitch:"), value)
-}
-
-// The roll angle of a face in radians.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/roll
-func (f_ FaceObservation) Roll() foundation.Number {
-	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("roll"))
-	return rv
-}
-
-
-// SetRoll sets the value of the roll property.
-// The roll angle of a face in radians.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/roll
-func (f_ FaceObservation) SetRoll(value foundation.INumber) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setRoll:"), value)
-}
-
-// The yaw angle of a face in radians.
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/yaw
-func (f_ FaceObservation) Yaw() foundation.Number {
-	rv := objc.Send[foundation.Number](f_.ID, objc.Sel("yaw"))
-	return rv
-}
-
-
-// SetYaw sets the value of the yaw property.
-// The yaw angle of a face in radians.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/vision/vnfaceobservation/yaw
-func (f_ FaceObservation) SetYaw(value foundation.INumber) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setYaw:"), value)
-}
+/* debug [class.gen.go]: End class VNFaceObservation */
 
 

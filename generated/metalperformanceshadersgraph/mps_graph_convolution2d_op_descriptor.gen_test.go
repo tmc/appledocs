@@ -28,3 +28,18 @@ func ExampleNewGraphConvolution2DOpDescriptorWithStrideInXStrideInYDilationRateI
 	)
 	// Output:
 }
+// ExampleNewGraphConvolution2DOpDescriptorWithStrideInXStrideInYDilationRateInXDilationRateInYGroupsPaddingStyleDataLayoutWeightsLayout demonstrates how to create a GraphConvolution2DOpDescriptor instance using NewGraphConvolution2DOpDescriptorWithStrideInXStrideInYDilationRateInXDilationRateInYGroupsPaddingStyleDataLayoutWeightsLayout.
+// Creates a convolution descriptor with given values for parameters.
+func ExampleNewGraphConvolution2DOpDescriptorWithStrideInXStrideInYDilationRateInXDilationRateInYGroupsPaddingStyleDataLayoutWeightsLayout() {
+	_ = metalperformanceshadersgraph.NewGraphConvolution2DOpDescriptorWithStrideInXStrideInYDilationRateInXDilationRateInYGroupsPaddingStyleDataLayoutWeightsLayout(
+		0, // strideInX uint
+		0, // strideInY uint
+		0, // dilationRateInX uint
+		0, // dilationRateInY uint
+		0, // groups uint
+		metalperformanceshadersgraph.GraphPaddingStyle{}, // paddingStyle GraphPaddingStyle
+		metalperformanceshadersgraph.GraphTensorNamedDataLayout{}, // dataLayout GraphTensorNamedDataLayout
+		metalperformanceshadersgraph.GraphTensorNamedDataLayout{}, // weightsLayout GraphTensorNamedDataLayout
+	)
+	// Output:
+}

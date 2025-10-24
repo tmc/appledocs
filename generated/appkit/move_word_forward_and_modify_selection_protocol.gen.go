@@ -15,3 +15,4 @@ var moveWordForwardAndModifySelectionProtocol *objc.Protocol
 func init() {
 	moveWordForwardAndModifySelectionProtocol = objc.GetProtocol("moveWordForwardAndModifySelection:")
 }
+

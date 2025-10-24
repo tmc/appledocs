@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class EAWiFiUnconfiguredAccessory */
+
+
+/* debug [class_header]: Header for EAWiFiUnconfiguredAccessory */
 // The class instance for the [EAWiFiUnconfiguredAccessory] class.
 var (
 	EAWiFiUnconfiguredAccessoryClass     _EAWiFiUnconfiguredAccessoryClass
@@ -27,42 +31,30 @@ func getEAWiFiUnconfiguredAccessoryClass() _EAWiFiUnconfiguredAccessoryClass {
 type _EAWiFiUnconfiguredAccessoryClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EAWiFiUnconfiguredAccessory */
 // An interface definition for the [EAWiFiUnconfiguredAccessory] class.
 type IEAWiFiUnconfiguredAccessory interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for EAWiFiUnconfiguredAccessory */
 	// properties:
-	MacAddress() objc.IObject /* cross-framework: NSString */
-	SetMacAddress(value objc.IObject /* cross-framework: NSString */)
-	Model() objc.IObject /* cross-framework: NSString */
-	SetModel(value objc.IObject /* cross-framework: NSString */)
-	Name() objc.IObject /* cross-framework: NSString */
-	SetName(value objc.IObject /* cross-framework: NSString */)
-	Properties() EAWiFiUnconfiguredAccessoryProperties
-	SetProperties(value EAWiFiUnconfiguredAccessoryProperties)
-	Ssid() objc.IObject /* cross-framework: NSString */
-	SetSsid(value objc.IObject /* cross-framework: NSString */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EAWiFiUnconfiguredAccessory */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
 
 
-// An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory
-type EAWiFiUnconfiguredAccessory struct {
-	objectivec.Object
-}
-
-// EAWiFiUnconfiguredAccessoryFrom constructs a [EAWiFiUnconfiguredAccessory] from an unsafe.Pointer.
-//
-// An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
-func EAWiFiUnconfiguredAccessoryFrom(ptr unsafe.Pointer) EAWiFiUnconfiguredAccessory {
-	return EAWiFiUnconfiguredAccessory{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for EAWiFiUnconfiguredAccessory */
 // Alloc allocates a new instance without initialization.
 func (ec _EAWiFiUnconfiguredAccessoryClass) Alloc() EAWiFiUnconfiguredAccessory {
 	rv := objc.Send[EAWiFiUnconfiguredAccessory](objc.ID(ec.class), objc.Sel("alloc"))
@@ -70,7 +62,6 @@ func (ec _EAWiFiUnconfiguredAccessoryClass) Alloc() EAWiFiUnconfiguredAccessory 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EAWiFiUnconfiguredAccessoryClass) New() EAWiFiUnconfiguredAccessory {
 	rv := objc.Send[EAWiFiUnconfiguredAccessory](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,101 +84,55 @@ func (e_ EAWiFiUnconfiguredAccessory) Autorelease() EAWiFiUnconfiguredAccessory 
 func NewEAWiFiUnconfiguredAccessory() EAWiFiUnconfiguredAccessory {
 	return getEAWiFiUnconfiguredAccessoryClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The primary MAC address of the accessory.
+/* debug [class_struct]: Struct for EAWiFiUnconfiguredAccessory */
+// An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
+
+
+// An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
-func (e_ EAWiFiUnconfiguredAccessory) MacAddress() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("macAddress"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/ExternalAccessory/EAWiFiUnconfiguredAccessory
+type EAWiFiUnconfiguredAccessory struct {
+	objectivec.Object
 }
 
-
-// The primary MAC address of the accessory.
+// EAWiFiUnconfiguredAccessoryFrom constructs a [EAWiFiUnconfiguredAccessory] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/macaddress
-func (e_ EAWiFiUnconfiguredAccessory) SetMacAddress(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setMacAddress:"), value)
+// An object that provides information about an unconfigured MFi Wireless Accessory Configuration accessory.
+func EAWiFiUnconfiguredAccessoryFrom(ptr unsafe.Pointer) EAWiFiUnconfiguredAccessory {
+	return EAWiFiUnconfiguredAccessory{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// The model name of accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/model
-func (e_ EAWiFiUnconfiguredAccessory) Model() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("model"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for EAWiFiUnconfiguredAccessory *//* debug [class_init_methods]: End init methods */
 
 
-// The model name of accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/model
-func (e_ EAWiFiUnconfiguredAccessory) SetModel(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setModel:"), value)
-}
+
+/* debug [class_methods]: Class methods for EAWiFiUnconfiguredAccessory */
+/* debug [class_methods]: End class methods */
 
 
-// The name of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/name
-func (e_ EAWiFiUnconfiguredAccessory) Name() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("name"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for EAWiFiUnconfiguredAccessory */
+/* debug [class_properties_class]: End class properties */
 
 
-// The name of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/name
-func (e_ EAWiFiUnconfiguredAccessory) SetName(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
-}
+
+/* debug [instance_methods]: Instance methods for EAWiFiUnconfiguredAccessory */
+/* debug [instance_methods]: End instance methods */
 
 
-// The properties the accessory supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/properties
-func (e_ EAWiFiUnconfiguredAccessory) Properties() EAWiFiUnconfiguredAccessoryProperties {
-	rv := objc.Send[EAWiFiUnconfiguredAccessoryProperties](e_.ID, objc.Sel("properties"))
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for EAWiFiUnconfiguredAccessory */
+/* debug [instance_properties]: End instance properties */
 
 
-// The properties the accessory supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/properties
-func (e_ EAWiFiUnconfiguredAccessory) SetProperties(value EAWiFiUnconfiguredAccessoryProperties) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setProperties:"), value)
-}
-
-
-// The Wi-Fi SSID of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/ssid
-func (e_ EAWiFiUnconfiguredAccessory) Ssid() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](e_.ID, objc.Sel("ssid"))
-	return rv
-}
-
-
-// The Wi-Fi SSID of the accessory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/externalaccessory/eawifiunconfiguredaccessory/ssid
-func (e_ EAWiFiUnconfiguredAccessory) SetSsid(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setSsid:"), value)
-}
+/* debug [class.gen.go]: End class EAWiFiUnconfiguredAccessory */
 
 

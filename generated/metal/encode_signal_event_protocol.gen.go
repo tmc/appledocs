@@ -20,3 +20,4 @@ var encodeSignalEventProtocol *objc.Protocol
 func init() {
 	encodeSignalEventProtocol = objc.GetProtocol("encodeSignalEvent:")
 }
+

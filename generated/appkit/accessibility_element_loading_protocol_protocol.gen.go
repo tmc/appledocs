@@ -3,8 +3,9 @@
 package appkit
 
 import (
+	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // PAccessibilityElementLoading is the NSAccessibilityElementLoading protocol interface.
@@ -17,8 +18,8 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityElementLoading
 type PAccessibilityElementLoading interface {
 	// Required methods
-	AccessibilityElementWithToken(token objc.IObject /* cross-framework: AccessibilityLoadingToken */) objc.ID
+	AccessibilityElementWithToken(token AccessibilityLoadingToken /* typedef */) unsafe.Pointer/* debug [protocol_interface/required_method]: AccessibilityElementWithToken */
 	// Optional methods
-	AccessibilityRangeInTargetElementWithToken(token objc.IObject /* cross-framework: AccessibilityLoadingToken */) corefoundation.Range
+	AccessibilityRangeInTargetElementWithToken(token AccessibilityLoadingToken /* typedef */) corefoundation.Range
 	HasAccessibilityRangeInTargetElementWithToken() bool
 }

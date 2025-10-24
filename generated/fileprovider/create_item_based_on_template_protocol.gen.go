@@ -18,3 +18,4 @@ var createItemBasedOnTemplateProtocol *objc.Protocol
 func init() {
 	createItemBasedOnTemplateProtocol = objc.GetProtocol("createItemBasedOnTemplate:")
 }
+

@@ -18,3 +18,4 @@ var FileProviderEnumeratorProtocol *objc.Protocol
 func init() {
 	FileProviderEnumeratorProtocol = objc.GetProtocol("NSFileProviderEnumerator")
 }
+

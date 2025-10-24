@@ -15,3 +15,4 @@ var moveWordLeftProtocol *objc.Protocol
 func init() {
 	moveWordLeftProtocol = objc.GetProtocol("moveWordLeft:")
 }
+

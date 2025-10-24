@@ -20,3 +20,4 @@ var staticThreadgroupMemoryLengthProtocol *objc.Protocol
 func init() {
 	staticThreadgroupMemoryLengthProtocol = objc.GetProtocol("staticThreadgroupMemoryLength")
 }
+

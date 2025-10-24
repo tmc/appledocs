@@ -20,3 +20,4 @@ var isPressedProtocol *objc.Protocol
 func init() {
 	isPressedProtocol = objc.GetProtocol("isPressed")
 }
+

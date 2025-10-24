@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class CMAltitudeData */
+
+
+/* debug [class_header]: Header for CMAltitudeData */
 // The class instance for the [AltitudeData] class.
 var (
 	AltitudeDataClass     _AltitudeDataClass
@@ -26,36 +30,30 @@ func getAltitudeDataClass() _AltitudeDataClass {
 type _AltitudeDataClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AltitudeData */
 // An interface definition for the [AltitudeData] class.
 type IAltitudeData interface {
 	ILogItem
+	
+/* debug [class_interface_properties]: Properties for AltitudeData */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AltitudeData */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Data for a recorded change in altitude.
-//
-// You do not create instances of this class directly. When you want to receive altimeter changes, create an instance of the class and use that object to query for events or to start the delivery of events. The altimeter object creates new instances of this class at appropriate times and delivers them to the handler you specify.
+/* debug [class_interface]: End interface */
 
 
-// Data for a recorded change in altitude.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData
-type AltitudeData struct {
-	LogItem
-}
 
-// AltitudeDataFrom constructs a [AltitudeData] from an unsafe.Pointer.
-//
-// Data for a recorded change in altitude.
-func AltitudeDataFrom(ptr unsafe.Pointer) AltitudeData {
-	return AltitudeData{
-		LogItem: LogItemFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for AltitudeData */
 // Alloc allocates a new instance without initialization.
 func (ac _AltitudeDataClass) Alloc() AltitudeData {
 	rv := objc.Send[AltitudeData](objc.ID(ac.class), objc.Sel("alloc"))
@@ -63,7 +61,6 @@ func (ac _AltitudeDataClass) Alloc() AltitudeData {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AltitudeDataClass) New() AltitudeData {
 	rv := objc.Send[AltitudeData](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,6 +83,59 @@ func (a_ AltitudeData) Autorelease() AltitudeData {
 func NewAltitudeData() AltitudeData {
 	return getAltitudeDataClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for AltitudeData */
+// Data for a recorded change in altitude.
+//
+// You do not create instances of this class directly. When you want to receive altimeter changes, create an instance of the class and use that object to query for events or to start the delivery of events. The altimeter object creates new instances of this class at appropriate times and delivers them to the handler you specify.
+
+
+// Data for a recorded change in altitude.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreMotion/CMAltitudeData
+type AltitudeData struct {
+	LogItem
+}
+
+// AltitudeDataFrom constructs a [AltitudeData] from an unsafe.Pointer.
+//
+// Data for a recorded change in altitude.
+func AltitudeDataFrom(ptr unsafe.Pointer) AltitudeData {
+	return AltitudeData{
+		LogItem: LogItemFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AltitudeData *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AltitudeData */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AltitudeData */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AltitudeData */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AltitudeData */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CMAltitudeData */
 
 

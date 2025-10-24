@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRRVCRunModeClusterChangeToModeResponseParams interface {
 	SetStatusText(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRRVCRunModeClusterChangeToModeResponseParams
@@ -83,8 +81,6 @@ func NewMTRRVCRunModeClusterChangeToModeResponseParams() MTRRVCRunModeClusterCha
 	return getMTRRVCRunModeClusterChangeToModeResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomoderesponseparams/status
 func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) Status() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) Status() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomoderesponseparams/status
 func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) SetStatus(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatus:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomoderesponseparams/statustext
@@ -107,12 +101,8 @@ func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) StatusText() objc.IObje
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrrvcrunmodeclusterchangetomoderesponseparams/statustext
 func (m_ MTRRVCRunModeClusterChangeToModeResponseParams) SetStatusText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStatusText:"), value)
 }
-
-
-

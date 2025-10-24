@@ -33,8 +33,6 @@ type IMTRClusterBinding interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterBinding
 type MTRClusterBinding struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterBinding) Autorelease() MTRClusterBinding {
 func NewMTRClusterBinding() MTRClusterBinding {
 	return getMTRClusterBindingClass().New()
 }
-
-
-
-

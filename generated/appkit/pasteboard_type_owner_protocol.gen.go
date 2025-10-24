@@ -15,3 +15,4 @@ var PasteboardTypeOwnerProtocol *objc.Protocol
 func init() {
 	PasteboardTypeOwnerProtocol = objc.GetProtocol("NSPasteboardTypeOwner")
 }
+

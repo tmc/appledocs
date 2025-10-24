@@ -13,7 +13,7 @@ var _ = storekit.NewOverlayAppConfiguration
 // Creates an object that represents the attributes of an overlay you use to recommend another app on the App Store.
 func ExampleNewOverlayAppConfigurationWithAppIdentifierPosition() {
 	_ = storekit.NewOverlayAppConfigurationWithAppIdentifierPosition(
-		"appIdentifier", // appIdentifier string
+		"appIdentifier",            // appIdentifier string
 		storekit.OverlayPosition{}, // position OverlayPosition
 	)
 	// Output:

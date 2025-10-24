@@ -2,7 +2,9 @@
 
 package apptrackingtransparency
 
+/* debug [enums.gen.go]: Generating 1 enums for AppTrackingTransparency */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum ATTrackingManagerAuthorizationStatus (4 cases) */
 // ATTrackingManagerAuthorizationStatus - The status values for app tracking authorization.
 //
 // [Full Topic]: https://developer.apple.com/documentation/AppTrackingTransparency/ATTrackingManager/AuthorizationStatus

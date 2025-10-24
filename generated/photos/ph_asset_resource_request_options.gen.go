@@ -42,7 +42,6 @@ type IPHAssetResourceRequestOptions interface {
 //
 // You use this class when requesting the underlying data for photo, video, and Live Photo asset resources from a object.
 
-
 // A set of options affecting the delivery of underlying asset data that you request from the asset resource manager.
 //
 // [Full Topic]
@@ -89,8 +88,6 @@ func NewPHAssetResourceRequestOptions() PHAssetResourceRequestOptions {
 	return getPHAssetResourceRequestOptionsClass().New()
 }
 
-
-
 // A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
 //
 // [Full Topic]
@@ -100,7 +97,6 @@ func (p_ PHAssetResourceRequestOptions) IsNetworkAccessAllowed() bool {
 	return rv
 }
 
-
 // A Boolean value that specifies whether Photos can download the requested asset resource data from iCloud.
 //
 // [Full Topic]
@@ -108,7 +104,6 @@ func (p_ PHAssetResourceRequestOptions) IsNetworkAccessAllowed() bool {
 func (p_ PHAssetResourceRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
 }
-
 
 // A block that Photos calls periodically while downloading the asset resource data.
 //
@@ -119,7 +114,6 @@ func (p_ PHAssetResourceRequestOptions) ProgressHandler() unsafe.Pointer {
 	return rv
 }
 
-
 // A block that Photos calls periodically while downloading the asset resource data.
 //
 // [Full Topic]
@@ -127,6 +121,3 @@ func (p_ PHAssetResourceRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHAssetResourceRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
-
-
-

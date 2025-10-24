@@ -19,3 +19,4 @@ var nearPlaneProtocol *objc.Protocol
 func init() {
 	nearPlaneProtocol = objc.GetProtocol("nearPlane")
 }
+

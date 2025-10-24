@@ -35,8 +35,6 @@ type IINAnswerCallIntent interface {
 	SetCallIdentifier(value string)
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Intents/INAnswerCallIntent
 type INAnswerCallIntent struct {
@@ -81,8 +79,6 @@ func NewINAnswerCallIntent() INAnswerCallIntent {
 	return getINAnswerCallIntentClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/audioroute
 func (i_ INAnswerCallIntent) AudioRoute() INCallAudioRoute {
@@ -90,13 +86,11 @@ func (i_ INAnswerCallIntent) AudioRoute() INCallAudioRoute {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/audioroute
 func (i_ INAnswerCallIntent) SetAudioRoute(value INCallAudioRoute) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setAudioRoute:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/callidentifier
@@ -105,12 +99,8 @@ func (i_ INAnswerCallIntent) CallIdentifier() string {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/intents/inanswercallintent/callidentifier
 func (i_ INAnswerCallIntent) SetCallIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setCallIdentifier:"), objc.String(value))
 }
-
-
-

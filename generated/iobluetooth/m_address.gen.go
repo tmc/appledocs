@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mAddress */
+
+
+/* debug [class_header]: Header for mAddress */
 // The class instance for the [mAddress] class.
 var (
 	MAddressClass     _mAddressClass
@@ -26,27 +30,30 @@ func getmAddressClass() _mAddressClass {
 type _mAddressClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mAddress */
 // An interface definition for the [mAddress] class.
 type ImAddress interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mAddress */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mAddress */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mAddress
-type mAddress struct {
-	objectivec.Object
-}
-
-// mAddressFrom constructs a [mAddress] from an unsafe.Pointer.
-func mAddressFrom(ptr unsafe.Pointer) mAddress {
-	return mAddress{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mAddress */
 // Alloc allocates a new instance without initialization.
 func (mc _mAddressClass) Alloc() mAddress {
 	rv := objc.Send[mAddress](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mAddressClass) Alloc() mAddress {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mAddressClass) New() mAddress {
 	rv := objc.Send[mAddress](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mAddress) Autorelease() mAddress {
 func NewmAddress() mAddress {
 	return getmAddressClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mAddress */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothDevice/mAddress
+type mAddress struct {
+	objectivec.Object
+}
+
+// mAddressFrom constructs a [mAddress] from an unsafe.Pointer.
+func mAddressFrom(ptr unsafe.Pointer) mAddress {
+	return mAddress{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mAddress *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mAddress */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mAddress */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mAddress */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mAddress */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mAddress */
 
 
 

@@ -37,7 +37,6 @@ type IINCancelWorkoutIntent interface {
 //
 // SiriKit creates an object when the user asks to cancel a currently running workout. Canceling a workout stops the workout and doesn’t record any progress toward the workout goals. Use this intent object to get the workout parameters. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object to indicate it’s possible to cancel the workout. For the successful handling of the intent, SiriKit launches your app and passes it an object that your app must then use to cancel the workout.
 
-
 // A request to cancel an active workout.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewINCancelWorkoutIntent() INCancelWorkoutIntent {
 	return getINCancelWorkoutIntentClass().New()
 }
 
-
-
 // The name of the workout.
 //
 // [Full Topic]
@@ -97,7 +94,6 @@ func (i_ INCancelWorkoutIntent) WorkoutName() INSpeakableString {
 	return rv
 }
 
-
 // The name of the workout.
 //
 // [Full Topic]
@@ -105,6 +101,3 @@ func (i_ INCancelWorkoutIntent) WorkoutName() INSpeakableString {
 func (i_ INCancelWorkoutIntent) SetWorkoutName(value INSpeakableString) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setWorkoutName:"), value)
 }
-
-
-

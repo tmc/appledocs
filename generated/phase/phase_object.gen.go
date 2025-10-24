@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PHASEObject */
+
+
+/* debug [class_header]: Header for PHASEObject */
 // The class instance for the [PHASEObject] class.
 var (
 	PHASEObjectClass     _PHASEObjectClass
@@ -26,43 +30,39 @@ func getPHASEObjectClass() _PHASEObjectClass {
 type _PHASEObjectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PHASEObject */
 // An interface definition for the [PHASEObject] class.
 type IPHASEObject interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PHASEObject */
 	// properties:
-	Children() []IPHASEObject
+	Children() []PHASEObject
 	Parent() IPHASEObject
 	Transform() unsafe.Pointer
 	SetTransform(value unsafe.Pointer)
 	WorldTransform() unsafe.Pointer
 	SetWorldTransform(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PHASEObject */
 	// methods:
 	AddChildError(child IPHASEObject, error_ unsafe.Pointer) bool
 	RemoveChild(child IPHASEObject)
 	RemoveChildren()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object in the scene.
-//
-// This class models a member of your app’s scene by defining a 3D position and orientation. The following subclasses derive from this class: The array holds instances of this class to position and orient them relatively.
+/* debug [class_interface]: End interface */
 
 
-// An object in the scene.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject
-type PHASEObject struct {
-	objectivec.Object
-}
 
-// PHASEObjectFrom constructs a [PHASEObject] from an unsafe.Pointer.
-//
-// An object in the scene.
-func PHASEObjectFrom(ptr unsafe.Pointer) PHASEObject {
-	return PHASEObject{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PHASEObject */
 // Alloc allocates a new instance without initialization.
 func (pc _PHASEObjectClass) Alloc() PHASEObject {
 	rv := objc.Send[PHASEObject](objc.ID(pc.class), objc.Sel("alloc"))
@@ -70,7 +70,6 @@ func (pc _PHASEObjectClass) Alloc() PHASEObject {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PHASEObjectClass) New() PHASEObject {
 	rv := objc.Send[PHASEObject](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -93,8 +92,35 @@ func (p_ PHASEObject) Autorelease() PHASEObject {
 func NewPHASEObject() PHASEObject {
 	return getPHASEObjectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PHASEObject */
+// An object in the scene.
+//
+// This class models a member of your app’s scene by defining a 3D position and orientation. The following subclasses derive from this class: The array holds instances of this class to position and orient them relatively.
+
+
+// An object in the scene.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject
+type PHASEObject struct {
+	objectivec.Object
+}
+
+// PHASEObjectFrom constructs a [PHASEObject] from an unsafe.Pointer.
+//
+// An object in the scene.
+func PHASEObjectFrom(ptr unsafe.Pointer) PHASEObject {
+	return PHASEObject{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PHASEObject */
 
 // Creates an object in the scene.
 //
@@ -105,9 +131,18 @@ func NewPHASEObjectWithEngine(engine IPHASEEngine) PHASEObject {
 	rv := objc.Send[PHASEObject](instance.ID, objc.Sel("initWithEngine:"), engine)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPHASEObjectWithEngine */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for PHASEObject */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PHASEObject */
 
 // A vector that points forward in the local coordinate space.
 //
@@ -116,7 +151,7 @@ func NewPHASEObjectWithEngine(engine IPHASEEngine) PHASEObject {
 func (pc _PHASEObjectClass) Forward() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("forward"))
 	return rv
-}
+}/* debug [class_properties_class/property]: forward */
 
 // A vector that points right in the local coordinate space.
 //
@@ -125,7 +160,7 @@ func (pc _PHASEObjectClass) Forward() unsafe.Pointer {
 func (pc _PHASEObjectClass) Right() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("right"))
 	return rv
-}
+}/* debug [class_properties_class/property]: right */
 
 // A vector that points up in the local coordinate space.
 //
@@ -134,7 +169,12 @@ func (pc _PHASEObjectClass) Right() unsafe.Pointer {
 func (pc _PHASEObjectClass) Up() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("up"))
 	return rv
-}
+}/* debug [class_properties_class/property]: up */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PHASEObject */
 
 // Adds the given object as a child.
 //
@@ -143,7 +183,7 @@ func (pc _PHASEObjectClass) Up() unsafe.Pointer {
 func (p_ PHASEObject) AddChildError(child IPHASEObject, error_ unsafe.Pointer) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("addChild:error:"), child, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: AddChildError */
 
 
 // Removes the given object as a child.
@@ -152,7 +192,7 @@ func (p_ PHASEObject) AddChildError(child IPHASEObject, error_ unsafe.Pointer) b
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/removeChild(_:)
 func (p_ PHASEObject) RemoveChild(child IPHASEObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeChild:"), child)
-}
+}/* debug [instance_methods/method]: RemoveChild */
 
 
 // Removes all child objects from the given object.
@@ -161,17 +201,22 @@ func (p_ PHASEObject) RemoveChild(child IPHASEObject) {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/removeChildren()
 func (p_ PHASEObject) RemoveChildren() {
 	objc.Send[objc.ID](p_.ID, objc.Sel("removeChildren"))
-}
+}/* debug [instance_methods/method]: RemoveChildren */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PHASEObject */
 
 // Objects that position and orient in the scene relative to the given object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/children
-func (p_ PHASEObject) Children() []IPHASEObject {
+func (p_ PHASEObject) Children() []PHASEObject {
 	rv := objc.Send[[]PHASEObject](p_.ID, objc.Sel("children"))
 	return rv
-}
+}/* debug [instance_properties/getter]: children */
 
 
 // A vector that points forward in the local coordinate space.
@@ -181,7 +226,7 @@ func (p_ PHASEObject) Children() []IPHASEObject {
 func (p_ PHASEObject) Forward() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("forward"))
 	return rv
-}
+}/* debug [instance_properties/getter]: forward */
 
 
 // The object that this instance positions and orients relative to in the scene.
@@ -191,7 +236,7 @@ func (p_ PHASEObject) Forward() unsafe.Pointer {
 func (p_ PHASEObject) Parent() IPHASEObject {
 	rv := objc.Send[PHASEObject](p_.ID, objc.Sel("parent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: parent */
 
 
 // A vector that points right in the local coordinate space.
@@ -201,7 +246,7 @@ func (p_ PHASEObject) Parent() IPHASEObject {
 func (p_ PHASEObject) Right() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("right"))
 	return rv
-}
+}/* debug [instance_properties/getter]: right */
 
 
 // A matrix, in local coordinates, that determines the object’s pose in the scene.
@@ -211,7 +256,7 @@ func (p_ PHASEObject) Right() unsafe.Pointer {
 func (p_ PHASEObject) Transform() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("transform"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transform */
 
 
 // A matrix, in local coordinates, that determines the object’s pose in the scene.
@@ -220,7 +265,7 @@ func (p_ PHASEObject) Transform() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/transform
 func (p_ PHASEObject) SetTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTransform:"), value)
-}
+}/* debug [instance_properties/setter]: transform */
 
 
 // A vector that points up in the local coordinate space.
@@ -230,7 +275,7 @@ func (p_ PHASEObject) SetTransform(value unsafe.Pointer) {
 func (p_ PHASEObject) Up() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("up"))
 	return rv
-}
+}/* debug [instance_properties/getter]: up */
 
 
 // A matrix, in scene coordinates, that determines the object’s pose in the scene.
@@ -240,7 +285,7 @@ func (p_ PHASEObject) Up() unsafe.Pointer {
 func (p_ PHASEObject) WorldTransform() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("worldTransform"))
 	return rv
-}
+}/* debug [instance_properties/getter]: worldTransform */
 
 
 // A matrix, in scene coordinates, that determines the object’s pose in the scene.
@@ -249,6 +294,11 @@ func (p_ PHASEObject) WorldTransform() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEObject/worldTransform
 func (p_ PHASEObject) SetWorldTransform(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setWorldTransform:"), value)
-}
+}/* debug [instance_properties/setter]: worldTransform */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PHASEObject */
 
 

@@ -11,7 +11,6 @@ type _undefined = int
 type (
 	PixelBufferRef = _undefined // referenced in Cinematic
 	SampleBufferRef = _undefined // referenced in Cinematic
-	Time = _undefined // referenced in Cinematic
 	TimeRange = _undefined // referenced in Cinematic
 )
 

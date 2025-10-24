@@ -20,3 +20,4 @@ var MDLLightProbeIrradianceDataSourceProtocol *objc.Protocol
 func init() {
 	MDLLightProbeIrradianceDataSourceProtocol = objc.GetProtocol("MDLLightProbeIrradianceDataSource")
 }
+

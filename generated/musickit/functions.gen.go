@@ -2,10 +2,10 @@
 
 package musickit
 
+/* debug [functions.gen.go]: Generating 0 functions for MusicKit */
 import (
 	"github.com/ebitengine/purego"
 )
-
 
 // MusicKit Functions (0 total)
 //
@@ -20,10 +20,3 @@ func init() {
 	}
 	_ = lib // Suppress unused variable warning
 }
-
-
-
-
-
-
-

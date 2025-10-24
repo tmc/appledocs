@@ -19,7 +19,7 @@ func ExampleNewCKModifySubscriptionsOperation() {
 // Creates an operation for saving and deleting the specified subscriptions.
 func ExampleNewCKModifySubscriptionsOperationWithSubscriptionsToSaveSubscriptionIDsToDelete() {
 	_ = cloudkit.NewCKModifySubscriptionsOperationWithSubscriptionsToSaveSubscriptionIDsToDelete(
-		[]cloudkit.ICKSubscription{}, // subscriptionsToSave []ICKSubscription
+		[]cloudkit.CKSubscription{}, // subscriptionsToSave []CKSubscription
 		[]cloudkit.string{}, // subscriptionIDsToDelete []string
 	)
 	// Output:

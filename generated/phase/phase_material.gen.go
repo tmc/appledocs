@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PHASEMaterial */
+
+
+/* debug [class_header]: Header for PHASEMaterial */
 // The class instance for the [PHASEMaterial] class.
 var (
 	PHASEMaterialClass     _PHASEMaterialClass
@@ -26,34 +30,30 @@ func getPHASEMaterialClass() _PHASEMaterialClass {
 type _PHASEMaterialClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PHASEMaterial */
 // An interface definition for the [PHASEMaterial] class.
 type IPHASEMaterial interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PHASEMaterial */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PHASEMaterial */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// Surface characteristics that determine the acoustic properties of an object.
-//
-// To specify the physical texture of a sound source or occluder, define the argument of the initializer, . The contains the surface types with which you define the argument of this class’s initializer.
+/* debug [class_interface]: End interface */
 
 
-// Surface characteristics that determine the acoustic properties of an object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMaterial
-type PHASEMaterial struct {
-	objectivec.Object
-}
 
-// PHASEMaterialFrom constructs a [PHASEMaterial] from an unsafe.Pointer.
-//
-// Surface characteristics that determine the acoustic properties of an object.
-func PHASEMaterialFrom(ptr unsafe.Pointer) PHASEMaterial {
-	return PHASEMaterial{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PHASEMaterial */
 // Alloc allocates a new instance without initialization.
 func (pc _PHASEMaterialClass) Alloc() PHASEMaterial {
 	rv := objc.Send[PHASEMaterial](objc.ID(pc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (pc _PHASEMaterialClass) Alloc() PHASEMaterial {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PHASEMaterialClass) New() PHASEMaterial {
 	rv := objc.Send[PHASEMaterial](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,8 +83,35 @@ func (p_ PHASEMaterial) Autorelease() PHASEMaterial {
 func NewPHASEMaterial() PHASEMaterial {
 	return getPHASEMaterialClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PHASEMaterial */
+// Surface characteristics that determine the acoustic properties of an object.
+//
+// To specify the physical texture of a sound source or occluder, define the argument of the initializer, . The contains the surface types with which you define the argument of this class’s initializer.
+
+
+// Surface characteristics that determine the acoustic properties of an object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEMaterial
+type PHASEMaterial struct {
+	objectivec.Object
+}
+
+// PHASEMaterialFrom constructs a [PHASEMaterial] from an unsafe.Pointer.
+//
+// Surface characteristics that determine the acoustic properties of an object.
+func PHASEMaterialFrom(ptr unsafe.Pointer) PHASEMaterial {
+	return PHASEMaterial{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PHASEMaterial */
 
 // Creates a material with the given preset.
 //
@@ -96,7 +122,31 @@ func NewPHASEMaterialWithEnginePreset(engine IPHASEEngine, preset PHASEMaterialP
 	rv := objc.Send[PHASEMaterial](instance.ID, objc.Sel("initWithEngine:preset:"), engine, preset)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPHASEMaterialWithEnginePreset */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PHASEMaterial */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PHASEMaterial */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PHASEMaterial */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PHASEMaterial */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PHASEMaterial */
 
 

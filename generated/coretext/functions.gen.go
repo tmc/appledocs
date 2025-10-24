@@ -2,6 +2,7 @@
 
 package coretext
 
+/* debug [functions.gen.go]: Generating 203 functions for CoreText */
 import (
 	"unsafe"
 
@@ -16,209 +17,209 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_CTFontCollectionCopyExclusionDescriptors func(FontCollectionRef) unsafe.Pointer
-	_CTFontCollectionCopyFontAttribute func(FontCollectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCopyFontAttributes func(FontCollectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCopyQueryDescriptors func(FontCollectionRef) unsafe.Pointer
-	_CTFontCollectionCreateCopyWithFontDescriptors func(FontCollectionRef, unsafe.Pointer, unsafe.Pointer) FontCollectionRef
-	_CTFontCollectionCreateFromAvailableFonts func(unsafe.Pointer) FontCollectionRef
-	_CTFontCollectionCreateMatchingFontDescriptors func(FontCollectionRef) unsafe.Pointer
-	_CTFontCollectionCreateMatchingFontDescriptorsForFamily func(FontCollectionRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback func(FontCollectionRef, FontCollectionSortDescriptorsCallback, unsafe.Pointer) unsafe.Pointer
-	_CTFontCollectionCreateMatchingFontDescriptorsWithOptions func(FontCollectionRef, unsafe.Pointer) unsafe.Pointer
+	_CTFontCollectionCopyExclusionDescriptors func(FontCollectionRef) ArrayRef
+	_CTFontCollectionCopyFontAttribute func(FontCollectionRef, StringRef, FontCollectionCopyOptions) ArrayRef
+	_CTFontCollectionCopyFontAttributes func(FontCollectionRef, SetRef, FontCollectionCopyOptions) ArrayRef
+	_CTFontCollectionCopyQueryDescriptors func(FontCollectionRef) ArrayRef
+	_CTFontCollectionCreateCopyWithFontDescriptors func(FontCollectionRef, ArrayRef, DictionaryRef) FontCollectionRef
+	_CTFontCollectionCreateFromAvailableFonts func(DictionaryRef) FontCollectionRef
+	_CTFontCollectionCreateMatchingFontDescriptors func(FontCollectionRef) ArrayRef
+	_CTFontCollectionCreateMatchingFontDescriptorsForFamily func(FontCollectionRef, StringRef, DictionaryRef) ArrayRef
+	_CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback func(FontCollectionRef, FontCollectionSortDescriptorsCallback, unsafe.Pointer) ArrayRef
+	_CTFontCollectionCreateMatchingFontDescriptorsWithOptions func(FontCollectionRef, DictionaryRef) ArrayRef
 	_CTFontCollectionCreateMutableCopy func(FontCollectionRef) MutableFontCollectionRef
-	_CTFontCollectionCreateWithFontDescriptors func(unsafe.Pointer, unsafe.Pointer) FontCollectionRef
-	_CTFontCollectionGetTypeID func() unsafe.Pointer
-	_CTFontCollectionSetExclusionDescriptors func(MutableFontCollectionRef, unsafe.Pointer)
-	_CTFontCollectionSetQueryDescriptors func(MutableFontCollectionRef, unsafe.Pointer)
-	_CTFontCopyAttribute func(FontRef, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyAvailableTables func(FontRef, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyCharacterSet func(FontRef) unsafe.Pointer
-	_CTFontCopyDefaultCascadeListForLanguages func(FontRef, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyDisplayName func(FontRef) unsafe.Pointer
-	_CTFontCopyFamilyName func(FontRef) unsafe.Pointer
-	_CTFontCopyFeatureSettings func(FontRef) unsafe.Pointer
-	_CTFontCopyFeatures func(FontRef) unsafe.Pointer
+	_CTFontCollectionCreateWithFontDescriptors func(ArrayRef, DictionaryRef) FontCollectionRef
+	_CTFontCollectionGetTypeID func() TypeID
+	_CTFontCollectionSetExclusionDescriptors func(MutableFontCollectionRef, ArrayRef)
+	_CTFontCollectionSetQueryDescriptors func(MutableFontCollectionRef, ArrayRef)
+	_CTFontCopyAttribute func(FontRef, StringRef) TypeRef
+	_CTFontCopyAvailableTables func(FontRef, FontTableOptions) ArrayRef
+	_CTFontCopyCharacterSet func(FontRef) CharacterSetRef
+	_CTFontCopyDefaultCascadeListForLanguages func(FontRef, ArrayRef) ArrayRef
+	_CTFontCopyDisplayName func(FontRef) StringRef
+	_CTFontCopyFamilyName func(FontRef) StringRef
+	_CTFontCopyFeatures func(FontRef) ArrayRef
+	_CTFontCopyFeatureSettings func(FontRef) ArrayRef
 	_CTFontCopyFontDescriptor func(FontRef) FontDescriptorRef
-	_CTFontCopyFullName func(FontRef) unsafe.Pointer
+	_CTFontCopyFullName func(FontRef) StringRef
 	_CTFontCopyGraphicsFont func(FontRef, unsafe.Pointer) FontRef
-	_CTFontCopyLocalizedName func(FontRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyName func(FontRef, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyNameForGlyph func(FontRef, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyPostScriptName func(FontRef) unsafe.Pointer
-	_CTFontCopySupportedLanguages func(FontRef) unsafe.Pointer
-	_CTFontCopyTable func(FontRef, FontTableTag, unsafe.Pointer) unsafe.Pointer
-	_CTFontCopyTraits func(FontRef) unsafe.Pointer
-	_CTFontCopyVariation func(FontRef) unsafe.Pointer
-	_CTFontCopyVariationAxes func(FontRef) unsafe.Pointer
+	_CTFontCopyLocalizedName func(FontRef, StringRef, unsafe.Pointer) StringRef
+	_CTFontCopyName func(FontRef, StringRef) StringRef
+	_CTFontCopyNameForGlyph func(FontRef, Glyph) StringRef
+	_CTFontCopyPostScriptName func(FontRef) StringRef
+	_CTFontCopySupportedLanguages func(FontRef) ArrayRef
+	_CTFontCopyTable func(FontRef, FontTableTag, FontTableOptions) DataRef
+	_CTFontCopyTraits func(FontRef) DictionaryRef
+	_CTFontCopyVariation func(FontRef) DictionaryRef
+	_CTFontCopyVariationAxes func(FontRef) ArrayRef
 	_CTFontCreateCopyWithAttributes func(FontRef, float64, unsafe.Pointer, FontDescriptorRef) FontRef
-	_CTFontCreateCopyWithFamily func(FontRef, float64, unsafe.Pointer, unsafe.Pointer) FontRef
-	_CTFontCreateCopyWithSymbolicTraits func(FontRef, float64, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) FontRef
-	_CTFontCreateForString func(FontRef, unsafe.Pointer, unsafe.Pointer) FontRef
-	_CTFontCreateForStringWithLanguage func(FontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) FontRef
-	_CTFontCreatePathForGlyph func(FontRef, unsafe.Pointer, unsafe.Pointer) PathRef
-	_CTFontCreateUIFontForLanguage func(unsafe.Pointer, float64, unsafe.Pointer) FontRef
+	_CTFontCreateCopyWithFamily func(FontRef, float64, unsafe.Pointer, StringRef) FontRef
+	_CTFontCreateCopyWithSymbolicTraits func(FontRef, float64, unsafe.Pointer, FontSymbolicTraits, FontSymbolicTraits) FontRef
+	_CTFontCreateForString func(FontRef, StringRef, corefoundation.Range) FontRef
+	_CTFontCreateForStringWithLanguage func(FontRef, StringRef, corefoundation.Range, StringRef) FontRef
+	_CTFontCreatePathForGlyph func(FontRef, Glyph, unsafe.Pointer) PathRef
+	_CTFontCreateUIFontForLanguage func(FontUIFontType, float64, StringRef) FontRef
 	_CTFontCreateWithFontDescriptor func(FontDescriptorRef, float64, unsafe.Pointer) FontRef
-	_CTFontCreateWithFontDescriptorAndOptions func(FontDescriptorRef, float64, unsafe.Pointer, unsafe.Pointer) FontRef
+	_CTFontCreateWithFontDescriptorAndOptions func(FontDescriptorRef, float64, unsafe.Pointer, FontOptions) FontRef
 	_CTFontCreateWithGraphicsFont func(FontRef, float64, unsafe.Pointer, FontDescriptorRef) FontRef
-	_CTFontCreateWithName func(unsafe.Pointer, float64, unsafe.Pointer) FontRef
-	_CTFontCreateWithNameAndOptions func(unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) FontRef
+	_CTFontCreateWithName func(StringRef, float64, unsafe.Pointer) FontRef
+	_CTFontCreateWithNameAndOptions func(StringRef, float64, unsafe.Pointer, FontOptions) FontRef
 	_CTFontCreateWithPlatformFont func(ATSFontRef, float64, unsafe.Pointer, FontDescriptorRef) FontRef
 	_CTFontCreateWithQuickdrawInstance func(unsafe.Pointer, int16, uint8, float64) FontRef
-	_CTFontDescriptorCopyAttribute func(FontDescriptorRef, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCopyAttributes func(FontDescriptorRef) unsafe.Pointer
-	_CTFontDescriptorCopyLocalizedAttribute func(FontDescriptorRef, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateCopyWithAttributes func(FontDescriptorRef, unsafe.Pointer) FontDescriptorRef
-	_CTFontDescriptorCreateCopyWithFamily func(FontDescriptorRef, unsafe.Pointer) FontDescriptorRef
-	_CTFontDescriptorCreateCopyWithFeature func(FontDescriptorRef, unsafe.Pointer, unsafe.Pointer) FontDescriptorRef
-	_CTFontDescriptorCreateCopyWithSymbolicTraits func(FontDescriptorRef, unsafe.Pointer, unsafe.Pointer) FontDescriptorRef
-	_CTFontDescriptorCreateCopyWithVariation func(FontDescriptorRef, unsafe.Pointer, float64) FontDescriptorRef
-	_CTFontDescriptorCreateMatchingFontDescriptor func(FontDescriptorRef, unsafe.Pointer) FontDescriptorRef
-	_CTFontDescriptorCreateMatchingFontDescriptors func(FontDescriptorRef, unsafe.Pointer) unsafe.Pointer
-	_CTFontDescriptorCreateWithAttributes func(unsafe.Pointer) FontDescriptorRef
-	_CTFontDescriptorCreateWithNameAndSize func(unsafe.Pointer, float64) FontDescriptorRef
-	_CTFontDescriptorGetTypeID func() unsafe.Pointer
-	_CTFontDescriptorMatchFontDescriptorsWithProgressHandler func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontDescriptorCopyAttribute func(FontDescriptorRef, StringRef) TypeRef
+	_CTFontDescriptorCopyAttributes func(FontDescriptorRef) DictionaryRef
+	_CTFontDescriptorCopyLocalizedAttribute func(FontDescriptorRef, StringRef, unsafe.Pointer) TypeRef
+	_CTFontDescriptorCreateCopyWithAttributes func(FontDescriptorRef, DictionaryRef) FontDescriptorRef
+	_CTFontDescriptorCreateCopyWithFamily func(FontDescriptorRef, StringRef) FontDescriptorRef
+	_CTFontDescriptorCreateCopyWithFeature func(FontDescriptorRef, NumberRef, NumberRef) FontDescriptorRef
+	_CTFontDescriptorCreateCopyWithSymbolicTraits func(FontDescriptorRef, FontSymbolicTraits, FontSymbolicTraits) FontDescriptorRef
+	_CTFontDescriptorCreateCopyWithVariation func(FontDescriptorRef, NumberRef, float64) FontDescriptorRef
+	_CTFontDescriptorCreateMatchingFontDescriptor func(FontDescriptorRef, SetRef) FontDescriptorRef
+	_CTFontDescriptorCreateMatchingFontDescriptors func(FontDescriptorRef, SetRef) ArrayRef
+	_CTFontDescriptorCreateWithAttributes func(DictionaryRef) FontDescriptorRef
+	_CTFontDescriptorCreateWithNameAndSize func(StringRef, float64) FontDescriptorRef
+	_CTFontDescriptorGetTypeID func() TypeID
+	_CTFontDescriptorMatchFontDescriptorsWithProgressHandler func(ArrayRef, SetRef, FontDescriptorProgressHandler) bool
 	_CTFontDrawGlyphs func(FontRef, unsafe.Pointer, unsafe.Pointer, uintptr, ContextRef)
-	_CTFontDrawImageFromAdaptiveImageProviderAtPoint func(FontRef, unsafe.Pointer, corefoundation.Point, ContextRef)
-	_CTFontGetAdvancesForGlyphs func(FontRef, unsafe.Pointer, unsafe.Pointer, corefoundation.Size, unsafe.Pointer) float64
+	_CTFontDrawImageFromAdaptiveImageProviderAtPoint func(FontRef, unsafe.Pointer, corefoundation.CGPoint, ContextRef)
+	_CTFontGetAdvancesForGlyphs func(FontRef, FontOrientation, unsafe.Pointer, corefoundation.CGSize, Index) float64
 	_CTFontGetAscent func(FontRef) float64
-	_CTFontGetBoundingBox func(FontRef) corefoundation.Rect
-	_CTFontGetBoundingRectsForGlyphs func(FontRef, unsafe.Pointer, unsafe.Pointer, corefoundation.Rect, unsafe.Pointer) corefoundation.Rect
+	_CTFontGetBoundingBox func(FontRef) corefoundation.CGRect
+	_CTFontGetBoundingRectsForGlyphs func(FontRef, FontOrientation, unsafe.Pointer, corefoundation.CGRect, Index) corefoundation.CGRect
 	_CTFontGetCapHeight func(FontRef) float64
 	_CTFontGetDescent func(FontRef) float64
-	_CTFontGetGlyphCount func(FontRef) unsafe.Pointer
-	_CTFontGetGlyphWithName func(FontRef, unsafe.Pointer) unsafe.Pointer
-	_CTFontGetGlyphsForCharacters func(FontRef, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontGetGlyphCount func(FontRef) Index
+	_CTFontGetGlyphsForCharacters func(FontRef, unsafe.Pointer, Glyph, Index) bool
+	_CTFontGetGlyphWithName func(FontRef, StringRef) Glyph
 	_CTFontGetLeading func(FontRef) float64
-	_CTFontGetLigatureCaretPositions func(FontRef, unsafe.Pointer, float64, unsafe.Pointer) unsafe.Pointer
-	_CTFontGetMatrix func(FontRef) corefoundation.AffineTransform
-	_CTFontGetOpticalBoundsForGlyphs func(FontRef, unsafe.Pointer, corefoundation.Rect, unsafe.Pointer, unsafe.Pointer) corefoundation.Rect
+	_CTFontGetLigatureCaretPositions func(FontRef, Glyph, float64, Index) Index
+	_CTFontGetMatrix func(FontRef) corefoundation.CGAffineTransform
+	_CTFontGetOpticalBoundsForGlyphs func(FontRef, unsafe.Pointer, corefoundation.CGRect, Index, OptionFlags) corefoundation.CGRect
 	_CTFontGetPlatformFont func(FontRef, unsafe.Pointer) ATSFontRef
 	_CTFontGetSize func(FontRef) float64
 	_CTFontGetSlantAngle func(FontRef) float64
-	_CTFontGetStringEncoding func(FontRef) unsafe.Pointer
-	_CTFontGetSymbolicTraits func(FontRef) unsafe.Pointer
-	_CTFontGetTypeID func() unsafe.Pointer
-	_CTFontGetTypographicBoundsForAdaptiveImageProvider func(FontRef, unsafe.Pointer) corefoundation.Rect
+	_CTFontGetStringEncoding func(FontRef) StringEncoding
+	_CTFontGetSymbolicTraits func(FontRef) FontSymbolicTraits
+	_CTFontGetTypeID func() TypeID
+	_CTFontGetTypographicBoundsForAdaptiveImageProvider func(FontRef, unsafe.Pointer) corefoundation.CGRect
 	_CTFontGetUnderlinePosition func(FontRef) float64
 	_CTFontGetUnderlineThickness func(FontRef) float64
 	_CTFontGetUnitsPerEm func(FontRef) unsafe.Pointer
-	_CTFontGetVerticalTranslationsForGlyphs func(FontRef, unsafe.Pointer, corefoundation.Size, unsafe.Pointer)
+	_CTFontGetVerticalTranslationsForGlyphs func(FontRef, unsafe.Pointer, corefoundation.CGSize, Index)
 	_CTFontGetXHeight func(FontRef) float64
 	_CTFontHasTable func(FontRef, FontTableTag) bool
-	_CTFontManagerCompareFontFamilyNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerCopyAvailableFontFamilyNames func() unsafe.Pointer
-	_CTFontManagerCopyAvailableFontURLs func() unsafe.Pointer
-	_CTFontManagerCopyAvailablePostScriptNames func() unsafe.Pointer
-	_CTFontManagerCopyRegisteredFontDescriptors func(unsafe.Pointer, bool) unsafe.Pointer
-	_CTFontManagerCreateFontDescriptorFromData func(unsafe.Pointer) FontDescriptorRef
-	_CTFontManagerCreateFontDescriptorsFromData func(unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerCreateFontDescriptorsFromURL func(unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerCreateFontRequestRunLoopSource func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerEnableFontDescriptors func(unsafe.Pointer, bool)
-	_CTFontManagerGetAutoActivationSetting func(unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerGetScopeForURL func(unsafe.Pointer) unsafe.Pointer
-	_CTFontManagerIsSupportedFont func(unsafe.Pointer) bool
-	_CTFontManagerRegisterFontDescriptors func(unsafe.Pointer, unsafe.Pointer, bool, bool)
-	_CTFontManagerRegisterFontURLs func(unsafe.Pointer, unsafe.Pointer, bool, bool)
-	_CTFontManagerRegisterFontsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CTFontManagerRegisterFontsForURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CTFontManagerRegisterFontsWithAssetNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, bool, bool)
+	_CTFontManagerCompareFontFamilyNames func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ComparisonResult
+	_CTFontManagerCopyAvailableFontFamilyNames func() ArrayRef
+	_CTFontManagerCopyAvailableFontURLs func() ArrayRef
+	_CTFontManagerCopyAvailablePostScriptNames func() ArrayRef
+	_CTFontManagerCopyRegisteredFontDescriptors func(FontManagerScope, bool) ArrayRef
+	_CTFontManagerCreateFontDescriptorFromData func(DataRef) FontDescriptorRef
+	_CTFontManagerCreateFontDescriptorsFromData func(DataRef) ArrayRef
+	_CTFontManagerCreateFontDescriptorsFromURL func(URLRef) ArrayRef
+	_CTFontManagerCreateFontRequestRunLoopSource func(Index, ArrayRef) RunLoopSourceRef
+	_CTFontManagerEnableFontDescriptors func(ArrayRef, bool)
+	_CTFontManagerGetAutoActivationSetting func(StringRef) FontManagerAutoActivationSetting
+	_CTFontManagerGetScopeForURL func(URLRef) FontManagerScope
+	_CTFontManagerIsSupportedFont func(URLRef) bool
+	_CTFontManagerRegisterFontDescriptors func(ArrayRef, FontManagerScope, bool, bool)
+	_CTFontManagerRegisterFontsForURL func(URLRef, FontManagerScope, unsafe.Pointer) bool
+	_CTFontManagerRegisterFontsForURLs func(ArrayRef, FontManagerScope, unsafe.Pointer) bool
+	_CTFontManagerRegisterFontsWithAssetNames func(ArrayRef, BundleRef, FontManagerScope, bool, bool)
+	_CTFontManagerRegisterFontURLs func(ArrayRef, FontManagerScope, bool, bool)
 	_CTFontManagerRegisterGraphicsFont func(FontRef, unsafe.Pointer) bool
-	_CTFontManagerRequestFonts func(unsafe.Pointer)
-	_CTFontManagerSetAutoActivationSetting func(unsafe.Pointer, unsafe.Pointer)
-	_CTFontManagerUnregisterFontDescriptors func(unsafe.Pointer, unsafe.Pointer, bool)
-	_CTFontManagerUnregisterFontURLs func(unsafe.Pointer, unsafe.Pointer, bool)
-	_CTFontManagerUnregisterFontsForURL func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
-	_CTFontManagerUnregisterFontsForURLs func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) bool
+	_CTFontManagerRequestFonts func(ArrayRef)
+	_CTFontManagerSetAutoActivationSetting func(StringRef, FontManagerAutoActivationSetting)
+	_CTFontManagerUnregisterFontDescriptors func(ArrayRef, FontManagerScope, bool)
+	_CTFontManagerUnregisterFontsForURL func(URLRef, FontManagerScope, unsafe.Pointer) bool
+	_CTFontManagerUnregisterFontsForURLs func(ArrayRef, FontManagerScope, unsafe.Pointer) bool
+	_CTFontManagerUnregisterFontURLs func(ArrayRef, FontManagerScope, bool)
 	_CTFontManagerUnregisterGraphicsFont func(FontRef, unsafe.Pointer) bool
 	_CTFrameDraw func(FrameRef, ContextRef)
-	_CTFrameGetFrameAttributes func(FrameRef) unsafe.Pointer
-	_CTFrameGetLineOrigins func(FrameRef, unsafe.Pointer, corefoundation.Point)
-	_CTFrameGetLines func(FrameRef) unsafe.Pointer
+	_CTFrameGetFrameAttributes func(FrameRef) DictionaryRef
+	_CTFrameGetLineOrigins func(FrameRef, corefoundation.Range, corefoundation.CGPoint)
+	_CTFrameGetLines func(FrameRef) ArrayRef
 	_CTFrameGetPath func(FrameRef) PathRef
-	_CTFrameGetStringRange func(FrameRef) unsafe.Pointer
-	_CTFrameGetTypeID func() unsafe.Pointer
-	_CTFrameGetVisibleStringRange func(FrameRef) unsafe.Pointer
-	_CTFramesetterCreateFrame func(FramesetterRef, unsafe.Pointer, PathRef, unsafe.Pointer) FrameRef
-	_CTFramesetterCreateWithAttributedString func(unsafe.Pointer) FramesetterRef
+	_CTFrameGetStringRange func(FrameRef) corefoundation.Range
+	_CTFrameGetTypeID func() TypeID
+	_CTFrameGetVisibleStringRange func(FrameRef) corefoundation.Range
+	_CTFramesetterCreateFrame func(FramesetterRef, corefoundation.Range, PathRef, DictionaryRef) FrameRef
+	_CTFramesetterCreateWithAttributedString func(AttributedStringRef) FramesetterRef
 	_CTFramesetterCreateWithTypesetter func(TypesetterRef) FramesetterRef
-	_CTFramesetterGetTypeID func() unsafe.Pointer
+	_CTFramesetterGetTypeID func() TypeID
 	_CTFramesetterGetTypesetter func(FramesetterRef) TypesetterRef
-	_CTFramesetterSuggestFrameSizeWithConstraints func(FramesetterRef, unsafe.Pointer, unsafe.Pointer, corefoundation.Size, unsafe.Pointer) corefoundation.Size
+	_CTFramesetterSuggestFrameSizeWithConstraints func(FramesetterRef, corefoundation.Range, DictionaryRef, corefoundation.CGSize, unsafe.Pointer) corefoundation.CGSize
 	_CTGetCoreTextVersion func() uint32
-	_CTGlyphInfoCreateWithCharacterIdentifier func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) GlyphInfoRef
-	_CTGlyphInfoCreateWithGlyph func(unsafe.Pointer, FontRef, unsafe.Pointer) GlyphInfoRef
-	_CTGlyphInfoCreateWithGlyphName func(unsafe.Pointer, FontRef, unsafe.Pointer) GlyphInfoRef
-	_CTGlyphInfoGetCharacterCollection func(GlyphInfoRef) unsafe.Pointer
-	_CTGlyphInfoGetCharacterIdentifier func(GlyphInfoRef) unsafe.Pointer
-	_CTGlyphInfoGetGlyph func(GlyphInfoRef) unsafe.Pointer
-	_CTGlyphInfoGetGlyphName func(GlyphInfoRef) unsafe.Pointer
-	_CTGlyphInfoGetTypeID func() unsafe.Pointer
+	_CTGlyphInfoCreateWithCharacterIdentifier func(FontIndex, CharacterCollection, StringRef) GlyphInfoRef
+	_CTGlyphInfoCreateWithGlyph func(Glyph, FontRef, StringRef) GlyphInfoRef
+	_CTGlyphInfoCreateWithGlyphName func(StringRef, FontRef, StringRef) GlyphInfoRef
+	_CTGlyphInfoGetCharacterCollection func(GlyphInfoRef) CharacterCollection
+	_CTGlyphInfoGetCharacterIdentifier func(GlyphInfoRef) FontIndex
+	_CTGlyphInfoGetGlyph func(GlyphInfoRef) Glyph
+	_CTGlyphInfoGetGlyphName func(GlyphInfoRef) StringRef
+	_CTGlyphInfoGetTypeID func() TypeID
 	_CTLineCreateJustifiedLine func(LineRef, float64, float64) LineRef
-	_CTLineCreateTruncatedLine func(LineRef, float64, unsafe.Pointer, LineRef) LineRef
-	_CTLineCreateWithAttributedString func(unsafe.Pointer) LineRef
+	_CTLineCreateTruncatedLine func(LineRef, float64, LineTruncationType, LineRef) LineRef
+	_CTLineCreateWithAttributedString func(AttributedStringRef) LineRef
 	_CTLineDraw func(LineRef, ContextRef)
 	_CTLineEnumerateCaretOffsets func(LineRef)
-	_CTLineGetBoundsWithOptions func(LineRef, unsafe.Pointer) corefoundation.Rect
-	_CTLineGetGlyphCount func(LineRef) unsafe.Pointer
-	_CTLineGetGlyphRuns func(LineRef) unsafe.Pointer
-	_CTLineGetImageBounds func(LineRef, ContextRef) corefoundation.Rect
-	_CTLineGetOffsetForStringIndex func(LineRef, unsafe.Pointer, []float64) float64
+	_CTLineGetBoundsWithOptions func(LineRef, LineBoundsOptions) corefoundation.CGRect
+	_CTLineGetGlyphCount func(LineRef) Index
+	_CTLineGetGlyphRuns func(LineRef) ArrayRef
+	_CTLineGetImageBounds func(LineRef, ContextRef) corefoundation.CGRect
+	_CTLineGetOffsetForStringIndex func(LineRef, Index, []float64) float64
 	_CTLineGetPenOffsetForFlush func(LineRef, float64, float64) float64
-	_CTLineGetStringIndexForPosition func(LineRef, corefoundation.Point) unsafe.Pointer
-	_CTLineGetStringRange func(LineRef) unsafe.Pointer
+	_CTLineGetStringIndexForPosition func(LineRef, corefoundation.CGPoint) Index
+	_CTLineGetStringRange func(LineRef) corefoundation.Range
 	_CTLineGetTrailingWhitespaceWidth func(LineRef) float64
-	_CTLineGetTypeID func() unsafe.Pointer
+	_CTLineGetTypeID func() TypeID
 	_CTLineGetTypographicBounds func(LineRef, []float64, []float64, []float64) float64
 	_CTParagraphStyleCreate func(unsafe.Pointer, uintptr) ParagraphStyleRef
 	_CTParagraphStyleCreateCopy func(ParagraphStyleRef) ParagraphStyleRef
-	_CTParagraphStyleGetTypeID func() unsafe.Pointer
-	_CTParagraphStyleGetValueForSpecifier func(ParagraphStyleRef, unsafe.Pointer, uintptr, unsafe.Pointer) bool
-	_CTRubyAnnotationCreate func(unsafe.Pointer, unsafe.Pointer, float64, unsafe.Pointer, unsafe.Pointer) RubyAnnotationRef
+	_CTParagraphStyleGetTypeID func() TypeID
+	_CTParagraphStyleGetValueForSpecifier func(ParagraphStyleRef, ParagraphStyleSpecifier, uintptr, unsafe.Pointer) bool
+	_CTRubyAnnotationCreate func(RubyAlignment, RubyOverhang, float64, StringRef, unsafe.Pointer) RubyAnnotationRef
 	_CTRubyAnnotationCreateCopy func(RubyAnnotationRef) RubyAnnotationRef
-	_CTRubyAnnotationCreateWithAttributes func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) RubyAnnotationRef
-	_CTRubyAnnotationGetAlignment func(RubyAnnotationRef) unsafe.Pointer
-	_CTRubyAnnotationGetOverhang func(RubyAnnotationRef) unsafe.Pointer
+	_CTRubyAnnotationCreateWithAttributes func(RubyAlignment, RubyOverhang, RubyPosition, StringRef, DictionaryRef) RubyAnnotationRef
+	_CTRubyAnnotationGetAlignment func(RubyAnnotationRef) RubyAlignment
+	_CTRubyAnnotationGetOverhang func(RubyAnnotationRef) RubyOverhang
 	_CTRubyAnnotationGetSizeFactor func(RubyAnnotationRef) float64
-	_CTRubyAnnotationGetTextForPosition func(RubyAnnotationRef, unsafe.Pointer) unsafe.Pointer
-	_CTRubyAnnotationGetTypeID func() unsafe.Pointer
+	_CTRubyAnnotationGetTextForPosition func(RubyAnnotationRef, RubyPosition) StringRef
+	_CTRubyAnnotationGetTypeID func() TypeID
 	_CTRunDelegateCreate func(unsafe.Pointer, unsafe.Pointer) RunDelegateRef
 	_CTRunDelegateGetRefCon func(RunDelegateRef) unsafe.Pointer
-	_CTRunDelegateGetTypeID func() unsafe.Pointer
-	_CTRunDraw func(RunRef, ContextRef, unsafe.Pointer)
-	_CTRunGetAdvances func(RunRef, unsafe.Pointer, corefoundation.Size)
+	_CTRunDelegateGetTypeID func() TypeID
+	_CTRunDraw func(RunRef, ContextRef, corefoundation.Range)
+	_CTRunGetAdvances func(RunRef, corefoundation.Range, corefoundation.CGSize)
 	_CTRunGetAdvancesPtr func(RunRef) unsafe.Pointer
-	_CTRunGetAttributes func(RunRef) unsafe.Pointer
-	_CTRunGetBaseAdvancesAndOrigins func(RunRef, unsafe.Pointer, corefoundation.Size, corefoundation.Point)
-	_CTRunGetGlyphCount func(RunRef) unsafe.Pointer
-	_CTRunGetGlyphs func(RunRef, unsafe.Pointer, unsafe.Pointer)
+	_CTRunGetAttributes func(RunRef) DictionaryRef
+	_CTRunGetBaseAdvancesAndOrigins func(RunRef, corefoundation.Range, corefoundation.CGSize, corefoundation.CGPoint)
+	_CTRunGetGlyphCount func(RunRef) Index
+	_CTRunGetGlyphs func(RunRef, corefoundation.Range, Glyph)
 	_CTRunGetGlyphsPtr func(RunRef) unsafe.Pointer
-	_CTRunGetImageBounds func(RunRef, ContextRef, unsafe.Pointer) corefoundation.Rect
-	_CTRunGetPositions func(RunRef, unsafe.Pointer, corefoundation.Point)
+	_CTRunGetImageBounds func(RunRef, ContextRef, corefoundation.Range) corefoundation.CGRect
+	_CTRunGetPositions func(RunRef, corefoundation.Range, corefoundation.CGPoint)
 	_CTRunGetPositionsPtr func(RunRef) unsafe.Pointer
-	_CTRunGetStatus func(RunRef) unsafe.Pointer
-	_CTRunGetStringIndices func(RunRef, unsafe.Pointer, unsafe.Pointer)
+	_CTRunGetStatus func(RunRef) RunStatus
+	_CTRunGetStringIndices func(RunRef, corefoundation.Range, Index)
 	_CTRunGetStringIndicesPtr func(RunRef) unsafe.Pointer
-	_CTRunGetStringRange func(RunRef) unsafe.Pointer
-	_CTRunGetTextMatrix func(RunRef) corefoundation.AffineTransform
-	_CTRunGetTypeID func() unsafe.Pointer
-	_CTRunGetTypographicBounds func(RunRef, unsafe.Pointer, []float64, []float64, []float64) float64
-	_CTTextTabCreate func(unsafe.Pointer, float64, unsafe.Pointer) TextTabRef
-	_CTTextTabGetAlignment func(TextTabRef) unsafe.Pointer
+	_CTRunGetStringRange func(RunRef) corefoundation.Range
+	_CTRunGetTextMatrix func(RunRef) corefoundation.CGAffineTransform
+	_CTRunGetTypeID func() TypeID
+	_CTRunGetTypographicBounds func(RunRef, corefoundation.Range, []float64, []float64, []float64) float64
+	_CTTextTabCreate func(TextAlignment, float64, DictionaryRef) TextTabRef
+	_CTTextTabGetAlignment func(TextTabRef) TextAlignment
 	_CTTextTabGetLocation func(TextTabRef) float64
-	_CTTextTabGetOptions func(TextTabRef) unsafe.Pointer
-	_CTTextTabGetTypeID func() unsafe.Pointer
-	_CTTypesetterCreateLine func(TypesetterRef, unsafe.Pointer) LineRef
-	_CTTypesetterCreateLineWithOffset func(TypesetterRef, unsafe.Pointer, float64) LineRef
-	_CTTypesetterCreateWithAttributedString func(unsafe.Pointer) TypesetterRef
-	_CTTypesetterCreateWithAttributedStringAndOptions func(unsafe.Pointer, unsafe.Pointer) TypesetterRef
-	_CTTypesetterGetTypeID func() unsafe.Pointer
-	_CTTypesetterSuggestClusterBreak func(TypesetterRef, unsafe.Pointer, float64) unsafe.Pointer
-	_CTTypesetterSuggestClusterBreakWithOffset func(TypesetterRef, unsafe.Pointer, float64, float64) unsafe.Pointer
-	_CTTypesetterSuggestLineBreak func(TypesetterRef, unsafe.Pointer, float64) unsafe.Pointer
-	_CTTypesetterSuggestLineBreakWithOffset func(TypesetterRef, unsafe.Pointer, float64, float64) unsafe.Pointer
+	_CTTextTabGetOptions func(TextTabRef) DictionaryRef
+	_CTTextTabGetTypeID func() TypeID
+	_CTTypesetterCreateLine func(TypesetterRef, corefoundation.Range) LineRef
+	_CTTypesetterCreateLineWithOffset func(TypesetterRef, corefoundation.Range, float64) LineRef
+	_CTTypesetterCreateWithAttributedString func(AttributedStringRef) TypesetterRef
+	_CTTypesetterCreateWithAttributedStringAndOptions func(AttributedStringRef, DictionaryRef) TypesetterRef
+	_CTTypesetterGetTypeID func() TypeID
+	_CTTypesetterSuggestClusterBreak func(TypesetterRef, Index, float64) Index
+	_CTTypesetterSuggestClusterBreakWithOffset func(TypesetterRef, Index, float64, float64) Index
+	_CTTypesetterSuggestLineBreak func(TypesetterRef, Index, float64) Index
+	_CTTypesetterSuggestLineBreakWithOffset func(TypesetterRef, Index, float64, float64) Index
 )
 
 func init() {
@@ -247,8 +248,8 @@ func init() {
 	tryRegister(&_CTFontCopyDefaultCascadeListForLanguages, lib, "CTFontCopyDefaultCascadeListForLanguages")
 	tryRegister(&_CTFontCopyDisplayName, lib, "CTFontCopyDisplayName")
 	tryRegister(&_CTFontCopyFamilyName, lib, "CTFontCopyFamilyName")
-	tryRegister(&_CTFontCopyFeatureSettings, lib, "CTFontCopyFeatureSettings")
 	tryRegister(&_CTFontCopyFeatures, lib, "CTFontCopyFeatures")
+	tryRegister(&_CTFontCopyFeatureSettings, lib, "CTFontCopyFeatureSettings")
 	tryRegister(&_CTFontCopyFontDescriptor, lib, "CTFontCopyFontDescriptor")
 	tryRegister(&_CTFontCopyFullName, lib, "CTFontCopyFullName")
 	tryRegister(&_CTFontCopyGraphicsFont, lib, "CTFontCopyGraphicsFont")
@@ -298,8 +299,8 @@ func init() {
 	tryRegister(&_CTFontGetCapHeight, lib, "CTFontGetCapHeight")
 	tryRegister(&_CTFontGetDescent, lib, "CTFontGetDescent")
 	tryRegister(&_CTFontGetGlyphCount, lib, "CTFontGetGlyphCount")
-	tryRegister(&_CTFontGetGlyphWithName, lib, "CTFontGetGlyphWithName")
 	tryRegister(&_CTFontGetGlyphsForCharacters, lib, "CTFontGetGlyphsForCharacters")
+	tryRegister(&_CTFontGetGlyphWithName, lib, "CTFontGetGlyphWithName")
 	tryRegister(&_CTFontGetLeading, lib, "CTFontGetLeading")
 	tryRegister(&_CTFontGetLigatureCaretPositions, lib, "CTFontGetLigatureCaretPositions")
 	tryRegister(&_CTFontGetMatrix, lib, "CTFontGetMatrix")
@@ -331,17 +332,17 @@ func init() {
 	tryRegister(&_CTFontManagerGetScopeForURL, lib, "CTFontManagerGetScopeForURL")
 	tryRegister(&_CTFontManagerIsSupportedFont, lib, "CTFontManagerIsSupportedFont")
 	tryRegister(&_CTFontManagerRegisterFontDescriptors, lib, "CTFontManagerRegisterFontDescriptors")
-	tryRegister(&_CTFontManagerRegisterFontURLs, lib, "CTFontManagerRegisterFontURLs")
 	tryRegister(&_CTFontManagerRegisterFontsForURL, lib, "CTFontManagerRegisterFontsForURL")
 	tryRegister(&_CTFontManagerRegisterFontsForURLs, lib, "CTFontManagerRegisterFontsForURLs")
 	tryRegister(&_CTFontManagerRegisterFontsWithAssetNames, lib, "CTFontManagerRegisterFontsWithAssetNames")
+	tryRegister(&_CTFontManagerRegisterFontURLs, lib, "CTFontManagerRegisterFontURLs")
 	tryRegister(&_CTFontManagerRegisterGraphicsFont, lib, "CTFontManagerRegisterGraphicsFont")
 	tryRegister(&_CTFontManagerRequestFonts, lib, "CTFontManagerRequestFonts")
 	tryRegister(&_CTFontManagerSetAutoActivationSetting, lib, "CTFontManagerSetAutoActivationSetting")
 	tryRegister(&_CTFontManagerUnregisterFontDescriptors, lib, "CTFontManagerUnregisterFontDescriptors")
-	tryRegister(&_CTFontManagerUnregisterFontURLs, lib, "CTFontManagerUnregisterFontURLs")
 	tryRegister(&_CTFontManagerUnregisterFontsForURL, lib, "CTFontManagerUnregisterFontsForURL")
 	tryRegister(&_CTFontManagerUnregisterFontsForURLs, lib, "CTFontManagerUnregisterFontsForURLs")
+	tryRegister(&_CTFontManagerUnregisterFontURLs, lib, "CTFontManagerUnregisterFontURLs")
 	tryRegister(&_CTFontManagerUnregisterGraphicsFont, lib, "CTFontManagerUnregisterGraphicsFont")
 	tryRegister(&_CTFrameDraw, lib, "CTFrameDraw")
 	tryRegister(&_CTFrameGetFrameAttributes, lib, "CTFrameGetFrameAttributes")
@@ -452,9 +453,9 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCopyExclusionDescriptors(_:)
-func CTFontCollectionCopyExclusionDescriptors(collection FontCollectionRef) unsafe.Pointer {
+func CTFontCollectionCopyExclusionDescriptors(collection FontCollectionRef) ArrayRef {
 	return _CTFontCollectionCopyExclusionDescriptors(collection)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCopyExclusionDescriptors */
 
 // Retrieves an array of font descriptor attribute values.
 //
@@ -463,9 +464,9 @@ func CTFontCollectionCopyExclusionDescriptors(collection FontCollectionRef) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCopyFontAttribute(_:_:_:)
-func CTFontCollectionCopyFontAttribute(collection FontCollectionRef, attributeName unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCopyFontAttribute(collection FontCollectionRef, attributeName StringRef, options FontCollectionCopyOptions) ArrayRef {
 	return _CTFontCollectionCopyFontAttribute(collection, attributeName, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCopyFontAttribute */
 
 // Retrieves an array of dictionaries containing font descriptor attribute values.
 //
@@ -474,9 +475,9 @@ func CTFontCollectionCopyFontAttribute(collection FontCollectionRef, attributeNa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCopyFontAttributes(_:_:_:)
-func CTFontCollectionCopyFontAttributes(collection FontCollectionRef, attributeNames unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCopyFontAttributes(collection FontCollectionRef, attributeNames SetRef, options FontCollectionCopyOptions) ArrayRef {
 	return _CTFontCollectionCopyFontAttributes(collection, attributeNames, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCopyFontAttributes */
 
 // Retrieves the array of descriptors for font matching.
 //
@@ -485,9 +486,9 @@ func CTFontCollectionCopyFontAttributes(collection FontCollectionRef, attributeN
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCopyQueryDescriptors(_:)
-func CTFontCollectionCopyQueryDescriptors(collection FontCollectionRef) unsafe.Pointer {
+func CTFontCollectionCopyQueryDescriptors(collection FontCollectionRef) ArrayRef {
 	return _CTFontCollectionCopyQueryDescriptors(collection)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCopyQueryDescriptors */
 
 // Returns a copy of the original collection augmented with the given new font descriptors.
 //
@@ -496,9 +497,9 @@ func CTFontCollectionCopyQueryDescriptors(collection FontCollectionRef) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateCopyWithFontDescriptors(_:_:_:)
-func CTFontCollectionCreateCopyWithFontDescriptors(original FontCollectionRef, queryDescriptors unsafe.Pointer, options unsafe.Pointer) FontCollectionRef {
+func CTFontCollectionCreateCopyWithFontDescriptors(original FontCollectionRef, queryDescriptors ArrayRef, options DictionaryRef) FontCollectionRef {
 	return _CTFontCollectionCreateCopyWithFontDescriptors(original, queryDescriptors, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCreateCopyWithFontDescriptors */
 
 // Returns a new font collection containing all available fonts.
 //
@@ -507,9 +508,9 @@ func CTFontCollectionCreateCopyWithFontDescriptors(original FontCollectionRef, q
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateFromAvailableFonts(_:)
-func CTFontCollectionCreateFromAvailableFonts(options unsafe.Pointer) FontCollectionRef {
+func CTFontCollectionCreateFromAvailableFonts(options DictionaryRef) FontCollectionRef {
 	return _CTFontCollectionCreateFromAvailableFonts(options)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCreateFromAvailableFonts */
 
 // Returns an array of font descriptors matching the collection.
 //
@@ -518,9 +519,9 @@ func CTFontCollectionCreateFromAvailableFonts(options unsafe.Pointer) FontCollec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMatchingFontDescriptors(_:)
-func CTFontCollectionCreateMatchingFontDescriptors(collection FontCollectionRef) unsafe.Pointer {
+func CTFontCollectionCreateMatchingFontDescriptors(collection FontCollectionRef) ArrayRef {
 	return _CTFontCollectionCreateMatchingFontDescriptors(collection)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCreateMatchingFontDescriptors */
 
 // Retrieves an array of font descriptors that match the specified family, one descriptor for each style in the collection.
 //
@@ -529,9 +530,9 @@ func CTFontCollectionCreateMatchingFontDescriptors(collection FontCollectionRef)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMatchingFontDescriptorsForFamily(_:_:_:)
-func CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection FontCollectionRef, familyName unsafe.Pointer, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection FontCollectionRef, familyName StringRef, options DictionaryRef) ArrayRef {
 	return _CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection, familyName, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCreateMatchingFontDescriptorsForFamily */
 
 // Returns the array of matching font descriptors sorted with the callback function.
 //
@@ -540,9 +541,9 @@ func CTFontCollectionCreateMatchingFontDescriptorsForFamily(collection FontColle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(_:_:_:)
-func CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection FontCollectionRef, sortCallback FontCollectionSortDescriptorsCallback, refCon unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection FontCollectionRef, sortCallback FontCollectionSortDescriptorsCallback, refCon unsafe.Pointer) ArrayRef {
 	return _CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection, sortCallback, refCon)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback */
 
 // Creates an array of font descriptors that match the specified collection.
 //
@@ -551,9 +552,9 @@ func CTFontCollectionCreateMatchingFontDescriptorsSortedWithCallback(collection 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMatchingFontDescriptorsWithOptions(_:_:)
-func CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection FontCollectionRef, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection FontCollectionRef, options DictionaryRef) ArrayRef {
 	return _CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCreateMatchingFontDescriptorsWithOptions */
 
 // Creates a mutable copy of the original collection.
 //
@@ -564,7 +565,7 @@ func CTFontCollectionCreateMatchingFontDescriptorsWithOptions(collection FontCol
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateMutableCopy(_:)
 func CTFontCollectionCreateMutableCopy(original FontCollectionRef) MutableFontCollectionRef {
 	return _CTFontCollectionCreateMutableCopy(original)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCreateMutableCopy */
 
 // Returns a new font collection based on the given array of font descriptors.
 //
@@ -573,9 +574,9 @@ func CTFontCollectionCreateMutableCopy(original FontCollectionRef) MutableFontCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionCreateWithFontDescriptors(_:_:)
-func CTFontCollectionCreateWithFontDescriptors(queryDescriptors unsafe.Pointer, options unsafe.Pointer) FontCollectionRef {
+func CTFontCollectionCreateWithFontDescriptors(queryDescriptors ArrayRef, options DictionaryRef) FontCollectionRef {
 	return _CTFontCollectionCreateWithFontDescriptors(queryDescriptors, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionCreateWithFontDescriptors */
 
 // Returns the type identifier for Core Text font collection references.
 //
@@ -584,9 +585,9 @@ func CTFontCollectionCreateWithFontDescriptors(queryDescriptors unsafe.Pointer, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionGetTypeID()
-func CTFontCollectionGetTypeID() unsafe.Pointer {
+func CTFontCollectionGetTypeID() TypeID {
 	return _CTFontCollectionGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionGetTypeID */
 
 // Replaces the array of descriptors to exclude from the match.
 //
@@ -595,9 +596,9 @@ func CTFontCollectionGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionSetExclusionDescriptors(_:_:)
-func CTFontCollectionSetExclusionDescriptors(collection MutableFontCollectionRef, descriptors unsafe.Pointer) {
+func CTFontCollectionSetExclusionDescriptors(collection MutableFontCollectionRef, descriptors ArrayRef) {
 	_CTFontCollectionSetExclusionDescriptors(collection, descriptors)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionSetExclusionDescriptors */
 
 // Replaces the array of descriptors for font matching.
 //
@@ -606,9 +607,9 @@ func CTFontCollectionSetExclusionDescriptors(collection MutableFontCollectionRef
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionSetQueryDescriptors(_:_:)
-func CTFontCollectionSetQueryDescriptors(collection MutableFontCollectionRef, descriptors unsafe.Pointer) {
+func CTFontCollectionSetQueryDescriptors(collection MutableFontCollectionRef, descriptors ArrayRef) {
 	_CTFontCollectionSetQueryDescriptors(collection, descriptors)
-}
+}/* debug [functions.gen.go/function]: CTFontCollectionSetQueryDescriptors */
 
 // Returns the value associated with an arbitrary attribute of the given font.
 //
@@ -617,9 +618,9 @@ func CTFontCollectionSetQueryDescriptors(collection MutableFontCollectionRef, de
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyAttribute(_:_:)
-func CTFontCopyAttribute(font FontRef, attribute unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyAttribute(font FontRef, attribute StringRef) TypeRef {
 	return _CTFontCopyAttribute(font, attribute)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyAttribute */
 
 // Returns an array of font table tags.
 //
@@ -628,9 +629,9 @@ func CTFontCopyAttribute(font FontRef, attribute unsafe.Pointer) unsafe.Pointer 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyAvailableTables(_:_:)
-func CTFontCopyAvailableTables(font FontRef, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyAvailableTables(font FontRef, options FontTableOptions) ArrayRef {
 	return _CTFontCopyAvailableTables(font, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyAvailableTables */
 
 // Returns the Unicode character set of the font.
 //
@@ -639,9 +640,9 @@ func CTFontCopyAvailableTables(font FontRef, options unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyCharacterSet(_:)
-func CTFontCopyCharacterSet(font FontRef) unsafe.Pointer {
+func CTFontCopyCharacterSet(font FontRef) CharacterSetRef {
 	return _CTFontCopyCharacterSet(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyCharacterSet */
 
 // Retrieves an ordered list of font substitution preferences.
 //
@@ -650,9 +651,9 @@ func CTFontCopyCharacterSet(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyDefaultCascadeListForLanguages(_:_:)
-func CTFontCopyDefaultCascadeListForLanguages(font FontRef, languagePrefList unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyDefaultCascadeListForLanguages(font FontRef, languagePrefList ArrayRef) ArrayRef {
 	return _CTFontCopyDefaultCascadeListForLanguages(font, languagePrefList)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyDefaultCascadeListForLanguages */
 
 // Returns the display name of the given font.
 //
@@ -661,9 +662,9 @@ func CTFontCopyDefaultCascadeListForLanguages(font FontRef, languagePrefList uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyDisplayName(_:)
-func CTFontCopyDisplayName(font FontRef) unsafe.Pointer {
+func CTFontCopyDisplayName(font FontRef) StringRef {
 	return _CTFontCopyDisplayName(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyDisplayName */
 
 // Returns the family name of the given font.
 //
@@ -672,20 +673,9 @@ func CTFontCopyDisplayName(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFamilyName(_:)
-func CTFontCopyFamilyName(font FontRef) unsafe.Pointer {
+func CTFontCopyFamilyName(font FontRef) StringRef {
 	return _CTFontCopyFamilyName(font)
-}
-
-// Returns an array of font feature-setting tuples.
-//
-// Added in macOS 10.5.
-// Returns an array of font feature-setting tuples.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFeatureSettings(_:)
-func CTFontCopyFeatureSettings(font FontRef) unsafe.Pointer {
-	return _CTFontCopyFeatureSettings(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyFamilyName */
 
 // Returns an array of font features.
 //
@@ -694,9 +684,20 @@ func CTFontCopyFeatureSettings(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFeatures(_:)
-func CTFontCopyFeatures(font FontRef) unsafe.Pointer {
+func CTFontCopyFeatures(font FontRef) ArrayRef {
 	return _CTFontCopyFeatures(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyFeatures */
+
+// Returns an array of font feature-setting tuples.
+//
+// Added in macOS 10.5.
+// Returns an array of font feature-setting tuples.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFeatureSettings(_:)
+func CTFontCopyFeatureSettings(font FontRef) ArrayRef {
+	return _CTFontCopyFeatureSettings(font)
+}/* debug [functions.gen.go/function]: CTFontCopyFeatureSettings */
 
 // Returns the normalized font descriptor for the given font reference.
 //
@@ -707,7 +708,7 @@ func CTFontCopyFeatures(font FontRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFontDescriptor(_:)
 func CTFontCopyFontDescriptor(font FontRef) FontDescriptorRef {
 	return _CTFontCopyFontDescriptor(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyFontDescriptor */
 
 // Returns the full name of the given font.
 //
@@ -716,9 +717,9 @@ func CTFontCopyFontDescriptor(font FontRef) FontDescriptorRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyFullName(_:)
-func CTFontCopyFullName(font FontRef) unsafe.Pointer {
+func CTFontCopyFullName(font FontRef) StringRef {
 	return _CTFontCopyFullName(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyFullName */
 
 // Returns a Core Graphics font reference and attributes.
 //
@@ -729,7 +730,7 @@ func CTFontCopyFullName(font FontRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyGraphicsFont(_:_:)
 func CTFontCopyGraphicsFont(font FontRef, attributes unsafe.Pointer) FontRef {
 	return _CTFontCopyGraphicsFont(font, attributes)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyGraphicsFont */
 
 // Returns a reference to a localized name for the given font.
 //
@@ -738,9 +739,9 @@ func CTFontCopyGraphicsFont(font FontRef, attributes unsafe.Pointer) FontRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyLocalizedName(_:_:_:)
-func CTFontCopyLocalizedName(font FontRef, nameKey unsafe.Pointer, actualLanguage unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyLocalizedName(font FontRef, nameKey StringRef, actualLanguage unsafe.Pointer) StringRef {
 	return _CTFontCopyLocalizedName(font, nameKey, actualLanguage)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyLocalizedName */
 
 // Returns a reference to the requested name of the given font.
 //
@@ -749,9 +750,9 @@ func CTFontCopyLocalizedName(font FontRef, nameKey unsafe.Pointer, actualLanguag
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyName(_:_:)
-func CTFontCopyName(font FontRef, nameKey unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyName(font FontRef, nameKey StringRef) StringRef {
 	return _CTFontCopyName(font, nameKey)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyName */
 
 // Retrieves the name for the specified glyph.
 //
@@ -760,9 +761,9 @@ func CTFontCopyName(font FontRef, nameKey unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyNameForGlyph(_:_:)
-func CTFontCopyNameForGlyph(font FontRef, glyph unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyNameForGlyph(font FontRef, glyph Glyph) StringRef {
 	return _CTFontCopyNameForGlyph(font, glyph)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyNameForGlyph */
 
 // Returns the PostScript name of the given font.
 //
@@ -771,9 +772,9 @@ func CTFontCopyNameForGlyph(font FontRef, glyph unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyPostScriptName(_:)
-func CTFontCopyPostScriptName(font FontRef) unsafe.Pointer {
+func CTFontCopyPostScriptName(font FontRef) StringRef {
 	return _CTFontCopyPostScriptName(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyPostScriptName */
 
 // Returns an array of languages supported by the font.
 //
@@ -782,9 +783,9 @@ func CTFontCopyPostScriptName(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopySupportedLanguages(_:)
-func CTFontCopySupportedLanguages(font FontRef) unsafe.Pointer {
+func CTFontCopySupportedLanguages(font FontRef) ArrayRef {
 	return _CTFontCopySupportedLanguages(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopySupportedLanguages */
 
 // Returns a reference to the font table data.
 //
@@ -793,9 +794,9 @@ func CTFontCopySupportedLanguages(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyTable(_:_:_:)
-func CTFontCopyTable(font FontRef, table FontTableTag, options unsafe.Pointer) unsafe.Pointer {
+func CTFontCopyTable(font FontRef, table FontTableTag, options FontTableOptions) DataRef {
 	return _CTFontCopyTable(font, table, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyTable */
 
 // Returns the traits dictionary of the given font.
 //
@@ -804,9 +805,9 @@ func CTFontCopyTable(font FontRef, table FontTableTag, options unsafe.Pointer) u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyTraits(_:)
-func CTFontCopyTraits(font FontRef) unsafe.Pointer {
+func CTFontCopyTraits(font FontRef) DictionaryRef {
 	return _CTFontCopyTraits(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyTraits */
 
 // Returns a variation dictionary from the font reference.
 //
@@ -815,9 +816,9 @@ func CTFontCopyTraits(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyVariation(_:)
-func CTFontCopyVariation(font FontRef) unsafe.Pointer {
+func CTFontCopyVariation(font FontRef) DictionaryRef {
 	return _CTFontCopyVariation(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyVariation */
 
 // Returns an array of variation axes.
 //
@@ -826,9 +827,9 @@ func CTFontCopyVariation(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCopyVariationAxes(_:)
-func CTFontCopyVariationAxes(font FontRef) unsafe.Pointer {
+func CTFontCopyVariationAxes(font FontRef) ArrayRef {
 	return _CTFontCopyVariationAxes(font)
-}
+}/* debug [functions.gen.go/function]: CTFontCopyVariationAxes */
 
 // Returns a new font with additional attributes based on the original font.
 //
@@ -839,7 +840,7 @@ func CTFontCopyVariationAxes(font FontRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateCopyWithAttributes(_:_:_:_:)
 func CTFontCreateCopyWithAttributes(font FontRef, size float64, matrix unsafe.Pointer, attributes FontDescriptorRef) FontRef {
 	return _CTFontCreateCopyWithAttributes(font, size, matrix, attributes)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateCopyWithAttributes */
 
 // Returns a new font in the specified family based on the traits of the original font.
 //
@@ -848,9 +849,9 @@ func CTFontCreateCopyWithAttributes(font FontRef, size float64, matrix unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateCopyWithFamily(_:_:_:_:)
-func CTFontCreateCopyWithFamily(font FontRef, size float64, matrix unsafe.Pointer, family unsafe.Pointer) FontRef {
+func CTFontCreateCopyWithFamily(font FontRef, size float64, matrix unsafe.Pointer, family StringRef) FontRef {
 	return _CTFontCreateCopyWithFamily(font, size, matrix, family)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateCopyWithFamily */
 
 // Returns a new font in the same font family as the original with the specified symbolic traits.
 //
@@ -859,9 +860,9 @@ func CTFontCreateCopyWithFamily(font FontRef, size float64, matrix unsafe.Pointe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateCopyWithSymbolicTraits(_:_:_:_:_:)
-func CTFontCreateCopyWithSymbolicTraits(font FontRef, size float64, matrix unsafe.Pointer, symTraitValue unsafe.Pointer, symTraitMask unsafe.Pointer) FontRef {
+func CTFontCreateCopyWithSymbolicTraits(font FontRef, size float64, matrix unsafe.Pointer, symTraitValue FontSymbolicTraits, symTraitMask FontSymbolicTraits) FontRef {
 	return _CTFontCreateCopyWithSymbolicTraits(font, size, matrix, symTraitValue, symTraitMask)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateCopyWithSymbolicTraits */
 
 // Returns a font reference that most accurately maps the string range based on the current font.
 //
@@ -870,9 +871,9 @@ func CTFontCreateCopyWithSymbolicTraits(font FontRef, size float64, matrix unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateForString(_:_:_:)
-func CTFontCreateForString(currentFont FontRef, string_ unsafe.Pointer, range_ unsafe.Pointer) FontRef {
+func CTFontCreateForString(currentFont FontRef, string_ StringRef, range_ corefoundation.Range) FontRef {
 	return _CTFontCreateForString(currentFont, string_, range_)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateForString */
 
 // Returns a font reference that most accurately maps the string range based on the current font and language.
 //
@@ -881,9 +882,9 @@ func CTFontCreateForString(currentFont FontRef, string_ unsafe.Pointer, range_ u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateForStringWithLanguage(_:_:_:_:)
-func CTFontCreateForStringWithLanguage(currentFont FontRef, string_ unsafe.Pointer, range_ unsafe.Pointer, language unsafe.Pointer) FontRef {
+func CTFontCreateForStringWithLanguage(currentFont FontRef, string_ StringRef, range_ corefoundation.Range, language StringRef) FontRef {
 	return _CTFontCreateForStringWithLanguage(currentFont, string_, range_, language)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateForStringWithLanguage */
 
 // Creates a path for the specified glyph.
 //
@@ -892,9 +893,9 @@ func CTFontCreateForStringWithLanguage(currentFont FontRef, string_ unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreatePathForGlyph(_:_:_:)
-func CTFontCreatePathForGlyph(font FontRef, glyph unsafe.Pointer, matrix unsafe.Pointer) PathRef {
+func CTFontCreatePathForGlyph(font FontRef, glyph Glyph, matrix unsafe.Pointer) PathRef {
 	return _CTFontCreatePathForGlyph(font, glyph, matrix)
-}
+}/* debug [functions.gen.go/function]: CTFontCreatePathForGlyph */
 
 // Returns the special user-interface font for the given language and user-interface type.
 //
@@ -903,9 +904,9 @@ func CTFontCreatePathForGlyph(font FontRef, glyph unsafe.Pointer, matrix unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateUIFontForLanguage(_:_:_:)
-func CTFontCreateUIFontForLanguage(uiType unsafe.Pointer, size float64, language unsafe.Pointer) FontRef {
+func CTFontCreateUIFontForLanguage(uiType FontUIFontType, size float64, language StringRef) FontRef {
 	return _CTFontCreateUIFontForLanguage(uiType, size, language)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateUIFontForLanguage */
 
 // Returns a new font reference that best matches the given font descriptor.
 //
@@ -916,7 +917,7 @@ func CTFontCreateUIFontForLanguage(uiType unsafe.Pointer, size float64, language
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithFontDescriptor(_:_:_:)
 func CTFontCreateWithFontDescriptor(descriptor FontDescriptorRef, size float64, matrix unsafe.Pointer) FontRef {
 	return _CTFontCreateWithFontDescriptor(descriptor, size, matrix)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateWithFontDescriptor */
 
 // Returns a new font reference that best matches the given font descriptor.
 //
@@ -925,9 +926,9 @@ func CTFontCreateWithFontDescriptor(descriptor FontDescriptorRef, size float64, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithFontDescriptorAndOptions(_:_:_:_:)
-func CTFontCreateWithFontDescriptorAndOptions(descriptor FontDescriptorRef, size float64, matrix unsafe.Pointer, options unsafe.Pointer) FontRef {
+func CTFontCreateWithFontDescriptorAndOptions(descriptor FontDescriptorRef, size float64, matrix unsafe.Pointer, options FontOptions) FontRef {
 	return _CTFontCreateWithFontDescriptorAndOptions(descriptor, size, matrix, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateWithFontDescriptorAndOptions */
 
 // Creates a new font reference from an existing Core Graphics font reference.
 //
@@ -938,7 +939,7 @@ func CTFontCreateWithFontDescriptorAndOptions(descriptor FontDescriptorRef, size
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithGraphicsFont(_:_:_:_:)
 func CTFontCreateWithGraphicsFont(graphicsFont FontRef, size float64, matrix unsafe.Pointer, attributes FontDescriptorRef) FontRef {
 	return _CTFontCreateWithGraphicsFont(graphicsFont, size, matrix, attributes)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateWithGraphicsFont */
 
 // Returns a new font reference for the given name.
 //
@@ -947,9 +948,9 @@ func CTFontCreateWithGraphicsFont(graphicsFont FontRef, size float64, matrix uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithName(_:_:_:)
-func CTFontCreateWithName(name unsafe.Pointer, size float64, matrix unsafe.Pointer) FontRef {
+func CTFontCreateWithName(name StringRef, size float64, matrix unsafe.Pointer) FontRef {
 	return _CTFontCreateWithName(name, size, matrix)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateWithName */
 
 // Returns a new font reference for the given name.
 //
@@ -958,9 +959,9 @@ func CTFontCreateWithName(name unsafe.Pointer, size float64, matrix unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithNameAndOptions(_:_:_:_:)
-func CTFontCreateWithNameAndOptions(name unsafe.Pointer, size float64, matrix unsafe.Pointer, options unsafe.Pointer) FontRef {
+func CTFontCreateWithNameAndOptions(name StringRef, size float64, matrix unsafe.Pointer, options FontOptions) FontRef {
 	return _CTFontCreateWithNameAndOptions(name, size, matrix, options)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateWithNameAndOptions */
 
 // Creates a new font reference from an ATS font reference.
 //
@@ -973,7 +974,7 @@ func CTFontCreateWithNameAndOptions(name unsafe.Pointer, size float64, matrix un
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithPlatformFont(_:_:_:_:)
 func CTFontCreateWithPlatformFont(platformFont ATSFontRef, size float64, matrix unsafe.Pointer, attributes FontDescriptorRef) FontRef {
 	return _CTFontCreateWithPlatformFont(platformFont, size, matrix, attributes)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateWithPlatformFont */
 
 // Returns a font reference for the given QuickDraw instance.
 //
@@ -986,7 +987,7 @@ func CTFontCreateWithPlatformFont(platformFont ATSFontRef, size float64, matrix 
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCreateWithQuickdrawInstance(_:_:_:_:)
 func CTFontCreateWithQuickdrawInstance(name unsafe.Pointer, identifier int16, style uint8, size float64) FontRef {
 	return _CTFontCreateWithQuickdrawInstance(name, identifier, style, size)
-}
+}/* debug [functions.gen.go/function]: CTFontCreateWithQuickdrawInstance */
 
 // Returns the value associated with an arbitrary attribute.
 //
@@ -995,9 +996,9 @@ func CTFontCreateWithQuickdrawInstance(name unsafe.Pointer, identifier int16, st
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCopyAttribute(_:_:)
-func CTFontDescriptorCopyAttribute(descriptor FontDescriptorRef, attribute unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCopyAttribute(descriptor FontDescriptorRef, attribute StringRef) TypeRef {
 	return _CTFontDescriptorCopyAttribute(descriptor, attribute)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCopyAttribute */
 
 // Returns the attributes dictionary of the font descriptor.
 //
@@ -1006,9 +1007,9 @@ func CTFontDescriptorCopyAttribute(descriptor FontDescriptorRef, attribute unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCopyAttributes(_:)
-func CTFontDescriptorCopyAttributes(descriptor FontDescriptorRef) unsafe.Pointer {
+func CTFontDescriptorCopyAttributes(descriptor FontDescriptorRef) DictionaryRef {
 	return _CTFontDescriptorCopyAttributes(descriptor)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCopyAttributes */
 
 // Returns a localized value for the requested attribute, if available.
 //
@@ -1017,9 +1018,9 @@ func CTFontDescriptorCopyAttributes(descriptor FontDescriptorRef) unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCopyLocalizedAttribute(_:_:_:)
-func CTFontDescriptorCopyLocalizedAttribute(descriptor FontDescriptorRef, attribute unsafe.Pointer, language unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCopyLocalizedAttribute(descriptor FontDescriptorRef, attribute StringRef, language unsafe.Pointer) TypeRef {
 	return _CTFontDescriptorCopyLocalizedAttribute(descriptor, attribute, language)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCopyLocalizedAttribute */
 
 // Creates a copy of the original font descriptor with new attributes.
 //
@@ -1028,9 +1029,9 @@ func CTFontDescriptorCopyLocalizedAttribute(descriptor FontDescriptorRef, attrib
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithAttributes(_:_:)
-func CTFontDescriptorCreateCopyWithAttributes(original FontDescriptorRef, attributes unsafe.Pointer) FontDescriptorRef {
+func CTFontDescriptorCreateCopyWithAttributes(original FontDescriptorRef, attributes DictionaryRef) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithAttributes(original, attributes)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateCopyWithAttributes */
 
 // Creates a copy of the font descriptor in the specified family based on the traits of the original.
 //
@@ -1039,9 +1040,9 @@ func CTFontDescriptorCreateCopyWithAttributes(original FontDescriptorRef, attrib
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithFamily(_:_:)
-func CTFontDescriptorCreateCopyWithFamily(original FontDescriptorRef, family unsafe.Pointer) FontDescriptorRef {
+func CTFontDescriptorCreateCopyWithFamily(original FontDescriptorRef, family StringRef) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithFamily(original, family)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateCopyWithFamily */
 
 // Copies a font descriptor with new feature settings.
 //
@@ -1050,9 +1051,9 @@ func CTFontDescriptorCreateCopyWithFamily(original FontDescriptorRef, family uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithFeature(_:_:_:)
-func CTFontDescriptorCreateCopyWithFeature(original FontDescriptorRef, featureTypeIdentifier unsafe.Pointer, featureSelectorIdentifier unsafe.Pointer) FontDescriptorRef {
+func CTFontDescriptorCreateCopyWithFeature(original FontDescriptorRef, featureTypeIdentifier NumberRef, featureSelectorIdentifier NumberRef) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithFeature(original, featureTypeIdentifier, featureSelectorIdentifier)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateCopyWithFeature */
 
 // Creates a copy of the font descriptor with the specified symbolic traits as the original.
 //
@@ -1061,9 +1062,9 @@ func CTFontDescriptorCreateCopyWithFeature(original FontDescriptorRef, featureTy
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithSymbolicTraits(_:_:_:)
-func CTFontDescriptorCreateCopyWithSymbolicTraits(original FontDescriptorRef, symTraitValue unsafe.Pointer, symTraitMask unsafe.Pointer) FontDescriptorRef {
+func CTFontDescriptorCreateCopyWithSymbolicTraits(original FontDescriptorRef, symTraitValue FontSymbolicTraits, symTraitMask FontSymbolicTraits) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithSymbolicTraits(original, symTraitValue, symTraitMask)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateCopyWithSymbolicTraits */
 
 // Creates a copy of the original font descriptor with a new variation instance.
 //
@@ -1072,9 +1073,9 @@ func CTFontDescriptorCreateCopyWithSymbolicTraits(original FontDescriptorRef, sy
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateCopyWithVariation(_:_:_:)
-func CTFontDescriptorCreateCopyWithVariation(original FontDescriptorRef, variationIdentifier unsafe.Pointer, variationValue float64) FontDescriptorRef {
+func CTFontDescriptorCreateCopyWithVariation(original FontDescriptorRef, variationIdentifier NumberRef, variationValue float64) FontDescriptorRef {
 	return _CTFontDescriptorCreateCopyWithVariation(original, variationIdentifier, variationValue)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateCopyWithVariation */
 
 // Returns the single preferred matching font descriptor based on the original descriptor and system precedence.
 //
@@ -1083,9 +1084,9 @@ func CTFontDescriptorCreateCopyWithVariation(original FontDescriptorRef, variati
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateMatchingFontDescriptor(_:_:)
-func CTFontDescriptorCreateMatchingFontDescriptor(descriptor FontDescriptorRef, mandatoryAttributes unsafe.Pointer) FontDescriptorRef {
+func CTFontDescriptorCreateMatchingFontDescriptor(descriptor FontDescriptorRef, mandatoryAttributes SetRef) FontDescriptorRef {
 	return _CTFontDescriptorCreateMatchingFontDescriptor(descriptor, mandatoryAttributes)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateMatchingFontDescriptor */
 
 // Returns an array of normalized font descriptors matching the provided descriptor.
 //
@@ -1094,9 +1095,9 @@ func CTFontDescriptorCreateMatchingFontDescriptor(descriptor FontDescriptorRef, 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateMatchingFontDescriptors(_:_:)
-func CTFontDescriptorCreateMatchingFontDescriptors(descriptor FontDescriptorRef, mandatoryAttributes unsafe.Pointer) unsafe.Pointer {
+func CTFontDescriptorCreateMatchingFontDescriptors(descriptor FontDescriptorRef, mandatoryAttributes SetRef) ArrayRef {
 	return _CTFontDescriptorCreateMatchingFontDescriptors(descriptor, mandatoryAttributes)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateMatchingFontDescriptors */
 
 // Creates a new font descriptor reference from a dictionary of attributes.
 //
@@ -1105,9 +1106,9 @@ func CTFontDescriptorCreateMatchingFontDescriptors(descriptor FontDescriptorRef,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateWithAttributes(_:)
-func CTFontDescriptorCreateWithAttributes(attributes unsafe.Pointer) FontDescriptorRef {
+func CTFontDescriptorCreateWithAttributes(attributes DictionaryRef) FontDescriptorRef {
 	return _CTFontDescriptorCreateWithAttributes(attributes)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateWithAttributes */
 
 // Creates a new font descriptor with the provided PostScript name and size.
 //
@@ -1116,9 +1117,9 @@ func CTFontDescriptorCreateWithAttributes(attributes unsafe.Pointer) FontDescrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorCreateWithNameAndSize(_:_:)
-func CTFontDescriptorCreateWithNameAndSize(name unsafe.Pointer, size float64) FontDescriptorRef {
+func CTFontDescriptorCreateWithNameAndSize(name StringRef, size float64) FontDescriptorRef {
 	return _CTFontDescriptorCreateWithNameAndSize(name, size)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorCreateWithNameAndSize */
 
 // Returns the type identifier for Core Text font descriptor references.
 //
@@ -1127,9 +1128,9 @@ func CTFontDescriptorCreateWithNameAndSize(name unsafe.Pointer, size float64) Fo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorGetTypeID()
-func CTFontDescriptorGetTypeID() unsafe.Pointer {
+func CTFontDescriptorGetTypeID() TypeID {
 	return _CTFontDescriptorGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorGetTypeID */
 
 // Matches font descriptors and tracks progress with a progress handler.
 //
@@ -1138,9 +1139,9 @@ func CTFontDescriptorGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptorMatchFontDescriptorsWithProgressHandler(_:_:_:)
-func CTFontDescriptorMatchFontDescriptorsWithProgressHandler(descriptors unsafe.Pointer, mandatoryAttributes unsafe.Pointer, progressBlock unsafe.Pointer) bool {
+func CTFontDescriptorMatchFontDescriptorsWithProgressHandler(descriptors ArrayRef, mandatoryAttributes SetRef, progressBlock FontDescriptorProgressHandler) bool {
 	return _CTFontDescriptorMatchFontDescriptorsWithProgressHandler(descriptors, mandatoryAttributes, progressBlock)
-}
+}/* debug [functions.gen.go/function]: CTFontDescriptorMatchFontDescriptorsWithProgressHandler */
 
 // Renders the given glyphs of a font at the specified positions in the supplied graphics context.
 //
@@ -1151,16 +1152,16 @@ func CTFontDescriptorMatchFontDescriptorsWithProgressHandler(descriptors unsafe.
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDrawGlyphs(_:_:_:_:_:)
 func CTFontDrawGlyphs(font FontRef, glyphs unsafe.Pointer, positions unsafe.Pointer, count uintptr, context ContextRef) {
 	_CTFontDrawGlyphs(font, glyphs, positions, count, context)
-}
+}/* debug [functions.gen.go/function]: CTFontDrawGlyphs */
 
 // CTFontDrawImageFromAdaptiveImageProviderAtPoint is a CoreText function.
 //
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDrawImageFromAdaptiveImageProviderAtPoint(_:_:_:_:)
-func CTFontDrawImageFromAdaptiveImageProviderAtPoint(font FontRef, provider unsafe.Pointer, point corefoundation.Point, context ContextRef) {
+func CTFontDrawImageFromAdaptiveImageProviderAtPoint(font FontRef, provider unsafe.Pointer, point corefoundation.CGPoint, context ContextRef) {
 	_CTFontDrawImageFromAdaptiveImageProviderAtPoint(font, provider, point, context)
-}
+}/* debug [functions.gen.go/function]: CTFontDrawImageFromAdaptiveImageProviderAtPoint */
 
 // Calculates the advances for an array of glyphs and returns the summed advance.
 //
@@ -1169,9 +1170,9 @@ func CTFontDrawImageFromAdaptiveImageProviderAtPoint(font FontRef, provider unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetAdvancesForGlyphs(_:_:_:_:_:)
-func CTFontGetAdvancesForGlyphs(font FontRef, orientation unsafe.Pointer, glyphs unsafe.Pointer, advances corefoundation.Size, count unsafe.Pointer) float64 {
+func CTFontGetAdvancesForGlyphs(font FontRef, orientation FontOrientation, glyphs unsafe.Pointer, advances corefoundation.CGSize, count Index) float64 {
 	return _CTFontGetAdvancesForGlyphs(font, orientation, glyphs, advances, count)
-}
+}/* debug [functions.gen.go/function]: CTFontGetAdvancesForGlyphs */
 
 // Returns the scaled font-ascent metric of the given font.
 //
@@ -1182,7 +1183,7 @@ func CTFontGetAdvancesForGlyphs(font FontRef, orientation unsafe.Pointer, glyphs
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetAscent(_:)
 func CTFontGetAscent(font FontRef) float64 {
 	return _CTFontGetAscent(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetAscent */
 
 // Returns the scaled bounding box of the given font.
 //
@@ -1191,9 +1192,9 @@ func CTFontGetAscent(font FontRef) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetBoundingBox(_:)
-func CTFontGetBoundingBox(font FontRef) corefoundation.Rect {
+func CTFontGetBoundingBox(font FontRef) corefoundation.CGRect {
 	return _CTFontGetBoundingBox(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetBoundingBox */
 
 // Calculates the bounding rects for an array of glyphs and returns the overall bounding rectangle for the glyph run.
 //
@@ -1202,9 +1203,9 @@ func CTFontGetBoundingBox(font FontRef) corefoundation.Rect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetBoundingRectsForGlyphs(_:_:_:_:_:)
-func CTFontGetBoundingRectsForGlyphs(font FontRef, orientation unsafe.Pointer, glyphs unsafe.Pointer, boundingRects corefoundation.Rect, count unsafe.Pointer) corefoundation.Rect {
+func CTFontGetBoundingRectsForGlyphs(font FontRef, orientation FontOrientation, glyphs unsafe.Pointer, boundingRects corefoundation.CGRect, count Index) corefoundation.CGRect {
 	return _CTFontGetBoundingRectsForGlyphs(font, orientation, glyphs, boundingRects, count)
-}
+}/* debug [functions.gen.go/function]: CTFontGetBoundingRectsForGlyphs */
 
 // Returns the cap-height metric of the given font.
 //
@@ -1215,7 +1216,7 @@ func CTFontGetBoundingRectsForGlyphs(font FontRef, orientation unsafe.Pointer, g
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetCapHeight(_:)
 func CTFontGetCapHeight(font FontRef) float64 {
 	return _CTFontGetCapHeight(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetCapHeight */
 
 // Returns the scaled font-descent metric of the given font.
 //
@@ -1226,7 +1227,7 @@ func CTFontGetCapHeight(font FontRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetDescent(_:)
 func CTFontGetDescent(font FontRef) float64 {
 	return _CTFontGetDescent(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetDescent */
 
 // Returns the number of glyphs of the given font.
 //
@@ -1235,20 +1236,9 @@ func CTFontGetDescent(font FontRef) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetGlyphCount(_:)
-func CTFontGetGlyphCount(font FontRef) unsafe.Pointer {
+func CTFontGetGlyphCount(font FontRef) Index {
 	return _CTFontGetGlyphCount(font)
-}
-
-// Returns the glyph for the specified name.
-//
-// Added in macOS 10.5.
-// Returns the glyph for the specified name.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetGlyphWithName(_:_:)
-func CTFontGetGlyphWithName(font FontRef, glyphName unsafe.Pointer) unsafe.Pointer {
-	return _CTFontGetGlyphWithName(font, glyphName)
-}
+}/* debug [functions.gen.go/function]: CTFontGetGlyphCount */
 
 // Performs basic character-to-glyph mapping.
 //
@@ -1257,9 +1247,20 @@ func CTFontGetGlyphWithName(font FontRef, glyphName unsafe.Pointer) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetGlyphsForCharacters(_:_:_:_:)
-func CTFontGetGlyphsForCharacters(font FontRef, characters unsafe.Pointer, glyphs unsafe.Pointer, count unsafe.Pointer) bool {
+func CTFontGetGlyphsForCharacters(font FontRef, characters unsafe.Pointer, glyphs Glyph, count Index) bool {
 	return _CTFontGetGlyphsForCharacters(font, characters, glyphs, count)
-}
+}/* debug [functions.gen.go/function]: CTFontGetGlyphsForCharacters */
+
+// Returns the glyph for the specified name.
+//
+// Added in macOS 10.5.
+// Returns the glyph for the specified name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetGlyphWithName(_:_:)
+func CTFontGetGlyphWithName(font FontRef, glyphName StringRef) Glyph {
+	return _CTFontGetGlyphWithName(font, glyphName)
+}/* debug [functions.gen.go/function]: CTFontGetGlyphWithName */
 
 // Returns the scaled font-leading metric of the given font.
 //
@@ -1270,7 +1271,7 @@ func CTFontGetGlyphsForCharacters(font FontRef, characters unsafe.Pointer, glyph
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetLeading(_:)
 func CTFontGetLeading(font FontRef) float64 {
 	return _CTFontGetLeading(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetLeading */
 
 // Returns caret positions within a glyph.
 //
@@ -1279,9 +1280,9 @@ func CTFontGetLeading(font FontRef) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetLigatureCaretPositions(_:_:_:_:)
-func CTFontGetLigatureCaretPositions(font FontRef, glyph unsafe.Pointer, positions float64, maxPositions unsafe.Pointer) unsafe.Pointer {
+func CTFontGetLigatureCaretPositions(font FontRef, glyph Glyph, positions float64, maxPositions Index) Index {
 	return _CTFontGetLigatureCaretPositions(font, glyph, positions, maxPositions)
-}
+}/* debug [functions.gen.go/function]: CTFontGetLigatureCaretPositions */
 
 // Returns the transformation matrix of the given font.
 //
@@ -1290,9 +1291,9 @@ func CTFontGetLigatureCaretPositions(font FontRef, glyph unsafe.Pointer, positio
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetMatrix(_:)
-func CTFontGetMatrix(font FontRef) corefoundation.AffineTransform {
+func CTFontGetMatrix(font FontRef) corefoundation.CGAffineTransform {
 	return _CTFontGetMatrix(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetMatrix */
 
 // Calculates the optical bounds for an array of glyphs and returns the overall optical bounds for the run.
 //
@@ -1301,9 +1302,9 @@ func CTFontGetMatrix(font FontRef) corefoundation.AffineTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetOpticalBoundsForGlyphs(_:_:_:_:_:)
-func CTFontGetOpticalBoundsForGlyphs(font FontRef, glyphs unsafe.Pointer, boundingRects corefoundation.Rect, count unsafe.Pointer, options unsafe.Pointer) corefoundation.Rect {
+func CTFontGetOpticalBoundsForGlyphs(font FontRef, glyphs unsafe.Pointer, boundingRects corefoundation.CGRect, count Index, options OptionFlags) corefoundation.CGRect {
 	return _CTFontGetOpticalBoundsForGlyphs(font, glyphs, boundingRects, count, options)
-}
+}/* debug [functions.gen.go/function]: CTFontGetOpticalBoundsForGlyphs */
 
 // Returns an ATS font reference and attributes.
 //
@@ -1316,7 +1317,7 @@ func CTFontGetOpticalBoundsForGlyphs(font FontRef, glyphs unsafe.Pointer, boundi
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetPlatformFont(_:_:)
 func CTFontGetPlatformFont(font FontRef, attributes unsafe.Pointer) ATSFontRef {
 	return _CTFontGetPlatformFont(font, attributes)
-}
+}/* debug [functions.gen.go/function]: CTFontGetPlatformFont */
 
 // Returns the point size of the given font.
 //
@@ -1327,7 +1328,7 @@ func CTFontGetPlatformFont(font FontRef, attributes unsafe.Pointer) ATSFontRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetSize(_:)
 func CTFontGetSize(font FontRef) float64 {
 	return _CTFontGetSize(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetSize */
 
 // Returns the slant angle of the given font.
 //
@@ -1338,7 +1339,7 @@ func CTFontGetSize(font FontRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetSlantAngle(_:)
 func CTFontGetSlantAngle(font FontRef) float64 {
 	return _CTFontGetSlantAngle(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetSlantAngle */
 
 // Returns the best string encoding for legacy format support.
 //
@@ -1347,9 +1348,9 @@ func CTFontGetSlantAngle(font FontRef) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetStringEncoding(_:)
-func CTFontGetStringEncoding(font FontRef) unsafe.Pointer {
+func CTFontGetStringEncoding(font FontRef) StringEncoding {
 	return _CTFontGetStringEncoding(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetStringEncoding */
 
 // Returns the symbolic traits of the given font.
 //
@@ -1358,9 +1359,9 @@ func CTFontGetStringEncoding(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetSymbolicTraits(_:)
-func CTFontGetSymbolicTraits(font FontRef) unsafe.Pointer {
+func CTFontGetSymbolicTraits(font FontRef) FontSymbolicTraits {
 	return _CTFontGetSymbolicTraits(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetSymbolicTraits */
 
 // Returns the type identifier for Core Text font references.
 //
@@ -1369,18 +1370,18 @@ func CTFontGetSymbolicTraits(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetTypeID()
-func CTFontGetTypeID() unsafe.Pointer {
+func CTFontGetTypeID() TypeID {
 	return _CTFontGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTFontGetTypeID */
 
 // CTFontGetTypographicBoundsForAdaptiveImageProvider is a CoreText function.
 //
 // Added in macOS 15.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetTypographicBoundsForAdaptiveImageProvider(_:_:)
-func CTFontGetTypographicBoundsForAdaptiveImageProvider(font FontRef, provider unsafe.Pointer) corefoundation.Rect {
+func CTFontGetTypographicBoundsForAdaptiveImageProvider(font FontRef, provider unsafe.Pointer) corefoundation.CGRect {
 	return _CTFontGetTypographicBoundsForAdaptiveImageProvider(font, provider)
-}
+}/* debug [functions.gen.go/function]: CTFontGetTypographicBoundsForAdaptiveImageProvider */
 
 // Returns the scaled underline position of the given font.
 //
@@ -1391,7 +1392,7 @@ func CTFontGetTypographicBoundsForAdaptiveImageProvider(font FontRef, provider u
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetUnderlinePosition(_:)
 func CTFontGetUnderlinePosition(font FontRef) float64 {
 	return _CTFontGetUnderlinePosition(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetUnderlinePosition */
 
 // Returns the scaled underline-thickness metric of the given font.
 //
@@ -1402,7 +1403,7 @@ func CTFontGetUnderlinePosition(font FontRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetUnderlineThickness(_:)
 func CTFontGetUnderlineThickness(font FontRef) float64 {
 	return _CTFontGetUnderlineThickness(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetUnderlineThickness */
 
 // Returns the units-per-em metric of the given font.
 //
@@ -1413,7 +1414,7 @@ func CTFontGetUnderlineThickness(font FontRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetUnitsPerEm(_:)
 func CTFontGetUnitsPerEm(font FontRef) unsafe.Pointer {
 	return _CTFontGetUnitsPerEm(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetUnitsPerEm */
 
 // Calculates the offset from the default (horizontal) origin to the vertical origin for an array of glyphs.
 //
@@ -1422,9 +1423,9 @@ func CTFontGetUnitsPerEm(font FontRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetVerticalTranslationsForGlyphs(_:_:_:_:)
-func CTFontGetVerticalTranslationsForGlyphs(font FontRef, glyphs unsafe.Pointer, translations corefoundation.Size, count unsafe.Pointer) {
+func CTFontGetVerticalTranslationsForGlyphs(font FontRef, glyphs unsafe.Pointer, translations corefoundation.CGSize, count Index) {
 	_CTFontGetVerticalTranslationsForGlyphs(font, glyphs, translations, count)
-}
+}/* debug [functions.gen.go/function]: CTFontGetVerticalTranslationsForGlyphs */
 
 // Returns the x-height metric of the given font.
 //
@@ -1435,7 +1436,7 @@ func CTFontGetVerticalTranslationsForGlyphs(font FontRef, glyphs unsafe.Pointer,
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontGetXHeight(_:)
 func CTFontGetXHeight(font FontRef) float64 {
 	return _CTFontGetXHeight(font)
-}
+}/* debug [functions.gen.go/function]: CTFontGetXHeight */
 
 // CTFontHasTable is a CoreText function.
 //
@@ -1444,7 +1445,7 @@ func CTFontGetXHeight(font FontRef) float64 {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontHasTable(_:_:)
 func CTFontHasTable(font FontRef, tag FontTableTag) bool {
 	return _CTFontHasTable(font, tag)
-}
+}/* debug [functions.gen.go/function]: CTFontHasTable */
 
 // A comparator function to compare font family names and sort them according to Apple guidelines.
 //
@@ -1453,9 +1454,9 @@ func CTFontHasTable(font FontRef, tag FontTableTag) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCompareFontFamilyNames(_:_:_:)
-func CTFontManagerCompareFontFamilyNames(family1 unsafe.Pointer, family2 unsafe.Pointer, context unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerCompareFontFamilyNames(family1 unsafe.Pointer, family2 unsafe.Pointer, context unsafe.Pointer) ComparisonResult {
 	return _CTFontManagerCompareFontFamilyNames(family1, family2, context)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCompareFontFamilyNames */
 
 // Returns an array of visible font family names sorted for user interface display.
 //
@@ -1464,9 +1465,9 @@ func CTFontManagerCompareFontFamilyNames(family1 unsafe.Pointer, family2 unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCopyAvailableFontFamilyNames()
-func CTFontManagerCopyAvailableFontFamilyNames() unsafe.Pointer {
+func CTFontManagerCopyAvailableFontFamilyNames() ArrayRef {
 	return _CTFontManagerCopyAvailableFontFamilyNames()
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCopyAvailableFontFamilyNames */
 
 // Returns an array of font URLs.
 //
@@ -1475,9 +1476,9 @@ func CTFontManagerCopyAvailableFontFamilyNames() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCopyAvailableFontURLs()
-func CTFontManagerCopyAvailableFontURLs() unsafe.Pointer {
+func CTFontManagerCopyAvailableFontURLs() ArrayRef {
 	return _CTFontManagerCopyAvailableFontURLs()
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCopyAvailableFontURLs */
 
 // Returns an array of unique PostScript font names for the fonts.
 //
@@ -1486,9 +1487,9 @@ func CTFontManagerCopyAvailableFontURLs() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCopyAvailablePostScriptNames()
-func CTFontManagerCopyAvailablePostScriptNames() unsafe.Pointer {
+func CTFontManagerCopyAvailablePostScriptNames() ArrayRef {
 	return _CTFontManagerCopyAvailablePostScriptNames()
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCopyAvailablePostScriptNames */
 
 // Retrieves the font descriptors that were registered with the font manager.
 
@@ -1496,9 +1497,9 @@ func CTFontManagerCopyAvailablePostScriptNames() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCopyRegisteredFontDescriptors(_:_:)
-func CTFontManagerCopyRegisteredFontDescriptors(scope unsafe.Pointer, enabled bool) unsafe.Pointer {
+func CTFontManagerCopyRegisteredFontDescriptors(scope FontManagerScope, enabled bool) ArrayRef {
 	return _CTFontManagerCopyRegisteredFontDescriptors(scope, enabled)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCopyRegisteredFontDescriptors */
 
 // Creates a font descriptor representing the font in the supplied data.
 //
@@ -1507,9 +1508,9 @@ func CTFontManagerCopyRegisteredFontDescriptors(scope unsafe.Pointer, enabled bo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCreateFontDescriptorFromData(_:)
-func CTFontManagerCreateFontDescriptorFromData(data unsafe.Pointer) FontDescriptorRef {
+func CTFontManagerCreateFontDescriptorFromData(data DataRef) FontDescriptorRef {
 	return _CTFontManagerCreateFontDescriptorFromData(data)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCreateFontDescriptorFromData */
 
 // Creates an array of font descriptors for the fonts in the supplied data.
 //
@@ -1518,9 +1519,9 @@ func CTFontManagerCreateFontDescriptorFromData(data unsafe.Pointer) FontDescript
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCreateFontDescriptorsFromData(_:)
-func CTFontManagerCreateFontDescriptorsFromData(data unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerCreateFontDescriptorsFromData(data DataRef) ArrayRef {
 	return _CTFontManagerCreateFontDescriptorsFromData(data)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCreateFontDescriptorsFromData */
 
 // Returns an array of font descriptors representing each of the fonts in the specified URL.
 //
@@ -1529,9 +1530,9 @@ func CTFontManagerCreateFontDescriptorsFromData(data unsafe.Pointer) unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCreateFontDescriptorsFromURL(_:)
-func CTFontManagerCreateFontDescriptorsFromURL(fileURL unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerCreateFontDescriptorsFromURL(fileURL URLRef) ArrayRef {
 	return _CTFontManagerCreateFontDescriptorsFromURL(fileURL)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCreateFontDescriptorsFromURL */
 
 // Creates a reference to a run loop source used to convey font requests from the Font Manager.
 //
@@ -1542,9 +1543,9 @@ func CTFontManagerCreateFontDescriptorsFromURL(fileURL unsafe.Pointer) unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerCreateFontRequestRunLoopSource(_:_:)
-func CTFontManagerCreateFontRequestRunLoopSource(sourceOrder unsafe.Pointer, createMatchesCallback unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerCreateFontRequestRunLoopSource(sourceOrder Index, createMatchesCallback ArrayRef) RunLoopSourceRef {
 	return _CTFontManagerCreateFontRequestRunLoopSource(sourceOrder, createMatchesCallback)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerCreateFontRequestRunLoopSource */
 
 // Enables or disables the matching font descriptors for font descriptor matching.
 //
@@ -1553,9 +1554,9 @@ func CTFontManagerCreateFontRequestRunLoopSource(sourceOrder unsafe.Pointer, cre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerEnableFontDescriptors(_:_:)
-func CTFontManagerEnableFontDescriptors(descriptors unsafe.Pointer, enable bool) {
+func CTFontManagerEnableFontDescriptors(descriptors ArrayRef, enable bool) {
 	_CTFontManagerEnableFontDescriptors(descriptors, enable)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerEnableFontDescriptors */
 
 // Gets the auto-activation setting for the specified bundle identifier.
 //
@@ -1564,9 +1565,9 @@ func CTFontManagerEnableFontDescriptors(descriptors unsafe.Pointer, enable bool)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerGetAutoActivationSetting(_:)
-func CTFontManagerGetAutoActivationSetting(bundleIdentifier unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerGetAutoActivationSetting(bundleIdentifier StringRef) FontManagerAutoActivationSetting {
 	return _CTFontManagerGetAutoActivationSetting(bundleIdentifier)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerGetAutoActivationSetting */
 
 // Returns the registration scope of the specified URL.
 //
@@ -1575,9 +1576,9 @@ func CTFontManagerGetAutoActivationSetting(bundleIdentifier unsafe.Pointer) unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerGetScopeForURL(_:)
-func CTFontManagerGetScopeForURL(fontURL unsafe.Pointer) unsafe.Pointer {
+func CTFontManagerGetScopeForURL(fontURL URLRef) FontManagerScope {
 	return _CTFontManagerGetScopeForURL(fontURL)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerGetScopeForURL */
 
 // Determines whether a file is in a supported font format.
 //
@@ -1586,9 +1587,9 @@ func CTFontManagerGetScopeForURL(fontURL unsafe.Pointer) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerIsSupportedFont(_:)
-func CTFontManagerIsSupportedFont(fontURL unsafe.Pointer) bool {
+func CTFontManagerIsSupportedFont(fontURL URLRef) bool {
 	return _CTFontManagerIsSupportedFont(fontURL)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerIsSupportedFont */
 
 // Registers font descriptors with the font manager.
 //
@@ -1597,20 +1598,9 @@ func CTFontManagerIsSupportedFont(fontURL unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontDescriptors(_:_:_:_:)
-func CTFontManagerRegisterFontDescriptors(fontDescriptors unsafe.Pointer, scope unsafe.Pointer, enabled bool, registrationHandler bool) {
+func CTFontManagerRegisterFontDescriptors(fontDescriptors ArrayRef, scope FontManagerScope, enabled bool, registrationHandler bool) {
 	_CTFontManagerRegisterFontDescriptors(fontDescriptors, scope, enabled, registrationHandler)
-}
-
-// Registers fonts from the specified font URLs with the font manager.
-//
-// Added in macOS 10.15.
-// Registers fonts from the specified font URLs with the font manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontURLs(_:_:_:_:)
-func CTFontManagerRegisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, enabled bool, registrationHandler bool) {
-	_CTFontManagerRegisterFontURLs(fontURLs, scope, enabled, registrationHandler)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerRegisterFontDescriptors */
 
 // Registers fonts from the specified font URL with the Font Manager. Registered fonts are discoverable through font descriptor matching.
 //
@@ -1619,9 +1609,9 @@ func CTFontManagerRegisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontsForURL(_:_:_:)
-func CTFontManagerRegisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Pointer, error_ unsafe.Pointer) bool {
+func CTFontManagerRegisterFontsForURL(fontURL URLRef, scope FontManagerScope, error_ unsafe.Pointer) bool {
 	return _CTFontManagerRegisterFontsForURL(fontURL, scope, error_)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerRegisterFontsForURL */
 
 // Registers fonts from the specified array of font URLs with the Font Manager. Registered fonts are discoverable through font descriptor matching.
 //
@@ -1632,9 +1622,9 @@ func CTFontManagerRegisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontsForURLs(_:_:_:)
-func CTFontManagerRegisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, errors unsafe.Pointer) bool {
+func CTFontManagerRegisterFontsForURLs(fontURLs ArrayRef, scope FontManagerScope, errors unsafe.Pointer) bool {
 	return _CTFontManagerRegisterFontsForURLs(fontURLs, scope, errors)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerRegisterFontsForURLs */
 
 // Registers named font assets in the specified bundle with the font manager.
 
@@ -1642,9 +1632,20 @@ func CTFontManagerRegisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontsWithAssetNames(_:_:_:_:_:)
-func CTFontManagerRegisterFontsWithAssetNames(fontAssetNames unsafe.Pointer, bundle unsafe.Pointer, scope unsafe.Pointer, enabled bool, registrationHandler bool) {
+func CTFontManagerRegisterFontsWithAssetNames(fontAssetNames ArrayRef, bundle BundleRef, scope FontManagerScope, enabled bool, registrationHandler bool) {
 	_CTFontManagerRegisterFontsWithAssetNames(fontAssetNames, bundle, scope, enabled, registrationHandler)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerRegisterFontsWithAssetNames */
+
+// Registers fonts from the specified font URLs with the font manager.
+//
+// Added in macOS 10.15.
+// Registers fonts from the specified font URLs with the font manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterFontURLs(_:_:_:_:)
+func CTFontManagerRegisterFontURLs(fontURLs ArrayRef, scope FontManagerScope, enabled bool, registrationHandler bool) {
+	_CTFontManagerRegisterFontURLs(fontURLs, scope, enabled, registrationHandler)
+}/* debug [functions.gen.go/function]: CTFontManagerRegisterFontURLs */
 
 // Registers the specified graphics font with the font manager.
 //
@@ -1657,7 +1658,7 @@ func CTFontManagerRegisterFontsWithAssetNames(fontAssetNames unsafe.Pointer, bun
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRegisterGraphicsFont(_:_:)
 func CTFontManagerRegisterGraphicsFont(font FontRef, error_ unsafe.Pointer) bool {
 	return _CTFontManagerRegisterGraphicsFont(font, error_)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerRegisterGraphicsFont */
 
 // Resolves font descriptors specified on input.
 
@@ -1665,9 +1666,9 @@ func CTFontManagerRegisterGraphicsFont(font FontRef, error_ unsafe.Pointer) bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerRequestFonts(_:_:)
-func CTFontManagerRequestFonts(fontDescriptors unsafe.Pointer) {
+func CTFontManagerRequestFonts(fontDescriptors ArrayRef) {
 	_CTFontManagerRequestFonts(fontDescriptors)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerRequestFonts */
 
 // Sets the auto-activation setting for the specified bundle identifier.
 //
@@ -1676,9 +1677,9 @@ func CTFontManagerRequestFonts(fontDescriptors unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerSetAutoActivationSetting(_:_:)
-func CTFontManagerSetAutoActivationSetting(bundleIdentifier unsafe.Pointer, setting unsafe.Pointer) {
+func CTFontManagerSetAutoActivationSetting(bundleIdentifier StringRef, setting FontManagerAutoActivationSetting) {
 	_CTFontManagerSetAutoActivationSetting(bundleIdentifier, setting)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerSetAutoActivationSetting */
 
 // Unregisters font descriptors with the font manager.
 //
@@ -1687,20 +1688,9 @@ func CTFontManagerSetAutoActivationSetting(bundleIdentifier unsafe.Pointer, sett
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontDescriptors(_:_:_:)
-func CTFontManagerUnregisterFontDescriptors(fontDescriptors unsafe.Pointer, scope unsafe.Pointer, registrationHandler bool) {
+func CTFontManagerUnregisterFontDescriptors(fontDescriptors ArrayRef, scope FontManagerScope, registrationHandler bool) {
 	_CTFontManagerUnregisterFontDescriptors(fontDescriptors, scope, registrationHandler)
-}
-
-// Unregisters fonts from the specified font URLs with the font manager.
-//
-// Added in macOS 10.15.
-// Unregisters fonts from the specified font URLs with the font manager.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontURLs(_:_:_:)
-func CTFontManagerUnregisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, registrationHandler bool) {
-	_CTFontManagerUnregisterFontURLs(fontURLs, scope, registrationHandler)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerUnregisterFontDescriptors */
 
 // Unregisters fonts from the specified font URL with the Font Manager. Unregistered fonts are no longer discoverable through font descriptor matching.
 //
@@ -1709,9 +1699,9 @@ func CTFontManagerUnregisterFontURLs(fontURLs unsafe.Pointer, scope unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontsForURL(_:_:_:)
-func CTFontManagerUnregisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Pointer, error_ unsafe.Pointer) bool {
+func CTFontManagerUnregisterFontsForURL(fontURL URLRef, scope FontManagerScope, error_ unsafe.Pointer) bool {
 	return _CTFontManagerUnregisterFontsForURL(fontURL, scope, error_)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerUnregisterFontsForURL */
 
 // Unregisters fonts from the specified array of font URLs with the Font Manager. Unregistered fonts are no longer discoverable through font descriptor matching.
 //
@@ -1722,9 +1712,20 @@ func CTFontManagerUnregisterFontsForURL(fontURL unsafe.Pointer, scope unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontsForURLs(_:_:_:)
-func CTFontManagerUnregisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.Pointer, errors unsafe.Pointer) bool {
+func CTFontManagerUnregisterFontsForURLs(fontURLs ArrayRef, scope FontManagerScope, errors unsafe.Pointer) bool {
 	return _CTFontManagerUnregisterFontsForURLs(fontURLs, scope, errors)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerUnregisterFontsForURLs */
+
+// Unregisters fonts from the specified font URLs with the font manager.
+//
+// Added in macOS 10.15.
+// Unregisters fonts from the specified font URLs with the font manager.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterFontURLs(_:_:_:)
+func CTFontManagerUnregisterFontURLs(fontURLs ArrayRef, scope FontManagerScope, registrationHandler bool) {
+	_CTFontManagerUnregisterFontURLs(fontURLs, scope, registrationHandler)
+}/* debug [functions.gen.go/function]: CTFontManagerUnregisterFontURLs */
 
 // Unregisters the specified graphics font with the font manager.
 //
@@ -1737,7 +1738,7 @@ func CTFontManagerUnregisterFontsForURLs(fontURLs unsafe.Pointer, scope unsafe.P
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontManagerUnregisterGraphicsFont(_:_:)
 func CTFontManagerUnregisterGraphicsFont(font FontRef, error_ unsafe.Pointer) bool {
 	return _CTFontManagerUnregisterGraphicsFont(font, error_)
-}
+}/* debug [functions.gen.go/function]: CTFontManagerUnregisterGraphicsFont */
 
 // Draws an entire frame into a context.
 //
@@ -1748,7 +1749,7 @@ func CTFontManagerUnregisterGraphicsFont(font FontRef, error_ unsafe.Pointer) bo
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameDraw(_:_:)
 func CTFrameDraw(frame FrameRef, context ContextRef) {
 	_CTFrameDraw(frame, context)
-}
+}/* debug [functions.gen.go/function]: CTFrameDraw */
 
 // Returns the frame attributes used to create the frame.
 //
@@ -1757,9 +1758,9 @@ func CTFrameDraw(frame FrameRef, context ContextRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetFrameAttributes(_:)
-func CTFrameGetFrameAttributes(frame FrameRef) unsafe.Pointer {
+func CTFrameGetFrameAttributes(frame FrameRef) DictionaryRef {
 	return _CTFrameGetFrameAttributes(frame)
-}
+}/* debug [functions.gen.go/function]: CTFrameGetFrameAttributes */
 
 // Copies a range of line origins for a frame.
 //
@@ -1768,9 +1769,9 @@ func CTFrameGetFrameAttributes(frame FrameRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetLineOrigins(_:_:_:)
-func CTFrameGetLineOrigins(frame FrameRef, range_ unsafe.Pointer, origins corefoundation.Point) {
+func CTFrameGetLineOrigins(frame FrameRef, range_ corefoundation.Range, origins corefoundation.CGPoint) {
 	_CTFrameGetLineOrigins(frame, range_, origins)
-}
+}/* debug [functions.gen.go/function]: CTFrameGetLineOrigins */
 
 // Returns an array of lines stored in the frame.
 //
@@ -1779,9 +1780,9 @@ func CTFrameGetLineOrigins(frame FrameRef, range_ unsafe.Pointer, origins corefo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetLines(_:)
-func CTFrameGetLines(frame FrameRef) unsafe.Pointer {
+func CTFrameGetLines(frame FrameRef) ArrayRef {
 	return _CTFrameGetLines(frame)
-}
+}/* debug [functions.gen.go/function]: CTFrameGetLines */
 
 // Returns the path used to create the frame.
 //
@@ -1792,7 +1793,7 @@ func CTFrameGetLines(frame FrameRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetPath(_:)
 func CTFrameGetPath(frame FrameRef) PathRef {
 	return _CTFrameGetPath(frame)
-}
+}/* debug [functions.gen.go/function]: CTFrameGetPath */
 
 // Returns the range of characters originally requested to fill the frame.
 //
@@ -1801,9 +1802,9 @@ func CTFrameGetPath(frame FrameRef) PathRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetStringRange(_:)
-func CTFrameGetStringRange(frame FrameRef) unsafe.Pointer {
+func CTFrameGetStringRange(frame FrameRef) corefoundation.Range {
 	return _CTFrameGetStringRange(frame)
-}
+}/* debug [functions.gen.go/function]: CTFrameGetStringRange */
 
 // Returns the type identifier for the CTFrame opaque type.
 //
@@ -1812,9 +1813,9 @@ func CTFrameGetStringRange(frame FrameRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetTypeID()
-func CTFrameGetTypeID() unsafe.Pointer {
+func CTFrameGetTypeID() TypeID {
 	return _CTFrameGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTFrameGetTypeID */
 
 // Returns the range of characters that actually fit in the frame.
 //
@@ -1823,9 +1824,9 @@ func CTFrameGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrameGetVisibleStringRange(_:)
-func CTFrameGetVisibleStringRange(frame FrameRef) unsafe.Pointer {
+func CTFrameGetVisibleStringRange(frame FrameRef) corefoundation.Range {
 	return _CTFrameGetVisibleStringRange(frame)
-}
+}/* debug [functions.gen.go/function]: CTFrameGetVisibleStringRange */
 
 // Creates an immutable frame using a framesetter.
 //
@@ -1834,9 +1835,9 @@ func CTFrameGetVisibleStringRange(frame FrameRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterCreateFrame(_:_:_:_:)
-func CTFramesetterCreateFrame(framesetter FramesetterRef, stringRange unsafe.Pointer, path PathRef, frameAttributes unsafe.Pointer) FrameRef {
+func CTFramesetterCreateFrame(framesetter FramesetterRef, stringRange corefoundation.Range, path PathRef, frameAttributes DictionaryRef) FrameRef {
 	return _CTFramesetterCreateFrame(framesetter, stringRange, path, frameAttributes)
-}
+}/* debug [functions.gen.go/function]: CTFramesetterCreateFrame */
 
 // Creates an immutable framesetter object from an attributed string.
 //
@@ -1845,9 +1846,9 @@ func CTFramesetterCreateFrame(framesetter FramesetterRef, stringRange unsafe.Poi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterCreateWithAttributedString(_:)
-func CTFramesetterCreateWithAttributedString(attrString unsafe.Pointer) FramesetterRef {
+func CTFramesetterCreateWithAttributedString(attrString AttributedStringRef) FramesetterRef {
 	return _CTFramesetterCreateWithAttributedString(attrString)
-}
+}/* debug [functions.gen.go/function]: CTFramesetterCreateWithAttributedString */
 
 // Creates a framesetter directly from a typesetter.
 //
@@ -1858,7 +1859,7 @@ func CTFramesetterCreateWithAttributedString(attrString unsafe.Pointer) Frameset
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterCreateWithTypesetter(_:)
 func CTFramesetterCreateWithTypesetter(typesetter TypesetterRef) FramesetterRef {
 	return _CTFramesetterCreateWithTypesetter(typesetter)
-}
+}/* debug [functions.gen.go/function]: CTFramesetterCreateWithTypesetter */
 
 // Returns the Core Foundation type identifier of the framesetter object.
 //
@@ -1867,9 +1868,9 @@ func CTFramesetterCreateWithTypesetter(typesetter TypesetterRef) FramesetterRef 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterGetTypeID()
-func CTFramesetterGetTypeID() unsafe.Pointer {
+func CTFramesetterGetTypeID() TypeID {
 	return _CTFramesetterGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTFramesetterGetTypeID */
 
 // Returns the typesetter object being used by the framesetter.
 //
@@ -1880,7 +1881,7 @@ func CTFramesetterGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterGetTypesetter(_:)
 func CTFramesetterGetTypesetter(framesetter FramesetterRef) TypesetterRef {
 	return _CTFramesetterGetTypesetter(framesetter)
-}
+}/* debug [functions.gen.go/function]: CTFramesetterGetTypesetter */
 
 // Determines the frame size needed for a string range.
 //
@@ -1889,9 +1890,9 @@ func CTFramesetterGetTypesetter(framesetter FramesetterRef) TypesetterRef {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetterSuggestFrameSizeWithConstraints(_:_:_:_:_:)
-func CTFramesetterSuggestFrameSizeWithConstraints(framesetter FramesetterRef, stringRange unsafe.Pointer, frameAttributes unsafe.Pointer, constraints corefoundation.Size, fitRange unsafe.Pointer) corefoundation.Size {
+func CTFramesetterSuggestFrameSizeWithConstraints(framesetter FramesetterRef, stringRange corefoundation.Range, frameAttributes DictionaryRef, constraints corefoundation.CGSize, fitRange unsafe.Pointer) corefoundation.CGSize {
 	return _CTFramesetterSuggestFrameSizeWithConstraints(framesetter, stringRange, frameAttributes, constraints, fitRange)
-}
+}/* debug [functions.gen.go/function]: CTFramesetterSuggestFrameSizeWithConstraints */
 
 // Returns the version of the Core Text framework.
 //
@@ -1904,7 +1905,7 @@ func CTFramesetterSuggestFrameSizeWithConstraints(framesetter FramesetterRef, st
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGetCoreTextVersion()
 func CTGetCoreTextVersion() uint32 {
 	return _CTGetCoreTextVersion()
-}
+}/* debug [functions.gen.go/function]: CTGetCoreTextVersion */
 
 // Creates an immutable glyph info object with a character identifier.
 //
@@ -1913,9 +1914,9 @@ func CTGetCoreTextVersion() uint32 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoCreateWithCharacterIdentifier(_:_:_:)
-func CTGlyphInfoCreateWithCharacterIdentifier(cid unsafe.Pointer, collection unsafe.Pointer, baseString unsafe.Pointer) GlyphInfoRef {
+func CTGlyphInfoCreateWithCharacterIdentifier(cid FontIndex, collection CharacterCollection, baseString StringRef) GlyphInfoRef {
 	return _CTGlyphInfoCreateWithCharacterIdentifier(cid, collection, baseString)
-}
+}/* debug [functions.gen.go/function]: CTGlyphInfoCreateWithCharacterIdentifier */
 
 // Creates an immutable glyph info object with a glyph index.
 //
@@ -1924,9 +1925,9 @@ func CTGlyphInfoCreateWithCharacterIdentifier(cid unsafe.Pointer, collection uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoCreateWithGlyph(_:_:_:)
-func CTGlyphInfoCreateWithGlyph(glyph unsafe.Pointer, font FontRef, baseString unsafe.Pointer) GlyphInfoRef {
+func CTGlyphInfoCreateWithGlyph(glyph Glyph, font FontRef, baseString StringRef) GlyphInfoRef {
 	return _CTGlyphInfoCreateWithGlyph(glyph, font, baseString)
-}
+}/* debug [functions.gen.go/function]: CTGlyphInfoCreateWithGlyph */
 
 // Creates an immutable glyph info object with a glyph name.
 //
@@ -1935,9 +1936,9 @@ func CTGlyphInfoCreateWithGlyph(glyph unsafe.Pointer, font FontRef, baseString u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoCreateWithGlyphName(_:_:_:)
-func CTGlyphInfoCreateWithGlyphName(glyphName unsafe.Pointer, font FontRef, baseString unsafe.Pointer) GlyphInfoRef {
+func CTGlyphInfoCreateWithGlyphName(glyphName StringRef, font FontRef, baseString StringRef) GlyphInfoRef {
 	return _CTGlyphInfoCreateWithGlyphName(glyphName, font, baseString)
-}
+}/* debug [functions.gen.go/function]: CTGlyphInfoCreateWithGlyphName */
 
 // Gets the character collection for a glyph info object.
 //
@@ -1946,9 +1947,9 @@ func CTGlyphInfoCreateWithGlyphName(glyphName unsafe.Pointer, font FontRef, base
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetCharacterCollection(_:)
-func CTGlyphInfoGetCharacterCollection(glyphInfo GlyphInfoRef) unsafe.Pointer {
+func CTGlyphInfoGetCharacterCollection(glyphInfo GlyphInfoRef) CharacterCollection {
 	return _CTGlyphInfoGetCharacterCollection(glyphInfo)
-}
+}/* debug [functions.gen.go/function]: CTGlyphInfoGetCharacterCollection */
 
 // Gets the character identifier for a glyph info object.
 //
@@ -1957,9 +1958,9 @@ func CTGlyphInfoGetCharacterCollection(glyphInfo GlyphInfoRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetCharacterIdentifier(_:)
-func CTGlyphInfoGetCharacterIdentifier(glyphInfo GlyphInfoRef) unsafe.Pointer {
+func CTGlyphInfoGetCharacterIdentifier(glyphInfo GlyphInfoRef) FontIndex {
 	return _CTGlyphInfoGetCharacterIdentifier(glyphInfo)
-}
+}/* debug [functions.gen.go/function]: CTGlyphInfoGetCharacterIdentifier */
 
 // Retrieves the glyph for a glyph info, if that object exists.
 //
@@ -1968,9 +1969,9 @@ func CTGlyphInfoGetCharacterIdentifier(glyphInfo GlyphInfoRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetGlyph(_:)
-func CTGlyphInfoGetGlyph(glyphInfo GlyphInfoRef) unsafe.Pointer {
+func CTGlyphInfoGetGlyph(glyphInfo GlyphInfoRef) Glyph {
 	return _CTGlyphInfoGetGlyph(glyphInfo)
-}
+}/* debug [functions.gen.go/function]: CTGlyphInfoGetGlyph */
 
 // Retrieves the glyph name for a glyph info object, if that object exists.
 //
@@ -1979,9 +1980,9 @@ func CTGlyphInfoGetGlyph(glyphInfo GlyphInfoRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetGlyphName(_:)
-func CTGlyphInfoGetGlyphName(glyphInfo GlyphInfoRef) unsafe.Pointer {
+func CTGlyphInfoGetGlyphName(glyphInfo GlyphInfoRef) StringRef {
 	return _CTGlyphInfoGetGlyphName(glyphInfo)
-}
+}/* debug [functions.gen.go/function]: CTGlyphInfoGetGlyphName */
 
 // Returns the Core Foundation type identifier of the glyph info object
 //
@@ -1990,9 +1991,9 @@ func CTGlyphInfoGetGlyphName(glyphInfo GlyphInfoRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfoGetTypeID()
-func CTGlyphInfoGetTypeID() unsafe.Pointer {
+func CTGlyphInfoGetTypeID() TypeID {
 	return _CTGlyphInfoGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTGlyphInfoGetTypeID */
 
 // Creates a justified line from an existing line.
 //
@@ -2003,7 +2004,7 @@ func CTGlyphInfoGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineCreateJustifiedLine(_:_:_:)
 func CTLineCreateJustifiedLine(line LineRef, justificationFactor float64, justificationWidth float64) LineRef {
 	return _CTLineCreateJustifiedLine(line, justificationFactor, justificationWidth)
-}
+}/* debug [functions.gen.go/function]: CTLineCreateJustifiedLine */
 
 // Creates a truncated line from an existing line.
 //
@@ -2012,9 +2013,9 @@ func CTLineCreateJustifiedLine(line LineRef, justificationFactor float64, justif
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineCreateTruncatedLine(_:_:_:_:)
-func CTLineCreateTruncatedLine(line LineRef, width float64, truncationType unsafe.Pointer, truncationToken LineRef) LineRef {
+func CTLineCreateTruncatedLine(line LineRef, width float64, truncationType LineTruncationType, truncationToken LineRef) LineRef {
 	return _CTLineCreateTruncatedLine(line, width, truncationType, truncationToken)
-}
+}/* debug [functions.gen.go/function]: CTLineCreateTruncatedLine */
 
 // Creates a single immutable line object from an attributed string.
 //
@@ -2023,9 +2024,9 @@ func CTLineCreateTruncatedLine(line LineRef, width float64, truncationType unsaf
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineCreateWithAttributedString(_:)
-func CTLineCreateWithAttributedString(attrString unsafe.Pointer) LineRef {
+func CTLineCreateWithAttributedString(attrString AttributedStringRef) LineRef {
 	return _CTLineCreateWithAttributedString(attrString)
-}
+}/* debug [functions.gen.go/function]: CTLineCreateWithAttributedString */
 
 // Draws a complete line.
 //
@@ -2036,7 +2037,7 @@ func CTLineCreateWithAttributedString(attrString unsafe.Pointer) LineRef {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineDraw(_:_:)
 func CTLineDraw(line LineRef, context ContextRef) {
 	_CTLineDraw(line, context)
-}
+}/* debug [functions.gen.go/function]: CTLineDraw */
 
 // Enumerates caret offsets for characters in a line.
 //
@@ -2047,7 +2048,7 @@ func CTLineDraw(line LineRef, context ContextRef) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineEnumerateCaretOffsets(_:_:)
 func CTLineEnumerateCaretOffsets(line LineRef) {
 	_CTLineEnumerateCaretOffsets(line)
-}
+}/* debug [functions.gen.go/function]: CTLineEnumerateCaretOffsets */
 
 // Calculates the bounds for a line.
 //
@@ -2056,9 +2057,9 @@ func CTLineEnumerateCaretOffsets(line LineRef) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetBoundsWithOptions(_:_:)
-func CTLineGetBoundsWithOptions(line LineRef, options unsafe.Pointer) corefoundation.Rect {
+func CTLineGetBoundsWithOptions(line LineRef, options LineBoundsOptions) corefoundation.CGRect {
 	return _CTLineGetBoundsWithOptions(line, options)
-}
+}/* debug [functions.gen.go/function]: CTLineGetBoundsWithOptions */
 
 // Returns the total glyph count for the line object.
 //
@@ -2067,9 +2068,9 @@ func CTLineGetBoundsWithOptions(line LineRef, options unsafe.Pointer) corefounda
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetGlyphCount(_:)
-func CTLineGetGlyphCount(line LineRef) unsafe.Pointer {
+func CTLineGetGlyphCount(line LineRef) Index {
 	return _CTLineGetGlyphCount(line)
-}
+}/* debug [functions.gen.go/function]: CTLineGetGlyphCount */
 
 // Returns the array of glyph runs that make up the line object.
 //
@@ -2078,9 +2079,9 @@ func CTLineGetGlyphCount(line LineRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetGlyphRuns(_:)
-func CTLineGetGlyphRuns(line LineRef) unsafe.Pointer {
+func CTLineGetGlyphRuns(line LineRef) ArrayRef {
 	return _CTLineGetGlyphRuns(line)
-}
+}/* debug [functions.gen.go/function]: CTLineGetGlyphRuns */
 
 // Calculates the image bounds for a line.
 //
@@ -2089,9 +2090,9 @@ func CTLineGetGlyphRuns(line LineRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetImageBounds(_:_:)
-func CTLineGetImageBounds(line LineRef, context ContextRef) corefoundation.Rect {
+func CTLineGetImageBounds(line LineRef, context ContextRef) corefoundation.CGRect {
 	return _CTLineGetImageBounds(line, context)
-}
+}/* debug [functions.gen.go/function]: CTLineGetImageBounds */
 
 // Determines the graphical offset or offsets for a string index.
 //
@@ -2100,9 +2101,9 @@ func CTLineGetImageBounds(line LineRef, context ContextRef) corefoundation.Rect 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetOffsetForStringIndex(_:_:_:)
-func CTLineGetOffsetForStringIndex(line LineRef, charIndex unsafe.Pointer, secondaryOffset []float64) float64 {
+func CTLineGetOffsetForStringIndex(line LineRef, charIndex Index, secondaryOffset []float64) float64 {
 	return _CTLineGetOffsetForStringIndex(line, charIndex, secondaryOffset)
-}
+}/* debug [functions.gen.go/function]: CTLineGetOffsetForStringIndex */
 
 // Gets the pen offset required to draw flush text.
 //
@@ -2113,7 +2114,7 @@ func CTLineGetOffsetForStringIndex(line LineRef, charIndex unsafe.Pointer, secon
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetPenOffsetForFlush(_:_:_:)
 func CTLineGetPenOffsetForFlush(line LineRef, flushFactor float64, flushWidth float64) float64 {
 	return _CTLineGetPenOffsetForFlush(line, flushFactor, flushWidth)
-}
+}/* debug [functions.gen.go/function]: CTLineGetPenOffsetForFlush */
 
 // Performs hit testing.
 //
@@ -2122,9 +2123,9 @@ func CTLineGetPenOffsetForFlush(line LineRef, flushFactor float64, flushWidth fl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetStringIndexForPosition(_:_:)
-func CTLineGetStringIndexForPosition(line LineRef, position corefoundation.Point) unsafe.Pointer {
+func CTLineGetStringIndexForPosition(line LineRef, position corefoundation.CGPoint) Index {
 	return _CTLineGetStringIndexForPosition(line, position)
-}
+}/* debug [functions.gen.go/function]: CTLineGetStringIndexForPosition */
 
 // Gets the range of characters that originally spawned the glyphs in the line.
 //
@@ -2133,9 +2134,9 @@ func CTLineGetStringIndexForPosition(line LineRef, position corefoundation.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetStringRange(_:)
-func CTLineGetStringRange(line LineRef) unsafe.Pointer {
+func CTLineGetStringRange(line LineRef) corefoundation.Range {
 	return _CTLineGetStringRange(line)
-}
+}/* debug [functions.gen.go/function]: CTLineGetStringRange */
 
 // Returns the trailing whitespace width for a line.
 //
@@ -2146,7 +2147,7 @@ func CTLineGetStringRange(line LineRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetTrailingWhitespaceWidth(_:)
 func CTLineGetTrailingWhitespaceWidth(line LineRef) float64 {
 	return _CTLineGetTrailingWhitespaceWidth(line)
-}
+}/* debug [functions.gen.go/function]: CTLineGetTrailingWhitespaceWidth */
 
 // Returns the Core Foundation type identifier of the line object.
 //
@@ -2155,9 +2156,9 @@ func CTLineGetTrailingWhitespaceWidth(line LineRef) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetTypeID()
-func CTLineGetTypeID() unsafe.Pointer {
+func CTLineGetTypeID() TypeID {
 	return _CTLineGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTLineGetTypeID */
 
 // Calculates the typographic bounds of a line.
 //
@@ -2168,7 +2169,7 @@ func CTLineGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLineGetTypographicBounds(_:_:_:_:)
 func CTLineGetTypographicBounds(line LineRef, ascent []float64, descent []float64, leading []float64) float64 {
 	return _CTLineGetTypographicBounds(line, ascent, descent, leading)
-}
+}/* debug [functions.gen.go/function]: CTLineGetTypographicBounds */
 
 // Creates an immutable paragraph style.
 //
@@ -2179,7 +2180,7 @@ func CTLineGetTypographicBounds(line LineRef, ascent []float64, descent []float6
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyleCreate(_:_:)
 func CTParagraphStyleCreate(settings unsafe.Pointer, settingCount uintptr) ParagraphStyleRef {
 	return _CTParagraphStyleCreate(settings, settingCount)
-}
+}/* debug [functions.gen.go/function]: CTParagraphStyleCreate */
 
 // Creates an immutable copy of a paragraph style.
 //
@@ -2190,7 +2191,7 @@ func CTParagraphStyleCreate(settings unsafe.Pointer, settingCount uintptr) Parag
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyleCreateCopy(_:)
 func CTParagraphStyleCreateCopy(paragraphStyle ParagraphStyleRef) ParagraphStyleRef {
 	return _CTParagraphStyleCreateCopy(paragraphStyle)
-}
+}/* debug [functions.gen.go/function]: CTParagraphStyleCreateCopy */
 
 // Returns the Core Foundation type identifier of the paragraph style object.
 //
@@ -2199,9 +2200,9 @@ func CTParagraphStyleCreateCopy(paragraphStyle ParagraphStyleRef) ParagraphStyle
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyleGetTypeID()
-func CTParagraphStyleGetTypeID() unsafe.Pointer {
+func CTParagraphStyleGetTypeID() TypeID {
 	return _CTParagraphStyleGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTParagraphStyleGetTypeID */
 
 // Obtains the current value for a single setting specifier.
 //
@@ -2210,9 +2211,9 @@ func CTParagraphStyleGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyleGetValueForSpecifier(_:_:_:_:)
-func CTParagraphStyleGetValueForSpecifier(paragraphStyle ParagraphStyleRef, spec unsafe.Pointer, valueBufferSize uintptr, valueBuffer unsafe.Pointer) bool {
+func CTParagraphStyleGetValueForSpecifier(paragraphStyle ParagraphStyleRef, spec ParagraphStyleSpecifier, valueBufferSize uintptr, valueBuffer unsafe.Pointer) bool {
 	return _CTParagraphStyleGetValueForSpecifier(paragraphStyle, spec, valueBufferSize, valueBuffer)
-}
+}/* debug [functions.gen.go/function]: CTParagraphStyleGetValueForSpecifier */
 
 // Creates an immutable ruby annotation object.
 //
@@ -2221,9 +2222,9 @@ func CTParagraphStyleGetValueForSpecifier(paragraphStyle ParagraphStyleRef, spec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationCreate(_:_:_:_:)
-func CTRubyAnnotationCreate(alignment unsafe.Pointer, overhang unsafe.Pointer, sizeFactor float64, text unsafe.Pointer, p4 unsafe.Pointer) RubyAnnotationRef {
+func CTRubyAnnotationCreate(alignment RubyAlignment, overhang RubyOverhang, sizeFactor float64, text StringRef, p4 unsafe.Pointer) RubyAnnotationRef {
 	return _CTRubyAnnotationCreate(alignment, overhang, sizeFactor, text, p4)
-}
+}/* debug [functions.gen.go/function]: CTRubyAnnotationCreate */
 
 // Creates an immutable copy of a ruby annotation object.
 //
@@ -2234,7 +2235,7 @@ func CTRubyAnnotationCreate(alignment unsafe.Pointer, overhang unsafe.Pointer, s
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationCreateCopy(_:)
 func CTRubyAnnotationCreateCopy(rubyAnnotation RubyAnnotationRef) RubyAnnotationRef {
 	return _CTRubyAnnotationCreateCopy(rubyAnnotation)
-}
+}/* debug [functions.gen.go/function]: CTRubyAnnotationCreateCopy */
 
 // Creates an immutable ruby annotation object with the specified attributes.
 //
@@ -2243,9 +2244,9 @@ func CTRubyAnnotationCreateCopy(rubyAnnotation RubyAnnotationRef) RubyAnnotation
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationCreateWithAttributes(_:_:_:_:_:)
-func CTRubyAnnotationCreateWithAttributes(alignment unsafe.Pointer, overhang unsafe.Pointer, position unsafe.Pointer, string_ unsafe.Pointer, attributes unsafe.Pointer) RubyAnnotationRef {
+func CTRubyAnnotationCreateWithAttributes(alignment RubyAlignment, overhang RubyOverhang, position RubyPosition, string_ StringRef, attributes DictionaryRef) RubyAnnotationRef {
 	return _CTRubyAnnotationCreateWithAttributes(alignment, overhang, position, string_, attributes)
-}
+}/* debug [functions.gen.go/function]: CTRubyAnnotationCreateWithAttributes */
 
 // Retrieves the alignment value of a ruby annotation object.
 //
@@ -2254,9 +2255,9 @@ func CTRubyAnnotationCreateWithAttributes(alignment unsafe.Pointer, overhang uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetAlignment(_:)
-func CTRubyAnnotationGetAlignment(rubyAnnotation RubyAnnotationRef) unsafe.Pointer {
+func CTRubyAnnotationGetAlignment(rubyAnnotation RubyAnnotationRef) RubyAlignment {
 	return _CTRubyAnnotationGetAlignment(rubyAnnotation)
-}
+}/* debug [functions.gen.go/function]: CTRubyAnnotationGetAlignment */
 
 // Retrieves the overhang value of a ruby annotation object.
 //
@@ -2265,9 +2266,9 @@ func CTRubyAnnotationGetAlignment(rubyAnnotation RubyAnnotationRef) unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetOverhang(_:)
-func CTRubyAnnotationGetOverhang(rubyAnnotation RubyAnnotationRef) unsafe.Pointer {
+func CTRubyAnnotationGetOverhang(rubyAnnotation RubyAnnotationRef) RubyOverhang {
 	return _CTRubyAnnotationGetOverhang(rubyAnnotation)
-}
+}/* debug [functions.gen.go/function]: CTRubyAnnotationGetOverhang */
 
 // Retrieves the size factor of a ruby annotation object.
 //
@@ -2278,7 +2279,7 @@ func CTRubyAnnotationGetOverhang(rubyAnnotation RubyAnnotationRef) unsafe.Pointe
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetSizeFactor(_:)
 func CTRubyAnnotationGetSizeFactor(rubyAnnotation RubyAnnotationRef) float64 {
 	return _CTRubyAnnotationGetSizeFactor(rubyAnnotation)
-}
+}/* debug [functions.gen.go/function]: CTRubyAnnotationGetSizeFactor */
 
 // Retrieves the ruby text for a particular position in a ruby annotation.
 //
@@ -2287,9 +2288,9 @@ func CTRubyAnnotationGetSizeFactor(rubyAnnotation RubyAnnotationRef) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetTextForPosition(_:_:)
-func CTRubyAnnotationGetTextForPosition(rubyAnnotation RubyAnnotationRef, position unsafe.Pointer) unsafe.Pointer {
+func CTRubyAnnotationGetTextForPosition(rubyAnnotation RubyAnnotationRef, position RubyPosition) StringRef {
 	return _CTRubyAnnotationGetTextForPosition(rubyAnnotation, position)
-}
+}/* debug [functions.gen.go/function]: CTRubyAnnotationGetTextForPosition */
 
 // Retrieves the type of the ruby annotation object.
 //
@@ -2298,9 +2299,9 @@ func CTRubyAnnotationGetTextForPosition(rubyAnnotation RubyAnnotationRef, positi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotationGetTypeID()
-func CTRubyAnnotationGetTypeID() unsafe.Pointer {
+func CTRubyAnnotationGetTypeID() TypeID {
 	return _CTRubyAnnotationGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTRubyAnnotationGetTypeID */
 
 // Creates an immutable instance of a run delegate.
 //
@@ -2311,7 +2312,7 @@ func CTRubyAnnotationGetTypeID() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateCreate(_:_:)
 func CTRunDelegateCreate(callbacks unsafe.Pointer, refCon unsafe.Pointer) RunDelegateRef {
 	return _CTRunDelegateCreate(callbacks, refCon)
-}
+}/* debug [functions.gen.go/function]: CTRunDelegateCreate */
 
 // Returns a run delegate’s “refCon” value.
 //
@@ -2322,7 +2323,7 @@ func CTRunDelegateCreate(callbacks unsafe.Pointer, refCon unsafe.Pointer) RunDel
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetRefCon(_:)
 func CTRunDelegateGetRefCon(runDelegate RunDelegateRef) unsafe.Pointer {
 	return _CTRunDelegateGetRefCon(runDelegate)
-}
+}/* debug [functions.gen.go/function]: CTRunDelegateGetRefCon */
 
 // Returns the type of CTRunDelegate objects.
 //
@@ -2331,9 +2332,9 @@ func CTRunDelegateGetRefCon(runDelegate RunDelegateRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateGetTypeID()
-func CTRunDelegateGetTypeID() unsafe.Pointer {
+func CTRunDelegateGetTypeID() TypeID {
 	return _CTRunDelegateGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTRunDelegateGetTypeID */
 
 // Draws a complete run or part of one.
 //
@@ -2342,9 +2343,9 @@ func CTRunDelegateGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDraw(_:_:_:)
-func CTRunDraw(run RunRef, context ContextRef, range_ unsafe.Pointer) {
+func CTRunDraw(run RunRef, context ContextRef, range_ corefoundation.Range) {
 	_CTRunDraw(run, context, range_)
-}
+}/* debug [functions.gen.go/function]: CTRunDraw */
 
 // Copies a range of glyph advances into a user-provided buffer.
 //
@@ -2353,9 +2354,9 @@ func CTRunDraw(run RunRef, context ContextRef, range_ unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetAdvances(_:_:_:)
-func CTRunGetAdvances(run RunRef, range_ unsafe.Pointer, buffer corefoundation.Size) {
+func CTRunGetAdvances(run RunRef, range_ corefoundation.Range, buffer corefoundation.CGSize) {
 	_CTRunGetAdvances(run, range_, buffer)
-}
+}/* debug [functions.gen.go/function]: CTRunGetAdvances */
 
 // Returns a direct pointer for the glyph advance array stored in the run.
 //
@@ -2366,7 +2367,7 @@ func CTRunGetAdvances(run RunRef, range_ unsafe.Pointer, buffer corefoundation.S
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetAdvancesPtr(_:)
 func CTRunGetAdvancesPtr(run RunRef) unsafe.Pointer {
 	return _CTRunGetAdvancesPtr(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetAdvancesPtr */
 
 // Returns the attribute dictionary that was used to create the glyph run.
 //
@@ -2375,9 +2376,9 @@ func CTRunGetAdvancesPtr(run RunRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetAttributes(_:)
-func CTRunGetAttributes(run RunRef) unsafe.Pointer {
+func CTRunGetAttributes(run RunRef) DictionaryRef {
 	return _CTRunGetAttributes(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetAttributes */
 
 // Copies a range of base advances and origins into user-provided buffers.
 //
@@ -2386,9 +2387,9 @@ func CTRunGetAttributes(run RunRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetBaseAdvancesAndOrigins(_:_:_:_:)
-func CTRunGetBaseAdvancesAndOrigins(runRef RunRef, range_ unsafe.Pointer, advancesBuffer corefoundation.Size, originsBuffer corefoundation.Point) {
+func CTRunGetBaseAdvancesAndOrigins(runRef RunRef, range_ corefoundation.Range, advancesBuffer corefoundation.CGSize, originsBuffer corefoundation.CGPoint) {
 	_CTRunGetBaseAdvancesAndOrigins(runRef, range_, advancesBuffer, originsBuffer)
-}
+}/* debug [functions.gen.go/function]: CTRunGetBaseAdvancesAndOrigins */
 
 // Gets the glyph count for the run.
 //
@@ -2397,9 +2398,9 @@ func CTRunGetBaseAdvancesAndOrigins(runRef RunRef, range_ unsafe.Pointer, advanc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetGlyphCount(_:)
-func CTRunGetGlyphCount(run RunRef) unsafe.Pointer {
+func CTRunGetGlyphCount(run RunRef) Index {
 	return _CTRunGetGlyphCount(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetGlyphCount */
 
 // Copies a range of glyphs into a user-provided buffer.
 //
@@ -2408,9 +2409,9 @@ func CTRunGetGlyphCount(run RunRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetGlyphs(_:_:_:)
-func CTRunGetGlyphs(run RunRef, range_ unsafe.Pointer, buffer unsafe.Pointer) {
+func CTRunGetGlyphs(run RunRef, range_ corefoundation.Range, buffer Glyph) {
 	_CTRunGetGlyphs(run, range_, buffer)
-}
+}/* debug [functions.gen.go/function]: CTRunGetGlyphs */
 
 // Returns a direct pointer for the glyph array stored in the run.
 //
@@ -2421,7 +2422,7 @@ func CTRunGetGlyphs(run RunRef, range_ unsafe.Pointer, buffer unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetGlyphsPtr(_:)
 func CTRunGetGlyphsPtr(run RunRef) unsafe.Pointer {
 	return _CTRunGetGlyphsPtr(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetGlyphsPtr */
 
 // Calculates the image bounds for a glyph range.
 //
@@ -2430,9 +2431,9 @@ func CTRunGetGlyphsPtr(run RunRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetImageBounds(_:_:_:)
-func CTRunGetImageBounds(run RunRef, context ContextRef, range_ unsafe.Pointer) corefoundation.Rect {
+func CTRunGetImageBounds(run RunRef, context ContextRef, range_ corefoundation.Range) corefoundation.CGRect {
 	return _CTRunGetImageBounds(run, context, range_)
-}
+}/* debug [functions.gen.go/function]: CTRunGetImageBounds */
 
 // Copies a range of glyph positions into a user-provided buffer.
 //
@@ -2441,9 +2442,9 @@ func CTRunGetImageBounds(run RunRef, context ContextRef, range_ unsafe.Pointer) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetPositions(_:_:_:)
-func CTRunGetPositions(run RunRef, range_ unsafe.Pointer, buffer corefoundation.Point) {
+func CTRunGetPositions(run RunRef, range_ corefoundation.Range, buffer corefoundation.CGPoint) {
 	_CTRunGetPositions(run, range_, buffer)
-}
+}/* debug [functions.gen.go/function]: CTRunGetPositions */
 
 // Returns a direct pointer for the glyph position array stored in the run.
 //
@@ -2454,7 +2455,7 @@ func CTRunGetPositions(run RunRef, range_ unsafe.Pointer, buffer corefoundation.
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetPositionsPtr(_:)
 func CTRunGetPositionsPtr(run RunRef) unsafe.Pointer {
 	return _CTRunGetPositionsPtr(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetPositionsPtr */
 
 // Returns the run’s status.
 //
@@ -2463,9 +2464,9 @@ func CTRunGetPositionsPtr(run RunRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetStatus(_:)
-func CTRunGetStatus(run RunRef) unsafe.Pointer {
+func CTRunGetStatus(run RunRef) RunStatus {
 	return _CTRunGetStatus(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetStatus */
 
 // Copies a range of string indices into a user-provided buffer.
 //
@@ -2474,9 +2475,9 @@ func CTRunGetStatus(run RunRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetStringIndices(_:_:_:)
-func CTRunGetStringIndices(run RunRef, range_ unsafe.Pointer, buffer unsafe.Pointer) {
+func CTRunGetStringIndices(run RunRef, range_ corefoundation.Range, buffer Index) {
 	_CTRunGetStringIndices(run, range_, buffer)
-}
+}/* debug [functions.gen.go/function]: CTRunGetStringIndices */
 
 // Returns a direct pointer for the string indices stored in the run.
 //
@@ -2487,7 +2488,7 @@ func CTRunGetStringIndices(run RunRef, range_ unsafe.Pointer, buffer unsafe.Poin
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetStringIndicesPtr(_:)
 func CTRunGetStringIndicesPtr(run RunRef) unsafe.Pointer {
 	return _CTRunGetStringIndicesPtr(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetStringIndicesPtr */
 
 // Gets the range of characters that originally spawned the glyphs in the run.
 //
@@ -2496,9 +2497,9 @@ func CTRunGetStringIndicesPtr(run RunRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetStringRange(_:)
-func CTRunGetStringRange(run RunRef) unsafe.Pointer {
+func CTRunGetStringRange(run RunRef) corefoundation.Range {
 	return _CTRunGetStringRange(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetStringRange */
 
 // Returns the text matrix needed to draw this run.
 //
@@ -2507,9 +2508,9 @@ func CTRunGetStringRange(run RunRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetTextMatrix(_:)
-func CTRunGetTextMatrix(run RunRef) corefoundation.AffineTransform {
+func CTRunGetTextMatrix(run RunRef) corefoundation.CGAffineTransform {
 	return _CTRunGetTextMatrix(run)
-}
+}/* debug [functions.gen.go/function]: CTRunGetTextMatrix */
 
 // Returns the Core Foundation type identifier of the run object.
 //
@@ -2518,9 +2519,9 @@ func CTRunGetTextMatrix(run RunRef) corefoundation.AffineTransform {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetTypeID()
-func CTRunGetTypeID() unsafe.Pointer {
+func CTRunGetTypeID() TypeID {
 	return _CTRunGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTRunGetTypeID */
 
 // Gets the typographic bounds of the run.
 //
@@ -2529,9 +2530,9 @@ func CTRunGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunGetTypographicBounds(_:_:_:_:_:)
-func CTRunGetTypographicBounds(run RunRef, range_ unsafe.Pointer, ascent []float64, descent []float64, leading []float64) float64 {
+func CTRunGetTypographicBounds(run RunRef, range_ corefoundation.Range, ascent []float64, descent []float64, leading []float64) float64 {
 	return _CTRunGetTypographicBounds(run, range_, ascent, descent, leading)
-}
+}/* debug [functions.gen.go/function]: CTRunGetTypographicBounds */
 
 // Creates and initializes a new text tab object.
 //
@@ -2540,9 +2541,9 @@ func CTRunGetTypographicBounds(run RunRef, range_ unsafe.Pointer, ascent []float
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabCreate(_:_:_:)
-func CTTextTabCreate(alignment unsafe.Pointer, location float64, options unsafe.Pointer) TextTabRef {
+func CTTextTabCreate(alignment TextAlignment, location float64, options DictionaryRef) TextTabRef {
 	return _CTTextTabCreate(alignment, location, options)
-}
+}/* debug [functions.gen.go/function]: CTTextTabCreate */
 
 // Returns the text alignment of the tab.
 //
@@ -2551,9 +2552,9 @@ func CTTextTabCreate(alignment unsafe.Pointer, location float64, options unsafe.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabGetAlignment(_:)
-func CTTextTabGetAlignment(tab TextTabRef) unsafe.Pointer {
+func CTTextTabGetAlignment(tab TextTabRef) TextAlignment {
 	return _CTTextTabGetAlignment(tab)
-}
+}/* debug [functions.gen.go/function]: CTTextTabGetAlignment */
 
 // Returns the tab’s ruler location.
 //
@@ -2564,7 +2565,7 @@ func CTTextTabGetAlignment(tab TextTabRef) unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabGetLocation(_:)
 func CTTextTabGetLocation(tab TextTabRef) float64 {
 	return _CTTextTabGetLocation(tab)
-}
+}/* debug [functions.gen.go/function]: CTTextTabGetLocation */
 
 // Returns the dictionary of attributes associated with the tab.
 //
@@ -2573,9 +2574,9 @@ func CTTextTabGetLocation(tab TextTabRef) float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabGetOptions(_:)
-func CTTextTabGetOptions(tab TextTabRef) unsafe.Pointer {
+func CTTextTabGetOptions(tab TextTabRef) DictionaryRef {
 	return _CTTextTabGetOptions(tab)
-}
+}/* debug [functions.gen.go/function]: CTTextTabGetOptions */
 
 // Returns the Core Foundation type identifier of the text tab object.
 //
@@ -2584,9 +2585,9 @@ func CTTextTabGetOptions(tab TextTabRef) unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTabGetTypeID()
-func CTTextTabGetTypeID() unsafe.Pointer {
+func CTTextTabGetTypeID() TypeID {
 	return _CTTextTabGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTTextTabGetTypeID */
 
 // Creates an immutable line from the typesetter.
 //
@@ -2595,9 +2596,9 @@ func CTTextTabGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterCreateLine(_:_:)
-func CTTypesetterCreateLine(typesetter TypesetterRef, stringRange unsafe.Pointer) LineRef {
+func CTTypesetterCreateLine(typesetter TypesetterRef, stringRange corefoundation.Range) LineRef {
 	return _CTTypesetterCreateLine(typesetter, stringRange)
-}
+}/* debug [functions.gen.go/function]: CTTypesetterCreateLine */
 
 // Creates an immutable line from the typesetter at a specified line offset.
 //
@@ -2606,9 +2607,9 @@ func CTTypesetterCreateLine(typesetter TypesetterRef, stringRange unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterCreateLineWithOffset(_:_:_:)
-func CTTypesetterCreateLineWithOffset(typesetter TypesetterRef, stringRange unsafe.Pointer, offset float64) LineRef {
+func CTTypesetterCreateLineWithOffset(typesetter TypesetterRef, stringRange corefoundation.Range, offset float64) LineRef {
 	return _CTTypesetterCreateLineWithOffset(typesetter, stringRange, offset)
-}
+}/* debug [functions.gen.go/function]: CTTypesetterCreateLineWithOffset */
 
 // Creates an immutable typesetter object using an attributed string.
 //
@@ -2617,9 +2618,9 @@ func CTTypesetterCreateLineWithOffset(typesetter TypesetterRef, stringRange unsa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterCreateWithAttributedString(_:)
-func CTTypesetterCreateWithAttributedString(string_ unsafe.Pointer) TypesetterRef {
+func CTTypesetterCreateWithAttributedString(string_ AttributedStringRef) TypesetterRef {
 	return _CTTypesetterCreateWithAttributedString(string_)
-}
+}/* debug [functions.gen.go/function]: CTTypesetterCreateWithAttributedString */
 
 // Creates an immutable typesetter object using an attributed string and a dictionary of options.
 //
@@ -2628,9 +2629,9 @@ func CTTypesetterCreateWithAttributedString(string_ unsafe.Pointer) TypesetterRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterCreateWithAttributedStringAndOptions(_:_:)
-func CTTypesetterCreateWithAttributedStringAndOptions(string_ unsafe.Pointer, options unsafe.Pointer) TypesetterRef {
+func CTTypesetterCreateWithAttributedStringAndOptions(string_ AttributedStringRef, options DictionaryRef) TypesetterRef {
 	return _CTTypesetterCreateWithAttributedStringAndOptions(string_, options)
-}
+}/* debug [functions.gen.go/function]: CTTypesetterCreateWithAttributedStringAndOptions */
 
 // Returns the Core Foundation type identifier of the typesetter object.
 //
@@ -2639,9 +2640,9 @@ func CTTypesetterCreateWithAttributedStringAndOptions(string_ unsafe.Pointer, op
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterGetTypeID()
-func CTTypesetterGetTypeID() unsafe.Pointer {
+func CTTypesetterGetTypeID() TypeID {
 	return _CTTypesetterGetTypeID()
-}
+}/* debug [functions.gen.go/function]: CTTypesetterGetTypeID */
 
 // Suggests a cluster line breakpoint based on the width provided.
 //
@@ -2650,9 +2651,9 @@ func CTTypesetterGetTypeID() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterSuggestClusterBreak(_:_:_:)
-func CTTypesetterSuggestClusterBreak(typesetter TypesetterRef, startIndex unsafe.Pointer, width float64) unsafe.Pointer {
+func CTTypesetterSuggestClusterBreak(typesetter TypesetterRef, startIndex Index, width float64) Index {
 	return _CTTypesetterSuggestClusterBreak(typesetter, startIndex, width)
-}
+}/* debug [functions.gen.go/function]: CTTypesetterSuggestClusterBreak */
 
 // Suggests a cluster line breakpoint based on the specified width and line offset.
 //
@@ -2661,9 +2662,9 @@ func CTTypesetterSuggestClusterBreak(typesetter TypesetterRef, startIndex unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterSuggestClusterBreakWithOffset(_:_:_:_:)
-func CTTypesetterSuggestClusterBreakWithOffset(typesetter TypesetterRef, startIndex unsafe.Pointer, width float64, offset float64) unsafe.Pointer {
+func CTTypesetterSuggestClusterBreakWithOffset(typesetter TypesetterRef, startIndex Index, width float64, offset float64) Index {
 	return _CTTypesetterSuggestClusterBreakWithOffset(typesetter, startIndex, width, offset)
-}
+}/* debug [functions.gen.go/function]: CTTypesetterSuggestClusterBreakWithOffset */
 
 // Suggests a contextual line breakpoint based on the width provided.
 //
@@ -2672,9 +2673,9 @@ func CTTypesetterSuggestClusterBreakWithOffset(typesetter TypesetterRef, startIn
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterSuggestLineBreak(_:_:_:)
-func CTTypesetterSuggestLineBreak(typesetter TypesetterRef, startIndex unsafe.Pointer, width float64) unsafe.Pointer {
+func CTTypesetterSuggestLineBreak(typesetter TypesetterRef, startIndex Index, width float64) Index {
 	return _CTTypesetterSuggestLineBreak(typesetter, startIndex, width)
-}
+}/* debug [functions.gen.go/function]: CTTypesetterSuggestLineBreak */
 
 // Suggests a contextual line breakpoint based on the width provided and the specified offset.
 //
@@ -2683,9 +2684,10 @@ func CTTypesetterSuggestLineBreak(typesetter TypesetterRef, startIndex unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetterSuggestLineBreakWithOffset(_:_:_:_:)
-func CTTypesetterSuggestLineBreakWithOffset(typesetter TypesetterRef, startIndex unsafe.Pointer, width float64, offset float64) unsafe.Pointer {
+func CTTypesetterSuggestLineBreakWithOffset(typesetter TypesetterRef, startIndex Index, width float64, offset float64) Index {
 	return _CTTypesetterSuggestLineBreakWithOffset(typesetter, startIndex, width, offset)
-}
+}/* debug [functions.gen.go/function]: CTTypesetterSuggestLineBreakWithOffset */
+
 
 
 

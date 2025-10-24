@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRGroupKeyManagementClusterGroupKeyMapStruct interface {
 	SetGroupKeySetID(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGroupKeyManagementClusterGroupKeyMapStruct
@@ -85,8 +83,6 @@ func NewMTRGroupKeyManagementClusterGroupKeyMapStruct() MTRGroupKeyManagementClu
 	return getMTRGroupKeyManagementClusterGroupKeyMapStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
 func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) FabricIndex() objc.IObject /* cross-framework: NSNumber */ {
@@ -94,13 +90,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) FabricIndex() objc.IObje
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/fabricindex
 func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetFabricIndex(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setFabricIndex:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
@@ -109,13 +103,11 @@ func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupId() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupid
 func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupId(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupId:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupkeysetid
@@ -124,12 +116,8 @@ func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) GroupKeySetID() objc.IOb
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgroupkeymanagementclustergroupkeymapstruct/groupkeysetid
 func (m_ MTRGroupKeyManagementClusterGroupKeyMapStruct) SetGroupKeySetID(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupKeySetID:"), value)
 }
-
-
-

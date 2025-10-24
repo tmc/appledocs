@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class AVCaptureSynchronizedSampleBufferData */
+
+
+/* debug [class_header]: Header for AVCaptureSynchronizedSampleBufferData */
 // The class instance for the [CaptureSynchronizedSampleBufferData] class.
 var (
 	CaptureSynchronizedSampleBufferDataClass     _CaptureSynchronizedSampleBufferDataClass
@@ -25,40 +29,30 @@ func getCaptureSynchronizedSampleBufferDataClass() _CaptureSynchronizedSampleBuf
 type _CaptureSynchronizedSampleBufferDataClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CaptureSynchronizedSampleBufferData */
 // An interface definition for the [CaptureSynchronizedSampleBufferData] class.
 type ICaptureSynchronizedSampleBufferData interface {
 	ICaptureSynchronizedData
+	
+/* debug [class_interface_properties]: Properties for CaptureSynchronizedSampleBufferData */
 	// properties:
-	DroppedReason() unsafe.Pointer
-	SetDroppedReason(value unsafe.Pointer)
-	SampleBuffer() SampleBuffer /* not a class type */
-	SetSampleBuffer(value SampleBuffer /* not a class type */)
-	SampleBufferWasDropped() bool
-	SetSampleBufferWasDropped(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CaptureSynchronizedSampleBufferData */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A container for video or audio samples collected using synchronized capture.
 
 
-// A container for video or audio samples collected using synchronized capture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData
-type CaptureSynchronizedSampleBufferData struct {
-	CaptureSynchronizedData
-}
-
-// CaptureSynchronizedSampleBufferDataFrom constructs a [CaptureSynchronizedSampleBufferData] from an unsafe.Pointer.
-//
-// A container for video or audio samples collected using synchronized capture.
-func CaptureSynchronizedSampleBufferDataFrom(ptr unsafe.Pointer) CaptureSynchronizedSampleBufferData {
-	return CaptureSynchronizedSampleBufferData{
-		CaptureSynchronizedData: CaptureSynchronizedDataFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CaptureSynchronizedSampleBufferData */
 // Alloc allocates a new instance without initialization.
 func (cc _CaptureSynchronizedSampleBufferDataClass) Alloc() CaptureSynchronizedSampleBufferData {
 	rv := objc.Send[CaptureSynchronizedSampleBufferData](objc.ID(cc.class), objc.Sel("alloc"))
@@ -66,7 +60,6 @@ func (cc _CaptureSynchronizedSampleBufferDataClass) Alloc() CaptureSynchronizedS
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CaptureSynchronizedSampleBufferDataClass) New() CaptureSynchronizedSampleBufferData {
 	rv := objc.Send[CaptureSynchronizedSampleBufferData](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,64 +82,57 @@ func (c_ CaptureSynchronizedSampleBufferData) Autorelease() CaptureSynchronizedS
 func NewCaptureSynchronizedSampleBufferData() CaptureSynchronizedSampleBufferData {
 	return getCaptureSynchronizedSampleBufferDataClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// A value indicating why the capture output failed to deliver sample buffers, if applicable.
+/* debug [class_struct]: Struct for CaptureSynchronizedSampleBufferData */
+// A container for video or audio samples collected using synchronized capture.
+
+
+// A container for video or audio samples collected using synchronized capture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/droppedreason
-func (c_ CaptureSynchronizedSampleBufferData) DroppedReason() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("droppedReason"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVCaptureSynchronizedSampleBufferData
+type CaptureSynchronizedSampleBufferData struct {
+	CaptureSynchronizedData
 }
 
-
-// A value indicating why the capture output failed to deliver sample buffers, if applicable.
+// CaptureSynchronizedSampleBufferDataFrom constructs a [CaptureSynchronizedSampleBufferData] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/droppedreason
-func (c_ CaptureSynchronizedSampleBufferData) SetDroppedReason(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDroppedReason:"), value)
+// A container for video or audio samples collected using synchronized capture.
+func CaptureSynchronizedSampleBufferDataFrom(ptr unsafe.Pointer) CaptureSynchronizedSampleBufferData {
+	return CaptureSynchronizedSampleBufferData{
+		CaptureSynchronizedData: CaptureSynchronizedDataFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
 
-// The depth data captured at this synchronization point.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
-func (c_ CaptureSynchronizedSampleBufferData) SampleBuffer() SampleBuffer /* not a class type */ {
-	rv := objc.Send[SampleBuffer](c_.ID, objc.Sel("sampleBuffer"))
-	return rv
-}
+
+/* debug [class_init_methods]: Init methods for CaptureSynchronizedSampleBufferData *//* debug [class_init_methods]: End init methods */
 
 
-// The depth data captured at this synchronization point.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebuffer
-func (c_ CaptureSynchronizedSampleBufferData) SetSampleBuffer(value SampleBuffer /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBuffer:"), value)
-}
+
+/* debug [class_methods]: Class methods for CaptureSynchronizedSampleBufferData */
+/* debug [class_methods]: End class methods */
 
 
-// A Boolean value indicating whether sample buffers were discarded between capture and processing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebufferwasdropped
-func (c_ CaptureSynchronizedSampleBufferData) SampleBufferWasDropped() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("sampleBufferWasDropped"))
-	return rv
-}
+
+/* debug [class_properties_class]: Class properties for CaptureSynchronizedSampleBufferData */
+/* debug [class_properties_class]: End class properties */
 
 
-// A Boolean value indicating whether sample buffers were discarded between capture and processing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avcapturesynchronizedsamplebufferdata/samplebufferwasdropped
-func (c_ CaptureSynchronizedSampleBufferData) SetSampleBufferWasDropped(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSampleBufferWasDropped:"), value)
-}
 
+/* debug [instance_methods]: Instance methods for CaptureSynchronizedSampleBufferData */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CaptureSynchronizedSampleBufferData */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVCaptureSynchronizedSampleBufferData */
 
 

@@ -2,12 +2,8 @@
 
 // Package regexbuilder provides Go bindings for the RegexBuilder framework.
 //
-// Use an expressive domain-specific language to build regular expressions,
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to RegexBuilder without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/RegexBuilder
 package regexbuilder
 
 import (
@@ -16,10 +12,10 @@ import (
 
 // frameworkPath is the system path to the framework binary.
 const frameworkPath = "/System/Library/Frameworks/RegexBuilder.framework/RegexBuilder"
+
 func init() {
 	_, err := purego.Dlopen(frameworkPath, purego.RTLD_LAZY|purego.RTLD_GLOBAL)
 	if err != nil {
 		panic(err)
 	}
 }
-

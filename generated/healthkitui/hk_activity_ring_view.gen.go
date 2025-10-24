@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/healthkit"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [HKActivityRingView] class.
@@ -59,7 +59,6 @@ type IHKActivityRingView interface {
 //
 // Use to display data from an object. For example, the following image shows how the rings can display a summary view of a person’s activity. To display activity summary data from the HealthKit store, use an object. You can also instantiate and display your own objects, as needed. The activity ring view always appears as a black rectangle with colored concentric rings. The rings are centered in the view and are sized to fit the available space. The activity ring view displays different rings depending on the properties defined in the ring view’s property. When the view’s has set to and values for and the ring only displays the red Move ring. Otherwise, it displays the Move, Exercise, and Stand activity as red, green, and blue concentric rings. Summary data from the HealthKit store only displays the Move ring when the person hasn’t paired an Apple Watch. The rings can display as either empty or with a dot at the top of the ring to display a lack of data. Empty rings indicate that the activity summary is missing, and a dot at the top indicates that the activity summary’s values are set to zero. If the ring has a -valued quantity properties, the rings appear empty. Use this to indicate that there is no summary data available for the specified day. For example, dates in the future. If the summary has zero-valued quantities set for its value properties, the ring displays a dot at the top of the ring. Use this to indicate that the person hasn’t burned any active calories, exercised, or earned any stand hours for the specified day. To display data for a ring, the object must have a non- quantity for both the corresponding value property and the goal property. Move only ring properties: The activity ring view colors a percentage of each ring based on these properties, as shown here: The following code snippet shows how to manually display only the Move ring:
 
-
 // A view that uses the Move, Exercise, and Stand activity rings to display data from a HealthKit activity summary object.
 //
 // [Full Topic]
@@ -108,8 +107,6 @@ func NewHKActivityRingView() HKActivityRingView {
 	return getHKActivityRingViewClass().New()
 }
 
-
-
 // A property that contains the movement mode value.
 //
 // [Full Topic]
@@ -119,7 +116,6 @@ func (h_ HKActivityRingView) ActivityMoveMode() unsafe.Pointer {
 	return rv
 }
 
-
 // A property that contains the movement mode value.
 //
 // [Full Topic]
@@ -127,7 +123,6 @@ func (h_ HKActivityRingView) ActivityMoveMode() unsafe.Pointer {
 func (h_ HKActivityRingView) SetActivityMoveMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivityMoveMode:"), value)
 }
-
 
 // The amount of active energy the user burned during the specified day.
 //
@@ -138,7 +133,6 @@ func (h_ HKActivityRingView) ActiveEnergyBurned() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // The amount of active energy the user burned during the specified day.
 //
 // [Full Topic]
@@ -146,7 +140,6 @@ func (h_ HKActivityRingView) ActiveEnergyBurned() objc.IObject /* cross-framewor
 func (h_ HKActivityRingView) SetActiveEnergyBurned(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurned:"), value)
 }
-
 
 // The user’s daily goal for active energy burned.
 //
@@ -157,7 +150,6 @@ func (h_ HKActivityRingView) ActiveEnergyBurnedGoal() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // The user’s daily goal for active energy burned.
 //
 // [Full Topic]
@@ -165,7 +157,6 @@ func (h_ HKActivityRingView) ActiveEnergyBurnedGoal() objc.IObject /* cross-fram
 func (h_ HKActivityRingView) SetActiveEnergyBurnedGoal(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActiveEnergyBurnedGoal:"), value)
 }
-
 
 // The amount of time that the user has spent exercising during the specified day.
 //
@@ -176,7 +167,6 @@ func (h_ HKActivityRingView) AppleExerciseTime() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The amount of time that the user has spent exercising during the specified day.
 //
 // [Full Topic]
@@ -184,7 +174,6 @@ func (h_ HKActivityRingView) AppleExerciseTime() objc.IObject /* cross-framework
 func (h_ HKActivityRingView) SetAppleExerciseTime(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTime:"), value)
 }
-
 
 // The user’s daily exercise goal.
 //
@@ -195,7 +184,6 @@ func (h_ HKActivityRingView) AppleExerciseTimeGoal() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // The user’s daily exercise goal.
 //
 // [Full Topic]
@@ -203,7 +191,6 @@ func (h_ HKActivityRingView) AppleExerciseTimeGoal() objc.IObject /* cross-frame
 func (h_ HKActivityRingView) SetAppleExerciseTimeGoal(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleExerciseTimeGoal:"), value)
 }
-
 
 // The amount of time the user spent performing activities that involve full-body movements during the specified day.
 //
@@ -214,7 +201,6 @@ func (h_ HKActivityRingView) AppleMoveTime() objc.IObject /* cross-framework: HK
 	return rv
 }
 
-
 // The amount of time the user spent performing activities that involve full-body movements during the specified day.
 //
 // [Full Topic]
@@ -222,7 +208,6 @@ func (h_ HKActivityRingView) AppleMoveTime() objc.IObject /* cross-framework: HK
 func (h_ HKActivityRingView) SetAppleMoveTime(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTime:"), value)
 }
-
 
 // The user’s daily goal for move time.
 //
@@ -233,7 +218,6 @@ func (h_ HKActivityRingView) AppleMoveTimeGoal() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // The user’s daily goal for move time.
 //
 // [Full Topic]
@@ -241,7 +225,6 @@ func (h_ HKActivityRingView) AppleMoveTimeGoal() objc.IObject /* cross-framework
 func (h_ HKActivityRingView) SetAppleMoveTimeGoal(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleMoveTimeGoal:"), value)
 }
-
 
 // The number hours in the specified day during which the user has stood and moved for at least a minute per hour.
 //
@@ -252,7 +235,6 @@ func (h_ HKActivityRingView) AppleStandHours() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // The number hours in the specified day during which the user has stood and moved for at least a minute per hour.
 //
 // [Full Topic]
@@ -260,7 +242,6 @@ func (h_ HKActivityRingView) AppleStandHours() objc.IObject /* cross-framework: 
 func (h_ HKActivityRingView) SetAppleStandHours(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHours:"), value)
 }
-
 
 // The user’s daily goal for stand hours.
 //
@@ -271,7 +252,6 @@ func (h_ HKActivityRingView) AppleStandHoursGoal() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // The user’s daily goal for stand hours.
 //
 // [Full Topic]
@@ -279,7 +259,6 @@ func (h_ HKActivityRingView) AppleStandHoursGoal() objc.IObject /* cross-framewo
 func (h_ HKActivityRingView) SetAppleStandHoursGoal(value objc.IObject /* cross-framework: HKQuantity */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAppleStandHoursGoal:"), value)
 }
-
 
 // The active summary displayed by the activity ring view.
 //
@@ -290,7 +269,6 @@ func (h_ HKActivityRingView) ActivitySummary() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // The active summary displayed by the activity ring view.
 //
 // [Full Topic]
@@ -298,7 +276,3 @@ func (h_ HKActivityRingView) ActivitySummary() objc.IObject /* cross-framework: 
 func (h_ HKActivityRingView) SetActivitySummary(value objc.IObject /* cross-framework: HKActivitySummary */) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setActivitySummary:"), value)
 }
-
-
-
-

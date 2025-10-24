@@ -9,15 +9,18 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	AnyHashable = _undefined // referenced in Quartz
-	Bool = _undefined // referenced in Quartz
-	IKCameraDeviceViewDisplayMode = _undefined // referenced in Quartz
-	IKCameraDeviceViewTransferMode = _undefined // referenced in Quartz
-	IKDeviceBrowserViewDisplayMode = _undefined // referenced in Quartz
-	IKImageBrowserCellState = _undefined // referenced in Quartz
-	IKImageBrowserDropOperation = _undefined // referenced in Quartz
-	IKScannerDeviceViewDisplayMode = _undefined // referenced in Quartz
-	IKScannerDeviceViewTransferMode = _undefined // referenced in Quartz
+	ColorSpaceRef = _undefined // referenced in Quartz
+	ContextRef = _undefined // referenced in Quartz
+	Filter = _undefined // referenced in Quartz
+	Image = _undefined // referenced in Quartz
+	ImageAlignment = _undefined // referenced in Quartz
+	ImageRef = _undefined // referenced in Quartz
+	LContextObj = _undefined // referenced in Quartz
+	LPixelFormatObj = _undefined // referenced in Quartz
+	ObjectController = _undefined // referenced in Quartz
+	Panel = _undefined // referenced in Quartz
+	Rect = _undefined // referenced in Quartz
+	Size = _undefined // referenced in Quartz
 )
 
 

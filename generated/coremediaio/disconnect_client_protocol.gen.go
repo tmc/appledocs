@@ -16,3 +16,4 @@ var disconnectClientProtocol *objc.Protocol
 func init() {
 	disconnectClientProtocol = objc.GetProtocol("disconnectClient:")
 }
+

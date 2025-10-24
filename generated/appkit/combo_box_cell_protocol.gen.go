@@ -15,3 +15,4 @@ var comboBoxCellProtocol *objc.Protocol
 func init() {
 	comboBoxCellProtocol = objc.GetProtocol("comboBoxCell:")
 }
+

@@ -33,8 +33,6 @@ type IMTRClusterOperationalCredentials interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOperationalCredentials
 type MTRClusterOperationalCredentials struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterOperationalCredentials) Autorelease() MTRClusterOperationalCr
 func NewMTRClusterOperationalCredentials() MTRClusterOperationalCredentials {
 	return getMTRClusterOperationalCredentialsClass().New()
 }
-
-
-
-

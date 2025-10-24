@@ -35,7 +35,6 @@ type IINGetRideStatusIntent interface {
 //
 // When there’s a request for the status of a booked ride, SiriKit sends an object to your handler object. Upon receiving this intent, fetch the ride status and return it in your response object. The intent object has no additional parameters. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should confirm the request and create an object with the status of the ride.
 
-
 // A request for the current status of a previously booked ride.
 //
 // [Full Topic]
@@ -83,7 +82,3 @@ func (i_ INGetRideStatusIntent) Autorelease() INGetRideStatusIntent {
 func NewINGetRideStatusIntent() INGetRideStatusIntent {
 	return getINGetRideStatusIntentClass().New()
 }
-
-
-
-

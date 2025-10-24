@@ -33,8 +33,6 @@ type IMTRClusterIlluminanceMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterIlluminanceMeasurement
 type MTRClusterIlluminanceMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterIlluminanceMeasurement) Autorelease() MTRClusterIlluminanceMe
 func NewMTRClusterIlluminanceMeasurement() MTRClusterIlluminanceMeasurement {
 	return getMTRClusterIlluminanceMeasurementClass().New()
 }
-
-
-
-

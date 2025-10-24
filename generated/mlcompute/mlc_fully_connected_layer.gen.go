@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class MLCFullyConnectedLayer */
+
+
+/* debug [class_header]: Header for MLCFullyConnectedLayer */
 // The class instance for the [CFullyConnectedLayer] class.
 var (
 	CFullyConnectedLayerClass     _CFullyConnectedLayerClass
@@ -25,46 +29,35 @@ func getCFullyConnectedLayerClass() _CFullyConnectedLayerClass {
 type _CFullyConnectedLayerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CFullyConnectedLayer */
 // An interface definition for the [CFullyConnectedLayer] class.
 type ICFullyConnectedLayer interface {
 	ICLayer
+	
+/* debug [class_interface_properties]: Properties for CFullyConnectedLayer */
 	// properties:
 	Biases() IMLCTensor
-	SetBiases(value IMLCTensor)
-	BiasesParameter() objc.IObject /* cross-framework: CTensorParameter */
-	SetBiasesParameter(value objc.IObject /* cross-framework: CTensorParameter */)
-	Descriptor() CConvolutionDescriptor /* not a class type */
-	SetDescriptor(value CConvolutionDescriptor /* not a class type */)
+	BiasesParameter() IMLCTensorParameter
+	Descriptor() IMLCConvolutionDescriptor
 	Weights() IMLCTensor
-	SetWeights(value IMLCTensor)
-	WeightsParameter() objc.IObject /* cross-framework: CTensorParameter */
-	SetWeightsParameter(value objc.IObject /* cross-framework: CTensorParameter */)
+	WeightsParameter() IMLCTensorParameter
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CFullyConnectedLayer */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A layer that connects each input to each output within its layer.
-//
-// This is also known as a dense layer.
+/* debug [class_interface]: End interface */
 
 
-// A layer that connects each input to each output within its layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer
-type CFullyConnectedLayer struct {
-	CLayer
-}
 
-// CFullyConnectedLayerFrom constructs a [CFullyConnectedLayer] from an unsafe.Pointer.
-//
-// A layer that connects each input to each output within its layer.
-func CFullyConnectedLayerFrom(ptr unsafe.Pointer) CFullyConnectedLayer {
-	return CFullyConnectedLayer{
-		CLayer: CLayerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CFullyConnectedLayer */
 // Alloc allocates a new instance without initialization.
 func (cc _CFullyConnectedLayerClass) Alloc() CFullyConnectedLayer {
 	rv := objc.Send[CFullyConnectedLayer](objc.ID(cc.class), objc.Sel("alloc"))
@@ -72,7 +65,6 @@ func (cc _CFullyConnectedLayerClass) Alloc() CFullyConnectedLayer {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CFullyConnectedLayerClass) New() CFullyConnectedLayer {
 	rv := objc.Send[CFullyConnectedLayer](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,102 +87,130 @@ func (c_ CFullyConnectedLayer) Autorelease() CFullyConnectedLayer {
 func NewCFullyConnectedLayer() CFullyConnectedLayer {
 	return getCFullyConnectedLayerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CFullyConnectedLayer */
+// A layer that connects each input to each output within its layer.
+//
+// This is also known as a dense layer.
+
+
+// A layer that connects each input to each output within its layer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer
+type CFullyConnectedLayer struct {
+	CLayer
+}
+
+// CFullyConnectedLayerFrom constructs a [CFullyConnectedLayer] from an unsafe.Pointer.
+//
+// A layer that connects each input to each output within its layer.
+func CFullyConnectedLayerFrom(ptr unsafe.Pointer) CFullyConnectedLayer {
+	return CFullyConnectedLayer{
+		CLayer: CLayerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CFullyConnectedLayer */
+
+// Creates a fully connected layer with the weights, biases, and convolution descriptor you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer/init(weights:biases:descriptor:)
+func NewCFullyConnectedLayerWithWeightsBiasesDescriptor(weights IMLCTensor, biases IMLCTensor, descriptor IMLCConvolutionDescriptor) CFullyConnectedLayer {
+	rv := objc.Send[CFullyConnectedLayer](objc.ID(getCFullyConnectedLayerClass().class), objc.Sel("layerWithWeights:biases:descriptor:"), weights, biases, descriptor)
+	return rv
+}/* debug [class_init_methods/constructor]: NewCFullyConnectedLayerWithWeightsBiasesDescriptor */
+
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CFullyConnectedLayer */
+
+// Creates a fully connected layer with the weights, biases, and convolution descriptor you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer/init(weights:biases:descriptor:)
+func (cc _CFullyConnectedLayerClass) LayerWithWeightsBiasesDescriptor(weights IMLCTensor, biases IMLCTensor, descriptor IMLCConvolutionDescriptor) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layerWithWeights:biases:descriptor:"), weights, biases, descriptor)
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LayerWithWeightsBiasesDescriptor) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CFullyConnectedLayer */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CFullyConnectedLayer */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CFullyConnectedLayer */
 
 // The biases tensor you use for the fully connected layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biases
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer/biases
 func (c_ CFullyConnectedLayer) Biases() IMLCTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("biases"))
 	return rv
-}
-
-
-// The biases tensor you use for the fully connected layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biases
-func (c_ CFullyConnectedLayer) SetBiases(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBiases:"), value)
-}
+}/* debug [instance_properties/getter]: biases */
 
 
 // The biases tensor parameter you use for optimizer updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biasesparameter
-func (c_ CFullyConnectedLayer) BiasesParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer/biasesParameter
+func (c_ CFullyConnectedLayer) BiasesParameter() IMLCTensorParameter {
 	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("biasesParameter"))
 	return rv
-}
-
-
-// The biases tensor parameter you use for optimizer updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/biasesparameter
-func (c_ CFullyConnectedLayer) SetBiasesParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBiasesParameter:"), value)
-}
+}/* debug [instance_properties/getter]: biasesParameter */
 
 
 // The configuration object you use to create the fully connected layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/descriptor
-func (c_ CFullyConnectedLayer) Descriptor() CConvolutionDescriptor /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer/descriptor
+func (c_ CFullyConnectedLayer) Descriptor() IMLCConvolutionDescriptor {
 	rv := objc.Send[CConvolutionDescriptor](c_.ID, objc.Sel("descriptor"))
 	return rv
-}
-
-
-// The configuration object you use to create the fully connected layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/descriptor
-func (c_ CFullyConnectedLayer) SetDescriptor(value CConvolutionDescriptor /* not a class type */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setDescriptor:"), value)
-}
+}/* debug [instance_properties/getter]: descriptor */
 
 
 // The weights tensor you use for the fully connected layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weights
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer/weights
 func (c_ CFullyConnectedLayer) Weights() IMLCTensor {
 	rv := objc.Send[CTensor](c_.ID, objc.Sel("weights"))
 	return rv
-}
-
-
-// The weights tensor you use for the fully connected layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weights
-func (c_ CFullyConnectedLayer) SetWeights(value IMLCTensor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeights:"), value)
-}
+}/* debug [instance_properties/getter]: weights */
 
 
 // The weights tensor parameter you use for optimizer updates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weightsparameter
-func (c_ CFullyConnectedLayer) WeightsParameter() objc.IObject /* cross-framework: CTensorParameter */ {
+// [Full Topic]: https://developer.apple.com/documentation/MLCompute/MLCFullyConnectedLayer/weightsParameter
+func (c_ CFullyConnectedLayer) WeightsParameter() IMLCTensorParameter {
 	rv := objc.Send[CTensorParameter](c_.ID, objc.Sel("weightsParameter"))
 	return rv
-}
+}/* debug [instance_properties/getter]: weightsParameter */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// The weights tensor parameter you use for optimizer updates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/mlcompute/mlcfullyconnectedlayer/weightsparameter
-func (c_ CFullyConnectedLayer) SetWeightsParameter(value objc.IObject /* cross-framework: CTensorParameter */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setWeightsParameter:"), value)
-}
-
+/* debug [class.gen.go]: End class MLCFullyConnectedLayer */
 
 

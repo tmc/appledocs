@@ -15,3 +15,4 @@ var textRangeForSelectionGranularityProtocol *objc.Protocol
 func init() {
 	textRangeForSelectionGranularityProtocol = objc.GetProtocol("textRangeForSelectionGranularity:")
 }
+

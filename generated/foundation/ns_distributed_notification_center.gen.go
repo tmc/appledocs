@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSDistributedNotificationCenter */
+
+
+/* debug [class_header]: Header for NSDistributedNotificationCenter */
 // The class instance for the [DistributedNotificationCenter] class.
 var (
 	DistributedNotificationCenterClass     _DistributedNotificationCenterClass
@@ -26,45 +30,39 @@ func getDistributedNotificationCenterClass() _DistributedNotificationCenterClass
 type _DistributedNotificationCenterClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for DistributedNotificationCenter */
 // An interface definition for the [DistributedNotificationCenter] class.
 type IDistributedNotificationCenter interface {
 	INotificationCenter
+	
+/* debug [class_interface_properties]: Properties for DistributedNotificationCenter */
 	// properties:
 	Suspended() bool
 	SetSuspended(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for DistributedNotificationCenter */
 	// methods:
-	AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework: NotificationName */, anObject IString)
-	AddObserverSelectorNameObjectSuspensionBehavior(observer objc.IObject, selector objc.SEL, name objc.IObject /* cross-framework: NotificationName */, object IString, suspensionBehavior NotificationSuspensionBehavior)
-	PostNotificationNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject IString)
-	PostNotificationNameObjectUserInfo(aName objc.IObject /* cross-framework: NotificationName */, anObject IString, aUserInfo IDictionary)
-	PostNotificationNameObjectUserInfoDeliverImmediately(name objc.IObject /* cross-framework: NotificationName */, object IString, userInfo IDictionary, deliverImmediately bool)
-	PostNotificationNameObjectUserInfoOptions(name objc.IObject /* cross-framework: NotificationName */, object IString, userInfo IDictionary, options DistributedNotificationOptions)
-	RemoveObserverNameObject(observer objc.IObject, aName objc.IObject /* cross-framework: NotificationName */, anObject IString)
+	AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName NotificationName /* typedef */, anObject IString)
+	AddObserverSelectorNameObjectSuspensionBehavior(observer objc.IObject, selector objc.SEL, name NotificationName /* typedef */, object IString, suspensionBehavior NotificationSuspensionBehavior)
+	PostNotificationNameObject(aName NotificationName /* typedef */, anObject IString)
+	PostNotificationNameObjectUserInfo(aName NotificationName /* typedef */, anObject IString, aUserInfo IDictionary)
+	PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName /* typedef */, object IString, userInfo IDictionary, deliverImmediately bool)
+	PostNotificationNameObjectUserInfoOptions(name NotificationName /* typedef */, object IString, userInfo IDictionary, options DistributedNotificationOptions)
+	RemoveObserverNameObject(observer objc.IObject, aName NotificationName /* typedef */, anObject IString)
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
-//
-// A instance broadcasts objects to objects in other tasks that have registered for the notification with their task’s default distributed notification center.
+/* debug [class_interface]: End interface */
 
 
-// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter
-type DistributedNotificationCenter struct {
-	NotificationCenter
-}
 
-// DistributedNotificationCenterFrom constructs a [DistributedNotificationCenter] from an unsafe.Pointer.
-//
-// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
-func DistributedNotificationCenterFrom(ptr unsafe.Pointer) DistributedNotificationCenter {
-	return DistributedNotificationCenter{
-		NotificationCenter: NotificationCenterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for DistributedNotificationCenter */
 // Alloc allocates a new instance without initialization.
 func (dc _DistributedNotificationCenterClass) Alloc() DistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("alloc"))
@@ -72,7 +70,6 @@ func (dc _DistributedNotificationCenterClass) Alloc() DistributedNotificationCen
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (dc _DistributedNotificationCenterClass) New() DistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -95,8 +92,41 @@ func (d_ DistributedNotificationCenter) Autorelease() DistributedNotificationCen
 func NewDistributedNotificationCenter() DistributedNotificationCenter {
 	return getDistributedNotificationCenterClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for DistributedNotificationCenter */
+// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
+//
+// A instance broadcasts objects to objects in other tasks that have registered for the notification with their task’s default distributed notification center.
+
+
+// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter
+type DistributedNotificationCenter struct {
+	NotificationCenter
+}
+
+// DistributedNotificationCenterFrom constructs a [DistributedNotificationCenter] from an unsafe.Pointer.
+//
+// A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
+func DistributedNotificationCenterFrom(ptr unsafe.Pointer) DistributedNotificationCenter {
+	return DistributedNotificationCenter{
+		NotificationCenter: NotificationCenterFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for DistributedNotificationCenter *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for DistributedNotificationCenter */
 
 // Returns the default distributed notification center, representing the local notification center for the computer.
 //
@@ -105,81 +135,96 @@ func NewDistributedNotificationCenter() DistributedNotificationCenter {
 func (dc _DistributedNotificationCenterClass) DefaultCenter() IDistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("defaultCenter"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DefaultCenter) */
 
 
 // Returns the distributed notification center for a particular notification center type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/forType(_:)
-func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notificationCenterType objc.IObject /* cross-framework: DistributedNotificationCenterType */) IDistributedNotificationCenter {
+func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notificationCenterType DistributedNotificationCenterType /* typedef */) IDistributedNotificationCenter {
 	rv := objc.Send[DistributedNotificationCenter](objc.ID(dc.class), objc.Sel("notificationCenterForType:"), notificationCenterType)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=NotificationCenterForType) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for DistributedNotificationCenter */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for DistributedNotificationCenter */
 
 // Adds an entry to the notification center’s dispatch table with an observer, a selector, and an optional notification name and sender.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:)
-func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework: NotificationName */, anObject IString) {
+func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName NotificationName /* typedef */, anObject IString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, anObject)
-}
+}/* debug [instance_methods/method]: AddObserverSelectorNameObject */
 
 
 // Adds an entry to the receiver’s dispatch table with a specific observer and suspended-notifications behavior, and optional notification name and sender.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:suspensionBehavior:)
-func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionBehavior(observer objc.IObject, selector objc.SEL, name objc.IObject /* cross-framework: NotificationName */, object IString, suspensionBehavior NotificationSuspensionBehavior) {
+func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionBehavior(observer objc.IObject, selector objc.SEL, name NotificationName /* typedef */, object IString, suspensionBehavior NotificationSuspensionBehavior) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:suspensionBehavior:"), observer, selector, name, object, suspensionBehavior)
-}
+}/* debug [instance_methods/method]: AddObserverSelectorNameObjectSuspensionBehavior */
 
 
 // Creates a notification, and posts it to the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject IString) {
+func (d_ DistributedNotificationCenter) PostNotificationNameObject(aName NotificationName /* typedef */, anObject IString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:"), aName, anObject)
-}
+}/* debug [instance_methods/method]: PostNotificationNameObject */
 
 
 // Creates a notification with information, and posts it to the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/post(name:object:userInfo:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName objc.IObject /* cross-framework: NotificationName */, anObject IString, aUserInfo IDictionary) {
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfo(aName NotificationName /* typedef */, anObject IString, aUserInfo IDictionary) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:"), aName, anObject, aUserInfo)
-}
+}/* debug [instance_methods/method]: PostNotificationNameObjectUserInfo */
 
 
 // Creates a notification with information and an immediate-delivery specifier, and posts it to the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/postNotificationName(_:object:userInfo:deliverImmediately:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDeliverImmediately(name objc.IObject /* cross-framework: NotificationName */, object IString, userInfo IDictionary, deliverImmediately bool) {
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoDeliverImmediately(name NotificationName /* typedef */, object IString, userInfo IDictionary, deliverImmediately bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:deliverImmediately:"), name, object, userInfo, deliverImmediately)
-}
+}/* debug [instance_methods/method]: PostNotificationNameObjectUserInfoDeliverImmediately */
 
 
 // Creates a notification with information, and posts it to the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/postNotificationName(_:object:userInfo:options:)
-func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoOptions(name objc.IObject /* cross-framework: NotificationName */, object IString, userInfo IDictionary, options DistributedNotificationOptions) {
+func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoOptions(name NotificationName /* typedef */, object IString, userInfo IDictionary, options DistributedNotificationOptions) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("postNotificationName:object:userInfo:options:"), name, object, userInfo, options)
-}
+}/* debug [instance_methods/method]: PostNotificationNameObjectUserInfoOptions */
 
 
 // Removes matching entries from the receiver’s dispatch table.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/removeObserver(_:name:object:)
-func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objc.IObject, aName objc.IObject /* cross-framework: NotificationName */, anObject IString) {
+func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objc.IObject, aName NotificationName /* typedef */, anObject IString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, anObject)
-}
+}/* debug [instance_methods/method]: RemoveObserverNameObject */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for DistributedNotificationCenter */
 
 // Suspends or resumes notification delivery.
 //
@@ -188,7 +233,7 @@ func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objc.I
 func (d_ DistributedNotificationCenter) Suspended() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("suspended"))
 	return rv
-}
+}/* debug [instance_properties/getter]: suspended */
 
 
 // Suspends or resumes notification delivery.
@@ -197,7 +242,12 @@ func (d_ DistributedNotificationCenter) Suspended() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/suspended
 func (d_ DistributedNotificationCenter) SetSuspended(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setSuspended:"), value)
-}
+}/* debug [instance_properties/setter]: suspended */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSDistributedNotificationCenter */
 
 
 

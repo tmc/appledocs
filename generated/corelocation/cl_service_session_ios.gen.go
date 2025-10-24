@@ -5,15 +5,10 @@
 package corelocation
 
 import (
-	"unsafe"
-
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
-	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // iOS-only methods for ServiceSession
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLServiceSession-2ddhd/invalidate
@@ -22,8 +17,3 @@ func (s_ ServiceSession) Invalidate() {
 }
 
 // iOS-only properties
-
-
-
-
-

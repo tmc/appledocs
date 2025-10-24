@@ -17,6 +17,7 @@ func ExampleNewSplitViewItemContentListWithViewController() {
 	)
 	// Output:
 }
+
 // ExampleNewSplitViewItemInspectorWithViewController demonstrates how to create a SplitViewItem instance using NewSplitViewItemInspectorWithViewController.
 func ExampleNewSplitViewItemInspectorWithViewController() {
 	_ = appkit.NewSplitViewItemInspectorWithViewController(
@@ -24,6 +25,7 @@ func ExampleNewSplitViewItemInspectorWithViewController() {
 	)
 	// Output:
 }
+
 // ExampleNewSplitViewItemSidebarWithViewController demonstrates how to create a SplitViewItem instance using NewSplitViewItemSidebarWithViewController.
 // Creates a split view item that represents a sidebar for the specified view controller.
 func ExampleNewSplitViewItemSidebarWithViewController() {
@@ -32,6 +34,7 @@ func ExampleNewSplitViewItemSidebarWithViewController() {
 	)
 	// Output:
 }
+
 // ExampleNewSplitViewItemWithViewController demonstrates how to create a SplitViewItem instance using NewSplitViewItemWithViewController.
 // Creates a split view item that represents the specified view controller.
 func ExampleNewSplitViewItemWithViewController() {

@@ -19,3 +19,4 @@ var AuthorizationProviderExtensionAuthorizationRequestHandlerProtocol *objc.Prot
 func init() {
 	AuthorizationProviderExtensionAuthorizationRequestHandlerProtocol = objc.GetProtocol("ASAuthorizationProviderExtensionAuthorizationRequestHandler")
 }
+

@@ -15,3 +15,4 @@ var customViewPersistentDataProtocol *objc.Protocol
 func init() {
 	customViewPersistentDataProtocol = objc.GetProtocol("customViewPersistentData")
 }
+

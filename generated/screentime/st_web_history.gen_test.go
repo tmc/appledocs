@@ -17,3 +17,11 @@ func ExampleNewSTWebHistoryWithProfileIdentifier() {
 	)
 	// Output:
 }
+// ExampleSTWebHistory_DeleteAllHistory demonstrates using DeleteAllHistory on a STWebHistory instance.
+// Deletes all web history associated with the bundle identifier you specified   during initialization.
+func ExampleSTWebHistory_DeleteAllHistory() {
+	obj := screentime.NewSTWebHistory()
+	obj.DeleteAllHistory()
+	// Output:
+	}
+

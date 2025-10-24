@@ -13,7 +13,7 @@ var _ = gameplaykit.NewStateMachine
 // Initializes a state machine with the specified states.
 func ExampleNewStateMachineWithStates() {
 	_ = gameplaykit.NewStateMachineWithStates(
-		[]gameplaykit.IState{}, // states []IState
+		[]gameplaykit.State{}, // states []State
 	)
 	// Output:
 }

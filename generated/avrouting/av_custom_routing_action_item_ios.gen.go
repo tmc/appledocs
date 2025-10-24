@@ -8,9 +8,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/uniformtypeidentifiers"
 )
 
 // iOS-only methods for CustomRoutingActionItem
@@ -34,11 +32,11 @@ func (c_ CustomRoutingActionItem) SetOverrideTitle(value objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVRouting/AVCustomRoutingActionItem/type
-func (c_ CustomRoutingActionItem) Type() objc.IObject /* cross-framework: UTType */ {
+func (c_ CustomRoutingActionItem) Type() uniformtypeidentifiers.UTType {
 	rv := objc.Send[uniformtypeidentifiers.UTType](c_.ID, objc.Sel("type"))
 	return rv
 }
-func (c_ CustomRoutingActionItem) SetType(value objc.IObject /* cross-framework: UTType */) {
+func (c_ CustomRoutingActionItem) SetType(value uniformtypeidentifiers.UTType) {
 	c_.ID.Send(objc.RegisterName("setType:"), value)
 }
 

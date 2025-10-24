@@ -17,7 +17,7 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSAccessibilityCustomRotorItemSearchDelegate
 type PAccessibilityCustomRotorItemSearchDelegate interface {
 	// Required methods
-	RotorResultForSearchParameters(rotor IAccessibilityCustomRotor, searchParameters IAccessibilityCustomRotorSearchParameters) AccessibilityCustomRotorItemResult
+	RotorResultForSearchParameters(rotor IAccessibilityCustomRotor, searchParameters IAccessibilityCustomRotorSearchParameters) AccessibilityCustomRotorItemResult/* debug [protocol_interface/required_method]: RotorResultForSearchParameters */
 }
 
 // AccessibilityCustomRotorItemSearchDelegate is a delegate implementation builder for the PAccessibilityCustomRotorItemSearchDelegate protocol.

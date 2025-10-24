@@ -9,6 +9,14 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewPasteboard
 
+// ExampleNewPasteboardWithName demonstrates how to create a Pasteboard instance using NewPasteboardWithName.
+// Returns the pasteboard with the specified name.
+func ExampleNewPasteboardWithName() {
+	_ = appkit.NewPasteboardWithName(
+		appkit.PasteboardName /* typedef */{}, // name PasteboardName /* typedef */
+	)
+	// Output:
+}
 // ExamplePasteboard_ClearContents demonstrates using ClearContents on a Pasteboard instance.
 // Clears the existing contents of the pasteboard.
 func ExamplePasteboard_ClearContents() {

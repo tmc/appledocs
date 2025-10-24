@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/appkit"
 )
 
+/* debug [class.gen.go]: Generating class EXAppExtensionBrowserViewController */
+
+
+/* debug [class_header]: Header for EXAppExtensionBrowserViewController */
 // The class instance for the [EXAppExtensionBrowserViewController] class.
 var (
 	EXAppExtensionBrowserViewControllerClass     _EXAppExtensionBrowserViewControllerClass
@@ -26,36 +30,30 @@ func getEXAppExtensionBrowserViewControllerClass() _EXAppExtensionBrowserViewCon
 type _EXAppExtensionBrowserViewControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for EXAppExtensionBrowserViewController */
 // An interface definition for the [EXAppExtensionBrowserViewController] class.
 type IEXAppExtensionBrowserViewController interface {
 	appkit.IViewController
+	
+/* debug [class_interface_properties]: Properties for EXAppExtensionBrowserViewController */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for EXAppExtensionBrowserViewController */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A view controller that displays an interface to enable or disable the host app’s extensions.
-//
-// When your host app supports app extensions, use this view controller to give people a way to enable or disable those extensions. When you present this view controller, the system displays an out-of-process UI with a list of all app extensions that support your app’s extension points. Someone using your app can use the presented interface to enable or disable extensions selectively. App extensions you include inside your host app’s bundle are enabled by default, but extensions that ship in separate apps are disabled by default. Present this view controller modally from your app, or embed the view controller as a child in one of your existing view controller interfaces. For example, you might choose to embed the view controller in a tab of your app’s preferences interface.
+/* debug [class_interface]: End interface */
 
 
-// A view controller that displays an interface to enable or disable the host app’s extensions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXAppExtensionBrowserViewController
-type EXAppExtensionBrowserViewController struct {
-	appkit.ViewController
-}
 
-// EXAppExtensionBrowserViewControllerFrom constructs a [EXAppExtensionBrowserViewController] from an unsafe.Pointer.
-//
-// A view controller that displays an interface to enable or disable the host app’s extensions.
-func EXAppExtensionBrowserViewControllerFrom(ptr unsafe.Pointer) EXAppExtensionBrowserViewController {
-	return EXAppExtensionBrowserViewController{
-		ViewController: appkit.ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for EXAppExtensionBrowserViewController */
 // Alloc allocates a new instance without initialization.
 func (ec _EXAppExtensionBrowserViewControllerClass) Alloc() EXAppExtensionBrowserViewController {
 	rv := objc.Send[EXAppExtensionBrowserViewController](objc.ID(ec.class), objc.Sel("alloc"))
@@ -63,7 +61,6 @@ func (ec _EXAppExtensionBrowserViewControllerClass) Alloc() EXAppExtensionBrowse
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ec _EXAppExtensionBrowserViewControllerClass) New() EXAppExtensionBrowserViewController {
 	rv := objc.Send[EXAppExtensionBrowserViewController](objc.ID(ec.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,7 +83,60 @@ func (e_ EXAppExtensionBrowserViewController) Autorelease() EXAppExtensionBrowse
 func NewEXAppExtensionBrowserViewController() EXAppExtensionBrowserViewController {
 	return getEXAppExtensionBrowserViewControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for EXAppExtensionBrowserViewController */
+// A view controller that displays an interface to enable or disable the host app’s extensions.
+//
+// When your host app supports app extensions, use this view controller to give people a way to enable or disable those extensions. When you present this view controller, the system displays an out-of-process UI with a list of all app extensions that support your app’s extension points. Someone using your app can use the presented interface to enable or disable extensions selectively. App extensions you include inside your host app’s bundle are enabled by default, but extensions that ship in separate apps are disabled by default. Present this view controller modally from your app, or embed the view controller as a child in one of your existing view controller interfaces. For example, you might choose to embed the view controller in a tab of your app’s preferences interface.
+
+
+// A view controller that displays an interface to enable or disable the host app’s extensions.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/ExtensionKit/EXAppExtensionBrowserViewController
+type EXAppExtensionBrowserViewController struct {
+	appkit.ViewController
+}
+
+// EXAppExtensionBrowserViewControllerFrom constructs a [EXAppExtensionBrowserViewController] from an unsafe.Pointer.
+//
+// A view controller that displays an interface to enable or disable the host app’s extensions.
+func EXAppExtensionBrowserViewControllerFrom(ptr unsafe.Pointer) EXAppExtensionBrowserViewController {
+	return EXAppExtensionBrowserViewController{
+		ViewController: appkit.ViewControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for EXAppExtensionBrowserViewController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for EXAppExtensionBrowserViewController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for EXAppExtensionBrowserViewController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for EXAppExtensionBrowserViewController */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for EXAppExtensionBrowserViewController */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class EXAppExtensionBrowserViewController */
 
 
 

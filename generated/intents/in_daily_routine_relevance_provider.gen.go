@@ -37,7 +37,6 @@ type IINDailyRoutineRelevanceProvider interface {
 //
 // Ask the user for permission to use their location before providing shortcuts to that include a daily routine relevance provider. If the user gives your app permission to access their location Always, shortcuts your app provides can influence widget stacks.
 
-
 // The provider class that specifies a relevant daily routine.
 //
 // [Full Topic]
@@ -84,8 +83,6 @@ func NewINDailyRoutineRelevanceProvider() INDailyRoutineRelevanceProvider {
 	return getINDailyRoutineRelevanceProviderClass().New()
 }
 
-
-
 // Creates a daily routine relevance provider with the specified situation.
 //
 // [Full Topic]
@@ -97,8 +94,6 @@ func NewINDailyRoutineRelevanceProviderWithSituation(situation unsafe.Pointer) I
 	return rv
 }
 
-
-
 // The relevant daily routine situation for the provider.
 //
 // [Full Topic]
@@ -107,5 +102,3 @@ func (i_ INDailyRoutineRelevanceProvider) Situation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](i_.ID, objc.Sel("situation"))
 	return rv
 }
-
-

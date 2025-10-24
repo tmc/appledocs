@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // FourCoordinateGeometryFilterProtocol is the CIFourCoordinateGeometryFilter protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIFourCoordinateGeometryFilter.
 var FourCoordinateGeometryFilterProtocol *objc.Protocol
 
 func init() {
 	FourCoordinateGeometryFilterProtocol = objc.GetProtocol("CIFourCoordinateGeometryFilter")
 }
+

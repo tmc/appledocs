@@ -33,8 +33,6 @@ type IMTRBaseClusterFormaldehydeConcentrationMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterFormaldehydeConcentrationMeasurement
 type MTRBaseClusterFormaldehydeConcentrationMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterFormaldehydeConcentrationMeasurement) Autorelease() MTRBa
 func NewMTRBaseClusterFormaldehydeConcentrationMeasurement() MTRBaseClusterFormaldehydeConcentrationMeasurement {
 	return getMTRBaseClusterFormaldehydeConcentrationMeasurementClass().New()
 }
-
-
-
-

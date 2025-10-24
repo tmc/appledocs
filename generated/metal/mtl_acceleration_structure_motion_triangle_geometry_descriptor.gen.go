@@ -7,8 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTLAccelerationStructureMotionTriangleGeometryDescriptor */
+
+
+/* debug [class_header]: Header for MTLAccelerationStructureMotionTriangleGeometryDescriptor */
 // The class instance for the [AccelerationStructureMotionTriangleGeometryDescriptor] class.
 var (
 	AccelerationStructureMotionTriangleGeometryDescriptorClass     _AccelerationStructureMotionTriangleGeometryDescriptorClass
@@ -25,48 +30,50 @@ func getAccelerationStructureMotionTriangleGeometryDescriptorClass() _Accelerati
 type _AccelerationStructureMotionTriangleGeometryDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AccelerationStructureMotionTriangleGeometryDescriptor */
 // An interface definition for the [AccelerationStructureMotionTriangleGeometryDescriptor] class.
 type IAccelerationStructureMotionTriangleGeometryDescriptor interface {
 	IAccelerationStructureGeometryDescriptor
+	
+/* debug [class_interface_properties]: Properties for AccelerationStructureMotionTriangleGeometryDescriptor */
+	// properties:
 	IndexBuffer() unsafe.Pointer
 	SetIndexBuffer(value unsafe.Pointer)
-	IndexBufferOffset() int
-	SetIndexBufferOffset(value int)
+	IndexBufferOffset() uint
+	SetIndexBufferOffset(value uint)
 	IndexType() IndexType
 	SetIndexType(value IndexType)
 	TransformationMatrixBuffer() unsafe.Pointer
 	SetTransformationMatrixBuffer(value unsafe.Pointer)
-	TransformationMatrixBufferOffset() int
-	SetTransformationMatrixBufferOffset(value int)
-	TransformationMatrixLayout() unsafe.Pointer
-	SetTransformationMatrixLayout(value unsafe.Pointer)
-	TriangleCount() int
-	SetTriangleCount(value int)
-	VertexBuffers() MTLMotionKeyframeData
-	SetVertexBuffers(value IMTLMotionKeyframeData)
-	VertexFormat() unsafe.Pointer
-	SetVertexFormat(value unsafe.Pointer)
-	VertexStride() int
-	SetVertexStride(value int)
-}
+	TransformationMatrixBufferOffset() uint
+	SetTransformationMatrixBufferOffset(value uint)
+	TransformationMatrixLayout() MatrixLayout
+	SetTransformationMatrixLayout(value MatrixLayout)
+	TriangleCount() uint
+	SetTriangleCount(value uint)
+	VertexBuffers() []MotionKeyframeData
+	SetVertexBuffers(value []MotionKeyframeData)
+	VertexFormat() AttributeFormat
+	SetVertexFormat(value AttributeFormat)
+	VertexStride() uint
+	SetVertexStride(value uint)
+/* debug [class_interface_properties]: End properties */
 
-// A description of a list of triangle primitives, as motion keyframe data, to turn into an acceleration structure.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor
-type AccelerationStructureMotionTriangleGeometryDescriptor struct {
-	AccelerationStructureGeometryDescriptor
-}
+	
+/* debug [class_interface_methods]: Methods for AccelerationStructureMotionTriangleGeometryDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// AccelerationStructureMotionTriangleGeometryDescriptorFrom constructs a [AccelerationStructureMotionTriangleGeometryDescriptor] from an unsafe.Pointer.
-//
-// A description of a list of triangle primitives, as motion keyframe data, to turn into an acceleration structure.
-func AccelerationStructureMotionTriangleGeometryDescriptorFrom(ptr unsafe.Pointer) AccelerationStructureMotionTriangleGeometryDescriptor {
-	return AccelerationStructureMotionTriangleGeometryDescriptor{
-		AccelerationStructureGeometryDescriptor: AccelerationStructureGeometryDescriptorFrom(ptr),
-	}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for AccelerationStructureMotionTriangleGeometryDescriptor */
 // Alloc allocates a new instance without initialization.
 func (ac _AccelerationStructureMotionTriangleGeometryDescriptorClass) Alloc() AccelerationStructureMotionTriangleGeometryDescriptor {
 	rv := objc.Send[AccelerationStructureMotionTriangleGeometryDescriptor](objc.ID(ac.class), objc.Sel("alloc"))
@@ -74,7 +81,6 @@ func (ac _AccelerationStructureMotionTriangleGeometryDescriptorClass) Alloc() Ac
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AccelerationStructureMotionTriangleGeometryDescriptorClass) New() AccelerationStructureMotionTriangleGeometryDescriptor {
 	rv := objc.Send[AccelerationStructureMotionTriangleGeometryDescriptor](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,175 +103,251 @@ func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) Autorelease() Ac
 func NewAccelerationStructureMotionTriangleGeometryDescriptor() AccelerationStructureMotionTriangleGeometryDescriptor {
 	return getAccelerationStructureMotionTriangleGeometryDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for AccelerationStructureMotionTriangleGeometryDescriptor */
+// A description of a list of triangle primitives, as motion keyframe data, to turn into an acceleration structure.
+
+
+// A description of a list of triangle primitives, as motion keyframe data, to turn into an acceleration structure.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor
+type AccelerationStructureMotionTriangleGeometryDescriptor struct {
+	AccelerationStructureGeometryDescriptor
+}
+
+// AccelerationStructureMotionTriangleGeometryDescriptorFrom constructs a [AccelerationStructureMotionTriangleGeometryDescriptor] from an unsafe.Pointer.
+//
+// A description of a list of triangle primitives, as motion keyframe data, to turn into an acceleration structure.
+func AccelerationStructureMotionTriangleGeometryDescriptorFrom(ptr unsafe.Pointer) AccelerationStructureMotionTriangleGeometryDescriptor {
+	return AccelerationStructureMotionTriangleGeometryDescriptor{
+		AccelerationStructureGeometryDescriptor: AccelerationStructureGeometryDescriptorFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AccelerationStructureMotionTriangleGeometryDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AccelerationStructureMotionTriangleGeometryDescriptor */
+
+// Creates a new triangle descriptor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/descriptor
+func (ac _AccelerationStructureMotionTriangleGeometryDescriptorClass) Descriptor() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(ac.class), objc.Sel("descriptor"))
+	return rv
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Descriptor) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AccelerationStructureMotionTriangleGeometryDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AccelerationStructureMotionTriangleGeometryDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AccelerationStructureMotionTriangleGeometryDescriptor */
 
 // A buffer that contains indices for the vertices that compose the triangle list.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/indexbuffer
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/indexBuffer
 func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) IndexBuffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("indexBuffer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indexBuffer */
 
 
-// SetIndexBuffer sets the value of the indexBuffer property.
 // A buffer that contains indices for the vertices that compose the triangle list.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/indexbuffer
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/indexBuffer
 func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexBuffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: indexBuffer */
+
 
 // The offset, in bytes, to the first index in the buffer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/indexbufferoffset
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) IndexBufferOffset() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("indexBufferOffset"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/indexBufferOffset
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) IndexBufferOffset() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("indexBufferOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indexBufferOffset */
 
 
-// SetIndexBufferOffset sets the value of the indexBufferOffset property.
 // The offset, in bytes, to the first index in the buffer.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/indexbufferoffset
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexBufferOffset(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/indexBufferOffset
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexBufferOffset(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexBufferOffset:"), value)
-}
+}/* debug [instance_properties/setter]: indexBufferOffset */
+
 
 // The data type of indices in the index buffer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/indextype
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/indexType
 func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) IndexType() IndexType {
 	rv := objc.Send[IndexType](a_.ID, objc.Sel("indexType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: indexType */
 
 
-// SetIndexType sets the value of the indexType property.
 // The data type of indices in the index buffer.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/indextype
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/indexType
 func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetIndexType(value IndexType) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIndexType:"), value)
-}
+}/* debug [instance_properties/setter]: indexType */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/transformationmatrixbuffer
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/transformationMatrixBuffer
 func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) TransformationMatrixBuffer() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transformationMatrixBuffer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transformationMatrixBuffer */
 
 
-// SetTransformationMatrixBuffer sets the value of the transformationMatrixBuffer property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/transformationmatrixbuffer
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/transformationMatrixBuffer
 func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetTransformationMatrixBuffer(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformationMatrixBuffer:"), value)
-}
+}/* debug [instance_properties/setter]: transformationMatrixBuffer */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/transformationmatrixbufferoffset
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) TransformationMatrixBufferOffset() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("transformationMatrixBufferOffset"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/transformationMatrixBufferOffset
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) TransformationMatrixBufferOffset() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("transformationMatrixBufferOffset"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transformationMatrixBufferOffset */
 
 
-// SetTransformationMatrixBufferOffset sets the value of the transformationMatrixBufferOffset property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/transformationmatrixbufferoffset
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetTransformationMatrixBufferOffset(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/transformationMatrixBufferOffset
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetTransformationMatrixBufferOffset(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformationMatrixBufferOffset:"), value)
-}
+}/* debug [instance_properties/setter]: transformationMatrixBufferOffset */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/transformationmatrixlayout
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) TransformationMatrixLayout() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("transformationMatrixLayout"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/transformationMatrixLayout
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) TransformationMatrixLayout() MatrixLayout {
+	rv := objc.Send[MatrixLayout](a_.ID, objc.Sel("transformationMatrixLayout"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transformationMatrixLayout */
 
 
-// SetTransformationMatrixLayout sets the value of the transformationMatrixLayout property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/transformationmatrixlayout
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetTransformationMatrixLayout(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/transformationMatrixLayout
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetTransformationMatrixLayout(value MatrixLayout) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTransformationMatrixLayout:"), value)
-}
+}/* debug [instance_properties/setter]: transformationMatrixLayout */
+
 
 // The number of triangles in the buffers.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/trianglecount
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) TriangleCount() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("triangleCount"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/triangleCount
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) TriangleCount() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("triangleCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: triangleCount */
 
 
-// SetTriangleCount sets the value of the triangleCount property.
 // The number of triangles in the buffers.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/trianglecount
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetTriangleCount(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/triangleCount
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetTriangleCount(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTriangleCount:"), value)
-}
+}/* debug [instance_properties/setter]: triangleCount */
+
 
 // An array of motion keyframes, each containing triangle data.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/vertexbuffers
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexBuffers() MTLMotionKeyframeData {
-	rv := objc.Send[MTLMotionKeyframeData](a_.ID, objc.Sel("vertexBuffers"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/vertexBuffers
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexBuffers() []MotionKeyframeData {
+	rv := objc.Send[[]MotionKeyframeData](a_.ID, objc.Sel("vertexBuffers"))
 	return rv
-}
+}/* debug [instance_properties/getter]: vertexBuffers */
 
 
-// SetVertexBuffers sets the value of the vertexBuffers property.
 // An array of motion keyframes, each containing triangle data.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/vertexbuffers
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetVertexBuffers(value IMTLMotionKeyframeData) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setVertexBuffers:"), value)
-}
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/vertexBuffers
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetVertexBuffers(value []MotionKeyframeData) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](a_.ID, objc.Sel("setVertexBuffers:"), nsArray)
+}/* debug [instance_properties/setter]: vertexBuffers */
 
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/vertexformat
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexFormat() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("vertexFormat"))
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/vertexFormat
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexFormat() AttributeFormat {
+	rv := objc.Send[AttributeFormat](a_.ID, objc.Sel("vertexFormat"))
 	return rv
-}
+}/* debug [instance_properties/getter]: vertexFormat */
 
 
-// SetVertexFormat sets the value of the vertexFormat property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/vertexformat
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetVertexFormat(value unsafe.Pointer) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/vertexFormat
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetVertexFormat(value AttributeFormat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVertexFormat:"), value)
-}
+}/* debug [instance_properties/setter]: vertexFormat */
+
 
 // The stride, in bytes, between vertices in each vertex buffer.
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/vertexstride
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexStride() int {
-	rv := objc.Send[int](a_.ID, objc.Sel("vertexStride"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/vertexStride
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) VertexStride() uint {
+	rv := objc.Send[uint](a_.ID, objc.Sel("vertexStride"))
 	return rv
-}
+}/* debug [instance_properties/getter]: vertexStride */
 
 
-// SetVertexStride sets the value of the vertexStride property.
 // The stride, in bytes, between vertices in each vertex buffer.
-
 //
-// [Full Topic]: https://developer.apple.com/documentation/metal/mtlaccelerationstructuremotiontrianglegeometrydescriptor/vertexstride
-func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetVertexStride(value int) {
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLAccelerationStructureMotionTriangleGeometryDescriptor/vertexStride
+func (a_ AccelerationStructureMotionTriangleGeometryDescriptor) SetVertexStride(value uint) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setVertexStride:"), value)
-}
+}/* debug [instance_properties/setter]: vertexStride */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTLAccelerationStructureMotionTriangleGeometryDescriptor */
 
 
 

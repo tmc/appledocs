@@ -21,3 +21,4 @@ var XMLParserDelegateProtocol *objc.Protocol
 func init() {
 	XMLParserDelegateProtocol = objc.GetProtocol("NSXMLParserDelegate")
 }
+

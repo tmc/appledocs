@@ -15,3 +15,4 @@ var CollectionViewSectionHeaderViewProtocol *objc.Protocol
 func init() {
 	CollectionViewSectionHeaderViewProtocol = objc.GetProtocol("NSCollectionViewSectionHeaderView")
 }
+

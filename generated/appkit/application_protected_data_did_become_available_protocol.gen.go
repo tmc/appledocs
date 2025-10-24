@@ -15,3 +15,4 @@ var applicationProtectedDataDidBecomeAvailableProtocol *objc.Protocol
 func init() {
 	applicationProtectedDataDidBecomeAvailableProtocol = objc.GetProtocol("applicationProtectedDataDidBecomeAvailable:")
 }
+

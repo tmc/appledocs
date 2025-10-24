@@ -20,3 +20,4 @@ var newResidencySetWithDescriptorProtocol *objc.Protocol
 func init() {
 	newResidencySetWithDescriptorProtocol = objc.GetProtocol("newResidencySetWithDescriptor:")
 }
+

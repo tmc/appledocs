@@ -10,16 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	AppImpression = _undefined // referenced in StoreKit
-	CloudServiceAuthorizationStatus = _undefined // referenced in StoreKit
 	Configuration = _undefined // referenced in StoreKit
-	PaymentTransactionObserver = _undefined // referenced in StoreKit
-	PaymentTransactionState = _undefined // referenced in StoreKit
-	PeriodUnit = _undefined // referenced in StoreKit
-	Position = _undefined // referenced in StoreKit
-	ProductsRequestDelegate = _undefined // referenced in StoreKit
-	RequestDelegate = _undefined // referenced in StoreKit
-	StoreProductViewControllerDelegate = _undefined // referenced in StoreKit
-	WindowScene = _undefined // referenced in StoreKit
+	WindowScene   = _undefined // referenced in StoreKit
 )
-
-

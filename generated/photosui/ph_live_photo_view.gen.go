@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/photos"
 )
 
@@ -58,7 +58,6 @@ type IPHLivePhotoView interface {
 //
 // Use a Live Photo view to display the photo and control playback of its motion and sound content. In iOS and tvOS, you can obtain Live Photo objects from the Photos library, using the or and classes, or by creating one from asset resources exported from a Photos library. In macOS, Live Photo objects are available only when editing Live Photo content in a photo editing extension that runs in the Photos app—see the class to access Live Photo content in an editing session. By default, a Live Photo view uses its own gesture recognizer to allow the user to play the motion and sound content of a Live Photo with the same interactions and visual effects seen in the Photos app. To customize this gesture recognizer—for example, to install it on a different view for proper event handling in your app’s view hierarchy—use the property. To animate the view briefly to hint that a picture is a Live Photo, use the method with the option.
 
-
 // A view that displays a Live Photo—a picture that also includes motion and sound from the moments just before and after its capture.
 //
 // [Full Topic]
@@ -107,8 +106,6 @@ func NewPHLivePhotoView() PHLivePhotoView {
 	return getPHLivePhotoViewClass().New()
 }
 
-
-
 // The audio gain to apply to the Live Photo’s movie content during playback.
 //
 // [Full Topic]
@@ -118,7 +115,6 @@ func (p_ PHLivePhotoView) AudioVolume() float32 {
 	return rv
 }
 
-
 // The audio gain to apply to the Live Photo’s movie content during playback.
 //
 // [Full Topic]
@@ -126,7 +122,6 @@ func (p_ PHLivePhotoView) AudioVolume() float32 {
 func (p_ PHLivePhotoView) SetAudioVolume(value float32) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAudioVolume:"), value)
 }
-
 
 // The mode in which the view displays its content.
 //
@@ -137,7 +132,6 @@ func (p_ PHLivePhotoView) ContentMode() unsafe.Pointer {
 	return rv
 }
 
-
 // The mode in which the view displays its content.
 //
 // [Full Topic]
@@ -146,7 +140,6 @@ func (p_ PHLivePhotoView) SetContentMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentMode:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/contentsrect
 func (p_ PHLivePhotoView) ContentsRect() objc.IObject /* cross-framework: Rect */ {
@@ -154,13 +147,11 @@ func (p_ PHLivePhotoView) ContentsRect() objc.IObject /* cross-framework: Rect *
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/contentsrect
 func (p_ PHLivePhotoView) SetContentsRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentsRect:"), value)
 }
-
 
 // An object to be notified when Live Photo playback begins or ends.
 //
@@ -171,7 +162,6 @@ func (p_ PHLivePhotoView) Delegate() unsafe.Pointer {
 	return rv
 }
 
-
 // An object to be notified when Live Photo playback begins or ends.
 //
 // [Full Topic]
@@ -180,7 +170,6 @@ func (p_ PHLivePhotoView) SetDelegate(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/intrinsiccontentsize
 func (p_ PHLivePhotoView) IntrinsicContentSize() objc.IObject /* cross-framework: Size */ {
@@ -188,13 +177,11 @@ func (p_ PHLivePhotoView) IntrinsicContentSize() objc.IObject /* cross-framework
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/photosui/phlivephotoview/intrinsiccontentsize
 func (p_ PHLivePhotoView) SetIntrinsicContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIntrinsicContentSize:"), value)
 }
-
 
 // A Boolean value that determines whether the view plays the audio content of its Live Photo.
 //
@@ -205,7 +192,6 @@ func (p_ PHLivePhotoView) IsMuted() bool {
 	return rv
 }
 
-
 // A Boolean value that determines whether the view plays the audio content of its Live Photo.
 //
 // [Full Topic]
@@ -213,7 +199,6 @@ func (p_ PHLivePhotoView) IsMuted() bool {
 func (p_ PHLivePhotoView) SetIsMuted(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsMuted:"), value)
 }
-
 
 // The Live Photo displayed in the view.
 //
@@ -224,7 +209,6 @@ func (p_ PHLivePhotoView) LivePhoto() objc.IObject /* cross-framework: PHLivePho
 	return rv
 }
 
-
 // The Live Photo displayed in the view.
 //
 // [Full Topic]
@@ -232,7 +216,6 @@ func (p_ PHLivePhotoView) LivePhoto() objc.IObject /* cross-framework: PHLivePho
 func (p_ PHLivePhotoView) SetLivePhoto(value objc.IObject /* cross-framework: PHLivePhoto */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhoto:"), value)
 }
-
 
 // A view for displaying Live Photo status.
 //
@@ -243,7 +226,6 @@ func (p_ PHLivePhotoView) LivePhotoBadgeView() objc.IObject /* cross-framework: 
 	return rv
 }
 
-
 // A view for displaying Live Photo status.
 //
 // [Full Topic]
@@ -251,7 +233,6 @@ func (p_ PHLivePhotoView) LivePhotoBadgeView() objc.IObject /* cross-framework: 
 func (p_ PHLivePhotoView) SetLivePhotoBadgeView(value objc.IObject /* cross-framework: View */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLivePhotoBadgeView:"), value)
 }
-
 
 // A gesture recognizer that controls playback of the Live Photo in the view.
 //
@@ -262,7 +243,6 @@ func (p_ PHLivePhotoView) PlaybackGestureRecognizer() objc.IObject /* cross-fram
 	return rv
 }
 
-
 // A gesture recognizer that controls playback of the Live Photo in the view.
 //
 // [Full Topic]
@@ -270,6 +250,3 @@ func (p_ PHLivePhotoView) PlaybackGestureRecognizer() objc.IObject /* cross-fram
 func (p_ PHLivePhotoView) SetPlaybackGestureRecognizer(value objc.IObject /* cross-framework: GestureRecognizer */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPlaybackGestureRecognizer:"), value)
 }
-
-
-

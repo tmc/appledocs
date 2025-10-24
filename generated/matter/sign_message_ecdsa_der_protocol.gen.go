@@ -21,3 +21,4 @@ var signMessageECDSA_DERProtocol *objc.Protocol
 func init() {
 	signMessageECDSA_DERProtocol = objc.GetProtocol("signMessageECDSA_DER:")
 }
+

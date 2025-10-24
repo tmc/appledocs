@@ -16,3 +16,4 @@ var countryCodeDidChangeForWiFiInterfaceWithNameProtocol *objc.Protocol
 func init() {
 	countryCodeDidChangeForWiFiInterfaceWithNameProtocol = objc.GetProtocol("countryCodeDidChangeForWiFiInterfaceWithName:")
 }
+

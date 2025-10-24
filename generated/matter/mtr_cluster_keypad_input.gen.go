@@ -33,8 +33,6 @@ type IMTRClusterKeypadInput interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterKeypadInput
 type MTRClusterKeypadInput struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterKeypadInput) Autorelease() MTRClusterKeypadInput {
 func NewMTRClusterKeypadInput() MTRClusterKeypadInput {
 	return getMTRClusterKeypadInputClass().New()
 }
-
-
-
-

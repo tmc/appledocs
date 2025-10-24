@@ -15,5 +15,4 @@ func ExampleScriptCommandDescription_CreateCommandInstance() {
 	obj := foundation.NewScriptCommandDescription()
 	_ = obj.CreateCommandInstance()
 	// Output:
-	}
-
+}

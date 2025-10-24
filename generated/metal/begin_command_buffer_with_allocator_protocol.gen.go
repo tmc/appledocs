@@ -20,3 +20,4 @@ var beginCommandBufferWithAllocatorProtocol *objc.Protocol
 func init() {
 	beginCommandBufferWithAllocatorProtocol = objc.GetProtocol("beginCommandBufferWithAllocator:")
 }
+

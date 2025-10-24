@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRChannelClusterChannelInfo] class.
@@ -43,8 +43,6 @@ type IMTRChannelClusterChannelInfo interface {
 	SetName(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRChannelClusterChannelInfo
@@ -90,8 +88,6 @@ func NewMTRChannelClusterChannelInfo() MTRChannelClusterChannelInfo {
 	return getMTRChannelClusterChannelInfoClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/affiliatecallsign
 func (m_ MTRChannelClusterChannelInfo) AffiliateCallSign() objc.IObject /* cross-framework: NSString */ {
@@ -99,13 +95,11 @@ func (m_ MTRChannelClusterChannelInfo) AffiliateCallSign() objc.IObject /* cross
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/affiliatecallsign
 func (m_ MTRChannelClusterChannelInfo) SetAffiliateCallSign(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAffiliateCallSign:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/callsign
@@ -114,13 +108,11 @@ func (m_ MTRChannelClusterChannelInfo) CallSign() objc.IObject /* cross-framewor
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/callsign
 func (m_ MTRChannelClusterChannelInfo) SetCallSign(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setCallSign:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/majornumber
@@ -129,13 +121,11 @@ func (m_ MTRChannelClusterChannelInfo) MajorNumber() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/majornumber
 func (m_ MTRChannelClusterChannelInfo) SetMajorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMajorNumber:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/minornumber
@@ -144,13 +134,11 @@ func (m_ MTRChannelClusterChannelInfo) MinorNumber() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/minornumber
 func (m_ MTRChannelClusterChannelInfo) SetMinorNumber(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinorNumber:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/name
@@ -159,12 +147,8 @@ func (m_ MTRChannelClusterChannelInfo) Name() objc.IObject /* cross-framework: N
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrchannelclusterchannelinfo/name
 func (m_ MTRChannelClusterChannelInfo) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
-
-
-

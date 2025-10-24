@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class mDelegate */
+
+
+/* debug [class_header]: Header for mDelegate */
 // The class instance for the [mDelegate] class.
 var (
 	MDelegateClass     _mDelegateClass
@@ -26,27 +30,30 @@ func getmDelegateClass() _mDelegateClass {
 type _mDelegateClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for mDelegate */
 // An interface definition for the [mDelegate] class.
 type ImDelegate interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for mDelegate */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for mDelegate */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mDelegate
-type mDelegate struct {
-	objectivec.Object
-}
-
-// mDelegateFrom constructs a [mDelegate] from an unsafe.Pointer.
-func mDelegateFrom(ptr unsafe.Pointer) mDelegate {
-	return mDelegate{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for mDelegate */
 // Alloc allocates a new instance without initialization.
 func (mc _mDelegateClass) Alloc() mDelegate {
 	rv := objc.Send[mDelegate](objc.ID(mc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (mc _mDelegateClass) Alloc() mDelegate {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _mDelegateClass) New() mDelegate {
 	rv := objc.Send[mDelegate](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (m_ mDelegate) Autorelease() mDelegate {
 func NewmDelegate() mDelegate {
 	return getmDelegateClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for mDelegate */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/OBEXFileTransferServices/mDelegate
+type mDelegate struct {
+	objectivec.Object
+}
+
+// mDelegateFrom constructs a [mDelegate] from an unsafe.Pointer.
+func mDelegateFrom(ptr unsafe.Pointer) mDelegate {
+	return mDelegate{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for mDelegate *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for mDelegate */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for mDelegate */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for mDelegate */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for mDelegate */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class mDelegate */
 
 
 

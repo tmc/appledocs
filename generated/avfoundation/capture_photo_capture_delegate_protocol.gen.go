@@ -19,3 +19,4 @@ var CapturePhotoCaptureDelegateProtocol *objc.Protocol
 func init() {
 	CapturePhotoCaptureDelegateProtocol = objc.GetProtocol("AVCapturePhotoCaptureDelegate")
 }
+

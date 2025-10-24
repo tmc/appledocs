@@ -33,8 +33,6 @@ type IMTRBaseClusterAccountLogin interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterAccountLogin
 type MTRBaseClusterAccountLogin struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterAccountLogin) Autorelease() MTRBaseClusterAccountLogin {
 func NewMTRBaseClusterAccountLogin() MTRBaseClusterAccountLogin {
 	return getMTRBaseClusterAccountLoginClass().New()
 }
-
-
-
-

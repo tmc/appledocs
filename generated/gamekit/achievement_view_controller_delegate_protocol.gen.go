@@ -16,3 +16,4 @@ var AchievementViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	AchievementViewControllerDelegateProtocol = objc.GetProtocol("GKAchievementViewControllerDelegate")
 }
+

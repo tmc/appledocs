@@ -21,3 +21,4 @@ var CacheDelegateProtocol *objc.Protocol
 func init() {
 	CacheDelegateProtocol = objc.GetProtocol("NSCacheDelegate")
 }
+

@@ -7,10 +7,13 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSImageConversion */
+
+
+/* debug [class_header]: Header for MPSImageConversion */
 // The class instance for the [ImageConversion] class.
 var (
 	ImageConversionClass     _ImageConversionClass
@@ -27,38 +30,34 @@ func getImageConversionClass() _ImageConversionClass {
 type _ImageConversionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ImageConversion */
 // An interface definition for the [ImageConversion] class.
 type IImageConversion interface {
 	IUnaryImageKernel
+	
+/* debug [class_interface_properties]: Properties for ImageConversion */
 	// properties:
-	DestinationAlpha() AlphaType
-	SourceAlpha() AlphaType
+	DestinationAlpha() AlphaType get /* not a class type */
+	SetDestinationAlpha(value AlphaType get /* not a class type */)
+	SourceAlpha() AlphaType get /* not a class type */
+	SetSourceAlpha(value AlphaType get /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ImageConversion */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A filter that performs a conversion of color space, alpha, or pixel format.
-//
-// An filter allows you to change the alpha encoding or color space of an image. For example, you can convert an image with a premultiplied alpha to non-premultiplied, or change the color space from one variant to another. As with all Metal Performance Shaders filters, the conversion filter allows for source and destination textures with different pixel formats and, in that case, will convert the source texture’s format to the destination texture’s format. See for a list of supported pixel formats. The following listing shows how you can create an image conversion filter to map the color intensity from the sRGB color space to a linear gamma curve. Listing 1. Mapping color intensity from the sRGB color space to a linear gamma curve.
+/* debug [class_interface]: End interface */
 
 
-// A filter that performs a conversion of color space, alpha, or pixel format.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion
-type ImageConversion struct {
-	UnaryImageKernel
-}
 
-// ImageConversionFrom constructs a [ImageConversion] from an unsafe.Pointer.
-//
-// A filter that performs a conversion of color space, alpha, or pixel format.
-func ImageConversionFrom(ptr unsafe.Pointer) ImageConversion {
-	return ImageConversion{
-		UnaryImageKernel: UnaryImageKernelFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ImageConversion */
 // Alloc allocates a new instance without initialization.
 func (ic _ImageConversionClass) Alloc() ImageConversion {
 	rv := objc.Send[ImageConversion](objc.ID(ic.class), objc.Sel("alloc"))
@@ -66,7 +65,6 @@ func (ic _ImageConversionClass) Alloc() ImageConversion {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ic _ImageConversionClass) New() ImageConversion {
 	rv := objc.Send[ImageConversion](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -89,39 +87,110 @@ func (i_ ImageConversion) Autorelease() ImageConversion {
 func NewImageConversion() ImageConversion {
 	return getImageConversionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ImageConversion */
+// A filter that performs a conversion of color space, alpha, or pixel format.
+//
+// An filter allows you to change the alpha encoding or color space of an image. For example, you can convert an image with a premultiplied alpha to non-premultiplied, or change the color space from one variant to another. As with all Metal Performance Shaders filters, the conversion filter allows for source and destination textures with different pixel formats and, in that case, will convert the source texture’s format to the destination texture’s format. See for a list of supported pixel formats. The following listing shows how you can create an image conversion filter to map the color intensity from the sRGB color space to a linear gamma curve. Listing 1. Mapping color intensity from the sRGB color space to a linear gamma curve.
+
+
+// A filter that performs a conversion of color space, alpha, or pixel format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion
+type ImageConversion struct {
+	UnaryImageKernel
+}
+
+// ImageConversionFrom constructs a [ImageConversion] from an unsafe.Pointer.
+//
+// A filter that performs a conversion of color space, alpha, or pixel format.
+func ImageConversionFrom(ptr unsafe.Pointer) ImageConversion {
+	return ImageConversion{
+		UnaryImageKernel: UnaryImageKernelFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ImageConversion */
 
 // Initializes a filter that can convert texture color space, alpha, and pixel format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion/init(device:srcAlpha:destAlpha:backgroundColor:conversionInfo:)
-func NewImageConversionWithDeviceSrcAlphaDestAlphaBackgroundColorConversionInfo(device objectivec.IObject, srcAlpha AlphaType, destAlpha AlphaType, backgroundColor corefoundation.CGFloat, conversionInfo ColorConversionInfoRef /* not a class type */) ImageConversion {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion/2206722-initwithdevice
+func NewImageConversionWithDeviceSrcAlphaDestAlphaBackgroundColorConversionInfo(device unsafe.Pointer, srcAlpha AlphaType, destAlpha AlphaType, backgroundColor float64, conversionInfo ColorConversionInfoRef /* not a class type */) ImageConversion {
 	instance := getImageConversionClass().Alloc()
 	rv := objc.Send[ImageConversion](instance.ID, objc.Sel("initWithDevice:srcAlpha:destAlpha:backgroundColor:conversionInfo:"), device, srcAlpha, destAlpha, backgroundColor, conversionInfo)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewImageConversionWithDeviceSrcAlphaDestAlphaBackgroundColorConversionInfo */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for ImageConversion */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ImageConversion */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ImageConversion */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ImageConversion */
+
+// Premultiplication description for the destination texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion/1648515-destinationalpha
+func (i_ ImageConversion) DestinationAlpha() AlphaType get /* not a class type */ {
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("destinationAlpha"))
+	return rv
+}/* debug [instance_properties/getter]: destinationAlpha */
 
 
 // Premultiplication description for the destination texture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion/destinationAlpha
-func (i_ ImageConversion) DestinationAlpha() AlphaType {
-	rv := objc.Send[AlphaType](i_.ID, objc.Sel("destinationAlpha"))
-	return rv
-}
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion/1648515-destinationalpha
+func (i_ ImageConversion) SetDestinationAlpha(value AlphaType get /* not a class type */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setDestinationAlpha:"), value)
+}/* debug [instance_properties/setter]: destinationAlpha */
 
 
 // Premultiplication description for the source texture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSImageConversion/sourceAlpha
-func (i_ ImageConversion) SourceAlpha() AlphaType {
-	rv := objc.Send[AlphaType](i_.ID, objc.Sel("sourceAlpha"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion/1648518-sourcealpha
+func (i_ ImageConversion) SourceAlpha() AlphaType get /* not a class type */ {
+	rv := objc.Send[objc.ID](i_.ID, objc.Sel("sourceAlpha"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sourceAlpha */
+
+
+// Premultiplication description for the source texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsimageconversion/1648518-sourcealpha
+func (i_ ImageConversion) SetSourceAlpha(value AlphaType get /* not a class type */) {
+	objc.Send[objc.ID](i_.ID, objc.Sel("setSourceAlpha:"), value)
+}/* debug [instance_properties/setter]: sourceAlpha */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSImageConversion */
 
 

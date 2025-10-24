@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // arrayForCommandBufferProtocol is the arrayForCommandBuffer: protocol.
 //
 // Availability:
-//   - Mac Catalyst 13.1+
+//   - Mac Catalyst 13.0+
 //   - iOS 13.0+
 //   - iPadOS 13.0+
 //   - macOS 10.15+
@@ -20,3 +20,4 @@ var arrayForCommandBufferProtocol *objc.Protocol
 func init() {
 	arrayForCommandBufferProtocol = objc.GetProtocol("arrayForCommandBuffer:")
 }
+

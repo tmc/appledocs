@@ -15,3 +15,4 @@ var sectionCollapseButtonProtocol *objc.Protocol
 func init() {
 	sectionCollapseButtonProtocol = objc.GetProtocol("sectionCollapseButton")
 }
+

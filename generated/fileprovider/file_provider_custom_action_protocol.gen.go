@@ -18,3 +18,4 @@ var FileProviderCustomActionProtocol *objc.Protocol
 func init() {
 	FileProviderCustomActionProtocol = objc.GetProtocol("NSFileProviderCustomAction")
 }
+

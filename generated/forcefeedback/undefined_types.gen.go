@@ -9,6 +9,7 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
+	ByteCount = _undefined // referenced in ForceFeedback
 	UUIDRef = _undefined // referenced in ForceFeedback
 )
 

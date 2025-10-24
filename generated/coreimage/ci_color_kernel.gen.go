@@ -9,8 +9,13 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CIColorKernel */
+
+
+/* debug [class_header]: Header for CIColorKernel */
 // The class instance for the [ColorKernel] class.
 var (
 	ColorKernelClass     _ColorKernelClass
@@ -27,37 +32,31 @@ func getColorKernelClass() _ColorKernelClass {
 type _ColorKernelClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for ColorKernel */
 // An interface definition for the [ColorKernel] class.
 type IColorKernel interface {
 	IKernel
+	
+/* debug [class_interface_properties]: Properties for ColorKernel */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for ColorKernel */
 	// methods:
-	ApplyWithExtentArguments(extent objc.IObject /* cross-framework: Rect */, args []objc.ID) IImage
+	ApplyWithExtentArguments(extent corefoundation.CGRect, args []objc.ID) IImage
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
-//
-// The kernel language routine for a color kernel has the following characteristics: Its return type is (Core Image Kernel Language) or (Metal Shading Language); that is, it returns a pixel color for the output image. It may use zero or more input images. Each input image is represented by a parameter of type (Core Image Kernel Language) or (Metal Shading Language), which can be treated as a single pixel color of type (Core Image Kernel Language) or (Metal Shading Language);. A color kernel routine receives as input single-pixel colors (one sampled from each input image) and computes a final pixel color (output using the keyword). For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged. The equivalent code in Core Image Kernel Language is: The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See and for more details.
+/* debug [class_interface]: End interface */
 
 
-// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel
-type ColorKernel struct {
-	Kernel
-}
 
-// ColorKernelFrom constructs a [ColorKernel] from an unsafe.Pointer.
-//
-// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
-func ColorKernelFrom(ptr unsafe.Pointer) ColorKernel {
-	return ColorKernel{
-		Kernel: KernelFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for ColorKernel */
 // Alloc allocates a new instance without initialization.
 func (cc _ColorKernelClass) Alloc() ColorKernel {
 	rv := objc.Send[ColorKernel](objc.ID(cc.class), objc.Sel("alloc"))
@@ -65,7 +64,6 @@ func (cc _ColorKernelClass) Alloc() ColorKernel {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _ColorKernelClass) New() ColorKernel {
 	rv := objc.Send[ColorKernel](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +86,37 @@ func (c_ ColorKernel) Autorelease() ColorKernel {
 func NewColorKernel() ColorKernel {
 	return getColorKernelClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for ColorKernel */
+// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
+//
+// The kernel language routine for a color kernel has the following characteristics: Its return type is (Core Image Kernel Language) or (Metal Shading Language); that is, it returns a pixel color for the output image. It may use zero or more input images. Each input image is represented by a parameter of type (Core Image Kernel Language) or (Metal Shading Language), which can be treated as a single pixel color of type (Core Image Kernel Language) or (Metal Shading Language);. A color kernel routine receives as input single-pixel colors (one sampled from each input image) and computes a final pixel color (output using the keyword). For example, the Metal Shading Language source below implements a filter that passes through its input image unchanged. The equivalent code in Core Image Kernel Language is: The Core Image Kernel Language is a dialect of the OpenGL Shading Language. See and for more details.
+
+
+// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel
+type ColorKernel struct {
+	Kernel
+}
+
+// ColorKernelFrom constructs a [ColorKernel] from an unsafe.Pointer.
+//
+// A GPU-based image-processing routine that processes only the color information in images, used to create custom Core Image filters.
+func ColorKernelFrom(ptr unsafe.Pointer) ColorKernel {
+	return ColorKernel{
+		Kernel: KernelFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for ColorKernel */
 
 // Creates a color kernel object from the specified kernel source code.
 //
@@ -98,27 +125,51 @@ func NewColorKernel() ColorKernel {
 func NewColorKernelWithString(string_ objc.IObject /* cross-framework: NSString */) ColorKernel {
 	rv := objc.Send[ColorKernel](objc.ID(getColorKernelClass().class), objc.Sel("kernelWithString:"), string_)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewColorKernelWithString */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for ColorKernel */
 
 // Creates a color kernel object from the specified kernel source code.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/init(source:)
-func (cc _ColorKernelClass) KernelWithString(string_ objc.IObject /* cross-framework: NSString */) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("kernelWithString:"), string_)
+func (cc _ColorKernelClass) KernelWithString(string_ objc.IObject /* cross-framework: NSString */) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("kernelWithString:"), string_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=KernelWithString) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for ColorKernel */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for ColorKernel */
 
 // Creates a new image using the kernel and specified arguments.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreImage/CIColorKernel/apply(extent:arguments:)
-func (c_ ColorKernel) ApplyWithExtentArguments(extent objc.IObject /* cross-framework: Rect */, args []objc.ID) IImage {
+func (c_ ColorKernel) ApplyWithExtentArguments(extent corefoundation.CGRect, args []objc.ID) IImage {
 	rv := objc.Send[Image](c_.ID, objc.Sel("applyWithExtent:arguments:"), extent, args)
 	return rv
-}
+}/* debug [instance_methods/method]: ApplyWithExtentArguments */
+
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for ColorKernel */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CIColorKernel */
 
 

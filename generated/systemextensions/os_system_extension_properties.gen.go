@@ -6,11 +6,14 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class OSSystemExtensionProperties */
+
+/* debug [class_header]: Header for OSSystemExtensionProperties */
 // The class instance for the [OSSystemExtensionProperties] class.
 var (
 	OSSystemExtensionPropertiesClass     _OSSystemExtensionPropertiesClass
@@ -28,37 +31,33 @@ type _OSSystemExtensionPropertiesClass struct {
 	class objc.Class
 }
 
+/* debug [class_header]: End header */
+
+/* debug [class_interface]: Interface for OSSystemExtensionProperties */
 // An interface definition for the [OSSystemExtensionProperties] class.
 type IOSSystemExtensionProperties interface {
 	objectivec.IObject
-	BundleVersion() string
+
+	/* debug [class_interface_properties]: Properties for OSSystemExtensionProperties */
+	// properties:
+	BundleIdentifier() objc.IObject   /* cross-framework: NSString */
+	BundleShortVersion() objc.IObject /* cross-framework: NSString */
+	BundleVersion() objc.IObject      /* cross-framework: NSString */
 	IsAwaitingUserApproval() bool
-	BundleIdentifier() string
-	SetBundleIdentifier(value string)
-	BundleShortVersion() string
-	SetBundleShortVersion(value string)
 	IsEnabled() bool
-	SetIsEnabled(value bool)
 	IsUninstalling() bool
-	SetIsUninstalling(value bool)
-	Url() foundation.URL
-	SetUrl(value foundation.IURL)
+	URL() objc.IObject /* cross-framework: NSURL */
+	/* debug [class_interface_properties]: End properties */
+
+	/* debug [class_interface_methods]: Methods for OSSystemExtensionProperties */
+	// methods:
+	/* debug [class_interface_methods]: End methods */
+
 }
 
-// Properties that identify a specific version of a system extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties
-type OSSystemExtensionProperties struct {
-	objectivec.Object
-}
+/* debug [class_interface]: End interface */
 
-// OSSystemExtensionPropertiesFrom constructs a [OSSystemExtensionProperties] from an unsafe.Pointer.
-//
-// Properties that identify a specific version of a system extension.
-func OSSystemExtensionPropertiesFrom(ptr unsafe.Pointer) OSSystemExtensionProperties {
-	return OSSystemExtensionProperties{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for OSSystemExtensionProperties */
 // Alloc allocates a new instance without initialization.
 func (oc _OSSystemExtensionPropertiesClass) Alloc() OSSystemExtensionProperties {
 	rv := objc.Send[OSSystemExtensionProperties](objc.ID(oc.class), objc.Sel("alloc"))
@@ -66,7 +65,6 @@ func (oc _OSSystemExtensionPropertiesClass) Alloc() OSSystemExtensionProperties 
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (oc _OSSystemExtensionPropertiesClass) New() OSSystemExtensionProperties {
 	rv := objc.Send[OSSystemExtensionProperties](objc.ID(oc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -90,105 +88,98 @@ func NewOSSystemExtensionProperties() OSSystemExtensionProperties {
 	return getOSSystemExtensionPropertiesClass().New()
 }
 
+/* debug [class_constructors]: End constructors */
+
+/* debug [class_struct]: Struct for OSSystemExtensionProperties */
+// Properties that identify a specific version of a system extension.
+
+// Properties that identify a specific version of a system extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties
+type OSSystemExtensionProperties struct {
+	objectivec.Object
+}
+
+// OSSystemExtensionPropertiesFrom constructs a [OSSystemExtensionProperties] from an unsafe.Pointer.
+//
+// Properties that identify a specific version of a system extension.
+func OSSystemExtensionPropertiesFrom(ptr unsafe.Pointer) OSSystemExtensionProperties {
+	return OSSystemExtensionProperties{objectivec.Object{objc.ID(ptr)}}
+}
+
+/* debug [class_struct]: End struct */
+
+/* debug [class_init_methods]: Init methods for OSSystemExtensionProperties */ /* debug [class_init_methods]: End init methods */
+
+/* debug [class_methods]: Class methods for OSSystemExtensionProperties */
+/* debug [class_methods]: End class methods */
+
+/* debug [class_properties_class]: Class properties for OSSystemExtensionProperties */
+/* debug [class_properties_class]: End class properties */
+
+/* debug [instance_methods]: Instance methods for OSSystemExtensionProperties */
+/* debug [instance_methods]: End instance methods */
+
+/* debug [instance_properties]: Instance properties for OSSystemExtensionProperties */
+
+// The bundle identifier of the extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/bundleIdentifier
+func (o_ OSSystemExtensionProperties) BundleIdentifier() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleIdentifier"))
+	return rv
+} /* debug [instance_properties/getter]: bundleIdentifier */
+
+// The bundle short version string of the extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/bundleShortVersion
+func (o_ OSSystemExtensionProperties) BundleShortVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleShortVersion"))
+	return rv
+} /* debug [instance_properties/getter]: bundleShortVersion */
 
 // The bundle version of the extension.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/bundleVersion
-func (o_ OSSystemExtensionProperties) BundleVersion() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleVersion"))
+func (o_ OSSystemExtensionProperties) BundleVersion() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("bundleVersion"))
 	return rv
-}
+} /* debug [instance_properties/getter]: bundleVersion */
 
-//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/isAwaitingUserApproval
 func (o_ OSSystemExtensionProperties) IsAwaitingUserApproval() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isAwaitingUserApproval"))
 	return rv
-}
+} /* debug [instance_properties/getter]: isAwaitingUserApproval */
 
-// The bundle identifier of the extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
-func (o_ OSSystemExtensionProperties) BundleIdentifier() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleIdentifier"))
-	return rv
-}
-
-
-// SetBundleIdentifier sets the value of the bundleIdentifier property.
-// The bundle identifier of the extension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleidentifier
-func (o_ OSSystemExtensionProperties) SetBundleIdentifier(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleIdentifier:"), objc.String(value))
-}
-
-// The bundle short version string of the extension.
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleshortversion
-func (o_ OSSystemExtensionProperties) BundleShortVersion() string {
-	rv := objc.Send[string](o_.ID, objc.Sel("bundleShortVersion"))
-	return rv
-}
-
-
-// SetBundleShortVersion sets the value of the bundleShortVersion property.
-// The bundle short version string of the extension.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/bundleshortversion
-func (o_ OSSystemExtensionProperties) SetBundleShortVersion(value string) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setBundleShortVersion:"), objc.String(value))
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/isenabled
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/isEnabled
 func (o_ OSSystemExtensionProperties) IsEnabled() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isEnabled"))
 	return rv
-}
+} /* debug [instance_properties/getter]: isEnabled */
 
-
-// SetIsEnabled sets the value of the isEnabled property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/isenabled
-func (o_ OSSystemExtensionProperties) SetIsEnabled(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsEnabled:"), value)
-}
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/isuninstalling
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/isUninstalling
 func (o_ OSSystemExtensionProperties) IsUninstalling() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("isUninstalling"))
 	return rv
-}
-
-
-// SetIsUninstalling sets the value of the isUninstalling property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/isuninstalling
-func (o_ OSSystemExtensionProperties) SetIsUninstalling(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIsUninstalling:"), value)
-}
+} /* debug [instance_properties/getter]: isUninstalling */
 
 // The file URL of the extension bundle.
 //
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/url
-func (o_ OSSystemExtensionProperties) Url() foundation.URL {
-	rv := objc.Send[foundation.URL](o_.ID, objc.Sel("url"))
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SystemExtensions/OSSystemExtensionProperties/url
+func (o_ OSSystemExtensionProperties) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](o_.ID, objc.Sel("URL"))
 	return rv
-}
+} /* debug [instance_properties/getter]: URL */
 
+/* debug [instance_properties]: End instance properties */
 
-// SetUrl sets the value of the url property.
-// The file URL of the extension bundle.
-
-//
-// [Full Topic]: https://developer.apple.com/documentation/systemextensions/ossystemextensionproperties/url
-func (o_ OSSystemExtensionProperties) SetUrl(value foundation.IURL) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUrl:"), value)
-}
-
-
-
+/* debug [class.gen.go]: End class OSSystemExtensionProperties */

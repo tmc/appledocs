@@ -6,6 +6,71 @@ import (
 )
 
 // Type aliases and typedefs
+// FontRef - A font object.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFont
+// CTFontRef has base type: const struct __CTFont *
+type FontRef uintptr
+// FontCollectionRef - A font collection.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollection
+// CTFontCollectionRef has base type: const struct __CTFontCollection *
+type FontCollectionRef uintptr
+// FontDescriptorRef - A font descriptor.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptor
+// CTFontDescriptorRef has base type: const struct __CTFontDescriptor *
+type FontDescriptorRef uintptr
+// FrameRef - A frame.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrame
+// CTFrameRef has base type: const struct __CTFrame *
+type FrameRef uintptr
+// FramesetterRef - Generate text frames.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetter
+// CTFramesetterRef has base type: const struct __CTFramesetter *
+type FramesetterRef uintptr
+// GlyphInfoRef - Override a font’s specified mapping from Unicode to the glyph ID.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfo
+// CTGlyphInfoRef has base type: const struct __CTGlyphInfo *
+type GlyphInfoRef uintptr
+// LineRef - A line of text.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLine
+// CTLineRef has base type: const struct __CTLine *
+type LineRef uintptr
+// ParagraphStyleRef - Paragraph or ruler attributes in an attributed string.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyle
+// CTParagraphStyleRef has base type: const struct __CTParagraphStyle *
+type ParagraphStyleRef uintptr
+// RubyAnnotationRef type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotation
+// CTRubyAnnotationRef has base type: const struct __CTRubyAnnotation *
+type RubyAnnotationRef uintptr
+// RunRef - A glyph run.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRun
+// CTRunRef has base type: const struct __CTRun *
+type RunRef uintptr
+// RunDelegateRef - A run delegate.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegate
+// CTRunDelegateRef has base type: const struct __CTRunDelegate *
+type RunDelegateRef uintptr
+// TextTabRef - A tab in a paragraph style, storing an alignment type and location.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTab
+// CTTextTabRef has base type: const struct __CTTextTab *
+type TextTabRef uintptr
+// TypesetterRef - A typesetter which performs line layout.
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetter
+// CTTypesetterRef has base type: const struct __CTTypesetter *
+type TypesetterRef uintptr
 // ATSFontRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/ATSFontRef
@@ -31,27 +96,12 @@ type BslnTableFormat uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/BslnTablePtr
 // BslnTablePtr has base type: BslnTable *
 type BslnTablePtr uintptr
-// FontRef - A font object.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFont
-// CTFontRef has base type: const struct __CTFont *
-type FontRef uintptr
-// FontCollectionRef - A font collection.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollection
-// CTFontCollectionRef has base type: const struct __CTFontCollection *
-type FontCollectionRef uintptr
 // FontCollectionSortDescriptorsCallback - The collection sorting callback type.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontCollectionSortDescriptorsCallback
 // CTFontCollectionSortDescriptorsCallback is a callback function
 // C type: enum CFComparisonResult (*)(const struct __CTFontDescriptor *, const struct __CTFontDescriptor *, void *)
 type FontCollectionSortDescriptorsCallback = func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) ComparisonResult
-// FontDescriptorRef - A font descriptor.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontDescriptor
-// CTFontDescriptorRef has base type: const struct __CTFontDescriptor *
-type FontDescriptorRef uintptr
 // FontPriority - The priority of font descriptors when resolving duplicates and sorting match results.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontPriority
@@ -62,51 +112,11 @@ type FontPriority uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFontTableTag
 // CTFontTableTag has base type: FourCharCode
 type FontTableTag uintptr
-// FrameRef - A frame.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFrame
-// CTFrameRef has base type: const struct __CTFrame *
-type FrameRef uintptr
-// FramesetterRef - Generate text frames.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTFramesetter
-// CTFramesetterRef has base type: const struct __CTFramesetter *
-type FramesetterRef uintptr
-// GlyphInfoRef - Override a font’s specified mapping from Unicode to the glyph ID.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTGlyphInfo
-// CTGlyphInfoRef has base type: const struct __CTGlyphInfo *
-type GlyphInfoRef uintptr
-// LineRef - A line of text.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTLine
-// CTLineRef has base type: const struct __CTLine *
-type LineRef uintptr
 // MutableFontCollectionRef - A reference to a mutable font collection.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTMutableFontCollection
 // CTMutableFontCollectionRef has base type: struct __CTFontCollection *
 type MutableFontCollectionRef uintptr
-// ParagraphStyleRef - Paragraph or ruler attributes in an attributed string.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTParagraphStyle
-// CTParagraphStyleRef has base type: const struct __CTParagraphStyle *
-type ParagraphStyleRef uintptr
-// RubyAnnotationRef type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRubyAnnotation
-// CTRubyAnnotationRef has base type: const struct __CTRubyAnnotation *
-type RubyAnnotationRef uintptr
-// RunRef - A glyph run.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRun
-// CTRunRef has base type: const struct __CTRun *
-type RunRef uintptr
-// RunDelegateRef - A run delegate.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegate
-// CTRunDelegateRef has base type: const struct __CTRunDelegate *
-type RunDelegateRef uintptr
 // RunDelegateDeallocateCallback - Defines a pointer to a function that is invoked when a CTRunDelegate object is deallocated.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/CTRunDelegateDeallocateCallback
@@ -131,16 +141,6 @@ type RunDelegateGetDescentCallback = func(unsafe.Pointer) float64
 // CTRunDelegateGetWidthCallback is a callback function
 // C type: double (*)(void *)
 type RunDelegateGetWidthCallback = func(unsafe.Pointer) float64
-// TextTabRef - A tab in a paragraph style, storing an alignment type and location.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTextTab
-// CTTextTabRef has base type: const struct __CTTextTab *
-type TextTabRef uintptr
-// TypesetterRef - A typesetter which performs line layout.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/CTTypesetter
-// CTTypesetterRef has base type: const struct __CTTypesetter *
-type TypesetterRef uintptr
 // FontLanguageCode type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/FontLanguageCode
@@ -161,6 +161,11 @@ type FontPlatformCode uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/FontScriptCode
 // FontScriptCode has base type: UInt32
 type FontScriptCode uintptr
+// JustificationFlags type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/CoreText/JustificationFlags
+// JustificationFlags has base type: UInt16
+type JustificationFlags uintptr
 // JustPCActionType type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/JustPCActionType
@@ -171,11 +176,6 @@ type JustPCActionType uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/JustPCUnconditionalAddAction
 // JustPCUnconditionalAddAction has base type: UInt16
 type JustPCUnconditionalAddAction uintptr
-// JustificationFlags type alias
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreText/JustificationFlags
-// JustificationFlags has base type: UInt16
-type JustificationFlags uintptr
 // KernArrayOffset type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreText/KernArrayOffset

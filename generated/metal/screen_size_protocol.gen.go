@@ -20,3 +20,4 @@ var screenSizeProtocol *objc.Protocol
 func init() {
 	screenSizeProtocol = objc.GetProtocol("screenSize")
 }
+

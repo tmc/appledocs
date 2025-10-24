@@ -15,3 +15,4 @@ var setAccessibilityCancelButtonProtocol *objc.Protocol
 func init() {
 	setAccessibilityCancelButtonProtocol = objc.GetProtocol("setAccessibilityCancelButton")
 }
+

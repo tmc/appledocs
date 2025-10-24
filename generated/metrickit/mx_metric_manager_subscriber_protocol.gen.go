@@ -19,3 +19,4 @@ var MXMetricManagerSubscriberProtocol *objc.Protocol
 func init() {
 	MXMetricManagerSubscriberProtocol = objc.GetProtocol("MXMetricManagerSubscriber")
 }
+

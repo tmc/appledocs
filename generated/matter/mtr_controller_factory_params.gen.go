@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRControllerFactoryParams */
+
+
+/* debug [class_header]: Header for MTRControllerFactoryParams */
 // The class instance for the [MTRControllerFactoryParams] class.
 var (
 	MTRControllerFactoryParamsClass     _MTRControllerFactoryParamsClass
@@ -26,37 +30,37 @@ func getMTRControllerFactoryParamsClass() _MTRControllerFactoryParamsClass {
 type _MTRControllerFactoryParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRControllerFactoryParams */
 // An interface definition for the [MTRControllerFactoryParams] class.
 type IMTRControllerFactoryParams interface {
 	IMTRDeviceControllerFactoryParams
+	
+/* debug [class_interface_properties]: Properties for MTRControllerFactoryParams */
 	// properties:
-	CdCerts() objc.IObject /* cross-framework: Data */
-	SetCdCerts(value objc.IObject /* cross-framework: Data */)
-	PaaCerts() objc.IObject /* cross-framework: Data */
-	SetPaaCerts(value objc.IObject /* cross-framework: Data */)
+	CdCerts() []foundation.Data
+	SetCdCerts(value []foundation.Data)
+	PaaCerts() []foundation.Data
+	SetPaaCerts(value []foundation.Data)
 	StartServer() bool
 	SetStartServer(value bool)
 	StorageDelegate() unsafe.Pointer
-	SetStorageDelegate(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRControllerFactoryParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams
-type MTRControllerFactoryParams struct {
-	MTRDeviceControllerFactoryParams
-}
-
-// MTRControllerFactoryParamsFrom constructs a [MTRControllerFactoryParams] from an unsafe.Pointer.
-func MTRControllerFactoryParamsFrom(ptr unsafe.Pointer) MTRControllerFactoryParams {
-	return MTRControllerFactoryParams{
-		MTRDeviceControllerFactoryParams: MTRDeviceControllerFactoryParamsFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRControllerFactoryParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRControllerFactoryParamsClass) Alloc() MTRControllerFactoryParams {
 	rv := objc.Send[MTRControllerFactoryParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -64,7 +68,6 @@ func (mc _MTRControllerFactoryParamsClass) Alloc() MTRControllerFactoryParams {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRControllerFactoryParamsClass) New() MTRControllerFactoryParams {
 	rv := objc.Send[MTRControllerFactoryParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,67 +90,124 @@ func (m_ MTRControllerFactoryParams) Autorelease() MTRControllerFactoryParams {
 func NewMTRControllerFactoryParams() MTRControllerFactoryParams {
 	return getMTRControllerFactoryParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for MTRControllerFactoryParams */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
-func (m_ MTRControllerFactoryParams) CdCerts() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("cdCerts"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams
+type MTRControllerFactoryParams struct {
+	MTRDeviceControllerFactoryParams
+}
+
+// MTRControllerFactoryParamsFrom constructs a [MTRControllerFactoryParams] from an unsafe.Pointer.
+func MTRControllerFactoryParamsFrom(ptr unsafe.Pointer) MTRControllerFactoryParams {
+	return MTRControllerFactoryParams{
+		MTRDeviceControllerFactoryParams: MTRDeviceControllerFactoryParamsFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRControllerFactoryParams *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRControllerFactoryParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRControllerFactoryParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRControllerFactoryParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRControllerFactoryParams */
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams/cdCerts
+func (m_ MTRControllerFactoryParams) CdCerts() []foundation.Data {
+	rv := objc.Send[[]foundation.Data](m_.ID, objc.Sel("cdCerts"))
 	return rv
-}
+}/* debug [instance_properties/getter]: cdCerts */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/cdcerts
-func (m_ MTRControllerFactoryParams) SetCdCerts(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setCdCerts:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams/cdCerts
+func (m_ MTRControllerFactoryParams) SetCdCerts(value []foundation.Data) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setCdCerts:"), nsArray)
+}/* debug [instance_properties/setter]: cdCerts */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/paacerts
-func (m_ MTRControllerFactoryParams) PaaCerts() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](m_.ID, objc.Sel("paaCerts"))
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams/paaCerts
+func (m_ MTRControllerFactoryParams) PaaCerts() []foundation.Data {
+	rv := objc.Send[[]foundation.Data](m_.ID, objc.Sel("paaCerts"))
 	return rv
-}
+}/* debug [instance_properties/getter]: paaCerts */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/paacerts
-func (m_ MTRControllerFactoryParams) SetPaaCerts(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setPaaCerts:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams/paaCerts
+func (m_ MTRControllerFactoryParams) SetPaaCerts(value []foundation.Data) {
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](m_.ID, objc.Sel("setPaaCerts:"), nsArray)
+}/* debug [instance_properties/setter]: paaCerts */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/startserver
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams/startServer
 func (m_ MTRControllerFactoryParams) StartServer() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("startServer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: startServer */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/startserver
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams/startServer
 func (m_ MTRControllerFactoryParams) SetStartServer(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartServer:"), value)
-}
+}/* debug [instance_properties/setter]: startServer */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/storagedelegate
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRControllerFactoryParams/storageDelegate
 func (m_ MTRControllerFactoryParams) StorageDelegate() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("storageDelegate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: storageDelegate */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrcontrollerfactoryparams/storagedelegate
-func (m_ MTRControllerFactoryParams) SetStorageDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStorageDelegate:"), value)
-}
+/* debug [class.gen.go]: End class MTRControllerFactoryParams */
 
 
 

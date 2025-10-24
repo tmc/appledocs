@@ -14,7 +14,7 @@ var _ = gameplaykit.NewObstacleGraph
 func ExampleNewObstacleGraphWithObstaclesBufferRadius() {
 	_ = gameplaykit.NewObstacleGraphWithObstaclesBufferRadius(
 		[]gameplaykit.PolygonObstacle{}, // obstacles []PolygonObstacle
-		0.0, // bufferRadius float32
+		0.0,                             // bufferRadius float32
 	)
 	// Output:
 }

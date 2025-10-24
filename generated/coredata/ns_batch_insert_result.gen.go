@@ -39,7 +39,6 @@ type IBatchInsertResult interface {
 
 // The result that Core Data returns when executing a batch-insertion request.
 
-
 // The result that Core Data returns when executing a batch-insertion request.
 //
 // [Full Topic]
@@ -88,8 +87,6 @@ func NewBatchInsertResult() BatchInsertResult {
 	return getBatchInsertResultClass().New()
 }
 
-
-
 // The result of a batch-insertion request.
 //
 // [Full Topic]
@@ -99,7 +96,6 @@ func (b_ BatchInsertResult) Result() unsafe.Pointer {
 	return rv
 }
 
-
 // The result of a batch-insertion request.
 //
 // [Full Topic]
@@ -107,7 +103,6 @@ func (b_ BatchInsertResult) Result() unsafe.Pointer {
 func (b_ BatchInsertResult) SetResult(value unsafe.Pointer) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResult:"), value)
 }
-
 
 // The type of result that Core Data returns from this request.
 //
@@ -118,7 +113,6 @@ func (b_ BatchInsertResult) ResultType() BatchInsertRequestResultType {
 	return rv
 }
 
-
 // The type of result that Core Data returns from this request.
 //
 // [Full Topic]
@@ -126,6 +120,3 @@ func (b_ BatchInsertResult) ResultType() BatchInsertRequestResultType {
 func (b_ BatchInsertResult) SetResultType(value BatchInsertRequestResultType) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setResultType:"), value)
 }
-
-
-

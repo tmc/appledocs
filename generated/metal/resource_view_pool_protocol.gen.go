@@ -20,3 +20,4 @@ var ResourceViewPoolProtocol *objc.Protocol
 func init() {
 	ResourceViewPoolProtocol = objc.GetProtocol("MTLResourceViewPool")
 }
+

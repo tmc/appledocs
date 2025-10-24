@@ -19,3 +19,4 @@ var playerViewControllerDidStopPictureInPictureProtocol *objc.Protocol
 func init() {
 	playerViewControllerDidStopPictureInPictureProtocol = objc.GetProtocol("playerViewControllerDidStopPictureInPicture:")
 }
+

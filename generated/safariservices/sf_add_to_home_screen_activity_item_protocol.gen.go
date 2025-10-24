@@ -18,3 +18,4 @@ var SFAddToHomeScreenActivityItemProtocol *objc.Protocol
 func init() {
 	SFAddToHomeScreenActivityItemProtocol = objc.GetProtocol("SFAddToHomeScreenActivityItem")
 }
+

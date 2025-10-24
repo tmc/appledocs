@@ -6,6 +6,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+
+	"github.com/tmc/appledocs/generated/foundation"
+
+	"github.com/tmc/appledocs/generated/objectivec"
+
+	"github.com/tmc/appledocs/generated/vision"
 )
 
 // PCollectionViewDelegate is the NSCollectionViewDelegate protocol interface.
@@ -18,9 +24,9 @@ import (
 // See: doc://com.apple.appkit/documentation/AppKit/NSCollectionViewDelegate
 type PCollectionViewDelegate interface {
 	// Optional methods
-	CollectionViewAcceptDropIndexDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, index int, dropOperation CollectionViewDropOperation) bool
+	CollectionViewAcceptDropIndexDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, index int, dropOperation CollectionViewDropOperation) bool
 	HasCollectionViewAcceptDropIndexDropOperation() bool
-	CollectionViewAcceptDropIndexPathDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, indexPath foundation.IndexPath, dropOperation CollectionViewDropOperation) bool
+	CollectionViewAcceptDropIndexPathDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, indexPath foundation.IndexPath, dropOperation CollectionViewDropOperation) bool
 	HasCollectionViewAcceptDropIndexPathDropOperation() bool
 	CollectionViewCanDragItemsAtIndexesWithEvent(collectionView objc.IObject /* cross-framework: CollectionView */, indexes foundation.IndexSet, event IEvent) bool
 	HasCollectionViewCanDragItemsAtIndexesWithEvent() bool
@@ -32,7 +38,7 @@ type PCollectionViewDelegate interface {
 	HasCollectionViewDidDeselectItemsAtIndexPaths() bool
 	CollectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, item ICollectionViewItem, indexPath foundation.IndexPath)
 	HasCollectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath() bool
-	CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath)
+	CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath)
 	HasCollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath() bool
 	CollectionViewDidSelectItemsAtIndexPaths(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer)
 	HasCollectionViewDidSelectItemsAtIndexPaths() bool
@@ -40,19 +46,19 @@ type PCollectionViewDelegate interface {
 	HasCollectionViewDraggingImageForItemsAtIndexesWithEventOffset() bool
 	CollectionViewDraggingImageForItemsAtIndexPathsWithEventOffset(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer, event IEvent, dragImageOffset PointPointer /* not a class type */) Image
 	HasCollectionViewDraggingImageForItemsAtIndexPathsWithEventOffset() bool
-	CollectionViewDraggingSessionEndedAtPointDragOperation(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, operation DragOperation)
+	CollectionViewDraggingSessionEndedAtPointDragOperation(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, operation DragOperation)
 	HasCollectionViewDraggingSessionEndedAtPointDragOperation() bool
-	CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, indexPaths unsafe.Pointer)
+	CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, indexPaths unsafe.Pointer)
 	HasCollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths() bool
-	CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, indexes foundation.IndexSet)
+	CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, indexes foundation.IndexSet)
 	HasCollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes() bool
 	CollectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexPaths(collectionView objc.IObject /* cross-framework: CollectionView */, dropURL objc.IObject /* cross-framework: NSURL */, indexPaths unsafe.Pointer) []string
 	HasCollectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexPaths() bool
 	CollectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexes(collectionView objc.IObject /* cross-framework: CollectionView */, dropURL objc.IObject /* cross-framework: NSURL */, indexes foundation.IndexSet) []string
 	HasCollectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexes() bool
-	CollectionViewPasteboardWriterForItemAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) objc.ID
+	CollectionViewPasteboardWriterForItemAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) unsafe.Pointer
 	HasCollectionViewPasteboardWriterForItemAtIndexPath() bool
-	CollectionViewPasteboardWriterForItemAtIndex(collectionView objc.IObject /* cross-framework: CollectionView */, index uint) objc.ID
+	CollectionViewPasteboardWriterForItemAtIndex(collectionView objc.IObject /* cross-framework: CollectionView */, index uint) unsafe.Pointer
 	HasCollectionViewPasteboardWriterForItemAtIndex() bool
 	CollectionViewShouldChangeItemsAtIndexPathsToHighlightState(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer, highlightState CollectionViewItemHighlightState) unsafe.Pointer
 	HasCollectionViewShouldChangeItemsAtIndexPathsToHighlightState() bool
@@ -62,15 +68,15 @@ type PCollectionViewDelegate interface {
 	HasCollectionViewShouldSelectItemsAtIndexPaths() bool
 	CollectionViewTransitionLayoutForOldLayoutNewLayout(collectionView objc.IObject /* cross-framework: CollectionView */, fromLayout ICollectionViewLayout, toLayout ICollectionViewLayout) CollectionViewTransitionLayout
 	HasCollectionViewTransitionLayoutForOldLayoutNewLayout() bool
-	CollectionViewUpdateDraggingItemsForDrag(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject)
+	CollectionViewUpdateDraggingItemsForDrag(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer)
 	HasCollectionViewUpdateDraggingItemsForDrag() bool
-	CollectionViewValidateDropProposedIndexDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, proposedDropIndex int, proposedDropOperation CollectionViewDropOperation) DragOperation
+	CollectionViewValidateDropProposedIndexDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, proposedDropIndex int, proposedDropOperation CollectionViewDropOperation) DragOperation
 	HasCollectionViewValidateDropProposedIndexDropOperation() bool
-	CollectionViewValidateDropProposedIndexPathDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, proposedDropIndexPath unsafe.Pointer, proposedDropOperation CollectionViewDropOperation) DragOperation
+	CollectionViewValidateDropProposedIndexPathDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, proposedDropIndexPath objectivec.IObject, proposedDropOperation CollectionViewDropOperation) DragOperation
 	HasCollectionViewValidateDropProposedIndexPathDropOperation() bool
 	CollectionViewWillDisplayItemForRepresentedObjectAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, item ICollectionViewItem, indexPath foundation.IndexPath)
 	HasCollectionViewWillDisplayItemForRepresentedObjectAtIndexPath() bool
-	CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath)
+	CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath)
 	HasCollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath() bool
 	CollectionViewWriteItemsAtIndexPathsToPasteboard(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer, pasteboard IPasteboard) bool
 	HasCollectionViewWriteItemsAtIndexPathsToPasteboard() bool
@@ -82,33 +88,33 @@ type PCollectionViewDelegate interface {
 //
 // Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
 type CollectionViewDelegate struct {
-	_CollectionViewAcceptDropIndexDropOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, index int, dropOperation CollectionViewDropOperation) bool
-	_CollectionViewAcceptDropIndexPathDropOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, indexPath foundation.IndexPath, dropOperation CollectionViewDropOperation) bool
+	_CollectionViewAcceptDropIndexDropOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, index int, dropOperation CollectionViewDropOperation) bool
+	_CollectionViewAcceptDropIndexPathDropOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, indexPath foundation.IndexPath, dropOperation CollectionViewDropOperation) bool
 	_CollectionViewCanDragItemsAtIndexesWithEvent func(collectionView objc.IObject /* cross-framework: CollectionView */, indexes foundation.IndexSet, event IEvent) bool
 	_CollectionViewCanDragItemsAtIndexPathsWithEvent func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer, event IEvent) bool
 	_CollectionViewDidChangeItemsAtIndexPathsToHighlightState func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer, highlightState CollectionViewItemHighlightState)
 	_CollectionViewDidDeselectItemsAtIndexPaths func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer)
 	_CollectionViewDidEndDisplayingItemForRepresentedObjectAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, item ICollectionViewItem, indexPath foundation.IndexPath)
-	_CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath)
+	_CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath)
 	_CollectionViewDidSelectItemsAtIndexPaths func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer)
 	_CollectionViewDraggingImageForItemsAtIndexesWithEventOffset func(collectionView objc.IObject /* cross-framework: CollectionView */, indexes foundation.IndexSet, event IEvent, dragImageOffset PointPointer /* not a class type */) Image
 	_CollectionViewDraggingImageForItemsAtIndexPathsWithEventOffset func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer, event IEvent, dragImageOffset PointPointer /* not a class type */) Image
-	_CollectionViewDraggingSessionEndedAtPointDragOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, operation DragOperation)
-	_CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, indexPaths unsafe.Pointer)
-	_CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, indexes foundation.IndexSet)
+	_CollectionViewDraggingSessionEndedAtPointDragOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, operation DragOperation)
+	_CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, indexPaths unsafe.Pointer)
+	_CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, indexes foundation.IndexSet)
 	_CollectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexPaths func(collectionView objc.IObject /* cross-framework: CollectionView */, dropURL objc.IObject /* cross-framework: NSURL */, indexPaths unsafe.Pointer) []string
 	_CollectionViewNamesOfPromisedFilesDroppedAtDestinationForDraggedItemsAtIndexes func(collectionView objc.IObject /* cross-framework: CollectionView */, dropURL objc.IObject /* cross-framework: NSURL */, indexes foundation.IndexSet) []string
-	_CollectionViewPasteboardWriterForItemAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) objc.ID
-	_CollectionViewPasteboardWriterForItemAtIndex func(collectionView objc.IObject /* cross-framework: CollectionView */, index uint) objc.ID
+	_CollectionViewPasteboardWriterForItemAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) unsafe.Pointer
+	_CollectionViewPasteboardWriterForItemAtIndex func(collectionView objc.IObject /* cross-framework: CollectionView */, index uint) unsafe.Pointer
 	_CollectionViewShouldChangeItemsAtIndexPathsToHighlightState func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer, highlightState CollectionViewItemHighlightState) unsafe.Pointer
 	_CollectionViewShouldDeselectItemsAtIndexPaths func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer) unsafe.Pointer
 	_CollectionViewShouldSelectItemsAtIndexPaths func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer) unsafe.Pointer
 	_CollectionViewTransitionLayoutForOldLayoutNewLayout func(collectionView objc.IObject /* cross-framework: CollectionView */, fromLayout ICollectionViewLayout, toLayout ICollectionViewLayout) CollectionViewTransitionLayout
-	_CollectionViewUpdateDraggingItemsForDrag func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject)
-	_CollectionViewValidateDropProposedIndexDropOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, proposedDropIndex int, proposedDropOperation CollectionViewDropOperation) DragOperation
-	_CollectionViewValidateDropProposedIndexPathDropOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, proposedDropIndexPath unsafe.Pointer, proposedDropOperation CollectionViewDropOperation) DragOperation
+	_CollectionViewUpdateDraggingItemsForDrag func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer)
+	_CollectionViewValidateDropProposedIndexDropOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, proposedDropIndex int, proposedDropOperation CollectionViewDropOperation) DragOperation
+	_CollectionViewValidateDropProposedIndexPathDropOperation func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, proposedDropIndexPath objectivec.IObject, proposedDropOperation CollectionViewDropOperation) DragOperation
 	_CollectionViewWillDisplayItemForRepresentedObjectAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, item ICollectionViewItem, indexPath foundation.IndexPath)
-	_CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath)
+	_CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath func(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath)
 	_CollectionViewWriteItemsAtIndexPathsToPasteboard func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPaths unsafe.Pointer, pasteboard IPasteboard) bool
 	_CollectionViewWriteItemsAtIndexesToPasteboard func(collectionView objc.IObject /* cross-framework: CollectionView */, indexes foundation.IndexSet, pasteboard IPasteboard) bool
 }
@@ -116,14 +122,14 @@ type CollectionViewDelegate struct {
 // SetCollectionViewAcceptDropIndexDropOperation sets the handler for the CollectionViewAcceptDropIndexDropOperation delegate method.
 //
 // Invoked when the mouse is released over a collection view that previously allowed a drop.
-func (d *CollectionViewDelegate) SetCollectionViewAcceptDropIndexDropOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, index int, dropOperation CollectionViewDropOperation) bool) {
+func (d *CollectionViewDelegate) SetCollectionViewAcceptDropIndexDropOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, index int, dropOperation CollectionViewDropOperation) bool) {
 	d._CollectionViewAcceptDropIndexDropOperation = f
 }
 
 // SetCollectionViewAcceptDropIndexPathDropOperation sets the handler for the CollectionViewAcceptDropIndexPathDropOperation delegate method.
 //
 // Incorporates the dropped content into the collection view.
-func (d *CollectionViewDelegate) SetCollectionViewAcceptDropIndexPathDropOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, indexPath foundation.IndexPath, dropOperation CollectionViewDropOperation) bool) {
+func (d *CollectionViewDelegate) SetCollectionViewAcceptDropIndexPathDropOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, indexPath foundation.IndexPath, dropOperation CollectionViewDropOperation) bool) {
 	d._CollectionViewAcceptDropIndexPathDropOperation = f
 }
 
@@ -165,7 +171,7 @@ func (d *CollectionViewDelegate) SetCollectionViewDidEndDisplayingItemForReprese
 // SetCollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath sets the handler for the CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath delegate method.
 //
 // Notifies the delegate that the specified supplementary view was removed from the collection view.
-func (d *CollectionViewDelegate) SetCollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(f func(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath)) {
+func (d *CollectionViewDelegate) SetCollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(f func(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath)) {
 	d._CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath = f
 }
 
@@ -193,21 +199,21 @@ func (d *CollectionViewDelegate) SetCollectionViewDraggingImageForItemsAtIndexPa
 // SetCollectionViewDraggingSessionEndedAtPointDragOperation sets the handler for the CollectionViewDraggingSessionEndedAtPointDragOperation delegate method.
 //
 // Notifies your delegate that a drag session ended.
-func (d *CollectionViewDelegate) SetCollectionViewDraggingSessionEndedAtPointDragOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, operation DragOperation)) {
+func (d *CollectionViewDelegate) SetCollectionViewDraggingSessionEndedAtPointDragOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, operation DragOperation)) {
 	d._CollectionViewDraggingSessionEndedAtPointDragOperation = f
 }
 
 // SetCollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths sets the handler for the CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths delegate method.
 //
 // Notifies your delegate that a drag session is about to begin.
-func (d *CollectionViewDelegate) SetCollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(f func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, indexPaths unsafe.Pointer)) {
+func (d *CollectionViewDelegate) SetCollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(f func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, indexPaths unsafe.Pointer)) {
 	d._CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths = f
 }
 
 // SetCollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes sets the handler for the CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes delegate method.
 //
 // Notifies your delegate that a drag session is about to begin.
-func (d *CollectionViewDelegate) SetCollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(f func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, indexes foundation.IndexSet)) {
+func (d *CollectionViewDelegate) SetCollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(f func(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, indexes foundation.IndexSet)) {
 	d._CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes = f
 }
 
@@ -228,14 +234,14 @@ func (d *CollectionViewDelegate) SetCollectionViewNamesOfPromisedFilesDroppedAtD
 // SetCollectionViewPasteboardWriterForItemAtIndexPath sets the handler for the CollectionViewPasteboardWriterForItemAtIndexPath delegate method.
 //
 // Provides the pasteboard writer for the item at the specified index path.
-func (d *CollectionViewDelegate) SetCollectionViewPasteboardWriterForItemAtIndexPath(f func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) objc.ID) {
+func (d *CollectionViewDelegate) SetCollectionViewPasteboardWriterForItemAtIndexPath(f func(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) unsafe.Pointer) {
 	d._CollectionViewPasteboardWriterForItemAtIndexPath = f
 }
 
 // SetCollectionViewPasteboardWriterForItemAtIndex sets the handler for the CollectionViewPasteboardWriterForItemAtIndex delegate method.
 //
 // Provides the pasteboard writer for the item at the specified index
-func (d *CollectionViewDelegate) SetCollectionViewPasteboardWriterForItemAtIndex(f func(collectionView objc.IObject /* cross-framework: CollectionView */, index uint) objc.ID) {
+func (d *CollectionViewDelegate) SetCollectionViewPasteboardWriterForItemAtIndex(f func(collectionView objc.IObject /* cross-framework: CollectionView */, index uint) unsafe.Pointer) {
 	d._CollectionViewPasteboardWriterForItemAtIndex = f
 }
 
@@ -270,21 +276,21 @@ func (d *CollectionViewDelegate) SetCollectionViewTransitionLayoutForOldLayoutNe
 // SetCollectionViewUpdateDraggingItemsForDrag sets the handler for the CollectionViewUpdateDraggingItemsForDrag delegate method.
 //
 // Asks your delegate to update the dragging items during a drag operation.
-func (d *CollectionViewDelegate) SetCollectionViewUpdateDraggingItemsForDrag(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject)) {
+func (d *CollectionViewDelegate) SetCollectionViewUpdateDraggingItemsForDrag(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer)) {
 	d._CollectionViewUpdateDraggingItemsForDrag = f
 }
 
 // SetCollectionViewValidateDropProposedIndexDropOperation sets the handler for the CollectionViewValidateDropProposedIndexDropOperation delegate method.
 //
 // Validates the specified location to see if it is a valid drop target.
-func (d *CollectionViewDelegate) SetCollectionViewValidateDropProposedIndexDropOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, proposedDropIndex int, proposedDropOperation CollectionViewDropOperation) DragOperation) {
+func (d *CollectionViewDelegate) SetCollectionViewValidateDropProposedIndexDropOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, proposedDropIndex int, proposedDropOperation CollectionViewDropOperation) DragOperation) {
 	d._CollectionViewValidateDropProposedIndexDropOperation = f
 }
 
 // SetCollectionViewValidateDropProposedIndexPathDropOperation sets the handler for the CollectionViewValidateDropProposedIndexPathDropOperation delegate method.
 //
 // Validates whether a drop operation is possible at the specified location.
-func (d *CollectionViewDelegate) SetCollectionViewValidateDropProposedIndexPathDropOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, proposedDropIndexPath unsafe.Pointer, proposedDropOperation CollectionViewDropOperation) DragOperation) {
+func (d *CollectionViewDelegate) SetCollectionViewValidateDropProposedIndexPathDropOperation(f func(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, proposedDropIndexPath objectivec.IObject, proposedDropOperation CollectionViewDropOperation) DragOperation) {
 	d._CollectionViewValidateDropProposedIndexPathDropOperation = f
 }
 
@@ -298,7 +304,7 @@ func (d *CollectionViewDelegate) SetCollectionViewWillDisplayItemForRepresentedO
 // SetCollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath sets the handler for the CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath delegate method.
 //
 // Notifies the delegate that the specified supplementary view is about to be displayed by the collection view.
-func (d *CollectionViewDelegate) SetCollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(f func(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath)) {
+func (d *CollectionViewDelegate) SetCollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(f func(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath)) {
 	d._CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath = f
 }
 
@@ -317,7 +323,7 @@ func (d *CollectionViewDelegate) SetCollectionViewWriteItemsAtIndexesToPasteboar
 }
 
 // CollectionViewAcceptDropIndexDropOperation implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewAcceptDropIndexDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, index int, dropOperation CollectionViewDropOperation) bool {
+func (d *CollectionViewDelegate) CollectionViewAcceptDropIndexDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, index int, dropOperation CollectionViewDropOperation) bool {
 	if d._CollectionViewAcceptDropIndexDropOperation != nil {
 		return d._CollectionViewAcceptDropIndexDropOperation(collectionView, draggingInfo, index, dropOperation)
 	}
@@ -331,7 +337,7 @@ func (d *CollectionViewDelegate) HasCollectionViewAcceptDropIndexDropOperation()
 }
 
 // CollectionViewAcceptDropIndexPathDropOperation implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewAcceptDropIndexPathDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, indexPath foundation.IndexPath, dropOperation CollectionViewDropOperation) bool {
+func (d *CollectionViewDelegate) CollectionViewAcceptDropIndexPathDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, indexPath foundation.IndexPath, dropOperation CollectionViewDropOperation) bool {
 	if d._CollectionViewAcceptDropIndexPathDropOperation != nil {
 		return d._CollectionViewAcceptDropIndexPathDropOperation(collectionView, draggingInfo, indexPath, dropOperation)
 	}
@@ -409,7 +415,7 @@ func (d *CollectionViewDelegate) HasCollectionViewDidEndDisplayingItemForReprese
 }
 
 // CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath) {
+func (d *CollectionViewDelegate) CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath) {
 	if d._CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath != nil {
 		d._CollectionViewDidEndDisplayingSupplementaryViewForElementOfKindAtIndexPath(collectionView, view, elementKind, indexPath)
 	}
@@ -461,7 +467,7 @@ func (d *CollectionViewDelegate) HasCollectionViewDraggingImageForItemsAtIndexPa
 }
 
 // CollectionViewDraggingSessionEndedAtPointDragOperation implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewDraggingSessionEndedAtPointDragOperation(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, operation DragOperation) {
+func (d *CollectionViewDelegate) CollectionViewDraggingSessionEndedAtPointDragOperation(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, operation DragOperation) {
 	if d._CollectionViewDraggingSessionEndedAtPointDragOperation != nil {
 		d._CollectionViewDraggingSessionEndedAtPointDragOperation(collectionView, session, screenPoint, operation)
 	}
@@ -473,7 +479,7 @@ func (d *CollectionViewDelegate) HasCollectionViewDraggingSessionEndedAtPointDra
 }
 
 // CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, indexPaths unsafe.Pointer) {
+func (d *CollectionViewDelegate) CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, indexPaths unsafe.Pointer) {
 	if d._CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths != nil {
 		d._CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexPaths(collectionView, session, screenPoint, indexPaths)
 	}
@@ -485,7 +491,7 @@ func (d *CollectionViewDelegate) HasCollectionViewDraggingSessionWillBeginAtPoin
 }
 
 // CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint objc.IObject /* cross-framework: Point */, indexes foundation.IndexSet) {
+func (d *CollectionViewDelegate) CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(collectionView objc.IObject /* cross-framework: CollectionView */, session IDraggingSession, screenPoint vision.Point, indexes foundation.IndexSet) {
 	if d._CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes != nil {
 		d._CollectionViewDraggingSessionWillBeginAtPointForItemsAtIndexes(collectionView, session, screenPoint, indexes)
 	}
@@ -525,11 +531,11 @@ func (d *CollectionViewDelegate) HasCollectionViewNamesOfPromisedFilesDroppedAtD
 }
 
 // CollectionViewPasteboardWriterForItemAtIndexPath implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewPasteboardWriterForItemAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) objc.ID {
+func (d *CollectionViewDelegate) CollectionViewPasteboardWriterForItemAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, indexPath foundation.IndexPath) unsafe.Pointer {
 	if d._CollectionViewPasteboardWriterForItemAtIndexPath != nil {
 		return d._CollectionViewPasteboardWriterForItemAtIndexPath(collectionView, indexPath)
 	}
-	var zero objc.ID
+	var zero unsafe.Pointer
 	return zero
 }
 
@@ -539,11 +545,11 @@ func (d *CollectionViewDelegate) HasCollectionViewPasteboardWriterForItemAtIndex
 }
 
 // CollectionViewPasteboardWriterForItemAtIndex implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewPasteboardWriterForItemAtIndex(collectionView objc.IObject /* cross-framework: CollectionView */, index uint) objc.ID {
+func (d *CollectionViewDelegate) CollectionViewPasteboardWriterForItemAtIndex(collectionView objc.IObject /* cross-framework: CollectionView */, index uint) unsafe.Pointer {
 	if d._CollectionViewPasteboardWriterForItemAtIndex != nil {
 		return d._CollectionViewPasteboardWriterForItemAtIndex(collectionView, index)
 	}
-	var zero objc.ID
+	var zero unsafe.Pointer
 	return zero
 }
 
@@ -609,7 +615,7 @@ func (d *CollectionViewDelegate) HasCollectionViewTransitionLayoutForOldLayoutNe
 }
 
 // CollectionViewUpdateDraggingItemsForDrag implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewUpdateDraggingItemsForDrag(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject) {
+func (d *CollectionViewDelegate) CollectionViewUpdateDraggingItemsForDrag(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer) {
 	if d._CollectionViewUpdateDraggingItemsForDrag != nil {
 		d._CollectionViewUpdateDraggingItemsForDrag(collectionView, draggingInfo)
 	}
@@ -621,7 +627,7 @@ func (d *CollectionViewDelegate) HasCollectionViewUpdateDraggingItemsForDrag() b
 }
 
 // CollectionViewValidateDropProposedIndexDropOperation implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewValidateDropProposedIndexDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, proposedDropIndex int, proposedDropOperation CollectionViewDropOperation) DragOperation {
+func (d *CollectionViewDelegate) CollectionViewValidateDropProposedIndexDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, proposedDropIndex int, proposedDropOperation CollectionViewDropOperation) DragOperation {
 	if d._CollectionViewValidateDropProposedIndexDropOperation != nil {
 		return d._CollectionViewValidateDropProposedIndexDropOperation(collectionView, draggingInfo, proposedDropIndex, proposedDropOperation)
 	}
@@ -635,7 +641,7 @@ func (d *CollectionViewDelegate) HasCollectionViewValidateDropProposedIndexDropO
 }
 
 // CollectionViewValidateDropProposedIndexPathDropOperation implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewValidateDropProposedIndexPathDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo objc.IObject, proposedDropIndexPath unsafe.Pointer, proposedDropOperation CollectionViewDropOperation) DragOperation {
+func (d *CollectionViewDelegate) CollectionViewValidateDropProposedIndexPathDropOperation(collectionView objc.IObject /* cross-framework: CollectionView */, draggingInfo unsafe.Pointer, proposedDropIndexPath objectivec.IObject, proposedDropOperation CollectionViewDropOperation) DragOperation {
 	if d._CollectionViewValidateDropProposedIndexPathDropOperation != nil {
 		return d._CollectionViewValidateDropProposedIndexPathDropOperation(collectionView, draggingInfo, proposedDropIndexPath, proposedDropOperation)
 	}
@@ -661,7 +667,7 @@ func (d *CollectionViewDelegate) HasCollectionViewWillDisplayItemForRepresentedO
 }
 
 // CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath implements the PCollectionViewDelegate interface.
-func (d *CollectionViewDelegate) CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPath foundation.IndexPath) {
+func (d *CollectionViewDelegate) CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(collectionView objc.IObject /* cross-framework: CollectionView */, view IView, elementKind CollectionViewSupplementaryElementKind /* typedef */, indexPath foundation.IndexPath) {
 	if d._CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath != nil {
 		d._CollectionViewWillDisplaySupplementaryViewForElementKindAtIndexPath(collectionView, view, elementKind, indexPath)
 	}

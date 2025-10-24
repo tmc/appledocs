@@ -14,7 +14,7 @@ var _ = gameplaykit.NewQuadtree
 func ExampleNewQuadtreeWithBoundingQuadMinimumCellSize() {
 	_ = gameplaykit.NewQuadtreeWithBoundingQuadMinimumCellSize(
 		gameplaykit.Quad{}, // quad Quad
-		0.0, // minCellSize float32
+		0.0,                // minCellSize float32
 	)
 	// Output:
 }

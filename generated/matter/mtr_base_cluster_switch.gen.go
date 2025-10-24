@@ -33,8 +33,6 @@ type IMTRBaseClusterSwitch interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterSwitch
 type MTRBaseClusterSwitch struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterSwitch) Autorelease() MTRBaseClusterSwitch {
 func NewMTRBaseClusterSwitch() MTRBaseClusterSwitch {
 	return getMTRBaseClusterSwitchClass().New()
 }
-
-
-
-

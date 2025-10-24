@@ -15,3 +15,4 @@ var IMKStateSettingProtocol *objc.Protocol
 func init() {
 	IMKStateSettingProtocol = objc.GetProtocol("IMKStateSetting")
 }
+

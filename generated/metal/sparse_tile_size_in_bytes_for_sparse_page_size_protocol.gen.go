@@ -20,3 +20,4 @@ var sparseTileSizeInBytesForSparsePageSizeProtocol *objc.Protocol
 func init() {
 	sparseTileSizeInBytesForSparsePageSizeProtocol = objc.GetProtocol("sparseTileSizeInBytesForSparsePageSize:")
 }
+

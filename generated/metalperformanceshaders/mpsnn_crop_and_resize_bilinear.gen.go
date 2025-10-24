@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPSNNCropAndResizeBilinear */
+
+
+/* debug [class_header]: Header for MPSNNCropAndResizeBilinear */
 // The class instance for the [CropAndResizeBilinear] class.
 var (
 	CropAndResizeBilinearClass     _CropAndResizeBilinearClass
@@ -27,40 +31,38 @@ func getCropAndResizeBilinearClass() _CropAndResizeBilinearClass {
 type _CropAndResizeBilinearClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CropAndResizeBilinear */
 // An interface definition for the [CropAndResizeBilinear] class.
 type ICropAndResizeBilinear interface {
 	ICNNKernel
+	
+/* debug [class_interface_properties]: Properties for CropAndResizeBilinear */
 	// properties:
-	Regions() MPSRegion /* not a class type */
-	ResizeHeight() uint
-	NumberOfRegions() int
-	SetNumberOfRegions(value int)
-	ResizeWidth() int
-	SetResizeWidth(value int)
+	NumberOfRegions() objectivec.IObject
+	SetNumberOfRegions(value objectivec.IObject)
+	Regions() objectivec.IObject
+	SetRegions(value objectivec.IObject)
+	ResizeHeight() objectivec.IObject
+	SetResizeHeight(value objectivec.IObject)
+	ResizeWidth() objectivec.IObject
+	SetResizeWidth(value objectivec.IObject)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CropAndResizeBilinear */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A cropping and bilinear resizing filter.
 
 
-// A cropping and bilinear resizing filter.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear
-type CropAndResizeBilinear struct {
-	CNNKernel
-}
-
-// CropAndResizeBilinearFrom constructs a [CropAndResizeBilinear] from an unsafe.Pointer.
-//
-// A cropping and bilinear resizing filter.
-func CropAndResizeBilinearFrom(ptr unsafe.Pointer) CropAndResizeBilinear {
-	return CropAndResizeBilinear{
-		CNNKernel: CNNKernelFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for CropAndResizeBilinear */
 // Alloc allocates a new instance without initialization.
 func (cc _CropAndResizeBilinearClass) Alloc() CropAndResizeBilinear {
 	rv := objc.Send[CropAndResizeBilinear](objc.ID(cc.class), objc.Sel("alloc"))
@@ -68,7 +70,6 @@ func (cc _CropAndResizeBilinearClass) Alloc() CropAndResizeBilinear {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CropAndResizeBilinearClass) New() CropAndResizeBilinear {
 	rv := objc.Send[CropAndResizeBilinear](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,63 +92,138 @@ func (c_ CropAndResizeBilinear) Autorelease() CropAndResizeBilinear {
 func NewCropAndResizeBilinear() CropAndResizeBilinear {
 	return getCropAndResizeBilinearClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CropAndResizeBilinear */
+// A cropping and bilinear resizing filter.
+
+
+// A cropping and bilinear resizing filter.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear
+type CropAndResizeBilinear struct {
+	CNNKernel
+}
+
+// CropAndResizeBilinearFrom constructs a [CropAndResizeBilinear] from an unsafe.Pointer.
+//
+// A cropping and bilinear resizing filter.
+func CropAndResizeBilinearFrom(ptr unsafe.Pointer) CropAndResizeBilinear {
+	return CropAndResizeBilinear{
+		CNNKernel: CNNKernelFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CropAndResizeBilinear */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/init(coder:device:)
-func NewCropAndResizeBilinearWithCoderDevice(aDecoder objc.IObject /* cross-framework: Coder */, device objectivec.IObject) CropAndResizeBilinear {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013788-initwithcoder
+func NewCropAndResizeBilinearWithCoderDevice(aDecoder foundation.Coder, device unsafe.Pointer) CropAndResizeBilinear {
 	instance := getCropAndResizeBilinearClass().Alloc()
 	rv := objc.Send[CropAndResizeBilinear](instance.ID, objc.Sel("initWithCoder:device:"), aDecoder, device)
 	rv.Autorelease()
 	return rv
-}
-
+}/* debug [class_init_methods/constructor]: NewCropAndResizeBilinearWithCoderDevice */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/regions
-func (c_ CropAndResizeBilinear) Regions() MPSRegion /* not a class type */ {
-	rv := objc.Send[Region](c_.ID, objc.Sel("regions"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013789-initwithdevice
+func NewCropAndResizeBilinearWithDeviceResizeWidthResizeHeightNumberOfRegionsRegions(device unsafe.Pointer, resizeWidth uint, resizeHeight uint, numberOfRegions uint, regions objc.IObject /* cross-framework: MPSRegion */) CropAndResizeBilinear {
+	instance := getCropAndResizeBilinearClass().Alloc()
+	rv := objc.Send[CropAndResizeBilinear](instance.ID, objc.Sel("initWithDevice:resizeWidth:resizeHeight:numberOfRegions:regions:"), device, resizeWidth, resizeHeight, numberOfRegions, regions)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCropAndResizeBilinearWithDeviceResizeWidthResizeHeightNumberOfRegionsRegions */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CropAndResizeBilinear */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CropAndResizeBilinear */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CropAndResizeBilinear */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CropAndResizeBilinear */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNNCropAndResizeBilinear/resizeHeight
-func (c_ CropAndResizeBilinear) ResizeHeight() uint {
-	rv := objc.Send[uint](c_.ID, objc.Sel("resizeHeight"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013790-numberofregions
+func (c_ CropAndResizeBilinear) NumberOfRegions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("numberOfRegions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: numberOfRegions */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/numberofregions
-func (c_ CropAndResizeBilinear) NumberOfRegions() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("numberOfRegions"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/numberofregions
-func (c_ CropAndResizeBilinear) SetNumberOfRegions(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013790-numberofregions
+func (c_ CropAndResizeBilinear) SetNumberOfRegions(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfRegions:"), value)
-}
+}/* debug [instance_properties/setter]: numberOfRegions */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
-func (c_ CropAndResizeBilinear) ResizeWidth() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("resizeWidth"))
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013791-regions
+func (c_ CropAndResizeBilinear) Regions() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("regions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: regions */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/resizewidth
-func (c_ CropAndResizeBilinear) SetResizeWidth(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013791-regions
+func (c_ CropAndResizeBilinear) SetRegions(value objectivec.IObject) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setRegions:"), value)
+}/* debug [instance_properties/setter]: regions */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013792-resizeheight
+func (c_ CropAndResizeBilinear) ResizeHeight() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("resizeHeight"))
+	return rv
+}/* debug [instance_properties/getter]: resizeHeight */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013792-resizeheight
+func (c_ CropAndResizeBilinear) SetResizeHeight(value objectivec.IObject) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setResizeHeight:"), value)
+}/* debug [instance_properties/setter]: resizeHeight */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013793-resizewidth
+func (c_ CropAndResizeBilinear) ResizeWidth() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("resizeWidth"))
+	return rv
+}/* debug [instance_properties/getter]: resizeWidth */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/metalperformanceshaders/mpsnncropandresizebilinear/3013793-resizewidth
+func (c_ CropAndResizeBilinear) SetResizeWidth(value objectivec.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setResizeWidth:"), value)
-}
+}/* debug [instance_properties/setter]: resizeWidth */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNNCropAndResizeBilinear */
 
 

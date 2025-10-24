@@ -38,7 +38,6 @@ type IPHAssetResourceManager interface {
 //
 // An asset can have multiple underlying data resources—for example, both original and edited versions—each of which is represented by a object. Unlike the class, which provides and caches the primary representations of assets as thumbnails, image objects, or video objects, the asset resource manager provides direct access to these underlying data resources.
 
-
 // A resource manager for the data storage underlying a Photos asset.
 //
 // [Full Topic]
@@ -84,7 +83,3 @@ func (p_ PHAssetResourceManager) Autorelease() PHAssetResourceManager {
 func NewPHAssetResourceManager() PHAssetResourceManager {
 	return getPHAssetResourceManagerClass().New()
 }
-
-
-
-

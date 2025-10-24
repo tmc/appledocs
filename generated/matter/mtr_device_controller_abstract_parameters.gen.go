@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTRDeviceControllerAbstractParameters */
+
+
+/* debug [class_header]: Header for MTRDeviceControllerAbstractParameters */
 // The class instance for the [MTRDeviceControllerAbstractParameters] class.
 var (
 	MTRDeviceControllerAbstractParametersClass     _MTRDeviceControllerAbstractParametersClass
@@ -26,29 +30,30 @@ func getMTRDeviceControllerAbstractParametersClass() _MTRDeviceControllerAbstrac
 type _MTRDeviceControllerAbstractParametersClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRDeviceControllerAbstractParameters */
 // An interface definition for the [MTRDeviceControllerAbstractParameters] class.
 type IMTRDeviceControllerAbstractParameters interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTRDeviceControllerAbstractParameters */
 	// properties:
-	StartSuspended() bool
-	SetStartSuspended(value bool)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRDeviceControllerAbstractParameters */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRDeviceControllerAbstractParameters
-type MTRDeviceControllerAbstractParameters struct {
-	objectivec.Object
-}
-
-// MTRDeviceControllerAbstractParametersFrom constructs a [MTRDeviceControllerAbstractParameters] from an unsafe.Pointer.
-func MTRDeviceControllerAbstractParametersFrom(ptr unsafe.Pointer) MTRDeviceControllerAbstractParameters {
-	return MTRDeviceControllerAbstractParameters{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTRDeviceControllerAbstractParameters */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRDeviceControllerAbstractParametersClass) Alloc() MTRDeviceControllerAbstractParameters {
 	rv := objc.Send[MTRDeviceControllerAbstractParameters](objc.ID(mc.class), objc.Sel("alloc"))
@@ -56,7 +61,6 @@ func (mc _MTRDeviceControllerAbstractParametersClass) Alloc() MTRDeviceControlle
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRDeviceControllerAbstractParametersClass) New() MTRDeviceControllerAbstractParameters {
 	rv := objc.Send[MTRDeviceControllerAbstractParameters](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,26 +83,53 @@ func (m_ MTRDeviceControllerAbstractParameters) Autorelease() MTRDeviceControlle
 func NewMTRDeviceControllerAbstractParameters() MTRDeviceControllerAbstractParameters {
 	return getMTRDeviceControllerAbstractParametersClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// Whether the controller should start out suspended.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerabstractparameters/startsuspended
-func (m_ MTRDeviceControllerAbstractParameters) StartSuspended() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("startSuspended"))
-	return rv
+/* debug [class_struct]: Struct for MTRDeviceControllerAbstractParameters */
+// A parent class referenced by other Matter classes.
+
+
+// A parent class referenced by other Matter classes. [Full Topic]
+type MTRDeviceControllerAbstractParameters struct {
+	objectivec.Object
 }
 
-
-// Whether the controller should start out suspended.
+// MTRDeviceControllerAbstractParametersFrom constructs a [MTRDeviceControllerAbstractParameters] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/matter/mtrdevicecontrollerabstractparameters/startsuspended
-func (m_ MTRDeviceControllerAbstractParameters) SetStartSuspended(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStartSuspended:"), value)
+// A parent class referenced by other Matter classes.
+func MTRDeviceControllerAbstractParametersFrom(ptr unsafe.Pointer) MTRDeviceControllerAbstractParameters {
+	return MTRDeviceControllerAbstractParameters{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for MTRDeviceControllerAbstractParameters *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRDeviceControllerAbstractParameters */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRDeviceControllerAbstractParameters */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRDeviceControllerAbstractParameters */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTRDeviceControllerAbstractParameters */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTRDeviceControllerAbstractParameters */
 
 
 

@@ -20,3 +20,4 @@ var BAManagedAssetPackDownloadDelegateProtocol *objc.Protocol
 func init() {
 	BAManagedAssetPackDownloadDelegateProtocol = objc.GetProtocol("BAManagedAssetPackDownloadDelegate")
 }
+

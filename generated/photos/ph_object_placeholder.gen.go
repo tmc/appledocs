@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHObjectPlaceholder] class.
@@ -41,7 +41,6 @@ type IPHObjectPlaceholder interface {
 // A read-only proxy object that represents a Photos asset or collection to create.
 //
 // You obtain object placeholders when you use change requests to create assets, collections, or collection lists. After the change request completes, you can use the object placeholder to fetch the newly created object. You can also use an object placeholder to make additional change requests involving the object to create. For example, the following code uses a placeholder to add a newly created asset to an album. A placeholder always has the same local identifier as the asset, collection, or collection list that it represents. To find the object that corresponds to a placeholder, read the placeholder’s property and use it to fetch the actual object. Alternatively, because the class implements the and methods in terms of its property, you can also find the object for a placeholder using techniques that depend on these methods.
-
 
 // A read-only proxy object that represents a Photos asset or collection to create.
 //
@@ -91,8 +90,6 @@ func NewPHObjectPlaceholder() PHObjectPlaceholder {
 	return getPHObjectPlaceholderClass().New()
 }
 
-
-
 // Returns an integer that can be used as a table address in a hash table structure.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (p_ PHObjectPlaceholder) Hash() int {
 	return rv
 }
 
-
 // Returns an integer that can be used as a table address in a hash table structure.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (p_ PHObjectPlaceholder) Hash() int {
 func (p_ PHObjectPlaceholder) SetHash(value int) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setHash:"), value)
 }
-
 
 // A unique string that persistently identifies the object.
 //
@@ -121,7 +116,6 @@ func (p_ PHObjectPlaceholder) LocalIdentifier() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // A unique string that persistently identifies the object.
 //
 // [Full Topic]
@@ -129,6 +123,3 @@ func (p_ PHObjectPlaceholder) LocalIdentifier() objc.IObject /* cross-framework:
 func (p_ PHObjectPlaceholder) SetLocalIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setLocalIdentifier:"), value)
 }
-
-
-

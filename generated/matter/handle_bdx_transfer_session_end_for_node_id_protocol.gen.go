@@ -21,3 +21,4 @@ var handleBDXTransferSessionEndForNodeIDProtocol *objc.Protocol
 func init() {
 	handleBDXTransferSessionEndForNodeIDProtocol = objc.GetProtocol("handleBDXTransferSessionEndForNodeID:")
 }
+

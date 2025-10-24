@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INGetUserCurrentRestaurantReservationBookingsIntent] class.
@@ -43,7 +43,6 @@ type IINGetUserCurrentRestaurantReservationBookingsIntent interface {
 // A request for the list of the user’s current reservations.
 //
 // An object asks you to retrieve the current restaurant reservations associated with the user. Maps sends this intent to your Intents extension when it needs information about all of the user’s current reservations, or when it needs information about one or more specific reservations. Use the properties of this object to determine which reservations to return. When searching for reservations, use the properties to fetch only the specified reservation, or use the property to fetch pending reservations only at the specified restaurant. If both of those properties are , retrieve all of the user’s currently pending reservations. After fetching the appropriate set of reservations, use the and properties to limit the set of results you return as part of your response. To handle this intent, the handler object in your Intents extension must adopt the protocol. Your handler should resolve and confirm any parameters and create an object using the found results.
-
 
 // A request for the list of the user’s current reservations.
 //
@@ -93,8 +92,6 @@ func NewINGetUserCurrentRestaurantReservationBookingsIntent() INGetUserCurrentRe
 	return getINGetUserCurrentRestaurantReservationBookingsIntentClass().New()
 }
 
-
-
 // An identifier to use when searching for the user’s reservations.
 //
 // [Full Topic]
@@ -104,7 +101,6 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentif
 	return rv
 }
 
-
 // An identifier to use when searching for the user’s reservations.
 //
 // [Full Topic]
@@ -112,7 +108,6 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) ReservationIdentif
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetReservationIdentifier(value string) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setReservationIdentifier:"), objc.String(value))
 }
-
 
 // A restaurant to use as a filter when searching for reservations.
 //
@@ -123,7 +118,6 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) Restaurant() unsaf
 	return rv
 }
 
-
 // A restaurant to use as a filter when searching for reservations.
 //
 // [Full Topic]
@@ -131,7 +125,6 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) Restaurant() unsaf
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetRestaurant(value unsafe.Pointer) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setRestaurant:"), value)
 }
-
 
 // The earliest date to associate with any reservations.
 //
@@ -142,7 +135,6 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) EarliestBookingDat
 	return rv
 }
 
-
 // The earliest date to associate with any reservations.
 //
 // [Full Topic]
@@ -150,7 +142,6 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) EarliestBookingDat
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetEarliestBookingDateForResults(value foundation.IDate) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setEarliestBookingDateForResults:"), value)
 }
-
 
 // The maximum number of reservations to include in your response object.
 //
@@ -161,7 +152,6 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) MaximumNumberOfRes
 	return rv
 }
 
-
 // The maximum number of reservations to include in your response object.
 //
 // [Full Topic]
@@ -169,6 +159,3 @@ func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) MaximumNumberOfRes
 func (i_ INGetUserCurrentRestaurantReservationBookingsIntent) SetMaximumNumberOfResults(value foundation.INumber) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setMaximumNumberOfResults:"), value)
 }
-
-
-

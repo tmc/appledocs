@@ -7,9 +7,12 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreml"
 )
 
+/* debug [class.gen.go]: Generating class MPSNDArrayGradientState */
+
+
+/* debug [class_header]: Header for MPSNDArrayGradientState */
 // The class instance for the [NDArrayGradientState] class.
 var (
 	NDArrayGradientStateClass     _NDArrayGradientStateClass
@@ -26,29 +29,30 @@ func getNDArrayGradientStateClass() _NDArrayGradientStateClass {
 type _NDArrayGradientStateClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NDArrayGradientState */
 // An interface definition for the [NDArrayGradientState] class.
 type INDArrayGradientState interface {
 	IState
+	
+/* debug [class_interface_properties]: Properties for NDArrayGradientState */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NDArrayGradientState */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayGradientState
-type NDArrayGradientState struct {
-	coreml.State
-}
-
-// NDArrayGradientStateFrom constructs a [NDArrayGradientState] from an unsafe.Pointer.
-func NDArrayGradientStateFrom(ptr unsafe.Pointer) NDArrayGradientState {
-	return NDArrayGradientState{
-		State: coreml.StateFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for NDArrayGradientState */
 // Alloc allocates a new instance without initialization.
 func (nc _NDArrayGradientStateClass) Alloc() NDArrayGradientState {
 	rv := objc.Send[NDArrayGradientState](objc.ID(nc.class), objc.Sel("alloc"))
@@ -56,7 +60,6 @@ func (nc _NDArrayGradientStateClass) Alloc() NDArrayGradientState {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NDArrayGradientStateClass) New() NDArrayGradientState {
 	rv := objc.Send[NDArrayGradientState](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -79,7 +82,53 @@ func (n_ NDArrayGradientState) Autorelease() NDArrayGradientState {
 func NewNDArrayGradientState() NDArrayGradientState {
 	return getNDArrayGradientStateClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for NDArrayGradientState */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MetalPerformanceShaders/MPSNDArrayGradientState
+type NDArrayGradientState struct {
+	State
+}
+
+// NDArrayGradientStateFrom constructs a [NDArrayGradientState] from an unsafe.Pointer.
+func NDArrayGradientStateFrom(ptr unsafe.Pointer) NDArrayGradientState {
+	return NDArrayGradientState{
+		State: StateFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NDArrayGradientState *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NDArrayGradientState */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NDArrayGradientState */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NDArrayGradientState */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NDArrayGradientState */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPSNDArrayGradientState */
 
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,30 +32,29 @@ type _PlacemarkClass struct {
 type IPlacemark interface {
 	objectivec.IObject
 	// properties:
-	AddressDictionary() objc.IObject /* cross-framework: NSDictionary */
+	AddressDictionary() objc.IObject  /* cross-framework: NSDictionary */
 	AdministrativeArea() objc.IObject /* cross-framework: NSString */
 	AreasOfInterest() []string
-	Country() objc.IObject /* cross-framework: NSString */
-	InlandWater() objc.IObject /* cross-framework: NSString */
+	Country() objc.IObject        /* cross-framework: NSString */
+	InlandWater() objc.IObject    /* cross-framework: NSString */
 	ISOcountryCode() objc.IObject /* cross-framework: NSString */
-	Locality() objc.IObject /* cross-framework: NSString */
+	Locality() objc.IObject       /* cross-framework: NSString */
 	Location() ICLLocation
-	Name() objc.IObject /* cross-framework: NSString */
-	Ocean() objc.IObject /* cross-framework: NSString */
+	Name() objc.IObject       /* cross-framework: NSString */
+	Ocean() objc.IObject      /* cross-framework: NSString */
 	PostalCode() objc.IObject /* cross-framework: NSString */
 	Region() ICLRegion
 	SubAdministrativeArea() objc.IObject /* cross-framework: NSString */
-	SubLocality() objc.IObject /* cross-framework: NSString */
-	SubThoroughfare() objc.IObject /* cross-framework: NSString */
-	Thoroughfare() objc.IObject /* cross-framework: NSString */
-	TimeZone() objc.IObject /* cross-framework: TimeZone */
+	SubLocality() objc.IObject           /* cross-framework: NSString */
+	SubThoroughfare() objc.IObject       /* cross-framework: NSString */
+	Thoroughfare() objc.IObject          /* cross-framework: NSString */
+	TimeZone() objc.IObject              /* cross-framework: TimeZone */
 	// methods:
 }
 
 // A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
 //
 // A object stores placemark data for a given latitude and longitude. Placemark data includes information such as the country or region, state, city, and street address associated with the specified coordinate. It can also include points of interest and geographically related data. When you reverse geocode a geographic coordinate using a object, you receive a object containing the descriptive information for that location. You can also create object and fill it with address information yourself, which you might do when you want to determine the geographic coordinate associated with the location.
-
 
 // A user-friendly description of a geographic coordinate, often containing the name of the place, its address, and other relevant information.
 //
@@ -103,15 +102,12 @@ func NewPlacemark() Placemark {
 	return getPlacemarkClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
 func NewPlacemarkWithLocationNamePostalAddress(location ICLLocation, name objc.IObject /* cross-framework: NSString */, postalAddress objectivec.IObject) Placemark {
 	rv := objc.Send[Placemark](objc.ID(getPlacemarkClass().class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, name, postalAddress)
 	return rv
 }
-
 
 // Initializes and returns a placemark object from another placemark object.
 //
@@ -124,15 +120,12 @@ func NewPlacemarkWithPlacemark(placemark ICLPlacemark) Placemark {
 	return rv
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CoreLocation/CLPlacemark/init(location:name:postalAddress:)
 func (pc _PlacemarkClass) PlacemarkWithLocationNamePostalAddress(location ICLLocation, name objc.IObject /* cross-framework: NSString */, postalAddress objectivec.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("placemarkWithLocation:name:postalAddress:"), location, name, postalAddress)
 	return rv
 }
-
 
 // A dictionary containing the Address Book keys and values for the placemark.
 //
@@ -143,7 +136,6 @@ func (p_ Placemark) AddressDictionary() objc.IObject /* cross-framework: NSDicti
 	return rv
 }
 
-
 // The state or province associated with the placemark.
 //
 // [Full Topic]
@@ -152,7 +144,6 @@ func (p_ Placemark) AdministrativeArea() objc.IObject /* cross-framework: NSStri
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("administrativeArea"))
 	return rv
 }
-
 
 // The relevant areas of interest associated with the placemark.
 //
@@ -163,7 +154,6 @@ func (p_ Placemark) AreasOfInterest() []string {
 	return rv
 }
 
-
 // The name of the country or region associated with the placemark.
 //
 // [Full Topic]
@@ -172,7 +162,6 @@ func (p_ Placemark) Country() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("country"))
 	return rv
 }
-
 
 // The name of the inland water body associated with the placemark.
 //
@@ -183,7 +172,6 @@ func (p_ Placemark) InlandWater() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The abbreviated country or region name.
 //
 // [Full Topic]
@@ -192,7 +180,6 @@ func (p_ Placemark) ISOcountryCode() objc.IObject /* cross-framework: NSString *
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("ISOcountryCode"))
 	return rv
 }
-
 
 // The city associated with the placemark.
 //
@@ -203,7 +190,6 @@ func (p_ Placemark) Locality() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The location object containing latitude and longitude information.
 //
 // [Full Topic]
@@ -212,7 +198,6 @@ func (p_ Placemark) Location() ICLLocation {
 	rv := objc.Send[Location](p_.ID, objc.Sel("location"))
 	return rv
 }
-
 
 // The name of the placemark.
 //
@@ -223,7 +208,6 @@ func (p_ Placemark) Name() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The name of the ocean associated with the placemark.
 //
 // [Full Topic]
@@ -232,7 +216,6 @@ func (p_ Placemark) Ocean() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("ocean"))
 	return rv
 }
-
 
 // The postal code associated with the placemark.
 //
@@ -243,7 +226,6 @@ func (p_ Placemark) PostalCode() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The geographic region associated with the placemark.
 //
 // [Full Topic]
@@ -252,7 +234,6 @@ func (p_ Placemark) Region() ICLRegion {
 	rv := objc.Send[Region](p_.ID, objc.Sel("region"))
 	return rv
 }
-
 
 // Additional administrative area information for the placemark.
 //
@@ -263,7 +244,6 @@ func (p_ Placemark) SubAdministrativeArea() objc.IObject /* cross-framework: NSS
 	return rv
 }
 
-
 // Additional city-level information for the placemark.
 //
 // [Full Topic]
@@ -272,7 +252,6 @@ func (p_ Placemark) SubLocality() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("subLocality"))
 	return rv
 }
-
 
 // Additional street-level information for the placemark.
 //
@@ -283,7 +262,6 @@ func (p_ Placemark) SubThoroughfare() objc.IObject /* cross-framework: NSString 
 	return rv
 }
 
-
 // The street address associated with the placemark.
 //
 // [Full Topic]
@@ -293,7 +271,6 @@ func (p_ Placemark) Thoroughfare() objc.IObject /* cross-framework: NSString */ 
 	return rv
 }
 
-
 // The time zone associated with the placemark.
 //
 // [Full Topic]
@@ -302,5 +279,3 @@ func (p_ Placemark) TimeZone() objc.IObject /* cross-framework: TimeZone */ {
 	rv := objc.Send[foundation.TimeZone](p_.ID, objc.Sel("timeZone"))
 	return rv
 }
-
-

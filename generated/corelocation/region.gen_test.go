@@ -14,8 +14,8 @@ var _ = corelocation.NewRegion
 func ExampleNewRegionCircularRegionWithCenterRadiusIdentifier() {
 	_ = corelocation.NewRegionCircularRegionWithCenterRadiusIdentifier(
 		corelocation.LocationCoordinate2D{}, // center LocationCoordinate2D
-		corelocation.LocationDistance{}, // radius LocationDistance
-		"identifier", // identifier string
+		corelocation.LocationDistance{},     // radius LocationDistance
+		"identifier",                        // identifier string
 	)
 	// Output:
 }

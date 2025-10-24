@@ -9,9 +9,5 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	Bool = _undefined // referenced in NearbyInteraction
-	NIDiscoveryToken = _undefined // referenced in NearbyInteraction
-	NINearbyObjectVerticalDirectionEstimate = _undefined // referenced in NearbyInteraction
+	Session = _undefined // referenced in NearbyInteraction
 )
-
-

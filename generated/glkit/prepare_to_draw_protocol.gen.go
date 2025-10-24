@@ -18,3 +18,4 @@ var prepareToDrawProtocol *objc.Protocol
 func init() {
 	prepareToDrawProtocol = objc.GetProtocol("prepareToDraw")
 }
+

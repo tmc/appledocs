@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,7 +34,7 @@ type IPersistentStore interface {
 	// properties:
 	Metadata() foundation.IDictionary
 	SetMetadata(value foundation.IDictionary)
-	Type() objc.IObject /* cross-framework: NSString */
+	Type() objc.IObject              /* cross-framework: NSString */
 	ConfigurationName() objc.IObject /* cross-framework: NSString */
 	SetConfigurationName(value objc.IObject /* cross-framework: NSString */)
 	CoreSpotlightExporter() ICoreDataCoreSpotlightDelegate
@@ -55,7 +55,6 @@ type IPersistentStore interface {
 // The abstract base class for all Core Data persistent stores.
 //
 // Core Data provides four store types—SQLite, Binary, XML, and In-Memory (the XML store is not available on iOS); these are described in Persistent Store Features. Core Data also provides subclasses of that you can use to define your own store types: and . The Binary and XML stores are examples of atomic stores that inherit functionality from .
-
 
 // The abstract base class for all Core Data persistent stores.
 //
@@ -103,8 +102,6 @@ func NewPersistentStore() PersistentStore {
 	return getPersistentStoreClass().New()
 }
 
-
-
 // Returns a store initialized with the given arguments.
 //
 // [Full Topic]
@@ -116,8 +113,6 @@ func NewPersistentStoreWithPersistentStoreCoordinatorConfigurationNameURLOptions
 	return rv
 }
 
-
-
 // The metadata for the persistent store.
 //
 // [Full Topic]
@@ -127,7 +122,6 @@ func (p_ PersistentStore) Metadata() foundation.IDictionary {
 	return rv
 }
 
-
 // The metadata for the persistent store.
 //
 // [Full Topic]
@@ -135,7 +129,6 @@ func (p_ PersistentStore) Metadata() foundation.IDictionary {
 func (p_ PersistentStore) SetMetadata(value foundation.IDictionary) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMetadata:"), value)
 }
-
 
 // The type string of the persistent store.
 //
@@ -146,7 +139,6 @@ func (p_ PersistentStore) Type() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // The name of the managed object model configuration that creates the persistent store.
 //
 // [Full Topic]
@@ -156,7 +148,6 @@ func (p_ PersistentStore) ConfigurationName() objc.IObject /* cross-framework: N
 	return rv
 }
 
-
 // The name of the managed object model configuration that creates the persistent store.
 //
 // [Full Topic]
@@ -164,7 +155,6 @@ func (p_ PersistentStore) ConfigurationName() objc.IObject /* cross-framework: N
 func (p_ PersistentStore) SetConfigurationName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setConfigurationName:"), value)
 }
-
 
 // The spotlight exporter associated with this persistent store.
 //
@@ -175,7 +165,6 @@ func (p_ PersistentStore) CoreSpotlightExporter() ICoreDataCoreSpotlightDelegate
 	return rv
 }
 
-
 // The spotlight exporter associated with this persistent store.
 //
 // [Full Topic]
@@ -183,7 +172,6 @@ func (p_ PersistentStore) CoreSpotlightExporter() ICoreDataCoreSpotlightDelegate
 func (p_ PersistentStore) SetCoreSpotlightExporter(value ICoreDataCoreSpotlightDelegate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCoreSpotlightExporter:"), value)
 }
-
 
 // The unique identifier for the persistent store.
 //
@@ -194,7 +182,6 @@ func (p_ PersistentStore) Identifier() objc.IObject /* cross-framework: NSString
 	return rv
 }
 
-
 // The unique identifier for the persistent store.
 //
 // [Full Topic]
@@ -202,7 +189,6 @@ func (p_ PersistentStore) Identifier() objc.IObject /* cross-framework: NSString
 func (p_ PersistentStore) SetIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIdentifier:"), value)
 }
-
 
 // A Boolean value that indicates whether the persistent store is read-only.
 //
@@ -213,7 +199,6 @@ func (p_ PersistentStore) IsReadOnly() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the persistent store is read-only.
 //
 // [Full Topic]
@@ -221,7 +206,6 @@ func (p_ PersistentStore) IsReadOnly() bool {
 func (p_ PersistentStore) SetIsReadOnly(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsReadOnly:"), value)
 }
-
 
 // The options that Core Data uses to create the store.
 //
@@ -232,7 +216,6 @@ func (p_ PersistentStore) Options() unsafe.Pointer {
 	return rv
 }
 
-
 // The options that Core Data uses to create the store.
 //
 // [Full Topic]
@@ -240,7 +223,6 @@ func (p_ PersistentStore) Options() unsafe.Pointer {
 func (p_ PersistentStore) SetOptions(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
 }
-
 
 // The persistent store coordinator that loads the persistent store.
 //
@@ -251,7 +233,6 @@ func (p_ PersistentStore) PersistentStoreCoordinator() IPersistentStoreCoordinat
 	return rv
 }
 
-
 // The persistent store coordinator that loads the persistent store.
 //
 // [Full Topic]
@@ -259,7 +240,6 @@ func (p_ PersistentStore) PersistentStoreCoordinator() IPersistentStoreCoordinat
 func (p_ PersistentStore) SetPersistentStoreCoordinator(value IPersistentStoreCoordinator) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPersistentStoreCoordinator:"), value)
 }
-
 
 // The URL for the persistent store.
 //
@@ -270,7 +250,6 @@ func (p_ PersistentStore) Url() objc.IObject /* cross-framework: URL */ {
 	return rv
 }
 
-
 // The URL for the persistent store.
 //
 // [Full Topic]
@@ -278,5 +257,3 @@ func (p_ PersistentStore) Url() objc.IObject /* cross-framework: URL */ {
 func (p_ PersistentStore) SetUrl(value objc.IObject /* cross-framework: URL */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
-
-

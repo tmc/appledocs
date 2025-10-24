@@ -15,3 +15,4 @@ var wipeResourceProtocol *objc.Protocol
 func init() {
 	wipeResourceProtocol = objc.GetProtocol("wipeResource:")
 }
+

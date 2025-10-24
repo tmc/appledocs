@@ -34,8 +34,6 @@ type IMTRSmokeCOAlarmClusterAllClearEvent interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRSmokeCOAlarmClusterAllClearEvent
 type MTRSmokeCOAlarmClusterAllClearEvent struct {
@@ -77,7 +75,3 @@ func (m_ MTRSmokeCOAlarmClusterAllClearEvent) Autorelease() MTRSmokeCOAlarmClust
 func NewMTRSmokeCOAlarmClusterAllClearEvent() MTRSmokeCOAlarmClusterAllClearEvent {
 	return getMTRSmokeCOAlarmClusterAllClearEventClass().New()
 }
-
-
-
-

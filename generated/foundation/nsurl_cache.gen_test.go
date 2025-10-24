@@ -15,5 +15,4 @@ func ExampleURLCache_RemoveAllCachedResponses() {
 	obj := foundation.NewURLCache()
 	obj.RemoveAllCachedResponses()
 	// Output:
-	}
-
+}

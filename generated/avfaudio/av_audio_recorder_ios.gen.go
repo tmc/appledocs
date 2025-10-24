@@ -21,11 +21,11 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVFAudio/AVAudioRecorder/channelAssignments
-func (a_ AudioRecorder) ChannelAssignments() []AudioSessionChannelDescription /* not a class type */ {
+func (a_ AudioRecorder) ChannelAssignments() []AudioSessionChannelDescription {
 	rv := objc.Send[[]AudioSessionChannelDescription](a_.ID, objc.Sel("channelAssignments"))
 	return rv
 }
-func (a_ AudioRecorder) SetChannelAssignments(value []AudioSessionChannelDescription /* not a class type */) {
+func (a_ AudioRecorder) SetChannelAssignments(value []AudioSessionChannelDescription) {
 	a_.ID.Send(objc.RegisterName("setChannelAssignments:"), value)
 }
 

@@ -6,9 +6,9 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
 	"github.com/tmc/appledocs/generated/intents"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INUIEditVoiceShortcutViewController] class.
@@ -38,7 +38,6 @@ type IINUIEditVoiceShortcutViewController interface {
 // A view controller that lets the user edit or remove an existing shortcut.
 //
 // To let the user edit or remove a shortcut, create an instance of with the . Then present the view controller to the user. To receive notifications of changes made to the shortcut, set the controller’s to an object that conforms to the protocol.
-
 
 // A view controller that lets the user edit or remove an existing shortcut.
 //
@@ -88,8 +87,6 @@ func NewINUIEditVoiceShortcutViewController() INUIEditVoiceShortcutViewControlle
 	return getINUIEditVoiceShortcutViewControllerClass().New()
 }
 
-
-
 // Creates a view controller with the shortcut to edit or remove.
 //
 // [Full Topic]
@@ -101,8 +98,6 @@ func NewINUIEditVoiceShortcutViewControllerWithVoiceShortcut(voiceShortcut inten
 	return rv
 }
 
-
-
 // The object that retrieves notifications from the view controller.
 //
 // [Full Topic]
@@ -112,7 +107,6 @@ func (i_ INUIEditVoiceShortcutViewController) Delegate() objc.ID {
 	return rv
 }
 
-
 // The object that retrieves notifications from the view controller.
 //
 // [Full Topic]
@@ -120,5 +114,3 @@ func (i_ INUIEditVoiceShortcutViewController) Delegate() objc.ID {
 func (i_ INUIEditVoiceShortcutViewController) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setDelegate:"), value)
 }
-
-

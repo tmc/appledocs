@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -49,7 +49,6 @@ type IConstraintConflict interface {
 // An encapsulation of conflicts that occur during an attempt to save a managed object.
 //
 // A constraint conflict occurs when your data model is using unique constraints and one or more managed objects are violating that constraint. When this error occurs, the error instance can be interrogated to determine which instance of is violating the constraint and which property on the instance is in violation.
-
 
 // An encapsulation of conflicts that occur during an attempt to save a managed object.
 //
@@ -97,8 +96,6 @@ func NewConstraintConflict() ConstraintConflict {
 	return getConstraintConflictClass().New()
 }
 
-
-
 // The values currently stored in the database.
 //
 // [Full Topic]
@@ -107,7 +104,6 @@ func (c_ ConstraintConflict) DatabaseSnapshot() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](c_.ID, objc.Sel("databaseSnapshot"))
 	return rv
 }
-
 
 // The managed objects that are in conflict.
 //
@@ -118,7 +114,6 @@ func (c_ ConstraintConflict) ConflictingObjects() IManagedObject {
 	return rv
 }
 
-
 // The managed objects that are in conflict.
 //
 // [Full Topic]
@@ -126,7 +121,6 @@ func (c_ ConstraintConflict) ConflictingObjects() IManagedObject {
 func (c_ ConstraintConflict) SetConflictingObjects(value IManagedObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConflictingObjects:"), value)
 }
-
 
 // The original property values of objects in violation of the constraint.
 //
@@ -137,7 +131,6 @@ func (c_ ConstraintConflict) ConflictingSnapshots() unsafe.Pointer {
 	return rv
 }
 
-
 // The original property values of objects in violation of the constraint.
 //
 // [Full Topic]
@@ -145,7 +138,6 @@ func (c_ ConstraintConflict) ConflictingSnapshots() unsafe.Pointer {
 func (c_ ConstraintConflict) SetConflictingSnapshots(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConflictingSnapshots:"), value)
 }
-
 
 // The constraint that has been violated.
 //
@@ -156,7 +148,6 @@ func (c_ ConstraintConflict) Constraint() objc.IObject /* cross-framework: NSStr
 	return rv
 }
 
-
 // The constraint that has been violated.
 //
 // [Full Topic]
@@ -164,7 +155,6 @@ func (c_ ConstraintConflict) Constraint() objc.IObject /* cross-framework: NSStr
 func (c_ ConstraintConflict) SetConstraint(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConstraint:"), value)
 }
-
 
 // The values that the conflicting objects had when the conflict was created.
 //
@@ -175,7 +165,6 @@ func (c_ ConstraintConflict) ConstraintValues() objc.IObject /* cross-framework:
 	return rv
 }
 
-
 // The values that the conflicting objects had when the conflict was created.
 //
 // [Full Topic]
@@ -183,7 +172,6 @@ func (c_ ConstraintConflict) ConstraintValues() objc.IObject /* cross-framework:
 func (c_ ConstraintConflict) SetConstraintValues(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setConstraintValues:"), value)
 }
-
 
 // The object whose database row is using constraint values.
 //
@@ -194,7 +182,6 @@ func (c_ ConstraintConflict) DatabaseObject() IManagedObject {
 	return rv
 }
 
-
 // The object whose database row is using constraint values.
 //
 // [Full Topic]
@@ -202,6 +189,3 @@ func (c_ ConstraintConflict) DatabaseObject() IManagedObject {
 func (c_ ConstraintConflict) SetDatabaseObject(value IManagedObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDatabaseObject:"), value)
 }
-
-
-

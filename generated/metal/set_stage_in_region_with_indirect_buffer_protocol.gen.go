@@ -20,3 +20,4 @@ var setStageInRegionWithIndirectBufferProtocol *objc.Protocol
 func init() {
 	setStageInRegionWithIndirectBufferProtocol = objc.GetProtocol("setStageInRegionWithIndirectBuffer:")
 }
+

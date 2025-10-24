@@ -12,6 +12,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AVPictureInPictureControllerContentSource */
+
+
+/* debug [class_header]: Header for AVPictureInPictureControllerContentSource */
 // The class instance for the [PictureInPictureControllerContentSource] class.
 var (
 	PictureInPictureControllerContentSourceClass     _PictureInPictureControllerContentSourceClass
@@ -28,46 +32,35 @@ func getPictureInPictureControllerContentSourceClass() _PictureInPictureControll
 type _PictureInPictureControllerContentSourceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PictureInPictureControllerContentSource */
 // An interface definition for the [PictureInPictureControllerContentSource] class.
 type IPictureInPictureControllerContentSource interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PictureInPictureControllerContentSource */
 	// properties:
-	ActiveVideoCallContentViewController() IAVPictureInPictureVideoCallViewController
-	SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController)
-	ActiveVideoCallSourceView() objc.IObject /* cross-framework: View */
-	SetActiveVideoCallSourceView(value objc.IObject /* cross-framework: View */)
-	PlayerLayer() objc.IObject /* cross-framework: PlayerLayer */
-	SetPlayerLayer(value objc.IObject /* cross-framework: PlayerLayer */)
-	SampleBufferDisplayLayer() objc.IObject /* cross-framework: SampleBufferDisplayLayer */
-	SetSampleBufferDisplayLayer(value objc.IObject /* cross-framework: SampleBufferDisplayLayer */)
-	SampleBufferPlaybackDelegate() PictureInPictureSampleBufferPlaybackDelegate /* not a class type */
-	SetSampleBufferPlaybackDelegate(value PictureInPictureSampleBufferPlaybackDelegate /* not a class type */)
+	PlayerLayer() avfoundation.PlayerLayer
+	SampleBufferDisplayLayer() avfoundation.SampleBufferDisplayLayer
+	SampleBufferPlaybackDelegate() unsafe.Pointer
 	ContentSource() IAVPictureInPictureControllerContentSource
 	SetContentSource(value IAVPictureInPictureControllerContentSource)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PictureInPictureControllerContentSource */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents the source of the content to present in Picture in Picture.
-//
-// The system supports displaying content from an or in a Picture in Picture window. Use an instance of this class to describe the source of your app’s content.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents the source of the content to present in Picture in Picture.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class
-type PictureInPictureControllerContentSource struct {
-	objectivec.Object
-}
 
-// PictureInPictureControllerContentSourceFrom constructs a [PictureInPictureControllerContentSource] from an unsafe.Pointer.
-//
-// An object that represents the source of the content to present in Picture in Picture.
-func PictureInPictureControllerContentSourceFrom(ptr unsafe.Pointer) PictureInPictureControllerContentSource {
-	return PictureInPictureControllerContentSource{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PictureInPictureControllerContentSource */
 // Alloc allocates a new instance without initialization.
 func (pc _PictureInPictureControllerContentSourceClass) Alloc() PictureInPictureControllerContentSource {
 	rv := objc.Send[PictureInPictureControllerContentSource](objc.ID(pc.class), objc.Sel("alloc"))
@@ -75,7 +68,6 @@ func (pc _PictureInPictureControllerContentSourceClass) Alloc() PictureInPicture
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PictureInPictureControllerContentSourceClass) New() PictureInPictureControllerContentSource {
 	rv := objc.Send[PictureInPictureControllerContentSource](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -98,102 +90,120 @@ func (p_ PictureInPictureControllerContentSource) Autorelease() PictureInPicture
 func NewPictureInPictureControllerContentSource() PictureInPictureControllerContentSource {
 	return getPictureInPictureControllerContentSourceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The view controller that presents the video call content.
+/* debug [class_struct]: Struct for PictureInPictureControllerContentSource */
+// An object that represents the source of the content to present in Picture in Picture.
+//
+// The system supports displaying content from an or in a Picture in Picture window. Use an instance of this class to describe the source of your app’s content.
+
+
+// An object that represents the source of the content to present in Picture in Picture.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-func (p_ PictureInPictureControllerContentSource) ActiveVideoCallContentViewController() IAVPictureInPictureVideoCallViewController {
-	rv := objc.Send[PictureInPictureVideoCallViewController](p_.ID, objc.Sel("activeVideoCallContentViewController"))
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class
+type PictureInPictureControllerContentSource struct {
+	objectivec.Object
+}
+
+// PictureInPictureControllerContentSourceFrom constructs a [PictureInPictureControllerContentSource] from an unsafe.Pointer.
+//
+// An object that represents the source of the content to present in Picture in Picture.
+func PictureInPictureControllerContentSourceFrom(ptr unsafe.Pointer) PictureInPictureControllerContentSource {
+	return PictureInPictureControllerContentSource{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PictureInPictureControllerContentSource */
+
+// Creates a content source with an active video call.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/init(activeVideoCallSourceView:contentViewController:)
+func NewPictureInPictureControllerContentSourceWithActiveVideoCallSourceViewContentViewController(sourceView appkit.View, contentViewController IAVPictureInPictureVideoCallViewController) PictureInPictureControllerContentSource {
+	instance := getPictureInPictureControllerContentSourceClass().Alloc()
+	rv := objc.Send[PictureInPictureControllerContentSource](instance.ID, objc.Sel("initWithActiveVideoCallSourceView:contentViewController:"), sourceView, contentViewController)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPictureInPictureControllerContentSourceWithActiveVideoCallSourceViewContentViewController */
 
 
-// The view controller that presents the video call content.
+// Creates a content source with a player layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallcontentviewcontroller
-func (p_ PictureInPictureControllerContentSource) SetActiveVideoCallContentViewController(value IAVPictureInPictureVideoCallViewController) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallContentViewController:"), value)
-}
-
-
-// The view that contains the video content of the call.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-func (p_ PictureInPictureControllerContentSource) ActiveVideoCallSourceView() objc.IObject /* cross-framework: View */ {
-	rv := objc.Send[appkit.View](p_.ID, objc.Sel("activeVideoCallSourceView"))
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/init(playerLayer:)
+func NewPictureInPictureControllerContentSourceWithPlayerLayer(playerLayer avfoundation.PlayerLayer) PictureInPictureControllerContentSource {
+	instance := getPictureInPictureControllerContentSourceClass().Alloc()
+	rv := objc.Send[PictureInPictureControllerContentSource](instance.ID, objc.Sel("initWithPlayerLayer:"), playerLayer)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPictureInPictureControllerContentSourceWithPlayerLayer */
 
 
-// The view that contains the video content of the call.
+// Creates a content source with a sample buffer display layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/activevideocallsourceview
-func (p_ PictureInPictureControllerContentSource) SetActiveVideoCallSourceView(value objc.IObject /* cross-framework: View */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setActiveVideoCallSourceView:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/init(sampleBufferDisplayLayer:playbackDelegate:)
+func NewPictureInPictureControllerContentSourceWithSampleBufferDisplayLayerPlaybackDelegate(sampleBufferDisplayLayer avfoundation.SampleBufferDisplayLayer, playbackDelegate unsafe.Pointer) PictureInPictureControllerContentSource {
+	instance := getPictureInPictureControllerContentSourceClass().Alloc()
+	rv := objc.Send[PictureInPictureControllerContentSource](instance.ID, objc.Sel("initWithSampleBufferDisplayLayer:playbackDelegate:"), sampleBufferDisplayLayer, playbackDelegate)
+	rv.Autorelease()
+	return rv
+}/* debug [class_init_methods/constructor]: NewPictureInPictureControllerContentSourceWithSampleBufferDisplayLayerPlaybackDelegate */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PictureInPictureControllerContentSource */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PictureInPictureControllerContentSource */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PictureInPictureControllerContentSource */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PictureInPictureControllerContentSource */
 
 // The presenting player layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/playerlayer
-func (p_ PictureInPictureControllerContentSource) PlayerLayer() objc.IObject /* cross-framework: PlayerLayer */ {
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/playerLayer
+func (p_ PictureInPictureControllerContentSource) PlayerLayer() avfoundation.PlayerLayer {
 	rv := objc.Send[avfoundation.PlayerLayer](p_.ID, objc.Sel("playerLayer"))
 	return rv
-}
-
-
-// The presenting player layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/playerlayer
-func (p_ PictureInPictureControllerContentSource) SetPlayerLayer(value objc.IObject /* cross-framework: PlayerLayer */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPlayerLayer:"), value)
-}
+}/* debug [instance_properties/getter]: playerLayer */
 
 
 // The presenting sample buffer display layer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/samplebufferdisplaylayer
-func (p_ PictureInPictureControllerContentSource) SampleBufferDisplayLayer() objc.IObject /* cross-framework: SampleBufferDisplayLayer */ {
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/sampleBufferDisplayLayer
+func (p_ PictureInPictureControllerContentSource) SampleBufferDisplayLayer() avfoundation.SampleBufferDisplayLayer {
 	rv := objc.Send[avfoundation.SampleBufferDisplayLayer](p_.ID, objc.Sel("sampleBufferDisplayLayer"))
 	return rv
-}
-
-
-// The presenting sample buffer display layer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/samplebufferdisplaylayer
-func (p_ PictureInPictureControllerContentSource) SetSampleBufferDisplayLayer(value objc.IObject /* cross-framework: SampleBufferDisplayLayer */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSampleBufferDisplayLayer:"), value)
-}
+}/* debug [instance_properties/getter]: sampleBufferDisplayLayer */
 
 
 // A delegate object that responds to sample buffer playback events.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/samplebufferplaybackdelegate
-func (p_ PictureInPictureControllerContentSource) SampleBufferPlaybackDelegate() PictureInPictureSampleBufferPlaybackDelegate /* not a class type */ {
-	rv := objc.Send[PictureInPictureSampleBufferPlaybackDelegate](p_.ID, objc.Sel("sampleBufferPlaybackDelegate"))
+// [Full Topic]: https://developer.apple.com/documentation/AVKit/AVPictureInPictureController/ContentSource-swift.class/sampleBufferPlaybackDelegate
+func (p_ PictureInPictureControllerContentSource) SampleBufferPlaybackDelegate() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("sampleBufferPlaybackDelegate"))
 	return rv
-}
-
-
-// A delegate object that responds to sample buffer playback events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.class/samplebufferplaybackdelegate
-func (p_ PictureInPictureControllerContentSource) SetSampleBufferPlaybackDelegate(value PictureInPictureSampleBufferPlaybackDelegate /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setSampleBufferPlaybackDelegate:"), value)
-}
+}/* debug [instance_properties/getter]: sampleBufferPlaybackDelegate */
 
 
 // The source of the controller’s content.
@@ -203,7 +213,7 @@ func (p_ PictureInPictureControllerContentSource) SetSampleBufferPlaybackDelegat
 func (p_ PictureInPictureControllerContentSource) ContentSource() IAVPictureInPictureControllerContentSource {
 	rv := objc.Send[PictureInPictureControllerContentSource](p_.ID, objc.Sel("contentSource"))
 	return rv
-}
+}/* debug [instance_properties/getter]: contentSource */
 
 
 // The source of the controller’s content.
@@ -212,7 +222,11 @@ func (p_ PictureInPictureControllerContentSource) ContentSource() IAVPictureInPi
 // [Full Topic]: https://developer.apple.com/documentation/avkit/avpictureinpicturecontroller/contentsource-swift.property
 func (p_ PictureInPictureControllerContentSource) SetContentSource(value IAVPictureInPictureControllerContentSource) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentSource:"), value)
-}
+}/* debug [instance_properties/setter]: contentSource */
 
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVPictureInPictureControllerContentSource */
 
 

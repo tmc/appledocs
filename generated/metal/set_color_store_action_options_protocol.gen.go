@@ -20,3 +20,4 @@ var setColorStoreActionOptionsProtocol *objc.Protocol
 func init() {
 	setColorStoreActionOptionsProtocol = objc.GetProtocol("setColorStoreActionOptions:")
 }
+

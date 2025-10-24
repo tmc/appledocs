@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,20 +33,19 @@ type IBeacon interface {
 	objectivec.IObject
 	// properties:
 	Accuracy() LocationAccuracy /* not a class type */
-	Major() objc.IObject /* cross-framework: NSNumber */
-	Minor() objc.IObject /* cross-framework: NSNumber */
+	Major() objc.IObject        /* cross-framework: NSNumber */
+	Minor() objc.IObject        /* cross-framework: NSNumber */
 	Proximity() Proximity
 	ProximityUUID() objc.IObject /* cross-framework: UUID */
 	Rssi() int
 	Timestamp() objc.IObject /* cross-framework: NSDate */
-	UUID() objc.IObject /* cross-framework: UUID */
+	UUID() objc.IObject      /* cross-framework: UUID */
 	// methods:
 }
 
 // Information about an observed iBeacon device and its relative distance to a person’s device.
 //
 // The class represents a beacon that was observed during beacon ranging. You do not create instances of this class directly. The location manager ( ) object reports observed beacons to its associated delegate object. The identity of a beacon is defined by its , , and properties. These values are coded into the beacon itself. For a more thorough description of the meaning of those values, see .
-
 
 // Information about an observed iBeacon device and its relative distance to a person’s device.
 //
@@ -94,8 +93,6 @@ func NewBeacon() Beacon {
 	return getBeaconClass().New()
 }
 
-
-
 // The accuracy of the proximity value, measured in meters from the beacon.
 //
 // [Full Topic]
@@ -104,7 +101,6 @@ func (b_ Beacon) Accuracy() LocationAccuracy /* not a class type */ {
 	rv := objc.Send[LocationAccuracy](b_.ID, objc.Sel("accuracy"))
 	return rv
 }
-
 
 // The major value that the observed beacon transmitted.
 //
@@ -115,7 +111,6 @@ func (b_ Beacon) Major() objc.IObject /* cross-framework: NSNumber */ {
 	return rv
 }
 
-
 // The minor value that the observed beacon transmitted.
 //
 // [Full Topic]
@@ -124,7 +119,6 @@ func (b_ Beacon) Minor() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](b_.ID, objc.Sel("minor"))
 	return rv
 }
-
 
 // The relative distance to the beacon.
 //
@@ -135,7 +129,6 @@ func (b_ Beacon) Proximity() Proximity {
 	return rv
 }
 
-
 // The proximity ID of the beacon.
 //
 // [Full Topic]
@@ -144,7 +137,6 @@ func (b_ Beacon) ProximityUUID() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("proximityUUID"))
 	return rv
 }
-
 
 // The received signal strength of the beacon, measured in decibels.
 //
@@ -155,7 +147,6 @@ func (b_ Beacon) Rssi() int {
 	return rv
 }
 
-
 // A timestamp representing when the beacon was observed.
 //
 // [Full Topic]
@@ -165,7 +156,6 @@ func (b_ Beacon) Timestamp() objc.IObject /* cross-framework: NSDate */ {
 	return rv
 }
 
-
 // The UUID that the observed beacon transmitted.
 //
 // [Full Topic]
@@ -174,6 +164,3 @@ func (b_ Beacon) UUID() objc.IObject /* cross-framework: UUID */ {
 	rv := objc.Send[foundation.UUID](b_.ID, objc.Sel("UUID"))
 	return rv
 }
-
-
-

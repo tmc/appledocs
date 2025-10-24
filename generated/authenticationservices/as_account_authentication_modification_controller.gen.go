@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class ASAccountAuthenticationModificationController */
+
+
+/* debug [class_header]: Header for ASAccountAuthenticationModificationController */
 // The class instance for the [AccountAuthenticationModificationController] class.
 var (
 	AccountAuthenticationModificationControllerClass     _AccountAuthenticationModificationControllerClass
@@ -26,34 +30,30 @@ func getAccountAuthenticationModificationControllerClass() _AccountAuthenticatio
 type _AccountAuthenticationModificationControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AccountAuthenticationModificationController */
 // An interface definition for the [AccountAuthenticationModificationController] class.
 type IAccountAuthenticationModificationController interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AccountAuthenticationModificationController */
 	// properties:
-	PresentationContextProvider() AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */
-	SetPresentationContextProvider(value AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AccountAuthenticationModificationController */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object that performs a request to modify an account’s authentication properties.
 
 
-// An object that performs a request to modify an account’s authentication properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController
-type AccountAuthenticationModificationController struct {
-	objectivec.Object
-}
-
-// AccountAuthenticationModificationControllerFrom constructs a [AccountAuthenticationModificationController] from an unsafe.Pointer.
-//
-// An object that performs a request to modify an account’s authentication properties.
-func AccountAuthenticationModificationControllerFrom(ptr unsafe.Pointer) AccountAuthenticationModificationController {
-	return AccountAuthenticationModificationController{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AccountAuthenticationModificationController */
 // Alloc allocates a new instance without initialization.
 func (ac _AccountAuthenticationModificationControllerClass) Alloc() AccountAuthenticationModificationController {
 	rv := objc.Send[AccountAuthenticationModificationController](objc.ID(ac.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (ac _AccountAuthenticationModificationControllerClass) Alloc() AccountAuthe
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AccountAuthenticationModificationControllerClass) New() AccountAuthenticationModificationController {
 	rv := objc.Send[AccountAuthenticationModificationController](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,25 +83,55 @@ func (a_ AccountAuthenticationModificationController) Autorelease() AccountAuthe
 func NewAccountAuthenticationModificationController() AccountAuthenticationModificationController {
 	return getAccountAuthenticationModificationControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// An object that provides a presentation context for the account modification request’s user interface.
+/* debug [class_struct]: Struct for AccountAuthenticationModificationController */
+// An object that performs a request to modify an account’s authentication properties.
+
+
+// An object that performs a request to modify an account’s authentication properties.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
-func (a_ AccountAuthenticationModificationController) PresentationContextProvider() AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */ {
-	rv := objc.Send[AccountAuthenticationModificationControllerPresentationContextProviding](a_.ID, objc.Sel("presentationContextProvider"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/AuthenticationServices/ASAccountAuthenticationModificationController
+type AccountAuthenticationModificationController struct {
+	objectivec.Object
 }
 
-
-// An object that provides a presentation context for the account modification request’s user interface.
+// AccountAuthenticationModificationControllerFrom constructs a [AccountAuthenticationModificationController] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/authenticationservices/asaccountauthenticationmodificationcontroller/presentationcontextprovider
-func (a_ AccountAuthenticationModificationController) SetPresentationContextProvider(value AccountAuthenticationModificationControllerPresentationContextProviding /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationContextProvider:"), value)
+// An object that performs a request to modify an account’s authentication properties.
+func AccountAuthenticationModificationControllerFrom(ptr unsafe.Pointer) AccountAuthenticationModificationController {
+	return AccountAuthenticationModificationController{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AccountAuthenticationModificationController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AccountAuthenticationModificationController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AccountAuthenticationModificationController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AccountAuthenticationModificationController */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AccountAuthenticationModificationController */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class ASAccountAuthenticationModificationController */
 
 

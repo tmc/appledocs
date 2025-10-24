@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTREnergyEVSEModeClusterChangeToModeParams */
+
+
+/* debug [class_header]: Header for MTREnergyEVSEModeClusterChangeToModeParams */
 // The class instance for the [MTREnergyEVSEModeClusterChangeToModeParams] class.
 var (
 	MTREnergyEVSEModeClusterChangeToModeParamsClass     _MTREnergyEVSEModeClusterChangeToModeParamsClass
@@ -27,33 +31,36 @@ func getMTREnergyEVSEModeClusterChangeToModeParamsClass() _MTREnergyEVSEModeClus
 type _MTREnergyEVSEModeClusterChangeToModeParamsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTREnergyEVSEModeClusterChangeToModeParams */
 // An interface definition for the [MTREnergyEVSEModeClusterChangeToModeParams] class.
 type IMTREnergyEVSEModeClusterChangeToModeParams interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for MTREnergyEVSEModeClusterChangeToModeParams */
 	// properties:
+	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
+	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	NewMode() objc.IObject /* cross-framework: NSNumber */
 	SetNewMode(value objc.IObject /* cross-framework: NSNumber */)
 	ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */
 	SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */)
-	TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */
-	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTREnergyEVSEModeClusterChangeToModeParams */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams
-type MTREnergyEVSEModeClusterChangeToModeParams struct {
-	objectivec.Object
-}
-
-// MTREnergyEVSEModeClusterChangeToModeParamsFrom constructs a [MTREnergyEVSEModeClusterChangeToModeParams] from an unsafe.Pointer.
-func MTREnergyEVSEModeClusterChangeToModeParamsFrom(ptr unsafe.Pointer) MTREnergyEVSEModeClusterChangeToModeParams {
-	return MTREnergyEVSEModeClusterChangeToModeParams{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for MTREnergyEVSEModeClusterChangeToModeParams */
 // Alloc allocates a new instance without initialization.
 func (mc _MTREnergyEVSEModeClusterChangeToModeParamsClass) Alloc() MTREnergyEVSEModeClusterChangeToModeParams {
 	rv := objc.Send[MTREnergyEVSEModeClusterChangeToModeParams](objc.ID(mc.class), objc.Sel("alloc"))
@@ -61,7 +68,6 @@ func (mc _MTREnergyEVSEModeClusterChangeToModeParamsClass) Alloc() MTREnergyEVSE
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTREnergyEVSEModeClusterChangeToModeParamsClass) New() MTREnergyEVSEModeClusterChangeToModeParams {
 	rv := objc.Send[MTREnergyEVSEModeClusterChangeToModeParams](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,42 +90,47 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) Autorelease() MTREnergyEVSE
 func NewMTREnergyEVSEModeClusterChangeToModeParams() MTREnergyEVSEModeClusterChangeToModeParams {
 	return getMTREnergyEVSEModeClusterChangeToModeParamsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/newMode
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) NewMode() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newMode"))
-	return rv
-}
+/* debug [class_struct]: Struct for MTREnergyEVSEModeClusterChangeToModeParams */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/newMode
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetNewMode(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams
+type MTREnergyEVSEModeClusterChangeToModeParams struct {
+	objectivec.Object
 }
 
-
-// Controls how much time, in seconds, we will allow for the server to process the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
-	return rv
+// MTREnergyEVSEModeClusterChangeToModeParamsFrom constructs a [MTREnergyEVSEModeClusterChangeToModeParams] from an unsafe.Pointer.
+func MTREnergyEVSEModeClusterChangeToModeParamsFrom(ptr unsafe.Pointer) MTREnergyEVSEModeClusterChangeToModeParams {
+	return MTREnergyEVSEModeClusterChangeToModeParams{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
-// Controls how much time, in seconds, we will allow for the server to process the command.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/serverSideProcessingTimeout
-func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
-}
 
+/* debug [class_init_methods]: Init methods for MTREnergyEVSEModeClusterChangeToModeParams *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTREnergyEVSEModeClusterChangeToModeParams */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTREnergyEVSEModeClusterChangeToModeParams */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTREnergyEVSEModeClusterChangeToModeParams */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for MTREnergyEVSEModeClusterChangeToModeParams */
 
 // Controls whether the command is a timed command (using Timed Invoke).
 //
@@ -128,7 +139,7 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetServerSideProcessingTime
 func (m_ MTREnergyEVSEModeClusterChangeToModeParams) TimedInvokeTimeoutMs() objc.IObject /* cross-framework: NSNumber */ {
 	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("timedInvokeTimeoutMs"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timedInvokeTimeoutMs */
 
 
 // Controls whether the command is a timed command (using Timed Invoke).
@@ -137,7 +148,46 @@ func (m_ MTREnergyEVSEModeClusterChangeToModeParams) TimedInvokeTimeoutMs() objc
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTREnergyEVSEModeClusterChangeToModeParams/timedInvokeTimeoutMs
 func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
-}
+}/* debug [instance_properties/setter]: timedInvokeTimeoutMs */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrenergyevsemodeclusterchangetomodeparams/newmode
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) NewMode() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("newMode"))
+	return rv
+}/* debug [instance_properties/getter]: newMode */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrenergyevsemodeclusterchangetomodeparams/newmode
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetNewMode(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setNewMode:"), value)
+}/* debug [instance_properties/setter]: newMode */
+
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrenergyevsemodeclusterchangetomodeparams/serversideprocessingtimeout
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) ServerSideProcessingTimeout() objc.IObject /* cross-framework: NSNumber */ {
+	rv := objc.Send[foundation.NSNumber](m_.ID, objc.Sel("serverSideProcessingTimeout"))
+	return rv
+}/* debug [instance_properties/getter]: serverSideProcessingTimeout */
+
+
+// Controls how much time, in seconds, we will allow for the server to process the command.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/matter/mtrenergyevsemodeclusterchangetomodeparams/serversideprocessingtimeout
+func (m_ MTREnergyEVSEModeClusterChangeToModeParams) SetServerSideProcessingTimeout(value objc.IObject /* cross-framework: NSNumber */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setServerSideProcessingTimeout:"), value)
+}/* debug [instance_properties/setter]: serverSideProcessingTimeout */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTREnergyEVSEModeClusterChangeToModeParams */
 
 
 

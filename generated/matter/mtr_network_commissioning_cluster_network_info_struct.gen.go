@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRNetworkCommissioningClusterNetworkInfoStruct interface {
 	SetNetworkID(value objc.IObject /* cross-framework: Data */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRNetworkCommissioningClusterNetworkInfoStruct
@@ -83,8 +81,6 @@ func NewMTRNetworkCommissioningClusterNetworkInfoStruct() MTRNetworkCommissionin
 	return getMTRNetworkCommissioningClusterNetworkInfoStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfostruct/connected
 func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) Connected() objc.IObject /* cross-framework: NSNumber */ {
@@ -92,13 +88,11 @@ func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) Connected() objc.IObje
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfostruct/connected
 func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) SetConnected(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setConnected:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfostruct/networkid
@@ -107,12 +101,8 @@ func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) NetworkID() objc.IObje
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrnetworkcommissioningclusternetworkinfostruct/networkid
 func (m_ MTRNetworkCommissioningClusterNetworkInfoStruct) SetNetworkID(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNetworkID:"), value)
 }
-
-
-

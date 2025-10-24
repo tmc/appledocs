@@ -20,3 +20,4 @@ var downloadDidPauseProtocol *objc.Protocol
 func init() {
 	downloadDidPauseProtocol = objc.GetProtocol("downloadDidPause:")
 }
+

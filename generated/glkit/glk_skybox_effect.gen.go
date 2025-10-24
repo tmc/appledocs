@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class GLKSkyboxEffect */
+
+
+/* debug [class_header]: Header for GLKSkyboxEffect */
 // The class instance for the [GLKSkyboxEffect] class.
 var (
 	GLKSkyboxEffectClass     _GLKSkyboxEffectClass
@@ -27,10 +31,16 @@ func getGLKSkyboxEffectClass() _GLKSkyboxEffectClass {
 type _GLKSkyboxEffectClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for GLKSkyboxEffect */
 // An interface definition for the [GLKSkyboxEffect] class.
 type IGLKSkyboxEffect interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for GLKSkyboxEffect */
 	// properties:
 	Center() GLKVector3 /* typedef */
 	SetCenter(value GLKVector3 /* typedef */)
@@ -44,29 +54,19 @@ type IGLKSkyboxEffect interface {
 	SetYSize(value unsafe.Pointer)
 	ZSize() unsafe.Pointer
 	SetZSize(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for GLKSkyboxEffect */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A simple skybox visual effect for use in shader-based OpenGL rendering.
-//
-// The provides a standard skybox effect for your application. Unlike the class, the skybox does not require your application to configure and submit vertex data. Instead, it creates its own vertex data based on the configuration data you supply. At initialization time, your application first creates a compatible context and makes it current. Then, it creates new skybox effect, configures its properties, and calls its method. Binding the effect causes a shader to be compiled and bound to the current context. At rendering time, your application calls the effect’s method to prepare the effect and then calls its method to draw the sky box.
+/* debug [class_interface]: End interface */
 
 
-// A simple skybox visual effect for use in shader-based OpenGL rendering.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect
-type GLKSkyboxEffect struct {
-	objectivec.Object
-}
 
-// GLKSkyboxEffectFrom constructs a [GLKSkyboxEffect] from an unsafe.Pointer.
-//
-// A simple skybox visual effect for use in shader-based OpenGL rendering.
-func GLKSkyboxEffectFrom(ptr unsafe.Pointer) GLKSkyboxEffect {
-	return GLKSkyboxEffect{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for GLKSkyboxEffect */
 // Alloc allocates a new instance without initialization.
 func (gc _GLKSkyboxEffectClass) Alloc() GLKSkyboxEffect {
 	rv := objc.Send[GLKSkyboxEffect](objc.ID(gc.class), objc.Sel("alloc"))
@@ -74,7 +74,6 @@ func (gc _GLKSkyboxEffectClass) Alloc() GLKSkyboxEffect {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (gc _GLKSkyboxEffectClass) New() GLKSkyboxEffect {
 	rv := objc.Send[GLKSkyboxEffect](objc.ID(gc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -97,17 +96,63 @@ func (g_ GLKSkyboxEffect) Autorelease() GLKSkyboxEffect {
 func NewGLKSkyboxEffect() GLKSkyboxEffect {
 	return getGLKSkyboxEffectClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for GLKSkyboxEffect */
+// A simple skybox visual effect for use in shader-based OpenGL rendering.
+//
+// The provides a standard skybox effect for your application. Unlike the class, the skybox does not require your application to configure and submit vertex data. Instead, it creates its own vertex data based on the configuration data you supply. At initialization time, your application first creates a compatible context and makes it current. Then, it creates new skybox effect, configures its properties, and calls its method. Binding the effect causes a shader to be compiled and bound to the current context. At rendering time, your application calls the effect’s method to prepare the effect and then calls its method to draw the sky box.
+
+
+// A simple skybox visual effect for use in shader-based OpenGL rendering.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect
+type GLKSkyboxEffect struct {
+	objectivec.Object
+}
+
+// GLKSkyboxEffectFrom constructs a [GLKSkyboxEffect] from an unsafe.Pointer.
+//
+// A simple skybox visual effect for use in shader-based OpenGL rendering.
+func GLKSkyboxEffectFrom(ptr unsafe.Pointer) GLKSkyboxEffect {
+	return GLKSkyboxEffect{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for GLKSkyboxEffect *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for GLKSkyboxEffect */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for GLKSkyboxEffect */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for GLKSkyboxEffect */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for GLKSkyboxEffect */
 
 // The center of the skybox.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
 func (g_ GLKSkyboxEffect) Center() GLKVector3 /* typedef */ {
-	rv := objc.Send[GLKVector3](g_.ID, objc.Sel("center"))
+	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("center"))
 	return rv
-}
+}/* debug [instance_properties/getter]: center */
 
 
 // The center of the skybox.
@@ -116,7 +161,7 @@ func (g_ GLKSkyboxEffect) Center() GLKVector3 /* typedef */ {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/center
 func (g_ GLKSkyboxEffect) SetCenter(value GLKVector3 /* typedef */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCenter:"), value)
-}
+}/* debug [instance_properties/setter]: center */
 
 
 // A string used to name your effect.
@@ -126,7 +171,7 @@ func (g_ GLKSkyboxEffect) SetCenter(value GLKVector3 /* typedef */) {
 func (g_ GLKSkyboxEffect) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](g_.ID, objc.Sel("label"))
 	return rv
-}
+}/* debug [instance_properties/getter]: label */
 
 
 // A string used to name your effect.
@@ -135,7 +180,7 @@ func (g_ GLKSkyboxEffect) Label() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/label
 func (g_ GLKSkyboxEffect) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLabel:"), value)
-}
+}/* debug [instance_properties/setter]: label */
 
 
 // The texture to apply to the skybox.
@@ -145,7 +190,7 @@ func (g_ GLKSkyboxEffect) SetLabel(value objc.IObject /* cross-framework: NSStri
 func (g_ GLKSkyboxEffect) TextureCubeMap() IGLKEffectPropertyTexture {
 	rv := objc.Send[GLKEffectPropertyTexture](g_.ID, objc.Sel("textureCubeMap"))
 	return rv
-}
+}/* debug [instance_properties/getter]: textureCubeMap */
 
 
 // The transform applied before drawing the skybox.
@@ -155,7 +200,7 @@ func (g_ GLKSkyboxEffect) TextureCubeMap() IGLKEffectPropertyTexture {
 func (g_ GLKSkyboxEffect) Transform() IGLKEffectPropertyTransform {
 	rv := objc.Send[GLKEffectPropertyTransform](g_.ID, objc.Sel("transform"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transform */
 
 
 // The width of the skybox.
@@ -165,7 +210,7 @@ func (g_ GLKSkyboxEffect) Transform() IGLKEffectPropertyTransform {
 func (g_ GLKSkyboxEffect) XSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: xSize */
 
 
 // The width of the skybox.
@@ -174,7 +219,7 @@ func (g_ GLKSkyboxEffect) XSize() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/xSize
 func (g_ GLKSkyboxEffect) SetXSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXSize:"), value)
-}
+}/* debug [instance_properties/setter]: xSize */
 
 
 // The height of the skybox.
@@ -184,7 +229,7 @@ func (g_ GLKSkyboxEffect) SetXSize(value unsafe.Pointer) {
 func (g_ GLKSkyboxEffect) YSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("ySize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: ySize */
 
 
 // The height of the skybox.
@@ -193,7 +238,7 @@ func (g_ GLKSkyboxEffect) YSize() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/ySize
 func (g_ GLKSkyboxEffect) SetYSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setYSize:"), value)
-}
+}/* debug [instance_properties/setter]: ySize */
 
 
 // The depth of the skybox.
@@ -203,7 +248,7 @@ func (g_ GLKSkyboxEffect) SetYSize(value unsafe.Pointer) {
 func (g_ GLKSkyboxEffect) ZSize() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("zSize"))
 	return rv
-}
+}/* debug [instance_properties/getter]: zSize */
 
 
 // The depth of the skybox.
@@ -212,7 +257,12 @@ func (g_ GLKSkyboxEffect) ZSize() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/GLKit/GLKSkyboxEffect/zSize
 func (g_ GLKSkyboxEffect) SetZSize(value unsafe.Pointer) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setZSize:"), value)
-}
+}/* debug [instance_properties/setter]: zSize */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class GLKSkyboxEffect */
 
 
 

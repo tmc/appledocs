@@ -15,3 +15,4 @@ var TableViewDelegateProtocol *objc.Protocol
 func init() {
 	TableViewDelegateProtocol = objc.GetProtocol("NSTableViewDelegate")
 }
+

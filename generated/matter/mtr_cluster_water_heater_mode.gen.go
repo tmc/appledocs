@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/foundation"
 )
 
+/* debug [class.gen.go]: Generating class MTRClusterWaterHeaterMode */
+
+
+/* debug [class_header]: Header for MTRClusterWaterHeaterMode */
 // The class instance for the [MTRClusterWaterHeaterMode] class.
 var (
 	MTRClusterWaterHeaterModeClass     _MTRClusterWaterHeaterModeClass
@@ -26,42 +30,31 @@ func getMTRClusterWaterHeaterModeClass() _MTRClusterWaterHeaterModeClass {
 type _MTRClusterWaterHeaterModeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for MTRClusterWaterHeaterMode */
 // An interface definition for the [MTRClusterWaterHeaterMode] class.
 type IMTRClusterWaterHeaterMode interface {
 	IMTRGenericCluster
+	
+/* debug [class_interface_properties]: Properties for MTRClusterWaterHeaterMode */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for MTRClusterWaterHeaterMode */
 	// methods:
-	ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer)
 	ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary
-	ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// Cluster Water Heater Mode Attributes and commands for selecting a mode from a list of supported options.
 
 
-// Cluster Water Heater Mode Attributes and commands for selecting a mode from a list of supported options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode
-type MTRClusterWaterHeaterMode struct {
-	MTRGenericCluster
-}
-
-// MTRClusterWaterHeaterModeFrom constructs a [MTRClusterWaterHeaterMode] from an unsafe.Pointer.
-//
-// Cluster Water Heater Mode Attributes and commands for selecting a mode from a list of supported options.
-func MTRClusterWaterHeaterModeFrom(ptr unsafe.Pointer) MTRClusterWaterHeaterMode {
-	return MTRClusterWaterHeaterMode{
-		MTRGenericCluster: MTRGenericClusterFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for MTRClusterWaterHeaterMode */
 // Alloc allocates a new instance without initialization.
 func (mc _MTRClusterWaterHeaterModeClass) Alloc() MTRClusterWaterHeaterMode {
 	rv := objc.Send[MTRClusterWaterHeaterMode](objc.ID(mc.class), objc.Sel("alloc"))
@@ -69,7 +62,6 @@ func (mc _MTRClusterWaterHeaterModeClass) Alloc() MTRClusterWaterHeaterMode {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (mc _MTRClusterWaterHeaterModeClass) New() MTRClusterWaterHeaterMode {
 	rv := objc.Send[MTRClusterWaterHeaterMode](objc.ID(mc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -92,82 +84,66 @@ func (m_ MTRClusterWaterHeaterMode) Autorelease() MTRClusterWaterHeaterMode {
 func NewMTRClusterWaterHeaterMode() MTRClusterWaterHeaterMode {
 	return getMTRClusterWaterHeaterModeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// For all instance methods that take a completion (i.e. command invocations), the completion will be called on the provided queue.
+/* debug [class_struct]: Struct for MTRClusterWaterHeaterMode */
+// Cluster Water Heater Mode Attributes and commands for selecting a mode from a list of supported options.
+
+
+// Cluster Water Heater Mode Attributes and commands for selecting a mode from a list of supported options.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/init(device:endpointID:queue:)
-func NewMTRClusterWaterHeaterModeWithDeviceEndpointIDQueue(device IMTRDevice, endpointID objc.IObject /* cross-framework: NSNumber */, queue unsafe.Pointer) MTRClusterWaterHeaterMode {
-	instance := getMTRClusterWaterHeaterModeClass().Alloc()
-	rv := objc.Send[MTRClusterWaterHeaterMode](instance.ID, objc.Sel("initWithDevice:endpointID:queue:"), device, endpointID, queue)
-	rv.Autorelease()
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode
+type MTRClusterWaterHeaterMode struct {
+	MTRGenericCluster
 }
 
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/changeToMode(with:expectedValues:expectedValueInterval:completion:)
-func (m_ MTRClusterWaterHeaterMode) ChangeToModeWithParamsExpectedValuesExpectedValueIntervalCompletion(params IMTRWaterHeaterModeClusterChangeToModeParams, expectedDataValueDictionaries foundation.IDictionary, expectedValueIntervalMs objc.IObject /* cross-framework: NSNumber */, completion unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("changeToModeWithParams:expectedValues:expectedValueInterval:completion:"), params, expectedDataValueDictionaries, expectedValueIntervalMs, completion)
+// MTRClusterWaterHeaterModeFrom constructs a [MTRClusterWaterHeaterMode] from an unsafe.Pointer.
+//
+// Cluster Water Heater Mode Attributes and commands for selecting a mode from a list of supported options.
+func MTRClusterWaterHeaterModeFrom(ptr unsafe.Pointer) MTRClusterWaterHeaterMode {
+	return MTRClusterWaterHeaterMode{
+		MTRGenericCluster: MTRGenericClusterFrom(ptr),
+	}
 }
+/* debug [class_struct]: End struct */
 
+
+
+/* debug [class_init_methods]: Init methods for MTRClusterWaterHeaterMode *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for MTRClusterWaterHeaterMode */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for MTRClusterWaterHeaterMode */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for MTRClusterWaterHeaterMode */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/readAttributeAcceptedCommandList(with:)
 func (m_ MTRClusterWaterHeaterMode) ReadAttributeAcceptedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAcceptedCommandListWithParams:"), params)
 	return rv
-}
+}/* debug [instance_methods/method]: ReadAttributeAcceptedCommandListWithParams */
+
+/* debug [instance_methods]: End instance methods */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/readAttributeAttributeList(with:)
-func (m_ MTRClusterWaterHeaterMode) ReadAttributeAttributeListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeAttributeListWithParams:"), params)
-	return rv
-}
+
+/* debug [instance_properties]: Instance properties for MTRClusterWaterHeaterMode */
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/readAttributeClusterRevision(with:)
-func (m_ MTRClusterWaterHeaterMode) ReadAttributeClusterRevisionWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeClusterRevisionWithParams:"), params)
-	return rv
-}
+/* debug [class.gen.go]: End class MTRClusterWaterHeaterMode */
 
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/readAttributeCurrentMode(with:)
-func (m_ MTRClusterWaterHeaterMode) ReadAttributeCurrentModeWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeCurrentModeWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/readAttributeFeatureMap(with:)
-func (m_ MTRClusterWaterHeaterMode) ReadAttributeFeatureMapWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeFeatureMapWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/readAttributeGeneratedCommandList(with:)
-func (m_ MTRClusterWaterHeaterMode) ReadAttributeGeneratedCommandListWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeGeneratedCommandListWithParams:"), params)
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterWaterHeaterMode/readAttributeSupportedModes(with:)
-func (m_ MTRClusterWaterHeaterMode) ReadAttributeSupportedModesWithParams(params IMTRReadParams) foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](m_.ID, objc.Sel("readAttributeSupportedModesWithParams:"), params)
-	return rv
-}
 
 

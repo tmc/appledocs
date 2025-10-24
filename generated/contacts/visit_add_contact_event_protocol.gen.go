@@ -20,3 +20,4 @@ var visitAddContactEventProtocol *objc.Protocol
 func init() {
 	visitAddContactEventProtocol = objc.GetProtocol("visitAddContactEvent:")
 }
+

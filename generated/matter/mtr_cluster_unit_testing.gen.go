@@ -33,8 +33,6 @@ type IMTRClusterUnitTesting interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterUnitTesting
 type MTRClusterUnitTesting struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterUnitTesting) Autorelease() MTRClusterUnitTesting {
 func NewMTRClusterUnitTesting() MTRClusterUnitTesting {
 	return getMTRClusterUnitTestingClass().New()
 }
-
-
-
-

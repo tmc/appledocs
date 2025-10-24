@@ -9,6 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSTabViewController */
+
+
+/* debug [class_header]: Header for NSTabViewController */
 // The class instance for the [TabViewController] class.
 var (
 	TabViewControllerClass     _TabViewControllerClass
@@ -25,10 +29,16 @@ func getTabViewControllerClass() _TabViewControllerClass {
 type _TabViewControllerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for TabViewController */
 // An interface definition for the [TabViewController] class.
 type ITabViewController interface {
 	IViewController
+	
+/* debug [class_interface_properties]: Properties for TabViewController */
 	// properties:
 	CanPropagateSelectedChildViewControllerTitle() bool
 	SetCanPropagateSelectedChildViewControllerTitle(value bool)
@@ -44,6 +54,10 @@ type ITabViewController interface {
 	SetTransitionOptions(value ViewControllerTransitionOptions)
 	Children() IViewController
 	SetChildren(value IViewController)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for TabViewController */
 	// methods:
 	AddTabViewItem(tabViewItem ITabViewItem)
 	InsertTabViewItemAtIndex(tabViewItem ITabViewItem, index int)
@@ -52,35 +66,19 @@ type ITabViewController interface {
 	TabViewShouldSelectTabViewItem(tabView ITabView, tabViewItem ITabViewItem) bool
 	TabViewWillSelectTabViewItem(tabView ITabView, tabViewItem ITabViewItem)
 	TabViewItemForViewController(viewController IViewController) ITabViewItem
-	ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, flag bool) IToolbarItem
+	ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) IToolbarItem
 	ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string
 	ToolbarDefaultItemIdentifiers(toolbar IToolbar) []string
 	ToolbarSelectableItemIdentifiers(toolbar IToolbar) []string
 	ViewDidLoad()
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
-//
-// Each page of content is managed by a separate child view controller. Navigation between child view controllers is accomplished with the help of an object, which the tab view controller manages. When the user selects a new tab, the tab view controller displays the content associated with the associated child view controller, replacing the previous content. Each tab is represented by an object, which contains the name of the tab and stores a pointer to the child view controller that manages the tab’s content. Normally, you configure the tab view items at design time using Interface Builder, but you can also add them programmatically using the methods of this class. Always assign a child view controller to new tab view items before adding those items to the tab view interface. Another way to add tabs programmatically is to add child view controllers directly to the tab view controller. When you call the or method of this class, the tab view controller automatically creates a default object for the specified view controller. You can fetch the newly created item using the method and configure it. Removing a child view controller with the method similarly removes the corresponding tab view item. The tab view controller lazily loads the views associated with each child view controller, creating them only after the corresponding tab is selected. When the tab view controller’s view is first displayed, only the view for the initially selected tab is loaded. The property determines the appearance of the tab controls. A tab view controller can display a segmented control or display tabs in the window’s toolbar. You can also provide your own control for displaying tabs. The tab view controller automatically coordinates interactions between designated control and the corresponding object.
+/* debug [class_interface]: End interface */
 
 
-// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController
-type TabViewController struct {
-	ViewController
-}
 
-// TabViewControllerFrom constructs a [TabViewController] from an unsafe.Pointer.
-//
-// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
-func TabViewControllerFrom(ptr unsafe.Pointer) TabViewController {
-	return TabViewController{
-		ViewController: ViewControllerFrom(ptr),
-	}
-}
-
+/* debug [class_constructors]: Constructors for TabViewController */
 // Alloc allocates a new instance without initialization.
 func (tc _TabViewControllerClass) Alloc() TabViewController {
 	rv := objc.Send[TabViewController](objc.ID(tc.class), objc.Sel("alloc"))
@@ -88,7 +86,6 @@ func (tc _TabViewControllerClass) Alloc() TabViewController {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (tc _TabViewControllerClass) New() TabViewController {
 	rv := objc.Send[TabViewController](objc.ID(tc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -111,8 +108,51 @@ func (t_ TabViewController) Autorelease() TabViewController {
 func NewTabViewController() TabViewController {
 	return getTabViewControllerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for TabViewController */
+// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
+//
+// Each page of content is managed by a separate child view controller. Navigation between child view controllers is accomplished with the help of an object, which the tab view controller manages. When the user selects a new tab, the tab view controller displays the content associated with the associated child view controller, replacing the previous content. Each tab is represented by an object, which contains the name of the tab and stores a pointer to the child view controller that manages the tab’s content. Normally, you configure the tab view items at design time using Interface Builder, but you can also add them programmatically using the methods of this class. Always assign a child view controller to new tab view items before adding those items to the tab view interface. Another way to add tabs programmatically is to add child view controllers directly to the tab view controller. When you call the or method of this class, the tab view controller automatically creates a default object for the specified view controller. You can fetch the newly created item using the method and configure it. Removing a child view controller with the method similarly removes the corresponding tab view item. The tab view controller lazily loads the views associated with each child view controller, creating them only after the corresponding tab is selected. When the tab view controller’s view is first displayed, only the view for the initially selected tab is loaded. The property determines the appearance of the tab controls. A tab view controller can display a segmented control or display tabs in the window’s toolbar. You can also provide your own control for displaying tabs. The tab view controller automatically coordinates interactions between designated control and the corresponding object.
+
+
+// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController
+type TabViewController struct {
+	ViewController
+}
+
+// TabViewControllerFrom constructs a [TabViewController] from an unsafe.Pointer.
+//
+// A container view controller that manages a tab view interface, which organizes multiple pages of content but displays only one page at a time.
+func TabViewControllerFrom(ptr unsafe.Pointer) TabViewController {
+	return TabViewController{
+		ViewController: ViewControllerFrom(ptr),
+	}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for TabViewController *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for TabViewController */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for TabViewController */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for TabViewController */
 
 // Adds the specified tab to the end of the tab view controller’s list of tabs.
 //
@@ -120,7 +160,7 @@ func NewTabViewController() TabViewController {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/addTabViewItem(_:)
 func (t_ TabViewController) AddTabViewItem(tabViewItem ITabViewItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("addTabViewItem:"), tabViewItem)
-}
+}/* debug [instance_methods/method]: AddTabViewItem */
 
 
 // Inserts a tab view into the tab view controller’s list of tabs.
@@ -129,7 +169,7 @@ func (t_ TabViewController) AddTabViewItem(tabViewItem ITabViewItem) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/insertTabViewItem(_:at:)
 func (t_ TabViewController) InsertTabViewItemAtIndex(tabViewItem ITabViewItem, index int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("insertTabViewItem:atIndex:"), tabViewItem, index)
-}
+}/* debug [instance_methods/method]: InsertTabViewItemAtIndex */
 
 
 // Removes the specified tab view item from the tab view controller.
@@ -138,7 +178,7 @@ func (t_ TabViewController) InsertTabViewItemAtIndex(tabViewItem ITabViewItem, i
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/removeTabViewItem(_:)
 func (t_ TabViewController) RemoveTabViewItem(tabViewItem ITabViewItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeTabViewItem:"), tabViewItem)
-}
+}/* debug [instance_methods/method]: RemoveTabViewItem */
 
 
 // Informs the tab view controller that the specified tab was selected.
@@ -147,7 +187,7 @@ func (t_ TabViewController) RemoveTabViewItem(tabViewItem ITabViewItem) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/tabView(_:didSelect:)
 func (t_ TabViewController) TabViewDidSelectTabViewItem(tabView ITabView, tabViewItem ITabViewItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("tabView:didSelectTabViewItem:"), tabView, tabViewItem)
-}
+}/* debug [instance_methods/method]: TabViewDidSelectTabViewItem */
 
 
 // Asks the tab view controller if the specified tab should be selected.
@@ -157,7 +197,7 @@ func (t_ TabViewController) TabViewDidSelectTabViewItem(tabView ITabView, tabVie
 func (t_ TabViewController) TabViewShouldSelectTabViewItem(tabView ITabView, tabViewItem ITabViewItem) bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("tabView:shouldSelectTabViewItem:"), tabView, tabViewItem)
 	return rv
-}
+}/* debug [instance_methods/method]: TabViewShouldSelectTabViewItem */
 
 
 // Informs the tab view controller that the specified tab is about to be selected.
@@ -166,7 +206,7 @@ func (t_ TabViewController) TabViewShouldSelectTabViewItem(tabView ITabView, tab
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/tabView(_:willSelect:)
 func (t_ TabViewController) TabViewWillSelectTabViewItem(tabView ITabView, tabViewItem ITabViewItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("tabView:willSelectTabViewItem:"), tabView, tabViewItem)
-}
+}/* debug [instance_methods/method]: TabViewWillSelectTabViewItem */
 
 
 // Returns the tab view item for the specified child view controller.
@@ -176,17 +216,17 @@ func (t_ TabViewController) TabViewWillSelectTabViewItem(tabView ITabView, tabVi
 func (t_ TabViewController) TabViewItemForViewController(viewController IViewController) ITabViewItem {
 	rv := objc.Send[TabViewItem](t_.ID, objc.Sel("tabViewItemForViewController:"), viewController)
 	return rv
-}
+}/* debug [instance_methods/method]: TabViewItemForViewController */
 
 
 // Returns the toolbar item for the specified identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/toolbar(_:itemForItemIdentifier:willBeInsertedIntoToolbar:)
-func (t_ TabViewController) ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, flag bool) IToolbarItem {
+func (t_ TabViewController) ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar(toolbar IToolbar, itemIdentifier ToolbarItemIdentifier /* typedef */, flag bool) IToolbarItem {
 	rv := objc.Send[ToolbarItem](t_.ID, objc.Sel("toolbar:itemForItemIdentifier:willBeInsertedIntoToolbar:"), toolbar, itemIdentifier, flag)
 	return rv
-}
+}/* debug [instance_methods/method]: ToolbarItemForItemIdentifierWillBeInsertedIntoToolbar */
 
 
 // Returns the array of identifier strings for the allowed toolbar items.
@@ -196,7 +236,7 @@ func (t_ TabViewController) ToolbarItemForItemIdentifierWillBeInsertedIntoToolba
 func (t_ TabViewController) ToolbarAllowedItemIdentifiers(toolbar IToolbar) []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("toolbarAllowedItemIdentifiers:"), toolbar)
 	return rv
-}
+}/* debug [instance_methods/method]: ToolbarAllowedItemIdentifiers */
 
 
 // Returns the array of identifier strings for the default toolbar items.
@@ -206,7 +246,7 @@ func (t_ TabViewController) ToolbarAllowedItemIdentifiers(toolbar IToolbar) []st
 func (t_ TabViewController) ToolbarDefaultItemIdentifiers(toolbar IToolbar) []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("toolbarDefaultItemIdentifiers:"), toolbar)
 	return rv
-}
+}/* debug [instance_methods/method]: ToolbarDefaultItemIdentifiers */
 
 
 // Returns the array of identifier strings for the selectable toolbar items
@@ -216,7 +256,7 @@ func (t_ TabViewController) ToolbarDefaultItemIdentifiers(toolbar IToolbar) []st
 func (t_ TabViewController) ToolbarSelectableItemIdentifiers(toolbar IToolbar) []string {
 	rv := objc.Send[[]string](t_.ID, objc.Sel("toolbarSelectableItemIdentifiers:"), toolbar)
 	return rv
-}
+}/* debug [instance_methods/method]: ToolbarSelectableItemIdentifiers */
 
 
 // Called after the view controller’s view has been loaded into memory.
@@ -225,8 +265,13 @@ func (t_ TabViewController) ToolbarSelectableItemIdentifiers(toolbar IToolbar) [
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/viewDidLoad()
 func (t_ TabViewController) ViewDidLoad() {
 	objc.Send[objc.ID](t_.ID, objc.Sel("viewDidLoad"))
-}
+}/* debug [instance_methods/method]: ViewDidLoad */
 
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for TabViewController */
 
 // A Boolean value indicating whether the tab view controller gets its title from the selected child view controller.
 //
@@ -235,7 +280,7 @@ func (t_ TabViewController) ViewDidLoad() {
 func (t_ TabViewController) CanPropagateSelectedChildViewControllerTitle() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canPropagateSelectedChildViewControllerTitle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: canPropagateSelectedChildViewControllerTitle */
 
 
 // A Boolean value indicating whether the tab view controller gets its title from the selected child view controller.
@@ -244,7 +289,7 @@ func (t_ TabViewController) CanPropagateSelectedChildViewControllerTitle() bool 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/canPropagateSelectedChildViewControllerTitle
 func (t_ TabViewController) SetCanPropagateSelectedChildViewControllerTitle(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCanPropagateSelectedChildViewControllerTitle:"), value)
-}
+}/* debug [instance_properties/setter]: canPropagateSelectedChildViewControllerTitle */
 
 
 // The index of the selected tab.
@@ -254,7 +299,7 @@ func (t_ TabViewController) SetCanPropagateSelectedChildViewControllerTitle(valu
 func (t_ TabViewController) SelectedTabViewItemIndex() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("selectedTabViewItemIndex"))
 	return rv
-}
+}/* debug [instance_properties/getter]: selectedTabViewItemIndex */
 
 
 // The index of the selected tab.
@@ -263,7 +308,7 @@ func (t_ TabViewController) SelectedTabViewItemIndex() int {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/selectedTabViewItemIndex
 func (t_ TabViewController) SetSelectedTabViewItemIndex(value int) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedTabViewItemIndex:"), value)
-}
+}/* debug [instance_properties/setter]: selectedTabViewItemIndex */
 
 
 // The style used to display the tabs.
@@ -273,7 +318,7 @@ func (t_ TabViewController) SetSelectedTabViewItemIndex(value int) {
 func (t_ TabViewController) TabStyle() TabViewControllerTabStyle {
 	rv := objc.Send[TabViewControllerTabStyle](t_.ID, objc.Sel("tabStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tabStyle */
 
 
 // The style used to display the tabs.
@@ -282,7 +327,7 @@ func (t_ TabViewController) TabStyle() TabViewControllerTabStyle {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/tabStyle-swift.property
 func (t_ TabViewController) SetTabStyle(value TabViewControllerTabStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabStyle:"), value)
-}
+}/* debug [instance_properties/setter]: tabStyle */
 
 
 // The tab view that manages the views of the interface.
@@ -292,7 +337,7 @@ func (t_ TabViewController) SetTabStyle(value TabViewControllerTabStyle) {
 func (t_ TabViewController) TabView() ITabView {
 	rv := objc.Send[TabView](t_.ID, objc.Sel("tabView"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tabView */
 
 
 // The tab view that manages the views of the interface.
@@ -301,7 +346,7 @@ func (t_ TabViewController) TabView() ITabView {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/tabView
 func (t_ TabViewController) SetTabView(value ITabView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabView:"), value)
-}
+}/* debug [instance_properties/setter]: tabView */
 
 
 // The array of tab view items used to manage each of the child view controllers.
@@ -311,7 +356,7 @@ func (t_ TabViewController) SetTabView(value ITabView) {
 func (t_ TabViewController) TabViewItems() []TabViewItem {
 	rv := objc.Send[[]TabViewItem](t_.ID, objc.Sel("tabViewItems"))
 	return rv
-}
+}/* debug [instance_properties/getter]: tabViewItems */
 
 
 // The array of tab view items used to manage each of the child view controllers.
@@ -319,7 +364,6 @@ func (t_ TabViewController) TabViewItems() []TabViewItem {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/tabViewItems
 func (t_ TabViewController) SetTabViewItems(value []TabViewItem) {
-	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
 		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
@@ -330,7 +374,7 @@ func (t_ TabViewController) SetTabViewItems(value []TabViewItem) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTabViewItems:"), nsArray)
-}
+}/* debug [instance_properties/setter]: tabViewItems */
 
 
 // The animation options to use when switching between tabs.
@@ -340,7 +384,7 @@ func (t_ TabViewController) SetTabViewItems(value []TabViewItem) {
 func (t_ TabViewController) TransitionOptions() ViewControllerTransitionOptions {
 	rv := objc.Send[ViewControllerTransitionOptions](t_.ID, objc.Sel("transitionOptions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: transitionOptions */
 
 
 // The animation options to use when switching between tabs.
@@ -349,7 +393,7 @@ func (t_ TabViewController) TransitionOptions() ViewControllerTransitionOptions 
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewController/transitionOptions
 func (t_ TabViewController) SetTransitionOptions(value ViewControllerTransitionOptions) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTransitionOptions:"), value)
-}
+}/* debug [instance_properties/setter]: transitionOptions */
 
 
 // An array of view controllers that are hierarchical children of the view controller.
@@ -359,7 +403,7 @@ func (t_ TabViewController) SetTransitionOptions(value ViewControllerTransitionO
 func (t_ TabViewController) Children() IViewController {
 	rv := objc.Send[ViewController](t_.ID, objc.Sel("children"))
 	return rv
-}
+}/* debug [instance_properties/getter]: children */
 
 
 // An array of view controllers that are hierarchical children of the view controller.
@@ -368,7 +412,12 @@ func (t_ TabViewController) Children() IViewController {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewcontroller/children
 func (t_ TabViewController) SetChildren(value IViewController) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildren:"), value)
-}
+}/* debug [instance_properties/setter]: children */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSTabViewController */
 
 
 

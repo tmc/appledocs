@@ -15,3 +15,4 @@ var EditorRegistrationProtocol *objc.Protocol
 func init() {
 	EditorRegistrationProtocol = objc.GetProtocol("NSEditorRegistration")
 }
+

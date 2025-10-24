@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CXProvider */
+
+
+/* debug [class_header]: Header for CXProvider */
 // The class instance for the [CXProvider] class.
 var (
 	CXProviderClass     _CXProviderClass
@@ -27,36 +31,32 @@ func getCXProviderClass() _CXProviderClass {
 type _CXProviderClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CXProvider */
 // An interface definition for the [CXProvider] class.
 type ICXProvider interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CXProvider */
 	// properties:
 	CXErrorDomain() objc.IObject /* cross-framework: NSString */
 	CXErrorDomainIncomingCall() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CXProvider */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents a telephony provider.
-//
-// A object is responsible for reporting out-of-band notifications that occur to the system. A VoIP app should create only one instance of and store it for use globally. A object is initialized with a object to specify the behavior and capabilities of calls. Each provider can specify an object conforming to the protocol to respond to events, such as the call starting, the call being put on hold, or the provider’s audio session being activated.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents a telephony provider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider
-type CXProvider struct {
-	objectivec.Object
-}
 
-// CXProviderFrom constructs a [CXProvider] from an unsafe.Pointer.
-//
-// An object that represents a telephony provider.
-func CXProviderFrom(ptr unsafe.Pointer) CXProvider {
-	return CXProvider{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CXProvider */
 // Alloc allocates a new instance without initialization.
 func (cc _CXProviderClass) Alloc() CXProvider {
 	rv := objc.Send[CXProvider](objc.ID(cc.class), objc.Sel("alloc"))
@@ -64,7 +64,6 @@ func (cc _CXProviderClass) Alloc() CXProvider {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CXProviderClass) New() CXProvider {
 	rv := objc.Send[CXProvider](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -87,8 +86,35 @@ func (c_ CXProvider) Autorelease() CXProvider {
 func NewCXProvider() CXProvider {
 	return getCXProviderClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for CXProvider */
+// An object that represents a telephony provider.
+//
+// A object is responsible for reporting out-of-band notifications that occur to the system. A VoIP app should create only one instance of and store it for use globally. A object is initialized with a object to specify the behavior and capabilities of calls. Each provider can specify an object conforming to the protocol to respond to events, such as the call starting, the call being put on hold, or the provider’s audio session being activated.
+
+
+// An object that represents a telephony provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider
+type CXProvider struct {
+	objectivec.Object
+}
+
+// CXProviderFrom constructs a [CXProvider] from an unsafe.Pointer.
+//
+// An object that represents a telephony provider.
+func CXProviderFrom(ptr unsafe.Pointer) CXProvider {
+	return CXProvider{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CXProvider */
 
 // Initializes a new provider with the specified configuration.
 //
@@ -99,9 +125,13 @@ func NewCXProviderWithConfiguration(configuration ICXProviderConfiguration) CXPr
 	rv := objc.Send[CXProvider](instance.ID, objc.Sel("initWithConfiguration:"), configuration)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCXProviderWithConfiguration */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for CXProvider */
 
 // Reports a new incoming call after your notification service extension decrypts a VoIP call request.
 //
@@ -109,8 +139,23 @@ func NewCXProviderWithConfiguration(configuration ICXProviderConfiguration) CXPr
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXProvider/reportNewIncomingVoIPPushPayload(_:completion:)
 func (cc _CXProviderClass) ReportNewIncomingVoIPPushPayloadCompletion(dictionaryPayload objc.IObject /* cross-framework: NSDictionary */, completion unsafe.Pointer) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("reportNewIncomingVoIPPushPayload:completion:"), dictionaryPayload, completion)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ReportNewIncomingVoIPPushPayloadCompletion) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CXProvider */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CXProvider */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CXProvider */
 
 // The domain for CallKit errors.
 //
@@ -119,7 +164,7 @@ func (cc _CXProviderClass) ReportNewIncomingVoIPPushPayloadCompletion(dictionary
 func (c_ CXProvider) CXErrorDomain() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CXErrorDomain"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CXErrorDomain */
 
 
 // The domain for errors that occur during incoming calls.
@@ -129,6 +174,11 @@ func (c_ CXProvider) CXErrorDomain() objc.IObject /* cross-framework: NSString *
 func (c_ CXProvider) CXErrorDomainIncomingCall() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("CXErrorDomainIncomingCall"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CXErrorDomainIncomingCall */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CXProvider */
 
 

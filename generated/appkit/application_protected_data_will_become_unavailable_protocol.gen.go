@@ -15,3 +15,4 @@ var applicationProtectedDataWillBecomeUnavailableProtocol *objc.Protocol
 func init() {
 	applicationProtectedDataWillBecomeUnavailableProtocol = objc.GetProtocol("applicationProtectedDataWillBecomeUnavailable:")
 }
+

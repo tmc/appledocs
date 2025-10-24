@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MTLIOCommandQueueDescriptor */
+
+
+/* debug [class_header]: Header for MTLIOCommandQueueDescriptor */
 // The class instance for the [IOCommandQueueDescriptor] class.
 var (
 	IOCommandQueueDescriptorClass     _IOCommandQueueDescriptorClass
@@ -26,38 +30,40 @@ func getIOCommandQueueDescriptorClass() _IOCommandQueueDescriptorClass {
 type _IOCommandQueueDescriptorClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for IOCommandQueueDescriptor */
 // An interface definition for the [IOCommandQueueDescriptor] class.
 type IIOCommandQueueDescriptor interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for IOCommandQueueDescriptor */
+	// properties:
 	MaxCommandBufferCount() uint
 	SetMaxCommandBufferCount(value uint)
 	MaxCommandsInFlight() uint
 	SetMaxCommandsInFlight(value uint)
 	Priority() IOPriority
 	SetPriority(value IOPriority)
-	ScratchBufferAllocator() objc.ID
-	SetScratchBufferAllocator(value objc.ID)
+	ScratchBufferAllocator() unsafe.Pointer
+	SetScratchBufferAllocator(value unsafe.Pointer)
 	Type() IOCommandQueueType
 	SetType(value IOCommandQueueType)
-}
+/* debug [class_interface_properties]: End properties */
 
-// A configuration template you use to create a new input/output command queue.
-//
-// Use this descriptor type to configure the settings of each input/output command queue that you create using . To create additional input/output command queues, you can reuse a descriptor instance and optionally reconfigure its properties. Create each input/output queue to meet your apps needs by setting the descriptor’s properties. Select a queue’s relative level of importance with the property. Create a queue that runs multiple input/output command buffers in parallel by setting the property to . Decide how many individual commands a queue can run simultaneously with the property. Choose how many command buffers a queue can have waiting to run with property. Take control of the queue’s scratch memory allocation by implementing and assign an instance of it to the property.
-//
-// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor
-type IOCommandQueueDescriptor struct {
-	objectivec.Object
-}
+	
+/* debug [class_interface_methods]: Methods for IOCommandQueueDescriptor */
+	// methods:
+/* debug [class_interface_methods]: End methods */
 
-// IOCommandQueueDescriptorFrom constructs a [IOCommandQueueDescriptor] from an unsafe.Pointer.
-//
-// A configuration template you use to create a new input/output command queue.
-func IOCommandQueueDescriptorFrom(ptr unsafe.Pointer) IOCommandQueueDescriptor {
-	return IOCommandQueueDescriptor{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_interface]: End interface */
 
+
+
+/* debug [class_constructors]: Constructors for IOCommandQueueDescriptor */
 // Alloc allocates a new instance without initialization.
 func (cc _IOCommandQueueDescriptorClass) Alloc() IOCommandQueueDescriptor {
 	rv := objc.Send[IOCommandQueueDescriptor](objc.ID(cc.class), objc.Sel("alloc"))
@@ -65,7 +71,6 @@ func (cc _IOCommandQueueDescriptorClass) Alloc() IOCommandQueueDescriptor {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _IOCommandQueueDescriptorClass) New() IOCommandQueueDescriptor {
 	rv := objc.Send[IOCommandQueueDescriptor](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,97 +93,153 @@ func (c_ IOCommandQueueDescriptor) Autorelease() IOCommandQueueDescriptor {
 func NewIOCommandQueueDescriptor() IOCommandQueueDescriptor {
 	return getIOCommandQueueDescriptorClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for IOCommandQueueDescriptor */
+// A configuration template you use to create a new input/output command queue.
+//
+// Use this descriptor type to configure the settings of each input/output command queue that you create using . To create additional input/output command queues, you can reuse a descriptor instance and optionally reconfigure its properties. Create each input/output queue to meet your apps needs by setting the descriptor’s properties. Select a queue’s relative level of importance with the property. Create a queue that runs multiple input/output command buffers in parallel by setting the property to . Decide how many individual commands a queue can run simultaneously with the property. Choose how many command buffers a queue can have waiting to run with property. Take control of the queue’s scratch memory allocation by implementing and assign an instance of it to the property.
+
+
+// A configuration template you use to create a new input/output command queue.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor
+type IOCommandQueueDescriptor struct {
+	objectivec.Object
+}
+
+// IOCommandQueueDescriptorFrom constructs a [IOCommandQueueDescriptor] from an unsafe.Pointer.
+//
+// A configuration template you use to create a new input/output command queue.
+func IOCommandQueueDescriptorFrom(ptr unsafe.Pointer) IOCommandQueueDescriptor {
+	return IOCommandQueueDescriptor{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for IOCommandQueueDescriptor *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for IOCommandQueueDescriptor */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for IOCommandQueueDescriptor */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for IOCommandQueueDescriptor */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for IOCommandQueueDescriptor */
 
 // Sets the largest number of outstanding input/output command buffers a queue can have at any point in time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/maxCommandBufferCount
 func (c_ IOCommandQueueDescriptor) MaxCommandBufferCount() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maxCommandBufferCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: maxCommandBufferCount */
 
 
-// SetMaxCommandBufferCount sets the value of the maxCommandBufferCount property.
 // Sets the largest number of outstanding input/output command buffers a queue can have at any point in time.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/maxCommandBufferCount
 func (c_ IOCommandQueueDescriptor) SetMaxCommandBufferCount(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxCommandBufferCount:"), value)
-}
+}/* debug [instance_properties/setter]: maxCommandBufferCount */
+
 
 // Sets the largest number of individual commands that an input/output command queue can run at a time.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/maxCommandsInFlight
 func (c_ IOCommandQueueDescriptor) MaxCommandsInFlight() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("maxCommandsInFlight"))
 	return rv
-}
+}/* debug [instance_properties/getter]: maxCommandsInFlight */
 
 
-// SetMaxCommandsInFlight sets the value of the maxCommandsInFlight property.
 // Sets the largest number of individual commands that an input/output command queue can run at a time.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/maxCommandsInFlight
 func (c_ IOCommandQueueDescriptor) SetMaxCommandsInFlight(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMaxCommandsInFlight:"), value)
-}
+}/* debug [instance_properties/setter]: maxCommandsInFlight */
+
 
 // Configures the priority for a new input/output command queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/priority
 func (c_ IOCommandQueueDescriptor) Priority() IOPriority {
-	rv := objc.Send[IOPriority](c_.ID, objc.Sel("priority"))
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("priority"))
 	return rv
-}
+}/* debug [instance_properties/getter]: priority */
 
 
-// SetPriority sets the value of the priority property.
 // Configures the priority for a new input/output command queue.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/priority
 func (c_ IOCommandQueueDescriptor) SetPriority(value IOPriority) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setPriority:"), value)
-}
+}/* debug [instance_properties/setter]: priority */
+
 
 // An optional memory allocator that you implement to manage the scratch memory that an input/output command queue requests.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/scratchBufferAllocator
-func (c_ IOCommandQueueDescriptor) ScratchBufferAllocator() objc.ID {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("scratchBufferAllocator"))
+func (c_ IOCommandQueueDescriptor) ScratchBufferAllocator() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("scratchBufferAllocator"))
 	return rv
-}
+}/* debug [instance_properties/getter]: scratchBufferAllocator */
 
 
-// SetScratchBufferAllocator sets the value of the scratchBufferAllocator property.
 // An optional memory allocator that you implement to manage the scratch memory that an input/output command queue requests.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/scratchBufferAllocator
-func (c_ IOCommandQueueDescriptor) SetScratchBufferAllocator(value objc.ID) {
+func (c_ IOCommandQueueDescriptor) SetScratchBufferAllocator(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setScratchBufferAllocator:"), value)
-}
+}/* debug [instance_properties/setter]: scratchBufferAllocator */
+
 
 // Configures the queue type for a new input/output command queue.
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/type
 func (c_ IOCommandQueueDescriptor) Type() IOCommandQueueType {
-	rv := objc.Send[IOCommandQueueType](c_.ID, objc.Sel("type"))
+	rv := objc.Send[objc.ID](c_.ID, objc.Sel("type"))
 	return rv
-}
+}/* debug [instance_properties/getter]: type */
 
 
-// SetType sets the value of the type property.
 // Configures the queue type for a new input/output command queue.
-
 //
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Metal/MTLIOCommandQueueDescriptor/type
 func (c_ IOCommandQueueDescriptor) SetType(value IOCommandQueueType) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setType:"), value)
-}
+}/* debug [instance_properties/setter]: type */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MTLIOCommandQueueDescriptor */
 
 
 

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ExpressionDescription] class.
@@ -58,7 +58,6 @@ type IExpressionDescription interface {
 //
 // An expression description describes a value that a fetch request returns, which doesn’t appear as an attribute or relationship on an entity. For example, expressions can aggregate data, or transform an attribute’s value. You add expression descriptions to a fetch request using the method.
 
-
 // An object that describes an expression to include with a fetch request.
 //
 // [Full Topic]
@@ -107,8 +106,6 @@ func NewExpressionDescription() ExpressionDescription {
 	return getExpressionDescriptionClass().New()
 }
 
-
-
 // The expression to evaluate.
 //
 // [Full Topic]
@@ -118,7 +115,6 @@ func (e_ ExpressionDescription) Expression() objc.IObject /* cross-framework: Ex
 	return rv
 }
 
-
 // The expression to evaluate.
 //
 // [Full Topic]
@@ -126,7 +122,6 @@ func (e_ ExpressionDescription) Expression() objc.IObject /* cross-framework: Ex
 func (e_ ExpressionDescription) SetExpression(value objc.IObject /* cross-framework: Expression */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpression:"), value)
 }
-
 
 // The attribute type of the expression’s result.
 //
@@ -137,7 +132,6 @@ func (e_ ExpressionDescription) ExpressionResultType() AttributeType {
 	return rv
 }
 
-
 // The attribute type of the expression’s result.
 //
 // [Full Topic]
@@ -145,7 +139,6 @@ func (e_ ExpressionDescription) ExpressionResultType() AttributeType {
 func (e_ ExpressionDescription) SetExpressionResultType(value AttributeType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setExpressionResultType:"), value)
 }
-
 
 // An array containing the properties of the receiver.
 //
@@ -156,7 +149,6 @@ func (e_ ExpressionDescription) Properties() IPropertyDescription {
 	return rv
 }
 
-
 // An array containing the properties of the receiver.
 //
 // [Full Topic]
@@ -164,7 +156,6 @@ func (e_ ExpressionDescription) Properties() IPropertyDescription {
 func (e_ ExpressionDescription) SetProperties(value IPropertyDescription) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setProperties:"), value)
 }
-
 
 // The attribute type of the expression’s result.
 //
@@ -175,7 +166,6 @@ func (e_ ExpressionDescription) ResultType() AttributeType {
 	return rv
 }
 
-
 // The attribute type of the expression’s result.
 //
 // [Full Topic]
@@ -183,7 +173,6 @@ func (e_ ExpressionDescription) ResultType() AttributeType {
 func (e_ ExpressionDescription) SetResultType(value AttributeType) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setResultType:"), value)
 }
-
 
 // An array of persistent stores specified for the fetch request.
 //
@@ -194,7 +183,6 @@ func (e_ ExpressionDescription) AffectedStores() IPersistentStore {
 	return rv
 }
 
-
 // An array of persistent stores specified for the fetch request.
 //
 // [Full Topic]
@@ -202,7 +190,6 @@ func (e_ ExpressionDescription) AffectedStores() IPersistentStore {
 func (e_ ExpressionDescription) SetAffectedStores(value IPersistentStore) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setAffectedStores:"), value)
 }
-
 
 // The batch size of the objects specified in the fetch request.
 //
@@ -213,7 +200,6 @@ func (e_ ExpressionDescription) FetchBatchSize() int {
 	return rv
 }
 
-
 // The batch size of the objects specified in the fetch request.
 //
 // [Full Topic]
@@ -221,7 +207,6 @@ func (e_ ExpressionDescription) FetchBatchSize() int {
 func (e_ ExpressionDescription) SetFetchBatchSize(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchBatchSize:"), value)
 }
-
 
 // The fetch limit of the fetch request.
 //
@@ -232,7 +217,6 @@ func (e_ ExpressionDescription) FetchLimit() int {
 	return rv
 }
 
-
 // The fetch limit of the fetch request.
 //
 // [Full Topic]
@@ -240,7 +224,6 @@ func (e_ ExpressionDescription) FetchLimit() int {
 func (e_ ExpressionDescription) SetFetchLimit(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchLimit:"), value)
 }
-
 
 // The fetch offset of the fetch request.
 //
@@ -251,7 +234,6 @@ func (e_ ExpressionDescription) FetchOffset() int {
 	return rv
 }
 
-
 // The fetch offset of the fetch request.
 //
 // [Full Topic]
@@ -259,7 +241,6 @@ func (e_ ExpressionDescription) FetchOffset() int {
 func (e_ ExpressionDescription) SetFetchOffset(value int) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setFetchOffset:"), value)
 }
-
 
 // The predicate of the fetch request.
 //
@@ -270,7 +251,6 @@ func (e_ ExpressionDescription) Predicate() objc.IObject /* cross-framework: Pre
 	return rv
 }
 
-
 // The predicate of the fetch request.
 //
 // [Full Topic]
@@ -278,7 +258,6 @@ func (e_ ExpressionDescription) Predicate() objc.IObject /* cross-framework: Pre
 func (e_ ExpressionDescription) SetPredicate(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPredicate:"), value)
 }
-
 
 // A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
 //
@@ -289,7 +268,6 @@ func (e_ ExpressionDescription) PropertiesToFetch() unsafe.Pointer {
 	return rv
 }
 
-
 // A collection of either property descriptions or string property names that specify which properties should be returned by the fetch.
 //
 // [Full Topic]
@@ -297,6 +275,3 @@ func (e_ ExpressionDescription) PropertiesToFetch() unsafe.Pointer {
 func (e_ ExpressionDescription) SetPropertiesToFetch(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setPropertiesToFetch:"), value)
 }
-
-
-

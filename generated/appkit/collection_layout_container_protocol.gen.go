@@ -15,3 +15,4 @@ var CollectionLayoutContainerProtocol *objc.Protocol
 func init() {
 	CollectionLayoutContainerProtocol = objc.GetProtocol("NSCollectionLayoutContainer")
 }
+

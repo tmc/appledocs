@@ -13,7 +13,7 @@ var _ = mlcompute.NewCScatterLayer
 // Creates a scatter layer with the dimension and reduction type you specify.
 func ExampleNewCScatterLayerWithDimensionReductionType() {
 	_ = mlcompute.NewCScatterLayerWithDimensionReductionType(
-		0, // dimension uint
+		0,                          // dimension uint
 		mlcompute.CReductionType{}, // reductionType CReductionType
 	)
 	// Output:

@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // RandomGeneratorProtocol is the CIRandomGenerator protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIRandomGenerator.
 var RandomGeneratorProtocol *objc.Protocol
 
 func init() {
 	RandomGeneratorProtocol = objc.GetProtocol("CIRandomGenerator")
 }
+

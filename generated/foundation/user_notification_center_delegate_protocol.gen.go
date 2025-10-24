@@ -16,3 +16,4 @@ var UserNotificationCenterDelegateProtocol *objc.Protocol
 func init() {
 	UserNotificationCenterDelegateProtocol = objc.GetProtocol("NSUserNotificationCenterDelegate")
 }
+

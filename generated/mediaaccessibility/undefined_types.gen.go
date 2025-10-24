@@ -10,8 +10,12 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	AbsoluteTime = _undefined // referenced in MediaAccessibility
+	ArrayRef = _undefined // referenced in MediaAccessibility
 	ColorRef = _undefined // referenced in MediaAccessibility
+	FontDescriptorRef = _undefined // referenced in MediaAccessibility
+	StringRef = _undefined // referenced in MediaAccessibility
 	SurfaceRef = _undefined // referenced in MediaAccessibility
+	URLRef = _undefined // referenced in MediaAccessibility
 )
 
 

@@ -9,3 +9,10 @@ import (
 // Suppress unused import errors
 var _ = metalperformanceshaders.NewForwardLoss
 
+// ExampleForwardLoss_EncodeBatch demonstrates using EncodeBatch on a ForwardLoss instance.
+func ExampleForwardLoss_EncodeBatch() {
+	obj := metalperformanceshaders.NewForwardLoss()
+	obj.EncodeBatch()
+	// Output:
+	}
+

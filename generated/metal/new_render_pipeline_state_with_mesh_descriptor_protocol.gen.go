@@ -20,3 +20,4 @@ var newRenderPipelineStateWithMeshDescriptorProtocol *objc.Protocol
 func init() {
 	newRenderPipelineStateWithMeshDescriptorProtocol = objc.GetProtocol("newRenderPipelineStateWithMeshDescriptor:")
 }
+

@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class AXLiveAudioGraph */
+
+
+/* debug [class_header]: Header for AXLiveAudioGraph */
 // The class instance for the [AXLiveAudioGraph] class.
 var (
 	AXLiveAudioGraphClass     _AXLiveAudioGraphClass
@@ -26,32 +30,30 @@ func getAXLiveAudioGraphClass() _AXLiveAudioGraphClass {
 type _AXLiveAudioGraphClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for AXLiveAudioGraph */
 // An interface definition for the [AXLiveAudioGraph] class.
 type IAXLiveAudioGraph interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for AXLiveAudioGraph */
+	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for AXLiveAudioGraph */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
-//
-// Use to interact with an ongoing, continuous stream of data that updates with new data in real time.
+/* debug [class_interface]: End interface */
 
 
-// An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph
-type AXLiveAudioGraph struct {
-	objectivec.Object
-}
 
-// AXLiveAudioGraphFrom constructs a [AXLiveAudioGraph] from an unsafe.Pointer.
-//
-// An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
-func AXLiveAudioGraphFrom(ptr unsafe.Pointer) AXLiveAudioGraph {
-	return AXLiveAudioGraph{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for AXLiveAudioGraph */
 // Alloc allocates a new instance without initialization.
 func (ac _AXLiveAudioGraphClass) Alloc() AXLiveAudioGraph {
 	rv := objc.Send[AXLiveAudioGraph](objc.ID(ac.class), objc.Sel("alloc"))
@@ -59,7 +61,6 @@ func (ac _AXLiveAudioGraphClass) Alloc() AXLiveAudioGraph {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (ac _AXLiveAudioGraphClass) New() AXLiveAudioGraph {
 	rv := objc.Send[AXLiveAudioGraph](objc.ID(ac.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -82,8 +83,39 @@ func (a_ AXLiveAudioGraph) Autorelease() AXLiveAudioGraph {
 func NewAXLiveAudioGraph() AXLiveAudioGraph {
 	return getAXLiveAudioGraphClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for AXLiveAudioGraph */
+// An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
+//
+// Use to interact with an ongoing, continuous stream of data that updates with new data in real time.
+
+
+// An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph
+type AXLiveAudioGraph struct {
+	objectivec.Object
+}
+
+// AXLiveAudioGraphFrom constructs a [AXLiveAudioGraph] from an unsafe.Pointer.
+//
+// An object that represents an audio graph for a live-updating, continuous data series for VoiceOver.
+func AXLiveAudioGraphFrom(ptr unsafe.Pointer) AXLiveAudioGraph {
+	return AXLiveAudioGraph{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for AXLiveAudioGraph *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for AXLiveAudioGraph */
 
 // Begins the live audio graph session.
 //
@@ -91,7 +123,7 @@ func NewAXLiveAudioGraph() AXLiveAudioGraph {
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/start()
 func (ac _AXLiveAudioGraphClass) Start() {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("start"))
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Start) */
 
 
 // Ends the live audio graph session.
@@ -100,7 +132,7 @@ func (ac _AXLiveAudioGraphClass) Start() {
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/stop()
 func (ac _AXLiveAudioGraphClass) Stop() {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("stop"))
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=Stop) */
 
 
 // Sets the pitch of the audio graph’s tone.
@@ -109,7 +141,27 @@ func (ac _AXLiveAudioGraphClass) Stop() {
 // [Full Topic]: https://developer.apple.com/documentation/Accessibility/AXLiveAudioGraph/updateValue(_:)
 func (ac _AXLiveAudioGraphClass) UpdateValue(value float64) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("updateValue:"), value)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=UpdateValue) */
+
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for AXLiveAudioGraph */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for AXLiveAudioGraph */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for AXLiveAudioGraph */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AXLiveAudioGraph */
 
 
 

@@ -15,3 +15,4 @@ var animationShouldStartProtocol *objc.Protocol
 func init() {
 	animationShouldStartProtocol = objc.GetProtocol("animationShouldStart:")
 }
+

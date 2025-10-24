@@ -31,14 +31,13 @@ type ICircularGeographicCondition interface {
 	ICondition
 	// properties:
 	Center() CLLocationCoordinate2D /* not a class type */
-	Radius() LocationDistance /* not a class type */
+	Radius() LocationDistance       /* not a class type */
 	// methods:
 }
 
 // A circular geographic condition that a center point and radius define.
 //
 // Use to monitor events that occur in a circular geographic condition that you describe.
-
 
 // A circular geographic condition that a center point and radius define.
 //
@@ -88,8 +87,6 @@ func NewCircularGeographicCondition() CircularGeographicCondition {
 	return getCircularGeographicConditionClass().New()
 }
 
-
-
 // Creates a new circular geographic condition with the center point and radius you provide.
 //
 // [Full Topic]
@@ -101,8 +98,6 @@ func NewCircularGeographicConditionWithCenterRadius(center LocationCoordinate2D 
 	return rv
 }
 
-
-
 // The center of the circular geographic condition.
 //
 // [Full Topic]
@@ -112,7 +107,6 @@ func (c_ CircularGeographicCondition) Center() CLLocationCoordinate2D /* not a c
 	return rv
 }
 
-
 // The radius of the circular geographic condition.
 //
 // [Full Topic]
@@ -121,5 +115,3 @@ func (c_ CircularGeographicCondition) Radius() LocationDistance /* not a class t
 	rv := objc.Send[LocationDistance](c_.ID, objc.Sel("radius"))
 	return rv
 }
-
-

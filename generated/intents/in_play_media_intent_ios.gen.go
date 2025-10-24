@@ -5,14 +5,11 @@
 package intents
 
 import (
-	"unsafe"
-
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // iOS-only methods for INPlayMediaIntent
-
 
 // iOS-only properties
 
@@ -33,8 +30,3 @@ func (i_ INPlayMediaIntent) ResumePlayback() objc.IObject /* cross-framework: NS
 	rv := objc.Send[foundation.NSNumber](i_.ID, objc.Sel("resumePlayback"))
 	return rv
 }
-
-
-
-
-

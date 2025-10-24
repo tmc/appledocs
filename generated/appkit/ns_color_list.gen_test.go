@@ -15,5 +15,4 @@ func ExampleColorList_RemoveFile() {
 	obj := appkit.NewColorList()
 	obj.RemoveFile()
 	// Output:
-	}
-
+}

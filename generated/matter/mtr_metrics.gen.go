@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -38,8 +38,6 @@ type IMTRMetrics interface {
 	SetUniqueIdentifier(value objc.IObject /* cross-framework: UUID */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRMetrics
@@ -83,8 +81,6 @@ func NewMTRMetrics() MTRMetrics {
 	return getMTRMetricsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
 func (m_ MTRMetrics) AllKeys() objc.IObject /* cross-framework: NSString */ {
@@ -92,13 +88,11 @@ func (m_ MTRMetrics) AllKeys() objc.IObject /* cross-framework: NSString */ {
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/allkeys
 func (m_ MTRMetrics) SetAllKeys(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setAllKeys:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
@@ -107,12 +101,8 @@ func (m_ MTRMetrics) UniqueIdentifier() objc.IObject /* cross-framework: UUID */
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrmetrics/uniqueidentifier
 func (m_ MTRMetrics) SetUniqueIdentifier(value objc.IObject /* cross-framework: UUID */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setUniqueIdentifier:"), value)
 }
-
-
-

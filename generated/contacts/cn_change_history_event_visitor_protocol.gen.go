@@ -20,3 +20,4 @@ var CNChangeHistoryEventVisitorProtocol *objc.Protocol
 func init() {
 	CNChangeHistoryEventVisitorProtocol = objc.GetProtocol("CNChangeHistoryEventVisitor")
 }
+

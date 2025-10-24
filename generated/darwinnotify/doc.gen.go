@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for DarwinNotify. DO NOT EDIT.
 
 // Package darwinnotify provides Go bindings for the DarwinNotify framework.
 //
-// Send and receive Darwin notifications.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to DarwinNotify without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/DarwinNotify
 package darwinnotify
 
 import (

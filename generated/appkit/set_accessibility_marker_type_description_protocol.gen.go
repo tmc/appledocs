@@ -15,3 +15,4 @@ var setAccessibilityMarkerTypeDescriptionProtocol *objc.Protocol
 func init() {
 	setAccessibilityMarkerTypeDescriptionProtocol = objc.GetProtocol("setAccessibilityMarkerTypeDescription")
 }
+

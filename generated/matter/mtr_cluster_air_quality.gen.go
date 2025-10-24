@@ -33,8 +33,6 @@ type IMTRClusterAirQuality interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterAirQuality
 type MTRClusterAirQuality struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterAirQuality) Autorelease() MTRClusterAirQuality {
 func NewMTRClusterAirQuality() MTRClusterAirQuality {
 	return getMTRClusterAirQualityClass().New()
 }
-
-
-
-

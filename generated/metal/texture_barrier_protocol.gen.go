@@ -15,3 +15,4 @@ var textureBarrierProtocol *objc.Protocol
 func init() {
 	textureBarrierProtocol = objc.GetProtocol("textureBarrier")
 }
+

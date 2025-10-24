@@ -21,3 +21,4 @@ var deviceControllerProtocol *objc.Protocol
 func init() {
 	deviceControllerProtocol = objc.GetProtocol("deviceController:")
 }
+

@@ -44,7 +44,6 @@ type IPHContentEditingInputRequestOptions interface {
 //
 // You use the class with the method for editing the contents of a object. This class doesn’t affect photo editing extensions.
 
-
 // A set of options affecting the delivery of image or video data when you request to edit the content of a Photos asset.
 //
 // [Full Topic]
@@ -91,8 +90,6 @@ func NewPHContentEditingInputRequestOptions() PHContentEditingInputRequestOption
 	return getPHContentEditingInputRequestOptionsClass().New()
 }
 
-
-
 // A block to be called when Photos needs to determine whether your app can continue previous edits made to an asset.
 //
 // [Full Topic]
@@ -102,7 +99,6 @@ func (p_ PHContentEditingInputRequestOptions) CanHandleAdjustmentData() bool {
 	return rv
 }
 
-
 // A block to be called when Photos needs to determine whether your app can continue previous edits made to an asset.
 //
 // [Full Topic]
@@ -110,7 +106,6 @@ func (p_ PHContentEditingInputRequestOptions) CanHandleAdjustmentData() bool {
 func (p_ PHContentEditingInputRequestOptions) SetCanHandleAdjustmentData(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCanHandleAdjustmentData:"), value)
 }
-
 
 // A Boolean value that specifies whether Photos can download the asset from iCloud.
 //
@@ -121,7 +116,6 @@ func (p_ PHContentEditingInputRequestOptions) IsNetworkAccessAllowed() bool {
 	return rv
 }
 
-
 // A Boolean value that specifies whether Photos can download the asset from iCloud.
 //
 // [Full Topic]
@@ -129,7 +123,6 @@ func (p_ PHContentEditingInputRequestOptions) IsNetworkAccessAllowed() bool {
 func (p_ PHContentEditingInputRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
 }
-
 
 // A block Photos calls periodically while downloading the asset.
 //
@@ -140,7 +133,6 @@ func (p_ PHContentEditingInputRequestOptions) ProgressHandler() unsafe.Pointer {
 	return rv
 }
 
-
 // A block Photos calls periodically while downloading the asset.
 //
 // [Full Topic]
@@ -148,6 +140,3 @@ func (p_ PHContentEditingInputRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHContentEditingInputRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
-
-
-

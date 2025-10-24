@@ -15,3 +15,4 @@ var numberOfValidItemsForDropProtocol *objc.Protocol
 func init() {
 	numberOfValidItemsForDropProtocol = objc.GetProtocol("numberOfValidItemsForDrop")
 }
+

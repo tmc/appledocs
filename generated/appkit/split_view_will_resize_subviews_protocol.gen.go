@@ -15,3 +15,4 @@ var splitViewWillResizeSubviewsProtocol *objc.Protocol
 func init() {
 	splitViewWillResizeSubviewsProtocol = objc.GetProtocol("splitViewWillResizeSubviews:")
 }
+

@@ -15,3 +15,4 @@ var accessibilityToolbarButtonProtocol *objc.Protocol
 func init() {
 	accessibilityToolbarButtonProtocol = objc.GetProtocol("accessibilityToolbarButton")
 }
+

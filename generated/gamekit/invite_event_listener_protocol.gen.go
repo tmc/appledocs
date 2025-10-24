@@ -21,3 +21,4 @@ var InviteEventListenerProtocol *objc.Protocol
 func init() {
 	InviteEventListenerProtocol = objc.GetProtocol("GKInviteEventListener")
 }
+

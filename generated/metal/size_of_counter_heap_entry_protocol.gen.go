@@ -20,3 +20,4 @@ var sizeOfCounterHeapEntryProtocol *objc.Protocol
 func init() {
 	sizeOfCounterHeapEntryProtocol = objc.GetProtocol("sizeOfCounterHeapEntry:")
 }
+

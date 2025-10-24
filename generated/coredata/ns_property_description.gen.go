@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -65,7 +65,6 @@ type IPropertyDescription interface {
 //
 // A property describes a single value within an object managed by the Core Data Framework. There are different types of property, each represented by a subclass which encapsulates the specific property behavior—see , , and . Note that a property name cannot be the same as any no-parameter method name of or . For example, you cannot give a property the name “description”. There are hundreds of methods on which may conflict with property names—and this list can grow without warning from frameworks or other libraries. You should avoid very general words (like “font”, and “color”) and words or phrases which overlap with Cocoa paradigms (such as “isEditing” and “objectSpecifier”). Properties—relationships as well as attributes—may be transient. A managed object context knows about transient properties and tracks changes made to them. Transient properties are ignored by the persistent store, and not just during saves: you cannot fetch using a predicate based on transients (although you can use transient properties to filter in memory yourself).
 
-
 // A description of a single property belonging to an entity.
 //
 // [Full Topic]
@@ -112,8 +111,6 @@ func NewPropertyDescription() PropertyDescription {
 	return getPropertyDescriptionClass().New()
 }
 
-
-
 // The name of the receiver.
 //
 // [Full Topic]
@@ -123,7 +120,6 @@ func (p_ PropertyDescription) Name() objc.IObject /* cross-framework: NSString *
 	return rv
 }
 
-
 // The name of the receiver.
 //
 // [Full Topic]
@@ -131,7 +127,6 @@ func (p_ PropertyDescription) Name() objc.IObject /* cross-framework: NSString *
 func (p_ PropertyDescription) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
 }
-
 
 // The entity description of the receiver.
 //
@@ -142,7 +137,6 @@ func (p_ PropertyDescription) Entity() IEntityDescription {
 	return rv
 }
 
-
 // The entity description of the receiver.
 //
 // [Full Topic]
@@ -150,7 +144,6 @@ func (p_ PropertyDescription) Entity() IEntityDescription {
 func (p_ PropertyDescription) SetEntity(value IEntityDescription) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEntity:"), value)
 }
-
 
 // A Boolean value that indicates whether the receiver should be indexed for searching.
 //
@@ -161,7 +154,6 @@ func (p_ PropertyDescription) IsIndexed() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the receiver should be indexed for searching.
 //
 // [Full Topic]
@@ -169,7 +161,6 @@ func (p_ PropertyDescription) IsIndexed() bool {
 func (p_ PropertyDescription) SetIsIndexed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexed:"), value)
 }
-
 
 // A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.
 //
@@ -180,7 +171,6 @@ func (p_ PropertyDescription) IsIndexedBySpotlight() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether Core Data adds the property’s value to the Core Spotlight index.
 //
 // [Full Topic]
@@ -188,7 +178,6 @@ func (p_ PropertyDescription) IsIndexedBySpotlight() bool {
 func (p_ PropertyDescription) SetIsIndexedBySpotlight(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsIndexedBySpotlight:"), value)
 }
-
 
 // A Boolean value that indicates whether the receiver is optional.
 //
@@ -199,7 +188,6 @@ func (p_ PropertyDescription) IsOptional() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the receiver is optional.
 //
 // [Full Topic]
@@ -207,7 +195,6 @@ func (p_ PropertyDescription) IsOptional() bool {
 func (p_ PropertyDescription) SetIsOptional(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsOptional:"), value)
 }
-
 
 // A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.
 //
@@ -218,7 +205,6 @@ func (p_ PropertyDescription) IsStoredInExternalRecord() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether to write the property’s data in an external record file that corresponds to the managed object.
 //
 // [Full Topic]
@@ -226,7 +212,6 @@ func (p_ PropertyDescription) IsStoredInExternalRecord() bool {
 func (p_ PropertyDescription) SetIsStoredInExternalRecord(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsStoredInExternalRecord:"), value)
 }
-
 
 // A Boolean value that indicates whether the receiver is transient.
 //
@@ -237,7 +222,6 @@ func (p_ PropertyDescription) IsTransient() bool {
 	return rv
 }
 
-
 // A Boolean value that indicates whether the receiver is transient.
 //
 // [Full Topic]
@@ -245,7 +229,6 @@ func (p_ PropertyDescription) IsTransient() bool {
 func (p_ PropertyDescription) SetIsTransient(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsTransient:"), value)
 }
-
 
 // The renaming identifier for the receiver.
 //
@@ -256,7 +239,6 @@ func (p_ PropertyDescription) RenamingIdentifier() objc.IObject /* cross-framewo
 	return rv
 }
 
-
 // The renaming identifier for the receiver.
 //
 // [Full Topic]
@@ -264,7 +246,6 @@ func (p_ PropertyDescription) RenamingIdentifier() objc.IObject /* cross-framewo
 func (p_ PropertyDescription) SetRenamingIdentifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRenamingIdentifier:"), value)
 }
-
 
 // The user info dictionary of the receiver.
 //
@@ -275,7 +256,6 @@ func (p_ PropertyDescription) UserInfo() unsafe.Pointer {
 	return rv
 }
 
-
 // The user info dictionary of the receiver.
 //
 // [Full Topic]
@@ -283,7 +263,6 @@ func (p_ PropertyDescription) UserInfo() unsafe.Pointer {
 func (p_ PropertyDescription) SetUserInfo(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setUserInfo:"), value)
 }
-
 
 // The validation predicates of the receiver.
 //
@@ -294,7 +273,6 @@ func (p_ PropertyDescription) ValidationPredicates() objc.IObject /* cross-frame
 	return rv
 }
 
-
 // The validation predicates of the receiver.
 //
 // [Full Topic]
@@ -302,7 +280,6 @@ func (p_ PropertyDescription) ValidationPredicates() objc.IObject /* cross-frame
 func (p_ PropertyDescription) SetValidationPredicates(value objc.IObject /* cross-framework: Predicate */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValidationPredicates:"), value)
 }
-
 
 // The error strings associated with the receiver’s validation predicates.
 //
@@ -313,7 +290,6 @@ func (p_ PropertyDescription) ValidationWarnings() unsafe.Pointer {
 	return rv
 }
 
-
 // The error strings associated with the receiver’s validation predicates.
 //
 // [Full Topic]
@@ -321,7 +297,6 @@ func (p_ PropertyDescription) ValidationWarnings() unsafe.Pointer {
 func (p_ PropertyDescription) SetValidationWarnings(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setValidationWarnings:"), value)
 }
-
 
 // The version hash for the receiver.
 //
@@ -332,7 +307,6 @@ func (p_ PropertyDescription) VersionHash() objc.IObject /* cross-framework: Dat
 	return rv
 }
 
-
 // The version hash for the receiver.
 //
 // [Full Topic]
@@ -340,7 +314,6 @@ func (p_ PropertyDescription) VersionHash() objc.IObject /* cross-framework: Dat
 func (p_ PropertyDescription) SetVersionHash(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHash:"), value)
 }
-
 
 // The version hash modifier for the receiver.
 //
@@ -351,7 +324,6 @@ func (p_ PropertyDescription) VersionHashModifier() objc.IObject /* cross-framew
 	return rv
 }
 
-
 // The version hash modifier for the receiver.
 //
 // [Full Topic]
@@ -359,6 +331,3 @@ func (p_ PropertyDescription) VersionHashModifier() objc.IObject /* cross-framew
 func (p_ PropertyDescription) SetVersionHashModifier(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersionHashModifier:"), value)
 }
-
-
-

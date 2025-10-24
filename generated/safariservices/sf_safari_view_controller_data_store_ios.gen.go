@@ -14,6 +14,12 @@ import (
 // iOS-only methods for SFSafariViewControllerDataStore
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/SafariServices/SFSafariViewController/DataStore/clearWebsiteData(completionHandler:)
+func (s_ SFSafariViewControllerDataStore) ClearWebsiteDataWithCompletionHandler(completion unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("clearWebsiteDataWithCompletionHandler:"), completion)
+}
+
 // iOS-only properties
 
 

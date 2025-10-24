@@ -15,3 +15,4 @@ var shouldReplaceCharactersInRangesProtocol *objc.Protocol
 func init() {
 	shouldReplaceCharactersInRangesProtocol = objc.GetProtocol("shouldReplaceCharactersInRanges:")
 }
+

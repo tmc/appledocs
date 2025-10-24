@@ -17,6 +17,7 @@ func ExampleNewRenderDestinationWithIOSurface() {
 	)
 	// Output:
 }
+
 // ExampleNewRenderDestinationWithPixelBuffer demonstrates how to create a RenderDestination instance using NewRenderDestinationWithPixelBuffer.
 // Creates a render destination based on a Core Video pixel buffer.
 func ExampleNewRenderDestinationWithPixelBuffer() {

@@ -20,3 +20,4 @@ var DynamicLibraryProtocol *objc.Protocol
 func init() {
 	DynamicLibraryProtocol = objc.GetProtocol("MTLDynamicLibrary")
 }
+

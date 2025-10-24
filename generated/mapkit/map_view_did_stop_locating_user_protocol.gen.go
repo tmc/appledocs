@@ -20,3 +20,4 @@ var mapViewDidStopLocatingUserProtocol *objc.Protocol
 func init() {
 	mapViewDidStopLocatingUserProtocol = objc.GetProtocol("mapViewDidStopLocatingUser:")
 }
+

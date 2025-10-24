@@ -17,6 +17,7 @@ func ExampleNewFeatureValueUndefinedFeatureValueWithType() {
 	)
 	// Output:
 }
+
 // ExampleNewFeatureValueWithDouble demonstrates how to create a FeatureValue instance using NewFeatureValueWithDouble.
 // Creates a feature value that contains a double.
 func ExampleNewFeatureValueWithDouble() {
@@ -25,6 +26,7 @@ func ExampleNewFeatureValueWithDouble() {
 	)
 	// Output:
 }
+
 // ExampleNewFeatureValueWithMultiArray demonstrates how to create a FeatureValue instance using NewFeatureValueWithMultiArray.
 // Creates a feature value that contains a multidimensional array.
 func ExampleNewFeatureValueWithMultiArray() {
@@ -33,6 +35,7 @@ func ExampleNewFeatureValueWithMultiArray() {
 	)
 	// Output:
 }
+
 // ExampleNewFeatureValueWithPixelBuffer demonstrates how to create a FeatureValue instance using NewFeatureValueWithPixelBuffer.
 // Creates a feature value that contains an image from a pixel buffer.
 func ExampleNewFeatureValueWithPixelBuffer() {
@@ -41,6 +44,7 @@ func ExampleNewFeatureValueWithPixelBuffer() {
 	)
 	// Output:
 }
+
 // ExampleNewFeatureValueWithSequence demonstrates how to create a FeatureValue instance using NewFeatureValueWithSequence.
 // Creates a feature value that contains a sequence.
 func ExampleNewFeatureValueWithSequence() {
@@ -49,6 +53,7 @@ func ExampleNewFeatureValueWithSequence() {
 	)
 	// Output:
 }
+
 // ExampleNewFeatureValueWithString demonstrates how to create a FeatureValue instance using NewFeatureValueWithString.
 // Creates a feature value that contains a string.
 func ExampleNewFeatureValueWithString() {

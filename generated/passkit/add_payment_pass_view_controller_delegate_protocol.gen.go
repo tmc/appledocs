@@ -18,3 +18,4 @@ var AddPaymentPassViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	AddPaymentPassViewControllerDelegateProtocol = objc.GetProtocol("PKAddPaymentPassViewControllerDelegate")
 }
+

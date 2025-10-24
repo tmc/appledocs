@@ -17,3 +17,11 @@ func ExampleSTScreenTimeConfigurationObserver_StartObserving() {
 	// Output:
 	}
 
+// ExampleSTScreenTimeConfigurationObserver_StopObserving demonstrates using StopObserving on a STScreenTimeConfigurationObserver instance.
+// Stops observing changes to the current configuration.
+func ExampleSTScreenTimeConfigurationObserver_StopObserving() {
+	obj := screentime.NewSTScreenTimeConfigurationObserver()
+	obj.StopObserving()
+	// Output:
+	}
+

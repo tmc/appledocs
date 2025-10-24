@@ -20,3 +20,4 @@ var agentWillUpdateProtocol *objc.Protocol
 func init() {
 	agentWillUpdateProtocol = objc.GetProtocol("agentWillUpdate:")
 }
+

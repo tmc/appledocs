@@ -33,8 +33,6 @@ type IMTRClusterIdentify interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterIdentify
 type MTRClusterIdentify struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterIdentify) Autorelease() MTRClusterIdentify {
 func NewMTRClusterIdentify() MTRClusterIdentify {
 	return getMTRClusterIdentifyClass().New()
 }
-
-
-
-

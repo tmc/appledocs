@@ -33,8 +33,6 @@ type IMTRBaseClusterBinaryInputBasic interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterBinaryInputBasic
 type MTRBaseClusterBinaryInputBasic struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterBinaryInputBasic) Autorelease() MTRBaseClusterBinaryInput
 func NewMTRBaseClusterBinaryInputBasic() MTRBaseClusterBinaryInputBasic {
 	return getMTRBaseClusterBinaryInputBasicClass().New()
 }
-
-
-
-

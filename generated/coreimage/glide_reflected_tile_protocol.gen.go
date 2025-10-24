@@ -6,9 +6,18 @@ import "github.com/ebitengine/purego/objc"
 
 // GlideReflectedTileProtocol is the CIGlideReflectedTile protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - tvOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to CIGlideReflectedTile.
 var GlideReflectedTileProtocol *objc.Protocol
 
 func init() {
 	GlideReflectedTileProtocol = objc.GetProtocol("CIGlideReflectedTile")
 }
+

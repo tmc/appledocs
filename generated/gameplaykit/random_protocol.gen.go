@@ -20,3 +20,4 @@ var RandomProtocol *objc.Protocol
 func init() {
 	RandomProtocol = objc.GetProtocol("GKRandom")
 }
+

@@ -20,3 +20,4 @@ var newZoneForBuffersWithSizeProtocol *objc.Protocol
 func init() {
 	newZoneForBuffersWithSizeProtocol = objc.GetProtocol("newZoneForBuffersWithSize:")
 }
+

@@ -11,5 +11,3 @@ type _undefined = int
 type (
 	HKActivityMoveMode = _undefined // referenced in HealthKitUI
 )
-
-

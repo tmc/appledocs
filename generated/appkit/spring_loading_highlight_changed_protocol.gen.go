@@ -15,3 +15,4 @@ var springLoadingHighlightChangedProtocol *objc.Protocol
 func init() {
 	springLoadingHighlightChangedProtocol = objc.GetProtocol("springLoadingHighlightChanged:")
 }
+

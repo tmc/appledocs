@@ -15,3 +15,4 @@ var markedTextSelectionChangedProtocol *objc.Protocol
 func init() {
 	markedTextSelectionChangedProtocol = objc.GetProtocol("markedTextSelectionChanged:")
 }
+

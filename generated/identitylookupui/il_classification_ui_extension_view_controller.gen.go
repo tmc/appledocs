@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/appkit"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [ILClassificationUIExtensionViewController] class.
@@ -37,7 +37,6 @@ type IILClassificationUIExtensionViewController interface {
 // The superclass for an Unwanted Communication Reporting extension’s principal view controller.
 //
 // Subclass this view controller to create a user interface that gathers additional information from the user about the reported communication.
-
 
 // The superclass for an Unwanted Communication Reporting extension’s principal view controller.
 //
@@ -86,6 +85,3 @@ func (i_ ILClassificationUIExtensionViewController) Autorelease() ILClassificati
 func NewILClassificationUIExtensionViewController() ILClassificationUIExtensionViewController {
 	return getILClassificationUIExtensionViewControllerClass().New()
 }
-
-
-

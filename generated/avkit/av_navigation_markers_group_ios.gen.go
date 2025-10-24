@@ -8,7 +8,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/avfoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -22,7 +21,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/dateRangeNavigationMarkers
-func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []objc.IObject /* cross-framework: DateRangeMetadataGroup */ {
+func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []avfoundation.DateRangeMetadataGroup {
 	rv := objc.Send[[]avfoundation.DateRangeMetadataGroup](n_.ID, objc.Sel("dateRangeNavigationMarkers"))
 	return rv
 }
@@ -31,7 +30,7 @@ func (n_ NavigationMarkersGroup) DateRangeNavigationMarkers() []objc.IObject /* 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AVKit/AVNavigationMarkersGroup/timedNavigationMarkers
-func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []objc.IObject /* cross-framework: TimedMetadataGroup */ {
+func (n_ NavigationMarkersGroup) TimedNavigationMarkers() []avfoundation.TimedMetadataGroup {
 	rv := objc.Send[[]avfoundation.TimedMetadataGroup](n_.ID, objc.Sel("timedNavigationMarkers"))
 	return rv
 }

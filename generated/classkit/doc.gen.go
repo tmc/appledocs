@@ -1,13 +1,10 @@
+
 // Code generated from Apple documentation for ClassKit. DO NOT EDIT.
 
 // Package classkit provides Go bindings for the ClassKit framework.
 //
-// Enable teachers to assign activities from your app’s content and to view student progress.
-//
 // These bindings are generated from Apple's official documentation and
 // provide purego-based access to ClassKit without requiring cgo.
-//
-// See: https://developer.apple.com/documentation/ClassKit
 package classkit
 
 import (

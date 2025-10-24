@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -40,8 +40,6 @@ type IMTRGeneralCommissioningClusterArmFailSafeResponseParams interface {
 	SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralCommissioningClusterArmFailSafeResponseParams
@@ -85,8 +83,6 @@ func NewMTRGeneralCommissioningClusterArmFailSafeResponseParams() MTRGeneralComm
 	return getMTRGeneralCommissioningClusterArmFailSafeResponseParamsClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/debugtext
 func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) DebugText() objc.IObject /* cross-framework: NSString */ {
@@ -94,13 +90,11 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) DebugText() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/debugtext
 func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetDebugText(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDebugText:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/errorcode
@@ -109,13 +103,11 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) ErrorCode() ob
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/errorcode
 func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetErrorCode(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setErrorCode:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/timedinvoketimeoutms
@@ -124,12 +116,8 @@ func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) TimedInvokeTim
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneralcommissioningclusterarmfailsaferesponseparams/timedinvoketimeoutms
 func (m_ MTRGeneralCommissioningClusterArmFailSafeResponseParams) SetTimedInvokeTimeoutMs(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTimedInvokeTimeoutMs:"), value)
 }
-
-
-

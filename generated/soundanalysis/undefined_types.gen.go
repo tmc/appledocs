@@ -9,9 +9,6 @@ type _undefined = int
 
 // Undefined types - referenced but not defined in documentation
 type (
-	SNClassifierIdentifier = _undefined // referenced in SoundAnalysis
-	Time = _undefined // referenced in SoundAnalysis
-	TimeRange = _undefined // referenced in SoundAnalysis
+	AudioFramePosition = _undefined // referenced in SoundAnalysis
+	TimeRange          = _undefined // referenced in SoundAnalysis
 )
-
-

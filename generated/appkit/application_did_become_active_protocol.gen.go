@@ -15,3 +15,4 @@ var applicationDidBecomeActiveProtocol *objc.Protocol
 func init() {
 	applicationDidBecomeActiveProtocol = objc.GetProtocol("applicationDidBecomeActive:")
 }
+

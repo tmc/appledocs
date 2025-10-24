@@ -2,6 +2,7 @@
 
 package devicediscoveryextension
 
+/* debug [functions.gen.go]: Generating 5 functions for DeviceDiscoveryExtension */
 import (
 	"unsafe"
 
@@ -15,11 +16,11 @@ import (
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_DDDeviceCategoryToString func(unsafe.Pointer) unsafe.Pointer
-	_DDDeviceMediaPlaybackStateToString func(unsafe.Pointer) unsafe.Pointer
-	_DDDeviceProtocolToString func(unsafe.Pointer) unsafe.Pointer
-	_DDDeviceStateToString func(unsafe.Pointer) unsafe.Pointer
-	_DDEventTypeToString func(unsafe.Pointer) unsafe.Pointer
+	_DDDeviceCategoryToString func(DDDeviceCategory) unsafe.Pointer
+	_DDDeviceMediaPlaybackStateToString func(DDDeviceMediaPlaybackState) unsafe.Pointer
+	_DDDeviceProtocolToString func(DDDeviceProtocol) unsafe.Pointer
+	_DDDeviceStateToString func(DDDeviceState) unsafe.Pointer
+	_DDEventTypeToString func(DDEventType) unsafe.Pointer
 )
 
 func init() {
@@ -49,54 +50,60 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 // Returns human-readable text for the specified identifier that describes a device’s category.
-
+//
+// Added in macOS .
 // Returns human-readable text for the specified identifier that describes a device’s category.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceCategoryToString(_:)
-func DDDeviceCategoryToString(inValue unsafe.Pointer) unsafe.Pointer {
+func DDDeviceCategoryToString(inValue DDDeviceCategory) unsafe.Pointer {
 	return _DDDeviceCategoryToString(inValue)
-}
+}/* debug [functions.gen.go/function]: DDDeviceCategoryToString */
 
 // Returns human-readable text for the specified media playback state.
-
+//
+// Added in macOS .
 // Returns human-readable text for the specified media playback state.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceMediaPlaybackStateToString(_:)
-func DDDeviceMediaPlaybackStateToString(inValue unsafe.Pointer) unsafe.Pointer {
+func DDDeviceMediaPlaybackStateToString(inValue DDDeviceMediaPlaybackState) unsafe.Pointer {
 	return _DDDeviceMediaPlaybackStateToString(inValue)
-}
+}/* debug [functions.gen.go/function]: DDDeviceMediaPlaybackStateToString */
 
 // Returns human-readable text for the specified protocol identifier.
-
+//
+// Added in macOS .
 // Returns human-readable text for the specified protocol identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceProtocolToString(_:)
-func DDDeviceProtocolToString(inValue unsafe.Pointer) unsafe.Pointer {
+func DDDeviceProtocolToString(inValue DDDeviceProtocol) unsafe.Pointer {
 	return _DDDeviceProtocolToString(inValue)
-}
+}/* debug [functions.gen.go/function]: DDDeviceProtocolToString */
 
 // Returns human-readable text for the specified identifier that describes a device’s status.
-
+//
+// Added in macOS .
 // Returns human-readable text for the specified identifier that describes a device’s status.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDDeviceStateToString(_:)
-func DDDeviceStateToString(inValue unsafe.Pointer) unsafe.Pointer {
+func DDDeviceStateToString(inValue DDDeviceState) unsafe.Pointer {
 	return _DDDeviceStateToString(inValue)
-}
+}/* debug [functions.gen.go/function]: DDDeviceStateToString */
 
 // Returns human-readable text for the specified event identifier.
-
+//
+// Added in macOS .
 // Returns human-readable text for the specified event identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/DeviceDiscoveryExtension/DDEventTypeToString(_:)
-func DDEventTypeToString(inValue unsafe.Pointer) unsafe.Pointer {
+func DDEventTypeToString(inValue DDEventType) unsafe.Pointer {
 	return _DDEventTypeToString(inValue)
-}
+}/* debug [functions.gen.go/function]: DDEventTypeToString */
+
 
 
 

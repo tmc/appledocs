@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class MPNowPlayingInfoCenter */
+
+
+/* debug [class_header]: Header for MPNowPlayingInfoCenter */
 // The class instance for the [NowPlayingInfoCenter] class.
 var (
 	NowPlayingInfoCenterClass     _NowPlayingInfoCenterClass
@@ -27,10 +31,16 @@ func getNowPlayingInfoCenterClass() _NowPlayingInfoCenterClass {
 type _NowPlayingInfoCenterClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NowPlayingInfoCenter */
 // An interface definition for the [NowPlayingInfoCenter] class.
 type INowPlayingInfoCenter interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NowPlayingInfoCenter */
 	// properties:
 	NowPlayingInfo() foundation.IDictionary
 	SetNowPlayingInfo(value foundation.IDictionary)
@@ -73,29 +83,19 @@ type INowPlayingInfoCenter interface {
 	MPNowPlayingInfoPropertyPlaybackQueueIndex() objc.IObject /* cross-framework: NSString */
 	MPNowPlayingInfoPropertyPlaybackRate() objc.IObject /* cross-framework: NSString */
 	MPNowPlayingInfoPropertyServiceIdentifier() objc.IObject /* cross-framework: NSString */
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NowPlayingInfoCenter */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An object for setting the Now Playing information for media that your app plays.
-//
-// If your app also provides Now Playing information containing information about the current track, use this object to update that information at appropriate times. This object contains a dictionary describing the playing item. The system displays Now Playing information on the device’s Lock Screen and in the media controls in Control Center. If the user directs playback of your media to Apple TV using AirPlay, the Now Playing information appears on the television screen. If the user connects a device to an iPod accessory, such as in a car, the accessory may display Now Playing information. The information you can specify includes all of the Now Playing metadata properties (see the Accessing Now Playing metadata properties topic group below), and the following subset of properties: You don’t have direct control over what information the system displays, or its formatting. You set the values in the dictionary and the system or the connected accessory handles displaying the information in a consistent manner for all apps. You can ensure that your app interacts well with other apps providing Now Playing information by following the best practices in the sample code project.
+/* debug [class_interface]: End interface */
 
 
-// An object for setting the Now Playing information for media that your app plays.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter
-type NowPlayingInfoCenter struct {
-	objectivec.Object
-}
 
-// NowPlayingInfoCenterFrom constructs a [NowPlayingInfoCenter] from an unsafe.Pointer.
-//
-// An object for setting the Now Playing information for media that your app plays.
-func NowPlayingInfoCenterFrom(ptr unsafe.Pointer) NowPlayingInfoCenter {
-	return NowPlayingInfoCenter{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NowPlayingInfoCenter */
 // Alloc allocates a new instance without initialization.
 func (nc _NowPlayingInfoCenterClass) Alloc() NowPlayingInfoCenter {
 	rv := objc.Send[NowPlayingInfoCenter](objc.ID(nc.class), objc.Sel("alloc"))
@@ -103,7 +103,6 @@ func (nc _NowPlayingInfoCenterClass) Alloc() NowPlayingInfoCenter {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NowPlayingInfoCenterClass) New() NowPlayingInfoCenter {
 	rv := objc.Send[NowPlayingInfoCenter](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -126,8 +125,39 @@ func (n_ NowPlayingInfoCenter) Autorelease() NowPlayingInfoCenter {
 func NewNowPlayingInfoCenter() NowPlayingInfoCenter {
 	return getNowPlayingInfoCenterClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for NowPlayingInfoCenter */
+// An object for setting the Now Playing information for media that your app plays.
+//
+// If your app also provides Now Playing information containing information about the current track, use this object to update that information at appropriate times. This object contains a dictionary describing the playing item. The system displays Now Playing information on the device’s Lock Screen and in the media controls in Control Center. If the user directs playback of your media to Apple TV using AirPlay, the Now Playing information appears on the television screen. If the user connects a device to an iPod accessory, such as in a car, the accessory may display Now Playing information. The information you can specify includes all of the Now Playing metadata properties (see the Accessing Now Playing metadata properties topic group below), and the following subset of properties: You don’t have direct control over what information the system displays, or its formatting. You set the values in the dictionary and the system or the connected accessory handles displaying the information in a consistent manner for all apps. You can ensure that your app interacts well with other apps providing Now Playing information by following the best practices in the sample code project.
+
+
+// An object for setting the Now Playing information for media that your app plays.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter
+type NowPlayingInfoCenter struct {
+	objectivec.Object
+}
+
+// NowPlayingInfoCenterFrom constructs a [NowPlayingInfoCenter] from an unsafe.Pointer.
+//
+// An object for setting the Now Playing information for media that your app plays.
+func NowPlayingInfoCenterFrom(ptr unsafe.Pointer) NowPlayingInfoCenter {
+	return NowPlayingInfoCenter{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NowPlayingInfoCenter *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NowPlayingInfoCenter */
 
 // Returns the singleton Now Playing info center.
 //
@@ -136,8 +166,13 @@ func NewNowPlayingInfoCenter() NowPlayingInfoCenter {
 func (nc _NowPlayingInfoCenterClass) DefaultCenter() INowPlayingInfoCenter {
 	rv := objc.Send[NowPlayingInfoCenter](objc.ID(nc.class), objc.Sel("defaultCenter"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DefaultCenter) */
 
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NowPlayingInfoCenter */
 
 // Keys related to animated artwork that are supported by the current platform.
 //
@@ -146,7 +181,17 @@ func (nc _NowPlayingInfoCenterClass) DefaultCenter() INowPlayingInfoCenter {
 func (nc _NowPlayingInfoCenterClass) SupportedAnimatedArtworkKeys() []string {
 	rv := objc.Send[[]string](objc.ID(nc.class), objc.Sel("supportedAnimatedArtworkKeys"))
 	return rv
-}
+}/* debug [class_properties_class/property]: supportedAnimatedArtworkKeys */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NowPlayingInfoCenter */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NowPlayingInfoCenter */
 
 // The current Now Playing information for the default Now Playing info center.
 //
@@ -155,7 +200,7 @@ func (nc _NowPlayingInfoCenterClass) SupportedAnimatedArtworkKeys() []string {
 func (n_ NowPlayingInfoCenter) NowPlayingInfo() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](n_.ID, objc.Sel("nowPlayingInfo"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nowPlayingInfo */
 
 
 // The current Now Playing information for the default Now Playing info center.
@@ -164,7 +209,7 @@ func (n_ NowPlayingInfoCenter) NowPlayingInfo() foundation.IDictionary {
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter/nowPlayingInfo
 func (n_ NowPlayingInfoCenter) SetNowPlayingInfo(value foundation.IDictionary) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setNowPlayingInfo:"), value)
-}
+}/* debug [instance_properties/setter]: nowPlayingInfo */
 
 
 // The current playback state of the app.
@@ -174,7 +219,7 @@ func (n_ NowPlayingInfoCenter) SetNowPlayingInfo(value foundation.IDictionary) {
 func (n_ NowPlayingInfoCenter) PlaybackState() NowPlayingPlaybackState {
 	rv := objc.Send[NowPlayingPlaybackState](n_.ID, objc.Sel("playbackState"))
 	return rv
-}
+}/* debug [instance_properties/getter]: playbackState */
 
 
 // The current playback state of the app.
@@ -183,7 +228,7 @@ func (n_ NowPlayingInfoCenter) PlaybackState() NowPlayingPlaybackState {
 // [Full Topic]: https://developer.apple.com/documentation/MediaPlayer/MPNowPlayingInfoCenter/playbackState
 func (n_ NowPlayingInfoCenter) SetPlaybackState(value NowPlayingPlaybackState) {
 	objc.Send[objc.ID](n_.ID, objc.Sel("setPlaybackState:"), value)
-}
+}/* debug [instance_properties/setter]: playbackState */
 
 
 // Keys related to animated artwork that are supported by the current platform.
@@ -193,7 +238,7 @@ func (n_ NowPlayingInfoCenter) SetPlaybackState(value NowPlayingPlaybackState) {
 func (n_ NowPlayingInfoCenter) SupportedAnimatedArtworkKeys() []string {
 	rv := objc.Send[[]string](n_.ID, objc.Sel("supportedAnimatedArtworkKeys"))
 	return rv
-}
+}/* debug [instance_properties/getter]: supportedAnimatedArtworkKeys */
 
 
 // The title of an album.
@@ -203,7 +248,7 @@ func (n_ NowPlayingInfoCenter) SupportedAnimatedArtworkKeys() []string {
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyAlbumTitle() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyAlbumTitle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyAlbumTitle */
 
 
 // The number of tracks for the album that contains the media item.
@@ -213,7 +258,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyAlbumTitle() objc.IObject /* c
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyAlbumTrackCount() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyAlbumTrackCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyAlbumTrackCount */
 
 
 // The track number of the media item, for a media item that is part of an album.
@@ -223,7 +268,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyAlbumTrackCount() objc.IObject
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyAlbumTrackNumber() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyAlbumTrackNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyAlbumTrackNumber */
 
 
 // The performing artists for a media item — which may vary from the primary artist for the album that a media item belongs to.
@@ -233,7 +278,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyAlbumTrackNumber() objc.IObjec
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyArtist() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyArtist"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyArtist */
 
 
 // The artwork image for the media item.
@@ -243,7 +288,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyArtist() objc.IObject /* cross
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyArtwork() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyArtwork"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyArtwork */
 
 
 // The musical composer for the media item.
@@ -253,7 +298,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyArtwork() objc.IObject /* cros
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyComposer() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyComposer"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyComposer */
 
 
 // The number of discs for the album that contains the media item.
@@ -263,7 +308,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyComposer() objc.IObject /* cro
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyDiscCount() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyDiscCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyDiscCount */
 
 
 // The disc number of the media item, for a media item that is part of a multidisc album.
@@ -273,7 +318,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyDiscCount() objc.IObject /* cr
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyDiscNumber() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyDiscNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyDiscNumber */
 
 
 // The music or film genre of the media item.
@@ -283,7 +328,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyDiscNumber() objc.IObject /* c
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyGenre() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyGenre"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyGenre */
 
 
 // The media type of the media item.
@@ -293,7 +338,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyGenre() objc.IObject /* cross-
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyMediaType() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyMediaType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyMediaType */
 
 
 // The key for the persistent identifier for the media item.
@@ -303,7 +348,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyMediaType() objc.IObject /* cr
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyPersistentID() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyPersistentID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyPersistentID */
 
 
 // The playback duration of the media item.
@@ -313,7 +358,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyPersistentID() objc.IObject /*
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyPlaybackDuration() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyPlaybackDuration"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyPlaybackDuration */
 
 
 // The title or name of the media item.
@@ -323,7 +368,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyPlaybackDuration() objc.IObjec
 func (n_ NowPlayingInfoCenter) MPMediaItemPropertyTitle() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPMediaItemPropertyTitle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPMediaItemPropertyTitle */
 
 
 // The identifier of the collection the Now Playing item belongs to.
@@ -333,7 +378,7 @@ func (n_ NowPlayingInfoCenter) MPMediaItemPropertyTitle() objc.IObject /* cross-
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoCollectionIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoCollectionIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoCollectionIdentifier */
 
 
 // 1:1 (square) animated artwork for the current media item.
@@ -343,7 +388,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoCollectionIdentifier() objc.IObje
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoProperty1x1AnimatedArtwork() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoProperty1x1AnimatedArtwork"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoProperty1x1AnimatedArtwork */
 
 
 // 3:4 (tall) animated artwork for the current media item.
@@ -353,7 +398,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoProperty1x1AnimatedArtwork() objc
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoProperty3x4AnimatedArtwork() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoProperty3x4AnimatedArtwork"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoProperty3x4AnimatedArtwork */
 
 
 // A list of ad breaks in the Now Playing item.
@@ -363,7 +408,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoProperty3x4AnimatedArtwork() objc
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyAdTimeRanges() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyAdTimeRanges"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyAdTimeRanges */
 
 
 // The URL pointing to the Now Playing item’s underlying asset.
@@ -373,7 +418,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyAdTimeRanges() objc.IObje
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyAssetURL() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyAssetURL"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyAssetURL */
 
 
 // The available language option groups for the Now Playing item.
@@ -383,7 +428,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyAssetURL() objc.IObject /
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyAvailableLanguageOptions() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyAvailableLanguageOptions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyAvailableLanguageOptions */
 
 
 // The total number of chapters in the Now Playing item.
@@ -393,7 +438,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyAvailableLanguageOptions(
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyChapterCount() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyChapterCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyChapterCount */
 
 
 // The number corresponding to the currently playing chapter.
@@ -403,7 +448,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyChapterCount() objc.IObje
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyChapterNumber() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyChapterNumber"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyChapterNumber */
 
 
 // The start time for the credits, in seconds, without ads, for the Now Playing item.
@@ -413,7 +458,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyChapterNumber() objc.IObj
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyCreditsStartTime() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyCreditsStartTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyCreditsStartTime */
 
 
 // The currently active language options for the Now Playing item.
@@ -423,7 +468,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyCreditsStartTime() objc.I
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyCurrentLanguageOptions() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyCurrentLanguageOptions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyCurrentLanguageOptions */
 
 
 // The date associated with the current elapsed playback time.
@@ -433,7 +478,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyCurrentLanguageOptions() 
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyCurrentPlaybackDate() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyCurrentPlaybackDate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyCurrentPlaybackDate */
 
 
 // The default playback rate for the Now Playing item.
@@ -443,7 +488,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyCurrentPlaybackDate() obj
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyDefaultPlaybackRate() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyDefaultPlaybackRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyDefaultPlaybackRate */
 
 
 // The elapsed time of the Now Playing item, in seconds.
@@ -453,7 +498,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyDefaultPlaybackRate() obj
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyElapsedPlaybackTime() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyElapsedPlaybackTime"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyElapsedPlaybackTime */
 
 
 // A number that denotes whether to exclude the Now Playing item from content suggestions.
@@ -463,7 +508,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyElapsedPlaybackTime() obj
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyExcludeFromSuggestions() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyExcludeFromSuggestions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyExcludeFromSuggestions */
 
 
 // The opaque identifier that uniquely identifies the Now Playing item, even through app relaunches.
@@ -473,7 +518,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyExcludeFromSuggestions() 
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyExternalContentIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyExternalContentIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyExternalContentIdentifier */
 
 
 // The opaque identifier that uniquely identifies the profile the Now Playing item plays from, even through app relaunches.
@@ -483,7 +528,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyExternalContentIdentifier
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyExternalUserProfileIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyExternalUserProfileIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyExternalUserProfileIdentifier */
 
 
 // The International Standard Recording Code (ISRC) of the Now Playing item.
@@ -493,7 +538,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyExternalUserProfileIdenti
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyInternationalStandardRecordingCode() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyInternationalStandardRecordingCode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyInternationalStandardRecordingCode */
 
 
 // A number that denotes whether the Now Playing item is a live stream.
@@ -503,7 +548,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyInternationalStandardReco
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyIsLiveStream() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyIsLiveStream"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyIsLiveStream */
 
 
 // The media type of the Now Playing item.
@@ -513,7 +558,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyIsLiveStream() objc.IObje
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyMediaType() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyMediaType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyMediaType */
 
 
 // The current progress of the Now Playing item.
@@ -523,7 +568,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyMediaType() objc.IObject 
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyPlaybackProgress() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyPlaybackProgress"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyPlaybackProgress */
 
 
 // The total number of items in the app’s playback queue.
@@ -533,7 +578,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyPlaybackProgress() objc.I
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyPlaybackQueueCount() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyPlaybackQueueCount"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyPlaybackQueueCount */
 
 
 // The index of the Now Playing item in the app’s playback queue.
@@ -543,7 +588,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyPlaybackQueueCount() objc
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyPlaybackQueueIndex() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyPlaybackQueueIndex"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyPlaybackQueueIndex */
 
 
 // The playback rate of the Now Playing item.
@@ -553,7 +598,7 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyPlaybackQueueIndex() objc
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyPlaybackRate() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyPlaybackRate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyPlaybackRate */
 
 
 // The service provider associated with the Now Playing item.
@@ -563,7 +608,12 @@ func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyPlaybackRate() objc.IObje
 func (n_ NowPlayingInfoCenter) MPNowPlayingInfoPropertyServiceIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("MPNowPlayingInfoPropertyServiceIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MPNowPlayingInfoPropertyServiceIdentifier */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class MPNowPlayingInfoCenter */
 
 
 

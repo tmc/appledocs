@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class bufferSize */
+
+
+/* debug [class_header]: Header for bufferSize */
 // The class instance for the [bufferSize] class.
 var (
 	BufferSizeClass     _bufferSizeClass
@@ -26,27 +30,30 @@ func getbufferSizeClass() _bufferSizeClass {
 type _bufferSizeClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for bufferSize */
 // An interface definition for the [bufferSize] class.
 type IbufferSize interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for bufferSize */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for bufferSize */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/bufferSize
-type bufferSize struct {
-	objectivec.Object
-}
-
-// bufferSizeFrom constructs a [bufferSize] from an unsafe.Pointer.
-func bufferSizeFrom(ptr unsafe.Pointer) bufferSize {
-	return bufferSize{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for bufferSize */
 // Alloc allocates a new instance without initialization.
 func (bc _bufferSizeClass) Alloc() bufferSize {
 	rv := objc.Send[bufferSize](objc.ID(bc.class), objc.Sel("alloc"))
@@ -54,7 +61,6 @@ func (bc _bufferSizeClass) Alloc() bufferSize {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (bc _bufferSizeClass) New() bufferSize {
 	rv := objc.Send[bufferSize](objc.ID(bc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -77,7 +83,51 @@ func (b_ bufferSize) Autorelease() bufferSize {
 func NewbufferSize() bufferSize {
 	return getbufferSizeClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for bufferSize */
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/IOBluetooth/IOBluetoothOBEXSession/bufferSize
+type bufferSize struct {
+	objectivec.Object
+}
+
+// bufferSizeFrom constructs a [bufferSize] from an unsafe.Pointer.
+func bufferSizeFrom(ptr unsafe.Pointer) bufferSize {
+	return bufferSize{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for bufferSize *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for bufferSize */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for bufferSize */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for bufferSize */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for bufferSize */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class bufferSize */
 
 
 

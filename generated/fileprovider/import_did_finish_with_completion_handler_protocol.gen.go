@@ -18,3 +18,4 @@ var importDidFinishWithCompletionHandlerProtocol *objc.Protocol
 func init() {
 	importDidFinishWithCompletionHandlerProtocol = objc.GetProtocol("importDidFinishWithCompletionHandler:")
 }
+

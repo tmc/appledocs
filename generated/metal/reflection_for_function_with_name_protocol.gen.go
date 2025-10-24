@@ -20,3 +20,4 @@ var reflectionForFunctionWithNameProtocol *objc.Protocol
 func init() {
 	reflectionForFunctionWithNameProtocol = objc.GetProtocol("reflectionForFunctionWithName:")
 }
+

@@ -33,8 +33,6 @@ type IMTRBaseClusterPressureMeasurement interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRBaseClusterPressureMeasurement
 type MTRBaseClusterPressureMeasurement struct {
@@ -78,7 +76,3 @@ func (m_ MTRBaseClusterPressureMeasurement) Autorelease() MTRBaseClusterPressure
 func NewMTRBaseClusterPressureMeasurement() MTRBaseClusterPressureMeasurement {
 	return getMTRBaseClusterPressureMeasurementClass().New()
 }
-
-
-
-

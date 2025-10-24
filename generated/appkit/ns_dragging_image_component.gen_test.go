@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewDraggingImageComponent
 
+// ExampleNewDraggingImageComponentWithKey demonstrates how to create a DraggingImageComponent instance using NewDraggingImageComponentWithKey.
+// Initializes and returns a dragging image component with the specified key.
+func ExampleNewDraggingImageComponentWithKey() {
+	_ = appkit.NewDraggingImageComponentWithKey(
+		appkit.DraggingImageComponentKey /* typedef */{}, // key DraggingImageComponentKey /* typedef */
+	)
+	// Output:
+}

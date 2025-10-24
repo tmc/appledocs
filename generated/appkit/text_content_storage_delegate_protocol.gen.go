@@ -15,3 +15,4 @@ var TextContentStorageDelegateProtocol *objc.Protocol
 func init() {
 	TextContentStorageDelegateProtocol = objc.GetProtocol("NSTextContentStorageDelegate")
 }
+

@@ -10,8 +10,6 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	ImageRef = _undefined // referenced in QuickLookThumbnailing
-	RepresentationType = _undefined // referenced in QuickLookThumbnailing
-	RepresentationTypes = _undefined // referenced in QuickLookThumbnailing
 )
 
 

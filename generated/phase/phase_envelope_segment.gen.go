@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class PHASEEnvelopeSegment */
+
+
+/* debug [class_header]: Header for PHASEEnvelopeSegment */
 // The class instance for the [PHASEEnvelopeSegment] class.
 var (
 	PHASEEnvelopeSegmentClass     _PHASEEnvelopeSegmentClass
@@ -26,38 +30,34 @@ func getPHASEEnvelopeSegmentClass() _PHASEEnvelopeSegmentClass {
 type _PHASEEnvelopeSegmentClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for PHASEEnvelopeSegment */
 // An interface definition for the [PHASEEnvelopeSegment] class.
 type IPHASEEnvelopeSegment interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PHASEEnvelopeSegment */
 	// properties:
 	CurveType() PHASECurveType
 	SetCurveType(value PHASECurveType)
 	EndPoint() unsafe.Pointer
 	SetEndPoint(value unsafe.Pointer)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PHASEEnvelopeSegment */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A curved portion of an envelope.
-//
-// This class specifies a curve that determines the _y-_value rate of change over a particular portion of an envelope’s graph. For example, the difference between a segment and an segment is that they share opposite rates of change; where the cubed curve’s value changes fastest in the segment’s domain, the inverse-cubed curve changes slowest, and vice versa.
+/* debug [class_interface]: End interface */
 
 
-// A curved portion of an envelope.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment
-type PHASEEnvelopeSegment struct {
-	objectivec.Object
-}
 
-// PHASEEnvelopeSegmentFrom constructs a [PHASEEnvelopeSegment] from an unsafe.Pointer.
-//
-// A curved portion of an envelope.
-func PHASEEnvelopeSegmentFrom(ptr unsafe.Pointer) PHASEEnvelopeSegment {
-	return PHASEEnvelopeSegment{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for PHASEEnvelopeSegment */
 // Alloc allocates a new instance without initialization.
 func (pc _PHASEEnvelopeSegmentClass) Alloc() PHASEEnvelopeSegment {
 	rv := objc.Send[PHASEEnvelopeSegment](objc.ID(pc.class), objc.Sel("alloc"))
@@ -65,7 +65,6 @@ func (pc _PHASEEnvelopeSegmentClass) Alloc() PHASEEnvelopeSegment {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (pc _PHASEEnvelopeSegmentClass) New() PHASEEnvelopeSegment {
 	rv := objc.Send[PHASEEnvelopeSegment](objc.ID(pc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -88,8 +87,35 @@ func (p_ PHASEEnvelopeSegment) Autorelease() PHASEEnvelopeSegment {
 func NewPHASEEnvelopeSegment() PHASEEnvelopeSegment {
 	return getPHASEEnvelopeSegmentClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for PHASEEnvelopeSegment */
+// A curved portion of an envelope.
+//
+// This class specifies a curve that determines the _y-_value rate of change over a particular portion of an envelope’s graph. For example, the difference between a segment and an segment is that they share opposite rates of change; where the cubed curve’s value changes fastest in the segment’s domain, the inverse-cubed curve changes slowest, and vice versa.
+
+
+// A curved portion of an envelope.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment
+type PHASEEnvelopeSegment struct {
+	objectivec.Object
+}
+
+// PHASEEnvelopeSegmentFrom constructs a [PHASEEnvelopeSegment] from an unsafe.Pointer.
+//
+// A curved portion of an envelope.
+func PHASEEnvelopeSegmentFrom(ptr unsafe.Pointer) PHASEEnvelopeSegment {
+	return PHASEEnvelopeSegment{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PHASEEnvelopeSegment */
 
 // Creates a curved portion of an envelope.
 //
@@ -100,9 +126,28 @@ func NewPHASEEnvelopeSegmentWithEndPointCurveType(endPoint unsafe.Pointer, curve
 	rv := objc.Send[PHASEEnvelopeSegment](instance.ID, objc.Sel("initWithEndPoint:curveType:"), endPoint, curveType)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPHASEEnvelopeSegmentWithEndPointCurveType */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for PHASEEnvelopeSegment */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PHASEEnvelopeSegment */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PHASEEnvelopeSegment */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PHASEEnvelopeSegment */
 
 // A curve along the envelope that shapes the segment.
 //
@@ -111,7 +156,7 @@ func NewPHASEEnvelopeSegmentWithEndPointCurveType(endPoint unsafe.Pointer, curve
 func (p_ PHASEEnvelopeSegment) CurveType() PHASECurveType {
 	rv := objc.Send[PHASECurveType](p_.ID, objc.Sel("curveType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: curveType */
 
 
 // A curve along the envelope that shapes the segment.
@@ -120,7 +165,7 @@ func (p_ PHASEEnvelopeSegment) CurveType() PHASECurveType {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/curveType
 func (p_ PHASEEnvelopeSegment) SetCurveType(value PHASECurveType) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCurveType:"), value)
-}
+}/* debug [instance_properties/setter]: curveType */
 
 
 // A point that identifies the end of the segment along the envelope.
@@ -130,7 +175,7 @@ func (p_ PHASEEnvelopeSegment) SetCurveType(value PHASECurveType) {
 func (p_ PHASEEnvelopeSegment) EndPoint() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("endPoint"))
 	return rv
-}
+}/* debug [instance_properties/getter]: endPoint */
 
 
 // A point that identifies the end of the segment along the envelope.
@@ -139,6 +184,11 @@ func (p_ PHASEEnvelopeSegment) EndPoint() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/PHASE/PHASEEnvelopeSegment/endPoint
 func (p_ PHASEEnvelopeSegment) SetEndPoint(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setEndPoint:"), value)
-}
+}/* debug [instance_properties/setter]: endPoint */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class PHASEEnvelopeSegment */
 
 

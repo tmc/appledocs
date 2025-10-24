@@ -21,3 +21,4 @@ var parserDidStartDocumentProtocol *objc.Protocol
 func init() {
 	parserDidStartDocumentProtocol = objc.GetProtocol("parserDidStartDocument:")
 }
+

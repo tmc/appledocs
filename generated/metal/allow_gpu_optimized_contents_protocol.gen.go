@@ -20,3 +20,4 @@ var allowGPUOptimizedContentsProtocol *objc.Protocol
 func init() {
 	allowGPUOptimizedContentsProtocol = objc.GetProtocol("allowGPUOptimizedContents")
 }
+

@@ -30,6 +30,8 @@ type PURLSessionTaskDelegate interface {
 	HasURLSessionTaskDidCompleteWithError() bool
 	URLSessionTaskDidFinishCollectingMetrics(session IURLSession, task IURLSessionTask, metrics IURLSessionTaskMetrics)
 	HasURLSessionTaskDidFinishCollectingMetrics() bool
+	URLSessionTaskDidReceiveChallengeCompletionHandler(session IURLSession, task IURLSessionTask, challenge IURLAuthenticationChallenge, completionHandler unsafe.Pointer)
+	HasURLSessionTaskDidReceiveChallengeCompletionHandler() bool
 	URLSessionTaskDidReceiveInformationalResponse(session IURLSession, task IURLSessionTask, response IHTTPURLResponse)
 	HasURLSessionTaskDidReceiveInformationalResponse() bool
 	URLSessionTaskDidSendBodyDataTotalBytesSentTotalBytesExpectedToSend(session IURLSession, task IURLSessionTask, bytesSent int64, totalBytesSent int64, totalBytesExpectedToSend int64)
@@ -40,6 +42,8 @@ type PURLSessionTaskDelegate interface {
 	HasURLSessionTaskNeedNewBodyStreamFromOffsetCompletionHandler() bool
 	URLSessionTaskWillBeginDelayedRequestCompletionHandler(session IURLSession, task IURLSessionTask, request IURLRequest, completionHandler unsafe.Pointer)
 	HasURLSessionTaskWillBeginDelayedRequestCompletionHandler() bool
+	URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler(session IURLSession, task IURLSessionTask, response IHTTPURLResponse, request IURLRequest, completionHandler unsafe.Pointer)
+	HasURLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler() bool
 	URLSessionTaskIsWaitingForConnectivity(session IURLSession, task IURLSessionTask)
 	HasURLSessionTaskIsWaitingForConnectivity() bool
 }
@@ -51,11 +55,13 @@ type URLSessionTaskDelegate struct {
 	_URLSessionDidCreateTask func(session IURLSession, task IURLSessionTask)
 	_URLSessionTaskDidCompleteWithError func(session IURLSession, task IURLSessionTask, error_ IError)
 	_URLSessionTaskDidFinishCollectingMetrics func(session IURLSession, task IURLSessionTask, metrics IURLSessionTaskMetrics)
+	_URLSessionTaskDidReceiveChallengeCompletionHandler func(session IURLSession, task IURLSessionTask, challenge IURLAuthenticationChallenge, completionHandler unsafe.Pointer)
 	_URLSessionTaskDidReceiveInformationalResponse func(session IURLSession, task IURLSessionTask, response IHTTPURLResponse)
 	_URLSessionTaskDidSendBodyDataTotalBytesSentTotalBytesExpectedToSend func(session IURLSession, task IURLSessionTask, bytesSent int64, totalBytesSent int64, totalBytesExpectedToSend int64)
 	_URLSessionTaskNeedNewBodyStream func(session IURLSession, task IURLSessionTask, completionHandler unsafe.Pointer)
 	_URLSessionTaskNeedNewBodyStreamFromOffsetCompletionHandler func(session IURLSession, task IURLSessionTask, offset int64, completionHandler unsafe.Pointer)
 	_URLSessionTaskWillBeginDelayedRequestCompletionHandler func(session IURLSession, task IURLSessionTask, request IURLRequest, completionHandler unsafe.Pointer)
+	_URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler func(session IURLSession, task IURLSessionTask, response IHTTPURLResponse, request IURLRequest, completionHandler unsafe.Pointer)
 	_URLSessionTaskIsWaitingForConnectivity func(session IURLSession, task IURLSessionTask)
 }
 
@@ -76,6 +82,13 @@ func (d *URLSessionTaskDelegate) SetURLSessionTaskDidCompleteWithError(f func(se
 // Tells the delegate that the session finished collecting metrics for the task.
 func (d *URLSessionTaskDelegate) SetURLSessionTaskDidFinishCollectingMetrics(f func(session IURLSession, task IURLSessionTask, metrics IURLSessionTaskMetrics)) {
 	d._URLSessionTaskDidFinishCollectingMetrics = f
+}
+
+// SetURLSessionTaskDidReceiveChallengeCompletionHandler sets the handler for the URLSessionTaskDidReceiveChallengeCompletionHandler delegate method.
+//
+// Requests credentials from the delegate in response to an authentication request from the remote server.
+func (d *URLSessionTaskDelegate) SetURLSessionTaskDidReceiveChallengeCompletionHandler(f func(session IURLSession, task IURLSessionTask, challenge IURLAuthenticationChallenge, completionHandler unsafe.Pointer)) {
+	d._URLSessionTaskDidReceiveChallengeCompletionHandler = f
 }
 
 // SetURLSessionTaskDidReceiveInformationalResponse sets the handler for the URLSessionTaskDidReceiveInformationalResponse delegate method.
@@ -107,6 +120,13 @@ func (d *URLSessionTaskDelegate) SetURLSessionTaskNeedNewBodyStreamFromOffsetCom
 // Tells the delegate that a delayed URL session task will now begin loading.
 func (d *URLSessionTaskDelegate) SetURLSessionTaskWillBeginDelayedRequestCompletionHandler(f func(session IURLSession, task IURLSessionTask, request IURLRequest, completionHandler unsafe.Pointer)) {
 	d._URLSessionTaskWillBeginDelayedRequestCompletionHandler = f
+}
+
+// SetURLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler sets the handler for the URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler delegate method.
+//
+// Tells the delegate that the remote server requested an HTTP redirect.
+func (d *URLSessionTaskDelegate) SetURLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler(f func(session IURLSession, task IURLSessionTask, response IHTTPURLResponse, request IURLRequest, completionHandler unsafe.Pointer)) {
+	d._URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler = f
 }
 
 // SetURLSessionTaskIsWaitingForConnectivity sets the handler for the URLSessionTaskIsWaitingForConnectivity delegate method.
@@ -150,6 +170,18 @@ func (d *URLSessionTaskDelegate) URLSessionTaskDidFinishCollectingMetrics(sessio
 // HasURLSessionTaskDidFinishCollectingMetrics returns true if a handler for URLSessionTaskDidFinishCollectingMetrics has been set.
 func (d *URLSessionTaskDelegate) HasURLSessionTaskDidFinishCollectingMetrics() bool {
 	return d._URLSessionTaskDidFinishCollectingMetrics != nil
+}
+
+// URLSessionTaskDidReceiveChallengeCompletionHandler implements the PURLSessionTaskDelegate interface.
+func (d *URLSessionTaskDelegate) URLSessionTaskDidReceiveChallengeCompletionHandler(session IURLSession, task IURLSessionTask, challenge IURLAuthenticationChallenge, completionHandler unsafe.Pointer) {
+	if d._URLSessionTaskDidReceiveChallengeCompletionHandler != nil {
+		d._URLSessionTaskDidReceiveChallengeCompletionHandler(session, task, challenge, completionHandler)
+	}
+}
+
+// HasURLSessionTaskDidReceiveChallengeCompletionHandler returns true if a handler for URLSessionTaskDidReceiveChallengeCompletionHandler has been set.
+func (d *URLSessionTaskDelegate) HasURLSessionTaskDidReceiveChallengeCompletionHandler() bool {
+	return d._URLSessionTaskDidReceiveChallengeCompletionHandler != nil
 }
 
 // URLSessionTaskDidReceiveInformationalResponse implements the PURLSessionTaskDelegate interface.
@@ -210,6 +242,18 @@ func (d *URLSessionTaskDelegate) URLSessionTaskWillBeginDelayedRequestCompletion
 // HasURLSessionTaskWillBeginDelayedRequestCompletionHandler returns true if a handler for URLSessionTaskWillBeginDelayedRequestCompletionHandler has been set.
 func (d *URLSessionTaskDelegate) HasURLSessionTaskWillBeginDelayedRequestCompletionHandler() bool {
 	return d._URLSessionTaskWillBeginDelayedRequestCompletionHandler != nil
+}
+
+// URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler implements the PURLSessionTaskDelegate interface.
+func (d *URLSessionTaskDelegate) URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler(session IURLSession, task IURLSessionTask, response IHTTPURLResponse, request IURLRequest, completionHandler unsafe.Pointer) {
+	if d._URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler != nil {
+		d._URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler(session, task, response, request, completionHandler)
+	}
+}
+
+// HasURLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler returns true if a handler for URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler has been set.
+func (d *URLSessionTaskDelegate) HasURLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler() bool {
+	return d._URLSessionTaskWillPerformHTTPRedirectionNewRequestCompletionHandler != nil
 }
 
 // URLSessionTaskIsWaitingForConnectivity implements the PURLSessionTaskDelegate interface.

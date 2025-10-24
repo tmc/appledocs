@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [MTRGeneralDiagnosticsClusterNetworkInterfaceType] class.
@@ -49,8 +49,6 @@ type IMTRGeneralDiagnosticsClusterNetworkInterfaceType interface {
 	SetType(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRGeneralDiagnosticsClusterNetworkInterfaceType
@@ -96,8 +94,6 @@ func NewMTRGeneralDiagnosticsClusterNetworkInterfaceType() MTRGeneralDiagnostics
 	return getMTRGeneralDiagnosticsClusterNetworkInterfaceTypeClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/hardwareaddress
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) HardwareAddress() objc.IObject /* cross-framework: Data */ {
@@ -105,13 +101,11 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) HardwareAddress() obj
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/hardwareaddress
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetHardwareAddress(value objc.IObject /* cross-framework: Data */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHardwareAddress:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/ipv4addresses
@@ -120,13 +114,11 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IPv4Addresses() unsaf
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/ipv4addresses
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIPv4Addresses(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIPv4Addresses:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/ipv6addresses
@@ -135,13 +127,11 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IPv6Addresses() unsaf
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/ipv6addresses
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIPv6Addresses(value unsafe.Pointer) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIPv6Addresses:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/isoperational
@@ -150,13 +140,11 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) IsOperational() objc.
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/isoperational
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetIsOperational(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsOperational:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/name
@@ -165,13 +153,11 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) Name() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/name
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setName:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv4
@@ -180,13 +166,11 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesRea
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv4
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv4(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv4:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv6
@@ -195,13 +179,11 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) OffPremiseServicesRea
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/offpremiseservicesreachableipv6
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetOffPremiseServicesReachableIPv6(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setOffPremiseServicesReachableIPv6:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/type
@@ -210,12 +192,8 @@ func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) Type() objc.IObject /
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrgeneraldiagnosticsclusternetworkinterfacetype/type
 func (m_ MTRGeneralDiagnosticsClusterNetworkInterfaceType) SetType(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setType:"), value)
 }
-
-
-

@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [INShareFocusStatusIntentResponse] class.
@@ -34,7 +34,6 @@ type IINShareFocusStatusIntentResponse interface {
 }
 
 // Your app’s response to an intent that shares the user’s focus status.
-
 
 // Your app’s response to an intent that shares the user’s focus status.
 //
@@ -84,8 +83,6 @@ func NewINShareFocusStatusIntentResponse() INShareFocusStatusIntentResponse {
 	return getINShareFocusStatusIntentResponseClass().New()
 }
 
-
-
 // Creates a response with the specified response code and user activity.
 //
 // [Full Topic]
@@ -97,8 +94,6 @@ func NewINShareFocusStatusIntentResponseWithCodeUserActivity(code INShareFocusSt
 	return rv
 }
 
-
-
 // Your app’s ability to handle an intent that shares the user’s focus status.
 //
 // [Full Topic]
@@ -107,5 +102,3 @@ func (i_ INShareFocusStatusIntentResponse) Code() INShareFocusStatusIntentRespon
 	rv := objc.Send[INShareFocusStatusIntentResponseCode](i_.ID, objc.Sel("code"))
 	return rv
 }
-
-

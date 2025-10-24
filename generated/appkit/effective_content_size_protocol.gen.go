@@ -15,3 +15,4 @@ var effectiveContentSizeProtocol *objc.Protocol
 func init() {
 	effectiveContentSizeProtocol = objc.GetProtocol("effectiveContentSize")
 }
+

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSFileProviderDomain */
+
+
+/* debug [class_header]: Header for NSFileProviderDomain */
 // The class instance for the [FileProviderDomain] class.
 var (
 	FileProviderDomainClass     _FileProviderDomainClass
@@ -27,14 +31,20 @@ func getFileProviderDomainClass() _FileProviderDomainClass {
 type _FileProviderDomainClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for FileProviderDomain */
 // An interface definition for the [FileProviderDomain] class.
 type IFileProviderDomain interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for FileProviderDomain */
 	// properties:
 	BackingStoreIdentity() objc.IObject /* cross-framework: NSData */
 	DisplayName() objc.IObject /* cross-framework: NSString */
-	Identifier() objc.IObject /* cross-framework: FileProviderDomainIdentifier */
+	Identifier() FileProviderDomainIdentifier /* typedef */
 	Disconnected() bool
 	Hidden() bool
 	SetHidden(value bool)
@@ -51,7 +61,7 @@ type IFileProviderDomain interface {
 	UserEnabled() bool
 	UserInfo() objc.IObject /* cross-framework: NSDictionary */
 	SetUserInfo(value objc.IObject /* cross-framework: NSDictionary */)
-	VolumeUUID() objc.IObject /* cross-framework: UUID */
+	VolumeUUID() foundation.UUID
 	IsDisconnected() bool
 	SetIsDisconnected(value bool)
 	IsHidden() bool
@@ -60,29 +70,19 @@ type IFileProviderDomain interface {
 	SetIsReplicated(value bool)
 	Domain() IFileProviderDomain
 	SetDomain(value IFileProviderDomain)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for FileProviderDomain */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// A File Provider extension’s domain.
-//
-// You can use domains to partition a file provider’s content. When you use domains, a single file provider can act as if multiple file providers were installed, and users can dynamically switch from one domain to another. You can use domains to represent different accounts or locations. By default, a File Provider extension has no domain. You can register domains by calling the class’s method. A new instance is created for each domain that you register. The object’s property indicates which domain the file provider belongs to. Any items returned by that file provider also belong to the domain.
+/* debug [class_interface]: End interface */
 
 
-// A File Provider extension’s domain.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain
-type FileProviderDomain struct {
-	objectivec.Object
-}
 
-// FileProviderDomainFrom constructs a [FileProviderDomain] from an unsafe.Pointer.
-//
-// A File Provider extension’s domain.
-func FileProviderDomainFrom(ptr unsafe.Pointer) FileProviderDomain {
-	return FileProviderDomain{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for FileProviderDomain */
 // Alloc allocates a new instance without initialization.
 func (fc _FileProviderDomainClass) Alloc() FileProviderDomain {
 	rv := objc.Send[FileProviderDomain](objc.ID(fc.class), objc.Sel("alloc"))
@@ -90,7 +90,6 @@ func (fc _FileProviderDomainClass) Alloc() FileProviderDomain {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (fc _FileProviderDomainClass) New() FileProviderDomain {
 	rv := objc.Send[FileProviderDomain](objc.ID(fc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -113,8 +112,35 @@ func (f_ FileProviderDomain) Autorelease() FileProviderDomain {
 func NewFileProviderDomain() FileProviderDomain {
 	return getFileProviderDomainClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for FileProviderDomain */
+// A File Provider extension’s domain.
+//
+// You can use domains to partition a file provider’s content. When you use domains, a single file provider can act as if multiple file providers were installed, and users can dynamically switch from one domain to another. You can use domains to represent different accounts or locations. By default, a File Provider extension has no domain. You can register domains by calling the class’s method. A new instance is created for each domain that you register. The object’s property indicates which domain the file provider belongs to. Any items returned by that file provider also belong to the domain.
+
+
+// A File Provider extension’s domain.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain
+type FileProviderDomain struct {
+	objectivec.Object
+}
+
+// FileProviderDomainFrom constructs a [FileProviderDomain] from an unsafe.Pointer.
+//
+// A File Provider extension’s domain.
+func FileProviderDomainFrom(ptr unsafe.Pointer) FileProviderDomain {
+	return FileProviderDomain{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for FileProviderDomain */
 
 // Creates a new file provider domain with the specified URL and display name.
 //
@@ -125,33 +151,52 @@ func NewFileProviderDomainWithDisplayNameUserInfoVolumeURL(displayName objc.IObj
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithDisplayName:userInfo:volumeURL:"), displayName, userInfo, volumeURL)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewFileProviderDomainWithDisplayNameUserInfoVolumeURL */
 
 
 // Creates a new file provider domain with the specified identifier and display name.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:)
-func NewFileProviderDomainWithIdentifierDisplayName(identifier objc.IObject /* cross-framework: FileProviderDomainIdentifier */, displayName objc.IObject /* cross-framework: NSString */) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayName(identifier FileProviderDomainIdentifier /* typedef */, displayName objc.IObject /* cross-framework: NSString */) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:"), identifier, displayName)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewFileProviderDomainWithIdentifierDisplayName */
 
 
 // Returns a newly instantiated domain.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/init(identifier:displayName:pathRelativeToDocumentStorage:)
-func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier objc.IObject /* cross-framework: FileProviderDomainIdentifier */, displayName objc.IObject /* cross-framework: NSString */, pathRelativeToDocumentStorage objc.IObject /* cross-framework: NSString */) FileProviderDomain {
+func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage(identifier FileProviderDomainIdentifier /* typedef */, displayName objc.IObject /* cross-framework: NSString */, pathRelativeToDocumentStorage objc.IObject /* cross-framework: NSString */) FileProviderDomain {
 	instance := getFileProviderDomainClass().Alloc()
 	rv := objc.Send[FileProviderDomain](instance.ID, objc.Sel("initWithIdentifier:displayName:pathRelativeToDocumentStorage:"), identifier, displayName, pathRelativeToDocumentStorage)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage */
+
+/* debug [class_init_methods]: End init methods */
 
 
+
+/* debug [class_methods]: Class methods for FileProviderDomain */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for FileProviderDomain */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for FileProviderDomain */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for FileProviderDomain */
 
 // A unique identifier for the backing store used by the system.
 //
@@ -160,7 +205,7 @@ func NewFileProviderDomainWithIdentifierDisplayNamePathRelativeToDocumentStorage
 func (f_ FileProviderDomain) BackingStoreIdentity() objc.IObject /* cross-framework: NSData */ {
 	rv := objc.Send[foundation.NSData](f_.ID, objc.Sel("backingStoreIdentity"))
 	return rv
-}
+}/* debug [instance_properties/getter]: backingStoreIdentity */
 
 
 // The name of the domain displayed in the user interface.
@@ -170,17 +215,17 @@ func (f_ FileProviderDomain) BackingStoreIdentity() objc.IObject /* cross-framew
 func (f_ FileProviderDomain) DisplayName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("displayName"))
 	return rv
-}
+}/* debug [instance_properties/getter]: displayName */
 
 
 // The domain’s unique identifier.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/identifier
-func (f_ FileProviderDomain) Identifier() objc.IObject /* cross-framework: FileProviderDomainIdentifier */ {
-	rv := objc.Send[FileProviderDomainIdentifier](f_.ID, objc.Sel("identifier"))
+func (f_ FileProviderDomain) Identifier() FileProviderDomainIdentifier /* typedef */ {
+	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("identifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: identifier */
 
 
 // A Boolean value indicating that the domain is present, but disconnected from the file extension.
@@ -190,7 +235,7 @@ func (f_ FileProviderDomain) Identifier() objc.IObject /* cross-framework: FileP
 func (f_ FileProviderDomain) Disconnected() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("disconnected"))
 	return rv
-}
+}/* debug [instance_properties/getter]: disconnected */
 
 
 // A Boolean value that determines whether the domain is visible to users.
@@ -200,7 +245,7 @@ func (f_ FileProviderDomain) Disconnected() bool {
 func (f_ FileProviderDomain) Hidden() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("hidden"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hidden */
 
 
 // A Boolean value that determines whether the domain is visible to users.
@@ -209,7 +254,7 @@ func (f_ FileProviderDomain) Hidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/isHidden
 func (f_ FileProviderDomain) SetHidden(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setHidden:"), value)
-}
+}/* debug [instance_properties/setter]: hidden */
 
 
 // [Full Topic]
@@ -217,7 +262,7 @@ func (f_ FileProviderDomain) SetHidden(value bool) {
 func (f_ FileProviderDomain) Replicated() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("replicated"))
 	return rv
-}
+}/* debug [instance_properties/getter]: replicated */
 
 
 // A list of known folders that the domain currently replicates.
@@ -227,7 +272,7 @@ func (f_ FileProviderDomain) Replicated() bool {
 func (f_ FileProviderDomain) ReplicatedKnownFolders() FileProviderKnownFolders {
 	rv := objc.Send[FileProviderKnownFolders](f_.ID, objc.Sel("replicatedKnownFolders"))
 	return rv
-}
+}/* debug [instance_properties/getter]: replicatedKnownFolders */
 
 
 // A list of known folders that the domain can replicate.
@@ -237,7 +282,7 @@ func (f_ FileProviderDomain) ReplicatedKnownFolders() FileProviderKnownFolders {
 func (f_ FileProviderDomain) SupportedKnownFolders() FileProviderKnownFolders {
 	rv := objc.Send[FileProviderKnownFolders](f_.ID, objc.Sel("supportedKnownFolders"))
 	return rv
-}
+}/* debug [instance_properties/getter]: supportedKnownFolders */
 
 
 // A list of known folders that the domain can replicate.
@@ -246,7 +291,7 @@ func (f_ FileProviderDomain) SupportedKnownFolders() FileProviderKnownFolders {
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportedKnownFolders
 func (f_ FileProviderDomain) SetSupportedKnownFolders(value FileProviderKnownFolders) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportedKnownFolders:"), value)
-}
+}/* debug [instance_properties/setter]: supportedKnownFolders */
 
 
 // A Boolean value that indicates whether the provider supports search.
@@ -256,7 +301,7 @@ func (f_ FileProviderDomain) SetSupportedKnownFolders(value FileProviderKnownFol
 func (f_ FileProviderDomain) SupportsStringSearchRequest() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsStringSearchRequest"))
 	return rv
-}
+}/* debug [instance_properties/getter]: supportsStringSearchRequest */
 
 
 // A Boolean value that indicates whether the provider supports search.
@@ -265,7 +310,7 @@ func (f_ FileProviderDomain) SupportsStringSearchRequest() bool {
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportsStringSearchRequest
 func (f_ FileProviderDomain) SetSupportsStringSearchRequest(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsStringSearchRequest:"), value)
-}
+}/* debug [instance_properties/setter]: supportsStringSearchRequest */
 
 
 // [Full Topic]
@@ -273,14 +318,14 @@ func (f_ FileProviderDomain) SetSupportsStringSearchRequest(value bool) {
 func (f_ FileProviderDomain) SupportsSyncingTrash() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("supportsSyncingTrash"))
 	return rv
-}
+}/* debug [instance_properties/getter]: supportsSyncingTrash */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/supportsSyncingTrash
 func (f_ FileProviderDomain) SetSupportsSyncingTrash(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSupportsSyncingTrash:"), value)
-}
+}/* debug [instance_properties/setter]: supportsSyncingTrash */
 
 
 // A mode that gives the File Provider extension more control over the system’s behavior during testing.
@@ -290,7 +335,7 @@ func (f_ FileProviderDomain) SetSupportsSyncingTrash(value bool) {
 func (f_ FileProviderDomain) TestingModes() FileProviderDomainTestingModes {
 	rv := objc.Send[FileProviderDomainTestingModes](f_.ID, objc.Sel("testingModes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: testingModes */
 
 
 // A mode that gives the File Provider extension more control over the system’s behavior during testing.
@@ -299,7 +344,7 @@ func (f_ FileProviderDomain) TestingModes() FileProviderDomainTestingModes {
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/testingModes-swift.property
 func (f_ FileProviderDomain) SetTestingModes(value FileProviderDomainTestingModes) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTestingModes:"), value)
-}
+}/* debug [instance_properties/setter]: testingModes */
 
 
 // A Boolean value that indicates whether the user has enabled or disabled the domain.
@@ -309,7 +354,7 @@ func (f_ FileProviderDomain) SetTestingModes(value FileProviderDomainTestingMode
 func (f_ FileProviderDomain) UserEnabled() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("userEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: userEnabled */
 
 
 // [Full Topic]
@@ -317,22 +362,22 @@ func (f_ FileProviderDomain) UserEnabled() bool {
 func (f_ FileProviderDomain) UserInfo() objc.IObject /* cross-framework: NSDictionary */ {
 	rv := objc.Send[foundation.NSDictionary](f_.ID, objc.Sel("userInfo"))
 	return rv
-}
+}/* debug [instance_properties/getter]: userInfo */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/userInfo
 func (f_ FileProviderDomain) SetUserInfo(value objc.IObject /* cross-framework: NSDictionary */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setUserInfo:"), value)
-}
+}/* debug [instance_properties/setter]: userInfo */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/FileProvider/NSFileProviderDomain/volumeUUID
-func (f_ FileProviderDomain) VolumeUUID() objc.IObject /* cross-framework: UUID */ {
+func (f_ FileProviderDomain) VolumeUUID() foundation.UUID {
 	rv := objc.Send[foundation.UUID](f_.ID, objc.Sel("volumeUUID"))
 	return rv
-}
+}/* debug [instance_properties/getter]: volumeUUID */
 
 
 // A Boolean value indicating that the domain is present, but disconnected from the file extension.
@@ -342,7 +387,7 @@ func (f_ FileProviderDomain) VolumeUUID() objc.IObject /* cross-framework: UUID 
 func (f_ FileProviderDomain) IsDisconnected() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isDisconnected"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isDisconnected */
 
 
 // A Boolean value indicating that the domain is present, but disconnected from the file extension.
@@ -351,7 +396,7 @@ func (f_ FileProviderDomain) IsDisconnected() bool {
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isdisconnected
 func (f_ FileProviderDomain) SetIsDisconnected(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsDisconnected:"), value)
-}
+}/* debug [instance_properties/setter]: isDisconnected */
 
 
 // A Boolean value that determines whether the domain is visible to users.
@@ -361,7 +406,7 @@ func (f_ FileProviderDomain) SetIsDisconnected(value bool) {
 func (f_ FileProviderDomain) IsHidden() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isHidden"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isHidden */
 
 
 // A Boolean value that determines whether the domain is visible to users.
@@ -370,7 +415,7 @@ func (f_ FileProviderDomain) IsHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/ishidden
 func (f_ FileProviderDomain) SetIsHidden(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsHidden:"), value)
-}
+}/* debug [instance_properties/setter]: isHidden */
 
 
 // [Full Topic]
@@ -378,14 +423,14 @@ func (f_ FileProviderDomain) SetIsHidden(value bool) {
 func (f_ FileProviderDomain) IsReplicated() bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("isReplicated"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isReplicated */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderdomain/isreplicated
 func (f_ FileProviderDomain) SetIsReplicated(value bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setIsReplicated:"), value)
-}
+}/* debug [instance_properties/setter]: isReplicated */
 
 
 // The domain managed by this file provider object.
@@ -395,7 +440,7 @@ func (f_ FileProviderDomain) SetIsReplicated(value bool) {
 func (f_ FileProviderDomain) Domain() IFileProviderDomain {
 	rv := objc.Send[FileProviderDomain](f_.ID, objc.Sel("domain"))
 	return rv
-}
+}/* debug [instance_properties/getter]: domain */
 
 
 // The domain managed by this file provider object.
@@ -404,6 +449,11 @@ func (f_ FileProviderDomain) Domain() IFileProviderDomain {
 // [Full Topic]: https://developer.apple.com/documentation/fileprovider/nsfileproviderextension/domain
 func (f_ FileProviderDomain) SetDomain(value IFileProviderDomain) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDomain:"), value)
-}
+}/* debug [instance_properties/setter]: domain */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class NSFileProviderDomain */
 
 

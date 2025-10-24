@@ -46,7 +46,6 @@ type IPHLivePhotoRequestOptions interface {
 //
 // A Live Photo is a picture that includes movement and sound from the moments just before and after its capture.
 
-
 // A set of options affecting the delivery of Live Photo assets you request from an image manager.
 //
 // [Full Topic]
@@ -93,8 +92,6 @@ func NewPHLivePhotoRequestOptions() PHLivePhotoRequestOptions {
 	return getPHLivePhotoRequestOptionsClass().New()
 }
 
-
-
 // The requested Live Photo quality and delivery priority.
 //
 // [Full Topic]
@@ -104,7 +101,6 @@ func (p_ PHLivePhotoRequestOptions) DeliveryMode() unsafe.Pointer {
 	return rv
 }
 
-
 // The requested Live Photo quality and delivery priority.
 //
 // [Full Topic]
@@ -112,7 +108,6 @@ func (p_ PHLivePhotoRequestOptions) DeliveryMode() unsafe.Pointer {
 func (p_ PHLivePhotoRequestOptions) SetDeliveryMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDeliveryMode:"), value)
 }
-
 
 // A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
 //
@@ -123,7 +118,6 @@ func (p_ PHLivePhotoRequestOptions) IsNetworkAccessAllowed() bool {
 	return rv
 }
 
-
 // A Boolean value that specifies whether Photos can download the requested Live Photo data from iCloud.
 //
 // [Full Topic]
@@ -131,7 +125,6 @@ func (p_ PHLivePhotoRequestOptions) IsNetworkAccessAllowed() bool {
 func (p_ PHLivePhotoRequestOptions) SetIsNetworkAccessAllowed(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsNetworkAccessAllowed:"), value)
 }
-
 
 // A block that Photos calls periodically while downloading the Live Photo.
 //
@@ -142,7 +135,6 @@ func (p_ PHLivePhotoRequestOptions) ProgressHandler() unsafe.Pointer {
 	return rv
 }
 
-
 // A block that Photos calls periodically while downloading the Live Photo.
 //
 // [Full Topic]
@@ -150,7 +142,6 @@ func (p_ PHLivePhotoRequestOptions) ProgressHandler() unsafe.Pointer {
 func (p_ PHLivePhotoRequestOptions) SetProgressHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setProgressHandler:"), value)
 }
-
 
 // The version of the Live Photo to be requested.
 //
@@ -161,7 +152,6 @@ func (p_ PHLivePhotoRequestOptions) Version() unsafe.Pointer {
 	return rv
 }
 
-
 // The version of the Live Photo to be requested.
 //
 // [Full Topic]
@@ -169,6 +159,3 @@ func (p_ PHLivePhotoRequestOptions) Version() unsafe.Pointer {
 func (p_ PHLivePhotoRequestOptions) SetVersion(value unsafe.Pointer) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setVersion:"), value)
 }
-
-
-

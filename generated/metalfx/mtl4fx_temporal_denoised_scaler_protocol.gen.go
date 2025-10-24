@@ -19,3 +19,4 @@ var MTL4FXTemporalDenoisedScalerProtocol *objc.Protocol
 func init() {
 	MTL4FXTemporalDenoisedScalerProtocol = objc.GetProtocol("MTL4FXTemporalDenoisedScaler")
 }
+

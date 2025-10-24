@@ -18,3 +18,4 @@ var AddSecureElementPassViewControllerDelegateProtocol *objc.Protocol
 func init() {
 	AddSecureElementPassViewControllerDelegateProtocol = objc.GetProtocol("PKAddSecureElementPassViewControllerDelegate")
 }
+

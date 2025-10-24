@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 )
 
 // The class instance for the [PHProjectTextElement] class.
@@ -82,7 +82,6 @@ func NewPHProjectTextElement() PHProjectTextElement {
 	return getPHProjectTextElementClass().New()
 }
 
-
 // The stylized attributed string for the text element as presented to the user in Photos.
 //
 // [Full Topic]: https://developer.apple.com/documentation/PhotosUI/PHProjectTextElement/attributedText
@@ -106,7 +105,3 @@ func (p_ PHProjectTextElement) TextElementType() PHProjectTextElementType {
 	rv := objc.Send[PHProjectTextElementType](p_.ID, objc.Sel("textElementType"))
 	return rv
 }
-
-
-
-

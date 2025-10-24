@@ -6,6 +6,13 @@ import "github.com/ebitengine/purego/objc"
 
 // NavigationDelegateProtocol is the WKNavigationDelegate protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - iOS +
+//   - iPadOS +
+//   - macOS +
+//   - visionOS +
+//
 // Use this protocol when registering custom classes that conform to WKNavigationDelegate.
 var NavigationDelegateProtocol *objc.Protocol
 

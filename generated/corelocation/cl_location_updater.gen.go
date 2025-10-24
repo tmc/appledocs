@@ -39,7 +39,6 @@ type ILocationUpdater interface {
 
 // An object that provides device location updates.
 
-
 // An object that provides device location updates.
 //
 // [Full Topic]
@@ -86,8 +85,6 @@ func NewLocationUpdater() LocationUpdater {
 	return getLocationUpdaterClass().New()
 }
 
-
-
 // Creates a location updater with the configuration and queue that you specify.
 //
 // [Full Topic]
@@ -96,7 +93,6 @@ func (lc _LocationUpdaterClass) LiveUpdaterWithConfigurationQueueHandler(configu
 	rv := objc.Send[unsafe.Pointer](objc.ID(lc.class), objc.Sel("liveUpdaterWithConfiguration:queue:handler:"), configuration, queue, handler)
 	return rv
 }
-
 
 // Creates a location updater on the queue you specify.
 //
@@ -107,7 +103,6 @@ func (lc _LocationUpdaterClass) LiveUpdaterWithQueueHandler(queue unsafe.Pointer
 	return rv
 }
 
-
 // Invalidates the updater.
 //
 // [Full Topic]
@@ -115,7 +110,6 @@ func (lc _LocationUpdaterClass) LiveUpdaterWithQueueHandler(queue unsafe.Pointer
 func (l_ LocationUpdater) Invalidate() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("invalidate"))
 }
-
 
 // Pauses the updater.
 //
@@ -125,7 +119,6 @@ func (l_ LocationUpdater) Pause() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("pause"))
 }
 
-
 // Resumes the updater.
 //
 // [Full Topic]
@@ -133,6 +126,3 @@ func (l_ LocationUpdater) Pause() {
 func (l_ LocationUpdater) Resume() {
 	objc.Send[objc.ID](l_.ID, objc.Sel("resume"))
 }
-
-
-

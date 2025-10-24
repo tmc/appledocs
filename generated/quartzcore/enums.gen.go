@@ -2,7 +2,9 @@
 
 package quartzcore
 
+/* debug [enums.gen.go]: Generating 4 enums for QuartzCore */
 // Enum types and constants
+/* debug [enums.gen.go]: Processing enum CAAutoresizingMask (7 cases) */
 // CAAutoresizingMask - These constants are used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAAutoresizingMask
@@ -39,6 +41,48 @@ const (
 	kCALayerWidthSizable CAAutoresizingMask = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CAConstraintAttribute (8 cases) */
+// CAConstraintAttribute - The constraint attribute type.
+//
+// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute
+type CAConstraintAttribute uint
+
+const (
+	// kCAConstraintHeight - The height of a layer.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/height
+	kCAConstraintHeight CAConstraintAttribute = 0
+	// kCAConstraintMaxX - The right edge of a layer’s frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/maxX
+	kCAConstraintMaxX CAConstraintAttribute = 0
+	// kCAConstraintMaxY - The top edge of a layer’s frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/maxY
+	kCAConstraintMaxY CAConstraintAttribute = 0
+	// kCAConstraintMidX - The horizontal location of the center of a layer’s frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/midX
+	kCAConstraintMidX CAConstraintAttribute = 0
+	// kCAConstraintMidY - The vertical location of the center of a layer’s frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/midY
+	kCAConstraintMidY CAConstraintAttribute = 0
+	// kCAConstraintMinX - The left edge of a layer’s frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/minX
+	kCAConstraintMinX CAConstraintAttribute = 0
+	// kCAConstraintMinY - The bottom edge of a layer’s frame.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/minY
+	kCAConstraintMinY CAConstraintAttribute = 0
+	// kCAConstraintWidth - The width of a layer.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAConstraintAttribute/width
+	kCAConstraintWidth CAConstraintAttribute = 0
+)
+
+/* debug [enums.gen.go]: Processing enum CACornerMask (4 cases) */
 // CACornerMask enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CACornerMask
@@ -59,6 +103,7 @@ const (
 	kCALayerMinXMinYCorner CACornerMask = 0
 )
 
+/* debug [enums.gen.go]: Processing enum CAEdgeAntialiasingMask (4 cases) */
 // CAEdgeAntialiasingMask - This mask is used by the 
 //
 // [Full Topic]: https://developer.apple.com/documentation/QuartzCore/CAEdgeAntialiasingMask

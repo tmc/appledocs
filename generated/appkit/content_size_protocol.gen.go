@@ -15,3 +15,4 @@ var contentSizeProtocol *objc.Protocol
 func init() {
 	contentSizeProtocol = objc.GetProtocol("contentSize")
 }
+

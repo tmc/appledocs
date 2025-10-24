@@ -7,11 +7,14 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/corelocation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CTCellularPlanProperties */
+
+
+/* debug [class_header]: Header for CTCellularPlanProperties */
 // The class instance for the [CellularPlanProperties] class.
 var (
 	CellularPlanPropertiesClass     _CellularPlanPropertiesClass
@@ -28,34 +31,30 @@ func getCellularPlanPropertiesClass() _CellularPlanPropertiesClass {
 type _CellularPlanPropertiesClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CellularPlanProperties */
 // An interface definition for the [CellularPlanProperties] class.
 type ICellularPlanProperties interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CellularPlanProperties */
 	// properties:
-	SupportedRegionCodes() objc.IObject /* cross-framework: Region */
-	SetSupportedRegionCodes(value objc.IObject /* cross-framework: Region */)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CellularPlanProperties */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// An object you use for an eSIM.
 
 
-// An object you use for an eSIM.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties
-type CellularPlanProperties struct {
-	objectivec.Object
-}
-
-// CellularPlanPropertiesFrom constructs a [CellularPlanProperties] from an unsafe.Pointer.
-//
-// An object you use for an eSIM.
-func CellularPlanPropertiesFrom(ptr unsafe.Pointer) CellularPlanProperties {
-	return CellularPlanProperties{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CellularPlanProperties */
 // Alloc allocates a new instance without initialization.
 func (cc _CellularPlanPropertiesClass) Alloc() CellularPlanProperties {
 	rv := objc.Send[CellularPlanProperties](objc.ID(cc.class), objc.Sel("alloc"))
@@ -63,7 +62,6 @@ func (cc _CellularPlanPropertiesClass) Alloc() CellularPlanProperties {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CellularPlanPropertiesClass) New() CellularPlanProperties {
 	rv := objc.Send[CellularPlanProperties](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -86,25 +84,55 @@ func (c_ CellularPlanProperties) Autorelease() CellularPlanProperties {
 func NewCellularPlanProperties() CellularPlanProperties {
 	return getCellularPlanPropertiesClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-// The available regions that your eSIM supports.
+/* debug [class_struct]: Struct for CellularPlanProperties */
+// An object you use for an eSIM.
+
+
+// An object you use for an eSIM.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties/supportedregioncodes-yhu5
-func (c_ CellularPlanProperties) SupportedRegionCodes() objc.IObject /* cross-framework: Region */ {
-	rv := objc.Send[corelocation.Region](c_.ID, objc.Sel("supportedRegionCodes"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/CoreTelephony/CTCellularPlanProperties
+type CellularPlanProperties struct {
+	objectivec.Object
 }
 
-
-// The available regions that your eSIM supports.
+// CellularPlanPropertiesFrom constructs a [CellularPlanProperties] from an unsafe.Pointer.
 //
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/coretelephony/ctcellularplanproperties/supportedregioncodes-yhu5
-func (c_ CellularPlanProperties) SetSupportedRegionCodes(value objc.IObject /* cross-framework: Region */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setSupportedRegionCodes:"), value)
+// An object you use for an eSIM.
+func CellularPlanPropertiesFrom(ptr unsafe.Pointer) CellularPlanProperties {
+	return CellularPlanProperties{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CellularPlanProperties *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CellularPlanProperties */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CellularPlanProperties */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CellularPlanProperties */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CellularPlanProperties */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CTCellularPlanProperties */
 
 

@@ -11,6 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NEPacket */
+
+
+/* debug [class_header]: Header for NEPacket */
 // The class instance for the [NEPacket] class.
 var (
 	NEPacketClass     _NEPacketClass
@@ -27,40 +31,34 @@ func getNEPacketClass() _NEPacketClass {
 type _NEPacketClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for NEPacket */
 // An interface definition for the [NEPacket] class.
 type INEPacket interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for NEPacket */
 	// properties:
-	Data() objc.IObject /* cross-framework: Data */
-	SetData(value objc.IObject /* cross-framework: Data */)
-	Direction() unsafe.Pointer
-	SetDirection(value unsafe.Pointer)
-	Metadata() objc.IObject /* cross-framework: NEFlowMetaData */
-	SetMetadata(value objc.IObject /* cross-framework: NEFlowMetaData */)
-	ProtocolFamily() unsafe.Pointer
-	SetProtocolFamily(value unsafe.Pointer)
+	Data() objc.IObject /* cross-framework: NSData */
+	Direction() NETrafficDirection
+	Metadata() INEFlowMetaData
+	ProtocolFamily() objectivec.IObject
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for NEPacket */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
+/* debug [class_interface]: End interface */
 
-// A network packet and its associated properties.
 
 
-// A network packet and its associated properties.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket
-type NEPacket struct {
-	objectivec.Object
-}
-
-// NEPacketFrom constructs a [NEPacket] from an unsafe.Pointer.
-//
-// A network packet and its associated properties.
-func NEPacketFrom(ptr unsafe.Pointer) NEPacket {
-	return NEPacket{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for NEPacket */
 // Alloc allocates a new instance without initialization.
 func (nc _NEPacketClass) Alloc() NEPacket {
 	rv := objc.Send[NEPacket](objc.ID(nc.class), objc.Sel("alloc"))
@@ -68,7 +66,6 @@ func (nc _NEPacketClass) Alloc() NEPacket {
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (nc _NEPacketClass) New() NEPacket {
 	rv := objc.Send[NEPacket](objc.ID(nc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -91,71 +88,100 @@ func (n_ NEPacket) Autorelease() NEPacket {
 func NewNEPacket() NEPacket {
 	return getNEPacketClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
+
+/* debug [class_struct]: Struct for NEPacket */
+// A network packet and its associated properties.
+
+
+// A network packet and its associated properties.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket
+type NEPacket struct {
+	objectivec.Object
+}
+
+// NEPacketFrom constructs a [NEPacket] from an unsafe.Pointer.
+//
+// A network packet and its associated properties.
+func NEPacketFrom(ptr unsafe.Pointer) NEPacket {
+	return NEPacket{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for NEPacket */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepacket/data
-func (n_ NEPacket) Data() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](n_.ID, objc.Sel("data"))
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/init(data:protocolFamily:)
+func NewNEPacketWithDataProtocolFamily(data objc.IObject /* cross-framework: NSData */, protocolFamily objectivec.IObject) NEPacket {
+	instance := getNEPacketClass().Alloc()
+	rv := objc.Send[NEPacket](instance.ID, objc.Sel("initWithData:protocolFamily:"), data, protocolFamily)
+	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewNEPacketWithDataProtocolFamily */
 
+/* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for NEPacket */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for NEPacket */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for NEPacket */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for NEPacket */
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepacket/data
-func (n_ NEPacket) SetData(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setData:"), value)
-}
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/data
+func (n_ NEPacket) Data() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](n_.ID, objc.Sel("data"))
+	return rv
+}/* debug [instance_properties/getter]: data */
 
 
 // The direction of the packet.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepacket/direction
-func (n_ NEPacket) Direction() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("direction"))
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/direction
+func (n_ NEPacket) Direction() NETrafficDirection {
+	rv := objc.Send[NETrafficDirection](n_.ID, objc.Sel("direction"))
 	return rv
-}
-
-
-// The direction of the packet.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepacket/direction
-func (n_ NEPacket) SetDirection(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setDirection:"), value)
-}
+}/* debug [instance_properties/getter]: direction */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepacket/metadata
-func (n_ NEPacket) Metadata() objc.IObject /* cross-framework: NEFlowMetaData */ {
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/metadata
+func (n_ NEPacket) Metadata() INEFlowMetaData {
 	rv := objc.Send[NEFlowMetaData](n_.ID, objc.Sel("metadata"))
 	return rv
-}
+}/* debug [instance_properties/getter]: metadata */
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepacket/metadata
-func (n_ NEPacket) SetMetadata(value objc.IObject /* cross-framework: NEFlowMetaData */) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setMetadata:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepacket/protocolfamily
-func (n_ NEPacket) ProtocolFamily() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](n_.ID, objc.Sel("protocolFamily"))
+// [Full Topic]: https://developer.apple.com/documentation/NetworkExtension/NEPacket/protocolFamily
+func (n_ NEPacket) ProtocolFamily() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](n_.ID, objc.Sel("protocolFamily"))
 	return rv
-}
+}/* debug [instance_properties/getter]: protocolFamily */
+
+/* debug [instance_properties]: End instance properties */
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/networkextension/nepacket/protocolfamily
-func (n_ NEPacket) SetProtocolFamily(value unsafe.Pointer) {
-	objc.Send[objc.ID](n_.ID, objc.Sel("setProtocolFamily:"), value)
-}
-
+/* debug [class.gen.go]: End class NEPacket */
 
 

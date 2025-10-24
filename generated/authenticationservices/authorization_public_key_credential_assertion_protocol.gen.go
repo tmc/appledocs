@@ -20,3 +20,4 @@ var AuthorizationPublicKeyCredentialAssertionProtocol *objc.Protocol
 func init() {
 	AuthorizationPublicKeyCredentialAssertionProtocol = objc.GetProtocol("ASAuthorizationPublicKeyCredentialAssertion")
 }
+

@@ -23,11 +23,3 @@ func ExampleUserDefaults_DictionaryRepresentation() {
 	// Output:
 	}
 
-// ExampleUserDefaults_Synchronize demonstrates using Synchronize on a UserDefaults instance.
-// Waits for any pending asynchronous updates to the defaults database and returns; this method is unnecessary and shouldn’t be used.
-func ExampleUserDefaults_Synchronize() {
-	obj := foundation.NewUserDefaults()
-	_ = obj.Synchronize()
-	// Output:
-	}
-

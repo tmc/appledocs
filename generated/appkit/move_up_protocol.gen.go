@@ -15,3 +15,4 @@ var moveUpProtocol *objc.Protocol
 func init() {
 	moveUpProtocol = objc.GetProtocol("moveUp:")
 }
+

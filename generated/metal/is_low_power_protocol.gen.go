@@ -16,3 +16,4 @@ var isLowPowerProtocol *objc.Protocol
 func init() {
 	isLowPowerProtocol = objc.GetProtocol("isLowPower")
 }
+

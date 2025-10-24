@@ -15,3 +15,4 @@ var TextLocationProtocol *objc.Protocol
 func init() {
 	TextLocationProtocol = objc.GetProtocol("NSTextLocation")
 }
+

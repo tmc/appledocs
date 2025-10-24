@@ -16,3 +16,4 @@ var guestPresentCountProtocol *objc.Protocol
 func init() {
 	guestPresentCountProtocol = objc.GetProtocol("guestPresentCount")
 }
+

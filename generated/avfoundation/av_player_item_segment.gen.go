@@ -1,0 +1,298 @@
+// Code generated from Apple documentation for AVFoundation. DO NOT EDIT.
+
+package avfoundation
+
+import (
+	"sync"
+	"unsafe"
+
+	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
+)
+
+/* debug [class.gen.go]: Generating class AVPlayerItemSegment */
+
+
+/* debug [class_header]: Header for AVPlayerItemSegment */
+// The class instance for the [PlayerItemSegment] class.
+var (
+	PlayerItemSegmentClass     _PlayerItemSegmentClass
+	PlayerItemSegmentClassOnce sync.Once
+)
+
+func getPlayerItemSegmentClass() _PlayerItemSegmentClass {
+	PlayerItemSegmentClassOnce.Do(func() {
+		PlayerItemSegmentClass = _PlayerItemSegmentClass{objc.GetClass("AVPlayerItemSegment")}
+	})
+	return PlayerItemSegmentClass
+}
+
+type _PlayerItemSegmentClass struct {
+	class objc.Class
+}
+/* debug [class_header]: End header */
+
+
+
+/* debug [class_interface]: Interface for PlayerItemSegment */
+// An interface definition for the [PlayerItemSegment] class.
+type IPlayerItemSegment interface {
+	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for PlayerItemSegment */
+	// properties:
+	InterstitialEvent() IAVPlayerInterstitialEvent
+	LoadedTimeRanges() []foundation.Value
+	SegmentType() PlayerItemSegmentType
+	StartDate() objc.IObject /* cross-framework: NSDate */
+	TimeMapping() TimeMapping /* not a class type */
+	CurrentDate() foundation.Date
+	SetCurrentDate(value foundation.Date)
+	CurrentSegment() IAVPlayerItemSegment
+	SetCurrentSegment(value IAVPlayerItemSegment)
+	CurrentTime() objc.IObject /* cross-framework: Time */
+	SetCurrentTime(value objc.IObject /* cross-framework: Time */)
+	Duration() objc.IObject /* cross-framework: Time */
+	SetDuration(value objc.IObject /* cross-framework: Time */)
+	Segments() IAVPlayerItemSegment
+	SetSegments(value IAVPlayerItemSegment)
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for PlayerItemSegment */
+	// methods:
+/* debug [class_interface_methods]: End methods */
+
+}
+/* debug [class_interface]: End interface */
+
+
+
+/* debug [class_constructors]: Constructors for PlayerItemSegment */
+// Alloc allocates a new instance without initialization.
+func (pc _PlayerItemSegmentClass) Alloc() PlayerItemSegment {
+	rv := objc.Send[PlayerItemSegment](objc.ID(pc.class), objc.Sel("alloc"))
+	return rv
+}
+
+// New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
+func (pc _PlayerItemSegmentClass) New() PlayerItemSegment {
+	rv := objc.Send[PlayerItemSegment](objc.ID(pc.class), objc.Sel("new"))
+	rv.Autorelease()
+	return rv
+}
+
+// Init initializes the instance.
+func (p_ PlayerItemSegment) Init() PlayerItemSegment {
+	rv := objc.Send[PlayerItemSegment](p_.ID, objc.Sel("init"))
+	return rv
+}
+
+// Autorelease adds the receiver to the current autorelease pool.
+func (p_ PlayerItemSegment) Autorelease() PlayerItemSegment {
+	rv := objc.Send[PlayerItemSegment](p_.ID, objc.Sel("autorelease"))
+	return rv
+}
+
+// NewPlayerItemSegment creates a new PlayerItemSegment instance.
+func NewPlayerItemSegment() PlayerItemSegment {
+	return getPlayerItemSegmentClass().New()
+}
+/* debug [class_constructors]: End constructors */
+
+
+
+/* debug [class_struct]: Struct for PlayerItemSegment */
+// An immutable object that represents a segment of time on the integrated timeline.
+
+
+// An immutable object that represents a segment of time on the integrated timeline.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemSegment
+type PlayerItemSegment struct {
+	objectivec.Object
+}
+
+// PlayerItemSegmentFrom constructs a [PlayerItemSegment] from an unsafe.Pointer.
+//
+// An immutable object that represents a segment of time on the integrated timeline.
+func PlayerItemSegmentFrom(ptr unsafe.Pointer) PlayerItemSegment {
+	return PlayerItemSegment{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for PlayerItemSegment *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for PlayerItemSegment */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for PlayerItemSegment */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for PlayerItemSegment */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for PlayerItemSegment */
+
+// The associated interstitial event for this segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemSegment/interstitialEvent
+func (p_ PlayerItemSegment) InterstitialEvent() IAVPlayerInterstitialEvent {
+	rv := objc.Send[PlayerInterstitialEvent](p_.ID, objc.Sel("interstitialEvent"))
+	return rv
+}/* debug [instance_properties/getter]: interstitialEvent */
+
+
+// The time ranges for the segment that have media data is readily available.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemSegment/loadedTimeRanges-2p0fl
+func (p_ PlayerItemSegment) LoadedTimeRanges() []foundation.Value {
+	rv := objc.Send[[]foundation.Value](p_.ID, objc.Sel("loadedTimeRanges"))
+	return rv
+}/* debug [instance_properties/getter]: loadedTimeRanges */
+
+
+// The type content this segment represents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemSegment/segmentType-swift.property
+func (p_ PlayerItemSegment) SegmentType() PlayerItemSegmentType {
+	rv := objc.Send[PlayerItemSegmentType](p_.ID, objc.Sel("segmentType"))
+	return rv
+}/* debug [instance_properties/getter]: segmentType */
+
+
+// The date at which a segment starts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemSegment/startDate
+func (p_ PlayerItemSegment) StartDate() objc.IObject /* cross-framework: NSDate */ {
+	rv := objc.Send[foundation.NSDate](p_.ID, objc.Sel("startDate"))
+	return rv
+}/* debug [instance_properties/getter]: startDate */
+
+
+// The time mapping for this segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AVFoundation/AVPlayerItemSegment/timeMapping
+func (p_ PlayerItemSegment) TimeMapping() TimeMapping /* not a class type */ {
+	rv := objc.Send[TimeMapping](p_.ID, objc.Sel("timeMapping"))
+	return rv
+}/* debug [instance_properties/getter]: timeMapping */
+
+
+// The current date on the integrated timeline when the system created the snapshot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentdate
+func (p_ PlayerItemSegment) CurrentDate() foundation.Date {
+	rv := objc.Send[foundation.Date](p_.ID, objc.Sel("currentDate"))
+	return rv
+}/* debug [instance_properties/getter]: currentDate */
+
+
+// The current date on the integrated timeline when the system created the snapshot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentdate
+func (p_ PlayerItemSegment) SetCurrentDate(value foundation.Date) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentDate:"), value)
+}/* debug [instance_properties/setter]: currentDate */
+
+
+// The currently playing segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentsegment
+func (p_ PlayerItemSegment) CurrentSegment() IAVPlayerItemSegment {
+	rv := objc.Send[PlayerItemSegment](p_.ID, objc.Sel("currentSegment"))
+	return rv
+}/* debug [instance_properties/getter]: currentSegment */
+
+
+// The currently playing segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currentsegment
+func (p_ PlayerItemSegment) SetCurrentSegment(value IAVPlayerItemSegment) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentSegment:"), value)
+}/* debug [instance_properties/setter]: currentSegment */
+
+
+// The current time on the integrated timeline when the system created the snapshot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currenttime
+func (p_ PlayerItemSegment) CurrentTime() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](p_.ID, objc.Sel("currentTime"))
+	return rv
+}/* debug [instance_properties/getter]: currentTime */
+
+
+// The current time on the integrated timeline when the system created the snapshot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/currenttime
+func (p_ PlayerItemSegment) SetCurrentTime(value objc.IObject /* cross-framework: Time */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setCurrentTime:"), value)
+}/* debug [instance_properties/setter]: currentTime */
+
+
+// The total duration of the primary item and scheduled interstitial events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/duration
+func (p_ PlayerItemSegment) Duration() objc.IObject /* cross-framework: Time */ {
+	rv := objc.Send[corevideo.Time](p_.ID, objc.Sel("duration"))
+	return rv
+}/* debug [instance_properties/getter]: duration */
+
+
+// The total duration of the primary item and scheduled interstitial events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/duration
+func (p_ PlayerItemSegment) SetDuration(value objc.IObject /* cross-framework: Time */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDuration:"), value)
+}/* debug [instance_properties/setter]: duration */
+
+
+// The segments for this snapshot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/segments
+func (p_ PlayerItemSegment) Segments() IAVPlayerItemSegment {
+	rv := objc.Send[PlayerItemSegment](p_.ID, objc.Sel("segments"))
+	return rv
+}/* debug [instance_properties/getter]: segments */
+
+
+// The segments for this snapshot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/avfoundation/avplayeritemintegratedtimelinesnapshot/segments
+func (p_ PlayerItemSegment) SetSegments(value IAVPlayerItemSegment) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setSegments:"), value)
+}/* debug [instance_properties/setter]: segments */
+
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class AVPlayerItemSegment */
+
+
+

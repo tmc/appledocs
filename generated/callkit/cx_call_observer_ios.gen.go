@@ -18,7 +18,7 @@ import (
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/setDelegate(_:queue:)
-func (c_ CXCallObserver) SetDelegateQueue(delegate objectivec.IObject, queue unsafe.Pointer) {
+func (c_ CXCallObserver) SetDelegateQueue(delegate unsafe.Pointer, queue unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setDelegate:queue:"), delegate, queue)
 }
 
@@ -28,7 +28,7 @@ func (c_ CXCallObserver) SetDelegateQueue(delegate objectivec.IObject, queue uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/CallKit/CXCallObserver/calls
-func (c_ CXCallObserver) Calls() []ICXCall {
+func (c_ CXCallObserver) Calls() []CXCall {
 	rv := objc.Send[[]CXCall](c_.ID, objc.Sel("calls"))
 	return rv
 }

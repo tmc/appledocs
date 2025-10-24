@@ -15,3 +15,4 @@ var setAccessibilityTitleUIElementProtocol *objc.Protocol
 func init() {
 	setAccessibilityTitleUIElementProtocol = objc.GetProtocol("setAccessibilityTitleUIElement")
 }
+

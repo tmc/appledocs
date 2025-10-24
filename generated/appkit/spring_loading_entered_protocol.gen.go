@@ -15,3 +15,4 @@ var springLoadingEnteredProtocol *objc.Protocol
 func init() {
 	springLoadingEnteredProtocol = objc.GetProtocol("springLoadingEntered:")
 }
+

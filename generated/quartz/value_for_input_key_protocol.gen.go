@@ -15,3 +15,4 @@ var valueForInputKeyProtocol *objc.Protocol
 func init() {
 	valueForInputKeyProtocol = objc.GetProtocol("valueForInputKey:")
 }
+

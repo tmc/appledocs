@@ -10,6 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class CSIndexExtensionRequestHandler */
+
+
+/* debug [class_header]: Header for CSIndexExtensionRequestHandler */
 // The class instance for the [CSIndexExtensionRequestHandler] class.
 var (
 	CSIndexExtensionRequestHandlerClass     _CSIndexExtensionRequestHandlerClass
@@ -26,34 +30,30 @@ func getCSIndexExtensionRequestHandlerClass() _CSIndexExtensionRequestHandlerCla
 type _CSIndexExtensionRequestHandlerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
+
+
+/* debug [class_interface]: Interface for CSIndexExtensionRequestHandler */
 // An interface definition for the [CSIndexExtensionRequestHandler] class.
 type ICSIndexExtensionRequestHandler interface {
 	objectivec.IObject
+	
+/* debug [class_interface_properties]: Properties for CSIndexExtensionRequestHandler */
 	// properties:
+/* debug [class_interface_properties]: End properties */
+
+	
+/* debug [class_interface_methods]: Methods for CSIndexExtensionRequestHandler */
 	// methods:
+/* debug [class_interface_methods]: End methods */
+
 }
-
-// An interface that implements an index-maintenance app extension.
-//
-// The class provides the main entry point for an index-maintenance app extension. If any issues arise with your app’s indexes and your app isn’t running, the system loads your app extension and looks for an implementation of this class. It instantiates the class it finds and uses it to perform any index-related maintenance. Define a custom subclass of in your app extension and implement methods of the protocol in it. Use those methods to perform any required updates to your app’s index files. For example, use the method to reindex all items in your app.
+/* debug [class_interface]: End interface */
 
 
-// An interface that implements an index-maintenance app extension.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexExtensionRequestHandler
-type CSIndexExtensionRequestHandler struct {
-	objectivec.Object
-}
 
-// CSIndexExtensionRequestHandlerFrom constructs a [CSIndexExtensionRequestHandler] from an unsafe.Pointer.
-//
-// An interface that implements an index-maintenance app extension.
-func CSIndexExtensionRequestHandlerFrom(ptr unsafe.Pointer) CSIndexExtensionRequestHandler {
-	return CSIndexExtensionRequestHandler{objectivec.Object{objc.ID(ptr)}}
-}
-
+/* debug [class_constructors]: Constructors for CSIndexExtensionRequestHandler */
 // Alloc allocates a new instance without initialization.
 func (cc _CSIndexExtensionRequestHandlerClass) Alloc() CSIndexExtensionRequestHandler {
 	rv := objc.Send[CSIndexExtensionRequestHandler](objc.ID(cc.class), objc.Sel("alloc"))
@@ -61,7 +61,6 @@ func (cc _CSIndexExtensionRequestHandlerClass) Alloc() CSIndexExtensionRequestHa
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
-// Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
 func (cc _CSIndexExtensionRequestHandlerClass) New() CSIndexExtensionRequestHandler {
 	rv := objc.Send[CSIndexExtensionRequestHandler](objc.ID(cc.class), objc.Sel("new"))
 	rv.Autorelease()
@@ -84,7 +83,58 @@ func (c_ CSIndexExtensionRequestHandler) Autorelease() CSIndexExtensionRequestHa
 func NewCSIndexExtensionRequestHandler() CSIndexExtensionRequestHandler {
 	return getCSIndexExtensionRequestHandlerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
+
+
+/* debug [class_struct]: Struct for CSIndexExtensionRequestHandler */
+// An interface that implements an index-maintenance app extension.
+//
+// The class provides the main entry point for an index-maintenance app extension. If any issues arise with your app’s indexes and your app isn’t running, the system loads your app extension and looks for an implementation of this class. It instantiates the class it finds and uses it to perform any index-related maintenance. Define a custom subclass of in your app extension and implement methods of the protocol in it. Use those methods to perform any required updates to your app’s index files. For example, use the method to reindex all items in your app.
+
+
+// An interface that implements an index-maintenance app extension.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/CoreSpotlight/CSIndexExtensionRequestHandler
+type CSIndexExtensionRequestHandler struct {
+	objectivec.Object
+}
+
+// CSIndexExtensionRequestHandlerFrom constructs a [CSIndexExtensionRequestHandler] from an unsafe.Pointer.
+//
+// An interface that implements an index-maintenance app extension.
+func CSIndexExtensionRequestHandlerFrom(ptr unsafe.Pointer) CSIndexExtensionRequestHandler {
+	return CSIndexExtensionRequestHandler{objectivec.Object{objc.ID(ptr)}}
+}
+/* debug [class_struct]: End struct */
+
+
+
+/* debug [class_init_methods]: Init methods for CSIndexExtensionRequestHandler *//* debug [class_init_methods]: End init methods */
+
+
+
+/* debug [class_methods]: Class methods for CSIndexExtensionRequestHandler */
+/* debug [class_methods]: End class methods */
+
+
+
+/* debug [class_properties_class]: Class properties for CSIndexExtensionRequestHandler */
+/* debug [class_properties_class]: End class properties */
+
+
+
+/* debug [instance_methods]: Instance methods for CSIndexExtensionRequestHandler */
+/* debug [instance_methods]: End instance methods */
+
+
+
+/* debug [instance_properties]: Instance properties for CSIndexExtensionRequestHandler */
+/* debug [instance_properties]: End instance properties */
+
+
+/* debug [class.gen.go]: End class CSIndexExtensionRequestHandler */
 
 
 

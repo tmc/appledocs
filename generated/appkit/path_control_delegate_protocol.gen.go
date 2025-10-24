@@ -15,3 +15,4 @@ var PathControlDelegateProtocol *objc.Protocol
 func init() {
 	PathControlDelegateProtocol = objc.GetProtocol("NSPathControlDelegate")
 }
+

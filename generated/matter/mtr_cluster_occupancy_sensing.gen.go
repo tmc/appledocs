@@ -33,8 +33,6 @@ type IMTRClusterOccupancySensing interface {
 	// methods:
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRClusterOccupancySensing
 type MTRClusterOccupancySensing struct {
@@ -78,7 +76,3 @@ func (m_ MTRClusterOccupancySensing) Autorelease() MTRClusterOccupancySensing {
 func NewMTRClusterOccupancySensing() MTRClusterOccupancySensing {
 	return getMTRClusterOccupancySensingClass().New()
 }
-
-
-
-

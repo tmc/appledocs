@@ -6,8 +6,8 @@ import (
 	"sync"
 	"unsafe"
 
-	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -44,8 +44,6 @@ type IMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct interface {
 	SetStartTimestamp(value objc.IObject /* cross-framework: NSNumber */)
 	// methods:
 }
-
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Matter/MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct
@@ -89,8 +87,6 @@ func NewMTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct() MTRElectr
 	return getMTRElectricalEnergyMeasurementClusterEnergyMeasurementStructClass().New()
 }
 
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/endsystime
 func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) EndSystime() objc.IObject /* cross-framework: NSNumber */ {
@@ -98,13 +94,11 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) EndSystim
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/endsystime
 func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEndSystime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndSystime:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/endtimestamp
@@ -113,13 +107,11 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) EndTimest
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/endtimestamp
 func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEndTimestamp(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEndTimestamp:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/energy
@@ -128,13 +120,11 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) Energy() 
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/energy
 func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetEnergy(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setEnergy:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/startsystime
@@ -143,13 +133,11 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) StartSyst
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/startsystime
 func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetStartSystime(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartSystime:"), value)
 }
-
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/starttimestamp
@@ -158,12 +146,8 @@ func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) StartTime
 	return rv
 }
 
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/matter/mtrelectricalenergymeasurementclusterenergymeasurementstruct/starttimestamp
 func (m_ MTRElectricalEnergyMeasurementClusterEnergyMeasurementStruct) SetStartTimestamp(value objc.IObject /* cross-framework: NSNumber */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setStartTimestamp:"), value)
 }
-
-
-
