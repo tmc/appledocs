@@ -8,6 +8,59 @@ import (
 	"golang.org/x/tools/txtar"
 )
 
+// stripGoComments removes single-line (//) and multi-line (/* */) comments from Go code.
+// This prevents false positives when scanning for type usage (e.g., "// Set the value" won't match "Set" type).
+func stripGoComments(code string) string {
+	var result strings.Builder
+	inBlockComment := false
+
+	for i := 0; i < len(code); i++ {
+		// Check for block comment start
+		if !inBlockComment && i+1 < len(code) && code[i] == '/' && code[i+1] == '*' {
+			inBlockComment = true
+			result.WriteString("  ") // Preserve spacing
+			i++ // Skip the '*'
+			continue
+		}
+
+		// Check for block comment end
+		if inBlockComment && i+1 < len(code) && code[i] == '*' && code[i+1] == '/' {
+			inBlockComment = false
+			result.WriteString("  ") // Preserve spacing
+			i++ // Skip the '/'
+			continue
+		}
+
+		// Inside block comment - replace with space to preserve positions
+		if inBlockComment {
+			if code[i] == '\n' {
+				result.WriteRune('\n')
+			} else {
+				result.WriteRune(' ')
+			}
+			continue
+		}
+
+		// Check for line comment start
+		if i+1 < len(code) && code[i] == '/' && code[i+1] == '/' {
+			// Skip until end of line
+			for i < len(code) && code[i] != '\n' {
+				result.WriteRune(' ')
+				i++
+			}
+			if i < len(code) {
+				result.WriteRune('\n')
+			}
+			continue
+		}
+
+		// Normal character
+		result.WriteRune(rune(code[i]))
+	}
+
+	return result.String()
+}
+
 // filterUnusedUndefinedTypes scans the generated txtar archive and filters
 // undefined_types.gen.go to only include types that are actually referenced
 // in other generated files. This eliminates unused type aliases that were
@@ -84,6 +137,10 @@ func filterUnusedUndefinedTypes(archive *txtar.Archive) *txtar.Archive {
 		}
 
 		content := string(file.Data)
+
+		// Strip comments to avoid false positives (e.g., "// Set the value" matching "Set" type)
+		content = stripGoComments(content)
+
 		// Find all potential type references
 		matches := typePattern.FindAllStringIndex(content, -1)
 		for _, match := range matches {
