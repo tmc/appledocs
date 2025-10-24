@@ -296,9 +296,9 @@ func ExtractAvailability(platforms []appledocs.Platform) Availability {
 			continue
 		}
 
-		if p.IntroducedAt != "" {
-			avail.IntroducedAt[p.Name] = p.IntroducedAt
-		}
+		// Add platform even if introduced version is empty/null
+		// The presence in the platforms list indicates availability
+		avail.IntroducedAt[p.Name] = p.IntroducedAt
 
 		if p.DeprecatedAt != "" {
 			avail.DeprecatedAt[p.Name] = p.DeprecatedAt
