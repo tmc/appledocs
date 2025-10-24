@@ -63,6 +63,9 @@ func generateFiles(outDir, framework, packageName, inputDir string, functions []
 	// Parse txtar output
 	archive := txtar.Parse(buf.Bytes())
 
+	// Post-process: Filter undefined_types.gen.go to remove unused types
+	archive = filterUnusedUndefinedTypes(archive)
+
 	// Write each file from the archive
 	for _, file := range archive.Files {
 		if file.Name == "" {
