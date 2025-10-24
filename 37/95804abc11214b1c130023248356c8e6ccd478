@@ -1,0 +1,14 @@
+Commit: 3795804abc11214b1c130023248356c8e6ccd478
+Date: 2025-10-24T15:40:14-07:00
+Claude Code: 26.0.1 model=claude-sonnet-4-5 tty=not a tty pid=10947 session=w0t0p12:7B663EB9-6745-416F-A30F-6E058A717307
+
+Fixed slice conversion template to use simpler type comparison (ne) instead of pattern matching.
+This resolves []Operation to []objc.IObject conversion errors in Foundation.
+
+Foundation errors reduced from 12 to 11:
+- 7 ScriptClassDescription errors (name collision with parent method)
+- 1 ISO8601 error (hierarchy violation - expected)
+- 2 duplicate method errors (ForwardInvocation, AttributeKeys - signature mismatch)
+- 1 "too many errors" message
+
+Remaining errors are fundamental Go vs Objective-C type system mismatches.
