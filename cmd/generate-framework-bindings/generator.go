@@ -178,6 +178,11 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 		return "float64"
 	}
 
+	// Don't convert function types (blocks)
+	if strings.HasPrefix(goType, "func(") {
+		return goType
+	}
+
 	// Handle slices FIRST - before checking for qualified types
 	// This ensures []foundation.Number is processed correctly (element type contains ".")
 	if strings.HasPrefix(goType, "[]") {

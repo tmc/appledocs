@@ -80,8 +80,8 @@ type IObject interface {
 	SetAccessibilityElementsHiddenBlock(value unsafe.Pointer)
 	AccessibilityExpandedStatus() IObject
 	SetAccessibilityExpandedStatus(value IObject)
-	AccessibilityExpandedStatusBlock() IObject
-	SetAccessibilityExpandedStatusBlock(value IObject)
+	AccessibilityExpandedStatusBlock() func() unsafe.Pointer
+	SetAccessibilityExpandedStatusBlock(value func() unsafe.Pointer)
 	AccessibilityFocusedUIElement() IObject
 	AccessibilityFrame() IObject
 	SetAccessibilityFrame(value IObject)
@@ -2675,7 +2675,11 @@ func (o_ Object) SetAccessibilityAttributedLabelBlock(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabels
 func (o_ Object) AccessibilityAttributedUserInputLabels() []IObject {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityAttributedUserInputLabels"))
-	return rv
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
 }
 
 
@@ -2777,7 +2781,11 @@ func (o_ Object) SetAccessibilityContainerTypeBlock(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActions
 func (o_ Object) AccessibilityCustomActions() []IObject {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityCustomActions"))
-	return rv
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
 }
 
 
@@ -2819,7 +2827,11 @@ func (o_ Object) SetAccessibilityCustomActionsBlock(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotors
 func (o_ Object) AccessibilityCustomRotors() []IObject {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityCustomRotors"))
-	return rv
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
 }
 
 
@@ -3005,7 +3017,7 @@ func (o_ Object) SetAccessibilityExpandedStatus(value IObject) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityExpandedStatusBlock
-func (o_ Object) AccessibilityExpandedStatusBlock() IObject {
+func (o_ Object) AccessibilityExpandedStatusBlock() func() unsafe.Pointer {
 	rv := objc.Send[func() unsafe.Pointer](o_.ID, objc.Sel("accessibilityExpandedStatusBlock"))
 	return rv
 }
@@ -3013,7 +3025,7 @@ func (o_ Object) AccessibilityExpandedStatusBlock() IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityExpandedStatusBlock
-func (o_ Object) SetAccessibilityExpandedStatusBlock(value IObject) {
+func (o_ Object) SetAccessibilityExpandedStatusBlock(value func() unsafe.Pointer) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessibilityExpandedStatusBlock:"), value)
 }
 
@@ -3022,7 +3034,7 @@ func (o_ Object) SetAccessibilityExpandedStatusBlock(value IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityFocusedUIElement
 func (o_ Object) AccessibilityFocusedUIElement() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityFocusedUIElement"))
-	return rv
+	return Object{ID: rv}
 }
 
 
@@ -3195,7 +3207,7 @@ func (o_ Object) SetAccessibilityNavigationStyleBlock(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityNextTextNavigationElement
 func (o_ Object) AccessibilityNextTextNavigationElement() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityNextTextNavigationElement"))
-	return rv
+	return Object{ID: rv}
 }
 
 
@@ -3280,7 +3292,7 @@ func (o_ Object) SetAccessibilityPerformEscapeBlock(value unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityPreviousTextNavigationElement
 func (o_ Object) AccessibilityPreviousTextNavigationElement() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityPreviousTextNavigationElement"))
-	return rv
+	return Object{ID: rv}
 }
 
 
@@ -3355,7 +3367,7 @@ func (o_ Object) SetAccessibilityShouldGroupAccessibilityChildrenBlock(value uns
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityTextInputResponder
 func (o_ Object) AccessibilityTextInputResponder() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("accessibilityTextInputResponder"))
-	return rv
+	return Object{ID: rv}
 }
 
 
@@ -3542,7 +3554,7 @@ func (o_ Object) AttributeKeys() []string {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/autoContentAccessingProxy
 func (o_ Object) AutoContentAccessingProxy() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("autoContentAccessingProxy"))
-	return rv
+	return Object{ID: rv}
 }
 
 
@@ -3751,7 +3763,7 @@ func (o_ Object) Selectable() bool {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/objectForWebScript
 func (o_ Object) ObjectForWebScript() IObject {
 	rv := objc.Send[objc.ID](o_.ID, objc.Sel("objectForWebScript"))
-	return rv
+	return Object{ID: rv}
 }
 
 

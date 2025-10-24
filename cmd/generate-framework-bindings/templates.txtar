@@ -548,7 +548,17 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 {{end -}}
 func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$returnType}} {
 	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
+	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
+	return Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
+	{{- else}}
 	return rv
+	{{- end}}
 }
 {{ $isReadOnly := contains .Attributes "readonly"}}
 {{- if not $isReadOnly}}
