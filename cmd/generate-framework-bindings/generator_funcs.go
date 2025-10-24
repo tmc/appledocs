@@ -38,6 +38,9 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 		// Name Conversion
 		"stripFrameworkPrefix": gf.stripFrameworkPrefix,
 
+		// Class Helpers
+		"getInterfaceParent": gf.getInterfaceParent,
+
 		// Constructor Generation
 		// TODO: Add constructor methods as they're converted
 
@@ -340,6 +343,84 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 	// Not an enum - apply class name stripping
 	result := classToStructName(goType)
 	return result
+}
+
+// Class Helpers
+// --------------
+
+// getInterfaceParent determines the parent interface for a class interface definition.
+// Returns the parent interface name (e.g., "objectivec.IObject", "foundation.IArray").
+func (gf GeneratorFuncs) getInterfaceParent(class *occ2go.ParsedClass) string {
+	if class == nil {
+		// Use unqualified IObject when in the objectivec package
+		if gf.Framework == "ObjectiveC" {
+			return "IObject"
+		}
+		return "objectivec.IObject"
+	}
+
+	className := class.Name
+	structName := classToStructName(className)
+
+	// Special cases for ObjectiveC framework
+	if gf.Framework == "ObjectiveC" {
+		if className == "NSObject" {
+			return ""
+		}
+		// When we're IN the objectivec package, use unqualified IObject
+		return "IObject"
+	}
+
+	// Check if class has a superclass (other than NSObject)
+	if class.SuperClass != "" && class.SuperClass != "NSObject" {
+		superStructName := classToStructName(class.SuperClass)
+
+		// Check for self-referential case (class inherits from itself - edge case)
+		if superStructName == structName {
+			if gf.Framework == "ObjectiveC" {
+				return "IObject"
+			}
+			return "objectivec.IObject"
+		}
+
+		// Resolve superclass to its qualified type
+		superResolved := resolveType(gf.Framework, superStructName)
+
+		// If superclass resolves to unsafe.Pointer, it means the parent class doesn't exist
+		// Fall back to IObject instead
+		if superResolved == "unsafe.Pointer" {
+			if gf.Framework == "ObjectiveC" {
+				return "IObject"
+			}
+			return "objectivec.IObject"
+		}
+
+		// Build interface name based on resolved framework
+		// Check if superResolved is already qualified (contains ".")
+		if strings.Contains(superResolved, ".") {
+			parts := strings.SplitN(superResolved, ".", 2)
+			frameworkPkg := parts[0]
+			typeName := parts[1]
+
+			// Check if typeName already starts with "I" (is an interface)
+			// This can happen if resolveType returns an interface type
+			if strings.HasPrefix(typeName, "I") {
+				return superResolved // Already an interface, return as-is
+			}
+
+			// Convert struct name to interface name
+			return frameworkPkg + ".I" + typeName
+		}
+
+		// Local type in same framework
+		return "I" + superStructName
+	}
+
+	// Default: inherit from IObject
+	if gf.Framework == "ObjectiveC" {
+		return "IObject"
+	}
+	return "objectivec.IObject"
 }
 
 //

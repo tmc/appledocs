@@ -528,6 +528,40 @@ func (g *Generator) prepare() {
 	}
 	g.Typedefs = deduplicatedTypedefs
 
+	// Deduplicate structs by name and fields within each struct
+	structsSeen := make(map[string]*occ2go.ParsedStruct)
+	deduplicatedStructs := make([]*occ2go.ParsedStruct, 0, len(g.Structs))
+	for _, structDef := range g.Structs {
+		if existing, exists := structsSeen[structDef.Name]; exists {
+			// Struct already exists, deduplicate fields
+			fieldsSeen := make(map[string]bool)
+			for _, field := range existing.Fields {
+				fieldsSeen[field.Name] = true
+			}
+			// Add any new fields from this occurrence
+			for _, field := range structDef.Fields {
+				if !fieldsSeen[field.Name] {
+					existing.Fields = append(existing.Fields, field)
+					fieldsSeen[field.Name] = true
+				}
+			}
+		} else {
+			// First occurrence of this struct, deduplicate its fields
+			fieldsSeen := make(map[string]bool)
+			deduplicatedFields := make([]*occ2go.ParsedStructField, 0, len(structDef.Fields))
+			for _, field := range structDef.Fields {
+				if !fieldsSeen[field.Name] {
+					fieldsSeen[field.Name] = true
+					deduplicatedFields = append(deduplicatedFields, field)
+				}
+			}
+			structDef.Fields = deduplicatedFields
+			structsSeen[structDef.Name] = structDef
+			deduplicatedStructs = append(deduplicatedStructs, structDef)
+		}
+	}
+	g.Structs = deduplicatedStructs
+
 	// Build typedef names map to exclude from refTypes
 	typedefNames := make(map[string]bool)
 	for _, typedef := range g.Typedefs {

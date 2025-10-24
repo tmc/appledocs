@@ -177,8 +177,8 @@ type {{.Name}} struct {
 {{- end}}
 }
 
-{{- if hasPrefix .Name "NS"}}
-{{- $strippedName := trimPrefix .Name "NS"}}
+{{if hasPrefix .Name "NS" -}}
+{{$strippedName := trimPrefix .Name "NS" -}}
 // {{$strippedName}} is a type alias for {{.Name}} for use in objc.Send[T] calls.
 type {{$strippedName}} = {{.Name}}
 
@@ -450,7 +450,7 @@ type {{$classTypeName}} struct {
 
 // An interface definition for the [{{$structName}}] class.
 type I{{$structName}} interface {
-	{{getInterfaceParent . $.Framework}}
+	{{getInterfaceParent .}}
 	// properties:
 	{{- range .Properties}}
 	{{- if and (not .IsClassProperty) (not (iosOnlyProperty .))}}
@@ -1133,6 +1133,7 @@ package {{.PackageName}}
 // Enum types and constants
 {{range $enum := .Enums -}}
 {{$enumName := stripFrameworkPrefix $enum.Name -}}
+{{$underlyingType := enumUnderlyingType $enum -}}
 {{if $enum.Abstract -}}
 // {{$enumName}} - {{$enum.Abstract}}
 {{else -}}
@@ -1142,7 +1143,7 @@ package {{.PackageName}}
 //
 // [Full Topic]: {{convertDocURL $enum.DocURL}}
 {{end -}}
-type {{$enumName}} {{enumUnderlyingType $enum}}
+type {{$enumName}} {{$underlyingType}}
 
 {{if gt (len $enum.Cases) 0 -}}
 const (
@@ -1151,7 +1152,7 @@ const (
 {{if $case.Abstract}}	// {{$caseName}} - {{$case.Abstract}}
 {{end}}{{if $case.DocURL}}	//
 	// [Full Topic]: {{convertDocURL $case.DocURL}}
-{{end}}	{{$caseName}} {{$enumName}} = {{$case.IntValue}}
+{{end}}	{{$caseName}} {{$enumName}} = {{formatEnumValue $case.IntValue $underlyingType}}
 {{end -}}
 )
 

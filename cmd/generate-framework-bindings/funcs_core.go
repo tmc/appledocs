@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"strings"
 	"text/template"
 
@@ -140,7 +141,6 @@ var templateFuncs = template.FuncMap{
 	// Class-level helpers
 	"getClassImports":        getClassImports,
 	"getSortedClassImports":  getSortedClassImports,
-	"getInterfaceParent":     getInterfaceParent,
 	"getStructEmbeddedField": getStructEmbeddedField,
 	"getFromConstructorBody": getFromConstructorBody,
 	"getConstructorBody":     getConstructorBody,
@@ -157,6 +157,7 @@ var templateFuncs = template.FuncMap{
 	"cleanConstantName":  cleanConstantName,
 	"strContains":        stringsContains,
 	"enumUnderlyingType": enumUnderlyingType,
+	"formatEnumValue":    formatEnumValue,
 }
 
 // FunctionData represents data for function template rendering.
@@ -335,6 +336,7 @@ func enumUnderlyingType(enum *occ2go.ParsedEnum) string {
 
 	// Fallback: inspect actual values for negative numbers
 	// This handles cases where BaseType is not set or is ambiguous
+	// Special case: INT64_MIN (-9223372036854775808) stored as int can appear as large negative
 	for _, enumCase := range enum.Cases {
 		if enumCase.IntValue < 0 {
 			return "int"
@@ -343,4 +345,25 @@ func enumUnderlyingType(enum *occ2go.ParsedEnum) string {
 
 	// Default to uint for non-negative enums
 	return "uint"
+}
+
+// formatEnumValue formats an enum constant value, handling overflow cases
+// When a value doesn't fit in the target type, it uses explicit type conversion
+func formatEnumValue(value int, underlyingType string) string {
+	const int64Min = -9223372036854775808
+
+	// INT64_MIN needs special handling when targeting uint types
+	// It represents a bit pattern (0x8000000000000000) that's used as a flag
+	if value == int64Min && underlyingType == "uint" {
+		// Cast through uint64 to preserve the bit pattern
+		return "uint(0x8000000000000000)"
+	}
+
+	// For other negative values with uint type, also use explicit hex
+	if value < 0 && underlyingType == "uint" {
+		return fmt.Sprintf("uint(0x%x)", uint64(value))
+	}
+
+	// Normal case: emit the value directly
+	return fmt.Sprintf("%d", value)
 }

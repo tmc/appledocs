@@ -27,6 +27,28 @@ var staticTypeRegistry = []TypeMapping{
 	{ObjCType: "NSInteger", GoType: "int", Framework: ""},
 	{ObjCType: "NSUInteger", GoType: "uint", Framework: ""},
 
+	// Objective-C runtime types
+	{ObjCType: "Class", GoType: "objc.Class", Framework: ""},
+
+	// Foundation KVO types (enums and option sets)
+	{ObjCType: "NSKeyValueChange", GoType: "uint", Framework: ""},
+	{ObjCType: "KeyValueChange", GoType: "uint", Framework: ""},
+	{ObjCType: "NSKeyValueObservingOptions", GoType: "uint", Framework: ""},
+	{ObjCType: "KeyValueObservingOptions", GoType: "uint", Framework: ""},
+	{ObjCType: "NSKeyValueSetMutationKind", GoType: "uint", Framework: ""},
+	{ObjCType: "KeyValueSetMutationKind", GoType: "uint", Framework: ""},
+
+	// Foundation/AppKit string constant types (typedef NSString *)
+	{ObjCType: "NSAccessibilityAttributeName", GoType: "string", Framework: ""},
+	{ObjCType: "AccessibilityAttributeName", GoType: "string", Framework: ""},
+	{ObjCType: "NSBindingName", GoType: "string", Framework: ""},
+	{ObjCType: "BindingName", GoType: "string", Framework: ""},
+
+	// IOBluetooth opaque types
+	{ObjCType: "BluetoothL2CAPChannelRef", GoType: "uintptr", Framework: ""},
+	{ObjCType: "IOReturn", GoType: "int", Framework: ""},
+	{ObjCType: "Return", GoType: "int", Framework: "ObjectiveC"}, // IOBluetooth return code
+
 	// CoreGraphics geometry types (manually defined in rect_types.go)
 	// These types are used across many frameworks but should map to coregraphics when cross-referenced
 	{ObjCType: "CGPoint", GoType: "coregraphics.Point", Framework: ""},
@@ -60,8 +82,15 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	objcType = strings.TrimSpace(objcType)
 
 	// Check static type registry first (framework-specific overrides)
+	// First check for exact framework match
 	for _, mapping := range staticTypeRegistry {
 		if mapping.ObjCType == objcType && strings.EqualFold(mapping.Framework, framework) {
+			return mapping.GoType, true
+		}
+	}
+	// Then check for framework-agnostic entries (Framework == "")
+	for _, mapping := range staticTypeRegistry {
+		if mapping.ObjCType == objcType && mapping.Framework == "" {
 			return mapping.GoType, true
 		}
 	}
