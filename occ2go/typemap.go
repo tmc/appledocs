@@ -210,7 +210,11 @@ func MapCTypeToGo(cType, framework string) string {
 	case cType == "bool", cType == "BOOL":
 		return "bool"
 	case cType == "Class":
-		return "unsafe.Pointer" // Class is an opaque pointer in Objective-C runtime
+		return "objc.Class" // Objective-C class type
+	case cType == "IMP":
+		return "IMP" // Objective-C method implementation pointer - defined as typedef
+	case cType == "id":
+		return "objc.ID" // Objective-C object reference
 	case strings.Contains(cType, "*"):
 		// Handle pointer types
 		// Remove const and * to get base type

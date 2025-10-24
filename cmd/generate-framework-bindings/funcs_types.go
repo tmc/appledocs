@@ -46,6 +46,11 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 		"rune":           true,
 		"uintptr":        true,
 		"unsafe.Pointer": true,
+		// Objective-C runtime types that should not be remapped
+		"objc.Class":     true,
+		"objc.ID":        true,
+		"objc.SEL":       true,
+		"IMP":            true, // Function pointer typedef
 	}
 	if goPrimitives[goType] || strings.HasPrefix(goType, "[]") {
 		return goType
