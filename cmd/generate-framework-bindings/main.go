@@ -88,6 +88,9 @@ func main() {
 	verbose = *verboseFlag
 	debugTypeAnnotations = *debugTypeAnnotationsFlag
 
+	// Configure verbose logging
+	SetVerbose(verbose)
+
 	// Store trace-origin flag globally for use in templates
 	_ = *traceOrigin // TODO: Pass to generator
 
@@ -98,7 +101,7 @@ func main() {
 			fmt.Fprintf(os.Stderr, "Error: failed to generate objc runtime: %v\n", err)
 			os.Exit(1)
 		}
-		fmt.Printf("Generated objc runtime package in %s\n", objcDir)
+		Logger.Info("Generated objc runtime package", "path", objcDir)
 		return
 	}
 
@@ -124,26 +127,23 @@ func main() {
 		os.Exit(1)
 	}
 
-	if verbose {
-		if len(frameworks) == 1 {
-			fmt.Fprintf(os.Stderr, "Generating bindings for %s\n", frameworks[0])
-		} else {
-			fmt.Fprintf(os.Stderr, "Generating bindings for %d frameworks matching '%s': %v\n", len(frameworks), *framework, frameworks)
-		}
-		fmt.Fprintf(os.Stderr, "Input: %s\n", *inputDir)
-		fmt.Fprintf(os.Stderr, "Output: %s\n", *outputDir)
+	if len(frameworks) == 1 {
+		VerboseLogger.Debug("Generating bindings", "framework", frameworks[0])
+	} else {
+		VerboseLogger.Debug("Generating bindings for multiple frameworks", "count", len(frameworks), "pattern", *framework, "frameworks", frameworks)
 	}
+	VerboseLogger.Debug("Paths configured", "input", *inputDir, "output", *outputDir)
 
 	// Initialize framework registry
 	baseModule := "github.com/tmc/appledocs/generated" // TODO: make flag
-	if err := initializeFrameworkRegistry(baseModule, *outputDir); err == nil && verbose && globalRegistry != nil {
+	if err := initializeFrameworkRegistry(baseModule, *outputDir); err == nil && globalRegistry != nil {
 		allFrameworks := globalRegistry.All()
-		fmt.Fprintf(os.Stderr, "Initialized framework registry with %d frameworks\n", len(allFrameworks))
+		VerboseLogger.Debug("Initialized framework registry", "framework_count", len(allFrameworks))
 	}
 
 	// Build cross-framework type registry for proper type resolution
-	if err := buildCrossFrameworkTypeRegistry(*outputDir); err == nil && verbose && len(crossFrameworkTypeRegistry) > 0 {
-		fmt.Fprintf(os.Stderr, "Built cross-framework type registry with %d types\n", len(crossFrameworkTypeRegistry))
+	if err := buildCrossFrameworkTypeRegistry(*outputDir); err == nil && len(crossFrameworkTypeRegistry) > 0 {
+		VerboseLogger.Debug("Built cross-framework type registry", "type_count", len(crossFrameworkTypeRegistry))
 	}
 
 	// Generate bindings for each matching framework
@@ -907,7 +907,7 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 		if verbose {
 			fmt.Fprintf(os.Stderr, "[%s] Generated code in %.2fs\n", framework, time.Since(phaseStart).Seconds())
 		}
-		fmt.Printf("Generated %s bindings in %s\n", framework, outDir)
+		Logger.Info("Generated bindings", "framework", framework, "output", outDir)
 	}
 
 	if verbose {

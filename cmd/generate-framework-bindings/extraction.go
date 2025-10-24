@@ -448,10 +448,10 @@ func discoverFrameworks(inputDir, pattern string) ([]string, error) {
 // frameworkModuleNames maps framework directory names to their Apple documentation module names.
 // Apple's documentation uses different names than the actual framework names on disk.
 var frameworkModuleNames = map[string][]string{
-	"QuartzCore":  {"Core Animation", "QuartzCore"},
-	"AppKit":      {"AppKit", "App Kit"},
-	"Foundation":  {"Foundation"},
-	"ObjectiveC":  {"Objective-C Runtime", "ObjectiveC"},
+	"QuartzCore": {"Core Animation", "QuartzCore"},
+	"AppKit":     {"AppKit", "App Kit"},
+	"Foundation": {"Foundation"},
+	"ObjectiveC": {"Objective-C Runtime", "ObjectiveC"},
 	// Add more mappings as needed
 }
 

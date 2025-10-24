@@ -21,6 +21,8 @@ type FrameworkSummary struct {
 	StructCount        int            `json:"struct_count"`
 	TypeAliasCount     int            `json:"type_alias_count"`
 	FunctionCount      int            `json:"function_count"`
+	MethodCount        int            `json:"method_count"`
+	PropertyCount      int            `json:"property_count"`
 	ConstantCount      int            `json:"constant_count"`
 	TotalSymbols       int            `json:"total_symbols"`
 	TotalMethods       int            `json:"total_methods"`
@@ -158,9 +160,16 @@ func generateFrameworkSummary(cacheDir, framework string, jsonOutput bool) error
 					summary.StructCount++
 				case "typealias", "tdef":
 					summary.TypeAliasCount++
-				case "func", "method", "clm", "instm", "intfm", "intfcm":
+				case "func":
+					// Only count actual functions, not methods
 					summary.FunctionCount++
-				case "var", "data", "instp", "intfp":
+				case "method", "clm", "instm", "intfm", "intfcm":
+					// Methods (instance, class, interface)
+					summary.MethodCount++
+				case "property", "instp", "intfp":
+					// Properties (instance and interface)
+					summary.PropertyCount++
+				case "var", "data":
 					summary.ConstantCount++
 				}
 			}
@@ -208,7 +217,8 @@ func generateFrameworkSummary(cacheDir, framework string, jsonOutput bool) error
 		}
 	}
 
-	// Calculate API coverage (percentage of documented symbols with content)
+	// Calculate symbol coverage (percentage of files that are symbols vs articles/collections)
+	// Note: Articles often contain important API constants and documentation
 	if summary.CachedFiles > 0 {
 		summary.APICoverage = float64(summary.TotalSymbols) / float64(summary.CachedFiles) * 100
 		if summary.APICoverage > 100 {
@@ -254,6 +264,8 @@ func printFrameworkSummary(s FrameworkSummary) {
 	fmt.Printf("  Structs:          %d\n", s.StructCount)
 	fmt.Printf("  Type Aliases:     %d\n", s.TypeAliasCount)
 	fmt.Printf("  Functions:        %d\n", s.FunctionCount)
+	fmt.Printf("  Methods:          %d\n", s.MethodCount)
+	fmt.Printf("  Properties:       %d\n", s.PropertyCount)
 	fmt.Printf("  Constants:        %d\n", s.ConstantCount)
 	fmt.Printf("  %s\n", strings.Repeat("-", 38))
 	fmt.Printf("  Total Symbols:    %d\n", s.TotalSymbols)
@@ -265,7 +277,8 @@ func printFrameworkSummary(s FrameworkSummary) {
 	fmt.Printf("  Total Properties: %d\n", s.TotalProperties)
 	fmt.Printf("  Cached Files:     %d\n", s.CachedFiles)
 	if s.APICoverage > 0 {
-		fmt.Printf("  API Coverage:     %.1f%%\n", s.APICoverage)
+		fmt.Printf("  Symbol Files:     %.1f%% (%d symbols, %d articles/other)\n",
+			s.APICoverage, s.TotalSymbols, s.CachedFiles-s.TotalSymbols)
 	}
 	fmt.Printf("\n")
 
@@ -283,7 +296,10 @@ func printFrameworkSummary(s FrameworkSummary) {
 			kinds = append(kinds, kindCount{k, v})
 		}
 		sort.Slice(kinds, func(i, j int) bool {
-			return kinds[i].count > kinds[j].count
+			if kinds[i].count != kinds[j].count {
+				return kinds[i].count > kinds[j].count
+			}
+			return kinds[i].kind < kinds[j].kind
 		})
 
 		for _, kc := range kinds {
@@ -306,6 +322,275 @@ func printFrameworkSummary(s FrameworkSummary) {
 		fmt.Printf("%s\n", strings.Repeat("-", 40))
 		for _, dep := range s.Dependencies {
 			fmt.Printf("  • %s\n", dep)
+		}
+		fmt.Printf("\n")
+	}
+}
+
+// SymbolSummary contains detailed information about a specific symbol
+type SymbolSummary struct {
+	Framework     string                 `json:"framework"`
+	Name          string                 `json:"name"`
+	SymbolKind    string                 `json:"symbol_kind"`
+	Role          string                 `json:"role,omitempty"`
+	Title         string                 `json:"title"`
+	Abstract      string                 `json:"abstract,omitempty"`
+	Platforms     []string               `json:"platforms,omitempty"`
+	Parent        string                 `json:"parent,omitempty"`
+	Protocols     []string               `json:"protocols,omitempty"`
+	Methods       int                    `json:"method_count"`
+	Properties    int                    `json:"property_count"`
+	TopicSections []string               `json:"topic_sections,omitempty"`
+	RawMetadata   map[string]interface{} `json:"metadata,omitempty"`
+}
+
+// generateSymbolSummary generates a summary for a specific symbol within a framework
+func generateSymbolSummary(cacheDir, framework, symbolName string, jsonOutput bool) error {
+	// Normalize framework name to lowercase for directory lookups
+	frameworkLower := strings.ToLower(framework)
+	frameworkDir := filepath.Join(cacheDir, "developer.apple.com", "tutorials", "data", "documentation", frameworkLower)
+
+	// Check if framework directory exists
+	if _, err := os.Stat(frameworkDir); os.IsNotExist(err) {
+		// Try with original case
+		frameworkDir = filepath.Join(cacheDir, "developer.apple.com", "tutorials", "data", "documentation", framework)
+		if _, err := os.Stat(frameworkDir); os.IsNotExist(err) {
+			return fmt.Errorf("framework %q not found in cache. Run crawl first", framework)
+		}
+	}
+
+	summary := SymbolSummary{
+		Framework: framework,
+		Name:      symbolName,
+	}
+
+	// Try different possible paths for the symbol
+	possiblePaths := []string{
+		filepath.Join(frameworkDir, symbolName+".json"),
+		filepath.Join(frameworkDir, symbolName, "index.json"),
+		filepath.Join(frameworkDir, symbolName+"-swift.class.json"),
+		filepath.Join(frameworkDir, symbolName+"-swift.class", "index.json"),
+		filepath.Join(frameworkDir, symbolName+"-c.protocol.json"),
+		filepath.Join(frameworkDir, symbolName+"-c.protocol", "index.json"),
+	}
+
+	var symbolPath string
+	var found bool
+	for _, path := range possiblePaths {
+		if _, err := os.Stat(path); err == nil {
+			symbolPath = path
+			found = true
+			break
+		}
+	}
+
+	// If not found with exact name, try fuzzy matching for Swift parameter syntax
+	// e.g., "class_getSuperclass" should match "class_getSuperclass(_:)"
+	if !found {
+		entries, err := os.ReadDir(frameworkDir)
+		if err == nil {
+			for _, entry := range entries {
+				name := entry.Name()
+				// Check if name starts with symbolName and contains parameters
+				if strings.HasPrefix(name, symbolName) && strings.Contains(name, "(") {
+					candidatePath := filepath.Join(frameworkDir, name)
+					if entry.IsDir() {
+						candidatePath = filepath.Join(candidatePath, "index.json")
+					}
+					if _, err := os.Stat(candidatePath); err == nil {
+						symbolPath = candidatePath
+						found = true
+						break
+					}
+				}
+			}
+		}
+	}
+
+	if !found {
+		return fmt.Errorf("symbol %q not found in framework %q cache", symbolName, framework)
+	}
+
+	// Read the symbol JSON
+	data, err := os.ReadFile(symbolPath)
+	if err != nil {
+		return fmt.Errorf("failed to read symbol file: %w", err)
+	}
+
+	var doc map[string]interface{}
+	if err := json.Unmarshal(data, &doc); err != nil {
+		return fmt.Errorf("failed to parse symbol JSON: %w", err)
+	}
+
+	// Extract metadata
+	if metadata, ok := doc["metadata"].(map[string]interface{}); ok {
+		if jsonOutput {
+			summary.RawMetadata = metadata
+		}
+
+		if symbolKind, ok := metadata["symbolKind"].(string); ok {
+			summary.SymbolKind = symbolKind
+		}
+		if role, ok := metadata["role"].(string); ok {
+			summary.Role = role
+		}
+		if title, ok := metadata["title"].(string); ok {
+			summary.Title = title
+		}
+
+		// Extract platforms
+		if platforms, ok := metadata["platforms"].([]interface{}); ok {
+			for _, p := range platforms {
+				if platform, ok := p.(map[string]interface{}); ok {
+					if name, ok := platform["name"].(string); ok {
+						summary.Platforms = append(summary.Platforms, name)
+					}
+				}
+			}
+		}
+	}
+
+	// Extract abstract
+	if abstract, ok := doc["abstract"].([]interface{}); ok && len(abstract) > 0 {
+		if abstractText, ok := abstract[0].(map[string]interface{}); ok {
+			if text, ok := abstractText["text"].(string); ok {
+				summary.Abstract = text
+			}
+		}
+	}
+
+	// Extract hierarchy information
+	if hierarchy, ok := doc["hierarchy"].(map[string]interface{}); ok {
+		if paths, ok := hierarchy["paths"].([]interface{}); ok && len(paths) > 0 {
+			if path, ok := paths[0].([]interface{}); ok && len(path) > 0 {
+				// Last element in path is the parent
+				if len(path) >= 2 {
+					if parentID, ok := path[len(path)-1].(string); ok {
+						if references, ok := doc["references"].(map[string]interface{}); ok {
+							if ref, ok := references[parentID].(map[string]interface{}); ok {
+								if title, ok := ref["title"].(string); ok {
+									summary.Parent = title
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Count methods and properties in topic sections
+	if topicSections, ok := doc["topicSections"].([]interface{}); ok {
+		for _, section := range topicSections {
+			if sectionMap, ok := section.(map[string]interface{}); ok {
+				if title, ok := sectionMap["title"].(string); ok {
+					summary.TopicSections = append(summary.TopicSections, title)
+				}
+
+				if identifiers, ok := sectionMap["identifiers"].([]interface{}); ok {
+					if title, ok := sectionMap["title"].(string); ok {
+						titleLower := strings.ToLower(title)
+						if strings.Contains(titleLower, "propert") {
+							summary.Properties += len(identifiers)
+						} else if strings.Contains(titleLower, "method") || strings.Contains(titleLower, "function") {
+							summary.Methods += len(identifiers)
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Extract protocol conformance
+	if relationshipsSections, ok := doc["relationshipsSections"].([]interface{}); ok {
+		for _, section := range relationshipsSections {
+			if sectionMap, ok := section.(map[string]interface{}); ok {
+				if sectionType, ok := sectionMap["type"].(string); ok {
+					if sectionType == "conformsTo" {
+						if identifiers, ok := sectionMap["identifiers"].([]interface{}); ok {
+							if references, ok := doc["references"].(map[string]interface{}); ok {
+								for _, id := range identifiers {
+									if idStr, ok := id.(string); ok {
+										if ref, ok := references[idStr].(map[string]interface{}); ok {
+											if title, ok := ref["title"].(string); ok {
+												summary.Protocols = append(summary.Protocols, title)
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// Output the summary
+	if jsonOutput {
+		encoder := json.NewEncoder(os.Stdout)
+		encoder.SetIndent("", "  ")
+		return encoder.Encode(summary)
+	}
+
+	// Human-readable text output
+	printSymbolSummary(summary)
+	return nil
+}
+
+// printSymbolSummary prints a human-readable symbol summary
+func printSymbolSummary(s SymbolSummary) {
+	fmt.Printf("\n")
+	fmt.Printf("Symbol Summary: %s.%s\n", s.Framework, s.Name)
+	fmt.Printf("%s\n", strings.Repeat("=", len(s.Framework)+len(s.Name)+17))
+	fmt.Printf("\n")
+
+	if s.Title != "" {
+		fmt.Printf("Title:              %s\n", s.Title)
+	}
+	if s.SymbolKind != "" {
+		fmt.Printf("Kind:               %s\n", s.SymbolKind)
+	}
+	if s.Role != "" {
+		fmt.Printf("Role:               %s\n", s.Role)
+	}
+	if len(s.Platforms) > 0 {
+		fmt.Printf("Platforms:          %s\n", strings.Join(s.Platforms, ", "))
+	}
+	fmt.Printf("\n")
+
+	if s.Abstract != "" {
+		fmt.Printf("Abstract:\n")
+		fmt.Printf("%s\n", strings.Repeat("-", 40))
+		fmt.Printf("%s\n\n", s.Abstract)
+	}
+
+	if s.Parent != "" {
+		fmt.Printf("Inheritance:\n")
+		fmt.Printf("%s\n", strings.Repeat("-", 40))
+		fmt.Printf("  Parent: %s\n\n", s.Parent)
+	}
+
+	if len(s.Protocols) > 0 {
+		fmt.Printf("Protocol Conformance:\n")
+		fmt.Printf("%s\n", strings.Repeat("-", 40))
+		for _, protocol := range s.Protocols {
+			fmt.Printf("  • %s\n", protocol)
+		}
+		fmt.Printf("\n")
+	}
+
+	fmt.Printf("Content Statistics:\n")
+	fmt.Printf("%s\n", strings.Repeat("-", 40))
+	fmt.Printf("  Methods:          %d\n", s.Methods)
+	fmt.Printf("  Properties:       %d\n", s.Properties)
+	fmt.Printf("\n")
+
+	if len(s.TopicSections) > 0 {
+		fmt.Printf("Topic Sections:\n")
+		fmt.Printf("%s\n", strings.Repeat("-", 40))
+		for _, topic := range s.TopicSections {
+			fmt.Printf("  • %s\n", topic)
 		}
 		fmt.Printf("\n")
 	}

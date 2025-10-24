@@ -58,6 +58,12 @@ type DebugLogger struct {
 // Debug is the global debug logger instance
 var Debug *DebugLogger
 
+// Logger is the global logger for general output (info, warnings, errors)
+var Logger *slog.Logger
+
+// VerboseLogger is used for verbose output (enabled with -v flag)
+var VerboseLogger *slog.Logger
+
 // InitDebug initializes the global debug logger with the specified categories and filter.
 // Categories can be comma-separated or "all" to enable all categories.
 // FilterSpec can be:
@@ -137,9 +143,10 @@ func InitDebug(categories, filterSpec string) {
 		}
 	}
 
-	// Create slog handler for stderr
+	// Create slog handler for stderr with source information
 	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
-		Level: slog.LevelDebug,
+		Level:     slog.LevelDebug,
+		AddSource: true,
 	})
 
 	Debug = &DebugLogger{
@@ -147,6 +154,31 @@ func InitDebug(categories, filterSpec string) {
 		filters: filters,
 		logger:  slog.New(handler),
 	}
+
+	// Initialize general-purpose logger with source information for info/warning/error
+	infoHandler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
+		Level:     slog.LevelInfo,
+		AddSource: true,
+	})
+	Logger = slog.New(infoHandler)
+
+	// Initialize verbose logger (starts disabled, call SetVerbose(true) to enable)
+	SetVerbose(false)
+}
+
+// SetVerbose enables or disables verbose logging
+func SetVerbose(enabled bool) {
+	var level slog.Level
+	if enabled {
+		level = slog.LevelDebug
+	} else {
+		level = slog.LevelWarn // Only show warnings and errors when not verbose
+	}
+	verboseHandler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
+		Level:     level,
+		AddSource: true,
+	})
+	VerboseLogger = slog.New(verboseHandler)
 }
 
 // Enabled returns true if the given category is enabled for debugging
