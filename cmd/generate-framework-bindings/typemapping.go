@@ -86,12 +86,14 @@ var staticTypeRegistry = []TypeMapping{
 	{ObjCType: "CGDisplayReservationInterval", GoType: "float32", Framework: "CoreGraphics"}, // Display fade interval
 	{ObjCType: "CGDisplayFadeInterval", GoType: "float32", Framework: "CoreGraphics"}, // Display fade interval
 	{ObjCType: "CGDirectDisplayID", GoType: "uint32", Framework: "CoreGraphics"}, // Display ID
-	{ObjCType: "AffineTransformComponents", GoType: "AffineTransformComponents", Framework: "CoreGraphics"}, // Local struct
+	{ObjCType: "AffineTransformComponents", GoType: "uintptr", Framework: "CoreGraphics"}, // Opaque handle (undocumented struct)
+	{ObjCType: "CGAffineTransformComponents", GoType: "uintptr", Framework: "CoreGraphics"}, // Opaque handle (undocumented struct)
 
 	// Foundation time types
 	// NSTimeInterval is a typedef for double (seconds since reference date)
 	{ObjCType: "NSTimeInterval", GoType: "float64", Framework: ""},
 	{ObjCType: "TimeInterval", GoType: "float64", Framework: "Foundation"},
+	{ObjCType: "TimeInterval", GoType: "float64", Framework: "CoreGraphics"},
 }
 
 // manualFrameworkTypes maps framework names to types that are manually defined

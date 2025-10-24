@@ -280,26 +280,122 @@ func generateTestValue(goType, framework, paramName string) string {
 	case "string":
 		// Special handling for specific parameter names that need valid values
 		paramLower := strings.ToLower(paramName)
+
+		// Query strings
 		if strings.Contains(paramLower, "querystring") || strings.Contains(paramLower, "query") && strings.Contains(paramLower, "string") {
-			// Metadata query string - needs valid syntax
 			return `"kMDItemFSName == '*.txt'"`
 		}
-		if strings.Contains(paramLower, "path") {
-			// Path parameters need to be absolute paths
+
+		// File paths
+		if strings.Contains(paramLower, "filepath") || strings.Contains(paramLower, "file") && strings.Contains(paramLower, "path") {
+			return `"/tmp/test.txt"`
+		}
+		if strings.Contains(paramLower, "path") && !strings.Contains(paramLower, "url") {
 			return `"/tmp/test"`
 		}
+		if strings.Contains(paramLower, "directory") || strings.Contains(paramLower, "folder") {
+			return `"/tmp"`
+		}
+
+		// URLs
 		if strings.Contains(paramLower, "url") || strings.Contains(paramLower, "urlstring") {
-			// URL strings
 			return `"https://example.com"`
 		}
-		return fmt.Sprintf(`"%s"`, paramName)
+		if strings.Contains(paramLower, "link") || strings.Contains(paramLower, "href") {
+			return `"https://example.com/page"`
+		}
+
+		// Names and identifiers
+		if strings.Contains(paramLower, "name") {
+			return `"Test Name"`
+		}
+		if strings.Contains(paramLower, "title") {
+			return `"Test Title"`
+		}
+		if strings.Contains(paramLower, "identifier") || strings.Contains(paramLower, "id") {
+			return `"test-id"`
+		}
+		if strings.Contains(paramLower, "key") {
+			return `"testKey"`
+		}
+
+		// Content types
+		if strings.Contains(paramLower, "text") || strings.Contains(paramLower, "content") {
+			return `"Test Content"`
+		}
+		if strings.Contains(paramLower, "description") {
+			return `"Test Description"`
+		}
+		if strings.Contains(paramLower, "message") {
+			return `"Test Message"`
+		}
+
+		// Email and contact
+		if strings.Contains(paramLower, "email") {
+			return `"test@example.com"`
+		}
+		if strings.Contains(paramLower, "phone") {
+			return `"+1-555-0100"`
+		}
+
+		// Default: use parameter name as semantic hint
+		if paramName != "" {
+			return fmt.Sprintf(`"Test %s"`, paramName)
+		}
+		return `"test"`
 	case "int", "int8", "int16", "int32", "int64":
+		// Use context-aware numeric values
+		paramLower := strings.ToLower(paramName)
+		if strings.Contains(paramLower, "count") || strings.Contains(paramLower, "size") || strings.Contains(paramLower, "length") {
+			return "10"
+		}
+		if strings.Contains(paramLower, "width") || strings.Contains(paramLower, "height") {
+			return "100"
+		}
+		if strings.Contains(paramLower, "index") || strings.Contains(paramLower, "position") {
+			return "0"
+		}
+		if strings.Contains(paramLower, "id") || strings.Contains(paramLower, "identifier") {
+			return "1"
+		}
+		// RGB color component
+		if strings.Contains(paramLower, "red") || strings.Contains(paramLower, "green") || strings.Contains(paramLower, "blue") || strings.Contains(paramLower, "alpha") {
+			return "255"
+		}
 		return "0"
 	case "uint", "uint8", "uint16", "uint32", "uint64":
+		paramLower := strings.ToLower(paramName)
+		if strings.Contains(paramLower, "count") || strings.Contains(paramLower, "size") || strings.Contains(paramLower, "length") {
+			return "10"
+		}
+		if strings.Contains(paramLower, "width") || strings.Contains(paramLower, "height") {
+			return "100"
+		}
+		// RGB color component
+		if strings.Contains(paramLower, "red") || strings.Contains(paramLower, "green") || strings.Contains(paramLower, "blue") || strings.Contains(paramLower, "alpha") {
+			return "255"
+		}
 		return "0"
 	case "float32", "float64":
+		paramLower := strings.ToLower(paramName)
+		if strings.Contains(paramLower, "scale") || strings.Contains(paramLower, "factor") {
+			return "1.0"
+		}
+		if strings.Contains(paramLower, "opacity") || strings.Contains(paramLower, "alpha") {
+			return "1.0"
+		}
+		if strings.Contains(paramLower, "angle") || strings.Contains(paramLower, "rotation") {
+			return "0.0"
+		}
+		if strings.Contains(paramLower, "width") || strings.Contains(paramLower, "height") {
+			return "100.0"
+		}
 		return "0.0"
 	case "bool":
+		paramLower := strings.ToLower(paramName)
+		if strings.Contains(paramLower, "enabled") || strings.Contains(paramLower, "visible") {
+			return "true"
+		}
 		return "false"
 	case "objc.ID":
 		return "0"
@@ -313,14 +409,21 @@ func generateTestValue(goType, framework, paramName string) string {
 
 	// Handle CoreGraphics geometry types - only when explicitly qualified
 	// These are cross-framework types that need full qualification
+	// Use realistic values instead of empty structs for better examples
 	if goType == "coregraphics.CGRect" || goType == "CGRect" && framework != "Foundation" {
-		return "coregraphics.CGRect{}"
+		return "coregraphics.CGRect{Origin: coregraphics.CGPoint{X: 0, Y: 0}, Size: coregraphics.CGSize{Width: 100, Height: 100}}"
 	}
 	if goType == "coregraphics.CGSize" || goType == "CGSize" && framework != "Foundation" {
-		return "coregraphics.CGSize{}"
+		return "coregraphics.CGSize{Width: 100, Height: 100}"
 	}
 	if goType == "coregraphics.CGPoint" || goType == "CGPoint" && framework != "Foundation" {
-		return "coregraphics.CGPoint{}"
+		return "coregraphics.CGPoint{X: 0, Y: 0}"
+	}
+	if goType == "coregraphics.CGFloat" || goType == "CGFloat" && framework != "Foundation" {
+		return "coregraphics.CGFloat(1.0)"
+	}
+	if goType == "coregraphics.CGAffineTransform" || goType == "CGAffineTransform" && framework != "Foundation" {
+		return "coregraphics.CGAffineTransform{A: 1, B: 0, C: 0, D: 1, Tx: 0, Ty: 0}" // Identity transform
 	}
 
 	// Handle framework-specific types
@@ -330,16 +433,18 @@ func generateTestValue(goType, framework, paramName string) string {
 		typeName := strings.TrimPrefix(goType, "foundation.")
 		switch typeName {
 		case "Rect":
-			return "foundation.Rect{}"
+			return "foundation.Rect{Origin: foundation.Point{X: 0, Y: 0}, Size: foundation.Size{Width: 100, Height: 100}}"
 		case "Size":
-			return "foundation.Size{}"
+			return "foundation.Size{Width: 100, Height: 100}"
 		case "Point":
-			return "foundation.Point{}"
+			return "foundation.Point{X: 0, Y: 0}"
 		case "Range":
-			return "foundation.Range{}"
+			return "foundation.Range{Location: 0, Length: 10}"
 		case "TimeInterval":
 			// TimeInterval is a type alias for float64, not a struct
-			return "foundation.TimeInterval(0.0)"
+			return "foundation.TimeInterval(1.0)"
+		case "EdgeInsets":
+			return "foundation.EdgeInsets{Top: 0, Left: 0, Bottom: 0, Right: 0}"
 		default:
 			// Other foundation types - try to use zero value or constructor
 			return fmt.Sprintf("%s{}", goType)

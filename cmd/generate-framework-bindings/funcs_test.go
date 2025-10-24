@@ -487,6 +487,18 @@ func TestMapObjCTypeToGo_BlockTypes(t *testing.T) {
 			framework: "Foundation",
 			expected:  "func(objc.ID, unsafe.Pointer) bool", // Note: id maps to objc.ID, NSError * maps to unsafe.Pointer
 		},
+		{
+			name:      "nested block - NSItemProvider.registerDataRepresentationForTypeIdentifier:visibility:loadHandler:",
+			objcType:  "NSProgress * (^)(void (^completionHandler)(NSData * data, NSError * error))",
+			framework: "Foundation",
+			expected:  "func(func(unsafe.Pointer, unsafe.Pointer)) unsafe.Pointer",
+		},
+		{
+			name:      "nested block with return - NSItemProvider loadHandler pattern",
+			objcType:  "NSProgress * (^)(void (^)(NSData *, NSError *))",
+			framework: "Foundation",
+			expected:  "func(func(unsafe.Pointer, unsafe.Pointer)) unsafe.Pointer",
+		},
 	}
 
 	for _, tt := range tests {

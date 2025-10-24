@@ -33,24 +33,17 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 		}
 
 		// Special handling for CG-prefixed types
-		// Preserve CG prefix ONLY for geometry types (CGFloat, CGPoint, CGSize, CGRect, CGVector, CGAffineTransform)
-		// Strip prefix for all other types (callbacks, Ref types, and typedefs)
+		// Preserve CG prefix for structs (CGPoint, CGRect, CGColorBufferFormat, etc.)
+		// Strip prefix for typedefs, callbacks, and Ref types
 		if strings.HasPrefix(cType, "CG") {
-			// List of geometry types that should keep the CG prefix
-			geometryTypes := map[string]bool{
-				"CGFloat":            true,
-				"CGPoint":            true,
-				"CGSize":             true,
-				"CGRect":             true,
-				"CGVector":           true,
-				"CGAffineTransform":  true,
-			}
-
-			if geometryTypes[cType] {
-				// Preserve CG prefix for geometry types
+			// Check if this is a struct - if so, preserve the CG prefix
+			// Structs in CoreGraphics are used as value types in function parameters
+			if currentFrameworkStructs[cType] || currentFrameworkStructs[strippedCType] {
+				// Preserve CG prefix for structs
+				// E.g., CGPoint, CGSize, CGRect, CGColorBufferFormat
 				return cType
 			} else {
-				// Strip CG prefix for all other types (callbacks, Ref types, typedefs)
+				// Strip CG prefix for typedefs, callbacks, and Ref types
 				// E.g., CGColorSpaceRef -> ColorSpaceRef, CGDisplayReservationInterval -> DisplayReservationInterval
 				if strippedCType != "" {
 					return strings.ToUpper(strippedCType[:1]) + strippedCType[1:]
