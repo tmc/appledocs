@@ -30,7 +30,7 @@ type _DataDetectorClass struct {
 type IDataDetector interface {
 	IRegularExpression
 	// properties:
-	CheckingTypes() objc.IObject /* cross-framework: TextCheckingTypes */
+	CheckingTypes() TextCheckingTypes /* typedef */
 	NSNotFound() int
 	Date() IDate
 	SetDate(value IDate)
@@ -40,6 +40,7 @@ type IDataDetector interface {
 	SetTimeZone(value ITimeZone)
 	Url() IURL
 	SetUrl(value IURL)
+	
 	// methods:
 }
 
@@ -102,7 +103,7 @@ func NewDataDetector() DataDetector {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/init(types:)
-func NewDataDetectorWithTypesError(checkingTypes objc.IObject /* cross-framework: TextCheckingTypes */, error_ IError) DataDetector {
+func NewDataDetectorWithTypesError(checkingTypes TextCheckingTypes /* typedef */, error_ IError) DataDetector {
 	instance := getDataDetectorClass().Alloc()
 	rv := objc.Send[DataDetector](instance.ID, objc.Sel("initWithTypes:error:"), checkingTypes, error_)
 	rv.Autorelease()
@@ -115,7 +116,7 @@ func NewDataDetectorWithTypesError(checkingTypes objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/dataDetectorWithTypes:error:
-func (dc _DataDetectorClass) DataDetectorWithTypesError(checkingTypes objc.IObject /* cross-framework: TextCheckingTypes */, error_ IError) IDataDetector {
+func (dc _DataDetectorClass) DataDetectorWithTypesError(checkingTypes TextCheckingTypes /* typedef */, error_ IError) IDataDetector {
 	rv := objc.Send[DataDetector](objc.ID(dc.class), objc.Sel("dataDetectorWithTypes:error:"), checkingTypes, error_)
 	return rv
 }
@@ -125,8 +126,8 @@ func (dc _DataDetectorClass) DataDetectorWithTypesError(checkingTypes objc.IObje
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDataDetector/checkingTypes
-func (d_ DataDetector) CheckingTypes() objc.IObject /* cross-framework: TextCheckingTypes */ {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("checkingTypes"))
+func (d_ DataDetector) CheckingTypes() TextCheckingTypes /* typedef */ {
+	rv := objc.Send[uint64](d_.ID, objc.Sel("checkingTypes"))
 	return rv
 }
 
@@ -165,7 +166,7 @@ func (d_ DataDetector) SetDate(value IDate) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nstextcheckingresult/duration
 func (d_ DataDetector) Duration() float64 {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("duration"))
+	rv := objc.Send[float64](d_.ID, objc.Sel("duration"))
 	return rv
 }
 

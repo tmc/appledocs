@@ -60,7 +60,11 @@ synthetic_typedefs:
     #   abstract: "A type for floating-point scalar values in Core Graphics and related frameworks."
     #   comment: "No longer needed - CGFloat maps directly to float64"
 
-  Foundation: []
+  Foundation:
+    - name: NSTimeInterval
+      base_type: double
+      abstract: "A number of seconds (typedef for double)."
+    # TimeInterval is parsed from Swift documentation, so we don't need to add it synthetically
     # - name: ItemProviderRepresentationVisibility
     #   base_type: int
     #   abstract: "Specifications that control which categories of processes can see an item."

@@ -49,6 +49,8 @@ func (gf GeneratorFuncs) Funcs() template.FuncMap {
 
 		// Test Generation
 		"canGenerateTestValue": gf.canGenerateTestValue,
+
+		"debug": gf.debugLog,
 	}
 }
 
@@ -303,11 +305,44 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 	// Handle typedef resolution - if this is a typedef, resolve to underlying type
 	// This fixes issues like TimeInterval (typedef for float64) being treated as objc.ID
 	if typedef, isTypedef := gf.typedefIndex[goType]; isTypedef {
-		// Resolve the typedef to its base type and recursively process
+		// Resolve the typedef to its base type
 		baseType := typedef.BaseType
-		// Map the base type to Go (e.g., "double" -> "float64", "NSInteger" -> "int")
-		resolvedType := mapObjCTypeToGo(baseType, gf.Framework)
-		return gf.concreteReturnType(resolvedType)
+
+		// Map C primitive types directly to avoid infinite recursion
+		// (e.g., "double" -> "float64", not "TimeInterval")
+		switch baseType {
+		case "double":
+			return "float64"
+		case "float":
+			return "float32"
+		case "int":
+			return "int32"
+		case "unsigned int":
+			return "uint32"
+		case "short":
+			return "int16"
+		case "unsigned short":
+			return "uint16"
+		case "long":
+			return "int64"
+		case "unsigned long":
+			return "uint64"
+		case "NSInteger":
+			return "int"
+		case "NSUInteger":
+			return "uint"
+		case "BOOL", "bool":
+			return "bool"
+		default:
+			// For non-primitive types, recursively resolve
+			// Use occ2go.MapCTypeToGo for base C types, not mapObjCTypeToGo
+			if goBaseType := occ2go.MapCTypeToGo(baseType, gf.Framework); goBaseType != "" && goBaseType != "unsafe.Pointer" {
+				return goBaseType
+			}
+			// For other typedefs or complex types, recursively process
+			resolvedType := mapObjCTypeToGo(baseType, gf.Framework)
+			return gf.concreteReturnType(resolvedType)
+		}
 	}
 
 	// Handle qualified types from standard packages (objc., unsafe., etc.)
@@ -635,4 +670,61 @@ func (gf GeneratorFuncs) canGenerateTestValue(args ...string) bool {
 
 	// For other types, we don't know how to create test values
 	return false
+}
+
+// debugLog logs debug information with context about the current framework.
+// Usage in templates:
+//   {{debug "template-name" "message" args...}}
+//   {{debug "class.gen.go" "Processing class %s" .Name}}
+//
+// The first argument should be the template name for context.
+// If DebugEnabled is false, returns an empty string.
+// If DebugEnabled is true, returns a comment with the debug info.
+func (gf GeneratorFuncs) debugLog(args ...interface{}) string {
+	if !gf.DebugEnabled {
+		return ""
+	}
+
+	if len(args) == 0 {
+		return "/* debug: (no message) */"
+	}
+
+	// First arg is template name (convention)
+	templateName := ""
+	messageStart := 0
+	if len(args) > 0 {
+		if tpl, ok := args[0].(string); ok {
+			templateName = tpl
+			messageStart = 1
+		}
+	}
+
+	// Second arg is message format
+	message := ""
+	formatArgs := []interface{}{}
+	if len(args) > messageStart {
+		if msg, ok := args[messageStart].(string); ok {
+			message = msg
+			if len(args) > messageStart+1 {
+				formatArgs = args[messageStart+1:]
+			}
+		}
+	}
+
+	// Build debug output
+	var buf strings.Builder
+	buf.WriteString("/* debug")
+	if templateName != "" {
+		buf.WriteString(" [")
+		buf.WriteString(templateName)
+		buf.WriteString("]")
+	}
+	buf.WriteString(": ")
+	if len(formatArgs) > 0 {
+		buf.WriteString(fmt.Sprintf(message, formatArgs...))
+	} else {
+		buf.WriteString(message)
+	}
+	buf.WriteString(" */")
+	return buf.String()
 }

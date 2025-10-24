@@ -39,6 +39,7 @@ type IDate interface {
 	SetCustomPlaygroundQuickLook(value unsafe.Pointer)
 	NSTimeIntervalSince1970() float64
 	SetNSTimeIntervalSince1970(value float64)
+	
 	// methods:
 	DateByAddingTimeInterval(ti float64) unsafe.Pointer
 	Compare(other IDate) ComparisonResult
@@ -365,7 +366,7 @@ func (d_ Date) LaterDate(anotherDate IDate) IDate {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSince(_:)
 func (d_ Date) TimeIntervalSinceDate(anotherDate IDate) float64 {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("timeIntervalSinceDate:"), anotherDate)
+	rv := objc.Send[float64](d_.ID, objc.Sel("timeIntervalSinceDate:"), anotherDate)
 	return rv
 }
 
@@ -415,7 +416,7 @@ func (d_ Date) Now() IDate {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSince1970
 func (d_ Date) TimeIntervalSince1970() float64 {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("timeIntervalSince1970"))
+	rv := objc.Send[float64](d_.ID, objc.Sel("timeIntervalSince1970"))
 	return rv
 }
 
@@ -425,7 +426,7 @@ func (d_ Date) TimeIntervalSince1970() float64 {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceNow
 func (d_ Date) TimeIntervalSinceNow() float64 {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("timeIntervalSinceNow"))
+	rv := objc.Send[float64](d_.ID, objc.Sel("timeIntervalSinceNow"))
 	return rv
 }
 
@@ -435,7 +436,7 @@ func (d_ Date) TimeIntervalSinceNow() float64 {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/timeIntervalSinceReferenceDate-swift.property
 func (d_ Date) TimeIntervalSinceReferenceDate() float64 {
-	rv := objc.Send[objc.ID](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
+	rv := objc.Send[float64](d_.ID, objc.Sel("timeIntervalSinceReferenceDate"))
 	return rv
 }
 

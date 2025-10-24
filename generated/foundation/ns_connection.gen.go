@@ -50,6 +50,7 @@ type IConnection interface {
 	SendPort() IPort
 	Statistics() IDictionary
 	Valid() bool
+	
 	// methods:
 }
 
@@ -302,7 +303,7 @@ func (c_ Connection) RemoteObjects() IArray {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/replyTimeout
 func (c_ Connection) ReplyTimeout() float64 {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("replyTimeout"))
+	rv := objc.Send[float64](c_.ID, objc.Sel("replyTimeout"))
 	return rv
 }
 
@@ -331,7 +332,7 @@ func (c_ Connection) RequestModes() []string {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestTimeout
 func (c_ Connection) RequestTimeout() float64 {
-	rv := objc.Send[objc.ID](c_.ID, objc.Sel("requestTimeout"))
+	rv := objc.Send[float64](c_.ID, objc.Sel("requestTimeout"))
 	return rv
 }
 

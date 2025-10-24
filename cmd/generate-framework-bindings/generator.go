@@ -11,6 +11,19 @@ import (
 	"github.com/tmc/appledocs/occ2go"
 )
 
+// GeneratorConfig contains all configuration parameters for the generator
+type GeneratorConfig struct {
+	Framework        string
+	PackageName      string
+	InputDir         string
+	OutputModule     string
+	Variant          string
+	WithRefMethods   bool
+	GenerateTests    bool
+	GenerateExamples bool
+	DebugEnabled     bool
+}
+
 // Generator encapsulates the state and methods for generating bindings
 type Generator struct {
 	Framework        string
@@ -21,6 +34,8 @@ type Generator struct {
 	WithRefMethods   bool
 	GenerateTests    bool
 	GenerateExamples bool
+
+	DebugEnabled bool
 
 	Functions []*occ2go.ParsedFunction
 	Classes   []*occ2go.ParsedClass
@@ -49,19 +64,39 @@ type Generator struct {
 	Errors []error
 }
 
-// NewGenerator creates a new Generator instance
-func NewGenerator(framework, packageName, inputDir, outputModule, variant string, withRefMethods, generateTests, generateExamples bool) *Generator {
+// NewGenerator creates a new Generator instance from a config
+func NewGenerator(config GeneratorConfig) *Generator {
 	return &Generator{
-		Framework:        framework,
-		PackageName:      packageName,
-		InputDir:         inputDir,
-		OutputModule:     outputModule,
-		Variant:          variant,
-		WithRefMethods:   withRefMethods,
-		GenerateTests:    generateTests,
-		GenerateExamples: generateExamples,
+		Framework:        config.Framework,
+		PackageName:      config.PackageName,
+		InputDir:         config.InputDir,
+		OutputModule:     config.OutputModule,
+		Variant:          config.Variant,
+		WithRefMethods:   config.WithRefMethods,
+		GenerateTests:    config.GenerateTests,
+		GenerateExamples: config.GenerateExamples,
+		DebugEnabled:     config.DebugEnabled,
 		Errors:           make([]error, 0),
 	}
+}
+
+// SetParsedData sets the parsed symbol data on the generator
+func (g *Generator) SetParsedData(
+	functions []*occ2go.ParsedFunction,
+	classes []*occ2go.ParsedClass,
+	protocols []*occ2go.ParsedProtocol,
+	enums []*occ2go.ParsedEnum,
+	typedefs []*occ2go.ParsedTypedef,
+	constants []*occ2go.ParsedConstant,
+	structs []*occ2go.ParsedStruct,
+) {
+	g.Functions = functions
+	g.Classes = classes
+	g.Protocols = protocols
+	g.Enums = enums
+	g.Typedefs = typedefs
+	g.Constants = constants
+	g.Structs = structs
 }
 
 // AddError adds an error to the error collection
@@ -744,12 +779,28 @@ func (g *Generator) prepare() {
 	g.typedefIndex = make(map[string]*occ2go.ParsedTypedef, len(g.Typedefs))
 	for _, typedef := range g.Typedefs {
 		g.typedefIndex[typedef.Name] = typedef
+		// Also index by stripped name for easier lookup
+		stripped := stripObjCPrefix(typedef.Name)
+		if stripped != typedef.Name {
+			g.typedefIndex[stripped] = typedef
+		}
 		Debug.TimeInterval("building typedef index", typedef.Name, "",
-			"typedefName", typedef.Name)
+			"typedefName", typedef.Name,
+			"strippedName", stripped,
+			"baseType", typedef.BaseType)
 	}
 	Debug.TimeInterval("built typedef index", "", "",
 		"entryCount", len(g.typedefIndex),
-		"hasTimeInterval", g.typedefIndex["TimeInterval"] != nil)
+		"hasTimeInterval", g.typedefIndex["TimeInterval"] != nil,
+		"hasNSTimeInterval", g.typedefIndex["NSTimeInterval"] != nil)
+	if g.typedefIndex["TimeInterval"] != nil {
+		Debug.TimeInterval("TimeInterval found in index", "TimeInterval", "",
+			"baseType", g.typedefIndex["TimeInterval"].BaseType)
+	}
+	if g.typedefIndex["NSTimeInterval"] != nil {
+		Debug.TimeInterval("NSTimeInterval found in index", "NSTimeInterval", "",
+			"baseType", g.typedefIndex["NSTimeInterval"].BaseType)
+	}
 
 	if g.Framework == "ObjectiveC" && Debug != nil {
 		Debug.Log(DebugUndefined, "About to CollectUndefinedTypes", nil, "typedef_count", len(g.Typedefs))
@@ -1019,6 +1070,12 @@ func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
 		currentFrameworkStructs[stripObjCPrefix(structDef.Name)] = true
 		currentFrameworkStructs[structDef.Name] = true
 	}
+	// Add manual types from manualFrameworkTypes (e.g., geometry types from rect_types.go)
+	if manualTypes, exists := manualFrameworkTypes[strings.ToLower(g.Framework)]; exists {
+		for _, typeName := range manualTypes {
+			currentFrameworkStructs[typeName] = true
+		}
+	}
 
 	currentFrameworkEnums = make(map[string]bool)
 	for _, enum := range g.Enums {
@@ -1028,7 +1085,7 @@ func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
 
 	// Create master template and parse all sub-templates
 	// Chain Funcs calls: first core "dumb" functions, then GeneratorFuncs methods
-	gf := GeneratorFuncs{g}
+	gf := GeneratorFuncs{Generator: g}
 	tmpl := template.New("module").Funcs(templateFuncs).Funcs(gf.Funcs())
 
 	// Dynamically discover all templates from the archive (except "module")
