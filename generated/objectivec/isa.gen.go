@@ -9,25 +9,25 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
-// The class instance for the [isa] class.
+// The class instance for the [ISA] class.
 var (
-	IsaClass     _isaClass
+	IsaClass     _ISAClass
 	IsaClassOnce sync.Once
 )
 
-func getisaClass() _isaClass {
+func getISAClass() _ISAClass {
 	IsaClassOnce.Do(func() {
-		IsaClass = _isaClass{objc.GetClass("isa")}
+		IsaClass = _ISAClass{objc.GetClass("isa")}
 	})
 	return IsaClass
 }
 
-type _isaClass struct {
+type _ISAClass struct {
 	class objc.Class
 }
 
-// An interface definition for the [isa] class.
-type Iisa interface {
+// An interface definition for the [ISA] class.
+type IISA interface {
 	IObject
 	// properties:
 	// methods:
@@ -37,44 +37,44 @@ type Iisa interface {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/isa
-type isa struct {
+type ISA struct {
 	Object
 }
 
-// isaFrom constructs a [isa] from an unsafe.Pointer.
-func isaFrom(ptr unsafe.Pointer) isa {
-	return isa{Object{objc.ID(ptr)}}
+// ISAFrom constructs a [ISA] from an unsafe.Pointer.
+func ISAFrom(ptr unsafe.Pointer) ISA {
+	return ISA{Object{objc.ID(ptr)}}
 }
 
 // Alloc allocates a new instance without initialization.
-func (ic _isaClass) Alloc() isa {
-	rv := objc.Send[isa](objc.ID(ic.class), objc.Sel("alloc"))
+func (ic _ISAClass) Alloc() ISA {
+	rv := objc.Send[ISA](objc.ID(ic.class), objc.Sel("alloc"))
 	return rv
 }
 
 // New creates and returns a new autoreleased instance (equivalent to [[Class alloc] init]).
 // Note: Despite the name, this returns an autoreleased object for consistency with Go patterns.
-func (ic _isaClass) New() isa {
-	rv := objc.Send[isa](objc.ID(ic.class), objc.Sel("new"))
+func (ic _ISAClass) New() ISA {
+	rv := objc.Send[ISA](objc.ID(ic.class), objc.Sel("new"))
 	rv.Autorelease()
 	return rv
 }
 
 // Init initializes the instance.
-func (i_ isa) Init() isa {
-	rv := objc.Send[isa](i_.ID, objc.Sel("init"))
+func (i_ ISA) Init() ISA {
+	rv := objc.Send[ISA](i_.ID, objc.Sel("init"))
 	return rv
 }
 
 // Autorelease adds the receiver to the current autorelease pool.
-func (i_ isa) Autorelease() isa {
-	rv := objc.Send[isa](i_.ID, objc.Sel("autorelease"))
+func (i_ ISA) Autorelease() ISA {
+	rv := objc.Send[ISA](i_.ID, objc.Sel("autorelease"))
 	return rv
 }
 
-// Newisa creates a new isa instance.
-func Newisa() isa {
-	return getisaClass().New()
+// NewISA creates a new ISA instance.
+func NewISA() ISA {
+	return getISAClass().New()
 }
 
 

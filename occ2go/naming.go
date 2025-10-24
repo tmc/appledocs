@@ -64,6 +64,11 @@ func ClassToStructName(className string) string {
 
 	name := StripObjCPrefix(className)
 
+	// Special case: "isa" should be "ISA" (all caps acronym)
+	if name == "isa" {
+		return "ISA"
+	}
+
 	// If the name is a Go keyword, capitalize it
 	if isGoKeyword(name) {
 		return strings.ToUpper(name[:1]) + name[1:]
