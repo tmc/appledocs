@@ -530,20 +530,16 @@ func convertDocURL(url string) string {
 //   - Any instance init method (selector starting with "init")
 //   - Any class method marked as an initializer in docs (IsInitializer = true)
 func classHasInit(methods []*occ2go.ParsedMethod) bool {
-	DebugWithFunc("classHasInit", "Checking methods", "method_count", len(methods))
 	for _, m := range methods {
 		// Instance init methods
 		if !m.IsClassMethod && strings.HasPrefix(m.Selector, "init") {
-			DebugWithFunc("classHasInit", "Found init method", "selector", m.Selector, "is_class_method", m.IsClassMethod)
 			return true
 		}
 		// Class factory methods marked as initializers
 		if m.IsClassMethod && m.IsInitializer {
-			DebugWithFunc("classHasInit", "Found class initializer", "selector", m.Selector)
 			return true
 		}
 	}
-	DebugWithFunc("classHasInit", "No init methods found")
 	return false
 }
 
@@ -586,4 +582,32 @@ func isSafeToTestOnNSObject(selector string) bool {
 	}
 
 	return true
+}
+
+// isIOSOnly returns true if a method/property is available on iOS but not on macOS.
+// This is used to determine if generated code should have //go:build darwin && ios tags.
+func isIOSOnly(availability *occ2go.Availability) bool {
+	if availability == nil || availability.IsEmpty() {
+		return false
+	}
+
+	// Check if method is introduced on any iOS platform
+	hasIOS := false
+	for platform := range availability.IntroducedAt {
+		if platform == "iOS" || platform == "iPadOS" || platform == "tvOS" || platform == "visionOS" {
+			hasIOS = true
+			break
+		}
+	}
+
+	// If not on iOS, it's not iOS-only
+	if !hasIOS {
+		return false
+	}
+
+	// Check if also available on macOS
+	_, hasMacOS := availability.IntroducedAt["macOS"]
+	
+	// iOS-only if on iOS but not macOS
+	return !hasMacOS
 }
