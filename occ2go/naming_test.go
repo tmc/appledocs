@@ -265,9 +265,10 @@ func TestClassTestFileName(t *testing.T) {
 		input string
 		want  string
 	}{
-		{"NSButton", "button.gen_test.go"},
-		{"NSTableView", "table_view.gen_test.go"},
-		{"NSURLRequest", "url_request.gen_test.go"},
+		{"NSButton", "ns_button.gen_test.go"},
+		{"NSTableView", "ns_table_view.gen_test.go"},
+		{"NSURLRequest", "nsurl_request.gen_test.go"}, // ToSnakeCase treats NSURL as single word
+		{"ICCameraDevice", "ic_camera_device.gen_test.go"},
 	}
 
 	for _, tt := range tests {

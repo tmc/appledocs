@@ -71,6 +71,7 @@ var templateFuncs = template.FuncMap{
 
 	// DarwinKit class generation helpers
 	"classFileName":     classFileName,
+	"classIOSFileName":  classIOSFileName,
 	"classTestFileName": classTestFileName,
 	"protocolFileName":  protocolFileName,
 	"receiverName":      receiverName,
@@ -99,6 +100,7 @@ var templateFuncs = template.FuncMap{
 	"shouldExcludeTestExample":            shouldExcludeTestExample,
 	"shouldExcludeTestMethod":             shouldExcludeTestMethod,
 	"isSafeToTestOnNSObject":              isSafeToTestOnNSObject,
+	"isIOSOnly":                           isIOSOnly,
 	"sortMethodsByName":                   sortMethodsByName,
 	"generateTestValue":                   generateTestValue,
 	"generateTestValueWithPackage":        generateTestValueWithPackage,
@@ -142,6 +144,12 @@ var templateFuncs = template.FuncMap{
 	"getStructEmbeddedField": getStructEmbeddedField,
 	"getFromConstructorBody": getFromConstructorBody,
 	"getConstructorBody":     getConstructorBody,
+
+	// Platform-specific filtering
+	"iosOnlyMethod":          iosOnlyMethod,
+	"iosOnlyProperty":        iosOnlyProperty,
+	"hasIOSOnlyMethods":      hasIOSOnlyMethods,
+	"classHasIOSOnlyMembers": classHasIOSOnlyMembers, // deprecated
 
 	// Utility functions for template generation
 	"sortedKeys":         sortedKeys,

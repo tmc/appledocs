@@ -46,9 +46,13 @@
 {{- range .Classes}}
 #-- {{classFileName .Name}} --
 {{template "class.gen.go" (dict "Generator" $ "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
+{{if hasIOSOnlyMethods . -}}
+#-- {{classIOSFileName .Name}} --
+{{template "class_ios.gen.go" (dict "Generator" $ "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}
+{{end -}}
 {{if and (classHasInit .Methods) (not (shouldExcludeTestExample $.Framework .Name)) -}}
 #-- {{classTestFileName .Name}} --
-{{template "class_test.gen.go" (dict "Generator" $ "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}{{end}}{{end}}{{end}}
+{{template "class.gen_test.go" (dict "Generator" $ "Class" . "Framework" $.Framework "PackageName" $.PackageName "OutputModule" $.OutputModule)}}{{end}}{{end}}{{end}}
 {{if gt .ProtocolCount 0 -}}
 {{- range .Protocols}}
 #-- {{protocolFileName .Name}} --
@@ -296,6 +300,111 @@ func {{$docData.Name}}({{range $i, $p := $docData.Parameters}}{{if $i}}, {{end}}
 }
 {{end}}
 
+-- class_ios.gen.go --
+//go:build darwin && ios
+
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+import (
+	"unsafe"
+
+	"{{.OutputModule}}/objc"
+{{- $imports := getClassImports .Class $.Framework $.OutputModule}}
+{{- $sortedImports := getSortedClassImports $imports}}
+{{- range $sortedImports}}
+	"{{.ImportPath}}"
+{{- end}}
+)
+
+{{with .Class -}}
+{{$framework := $.Framework -}}
+{{$className := .Name -}}
+{{$structName := classToStructName .Name -}}
+{{$classTypeName := print "_" $structName "Class" -}}
+{{$classReceiver := receiverName $structName true -}}
+{{$instReceiver := receiverName $structName false -}}
+
+// iOS-only methods for {{$structName}}
+{{range filterPropertyMethods .}}
+{{- if and (not (isEssentialSelector .Selector)) (eq (len .Availability.DeprecatedAt) 0) (iosOnlyMethod .)}}
+{{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
+{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
+{{- $returnType := $goType}}
+{{- if eq $goType $className}}{{$returnType = $structName}}{{else}}{{$returnType = typeToInterfaceType $goType}}{{end}}
+{{- $isInitMethod := hasPrefix .Selector "init"}}
+{{- $hasValidReturnType := or $isInitMethod (eq .ReturnType "") (eq .ReturnType "void") (ne $goType "")}}
+{{- if $hasValidReturnType}}
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if $isInitMethod}} {{$structName}}{{else}}{{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{$returnType}}{{end}}{{end}} {
+	{{- if $isInitMethod}}
+	rv := objc.Send[{{$structName}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	return rv
+	{{- else if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
+	return Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
+	{{- else}}
+	return rv
+	{{- end}}
+	{{- else}}
+	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("{{.Selector}}"){{if $paramNames}}, {{$paramNames}}{{end}})
+	{{- end}}
+}
+{{- end}}
+{{- end}}
+{{- end}}
+
+// iOS-only properties
+{{- range .Properties}}
+{{- if and (not .IsClassProperty) (iosOnlyProperty .)}}
+{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
+{{- $goType := mapObjCTypeToGo $typeToMap $framework}}
+{{- $returnType := typeToInterfaceType $goType}}
+{{- $capitalizedName := capitalize .Name}}
+{{- $conflictsWithParent := propertyConflictsWithParent $className $.Class.SuperClass .Name}}
+{{- if and (ne $goType "") (not $conflictsWithParent)}}
+
+{{- if or .Abstract .DocURL}}
+{{template "doc_comment" .}}
+{{end -}}
+func ({{$instReceiver}} {{$structName}}) {{$capitalizedName}}() {{$returnType}} {
+	rv := objc.Send[{{concreteReturnType $goType}}]({{$instReceiver}}.ID, objc.Sel("{{.Name}}"))
+	{{- if and (eq (concreteReturnType $goType) "objc.ID") (eq $returnType "IObject")}}
+	return Object{ID: rv}
+	{{- else if and (eq (concreteReturnType $goType) "[]objc.ID") (eq $returnType "[]IObject")}}
+	result := make([]IObject, len(rv))
+	for i, id := range rv {
+		result[i] = Object{ID: id}
+	}
+	return result
+	{{- else}}
+	return rv
+	{{- end}}
+}
+
+{{- $isReadOnly := contains .Attributes "readonly"}}
+{{- if not $isReadOnly}}
+{{- $setterParamType := typeToInterfaceType $goType}}
+func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$setterParamType}}) {
+	{{$instReceiver}}.ID.Send(objc.RegisterName("set{{$capitalizedName}}:"), value)
+}
+{{- end}}
+{{- end}}
+{{- end}}
+{{- end}}
+
+{{end}}
+
 -- class.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
@@ -344,7 +453,7 @@ type I{{$structName}} interface {
 	{{getInterfaceParent . $.Framework}}
 	// properties:
 	{{- range .Properties}}
-	{{- if not .IsClassProperty}}
+	{{- if and (not .IsClassProperty) (not (iosOnlyProperty .))}}
 	{{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
 	{{- $goType := mapObjCTypeToGo $typeToMap $framework}}
 	{{- $returnType := typeToInterfaceType $goType}}
@@ -362,7 +471,7 @@ type I{{$structName}} interface {
 	{{- end}}
 	// methods:
 	{{- range filterPropertyMethods .}}
-	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
+	{{- if and (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0) (not (iosOnlyMethod .))}}
 	{{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 	{{- $interfaceType := typeToInterfaceType $goType}}
 	{{- $isInitMethod := hasPrefix .Selector "init"}}
@@ -492,7 +601,7 @@ func ({{$classReceiver}} {{$classTypeName}}) {{$capitalizedName}}() {{$returnTyp
 {{- end}}
 {{- end}}
 {{- range filterPropertyMethods .}}
-{{- if and (not (isEssentialSelector .Selector)) (eq (len .Availability.DeprecatedAt) 0)}}
+{{- if and (not (isEssentialSelector .Selector)) (eq (len .Availability.DeprecatedAt) 0) (not (iosOnlyMethod .))}}
 {{- $paramNames := formatMethodParamNamesWithFramework . $framework}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- /* If the method returns the same type as the class, use the wrapper type instead of the underlying struct */}}
@@ -539,6 +648,7 @@ func ({{$instReceiver}} {{$structName}}) {{.Name}}({{formatMethodParams .}}){{if
 {{- end}}
 
 {{- range .Properties}}
+{{- if not (iosOnlyProperty .)}}
 {{- $typeToMap := .Type}}{{if .ObjCType}}{{$typeToMap = .ObjCType}}{{end}}
 {{- $goType := mapObjCTypeToGo $typeToMap $framework}}
 {{- $returnType := typeToInterfaceType $goType}}
@@ -592,8 +702,8 @@ func ({{$instReceiver}} {{$structName}}) Set{{$capitalizedName}}(value {{$setter
 	objc.Send[objc.ID]({{$instReceiver}}.ID, objc.Sel("set{{$capitalizedName}}:"), value)
 	{{- end}}
 }
-{{end}}{{end}}{{end}}{{end}}
--- class_test.gen.go --
+{{end}}{{end}}{{end}}{{end}}{{end}}
+-- class.gen_test.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
 
 package {{.PackageName}}_test
@@ -673,10 +783,11 @@ func Example{{$constructorName}}() {
 	// Output:
 }{{end}}{{end}}{{end -}}
 
-{{/* Generate tests for parameterless instance methods */}}
+{{/* Generate examples for parameterless instance methods */}}
 {{- range filterPropertyMethods .}}
-{{- if and (not .IsClassMethod) (eq (len .Parameters) 0) (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0) (isSafeToTestOnNSObject .Selector)}}
+{{- if and (not .IsClassMethod) (eq (len .Parameters) 0) (not (isEssentialSelector .Selector)) (not (isInheritedFromNSObject .Selector)) (eq (len .Availability.DeprecatedAt) 0) (not (iosOnlyMethod .))}}
 {{- $methodName := disambiguateMethodName .}}
+{{- $isSafe := isSafeToTestOnNSObject .Selector}}
 {{- $testMethodName := printf "Example%s_%s" $structName $methodName}}
 {{- $goType := mapObjCTypeToGo .ReturnType $framework}}
 {{- $hasReturnValue := and (ne .ReturnType "") (ne .ReturnType "void")}}
@@ -685,6 +796,11 @@ func Example{{$constructorName}}() {
 {{if .Abstract -}}
 // {{.Abstract}}
 {{end -}}
+{{if not $isSafe -}}
+//
+// Note: This example is not executed because {{$methodName}} crashes when called on bare NSObject
+// (it's a protocol/category method that should be overridden by subclasses).
+{{end -}}
 func Example{{$structName}}_{{$methodName}}() {
 	obj := {{$packageName}}.New{{$structName}}()
 	{{if $hasReturnValue -}}
@@ -692,7 +808,9 @@ func Example{{$structName}}_{{$methodName}}() {
 	{{- else -}}
 	obj.{{$methodName}}()
 	{{- end}}
+	{{if $isSafe -}}
 	// Output:
+	{{end -}}
 }
 {{end}}{{end}}{{end -}}
 {{end -}}

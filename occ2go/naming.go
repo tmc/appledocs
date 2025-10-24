@@ -308,14 +308,16 @@ func ProtocolFileName(protocolName string) string {
 }
 
 // ClassTestFileName converts a class name to a test file name (snake_case).
+// Uses the FULL class name including ObjC prefix to match ClassFileName convention.
 // Examples:
 //
-//	NSButton -> button.gen_test.go
-//	NSTableView -> table_view.gen_test.go
-//	NSURLRequest -> url_request.gen_test.go
+//	NSButton -> ns_button.gen_test.go
+//	NSTableView -> ns_table_view.gen_test.go
+//	NSURLRequest -> ns_url_request.gen_test.go
+//	ICCameraDevice -> ic_camera_device.gen_test.go
 func ClassTestFileName(className string) string {
-	name := StripObjCPrefix(className)
-	return ToSnakeCase(name) + ".gen_test.go"
+	// Use full class name to match ClassFileName (see appledocs-549)
+	return ToSnakeCase(className) + ".gen_test.go"
 }
 
 // ReceiverName generates a short receiver name for methods.

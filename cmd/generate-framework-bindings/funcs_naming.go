@@ -96,6 +96,13 @@ func classFileName(className string) string {
 	return occ2go.ClassFileName(className)
 }
 
+// classIOSFileName converts a class name to an iOS-specific file name (snake_case with _ios suffix).
+func classIOSFileName(className string) string {
+	base := occ2go.ClassFileName(className)
+	// Replace .gen.go with _ios.gen.go
+	return base[:len(base)-len(".gen.go")] + "_ios.gen.go"
+}
+
 // protocolFileName converts a protocol name to a file name (snake_case).
 // Delegates to occ2go.ProtocolFileName.
 func protocolFileName(protocolName string) string {

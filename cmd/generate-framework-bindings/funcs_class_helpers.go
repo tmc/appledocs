@@ -236,3 +236,49 @@ func getConstructorBody(method *occ2go.ParsedMethod, structName, paramNames stri
 	return fmt.Sprintf("\tinstance := get%sClass().Alloc()\n\trv := objc.Send[%s](instance.ID, objc.Sel(\"%s\")%s)\n\trv.Autorelease()\n\treturn rv",
 		structName, structName, selector, params)
 }
+
+// iosOnlyMethod returns true if the method is only available on iOS (not macOS).
+func iosOnlyMethod(method *occ2go.ParsedMethod) bool {
+	if method == nil {
+		return false
+	}
+	return method.Availability.IOSOnly()
+}
+
+// iosOnlyProperty returns true if the property is only available on iOS (not macOS).
+func iosOnlyProperty(property *occ2go.ParsedProperty) bool {
+	if property == nil {
+		return false
+	}
+	return property.Availability.IOSOnly()
+}
+
+// classHasIOSOnlyMembers returns true if the class has any iOS-only methods or properties.
+// Deprecated: Use hasIOSOnlyMethods instead for template consistency.
+func classHasIOSOnlyMembers(class *occ2go.ParsedClass) bool {
+	return hasIOSOnlyMethods(class)
+}
+
+// hasIOSOnlyMethods returns true if the class has any iOS-only methods or properties.
+// This is the preferred template function name.
+func hasIOSOnlyMethods(class *occ2go.ParsedClass) bool {
+	if class == nil {
+		return false
+	}
+
+	// Check methods
+	for _, method := range class.Methods {
+		if iosOnlyMethod(method) {
+			return true
+		}
+	}
+
+	// Check properties
+	for _, property := range class.Properties {
+		if iosOnlyProperty(property) {
+			return true
+		}
+	}
+
+	return false
+}
