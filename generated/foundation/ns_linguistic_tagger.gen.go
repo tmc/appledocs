@@ -179,7 +179,7 @@ func (lc _LinguisticTaggerClass) EnumerateTagsForStringRangeUnitSchemeOptionsOrt
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tag(for:at:unit:scheme:orthography:tokenRange:)
 func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRange(string_ IString, charIndex uint, unit LinguisticTaggerUnit, scheme LinguisticTagScheme, orthography IOrthography, tokenRange RangePointer) LinguisticTag {
 	rv := objc.Send[LinguisticTag](objc.ID(lc.class), objc.Sel("tagForString:atIndex:unit:scheme:orthography:tokenRange:"), string_, charIndex, unit, scheme, orthography, tokenRange)
-	return rv.String()
+	return rv
 }
 
 

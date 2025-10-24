@@ -196,7 +196,7 @@ func (nc _NotificationClass) NotificationWithNameObjectUserInfo(aName Notificati
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/name-swift.property
 func (n_ Notification) Name() NotificationName {
 	rv := objc.Send[NotificationName](n_.ID, objc.Sel("name"))
-	return rv.String()
+	return rv
 }
 
 

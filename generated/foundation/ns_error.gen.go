@@ -233,7 +233,7 @@ func (e_ Error) Code() int {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSError/domain
 func (e_ Error) Domain() ErrorDomain {
 	rv := objc.Send[ErrorDomain](e_.ID, objc.Sel("domain"))
-	return rv.String()
+	return rv
 }
 
 

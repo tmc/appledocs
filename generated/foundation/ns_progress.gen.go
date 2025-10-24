@@ -417,7 +417,7 @@ func (p_ Progress) SetCompletedUnitCount(value int64) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/fileOperationKind-swift.property
 func (p_ Progress) FileOperationKind() ProgressFileOperationKind {
 	rv := objc.Send[ProgressFileOperationKind](p_.ID, objc.Sel("fileOperationKind"))
-	return rv.String()
+	return rv
 }
 
 
@@ -553,7 +553,7 @@ func (p_ Progress) Paused() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Progress/kind
 func (p_ Progress) Kind() ProgressKind {
 	rv := objc.Send[ProgressKind](p_.ID, objc.Sel("kind"))
-	return rv.String()
+	return rv
 }
 
 

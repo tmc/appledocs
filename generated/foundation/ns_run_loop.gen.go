@@ -310,7 +310,7 @@ func (r_ RunLoop) CurrentRunLoop() IRunLoop {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/currentMode
 func (r_ RunLoop) CurrentMode() RunLoopMode {
 	rv := objc.Send[RunLoopMode](r_.ID, objc.Sel("currentMode"))
-	return rv.String()
+	return rv
 }
 
 

@@ -186,7 +186,7 @@ func (e_ Exception) SetCallStackSymbols(value IString) {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/name-swift.property
 func (e_ Exception) Name() ExceptionName {
 	rv := objc.Send[ExceptionName](e_.ID, objc.Sel("name"))
-	return rv.String()
+	return rv
 }
 
 

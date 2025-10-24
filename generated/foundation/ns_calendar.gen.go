@@ -619,7 +619,7 @@ func (c_ Calendar) AutoupdatingCurrentCalendar() ICalendar {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/calendarIdentifier
 func (c_ Calendar) CalendarIdentifier() CalendarIdentifier {
 	rv := objc.Send[CalendarIdentifier](c_.ID, objc.Sel("calendarIdentifier"))
-	return rv.String()
+	return rv
 }
 
 
