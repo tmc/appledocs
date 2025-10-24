@@ -50,12 +50,16 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			// If the type is from a different framework, qualify it
 			if mapping.Framework != "" && mapping.Framework != framework {
 				// Check for framework hierarchy violations - if target framework is at a higher level,
-				// return objectivec.IObject instead to avoid import cycles (fixes appledocs-496)
+				// return objectivec.IObject (or IObject if we're IN objectivec) to avoid import cycles (fixes appledocs-496)
 				currentLevel := getFrameworkLevel(strings.ToLower(framework))
 				targetLevel := getFrameworkLevel(strings.ToLower(mapping.Framework))
 				if currentLevel >= 0 && targetLevel > currentLevel {
 					// Higher-level framework dependency detected - use generic interface type
-					return "objectivec.IObject", true
+					fallbackType := "objectivec.IObject"
+					if strings.ToLower(framework) == "objectivec" {
+						fallbackType = "IObject"
+					}
+					return fallbackType, true
 				}
 
 				// Don't qualify types that are already qualified (unsafe.Pointer, objc.ID, etc.)
@@ -161,14 +165,26 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			// (fixes appledocs-519: ObjectiveC shouldn't import UIKit types)
 			currentLevel := getFrameworkLevel(strings.ToLower(framework))
 			targetLevel := getFrameworkLevel(frameworkPkg)
+			// For ObjectiveC framework (level 0), treat ANY unknown framework as higher-level
+			// Most application frameworks aren't in the levels map, so we conservatively assume they're higher
+			shouldUseIObject := false
 			if currentLevel >= 0 && targetLevel > currentLevel {
+				shouldUseIObject = true // Known higher-level framework
+			} else if currentLevel == 0 && targetLevel == -1 {
+				shouldUseIObject = true // ObjectiveC importing unknown framework - assume it's higher
+			}
+			if shouldUseIObject {
 				// Higher-level framework dependency detected - use generic interface type
-				Debug.TypeMap("framework layering violation detected", objcType, "objectivec.IObject",
+				fallbackType := "objectivec.IObject"
+				if strings.ToLower(framework) == "objectivec" {
+					fallbackType = "IObject"
+				}
+				Debug.TypeMap("framework layering violation detected", objcType, fallbackType,
 					"currentFramework", framework,
 					"currentLevel", currentLevel,
 					"targetFramework", frameworkPkg,
 					"targetLevel", targetLevel)
-				return "objectivec.IObject", true
+				return fallbackType, true
 			}
 			result := frameworkPkg + "." + strippedType
 			Debug.TypeMap("returning qualified type (before heuristic)", objcType, result,
@@ -191,11 +207,15 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 				currentLevel := getFrameworkLevel(strings.ToLower(framework))
 				uikitLevel := getFrameworkLevel("uikit")
 				if currentLevel >= 0 && uikitLevel > currentLevel {
-					Debug.TypeMap("HEURISTIC: UI-prefixed type, framework layering violation", objcType, "objectivec.IObject",
+					fallbackType := "objectivec.IObject"
+					if strings.ToLower(framework) == "objectivec" {
+						fallbackType = "IObject"
+					}
+					Debug.TypeMap("HEURISTIC: UI-prefixed type, framework layering violation", objcType, fallbackType,
 						"currentFramework", framework,
 						"currentLevel", currentLevel,
 						"uikitLevel", uikitLevel)
-					return "objectivec.IObject", true
+					return fallbackType, true
 				}
 			}
 			// Type has a prefix and is not a pointer type - likely an enum
@@ -229,14 +249,26 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 			// (fixes appledocs-519: ObjectiveC shouldn't import UIKit types)
 			currentLevel := getFrameworkLevel(strings.ToLower(framework))
 			targetLevel := getFrameworkLevel(frameworkPkg)
+			// For ObjectiveC framework (level 0), treat ANY unknown framework as higher-level
+			// Most application frameworks aren't in the levels map, so we conservatively assume they're higher
+			shouldUseIObject := false
 			if currentLevel >= 0 && targetLevel > currentLevel {
+				shouldUseIObject = true // Known higher-level framework
+			} else if currentLevel == 0 && targetLevel == -1 {
+				shouldUseIObject = true // ObjectiveC importing unknown framework - assume it's higher
+			}
+			if shouldUseIObject {
 				// Higher-level framework dependency detected - use generic interface type
-				Debug.TypeMap("framework layering violation detected (stripped path)", objcType, "objectivec.IObject",
+				fallbackType := "objectivec.IObject"
+				if strings.ToLower(framework) == "objectivec" {
+					fallbackType = "IObject"
+				}
+				Debug.TypeMap("framework layering violation detected (stripped path)", objcType, fallbackType,
 					"currentFramework", framework,
 					"currentLevel", currentLevel,
 					"targetFramework", frameworkPkg,
 					"targetLevel", targetLevel)
-				return "objectivec.IObject", true
+				return fallbackType, true
 			}
 			result := frameworkPkg + "." + strippedType
 			Debug.TypeMap("returning qualified type", objcType, result,

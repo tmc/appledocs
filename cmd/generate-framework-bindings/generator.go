@@ -189,6 +189,34 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 				return goType
 			}
 
+			// Check for framework hierarchy violations (lower-level importing higher-level)
+			// For ObjectiveC framework (level 0), use IObject (unqualified) for ANY other framework
+			currentLevel := getFrameworkLevel(strings.ToLower(g.Framework))
+			targetLevel := getFrameworkLevel(pkg)
+			fallbackType := "objectivec.IObject"
+			if strings.ToLower(g.Framework) == "objectivec" {
+				fallbackType = "IObject"
+			}
+			if currentLevel >= 0 && targetLevel > currentLevel {
+				// Known higher-level framework
+				Debug.TypeMap("framework layering violation in TypeToInterfaceType", typeName, fallbackType,
+					"framework", g.Framework,
+					"currentLevel", currentLevel,
+					"targetPkg", pkg,
+					"targetLevel", targetLevel,
+					"objcType", goType)
+				return fallbackType
+			} else if currentLevel == 0 && targetLevel == -1 {
+				// ObjectiveC importing unknown framework - assume it's higher
+				Debug.TypeMap("framework layering violation (unknown target) in TypeToInterfaceType", typeName, fallbackType,
+					"framework", g.Framework,
+					"currentLevel", currentLevel,
+					"targetPkg", pkg,
+					"targetLevel", targetLevel,
+					"objcType", goType)
+				return fallbackType
+			}
+
 			// Recursively convert the type part
 			interfaceType := g.TypeToInterfaceType(typeName)
 
@@ -517,6 +545,15 @@ func (g *Generator) prepare() {
 	Debug.TimeInterval("built typedef index", "", "",
 		"entryCount", len(g.typedefIndex),
 		"hasTimeInterval", g.typedefIndex["TimeInterval"] != nil)
+
+	if g.Framework == "ObjectiveC" && Debug != nil {
+		Debug.Log(DebugUndefined, "About to CollectUndefinedTypes", nil, "typedef_count", len(g.Typedefs))
+		for i, td := range g.Typedefs {
+			if i < 15 {
+				Debug.Log(DebugUndefined, "Typedef entry", nil, "index", i, "name", td.Name)
+			}
+		}
+	}
 
 	// Cache undefined types for test generation
 	g.undefinedTypes = g.CollectUndefinedTypes()

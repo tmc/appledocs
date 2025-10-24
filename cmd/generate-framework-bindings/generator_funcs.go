@@ -80,9 +80,13 @@ func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string 
 
 		goType := mapObjCTypeToGo(p.Type, gf.Framework)
 
-		// Convert objc.ID to objectivec.IObject for better type safety
+		// Convert objc.ID to objectivec.IObject (or IObject if we're IN objectivec) for better type safety
 		if goType == "objc.ID" {
-			goType = "objectivec.IObject"
+			if strings.ToLower(gf.Framework) == "objectivec" {
+				goType = "IObject"
+			} else {
+				goType = "objectivec.IObject"
+			}
 		} else {
 			// Use data-driven type checking instead of heuristics
 			// This calls Generator.TypeToInterfaceType which uses classIndex, enumIndex, typedefIndex
@@ -139,6 +143,7 @@ func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string 
 	}
 	return strings.Join(parts, ", ")
 }
+
 // ---------------
 
 // shouldSkipTypedef determines if a typedef should be skipped during generation.

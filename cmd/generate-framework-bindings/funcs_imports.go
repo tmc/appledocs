@@ -60,20 +60,25 @@ func getRequiredImports(methods []*occ2go.ParsedMethod, framework string) map[st
 
 	// Check all methods for types that need custom imports
 	for _, m := range methods {
-		// Check return type - map to Go first, then check if it needs an import
+		// Check return type - map to Go first, apply framework hierarchy checks, then check if it needs an import
 		if m.ReturnType != "" && m.ReturnType != "void" {
 			goType := mapObjCTypeToGo(m.ReturnType, framework)
-			// Check if this Go type needs an import (e.g., coregraphics.CGAffineTransform)
-			if importPath := getGoTypeImportPath(goType); importPath != "" {
+			// Apply framework hierarchy checks to avoid cross-framework violations
+			resolvedType := resolveType(framework, goType)
+			// Check if this resolved Go type needs an import (e.g., coregraphics.CGAffineTransform)
+			// Types like "IObject" (unqualified) or "objectivec.IObject" don't need framework imports
+			if importPath := getGoTypeImportPath(resolvedType); importPath != "" {
 				imports[importPath] = true
 			}
 		}
 
-		// Check parameters - map to Go first, then check if they need imports
+		// Check parameters - map to Go first, apply framework hierarchy checks, then check if they need imports
 		for _, p := range m.Parameters {
 			goType := mapObjCTypeToGo(p.Type, framework)
-			// Check if this Go type needs an import
-			if importPath := getGoTypeImportPath(goType); importPath != "" {
+			// Apply framework hierarchy checks to avoid cross-framework violations
+			resolvedType := resolveType(framework, goType)
+			// Check if this resolved Go type needs an import
+			if importPath := getGoTypeImportPath(resolvedType); importPath != "" {
 				imports[importPath] = true
 			}
 		}
@@ -101,7 +106,9 @@ func getFunctionRequiredImports(functions []*occ2go.ParsedFunction, framework st
 		if fn.ReturnType != "" && fn.ReturnType != "void" {
 			// Use mapCTypeToGoWithFramework to get the same result as prepareFunctionData
 			goType := mapCTypeToGoWithFramework(fn.ReturnType, framework)
-			if importPath := getGoTypeImportPath(goType); importPath != "" {
+			// Apply framework hierarchy checks to avoid cross-framework violations
+			resolvedType := resolveType(framework, goType)
+			if importPath := getGoTypeImportPath(resolvedType); importPath != "" {
 				// Don't import the current framework itself
 				if importPath != currentFrameworkImportPath {
 					imports[importPath] = true
@@ -113,7 +120,9 @@ func getFunctionRequiredImports(functions []*occ2go.ParsedFunction, framework st
 		for _, param := range fn.Parameters {
 			// Use mapCTypeToGoWithFramework to get the same result as prepareFunctionData
 			goType := mapCTypeToGoWithFramework(param.Type, framework)
-			if importPath := getGoTypeImportPath(goType); importPath != "" {
+			// Apply framework hierarchy checks to avoid cross-framework violations
+			resolvedType := resolveType(framework, goType)
+			if importPath := getGoTypeImportPath(resolvedType); importPath != "" {
 				// Don't import the current framework itself
 				if importPath != currentFrameworkImportPath {
 					imports[importPath] = true
@@ -244,14 +253,20 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 				if importPath != currentFrameworkImportPath {
 					// Check for framework hierarchy violations before adding import
 					// If the target framework is at a higher level than current, skip the import
-					// since the template will use objectivec.IObject instead
+					// since the template will use objectivec.IObject (or IObject if we're IN objectivec) instead
 					if strings.Contains(goType, ".") {
 						parts := strings.Split(goType, ".")
 						if len(parts) >= 2 {
 							targetFramework := parts[0]
 							currentLevel := getFrameworkLevel(strings.ToLower(framework))
 							targetLevel := getFrameworkLevel(targetFramework)
+							shouldSkip := false
 							if currentLevel >= 0 && targetLevel > currentLevel {
+								shouldSkip = true // Known higher-level framework
+							} else if currentLevel == 0 && targetLevel == -1 {
+								shouldSkip = true // ObjectiveC importing unknown framework - assume it's higher
+							}
+							if shouldSkip {
 								// Skip import for hierarchy violation
 								Debug.Imports("skipping return type import due to hierarchy violation", method.Name, goType,
 									"class", class.Name,
@@ -297,14 +312,20 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 				if importPath != currentFrameworkImportPath {
 					// Check for framework hierarchy violations before adding import
 					// If the target framework is at a higher level than current, skip the import
-					// since the template will use objectivec.IObject instead (fixes appledocs-496)
+					// since the template will use objectivec.IObject (or IObject if we're IN objectivec) instead (fixes appledocs-496, appledocs-519)
 					if strings.Contains(goType, ".") {
 						parts := strings.Split(goType, ".")
 						if len(parts) >= 2 {
 							targetFramework := parts[0]
 							currentLevel := getFrameworkLevel(strings.ToLower(framework))
 							targetLevel := getFrameworkLevel(targetFramework)
+							shouldSkip := false
 							if currentLevel >= 0 && targetLevel > currentLevel {
+								shouldSkip = true // Known higher-level framework
+							} else if currentLevel == 0 && targetLevel == -1 {
+								shouldSkip = true // ObjectiveC importing unknown framework - assume it's higher
+							}
+							if shouldSkip {
 								// Skip import for hierarchy violation - template will use objectivec.IObject
 								Debug.Imports("skipping import due to hierarchy violation", method.Name, goType,
 									"class", class.Name,
@@ -346,14 +367,20 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 			if importPath != currentFrameworkImportPath {
 				// Check for framework hierarchy violations before adding import
 				// If the target framework is at a higher level than current, skip the import
-				// since the template will use objectivec.IObject instead
+				// since the template will use objectivec.IObject (or IObject if we're IN objectivec) instead
 				if strings.Contains(goType, ".") {
 					parts := strings.Split(goType, ".")
 					if len(parts) >= 2 {
 						targetFramework := parts[0]
 						currentLevel := getFrameworkLevel(strings.ToLower(framework))
 						targetLevel := getFrameworkLevel(targetFramework)
+						shouldSkip := false
 						if currentLevel >= 0 && targetLevel > currentLevel {
+							shouldSkip = true // Known higher-level framework
+						} else if currentLevel == 0 && targetLevel == -1 {
+							shouldSkip = true // ObjectiveC importing unknown framework - assume it's higher
+						}
+						if shouldSkip {
 							// Skip import for hierarchy violation
 							Debug.Imports("skipping property import due to hierarchy violation", prop.Name, goType,
 								"class", class.Name,

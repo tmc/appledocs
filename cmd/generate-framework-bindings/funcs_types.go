@@ -634,11 +634,28 @@ func resolveType(framework, typeName string) string {
 
 		// Check for framework hierarchy violations BEFORE adding the package qualification
 		// If the target framework is at a higher level than the current framework, return
-		// objectivec.IObject instead to avoid import cycles (fixes appledocs-496)
+		// objectivec.IObject (or IObject if we're IN objectivec) instead to avoid import cycles (fixes appledocs-496, appledocs-519)
 		currentLevel := getFrameworkLevel(strings.ToLower(framework))
 		targetLevel := getFrameworkLevel(frameworkPkg)
+		// For ObjectiveC framework (level 0), treat ANY unknown framework as higher-level
+		// Most application frameworks aren't in the levels map, so we conservatively assume they're higher
+		shouldUseIObject := false
 		if currentLevel >= 0 && targetLevel > currentLevel {
-			return "objectivec.IObject"
+			shouldUseIObject = true // Known higher-level framework
+		} else if currentLevel == 0 && targetLevel == -1 {
+			shouldUseIObject = true // ObjectiveC importing unknown framework - assume it's higher
+		}
+		if shouldUseIObject {
+			fallbackType := "objectivec.IObject"
+			if strings.ToLower(framework) == "objectivec" {
+				fallbackType = "IObject"
+			}
+			Debug.TypeMap("framework layering violation in resolveType", typeName, fallbackType,
+				"currentFramework", framework,
+				"currentLevel", currentLevel,
+				"targetFramework", frameworkPkg,
+				"targetLevel", targetLevel)
+			return fallbackType
 		}
 
 		Debug.TypeMap("cross-framework registry hit", typeName, frameworkPkg,
