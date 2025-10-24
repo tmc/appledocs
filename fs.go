@@ -341,22 +341,32 @@ func Symbols(fsys *FS, framework string) func(yield func(string, *Document) bool
 		}
 
 		for _, symbol := range symbols {
-			// Apple's documentation structure:
+			// Apple's documentation structure varies:
 			// - Classes: ClassName.class/index.json
 			// - Protocols: ProtocolName.protocol/index.json
-			// - Other symbols: SymbolName.json or SymbolName/index.json
-			// ListSymbols returns symbols without the /index suffix, so we need to:
-			// 1. Check if symbol ends with .class or .protocol
-			// 2. If so, append /index.json instead of .json
+			// - Functions (Swift-style): functionName(_:)/index.json or functionName(_:_:)/index.json
+			// - Functions (C-style): functionName/index.json
+			// - Other symbols: SymbolName.json
+			// ListSymbols returns symbols without the /index suffix.
+			// Try /index.json first for directory-based symbols, fall back to .json
+
+			var doc *Document
+			var err error
 			var path string
-			if strings.HasSuffix(symbol, ".class") || strings.HasSuffix(symbol, ".protocol") {
+
+			// Always try directory/index.json first for non-.json symbols
+			if !strings.HasSuffix(symbol, ".json") {
 				path = filepath.Join(framework, symbol, "index.json")
-			} else {
-				path = filepath.Join(framework, symbol+".json")
+				doc, err = fsys.ReadDocument(path)
 			}
 
-			doc, err := fsys.ReadDocument(path)
-			if err != nil {
+			// Fall back to .json if /index.json failed
+			if doc == nil {
+				path = filepath.Join(framework, symbol+".json")
+				doc, err = fsys.ReadDocument(path)
+			}
+
+			if err != nil || doc == nil {
 				continue // Skip symbols that can't be read
 			}
 
