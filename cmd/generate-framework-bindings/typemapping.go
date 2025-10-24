@@ -1,7 +1,11 @@
 package main
 
 import (
+	"fmt"
+	"os"
 	"strings"
+
+	"github.com/tmc/appledocs/occ2go"
 )
 
 // TypeMapping represents a mapping from an Objective-C type to a Go type.
@@ -62,7 +66,7 @@ var staticTypeRegistry = []TypeMapping{
 	{ObjCType: "CGSize", GoType: "CGSize", Framework: "CoreFoundation"},
 	{ObjCType: "CGRect", GoType: "CGRect", Framework: "CoreFoundation"},
 	{ObjCType: "CGAffineTransform", GoType: "CGAffineTransform", Framework: "CoreFoundation"},
-	{ObjCType: "CGFloat", GoType: "CGFloat", Framework: "CoreFoundation"},
+	{ObjCType: "CGFloat", GoType: "CGFloat", Framework: "CoreFoundation"}, // Uses synthetic typedef: type CGFloat = float64
 
 	// When IN CoreGraphics, also use the local names (they may be type aliases)
 	{ObjCType: "CGPoint", GoType: "Point", Framework: "CoreGraphics"},
@@ -88,16 +92,45 @@ var manualFrameworkTypes = map[string][]string{
 func lookupTypeMapping(objcType, framework string) (string, bool) {
 	objcType = strings.TrimSpace(objcType)
 
+	// Debug entry
+	if strings.Contains(objcType, "HashTableCallBacks") {
+		fmt.Fprintf(os.Stderr, "[DEBUG] lookupTypeMapping ENTRY: objcType=%q framework=%q\n", objcType, framework)
+	}
+
 	// Check static type registry first (framework-specific overrides)
 	// First check for exact framework match
 	for _, mapping := range staticTypeRegistry {
 		if mapping.ObjCType == objcType && strings.EqualFold(mapping.Framework, framework) {
+			// Debug for our types
+			if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+				fmt.Fprintf(os.Stderr, "[DEBUG] static registry framework-specific: objcType=%q mapping.GoType=%q equal=%v\n",
+					objcType, mapping.GoType, mapping.GoType == objcType)
+			}
+			// If GoType equals ObjCType (identity mapping), strip the prefix
+			// This handles cases like NSHashTableCallBacks → HashTableCallBacks
+			if mapping.GoType == objcType {
+				stripped := occ2go.StripObjCPrefix(objcType)
+				if stripped != objcType {
+					// Debug
+					if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+						fmt.Fprintf(os.Stderr, "[DEBUG] Stripping in static registry: objcType=%q stripped=%q\n", objcType, stripped)
+					}
+					return stripped, true
+				}
+			}
 			return mapping.GoType, true
 		}
 	}
 	// Then check for framework-agnostic entries (Framework == "")
 	for _, mapping := range staticTypeRegistry {
 		if mapping.ObjCType == objcType && mapping.Framework == "" {
+			// If GoType equals ObjCType (identity mapping), strip the prefix
+			if mapping.GoType == objcType {
+				stripped := occ2go.StripObjCPrefix(objcType)
+				if stripped != objcType {
+					return stripped, true
+				}
+			}
 			return mapping.GoType, true
 		}
 	}
@@ -105,6 +138,18 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// Direct lookup - try framework-specific first
 	for _, mapping := range typeRegistry {
 		if mapping.ObjCType == objcType && mapping.Framework != "" && mapping.Framework == framework {
+			// Debug for our types
+			if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+				fmt.Fprintf(os.Stderr, "[DEBUG] framework-specific loop: objcType=%q mapping.GoType=%q equal=%v\n",
+					objcType, mapping.GoType, mapping.GoType == objcType)
+			}
+			// If GoType equals ObjCType (identity mapping), strip the prefix
+			if mapping.GoType == objcType {
+				stripped := occ2go.StripObjCPrefix(objcType)
+				if stripped != objcType {
+					return stripped, true
+				}
+			}
 			return mapping.GoType, true
 		}
 	}
@@ -112,6 +157,18 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// Then try framework-agnostic types
 	for _, mapping := range typeRegistry {
 		if mapping.ObjCType == objcType && mapping.Framework == "" {
+			// Debug for our types
+			if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+				fmt.Fprintf(os.Stderr, "[DEBUG] framework-agnostic loop: objcType=%q mapping.GoType=%q equal=%v\n",
+					objcType, mapping.GoType, mapping.GoType == objcType)
+			}
+			// If GoType equals ObjCType (identity mapping), strip the prefix
+			if mapping.GoType == objcType {
+				stripped := occ2go.StripObjCPrefix(objcType)
+				if stripped != objcType {
+					return stripped, true
+				}
+			}
 			return mapping.GoType, true
 		}
 	}
@@ -120,6 +177,19 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 	// (geometry types from Foundation are used in AppKit, etc.)
 	for _, mapping := range typeRegistry {
 		if mapping.ObjCType == objcType {
+			// Debug for our types
+			if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+				fmt.Fprintf(os.Stderr, "[DEBUG] typeRegistry loop: objcType=%q mapping.GoType=%q mapping.Framework=%q currentFramework=%q equal=%v\n",
+					objcType, mapping.GoType, mapping.Framework, framework, mapping.GoType == objcType)
+			}
+			// If GoType equals ObjCType (identity mapping), strip the prefix
+			if mapping.GoType == objcType {
+				stripped := occ2go.StripObjCPrefix(objcType)
+				if stripped != objcType {
+					// Return stripped type without framework qualification
+					return stripped, true
+				}
+			}
 			Debug.TypeMap("typeRegistry match", objcType, mapping.GoType,
 				"objcType", objcType,
 				"goType", mapping.GoType,
@@ -243,6 +313,10 @@ func lookupTypeMapping(objcType, framework string) (string, bool) {
 		// Check if it's a struct in the current framework
 		// Structs keep their full names with prefix (e.g., CGSize not Size)
 		if currentFrameworkStructs[strippedType] {
+			// Debug for our types
+			if strings.Contains(objcType, "HashTable") || strings.Contains(objcType, "MapTable") || strings.Contains(objcType, "EdgeInsets") {
+				fmt.Fprintf(os.Stderr, "[DEBUG] found in currentFrameworkStructs: objcType=%q strippedType=%q\n", objcType, strippedType)
+			}
 			Debug.TypeMap("found in current framework structs", objcType, objcType,
 				"framework", framework,
 				"returning", "ORIGINAL name with prefix")

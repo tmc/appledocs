@@ -536,6 +536,30 @@ func (g *Generator) prepare() {
 	}
 	g.Typedefs = deduplicatedTypedefs
 
+	// Add synthetic typedefs from config.yaml
+	// These are types that should be defined but aren't documented by Apple
+	if config != nil && config.SyntheticTypedefs != nil {
+		if syntheticTypedefs, ok := config.SyntheticTypedefs[g.Framework]; ok {
+			for _, st := range syntheticTypedefs {
+				// Check if typedef already exists
+				exists := false
+				for _, td := range g.Typedefs {
+					if td.Name == st.Name {
+						exists = true
+						break
+					}
+				}
+				if !exists {
+					g.Typedefs = append(g.Typedefs, &occ2go.ParsedTypedef{
+						Name:     st.Name,
+						BaseType: st.BaseType,
+						Abstract: st.Abstract,
+					})
+				}
+			}
+		}
+	}
+
 	// Deduplicate structs by name and fields within each struct
 	structsSeen := make(map[string]*occ2go.ParsedStruct)
 	deduplicatedStructs := make([]*occ2go.ParsedStruct, 0, len(g.Structs))

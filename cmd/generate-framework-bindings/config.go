@@ -9,9 +9,17 @@ import (
 
 // Config represents the configuration for framework binding generation.
 type Config struct {
-	UnsafeSelectorPatterns         []string                   `yaml:"unsafe_selector_patterns"`
-	unsafeSelectorPatternsCompiled []*regexp.Regexp           // Compiled patterns
-	Frameworks                     map[string]FrameworkConfig `yaml:"frameworks"`
+	UnsafeSelectorPatterns         []string                            `yaml:"unsafe_selector_patterns"`
+	unsafeSelectorPatternsCompiled []*regexp.Regexp                    // Compiled patterns
+	SyntheticTypedefs              map[string][]SyntheticTypedefConfig `yaml:"synthetic_typedefs"`
+	Frameworks                     map[string]FrameworkConfig          `yaml:"frameworks"`
+}
+
+// SyntheticTypedefConfig represents a typedef to be injected into generated code.
+type SyntheticTypedefConfig struct {
+	Name     string `yaml:"name"`
+	BaseType string `yaml:"base_type"`
+	Abstract string `yaml:"abstract"`
 }
 
 // FrameworkConfig represents configuration for a specific framework.

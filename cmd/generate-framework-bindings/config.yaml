@@ -42,6 +42,16 @@ unsafe_selector_patterns:
   - selectable$          # selectable and isSelectable crash (UI selection protocol)
   - ^finalizeforwebscript$  # WebScript protocol method (exact match)
 
+# Synthetic typedefs to inject into generated code
+# These are types that should be defined but aren't documented by Apple
+# NOTE: Names should NOT include the framework prefix (CG/CF/NS) as it will be stripped by the template
+synthetic_typedefs:
+  CoreFoundation:
+    - name: CGFloat
+      base_type: double
+      abstract: "A type for floating-point scalar values in Core Graphics and related frameworks."
+      comment: "Maps to 'type Float = float64' after prefix stripping"
+
 frameworks:
   Foundation:
     # Classes that should not have test examples generated (e.g., require parameters)
