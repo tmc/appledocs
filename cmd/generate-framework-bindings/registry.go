@@ -372,8 +372,12 @@ func GetImportPathFromType(goType string) string {
 	}
 
 	if pkgName == "objc" {
-		// objc.* types come from purego/objc package
-		return "github.com/ebitengine/purego/objc"
+		// objc.* types come from our wrapper package (generated/objc)
+		// This is the cached selector wrapper, not a framework
+		if globalRegistry != nil {
+			return globalRegistry.baseModule + "/objc"
+		}
+		return ""
 	}
 
 	if globalRegistry == nil {

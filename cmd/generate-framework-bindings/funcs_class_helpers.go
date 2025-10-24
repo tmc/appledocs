@@ -16,6 +16,10 @@ import (
 // Returns the fully-qualified parent interface name (e.g., "foundation.IMutableAttributedString" or "objectivec.IObject").
 func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 	if class == nil {
+		// Use unqualified IObject when in the objectivec package
+		if framework == "ObjectiveC" {
+			return "IObject"
+		}
 		return "objectivec.IObject"
 	}
 
@@ -27,7 +31,8 @@ func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 		if className == "NSObject" {
 			return ""
 		}
-		return "objectivec.IObject"
+		// When we're IN the objectivec package, use unqualified IObject
+		return "IObject"
 	}
 
 	// Check if class has a superclass (other than NSObject)
@@ -36,6 +41,9 @@ func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 
 		// Check for self-referential case (class inherits from itself - edge case)
 		if superStructName == structName {
+			if framework == "ObjectiveC" {
+				return "IObject"
+			}
 			return "objectivec.IObject"
 		}
 
@@ -43,8 +51,11 @@ func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 		superResolved := resolveType(framework, superStructName)
 
 		// If superclass resolves to unsafe.Pointer, it means the parent class doesn't exist
-		// Fall back to objectivec.IObject instead
+		// Fall back to IObject instead
 		if superResolved == "unsafe.Pointer" {
+			if framework == "ObjectiveC" {
+				return "IObject"
+			}
 			return "objectivec.IObject"
 		}
 
@@ -73,7 +84,10 @@ func getInterfaceParent(class *occ2go.ParsedClass, framework string) string {
 		return "I" + superStructName
 	}
 
-	// Default: inherit from objectivec.IObject
+	// Default: inherit from IObject
+	if framework == "ObjectiveC" {
+		return "IObject"
+	}
 	return "objectivec.IObject"
 }
 

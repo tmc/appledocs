@@ -407,6 +407,11 @@ func getClassImportPaths(class *occ2go.ParsedClass, framework, outputModule stri
 		}
 	}
 
+	// Filter out objc import - it's hardcoded in class.gen.go template
+	// to avoid duplicate imports
+	objcImportPath := outputModule + "/objc"
+	delete(imports, objcImportPath)
+
 	return imports
 }
 
