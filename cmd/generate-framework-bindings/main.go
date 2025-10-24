@@ -738,6 +738,55 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 		}
 
+		// Third pass: collect methods for each protocol
+		phaseStart = time.Now()
+		if len(protocols) > 0 {
+			protocolMethodsMap := make(map[string][]*occ2go.ParsedMethod)
+			protocolSeenSelectors := make(map[string]map[string]bool)
+			protocolMethodCount := 0
+			for _, doc := range appledocs.Symbols(fsys, framework) {
+				externalID := doc.Metadata.ExternalID
+				if strings.HasPrefix(externalID, "c:objc(pl)") && (strings.Contains(externalID, "(im)") || strings.Contains(externalID, "(cm)")) {
+					method, err := occ2go.ParseMethod(doc)
+					if err == nil && method != nil {
+						parts := strings.Split(externalID, "(")
+						if len(parts) >= 2 {
+							protocolName := strings.TrimPrefix(parts[1], "pl)")
+							if protocolSeenSelectors[protocolName] == nil {
+								protocolSeenSelectors[protocolName] = make(map[string]bool)
+							}
+							methodKey := method.Selector
+							if method.IsClassMethod {
+								methodKey = "class:" + methodKey
+							} else {
+								methodKey = "instance:" + methodKey
+							}
+							if !protocolSeenSelectors[protocolName][methodKey] {
+								protocolMethodsMap[protocolName] = append(protocolMethodsMap[protocolName], method)
+								protocolSeenSelectors[protocolName][methodKey] = true
+								protocolMethodCount++
+							}
+						}
+					}
+				}
+			}
+			for i := range protocols {
+				if methods, ok := protocolMethodsMap[protocols[i].Name]; ok {
+					for _, method := range methods {
+						if method.IsOptional {
+							protocols[i].OptionalMethods = append(protocols[i].OptionalMethods, method)
+						} else {
+							protocols[i].RequiredMethods = append(protocols[i].RequiredMethods, method)
+						}
+					}
+				}
+			}
+			if verbose {
+				fmt.Fprintf(os.Stderr, "Found %d methods for %d protocols\n", protocolMethodCount, len(protocols))
+				fmt.Fprintf(os.Stderr, "[%s] Collected protocol methods in %.2fs\n", framework, time.Since(phaseStart).Seconds())
+			}
+		}
+
 		// Attach enum cases to enums
 		phaseStart = time.Now()
 		if len(enums) > 0 {

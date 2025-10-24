@@ -49,6 +49,7 @@ type ParsedMethod struct {
 	Selector      string // Objective-C selector (e.g., "initWithFrame:")
 	IsClassMethod bool   // true for class methods (+), false for instance methods (-)
 	IsInitializer bool   // true if this is an initializer (symbolKind == "init" in docs)
+	IsOptional    bool   // true if this is an @optional protocol method
 	ReturnType    string // Objective-C return type
 	Parameters    []Parameter
 	Comment       string
@@ -72,11 +73,13 @@ type ParsedProperty struct {
 
 // ParsedProtocol represents an Objective-C protocol declaration.
 type ParsedProtocol struct {
-	Name         string
-	Comment      string
-	Availability Availability
-	DocURL       string
-	Abstract     string
+	Name            string
+	RequiredMethods []*ParsedMethod // Methods marked as @required (or implicitly required)
+	OptionalMethods []*ParsedMethod // Methods marked as @optional
+	Comment         string
+	Availability    Availability
+	DocURL          string
+	Abstract        string
 }
 
 // ParsedEnum represents an Objective-C enum type declaration.

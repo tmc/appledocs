@@ -312,6 +312,24 @@ func ExtractAvailability(platforms []appledocs.Platform) Availability {
 	return avail
 }
 
+// GetSwiftVariant returns the Swift declaration tokens from the document.
+func GetSwiftVariant(doc *appledocs.Document) []appledocs.Token {
+	for _, section := range doc.PrimaryContentSections {
+		if section.Kind == "declarations" {
+			for _, decl := range section.Declarations {
+				for _, lang := range decl.Languages {
+					if lang == "swift" {
+						if len(decl.Tokens) > 0 {
+							return decl.Tokens
+						}
+					}
+				}
+			}
+		}
+	}
+	return nil
+}
+
 // GetObjectiveCVariant extracts Objective-C tokens from document variants.
 func GetObjectiveCVariant(doc *appledocs.Document) []appledocs.Token {
 	for _, variant := range doc.VariantOverrides {
@@ -774,6 +792,18 @@ func ParseMethod(doc *appledocs.Document) (*ParsedMethod, error) {
 		return nil, fmt.Errorf("not a method: %s", externalID)
 	}
 
+	// Check Swift variant for optional keyword
+	isOptional := false
+	swiftTokens := GetSwiftVariant(doc)
+	if swiftTokens != nil {
+		for i := 0; i < len(swiftTokens)-1; i++ {
+			if swiftTokens[i].Kind == "keyword" && swiftTokens[i].Text == "optional" {
+				isOptional = true
+				break
+			}
+		}
+	}
+
 	// Get Objective-C variant tokens
 	tokens := GetObjectiveCVariant(doc)
 	if tokens == nil {
@@ -799,6 +829,7 @@ func ParseMethod(doc *appledocs.Document) (*ParsedMethod, error) {
 	method.DocURL = docURL
 	method.Abstract = abstract
 	method.IsInitializer = (doc.Metadata.SymbolKind == "init")
+	method.IsOptional = isOptional
 
 	return method, nil
 }
