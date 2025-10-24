@@ -28,7 +28,7 @@ type _ProtocolClass struct {
 
 // An interface definition for the [Protocol] class.
 type IProtocol interface {
-	objectivec.IObject
+	IObject
 	// properties:
 	// methods:
 }

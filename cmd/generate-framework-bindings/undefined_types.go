@@ -309,21 +309,21 @@ func (g *Generator) getDefinedTypes() map[string]bool {
 	// in undefined_types.gen.go (fixes duplicate IMP issue)
 	if g.Framework == "ObjectiveC" || g.Framework == "objectivec" {
 		for _, name := range []string{
-			"IMP",                            // function pointer: void (*)(void)
-			"Category",                       // opaque type
-			"Ivar",                           // opaque type
-			"Method",                         // opaque type
-			"objc_exception_handler",         // function pointer
-			"objc_exception_matcher",         // function pointer
-			"objc_exception_preprocessor",    // function pointer
-			"objc_func_loadImage",            // function pointer
-			"objc_hook_getClass",             // function pointer
-			"objc_hook_getImageName",         // function pointer
-			"objc_hook_lazyClassNamer",       // function pointer
-			"objc_objectptr_t",               // pointer type
-			"objc_property_t",                // opaque type
+			"IMP",                             // function pointer: void (*)(void)
+			"Category",                        // opaque type
+			"Ivar",                            // opaque type
+			"Method",                          // opaque type
+			"objc_exception_handler",          // function pointer
+			"objc_exception_matcher",          // function pointer
+			"objc_exception_preprocessor",     // function pointer
+			"objc_func_loadImage",             // function pointer
+			"objc_hook_getClass",              // function pointer
+			"objc_hook_getImageName",          // function pointer
+			"objc_hook_lazyClassNamer",        // function pointer
+			"objc_objectptr_t",                // pointer type
+			"objc_property_t",                 // opaque type
 			"objc_uncaught_exception_handler", // function pointer
-			"objc_zone_t",                    // pointer type
+			"objc_zone_t",                     // pointer type
 		} {
 			defined[name] = true
 		}

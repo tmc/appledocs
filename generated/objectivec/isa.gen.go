@@ -28,7 +28,7 @@ type _isaClass struct {
 
 // An interface definition for the [isa] class.
 type Iisa interface {
-	objectivec.IObject
+	IObject
 	// properties:
 	// methods:
 }

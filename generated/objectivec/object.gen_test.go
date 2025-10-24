@@ -15,4 +15,3 @@ func ExampleNewObject() {
 	_ = objectivec.NewObject()
 	// Output:
 }
-

@@ -19,11 +19,13 @@ type FrameworkSummary struct {
 	ProtocolCount      int            `json:"protocol_count"`
 	EnumCount          int            `json:"enum_count"`
 	StructCount        int            `json:"struct_count"`
+	TypedefCount       int            `json:"typedef_count"`
 	TypeAliasCount     int            `json:"type_alias_count"`
 	FunctionCount      int            `json:"function_count"`
 	MethodCount        int            `json:"method_count"`
 	PropertyCount      int            `json:"property_count"`
 	ConstantCount      int            `json:"constant_count"`
+	DeprecatedCount    int            `json:"deprecated_count"`
 	TotalSymbols       int            `json:"total_symbols"`
 	TotalMethods       int            `json:"total_methods"`
 	TotalProperties    int            `json:"total_properties"`
@@ -158,7 +160,11 @@ func generateFrameworkSummary(cacheDir, framework string, jsonOutput bool) error
 					summary.EnumCount++
 				case "struct":
 					summary.StructCount++
-				case "typealias", "tdef":
+				case "tdef":
+					// Typedef (C-style type definition)
+					summary.TypedefCount++
+				case "typealias":
+					// Type alias (Swift-style)
 					summary.TypeAliasCount++
 				case "func":
 					// Only count actual functions, not methods
@@ -172,6 +178,11 @@ func generateFrameworkSummary(cacheDir, framework string, jsonOutput bool) error
 				case "var", "data":
 					summary.ConstantCount++
 				}
+			}
+
+			// Check for deprecated status
+			if deprecated, ok := metadata["deprecated"].(bool); ok && deprecated {
+				summary.DeprecatedCount++
 			}
 
 			// Check for methods/properties in the document
@@ -262,11 +273,15 @@ func printFrameworkSummary(s FrameworkSummary) {
 	fmt.Printf("  Protocols:        %d\n", s.ProtocolCount)
 	fmt.Printf("  Enums:            %d\n", s.EnumCount)
 	fmt.Printf("  Structs:          %d\n", s.StructCount)
+	fmt.Printf("  Typedefs:         %d\n", s.TypedefCount)
 	fmt.Printf("  Type Aliases:     %d\n", s.TypeAliasCount)
 	fmt.Printf("  Functions:        %d\n", s.FunctionCount)
 	fmt.Printf("  Methods:          %d\n", s.MethodCount)
 	fmt.Printf("  Properties:       %d\n", s.PropertyCount)
 	fmt.Printf("  Constants:        %d\n", s.ConstantCount)
+	if s.DeprecatedCount > 0 {
+		fmt.Printf("  Deprecated:       %d\n", s.DeprecatedCount)
+	}
 	fmt.Printf("  %s\n", strings.Repeat("-", 38))
 	fmt.Printf("  Total Symbols:    %d\n", s.TotalSymbols)
 	fmt.Printf("\n")
