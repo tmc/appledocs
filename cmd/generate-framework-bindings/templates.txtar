@@ -56,7 +56,9 @@
 {{if gt .ProtocolCount 0 -}}
 {{- range .Protocols}}
 #-- {{protocolFileName .Name}} --
-{{template "protocol.gen.go" (dict "Generator" $ "Protocol" . "Framework" $.Framework "PackageName" $.PackageName)}}{{end}}{{end}}
+{{template "protocol.gen.go" (dict "Generator" $ "Protocol" . "Framework" $.Framework "PackageName" $.PackageName)}}
+#-- {{protocolInterfaceFileName .Name}} --
+{{template "protocol_interface.gen.go" (dict "Generator" $ "Protocol" . "Framework" $.Framework "PackageName" $.PackageName)}}{{end}}{{end}}
 {{if .GenerateTests -}}
 #-- functions.gen_test.go --
 {{template "functions.gen_test.go" .}}
@@ -863,6 +865,178 @@ var {{$protocolVarName}}Protocol *objc.Protocol
 func init() {
 	{{$protocolVarName}}Protocol = objc.GetProtocol("{{.Name}}")
 }
+{{- end -}}
+-- protocol_interface.gen.go --
+// Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.
+
+package {{.PackageName}}
+
+{{- with .Protocol}}
+{{- $hasUnsafePointer := false}}
+{{- $hasObjc := false}}
+{{- range .RequiredMethods}}
+  {{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
+  {{- if eq $goType "unsafe.Pointer"}}{{$hasUnsafePointer = true}}{{end}}
+  {{- if or (hasPrefix $goType "objc.") (hasPrefix $goType "IObject")}}{{$hasObjc = true}}{{end}}
+  {{- range .Parameters}}
+    {{- $paramGoType := mapObjCTypeToGo .Type $.Framework}}
+    {{- if eq $paramGoType "unsafe.Pointer"}}{{$hasUnsafePointer = true}}{{end}}
+    {{- if or (hasPrefix $paramGoType "objc.") (hasPrefix $paramGoType "IObject")}}{{$hasObjc = true}}{{end}}
+  {{- end}}
+{{- end}}
+{{- range .OptionalMethods}}
+  {{- $goType := mapObjCTypeToGo .ReturnType $.Framework}}
+  {{- if eq $goType "unsafe.Pointer"}}{{$hasUnsafePointer = true}}{{end}}
+  {{- if or (hasPrefix $goType "objc.") (hasPrefix $goType "IObject")}}{{$hasObjc = true}}{{end}}
+  {{- range .Parameters}}
+    {{- $paramGoType := mapObjCTypeToGo .Type $.Framework}}
+    {{- if eq $paramGoType "unsafe.Pointer"}}{{$hasUnsafePointer = true}}{{end}}
+    {{- if or (hasPrefix $paramGoType "objc.") (hasPrefix $paramGoType "IObject")}}{{$hasObjc = true}}{{end}}
+  {{- end}}
+{{- end}}
+{{- if or $hasUnsafePointer $hasObjc}}
+
+import (
+{{- if $hasUnsafePointer}}
+	"unsafe"
+{{- end}}
+{{- if $hasObjc}}
+
+	"github.com/tmc/appledocs/generated/objc"
+{{- end}}
+)
+{{- end}}
+{{- end}}
+
+{{with .Protocol -}}
+{{$proto := . -}}
+{{- $framework := $.Framework -}}
+{{- $protocolInterfaceName := printf "P%s" (stripNSPrefix .Name) -}}
+// {{$protocolInterfaceName}} is the {{.Name}} protocol interface.
+{{- if .Abstract}}
+//
+// {{.Abstract}}
+{{- end}}
+{{- if not .Availability.IsEmpty}}
+//
+// Availability:
+{{- range .Availability.Platforms}}
+//   - {{.}} {{index $proto.Availability.IntroducedAt .}}+{{if $proto.Availability.Beta}} (Beta){{else}}{{if index $proto.Availability.DeprecatedAt .}} (Deprecated in {{index $proto.Availability.DeprecatedAt .}}){{end}}{{end}}
+{{- end}}
+{{- end}}
+{{- if .DocURL}}
+//
+// See: {{.DocURL}}
+{{- end}}
+type {{$protocolInterfaceName}} interface {
+{{- if .RequiredMethods}}
+	// Required methods
+{{- range .RequiredMethods}}
+	{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $hasReturnValue := and (ne .ReturnType "") (ne .ReturnType "void")}}
+	{{.Name}}({{formatMethodParams .}}){{if $hasReturnValue}} {{$goReturnType}}{{end}}
+{{- end}}
+{{- end}}
+{{- if .OptionalMethods}}
+	{{- if .RequiredMethods}}
+
+	{{- end}}
+	// Optional methods
+{{- range .OptionalMethods}}
+	{{- $goReturnType := mapObjCTypeToGo .ReturnType $framework}}
+	{{- $hasReturnValue := and (ne .ReturnType "") (ne .ReturnType "void")}}
+	{{.Name}}({{formatMethodParams .}}){{if $hasReturnValue}} {{$goReturnType}}{{end}}
+	Has{{.Name}}() bool
+{{- end}}
+{{- end}}
+}
+
+{{- /* Generate builder struct for delegate/datasource protocols only */}}
+{{- if or (hasSuffix .Name "Delegate") (hasSuffix .Name "DataSource")}}
+{{- $builderName := stripNSPrefix .Name}}
+
+// {{$builderName}} is a delegate implementation builder for the {{$protocolInterfaceName}} protocol.
+//
+// Use this struct to create a custom delegate by setting handler functions for the methods you want to implement.
+type {{$builderName}} struct {
+{{- range .OptionalMethods}}
+	_{{.Name}} func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}
+{{- end}}
+{{- range .RequiredMethods}}
+	_{{.Name}} func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}
+{{- end}}
+}
+
+{{- /* Generate Set*() methods for all protocol methods */}}
+{{- range .OptionalMethods}}
+
+// Set{{.Name}} sets the handler for the {{.Name}} delegate method.
+{{- if .Abstract}}
+//
+// {{.Abstract}}
+{{- end}}
+func (d *{{$builderName}}) Set{{.Name}}(f func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}) {
+	d._{{.Name}} = f
+}
+{{- end}}
+{{- range .RequiredMethods}}
+
+// Set{{.Name}} sets the handler for the {{.Name}} delegate method.
+{{- if .Abstract}}
+//
+// {{.Abstract}}
+{{- end}}
+func (d *{{$builderName}}) Set{{.Name}}(f func({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}}) {
+	d._{{.Name}} = f
+}
+{{- end}}
+
+{{- /* Generate method implementations that call function fields */}}
+{{- range .OptionalMethods}}
+
+// {{.Name}} implements the {{$protocolInterfaceName}} interface.
+func (d *{{$builderName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}} {
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	if d._{{.Name}} != nil {
+		return d._{{.Name}}({{formatMethodParamNames .}})
+	}
+	var zero {{mapObjCTypeToGo .ReturnType $framework}}
+	return zero
+	{{- else}}
+	if d._{{.Name}} != nil {
+		d._{{.Name}}({{formatMethodParamNames .}})
+	}
+	{{- end}}
+}
+
+// Has{{.Name}} returns true if a handler for {{.Name}} has been set.
+func (d *{{$builderName}}) Has{{.Name}}() bool {
+	return d._{{.Name}} != nil
+}
+{{- end}}
+{{- range .RequiredMethods}}
+
+// {{.Name}} implements the {{$protocolInterfaceName}} interface.
+func (d *{{$builderName}}) {{.Name}}({{formatMethodParams .}}){{if and (ne .ReturnType "") (ne .ReturnType "void")}} {{mapObjCTypeToGo .ReturnType $framework}}{{end}} {
+	{{- if and (ne .ReturnType "") (ne .ReturnType "void")}}
+	if d._{{.Name}} != nil {
+		return d._{{.Name}}({{formatMethodParamNames .}})
+	}
+	var zero {{mapObjCTypeToGo .ReturnType $framework}}
+	return zero
+	{{- else}}
+	if d._{{.Name}} != nil {
+		d._{{.Name}}({{formatMethodParamNames .}})
+	}
+	{{- end}}
+}
+
+// Has{{.Name}} returns true if a handler for {{.Name}} has been set.
+func (d *{{$builderName}}) Has{{.Name}}() bool {
+	return d._{{.Name}} != nil
+}
+{{- end}}
+{{- end}}
 {{- end -}}
 -- methods.gen.go --
 // Code generated from Apple documentation for {{.Framework}}. DO NOT EDIT.

@@ -10,6 +10,7 @@ type _undefined = int
 // Undefined types - referenced but not defined in documentation
 type (
 	Class = _undefined // referenced in ObjectiveC
+	MethodSignature = _undefined // referenced in ObjectiveC
 )
 
 

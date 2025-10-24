@@ -209,15 +209,11 @@ func (o_ Object) SetAccessibilityAttributedLabelBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabels
-func (o_ Object) AccessibilityAttributedUserInputLabels() []IObject {
-	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityAttributedUserInputLabels"))
-	result := make([]IObject, len(rv))
-	for i, id := range rv {
-		result[i] = Object{ID: id}
-	}
-	return result
+func (o_ Object) AccessibilityAttributedUserInputLabels() []objc.ID {
+	rv := objc.Send[[]foundation.AttributedString](o_.ID, objc.Sel("accessibilityAttributedUserInputLabels"))
+	return rv
 }
-func (o_ Object) SetAccessibilityAttributedUserInputLabels(value []IObject) {
+func (o_ Object) SetAccessibilityAttributedUserInputLabels(value []objc.ID) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityAttributedUserInputLabels:"), value)
 }
 
@@ -275,15 +271,11 @@ func (o_ Object) SetAccessibilityContainerTypeBlock(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActions
-func (o_ Object) AccessibilityCustomActions() []IObject {
-	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityCustomActions"))
-	result := make([]IObject, len(rv))
-	for i, id := range rv {
-		result[i] = Object{ID: id}
-	}
-	return result
+func (o_ Object) AccessibilityCustomActions() []objc.ID {
+	rv := objc.Send[[]appkit.AccessibilityCustomAction](o_.ID, objc.Sel("accessibilityCustomActions"))
+	return rv
 }
-func (o_ Object) SetAccessibilityCustomActions(value []IObject) {
+func (o_ Object) SetAccessibilityCustomActions(value []objc.ID) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityCustomActions:"), value)
 }
 
@@ -299,15 +291,11 @@ func (o_ Object) SetAccessibilityCustomActionsBlock(value unsafe.Pointer) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotors
-func (o_ Object) AccessibilityCustomRotors() []IObject {
-	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityCustomRotors"))
-	result := make([]IObject, len(rv))
-	for i, id := range rv {
-		result[i] = Object{ID: id}
-	}
-	return result
+func (o_ Object) AccessibilityCustomRotors() []objc.ID {
+	rv := objc.Send[[]appkit.AccessibilityCustomRotor](o_.ID, objc.Sel("accessibilityCustomRotors"))
+	return rv
 }
-func (o_ Object) SetAccessibilityCustomRotors(value []IObject) {
+func (o_ Object) SetAccessibilityCustomRotors(value []objc.ID) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityCustomRotors:"), value)
 }
 
@@ -345,11 +333,11 @@ func (o_ Object) SetAccessibilityDirectTouchOptions(value IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDragSourceDescriptors
-func (o_ Object) AccessibilityDragSourceDescriptors() []IObject {
-	rv := objc.Send[[]Object](o_.ID, objc.Sel("accessibilityDragSourceDescriptors"))
+func (o_ Object) AccessibilityDragSourceDescriptors() []objc.ID {
+	rv := objc.Send[[]IObject](o_.ID, objc.Sel("accessibilityDragSourceDescriptors"))
 	return rv
 }
-func (o_ Object) SetAccessibilityDragSourceDescriptors(value []IObject) {
+func (o_ Object) SetAccessibilityDragSourceDescriptors(value []objc.ID) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityDragSourceDescriptors:"), value)
 }
 
@@ -357,11 +345,11 @@ func (o_ Object) SetAccessibilityDragSourceDescriptors(value []IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityDropPointDescriptors
-func (o_ Object) AccessibilityDropPointDescriptors() []IObject {
-	rv := objc.Send[[]Object](o_.ID, objc.Sel("accessibilityDropPointDescriptors"))
+func (o_ Object) AccessibilityDropPointDescriptors() []objc.ID {
+	rv := objc.Send[[]IObject](o_.ID, objc.Sel("accessibilityDropPointDescriptors"))
 	return rv
 }
-func (o_ Object) SetAccessibilityDropPointDescriptors(value []IObject) {
+func (o_ Object) SetAccessibilityDropPointDescriptors(value []objc.ID) {
 	o_.ID.Send(objc.RegisterName("setAccessibilityDropPointDescriptors:"), value)
 }
 

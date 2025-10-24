@@ -138,7 +138,7 @@ type IObject interface {
 	ImageTitle() IObject
 	ImageUID() IObject
 	ImageVersion() uint
-	IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) []IObject
+	IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) []objc.ID
 	InputTextClient(string_ IObject, sender IObject) bool
 	InputTextKeyModifiersClient(string_ IObject, keyCode objc.IObject /* cross-framework: Integer */, flags uint, sender IObject) bool
 	InsertValueAtIndexInPropertyWithKey(value IObject, index uint, key IObject)
@@ -154,7 +154,7 @@ type IObject interface {
 	IsLike(object IObject) bool
 	IsNotEqualTo(object IObject) bool
 	MethodForSelector(aSelector objc.SEL) IMP
-	MethodSignatureForSelector(aSelector objc.SEL) IObject
+	MethodSignatureForSelector(aSelector objc.SEL) MethodSignature /* not a class type */
 	MutableArrayValueForKey(key IObject) IObject
 	MutableArrayValueForKeyPath(keyPath IObject) IObject
 	MutableOrderedSetValueForKey(key IObject) IObject
@@ -164,7 +164,7 @@ type IObject interface {
 	NewScriptingObjectOfClassForValueForKeyWithContentsValueProperties(objectClass objc.Class, key IObject, contentsValue IObject, properties IObject) IObject
 	NumberOfGroupsInImageBrowser(aBrowser IObject) uint
 	NumberOfItemsInImageBrowser(aBrowser IObject) uint
-	OptionDescriptionsForBinding(binding string) []IObject
+	OptionDescriptionsForBinding(binding string) []objc.ID
 	OriginalString(sender IObject) IObject
 	PerformSelectorOnThreadWithObjectWaitUntilDone(aSelector objc.SEL, thr IObject, arg IObject, wait bool)
 	PerformSelectorOnThreadWithObjectWaitUntilDoneModes(aSelector objc.SEL, thr IObject, arg IObject, wait bool, array []string)
@@ -411,8 +411,8 @@ func (oc _ObjectClass) InstanceMethodForSelector(aSelector objc.SEL) IMP {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/instanceMethodSignatureForSelector:
-func (oc _ObjectClass) InstanceMethodSignatureForSelector(aSelector objc.SEL) IObject {
-	rv := objc.Send[Object](objc.ID(oc.class), objc.Sel("instanceMethodSignatureForSelector:"), aSelector)
+func (oc _ObjectClass) InstanceMethodSignatureForSelector(aSelector objc.SEL) MethodSignature /* not a class type */ {
+	rv := objc.Send[MethodSignature](objc.ID(oc.class), objc.Sel("instanceMethodSignatureForSelector:"), aSelector)
 	return rv
 }
 
@@ -1333,13 +1333,9 @@ func (o_ Object) ImageVersion() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/indicesOfObjects(byEvaluatingObjectSpecifier:)
-func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) []IObject {
-	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("indicesOfObjectsByEvaluatingObjectSpecifier:"), specifier)
-	result := make([]IObject, len(rv))
-	for i, id := range rv {
-		result[i] = Object{ID: id}
-	}
-	return result
+func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) []objc.ID {
+	rv := objc.Send[[]foundation.Number](o_.ID, objc.Sel("indicesOfObjectsByEvaluatingObjectSpecifier:"), specifier)
+	return rv
 }
 
 
@@ -1505,8 +1501,8 @@ func (o_ Object) MethodForSelector(aSelector objc.SEL) IMP {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/methodSignatureForSelector:
-func (o_ Object) MethodSignatureForSelector(aSelector objc.SEL) IObject {
-	rv := objc.Send[Object](o_.ID, objc.Sel("methodSignatureForSelector:"), aSelector)
+func (o_ Object) MethodSignatureForSelector(aSelector objc.SEL) MethodSignature /* not a class type */ {
+	rv := objc.Send[MethodSignature](o_.ID, objc.Sel("methodSignatureForSelector:"), aSelector)
 	return rv
 }
 
@@ -1614,13 +1610,9 @@ func (o_ Object) ObserveValueForKeyPathOfObjectChangeContext(keyPath IObject, ob
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/optionDescriptionsForBinding(_:)
-func (o_ Object) OptionDescriptionsForBinding(binding string) []IObject {
-	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("optionDescriptionsForBinding:"), objc.String(binding))
-	result := make([]IObject, len(rv))
-	for i, id := range rv {
-		result[i] = Object{ID: id}
-	}
-	return result
+func (o_ Object) OptionDescriptionsForBinding(binding string) []objc.ID {
+	rv := objc.Send[[]coredata.AttributeDescription](o_.ID, objc.Sel("optionDescriptionsForBinding:"), objc.String(binding))
+	return rv
 }
 
 
