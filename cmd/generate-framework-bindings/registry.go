@@ -366,9 +366,14 @@ func GetImportPathFromType(goType string) string {
 		return ""
 	}
 
-	// Special cases that don't need imports
-	if pkgName == "unsafe" || pkgName == "objc" {
-		return ""
+	// Special cases
+	if pkgName == "unsafe" {
+		return "" // unsafe is built-in, no import needed
+	}
+
+	if pkgName == "objc" {
+		// objc.* types come from purego/objc package
+		return "github.com/ebitengine/purego/objc"
 	}
 
 	if globalRegistry == nil {
