@@ -151,6 +151,25 @@ func extractJSONURLsFromValue(v interface{}, urls *[]string) {
 		}
 
 		for k, v := range val {
+			// Check if this is an identifiers array (used in topicSections)
+			if k == "identifiers" && v != nil {
+				if identifiers, ok := v.([]interface{}); ok {
+					for _, id := range identifiers {
+						if idStr, ok := id.(string); ok && strings.HasPrefix(idStr, "doc://") {
+							// Convert doc:// URL to a JSON path
+							docPath := strings.TrimPrefix(idStr, "doc://")
+							parts := strings.SplitN(docPath, "/", 2)
+							if len(parts) > 1 {
+								jsonURL := parts[1] + ".json"
+								*urls = append(*urls, jsonURL)
+							}
+						}
+					}
+					// Don't recurse into identifiers array, we've already processed it
+					continue
+				}
+			}
+
 			// Check if this is a URL field that points to a JSON file
 			if (k == "url" || strings.HasSuffix(k, "URL") || strings.HasSuffix(k, "Uri")) &&
 				v != nil {

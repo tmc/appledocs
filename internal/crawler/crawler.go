@@ -133,7 +133,13 @@ func (c *Crawler) Run(ctx context.Context, cfg *Config) error {
 	// Extract the base path from entry point (e.g., /tutorials/data/documentation/foundation/NSOutputStream.json
 	// becomes /tutorials/data/documentation/foundation/nsoutputstream)
 	if parsed, err := url.Parse(cfg.EntryPoint); err == nil {
-		basePath := strings.TrimSuffix(parsed.Path, ".json")
+		basePath := parsed.Path
+		// If EntryPoint is just a framework name (e.g., "CoreVideo"), expand it to full path
+		if basePath == "" || (!strings.HasPrefix(basePath, "/") && !strings.Contains(basePath, "/")) {
+			// Entry point is just framework name, construct path
+			basePath = "/tutorials/data/documentation/" + cfg.EntryPoint
+		}
+		basePath = strings.TrimSuffix(basePath, ".json")
 		basePath = strings.TrimSuffix(basePath, "/index")
 		c.entryPointPrefix = strings.ToLower(basePath)
 		if cfg.Verbose {
