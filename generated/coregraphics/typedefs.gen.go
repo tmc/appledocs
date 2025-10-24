@@ -233,8 +233,7 @@ type FontRef uintptr
 // FontIndex - An index into a font table.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFontIndex
-// CGFontIndex has base type: unsigned short
-type FontIndex uintptr
+type FontIndex uint16
 // FunctionRef - A general facility for defining and using callback functions.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGFunction
@@ -457,7 +456,7 @@ type RectCount uintptr
 // RefreshRate - A display’s refresh rate in frames per second.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRefreshRate
-type RefreshRate float64
+type RefreshRate = float64
 // RenderingBufferProviderRef type alias
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGRenderingBufferProvider
