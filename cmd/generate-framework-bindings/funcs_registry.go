@@ -141,6 +141,7 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 	// CoreFoundation geometry types (used by CoreGraphics but defined in CoreFoundation)
 	// See https://developer.apple.com/documentation/CoreGraphics - "Geometric Data Types" section
 	// explicitly shows these types are defined in CoreFoundation package
+	// IMPORTANT: These overrides must happen UNCONDITIONALLY to fix incorrect registrations
 	coreFoundationGeometryTypes := []string{
 		"CGPoint",
 		"CGSize",
@@ -150,6 +151,7 @@ func buildCrossFrameworkTypeRegistry(outputDir string) error {
 		"CGFloat", // Also from CoreFoundation
 	}
 	for _, typeName := range coreFoundationGeometryTypes {
+		// Unconditionally set to corefoundation (overwrite any previous registration)
 		crossFrameworkTypeRegistry[typeName] = "corefoundation"
 		Debug.TypeMap("registry override: geometry type", typeName, "corefoundation",
 			"typeName", typeName,

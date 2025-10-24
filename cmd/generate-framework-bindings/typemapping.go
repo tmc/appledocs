@@ -49,15 +49,22 @@ var staticTypeRegistry = []TypeMapping{
 	{ObjCType: "IOReturn", GoType: "int", Framework: ""},
 	{ObjCType: "Return", GoType: "int", Framework: "ObjectiveC"}, // IOBluetooth return code
 
-	// CoreGraphics geometry types (manually defined in rect_types.go)
-	// These types are used across many frameworks but should map to coregraphics when cross-referenced
-	{ObjCType: "CGPoint", GoType: "coregraphics.Point", Framework: ""},
-	{ObjCType: "CGSize", GoType: "coregraphics.Size", Framework: ""},
-	{ObjCType: "CGRect", GoType: "coregraphics.Rect", Framework: ""},
-	{ObjCType: "CGAffineTransform", GoType: "coregraphics.AffineTransform", Framework: ""},
-	{ObjCType: "CGFloat", GoType: "coregraphics.Float", Framework: ""},
+	// CoreFoundation geometry types (defined in CoreFoundation, used across many frameworks)
+	// These types were previously mapped to coregraphics but are actually defined in corefoundation
+	{ObjCType: "CGPoint", GoType: "corefoundation.CGPoint", Framework: ""},
+	{ObjCType: "CGSize", GoType: "corefoundation.CGSize", Framework: ""},
+	{ObjCType: "CGRect", GoType: "corefoundation.CGRect", Framework: ""},
+	{ObjCType: "CGAffineTransform", GoType: "corefoundation.CGAffineTransform", Framework: ""},
+	{ObjCType: "CGFloat", GoType: "corefoundation.CGFloat", Framework: ""},
 
-	// When IN CoreGraphics, use unqualified names
+	// When IN CoreFoundation, use unqualified names
+	{ObjCType: "CGPoint", GoType: "CGPoint", Framework: "CoreFoundation"},
+	{ObjCType: "CGSize", GoType: "CGSize", Framework: "CoreFoundation"},
+	{ObjCType: "CGRect", GoType: "CGRect", Framework: "CoreFoundation"},
+	{ObjCType: "CGAffineTransform", GoType: "CGAffineTransform", Framework: "CoreFoundation"},
+	{ObjCType: "CGFloat", GoType: "CGFloat", Framework: "CoreFoundation"},
+
+	// When IN CoreGraphics, also use the local names (they may be type aliases)
 	{ObjCType: "CGPoint", GoType: "Point", Framework: "CoreGraphics"},
 	{ObjCType: "CGSize", GoType: "Size", Framework: "CoreGraphics"},
 	{ObjCType: "CGRect", GoType: "Rect", Framework: "CoreGraphics"},

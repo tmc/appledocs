@@ -26,6 +26,13 @@ func mapCTypeToGoWithFramework(cType, framework string) string {
 		return strippedCType
 	}
 
+	// Check the static type registry BEFORE calling occ2go.MapCTypeToGo
+	// This ensures manually-defined type mappings (like BluetoothL2CAPChannelRef -> uintptr)
+	// take precedence over occ2go's fallback to unsafe.Pointer
+	if goType, found := lookupTypeMapping(cType, framework); found {
+		return goType
+	}
+
 	// First apply occ2go's basic C type mapping
 	goType := occ2go.MapCTypeToGo(cType, framework)
 

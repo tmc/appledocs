@@ -235,6 +235,21 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		goType = strings.TrimSpace(goType[:idx])
 	}
 
+	// Handle interface types: "IDictionary" -> "Dictionary", "IConnection" -> "Connection"
+	// Interface types start with "I" followed by uppercase letter
+	// BUT exclude special cases like IMP (typedef), ISA (property name)
+	if len(goType) > 1 && goType[0] == 'I' && goType[1] >= 'A' && goType[1] <= 'Z' {
+		// Check if this is actually an interface type or a special case
+		// IMP is a typedef for func(), not an interface
+		// ISA is used as is
+		if goType != "IMP" && goType != "ISA" {
+			// Strip the "I" prefix to get the concrete type
+			concreteType := goType[1:]
+			// Recursively process in case there are other transformations needed
+			return gf.concreteReturnType(concreteType)
+		}
+	}
+
 	// Handle slices - preserve brackets and recurse on element type
 	if strings.HasPrefix(goType, "[]") {
 		elementType := strings.TrimPrefix(goType, "[]")
