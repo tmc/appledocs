@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"fmt"
 	"log/slog"
 	"os"
@@ -65,6 +66,56 @@ var Logger *slog.Logger
 
 // VerboseLogger is used for verbose output (enabled with -v flag)
 var VerboseLogger *slog.Logger
+
+// SimpleHandler is a custom slog handler that outputs logs in a simplified format:
+// "LEVEL: message key=value key2=value2"
+type SimpleHandler struct {
+	w     *os.File
+	level slog.Level
+}
+
+// Enabled reports whether the handler handles records at the given level.
+func (h *SimpleHandler) Enabled(_ context.Context, level slog.Level) bool {
+	return level >= h.level
+}
+
+// Handle formats and writes a log record.
+func (h *SimpleHandler) Handle(_ context.Context, r slog.Record) error {
+	// Format: "LEVEL: message key=value key2=value2"
+	buf := make([]byte, 0, 256)
+
+	// Add level
+	buf = append(buf, r.Level.String()...)
+	buf = append(buf, ": "...)
+
+	// Add message
+	buf = append(buf, r.Message...)
+
+	// Add attributes
+	r.Attrs(func(a slog.Attr) bool {
+		buf = append(buf, ' ')
+		buf = append(buf, a.Key...)
+		buf = append(buf, '=')
+		buf = append(buf, a.Value.String()...)
+		return true
+	})
+
+	buf = append(buf, '\n')
+	_, err := h.w.Write(buf)
+	return err
+}
+
+// WithAttrs returns a new handler with the given attributes.
+func (h *SimpleHandler) WithAttrs(attrs []slog.Attr) slog.Handler {
+	// For simplicity, we don't support persistent attributes
+	return h
+}
+
+// WithGroup returns a new handler with the given group.
+func (h *SimpleHandler) WithGroup(name string) slog.Handler {
+	// For simplicity, we don't support groups
+	return h
+}
 
 // InitDebug initializes the global debug logger with the specified categories and filter.
 // Categories can be comma-separated or "all" to enable all categories.
@@ -145,11 +196,11 @@ func InitDebug(categories, filterSpec string) {
 		}
 	}
 
-	// Create slog handler for stderr with source information
-	handler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
-		Level:     slog.LevelDebug,
-		AddSource: true,
-	})
+	// Create simplified handler for debug logs
+	handler := &SimpleHandler{
+		w:     os.Stderr,
+		level: slog.LevelDebug,
+	}
 
 	Debug = &DebugLogger{
 		enabled: enabled,
@@ -157,11 +208,11 @@ func InitDebug(categories, filterSpec string) {
 		logger:  slog.New(handler),
 	}
 
-	// Initialize general-purpose logger with source information for info/warning/error
-	infoHandler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
-		Level:     slog.LevelInfo,
-		AddSource: true,
-	})
+	// Initialize general-purpose logger with simplified format
+	infoHandler := &SimpleHandler{
+		w:     os.Stderr,
+		level: slog.LevelInfo,
+	}
 	Logger = slog.New(infoHandler)
 
 	// Initialize verbose logger (starts disabled, call SetVerbose(true) to enable)
@@ -176,10 +227,10 @@ func SetVerbose(enabled bool) {
 	} else {
 		level = slog.LevelWarn // Only show warnings and errors when not verbose
 	}
-	verboseHandler := slog.NewTextHandler(os.Stderr, &slog.HandlerOptions{
-		Level:     level,
-		AddSource: true,
-	})
+	verboseHandler := &SimpleHandler{
+		w:     os.Stderr,
+		level: level,
+	}
 	VerboseLogger = slog.New(verboseHandler)
 }
 
