@@ -32,7 +32,6 @@ type IScrubberTextItemView interface {
 	IScrubberItemView
 	// properties:
 	TextField() ITextField
-	SetTextField(value ITextField)
 	Title() objc.IObject /* cross-framework: NSString */
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
 	// methods:
@@ -96,26 +95,17 @@ func NewScrubberTextItemView() ScrubberTextItemView {
 // The text field that the scrubber item uses to display its text.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/textField
 func (s_ ScrubberTextItemView) TextField() ITextField {
 	rv := objc.Send[TextField](s_.ID, objc.Sel("textField"))
 	return rv
 }
 
 
-// The text field that the scrubber item uses to display its text.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/textfield
-func (s_ ScrubberTextItemView) SetTextField(value ITextField) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTextField:"), value)
-}
-
-
 // The text displayed for the scrubber item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/title
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
 func (s_ ScrubberTextItemView) Title() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("title"))
 	return rv
@@ -125,7 +115,7 @@ func (s_ ScrubberTextItemView) Title() objc.IObject /* cross-framework: NSString
 // The text displayed for the scrubber item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubbertextitemview/title
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberTextItemView/title
 func (s_ ScrubberTextItemView) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
 }

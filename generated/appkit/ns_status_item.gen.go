@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,47 +31,42 @@ type _StatusItemClass struct {
 // An interface definition for the [StatusItem] class.
 type IStatusItem interface {
 	objectivec.IObject
-	DrawStatusBarBackgroundInRectWithHighlight(rect coregraphics.CGRect, highlight bool)
-	PopUpStatusItemMenu(menu IMenu)
-	SendActionOn(mask EventMask) int
-	Action() objc.SEL
-	SetAction(value objc.SEL)
-	AlternateImage() Image
-	SetAlternateImage(value IImage)
-	AttributedTitle() foundation.AttributedString
-	SetAttributedTitle(value foundation.IAttributedString)
-	AutosaveName() StatusItemAutosaveName
-	SetAutosaveName(value IStatusItemAutosaveName)
-	Behavior() StatusItemBehavior
-	SetBehavior(value StatusItemBehavior)
-	Button() NSStatusBarButton
-	DoubleAction() objc.SEL
-	SetDoubleAction(value objc.SEL)
-	HighlightMode() bool
-	SetHighlightMode(value bool)
-	Image() Image
-	SetImage(value IImage)
+	// properties:
 	Enabled() bool
 	SetEnabled(value bool)
-	Visible() bool
-	SetVisible(value bool)
-	Length() float64
-	SetLength(value float64)
-	Menu() NSMenu
-	SetMenu(value IMenu)
-	StatusBar() NSStatusBar
-	Target() objc.ID
-	SetTarget(value objc.ID)
-	Title() string
-	SetTitle(value string)
-	ToolTip() string
-	SetToolTip(value string)
-	View() NSView
-	SetView(value IView)
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
+	AlternateImage() IImage
+	SetAlternateImage(value IImage)
+	AttributedTitle() foundation.AttributedString
+	SetAttributedTitle(value foundation.AttributedString)
+	AutosaveName() unsafe.Pointer
+	SetAutosaveName(value unsafe.Pointer)
+	Button() IStatusBarButton
+	SetButton(value IStatusBarButton)
+	DoubleAction() unsafe.Pointer
+	SetDoubleAction(value unsafe.Pointer)
+	HighlightMode() bool
+	SetHighlightMode(value bool)
+	Image() IImage
+	SetImage(value IImage)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	IsVisible() bool
 	SetIsVisible(value bool)
+	Length() float64
+	SetLength(value float64)
+	Menu() IMenu
+	SetMenu(value IMenu)
+	StatusBar() IStatusBar
+	SetStatusBar(value IStatusBar)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	ToolTip() objc.IObject /* cross-framework: NSString */
+	SetToolTip(value objc.IObject /* cross-framework: NSString */)
+	View() IView
+	SetView(value IView)
+	// methods:
 }
 
 // An individual element displayed in the system menu bar.
@@ -128,196 +122,6 @@ func NewStatusItem() StatusItem {
 
 
 
-// Draws the menu background pattern for a custom status-bar item in regular or highlight pattern.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/drawStatusBarBackground(in:withHighlight:)
-func (s_ StatusItem) DrawStatusBarBackgroundInRectWithHighlight(rect coregraphics.CGRect, highlight bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("drawStatusBarBackgroundInRect:withHighlight:"), rect, highlight)
-}
-
-
-// Displays a menu under a custom status bar item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/popUpMenu(_:)
-func (s_ StatusItem) PopUpStatusItemMenu(menu IMenu) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("popUpStatusItemMenu:"), menu)
-}
-
-
-// Sets the conditions on which the status item sends action messages to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/sendAction(on:)
-func (s_ StatusItem) SendActionOn(mask EventMask) int {
-	rv := objc.Send[int](s_.ID, objc.Sel("sendActionOn:"), mask)
-	return rv
-}
-
-
-// The selector that is sent to the status item’s target when the status item is clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/action
-func (s_ StatusItem) Action() objc.SEL {
-	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("action"))
-	return rv
-}
-
-
-// The selector that is sent to the status item’s target when the status item is clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/action
-func (s_ StatusItem) SetAction(value objc.SEL) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAction:"), value)
-}
-
-
-// The alternate image to be displayed when a status bar item is highlighted.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/alternateImage
-func (s_ StatusItem) AlternateImage() Image {
-	rv := objc.Send[Image](s_.ID, objc.Sel("alternateImage"))
-	return rv
-}
-
-
-// The alternate image to be displayed when a status bar item is highlighted.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/alternateImage
-func (s_ StatusItem) SetAlternateImage(value IImage) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateImage:"), value)
-}
-
-
-// The attributed string that is displayed at the status item’s position in the status bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/attributedTitle
-func (s_ StatusItem) AttributedTitle() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](s_.ID, objc.Sel("attributedTitle"))
-	return rv
-}
-
-
-// The attributed string that is displayed at the status item’s position in the status bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/attributedTitle
-func (s_ StatusItem) SetAttributedTitle(value foundation.IAttributedString) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAttributedTitle:"), value)
-}
-
-
-// A unique name for saving and restoring information about a status item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/autosaveName-swift.property
-func (s_ StatusItem) AutosaveName() StatusItemAutosaveName {
-	rv := objc.Send[StatusItemAutosaveName](s_.ID, objc.Sel("autosaveName"))
-	return rv
-}
-
-
-// A unique name for saving and restoring information about a status item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/autosaveName-swift.property
-func (s_ StatusItem) SetAutosaveName(value IStatusItemAutosaveName) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAutosaveName:"), value)
-}
-
-
-// The set of allowed behaviors for the status item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/behavior-swift.property
-func (s_ StatusItem) Behavior() StatusItemBehavior {
-	rv := objc.Send[StatusItemBehavior](s_.ID, objc.Sel("behavior"))
-	return rv
-}
-
-
-// The set of allowed behaviors for the status item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/behavior-swift.property
-func (s_ StatusItem) SetBehavior(value StatusItemBehavior) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setBehavior:"), value)
-}
-
-
-// The button displayed in the status bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/button
-func (s_ StatusItem) Button() NSStatusBarButton {
-	rv := objc.Send[NSStatusBarButton](s_.ID, objc.Sel("button"))
-	return rv
-}
-
-
-// The selector that is sent to the status item’s target when the status item is double-clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/doubleAction
-func (s_ StatusItem) DoubleAction() objc.SEL {
-	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("doubleAction"))
-	return rv
-}
-
-
-// The selector that is sent to the status item’s target when the status item is double-clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/doubleAction
-func (s_ StatusItem) SetDoubleAction(value objc.SEL) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleAction:"), value)
-}
-
-
-// A Boolean that indicates whether the status item is highlighted when it is clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/highlightMode
-func (s_ StatusItem) HighlightMode() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("highlightMode"))
-	return rv
-}
-
-
-// A Boolean that indicates whether the status item is highlighted when it is clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/highlightMode
-func (s_ StatusItem) SetHighlightMode(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setHighlightMode:"), value)
-}
-
-
-// The image that is displayed at the status item’s position in the status bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/image
-func (s_ StatusItem) Image() Image {
-	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
-	return rv
-}
-
-
-// The image that is displayed at the status item’s position in the status bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/image
-func (s_ StatusItem) SetImage(value IImage) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
-}
-
-
 // A Boolean that indicates whether the status item is enabled to respond to clicks.
 //
 // [Full Topic]
@@ -337,146 +141,155 @@ func (s_ StatusItem) SetEnabled(value bool) {
 }
 
 
-// A Boolean value indicating if the menu bar currently displays the status item.
+// The selector that is sent to the status item’s target when the status item is clicked.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/isVisible
-func (s_ StatusItem) Visible() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("visible"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/action
+func (s_ StatusItem) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// A Boolean value indicating if the menu bar currently displays the status item.
+// The selector that is sent to the status item’s target when the status item is clicked.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/isVisible
-func (s_ StatusItem) SetVisible(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setVisible:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/action
+func (s_ StatusItem) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAction:"), value)
 }
 
 
-// The amount of space in the status bar that should be allocated to the status item.
+// The alternate image to be displayed when a status bar item is highlighted.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/length
-func (s_ StatusItem) Length() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("length"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/alternateimage
+func (s_ StatusItem) AlternateImage() IImage {
+	rv := objc.Send[Image](s_.ID, objc.Sel("alternateImage"))
 	return rv
 }
 
 
-// The amount of space in the status bar that should be allocated to the status item.
+// The alternate image to be displayed when a status bar item is highlighted.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/length
-func (s_ StatusItem) SetLength(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setLength:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/alternateimage
+func (s_ StatusItem) SetAlternateImage(value IImage) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlternateImage:"), value)
 }
 
 
-// The pull-down menu displayed when the user clicks the status item.
+// The attributed string that is displayed at the status item’s position in the status bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/menu
-func (s_ StatusItem) Menu() NSMenu {
-	rv := objc.Send[NSMenu](s_.ID, objc.Sel("menu"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/attributedtitle
+func (s_ StatusItem) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](s_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
 
-// The pull-down menu displayed when the user clicks the status item.
+// The attributed string that is displayed at the status item’s position in the status bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/menu
-func (s_ StatusItem) SetMenu(value IMenu) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMenu:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/attributedtitle
+func (s_ StatusItem) SetAttributedTitle(value foundation.AttributedString) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
 
-// The status bar that displays the status item.
+// A unique name for saving and restoring information about a status item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/statusBar
-func (s_ StatusItem) StatusBar() NSStatusBar {
-	rv := objc.Send[NSStatusBar](s_.ID, objc.Sel("statusBar"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/autosavename-swift.property
+func (s_ StatusItem) AutosaveName() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("autosaveName"))
 	return rv
 }
 
 
-// The target object to which the status item’s action message is sent when the status item is clicked.
+// A unique name for saving and restoring information about a status item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/target
-func (s_ StatusItem) Target() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("target"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/autosavename-swift.property
+func (s_ StatusItem) SetAutosaveName(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAutosaveName:"), value)
+}
+
+
+// The button displayed in the status bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/button
+func (s_ StatusItem) Button() IStatusBarButton {
+	rv := objc.Send[StatusBarButton](s_.ID, objc.Sel("button"))
 	return rv
 }
 
 
-// The target object to which the status item’s action message is sent when the status item is clicked.
+// The button displayed in the status bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/target
-func (s_ StatusItem) SetTarget(value objc.ID) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTarget:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/button
+func (s_ StatusItem) SetButton(value IStatusBarButton) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setButton:"), value)
 }
 
 
-// The string that is displayed at the status item’s position in the status bar.
+// The selector that is sent to the status item’s target when the status item is double-clicked.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/title
-func (s_ StatusItem) Title() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("title"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/doubleaction
+func (s_ StatusItem) DoubleAction() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("doubleAction"))
 	return rv
 }
 
 
-// The string that is displayed at the status item’s position in the status bar.
+// The selector that is sent to the status item’s target when the status item is double-clicked.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/title
-func (s_ StatusItem) SetTitle(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/doubleaction
+func (s_ StatusItem) SetDoubleAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleAction:"), value)
 }
 
 
-// The tool tip string that is displayed when the cursor pauses over the status item.
+// A Boolean that indicates whether the status item is highlighted when it is clicked.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/toolTip
-func (s_ StatusItem) ToolTip() string {
-	rv := objc.Send[string](s_.ID, objc.Sel("toolTip"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/highlightmode
+func (s_ StatusItem) HighlightMode() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("highlightMode"))
 	return rv
 }
 
 
-// The tool tip string that is displayed when the cursor pauses over the status item.
+// A Boolean that indicates whether the status item is highlighted when it is clicked.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/toolTip
-func (s_ StatusItem) SetToolTip(value string) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setToolTip:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/highlightmode
+func (s_ StatusItem) SetHighlightMode(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHighlightMode:"), value)
 }
 
 
-// The custom view that is displayed at the status item’s position in the status bar.
+// The image that is displayed at the status item’s position in the status bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/view
-func (s_ StatusItem) View() NSView {
-	rv := objc.Send[NSView](s_.ID, objc.Sel("view"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/image
+func (s_ StatusItem) Image() IImage {
+	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
 	return rv
 }
 
 
-// The custom view that is displayed at the status item’s position in the status bar.
+// The image that is displayed at the status item’s position in the status bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStatusItem/view
-func (s_ StatusItem) SetView(value IView) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setView:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/image
+func (s_ StatusItem) SetImage(value IImage) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
 }
 
 
@@ -515,6 +328,120 @@ func (s_ StatusItem) IsVisible() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/isvisible
 func (s_ StatusItem) SetIsVisible(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVisible:"), value)
+}
+
+
+// The amount of space in the status bar that should be allocated to the status item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/length
+func (s_ StatusItem) Length() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("length"))
+	return rv
+}
+
+
+// The amount of space in the status bar that should be allocated to the status item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/length
+func (s_ StatusItem) SetLength(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLength:"), value)
+}
+
+
+// The pull-down menu displayed when the user clicks the status item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/menu
+func (s_ StatusItem) Menu() IMenu {
+	rv := objc.Send[Menu](s_.ID, objc.Sel("menu"))
+	return rv
+}
+
+
+// The pull-down menu displayed when the user clicks the status item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/menu
+func (s_ StatusItem) SetMenu(value IMenu) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMenu:"), value)
+}
+
+
+// The status bar that displays the status item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/statusbar
+func (s_ StatusItem) StatusBar() IStatusBar {
+	rv := objc.Send[StatusBar](s_.ID, objc.Sel("statusBar"))
+	return rv
+}
+
+
+// The status bar that displays the status item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/statusbar
+func (s_ StatusItem) SetStatusBar(value IStatusBar) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setStatusBar:"), value)
+}
+
+
+// The string that is displayed at the status item’s position in the status bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/title
+func (s_ StatusItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// The string that is displayed at the status item’s position in the status bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/title
+func (s_ StatusItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTitle:"), value)
+}
+
+
+// The tool tip string that is displayed when the cursor pauses over the status item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/tooltip
+func (s_ StatusItem) ToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("toolTip"))
+	return rv
+}
+
+
+// The tool tip string that is displayed when the cursor pauses over the status item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/tooltip
+func (s_ StatusItem) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setToolTip:"), value)
+}
+
+
+// The custom view that is displayed at the status item’s position in the status bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/view
+func (s_ StatusItem) View() IView {
+	rv := objc.Send[View](s_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// The custom view that is displayed at the status item’s position in the status bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstatusitem/view
+func (s_ StatusItem) SetView(value IView) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setView:"), value)
 }
 
 

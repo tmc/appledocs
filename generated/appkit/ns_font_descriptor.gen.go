@@ -44,7 +44,7 @@ type IFontDescriptor interface {
 	// methods:
 	FontDescriptorByAddingAttributes(attributes foundation.IDictionary) IFontDescriptor
 	MatchingFontDescriptorWithMandatoryKeys(mandatoryKeys unsafe.Pointer) IFontDescriptor
-	MatchingFontDescriptorsWithMandatoryKeys(mandatoryKeys unsafe.Pointer) []IFontDescriptor
+	MatchingFontDescriptorsWithMandatoryKeys(mandatoryKeys unsafe.Pointer) []FontDescriptor
 	ObjectForKey(attribute objc.IObject /* cross-framework: FontDescriptorAttributeName */) objc.ID
 	FontDescriptorWithDesign(design objc.IObject /* cross-framework: FontDescriptorSystemDesign */) unsafe.Pointer
 	FontDescriptorWithFace(newFace objc.IObject /* cross-framework: NSString */) IFontDescriptor
@@ -204,7 +204,7 @@ func (f_ FontDescriptor) MatchingFontDescriptorWithMandatoryKeys(mandatoryKeys u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontDescriptor/matchingFontDescriptors(withMandatoryKeys:)
-func (f_ FontDescriptor) MatchingFontDescriptorsWithMandatoryKeys(mandatoryKeys unsafe.Pointer) []IFontDescriptor {
+func (f_ FontDescriptor) MatchingFontDescriptorsWithMandatoryKeys(mandatoryKeys unsafe.Pointer) []FontDescriptor {
 	rv := objc.Send[[]FontDescriptor](f_.ID, objc.Sel("matchingFontDescriptorsWithMandatoryKeys:"), mandatoryKeys)
 	return rv
 }

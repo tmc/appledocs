@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,6 +79,16 @@ func NewInputServer() InputServer {
 	return getInputServerClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputServer/initWithDelegate:name:
+func NewInputServerWithDelegateName(delegate objc.IObject, name objc.IObject /* cross-framework: NSString */) InputServer {
+	instance := getInputServerClass().Alloc()
+	rv := objc.Send[InputServer](instance.ID, objc.Sel("initWithDelegate:name:"), delegate, name)
+	rv.Autorelease()
+	return rv
+}
 
 
 

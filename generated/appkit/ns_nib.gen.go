@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +33,7 @@ type INib interface {
 	objectivec.IObject
 	// properties:
 	// methods:
+	InstantiateWithOwnerTopLevelObjects(owner objc.IObject, topLevelObjects objc.IObject /* cross-framework: NSArray */) bool
 }
 
 // An object wrapper, or container, for an Interface Builder nib file.
@@ -86,5 +88,51 @@ func NewNib() Nib {
 }
 
 
+
+// Returns an object initialized to the nib file at the specified URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/initWithContentsOfURL:
+func NewNibWithContentsOfURL(nibFileURL objc.IObject /* cross-framework: NSURL */) Nib {
+	instance := getNibClass().Alloc()
+	rv := objc.Send[Nib](instance.ID, objc.Sel("initWithContentsOfURL:"), nibFileURL)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes an instance with nib data and specified bundle for locating resources.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/init(nibData:bundle:)
+func NewNibWithNibDataBundle(nibData objc.IObject /* cross-framework: NSData */, bundle foundation.Bundle) Nib {
+	instance := getNibClass().Alloc()
+	rv := objc.Send[Nib](instance.ID, objc.Sel("initWithNibData:bundle:"), nibData, bundle)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns an object initialized to the nib file in the specified bundle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/init(nibNamed:bundle:)
+func NewNibWithNibNamedBundle(nibName objc.IObject /* cross-framework: NibName */, bundle foundation.Bundle) Nib {
+	instance := getNibClass().Alloc()
+	rv := objc.Send[Nib](instance.ID, objc.Sel("initWithNibNamed:bundle:"), nibName, bundle)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Instantiates objects in the nib file with the specified owner.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNib/instantiate(withOwner:topLevelObjects:)
+func (n_ Nib) InstantiateWithOwnerTopLevelObjects(owner objc.IObject, topLevelObjects objc.IObject /* cross-framework: NSArray */) bool {
+	rv := objc.Send[bool](n_.ID, objc.Sel("instantiateWithOwner:topLevelObjects:"), owner, topLevelObjects)
+	return rv
+}
 
 

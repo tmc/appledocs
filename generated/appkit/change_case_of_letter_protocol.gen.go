@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // changeCaseOfLetterProtocol is the changeCaseOfLetter: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to changeCaseOfLetter:.
 var changeCaseOfLetterProtocol *objc.Protocol
 

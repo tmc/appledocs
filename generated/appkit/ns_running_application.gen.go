@@ -143,7 +143,7 @@ func (rc _RunningApplicationClass) RunningApplicationWithProcessIdentifier(pid u
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunningApplication/runningApplications(withBundleIdentifier:)
-func (rc _RunningApplicationClass) RunningApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */) []IRunningApplication {
+func (rc _RunningApplicationClass) RunningApplicationsWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */) []RunningApplication {
 	rv := objc.Send[[]RunningApplication](objc.ID(rc.class), objc.Sel("runningApplicationsWithBundleIdentifier:"), bundleIdentifier)
 	return rv
 }

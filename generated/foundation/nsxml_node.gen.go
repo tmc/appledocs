@@ -32,7 +32,7 @@ type IXMLNode interface {
 	objectivec.IObject
 	// properties:
 	ChildCount() uint
-	Children() []IXMLNode
+	Children() []XMLNode
 	Description() IString
 	Index() uint
 	Level() uint
@@ -64,7 +64,7 @@ type IXMLNode interface {
 	CanonicalXMLStringPreservingComments(comments bool) IString
 	ChildAtIndex(index uint) IXMLNode
 	Detach()
-	NodesForXPathError(xpath IString, error_ IError) []IXMLNode
+	NodesForXPathError(xpath IString, error_ IError) []XMLNode
 	ObjectsForXQueryError(xquery IString, error_ IError) IArray
 	ObjectsForXQueryConstantsError(xquery IString, constants IDictionary, error_ IError) IArray
 	SetStringValueResolvingEntities(string_ IString, resolve bool)
@@ -199,7 +199,7 @@ func (xc _XMLNodeClass) ElementWithName(name IString) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/element(withName:children:attributes:)
-func (xc _XMLNodeClass) ElementWithNameChildrenAttributes(name IString, children []IXMLNode, attributes []IXMLNode) objc.ID {
+func (xc _XMLNodeClass) ElementWithNameChildrenAttributes(name IString, children []XMLNode, attributes []XMLNode) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(xc.class), objc.Sel("elementWithName:children:attributes:"), name, children, attributes)
 	return rv
 }
@@ -318,7 +318,7 @@ func (x_ XMLNode) Detach() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/nodes(forXPath:)
-func (x_ XMLNode) NodesForXPathError(xpath IString, error_ IError) []IXMLNode {
+func (x_ XMLNode) NodesForXPathError(xpath IString, error_ IError) []XMLNode {
 	rv := objc.Send[[]XMLNode](x_.ID, objc.Sel("nodesForXPath:error:"), xpath, error_)
 	return rv
 }
@@ -377,7 +377,7 @@ func (x_ XMLNode) ChildCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLNode/children
-func (x_ XMLNode) Children() []IXMLNode {
+func (x_ XMLNode) Children() []XMLNode {
 	rv := objc.Send[[]XMLNode](x_.ID, objc.Sel("children"))
 	return rv
 }

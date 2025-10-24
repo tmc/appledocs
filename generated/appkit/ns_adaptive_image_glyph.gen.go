@@ -94,7 +94,7 @@ func NewAdaptiveImageGlyph() AdaptiveImageGlyph {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/init(coder:)
-func NewAdaptiveImageGlyphWithCoder(coder objc.IObject /* cross-framework: Coder */) AdaptiveImageGlyph {
+func NewAdaptiveImageGlyphWithCoder(coder foundation.Coder) AdaptiveImageGlyph {
 	instance := getAdaptiveImageGlyphClass().Alloc()
 	rv := objc.Send[AdaptiveImageGlyph](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -119,7 +119,7 @@ func NewAdaptiveImageGlyphWithImageContent(imageContent objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentType
-func (ac _AdaptiveImageGlyphClass) ContentType() objc.IObject /* cross-framework: UTType */ {
+func (ac _AdaptiveImageGlyphClass) ContentType() uniformtypeidentifiers.UTType {
 	rv := objc.Send[uniformtypeidentifiers.UTType](objc.ID(ac.class), objc.Sel("contentType"))
 	return rv
 }
@@ -148,7 +148,7 @@ func (a_ AdaptiveImageGlyph) ContentIdentifier() objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAdaptiveImageGlyph/contentType
-func (a_ AdaptiveImageGlyph) ContentType() objc.IObject /* cross-framework: UTType */ {
+func (a_ AdaptiveImageGlyph) ContentType() uniformtypeidentifiers.UTType {
 	rv := objc.Send[uniformtypeidentifiers.UTType](a_.ID, objc.Sel("contentType"))
 	return rv
 }

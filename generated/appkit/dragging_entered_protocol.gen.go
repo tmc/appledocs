@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // draggingEnteredProtocol is the draggingEntered: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to draggingEntered:.
 var draggingEnteredProtocol *objc.Protocol
 

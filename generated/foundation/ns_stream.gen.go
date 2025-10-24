@@ -33,10 +33,10 @@ type IStream interface {
 	// properties:
 	NSStreamSOCKSErrorDomain() IString
 	NSStreamSocketSSLErrorDomain() IString
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
-	StreamError() objectivec.IObject
-	SetStreamError(value objectivec.IObject)
+	Delegate() objc.IObject /* cross-framework: StreamDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: StreamDelegate */)
+	StreamError() objc.IObject
+	SetStreamError(value objc.IObject)
 	StreamStatus() unsafe.Pointer
 	SetStreamStatus(value unsafe.Pointer)
 	// methods:
@@ -129,8 +129,8 @@ func (s_ Stream) NSStreamSocketSSLErrorDomain() IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
-func (s_ Stream) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("delegate"))
+func (s_ Stream) Delegate() objc.IObject /* cross-framework: StreamDelegate */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -139,7 +139,7 @@ func (s_ Stream) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/delegate
-func (s_ Stream) SetDelegate(value unsafe.Pointer) {
+func (s_ Stream) SetDelegate(value objc.IObject /* cross-framework: StreamDelegate */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -148,7 +148,7 @@ func (s_ Stream) SetDelegate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
-func (s_ Stream) StreamError() objectivec.IObject {
+func (s_ Stream) StreamError() objc.IObject {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("streamError"))
 	return rv
 }
@@ -158,7 +158,7 @@ func (s_ Stream) StreamError() objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/stream/streamerror
-func (s_ Stream) SetStreamError(value objectivec.IObject) {
+func (s_ Stream) SetStreamError(value objc.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStreamError:"), value)
 }
 

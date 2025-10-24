@@ -29,7 +29,7 @@ type _InvocationOperationClass struct {
 
 // An interface definition for the [InvocationOperation] class.
 type IInvocationOperation interface {
-	objectivec.IObject
+	IOperation
 	// properties:
 	Invocation() IInvocation
 	Result() objc.ID
@@ -46,7 +46,7 @@ type IInvocationOperation interface {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation
 type InvocationOperation struct {
-	objectivec.IObject
+	Operation
 }
 
 // InvocationOperationFrom constructs a [InvocationOperation] from an unsafe.Pointer.
@@ -54,7 +54,7 @@ type InvocationOperation struct {
 // An operation that manages the execution of a single encapsulated task specified as an invocation.
 func InvocationOperationFrom(ptr unsafe.Pointer) InvocationOperation {
 	return InvocationOperation{
-		Operation: objectivec.IObjectFrom(ptr),
+		Operation: OperationFrom(ptr),
 	}
 }
 
@@ -107,7 +107,7 @@ func NewInvocationOperationWithInvocation(inv IInvocation) InvocationOperation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocationOperation/initWithTarget:selector:object:
-func NewInvocationOperationWithTargetSelectorObject(target objectivec.IObject, sel objc.SEL, arg objectivec.IObject) InvocationOperation {
+func NewInvocationOperationWithTargetSelectorObject(target objc.IObject, sel objc.SEL, arg objc.IObject) InvocationOperation {
 	instance := getInvocationOperationClass().Alloc()
 	rv := objc.Send[InvocationOperation](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, sel, arg)
 	rv.Autorelease()

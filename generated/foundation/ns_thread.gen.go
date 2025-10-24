@@ -124,7 +124,7 @@ func NewThreadWithBlock(block unsafe.Pointer) Thread {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/init(target:selector:object:)
-func NewThreadWithTargetSelectorObject(target objectivec.IObject, selector objc.SEL, argument objectivec.IObject) Thread {
+func NewThreadWithTargetSelectorObject(target objc.IObject, selector objc.SEL, argument objc.IObject) Thread {
 	instance := getThreadClass().Alloc()
 	rv := objc.Send[Thread](instance.ID, objc.Sel("initWithTarget:selector:object:"), target, selector, argument)
 	rv.Autorelease()
@@ -144,7 +144,7 @@ func (tc _ThreadClass) DetachNewThreadWithBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/detachNewThreadSelector(_:toTarget:with:)
-func (tc _ThreadClass) DetachNewThreadSelectorToTargetWithObject(selector objc.SEL, target objectivec.IObject, argument objectivec.IObject) {
+func (tc _ThreadClass) DetachNewThreadSelectorToTargetWithObject(selector objc.SEL, target objc.IObject, argument objc.IObject) {
 	objc.Send[objc.ID](objc.ID(tc.class), objc.Sel("detachNewThreadSelector:toTarget:withObject:"), selector, target, argument)
 }
 
@@ -210,7 +210,7 @@ func (tc _ThreadClass) ThreadPriority() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackReturnAddresses
-func (tc _ThreadClass) CallStackReturnAddresses() []INumber {
+func (tc _ThreadClass) CallStackReturnAddresses() []Number {
 	rv := objc.Send[[]Number](objc.ID(tc.class), objc.Sel("callStackReturnAddresses"))
 	return rv
 }
@@ -273,7 +273,7 @@ func (t_ Thread) Start() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Thread/callStackReturnAddresses
-func (t_ Thread) CallStackReturnAddresses() []INumber {
+func (t_ Thread) CallStackReturnAddresses() []Number {
 	rv := objc.Send[[]Number](t_.ID, objc.Sel("callStackReturnAddresses"))
 	return rv
 }

@@ -50,8 +50,8 @@ type IURLSessionTask interface {
 	SetCurrentRequest(value IURLRequest)
 	EarliestBeginDate() IDate
 	SetEarliestBeginDate(value IDate)
-	Error() objectivec.IObject
-	SetError(value objectivec.IObject)
+	Error() objc.IObject
+	SetError(value objc.IObject)
 	OriginalRequest() IURLRequest
 	SetOriginalRequest(value IURLRequest)
 	PrefersIncrementalDelivery() bool
@@ -62,8 +62,6 @@ type IURLSessionTask interface {
 	SetProgress(value IProgress)
 	Response() IURLResponse
 	SetResponse(value IURLResponse)
-	State() objectivec.IObject
-	SetState(value objectivec.IObject)
 	TaskDescription() IString
 	SetTaskDescription(value IString)
 	TaskIdentifier() int
@@ -319,7 +317,7 @@ func (u_ URLSessionTask) SetEarliestBeginDate(value IDate) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/error
-func (u_ URLSessionTask) Error() objectivec.IObject {
+func (u_ URLSessionTask) Error() objc.IObject {
 	rv := objc.Send[objc.ID](u_.ID, objc.Sel("error"))
 	return rv
 }
@@ -329,7 +327,7 @@ func (u_ URLSessionTask) Error() objectivec.IObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/error
-func (u_ URLSessionTask) SetError(value objectivec.IObject) {
+func (u_ URLSessionTask) SetError(value objc.IObject) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setError:"), value)
 }
 
@@ -426,25 +424,6 @@ func (u_ URLSessionTask) Response() IURLResponse {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/response
 func (u_ URLSessionTask) SetResponse(value IURLResponse) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setResponse:"), value)
-}
-
-
-// The current state of the task—active, suspended, in the process of being canceled, or completed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.property
-func (u_ URLSessionTask) State() objectivec.IObject {
-	rv := objc.Send[objc.ID](u_.ID, objc.Sel("state"))
-	return rv
-}
-
-
-// The current state of the task—active, suspended, in the process of being canceled, or completed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessiontask/state-swift.property
-func (u_ URLSessionTask) SetState(value objectivec.IObject) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setState:"), value)
 }
 
 

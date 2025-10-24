@@ -1,0 +1,17 @@
+// Code generated from Apple documentation for AppKit. DO NOT EDIT.
+
+package appkit
+
+// PTextAttachmentContainer is the NSTextAttachmentContainer protocol interface.
+//
+// A set of methods that defines the interface to text attachment objects from a layout manager.
+//
+// Availability:
+//   - macOS 10.11+
+//
+// See: doc://com.apple.appkit/documentation/AppKit/NSTextAttachmentContainer
+type PTextAttachmentContainer interface {
+	// Required methods
+	AttachmentBoundsForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(textContainer ITextContainer, lineFrag corefoundation.CGRect, position corefoundation.CGPoint, charIndex uint) corefoundation.CGRect
+	ImageForBoundsTextContainerCharacterIndex(imageBounds corefoundation.CGRect, textContainer ITextContainer, charIndex uint) Image
+}

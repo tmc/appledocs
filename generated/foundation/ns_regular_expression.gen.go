@@ -40,7 +40,7 @@ type IRegularExpression interface {
 	// methods:
 	EnumerateMatchesInStringOptionsRangeUsingBlock(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, block unsafe.Pointer)
 	FirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) ITextCheckingResult
-	MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) []ITextCheckingResult
+	MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) []TextCheckingResult
 	NumberOfMatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) uint
 	RangeOfFirstMatchInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */
 	ReplaceMatchesInStringOptionsRangeWithTemplate(string_ IMutableString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */, templ IString) uint
@@ -167,7 +167,7 @@ func (r_ RegularExpression) FirstMatchInStringOptionsRange(string_ IString, opti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSRegularExpression/matches(in:options:range:)
-func (r_ RegularExpression) MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) []ITextCheckingResult {
+func (r_ RegularExpression) MatchesInStringOptionsRange(string_ IString, options MatchingOptions, range_ objc.IObject /* cross-framework: Range */) []TextCheckingResult {
 	rv := objc.Send[[]TextCheckingResult](r_.ID, objc.Sel("matchesInString:options:range:"), string_, options, range_)
 	return rv
 }

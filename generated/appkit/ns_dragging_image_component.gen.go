@@ -32,12 +32,12 @@ type _DraggingImageComponentClass struct {
 type IDraggingImageComponent interface {
 	objectivec.IObject
 	// properties:
-	Contents() unsafe.Pointer
-	SetContents(value unsafe.Pointer)
+	Contents() objc.ID
+	SetContents(value objc.ID)
 	Frame() objc.IObject /* cross-framework: Rect */
 	SetFrame(value objc.IObject /* cross-framework: Rect */)
-	Key() unsafe.Pointer
-	SetKey(value unsafe.Pointer)
+	Key() objc.IObject /* cross-framework: DraggingImageComponentKey */
+	SetKey(value objc.IObject /* cross-framework: DraggingImageComponentKey */)
 	// methods:
 }
 
@@ -94,12 +94,25 @@ func NewDraggingImageComponent() DraggingImageComponent {
 
 
 
-// An object providing the image contents of the component.
+// Initializes and returns a dragging image component with the specified key.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/contents
-func (d_ DraggingImageComponent) Contents() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("contents"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent/init(key:)
+func NewDraggingImageComponentWithKey(key objc.IObject /* cross-framework: DraggingImageComponentKey */) DraggingImageComponent {
+	instance := getDraggingImageComponentClass().Alloc()
+	rv := objc.Send[DraggingImageComponent](instance.ID, objc.Sel("initWithKey:"), key)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns a dragging image component with the specified key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent/draggingImageComponentWithKey:
+func (dc _DraggingImageComponentClass) DraggingImageComponentWithKey(key objc.IObject /* cross-framework: DraggingImageComponentKey */) IDraggingImageComponent {
+	rv := objc.Send[DraggingImageComponent](objc.ID(dc.class), objc.Sel("draggingImageComponentWithKey:"), key)
 	return rv
 }
 
@@ -107,8 +120,18 @@ func (d_ DraggingImageComponent) Contents() unsafe.Pointer {
 // An object providing the image contents of the component.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/contents
-func (d_ DraggingImageComponent) SetContents(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent/contents
+func (d_ DraggingImageComponent) Contents() objc.ID {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("contents"))
+	return rv
+}
+
+
+// An object providing the image contents of the component.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent/contents
+func (d_ DraggingImageComponent) SetContents(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContents:"), value)
 }
 
@@ -116,7 +139,7 @@ func (d_ DraggingImageComponent) SetContents(value unsafe.Pointer) {
 // The coordinate space is the bounds of the parent dragging item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/frame
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent/frame
 func (d_ DraggingImageComponent) Frame() objc.IObject /* cross-framework: Rect */ {
 	rv := objc.Send[corefoundation.Rect](d_.ID, objc.Sel("frame"))
 	return rv
@@ -126,7 +149,7 @@ func (d_ DraggingImageComponent) Frame() objc.IObject /* cross-framework: Rect *
 // The coordinate space is the bounds of the parent dragging item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/frame
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent/frame
 func (d_ DraggingImageComponent) SetFrame(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setFrame:"), value)
 }
@@ -135,9 +158,9 @@ func (d_ DraggingImageComponent) SetFrame(value objc.IObject /* cross-framework:
 // The unique name of this image component instance.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/key
-func (d_ DraggingImageComponent) Key() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("key"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent/key
+func (d_ DraggingImageComponent) Key() objc.IObject /* cross-framework: DraggingImageComponentKey */ {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("key"))
 	return rv
 }
 
@@ -145,10 +168,9 @@ func (d_ DraggingImageComponent) Key() unsafe.Pointer {
 // The unique name of this image component instance.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingimagecomponent/key
-func (d_ DraggingImageComponent) SetKey(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingImageComponent/key
+func (d_ DraggingImageComponent) SetKey(value objc.IObject /* cross-framework: DraggingImageComponentKey */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setKey:"), value)
 }
-
 
 

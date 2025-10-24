@@ -91,6 +91,19 @@ func NewGradient() Gradient {
 
 
 
+// Initializes a newly allocated gradient object with two colors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGradient/init(starting:ending:)
+func NewGradientWithStartingColorEndingColor(startingColor IColor, endingColor IColor) Gradient {
+	instance := getGradientClass().Alloc()
+	rv := objc.Send[Gradient](instance.ID, objc.Sel("initWithStartingColor:endingColor:"), startingColor, endingColor)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The color space of the colors associated with the gradient.
 //
 // [Full Topic]
@@ -127,6 +140,5 @@ func (g_ Gradient) NumberOfColorStops() int {
 func (g_ Gradient) SetNumberOfColorStops(value int) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setNumberOfColorStops:"), value)
 }
-
 
 

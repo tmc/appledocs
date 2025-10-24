@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // MatrixDelegateProtocol is the NSMatrixDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSMatrixDelegate.
 var MatrixDelegateProtocol *objc.Protocol
 

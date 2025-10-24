@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [OpenPanel] class.
@@ -31,22 +32,23 @@ type _OpenPanelClass struct {
 type IOpenPanel interface {
 	ISavePanel
 	// properties:
-	CanChooseFiles() bool
-	SetCanChooseFiles(value bool)
 	AllowsMultipleSelection() bool
 	SetAllowsMultipleSelection(value bool)
 	CanChooseDirectories() bool
 	SetCanChooseDirectories(value bool)
+	CanChooseFiles() bool
+	SetCanChooseFiles(value bool)
+	AccessoryViewDisclosed() bool
+	SetAccessoryViewDisclosed(value bool)
+	ResolvesAliases() bool
+	SetResolvesAliases(value bool)
+	URLs() []foundation.URL
 	CanDownloadUbiquitousContents() bool
 	SetCanDownloadUbiquitousContents(value bool)
 	CanResolveUbiquitousConflicts() bool
 	SetCanResolveUbiquitousConflicts(value bool)
 	IsAccessoryViewDisclosed() bool
 	SetIsAccessoryViewDisclosed(value bool)
-	ResolvesAliases() bool
-	SetResolvesAliases(value bool)
-	Urls() objc.IObject /* cross-framework: URL */
-	SetUrls(value objc.IObject /* cross-framework: URL */)
 	// methods:
 }
 
@@ -105,6 +107,44 @@ func NewOpenPanel() OpenPanel {
 
 
 
+// A Boolean that indicates whether the user may select multiple files and directories.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/allowsMultipleSelection
+func (o_ OpenPanel) AllowsMultipleSelection() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("allowsMultipleSelection"))
+	return rv
+}
+
+
+// A Boolean that indicates whether the user may select multiple files and directories.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/allowsMultipleSelection
+func (o_ OpenPanel) SetAllowsMultipleSelection(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
+}
+
+
+// A Boolean that indicates whether the user can choose directories in the panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/canChooseDirectories
+func (o_ OpenPanel) CanChooseDirectories() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("canChooseDirectories"))
+	return rv
+}
+
+
+// A Boolean that indicates whether the user can choose directories in the panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/canChooseDirectories
+func (o_ OpenPanel) SetCanChooseDirectories(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setCanChooseDirectories:"), value)
+}
+
+
 // A Boolean that indicates whether the user can choose files in the panel.
 //
 // [Full Topic]
@@ -124,41 +164,51 @@ func (o_ OpenPanel) SetCanChooseFiles(value bool) {
 }
 
 
-// A Boolean that indicates whether the user may select multiple files and directories.
+// A Boolean value that indicates whether the panel’s accessory view is visible.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/allowsmultipleselection
-func (o_ OpenPanel) AllowsMultipleSelection() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("allowsMultipleSelection"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/isAccessoryViewDisclosed
+func (o_ OpenPanel) AccessoryViewDisclosed() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("accessoryViewDisclosed"))
 	return rv
 }
 
 
-// A Boolean that indicates whether the user may select multiple files and directories.
+// A Boolean value that indicates whether the panel’s accessory view is visible.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/allowsmultipleselection
-func (o_ OpenPanel) SetAllowsMultipleSelection(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAllowsMultipleSelection:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/isAccessoryViewDisclosed
+func (o_ OpenPanel) SetAccessoryViewDisclosed(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAccessoryViewDisclosed:"), value)
 }
 
 
-// A Boolean that indicates whether the user can choose directories in the panel.
+// A Boolean that indicates whether the panel resolves aliases.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canchoosedirectories
-func (o_ OpenPanel) CanChooseDirectories() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("canChooseDirectories"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/resolvesAliases
+func (o_ OpenPanel) ResolvesAliases() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("resolvesAliases"))
 	return rv
 }
 
 
-// A Boolean that indicates whether the user can choose directories in the panel.
+// A Boolean that indicates whether the panel resolves aliases.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/canchoosedirectories
-func (o_ OpenPanel) SetCanChooseDirectories(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCanChooseDirectories:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/resolvesAliases
+func (o_ OpenPanel) SetResolvesAliases(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setResolvesAliases:"), value)
+}
+
+
+// An array of URLs, each of which contains the fully specified location of a selected file or directory.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenPanel/urls
+func (o_ OpenPanel) URLs() []foundation.URL {
+	rv := objc.Send[[]foundation.URL](o_.ID, objc.Sel("URLs"))
+	return rv
 }
 
 
@@ -216,44 +266,6 @@ func (o_ OpenPanel) IsAccessoryViewDisclosed() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/isaccessoryviewdisclosed
 func (o_ OpenPanel) SetIsAccessoryViewDisclosed(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsAccessoryViewDisclosed:"), value)
-}
-
-
-// A Boolean that indicates whether the panel resolves aliases.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/resolvesaliases
-func (o_ OpenPanel) ResolvesAliases() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("resolvesAliases"))
-	return rv
-}
-
-
-// A Boolean that indicates whether the panel resolves aliases.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/resolvesaliases
-func (o_ OpenPanel) SetResolvesAliases(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setResolvesAliases:"), value)
-}
-
-
-// An array of URLs, each of which contains the fully specified location of a selected file or directory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/urls
-func (o_ OpenPanel) Urls() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](o_.ID, objc.Sel("urls"))
-	return rv
-}
-
-
-// An array of URLs, each of which contains the fully specified location of a selected file or directory.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenpanel/urls
-func (o_ OpenPanel) SetUrls(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUrls:"), value)
 }
 
 

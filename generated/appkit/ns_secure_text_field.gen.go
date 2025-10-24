@@ -29,6 +29,8 @@ type _SecureTextFieldClass struct {
 // An interface definition for the [SecureTextField] class.
 type ISecureTextField interface {
 	ITextField
+	// properties:
+	// methods:
 }
 
 // A text field that hides the typed text.

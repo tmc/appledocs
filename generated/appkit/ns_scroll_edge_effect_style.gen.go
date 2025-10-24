@@ -85,4 +85,61 @@ func NewScrollEdgeEffectStyle() ScrollEdgeEffectStyle {
 
 
 
+// The automatic scroll edge effect style.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/automatic
+func (sc _ScrollEdgeEffectStyleClass) AutomaticStyle() ScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("automaticStyle"))
+	return rv
+}
+
+// A scroll edge effect with a hard cutoff.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/hard
+func (sc _ScrollEdgeEffectStyleClass) HardStyle() ScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("hardStyle"))
+	return rv
+}
+
+// A scroll edge effect with a soft edge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/soft
+func (sc _ScrollEdgeEffectStyleClass) SoftStyle() ScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](objc.ID(sc.class), objc.Sel("softStyle"))
+	return rv
+}
+
+// The automatic scroll edge effect style.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/automatic
+func (s_ ScrollEdgeEffectStyle) AutomaticStyle() IScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](s_.ID, objc.Sel("automaticStyle"))
+	return rv
+}
+
+
+// A scroll edge effect with a hard cutoff.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/hard
+func (s_ ScrollEdgeEffectStyle) HardStyle() IScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](s_.ID, objc.Sel("hardStyle"))
+	return rv
+}
+
+
+// A scroll edge effect with a soft edge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrollEdgeEffectStyle/soft
+func (s_ ScrollEdgeEffectStyle) SoftStyle() IScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](s_.ID, objc.Sel("softStyle"))
+	return rv
+}
+
+
 

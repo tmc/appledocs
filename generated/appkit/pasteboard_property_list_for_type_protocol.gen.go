@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // pasteboardPropertyListForTypeProtocol is the pasteboardPropertyListForType: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to pasteboardPropertyListForType:.
 var pasteboardPropertyListForTypeProtocol *objc.Protocol
 

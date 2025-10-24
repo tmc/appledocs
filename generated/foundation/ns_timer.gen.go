@@ -114,7 +114,7 @@ func NewTimerWithFireDateIntervalRepeatsBlock(date IDate, interval float64, repe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(fireAt:interval:target:selector:userInfo:repeats:)
-func NewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats(date IDate, ti float64, t objectivec.IObject, s objc.SEL, ui objectivec.IObject, rep bool) Timer {
+func NewTimerWithFireDateIntervalTargetSelectorUserInfoRepeats(date IDate, ti float64, t objc.IObject, s objc.SEL, ui objc.IObject, rep bool) Timer {
 	instance := getTimerClass().Alloc()
 	rv := objc.Send[Timer](instance.ID, objc.Sel("initWithFireDate:interval:target:selector:userInfo:repeats:"), date, ti, t, s, ui, rep)
 	rv.Autorelease()
@@ -146,7 +146,7 @@ func NewTimerWithTimeIntervalRepeatsBlock(interval float64, repeats bool, block 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:target:selector:userInfo:repeats:)
-func NewTimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti float64, aTarget objectivec.IObject, aSelector objc.SEL, userInfo objectivec.IObject, yesOrNo bool) Timer {
+func NewTimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti float64, aTarget objc.IObject, aSelector objc.SEL, userInfo objc.IObject, yesOrNo bool) Timer {
 	rv := objc.Send[Timer](objc.ID(getTimerClass().class), objc.Sel("timerWithTimeInterval:target:selector:userInfo:repeats:"), ti, aTarget, aSelector, userInfo, yesOrNo)
 	return rv
 }
@@ -177,7 +177,7 @@ func (tc _TimerClass) TimerWithTimeIntervalRepeatsBlock(interval float64, repeat
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/init(timeInterval:target:selector:userInfo:repeats:)
-func (tc _TimerClass) TimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti float64, aTarget objectivec.IObject, aSelector objc.SEL, userInfo objectivec.IObject, yesOrNo bool) ITimer {
+func (tc _TimerClass) TimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti float64, aTarget objc.IObject, aSelector objc.SEL, userInfo objc.IObject, yesOrNo bool) ITimer {
 	rv := objc.Send[Timer](objc.ID(tc.class), objc.Sel("timerWithTimeInterval:target:selector:userInfo:repeats:"), ti, aTarget, aSelector, userInfo, yesOrNo)
 	return rv
 }
@@ -197,7 +197,7 @@ func (tc _TimerClass) ScheduledTimerWithTimeIntervalInvocationRepeats(ti float64
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/Timer/scheduledTimer(timeInterval:target:selector:userInfo:repeats:)
-func (tc _TimerClass) ScheduledTimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti float64, aTarget objectivec.IObject, aSelector objc.SEL, userInfo objectivec.IObject, yesOrNo bool) ITimer {
+func (tc _TimerClass) ScheduledTimerWithTimeIntervalTargetSelectorUserInfoRepeats(ti float64, aTarget objc.IObject, aSelector objc.SEL, userInfo objc.IObject, yesOrNo bool) ITimer {
 	rv := objc.Send[Timer](objc.ID(tc.class), objc.Sel("scheduledTimerWithTimeInterval:target:selector:userInfo:repeats:"), ti, aTarget, aSelector, userInfo, yesOrNo)
 	return rv
 }

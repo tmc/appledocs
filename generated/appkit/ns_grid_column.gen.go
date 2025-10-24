@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,20 +31,24 @@ type _GridColumnClass struct {
 // An interface definition for the [GridColumn] class.
 type IGridColumn interface {
 	objectivec.IObject
+	// properties:
+	GridView() IGridView
+	Hidden() bool
+	SetHidden(value bool)
 	LeadingPadding() float64
 	SetLeadingPadding(value float64)
+	NumberOfCells() int
 	TrailingPadding() float64
 	SetTrailingPadding(value float64)
-	XPlacement() unsafe.Pointer
-	SetXPlacement(value unsafe.Pointer)
-	GridView() NSGridView
-	SetGridView(value IGridView)
-	IsHidden() bool
-	SetIsHidden(value bool)
-	NumberOfCells() int
-	SetNumberOfCells(value int)
 	Width() float64
 	SetWidth(value float64)
+	XPlacement() GridCellPlacement
+	SetXPlacement(value GridCellPlacement)
+	IsHidden() bool
+	SetIsHidden(value bool)
+	// methods:
+	CellAtIndex(index int) IGridCell
+	MergeCellsInRange(range_ corefoundation.Range)
 }
 
 // A column within a grid view.
@@ -98,6 +103,44 @@ func NewGridColumn() GridColumn {
 
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/cell(at:)
+func (g_ GridColumn) CellAtIndex(index int) IGridCell {
+	rv := objc.Send[GridCell](g_.ID, objc.Sel("cellAtIndex:"), index)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/mergeCells(in:)
+func (g_ GridColumn) MergeCellsInRange(range_ corefoundation.Range) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("mergeCellsInRange:"), range_)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/gridView
+func (g_ GridColumn) GridView() IGridView {
+	rv := objc.Send[GridView](g_.ID, objc.Sel("gridView"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/isHidden
+func (g_ GridColumn) Hidden() bool {
+	rv := objc.Send[bool](g_.ID, objc.Sel("hidden"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/isHidden
+func (g_ GridColumn) SetHidden(value bool) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setHidden:"), value)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
 func (g_ GridColumn) LeadingPadding() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("leadingPadding"))
@@ -109,6 +152,14 @@ func (g_ GridColumn) LeadingPadding() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/leadingPadding
 func (g_ GridColumn) SetLeadingPadding(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setLeadingPadding:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/numberOfCells
+func (g_ GridColumn) NumberOfCells() int {
+	rv := objc.Send[int](g_.ID, objc.Sel("numberOfCells"))
+	return rv
 }
 
 
@@ -128,32 +179,32 @@ func (g_ GridColumn) SetTrailingPadding(value float64) {
 
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/width
+func (g_ GridColumn) Width() float64 {
+	rv := objc.Send[float64](g_.ID, objc.Sel("width"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/width
+func (g_ GridColumn) SetWidth(value float64) {
+	objc.Send[objc.ID](g_.ID, objc.Sel("setWidth:"), value)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
-func (g_ GridColumn) XPlacement() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("xPlacement"))
+func (g_ GridColumn) XPlacement() GridCellPlacement {
+	rv := objc.Send[GridCellPlacement](g_.ID, objc.Sel("xPlacement"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGridColumn/xPlacement
-func (g_ GridColumn) SetXPlacement(value unsafe.Pointer) {
+func (g_ GridColumn) SetXPlacement(value GridCellPlacement) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setXPlacement:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/gridview
-func (g_ GridColumn) GridView() NSGridView {
-	rv := objc.Send[NSGridView](g_.ID, objc.Sel("gridView"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/gridview
-func (g_ GridColumn) SetGridView(value IGridView) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setGridView:"), value)
 }
 
 
@@ -169,36 +220,6 @@ func (g_ GridColumn) IsHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/ishidden
 func (g_ GridColumn) SetIsHidden(value bool) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setIsHidden:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/numberofcells
-func (g_ GridColumn) NumberOfCells() int {
-	rv := objc.Send[int](g_.ID, objc.Sel("numberOfCells"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/numberofcells
-func (g_ GridColumn) SetNumberOfCells(value int) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setNumberOfCells:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/width
-func (g_ GridColumn) Width() float64 {
-	rv := objc.Send[float64](g_.ID, objc.Sel("width"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsgridcolumn/width
-func (g_ GridColumn) SetWidth(value float64) {
-	objc.Send[objc.ID](g_.ID, objc.Sel("setWidth:"), value)
 }
 
 

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // WindowRestorationProtocol is the NSWindowRestoration protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSWindowRestoration.
 var WindowRestorationProtocol *objc.Protocol
 

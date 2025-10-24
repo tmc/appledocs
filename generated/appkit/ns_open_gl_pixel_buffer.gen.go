@@ -31,6 +31,12 @@ type _OpenGLPixelBufferClass struct {
 type IOpenGLPixelBuffer interface {
 	objectivec.IObject
 	// properties:
+	CGLPBufferObj() LPBufferObj /* not a class type */
+	PixelsHigh() unsafe.Pointer
+	PixelsWide() unsafe.Pointer
+	TextureInternalFormat() unsafe.Pointer
+	TextureMaxMipMapLevel() unsafe.Pointer
+	TextureTarget() unsafe.Pointer
 	// methods:
 }
 
@@ -86,5 +92,89 @@ func NewOpenGLPixelBuffer() OpenGLPixelBuffer {
 }
 
 
+
+// Initializes and returns an OpenGL pixel buffer object that encapsulates an existing CGL pixel buffer object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer/initWithCGLPBufferObj:
+func NewOpenGLPixelBufferWithCGLPBufferObj(pbuffer LPBufferObj /* not a class type */) OpenGLPixelBuffer {
+	instance := getOpenGLPixelBufferClass().Alloc()
+	rv := objc.Send[OpenGLPixelBuffer](instance.ID, objc.Sel("initWithCGLPBufferObj:"), pbuffer)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns an object initialized with the specified parameters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer/initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:
+func NewOpenGLPixelBufferWithTextureTargetTextureInternalFormatTextureMaxMipMapLevelPixelsWidePixelsHigh(target unsafe.Pointer, format unsafe.Pointer, maxLevel unsafe.Pointer, pixelsWide unsafe.Pointer, pixelsHigh unsafe.Pointer) OpenGLPixelBuffer {
+	instance := getOpenGLPixelBufferClass().Alloc()
+	rv := objc.Send[OpenGLPixelBuffer](instance.ID, objc.Sel("initWithTextureTarget:textureInternalFormat:textureMaxMipMapLevel:pixelsWide:pixelsHigh:"), target, format, maxLevel, pixelsWide, pixelsHigh)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The underlying CGL pixel buffer object associated with the OpenGL pixel buffer object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer/CGLPBufferObj
+func (o_ OpenGLPixelBuffer) CGLPBufferObj() LPBufferObj /* not a class type */ {
+	rv := objc.Send[LPBufferObj](o_.ID, objc.Sel("CGLPBufferObj"))
+	return rv
+}
+
+
+// The height of the OpenGL pixel buffer’s texture (in pixels).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer/pixelsHigh
+func (o_ OpenGLPixelBuffer) PixelsHigh() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("pixelsHigh"))
+	return rv
+}
+
+
+// The width of the OpenGL pixel buffer’s texture, in pixels.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer/pixelsWide
+func (o_ OpenGLPixelBuffer) PixelsWide() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("pixelsWide"))
+	return rv
+}
+
+
+// The internal format of the OpenGL pixel buffer’s texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer/textureInternalFormat
+func (o_ OpenGLPixelBuffer) TextureInternalFormat() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("textureInternalFormat"))
+	return rv
+}
+
+
+// The maximum mipmap level of the OpenGL pixel buffer’s texture.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer/textureMaxMipMapLevel
+func (o_ OpenGLPixelBuffer) TextureMaxMipMapLevel() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("textureMaxMipMapLevel"))
+	return rv
+}
+
+
+// The texture target of the OpenGL pixel buffer.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelBuffer/textureTarget
+func (o_ OpenGLPixelBuffer) TextureTarget() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("textureTarget"))
+	return rv
+}
 
 

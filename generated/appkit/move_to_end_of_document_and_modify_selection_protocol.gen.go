@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveToEndOfDocumentAndModifySelectionProtocol is the moveToEndOfDocumentAndModifySelection: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveToEndOfDocumentAndModifySelection:.
 var moveToEndOfDocumentAndModifySelectionProtocol *objc.Protocol
 

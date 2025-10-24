@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // SpeechRecognizerDelegateProtocol is the NSSpeechRecognizerDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSSpeechRecognizerDelegate.
 var SpeechRecognizerDelegateProtocol *objc.Protocol
 

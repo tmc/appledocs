@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveDownAndModifySelectionProtocol is the moveDownAndModifySelection: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveDownAndModifySelection:.
 var moveDownAndModifySelectionProtocol *objc.Protocol
 

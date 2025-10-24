@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // speechSynthesizerProtocol is the speechSynthesizer: protocol.
 //
 // Availability:
-//   - macOS 10.3+ (Deprecated in 14.0)
+//   - macOS 10.5+ (Deprecated in 14.0)
 //
 // Use this protocol when registering custom classes that conform to speechSynthesizer:.
 var speechSynthesizerProtocol *objc.Protocol

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // deleteForwardProtocol is the deleteForward: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to deleteForward:.
 var deleteForwardProtocol *objc.Protocol
 

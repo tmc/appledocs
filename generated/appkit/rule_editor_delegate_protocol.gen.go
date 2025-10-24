@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // RuleEditorDelegateProtocol is the NSRuleEditorDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSRuleEditorDelegate.
 var RuleEditorDelegateProtocol *objc.Protocol
 

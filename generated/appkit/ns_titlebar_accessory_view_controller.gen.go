@@ -30,21 +30,26 @@ type _TitlebarAccessoryViewControllerClass struct {
 type ITitlebarAccessoryViewController interface {
 	IViewController
 	// properties:
-	FullScreenMinHeight() float64
-	SetFullScreenMinHeight(value float64)
 	AutomaticallyAdjustsSize() bool
 	SetAutomaticallyAdjustsSize(value bool)
-	IsHidden() bool
-	SetIsHidden(value bool)
-	LayoutAttribute() unsafe.Pointer
-	SetLayoutAttribute(value unsafe.Pointer)
+	FullScreenMinHeight() float64
+	SetFullScreenMinHeight(value float64)
+	Hidden() bool
+	SetHidden(value bool)
+	LayoutAttribute() LayoutAttribute
+	SetLayoutAttribute(value LayoutAttribute)
 	PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle
 	SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle)
+	IsHidden() bool
+	SetIsHidden(value bool)
 	FullScreenAccessoryView() IView
 	SetFullScreenAccessoryView(value IView)
 	View() IView
 	SetView(value IView)
 	// methods:
+	ViewDidAppear()
+	ViewDidDisappear()
+	ViewWillAppear()
 }
 
 // An object that manages a custom view—known as an accessory view—in the title bar–toolbar area of a window.
@@ -102,6 +107,48 @@ func NewTitlebarAccessoryViewController() TitlebarAccessoryViewController {
 
 
 
+// Called when the title bar accessory view controller’s view is fully transitioned onto the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/viewDidAppear()
+func (t_ TitlebarAccessoryViewController) ViewDidAppear() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("viewDidAppear"))
+}
+
+
+// Called after the title bar accessory view controller’s view is removed from the window’s view hierarchy.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/viewDidDisappear()
+func (t_ TitlebarAccessoryViewController) ViewDidDisappear() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("viewDidDisappear"))
+}
+
+
+// Called after the title bar accessory view controller’s view has been loaded into memory is about to be added to the view hierarchy in the window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/viewWillAppear()
+func (t_ TitlebarAccessoryViewController) ViewWillAppear() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("viewWillAppear"))
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/automaticallyAdjustsSize
+func (t_ TitlebarAccessoryViewController) AutomaticallyAdjustsSize() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("automaticallyAdjustsSize"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/automaticallyAdjustsSize
+func (t_ TitlebarAccessoryViewController) SetAutomaticallyAdjustsSize(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticallyAdjustsSize:"), value)
+}
+
+
 // The visual minimum height of an accessory view that displays below the title bar when the window is in full screen mode.
 //
 // [Full Topic]
@@ -122,17 +169,55 @@ func (t_ TitlebarAccessoryViewController) SetFullScreenMinHeight(value float64) 
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/automaticallyadjustssize
-func (t_ TitlebarAccessoryViewController) AutomaticallyAdjustsSize() bool {
-	rv := objc.Send[bool](t_.ID, objc.Sel("automaticallyAdjustsSize"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/isHidden
+func (t_ TitlebarAccessoryViewController) Hidden() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("hidden"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/automaticallyadjustssize
-func (t_ TitlebarAccessoryViewController) SetAutomaticallyAdjustsSize(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticallyAdjustsSize:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/isHidden
+func (t_ TitlebarAccessoryViewController) SetHidden(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setHidden:"), value)
+}
+
+
+// The location of the accessory view, in relation to the window’s title bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/layoutAttribute
+func (t_ TitlebarAccessoryViewController) LayoutAttribute() LayoutAttribute {
+	rv := objc.Send[LayoutAttribute](t_.ID, objc.Sel("layoutAttribute"))
+	return rv
+}
+
+
+// The location of the accessory view, in relation to the window’s title bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/layoutAttribute
+func (t_ TitlebarAccessoryViewController) SetLayoutAttribute(value LayoutAttribute) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutAttribute:"), value)
+}
+
+
+// The titlebar accessory’s preferred effect for content scrolling behind it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/preferredScrollEdgeEffectStyle
+func (t_ TitlebarAccessoryViewController) PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](t_.ID, objc.Sel("preferredScrollEdgeEffectStyle"))
+	return rv
+}
+
+
+// The titlebar accessory’s preferred effect for content scrolling behind it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTitlebarAccessoryViewController/preferredScrollEdgeEffectStyle
+func (t_ TitlebarAccessoryViewController) SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPreferredScrollEdgeEffectStyle:"), value)
 }
 
 
@@ -148,44 +233,6 @@ func (t_ TitlebarAccessoryViewController) IsHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/ishidden
 func (t_ TitlebarAccessoryViewController) SetIsHidden(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsHidden:"), value)
-}
-
-
-// The location of the accessory view, in relation to the window’s title bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/layoutattribute
-func (t_ TitlebarAccessoryViewController) LayoutAttribute() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutAttribute"))
-	return rv
-}
-
-
-// The location of the accessory view, in relation to the window’s title bar.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/layoutattribute
-func (t_ TitlebarAccessoryViewController) SetLayoutAttribute(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutAttribute:"), value)
-}
-
-
-// The titlebar accessory’s preferred effect for content scrolling behind it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/preferredscrolledgeeffectstyle
-func (t_ TitlebarAccessoryViewController) PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle {
-	rv := objc.Send[ScrollEdgeEffectStyle](t_.ID, objc.Sel("preferredScrollEdgeEffectStyle"))
-	return rv
-}
-
-
-// The titlebar accessory’s preferred effect for content scrolling behind it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstitlebaraccessoryviewcontroller/preferredscrolledgeeffectstyle
-func (t_ TitlebarAccessoryViewController) SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPreferredScrollEdgeEffectStyle:"), value)
 }
 
 

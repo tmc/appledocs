@@ -30,8 +30,8 @@ type _ClickGestureRecognizerClass struct {
 type IClickGestureRecognizer interface {
 	IGestureRecognizer
 	// properties:
-	ButtonMask() int
-	SetButtonMask(value int)
+	ButtonMask() uint
+	SetButtonMask(value uint)
 	NumberOfClicksRequired() int
 	SetNumberOfClicksRequired(value int)
 	NumberOfTouchesRequired() int
@@ -103,9 +103,9 @@ func NewClickGestureRecognizer() ClickGestureRecognizer {
 // A bit mask of the button (or buttons) required to recognize this click.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/buttonmask
-func (c_ ClickGestureRecognizer) ButtonMask() int {
-	rv := objc.Send[int](c_.ID, objc.Sel("buttonMask"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer/buttonMask
+func (c_ ClickGestureRecognizer) ButtonMask() uint {
+	rv := objc.Send[uint](c_.ID, objc.Sel("buttonMask"))
 	return rv
 }
 
@@ -113,8 +113,8 @@ func (c_ ClickGestureRecognizer) ButtonMask() int {
 // A bit mask of the button (or buttons) required to recognize this click.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/buttonmask
-func (c_ ClickGestureRecognizer) SetButtonMask(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer/buttonMask
+func (c_ ClickGestureRecognizer) SetButtonMask(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setButtonMask:"), value)
 }
 
@@ -122,7 +122,7 @@ func (c_ ClickGestureRecognizer) SetButtonMask(value int) {
 // The number of clicks required to match.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/numberofclicksrequired
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer/numberOfClicksRequired
 func (c_ ClickGestureRecognizer) NumberOfClicksRequired() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfClicksRequired"))
 	return rv
@@ -132,26 +132,26 @@ func (c_ ClickGestureRecognizer) NumberOfClicksRequired() int {
 // The number of clicks required to match.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/numberofclicksrequired
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer/numberOfClicksRequired
 func (c_ ClickGestureRecognizer) SetNumberOfClicksRequired(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfClicksRequired:"), value)
 }
 
 
-// The number of touches required in an
+// The number of touches required in an object for the gesture recognizer to match.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/numberoftouchesrequired
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer/numberOfTouchesRequired
 func (c_ ClickGestureRecognizer) NumberOfTouchesRequired() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("numberOfTouchesRequired"))
 	return rv
 }
 
 
-// The number of touches required in an
+// The number of touches required in an object for the gesture recognizer to match.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsclickgesturerecognizer/numberoftouchesrequired
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClickGestureRecognizer/numberOfTouchesRequired
 func (c_ ClickGestureRecognizer) SetNumberOfTouchesRequired(value int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setNumberOfTouchesRequired:"), value)
 }

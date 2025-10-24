@@ -67,7 +67,7 @@ type IProcessInfo interface {
 	DisableSuddenTermination()
 	EnableAutomaticTermination(reason IString)
 	EnableSuddenTermination()
-	EndActivity(activity objectivec.IObject)
+	EndActivity(activity objc.IObject)
 	HasPerformanceProfile(performanceProfile ProcessPerformanceProfile /* not a class type */) bool
 	IsDeviceCertifiedFor(performanceTier DeviceCertification /* not a class type */) bool
 	IsOperatingSystemAtLeastVersion(version objc.IObject /* cross-framework: OperatingSystemVersion */) bool
@@ -186,7 +186,7 @@ func (p_ ProcessInfo) EnableSuddenTermination() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ProcessInfo/endActivity(_:)
-func (p_ ProcessInfo) EndActivity(activity objectivec.IObject) {
+func (p_ ProcessInfo) EndActivity(activity objc.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("endActivity:"), activity)
 }
 

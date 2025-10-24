@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ScrubberFlowLayout] class.
@@ -36,6 +37,7 @@ type IScrubberFlowLayout interface {
 	ItemSpacing() float64
 	SetItemSpacing(value float64)
 	// methods:
+	InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IndexSet)
 }
 
 // A concrete layout object that arranges items end-to-end in a linear strip.
@@ -93,10 +95,19 @@ func NewScrubberFlowLayout() ScrubberFlowLayout {
 
 
 
+// Informs the scrubber that it should perform a new layout pass for the items at the specified indexes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/invalidateLayoutForItems(at:)
+func (s_ ScrubberFlowLayout) InvalidateLayoutForItemsAtIndexes(invalidItemIndexes foundation.IndexSet) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("invalidateLayoutForItemsAtIndexes:"), invalidItemIndexes)
+}
+
+
 // The frame size for each item in the scrubber.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/itemSize
 func (s_ ScrubberFlowLayout) ItemSize() objc.IObject /* cross-framework: Size */ {
 	rv := objc.Send[corefoundation.Size](s_.ID, objc.Sel("itemSize"))
 	return rv
@@ -106,7 +117,7 @@ func (s_ ScrubberFlowLayout) ItemSize() objc.IObject /* cross-framework: Size */
 // The frame size for each item in the scrubber.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/itemSize
 func (s_ ScrubberFlowLayout) SetItemSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSize:"), value)
 }
@@ -115,7 +126,7 @@ func (s_ ScrubberFlowLayout) SetItemSize(value objc.IObject /* cross-framework: 
 // The horizontal spacing between items, specified in points.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemspacing
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/itemSpacing
 func (s_ ScrubberFlowLayout) ItemSpacing() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("itemSpacing"))
 	return rv
@@ -125,7 +136,7 @@ func (s_ ScrubberFlowLayout) ItemSpacing() float64 {
 // The horizontal spacing between items, specified in points.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberflowlayout/itemspacing
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberFlowLayout/itemSpacing
 func (s_ ScrubberFlowLayout) SetItemSpacing(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setItemSpacing:"), value)
 }

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // scrollPageUpProtocol is the scrollPageUp: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to scrollPageUp:.
 var scrollPageUpProtocol *objc.Protocol
 

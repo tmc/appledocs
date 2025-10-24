@@ -92,8 +92,8 @@ type ICoder interface {
 	EncodeRect(rect objc.IObject /* cross-framework: Rect */)
 	EncodePoint(point objc.IObject /* cross-framework: Point */)
 	EncodeSize(size objc.IObject /* cross-framework: Size */)
-	EncodeObject(object objectivec.IObject)
-	EncodeObjectForKey(object objectivec.IObject, key IString)
+	EncodeObject(object objc.IObject)
+	EncodeObjectForKey(object objc.IObject, key IString)
 	EncodePointForKey(point objc.IObject /* cross-framework: Point */, key IString)
 	EncodeIntegerForKey(value int, key IString)
 	EncodeRectForKey(rect objc.IObject /* cross-framework: Rect */, key IString)
@@ -107,15 +107,15 @@ type ICoder interface {
 	EncodeDoubleForKey(value float64, key IString)
 	EncodeInt64ForKey(value int64, key IString)
 	EncodeArrayOfObjCTypeCountAt(type_ unsafe.Pointer, count uint, array unsafe.Pointer)
-	EncodeBycopyObject(anObject objectivec.IObject)
-	EncodeByrefObject(anObject objectivec.IObject)
+	EncodeBycopyObject(anObject objc.IObject)
+	EncodeByrefObject(anObject objc.IObject)
 	EncodeBytesLength(byteaddr unsafe.Pointer, length uint)
 	EncodeBytesLengthForKey(bytes unsafe.Pointer, length uint, key IString)
 	EncodeIntForKey(value int, key IString)
-	EncodeConditionalObject(object objectivec.IObject)
-	EncodeConditionalObjectForKey(object objectivec.IObject, key IString)
-	EncodePropertyList(aPropertyList objectivec.IObject)
-	EncodeRootObject(rootObject objectivec.IObject)
+	EncodeConditionalObject(object objc.IObject)
+	EncodeConditionalObjectForKey(object objc.IObject, key IString)
+	EncodePropertyList(aPropertyList objc.IObject)
+	EncodeRootObject(rootObject objc.IObject)
 	EncodeValueOfObjCTypeAt(type_ unsafe.Pointer, addr unsafe.Pointer)
 	EncodeValuesOfObjCTypes(types unsafe.Pointer)
 	FailWithError(error_ IError)
@@ -594,7 +594,7 @@ func (c_ Coder) EncodeSize(size objc.IObject /* cross-framework: Size */) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:)-9648d
-func (c_ Coder) EncodeObject(object objectivec.IObject) {
+func (c_ Coder) EncodeObject(object objc.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeObject:"), object)
 }
 
@@ -603,7 +603,7 @@ func (c_ Coder) EncodeObject(object objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-1mlmu
-func (c_ Coder) EncodeObjectForKey(object objectivec.IObject, key IString) {
+func (c_ Coder) EncodeObjectForKey(object objc.IObject, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeObject:forKey:"), object, key)
 }
 
@@ -729,7 +729,7 @@ func (c_ Coder) EncodeArrayOfObjCTypeCountAt(type_ unsafe.Pointer, count uint, a
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodeBycopyObject(_:)
-func (c_ Coder) EncodeBycopyObject(anObject objectivec.IObject) {
+func (c_ Coder) EncodeBycopyObject(anObject objc.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeBycopyObject:"), anObject)
 }
 
@@ -738,7 +738,7 @@ func (c_ Coder) EncodeBycopyObject(anObject objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodeByrefObject(_:)
-func (c_ Coder) EncodeByrefObject(anObject objectivec.IObject) {
+func (c_ Coder) EncodeByrefObject(anObject objc.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeByrefObject:"), anObject)
 }
 
@@ -774,7 +774,7 @@ func (c_ Coder) EncodeIntForKey(value int, key IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodeConditionalObject(_:)
-func (c_ Coder) EncodeConditionalObject(object objectivec.IObject) {
+func (c_ Coder) EncodeConditionalObject(object objc.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeConditionalObject:"), object)
 }
 
@@ -783,7 +783,7 @@ func (c_ Coder) EncodeConditionalObject(object objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodeConditionalObject(_:forKey:)
-func (c_ Coder) EncodeConditionalObjectForKey(object objectivec.IObject, key IString) {
+func (c_ Coder) EncodeConditionalObjectForKey(object objc.IObject, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeConditionalObject:forKey:"), object, key)
 }
 
@@ -792,7 +792,7 @@ func (c_ Coder) EncodeConditionalObjectForKey(object objectivec.IObject, key ISt
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodePropertyList(_:)
-func (c_ Coder) EncodePropertyList(aPropertyList objectivec.IObject) {
+func (c_ Coder) EncodePropertyList(aPropertyList objc.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodePropertyList:"), aPropertyList)
 }
 
@@ -801,7 +801,7 @@ func (c_ Coder) EncodePropertyList(aPropertyList objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encodeRootObject(_:)
-func (c_ Coder) EncodeRootObject(rootObject objectivec.IObject) {
+func (c_ Coder) EncodeRootObject(rootObject objc.IObject) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeRootObject:"), rootObject)
 }
 

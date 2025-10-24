@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,14 +32,16 @@ type _TextLineFragmentClass struct {
 // An interface definition for the [TextLineFragment] class.
 type ITextLineFragment interface {
 	objectivec.IObject
+	// properties:
 	AttributedString() foundation.AttributedString
-	SetAttributedString(value foundation.IAttributedString)
-	CharacterRange() foundation.Range
-	SetCharacterRange(value foundation.Range)
-	GlyphOrigin() coregraphics.CGPoint
-	SetGlyphOrigin(value coregraphics.CGPoint)
-	TypographicBounds() coregraphics.CGRect
-	SetTypographicBounds(value coregraphics.CGRect)
+	CharacterRange() corefoundation.Range
+	GlyphOrigin() corefoundation.CGPoint
+	TypographicBounds() corefoundation.CGRect
+	// methods:
+	CharacterIndexForPoint(point corefoundation.CGPoint) int
+	DrawAtPointInContext(point corefoundation.CGPoint, context ContextRef /* not a class type */)
+	FractionOfDistanceThroughGlyphForPoint(point corefoundation.CGPoint) float64
+	LocationForCharacterAtIndex(index int) corefoundation.CGPoint
 }
 
 // A class that represents a line fragment as a single textual layout and rendering unit inside a text layout fragment.
@@ -93,50 +95,98 @@ func NewTextLineFragment() TextLineFragment {
 
 
 
+// Creates a new line fragment from the attributed string for the range of characters you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/init(attributedString:range:)
+func NewTextLineFragmentWithAttributedStringRange(attributedString foundation.AttributedString, range_ corefoundation.Range) TextLineFragment {
+	instance := getTextLineFragmentClass().Alloc()
+	rv := objc.Send[TextLineFragment](instance.ID, objc.Sel("initWithAttributedString:range:"), attributedString, range_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a new line fragment with from data in an unarchiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/init(coder:)
+func NewTextLineFragmentWithCoder(aDecoder foundation.Coder) TextLineFragment {
+	instance := getTextLineFragmentClass().Alloc()
+	rv := objc.Send[TextLineFragment](instance.ID, objc.Sel("initWithCoder:"), aDecoder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a new line fragment using the string, attributes, and range you provide.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/init(string:attributes:range:)
+func NewTextLineFragmentWithStringAttributesRange(string_ objc.IObject /* cross-framework: NSString */, attributes foundation.IDictionary, range_ corefoundation.Range) TextLineFragment {
+	instance := getTextLineFragmentClass().Alloc()
+	rv := objc.Send[TextLineFragment](instance.ID, objc.Sel("initWithString:attributes:range:"), string_, attributes, range_)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns character index for a point inside the line fragment coordinate system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/characterIndex(for:)
+func (t_ TextLineFragment) CharacterIndexForPoint(point corefoundation.CGPoint) int {
+	rv := objc.Send[int](t_.ID, objc.Sel("characterIndexForPoint:"), point)
+	return rv
+}
+
+
+// Renders the line fragment contents at the rendering origin.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/draw(at:in:)
+func (t_ TextLineFragment) DrawAtPointInContext(point corefoundation.CGPoint, context ContextRef /* not a class type */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("drawAtPoint:inContext:"), point, context)
+}
+
+
+// Returns character index for a point inside the line fragment coordinate system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/fractionOfDistanceThroughGlyph(for:)
+func (t_ TextLineFragment) FractionOfDistanceThroughGlyphForPoint(point corefoundation.CGPoint) float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("fractionOfDistanceThroughGlyphForPoint:"), point)
+	return rv
+}
+
+
+// Returns the location of the character at the specified index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/locationForCharacter(at:)
+func (t_ TextLineFragment) LocationForCharacterAtIndex(index int) corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](t_.ID, objc.Sel("locationForCharacterAtIndex:"), index)
+	return rv
+}
+
+
 // The source attributed string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/attributedstring
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/attributedString
 func (t_ TextLineFragment) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
 
-// The source attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/attributedstring
-func (t_ TextLineFragment) SetAttributedString(value foundation.IAttributedString) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
-}
-
-
 // The string range for the source attributed string that corresponds to this line fragment.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/characterrange
-func (t_ TextLineFragment) CharacterRange() foundation.Range {
-	rv := objc.Send[foundation.Range](t_.ID, objc.Sel("characterRange"))
-	return rv
-}
-
-
-// The string range for the source attributed string that corresponds to this line fragment.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/characterrange
-func (t_ TextLineFragment) SetCharacterRange(value foundation.Range) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCharacterRange:"), value)
-}
-
-
-// Rendering origin for the left-most glyph in the line fragment coordinate system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/glyphorigin
-func (t_ TextLineFragment) GlyphOrigin() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](t_.ID, objc.Sel("glyphOrigin"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/characterRange
+func (t_ TextLineFragment) CharacterRange() corefoundation.Range {
+	rv := objc.Send[corefoundation.Range](t_.ID, objc.Sel("characterRange"))
 	return rv
 }
 
@@ -144,18 +194,9 @@ func (t_ TextLineFragment) GlyphOrigin() coregraphics.CGPoint {
 // Rendering origin for the left-most glyph in the line fragment coordinate system.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/glyphorigin
-func (t_ TextLineFragment) SetGlyphOrigin(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setGlyphOrigin:"), value)
-}
-
-
-// The typographic bounds that specifies the dimensions of the line fragment for laying out line fragments to each other.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/typographicbounds
-func (t_ TextLineFragment) TypographicBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](t_.ID, objc.Sel("typographicBounds"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/glyphOrigin
+func (t_ TextLineFragment) GlyphOrigin() corefoundation.CGPoint {
+	rv := objc.Send[corefoundation.CGPoint](t_.ID, objc.Sel("glyphOrigin"))
 	return rv
 }
 
@@ -163,10 +204,10 @@ func (t_ TextLineFragment) TypographicBounds() coregraphics.CGRect {
 // The typographic bounds that specifies the dimensions of the line fragment for laying out line fragments to each other.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextlinefragment/typographicbounds
-func (t_ TextLineFragment) SetTypographicBounds(value coregraphics.CGRect) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTypographicBounds:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextLineFragment/typographicBounds
+func (t_ TextLineFragment) TypographicBounds() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](t_.ID, objc.Sel("typographicBounds"))
+	return rv
 }
-
 
 

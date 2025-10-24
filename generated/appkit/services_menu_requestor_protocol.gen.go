@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // ServicesMenuRequestorProtocol is the NSServicesMenuRequestor protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSServicesMenuRequestor.
 var ServicesMenuRequestorProtocol *objc.Protocol
 

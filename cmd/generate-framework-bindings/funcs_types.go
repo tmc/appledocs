@@ -10,15 +10,49 @@ import (
 // mapCTypeToGoWithFramework wraps occ2go.MapCTypeToGo and applies framework-specific type mappings.
 // This ensures C types like CGAffineTransform are properly qualified with their framework package.
 func mapCTypeToGoWithFramework(cType, framework string) string {
-	// Check if this C type is a typedef in the current framework BEFORE mapping
-	// This handles CF*Ref types (CFTypeRef, CFAllocatorRef, etc.)
+	// Special case: CGFloat should ALWAYS be mapped to float64 via type registry, never treated as local typedef
+	if cType == "CGFloat" || cType == "CGFloat *" {
+		if goType, found := lookupTypeMapping(strings.TrimSuffix(cType, " *"), framework); found {
+			if strings.HasSuffix(cType, " *") {
+				return "*" + goType
+			}
+			return goType
+		}
+	}
+
+	// Check if this C type is a typedef or struct in the current framework BEFORE mapping
+	// This handles CF*Ref types (CFTypeRef, CFAllocatorRef, etc.) and CG geometry types
 	strippedCType := stripObjCPrefix(cType)
-	if currentFrameworkTypedefs[strippedCType] {
+
+	// Check both typedefs and structs
+	if currentFrameworkTypedefs[strippedCType] || currentFrameworkStructs[strippedCType] {
 		// For ObjectiveC framework, preserve original typedef names (objc_property_t, etc.)
 		// For other frameworks, strip prefix and title-case
 		if framework == "ObjectiveC" {
 			return cType // Return original name unchanged
 		}
+
+		// Special handling for CG-prefixed types
+		// Preserve CG prefix for geometry types but strip for callbacks and Ref types
+		if strings.HasPrefix(cType, "CG") {
+			isCallback := strings.HasSuffix(cType, "CallBack") || strings.HasSuffix(cType, "Callback")
+			isRef := strings.HasSuffix(cType, "Ref")
+
+			if isCallback || isRef {
+				// Strip CG prefix for callbacks and Ref types
+				// E.g., CGColorSpaceRef -> ColorSpaceRef
+				if strippedCType != "" {
+					return strings.ToUpper(strippedCType[:1]) + strippedCType[1:]
+				}
+				return strippedCType
+			} else {
+				// Preserve CG prefix for geometry types
+				// E.g., CGFloat, CGPoint, CGSize, CGRect, CGVector, CGAffineTransform
+				return cType
+			}
+		}
+
+		// For non-CG types, strip prefix and title-case
 		// E.g., CFTypeRef -> TypeRef, CFAllocatorRef -> AllocatorRef
 		if strippedCType != "" {
 			return strings.ToUpper(strippedCType[:1]) + strippedCType[1:]

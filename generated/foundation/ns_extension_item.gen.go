@@ -31,8 +31,8 @@ type _ExtensionItemClass struct {
 type IExtensionItem interface {
 	objectivec.IObject
 	// properties:
-	Attachments() []IItemProvider
-	SetAttachments(value []IItemProvider)
+	Attachments() []ItemProvider
+	SetAttachments(value []ItemProvider)
 	AttributedContentText() IAttributedString
 	SetAttributedContentText(value IAttributedString)
 	AttributedTitle() IAttributedString
@@ -97,7 +97,7 @@ func NewExtensionItem() ExtensionItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attachments
-func (e_ ExtensionItem) Attachments() []IItemProvider {
+func (e_ ExtensionItem) Attachments() []ItemProvider {
 	rv := objc.Send[[]ItemProvider](e_.ID, objc.Sel("attachments"))
 	return rv
 }
@@ -107,7 +107,7 @@ func (e_ ExtensionItem) Attachments() []IItemProvider {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExtensionItem/attachments
-func (e_ ExtensionItem) SetAttachments(value []IItemProvider) {
+func (e_ ExtensionItem) SetAttachments(value []ItemProvider) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

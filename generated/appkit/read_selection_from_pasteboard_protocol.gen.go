@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // readSelectionFromPasteboardProtocol is the readSelectionFromPasteboard: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to readSelectionFromPasteboard:.
 var readSelectionFromPasteboardProtocol *objc.Protocol
 

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // outlineViewProtocol is the outlineView: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to outlineView:.
 var outlineViewProtocol *objc.Protocol
 

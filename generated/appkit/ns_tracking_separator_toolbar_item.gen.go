@@ -34,8 +34,6 @@ type ITrackingSeparatorToolbarItem interface {
 	SetDividerIndex(value int)
 	SplitView() ISplitView
 	SetSplitView(value ISplitView)
-	Target() unsafe.Pointer
-	SetTarget(value unsafe.Pointer)
 	// methods:
 }
 
@@ -150,25 +148,6 @@ func (t_ TrackingSeparatorToolbarItem) SplitView() ISplitView {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingSeparatorToolbarItem/splitView
 func (t_ TrackingSeparatorToolbarItem) SetSplitView(value ISplitView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSplitView:"), value)
-}
-
-
-// The object that defines the action method the toolbar item calls when clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/target
-func (t_ TrackingSeparatorToolbarItem) Target() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("target"))
-	return rv
-}
-
-
-// The object that defines the action method the toolbar item calls when clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/target
-func (t_ TrackingSeparatorToolbarItem) SetTarget(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTarget:"), value)
 }
 
 

@@ -157,7 +157,7 @@ func (lc _LinguisticTaggerClass) TagForStringAtIndexUnitSchemeOrthographyTokenRa
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLinguisticTagger/tags(for:range:unit:scheme:options:orthography:tokenRanges:)
-func (lc _LinguisticTaggerClass) TagsForStringRangeUnitSchemeOptionsOrthographyTokenRanges(string_ IString, range_ objc.IObject /* cross-framework: Range */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework: LinguisticTagScheme */, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []IValue) []string {
+func (lc _LinguisticTaggerClass) TagsForStringRangeUnitSchemeOptionsOrthographyTokenRanges(string_ IString, range_ objc.IObject /* cross-framework: Range */, unit LinguisticTaggerUnit, scheme objc.IObject /* cross-framework: LinguisticTagScheme */, options LinguisticTaggerOptions, orthography IOrthography, tokenRanges []Value) []string {
 	rv := objc.Send[[]string](objc.ID(lc.class), objc.Sel("tagsForString:range:unit:scheme:options:orthography:tokenRanges:"), string_, range_, unit, scheme, options, orthography, tokenRanges)
 	return rv
 }

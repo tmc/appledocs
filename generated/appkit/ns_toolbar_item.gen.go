@@ -33,30 +33,54 @@ type _ToolbarItemClass struct {
 type IToolbarItem interface {
 	objectivec.IObject
 	// properties:
+	Action() objc.SEL
+	SetAction(value objc.SEL)
 	AllowsDuplicatesInToolbar() bool
+	Autovalidates() bool
+	SetAutovalidates(value bool)
+	BackgroundTintColor() IColor
+	SetBackgroundTintColor(value IColor)
 	Badge() IItemBadge
 	SetBadge(value IItemBadge)
+	Image() IImage
+	SetImage(value IImage)
 	Bordered() bool
 	SetBordered(value bool)
+	Enabled() bool
+	SetEnabled(value bool)
+	Hidden() bool
+	SetHidden(value bool)
 	Navigational() bool
 	SetNavigational(value bool)
 	Visible() bool
+	ItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	MaxSize() objc.IObject /* cross-framework: Size */
 	SetMaxSize(value objc.IObject /* cross-framework: Size */)
-	MenuFormRepresentation() objc.IObject /* cross-framework: MenuItem */
-	SetMenuFormRepresentation(value objc.IObject /* cross-framework: MenuItem */)
+	MenuFormRepresentation() IMenuItem
+	SetMenuFormRepresentation(value IMenuItem)
 	MinSize() objc.IObject /* cross-framework: Size */
 	SetMinSize(value objc.IObject /* cross-framework: Size */)
+	PaletteLabel() objc.IObject /* cross-framework: NSString */
+	SetPaletteLabel(value objc.IObject /* cross-framework: NSString */)
 	PossibleLabels() unsafe.Pointer
 	SetPossibleLabels(value unsafe.Pointer)
-	Style() ToolbarItemStyle /* not a class type */
-	SetStyle(value ToolbarItemStyle /* not a class type */)
+	Style() ToolbarItemStyle
+	SetStyle(value ToolbarItemStyle)
+	Tag() int
+	SetTag(value int)
+	Target() objc.ID
+	SetTarget(value objc.ID)
 	Title() objc.IObject /* cross-framework: NSString */
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	ToolTip() objc.IObject /* cross-framework: NSString */
+	SetToolTip(value objc.IObject /* cross-framework: NSString */)
+	Toolbar() IToolbar
 	View() IView
 	SetView(value IView)
-	BackgroundTintColor() IColor
-	SetBackgroundTintColor(value IColor)
+	VisibilityPriority() objc.IObject /* cross-framework: ToolbarItemVisibilityPriority */
+	SetVisibilityPriority(value objc.IObject /* cross-framework: ToolbarItemVisibilityPriority */)
 	IsBordered() bool
 	SetIsBordered(value bool)
 	IsEnabled() bool
@@ -68,6 +92,7 @@ type IToolbarItem interface {
 	IsVisible() bool
 	SetIsVisible(value bool)
 	// methods:
+	Validate()
 }
 
 // A single item that appears in a window’s toolbar.
@@ -156,6 +181,34 @@ func (tc _ToolbarItemClass) ItemWithItemIdentifierBarButtonItem(itemIdentifier o
 }
 
 
+// Validates the toolbar item’s menu and its ability to perfrom its action.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/validate()
+func (t_ ToolbarItem) Validate() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("validate"))
+}
+
+
+// The action method to call when someone clicks on the toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/action
+func (t_ ToolbarItem) Action() objc.SEL {
+	rv := objc.Send[objc.SEL](t_.ID, objc.Sel("action"))
+	return rv
+}
+
+
+// The action method to call when someone clicks on the toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/action
+func (t_ ToolbarItem) SetAction(value objc.SEL) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAction:"), value)
+}
+
+
 // A Boolean value that indicates whether the toolbar item can appear more than once in a toolbar.
 //
 // [Full Topic]
@@ -163,6 +216,40 @@ func (tc _ToolbarItemClass) ItemWithItemIdentifierBarButtonItem(itemIdentifier o
 func (t_ ToolbarItem) AllowsDuplicatesInToolbar() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("allowsDuplicatesInToolbar"))
 	return rv
+}
+
+
+// A Boolean value that indicates whether the toolbar automatically validates the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/autovalidates
+func (t_ ToolbarItem) Autovalidates() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("autovalidates"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the toolbar automatically validates the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/autovalidates
+func (t_ ToolbarItem) SetAutovalidates(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAutovalidates:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
+func (t_ ToolbarItem) BackgroundTintColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("backgroundTintColor"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/backgroundTintColor
+func (t_ ToolbarItem) SetBackgroundTintColor(value IColor) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundTintColor:"), value)
 }
 
 
@@ -185,6 +272,25 @@ func (t_ ToolbarItem) SetBadge(value IItemBadge) {
 }
 
 
+// The image to display for the toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/image
+func (t_ ToolbarItem) Image() IImage {
+	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// The image to display for the toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/image
+func (t_ ToolbarItem) SetImage(value IImage) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
+}
+
+
 // A Boolean value that indicates whether the toolbar item has a bordered style.
 //
 // [Full Topic]
@@ -201,6 +307,40 @@ func (t_ ToolbarItem) Bordered() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isBordered
 func (t_ ToolbarItem) SetBordered(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBordered:"), value)
+}
+
+
+// A Boolean value that indicates whether the item is enabled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isEnabled
+func (t_ ToolbarItem) Enabled() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("enabled"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the item is enabled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isEnabled
+func (t_ ToolbarItem) SetEnabled(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setEnabled:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isHidden
+func (t_ ToolbarItem) Hidden() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("hidden"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/isHidden
+func (t_ ToolbarItem) SetHidden(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setHidden:"), value)
 }
 
 
@@ -233,6 +373,35 @@ func (t_ ToolbarItem) Visible() bool {
 }
 
 
+// The value you use to identify the toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/itemIdentifier
+func (t_ ToolbarItem) ItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("itemIdentifier"))
+	return rv
+}
+
+
+// The label that appears for this item in the toolbar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
+func (t_ ToolbarItem) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// The label that appears for this item in the toolbar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/label
+func (t_ ToolbarItem) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
+}
+
+
 // The toolbar item’s maximum size.
 //
 // [Full Topic]
@@ -256,7 +425,7 @@ func (t_ ToolbarItem) SetMaxSize(value objc.IObject /* cross-framework: Size */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/menuFormRepresentation
-func (t_ ToolbarItem) MenuFormRepresentation() objc.IObject /* cross-framework: MenuItem */ {
+func (t_ ToolbarItem) MenuFormRepresentation() IMenuItem {
 	rv := objc.Send[MenuItem](t_.ID, objc.Sel("menuFormRepresentation"))
 	return rv
 }
@@ -266,7 +435,7 @@ func (t_ ToolbarItem) MenuFormRepresentation() objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/menuFormRepresentation
-func (t_ ToolbarItem) SetMenuFormRepresentation(value objc.IObject /* cross-framework: MenuItem */) {
+func (t_ ToolbarItem) SetMenuFormRepresentation(value IMenuItem) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMenuFormRepresentation:"), value)
 }
 
@@ -287,6 +456,25 @@ func (t_ ToolbarItem) MinSize() objc.IObject /* cross-framework: Size */ {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/minSize
 func (t_ ToolbarItem) SetMinSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setMinSize:"), value)
+}
+
+
+// The label that appears when the toolbar item is in the customization palette.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
+func (t_ ToolbarItem) PaletteLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("paletteLabel"))
+	return rv
+}
+
+
+// The label that appears when the toolbar item is in the customization palette.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/paletteLabel
+func (t_ ToolbarItem) SetPaletteLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPaletteLabel:"), value)
 }
 
 
@@ -313,7 +501,7 @@ func (t_ ToolbarItem) SetPossibleLabels(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/style-swift.property
-func (t_ ToolbarItem) Style() ToolbarItemStyle /* not a class type */ {
+func (t_ ToolbarItem) Style() ToolbarItemStyle {
 	rv := objc.Send[ToolbarItemStyle](t_.ID, objc.Sel("style"))
 	return rv
 }
@@ -323,8 +511,46 @@ func (t_ ToolbarItem) Style() ToolbarItemStyle /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/style-swift.property
-func (t_ ToolbarItem) SetStyle(value ToolbarItemStyle /* not a class type */) {
+func (t_ ToolbarItem) SetStyle(value ToolbarItemStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setStyle:"), value)
+}
+
+
+// An integer tag you can use to identify the toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/tag
+func (t_ ToolbarItem) Tag() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("tag"))
+	return rv
+}
+
+
+// An integer tag you can use to identify the toolbar item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/tag
+func (t_ ToolbarItem) SetTag(value int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTag:"), value)
+}
+
+
+// The object that defines the action method the toolbar item calls when clicked.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/target
+func (t_ ToolbarItem) Target() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("target"))
+	return rv
+}
+
+
+// The object that defines the action method the toolbar item calls when clicked.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/target
+func (t_ ToolbarItem) SetTarget(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTarget:"), value)
 }
 
 
@@ -347,6 +573,35 @@ func (t_ ToolbarItem) SetTitle(value objc.IObject /* cross-framework: NSString *
 }
 
 
+// The tooltip to display when someone hovers over the item in the toolbar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
+func (t_ ToolbarItem) ToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("toolTip"))
+	return rv
+}
+
+
+// The tooltip to display when someone hovers over the item in the toolbar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolTip
+func (t_ ToolbarItem) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), value)
+}
+
+
+// The toolbar that currently includes the item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/toolbar
+func (t_ ToolbarItem) Toolbar() IToolbar {
+	rv := objc.Send[Toolbar](t_.ID, objc.Sel("toolbar"))
+	return rv
+}
+
+
 // The custom view you use to draw the toolbar item.
 //
 // [Full Topic]
@@ -366,18 +621,22 @@ func (t_ ToolbarItem) SetView(value IView) {
 }
 
 
+// The display priority associated with the toolbar item.
+//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/backgroundtintcolor
-func (t_ ToolbarItem) BackgroundTintColor() IColor {
-	rv := objc.Send[Color](t_.ID, objc.Sel("backgroundTintColor"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/visibilityPriority-swift.property
+func (t_ ToolbarItem) VisibilityPriority() objc.IObject /* cross-framework: ToolbarItemVisibilityPriority */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("visibilityPriority"))
 	return rv
 }
 
 
+// The display priority associated with the toolbar item.
+//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstoolbaritem/backgroundtintcolor
-func (t_ ToolbarItem) SetBackgroundTintColor(value IColor) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundTintColor:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbarItem/visibilityPriority-swift.property
+func (t_ ToolbarItem) SetVisibilityPriority(value objc.IObject /* cross-framework: ToolbarItemVisibilityPriority */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
 }
 
 

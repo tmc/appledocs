@@ -36,20 +36,20 @@ type IDecimalNumber interface {
 	ObjCType() unsafe.Pointer
 	// methods:
 	DecimalNumberByAdding(decimalNumber IDecimalNumber) IDecimalNumber
-	DecimalNumberByAddingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByAddingWithBehavior(decimalNumber IDecimalNumber, behavior objc.IObject) IDecimalNumber
 	Compare(decimalNumber INumber) ComparisonResult
-	DescriptionWithLocale(locale objectivec.IObject) IString
+	DescriptionWithLocale(locale objc.IObject) IString
 	DecimalNumberByDividingBy(decimalNumber IDecimalNumber) IDecimalNumber
-	DecimalNumberByDividingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByDividingByWithBehavior(decimalNumber IDecimalNumber, behavior objc.IObject) IDecimalNumber
 	DecimalNumberByMultiplyingBy(decimalNumber IDecimalNumber) IDecimalNumber
-	DecimalNumberByMultiplyingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByMultiplyingByWithBehavior(decimalNumber IDecimalNumber, behavior objc.IObject) IDecimalNumber
 	DecimalNumberByMultiplyingByPowerOf10(power unsafe.Pointer) IDecimalNumber
-	DecimalNumberByMultiplyingByPowerOf10WithBehavior(power unsafe.Pointer, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByMultiplyingByPowerOf10WithBehavior(power unsafe.Pointer, behavior objc.IObject) IDecimalNumber
 	DecimalNumberByRaisingToPower(power uint) IDecimalNumber
-	DecimalNumberByRaisingToPowerWithBehavior(power uint, behavior objectivec.IObject) IDecimalNumber
-	DecimalNumberByRoundingAccordingToBehavior(behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberByRaisingToPowerWithBehavior(power uint, behavior objc.IObject) IDecimalNumber
+	DecimalNumberByRoundingAccordingToBehavior(behavior objc.IObject) IDecimalNumber
 	DecimalNumberBySubtracting(decimalNumber IDecimalNumber) IDecimalNumber
-	DecimalNumberBySubtractingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber
+	DecimalNumberBySubtractingWithBehavior(decimalNumber IDecimalNumber, behavior objc.IObject) IDecimalNumber
 }
 
 // An object for representing and performing arithmetic on base-10 numbers.
@@ -147,7 +147,7 @@ func NewDecimalNumberWithString(numberValue IString) DecimalNumber {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/init(string:locale:)
-func NewDecimalNumberWithStringLocale(numberValue IString, locale objectivec.IObject) DecimalNumber {
+func NewDecimalNumberWithStringLocale(numberValue IString, locale objc.IObject) DecimalNumber {
 	instance := getDecimalNumberClass().Alloc()
 	rv := objc.Send[DecimalNumber](instance.ID, objc.Sel("initWithString:locale:"), numberValue, locale)
 	rv.Autorelease()
@@ -190,7 +190,7 @@ func (dc _DecimalNumberClass) DecimalNumberWithString(numberValue IString) IDeci
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/decimalNumberWithString:locale:
-func (dc _DecimalNumberClass) DecimalNumberWithStringLocale(numberValue IString, locale objectivec.IObject) IDecimalNumber {
+func (dc _DecimalNumberClass) DecimalNumberWithStringLocale(numberValue IString, locale objc.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](objc.ID(dc.class), objc.Sel("decimalNumberWithString:locale:"), numberValue, locale)
 	return rv
 }
@@ -264,7 +264,7 @@ func (d_ DecimalNumber) DecimalNumberByAdding(decimalNumber IDecimalNumber) IDec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/adding(_:withBehavior:)
-func (d_ DecimalNumber) DecimalNumberByAddingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberByAddingWithBehavior(decimalNumber IDecimalNumber, behavior objc.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByAdding:withBehavior:"), decimalNumber, behavior)
 	return rv
 }
@@ -284,7 +284,7 @@ func (d_ DecimalNumber) Compare(decimalNumber INumber) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/description(withLocale:)
-func (d_ DecimalNumber) DescriptionWithLocale(locale objectivec.IObject) IString {
+func (d_ DecimalNumber) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -304,7 +304,7 @@ func (d_ DecimalNumber) DecimalNumberByDividingBy(decimalNumber IDecimalNumber) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/dividing(by:withBehavior:)
-func (d_ DecimalNumber) DecimalNumberByDividingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberByDividingByWithBehavior(decimalNumber IDecimalNumber, behavior objc.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByDividingBy:withBehavior:"), decimalNumber, behavior)
 	return rv
 }
@@ -324,7 +324,7 @@ func (d_ DecimalNumber) DecimalNumberByMultiplyingBy(decimalNumber IDecimalNumbe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/multiplying(by:withBehavior:)
-func (d_ DecimalNumber) DecimalNumberByMultiplyingByWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberByMultiplyingByWithBehavior(decimalNumber IDecimalNumber, behavior objc.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByMultiplyingBy:withBehavior:"), decimalNumber, behavior)
 	return rv
 }
@@ -344,7 +344,7 @@ func (d_ DecimalNumber) DecimalNumberByMultiplyingByPowerOf10(power unsafe.Point
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/multiplying(byPowerOf10:withBehavior:)
-func (d_ DecimalNumber) DecimalNumberByMultiplyingByPowerOf10WithBehavior(power unsafe.Pointer, behavior objectivec.IObject) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberByMultiplyingByPowerOf10WithBehavior(power unsafe.Pointer, behavior objc.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByMultiplyingByPowerOf10:withBehavior:"), power, behavior)
 	return rv
 }
@@ -364,7 +364,7 @@ func (d_ DecimalNumber) DecimalNumberByRaisingToPower(power uint) IDecimalNumber
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/raising(toPower:withBehavior:)
-func (d_ DecimalNumber) DecimalNumberByRaisingToPowerWithBehavior(power uint, behavior objectivec.IObject) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberByRaisingToPowerWithBehavior(power uint, behavior objc.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByRaisingToPower:withBehavior:"), power, behavior)
 	return rv
 }
@@ -374,7 +374,7 @@ func (d_ DecimalNumber) DecimalNumberByRaisingToPowerWithBehavior(power uint, be
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/rounding(accordingToBehavior:)
-func (d_ DecimalNumber) DecimalNumberByRoundingAccordingToBehavior(behavior objectivec.IObject) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberByRoundingAccordingToBehavior(behavior objc.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberByRoundingAccordingToBehavior:"), behavior)
 	return rv
 }
@@ -394,7 +394,7 @@ func (d_ DecimalNumber) DecimalNumberBySubtracting(decimalNumber IDecimalNumber)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDecimalNumber/subtracting(_:withBehavior:)
-func (d_ DecimalNumber) DecimalNumberBySubtractingWithBehavior(decimalNumber IDecimalNumber, behavior objectivec.IObject) IDecimalNumber {
+func (d_ DecimalNumber) DecimalNumberBySubtractingWithBehavior(decimalNumber IDecimalNumber, behavior objc.IObject) IDecimalNumber {
 	rv := objc.Send[DecimalNumber](d_.ID, objc.Sel("decimalNumberBySubtracting:withBehavior:"), decimalNumber, behavior)
 	return rv
 }

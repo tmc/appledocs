@@ -30,8 +30,6 @@ type _MenuToolbarItemClass struct {
 type IMenuToolbarItem interface {
 	IToolbarItem
 	// properties:
-	ItemMenu() IMenu
-	SetItemMenu(value IMenu)
 	Menu() IMenu
 	SetMenu(value IMenu)
 	ShowsIndicator() bool
@@ -94,25 +92,10 @@ func NewMenuToolbarItem() MenuToolbarItem {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
-func (m_ MenuToolbarItem) ItemMenu() IMenu {
-	rv := objc.Send[Menu](m_.ID, objc.Sel("itemMenu"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/itemmenu
-func (m_ MenuToolbarItem) SetItemMenu(value IMenu) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setItemMenu:"), value)
-}
-
-
 // The menu presented from the toolbar item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/menu
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
 func (m_ MenuToolbarItem) Menu() IMenu {
 	rv := objc.Send[Menu](m_.ID, objc.Sel("menu"))
 	return rv
@@ -122,7 +105,7 @@ func (m_ MenuToolbarItem) Menu() IMenu {
 // The menu presented from the toolbar item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/menu
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/menu
 func (m_ MenuToolbarItem) SetMenu(value IMenu) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
 }
@@ -131,7 +114,7 @@ func (m_ MenuToolbarItem) SetMenu(value IMenu) {
 // A Boolean value that determines whether the toolbar item displays an indicator of additional functionality.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/showsIndicator
 func (m_ MenuToolbarItem) ShowsIndicator() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("showsIndicator"))
 	return rv
@@ -141,10 +124,9 @@ func (m_ MenuToolbarItem) ShowsIndicator() bool {
 // A Boolean value that determines whether the toolbar item displays an indicator of additional functionality.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenutoolbaritem/showsindicator
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuToolbarItem/showsIndicator
 func (m_ MenuToolbarItem) SetShowsIndicator(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setShowsIndicator:"), value)
 }
-
 
 

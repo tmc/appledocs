@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // IgnoreMisspelledWordsProtocol is the NSIgnoreMisspelledWords protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSIgnoreMisspelledWords.
 var IgnoreMisspelledWordsProtocol *objc.Protocol
 

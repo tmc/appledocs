@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [PopoverTouchBarItem] class.
@@ -39,13 +40,16 @@ type IPopoverTouchBarItem interface {
 	SetCollapsedRepresentationLabel(value objc.IObject /* cross-framework: NSString */)
 	CustomizationLabel() objc.IObject /* cross-framework: NSString */
 	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
-	PopoverTouchBar() ITouchBar
-	SetPopoverTouchBar(value ITouchBar)
-	PressAndHoldTouchBar() ITouchBar
-	SetPressAndHoldTouchBar(value ITouchBar)
+	PopoverTouchBar() objc.IObject /* cross-framework: TouchBar */
+	SetPopoverTouchBar(value objc.IObject /* cross-framework: TouchBar */)
+	PressAndHoldTouchBar() objc.IObject /* cross-framework: TouchBar */
+	SetPressAndHoldTouchBar(value objc.IObject /* cross-framework: TouchBar */)
 	ShowsCloseButton() bool
 	SetShowsCloseButton(value bool)
 	// methods:
+	DismissPopover(sender objc.IObject)
+	MakeStandardActivatePopoverGestureRecognizer() objc.IObject /* cross-framework: GestureRecognizer */
+	ShowPopover(sender objc.IObject)
 }
 
 // A bar item that provides a two-state control that can expand into its second state, showing the contents of a bar that it owns.
@@ -101,10 +105,38 @@ func NewPopoverTouchBarItem() PopoverTouchBarItem {
 
 
 
+// Restores the previously visible main bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/dismissPopover(_:)
+func (p_ PopoverTouchBarItem) DismissPopover(sender objc.IObject) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("dismissPopover:"), sender)
+}
+
+
+// Returns a gesture recognizer, configured to invoke the method.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/makeStandardActivatePopoverGestureRecognizer()
+func (p_ PopoverTouchBarItem) MakeStandardActivatePopoverGestureRecognizer() objc.IObject /* cross-framework: GestureRecognizer */ {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("makeStandardActivatePopoverGestureRecognizer"))
+	return rv
+}
+
+
+// Replaces the main bar with this item’s popover bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/showPopover(_:)
+func (p_ PopoverTouchBarItem) ShowPopover(sender objc.IObject) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("showPopover:"), sender)
+}
+
+
 // The view displayed when this item is displayed in its parent bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentation
 func (p_ PopoverTouchBarItem) CollapsedRepresentation() IView {
 	rv := objc.Send[View](p_.ID, objc.Sel("collapsedRepresentation"))
 	return rv
@@ -114,7 +146,7 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentation() IView {
 // The view displayed when this item is displayed in its parent bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentation
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentation
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentation(value IView) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentation:"), value)
 }
@@ -123,7 +155,7 @@ func (p_ PopoverTouchBarItem) SetCollapsedRepresentation(value IView) {
 // The image displayed by the button for the default collapsed representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentationimage
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationImage
 func (p_ PopoverTouchBarItem) CollapsedRepresentationImage() IImage {
 	rv := objc.Send[Image](p_.ID, objc.Sel("collapsedRepresentationImage"))
 	return rv
@@ -133,7 +165,7 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentationImage() IImage {
 // The image displayed by the button for the default collapsed representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentationimage
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationImage
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentationImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationImage:"), value)
 }
@@ -142,7 +174,7 @@ func (p_ PopoverTouchBarItem) SetCollapsedRepresentationImage(value IImage) {
 // The localized string displayed by the button for the default collapsed representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentationlabel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationLabel
 func (p_ PopoverTouchBarItem) CollapsedRepresentationLabel() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("collapsedRepresentationLabel"))
 	return rv
@@ -152,7 +184,7 @@ func (p_ PopoverTouchBarItem) CollapsedRepresentationLabel() objc.IObject /* cro
 // The localized string displayed by the button for the default collapsed representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/collapsedrepresentationlabel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/collapsedRepresentationLabel
 func (p_ PopoverTouchBarItem) SetCollapsedRepresentationLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCollapsedRepresentationLabel:"), value)
 }
@@ -161,7 +193,7 @@ func (p_ PopoverTouchBarItem) SetCollapsedRepresentationLabel(value objc.IObject
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/customizationlabel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/customizationLabel
 func (p_ PopoverTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("customizationLabel"))
 	return rv
@@ -171,7 +203,7 @@ func (p_ PopoverTouchBarItem) CustomizationLabel() objc.IObject /* cross-framewo
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/customizationlabel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/customizationLabel
 func (p_ PopoverTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
@@ -180,9 +212,9 @@ func (p_ PopoverTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-
 // The bar displayed when this item is “popped.”
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (p_ PopoverTouchBarItem) PopoverTouchBar() ITouchBar {
-	rv := objc.Send[TouchBar](p_.ID, objc.Sel("popoverTouchBar"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
+func (p_ PopoverTouchBarItem) PopoverTouchBar() objc.IObject /* cross-framework: TouchBar */ {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("popoverTouchBar"))
 	return rv
 }
 
@@ -190,8 +222,8 @@ func (p_ PopoverTouchBarItem) PopoverTouchBar() ITouchBar {
 // The bar displayed when this item is “popped.”
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (p_ PopoverTouchBarItem) SetPopoverTouchBar(value ITouchBar) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/popoverTouchBar
+func (p_ PopoverTouchBarItem) SetPopoverTouchBar(value objc.IObject /* cross-framework: TouchBar */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
 
@@ -199,9 +231,9 @@ func (p_ PopoverTouchBarItem) SetPopoverTouchBar(value ITouchBar) {
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() ITouchBar {
-	rv := objc.Send[TouchBar](p_.ID, objc.Sel("pressAndHoldTouchBar"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
+func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() objc.IObject /* cross-framework: TouchBar */ {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
 
@@ -209,8 +241,8 @@ func (p_ PopoverTouchBarItem) PressAndHoldTouchBar() ITouchBar {
 // The bar that is displayed when a user press-and-holds on the popover item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value ITouchBar) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/pressAndHoldTouchBar
+func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value objc.IObject /* cross-framework: TouchBar */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
 
@@ -218,7 +250,7 @@ func (p_ PopoverTouchBarItem) SetPressAndHoldTouchBar(value ITouchBar) {
 // A Boolean value that determines whether a close button should be shown on the popover bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/showsclosebutton
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/showsCloseButton
 func (p_ PopoverTouchBarItem) ShowsCloseButton() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("showsCloseButton"))
 	return rv
@@ -228,7 +260,7 @@ func (p_ PopoverTouchBarItem) ShowsCloseButton() bool {
 // A Boolean value that determines whether a close button should be shown on the popover bar.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/showsclosebutton
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopoverTouchBarItem/showsCloseButton
 func (p_ PopoverTouchBarItem) SetShowsCloseButton(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setShowsCloseButton:"), value)
 }

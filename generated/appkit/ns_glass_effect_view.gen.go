@@ -34,10 +34,10 @@ type IGlassEffectView interface {
 	SetContentView(value IView)
 	CornerRadius() float64
 	SetCornerRadius(value float64)
-	Style() unsafe.Pointer
-	SetStyle(value unsafe.Pointer)
-	TintColor() objc.IObject /* cross-framework: Color */
-	SetTintColor(value objc.IObject /* cross-framework: Color */)
+	Style() GlassEffectViewStyle
+	SetStyle(value GlassEffectViewStyle)
+	TintColor() IColor
+	SetTintColor(value IColor)
 	// methods:
 }
 
@@ -97,7 +97,7 @@ func NewGlassEffectView() GlassEffectView {
 // The view to embed in glass.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglasseffectview/contentview
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
 func (g_ GlassEffectView) ContentView() IView {
 	rv := objc.Send[View](g_.ID, objc.Sel("contentView"))
 	return rv
@@ -107,7 +107,7 @@ func (g_ GlassEffectView) ContentView() IView {
 // The view to embed in glass.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglasseffectview/contentview
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/contentView
 func (g_ GlassEffectView) SetContentView(value IView) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setContentView:"), value)
 }
@@ -116,7 +116,7 @@ func (g_ GlassEffectView) SetContentView(value IView) {
 // The amount of curvature for all corners of the glass.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglasseffectview/cornerradius
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/cornerRadius
 func (g_ GlassEffectView) CornerRadius() float64 {
 	rv := objc.Send[float64](g_.ID, objc.Sel("cornerRadius"))
 	return rv
@@ -126,7 +126,7 @@ func (g_ GlassEffectView) CornerRadius() float64 {
 // The amount of curvature for all corners of the glass.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglasseffectview/cornerradius
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/cornerRadius
 func (g_ GlassEffectView) SetCornerRadius(value float64) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setCornerRadius:"), value)
 }
@@ -135,9 +135,9 @@ func (g_ GlassEffectView) SetCornerRadius(value float64) {
 // The style of glass this view uses.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglasseffectview/style-swift.property
-func (g_ GlassEffectView) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](g_.ID, objc.Sel("style"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
+func (g_ GlassEffectView) Style() GlassEffectViewStyle {
+	rv := objc.Send[GlassEffectViewStyle](g_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -145,8 +145,8 @@ func (g_ GlassEffectView) Style() unsafe.Pointer {
 // The style of glass this view uses.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglasseffectview/style-swift.property
-func (g_ GlassEffectView) SetStyle(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/style-swift.property
+func (g_ GlassEffectView) SetStyle(value GlassEffectViewStyle) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setStyle:"), value)
 }
 
@@ -154,8 +154,8 @@ func (g_ GlassEffectView) SetStyle(value unsafe.Pointer) {
 // The color the glass effect view uses to tint the background and glass effect toward.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglasseffectview/tintcolor
-func (g_ GlassEffectView) TintColor() objc.IObject /* cross-framework: Color */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
+func (g_ GlassEffectView) TintColor() IColor {
 	rv := objc.Send[Color](g_.ID, objc.Sel("tintColor"))
 	return rv
 }
@@ -164,8 +164,8 @@ func (g_ GlassEffectView) TintColor() objc.IObject /* cross-framework: Color */ 
 // The color the glass effect view uses to tint the background and glass effect toward.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsglasseffectview/tintcolor
-func (g_ GlassEffectView) SetTintColor(value objc.IObject /* cross-framework: Color */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGlassEffectView/tintColor
+func (g_ GlassEffectView) SetTintColor(value IColor) {
 	objc.Send[objc.ID](g_.ID, objc.Sel("setTintColor:"), value)
 }
 

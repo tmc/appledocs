@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // performActionForItemProtocol is the performActionForItem: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to performActionForItem:.
 var performActionForItemProtocol *objc.Protocol
 

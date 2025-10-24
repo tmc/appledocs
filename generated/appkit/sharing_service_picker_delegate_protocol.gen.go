@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // SharingServicePickerDelegateProtocol is the NSSharingServicePickerDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSSharingServicePickerDelegate.
 var SharingServicePickerDelegateProtocol *objc.Protocol
 

@@ -32,14 +32,13 @@ type _ShadowClass struct {
 type IShadow interface {
 	objectivec.IObject
 	// properties:
-	ShadowBlurRadius() float64
-	SetShadowBlurRadius(value float64)
 	ShadowColor() IColor
 	SetShadowColor(value IColor)
+	ShadowBlurRadius() float64
+	SetShadowBlurRadius(value float64)
 	ShadowOffset() objc.IObject /* cross-framework: Size */
 	SetShadowOffset(value objc.IObject /* cross-framework: Size */)
 	// methods:
-	Set()
 }
 
 // An object you use to specify attributes to create and style a drop shadow during drawing operations.
@@ -96,34 +95,6 @@ func NewShadow() Shadow {
 
 
 
-// Sets the shadow of subsequent drawing operations to the current shadow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/set()
-func (s_ Shadow) Set() {
-	objc.Send[objc.ID](s_.ID, objc.Sel("set"))
-}
-
-
-// The blur radius of the shadow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
-func (s_ Shadow) ShadowBlurRadius() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("shadowBlurRadius"))
-	return rv
-}
-
-
-// The blur radius of the shadow.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowBlurRadius
-func (s_ Shadow) SetShadowBlurRadius(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowBlurRadius:"), value)
-}
-
-
 // The color of the shadow.
 //
 // [Full Topic]
@@ -143,10 +114,29 @@ func (s_ Shadow) SetShadowColor(value IColor) {
 }
 
 
+// The blur radius of the shadow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowblurradius
+func (s_ Shadow) ShadowBlurRadius() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("shadowBlurRadius"))
+	return rv
+}
+
+
+// The blur radius of the shadow.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowblurradius
+func (s_ Shadow) SetShadowBlurRadius(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowBlurRadius:"), value)
+}
+
+
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowoffset
 func (s_ Shadow) ShadowOffset() objc.IObject /* cross-framework: Size */ {
 	rv := objc.Send[corefoundation.Size](s_.ID, objc.Sel("shadowOffset"))
 	return rv
@@ -156,7 +146,7 @@ func (s_ Shadow) ShadowOffset() objc.IObject /* cross-framework: Size */ {
 // The shadow’s relative position, which you specify with horizontal and vertical offset values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShadow/shadowOffset
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsshadow/shadowoffset
 func (s_ Shadow) SetShadowOffset(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setShadowOffset:"), value)
 }

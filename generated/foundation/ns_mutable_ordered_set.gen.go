@@ -57,7 +57,7 @@ type IMutableOrderedSet interface {
 	SetObjectAtIndexedSubscript(obj unsafe.Pointer, idx uint)
 	SortUsingComparator(cmptr Comparator /* not a class type */)
 	SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */)
-	SortUsingDescriptors(sortDescriptors []ISortDescriptor)
+	SortUsingDescriptors(sortDescriptors []SortDescriptor)
 	SortRangeOptionsUsingComparator(range_ objc.IObject /* cross-framework: Range */, opts SortOptions, cmptr Comparator /* not a class type */)
 	UnionOrderedSet(other unsafe.Pointer)
 	UnionSet(other unsafe.Pointer)
@@ -387,7 +387,7 @@ func (m_ MutableOrderedSet) SortWithOptionsUsingComparator(opts SortOptions, cmp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableOrderedSet/sort(using:)
-func (m_ MutableOrderedSet) SortUsingDescriptors(sortDescriptors []ISortDescriptor) {
+func (m_ MutableOrderedSet) SortUsingDescriptors(sortDescriptors []SortDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
 

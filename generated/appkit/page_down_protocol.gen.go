@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // pageDownProtocol is the pageDown: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to pageDown:.
 var pageDownProtocol *objc.Protocol
 

@@ -2,6 +2,7 @@ package coregraphics_test
 
 import (
 	"testing"
+
 	"github.com/tmc/appledocs/generated/coregraphics"
 )
 
@@ -11,7 +12,7 @@ func TestRectStructDefinition(t *testing.T) {
 		Origin: coregraphics.Point{X: 10.0, Y: 20.0},
 		Size:   coregraphics.Size{Width: 100.0, Height: 200.0},
 	}
-	
+
 	if r.Origin.X != 10.0 {
 		t.Errorf("Expected Origin.X = 10.0, got %v", r.Origin.X)
 	}
@@ -24,7 +25,7 @@ func TestRectStructDefinition(t *testing.T) {
 	if r.Size.Height != 200.0 {
 		t.Errorf("Expected Size.Height = 200.0, got %v", r.Size.Height)
 	}
-	
+
 	t.Logf("✓ Rect struct is properly defined with Point and Size fields")
 }
 
@@ -50,7 +51,7 @@ func TestAffineTransformStructDefinition(t *testing.T) {
 		C: 0.0, D: 1.0,
 		TX: 10.0, TY: 20.0,
 	}
-	
+
 	if transform.A != 1.0 || transform.D != 1.0 {
 		t.Errorf("AffineTransform identity values incorrect")
 	}

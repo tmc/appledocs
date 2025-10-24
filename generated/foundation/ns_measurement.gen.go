@@ -32,9 +32,12 @@ type IMeasurement interface {
 	objectivec.IObject
 	// properties:
 	DoubleValue() float64
-	Unit() IUnit
-	SetUnit(value IUnit)
+	Unit() unsafe.Pointer
 	// methods:
+	MeasurementByAddingMeasurement(measurement unsafe.Pointer) unsafe.Pointer
+	CanBeConvertedToUnit(unit IUnit) bool
+	MeasurementByConvertingToUnit(unit IUnit) IMeasurement
+	MeasurementBySubtractingMeasurement(measurement unsafe.Pointer) unsafe.Pointer
 }
 
 // A numeric quantity labeled with a unit of measure, with support for unit conversion and unit-aware calculations.
@@ -90,6 +93,59 @@ func NewMeasurement() Measurement {
 
 
 
+// Initializes a new measurement with a specified double-precision floating-point value and unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/init(doubleValue:unit:)
+func NewMeasurementWithDoubleValueUnit(doubleValue float64, unit unsafe.Pointer) Measurement {
+	instance := getMeasurementClass().Alloc()
+	rv := objc.Send[Measurement](instance.ID, objc.Sel("initWithDoubleValue:unit:"), doubleValue, unit)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a new measurement by adding the receiver to the specified measurement.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/adding(_:)
+func (m_ Measurement) MeasurementByAddingMeasurement(measurement unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("measurementByAddingMeasurement:"), measurement)
+	return rv
+}
+
+
+// Indicates whether the measurement can be converted to the given unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/canBeConverted(to:)
+func (m_ Measurement) CanBeConvertedToUnit(unit IUnit) bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("canBeConvertedToUnit:"), unit)
+	return rv
+}
+
+
+// Returns a measurement created by converting the receiver to the specified unit.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/converting(to:)
+func (m_ Measurement) MeasurementByConvertingToUnit(unit IUnit) IMeasurement {
+	rv := objc.Send[Measurement](m_.ID, objc.Sel("measurementByConvertingToUnit:"), unit)
+	return rv
+}
+
+
+// Returns a new measurement by subtracting the specified measurement from the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/subtracting(_:)
+func (m_ Measurement) MeasurementBySubtractingMeasurement(measurement unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("measurementBySubtractingMeasurement:"), measurement)
+	return rv
+}
+
+
 // The measurement value, represented as a double-precision floating-point number.
 //
 // [Full Topic]
@@ -103,20 +159,10 @@ func (m_ Measurement) DoubleValue() float64 {
 // The unit of measure.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/unit
-func (m_ Measurement) Unit() IUnit {
-	rv := objc.Send[Unit](m_.ID, objc.Sel("unit"))
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMeasurement/unit
+func (m_ Measurement) Unit() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("unit"))
 	return rv
 }
-
-
-// The unit of measure.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmeasurement/unit
-func (m_ Measurement) SetUnit(value IUnit) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setUnit:"), value)
-}
-
 
 

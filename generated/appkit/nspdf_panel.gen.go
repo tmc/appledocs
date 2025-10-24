@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,12 +31,14 @@ type _PDFPanelClass struct {
 // An interface definition for the [PDFPanel] class.
 type IPDFPanel interface {
 	objectivec.IObject
-	AccessoryController() NSViewController
+	// properties:
+	AccessoryController() IViewController
 	SetAccessoryController(value IViewController)
-	DefaultFileName() string
-	SetDefaultFileName(value string)
+	DefaultFileName() objc.IObject /* cross-framework: NSString */
+	SetDefaultFileName(value objc.IObject /* cross-framework: NSString */)
 	Options() unsafe.Pointer
 	SetOptions(value unsafe.Pointer)
+	// methods:
 }
 
 // A Save or Export as PDF panel that’s consistent with the macOS user interface.
@@ -91,12 +94,12 @@ func NewPDFPanel() PDFPanel {
 
 
 
-// Returns a new object.
+// A view controller for the accessory view that the panel can present.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/panel
-func (pc _PDFPanelClass) Panel() PDFPanel {
-	rv := objc.Send[PDFPanel](objc.ID(pc.class), objc.Sel("panel"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/accessoryController
+func (p_ PDFPanel) AccessoryController() IViewController {
+	rv := objc.Send[ViewController](p_.ID, objc.Sel("accessoryController"))
 	return rv
 }
 
@@ -104,17 +107,7 @@ func (pc _PDFPanelClass) Panel() PDFPanel {
 // A view controller for the accessory view that the panel can present.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/accessorycontroller
-func (p_ PDFPanel) AccessoryController() NSViewController {
-	rv := objc.Send[NSViewController](p_.ID, objc.Sel("accessoryController"))
-	return rv
-}
-
-
-// A view controller for the accessory view that the panel can present.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/accessorycontroller
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFPanel/accessoryController
 func (p_ PDFPanel) SetAccessoryController(value IViewController) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAccessoryController:"), value)
 }
@@ -124,8 +117,8 @@ func (p_ PDFPanel) SetAccessoryController(value IViewController) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/defaultfilename
-func (p_ PDFPanel) DefaultFileName() string {
-	rv := objc.Send[string](p_.ID, objc.Sel("defaultFileName"))
+func (p_ PDFPanel) DefaultFileName() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("defaultFileName"))
 	return rv
 }
 
@@ -134,8 +127,8 @@ func (p_ PDFPanel) DefaultFileName() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfpanel/defaultfilename
-func (p_ PDFPanel) SetDefaultFileName(value string) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultFileName:"), objc.String(value))
+func (p_ PDFPanel) SetDefaultFileName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setDefaultFileName:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +33,7 @@ type IScrubberSelectionStyle interface {
 	objectivec.IObject
 	// properties:
 	// methods:
+	MakeSelectionView() IScrubberSelectionView
 }
 
 // An abstract class that provides decorative accessory views for selected and highlighted items within a scrubber control.
@@ -86,5 +88,65 @@ func NewScrubberSelectionStyle() ScrubberSelectionStyle {
 }
 
 
+
+// Initializes a scrubber selection style when included from a nib or Storyboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/init(coder:)
+func NewScrubberSelectionStyleWithCoder(coder foundation.Coder) ScrubberSelectionStyle {
+	instance := getScrubberSelectionStyleClass().Alloc()
+	rv := objc.Send[ScrubberSelectionStyle](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// A built-in selection style that draws the outline of the scrubber item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
+func (sc _ScrubberSelectionStyleClass) OutlineOverlayStyle() ScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](objc.ID(sc.class), objc.Sel("outlineOverlayStyle"))
+	return rv
+}
+
+// A built-in selection style that draws a rounded rectangle as the background of the scrubber item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/roundedBackground
+func (sc _ScrubberSelectionStyleClass) RoundedBackgroundStyle() ScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](objc.ID(sc.class), objc.Sel("roundedBackgroundStyle"))
+	return rv
+}
+
+// Provides an opportunity to create a customized scrubber selection style.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/makeSelectionView()
+func (s_ ScrubberSelectionStyle) MakeSelectionView() IScrubberSelectionView {
+	rv := objc.Send[ScrubberSelectionView](s_.ID, objc.Sel("makeSelectionView"))
+	return rv
+}
+
+
+// A built-in selection style that draws the outline of the scrubber item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/outlineOverlay
+func (s_ ScrubberSelectionStyle) OutlineOverlayStyle() IScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](s_.ID, objc.Sel("outlineOverlayStyle"))
+	return rv
+}
+
+
+// A built-in selection style that draws a rounded rectangle as the background of the scrubber item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberSelectionStyle/roundedBackground
+func (s_ ScrubberSelectionStyle) RoundedBackgroundStyle() IScrubberSelectionStyle {
+	rv := objc.Send[ScrubberSelectionStyle](s_.ID, objc.Sel("roundedBackgroundStyle"))
+	return rv
+}
 
 

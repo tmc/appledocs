@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Drawer] class.
@@ -35,22 +36,20 @@ type IDrawer interface {
 	SetContentSize(value objc.IObject /* cross-framework: Size */)
 	ContentView() IView
 	SetContentView(value IView)
-	Delegate() DrawerDelegate /* not a class type */
-	SetDelegate(value DrawerDelegate /* not a class type */)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 	Edge() RectEdge /* not a class type */
-	SetEdge(value RectEdge /* not a class type */)
 	LeadingOffset() float64
 	SetLeadingOffset(value float64)
 	MaxContentSize() objc.IObject /* cross-framework: Size */
 	SetMaxContentSize(value objc.IObject /* cross-framework: Size */)
 	MinContentSize() objc.IObject /* cross-framework: Size */
 	SetMinContentSize(value objc.IObject /* cross-framework: Size */)
-	ParentWindow() objc.IObject /* cross-framework: Window */
-	SetParentWindow(value objc.IObject /* cross-framework: Window */)
+	ParentWindow() IWindow
+	SetParentWindow(value IWindow)
 	PreferredEdge() RectEdge /* not a class type */
 	SetPreferredEdge(value RectEdge /* not a class type */)
 	State() int
-	SetState(value int)
 	TrailingOffset() float64
 	SetTrailingOffset(value float64)
 	// methods:
@@ -111,10 +110,23 @@ func NewDrawer() Drawer {
 
 
 
+// Creates a new drawer with the given size on the specified edge of the parent window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/init(contentSize:preferredEdge:)
+func NewDrawerWithContentSizePreferredEdge(contentSize objc.IObject /* cross-framework: Size */, edge RectEdge /* not a class type */) Drawer {
+	instance := getDrawerClass().Alloc()
+	rv := objc.Send[Drawer](instance.ID, objc.Sel("initWithContentSize:preferredEdge:"), contentSize, edge)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The size of the receiver’s content area.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/contentSize
 func (d_ Drawer) ContentSize() objc.IObject /* cross-framework: Size */ {
 	rv := objc.Send[corefoundation.Size](d_.ID, objc.Sel("contentSize"))
 	return rv
@@ -124,7 +136,7 @@ func (d_ Drawer) ContentSize() objc.IObject /* cross-framework: Size */ {
 // The size of the receiver’s content area.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/contentSize
 func (d_ Drawer) SetContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContentSize:"), value)
 }
@@ -133,7 +145,7 @@ func (d_ Drawer) SetContentSize(value objc.IObject /* cross-framework: Size */) 
 // The receiver’s content view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentview
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/contentView
 func (d_ Drawer) ContentView() IView {
 	rv := objc.Send[View](d_.ID, objc.Sel("contentView"))
 	return rv
@@ -143,7 +155,7 @@ func (d_ Drawer) ContentView() IView {
 // The receiver’s content view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/contentview
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/contentView
 func (d_ Drawer) SetContentView(value IView) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContentView:"), value)
 }
@@ -152,9 +164,9 @@ func (d_ Drawer) SetContentView(value IView) {
 // The receiver’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/delegate
-func (d_ Drawer) Delegate() DrawerDelegate /* not a class type */ {
-	rv := objc.Send[DrawerDelegate](d_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/delegate
+func (d_ Drawer) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -162,8 +174,8 @@ func (d_ Drawer) Delegate() DrawerDelegate /* not a class type */ {
 // The receiver’s delegate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/delegate
-func (d_ Drawer) SetDelegate(value DrawerDelegate /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/delegate
+func (d_ Drawer) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -171,26 +183,17 @@ func (d_ Drawer) SetDelegate(value DrawerDelegate /* not a class type */) {
 // The edge of the window that the receiver is connected to.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/edge
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/edge
 func (d_ Drawer) Edge() RectEdge /* not a class type */ {
 	rv := objc.Send[RectEdge](d_.ID, objc.Sel("edge"))
 	return rv
 }
 
 
-// The edge of the window that the receiver is connected to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/edge
-func (d_ Drawer) SetEdge(value RectEdge /* not a class type */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setEdge:"), value)
-}
-
-
 // The receiver’s leading offset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/leadingoffset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/leadingOffset
 func (d_ Drawer) LeadingOffset() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("leadingOffset"))
 	return rv
@@ -200,7 +203,7 @@ func (d_ Drawer) LeadingOffset() float64 {
 // The receiver’s leading offset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/leadingoffset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/leadingOffset
 func (d_ Drawer) SetLeadingOffset(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLeadingOffset:"), value)
 }
@@ -209,7 +212,7 @@ func (d_ Drawer) SetLeadingOffset(value float64) {
 // The maximum allowed size of the receiver’s content area.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/maxcontentsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/maxContentSize
 func (d_ Drawer) MaxContentSize() objc.IObject /* cross-framework: Size */ {
 	rv := objc.Send[corefoundation.Size](d_.ID, objc.Sel("maxContentSize"))
 	return rv
@@ -219,7 +222,7 @@ func (d_ Drawer) MaxContentSize() objc.IObject /* cross-framework: Size */ {
 // The maximum allowed size of the receiver’s content area.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/maxcontentsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/maxContentSize
 func (d_ Drawer) SetMaxContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMaxContentSize:"), value)
 }
@@ -228,7 +231,7 @@ func (d_ Drawer) SetMaxContentSize(value objc.IObject /* cross-framework: Size *
 // The minimum allowed size of the receiver’s content area.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/mincontentsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/minContentSize
 func (d_ Drawer) MinContentSize() objc.IObject /* cross-framework: Size */ {
 	rv := objc.Send[corefoundation.Size](d_.ID, objc.Sel("minContentSize"))
 	return rv
@@ -238,7 +241,7 @@ func (d_ Drawer) MinContentSize() objc.IObject /* cross-framework: Size */ {
 // The minimum allowed size of the receiver’s content area.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/mincontentsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/minContentSize
 func (d_ Drawer) SetMinContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setMinContentSize:"), value)
 }
@@ -247,8 +250,8 @@ func (d_ Drawer) SetMinContentSize(value objc.IObject /* cross-framework: Size *
 // The receiver’s parent window.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/parentwindow
-func (d_ Drawer) ParentWindow() objc.IObject /* cross-framework: Window */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/parentWindow
+func (d_ Drawer) ParentWindow() IWindow {
 	rv := objc.Send[Window](d_.ID, objc.Sel("parentWindow"))
 	return rv
 }
@@ -257,8 +260,8 @@ func (d_ Drawer) ParentWindow() objc.IObject /* cross-framework: Window */ {
 // The receiver’s parent window.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/parentwindow
-func (d_ Drawer) SetParentWindow(value objc.IObject /* cross-framework: Window */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/parentWindow
+func (d_ Drawer) SetParentWindow(value IWindow) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setParentWindow:"), value)
 }
 
@@ -266,7 +269,7 @@ func (d_ Drawer) SetParentWindow(value objc.IObject /* cross-framework: Window *
 // The receiver’s preferred, or default, edge.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/preferrededge
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/preferredEdge
 func (d_ Drawer) PreferredEdge() RectEdge /* not a class type */ {
 	rv := objc.Send[RectEdge](d_.ID, objc.Sel("preferredEdge"))
 	return rv
@@ -276,7 +279,7 @@ func (d_ Drawer) PreferredEdge() RectEdge /* not a class type */ {
 // The receiver’s preferred, or default, edge.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/preferrededge
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/preferredEdge
 func (d_ Drawer) SetPreferredEdge(value RectEdge /* not a class type */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setPreferredEdge:"), value)
 }
@@ -285,26 +288,17 @@ func (d_ Drawer) SetPreferredEdge(value RectEdge /* not a class type */) {
 // The state of the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.property
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/state-swift.property
 func (d_ Drawer) State() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("state"))
 	return rv
 }
 
 
-// The state of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/state-swift.property
-func (d_ Drawer) SetState(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setState:"), value)
-}
-
-
 // The receiver’s trailing offset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/trailingoffset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/trailingOffset
 func (d_ Drawer) TrailingOffset() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("trailingOffset"))
 	return rv
@@ -314,10 +308,9 @@ func (d_ Drawer) TrailingOffset() float64 {
 // The receiver’s trailing offset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdrawer/trailingoffset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawer/trailingOffset
 func (d_ Drawer) SetTrailingOffset(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTrailingOffset:"), value)
 }
-
 
 

@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // windowProtocol is the window: protocol.
 //
 // Availability:
-//   - macOS 10.7+
+//   - macOS 10.5+
 //
 // Use this protocol when registering custom classes that conform to window:.
 var windowProtocol *objc.Protocol

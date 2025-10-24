@@ -31,32 +31,33 @@ type _AlertClass struct {
 // An interface definition for the [Alert] class.
 type IAlert interface {
 	objectivec.IObject
-	BeginSheetModalForWindowCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
-	BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(window IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer)
-	RunModal() ModalResponse
-	Buttons() []Button
-	Icon() Image
-	SetIcon(value IImage)
-	AccessoryView() NSView
+	// properties:
+	AccessoryView() IView
 	SetAccessoryView(value IView)
 	AlertStyle() unsafe.Pointer
 	SetAlertStyle(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	Buttons() IButton
+	SetButtons(value IButton)
+	Delegate() objc.IObject /* cross-framework: AlertDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: AlertDelegate */)
 	HelpAnchor() unsafe.Pointer
 	SetHelpAnchor(value unsafe.Pointer)
-	InformativeText() string
-	SetInformativeText(value string)
-	MessageText() string
-	SetMessageText(value string)
+	Icon() IImage
+	SetIcon(value IImage)
+	InformativeText() objc.IObject /* cross-framework: NSString */
+	SetInformativeText(value objc.IObject /* cross-framework: NSString */)
+	MessageText() objc.IObject /* cross-framework: NSString */
+	SetMessageText(value objc.IObject /* cross-framework: NSString */)
 	ShowsHelp() bool
 	SetShowsHelp(value bool)
 	ShowsSuppressionButton() bool
 	SetShowsSuppressionButton(value bool)
-	SuppressionButton() NSButton
+	SuppressionButton() IButton
 	SetSuppressionButton(value IButton)
-	Window() NSWindow
+	Window() IWindow
 	SetWindow(value IWindow)
+	// methods:
+	BeginSheetModalForWindowCompletionHandler(sheetWindow IWindow, handler unsafe.Pointer)
 }
 
 // A modal dialog or sheet attached to a document window.
@@ -112,37 +113,6 @@ func NewAlert() Alert {
 
 
 
-// Returns an alert initialized from information in an error object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
-func NewAlertWithError(error_ foundation.IError) Alert {
-	rv := objc.Send[Alert](objc.ID(getAlertClass().class), objc.Sel("alertWithError:"), error_)
-	return rv
-}
-
-
-
-// Creates an alert compatible with alerts created using the function for display as a warning-style alert.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/alertWithMessageText:defaultButton:alternateButton:otherButton:informativeTextWithFormat:
-func (ac _AlertClass) AlertWithMessageTextDefaultButtonAlternateButtonOtherButtonInformativeTextWithFormat(message string, defaultButton string, alternateButton string, otherButton string, format string) Alert {
-	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("alertWithMessageText:defaultButton:alternateButton:otherButton:informativeTextWithFormat:"), objc.String(message), objc.String(defaultButton), objc.String(alternateButton), objc.String(otherButton), objc.String(format))
-	return rv
-}
-
-
-// Returns an alert initialized from information in an error object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/init(error:)
-func (ac _AlertClass) AlertWithError(error_ foundation.IError) Alert {
-	rv := objc.Send[Alert](objc.ID(ac.class), objc.Sel("alertWithError:"), error_)
-	return rv
-}
-
-
 // Runs the alert modally as a sheet attached to the specified window.
 //
 // [Full Topic]
@@ -152,60 +122,12 @@ func (a_ Alert) BeginSheetModalForWindowCompletionHandler(sheetWindow IWindow, h
 }
 
 
-// Runs the alert modally as an alert sheet attached to a specified window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/beginSheetModal(for:modalDelegate:didEnd:contextInfo:)
-func (a_ Alert) BeginSheetModalForWindowModalDelegateDidEndSelectorContextInfo(window IWindow, delegate objectivec.IObject, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("beginSheetModalForWindow:modalDelegate:didEndSelector:contextInfo:"), window, delegate, didEndSelector, contextInfo)
-}
-
-
-// Runs the alert as an app-modal dialog and returns the constant that identifies the button clicked.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/runModal()
-func (a_ Alert) RunModal() ModalResponse {
-	rv := objc.Send[ModalResponse](a_.ID, objc.Sel("runModal"))
-	return rv
-}
-
-
-// The array of response buttons for the alert.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/buttons
-func (a_ Alert) Buttons() []Button {
-	rv := objc.Send[[]Button](a_.ID, objc.Sel("buttons"))
-	return rv
-}
-
-
-// The custom icon displayed in the alert.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/icon
-func (a_ Alert) Icon() Image {
-	rv := objc.Send[Image](a_.ID, objc.Sel("icon"))
-	return rv
-}
-
-
-// The custom icon displayed in the alert.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAlert/icon
-func (a_ Alert) SetIcon(value IImage) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setIcon:"), value)
-}
-
-
 // The alert’s accessory view.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/accessoryview
-func (a_ Alert) AccessoryView() NSView {
-	rv := objc.Send[NSView](a_.ID, objc.Sel("accessoryView"))
+func (a_ Alert) AccessoryView() IView {
+	rv := objc.Send[View](a_.ID, objc.Sel("accessoryView"))
 	return rv
 }
 
@@ -238,12 +160,31 @@ func (a_ Alert) SetAlertStyle(value unsafe.Pointer) {
 }
 
 
+// The array of response buttons for the alert.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/buttons
+func (a_ Alert) Buttons() IButton {
+	rv := objc.Send[Button](a_.ID, objc.Sel("buttons"))
+	return rv
+}
+
+
+// The array of response buttons for the alert.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/buttons
+func (a_ Alert) SetButtons(value IButton) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setButtons:"), value)
+}
+
+
 // The alert’s delegate.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/delegate
-func (a_ Alert) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("delegate"))
+func (a_ Alert) Delegate() objc.IObject /* cross-framework: AlertDelegate */ {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -252,7 +193,7 @@ func (a_ Alert) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/delegate
-func (a_ Alert) SetDelegate(value unsafe.Pointer) {
+func (a_ Alert) SetDelegate(value objc.IObject /* cross-framework: AlertDelegate */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -276,12 +217,31 @@ func (a_ Alert) SetHelpAnchor(value unsafe.Pointer) {
 }
 
 
+// The custom icon displayed in the alert.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/icon
+func (a_ Alert) Icon() IImage {
+	rv := objc.Send[Image](a_.ID, objc.Sel("icon"))
+	return rv
+}
+
+
+// The custom icon displayed in the alert.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/icon
+func (a_ Alert) SetIcon(value IImage) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setIcon:"), value)
+}
+
+
 // The alert’s informative text.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/informativetext
-func (a_ Alert) InformativeText() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("informativeText"))
+func (a_ Alert) InformativeText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("informativeText"))
 	return rv
 }
 
@@ -290,8 +250,8 @@ func (a_ Alert) InformativeText() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/informativetext
-func (a_ Alert) SetInformativeText(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setInformativeText:"), objc.String(value))
+func (a_ Alert) SetInformativeText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setInformativeText:"), value)
 }
 
 
@@ -299,8 +259,8 @@ func (a_ Alert) SetInformativeText(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/messagetext
-func (a_ Alert) MessageText() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("messageText"))
+func (a_ Alert) MessageText() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("messageText"))
 	return rv
 }
 
@@ -309,8 +269,8 @@ func (a_ Alert) MessageText() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/messagetext
-func (a_ Alert) SetMessageText(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setMessageText:"), objc.String(value))
+func (a_ Alert) SetMessageText(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMessageText:"), value)
 }
 
 
@@ -356,8 +316,8 @@ func (a_ Alert) SetShowsSuppressionButton(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/suppressionbutton
-func (a_ Alert) SuppressionButton() NSButton {
-	rv := objc.Send[NSButton](a_.ID, objc.Sel("suppressionButton"))
+func (a_ Alert) SuppressionButton() IButton {
+	rv := objc.Send[Button](a_.ID, objc.Sel("suppressionButton"))
 	return rv
 }
 
@@ -375,8 +335,8 @@ func (a_ Alert) SetSuppressionButton(value IButton) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsalert/window
-func (a_ Alert) Window() NSWindow {
-	rv := objc.Send[NSWindow](a_.ID, objc.Sel("window"))
+func (a_ Alert) Window() IWindow {
+	rv := objc.Send[Window](a_.ID, objc.Sel("window"))
 	return rv
 }
 
@@ -388,5 +348,6 @@ func (a_ Alert) Window() NSWindow {
 func (a_ Alert) SetWindow(value IWindow) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setWindow:"), value)
 }
+
 
 

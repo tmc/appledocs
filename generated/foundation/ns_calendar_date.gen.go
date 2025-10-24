@@ -109,7 +109,7 @@ func NewCalendarDateWithStringCalendarFormat(description IString, format IString
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/initWithString:calendarFormat:locale:
-func NewCalendarDateWithStringCalendarFormatLocale(description IString, format IString, locale objectivec.IObject) CalendarDate {
+func NewCalendarDateWithStringCalendarFormatLocale(description IString, format IString, locale objc.IObject) CalendarDate {
 	instance := getCalendarDateClass().Alloc()
 	rv := objc.Send[CalendarDate](instance.ID, objc.Sel("initWithString:calendarFormat:locale:"), description, format, locale)
 	rv.Autorelease()
@@ -146,7 +146,7 @@ func (cc _CalendarDateClass) DateWithStringCalendarFormat(description IString, f
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/dateWithString:calendarFormat:locale:
-func (cc _CalendarDateClass) DateWithStringCalendarFormatLocale(description IString, format IString, locale objectivec.IObject) objc.ID {
+func (cc _CalendarDateClass) DateWithStringCalendarFormatLocale(description IString, format IString, locale objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("dateWithString:calendarFormat:locale:"), description, format, locale)
 	return rv
 }

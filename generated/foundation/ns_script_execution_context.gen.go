@@ -35,8 +35,6 @@ type IScriptExecutionContext interface {
 	SetObjectBeingTested(value objc.ID)
 	RangeContainerObject() objc.ID
 	SetRangeContainerObject(value objc.ID)
-	TopLevelObject() unsafe.Pointer
-	SetTopLevelObject(value unsafe.Pointer)
 	// methods:
 }
 
@@ -128,25 +126,6 @@ func (s_ ScriptExecutionContext) RangeContainerObject() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptExecutionContext/rangeContainerObject
 func (s_ ScriptExecutionContext) SetRangeContainerObject(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRangeContainerObject:"), value)
-}
-
-
-// Sets the top-level object for an object-specifier evaluation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject
-func (s_ ScriptExecutionContext) TopLevelObject() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("topLevelObject"))
-	return rv
-}
-
-
-// Sets the top-level object for an object-specifier evaluation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptexecutioncontext/toplevelobject
-func (s_ ScriptExecutionContext) SetTopLevelObject(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTopLevelObject:"), value)
 }
 
 

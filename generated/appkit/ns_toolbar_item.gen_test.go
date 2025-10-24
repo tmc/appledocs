@@ -9,3 +9,11 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewToolbarItem
 
+// ExampleToolbarItem_Validate demonstrates using Validate on a ToolbarItem instance.
+// Validates the toolbar item’s menu and its ability to perfrom its action.
+func ExampleToolbarItem_Validate() {
+	obj := appkit.NewToolbarItem()
+	obj.Validate()
+	// Output:
+	}
+

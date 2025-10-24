@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // AccessibilityNavigableStaticTextProtocol is the NSAccessibilityNavigableStaticText protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSAccessibilityNavigableStaticText.
 var AccessibilityNavigableStaticTextProtocol *objc.Protocol
 

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // commitEditingProtocol is the commitEditing protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to commitEditing.
 var commitEditingProtocol *objc.Protocol
 

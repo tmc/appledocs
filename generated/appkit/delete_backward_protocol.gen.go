@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // deleteBackwardProtocol is the deleteBackward: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to deleteBackward:.
 var deleteBackwardProtocol *objc.Protocol
 

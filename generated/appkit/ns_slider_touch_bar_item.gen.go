@@ -31,8 +31,8 @@ type _SliderTouchBarItemClass struct {
 type ISliderTouchBarItem interface {
 	ITouchBarItem
 	// properties:
-	Action() unsafe.Pointer
-	SetAction(value unsafe.Pointer)
+	Action() objc.SEL
+	SetAction(value objc.SEL)
 	CustomizationLabel() objc.IObject /* cross-framework: NSString */
 	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
 	DoubleValue() float64
@@ -41,20 +41,19 @@ type ISliderTouchBarItem interface {
 	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	MaximumSliderWidth() float64
 	SetMaximumSliderWidth(value float64)
-	MaximumValueAccessory() objc.IObject /* cross-framework: SliderAccessory */
-	SetMaximumValueAccessory(value objc.IObject /* cross-framework: SliderAccessory */)
+	MaximumValueAccessory() ISliderAccessory
+	SetMaximumValueAccessory(value ISliderAccessory)
 	MinimumSliderWidth() float64
 	SetMinimumSliderWidth(value float64)
-	MinimumValueAccessory() objc.IObject /* cross-framework: SliderAccessory */
-	SetMinimumValueAccessory(value objc.IObject /* cross-framework: SliderAccessory */)
-	Slider() objc.IObject /* cross-framework: Slider */
-	SetSlider(value objc.IObject /* cross-framework: Slider */)
-	Target() unsafe.Pointer
-	SetTarget(value unsafe.Pointer)
-	ValueAccessoryWidth() unsafe.Pointer
-	SetValueAccessoryWidth(value unsafe.Pointer)
-	View() UserInterfaceCompression /* not a class type */
-	SetView(value UserInterfaceCompression /* not a class type */)
+	MinimumValueAccessory() ISliderAccessory
+	SetMinimumValueAccessory(value ISliderAccessory)
+	Slider() ISlider
+	SetSlider(value ISlider)
+	Target() objc.ID
+	SetTarget(value objc.ID)
+	ValueAccessoryWidth() objc.IObject /* cross-framework: SliderAccessoryWidth */
+	SetValueAccessoryWidth(value objc.IObject /* cross-framework: SliderAccessoryWidth */)
+	View() unsafe.Pointer
 	// methods:
 }
 
@@ -114,9 +113,9 @@ func NewSliderTouchBarItem() SliderTouchBarItem {
 // The selector on the target object that is invoked when a user interacts with the slider or either of the accessories.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/action
-func (s_ SliderTouchBarItem) Action() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("action"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/action
+func (s_ SliderTouchBarItem) Action() objc.SEL {
+	rv := objc.Send[objc.SEL](s_.ID, objc.Sel("action"))
 	return rv
 }
 
@@ -124,8 +123,8 @@ func (s_ SliderTouchBarItem) Action() unsafe.Pointer {
 // The selector on the target object that is invoked when a user interacts with the slider or either of the accessories.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/action
-func (s_ SliderTouchBarItem) SetAction(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/action
+func (s_ SliderTouchBarItem) SetAction(value objc.SEL) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAction:"), value)
 }
 
@@ -133,7 +132,7 @@ func (s_ SliderTouchBarItem) SetAction(value unsafe.Pointer) {
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/customizationlabel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/customizationLabel
 func (s_ SliderTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("customizationLabel"))
 	return rv
@@ -143,7 +142,7 @@ func (s_ SliderTouchBarItem) CustomizationLabel() objc.IObject /* cross-framewor
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/customizationlabel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/customizationLabel
 func (s_ SliderTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
@@ -152,7 +151,7 @@ func (s_ SliderTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-f
 // The double value of the slider.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/doublevalue
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/doubleValue
 func (s_ SliderTouchBarItem) DoubleValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValue"))
 	return rv
@@ -162,7 +161,7 @@ func (s_ SliderTouchBarItem) DoubleValue() float64 {
 // The double value of the slider.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/doublevalue
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/doubleValue
 func (s_ SliderTouchBarItem) SetDoubleValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleValue:"), value)
 }
@@ -171,7 +170,7 @@ func (s_ SliderTouchBarItem) SetDoubleValue(value float64) {
 // The text displayed alongside the slider.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/label
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/label
 func (s_ SliderTouchBarItem) Label() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](s_.ID, objc.Sel("label"))
 	return rv
@@ -181,7 +180,7 @@ func (s_ SliderTouchBarItem) Label() objc.IObject /* cross-framework: NSString *
 // The text displayed alongside the slider.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/label
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/label
 func (s_ SliderTouchBarItem) SetLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:"), value)
 }
@@ -190,7 +189,7 @@ func (s_ SliderTouchBarItem) SetLabel(value objc.IObject /* cross-framework: NSS
 // The maximum width of the slider’s track.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/maximumsliderwidth
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/maximumSliderWidth
 func (s_ SliderTouchBarItem) MaximumSliderWidth() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maximumSliderWidth"))
 	return rv
@@ -200,7 +199,7 @@ func (s_ SliderTouchBarItem) MaximumSliderWidth() float64 {
 // The maximum width of the slider’s track.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/maximumsliderwidth
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/maximumSliderWidth
 func (s_ SliderTouchBarItem) SetMaximumSliderWidth(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumSliderWidth:"), value)
 }
@@ -209,8 +208,8 @@ func (s_ SliderTouchBarItem) SetMaximumSliderWidth(value float64) {
 // The accessory that appears at the end of the slider with the maximum value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/maximumvalueaccessory
-func (s_ SliderTouchBarItem) MaximumValueAccessory() objc.IObject /* cross-framework: SliderAccessory */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/maximumValueAccessory
+func (s_ SliderTouchBarItem) MaximumValueAccessory() ISliderAccessory {
 	rv := objc.Send[SliderAccessory](s_.ID, objc.Sel("maximumValueAccessory"))
 	return rv
 }
@@ -219,8 +218,8 @@ func (s_ SliderTouchBarItem) MaximumValueAccessory() objc.IObject /* cross-frame
 // The accessory that appears at the end of the slider with the maximum value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/maximumvalueaccessory
-func (s_ SliderTouchBarItem) SetMaximumValueAccessory(value objc.IObject /* cross-framework: SliderAccessory */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/maximumValueAccessory
+func (s_ SliderTouchBarItem) SetMaximumValueAccessory(value ISliderAccessory) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumValueAccessory:"), value)
 }
 
@@ -228,7 +227,7 @@ func (s_ SliderTouchBarItem) SetMaximumValueAccessory(value objc.IObject /* cros
 // The minimum width of the slider’s track.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/minimumsliderwidth
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/minimumSliderWidth
 func (s_ SliderTouchBarItem) MinimumSliderWidth() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minimumSliderWidth"))
 	return rv
@@ -238,7 +237,7 @@ func (s_ SliderTouchBarItem) MinimumSliderWidth() float64 {
 // The minimum width of the slider’s track.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/minimumsliderwidth
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/minimumSliderWidth
 func (s_ SliderTouchBarItem) SetMinimumSliderWidth(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumSliderWidth:"), value)
 }
@@ -247,8 +246,8 @@ func (s_ SliderTouchBarItem) SetMinimumSliderWidth(value float64) {
 // The accessory that appears at the end of the slider with the minimum value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/minimumvalueaccessory
-func (s_ SliderTouchBarItem) MinimumValueAccessory() objc.IObject /* cross-framework: SliderAccessory */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/minimumValueAccessory
+func (s_ SliderTouchBarItem) MinimumValueAccessory() ISliderAccessory {
 	rv := objc.Send[SliderAccessory](s_.ID, objc.Sel("minimumValueAccessory"))
 	return rv
 }
@@ -257,8 +256,8 @@ func (s_ SliderTouchBarItem) MinimumValueAccessory() objc.IObject /* cross-frame
 // The accessory that appears at the end of the slider with the minimum value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/minimumvalueaccessory
-func (s_ SliderTouchBarItem) SetMinimumValueAccessory(value objc.IObject /* cross-framework: SliderAccessory */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/minimumValueAccessory
+func (s_ SliderTouchBarItem) SetMinimumValueAccessory(value ISliderAccessory) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumValueAccessory:"), value)
 }
 
@@ -266,8 +265,8 @@ func (s_ SliderTouchBarItem) SetMinimumValueAccessory(value objc.IObject /* cros
 // The slider displayed by the bar item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/slider
-func (s_ SliderTouchBarItem) Slider() objc.IObject /* cross-framework: Slider */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/slider
+func (s_ SliderTouchBarItem) Slider() ISlider {
 	rv := objc.Send[Slider](s_.ID, objc.Sel("slider"))
 	return rv
 }
@@ -276,8 +275,8 @@ func (s_ SliderTouchBarItem) Slider() objc.IObject /* cross-framework: Slider */
 // The slider displayed by the bar item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/slider
-func (s_ SliderTouchBarItem) SetSlider(value objc.IObject /* cross-framework: Slider */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/slider
+func (s_ SliderTouchBarItem) SetSlider(value ISlider) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setSlider:"), value)
 }
 
@@ -285,9 +284,9 @@ func (s_ SliderTouchBarItem) SetSlider(value objc.IObject /* cross-framework: Sl
 // An object that is notified when a user interacts with the slider or either of the accessories.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/target
-func (s_ SliderTouchBarItem) Target() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("target"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/target
+func (s_ SliderTouchBarItem) Target() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("target"))
 	return rv
 }
 
@@ -295,8 +294,8 @@ func (s_ SliderTouchBarItem) Target() unsafe.Pointer {
 // An object that is notified when a user interacts with the slider or either of the accessories.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/target
-func (s_ SliderTouchBarItem) SetTarget(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/target
+func (s_ SliderTouchBarItem) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTarget:"), value)
 }
 
@@ -304,9 +303,9 @@ func (s_ SliderTouchBarItem) SetTarget(value unsafe.Pointer) {
 // The width of the value accessories that appear at either end of the slider.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/valueaccessorywidth
-func (s_ SliderTouchBarItem) ValueAccessoryWidth() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("valueAccessoryWidth"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/valueAccessoryWidth
+func (s_ SliderTouchBarItem) ValueAccessoryWidth() objc.IObject /* cross-framework: SliderAccessoryWidth */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("valueAccessoryWidth"))
 	return rv
 }
 
@@ -314,24 +313,17 @@ func (s_ SliderTouchBarItem) ValueAccessoryWidth() unsafe.Pointer {
 // The width of the value accessories that appear at either end of the slider.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/valueaccessorywidth
-func (s_ SliderTouchBarItem) SetValueAccessoryWidth(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/valueAccessoryWidth
+func (s_ SliderTouchBarItem) SetValueAccessoryWidth(value objc.IObject /* cross-framework: SliderAccessoryWidth */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValueAccessoryWidth:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/view
-func (s_ SliderTouchBarItem) View() UserInterfaceCompression /* not a class type */ {
-	rv := objc.Send[UserInterfaceCompression](s_.ID, objc.Sel("view"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderTouchBarItem/view
+func (s_ SliderTouchBarItem) View() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("view"))
 	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidertouchbaritem/view
-func (s_ SliderTouchBarItem) SetView(value UserInterfaceCompression /* not a class type */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setView:"), value)
 }
 
 

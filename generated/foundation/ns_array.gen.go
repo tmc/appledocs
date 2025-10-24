@@ -43,8 +43,8 @@ type IArray interface {
 	ArrayByApplyingDifference(difference unsafe.Pointer) []objc.ID
 	ComponentsJoinedByString(separator IString) IString
 	ContainsObject(anObject unsafe.Pointer) bool
-	DescriptionWithLocale(locale objectivec.IObject) IString
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString
+	DescriptionWithLocale(locale objc.IObject) IString
+	DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString
 	DifferenceFromArray(other []objc.ID) unsafe.Pointer
 	DifferenceFromArrayWithOptions(other []objc.ID, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
 	DifferenceFromArrayWithOptionsUsingEquivalenceTest(other []objc.ID, options OrderedCollectionDifferenceCalculationOptions, block bool) unsafe.Pointer
@@ -67,7 +67,7 @@ type IArray interface {
 	IndexesOfObjectsPassingTest(predicate unsafe.Pointer) IIndexSet
 	IsEqualToArray(otherArray []objc.ID) bool
 	MakeObjectsPerformSelector(aSelector objc.SEL)
-	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject)
+	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objc.IObject)
 	ObjectAtIndex(index uint) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
 	ObjectsAtIndexes(indexes IIndexSet) []objc.ID
@@ -81,7 +81,7 @@ type IArray interface {
 	SortedArrayUsingFunctionContextHint(comparator unsafe.Pointer, context unsafe.Pointer, hint IData) []objc.ID
 	SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID
 	SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID
-	SortedArrayUsingDescriptors(sortDescriptors []ISortDescriptor) []objc.ID
+	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID
 	SortedArrayUsingSelector(comparator objc.SEL) []objc.ID
 	SubarrayWithRange(range_ objc.IObject /* cross-framework: Range */) []objc.ID
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
@@ -394,7 +394,7 @@ func (a_ Array) ContainsObject(anObject unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description(withLocale:)
-func (a_ Array) DescriptionWithLocale(locale objectivec.IObject) IString {
+func (a_ Array) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -404,7 +404,7 @@ func (a_ Array) DescriptionWithLocale(locale objectivec.IObject) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/description(withLocale:indent:)
-func (a_ Array) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString {
+func (a_ Array) DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString {
 	rv := objc.Send[String](a_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
@@ -629,7 +629,7 @@ func (a_ Array) MakeObjectsPerformSelector(aSelector objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/makeObjectsPerformSelector:withObject:
-func (a_ Array) MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) {
+func (a_ Array) MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("makeObjectsPerformSelector:withObject:"), aSelector, argument)
 }
 
@@ -724,7 +724,7 @@ func (a_ Array) ReverseObjectEnumerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/setValue(_:forKey:)
-func (a_ Array) SetValueForKey(value objectivec.IObject, key IString) {
+func (a_ Array) SetValueForKey(value objc.IObject, key IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setValue:forKey:"), value, key)
 }
 
@@ -793,7 +793,7 @@ func (a_ Array) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSArray/sortedArray(using:)-82wi1
-func (a_ Array) SortedArrayUsingDescriptors(sortDescriptors []ISortDescriptor) []objc.ID {
+func (a_ Array) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID {
 	rv := objc.Send[[]objc.ID](a_.ID, objc.Sel("sortedArrayUsingDescriptors:"), sortDescriptors)
 	return rv
 }

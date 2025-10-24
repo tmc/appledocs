@@ -30,14 +30,16 @@ type _TokenFieldClass struct {
 // An interface definition for the [TokenField] class.
 type ITokenField interface {
 	ITextField
-	TokenizingCharacterSet() foundation.CharacterSet
-	SetTokenizingCharacterSet(value foundation.ICharacterSet)
-	CompletionDelay() unsafe.Pointer
-	SetCompletionDelay(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	// properties:
+	CompletionDelay() float64
+	SetCompletionDelay(value float64)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 	TokenStyle() TokenStyle
 	SetTokenStyle(value TokenStyle)
+	TokenizingCharacterSet() foundation.CharacterSet
+	SetTokenizingCharacterSet(value foundation.CharacterSet)
+	// methods:
 }
 
 // A text field that converts text into visually distinct tokens.
@@ -104,6 +106,34 @@ func (tc _TokenFieldClass) DefaultCompletionDelay() float64 {
 	return rv
 }
 
+// Returns the default tokenizing character set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/defaultTokenizingCharacterSet
+func (tc _TokenFieldClass) DefaultTokenizingCharacterSet() foundation.CharacterSet {
+	rv := objc.Send[foundation.CharacterSet](objc.ID(tc.class), objc.Sel("defaultTokenizingCharacterSet"))
+	return rv
+}
+
+// The receiver’s completion delay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/completionDelay
+func (t_ TokenField) CompletionDelay() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("completionDelay"))
+	return rv
+}
+
+
+// The receiver’s completion delay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/completionDelay
+func (t_ TokenField) SetCompletionDelay(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
+}
+
+
 // Returns the default completion delay.
 //
 // [Full Topic]
@@ -111,6 +141,54 @@ func (tc _TokenFieldClass) DefaultCompletionDelay() float64 {
 func (t_ TokenField) DefaultCompletionDelay() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("defaultCompletionDelay"))
 	return rv
+}
+
+
+// Returns the default tokenizing character set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/defaultTokenizingCharacterSet
+func (t_ TokenField) DefaultTokenizingCharacterSet() foundation.CharacterSet {
+	rv := objc.Send[foundation.CharacterSet](t_.ID, objc.Sel("defaultTokenizingCharacterSet"))
+	return rv
+}
+
+
+// Returns the token field’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/delegate
+func (t_ TokenField) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// Returns the token field’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/delegate
+func (t_ TokenField) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// The token style of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenStyle-swift.property
+func (t_ TokenField) TokenStyle() TokenStyle {
+	rv := objc.Send[TokenStyle](t_.ID, objc.Sel("tokenStyle"))
+	return rv
+}
+
+
+// The token style of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenStyle-swift.property
+func (t_ TokenField) SetTokenStyle(value TokenStyle) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
 }
 
 
@@ -128,65 +206,8 @@ func (t_ TokenField) TokenizingCharacterSet() foundation.CharacterSet {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenField/tokenizingCharacterSet
-func (t_ TokenField) SetTokenizingCharacterSet(value foundation.ICharacterSet) {
+func (t_ TokenField) SetTokenizingCharacterSet(value foundation.CharacterSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
-}
-
-
-// The receiver’s completion delay.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/completiondelay
-func (t_ TokenField) CompletionDelay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completionDelay"))
-	return rv
-}
-
-
-// The receiver’s completion delay.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/completiondelay
-func (t_ TokenField) SetCompletionDelay(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
-}
-
-
-// Returns the token field’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/delegate
-func (t_ TokenField) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// Returns the token field’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/delegate
-func (t_ TokenField) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The token style of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.property
-func (t_ TokenField) TokenStyle() TokenStyle {
-	rv := objc.Send[TokenStyle](t_.ID, objc.Sel("tokenStyle"))
-	return rv
-}
-
-
-// The token style of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfield/tokenstyle-swift.property
-func (t_ TokenField) SetTokenStyle(value TokenStyle) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenStyle:"), value)
 }
 
 

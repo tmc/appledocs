@@ -33,18 +33,19 @@ type _PDFInfoClass struct {
 type IPDFInfo interface {
 	objectivec.IObject
 	// properties:
-	Attributes() objc.IObject /* cross-framework: MutableDictionary */
-	SetAttributes(value objc.IObject /* cross-framework: MutableDictionary */)
-	IsFileExtensionHidden() bool
-	SetIsFileExtensionHidden(value bool)
-	Orientation() unsafe.Pointer
-	SetOrientation(value unsafe.Pointer)
+	Attributes() unsafe.Pointer
+	FileExtensionHidden() bool
+	SetFileExtensionHidden(value bool)
+	Orientation() PaperOrientation
+	SetOrientation(value PaperOrientation)
 	PaperSize() objc.IObject /* cross-framework: Size */
 	SetPaperSize(value objc.IObject /* cross-framework: Size */)
-	TagNames() objc.IObject /* cross-framework: NSString */
-	SetTagNames(value objc.IObject /* cross-framework: NSString */)
-	Url() objc.IObject /* cross-framework: URL */
-	SetUrl(value objc.IObject /* cross-framework: URL */)
+	TagNames() []string
+	SetTagNames(value []string)
+	URL() objc.IObject /* cross-framework: NSURL */
+	SetURL(value objc.IObject /* cross-framework: NSURL */)
+	IsFileExtensionHidden() bool
+	SetIsFileExtensionHidden(value bool)
 	// methods:
 }
 
@@ -104,19 +105,115 @@ func NewPDFInfo() PDFInfo {
 // A dictionary of additional attributes that describe how to export content as a PDF file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) Attributes() objc.IObject /* cross-framework: MutableDictionary */ {
-	rv := objc.Send[foundation.MutableDictionary](p_.ID, objc.Sel("attributes"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/attributes
+func (p_ PDFInfo) Attributes() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("attributes"))
 	return rv
 }
 
 
-// A dictionary of additional attributes that describe how to export content as a PDF file.
+// A Boolean value that indicates whether the file extension should appear after the filename.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/attributes
-func (p_ PDFInfo) SetAttributes(value objc.IObject /* cross-framework: MutableDictionary */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setAttributes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
+func (p_ PDFInfo) FileExtensionHidden() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("fileExtensionHidden"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the file extension should appear after the filename.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/isFileExtensionHidden
+func (p_ PDFInfo) SetFileExtensionHidden(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setFileExtensionHidden:"), value)
+}
+
+
+// The paper orientation to use when exporting content as a PDF file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
+func (p_ PDFInfo) Orientation() PaperOrientation {
+	rv := objc.Send[PaperOrientation](p_.ID, objc.Sel("orientation"))
+	return rv
+}
+
+
+// The paper orientation to use when exporting content as a PDF file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/orientation
+func (p_ PDFInfo) SetOrientation(value PaperOrientation) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
+}
+
+
+// The paper size to use when exporting content as a PDF file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/paperSize
+func (p_ PDFInfo) PaperSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](p_.ID, objc.Sel("paperSize"))
+	return rv
+}
+
+
+// The paper size to use when exporting content as a PDF file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/paperSize
+func (p_ PDFInfo) SetPaperSize(value objc.IObject /* cross-framework: Size */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPaperSize:"), value)
+}
+
+
+// An array of tag names that should be applied to the PDF file after it’s created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/tagNames
+func (p_ PDFInfo) TagNames() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("tagNames"))
+	return rv
+}
+
+
+// An array of tag names that should be applied to the PDF file after it’s created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/tagNames
+func (p_ PDFInfo) SetTagNames(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), nsArray)
+}
+
+
+// The URL identifying the location at which the PDF file will be created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/url
+func (p_ PDFInfo) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](p_.ID, objc.Sel("URL"))
+	return rv
+}
+
+
+// The URL identifying the location at which the PDF file will be created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPDFInfo/url
+func (p_ PDFInfo) SetURL(value objc.IObject /* cross-framework: NSURL */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
 }
 
 
@@ -136,82 +233,6 @@ func (p_ PDFInfo) IsFileExtensionHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/isfileextensionhidden
 func (p_ PDFInfo) SetIsFileExtensionHidden(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setIsFileExtensionHidden:"), value)
-}
-
-
-// The paper orientation to use when exporting content as a PDF file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/orientation
-func (p_ PDFInfo) Orientation() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("orientation"))
-	return rv
-}
-
-
-// The paper orientation to use when exporting content as a PDF file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/orientation
-func (p_ PDFInfo) SetOrientation(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOrientation:"), value)
-}
-
-
-// The paper size to use when exporting content as a PDF file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/papersize
-func (p_ PDFInfo) PaperSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](p_.ID, objc.Sel("paperSize"))
-	return rv
-}
-
-
-// The paper size to use when exporting content as a PDF file.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/papersize
-func (p_ PDFInfo) SetPaperSize(value objc.IObject /* cross-framework: Size */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPaperSize:"), value)
-}
-
-
-// An array of tag names that should be applied to the PDF file after it’s created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/tagnames
-func (p_ PDFInfo) TagNames() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("tagNames"))
-	return rv
-}
-
-
-// An array of tag names that should be applied to the PDF file after it’s created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/tagnames
-func (p_ PDFInfo) SetTagNames(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTagNames:"), value)
-}
-
-
-// The URL identifying the location at which the PDF file will be created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-func (p_ PDFInfo) Url() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
-	return rv
-}
-
-
-// The URL identifying the location at which the PDF file will be created.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspdfinfo/url
-func (p_ PDFInfo) SetUrl(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 
 

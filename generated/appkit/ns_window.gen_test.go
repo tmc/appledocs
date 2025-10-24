@@ -49,22 +49,6 @@ func ExampleWindow_DisableCursorRects() {
 	// Output:
 	}
 
-// ExampleWindow_DisableKeyEquivalentForDefaultButtonCell demonstrates using DisableKeyEquivalentForDefaultButtonCell on a Window instance.
-// Disables the default button cell’s key equivalent, so it doesn’t perform a click when the user presses Return (or Enter).
-func ExampleWindow_DisableKeyEquivalentForDefaultButtonCell() {
-	obj := appkit.NewWindow()
-	obj.DisableKeyEquivalentForDefaultButtonCell()
-	// Output:
-	}
-
-// ExampleWindow_DisableSnapshotRestoration demonstrates using DisableSnapshotRestoration on a Window instance.
-// Disables snapshot restoration.
-func ExampleWindow_DisableSnapshotRestoration() {
-	obj := appkit.NewWindow()
-	obj.DisableSnapshotRestoration()
-	// Output:
-	}
-
 // ExampleWindow_DiscardCursorRects demonstrates using DiscardCursorRects on a Window instance.
 // Invalidates all cursor rectangles in the window.
 //
@@ -99,35 +83,11 @@ func ExampleWindow_EnableCursorRects() {
 	// Output:
 	}
 
-// ExampleWindow_EnableKeyEquivalentForDefaultButtonCell demonstrates using EnableKeyEquivalentForDefaultButtonCell on a Window instance.
-// Reenables the default button cell’s key equivalent, so it performs a click when the user presses Return (or Enter).
-func ExampleWindow_EnableKeyEquivalentForDefaultButtonCell() {
-	obj := appkit.NewWindow()
-	obj.EnableKeyEquivalentForDefaultButtonCell()
-	// Output:
-	}
-
-// ExampleWindow_EnableSnapshotRestoration demonstrates using EnableSnapshotRestoration on a Window instance.
-// Enables snapshot restoration.
-func ExampleWindow_EnableSnapshotRestoration() {
-	obj := appkit.NewWindow()
-	obj.EnableSnapshotRestoration()
-	// Output:
-	}
-
 // ExampleWindow_InvalidateShadow demonstrates using InvalidateShadow on a Window instance.
 // Invalidates the window shadow so that it is recomputed based on the current window shape.
 func ExampleWindow_InvalidateShadow() {
 	obj := appkit.NewWindow()
 	obj.InvalidateShadow()
-	// Output:
-	}
-
-// ExampleWindow_LayoutIfNeeded demonstrates using LayoutIfNeeded on a Window instance.
-// Updates the layout of views in the window based on the current views and constraints.
-func ExampleWindow_LayoutIfNeeded() {
-	obj := appkit.NewWindow()
-	obj.LayoutIfNeeded()
 	// Output:
 	}
 
@@ -192,22 +152,6 @@ func ExampleWindow_ResignMainWindow() {
 func ExampleWindow_UnregisterDraggedTypes() {
 	obj := appkit.NewWindow()
 	obj.UnregisterDraggedTypes()
-	// Output:
-	}
-
-// ExampleWindow_Update demonstrates using Update on a Window instance.
-// Updates the window.
-func ExampleWindow_Update() {
-	obj := appkit.NewWindow()
-	obj.Update()
-	// Output:
-	}
-
-// ExampleWindow_UpdateConstraintsIfNeeded demonstrates using UpdateConstraintsIfNeeded on a Window instance.
-// Updates the constraints based on changes to views in the window since the last layout.
-func ExampleWindow_UpdateConstraintsIfNeeded() {
-	obj := appkit.NewWindow()
-	obj.UpdateConstraintsIfNeeded()
 	// Output:
 	}
 

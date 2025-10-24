@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [SegmentedControl] class.
@@ -30,29 +33,53 @@ type _SegmentedControlClass struct {
 type ISegmentedControl interface {
 	IControl
 	// properties:
-	SelectedSegmentBezelColor() IColor
-	SetSelectedSegmentBezelColor(value IColor)
-	ActiveCompressionOptions() objc.IObject /* cross-framework: UserInterfaceCompressionOptions */
-	SetActiveCompressionOptions(value objc.IObject /* cross-framework: UserInterfaceCompressionOptions */)
-	BorderShape() unsafe.Pointer
-	SetBorderShape(value unsafe.Pointer)
+	ActiveCompressionOptions() IUserInterfaceCompressionOptions
+	BorderShape() ControlBorderShape
+	SetBorderShape(value ControlBorderShape)
 	DoubleValueForSelectedSegment() float64
-	SetDoubleValueForSelectedSegment(value float64)
 	IndexOfSelectedItem() int
-	SetIndexOfSelectedItem(value int)
-	IsSpringLoaded() bool
-	SetIsSpringLoaded(value bool)
+	SpringLoaded() bool
+	SetSpringLoaded(value bool)
 	SegmentCount() int
 	SetSegmentCount(value int)
-	SegmentDistribution() unsafe.Pointer
-	SetSegmentDistribution(value unsafe.Pointer)
-	SegmentStyle() unsafe.Pointer
-	SetSegmentStyle(value unsafe.Pointer)
+	SegmentDistribution() SegmentDistribution
+	SetSegmentDistribution(value SegmentDistribution)
+	SegmentStyle() SegmentStyle
+	SetSegmentStyle(value SegmentStyle)
 	SelectedSegment() int
 	SetSelectedSegment(value int)
-	TrackingMode() unsafe.Pointer
-	SetTrackingMode(value unsafe.Pointer)
+	SelectedSegmentBezelColor() IColor
+	SetSelectedSegmentBezelColor(value IColor)
+	TrackingMode() SegmentSwitchTracking
+	SetTrackingMode(value SegmentSwitchTracking)
+	IsSpringLoaded() bool
+	SetIsSpringLoaded(value bool)
 	// methods:
+	AlignmentForSegment(segment int) TextAlignment
+	CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions)
+	ImageForSegment(segment int) IImage
+	ImageScalingForSegment(segment int) ImageScaling
+	IsEnabledForSegment(segment int) bool
+	IsSelectedForSegment(segment int) bool
+	LabelForSegment(segment int) foundation.String
+	MenuForSegment(segment int) IMenu
+	MinimumSizeWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) objc.IObject /* cross-framework: Size */
+	SelectSegmentWithTag(tag int) bool
+	SetAlignmentForSegment(alignment TextAlignment, segment int)
+	SetEnabledForSegment(enabled bool, segment int)
+	SetImageForSegment(image IImage, segment int)
+	SetImageScalingForSegment(scaling ImageScaling, segment int)
+	SetLabelForSegment(label objc.IObject /* cross-framework: NSString */, segment int)
+	SetMenuForSegment(menu IMenu, segment int)
+	SetSelectedForSegment(selected bool, segment int)
+	SetShowsMenuIndicatorForSegment(showsMenuIndicator bool, segment int)
+	SetTagForSegment(tag int, segment int)
+	SetToolTipForSegment(toolTip objc.IObject /* cross-framework: NSString */, segment int)
+	SetWidthForSegment(width float64, segment int)
+	ShowsMenuIndicatorForSegment(segment int) bool
+	TagForSegment(segment int) int
+	ToolTipForSegment(segment int) foundation.String
+	WidthForSegment(segment int) float64
 }
 
 // Display one or more buttons in a single horizontal group.
@@ -110,6 +137,389 @@ func NewSegmentedControl() SegmentedControl {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/init(images:trackingMode:target:action:)
+func NewSegmentedControlWithImagesTrackingModeTargetAction(images []Image, trackingMode SegmentSwitchTracking, target objc.IObject, action objc.SEL) SegmentedControl {
+	rv := objc.Send[SegmentedControl](objc.ID(getSegmentedControlClass().class), objc.Sel("segmentedControlWithImages:trackingMode:target:action:"), images, trackingMode, target, action)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/init(labels:trackingMode:target:action:)
+func NewSegmentedControlWithLabelsTrackingModeTargetAction(labels []string, trackingMode SegmentSwitchTracking, target objc.IObject, action objc.SEL) SegmentedControl {
+	rv := objc.Send[SegmentedControl](objc.ID(getSegmentedControlClass().class), objc.Sel("segmentedControlWithLabels:trackingMode:target:action:"), labels, trackingMode, target, action)
+	return rv
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/init(images:trackingMode:target:action:)
+func (sc _SegmentedControlClass) SegmentedControlWithImagesTrackingModeTargetAction(images []Image, trackingMode SegmentSwitchTracking, target objc.IObject, action objc.SEL) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("segmentedControlWithImages:trackingMode:target:action:"), images, trackingMode, target, action)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/init(labels:trackingMode:target:action:)
+func (sc _SegmentedControlClass) SegmentedControlWithLabelsTrackingModeTargetAction(labels []string, trackingMode SegmentSwitchTracking, target objc.IObject, action objc.SEL) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("segmentedControlWithLabels:trackingMode:target:action:"), labels, trackingMode, target, action)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/alignment(forSegment:)
+func (s_ SegmentedControl) AlignmentForSegment(segment int) TextAlignment {
+	rv := objc.Send[TextAlignment](s_.ID, objc.Sel("alignmentForSegment:"), segment)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/compress(withPrioritizedCompressionOptions:)
+func (s_ SegmentedControl) CompressWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("compressWithPrioritizedCompressionOptions:"), prioritizedOptions)
+}
+
+
+// Returns the image associated with the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/image(forSegment:)
+func (s_ SegmentedControl) ImageForSegment(segment int) IImage {
+	rv := objc.Send[Image](s_.ID, objc.Sel("imageForSegment:"), segment)
+	return rv
+}
+
+
+// Returns the scaling mode used to display the specified segment’s image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/imageScaling(forSegment:)
+func (s_ SegmentedControl) ImageScalingForSegment(segment int) ImageScaling {
+	rv := objc.Send[ImageScaling](s_.ID, objc.Sel("imageScalingForSegment:"), segment)
+	return rv
+}
+
+
+// Returns a Boolean value indicating whether the specified segment is enabled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/isEnabled(forSegment:)
+func (s_ SegmentedControl) IsEnabledForSegment(segment int) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isEnabledForSegment:"), segment)
+	return rv
+}
+
+
+// Returns a Boolean value indicating whether the specified segment is selected.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/isSelected(forSegment:)
+func (s_ SegmentedControl) IsSelectedForSegment(segment int) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("isSelectedForSegment:"), segment)
+	return rv
+}
+
+
+// Returns the label of the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/label(forSegment:)
+func (s_ SegmentedControl) LabelForSegment(segment int) foundation.String {
+	rv := objc.Send[foundation.String](s_.ID, objc.Sel("labelForSegment:"), segment)
+	return rv
+}
+
+
+// Returns the menu for the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/menu(forSegment:)
+func (s_ SegmentedControl) MenuForSegment(segment int) IMenu {
+	rv := objc.Send[Menu](s_.ID, objc.Sel("menuForSegment:"), segment)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/minimumSize(withPrioritizedCompressionOptions:)
+func (s_ SegmentedControl) MinimumSizeWithPrioritizedCompressionOptions(prioritizedOptions []UserInterfaceCompressionOptions) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](s_.ID, objc.Sel("minimumSizeWithPrioritizedCompressionOptions:"), prioritizedOptions)
+	return rv
+}
+
+
+// Selects the segment with the specified tag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectSegment(withTag:)
+func (s_ SegmentedControl) SelectSegmentWithTag(tag int) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("selectSegmentWithTag:"), tag)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setAlignment(_:forSegment:)
+func (s_ SegmentedControl) SetAlignmentForSegment(alignment TextAlignment, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAlignment:forSegment:"), alignment, segment)
+}
+
+
+// Sets the enabled state of the specified segment
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setEnabled(_:forSegment:)
+func (s_ SegmentedControl) SetEnabledForSegment(enabled bool, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:forSegment:"), enabled, segment)
+}
+
+
+// Sets the image for the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setImage(_:forSegment:)
+func (s_ SegmentedControl) SetImageForSegment(image IImage, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:forSegment:"), image, segment)
+}
+
+
+// Sets the scaling mode used to display the specified segment’s image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setImageScaling(_:forSegment:)
+func (s_ SegmentedControl) SetImageScalingForSegment(scaling ImageScaling, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setImageScaling:forSegment:"), scaling, segment)
+}
+
+
+// Sets the label for the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setLabel(_:forSegment:)
+func (s_ SegmentedControl) SetLabelForSegment(label objc.IObject /* cross-framework: NSString */, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLabel:forSegment:"), label, segment)
+}
+
+
+// Sets the menu for the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setMenu(_:forSegment:)
+func (s_ SegmentedControl) SetMenuForSegment(menu IMenu, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMenu:forSegment:"), menu, segment)
+}
+
+
+// Sets the selection state of the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setSelected(_:forSegment:)
+func (s_ SegmentedControl) SetSelectedForSegment(selected bool, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSelected:forSegment:"), selected, segment)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setShowsMenuIndicator(_:forSegment:)
+func (s_ SegmentedControl) SetShowsMenuIndicatorForSegment(showsMenuIndicator bool, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsMenuIndicator:forSegment:"), showsMenuIndicator, segment)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setTag(_:forSegment:)
+func (s_ SegmentedControl) SetTagForSegment(tag int, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTag:forSegment:"), tag, segment)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setToolTip(_:forSegment:)
+func (s_ SegmentedControl) SetToolTipForSegment(toolTip objc.IObject /* cross-framework: NSString */, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setToolTip:forSegment:"), toolTip, segment)
+}
+
+
+// Sets the width of the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/setWidth(_:forSegment:)
+func (s_ SegmentedControl) SetWidthForSegment(width float64, segment int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setWidth:forSegment:"), width, segment)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/showsMenuIndicator(forSegment:)
+func (s_ SegmentedControl) ShowsMenuIndicatorForSegment(segment int) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("showsMenuIndicatorForSegment:"), segment)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/tag(forSegment:)
+func (s_ SegmentedControl) TagForSegment(segment int) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("tagForSegment:"), segment)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/toolTip(forSegment:)
+func (s_ SegmentedControl) ToolTipForSegment(segment int) foundation.String {
+	rv := objc.Send[foundation.String](s_.ID, objc.Sel("toolTipForSegment:"), segment)
+	return rv
+}
+
+
+// Returns the width of the specified segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/width(forSegment:)
+func (s_ SegmentedControl) WidthForSegment(segment int) float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("widthForSegment:"), segment)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/activeCompressionOptions
+func (s_ SegmentedControl) ActiveCompressionOptions() IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](s_.ID, objc.Sel("activeCompressionOptions"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/borderShape
+func (s_ SegmentedControl) BorderShape() ControlBorderShape {
+	rv := objc.Send[ControlBorderShape](s_.ID, objc.Sel("borderShape"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/borderShape
+func (s_ SegmentedControl) SetBorderShape(value ControlBorderShape) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setBorderShape:"), value)
+}
+
+
+// When the tracking mode for the control is set to use a momentary accelerator, returns a value for the selected segment.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/doubleValueForSelectedSegment
+func (s_ SegmentedControl) DoubleValueForSelectedSegment() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValueForSelectedSegment"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/indexOfSelectedItem
+func (s_ SegmentedControl) IndexOfSelectedItem() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("indexOfSelectedItem"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether spring loading is enabled for the control.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/isSpringLoaded
+func (s_ SegmentedControl) SpringLoaded() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("springLoaded"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether spring loading is enabled for the control.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/isSpringLoaded
+func (s_ SegmentedControl) SetSpringLoaded(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSpringLoaded:"), value)
+}
+
+
+// The number of segments in the control.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/segmentCount
+func (s_ SegmentedControl) SegmentCount() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
+	return rv
+}
+
+
+// The number of segments in the control.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/segmentCount
+func (s_ SegmentedControl) SetSegmentCount(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/segmentDistribution
+func (s_ SegmentedControl) SegmentDistribution() SegmentDistribution {
+	rv := objc.Send[SegmentDistribution](s_.ID, objc.Sel("segmentDistribution"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/segmentDistribution
+func (s_ SegmentedControl) SetSegmentDistribution(value SegmentDistribution) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentDistribution:"), value)
+}
+
+
+// The visual style used to display the control.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/segmentStyle
+func (s_ SegmentedControl) SegmentStyle() SegmentStyle {
+	rv := objc.Send[SegmentStyle](s_.ID, objc.Sel("segmentStyle"))
+	return rv
+}
+
+
+// The visual style used to display the control.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/segmentStyle
+func (s_ SegmentedControl) SetSegmentStyle(value SegmentStyle) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentStyle:"), value)
+}
+
+
+// The index of the selected segment of the control, or if no segment is selected.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectedSegment
+func (s_ SegmentedControl) SelectedSegment() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
+	return rv
+}
+
+
+// The index of the selected segment of the control, or if no segment is selected.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/selectedSegment
+func (s_ SegmentedControl) SetSelectedSegment(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
+}
+
+
 // The color of the selected segment’s bezel, in appearances that support it.
 //
 // [Full Topic]
@@ -129,67 +539,22 @@ func (s_ SegmentedControl) SetSelectedSegmentBezelColor(value IColor) {
 }
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
-func (s_ SegmentedControl) ActiveCompressionOptions() objc.IObject /* cross-framework: UserInterfaceCompressionOptions */ {
-	rv := objc.Send[UserInterfaceCompressionOptions](s_.ID, objc.Sel("activeCompressionOptions"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/activecompressionoptions
-func (s_ SegmentedControl) SetActiveCompressionOptions(value objc.IObject /* cross-framework: UserInterfaceCompressionOptions */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setActiveCompressionOptions:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/bordershape
-func (s_ SegmentedControl) BorderShape() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("borderShape"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/bordershape
-func (s_ SegmentedControl) SetBorderShape(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setBorderShape:"), value)
-}
-
-
-// When the tracking mode for the control is set to use a momentary accelerator, returns a value for the selected segment.
+// The type of tracking behavior the control exhibits.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
-func (s_ SegmentedControl) DoubleValueForSelectedSegment() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValueForSelectedSegment"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/trackingMode
+func (s_ SegmentedControl) TrackingMode() SegmentSwitchTracking {
+	rv := objc.Send[SegmentSwitchTracking](s_.ID, objc.Sel("trackingMode"))
 	return rv
 }
 
 
-// When the tracking mode for the control is set to use a momentary accelerator, returns a value for the selected segment.
+// The type of tracking behavior the control exhibits.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/doublevalueforselectedsegment
-func (s_ SegmentedControl) SetDoubleValueForSelectedSegment(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDoubleValueForSelectedSegment:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/indexofselecteditem
-func (s_ SegmentedControl) IndexOfSelectedItem() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("indexOfSelectedItem"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/indexofselecteditem
-func (s_ SegmentedControl) SetIndexOfSelectedItem(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIndexOfSelectedItem:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSegmentedControl/trackingMode
+func (s_ SegmentedControl) SetTrackingMode(value SegmentSwitchTracking) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackingMode:"), value)
 }
 
 
@@ -210,97 +575,5 @@ func (s_ SegmentedControl) IsSpringLoaded() bool {
 func (s_ SegmentedControl) SetIsSpringLoaded(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsSpringLoaded:"), value)
 }
-
-
-// The number of segments in the control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentcount
-func (s_ SegmentedControl) SegmentCount() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("segmentCount"))
-	return rv
-}
-
-
-// The number of segments in the control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentcount
-func (s_ SegmentedControl) SetSegmentCount(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentCount:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentdistribution
-func (s_ SegmentedControl) SegmentDistribution() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segmentDistribution"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentdistribution
-func (s_ SegmentedControl) SetSegmentDistribution(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentDistribution:"), value)
-}
-
-
-// The visual style used to display the control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentstyle
-func (s_ SegmentedControl) SegmentStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("segmentStyle"))
-	return rv
-}
-
-
-// The visual style used to display the control.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/segmentstyle
-func (s_ SegmentedControl) SetSegmentStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSegmentStyle:"), value)
-}
-
-
-// The index of the selected segment of the control, or
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment
-func (s_ SegmentedControl) SelectedSegment() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("selectedSegment"))
-	return rv
-}
-
-
-// The index of the selected segment of the control, or
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/selectedsegment
-func (s_ SegmentedControl) SetSelectedSegment(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSelectedSegment:"), value)
-}
-
-
-// The type of tracking behavior the control exhibits.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
-func (s_ SegmentedControl) TrackingMode() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("trackingMode"))
-	return rv
-}
-
-
-// The type of tracking behavior the control exhibits.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssegmentedcontrol/trackingmode
-func (s_ SegmentedControl) SetTrackingMode(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackingMode:"), value)
-}
-
 
 

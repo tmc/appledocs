@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [CachedImageRep] class.
@@ -86,6 +87,30 @@ func NewCachedImageRep() CachedImageRep {
 	return getCachedImageRepClass().New()
 }
 
+
+
+// Returns a cached image representation initialized with the specified image characteristics.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep/initWithSize:depth:separate:alpha:
+func NewCachedImageRepWithSizeDepthSeparateAlpha(size objc.IObject /* cross-framework: Size */, depth WindowDepth, flag bool, alpha bool) CachedImageRep {
+	instance := getCachedImageRepClass().Alloc()
+	rv := objc.Send[CachedImageRep](instance.ID, objc.Sel("initWithSize:depth:separate:alpha:"), size, depth, flag, alpha)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns a cached image representation initialized for drawing in the specified window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCachedImageRep/initWithWindow:rect:
+func NewCachedImageRepWithWindowRect(win IWindow, rect objc.IObject /* cross-framework: Rect */) CachedImageRep {
+	instance := getCachedImageRepClass().Alloc()
+	rv := objc.Send[CachedImageRep](instance.ID, objc.Sel("initWithWindow:rect:"), win, rect)
+	rv.Autorelease()
+	return rv
+}
 
 
 

@@ -29,7 +29,12 @@ type _LayoutYAxisAnchorClass struct {
 // An interface definition for the [LayoutYAxisAnchor] class.
 type ILayoutYAxisAnchor interface {
 	ILayoutAnchor
-	ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) LayoutConstraint
+	// properties:
+	// methods:
+	AnchorWithOffsetToAnchor(otherAnchor ILayoutYAxisAnchor) ILayoutDimension
+	ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint
+	ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint
+	ConstraintLessThanOrEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint
 }
 
 // A factory class for creating vertical layout constraint objects using a fluent API.
@@ -87,12 +92,42 @@ func NewLayoutYAxisAnchor() LayoutYAxisAnchor {
 
 
 
+// Creates a layout dimension object from two anchors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor/anchorWithOffset(to:)
+func (l_ LayoutYAxisAnchor) AnchorWithOffsetToAnchor(otherAnchor ILayoutYAxisAnchor) ILayoutDimension {
+	rv := objc.Send[LayoutDimension](l_.ID, objc.Sel("anchorWithOffsetToAnchor:"), otherAnchor)
+	return rv
+}
+
+
 // Returns a constraint that defines the specific distance at which the current anchor is positioned below the specified anchor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor/constraint(equalToSystemSpacingBelow:multiplier:)
-func (l_ LayoutYAxisAnchor) ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) LayoutConstraint {
+func (l_ LayoutYAxisAnchor) ConstraintEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint {
 	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
+	return rv
+}
+
+
+// Returns a constraint that defines the minimum distance by which the current anchor is positioned below the specified anchor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor/constraint(greaterThanOrEqualToSystemSpacingBelow:multiplier:)
+func (l_ LayoutYAxisAnchor) ConstraintGreaterThanOrEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint {
+	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintGreaterThanOrEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
+	return rv
+}
+
+
+// Returns a constraint that defines the maximum distance by which the current anchor is positioned below the specified anchor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutYAxisAnchor/constraint(lessThanOrEqualToSystemSpacingBelow:multiplier:)
+func (l_ LayoutYAxisAnchor) ConstraintLessThanOrEqualToSystemSpacingBelowAnchorMultiplier(anchor ILayoutYAxisAnchor, multiplier float64) ILayoutConstraint {
+	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintLessThanOrEqualToSystemSpacingBelowAnchor:multiplier:"), anchor, multiplier)
 	return rv
 }
 

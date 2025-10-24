@@ -35,36 +35,49 @@ type IFontManager interface {
 	Action() objc.SEL
 	SetAction(value objc.SEL)
 	AvailableFontFamilies() []string
+	AvailableFonts() []string
 	CollectionNames() objc.IObject /* cross-framework: NSArray */
-	CurrentFontAction() FontAction /* not a class type */
+	CurrentFontAction() FontAction
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Enabled() bool
 	SetEnabled(value bool)
+	Multiple() bool
 	SelectedFont() IFont
 	Target() objc.ID
 	SetTarget(value objc.ID)
-	AvailableFonts() objc.IObject /* cross-framework: NSString */
-	SetAvailableFonts(value objc.IObject /* cross-framework: NSString */)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	IsMultiple() bool
 	SetIsMultiple(value bool)
 	// methods:
-	AvailableMembersOfFontFamily(fam objc.IObject /* cross-framework: NSString */) []objc.IObject /* cross-framework: Array */
+	AddFontTrait(sender objc.IObject)
+	AvailableFontNamesWithTraits(someTraits FontTraitMask) []string
+	AvailableMembersOfFontFamily(fam objc.IObject /* cross-framework: NSString */) []foundation.Array
 	ConvertFont(fontObj IFont) IFont
+	ConvertFontToFace(fontObj IFont, typeface objc.IObject /* cross-framework: NSString */) IFont
+	ConvertFontToFamily(fontObj IFont, family objc.IObject /* cross-framework: NSString */) IFont
+	ConvertFontToHaveTrait(fontObj IFont, trait FontTraitMask) IFont
+	ConvertFontToNotHaveTrait(fontObj IFont, trait FontTraitMask) IFont
 	ConvertFontToSize(fontObj IFont, size float64) IFont
 	ConvertAttributes(attributes foundation.IDictionary) foundation.IDictionary
-	ConvertFontTraits(traits FontTraitMask /* not a class type */) FontTraitMask /* not a class type */
+	ConvertFontTraits(traits FontTraitMask) FontTraitMask
 	ConvertWeightOfFont(upFlag bool, fontObj IFont) IFont
-	FontWithFamilyTraitsWeightSize(family objc.IObject /* cross-framework: NSString */, traits FontTraitMask /* not a class type */, weight int, size float64) IFont
+	FontWithFamilyTraitsWeightSize(family objc.IObject /* cross-framework: NSString */, traits FontTraitMask, weight int, size float64) IFont
 	FontMenu(create bool) IMenu
-	LocalizedNameForFamilyFace(family objc.IObject /* cross-framework: NSString */, faceKey objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */
-	ModifyFontViaPanel(sender objectivec.IObject)
-	OrderFrontStylesPanel(sender objectivec.IObject)
-	RemoveFontTrait(sender objectivec.IObject)
+	FontNamedHasTraits(fName objc.IObject /* cross-framework: NSString */, someTraits FontTraitMask) bool
+	FontPanel(create bool) IFontPanel
+	LocalizedNameForFamilyFace(family objc.IObject /* cross-framework: NSString */, faceKey objc.IObject /* cross-framework: NSString */) foundation.String
+	ModifyFont(sender objc.IObject)
+	ModifyFontViaPanel(sender objc.IObject)
+	OrderFrontFontPanel(sender objc.IObject)
+	OrderFrontStylesPanel(sender objc.IObject)
+	RemoveFontTrait(sender objc.IObject)
+	SendAction() bool
 	SetFontMenu(newMenu IMenu)
 	SetSelectedAttributesIsMultiple(attributes foundation.IDictionary, flag bool)
+	SetSelectedFontIsMultiple(fontObj IFont, flag bool)
+	TraitsOfFont(fontObj IFont) FontTraitMask
 	WeightOfFont(fontObj IFont) int
 }
 
@@ -139,11 +152,39 @@ func (fc _FontManagerClass) SetFontPanelFactory(factoryId objc.Class) {
 }
 
 
+// Returns the shared instance of the font manager for the application, creating it if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/shared
+func (fc _FontManagerClass) SharedFontManager() FontManager {
+	rv := objc.Send[FontManager](objc.ID(fc.class), objc.Sel("sharedFontManager"))
+	return rv
+}
+
+// Adds a trait to the font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/addFontTrait(_:)
+func (f_ FontManager) AddFontTrait(sender objc.IObject) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("addFontTrait:"), sender)
+}
+
+
+// Returns the names of the fonts available in the system whose traits are described exactly by the given font trait mask (not the objects themselves).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/availableFontNames(with:)
+func (f_ FontManager) AvailableFontNamesWithTraits(someTraits FontTraitMask) []string {
+	rv := objc.Send[[]string](f_.ID, objc.Sel("availableFontNamesWithTraits:"), someTraits)
+	return rv
+}
+
+
 // Returns an array with one entry for each available member of a font family.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/availableMembers(ofFontFamily:)
-func (f_ FontManager) AvailableMembersOfFontFamily(fam objc.IObject /* cross-framework: NSString */) []objc.IObject /* cross-framework: Array */ {
+func (f_ FontManager) AvailableMembersOfFontFamily(fam objc.IObject /* cross-framework: NSString */) []foundation.Array {
 	rv := objc.Send[[]foundation.Array](f_.ID, objc.Sel("availableMembersOfFontFamily:"), fam)
 	return rv
 }
@@ -155,6 +196,46 @@ func (f_ FontManager) AvailableMembersOfFontFamily(fam objc.IObject /* cross-fra
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convert(_:)
 func (f_ FontManager) ConvertFont(fontObj IFont) IFont {
 	rv := objc.Send[Font](f_.ID, objc.Sel("convertFont:"), fontObj)
+	return rv
+}
+
+
+// Returns a font whose traits are as similar as possible to those of the given font except for the typeface, which is changed to the given typeface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convert(_:toFace:)
+func (f_ FontManager) ConvertFontToFace(fontObj IFont, typeface objc.IObject /* cross-framework: NSString */) IFont {
+	rv := objc.Send[Font](f_.ID, objc.Sel("convertFont:toFace:"), fontObj, typeface)
+	return rv
+}
+
+
+// Returns a font whose traits are as similar as possible to those of the given font except for the font family, which is changed to the given family.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convert(_:toFamily:)
+func (f_ FontManager) ConvertFontToFamily(fontObj IFont, family objc.IObject /* cross-framework: NSString */) IFont {
+	rv := objc.Send[Font](f_.ID, objc.Sel("convertFont:toFamily:"), fontObj, family)
+	return rv
+}
+
+
+// Returns a new version of the font object containing a single additional trait.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convert(_:toHaveTrait:)
+func (f_ FontManager) ConvertFontToHaveTrait(fontObj IFont, trait FontTraitMask) IFont {
+	rv := objc.Send[Font](f_.ID, objc.Sel("convertFont:toHaveTrait:"), fontObj, trait)
+	return rv
+}
+
+
+// Returns a new version of a font object without the specified traits.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convert(_:toNotHaveTrait:)
+func (f_ FontManager) ConvertFontToNotHaveTrait(fontObj IFont, trait FontTraitMask) IFont {
+	rv := objc.Send[Font](f_.ID, objc.Sel("convertFont:toNotHaveTrait:"), fontObj, trait)
 	return rv
 }
 
@@ -183,7 +264,7 @@ func (f_ FontManager) ConvertAttributes(attributes foundation.IDictionary) found
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/convertFontTraits(_:)
-func (f_ FontManager) ConvertFontTraits(traits FontTraitMask /* not a class type */) FontTraitMask /* not a class type */ {
+func (f_ FontManager) ConvertFontTraits(traits FontTraitMask) FontTraitMask {
 	rv := objc.Send[FontTraitMask](f_.ID, objc.Sel("convertFontTraits:"), traits)
 	return rv
 }
@@ -203,7 +284,7 @@ func (f_ FontManager) ConvertWeightOfFont(upFlag bool, fontObj IFont) IFont {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/font(withFamily:traits:weight:size:)
-func (f_ FontManager) FontWithFamilyTraitsWeightSize(family objc.IObject /* cross-framework: NSString */, traits FontTraitMask /* not a class type */, weight int, size float64) IFont {
+func (f_ FontManager) FontWithFamilyTraitsWeightSize(family objc.IObject /* cross-framework: NSString */, traits FontTraitMask, weight int, size float64) IFont {
 	rv := objc.Send[Font](f_.ID, objc.Sel("fontWithFamily:traits:weight:size:"), family, traits, weight, size)
 	return rv
 }
@@ -219,13 +300,42 @@ func (f_ FontManager) FontMenu(create bool) IMenu {
 }
 
 
+// Indicates whether the given font has all the specified traits.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/fontNamed(_:hasTraits:)
+func (f_ FontManager) FontNamedHasTraits(fName objc.IObject /* cross-framework: NSString */, someTraits FontTraitMask) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("fontNamed:hasTraits:"), fName, someTraits)
+	return rv
+}
+
+
+// Returns the application’s shared Font panel object, creating it if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/fontPanel(_:)
+func (f_ FontManager) FontPanel(create bool) IFontPanel {
+	rv := objc.Send[FontPanel](f_.ID, objc.Sel("fontPanel:"), create)
+	return rv
+}
+
+
 // Returns a localized string with the name of the specified font family and face, if one exists.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/localizedName(forFamily:face:)
-func (f_ FontManager) LocalizedNameForFamilyFace(family objc.IObject /* cross-framework: NSString */, faceKey objc.IObject /* cross-framework: NSString */) objc.IObject /* cross-framework: String */ {
+func (f_ FontManager) LocalizedNameForFamilyFace(family objc.IObject /* cross-framework: NSString */, faceKey objc.IObject /* cross-framework: NSString */) foundation.String {
 	rv := objc.Send[foundation.String](f_.ID, objc.Sel("localizedNameForFamily:face:"), family, faceKey)
 	return rv
+}
+
+
+// Modifies a trait of the font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/modifyFont(_:)
+func (f_ FontManager) ModifyFont(sender objc.IObject) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("modifyFont:"), sender)
 }
 
 
@@ -233,8 +343,17 @@ func (f_ FontManager) LocalizedNameForFamilyFace(family objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/modifyFontViaPanel(_:)
-func (f_ FontManager) ModifyFontViaPanel(sender objectivec.IObject) {
+func (f_ FontManager) ModifyFontViaPanel(sender objc.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("modifyFontViaPanel:"), sender)
+}
+
+
+// Opens the Font panel, creating it if necessary, and displays that panel in front of the app’s windows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/orderFrontFontPanel(_:)
+func (f_ FontManager) OrderFrontFontPanel(sender objc.IObject) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("orderFrontFontPanel:"), sender)
 }
 
 
@@ -242,7 +361,7 @@ func (f_ FontManager) ModifyFontViaPanel(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/orderFrontStylesPanel(_:)
-func (f_ FontManager) OrderFrontStylesPanel(sender objectivec.IObject) {
+func (f_ FontManager) OrderFrontStylesPanel(sender objc.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("orderFrontStylesPanel:"), sender)
 }
 
@@ -251,8 +370,18 @@ func (f_ FontManager) OrderFrontStylesPanel(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/removeFontTrait(_:)
-func (f_ FontManager) RemoveFontTrait(sender objectivec.IObject) {
+func (f_ FontManager) RemoveFontTrait(sender objc.IObject) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("removeFontTrait:"), sender)
+}
+
+
+// A Boolean value that indicates whether a responder handled the font manager’s action message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/sendAction()
+func (f_ FontManager) SendAction() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("sendAction"))
+	return rv
 }
 
 
@@ -271,6 +400,25 @@ func (f_ FontManager) SetFontMenu(newMenu IMenu) {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/setSelectedAttributes(_:isMultiple:)
 func (f_ FontManager) SetSelectedAttributesIsMultiple(attributes foundation.IDictionary, flag bool) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setSelectedAttributes:isMultiple:"), attributes, flag)
+}
+
+
+// Records the specified font as the currently selected font and updates the Font panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/setSelectedFont(_:isMultiple:)
+func (f_ FontManager) SetSelectedFontIsMultiple(fontObj IFont, flag bool) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("setSelectedFont:isMultiple:"), fontObj, flag)
+}
+
+
+// Returns the traits of the given font.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/traits(of:)
+func (f_ FontManager) TraitsOfFont(fontObj IFont) FontTraitMask {
+	rv := objc.Send[FontTraitMask](f_.ID, objc.Sel("traitsOfFont:"), fontObj)
+	return rv
 }
 
 
@@ -313,6 +461,16 @@ func (f_ FontManager) AvailableFontFamilies() []string {
 }
 
 
+// The names of the fonts available in the system (not the objects themselves).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/availableFonts
+func (f_ FontManager) AvailableFonts() []string {
+	rv := objc.Send[[]string](f_.ID, objc.Sel("availableFonts"))
+	return rv
+}
+
+
 // The names of the currently loaded font collections.
 //
 // [Full Topic]
@@ -327,7 +485,7 @@ func (f_ FontManager) CollectionNames() objc.IObject /* cross-framework: NSArray
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/currentFontAction
-func (f_ FontManager) CurrentFontAction() FontAction /* not a class type */ {
+func (f_ FontManager) CurrentFontAction() FontAction {
 	rv := objc.Send[FontAction](f_.ID, objc.Sel("currentFontAction"))
 	return rv
 }
@@ -371,12 +529,32 @@ func (f_ FontManager) SetEnabled(value bool) {
 }
 
 
+// A Boolean value that indicates whether the currently selected font has multiple fonts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/isMultiple
+func (f_ FontManager) Multiple() bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("multiple"))
+	return rv
+}
+
+
 // The currently selected font object.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/selectedFont
 func (f_ FontManager) SelectedFont() IFont {
 	rv := objc.Send[Font](f_.ID, objc.Sel("selectedFont"))
+	return rv
+}
+
+
+// Returns the shared instance of the font manager for the application, creating it if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/shared
+func (f_ FontManager) SharedFontManager() IFontManager {
+	rv := objc.Send[FontManager](f_.ID, objc.Sel("sharedFontManager"))
 	return rv
 }
 
@@ -397,25 +575,6 @@ func (f_ FontManager) Target() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontManager/target
 func (f_ FontManager) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setTarget:"), value)
-}
-
-
-// The names of the fonts available in the system (not the
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefonts
-func (f_ FontManager) AvailableFonts() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("availableFonts"))
-	return rv
-}
-
-
-// The names of the fonts available in the system (not the
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfontmanager/availablefonts
-func (f_ FontManager) SetAvailableFonts(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setAvailableFonts:"), value)
 }
 
 

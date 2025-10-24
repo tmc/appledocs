@@ -99,9 +99,9 @@ type IString interface {
 	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString
 	StringByAppendingString(aString IString) IString
 	StringByAppendingPathComponent(str IString) IString
-	StringByAppendingPathComponentConformingToType(partialName IString, contentType objectivec.IObject) IString
+	StringByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject) IString
 	StringByAppendingPathExtension(str IString) IString
-	StringByAppendingPathExtensionForType(contentType objectivec.IObject) IString
+	StringByAppendingPathExtensionForType(contentType objc.IObject) IString
 	StringByApplyingTransformReverse(transform objc.IObject /* cross-framework: StringTransform */, reverse bool) IString
 	BoundingRectWithSizeOptionsAttributes(size objc.IObject /* cross-framework: Size */, options StringDrawingOptions, attributes IDictionary) objc.IObject /* cross-framework: Rect */
 	BoundingRectWithSizeOptionsAttributesContext(size objc.IObject /* cross-framework: Size */, options StringDrawingOptions, attributes IDictionary, context objectivec.IObject) objc.IObject /* cross-framework: Rect */
@@ -114,7 +114,7 @@ type IString interface {
 	Compare(string_ IString) ComparisonResult
 	CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult
 	CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */) ComparisonResult
-	CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */, locale objectivec.IObject) ComparisonResult
+	CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */, locale objc.IObject) ComparisonResult
 	CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool, outputArray []string, filterTypes []string) uint
 	ComponentsSeparatedByString(separator IString) []string
 	ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string
@@ -468,7 +468,7 @@ func NewStringWithFormatArguments(format IString, argList unsafe.Pointer) String
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithFormat:locale:
-func NewStringWithFormatLocale(format IString, locale objectivec.IObject) String {
+func NewStringWithFormatLocale(format IString, locale objc.IObject) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:"), format, locale)
 	rv.Autorelease()
@@ -480,7 +480,7 @@ func NewStringWithFormatLocale(format IString, locale objectivec.IObject) String
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/init(format:locale:arguments:)
-func NewStringWithFormatLocaleArguments(format IString, locale objectivec.IObject, argList unsafe.Pointer) String {
+func NewStringWithFormatLocaleArguments(format IString, locale objc.IObject, argList unsafe.Pointer) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:arguments:"), format, locale, argList)
 	rv.Autorelease()
@@ -534,7 +534,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersError(format IString, vali
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(format IString, validFormatSpecifiers IString, locale objectivec.IObject, argList unsafe.Pointer, error_ IError) String {
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(format IString, validFormatSpecifiers IString, locale objc.IObject, argList unsafe.Pointer, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), format, validFormatSpecifiers, locale, argList, error_)
 	rv.Autorelease()
@@ -544,7 +544,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(forma
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/initWithValidatedFormat:validFormatSpecifiers:locale:error:
-func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format IString, validFormatSpecifiers IString, locale objectivec.IObject, error_ IError) String {
+func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format IString, validFormatSpecifiers IString, locale objc.IObject, error_ IError) String {
 	instance := getStringClass().Alloc()
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), format, validFormatSpecifiers, locale, error_)
 	rv.Autorelease()
@@ -833,7 +833,7 @@ func (s_ String) StringByAppendingPathComponent(str IString) IString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathComponent(_:conformingTo:)
-func (s_ String) StringByAppendingPathComponentConformingToType(partialName IString, contentType objectivec.IObject) IString {
+func (s_ String) StringByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:conformingToType:"), partialName, contentType)
 	return rv
 }
@@ -851,7 +851,7 @@ func (s_ String) StringByAppendingPathExtension(str IString) IString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/appendingPathExtension(for:)
-func (s_ String) StringByAppendingPathExtensionForType(contentType objectivec.IObject) IString {
+func (s_ String) StringByAppendingPathExtensionForType(contentType objc.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtensionForType:"), contentType)
 	return rv
 }
@@ -981,7 +981,7 @@ func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/compare(_:options:range:locale:)
-func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */, locale objectivec.IObject) ComparisonResult {
+func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */, locale objc.IObject) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:locale:"), string_, mask, rangeOfReceiverToCompare, locale)
 	return rv
 }

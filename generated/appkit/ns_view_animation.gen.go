@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ViewAnimation] class.
@@ -31,8 +31,8 @@ type _ViewAnimationClass struct {
 type IViewAnimation interface {
 	IAnimation
 	// properties:
-	ViewAnimations() objc.IObject /* cross-framework: Key */
-	SetViewAnimations(value objc.IObject /* cross-framework: Key */)
+	ViewAnimations() foundation.IDictionary
+	SetViewAnimations(value foundation.IDictionary)
 	// methods:
 }
 
@@ -91,12 +91,25 @@ func NewViewAnimation() ViewAnimation {
 
 
 
+// Returns an object initialized with the supplied information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation/init(viewAnimations:)
+func NewViewAnimationWithViewAnimations(viewAnimations foundation.IDictionary) ViewAnimation {
+	instance := getViewAnimationClass().Alloc()
+	rv := objc.Send[ViewAnimation](instance.ID, objc.Sel("initWithViewAnimations:"), viewAnimations)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The dictionaries defining the objects to animate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
-func (v_ ViewAnimation) ViewAnimations() objc.IObject /* cross-framework: Key */ {
-	rv := objc.Send[coreml.Key](v_.ID, objc.Sel("viewAnimations"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation/viewAnimations
+func (v_ ViewAnimation) ViewAnimations() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](v_.ID, objc.Sel("viewAnimations"))
 	return rv
 }
 
@@ -104,10 +117,9 @@ func (v_ ViewAnimation) ViewAnimations() objc.IObject /* cross-framework: Key */
 // The dictionaries defining the objects to animate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsviewanimation/viewanimations
-func (v_ ViewAnimation) SetViewAnimations(value objc.IObject /* cross-framework: Key */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewAnimation/viewAnimations
+func (v_ ViewAnimation) SetViewAnimations(value foundation.IDictionary) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setViewAnimations:"), value)
 }
-
 
 

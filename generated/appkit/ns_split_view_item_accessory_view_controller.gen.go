@@ -32,15 +32,21 @@ type ISplitViewItemAccessoryViewController interface {
 	// properties:
 	AutomaticallyAppliesContentInsets() bool
 	SetAutomaticallyAppliesContentInsets(value bool)
+	Hidden() bool
+	SetHidden(value bool)
+	PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle
+	SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle)
 	BottomAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController
 	SetBottomAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
 	TopAlignedAccessoryViewControllers() ISplitViewItemAccessoryViewController
 	SetTopAlignedAccessoryViewControllers(value ISplitViewItemAccessoryViewController)
 	IsHidden() bool
 	SetIsHidden(value bool)
-	PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle
-	SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle)
 	// methods:
+	ViewDidAppear()
+	ViewDidDisappear()
+	ViewWillAppear()
+	ViewWillDisappear()
 }
 
 
@@ -91,6 +97,34 @@ func NewSplitViewItemAccessoryViewController() SplitViewItemAccessoryViewControl
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/viewDidAppear()
+func (s_ SplitViewItemAccessoryViewController) ViewDidAppear() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("viewDidAppear"))
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/viewDidDisappear()
+func (s_ SplitViewItemAccessoryViewController) ViewDidDisappear() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("viewDidDisappear"))
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/viewWillAppear()
+func (s_ SplitViewItemAccessoryViewController) ViewWillAppear() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("viewWillAppear"))
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/viewWillDisappear()
+func (s_ SplitViewItemAccessoryViewController) ViewWillDisappear() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("viewWillDisappear"))
+}
+
+
 // Whether or not standard content insets should be applied to the view. Defaults to YES.
 //
 // [Full Topic]
@@ -107,6 +141,44 @@ func (s_ SplitViewItemAccessoryViewController) AutomaticallyAppliesContentInsets
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/automaticallyAppliesContentInsets
 func (s_ SplitViewItemAccessoryViewController) SetAutomaticallyAppliesContentInsets(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutomaticallyAppliesContentInsets:"), value)
+}
+
+
+// When set, this property will collapse the accessory view to 0 height (animatable) but not remove it from the window. Set through the animator object to animate it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/isHidden
+func (s_ SplitViewItemAccessoryViewController) Hidden() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("hidden"))
+	return rv
+}
+
+
+// When set, this property will collapse the accessory view to 0 height (animatable) but not remove it from the window. Set through the animator object to animate it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/isHidden
+func (s_ SplitViewItemAccessoryViewController) SetHidden(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setHidden:"), value)
+}
+
+
+// The split view item accessory’s preferred effect for content scrolling behind it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/preferredScrollEdgeEffectStyle
+func (s_ SplitViewItemAccessoryViewController) PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle {
+	rv := objc.Send[ScrollEdgeEffectStyle](s_.ID, objc.Sel("preferredScrollEdgeEffectStyle"))
+	return rv
+}
+
+
+// The split view item accessory’s preferred effect for content scrolling behind it.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitViewItemAccessoryViewController/preferredScrollEdgeEffectStyle
+func (s_ SplitViewItemAccessoryViewController) SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredScrollEdgeEffectStyle:"), value)
 }
 
 
@@ -160,25 +232,6 @@ func (s_ SplitViewItemAccessoryViewController) IsHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/ishidden
 func (s_ SplitViewItemAccessoryViewController) SetIsHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsHidden:"), value)
-}
-
-
-// The split view item accessory’s preferred effect for content scrolling behind it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/preferredscrolledgeeffectstyle
-func (s_ SplitViewItemAccessoryViewController) PreferredScrollEdgeEffectStyle() IScrollEdgeEffectStyle {
-	rv := objc.Send[ScrollEdgeEffectStyle](s_.ID, objc.Sel("preferredScrollEdgeEffectStyle"))
-	return rv
-}
-
-
-// The split view item accessory’s preferred effect for content scrolling behind it.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssplitviewitemaccessoryviewcontroller/preferredscrolledgeeffectstyle
-func (s_ SplitViewItemAccessoryViewController) SetPreferredScrollEdgeEffectStyle(value IScrollEdgeEffectStyle) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setPreferredScrollEdgeEffectStyle:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,6 +33,10 @@ type IStoryboard interface {
 	objectivec.IObject
 	// properties:
 	// methods:
+	InstantiateControllerWithIdentifier(identifier objc.IObject /* cross-framework: StoryboardSceneIdentifier */) objc.ID
+	InstantiateControllerWithIdentifierCreator(identifier objc.IObject /* cross-framework: StoryboardSceneIdentifier */, block StoryboardControllerCreator /* not a class type */) objc.ID
+	InstantiateInitialController() objc.ID
+	InstantiateInitialControllerWithCreator(block StoryboardControllerCreator /* not a class type */) objc.ID
 }
 
 // An encapsulation of the design-time view controller and window controller graph represented in an Interface Builder storyboard resource file.
@@ -86,5 +91,80 @@ func NewStoryboard() Storyboard {
 }
 
 
+
+// Creates a storyboard based on the named storyboard file in the specified bundle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/init(name:bundle:)
+func NewStoryboardWithNameBundle(name objc.IObject /* cross-framework: StoryboardName */, storyboardBundleOrNil foundation.Bundle) Storyboard {
+	rv := objc.Send[Storyboard](objc.ID(getStoryboardClass().class), objc.Sel("storyboardWithName:bundle:"), name, storyboardBundleOrNil)
+	return rv
+}
+
+
+
+// Creates a storyboard based on the named storyboard file in the specified bundle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/init(name:bundle:)
+func (sc _StoryboardClass) StoryboardWithNameBundle(name objc.IObject /* cross-framework: StoryboardName */, storyboardBundleOrNil foundation.Bundle) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("storyboardWithName:bundle:"), name, storyboardBundleOrNil)
+	return rv
+}
+
+
+// The app’s main storyboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/main
+func (sc _StoryboardClass) MainStoryboard() Storyboard {
+	rv := objc.Send[Storyboard](objc.ID(sc.class), objc.Sel("mainStoryboard"))
+	return rv
+}
+
+// Instantiates a specified view controller or window controller from a storyboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateController(withIdentifier:)
+func (s_ Storyboard) InstantiateControllerWithIdentifier(identifier objc.IObject /* cross-framework: StoryboardSceneIdentifier */) objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateControllerWithIdentifier:"), identifier)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateControllerWithIdentifier:creator:
+func (s_ Storyboard) InstantiateControllerWithIdentifierCreator(identifier objc.IObject /* cross-framework: StoryboardSceneIdentifier */, block StoryboardControllerCreator /* not a class type */) objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateControllerWithIdentifier:creator:"), identifier, block)
+	return rv
+}
+
+
+// Creates the initial view controller or window controller from a storyboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateInitialController()
+func (s_ Storyboard) InstantiateInitialController() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateInitialController"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/instantiateInitialControllerWithCreator:
+func (s_ Storyboard) InstantiateInitialControllerWithCreator(block StoryboardControllerCreator /* not a class type */) objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("instantiateInitialControllerWithCreator:"), block)
+	return rv
+}
+
+
+// The app’s main storyboard.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboard/main
+func (s_ Storyboard) MainStoryboard() IStoryboard {
+	rv := objc.Send[Storyboard](s_.ID, objc.Sel("mainStoryboard"))
+	return rv
+}
 
 

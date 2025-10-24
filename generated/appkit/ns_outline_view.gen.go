@@ -7,6 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [OutlineView] class.
@@ -29,24 +32,48 @@ type _OutlineViewClass struct {
 // An interface definition for the [OutlineView] class.
 type IOutlineView interface {
 	ITableView
-	IndentationPerLevel() float64
-	SetIndentationPerLevel(value float64)
+	// properties:
 	AutoresizesOutlineColumn() bool
 	SetAutoresizesOutlineColumn(value bool)
 	AutosaveExpandedItems() bool
 	SetAutosaveExpandedItems(value bool)
-	DataSource() unsafe.Pointer
-	SetDataSource(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	DataSource() objc.ID
+	SetDataSource(value objc.ID)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 	IndentationMarkerFollowsCell() bool
 	SetIndentationMarkerFollowsCell(value bool)
-	OutlineTableColumn() NSTableColumn
+	IndentationPerLevel() float64
+	SetIndentationPerLevel(value float64)
+	OutlineTableColumn() ITableColumn
 	SetOutlineTableColumn(value ITableColumn)
 	StronglyReferencesItems() bool
 	SetStronglyReferencesItems(value bool)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
-	SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection)
+	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
+	// methods:
+	ChildOfItem(index int, item objc.IObject) objc.ID
+	ChildIndexForItem(item objc.IObject) int
+	CollapseItem(item objc.IObject)
+	CollapseItemCollapseChildren(item objc.IObject, collapseChildren bool)
+	ExpandItem(item objc.IObject)
+	ExpandItemExpandChildren(item objc.IObject, expandChildren bool)
+	FrameOfOutlineCellAtRow(row int) objc.IObject /* cross-framework: Rect */
+	InsertItemsAtIndexesInParentWithAnimation(indexes foundation.IndexSet, parent objc.IObject, animationOptions TableViewAnimationOptions)
+	IsExpandable(item objc.IObject) bool
+	IsItemExpanded(item objc.IObject) bool
+	ItemAtRow(row int) objc.ID
+	LevelForItem(item objc.IObject) int
+	LevelForRow(row int) int
+	MoveItemAtIndexInParentToIndexInParent(fromIndex int, oldParent objc.IObject, toIndex int, newParent objc.IObject)
+	NumberOfChildrenOfItem(item objc.IObject) int
+	ParentForItem(item objc.IObject) objc.ID
+	ReloadItem(item objc.IObject)
+	ReloadItemReloadChildren(item objc.IObject, reloadChildren bool)
+	RemoveItemsAtIndexesInParentWithAnimation(indexes foundation.IndexSet, parent objc.IObject, animationOptions TableViewAnimationOptions)
+	RowForItem(item objc.IObject) int
+	SetDropItemDropChildIndex(item objc.IObject, index int)
+	ShouldCollapseAutoExpandedItemsForDeposited(deposited bool) bool
 }
 
 // A view that uses a row-and-column format to display hierarchical data like directories and files that can be expanded and collapsed.
@@ -104,6 +131,311 @@ func NewOutlineView() OutlineView {
 
 
 
+// Returns the specified child of an item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/child(_:ofItem:)
+func (o_ OutlineView) ChildOfItem(index int, item objc.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("child:ofItem:"), index, item)
+	return rv
+}
+
+
+// Returns the child index of the specified item within its parent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/childIndex(forItem:)
+func (o_ OutlineView) ChildIndexForItem(item objc.IObject) int {
+	rv := objc.Send[int](o_.ID, objc.Sel("childIndexForItem:"), item)
+	return rv
+}
+
+
+// Collapses a given item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/collapseItem(_:)
+func (o_ OutlineView) CollapseItem(item objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("collapseItem:"), item)
+}
+
+
+// Collapses a given item and, optionally, its children.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/collapseItem(_:collapseChildren:)
+func (o_ OutlineView) CollapseItemCollapseChildren(item objc.IObject, collapseChildren bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("collapseItem:collapseChildren:"), item, collapseChildren)
+}
+
+
+// Expands a given item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/expandItem(_:)
+func (o_ OutlineView) ExpandItem(item objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("expandItem:"), item)
+}
+
+
+// Expands a specified item and, optionally, its children.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/expandItem(_:expandChildren:)
+func (o_ OutlineView) ExpandItemExpandChildren(item objc.IObject, expandChildren bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("expandItem:expandChildren:"), item, expandChildren)
+}
+
+
+// Returns the frame of the outline cell for a given row.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/frameOfOutlineCell(atRow:)
+func (o_ OutlineView) FrameOfOutlineCellAtRow(row int) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](o_.ID, objc.Sel("frameOfOutlineCellAtRow:"), row)
+	return rv
+}
+
+
+// Inserts new items at the given indexes in the given parent with the specified optional animations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/insertItems(at:inParent:withAnimation:)
+func (o_ OutlineView) InsertItemsAtIndexesInParentWithAnimation(indexes foundation.IndexSet, parent objc.IObject, animationOptions TableViewAnimationOptions) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("insertItemsAtIndexes:inParent:withAnimation:"), indexes, parent, animationOptions)
+}
+
+
+// Returns a Boolean value that indicates whether a given item is expandable.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/isExpandable(_:)
+func (o_ OutlineView) IsExpandable(item objc.IObject) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isExpandable:"), item)
+	return rv
+}
+
+
+// Returns a Boolean value that indicates whether a given item is expanded.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/isItemExpanded(_:)
+func (o_ OutlineView) IsItemExpanded(item objc.IObject) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("isItemExpanded:"), item)
+	return rv
+}
+
+
+// Returns the item associated with a given row.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/item(atRow:)
+func (o_ OutlineView) ItemAtRow(row int) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("itemAtRow:"), row)
+	return rv
+}
+
+
+// Returns the indentation level for a given item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/level(forItem:)
+func (o_ OutlineView) LevelForItem(item objc.IObject) int {
+	rv := objc.Send[int](o_.ID, objc.Sel("levelForItem:"), item)
+	return rv
+}
+
+
+// Returns the indentation level for a given row.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/level(forRow:)
+func (o_ OutlineView) LevelForRow(row int) int {
+	rv := objc.Send[int](o_.ID, objc.Sel("levelForRow:"), row)
+	return rv
+}
+
+
+// Moves an item at a given index in the given parent to a new index in a new parent.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/moveItem(at:inParent:to:inParent:)
+func (o_ OutlineView) MoveItemAtIndexInParentToIndexInParent(fromIndex int, oldParent objc.IObject, toIndex int, newParent objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("moveItemAtIndex:inParent:toIndex:inParent:"), fromIndex, oldParent, toIndex, newParent)
+}
+
+
+// Returns the number of children for the specified parent item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/numberOfChildren(ofItem:)
+func (o_ OutlineView) NumberOfChildrenOfItem(item objc.IObject) int {
+	rv := objc.Send[int](o_.ID, objc.Sel("numberOfChildrenOfItem:"), item)
+	return rv
+}
+
+
+// Returns the parent for a given item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/parent(forItem:)
+func (o_ OutlineView) ParentForItem(item objc.IObject) objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("parentForItem:"), item)
+	return rv
+}
+
+
+// Reloads and redisplays the data for the given item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/reloadItem(_:)
+func (o_ OutlineView) ReloadItem(item objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("reloadItem:"), item)
+}
+
+
+// Reloads a given item and, optionally, its children.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/reloadItem(_:reloadChildren:)
+func (o_ OutlineView) ReloadItemReloadChildren(item objc.IObject, reloadChildren bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("reloadItem:reloadChildren:"), item, reloadChildren)
+}
+
+
+// Removes items at the given indexes in the given parent with the specified optional animations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/removeItems(at:inParent:withAnimation:)
+func (o_ OutlineView) RemoveItemsAtIndexesInParentWithAnimation(indexes foundation.IndexSet, parent objc.IObject, animationOptions TableViewAnimationOptions) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("removeItemsAtIndexes:inParent:withAnimation:"), indexes, parent, animationOptions)
+}
+
+
+// Returns the row associated with a given item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/row(forItem:)
+func (o_ OutlineView) RowForItem(item objc.IObject) int {
+	rv := objc.Send[int](o_.ID, objc.Sel("rowForItem:"), item)
+	return rv
+}
+
+
+// Used to “retarget” a proposed drop.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/setDropItem(_:dropChildIndex:)
+func (o_ OutlineView) SetDropItemDropChildIndex(item objc.IObject, index int) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setDropItem:dropChildIndex:"), item, index)
+}
+
+
+// Returns a Boolean value that indicates whether auto-expanded items should return to their original collapsed state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/shouldCollapseAutoExpandedItems(forDeposited:)
+func (o_ OutlineView) ShouldCollapseAutoExpandedItemsForDeposited(deposited bool) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("shouldCollapseAutoExpandedItemsForDeposited:"), deposited)
+	return rv
+}
+
+
+// A Boolean value that indicates whether the outline view resizes its outline column when the user expands or collapses items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/autoresizesOutlineColumn
+func (o_ OutlineView) AutoresizesOutlineColumn() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("autoresizesOutlineColumn"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the outline view resizes its outline column when the user expands or collapses items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/autoresizesOutlineColumn
+func (o_ OutlineView) SetAutoresizesOutlineColumn(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAutoresizesOutlineColumn:"), value)
+}
+
+
+// A Boolean value indicating whether the expanded items are automatically saved across launches of the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/autosaveExpandedItems
+func (o_ OutlineView) AutosaveExpandedItems() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("autosaveExpandedItems"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the expanded items are automatically saved across launches of the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/autosaveExpandedItems
+func (o_ OutlineView) SetAutosaveExpandedItems(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setAutosaveExpandedItems:"), value)
+}
+
+
+// The object that provides the data displayed by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/dataSource
+func (o_ OutlineView) DataSource() objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("dataSource"))
+	return rv
+}
+
+
+// The object that provides the data displayed by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/dataSource
+func (o_ OutlineView) SetDataSource(value objc.ID) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setDataSource:"), value)
+}
+
+
+// The outline view’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/delegate
+func (o_ OutlineView) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The outline view’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/delegate
+func (o_ OutlineView) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// A Boolean value indicating whether the indentation marker symbol displayed in the outline column should be indented along with the cell contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/indentationMarkerFollowsCell
+func (o_ OutlineView) IndentationMarkerFollowsCell() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("indentationMarkerFollowsCell"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the indentation marker symbol displayed in the outline column should be indented along with the cell contents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/indentationMarkerFollowsCell
+func (o_ OutlineView) SetIndentationMarkerFollowsCell(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setIndentationMarkerFollowsCell:"), value)
+}
+
+
 // The per-level indentation, measured in points.
 //
 // [Full Topic]
@@ -123,107 +455,12 @@ func (o_ OutlineView) SetIndentationPerLevel(value float64) {
 }
 
 
-// A Boolean value that indicates whether the outline view resizes its outline column when the user expands or collapses items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autoresizesoutlinecolumn
-func (o_ OutlineView) AutoresizesOutlineColumn() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("autoresizesOutlineColumn"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the outline view resizes its outline column when the user expands or collapses items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autoresizesoutlinecolumn
-func (o_ OutlineView) SetAutoresizesOutlineColumn(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAutoresizesOutlineColumn:"), value)
-}
-
-
-// A Boolean value indicating whether the expanded items are automatically saved across launches of the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autosaveexpandeditems
-func (o_ OutlineView) AutosaveExpandedItems() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("autosaveExpandedItems"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the expanded items are automatically saved across launches of the app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/autosaveexpandeditems
-func (o_ OutlineView) SetAutosaveExpandedItems(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setAutosaveExpandedItems:"), value)
-}
-
-
-// The object that provides the data displayed by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/datasource
-func (o_ OutlineView) DataSource() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("dataSource"))
-	return rv
-}
-
-
-// The object that provides the data displayed by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/datasource
-func (o_ OutlineView) SetDataSource(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setDataSource:"), value)
-}
-
-
-// The outline view’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/delegate
-func (o_ OutlineView) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The outline view’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/delegate
-func (o_ OutlineView) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// A Boolean value indicating whether the indentation marker symbol displayed in the outline column should be indented along with the cell contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/indentationmarkerfollowscell
-func (o_ OutlineView) IndentationMarkerFollowsCell() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("indentationMarkerFollowsCell"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the indentation marker symbol displayed in the outline column should be indented along with the cell contents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/indentationmarkerfollowscell
-func (o_ OutlineView) SetIndentationMarkerFollowsCell(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setIndentationMarkerFollowsCell:"), value)
-}
-
-
 // The table column in which hierarchical data is displayed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/outlinetablecolumn
-func (o_ OutlineView) OutlineTableColumn() NSTableColumn {
-	rv := objc.Send[NSTableColumn](o_.ID, objc.Sel("outlineTableColumn"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/outlineTableColumn
+func (o_ OutlineView) OutlineTableColumn() ITableColumn {
+	rv := objc.Send[TableColumn](o_.ID, objc.Sel("outlineTableColumn"))
 	return rv
 }
 
@@ -231,7 +468,7 @@ func (o_ OutlineView) OutlineTableColumn() NSTableColumn {
 // The table column in which hierarchical data is displayed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/outlinetablecolumn
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/outlineTableColumn
 func (o_ OutlineView) SetOutlineTableColumn(value ITableColumn) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOutlineTableColumn:"), value)
 }
@@ -240,7 +477,7 @@ func (o_ OutlineView) SetOutlineTableColumn(value ITableColumn) {
 // A Boolean value that indicates whether the outline view retains and releases the objects returned from its data source.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/stronglyreferencesitems
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/stronglyReferencesItems
 func (o_ OutlineView) StronglyReferencesItems() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("stronglyReferencesItems"))
 	return rv
@@ -250,7 +487,7 @@ func (o_ OutlineView) StronglyReferencesItems() bool {
 // A Boolean value that indicates whether the outline view retains and releases the objects returned from its data source.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/stronglyreferencesitems
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/stronglyReferencesItems
 func (o_ OutlineView) SetStronglyReferencesItems(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setStronglyReferencesItems:"), value)
 }
@@ -259,7 +496,7 @@ func (o_ OutlineView) SetStronglyReferencesItems(value bool) {
 // The user interface layout direction.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/userinterfacelayoutdirection
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/userInterfaceLayoutDirection
 func (o_ OutlineView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirection {
 	rv := objc.Send[UserInterfaceLayoutDirection](o_.ID, objc.Sel("userInterfaceLayoutDirection"))
 	return rv
@@ -269,8 +506,8 @@ func (o_ OutlineView) UserInterfaceLayoutDirection() UserInterfaceLayoutDirectio
 // The user interface layout direction.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsoutlineview/userinterfacelayoutdirection
-func (o_ OutlineView) SetUserInterfaceLayoutDirection(value IUserInterfaceLayoutDirection) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOutlineView/userInterfaceLayoutDirection
+func (o_ OutlineView) SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setUserInterfaceLayoutDirection:"), value)
 }
 

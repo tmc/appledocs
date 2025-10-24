@@ -8,6 +8,7 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -34,17 +35,15 @@ type IDraggingSession interface {
 	// properties:
 	AnimatesToStartingPositionsOnCancelOrFail() bool
 	SetAnimatesToStartingPositionsOnCancelOrFail(value bool)
-	DraggingFormation() DraggingFormation /* not a class type */
-	SetDraggingFormation(value DraggingFormation /* not a class type */)
+	DraggingFormation() DraggingFormation
+	SetDraggingFormation(value DraggingFormation)
 	DraggingLeaderIndex() int
 	SetDraggingLeaderIndex(value int)
 	DraggingLocation() objc.IObject /* cross-framework: Point */
-	SetDraggingLocation(value objc.IObject /* cross-framework: Point */)
 	DraggingPasteboard() IPasteboard
-	SetDraggingPasteboard(value IPasteboard)
 	DraggingSequenceNumber() int
-	SetDraggingSequenceNumber(value int)
 	// methods:
+	EnumerateDraggingItemsWithOptionsForViewClassesSearchOptionsUsingBlock(enumOpts DraggingItemEnumerationOptions, view IView, classArray []objc.Class, searchOptions foundation.IDictionary, block unsafe.Pointer)
 }
 
 // The encapsulation of a drag-and-drop action that supports modification of the drag while in progress.
@@ -100,10 +99,19 @@ func NewDraggingSession() DraggingSession {
 
 
 
+// Enumerates through each dragging item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/enumerateDraggingItems(options:for:classes:searchOptions:using:)
+func (d_ DraggingSession) EnumerateDraggingItemsWithOptionsForViewClassesSearchOptionsUsingBlock(enumOpts DraggingItemEnumerationOptions, view IView, classArray []objc.Class, searchOptions foundation.IDictionary, block unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("enumerateDraggingItemsWithOptions:forView:classes:searchOptions:usingBlock:"), enumOpts, view, classArray, searchOptions, block)
+}
+
+
 // Controls whether the dragging image animates back to its starting point on a cancelled or failed drag.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/animatestostartingpositionsoncancelorfail
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/animatesToStartingPositionsOnCancelOrFail
 func (d_ DraggingSession) AnimatesToStartingPositionsOnCancelOrFail() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("animatesToStartingPositionsOnCancelOrFail"))
 	return rv
@@ -113,7 +121,7 @@ func (d_ DraggingSession) AnimatesToStartingPositionsOnCancelOrFail() bool {
 // Controls whether the dragging image animates back to its starting point on a cancelled or failed drag.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/animatestostartingpositionsoncancelorfail
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/animatesToStartingPositionsOnCancelOrFail
 func (d_ DraggingSession) SetAnimatesToStartingPositionsOnCancelOrFail(value bool) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAnimatesToStartingPositionsOnCancelOrFail:"), value)
 }
@@ -122,8 +130,8 @@ func (d_ DraggingSession) SetAnimatesToStartingPositionsOnCancelOrFail(value boo
 // Controls the dragging formation when the drag is not over the source or a valid destination.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingformation
-func (d_ DraggingSession) DraggingFormation() DraggingFormation /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingFormation
+func (d_ DraggingSession) DraggingFormation() DraggingFormation {
 	rv := objc.Send[DraggingFormation](d_.ID, objc.Sel("draggingFormation"))
 	return rv
 }
@@ -132,8 +140,8 @@ func (d_ DraggingSession) DraggingFormation() DraggingFormation /* not a class t
 // Controls the dragging formation when the drag is not over the source or a valid destination.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingformation
-func (d_ DraggingSession) SetDraggingFormation(value DraggingFormation /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingFormation
+func (d_ DraggingSession) SetDraggingFormation(value DraggingFormation) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingFormation:"), value)
 }
 
@@ -141,7 +149,7 @@ func (d_ DraggingSession) SetDraggingFormation(value DraggingFormation /* not a 
 // The index of the dragging item under the cursor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingleaderindex
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingLeaderIndex
 func (d_ DraggingSession) DraggingLeaderIndex() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("draggingLeaderIndex"))
 	return rv
@@ -151,7 +159,7 @@ func (d_ DraggingSession) DraggingLeaderIndex() int {
 // The index of the dragging item under the cursor.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingleaderindex
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingLeaderIndex
 func (d_ DraggingSession) SetDraggingLeaderIndex(value int) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingLeaderIndex:"), value)
 }
@@ -160,57 +168,30 @@ func (d_ DraggingSession) SetDraggingLeaderIndex(value int) {
 // The current cursor location of the drag in screen coordinates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/dragginglocation
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingLocation
 func (d_ DraggingSession) DraggingLocation() objc.IObject /* cross-framework: Point */ {
 	rv := objc.Send[corefoundation.Point](d_.ID, objc.Sel("draggingLocation"))
 	return rv
 }
 
 
-// The current cursor location of the drag in screen coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/dragginglocation
-func (d_ DraggingSession) SetDraggingLocation(value objc.IObject /* cross-framework: Point */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingLocation:"), value)
-}
-
-
 // Returns the pasteboard object that contains the data being dragged.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingpasteboard
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingPasteboard
 func (d_ DraggingSession) DraggingPasteboard() IPasteboard {
 	rv := objc.Send[Pasteboard](d_.ID, objc.Sel("draggingPasteboard"))
 	return rv
 }
 
 
-// Returns the pasteboard object that contains the data being dragged.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingpasteboard
-func (d_ DraggingSession) SetDraggingPasteboard(value IPasteboard) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingPasteboard:"), value)
-}
-
-
 // Returns a number that uniquely identifies the dragging session.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingsequencenumber
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDraggingSession/draggingSequenceNumber
 func (d_ DraggingSession) DraggingSequenceNumber() int {
 	rv := objc.Send[int](d_.ID, objc.Sel("draggingSequenceNumber"))
 	return rv
-}
-
-
-// Returns a number that uniquely identifies the dragging session.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdraggingsession/draggingsequencenumber
-func (d_ DraggingSession) SetDraggingSequenceNumber(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDraggingSequenceNumber:"), value)
 }
 
 

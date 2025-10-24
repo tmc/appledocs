@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [Scroller] class.
@@ -30,23 +31,27 @@ type _ScrollerClass struct {
 type IScroller interface {
 	IControl
 	// properties:
-	ArrowsPosition() unsafe.Pointer
-	SetArrowsPosition(value unsafe.Pointer)
+	ArrowsPosition() ScrollArrowPosition
+	SetArrowsPosition(value ScrollArrowPosition)
 	ControlSize() ControlSize
 	SetControlSize(value ControlSize)
 	ControlTint() ControlTint
 	SetControlTint(value ControlTint)
-	HitPart() unsafe.Pointer
-	SetHitPart(value unsafe.Pointer)
+	HitPart() ScrollerPart
 	KnobProportion() float64
 	SetKnobProportion(value float64)
-	KnobStyle() unsafe.Pointer
-	SetKnobStyle(value unsafe.Pointer)
-	ScrollerStyle() unsafe.Pointer
-	SetScrollerStyle(value unsafe.Pointer)
-	UsableParts() unsafe.Pointer
-	SetUsableParts(value unsafe.Pointer)
+	KnobStyle() ScrollerKnobStyle
+	SetKnobStyle(value ScrollerKnobStyle)
+	ScrollerStyle() ScrollerStyle
+	SetScrollerStyle(value ScrollerStyle)
+	UsableParts() UsableScrollerParts
 	// methods:
+	CheckSpaceForParts()
+	DrawKnob()
+	DrawKnobSlotInRectHighlight(slotRect objc.IObject /* cross-framework: Rect */, flag bool)
+	RectForPart(partCode ScrollerPart) objc.IObject /* cross-framework: Rect */
+	TestPart(point objc.IObject /* cross-framework: Point */) ScrollerPart
+	TrackKnob(event IEvent)
 }
 
 // An object that controls scrolling of a document view within a scroll view or other type of container view.
@@ -104,40 +109,123 @@ func NewScroller() Scroller {
 
 
 
+// Returns the width for scrollers of the receiving class, assuming a control size , and a scroller style of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/scrollerWidth
+func (sc _ScrollerClass) ScrollerWidth() float64 {
+	rv := objc.Send[float64](objc.ID(sc.class), objc.Sel("scrollerWidth"))
+	return rv
+}
+
+
+// Returns the width of the scroller based on and assuming a scroller style of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/scrollerWidthForControlSize:
+func (sc _ScrollerClass) ScrollerWidthForControlSize(controlSize ControlSize) float64 {
+	rv := objc.Send[float64](objc.ID(sc.class), objc.Sel("scrollerWidthForControlSize:"), controlSize)
+	return rv
+}
+
+
+// Returns the width for scrollers of the receiving class for a given control size and scroller style.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/scrollerWidth(for:scrollerStyle:)
+func (sc _ScrollerClass) ScrollerWidthForControlSizeScrollerStyle(controlSize ControlSize, scrollerStyle ScrollerStyle) float64 {
+	rv := objc.Send[float64](objc.ID(sc.class), objc.Sel("scrollerWidthForControlSize:scrollerStyle:"), controlSize, scrollerStyle)
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/isCompatibleWithOverlayScrollers
+func (sc _ScrollerClass) CompatibleWithOverlayScrollers() bool {
+	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("compatibleWithOverlayScrollers"))
+	return rv
+}
+
 // Returns the style of scrollers that applications should use wherever possible.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
-func (sc _ScrollerClass) PreferredScrollerStyle() ScrollerStyle /* not a class type */ {
+func (sc _ScrollerClass) PreferredScrollerStyle() ScrollerStyle {
 	rv := objc.Send[ScrollerStyle](objc.ID(sc.class), objc.Sel("preferredScrollerStyle"))
 	return rv
 }
 
-// Returns the style of scrollers that applications should use wherever possible.
+// Checks to see if there is enough room in the receiver to display the knob and buttons.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
-func (s_ Scroller) PreferredScrollerStyle() ScrollerStyle /* not a class type */ {
-	rv := objc.Send[ScrollerStyle](s_.ID, objc.Sel("preferredScrollerStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/checkSpaceForParts()
+func (s_ Scroller) CheckSpaceForParts() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("checkSpaceForParts"))
+}
+
+
+// Draws the knob.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/drawKnob()
+func (s_ Scroller) DrawKnob() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawKnob"))
+}
+
+
+// Draws the portion of the scroller’s track, possibly including the line increment and decrement arrow buttons, that falls in the given rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/drawKnobSlot(in:highlight:)
+func (s_ Scroller) DrawKnobSlotInRectHighlight(slotRect objc.IObject /* cross-framework: Rect */, flag bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawKnobSlotInRect:highlight:"), slotRect, flag)
+}
+
+
+// Returns the rectangle occupied by , which for this method is interpreted literally rather than as an indicator of scrolling direction.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/rect(for:)
+func (s_ Scroller) RectForPart(partCode ScrollerPart) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("rectForPart:"), partCode)
 	return rv
 }
 
 
-// The location of the scroll buttons within the scroller, as described in
+// Returns the part that would be hit by a mouse-down event at (expressed in the window’s coordinate system).
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/arrowsposition
-func (s_ Scroller) ArrowsPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("arrowsPosition"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/testPart(_:)
+func (s_ Scroller) TestPart(point objc.IObject /* cross-framework: Point */) ScrollerPart {
+	rv := objc.Send[ScrollerPart](s_.ID, objc.Sel("testPart:"), point)
 	return rv
 }
 
 
-// The location of the scroll buttons within the scroller, as described in
+// Tracks the knob and sends action messages to the receiver’s target.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/arrowsposition
-func (s_ Scroller) SetArrowsPosition(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/trackKnob(with:)
+func (s_ Scroller) TrackKnob(event IEvent) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("trackKnob:"), event)
+}
+
+
+// The location of the scroll buttons within the scroller, as described in .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/arrowsPosition
+func (s_ Scroller) ArrowsPosition() ScrollArrowPosition {
+	rv := objc.Send[ScrollArrowPosition](s_.ID, objc.Sel("arrowsPosition"))
+	return rv
+}
+
+
+// The location of the scroll buttons within the scroller, as described in .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/arrowsPosition
+func (s_ Scroller) SetArrowsPosition(value ScrollArrowPosition) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setArrowsPosition:"), value)
 }
 
@@ -145,7 +233,7 @@ func (s_ Scroller) SetArrowsPosition(value unsafe.Pointer) {
 // The size of the scroller.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controlsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/controlSize
 func (s_ Scroller) ControlSize() ControlSize {
 	rv := objc.Send[ControlSize](s_.ID, objc.Sel("controlSize"))
 	return rv
@@ -155,7 +243,7 @@ func (s_ Scroller) ControlSize() ControlSize {
 // The size of the scroller.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controlsize
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/controlSize
 func (s_ Scroller) SetControlSize(value ControlSize) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlSize:"), value)
 }
@@ -164,7 +252,7 @@ func (s_ Scroller) SetControlSize(value ControlSize) {
 // The scroller’s control tint.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controltint
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/controlTint
 func (s_ Scroller) ControlTint() ControlTint {
 	rv := objc.Send[ControlTint](s_.ID, objc.Sel("controlTint"))
 	return rv
@@ -174,7 +262,7 @@ func (s_ Scroller) ControlTint() ControlTint {
 // The scroller’s control tint.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/controltint
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/controlTint
 func (s_ Scroller) SetControlTint(value ControlTint) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setControlTint:"), value)
 }
@@ -183,26 +271,25 @@ func (s_ Scroller) SetControlTint(value ControlTint) {
 // A part code indicating the manner in which the scrolling should be performed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/hitpart
-func (s_ Scroller) HitPart() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("hitPart"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/hitPart
+func (s_ Scroller) HitPart() ScrollerPart {
+	rv := objc.Send[ScrollerPart](s_.ID, objc.Sel("hitPart"))
 	return rv
 }
 
 
-// A part code indicating the manner in which the scrolling should be performed.
-//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/hitpart
-func (s_ Scroller) SetHitPart(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setHitPart:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/isCompatibleWithOverlayScrollers
+func (s_ Scroller) CompatibleWithOverlayScrollers() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("compatibleWithOverlayScrollers"))
+	return rv
 }
 
 
 // The proportion of the knob slot that the knob should fill.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobproportion
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/knobProportion
 func (s_ Scroller) KnobProportion() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("knobProportion"))
 	return rv
@@ -212,7 +299,7 @@ func (s_ Scroller) KnobProportion() float64 {
 // The proportion of the knob slot that the knob should fill.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobproportion
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/knobProportion
 func (s_ Scroller) SetKnobProportion(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobProportion:"), value)
 }
@@ -221,9 +308,9 @@ func (s_ Scroller) SetKnobProportion(value float64) {
 // The scroller’s knob style.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.property
-func (s_ Scroller) KnobStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("knobStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/knobStyle-swift.property
+func (s_ Scroller) KnobStyle() ScrollerKnobStyle {
+	rv := objc.Send[ScrollerKnobStyle](s_.ID, objc.Sel("knobStyle"))
 	return rv
 }
 
@@ -231,18 +318,18 @@ func (s_ Scroller) KnobStyle() unsafe.Pointer {
 // The scroller’s knob style.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/knobstyle-swift.property
-func (s_ Scroller) SetKnobStyle(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/knobStyle-swift.property
+func (s_ Scroller) SetKnobStyle(value ScrollerKnobStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobStyle:"), value)
 }
 
 
-// The scroller style for this scroller.
+// Returns the style of scrollers that applications should use wherever possible.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/scrollerstyle
-func (s_ Scroller) ScrollerStyle() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("scrollerStyle"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/preferredScrollerStyle
+func (s_ Scroller) PreferredScrollerStyle() ScrollerStyle {
+	rv := objc.Send[ScrollerStyle](s_.ID, objc.Sel("preferredScrollerStyle"))
 	return rv
 }
 
@@ -250,8 +337,18 @@ func (s_ Scroller) ScrollerStyle() unsafe.Pointer {
 // The scroller style for this scroller.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/scrollerstyle
-func (s_ Scroller) SetScrollerStyle(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/scrollerStyle
+func (s_ Scroller) ScrollerStyle() ScrollerStyle {
+	rv := objc.Send[ScrollerStyle](s_.ID, objc.Sel("scrollerStyle"))
+	return rv
+}
+
+
+// The scroller style for this scroller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/scrollerStyle
+func (s_ Scroller) SetScrollerStyle(value ScrollerStyle) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setScrollerStyle:"), value)
 }
 
@@ -259,19 +356,10 @@ func (s_ Scroller) SetScrollerStyle(value unsafe.Pointer) {
 // A value that indicates which parts of the receiver are displayed and usable.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.property
-func (s_ Scroller) UsableParts() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("usableParts"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScroller/usableParts-swift.property
+func (s_ Scroller) UsableParts() UsableScrollerParts {
+	rv := objc.Send[UsableScrollerParts](s_.ID, objc.Sel("usableParts"))
 	return rv
-}
-
-
-// A value that indicates which parts of the receiver are displayed and usable.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscroller/usableparts-swift.property
-func (s_ Scroller) SetUsableParts(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setUsableParts:"), value)
 }
 
 

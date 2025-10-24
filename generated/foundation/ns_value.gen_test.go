@@ -40,13 +40,6 @@ func ExampleNewValueWithCMVideoDimensions() {
 	)
 	// Output:
 }
-// ExampleNewValueWithDirectionalEdgeInsets demonstrates how to create a Value instance using NewValueWithDirectionalEdgeInsets.
-func ExampleNewValueWithDirectionalEdgeInsets() {
-	_ = foundation.NewValueWithDirectionalEdgeInsets(
-		foundation.DirectionalEdgeInsets /* not a class type */{}, // insets DirectionalEdgeInsets /* not a class type */
-	)
-	// Output:
-}
 // ExampleNewValueWithMKCoordinate demonstrates how to create a Value instance using NewValueWithMKCoordinate.
 // Creates a new value object containing the specified CoreLocation geographic coordinate structure.
 func ExampleNewValueWithMKCoordinate() {

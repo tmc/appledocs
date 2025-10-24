@@ -51,8 +51,6 @@ type IScriptObjectSpecifier interface {
 	SetKey(value IString)
 	KeyClassDescription() IScriptClassDescription
 	SetKeyClassDescription(value IScriptClassDescription)
-	ObjectsByEvaluatingSpecifier() unsafe.Pointer
-	SetObjectsByEvaluatingSpecifier(value unsafe.Pointer)
 	// methods:
 }
 
@@ -296,25 +294,6 @@ func (s_ ScriptObjectSpecifier) KeyClassDescription() IScriptClassDescription {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/keyclassdescription
 func (s_ ScriptObjectSpecifier) SetKeyClassDescription(value IScriptClassDescription) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setKeyClassDescription:"), value)
-}
-
-
-// Returns the actual object represented by the nested series of object specifiers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/objectsbyevaluatingspecifier
-func (s_ ScriptObjectSpecifier) ObjectsByEvaluatingSpecifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("objectsByEvaluatingSpecifier"))
-	return rv
-}
-
-
-// Returns the actual object represented by the nested series of object specifiers.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptobjectspecifier/objectsbyevaluatingspecifier
-func (s_ ScriptObjectSpecifier) SetObjectsByEvaluatingSpecifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setObjectsByEvaluatingSpecifier:"), value)
 }
 
 

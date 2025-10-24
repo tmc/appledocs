@@ -32,17 +32,16 @@ type _TouchClass struct {
 type ITouch interface {
 	objectivec.IObject
 	// properties:
-	Device() objc.ID
-	DeviceSize() objc.IObject /* cross-framework: Size */
 	Identity() objc.ID
 	Resting() bool
 	NormalizedPosition() objc.IObject /* cross-framework: Point */
 	Phase() TouchPhase
 	Type() TouchType
+	DeviceSize() objc.IObject /* cross-framework: Size */
+	SetDeviceSize(value objc.IObject /* cross-framework: Size */)
 	IsResting() bool
 	SetIsResting(value bool)
 	// methods:
-	LocationInView(view IView) objc.IObject /* cross-framework: Point */
 	PreviousLocationInView(view IView) objc.IObject /* cross-framework: Point */
 }
 
@@ -99,42 +98,12 @@ func NewTouch() Touch {
 
 
 
-// Indicates the location of the touch in the view’s coordinates.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/location(in:)
-func (t_ Touch) LocationInView(view IView) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("locationInView:"), view)
-	return rv
-}
-
-
 // Indicates the previous location of the touch in the view’s coordinates.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/previousLocation(in:)
 func (t_ Touch) PreviousLocationInView(view IView) objc.IObject /* cross-framework: Point */ {
 	rv := objc.Send[corefoundation.Point](t_.ID, objc.Sel("previousLocationInView:"), view)
-	return rv
-}
-
-
-// The digitizer that generates the touch. Useful to distinguish touches emanating from multiple-device scenarios.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/device
-func (t_ Touch) Device() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("device"))
-	return rv
-}
-
-
-// The range of the touch device in points, such as 72 ppi.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouch/deviceSize
-func (t_ Touch) DeviceSize() objc.IObject /* cross-framework: Size */ {
-	rv := objc.Send[corefoundation.Size](t_.ID, objc.Sel("deviceSize"))
 	return rv
 }
 
@@ -186,6 +155,25 @@ func (t_ Touch) Phase() TouchPhase {
 func (t_ Touch) Type() TouchType {
 	rv := objc.Send[TouchType](t_.ID, objc.Sel("type"))
 	return rv
+}
+
+
+// The range of the touch device in points, such as 72 ppi.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/devicesize
+func (t_ Touch) DeviceSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](t_.ID, objc.Sel("deviceSize"))
+	return rv
+}
+
+
+// The range of the touch device in points, such as 72 ppi.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouch/devicesize
+func (t_ Touch) SetDeviceSize(value objc.IObject /* cross-framework: Size */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDeviceSize:"), value)
 }
 
 

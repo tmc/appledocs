@@ -7,7 +7,9 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [Slider] class.
@@ -30,21 +32,16 @@ type _SliderClass struct {
 // An interface definition for the [Slider] class.
 type ISlider interface {
 	IControl
-	IndexOfTickMarkAtPoint(point coregraphics.CGPoint) int
-	SetTitleFont(fontObj IFont)
+	// properties:
+	AllowsTickMarkValuesOnly() bool
+	SetAllowsTickMarkValuesOnly(value bool)
+	AltIncrementValue() float64
+	SetAltIncrementValue(value float64)
 	Vertical() bool
 	SetVertical(value bool)
 	KnobThickness() float64
 	MaxValue() float64
 	SetMaxValue(value float64)
-	TrackFillColor() NSColor
-	SetTrackFillColor(value IColor)
-	AllowsTickMarkValuesOnly() bool
-	SetAllowsTickMarkValuesOnly(value bool)
-	AltIncrementValue() float64
-	SetAltIncrementValue(value float64)
-	IsVertical() bool
-	SetIsVertical(value bool)
 	MinValue() float64
 	SetMinValue(value float64)
 	NeutralValue() float64
@@ -53,10 +50,20 @@ type ISlider interface {
 	SetNumberOfTickMarks(value int)
 	SliderType() SliderType
 	SetSliderType(value SliderType)
-	TickMarkPosition() unsafe.Pointer
-	SetTickMarkPosition(value unsafe.Pointer)
+	TickMarkPosition() TickMarkPosition
+	SetTickMarkPosition(value TickMarkPosition)
 	TintProminence() TintProminence
-	SetTintProminence(value ITintProminence)
+	SetTintProminence(value TintProminence)
+	TrackFillColor() IColor
+	SetTrackFillColor(value IColor)
+	IsVertical() bool
+	SetIsVertical(value bool)
+	// methods:
+	AcceptsFirstMouse(event IEvent) bool
+	ClosestTickMarkValueToValue(value float64) float64
+	IndexOfTickMarkAtPoint(point objc.IObject /* cross-framework: Point */) int
+	RectOfTickMarkAtIndex(index int) objc.IObject /* cross-framework: Rect */
+	TickMarkValueAtIndex(index int) float64
 }
 
 // A display of a bar representing a continuous range of numerical values and a knob representing the currently selected value.
@@ -114,22 +121,132 @@ func NewSlider() Slider {
 
 
 
+// Creates a continuous horizontal slider whose values range from to .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/init(target:action:)
+func NewSliderWithTargetAction(target objc.IObject, action objc.SEL) Slider {
+	rv := objc.Send[Slider](objc.ID(getSliderClass().class), objc.Sel("sliderWithTarget:action:"), target, action)
+	return rv
+}
+
+
+// Creates a continuous horizontal slider that represents values over the specified range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/init(value:minValue:maxValue:target:action:)
+func NewSliderWithValueMinValueMaxValueTargetAction(value float64, minValue float64, maxValue float64, target objc.IObject, action objc.SEL) Slider {
+	rv := objc.Send[Slider](objc.ID(getSliderClass().class), objc.Sel("sliderWithValue:minValue:maxValue:target:action:"), value, minValue, maxValue, target, action)
+	return rv
+}
+
+
+
+// Creates a continuous horizontal slider whose values range from to .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/init(target:action:)
+func (sc _SliderClass) SliderWithTargetAction(target objc.IObject, action objc.SEL) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sliderWithTarget:action:"), target, action)
+	return rv
+}
+
+
+// Creates a continuous horizontal slider that represents values over the specified range.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/init(value:minValue:maxValue:target:action:)
+func (sc _SliderClass) SliderWithValueMinValueMaxValueTargetAction(value float64, minValue float64, maxValue float64, target objc.IObject, action objc.SEL) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("sliderWithValue:minValue:maxValue:target:action:"), value, minValue, maxValue, target, action)
+	return rv
+}
+
+
+// Returns a Boolean value indicating whether a mouse-down event both activates the window and starts dragging the slider’s knob.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/acceptsFirstMouse(for:)
+func (s_ Slider) AcceptsFirstMouse(event IEvent) bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("acceptsFirstMouse:"), event)
+	return rv
+}
+
+
+// Returns the value of the tick mark closest to the specified value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/closestTickMarkValue(toValue:)
+func (s_ Slider) ClosestTickMarkValueToValue(value float64) float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("closestTickMarkValueToValue:"), value)
+	return rv
+}
+
+
 // Returns the index of the tick mark closest to the location of the slider represented by the given point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/indexOfTickMark(at:)
-func (s_ Slider) IndexOfTickMarkAtPoint(point coregraphics.CGPoint) int {
+func (s_ Slider) IndexOfTickMarkAtPoint(point objc.IObject /* cross-framework: Point */) int {
 	rv := objc.Send[int](s_.ID, objc.Sel("indexOfTickMarkAtPoint:"), point)
 	return rv
 }
 
 
-// Sets the font used to draw the slider’s title.
+// Returns the bounding rectangle of the tick mark at the given index.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/setTitleFont:
-func (s_ Slider) SetTitleFont(fontObj IFont) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTitleFont:"), fontObj)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/rectOfTickMark(at:)
+func (s_ Slider) RectOfTickMarkAtIndex(index int) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("rectOfTickMarkAtIndex:"), index)
+	return rv
+}
+
+
+// Returns the slider’s value represented by the tick mark at the specified index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/tickMarkValue(at:)
+func (s_ Slider) TickMarkValueAtIndex(index int) float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("tickMarkValueAtIndex:"), index)
+	return rv
+}
+
+
+// A Boolean value that indicates whether the slider fixes its values to those values represented by its tick marks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/allowsTickMarkValuesOnly
+func (s_ Slider) AllowsTickMarkValuesOnly() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("allowsTickMarkValuesOnly"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the slider fixes its values to those values represented by its tick marks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/allowsTickMarkValuesOnly
+func (s_ Slider) SetAllowsTickMarkValuesOnly(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsTickMarkValuesOnly:"), value)
+}
+
+
+// The amount by which the slider changes its value when the user Option-drags the slider knob.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/altIncrementValue
+func (s_ Slider) AltIncrementValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("altIncrementValue"))
+	return rv
+}
+
+
+// The amount by which the slider changes its value when the user Option-drags the slider knob.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/altIncrementValue
+func (s_ Slider) SetAltIncrementValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAltIncrementValue:"), value)
 }
 
 
@@ -181,12 +298,126 @@ func (s_ Slider) SetMaxValue(value float64) {
 }
 
 
+// The minimum value the slider can send to its target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/minValue
+func (s_ Slider) MinValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
+	return rv
+}
+
+
+// The minimum value the slider can send to its target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/minValue
+func (s_ Slider) SetMinValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
+}
+
+
+// The value this slider will be filled from. This slider will be filled from its to its current value. If has not been explicitly set before, access to will return .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/neutralValue
+func (s_ Slider) NeutralValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("neutralValue"))
+	return rv
+}
+
+
+// The value this slider will be filled from. This slider will be filled from its to its current value. If has not been explicitly set before, access to will return .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/neutralValue
+func (s_ Slider) SetNeutralValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNeutralValue:"), value)
+}
+
+
+// The number of tick marks associated with the slider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/numberOfTickMarks
+func (s_ Slider) NumberOfTickMarks() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("numberOfTickMarks"))
+	return rv
+}
+
+
+// The number of tick marks associated with the slider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/numberOfTickMarks
+func (s_ Slider) SetNumberOfTickMarks(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfTickMarks:"), value)
+}
+
+
+// The type of the slider, such as vertical or circular.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/sliderType-swift.property
+func (s_ Slider) SliderType() SliderType {
+	rv := objc.Send[SliderType](s_.ID, objc.Sel("sliderType"))
+	return rv
+}
+
+
+// The type of the slider, such as vertical or circular.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/sliderType-swift.property
+func (s_ Slider) SetSliderType(value SliderType) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setSliderType:"), value)
+}
+
+
+// Determines where the slider’s tick marks are displayed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/tickMarkPosition-swift.property
+func (s_ Slider) TickMarkPosition() TickMarkPosition {
+	rv := objc.Send[TickMarkPosition](s_.ID, objc.Sel("tickMarkPosition"))
+	return rv
+}
+
+
+// Determines where the slider’s tick marks are displayed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/tickMarkPosition-swift.property
+func (s_ Slider) SetTickMarkPosition(value TickMarkPosition) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTickMarkPosition:"), value)
+}
+
+
+// The tint prominence of the slider. The automatic behavior for a regular slider tints its track fill, while a slider with tick marks is untinted. Setting the tint prominence will override this default behavior and choose an explicit track fill tint behavior. See for a list of possible values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/tintProminence
+func (s_ Slider) TintProminence() TintProminence {
+	rv := objc.Send[TintProminence](s_.ID, objc.Sel("tintProminence"))
+	return rv
+}
+
+
+// The tint prominence of the slider. The automatic behavior for a regular slider tints its track fill, while a slider with tick marks is untinted. Setting the tint prominence will override this default behavior and choose an explicit track fill tint behavior. See for a list of possible values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/tintProminence
+func (s_ Slider) SetTintProminence(value TintProminence) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTintProminence:"), value)
+}
+
+
 // The color of the filled portion of the slider track, in appearances that support it.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/trackFillColor
-func (s_ Slider) TrackFillColor() NSColor {
-	rv := objc.Send[NSColor](s_.ID, objc.Sel("trackFillColor"))
+func (s_ Slider) TrackFillColor() IColor {
+	rv := objc.Send[Color](s_.ID, objc.Sel("trackFillColor"))
 	return rv
 }
 
@@ -197,44 +428,6 @@ func (s_ Slider) TrackFillColor() NSColor {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSlider/trackFillColor
 func (s_ Slider) SetTrackFillColor(value IColor) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackFillColor:"), value)
-}
-
-
-// A Boolean value that indicates whether the slider fixes its values to those values represented by its tick marks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/allowstickmarkvaluesonly
-func (s_ Slider) AllowsTickMarkValuesOnly() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("allowsTickMarkValuesOnly"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the slider fixes its values to those values represented by its tick marks.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/allowstickmarkvaluesonly
-func (s_ Slider) SetAllowsTickMarkValuesOnly(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsTickMarkValuesOnly:"), value)
-}
-
-
-// The amount by which the slider changes its value when the user Option-drags the slider knob.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/altincrementvalue
-func (s_ Slider) AltIncrementValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("altIncrementValue"))
-	return rv
-}
-
-
-// The amount by which the slider changes its value when the user Option-drags the slider knob.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/altincrementvalue
-func (s_ Slider) SetAltIncrementValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAltIncrementValue:"), value)
 }
 
 
@@ -255,120 +448,5 @@ func (s_ Slider) IsVertical() bool {
 func (s_ Slider) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
 }
-
-
-// The minimum value the slider can send to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/minvalue
-func (s_ Slider) MinValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
-	return rv
-}
-
-
-// The minimum value the slider can send to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/minvalue
-func (s_ Slider) SetMinValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
-}
-
-
-// The value this slider will be filled from. This slider will be filled from its
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/neutralvalue
-func (s_ Slider) NeutralValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("neutralValue"))
-	return rv
-}
-
-
-// The value this slider will be filled from. This slider will be filled from its
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/neutralvalue
-func (s_ Slider) SetNeutralValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setNeutralValue:"), value)
-}
-
-
-// The number of tick marks associated with the slider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/numberoftickmarks
-func (s_ Slider) NumberOfTickMarks() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("numberOfTickMarks"))
-	return rv
-}
-
-
-// The number of tick marks associated with the slider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/numberoftickmarks
-func (s_ Slider) SetNumberOfTickMarks(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfTickMarks:"), value)
-}
-
-
-// The type of the slider, such as vertical or circular.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.property
-func (s_ Slider) SliderType() SliderType {
-	rv := objc.Send[SliderType](s_.ID, objc.Sel("sliderType"))
-	return rv
-}
-
-
-// The type of the slider, such as vertical or circular.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/slidertype-swift.property
-func (s_ Slider) SetSliderType(value SliderType) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSliderType:"), value)
-}
-
-
-// Determines where the slider’s tick marks are displayed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.property
-func (s_ Slider) TickMarkPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tickMarkPosition"))
-	return rv
-}
-
-
-// Determines where the slider’s tick marks are displayed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tickmarkposition-swift.property
-func (s_ Slider) SetTickMarkPosition(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTickMarkPosition:"), value)
-}
-
-
-// The tint prominence of the slider. The automatic behavior for a regular slider tints its track fill, while a slider with tick marks is untinted. Setting the tint prominence will override this default behavior and choose an explicit track fill tint behavior. See
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tintprominence
-func (s_ Slider) TintProminence() TintProminence {
-	rv := objc.Send[TintProminence](s_.ID, objc.Sel("tintProminence"))
-	return rv
-}
-
-
-// The tint prominence of the slider. The automatic behavior for a regular slider tints its track fill, while a slider with tick marks is untinted. Setting the tint prominence will override this default behavior and choose an explicit track fill tint behavior. See
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslider/tintprominence
-func (s_ Slider) SetTintProminence(value ITintProminence) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTintProminence:"), value)
-}
-
 
 

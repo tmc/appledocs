@@ -62,14 +62,14 @@ type IMutableParagraphStyle interface {
 	SetParagraphSpacing(value float64)
 	ParagraphSpacingBefore() float64
 	SetParagraphSpacingBefore(value float64)
-	TabStops() []ITextTab
-	SetTabStops(value []ITextTab)
+	TabStops() []TextTab
+	SetTabStops(value []TextTab)
 	TailIndent() float64
 	SetTailIndent(value float64)
-	TextBlocks() []ITextBlock
-	SetTextBlocks(value []ITextBlock)
-	TextLists() []ITextList
-	SetTextLists(value []ITextList)
+	TextBlocks() []TextBlock
+	SetTextBlocks(value []TextBlock)
+	TextLists() []TextList
+	SetTextLists(value []TextList)
 	TighteningFactorForTruncation() float32
 	SetTighteningFactorForTruncation(value float32)
 	UsesDefaultHyphenation() bool
@@ -470,7 +470,7 @@ func (m_ MutableParagraphStyle) SetParagraphSpacingBefore(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/tabStops
-func (m_ MutableParagraphStyle) TabStops() []ITextTab {
+func (m_ MutableParagraphStyle) TabStops() []TextTab {
 	rv := objc.Send[[]TextTab](m_.ID, objc.Sel("tabStops"))
 	return rv
 }
@@ -480,7 +480,7 @@ func (m_ MutableParagraphStyle) TabStops() []ITextTab {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/tabStops
-func (m_ MutableParagraphStyle) SetTabStops(value []ITextTab) {
+func (m_ MutableParagraphStyle) SetTabStops(value []TextTab) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -518,7 +518,7 @@ func (m_ MutableParagraphStyle) SetTailIndent(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/textBlocks
-func (m_ MutableParagraphStyle) TextBlocks() []ITextBlock {
+func (m_ MutableParagraphStyle) TextBlocks() []TextBlock {
 	rv := objc.Send[[]TextBlock](m_.ID, objc.Sel("textBlocks"))
 	return rv
 }
@@ -528,7 +528,7 @@ func (m_ MutableParagraphStyle) TextBlocks() []ITextBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/textBlocks
-func (m_ MutableParagraphStyle) SetTextBlocks(value []ITextBlock) {
+func (m_ MutableParagraphStyle) SetTextBlocks(value []TextBlock) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -547,7 +547,7 @@ func (m_ MutableParagraphStyle) SetTextBlocks(value []ITextBlock) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/textLists
-func (m_ MutableParagraphStyle) TextLists() []ITextList {
+func (m_ MutableParagraphStyle) TextLists() []TextList {
 	rv := objc.Send[[]TextList](m_.ID, objc.Sel("textLists"))
 	return rv
 }
@@ -557,7 +557,7 @@ func (m_ MutableParagraphStyle) TextLists() []ITextList {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMutableParagraphStyle/textLists
-func (m_ MutableParagraphStyle) SetTextLists(value []ITextList) {
+func (m_ MutableParagraphStyle) SetTextLists(value []TextList) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

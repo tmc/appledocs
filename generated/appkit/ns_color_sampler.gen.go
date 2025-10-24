@@ -30,6 +30,8 @@ type _ColorSamplerClass struct {
 // An interface definition for the [ColorSampler] class.
 type IColorSampler interface {
 	objectivec.IObject
+	// properties:
+	// methods:
 	ShowSamplerWithSelectionHandler(selectionHandler unsafe.Pointer)
 }
 

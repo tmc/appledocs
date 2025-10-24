@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveWordBackwardProtocol is the moveWordBackward: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveWordBackward:.
 var moveWordBackwardProtocol *objc.Protocol
 

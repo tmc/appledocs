@@ -401,6 +401,19 @@ const (
 	EnergyFormatterUnitKilojoule EnergyFormatterUnit = 14
 )
 
+// DirectoryEnumerationOptions - Options for enumerating the contents of directories.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/DirectoryEnumerationOptions
+type DirectoryEnumerationOptions uint
+
+const (
+	DirectoryEnumerationSkipsSubdirectoryDescendants DirectoryEnumerationOptions = 1
+	DirectoryEnumerationSkipsPackageDescendants DirectoryEnumerationOptions = 2
+	DirectoryEnumerationSkipsHiddenFiles DirectoryEnumerationOptions = 4
+	DirectoryEnumerationIncludesDirectoriesPostOrder DirectoryEnumerationOptions = 5
+	DirectoryEnumerationProducesRelativePathURLs DirectoryEnumerationOptions = 6
+)
+
 // SearchPathDirectory - The location of significant directories.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory
@@ -435,6 +448,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/autosavedInformationDirectory
 	AutosavedInformationDirectory SearchPathDirectory = 11
+	// CachesDirectory - Discardable cache files ( ).
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/cachesDirectory
+	CachesDirectory SearchPathDirectory = 13
 	// CoreServiceDirectory - Core services ( ).
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/coreServiceDirectory
@@ -459,6 +476,10 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/documentationDirectory
 	DocumentationDirectory SearchPathDirectory = 8
+	// DocumentDirectory - Document directory.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/documentDirectory
+	DocumentDirectory SearchPathDirectory = 9
 	// DownloadsDirectory - The user’s downloads directory.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/SearchPathDirectory/downloadsDirectory
@@ -1548,6 +1569,16 @@ const (
 	VariableExpressionType ExpressionType = 2
 )
 
+// FileManagerSupportedSyncControls - An option set of the sync controls available for an item.
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileManagerSupportedSyncControls
+type FileManagerSupportedSyncControls uint
+
+const (
+	FileManagerSupportedSyncControlsPauseSync FileManagerSupportedSyncControls = 1
+	FileManagerSupportedSyncControlsFailUploadOnConflict FileManagerSupportedSyncControls = 2
+)
+
 // GrammaticalCase enum type
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSGrammaticalCase
@@ -1929,6 +1960,22 @@ const (
 type LocaleLanguageDirection uint
 
 const (
+	// LocaleLanguageDirectionBottomToTop - The language direction is from bottom to top.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/LanguageDirection/bottomToTop
+	LocaleLanguageDirectionBottomToTop LocaleLanguageDirection = 0
+	// LocaleLanguageDirectionLeftToRight - The language direction is from left to right.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/LanguageDirection/leftToRight
+	LocaleLanguageDirectionLeftToRight LocaleLanguageDirection = 0
+	// LocaleLanguageDirectionRightToLeft - The language direction is from right to left.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/LanguageDirection/rightToLeft
+	LocaleLanguageDirectionRightToLeft LocaleLanguageDirection = 0
+	// LocaleLanguageDirectionTopToBottom - The language direction is from top to bottom.
+	//
+	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/LanguageDirection/topToBottom
+	LocaleLanguageDirectionTopToBottom LocaleLanguageDirection = 0
 	// LocaleLanguageDirectionUnknown - The direction of the language is unknown.
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/LanguageDirection/unknown
@@ -3872,6 +3919,20 @@ const (
 	//
 	// [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLParser/ExternalEntityResolvingPolicy-swift.enum/sameOriginOnly
 	XMLParserResolveExternalEntitiesSameOriginOnly XMLParserExternalEntityResolvingPolicy = 2
+)
+
+// ItemProviderRepresentationVisibility - Specifications that control which categories of processes can see an item.
+type ItemProviderRepresentationVisibility int
+
+const (
+	// ItemProviderRepresentationVisibilityAll - A representation visibility specification conferring item visibility to all processes.
+	ItemProviderRepresentationVisibilityAll ItemProviderRepresentationVisibility = 0
+	// ItemProviderRepresentationVisibilityTeam - A representation visibility specification confining item visibility to processes created by the app's development team.
+	ItemProviderRepresentationVisibilityTeam ItemProviderRepresentationVisibility = 1
+	// ItemProviderRepresentationVisibilityGroup - A representation visibility specification confining item visibility to the app's app group.
+	ItemProviderRepresentationVisibilityGroup ItemProviderRepresentationVisibility = 2
+	// ItemProviderRepresentationVisibilityOwnProcess - A representation visibility specification confining item visibility to the app that is the source of the item.
+	ItemProviderRepresentationVisibilityOwnProcess ItemProviderRepresentationVisibility = 3
 )
 
 

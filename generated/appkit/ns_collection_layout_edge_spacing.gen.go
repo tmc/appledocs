@@ -30,14 +30,12 @@ type _CollectionLayoutEdgeSpacingClass struct {
 // An interface definition for the [CollectionLayoutEdgeSpacing] class.
 type ICollectionLayoutEdgeSpacing interface {
 	objectivec.IObject
-	Bottom() unsafe.Pointer
-	SetBottom(value unsafe.Pointer)
-	Leading() unsafe.Pointer
-	SetLeading(value unsafe.Pointer)
-	Top() unsafe.Pointer
-	SetTop(value unsafe.Pointer)
-	Trailing() unsafe.Pointer
-	SetTrailing(value unsafe.Pointer)
+	// properties:
+	Bottom() ICollectionLayoutSpacing
+	Leading() ICollectionLayoutSpacing
+	Top() ICollectionLayoutSpacing
+	Trailing() ICollectionLayoutSpacing
+	// methods:
 }
 
 // An object that defines the space around the edges of items in a collection view.
@@ -97,7 +95,7 @@ func NewCollectionLayoutEdgeSpacing() CollectionLayoutEdgeSpacing {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/init(leading:top:trailing:bottom:)
-func NewCollectionLayoutEdgeSpacingForLeadingTopTrailingBottom(leading unsafe.Pointer, top unsafe.Pointer, trailing unsafe.Pointer, bottom unsafe.Pointer) CollectionLayoutEdgeSpacing {
+func NewCollectionLayoutEdgeSpacingForLeadingTopTrailingBottom(leading ICollectionLayoutSpacing, top ICollectionLayoutSpacing, trailing ICollectionLayoutSpacing, bottom ICollectionLayoutSpacing) CollectionLayoutEdgeSpacing {
 	rv := objc.Send[CollectionLayoutEdgeSpacing](objc.ID(getCollectionLayoutEdgeSpacingClass().class), objc.Sel("spacingForLeading:top:trailing:bottom:"), leading, top, trailing, bottom)
 	return rv
 }
@@ -108,7 +106,7 @@ func NewCollectionLayoutEdgeSpacingForLeadingTopTrailingBottom(leading unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/init(leading:top:trailing:bottom:)
-func (cc _CollectionLayoutEdgeSpacingClass) SpacingForLeadingTopTrailingBottom(leading unsafe.Pointer, top unsafe.Pointer, trailing unsafe.Pointer, bottom unsafe.Pointer) unsafe.Pointer {
+func (cc _CollectionLayoutEdgeSpacingClass) SpacingForLeadingTopTrailingBottom(leading ICollectionLayoutSpacing, top ICollectionLayoutSpacing, trailing ICollectionLayoutSpacing, bottom ICollectionLayoutSpacing) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("spacingForLeading:top:trailing:bottom:"), leading, top, trailing, bottom)
 	return rv
 }
@@ -117,28 +115,9 @@ func (cc _CollectionLayoutEdgeSpacingClass) SpacingForLeadingTopTrailingBottom(l
 // The bottom edge spacing value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/bottom
-func (c_ CollectionLayoutEdgeSpacing) Bottom() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("bottom"))
-	return rv
-}
-
-
-// The bottom edge spacing value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/bottom
-func (c_ CollectionLayoutEdgeSpacing) SetBottom(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setBottom:"), value)
-}
-
-
-// The leading edge spacing value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/leading
-func (c_ CollectionLayoutEdgeSpacing) Leading() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("leading"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/bottom
+func (c_ CollectionLayoutEdgeSpacing) Bottom() ICollectionLayoutSpacing {
+	rv := objc.Send[CollectionLayoutSpacing](c_.ID, objc.Sel("bottom"))
 	return rv
 }
 
@@ -146,18 +125,9 @@ func (c_ CollectionLayoutEdgeSpacing) Leading() unsafe.Pointer {
 // The leading edge spacing value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/leading
-func (c_ CollectionLayoutEdgeSpacing) SetLeading(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setLeading:"), value)
-}
-
-
-// The top edge spacing value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/top
-func (c_ CollectionLayoutEdgeSpacing) Top() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("top"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/leading
+func (c_ CollectionLayoutEdgeSpacing) Leading() ICollectionLayoutSpacing {
+	rv := objc.Send[CollectionLayoutSpacing](c_.ID, objc.Sel("leading"))
 	return rv
 }
 
@@ -165,18 +135,9 @@ func (c_ CollectionLayoutEdgeSpacing) Top() unsafe.Pointer {
 // The top edge spacing value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/top
-func (c_ CollectionLayoutEdgeSpacing) SetTop(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTop:"), value)
-}
-
-
-// The trailing edge spacing value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/trailing
-func (c_ CollectionLayoutEdgeSpacing) Trailing() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("trailing"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/top
+func (c_ CollectionLayoutEdgeSpacing) Top() ICollectionLayoutSpacing {
+	rv := objc.Send[CollectionLayoutSpacing](c_.ID, objc.Sel("top"))
 	return rv
 }
 
@@ -184,9 +145,10 @@ func (c_ CollectionLayoutEdgeSpacing) Trailing() unsafe.Pointer {
 // The trailing edge spacing value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutedgespacing/trailing
-func (c_ CollectionLayoutEdgeSpacing) SetTrailing(value unsafe.Pointer) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setTrailing:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutEdgeSpacing/trailing
+func (c_ CollectionLayoutEdgeSpacing) Trailing() ICollectionLayoutSpacing {
+	rv := objc.Send[CollectionLayoutSpacing](c_.ID, objc.Sel("trailing"))
+	return rv
 }
 
 

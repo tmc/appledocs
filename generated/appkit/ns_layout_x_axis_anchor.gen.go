@@ -31,7 +31,10 @@ type ILayoutXAxisAnchor interface {
 	ILayoutAnchor
 	// properties:
 	// methods:
+	AnchorWithOffsetToAnchor(otherAnchor ILayoutXAxisAnchor) ILayoutDimension
 	ConstraintEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) ILayoutConstraint
+	ConstraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) ILayoutConstraint
+	ConstraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) ILayoutConstraint
 }
 
 // A factory class for creating horizontal layout constraint objects using a fluent API.
@@ -89,12 +92,42 @@ func NewLayoutXAxisAnchor() LayoutXAxisAnchor {
 
 
 
+// Creates a layout dimension object from two anchors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor/anchorWithOffset(to:)
+func (l_ LayoutXAxisAnchor) AnchorWithOffsetToAnchor(otherAnchor ILayoutXAxisAnchor) ILayoutDimension {
+	rv := objc.Send[LayoutDimension](l_.ID, objc.Sel("anchorWithOffsetToAnchor:"), otherAnchor)
+	return rv
+}
+
+
 // Returns a constraint that defines by how much the current anchor trails the specified anchor.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor/constraint(equalToSystemSpacingAfter:multiplier:)
 func (l_ LayoutXAxisAnchor) ConstraintEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) ILayoutConstraint {
 	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
+	return rv
+}
+
+
+// Returns a constraint that defines the minimum amount by which the current anchor trails the specified anchor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor/constraint(greaterThanOrEqualToSystemSpacingAfter:multiplier:)
+func (l_ LayoutXAxisAnchor) ConstraintGreaterThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) ILayoutConstraint {
+	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintGreaterThanOrEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
+	return rv
+}
+
+
+// Returns a constraint that defines the maximum amount by which the current anchor trails the specified anchor.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSLayoutXAxisAnchor/constraint(lessThanOrEqualToSystemSpacingAfter:multiplier:)
+func (l_ LayoutXAxisAnchor) ConstraintLessThanOrEqualToSystemSpacingAfterAnchorMultiplier(anchor ILayoutXAxisAnchor, multiplier float64) ILayoutConstraint {
+	rv := objc.Send[LayoutConstraint](l_.ID, objc.Sel("constraintLessThanOrEqualToSystemSpacingAfterAnchor:multiplier:"), anchor, multiplier)
 	return rv
 }
 

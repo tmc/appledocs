@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // HapticFeedbackPerformerProtocol is the NSHapticFeedbackPerformer protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSHapticFeedbackPerformer.
 var HapticFeedbackPerformerProtocol *objc.Protocol
 

@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,11 +33,12 @@ type _SharingServicePickerClass struct {
 type ISharingServicePicker interface {
 	objectivec.IObject
 	// properties:
-	Delegate() SharingServicePickerDelegate /* not a class type */
-	SetDelegate(value SharingServicePickerDelegate /* not a class type */)
-	StandardShareMenuItem() objc.IObject /* cross-framework: MenuItem */
-	SetStandardShareMenuItem(value objc.IObject /* cross-framework: MenuItem */)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	StandardShareMenuItem() IMenuItem
 	// methods:
+	Close()
+	ShowRelativeToRectOfViewPreferredEdge(rect objc.IObject /* cross-framework: Rect */, view IView, preferredEdge RectEdge /* not a class type */)
 }
 
 // A list of sharing services that the user can choose from.
@@ -91,12 +94,43 @@ func NewSharingServicePicker() SharingServicePicker {
 
 
 
+// Creates a new sharing service picker for the selected items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/init(items:)
+func NewSharingServicePickerWithItems(items objc.IObject /* cross-framework: NSArray */) SharingServicePicker {
+	instance := getSharingServicePickerClass().Alloc()
+	rv := objc.Send[SharingServicePicker](instance.ID, objc.Sel("initWithItems:"), items)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Closes the picker interface.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/close()
+func (s_ SharingServicePicker) Close() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("close"))
+}
+
+
+// Shows the picker interface and populates it with the relevant sharing services.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/show(relativeTo:of:preferredEdge:)
+func (s_ SharingServicePicker) ShowRelativeToRectOfViewPreferredEdge(rect objc.IObject /* cross-framework: Rect */, view IView, preferredEdge RectEdge /* not a class type */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("showRelativeToRect:ofView:preferredEdge:"), rect, view, preferredEdge)
+}
+
+
 // The object for managing the sharing service picker.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/delegate
-func (s_ SharingServicePicker) Delegate() SharingServicePickerDelegate /* not a class type */ {
-	rv := objc.Send[SharingServicePickerDelegate](s_.ID, objc.Sel("delegate"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
+func (s_ SharingServicePicker) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -104,8 +138,8 @@ func (s_ SharingServicePicker) Delegate() SharingServicePickerDelegate /* not a 
 // The object for managing the sharing service picker.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/delegate
-func (s_ SharingServicePicker) SetDelegate(value SharingServicePickerDelegate /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/delegate
+func (s_ SharingServicePicker) SetDelegate(value objc.ID) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -113,20 +147,10 @@ func (s_ SharingServicePicker) SetDelegate(value SharingServicePickerDelegate /*
 // A menu item suitable to display the picker for the specified items.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
-func (s_ SharingServicePicker) StandardShareMenuItem() objc.IObject /* cross-framework: MenuItem */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSharingServicePicker/standardShareMenuItem
+func (s_ SharingServicePicker) StandardShareMenuItem() IMenuItem {
 	rv := objc.Send[MenuItem](s_.ID, objc.Sel("standardShareMenuItem"))
 	return rv
 }
-
-
-// A menu item suitable to display the picker for the specified items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssharingservicepicker/standardsharemenuitem
-func (s_ SharingServicePicker) SetStandardShareMenuItem(value objc.IObject /* cross-framework: MenuItem */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardShareMenuItem:"), value)
-}
-
 
 

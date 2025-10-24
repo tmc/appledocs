@@ -52,7 +52,7 @@ type IByteCountFormatter interface {
 	IsAdaptive() bool
 	SetIsAdaptive(value bool)
 	// methods:
-	StringForObjectValue(obj objectivec.IObject) IString
+	StringForObjectValue(obj objc.IObject) IString
 	StringFromMeasurement(measurement unsafe.Pointer) IString
 	StringFromByteCount(byteCount unsafe.Pointer) IString
 }
@@ -130,7 +130,7 @@ func (bc _ByteCountFormatterClass) StringFromByteCountCountStyle(byteCount unsaf
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ByteCountFormatter/string(for:)
-func (b_ ByteCountFormatter) StringForObjectValue(obj objectivec.IObject) IString {
+func (b_ ByteCountFormatter) StringForObjectValue(obj objc.IObject) IString {
 	rv := objc.Send[String](b_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }

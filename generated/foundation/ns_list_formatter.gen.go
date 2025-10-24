@@ -36,7 +36,7 @@ type IListFormatter interface {
 	Locale() ILocale
 	SetLocale(value ILocale)
 	// methods:
-	StringForObjectValue(obj objectivec.IObject) IString
+	StringForObjectValue(obj objc.IObject) IString
 	StringFromItems(items IArray) IString
 }
 
@@ -109,7 +109,7 @@ func (lc _ListFormatterClass) LocalizedStringByJoiningStrings(strings []string) 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ListFormatter/string(for:)
-func (l_ ListFormatter) StringForObjectValue(obj objectivec.IObject) IString {
+func (l_ ListFormatter) StringForObjectValue(obj objc.IObject) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }

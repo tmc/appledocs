@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // AccessibilityRadioButtonProtocol is the NSAccessibilityRadioButton protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSAccessibilityRadioButton.
 var AccessibilityRadioButtonProtocol *objc.Protocol
 

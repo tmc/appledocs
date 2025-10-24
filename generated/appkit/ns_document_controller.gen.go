@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/coretelephony"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -33,26 +34,48 @@ type IDocumentController interface {
 	objectivec.IObject
 	// properties:
 	AllowsAutomaticShareMenu() bool
-	SetAllowsAutomaticShareMenu(value bool)
 	AutosavingDelay() float64
 	SetAutosavingDelay(value float64)
 	CurrentDirectory() objc.IObject /* cross-framework: NSString */
-	SetCurrentDirectory(value objc.IObject /* cross-framework: NSString */)
 	CurrentDocument() IDocument
-	SetCurrentDocument(value IDocument)
 	DefaultType() objc.IObject /* cross-framework: NSString */
-	SetDefaultType(value objc.IObject /* cross-framework: NSString */)
-	DocumentClassNames() objc.IObject /* cross-framework: NSString */
-	SetDocumentClassNames(value objc.IObject /* cross-framework: NSString */)
-	Documents() IDocument
-	SetDocuments(value IDocument)
+	DocumentClassNames() []string
+	Documents() []Document
 	HasEditedDocuments() bool
-	SetHasEditedDocuments(value bool)
-	MaximumRecentDocumentCount() int
-	SetMaximumRecentDocumentCount(value int)
-	RecentDocumentURLs() objc.IObject /* cross-framework: URL */
-	SetRecentDocumentURLs(value objc.IObject /* cross-framework: URL */)
+	MaximumRecentDocumentCount() uint
+	RecentDocumentURLs() []foundation.URL
 	// methods:
+	AddDocument(document IDocument)
+	BeginOpenPanelForTypesCompletionHandler(openPanel IOpenPanel, inTypes []string, completionHandler unsafe.Pointer)
+	BeginOpenPanelWithCompletionHandler(completionHandler unsafe.Pointer)
+	ClearRecentDocuments(sender objc.IObject)
+	CloseAllDocumentsWithDelegateDidCloseAllSelectorContextInfo(delegate objc.IObject, didCloseAllSelector objc.SEL, contextInfo unsafe.Pointer)
+	DisplayNameForType(typeName objc.IObject /* cross-framework: NSString */) foundation.String
+	DocumentForWindow(window IWindow) IDocument
+	DocumentForURL(url objc.IObject /* cross-framework: NSURL */) IDocument
+	DocumentClassForType(typeName objc.IObject /* cross-framework: NSString */) objc.Class
+	DuplicateDocumentWithContentsOfURLCopyingDisplayNameError(url objc.IObject /* cross-framework: NSURL */, duplicateByCopying bool, displayNameOrNil objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) IDocument
+	MakeDocumentForURLWithContentsOfURLOfTypeError(urlOrNil objc.IObject /* cross-framework: NSURL */, contentsURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) IDocument
+	MakeDocumentWithContentsOfURLOfTypeError(url objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) IDocument
+	MakeUntitledDocumentOfTypeError(typeName objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) IDocument
+	NewDocument(sender objc.IObject)
+	NoteNewRecentDocument(document IDocument)
+	NoteNewRecentDocumentURL(url objc.IObject /* cross-framework: NSURL */)
+	OpenDocument(sender objc.IObject)
+	OpenDocumentWithContentsOfURLDisplayCompletionHandler(url objc.IObject /* cross-framework: NSURL */, displayDocument bool, completionHandler unsafe.Pointer)
+	OpenUntitledDocumentAndDisplayError(displayDocument bool, outError unsafe.Pointer) IDocument
+	PresentError(error_ objc.IObject /* cross-framework: Error */) bool
+	PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ objc.IObject /* cross-framework: Error */, window IWindow, delegate objc.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer)
+	RemoveDocument(document IDocument)
+	ReopenDocumentForURLWithContentsOfURLDisplayCompletionHandler(urlOrNil objc.IObject /* cross-framework: NSURL */, contentsURL objc.IObject /* cross-framework: NSURL */, displayDocument bool, completionHandler unsafe.Pointer)
+	ReviewUnsavedDocumentsWithAlertTitleCancellableDelegateDidReviewAllSelectorContextInfo(title objc.IObject /* cross-framework: NSString */, cancellable bool, delegate objc.IObject, didReviewAllSelector objc.SEL, contextInfo unsafe.Pointer)
+	RunModalOpenPanelForTypes(openPanel IOpenPanel, types []string) int
+	SaveAllDocuments(sender objc.IObject)
+	StandardShareMenuItem() IMenuItem
+	TypeForContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, outError unsafe.Pointer) foundation.String
+	URLsFromRunningOpenPanel() []foundation.URL
+	ValidateUserInterfaceItem(item objc.IObject) bool
+	WillPresentError(error_ objc.IObject /* cross-framework: Error */) objc.IObject /* cross-framework: Error */
 }
 
 // An object that manages an app’s documents.
@@ -108,12 +131,319 @@ func NewDocumentController() DocumentController {
 
 
 
-// A Boolean value that the system uses to insert a Share menu in the File menu.
+// This method initializes a new NSDocumentController from the coder.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/allowsautomaticsharemenu
-func (d_ DocumentController) AllowsAutomaticShareMenu() bool {
-	rv := objc.Send[bool](d_.ID, objc.Sel("allowsAutomaticShareMenu"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/init(coder:)
+func NewDocumentControllerWithCoder(coder foundation.Coder) DocumentController {
+	instance := getDocumentControllerClass().Alloc()
+	rv := objc.Send[DocumentController](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns the shared instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/shared
+func (dc _DocumentControllerClass) SharedDocumentController() DocumentController {
+	rv := objc.Send[DocumentController](objc.ID(dc.class), objc.Sel("sharedDocumentController"))
+	return rv
+}
+
+// Adds the given document to the list of open documents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/addDocument(_:)
+func (d_ DocumentController) AddDocument(document IDocument) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("addDocument:"), document)
+}
+
+
+// Presents a nonmodal Open dialog that displays files you can open from a list of UTIs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/beginOpenPanel(_:forTypes:completionHandler:)
+func (d_ DocumentController) BeginOpenPanelForTypesCompletionHandler(openPanel IOpenPanel, inTypes []string, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("beginOpenPanel:forTypes:completionHandler:"), openPanel, inTypes, completionHandler)
+}
+
+
+// Presents an Open dialog and delivers the results to a completion handler as an array of URLs for the chosen files, or nil.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/beginOpenPanel(completionHandler:)
+func (d_ DocumentController) BeginOpenPanelWithCompletionHandler(completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("beginOpenPanelWithCompletionHandler:"), completionHandler)
+}
+
+
+// Empties the recent documents list for the application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/clearRecentDocuments(_:)
+func (d_ DocumentController) ClearRecentDocuments(sender objc.IObject) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("clearRecentDocuments:"), sender)
+}
+
+
+// Iterates through all the open documents and tries to close them one by one using the specified delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/closeAllDocuments(withDelegate:didCloseAllSelector:contextInfo:)
+func (d_ DocumentController) CloseAllDocumentsWithDelegateDidCloseAllSelectorContextInfo(delegate objc.IObject, didCloseAllSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("closeAllDocumentsWithDelegate:didCloseAllSelector:contextInfo:"), delegate, didCloseAllSelector, contextInfo)
+}
+
+
+// Returns the descriptive name for the specified document type, which is used in the File Format pop-up menu of the Save As dialog.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/displayName(forType:)
+func (d_ DocumentController) DisplayNameForType(typeName objc.IObject /* cross-framework: NSString */) foundation.String {
+	rv := objc.Send[foundation.String](d_.ID, objc.Sel("displayNameForType:"), typeName)
+	return rv
+}
+
+
+// Returns the document object whose window controller owns a specified window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/document(for:)-a5yd
+func (d_ DocumentController) DocumentForWindow(window IWindow) IDocument {
+	rv := objc.Send[Document](d_.ID, objc.Sel("documentForWindow:"), window)
+	return rv
+}
+
+
+// Returns, for a given URL, the open document whose file or file package is located by the URL, or if there is no such open document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/document(for:)-i5zi
+func (d_ DocumentController) DocumentForURL(url objc.IObject /* cross-framework: NSURL */) IDocument {
+	rv := objc.Send[Document](d_.ID, objc.Sel("documentForURL:"), url)
+	return rv
+}
+
+
+// Returns the subclass associated with a given document type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/documentClass(forType:)
+func (d_ DocumentController) DocumentClassForType(typeName objc.IObject /* cross-framework: NSString */) objc.Class {
+	rv := objc.Send[objc.Class](d_.ID, objc.Sel("documentClassForType:"), typeName)
+	return rv
+}
+
+
+// Creates a new document by reading the contents for the document from another URL, presents its user interface, and returns the document if successful.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/duplicateDocument(withContentsOf:copying:displayName:)
+func (d_ DocumentController) DuplicateDocumentWithContentsOfURLCopyingDisplayNameError(url objc.IObject /* cross-framework: NSURL */, duplicateByCopying bool, displayNameOrNil objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) IDocument {
+	rv := objc.Send[Document](d_.ID, objc.Sel("duplicateDocumentWithContentsOfURL:copying:displayName:error:"), url, duplicateByCopying, displayNameOrNil, outError)
+	return rv
+}
+
+
+// Instantiates a document located by a URL, of a specified type, but by reading the contents for the document from another URL, and returns it if successful.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/makeDocument(for:withContentsOf:ofType:)
+func (d_ DocumentController) MakeDocumentForURLWithContentsOfURLOfTypeError(urlOrNil objc.IObject /* cross-framework: NSURL */, contentsURL objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) IDocument {
+	rv := objc.Send[Document](d_.ID, objc.Sel("makeDocumentForURL:withContentsOfURL:ofType:error:"), urlOrNil, contentsURL, typeName, outError)
+	return rv
+}
+
+
+// Instantiates a document located by a URL, of a specified type, and returns it if successful.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/makeDocument(withContentsOf:ofType:)
+func (d_ DocumentController) MakeDocumentWithContentsOfURLOfTypeError(url objc.IObject /* cross-framework: NSURL */, typeName objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) IDocument {
+	rv := objc.Send[Document](d_.ID, objc.Sel("makeDocumentWithContentsOfURL:ofType:error:"), url, typeName, outError)
+	return rv
+}
+
+
+// Instantiates a new untitled document of the specified type and returns it if successful.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/makeUntitledDocument(ofType:)
+func (d_ DocumentController) MakeUntitledDocumentOfTypeError(typeName objc.IObject /* cross-framework: NSString */, outError unsafe.Pointer) IDocument {
+	rv := objc.Send[Document](d_.ID, objc.Sel("makeUntitledDocumentOfType:error:"), typeName, outError)
+	return rv
+}
+
+
+// An action method called by the New menu command, this method creates a new object and adds it to the list of such objects managed by the document controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/newDocument(_:)
+func (d_ DocumentController) NewDocument(sender objc.IObject) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("newDocument:"), sender)
+}
+
+
+// Adds or replaces an Open Recent menu item corresponding to the document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/noteNewRecentDocument(_:)
+func (d_ DocumentController) NoteNewRecentDocument(document IDocument) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("noteNewRecentDocument:"), document)
+}
+
+
+// Adds or replaces an Open Recent menu item corresponding to the data located by the URL.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/noteNewRecentDocumentURL(_:)
+func (d_ DocumentController) NoteNewRecentDocumentURL(url objc.IObject /* cross-framework: NSURL */) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("noteNewRecentDocumentURL:"), url)
+}
+
+
+// An action method called by the Open menu command, it runs the modal Open panel and, based on the selected filenames, creates one or more objects from the contents of the files.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/openDocument(_:)
+func (d_ DocumentController) OpenDocument(sender objc.IObject) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("openDocument:"), sender)
+}
+
+
+// Opens a document located by a URL, optionally presents its user interface, and calls the passed-in completion handler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/openDocument(withContentsOf:display:completionHandler:)
+func (d_ DocumentController) OpenDocumentWithContentsOfURLDisplayCompletionHandler(url objc.IObject /* cross-framework: NSURL */, displayDocument bool, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("openDocumentWithContentsOfURL:display:completionHandler:"), url, displayDocument, completionHandler)
+}
+
+
+// Creates a new untitled document, presents its user interface if is , and returns the document if successful.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/openUntitledDocumentAndDisplay(_:)
+func (d_ DocumentController) OpenUntitledDocumentAndDisplayError(displayDocument bool, outError unsafe.Pointer) IDocument {
+	rv := objc.Send[Document](d_.ID, objc.Sel("openUntitledDocumentAndDisplay:error:"), displayDocument, outError)
+	return rv
+}
+
+
+// Presents an error alert to the user as a modal panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/presentError(_:)
+func (d_ DocumentController) PresentError(error_ objc.IObject /* cross-framework: Error */) bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("presentError:"), error_)
+	return rv
+}
+
+
+// Presents an error alert to the user as a modal panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/presentError(_:modalFor:delegate:didPresent:contextInfo:)
+func (d_ DocumentController) PresentErrorModalForWindowDelegateDidPresentSelectorContextInfo(error_ objc.IObject /* cross-framework: Error */, window IWindow, delegate objc.IObject, didPresentSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("presentError:modalForWindow:delegate:didPresentSelector:contextInfo:"), error_, window, delegate, didPresentSelector, contextInfo)
+}
+
+
+// Removes the given document from the list of open documents.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/removeDocument(_:)
+func (d_ DocumentController) RemoveDocument(document IDocument) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("removeDocument:"), document)
+}
+
+
+// Reopens a document, optionally located by a URL, by reading the contents for the document from another URL, optionally presents its user interface, and calls the passed-in completion handler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/reopenDocument(for:withContentsOf:display:completionHandler:)
+func (d_ DocumentController) ReopenDocumentForURLWithContentsOfURLDisplayCompletionHandler(urlOrNil objc.IObject /* cross-framework: NSURL */, contentsURL objc.IObject /* cross-framework: NSURL */, displayDocument bool, completionHandler unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("reopenDocumentForURL:withContentsOfURL:display:completionHandler:"), urlOrNil, contentsURL, displayDocument, completionHandler)
+}
+
+
+// Displays an alert asking if the user wants to review unsaved documents, quit regardless of unsaved documents, or cancel the save operation.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/reviewUnsavedDocuments(withAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:)
+func (d_ DocumentController) ReviewUnsavedDocumentsWithAlertTitleCancellableDelegateDidReviewAllSelectorContextInfo(title objc.IObject /* cross-framework: NSString */, cancellable bool, delegate objc.IObject, didReviewAllSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("reviewUnsavedDocumentsWithAlertTitle:cancellable:delegate:didReviewAllSelector:contextInfo:"), title, cancellable, delegate, didReviewAllSelector, contextInfo)
+}
+
+
+// Presents a modal Open dialog and limits selection to specific file types.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/runModalOpenPanel(_:forTypes:)
+func (d_ DocumentController) RunModalOpenPanelForTypes(openPanel IOpenPanel, types []string) int {
+	rv := objc.Send[int](d_.ID, objc.Sel("runModalOpenPanel:forTypes:"), openPanel, types)
+	return rv
+}
+
+
+// As the action method called by the Save All command, saves all open documents of the application that need to be saved.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/saveAllDocuments(_:)
+func (d_ DocumentController) SaveAllDocuments(sender objc.IObject) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("saveAllDocuments:"), sender)
+}
+
+
+// Returns a menu item that your app uses for sharing the current document.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/standardShareMenuItem()
+func (d_ DocumentController) StandardShareMenuItem() IMenuItem {
+	rv := objc.Send[MenuItem](d_.ID, objc.Sel("standardShareMenuItem"))
+	return rv
+}
+
+
+// Returns, for a specified URL, the document type identifier to use when opening the document at that location, if successful.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/typeForContents(of:)
+func (d_ DocumentController) TypeForContentsOfURLError(url objc.IObject /* cross-framework: NSURL */, outError unsafe.Pointer) foundation.String {
+	rv := objc.Send[foundation.String](d_.ID, objc.Sel("typeForContentsOfURL:error:"), url, outError)
+	return rv
+}
+
+
+// An array of URLs that correspond to the selected files in a running Open dialog.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/urlsFromRunningOpenPanel()
+func (d_ DocumentController) URLsFromRunningOpenPanel() []foundation.URL {
+	rv := objc.Send[[]foundation.URL](d_.ID, objc.Sel("URLsFromRunningOpenPanel"))
+	return rv
+}
+
+
+// Returns a Boolean value that indicates whether a given user interface item should be enabled.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/validateUserInterfaceItem(_:)
+func (d_ DocumentController) ValidateUserInterfaceItem(item objc.IObject) bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("validateUserInterfaceItem:"), item)
+	return rv
+}
+
+
+// Indicates an error condition and provides the opportunity to return the same or a different error.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/willPresentError(_:)
+func (d_ DocumentController) WillPresentError(error_ objc.IObject /* cross-framework: Error */) objc.IObject /* cross-framework: Error */ {
+	rv := objc.Send[coretelephony.Error](d_.ID, objc.Sel("willPresentError:"), error_)
 	return rv
 }
 
@@ -121,16 +451,17 @@ func (d_ DocumentController) AllowsAutomaticShareMenu() bool {
 // A Boolean value that the system uses to insert a Share menu in the File menu.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/allowsautomaticsharemenu
-func (d_ DocumentController) SetAllowsAutomaticShareMenu(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setAllowsAutomaticShareMenu:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/allowsAutomaticShareMenu
+func (d_ DocumentController) AllowsAutomaticShareMenu() bool {
+	rv := objc.Send[bool](d_.ID, objc.Sel("allowsAutomaticShareMenu"))
+	return rv
 }
 
 
 // The time interval (in seconds) for periodic autosaving.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/autosavingdelay
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/autosavingDelay
 func (d_ DocumentController) AutosavingDelay() float64 {
 	rv := objc.Send[float64](d_.ID, objc.Sel("autosavingDelay"))
 	return rv
@@ -140,7 +471,7 @@ func (d_ DocumentController) AutosavingDelay() float64 {
 // The time interval (in seconds) for periodic autosaving.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/autosavingdelay
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/autosavingDelay
 func (d_ DocumentController) SetAutosavingDelay(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setAutosavingDelay:"), value)
 }
@@ -149,85 +480,39 @@ func (d_ DocumentController) SetAutosavingDelay(value float64) {
 // The directory path to use as the starting point in the Open dialog.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/currentdirectory
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/currentDirectory
 func (d_ DocumentController) CurrentDirectory() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("currentDirectory"))
 	return rv
 }
 
 
-// The directory path to use as the starting point in the Open dialog.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/currentdirectory
-func (d_ DocumentController) SetCurrentDirectory(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentDirectory:"), value)
-}
-
-
 // The document object associated with the main window.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/currentdocument
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/currentDocument
 func (d_ DocumentController) CurrentDocument() IDocument {
 	rv := objc.Send[Document](d_.ID, objc.Sel("currentDocument"))
 	return rv
 }
 
 
-// The document object associated with the main window.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/currentdocument
-func (d_ DocumentController) SetCurrentDocument(value IDocument) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setCurrentDocument:"), value)
-}
-
-
 // Returns the name of the document type that should be used when creating new documents.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/defaulttype
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/defaultType
 func (d_ DocumentController) DefaultType() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("defaultType"))
 	return rv
 }
 
 
-// Returns the name of the document type that should be used when creating new documents.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/defaulttype
-func (d_ DocumentController) SetDefaultType(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDefaultType:"), value)
-}
-
-
 // An array of strings representing the custom document classes supported by this app.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/documentclassnames
-func (d_ DocumentController) DocumentClassNames() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("documentClassNames"))
-	return rv
-}
-
-
-// An array of strings representing the custom document classes supported by this app.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/documentclassnames
-func (d_ DocumentController) SetDocumentClassNames(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDocumentClassNames:"), value)
-}
-
-
-// The document objects managed by the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/documents
-func (d_ DocumentController) Documents() IDocument {
-	rv := objc.Send[Document](d_.ID, objc.Sel("documents"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/documentClassNames
+func (d_ DocumentController) DocumentClassNames() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("documentClassNames"))
 	return rv
 }
 
@@ -235,56 +520,29 @@ func (d_ DocumentController) Documents() IDocument {
 // The document objects managed by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/documents
-func (d_ DocumentController) SetDocuments(value IDocument) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setDocuments:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/documents
+func (d_ DocumentController) Documents() []Document {
+	rv := objc.Send[[]Document](d_.ID, objc.Sel("documents"))
+	return rv
 }
 
 
 // A Boolean value indicating whether the receiver has any documents with unsaved changes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/hasediteddocuments
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/hasEditedDocuments
 func (d_ DocumentController) HasEditedDocuments() bool {
 	rv := objc.Send[bool](d_.ID, objc.Sel("hasEditedDocuments"))
 	return rv
 }
 
 
-// A Boolean value indicating whether the receiver has any documents with unsaved changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/hasediteddocuments
-func (d_ DocumentController) SetHasEditedDocuments(value bool) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setHasEditedDocuments:"), value)
-}
-
-
 // The maximum number of items that may be presented in the standard Open Recent menu.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/maximumrecentdocumentcount
-func (d_ DocumentController) MaximumRecentDocumentCount() int {
-	rv := objc.Send[int](d_.ID, objc.Sel("maximumRecentDocumentCount"))
-	return rv
-}
-
-
-// The maximum number of items that may be presented in the standard Open Recent menu.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/maximumrecentdocumentcount
-func (d_ DocumentController) SetMaximumRecentDocumentCount(value int) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setMaximumRecentDocumentCount:"), value)
-}
-
-
-// The list of recent-document URLs.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/recentdocumenturls
-func (d_ DocumentController) RecentDocumentURLs() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](d_.ID, objc.Sel("recentDocumentURLs"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/maximumRecentDocumentCount
+func (d_ DocumentController) MaximumRecentDocumentCount() uint {
+	rv := objc.Send[uint](d_.ID, objc.Sel("maximumRecentDocumentCount"))
 	return rv
 }
 
@@ -292,10 +550,20 @@ func (d_ DocumentController) RecentDocumentURLs() objc.IObject /* cross-framewor
 // The list of recent-document URLs.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocumentcontroller/recentdocumenturls
-func (d_ DocumentController) SetRecentDocumentURLs(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setRecentDocumentURLs:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/recentDocumentURLs
+func (d_ DocumentController) RecentDocumentURLs() []foundation.URL {
+	rv := objc.Send[[]foundation.URL](d_.ID, objc.Sel("recentDocumentURLs"))
+	return rv
 }
 
+
+// Returns the shared instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDocumentController/shared
+func (d_ DocumentController) SharedDocumentController() IDocumentController {
+	rv := objc.Send[DocumentController](d_.ID, objc.Sel("sharedDocumentController"))
+	return rv
+}
 
 

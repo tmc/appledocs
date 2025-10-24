@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // InputServiceProviderProtocol is the NSInputServiceProvider protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSInputServiceProvider.
 var InputServiceProviderProtocol *objc.Protocol
 

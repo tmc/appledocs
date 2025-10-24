@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveToEndOfParagraphProtocol is the moveToEndOfParagraph: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveToEndOfParagraph:.
 var moveToEndOfParagraphProtocol *objc.Protocol
 

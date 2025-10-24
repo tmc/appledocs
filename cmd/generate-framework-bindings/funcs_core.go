@@ -45,6 +45,7 @@ var templateFuncs = template.FuncMap{
 	"trimRight":           trimRightString,
 	"trimPrefix":          trimPrefixString,
 	"hasPrefix":           hasPrefixString,
+	"hasSuffix":           hasSuffixString,
 	"commentLine":         commentLine,
 	"dict":                dict,
 	"isValidGoIdentifier": isValidGoIdentifier,
@@ -76,11 +77,12 @@ var templateFuncs = template.FuncMap{
 	"isPropertySetter":        isPropertySetter,
 
 	// DarwinKit class generation helpers
-	"classFileName":     classFileName,
-	"classIOSFileName":  classIOSFileName,
-	"classTestFileName": classTestFileName,
-	"protocolFileName":  protocolFileName,
-	"receiverName":      receiverName,
+	"classFileName":             classFileName,
+	"classIOSFileName":          classIOSFileName,
+	"classTestFileName":         classTestFileName,
+	"protocolFileName":          protocolFileName,
+	"protocolInterfaceFileName": protocolInterfaceFileName,
+	"receiverName":              receiverName,
 	"selectorToGoName":  selectorToGoName,
 	"mapObjCTypeToGo":   mapObjCTypeToGo,
 	// formatMethodParams is provided by GeneratorFuncs.Funcs() at runtime,
@@ -259,6 +261,10 @@ func trimPrefixString(s, prefix string) string {
 
 func hasPrefixString(s, prefix string) bool {
 	return strings.HasPrefix(s, prefix)
+}
+
+func hasSuffixString(s, suffix string) bool {
+	return strings.HasSuffix(s, suffix)
 }
 
 func stringsContains(s, substr string) bool {

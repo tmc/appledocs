@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // alertShowHelpProtocol is the alertShowHelp: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to alertShowHelp:.
 var alertShowHelpProtocol *objc.Protocol
 

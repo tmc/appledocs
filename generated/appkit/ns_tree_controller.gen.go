@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/cloudkit"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -34,39 +35,48 @@ type ITreeController interface {
 	// properties:
 	AlwaysUsesMultipleValuesMarker() bool
 	SetAlwaysUsesMultipleValuesMarker(value bool)
-	ArrangedObjects() objc.IObject /* cross-framework: TreeNode */
-	SetArrangedObjects(value objc.IObject /* cross-framework: TreeNode */)
+	ArrangedObjects() ITreeNode
 	AvoidsEmptySelection() bool
 	SetAvoidsEmptySelection(value bool)
 	CanAddChild() bool
-	SetCanAddChild(value bool)
 	CanInsert() bool
-	SetCanInsert(value bool)
 	CanInsertChild() bool
-	SetCanInsertChild(value bool)
 	ChildrenKeyPath() objc.IObject /* cross-framework: NSString */
 	SetChildrenKeyPath(value objc.IObject /* cross-framework: NSString */)
-	Content() unsafe.Pointer
-	SetContent(value unsafe.Pointer)
+	Content() objc.ID
+	SetContent(value objc.ID)
 	CountKeyPath() objc.IObject /* cross-framework: NSString */
 	SetCountKeyPath(value objc.IObject /* cross-framework: NSString */)
 	LeafKeyPath() objc.IObject /* cross-framework: NSString */
 	SetLeafKeyPath(value objc.IObject /* cross-framework: NSString */)
 	PreservesSelection() bool
 	SetPreservesSelection(value bool)
-	SelectedNodes() objc.IObject /* cross-framework: TreeNode */
-	SetSelectedNodes(value objc.IObject /* cross-framework: TreeNode */)
-	SelectedObjects() unsafe.Pointer
-	SetSelectedObjects(value unsafe.Pointer)
-	SelectionIndexPath() objc.IObject /* cross-framework: IndexPath */
-	SetSelectionIndexPath(value objc.IObject /* cross-framework: IndexPath */)
-	SelectionIndexPaths() objc.IObject /* cross-framework: IndexPath */
-	SetSelectionIndexPaths(value objc.IObject /* cross-framework: IndexPath */)
+	SelectedNodes() []TreeNode
+	SelectedObjects() objc.IObject /* cross-framework: NSArray */
+	SelectionIndexPath() foundation.IndexPath
+	SelectionIndexPaths() []foundation.IndexPath
 	SelectsInsertedObjects() bool
 	SetSelectsInsertedObjects(value bool)
-	SortDescriptors() objectivec.IObject
-	SetSortDescriptors(value objectivec.IObject)
+	SortDescriptors() []objc.IObject
+	SetSortDescriptors(value []objc.IObject)
 	// methods:
+	Add(sender objc.IObject)
+	AddChild(sender objc.IObject)
+	AddSelectionIndexPaths(indexPaths []foundation.IndexPath) bool
+	ChildrenKeyPathForNode(node ITreeNode) foundation.String
+	CountKeyPathForNode(node ITreeNode) foundation.String
+	Insert(sender objc.IObject)
+	InsertObjectAtArrangedObjectIndexPath(object objc.IObject, indexPath foundation.IndexPath)
+	InsertObjectsAtArrangedObjectIndexPaths(objects objc.IObject /* cross-framework: NSArray */, indexPaths []foundation.IndexPath)
+	InsertChild(sender objc.IObject)
+	LeafKeyPathForNode(node ITreeNode) foundation.String
+	MoveNodesToIndexPath(nodes []TreeNode, startingIndexPath foundation.IndexPath)
+	MoveNodeToIndexPath(node ITreeNode, indexPath foundation.IndexPath)
+	RearrangeObjects()
+	Remove(sender objc.IObject)
+	RemoveObjectAtArrangedObjectIndexPath(indexPath foundation.IndexPath)
+	RemoveObjectsAtArrangedObjectIndexPaths(indexPaths []foundation.IndexPath)
+	RemoveSelectionIndexPaths(indexPaths []foundation.IndexPath) bool
 }
 
 // A bindings-compatible controller that manages a tree of objects.
@@ -124,10 +134,168 @@ func NewTreeController() TreeController {
 
 
 
+// Adds an object to the tree controller’s content after the current selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/add(_:)
+func (t_ TreeController) Add(sender objc.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("add:"), sender)
+}
+
+
+// Adds a child object to the currently selected item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/addChild(_:)
+func (t_ TreeController) AddChild(sender objc.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("addChild:"), sender)
+}
+
+
+// Adds the objects at the specified in the tree controller’s content to the current selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/addSelectionIndexPaths(_:)
+func (t_ TreeController) AddSelectionIndexPaths(indexPaths []foundation.IndexPath) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("addSelectionIndexPaths:"), indexPaths)
+	return rv
+}
+
+
+// Returns the key path used to find the children in the specified tree node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/childrenKeyPath(for:)
+func (t_ TreeController) ChildrenKeyPathForNode(node ITreeNode) foundation.String {
+	rv := objc.Send[foundation.String](t_.ID, objc.Sel("childrenKeyPathForNode:"), node)
+	return rv
+}
+
+
+// Returns the key path that provides the number of children for a specified node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/countKeyPath(for:)
+func (t_ TreeController) CountKeyPathForNode(node ITreeNode) foundation.String {
+	rv := objc.Send[foundation.String](t_.ID, objc.Sel("countKeyPathForNode:"), node)
+	return rv
+}
+
+
+// Creates a new object of the class specified by and inserts it into the tree controller’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/insert(_:)
+func (t_ TreeController) Insert(sender objc.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("insert:"), sender)
+}
+
+
+// Inserts into the tree controller’s arranged objects array at the location specified by , and adds it to the tree controller’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPath:)
+func (t_ TreeController) InsertObjectAtArrangedObjectIndexPath(object objc.IObject, indexPath foundation.IndexPath) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("insertObject:atArrangedObjectIndexPath:"), object, indexPath)
+}
+
+
+// Inserts into the tree controller’s arranged objects array at the locations specified in , and adds them to the tree controller’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/insert(_:atArrangedObjectIndexPaths:)
+func (t_ TreeController) InsertObjectsAtArrangedObjectIndexPaths(objects objc.IObject /* cross-framework: NSArray */, indexPaths []foundation.IndexPath) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("insertObjects:atArrangedObjectIndexPaths:"), objects, indexPaths)
+}
+
+
+// Creates a new object of the class specified by and inserts it into the tree controller’s content as a child of the current selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/insertChild(_:)
+func (t_ TreeController) InsertChild(sender objc.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("insertChild:"), sender)
+}
+
+
+// Returns the key path that specifies whether the node is a leaf node.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/leafKeyPath(for:)
+func (t_ TreeController) LeafKeyPathForNode(node ITreeNode) foundation.String {
+	rv := objc.Send[foundation.String](t_.ID, objc.Sel("leafKeyPathForNode:"), node)
+	return rv
+}
+
+
+// Moves the specified tree nodes to the new index path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/move(_:to:)-moi9
+func (t_ TreeController) MoveNodesToIndexPath(nodes []TreeNode, startingIndexPath foundation.IndexPath) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("moveNodes:toIndexPath:"), nodes, startingIndexPath)
+}
+
+
+// Moves the specified tree node to the new index path.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/move(_:to:)-s5xp
+func (t_ TreeController) MoveNodeToIndexPath(node ITreeNode, indexPath foundation.IndexPath) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("moveNode:toIndexPath:"), node, indexPath)
+}
+
+
+// Use this method to trigger reordering of the tree controller’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/rearrangeObjects()
+func (t_ TreeController) RearrangeObjects() {
+	objc.Send[objc.ID](t_.ID, objc.Sel("rearrangeObjects"))
+}
+
+
+// Removes the tree controller’s selected objects from the content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/remove(_:)
+func (t_ TreeController) Remove(sender objc.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("remove:"), sender)
+}
+
+
+// Removes the object at the specified in the tree controller’s arranged objects from the tree controller’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/removeObject(atArrangedObjectIndexPath:)
+func (t_ TreeController) RemoveObjectAtArrangedObjectIndexPath(indexPath foundation.IndexPath) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("removeObjectAtArrangedObjectIndexPath:"), indexPath)
+}
+
+
+// Removes the objects at the specified in the tree controller’s arranged objects from the tree controller’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/removeObjects(atArrangedObjectIndexPaths:)
+func (t_ TreeController) RemoveObjectsAtArrangedObjectIndexPaths(indexPaths []foundation.IndexPath) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("removeObjectsAtArrangedObjectIndexPaths:"), indexPaths)
+}
+
+
+// Removes the objects at the specified index paths from the tree controller’s current selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/removeSelectionIndexPaths(_:)
+func (t_ TreeController) RemoveSelectionIndexPaths(indexPaths []foundation.IndexPath) bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("removeSelectionIndexPaths:"), indexPaths)
+	return rv
+}
+
+
 // A Boolean value that indicates whether the tree controller always returns the multiple values marker when multiple objects are selected, even if the selected items have the same value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/alwaysusesmultiplevaluesmarker
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/alwaysUsesMultipleValuesMarker
 func (t_ TreeController) AlwaysUsesMultipleValuesMarker() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("alwaysUsesMultipleValuesMarker"))
 	return rv
@@ -137,7 +305,7 @@ func (t_ TreeController) AlwaysUsesMultipleValuesMarker() bool {
 // A Boolean value that indicates whether the tree controller always returns the multiple values marker when multiple objects are selected, even if the selected items have the same value.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/alwaysusesmultiplevaluesmarker
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/alwaysUsesMultipleValuesMarker
 func (t_ TreeController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAlwaysUsesMultipleValuesMarker:"), value)
 }
@@ -146,26 +314,17 @@ func (t_ TreeController) SetAlwaysUsesMultipleValuesMarker(value bool) {
 // The tree controller’s sorted content objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/arrangedobjects
-func (t_ TreeController) ArrangedObjects() objc.IObject /* cross-framework: TreeNode */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/arrangedObjects
+func (t_ TreeController) ArrangedObjects() ITreeNode {
 	rv := objc.Send[TreeNode](t_.ID, objc.Sel("arrangedObjects"))
 	return rv
-}
-
-
-// The tree controller’s sorted content objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/arrangedobjects
-func (t_ TreeController) SetArrangedObjects(value objc.IObject /* cross-framework: TreeNode */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setArrangedObjects:"), value)
 }
 
 
 // A Boolean value that indicates whether the tree controller requires the content array to attempt to maintain a selection at all times, avoiding an empty selection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/avoidsemptyselection
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/avoidsEmptySelection
 func (t_ TreeController) AvoidsEmptySelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("avoidsEmptySelection"))
 	return rv
@@ -175,7 +334,7 @@ func (t_ TreeController) AvoidsEmptySelection() bool {
 // A Boolean value that indicates whether the tree controller requires the content array to attempt to maintain a selection at all times, avoiding an empty selection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/avoidsemptyselection
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/avoidsEmptySelection
 func (t_ TreeController) SetAvoidsEmptySelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAvoidsEmptySelection:"), value)
 }
@@ -184,64 +343,37 @@ func (t_ TreeController) SetAvoidsEmptySelection(value bool) {
 // A Boolean value that indicates if a child object can be added to the tree controller’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/canaddchild
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/canAddChild
 func (t_ TreeController) CanAddChild() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canAddChild"))
 	return rv
 }
 
 
-// A Boolean value that indicates if a child object can be added to the tree controller’s content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/canaddchild
-func (t_ TreeController) SetCanAddChild(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCanAddChild:"), value)
-}
-
-
 // A Boolean value that indicates if an object can be inserted into the tree controller’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsert
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/canInsert
 func (t_ TreeController) CanInsert() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canInsert"))
 	return rv
 }
 
 
-// A Boolean value that indicates if an object can be inserted into the tree controller’s content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsert
-func (t_ TreeController) SetCanInsert(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCanInsert:"), value)
-}
-
-
 // A Boolean value that indicates if a child object can be inserted into the tree controller’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsertchild
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/canInsertChild
 func (t_ TreeController) CanInsertChild() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("canInsertChild"))
 	return rv
 }
 
 
-// A Boolean value that indicates if a child object can be inserted into the tree controller’s content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/caninsertchild
-func (t_ TreeController) SetCanInsertChild(value bool) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCanInsertChild:"), value)
-}
-
-
 // The key path used to find the children in the tree controller’s objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/childrenkeypath
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/childrenKeyPath
 func (t_ TreeController) ChildrenKeyPath() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("childrenKeyPath"))
 	return rv
@@ -251,7 +383,7 @@ func (t_ TreeController) ChildrenKeyPath() objc.IObject /* cross-framework: NSSt
 // The key path used to find the children in the tree controller’s objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/childrenkeypath
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/childrenKeyPath
 func (t_ TreeController) SetChildrenKeyPath(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setChildrenKeyPath:"), value)
 }
@@ -260,9 +392,9 @@ func (t_ TreeController) SetChildrenKeyPath(value objc.IObject /* cross-framewor
 // The tree controller’s content object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/content
-func (t_ TreeController) Content() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("content"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/content
+func (t_ TreeController) Content() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("content"))
 	return rv
 }
 
@@ -270,8 +402,8 @@ func (t_ TreeController) Content() unsafe.Pointer {
 // The tree controller’s content object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/content
-func (t_ TreeController) SetContent(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/content
+func (t_ TreeController) SetContent(value objc.ID) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setContent:"), value)
 }
 
@@ -279,7 +411,7 @@ func (t_ TreeController) SetContent(value unsafe.Pointer) {
 // The key path used to find the number of children for a node.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/countkeypath
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/countKeyPath
 func (t_ TreeController) CountKeyPath() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("countKeyPath"))
 	return rv
@@ -289,7 +421,7 @@ func (t_ TreeController) CountKeyPath() objc.IObject /* cross-framework: NSStrin
 // The key path used to find the number of children for a node.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/countkeypath
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/countKeyPath
 func (t_ TreeController) SetCountKeyPath(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCountKeyPath:"), value)
 }
@@ -298,7 +430,7 @@ func (t_ TreeController) SetCountKeyPath(value objc.IObject /* cross-framework: 
 // The key path used by the tree controller to determine if a node is a leaf key.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/leafkeypath
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/leafKeyPath
 func (t_ TreeController) LeafKeyPath() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("leafKeyPath"))
 	return rv
@@ -308,7 +440,7 @@ func (t_ TreeController) LeafKeyPath() objc.IObject /* cross-framework: NSString
 // The key path used by the tree controller to determine if a node is a leaf key.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/leafkeypath
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/leafKeyPath
 func (t_ TreeController) SetLeafKeyPath(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLeafKeyPath:"), value)
 }
@@ -317,7 +449,7 @@ func (t_ TreeController) SetLeafKeyPath(value objc.IObject /* cross-framework: N
 // A Boolean value that indicates whether the tree controller will attempt to preserve the current selection when the content changes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/preservesselection
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/preservesSelection
 func (t_ TreeController) PreservesSelection() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("preservesSelection"))
 	return rv
@@ -327,7 +459,7 @@ func (t_ TreeController) PreservesSelection() bool {
 // A Boolean value that indicates whether the tree controller will attempt to preserve the current selection when the content changes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/preservesselection
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/preservesSelection
 func (t_ TreeController) SetPreservesSelection(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPreservesSelection:"), value)
 }
@@ -336,28 +468,9 @@ func (t_ TreeController) SetPreservesSelection(value bool) {
 // An array containing the tree controller’s selected tree nodes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectednodes
-func (t_ TreeController) SelectedNodes() objc.IObject /* cross-framework: TreeNode */ {
-	rv := objc.Send[TreeNode](t_.ID, objc.Sel("selectedNodes"))
-	return rv
-}
-
-
-// An array containing the tree controller’s selected tree nodes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectednodes
-func (t_ TreeController) SetSelectedNodes(value objc.IObject /* cross-framework: TreeNode */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedNodes:"), value)
-}
-
-
-// An array containing the currently selected objects in the tree controller’s content.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectedobjects
-func (t_ TreeController) SelectedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("selectedObjects"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/selectedNodes
+func (t_ TreeController) SelectedNodes() []TreeNode {
+	rv := objc.Send[[]TreeNode](t_.ID, objc.Sel("selectedNodes"))
 	return rv
 }
 
@@ -365,54 +478,37 @@ func (t_ TreeController) SelectedObjects() unsafe.Pointer {
 // An array containing the currently selected objects in the tree controller’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectedobjects
-func (t_ TreeController) SetSelectedObjects(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedObjects:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/selectedObjects
+func (t_ TreeController) SelectedObjects() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](t_.ID, objc.Sel("selectedObjects"))
+	return rv
 }
 
 
 // The index path of the first selected object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-func (t_ TreeController) SelectionIndexPath() objc.IObject /* cross-framework: IndexPath */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/selectionIndexPath
+func (t_ TreeController) SelectionIndexPath() foundation.IndexPath {
 	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPath"))
 	return rv
 }
 
 
-// The index path of the first selected object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpath
-func (t_ TreeController) SetSelectionIndexPath(value objc.IObject /* cross-framework: IndexPath */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPath:"), value)
-}
-
-
 // An array containing the index paths of the currently selected objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-func (t_ TreeController) SelectionIndexPaths() objc.IObject /* cross-framework: IndexPath */ {
-	rv := objc.Send[foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPaths"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/selectionIndexPaths
+func (t_ TreeController) SelectionIndexPaths() []foundation.IndexPath {
+	rv := objc.Send[[]foundation.IndexPath](t_.ID, objc.Sel("selectionIndexPaths"))
 	return rv
-}
-
-
-// An array containing the index paths of the currently selected objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectionindexpaths
-func (t_ TreeController) SetSelectionIndexPaths(value objc.IObject /* cross-framework: IndexPath */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionIndexPaths:"), value)
 }
 
 
 // A Boolean value that indicates whether the tree controller automatically selects objects as they are inserted.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectsinsertedobjects
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/selectsInsertedObjects
 func (t_ TreeController) SelectsInsertedObjects() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("selectsInsertedObjects"))
 	return rv
@@ -422,7 +518,7 @@ func (t_ TreeController) SelectsInsertedObjects() bool {
 // A Boolean value that indicates whether the tree controller automatically selects objects as they are inserted.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/selectsinsertedobjects
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/selectsInsertedObjects
 func (t_ TreeController) SetSelectsInsertedObjects(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectsInsertedObjects:"), value)
 }
@@ -431,9 +527,9 @@ func (t_ TreeController) SetSelectsInsertedObjects(value bool) {
 // An array containing the sort descriptors used to arrange the tree controller’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SortDescriptors() objectivec.IObject {
-	rv := objc.Send[objectivec.IObject](t_.ID, objc.Sel("sortDescriptors"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/sortDescriptors
+func (t_ TreeController) SortDescriptors() []objc.IObject {
+	rv := objc.Send[[]objc.ID](t_.ID, objc.Sel("sortDescriptors"))
 	return rv
 }
 
@@ -441,9 +537,19 @@ func (t_ TreeController) SortDescriptors() objectivec.IObject {
 // An array containing the sort descriptors used to arrange the tree controller’s content.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstreecontroller/sortdescriptors
-func (t_ TreeController) SetSortDescriptors(value objectivec.IObject) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTreeController/sortDescriptors
+func (t_ TreeController) SetSortDescriptors(value []objc.IObject) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSortDescriptors:"), nsArray)
 }
 
 

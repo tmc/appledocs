@@ -46,10 +46,8 @@ type IError interface {
 	SetLocalizedRecoveryOptions(value IString)
 	LocalizedRecoverySuggestion() IString
 	SetLocalizedRecoverySuggestion(value IString)
-	RecoveryAttempter() unsafe.Pointer
-	SetRecoveryAttempter(value unsafe.Pointer)
-	UnderlyingErrors() objectivec.IObject
-	SetUnderlyingErrors(value objectivec.IObject)
+	UnderlyingErrors() objc.IObject
+	SetUnderlyingErrors(value objc.IObject)
 	UserInfo() IString
 	SetUserInfo(value IString)
 	NSMachErrorDomain() IString
@@ -258,28 +256,9 @@ func (e_ Error) SetLocalizedRecoverySuggestion(value IString) {
 }
 
 
-// The object in the user info dictionary corresponding to the
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/recoveryattempter
-func (e_ Error) RecoveryAttempter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("recoveryAttempter"))
-	return rv
-}
-
-
-// The object in the user info dictionary corresponding to the
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/recoveryattempter
-func (e_ Error) SetRecoveryAttempter(value unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("setRecoveryAttempter:"), value)
-}
-
-
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/underlyingerrors
-func (e_ Error) UnderlyingErrors() objectivec.IObject {
+func (e_ Error) UnderlyingErrors() objc.IObject {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("underlyingErrors"))
 	return rv
 }
@@ -287,7 +266,7 @@ func (e_ Error) UnderlyingErrors() objectivec.IObject {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nserror/underlyingerrors
-func (e_ Error) SetUnderlyingErrors(value objectivec.IObject) {
+func (e_ Error) SetUnderlyingErrors(value objc.IObject) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setUnderlyingErrors:"), value)
 }
 

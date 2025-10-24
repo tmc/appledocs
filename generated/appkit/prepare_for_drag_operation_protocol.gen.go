@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // prepareForDragOperationProtocol is the prepareForDragOperation: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to prepareForDragOperation:.
 var prepareForDragOperationProtocol *objc.Protocol
 

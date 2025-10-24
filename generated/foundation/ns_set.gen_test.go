@@ -18,7 +18,7 @@ func ExampleNewSet() {
 // ExampleNewSetWithCollectionViewIndexPaths demonstrates how to create a Set instance using NewSetWithCollectionViewIndexPaths.
 func ExampleNewSetWithCollectionViewIndexPaths() {
 	_ = foundation.NewSetWithCollectionViewIndexPaths(
-		[]foundation.IIndexPath{}, // indexPaths []IIndexPath
+		[]foundation.IndexPath{}, // indexPaths []IndexPath
 	)
 	// Output:
 }

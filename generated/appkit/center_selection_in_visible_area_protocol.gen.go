@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // centerSelectionInVisibleAreaProtocol is the centerSelectionInVisibleArea: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to centerSelectionInVisibleArea:.
 var centerSelectionInVisibleAreaProtocol *objc.Protocol
 

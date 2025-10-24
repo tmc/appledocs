@@ -31,7 +31,7 @@ type _SplitViewClass struct {
 type ISplitView interface {
 	IView
 	// properties:
-	ArrangedSubviews() []IView
+	ArrangedSubviews() []View
 	ArrangesAllSubviews() bool
 	SetArrangesAllSubviews(value bool)
 	AutosaveName() objc.IObject /* cross-framework: SplitViewAutosaveName */
@@ -147,7 +147,7 @@ func (s_ SplitView) DrawDividerInRect(rect objc.IObject /* cross-framework: Rect
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/holdingPriorityForSubview(at:)
 func (s_ SplitView) HoldingPriorityForSubviewAtIndex(subviewIndex int) objc.IObject /* cross-framework: LayoutPriority */ {
-	rv := objc.Send[LayoutPriority](s_.ID, objc.Sel("holdingPriorityForSubviewAtIndex:"), subviewIndex)
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("holdingPriorityForSubviewAtIndex:"), subviewIndex)
 	return rv
 }
 
@@ -222,7 +222,7 @@ func (s_ SplitView) SetPositionOfDividerAtIndex(position float64, dividerIndex i
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/arrangedSubviews
-func (s_ SplitView) ArrangedSubviews() []IView {
+func (s_ SplitView) ArrangedSubviews() []View {
 	rv := objc.Send[[]View](s_.ID, objc.Sel("arrangedSubviews"))
 	return rv
 }
@@ -252,7 +252,7 @@ func (s_ SplitView) SetArrangesAllSubviews(value bool) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSplitView/autosaveName-swift.property
 func (s_ SplitView) AutosaveName() objc.IObject /* cross-framework: SplitViewAutosaveName */ {
-	rv := objc.Send[SplitViewAutosaveName](s_.ID, objc.Sel("autosaveName"))
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("autosaveName"))
 	return rv
 }
 

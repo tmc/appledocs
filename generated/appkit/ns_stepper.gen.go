@@ -29,8 +29,7 @@ type _StepperClass struct {
 // An interface definition for the [Stepper] class.
 type IStepper interface {
 	IControl
-	ValueWraps() bool
-	SetValueWraps(value bool)
+	// properties:
 	Autorepeat() bool
 	SetAutorepeat(value bool)
 	Increment() float64
@@ -39,6 +38,9 @@ type IStepper interface {
 	SetMaxValue(value float64)
 	MinValue() float64
 	SetMinValue(value float64)
+	ValueWraps() bool
+	SetValueWraps(value bool)
+	// methods:
 }
 
 // An interface with up and down arrow buttons for incrementing or decrementing a value.
@@ -96,6 +98,82 @@ func NewStepper() Stepper {
 
 
 
+// A Boolean value that indicates how the stepper responds to mouse events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/autorepeat
+func (s_ Stepper) Autorepeat() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("autorepeat"))
+	return rv
+}
+
+
+// A Boolean value that indicates how the stepper responds to mouse events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/autorepeat
+func (s_ Stepper) SetAutorepeat(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAutorepeat:"), value)
+}
+
+
+// The amount by which the receiver changes with each increment or decrement.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/increment
+func (s_ Stepper) Increment() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("increment"))
+	return rv
+}
+
+
+// The amount by which the receiver changes with each increment or decrement.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/increment
+func (s_ Stepper) SetIncrement(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
+}
+
+
+// The stepper’s maximum value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/maxValue
+func (s_ Stepper) MaxValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
+	return rv
+}
+
+
+// The stepper’s maximum value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/maxValue
+func (s_ Stepper) SetMaxValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
+}
+
+
+// The stepper’s minimum value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/minValue
+func (s_ Stepper) MinValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
+	return rv
+}
+
+
+// The stepper’s minimum value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/minValue
+func (s_ Stepper) SetMinValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
+}
+
+
 // A Boolean value that indicates whether the stepper wraps around the minimum and maximum values.
 //
 // [Full Topic]
@@ -112,82 +190,6 @@ func (s_ Stepper) ValueWraps() bool {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepper/valueWraps
 func (s_ Stepper) SetValueWraps(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValueWraps:"), value)
-}
-
-
-// A Boolean value that indicates how the stepper responds to mouse events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/autorepeat
-func (s_ Stepper) Autorepeat() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("autorepeat"))
-	return rv
-}
-
-
-// A Boolean value that indicates how the stepper responds to mouse events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/autorepeat
-func (s_ Stepper) SetAutorepeat(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAutorepeat:"), value)
-}
-
-
-// The amount by which the receiver changes with each increment or decrement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/increment
-func (s_ Stepper) Increment() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("increment"))
-	return rv
-}
-
-
-// The amount by which the receiver changes with each increment or decrement.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/increment
-func (s_ Stepper) SetIncrement(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
-}
-
-
-// The stepper’s maximum value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/maxvalue
-func (s_ Stepper) MaxValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
-	return rv
-}
-
-
-// The stepper’s maximum value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/maxvalue
-func (s_ Stepper) SetMaxValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
-}
-
-
-// The stepper’s minimum value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/minvalue
-func (s_ Stepper) MinValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
-	return rv
-}
-
-
-// The stepper’s minimum value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstepper/minvalue
-func (s_ Stepper) SetMinValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
 }
 
 

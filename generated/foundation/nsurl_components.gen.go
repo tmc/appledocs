@@ -51,16 +51,16 @@ type IURLComponents interface {
 	SetPercentEncodedPath(value IString)
 	PercentEncodedQuery() IString
 	SetPercentEncodedQuery(value IString)
-	PercentEncodedQueryItems() []IURLQueryItem
-	SetPercentEncodedQueryItems(value []IURLQueryItem)
+	PercentEncodedQueryItems() []URLQueryItem
+	SetPercentEncodedQueryItems(value []URLQueryItem)
 	PercentEncodedUser() IString
 	SetPercentEncodedUser(value IString)
 	Port() INumber
 	SetPort(value INumber)
 	Query() IString
 	SetQuery(value IString)
-	QueryItems() []IURLQueryItem
-	SetQueryItems(value []IURLQueryItem)
+	QueryItems() []URLQueryItem
+	SetQueryItems(value []URLQueryItem)
 	RangeOfFragment() objc.IObject /* cross-framework: Range */
 	RangeOfHost() objc.IObject /* cross-framework: Range */
 	RangeOfPassword() objc.IObject /* cross-framework: Range */
@@ -401,7 +401,7 @@ func (u_ URLComponents) SetPercentEncodedQuery(value IString) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedQueryItems
-func (u_ URLComponents) PercentEncodedQueryItems() []IURLQueryItem {
+func (u_ URLComponents) PercentEncodedQueryItems() []URLQueryItem {
 	rv := objc.Send[[]URLQueryItem](u_.ID, objc.Sel("percentEncodedQueryItems"))
 	return rv
 }
@@ -409,7 +409,7 @@ func (u_ URLComponents) PercentEncodedQueryItems() []IURLQueryItem {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/percentEncodedQueryItems
-func (u_ URLComponents) SetPercentEncodedQueryItems(value []IURLQueryItem) {
+func (u_ URLComponents) SetPercentEncodedQueryItems(value []URLQueryItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -485,7 +485,7 @@ func (u_ URLComponents) SetQuery(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/queryItems
-func (u_ URLComponents) QueryItems() []IURLQueryItem {
+func (u_ URLComponents) QueryItems() []URLQueryItem {
 	rv := objc.Send[[]URLQueryItem](u_.ID, objc.Sel("queryItems"))
 	return rv
 }
@@ -495,7 +495,7 @@ func (u_ URLComponents) QueryItems() []IURLQueryItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLComponents/queryItems
-func (u_ URLComponents) SetQueryItems(value []IURLQueryItem) {
+func (u_ URLComponents) SetQueryItems(value []URLQueryItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {

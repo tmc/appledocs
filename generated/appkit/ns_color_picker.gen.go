@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,14 +32,17 @@ type _ColorPickerClass struct {
 // An interface definition for the [ColorPicker] class.
 type IColorPicker interface {
 	objectivec.IObject
-	AttachColorList(colorList IColorList)
-	ViewSizeChanged(sender objectivec.IObject)
-	ColorPanel() NSColorPanel
-	ProvideNewButtonImage() Image
-	ButtonToolTip() string
-	SetButtonToolTip(value string)
-	MinContentSize() coregraphics.CGSize
-	SetMinContentSize(value coregraphics.CGSize)
+	// properties:
+	ButtonToolTip() objc.IObject /* cross-framework: NSString */
+	SetButtonToolTip(value objc.IObject /* cross-framework: NSString */)
+	ColorPanel() IColorPanel
+	SetColorPanel(value IColorPanel)
+	MinContentSize() objc.IObject /* cross-framework: Size */
+	SetMinContentSize(value objc.IObject /* cross-framework: Size */)
+	ProvideNewButtonImage() IImage
+	SetProvideNewButtonImage(value IImage)
+	// methods:
+	SetMode(mode ColorPanelMode)
 }
 
 // An abstract superclass that implements the default color picking protocol.
@@ -94,30 +98,78 @@ func NewColorPicker() ColorPicker {
 
 
 
-// Overriden to attach a color list to a color picker.
+// Overriden to set the color picker’s mode.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/attachColorList(_:)
-func (c_ ColorPicker) AttachColorList(colorList IColorList) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("attachColorList:"), colorList)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/setMode(_:)
+func (c_ ColorPicker) SetMode(mode ColorPanelMode) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMode:"), mode)
 }
 
 
-// Overriden to respond to a size change.
+// The tool tip that is shown when the mouse cursor is over the color picker’s button image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/viewSizeChanged(_:)
-func (c_ ColorPicker) ViewSizeChanged(sender objectivec.IObject) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("viewSizeChanged:"), sender)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/buttontooltip
+func (c_ ColorPicker) ButtonToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("buttonToolTip"))
+	return rv
+}
+
+
+// The tool tip that is shown when the mouse cursor is over the color picker’s button image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/buttontooltip
+func (c_ ColorPicker) SetButtonToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setButtonToolTip:"), value)
 }
 
 
 // The color panel instance that owns the color picker.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/colorPanel
-func (c_ ColorPicker) ColorPanel() NSColorPanel {
-	rv := objc.Send[NSColorPanel](c_.ID, objc.Sel("colorPanel"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/colorpanel
+func (c_ ColorPicker) ColorPanel() IColorPanel {
+	rv := objc.Send[ColorPanel](c_.ID, objc.Sel("colorPanel"))
+	return rv
+}
+
+
+// The color panel instance that owns the color picker.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/colorpanel
+func (c_ ColorPicker) SetColorPanel(value IColorPanel) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColorPanel:"), value)
+}
+
+
+// The minimum content size.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/mincontentsize
+func (c_ ColorPicker) MinContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](c_.ID, objc.Sel("minContentSize"))
+	return rv
+}
+
+
+// The minimum content size.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/mincontentsize
+func (c_ ColorPicker) SetMinContentSize(value objc.IObject /* cross-framework: Size */) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setMinContentSize:"), value)
+}
+
+
+// The button image used by the color picker.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/providenewbuttonimage
+func (c_ ColorPicker) ProvideNewButtonImage() IImage {
+	rv := objc.Send[Image](c_.ID, objc.Sel("provideNewButtonImage"))
 	return rv
 }
 
@@ -125,48 +177,9 @@ func (c_ ColorPicker) ColorPanel() NSColorPanel {
 // The button image used by the color picker.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPicker/provideNewButtonImage
-func (c_ ColorPicker) ProvideNewButtonImage() Image {
-	rv := objc.Send[Image](c_.ID, objc.Sel("provideNewButtonImage"))
-	return rv
-}
-
-
-// The tool tip that is shown when the mouse cursor is over the color picker’s button image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/buttontooltip
-func (c_ ColorPicker) ButtonToolTip() string {
-	rv := objc.Send[string](c_.ID, objc.Sel("buttonToolTip"))
-	return rv
-}
-
-
-// The tool tip that is shown when the mouse cursor is over the color picker’s button image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/buttontooltip
-func (c_ ColorPicker) SetButtonToolTip(value string) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setButtonToolTip:"), objc.String(value))
-}
-
-
-// The minimum content size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/mincontentsize
-func (c_ ColorPicker) MinContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("minContentSize"))
-	return rv
-}
-
-
-// The minimum content size.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/mincontentsize
-func (c_ ColorPicker) SetMinContentSize(value coregraphics.CGSize) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setMinContentSize:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpicker/providenewbuttonimage
+func (c_ ColorPicker) SetProvideNewButtonImage(value IImage) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setProvideNewButtonImage:"), value)
 }
 
 

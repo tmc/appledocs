@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // completeProtocol is the complete: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to complete:.
 var completeProtocol *objc.Protocol
 

@@ -30,12 +30,12 @@ type _TextInsertionIndicatorClass struct {
 type ITextInsertionIndicator interface {
 	IView
 	// properties:
-	AutomaticModeOptions() TextInsertionIndicatorAutomaticModeOptions
-	SetAutomaticModeOptions(value TextInsertionIndicatorAutomaticModeOptions)
-	Color() IColor
-	SetColor(value IColor)
 	DisplayMode() TextInsertionIndicatorDisplayMode
 	SetDisplayMode(value TextInsertionIndicatorDisplayMode)
+	AutomaticModeOptions() unsafe.Pointer
+	SetAutomaticModeOptions(value unsafe.Pointer)
+	Color() IColor
+	SetColor(value IColor)
 	EffectsViewInserter() unsafe.Pointer
 	SetEffectsViewInserter(value unsafe.Pointer)
 	// methods:
@@ -96,44 +96,6 @@ func NewTextInsertionIndicator() TextInsertionIndicator {
 
 
 
-// Options that affect the automatic display mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
-func (t_ TextInsertionIndicator) AutomaticModeOptions() TextInsertionIndicatorAutomaticModeOptions {
-	rv := objc.Send[TextInsertionIndicatorAutomaticModeOptions](t_.ID, objc.Sel("automaticModeOptions"))
-	return rv
-}
-
-
-// Options that affect the automatic display mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/automaticModeOptions-swift.property
-func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value TextInsertionIndicatorAutomaticModeOptions) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticModeOptions:"), value)
-}
-
-
-// The color of this indicator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/color
-func (t_ TextInsertionIndicator) Color() IColor {
-	rv := objc.Send[Color](t_.ID, objc.Sel("color"))
-	return rv
-}
-
-
-// The color of this indicator.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/color
-func (t_ TextInsertionIndicator) SetColor(value IColor) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
-}
-
-
 // A value that describes the display mode of an indicator.
 //
 // [Full Topic]
@@ -153,10 +115,48 @@ func (t_ TextInsertionIndicator) SetDisplayMode(value TextInsertionIndicatorDisp
 }
 
 
+// Options that affect the automatic display mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.property
+func (t_ TextInsertionIndicator) AutomaticModeOptions() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("automaticModeOptions"))
+	return rv
+}
+
+
+// Options that affect the automatic display mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinsertionindicator/automaticmodeoptions-swift.property
+func (t_ TextInsertionIndicator) SetAutomaticModeOptions(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAutomaticModeOptions:"), value)
+}
+
+
+// The color of this indicator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinsertionindicator/color
+func (t_ TextInsertionIndicator) Color() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("color"))
+	return rv
+}
+
+
+// The color of this indicator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinsertionindicator/color
+func (t_ TextInsertionIndicator) SetColor(value IColor) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setColor:"), value)
+}
+
+
 // An optional closure the system calls during dictation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/effectsViewInserter
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinsertionindicator/effectsviewinserter
 func (t_ TextInsertionIndicator) EffectsViewInserter() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("effectsViewInserter"))
 	return rv
@@ -166,7 +166,7 @@ func (t_ TextInsertionIndicator) EffectsViewInserter() unsafe.Pointer {
 // An optional closure the system calls during dictation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextInsertionIndicator/effectsViewInserter
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextinsertionindicator/effectsviewinserter
 func (t_ TextInsertionIndicator) SetEffectsViewInserter(value unsafe.Pointer) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setEffectsViewInserter:"), value)
 }

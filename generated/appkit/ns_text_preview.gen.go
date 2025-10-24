@@ -33,12 +33,9 @@ type _TextPreviewClass struct {
 type ITextPreview interface {
 	objectivec.IObject
 	// properties:
-	CandidateRects() objc.IObject /* cross-framework: Value */
-	SetCandidateRects(value objc.IObject /* cross-framework: Value */)
+	CandidateRects() []foundation.Value
 	PresentationFrame() objc.IObject /* cross-framework: Rect */
-	SetPresentationFrame(value objc.IObject /* cross-framework: Rect */)
-	PreviewImage() IImage
-	SetPreviewImage(value IImage)
+	PreviewImage() ImageRef /* not a class type */
 	// methods:
 }
 
@@ -95,61 +92,58 @@ func NewTextPreview() TextPreview {
 
 
 
-// Rectangles that define the specific portions of text to highlight.
+// Creates a text preview using the specified image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-func (t_ TextPreview) CandidateRects() objc.IObject /* cross-framework: Value */ {
-	rv := objc.Send[foundation.Value](t_.ID, objc.Sel("candidateRects"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview/init(snapshotImage:presentationFrame:)
+func NewTextPreviewWithSnapshotImagePresentationFrame(snapshotImage ImageRef /* not a class type */, presentationFrame objc.IObject /* cross-framework: Rect */) TextPreview {
+	instance := getTextPreviewClass().Alloc()
+	rv := objc.Send[TextPreview](instance.ID, objc.Sel("initWithSnapshotImage:presentationFrame:"), snapshotImage, presentationFrame)
+	rv.Autorelease()
 	return rv
 }
 
 
-// Rectangles that define the specific portions of text to highlight.
+// Creates a text preview using the specified image and rectangles that indicate the portions of text to highlight.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/candidaterects
-func (t_ TextPreview) SetCandidateRects(value objc.IObject /* cross-framework: Value */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCandidateRects:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview/init(snapshotImage:presentationFrame:candidateRects:)
+func NewTextPreviewWithSnapshotImagePresentationFrameCandidateRects(snapshotImage ImageRef /* not a class type */, presentationFrame objc.IObject /* cross-framework: Rect */, candidateRects []foundation.Value) TextPreview {
+	instance := getTextPreviewClass().Alloc()
+	rv := objc.Send[TextPreview](instance.ID, objc.Sel("initWithSnapshotImage:presentationFrame:candidateRects:"), snapshotImage, presentationFrame, candidateRects)
+	rv.Autorelease()
+	return rv
 }
 
 
-// The frame rectangle that places the preview image directly over the
+
+// Rectangles that define the specific portions of text to highlight.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/presentationframe
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview/candidateRects
+func (t_ TextPreview) CandidateRects() []foundation.Value {
+	rv := objc.Send[[]foundation.Value](t_.ID, objc.Sel("candidateRects"))
+	return rv
+}
+
+
+// The frame rectangle that places the preview image directly over the matching text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview/presentationFrame
 func (t_ TextPreview) PresentationFrame() objc.IObject /* cross-framework: Rect */ {
 	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("presentationFrame"))
 	return rv
 }
 
 
-// The frame rectangle that places the preview image directly over the
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/presentationframe
-func (t_ TextPreview) SetPresentationFrame(value objc.IObject /* cross-framework: Rect */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPresentationFrame:"), value)
-}
-
-
 // The image that contains the requested text from your view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
-func (t_ TextPreview) PreviewImage() IImage {
-	rv := objc.Send[Image](t_.ID, objc.Sel("previewImage"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextPreview/previewImage
+func (t_ TextPreview) PreviewImage() ImageRef /* not a class type */ {
+	rv := objc.Send[ImageRef](t_.ID, objc.Sel("previewImage"))
 	return rv
 }
-
-
-// The image that contains the requested text from your view.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextpreview/previewimage
-func (t_ TextPreview) SetPreviewImage(value IImage) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setPreviewImage:"), value)
-}
-
 
 

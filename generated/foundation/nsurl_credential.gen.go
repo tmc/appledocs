@@ -31,8 +31,6 @@ type _URLCredentialClass struct {
 type IURLCredential interface {
 	objectivec.IObject
 	// properties:
-	Certificates() unsafe.Pointer
-	SetCertificates(value unsafe.Pointer)
 	HasPassword() bool
 	SetHasPassword(value bool)
 	Identity() unsafe.Pointer
@@ -117,25 +115,6 @@ func NewURLCredentialForTrust(trust unsafe.Pointer) URLCredential {
 func (uc _URLCredentialClass) CredentialForTrust(trust unsafe.Pointer) IURLCredential {
 	rv := objc.Send[URLCredential](objc.ID(uc.class), objc.Sel("credentialForTrust:"), trust)
 	return rv
-}
-
-
-// The intermediate certificates of the credential, if it is a client certificate credential.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/certificates
-func (u_ URLCredential) Certificates() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("certificates"))
-	return rv
-}
-
-
-// The intermediate certificates of the credential, if it is a client certificate credential.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/urlcredential/certificates
-func (u_ URLCredential) SetCertificates(value unsafe.Pointer) {
-	objc.Send[objc.ID](u_.ID, objc.Sel("setCertificates:"), value)
 }
 
 

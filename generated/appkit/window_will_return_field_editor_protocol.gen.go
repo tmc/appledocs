@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // windowWillReturnFieldEditorProtocol is the windowWillReturnFieldEditor: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to windowWillReturnFieldEditor:.
 var windowWillReturnFieldEditorProtocol *objc.Protocol
 

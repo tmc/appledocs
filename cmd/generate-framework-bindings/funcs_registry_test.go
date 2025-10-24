@@ -204,11 +204,11 @@ func TestResolveTypeWithRegistry(t *testing.T) {
 			wantReason: "Window is in AppKit, so return unqualified",
 		},
 		{
-			name:       "Cross framework - currently uses hardcoded map",
+			name:       "Cross framework - resolves with qualification",
 			framework:  "AppKit",
 			typeName:   "URL",
-			want:       "URL", // TODO(appledocs-437): Should be "foundation.URL" once hardcoded maps removed
-			wantReason: "URL matches hardcoded foundationTypes map (takes precedence over registry)",
+			want:       "foundation.URL", // URL is from Foundation, qualified in AppKit
+			wantReason: "URL from Foundation is qualified when used in AppKit",
 		},
 		{
 			name:       "Enum same framework",

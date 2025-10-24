@@ -34,8 +34,8 @@ type IURLSessionWebSocketTask interface {
 	CloseReason() IData
 	MaximumMessageSize() int
 	SetMaximumMessageSize(value int)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	Delegate() objc.IObject /* cross-framework: URLSessionDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: URLSessionDelegate */)
 	HttpCookieStorage() IHTTPCookieStorage
 	SetHttpCookieStorage(value IHTTPCookieStorage)
 	// methods:
@@ -179,8 +179,8 @@ func (u_ URLSessionWebSocketTask) SetMaximumMessageSize(value int) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/delegate
-func (u_ URLSessionWebSocketTask) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("delegate"))
+func (u_ URLSessionWebSocketTask) Delegate() objc.IObject /* cross-framework: URLSessionDelegate */ {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -189,7 +189,7 @@ func (u_ URLSessionWebSocketTask) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsession/delegate
-func (u_ URLSessionWebSocketTask) SetDelegate(value unsafe.Pointer) {
+func (u_ URLSessionWebSocketTask) SetDelegate(value objc.IObject /* cross-framework: URLSessionDelegate */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
 

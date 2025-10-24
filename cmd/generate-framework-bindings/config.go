@@ -17,8 +17,16 @@ type Config struct {
 
 // SyntheticTypedefConfig represents a typedef to be injected into generated code.
 type SyntheticTypedefConfig struct {
+	Name       string                   `yaml:"name"`
+	BaseType   string                   `yaml:"base_type"`
+	Abstract   string                   `yaml:"abstract"`
+	EnumValues []SyntheticEnumValueConfig `yaml:"enum_values,omitempty"`
+}
+
+// SyntheticEnumValueConfig represents an enum case value.
+type SyntheticEnumValueConfig struct {
 	Name     string `yaml:"name"`
-	BaseType string `yaml:"base_type"`
+	Value    int    `yaml:"value"`
 	Abstract string `yaml:"abstract"`
 }
 

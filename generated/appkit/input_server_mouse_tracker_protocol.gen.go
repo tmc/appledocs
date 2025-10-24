@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // InputServerMouseTrackerProtocol is the NSInputServerMouseTracker protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSInputServerMouseTracker.
 var InputServerMouseTrackerProtocol *objc.Protocol
 

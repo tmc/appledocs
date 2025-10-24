@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // EditorProtocol is the NSEditor protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSEditor.
 var EditorProtocol *objc.Protocol
 

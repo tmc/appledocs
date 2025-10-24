@@ -33,9 +33,7 @@ type IPICTImageRep interface {
 	IImageRep
 	// properties:
 	BoundingBox() objc.IObject /* cross-framework: Rect */
-	SetBoundingBox(value objc.IObject /* cross-framework: Rect */)
-	PictRepresentation() objc.IObject /* cross-framework: Data */
-	SetPictRepresentation(value objc.IObject /* cross-framework: Data */)
+	PICTRepresentation() objc.IObject /* cross-framework: NSData */
 	// methods:
 }
 
@@ -92,42 +90,46 @@ func NewPICTImageRep() PICTImageRep {
 
 
 
+// Returns a representation of an image from the specified data in the PICT file format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep/init(data:)
+func NewPICTImageRepWithData(pictData objc.IObject /* cross-framework: NSData */) PICTImageRep {
+	instance := getPICTImageRepClass().Alloc()
+	rv := objc.Send[PICTImageRep](instance.ID, objc.Sel("initWithData:"), pictData)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates and returns a representation of an image from the specified data in the PICT file format.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep/imageRepWithData:
+func (pc _PICTImageRepClass) ImageRepWithData(pictData objc.IObject /* cross-framework: NSData */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(pc.class), objc.Sel("imageRepWithData:"), pictData)
+	return rv
+}
+
+
 // The rectangle that bounds the image representation.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/boundingbox
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep/boundingBox
 func (p_ PICTImageRep) BoundingBox() objc.IObject /* cross-framework: Rect */ {
 	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("boundingBox"))
 	return rv
 }
 
 
-// The rectangle that bounds the image representation.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/boundingbox
-func (p_ PICTImageRep) SetBoundingBox(value objc.IObject /* cross-framework: Rect */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBoundingBox:"), value)
-}
-
-
 // The image representation’s PICT data.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/pictrepresentation
-func (p_ PICTImageRep) PictRepresentation() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](p_.ID, objc.Sel("pictRepresentation"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPICTImageRep/pictRepresentation
+func (p_ PICTImageRep) PICTRepresentation() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](p_.ID, objc.Sel("PICTRepresentation"))
 	return rv
 }
-
-
-// The image representation’s PICT data.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspictimagerep/pictrepresentation
-func (p_ PICTImageRep) SetPictRepresentation(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setPictRepresentation:"), value)
-}
-
 
 

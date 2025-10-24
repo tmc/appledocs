@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // pageUpAndModifySelectionProtocol is the pageUpAndModifySelection: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to pageUpAndModifySelection:.
 var pageUpAndModifySelectionProtocol *objc.Protocol
 

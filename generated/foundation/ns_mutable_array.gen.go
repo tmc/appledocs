@@ -57,7 +57,7 @@ type IMutableArray interface {
 	SortUsingFunctionContext(compare unsafe.Pointer, context unsafe.Pointer)
 	SortUsingComparator(cmptr Comparator /* not a class type */)
 	SortWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */)
-	SortUsingDescriptors(sortDescriptors []ISortDescriptor)
+	SortUsingDescriptors(sortDescriptors []SortDescriptor)
 	SortUsingSelector(comparator objc.SEL)
 }
 
@@ -429,7 +429,7 @@ func (m_ MutableArray) SortWithOptionsUsingComparator(opts SortOptions, cmptr Co
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableArray/sort(using:)-4eh07
-func (m_ MutableArray) SortUsingDescriptors(sortDescriptors []ISortDescriptor) {
+func (m_ MutableArray) SortUsingDescriptors(sortDescriptors []SortDescriptor) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("sortUsingDescriptors:"), sortDescriptors)
 }
 

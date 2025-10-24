@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveWordBackwardAndModifySelectionProtocol is the moveWordBackwardAndModifySelection: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveWordBackwardAndModifySelection:.
 var moveWordBackwardAndModifySelectionProtocol *objc.Protocol
 

@@ -7,8 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
-	"github.com/tmc/appledocs/generated/objectivec"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [Popover] class.
@@ -31,29 +30,28 @@ type _PopoverClass struct {
 // An interface definition for the [Popover] class.
 type IPopover interface {
 	IResponder
-	PerformClose(sender objectivec.IObject)
-	Behavior() PopoverBehavior
-	SetBehavior(value PopoverBehavior)
-	ContentViewController() NSViewController
-	SetContentViewController(value IViewController)
-	EffectiveAppearance() NSAppearance
-	HasFullSizeContent() bool
-	SetHasFullSizeContent(value bool)
-	Shown() bool
+	// properties:
 	Animates() bool
 	SetAnimates(value bool)
-	Appearance() NSAppearance
+	Appearance() IAppearance
 	SetAppearance(value IAppearance)
-	ContentSize() coregraphics.CGSize
-	SetContentSize(value coregraphics.CGSize)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	ContentSize() objc.IObject /* cross-framework: Size */
+	SetContentSize(value objc.IObject /* cross-framework: Size */)
+	ContentViewController() IViewController
+	SetContentViewController(value IViewController)
+	Delegate() objc.IObject /* cross-framework: PopoverDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: PopoverDelegate */)
+	EffectiveAppearance() IAppearance
+	SetEffectiveAppearance(value IAppearance)
+	HasFullSizeContent() bool
+	SetHasFullSizeContent(value bool)
 	IsDetached() bool
 	SetIsDetached(value bool)
 	IsShown() bool
 	SetIsShown(value bool)
-	PositioningRect() coregraphics.CGRect
-	SetPositioningRect(value coregraphics.CGRect)
+	PositioningRect() objc.IObject /* cross-framework: Rect */
+	SetPositioningRect(value objc.IObject /* cross-framework: Rect */)
+	// methods:
 }
 
 // A means to display additional content related to existing content on the screen.
@@ -111,96 +109,10 @@ func NewPopover() Popover {
 
 
 
-// Attempts to close the popover.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/performClose(_:)
-func (p_ Popover) PerformClose(sender objectivec.IObject) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("performClose:"), sender)
-}
-
-
-// Specifies the behavior of the popover.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/behavior-swift.property
-func (p_ Popover) Behavior() PopoverBehavior {
-	rv := objc.Send[PopoverBehavior](p_.ID, objc.Sel("behavior"))
-	return rv
-}
-
-
-// Specifies the behavior of the popover.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/behavior-swift.property
-func (p_ Popover) SetBehavior(value PopoverBehavior) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setBehavior:"), value)
-}
-
-
-// The view controller that manages the content of the popover.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/contentViewController
-func (p_ Popover) ContentViewController() NSViewController {
-	rv := objc.Send[NSViewController](p_.ID, objc.Sel("contentViewController"))
-	return rv
-}
-
-
-// The view controller that manages the content of the popover.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/contentViewController
-func (p_ Popover) SetContentViewController(value IViewController) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setContentViewController:"), value)
-}
-
-
-// The appearance that will be used when the popover is displayed onscreen.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/effectiveAppearance
-func (p_ Popover) EffectiveAppearance() NSAppearance {
-	rv := objc.Send[NSAppearance](p_.ID, objc.Sel("effectiveAppearance"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the content view of the popover extends into the arrow region.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/hasFullSizeContent
-func (p_ Popover) HasFullSizeContent() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("hasFullSizeContent"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the content view of the popover extends into the arrow region.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/hasFullSizeContent
-func (p_ Popover) SetHasFullSizeContent(value bool) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setHasFullSizeContent:"), value)
-}
-
-
-// The display state of the popover.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/isShown
-func (p_ Popover) Shown() bool {
-	rv := objc.Send[bool](p_.ID, objc.Sel("shown"))
-	return rv
-}
-
-
 // Specifies if the popover is to be animated.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/animates
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/animates
 func (p_ Popover) Animates() bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("animates"))
 	return rv
@@ -210,7 +122,7 @@ func (p_ Popover) Animates() bool {
 // Specifies if the popover is to be animated.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/animates
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPopover/animates
 func (p_ Popover) SetAnimates(value bool) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAnimates:"), value)
 }
@@ -220,8 +132,8 @@ func (p_ Popover) SetAnimates(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/appearance-swift.property
-func (p_ Popover) Appearance() NSAppearance {
-	rv := objc.Send[NSAppearance](p_.ID, objc.Sel("appearance"))
+func (p_ Popover) Appearance() IAppearance {
+	rv := objc.Send[Appearance](p_.ID, objc.Sel("appearance"))
 	return rv
 }
 
@@ -239,8 +151,8 @@ func (p_ Popover) SetAppearance(value IAppearance) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/contentsize
-func (p_ Popover) ContentSize() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](p_.ID, objc.Sel("contentSize"))
+func (p_ Popover) ContentSize() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](p_.ID, objc.Sel("contentSize"))
 	return rv
 }
 
@@ -249,8 +161,27 @@ func (p_ Popover) ContentSize() coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/contentsize
-func (p_ Popover) SetContentSize(value coregraphics.CGSize) {
+func (p_ Popover) SetContentSize(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setContentSize:"), value)
+}
+
+
+// The view controller that manages the content of the popover.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/contentviewcontroller
+func (p_ Popover) ContentViewController() IViewController {
+	rv := objc.Send[ViewController](p_.ID, objc.Sel("contentViewController"))
+	return rv
+}
+
+
+// The view controller that manages the content of the popover.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/contentviewcontroller
+func (p_ Popover) SetContentViewController(value IViewController) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setContentViewController:"), value)
 }
 
 
@@ -258,8 +189,8 @@ func (p_ Popover) SetContentSize(value coregraphics.CGSize) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/delegate
-func (p_ Popover) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("delegate"))
+func (p_ Popover) Delegate() objc.IObject /* cross-framework: PopoverDelegate */ {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -268,8 +199,46 @@ func (p_ Popover) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/delegate
-func (p_ Popover) SetDelegate(value unsafe.Pointer) {
+func (p_ Popover) SetDelegate(value objc.IObject /* cross-framework: PopoverDelegate */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// The appearance that will be used when the popover is displayed onscreen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/effectiveappearance
+func (p_ Popover) EffectiveAppearance() IAppearance {
+	rv := objc.Send[Appearance](p_.ID, objc.Sel("effectiveAppearance"))
+	return rv
+}
+
+
+// The appearance that will be used when the popover is displayed onscreen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/effectiveappearance
+func (p_ Popover) SetEffectiveAppearance(value IAppearance) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setEffectiveAppearance:"), value)
+}
+
+
+// A Boolean value that indicates whether the content view of the popover extends into the arrow region.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/hasfullsizecontent
+func (p_ Popover) HasFullSizeContent() bool {
+	rv := objc.Send[bool](p_.ID, objc.Sel("hasFullSizeContent"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the content view of the popover extends into the arrow region.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/hasfullsizecontent
+func (p_ Popover) SetHasFullSizeContent(value bool) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setHasFullSizeContent:"), value)
 }
 
 
@@ -315,8 +284,8 @@ func (p_ Popover) SetIsShown(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/positioningrect
-func (p_ Popover) PositioningRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](p_.ID, objc.Sel("positioningRect"))
+func (p_ Popover) PositioningRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](p_.ID, objc.Sel("positioningRect"))
 	return rv
 }
 
@@ -325,7 +294,7 @@ func (p_ Popover) PositioningRect() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopover/positioningrect
-func (p_ Popover) SetPositioningRect(value coregraphics.CGRect) {
+func (p_ Popover) SetPositioningRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setPositioningRect:"), value)
 }
 

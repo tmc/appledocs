@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // uppercaseWordProtocol is the uppercaseWord: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to uppercaseWord:.
 var uppercaseWordProtocol *objc.Protocol
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,10 +32,8 @@ type _OpenGLPixelFormatClass struct {
 type IOpenGLPixelFormat interface {
 	objectivec.IObject
 	// properties:
-	CglPixelFormatObj() LPixelFormatObj /* not a class type */
-	SetCglPixelFormatObj(value LPixelFormatObj /* not a class type */)
+	CGLPixelFormatObj() LPixelFormatObj /* not a class type */
 	NumberOfVirtualScreens() unsafe.Pointer
-	SetNumberOfVirtualScreens(value unsafe.Pointer)
 	// methods:
 }
 
@@ -91,42 +90,60 @@ func NewOpenGLPixelFormat() OpenGLPixelFormat {
 
 
 
-// The low-level, platform-specific Core OpenGL (CGL) pixel format object represented by the receiver.
+// Returns an OpenGL pixel format object initialized with specified pixel format attributes.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/cglpixelformatobj
-func (o_ OpenGLPixelFormat) CglPixelFormatObj() LPixelFormatObj /* not a class type */ {
-	rv := objc.Send[LPixelFormatObj](o_.ID, objc.Sel("cglPixelFormatObj"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/init(attributes:)
+func NewOpenGLPixelFormatWithAttributes(attribs objc.IObject /* cross-framework: OpenGLPixelFormatAttribute */) OpenGLPixelFormat {
+	instance := getOpenGLPixelFormatClass().Alloc()
+	rv := objc.Send[OpenGLPixelFormat](instance.ID, objc.Sel("initWithAttributes:"), attribs)
+	rv.Autorelease()
 	return rv
 }
 
 
+// Returns an OpenGL pixel format object initialized with using an existing CGL pixel format object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/init(cglPixelFormatObj:)
+func NewOpenGLPixelFormatWithCGLPixelFormatObj(format LPixelFormatObj /* not a class type */) OpenGLPixelFormat {
+	instance := getOpenGLPixelFormatClass().Alloc()
+	rv := objc.Send[OpenGLPixelFormat](instance.ID, objc.Sel("initWithCGLPixelFormatObj:"), format)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Returns an OpenGL pixel format object initialized with specified pixel format attribute data.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/initWithData:
+func NewOpenGLPixelFormatWithData(attribs objc.IObject /* cross-framework: NSData */) OpenGLPixelFormat {
+	instance := getOpenGLPixelFormatClass().Alloc()
+	rv := objc.Send[OpenGLPixelFormat](instance.ID, objc.Sel("initWithData:"), attribs)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The low-level, platform-specific Core OpenGL (CGL) pixel format object represented by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/cglpixelformatobj
-func (o_ OpenGLPixelFormat) SetCglPixelFormatObj(value LPixelFormatObj /* not a class type */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCglPixelFormatObj:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/cglPixelFormatObj
+func (o_ OpenGLPixelFormat) CGLPixelFormatObj() LPixelFormatObj /* not a class type */ {
+	rv := objc.Send[LPixelFormatObj](o_.ID, objc.Sel("CGLPixelFormatObj"))
+	return rv
 }
 
 
 // The number of virtual screens associated with the OpenGL pixel format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/numberofvirtualscreens
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLPixelFormat/numberOfVirtualScreens
 func (o_ OpenGLPixelFormat) NumberOfVirtualScreens() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("numberOfVirtualScreens"))
 	return rv
 }
-
-
-// The number of virtual screens associated with the OpenGL pixel format.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglpixelformat/numberofvirtualscreens
-func (o_ OpenGLPixelFormat) SetNumberOfVirtualScreens(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setNumberOfVirtualScreens:"), value)
-}
-
 
 

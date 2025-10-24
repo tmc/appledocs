@@ -42,11 +42,11 @@ type IXMLDTD interface {
 	ElementDeclarationForName(name IString) IXMLDTDNode
 	EntityDeclarationForName(name IString) IXMLDTDNode
 	InsertChildAtIndex(child IXMLNode, index uint)
-	InsertChildrenAtIndex(children []IXMLNode, index uint)
+	InsertChildrenAtIndex(children []XMLNode, index uint)
 	NotationDeclarationForName(name IString) IXMLDTDNode
 	RemoveChildAtIndex(index uint)
 	ReplaceChildAtIndexWithNode(index uint, node IXMLNode)
-	SetChildren(children []IXMLNode)
+	SetChildren(children []XMLNode)
 }
 
 // A representation of a Document Type Definition.
@@ -201,7 +201,7 @@ func (x_ XMLDTD) InsertChildAtIndex(child IXMLNode, index uint) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/insertChildren(_:at:)
-func (x_ XMLDTD) InsertChildrenAtIndex(children []IXMLNode, index uint) {
+func (x_ XMLDTD) InsertChildrenAtIndex(children []XMLNode, index uint) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("insertChildren:atIndex:"), children, index)
 }
 
@@ -238,7 +238,7 @@ func (x_ XMLDTD) ReplaceChildAtIndexWithNode(index uint, node IXMLNode) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/XMLDTD/setChildren(_:)
-func (x_ XMLDTD) SetChildren(children []IXMLNode) {
+func (x_ XMLDTD) SetChildren(children []XMLNode) {
 	objc.Send[objc.ID](x_.ID, objc.Sel("setChildren:"), children)
 }
 

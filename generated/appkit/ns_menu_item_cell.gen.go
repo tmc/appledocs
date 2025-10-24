@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [MenuItemCell] class.
@@ -31,22 +33,28 @@ type IMenuItemCell interface {
 	IButtonCell
 	// properties:
 	ImageWidth() float64
-	SetImageWidth(value float64)
 	KeyEquivalentWidth() float64
-	SetKeyEquivalentWidth(value float64)
-	MenuItem() objc.IObject /* cross-framework: MenuItem */
-	SetMenuItem(value objc.IObject /* cross-framework: MenuItem */)
+	MenuItem() IMenuItem
+	SetMenuItem(value IMenuItem)
 	NeedsDisplay() bool
 	SetNeedsDisplay(value bool)
 	NeedsSizing() bool
 	SetNeedsSizing(value bool)
 	StateImageWidth() float64
-	SetStateImageWidth(value float64)
 	Tag() int
 	SetTag(value int)
 	TitleWidth() float64
-	SetTitleWidth(value float64)
 	// methods:
+	CalcSize()
+	DrawBorderAndBackgroundWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView)
+	DrawImageWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView)
+	DrawKeyEquivalentWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView)
+	DrawSeparatorItemWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView)
+	DrawStateImageWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView)
+	DrawTitleWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView)
+	KeyEquivalentRectForBounds(cellFrame objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	StateImageRectForBounds(cellFrame objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
+	TitleRectForBounds(cellFrame objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
 }
 
 // An object that handles the measurement and display of a single menu item in its encompassing frame.
@@ -102,49 +110,145 @@ func NewMenuItemCell() MenuItemCell {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/init(textCell:)
+func NewMenuItemCellTextCell(string_ objc.IObject /* cross-framework: NSString */) MenuItemCell {
+	instance := getMenuItemCellClass().Alloc()
+	rv := objc.Send[MenuItemCell](instance.ID, objc.Sel("initTextCell:"), string_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/init(coder:)
+func NewMenuItemCellWithCoder(coder foundation.Coder) MenuItemCell {
+	instance := getMenuItemCellClass().Alloc()
+	rv := objc.Send[MenuItemCell](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Calculates the minimum required width and height of the receiver’s menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/calcSize()
+func (m_ MenuItemCell) CalcSize() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("calcSize"))
+}
+
+
+// Draws the borders and background associated with the receiver’s menu item (if any).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/drawBorderAndBackground(withFrame:in:)
+func (m_ MenuItemCell) DrawBorderAndBackgroundWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("drawBorderAndBackgroundWithFrame:inView:"), cellFrame, controlView)
+}
+
+
+// Draws the image associated with the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/drawImage(withFrame:in:)
+func (m_ MenuItemCell) DrawImageWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("drawImageWithFrame:inView:"), cellFrame, controlView)
+}
+
+
+// Draws the key equivalent associated with the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/drawKeyEquivalent(withFrame:in:)
+func (m_ MenuItemCell) DrawKeyEquivalentWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("drawKeyEquivalentWithFrame:inView:"), cellFrame, controlView)
+}
+
+
+// Draws a menu item separator.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/drawSeparatorItem(withFrame:in:)
+func (m_ MenuItemCell) DrawSeparatorItemWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("drawSeparatorItemWithFrame:inView:"), cellFrame, controlView)
+}
+
+
+// Draws the state image associated with the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/drawStateImage(withFrame:in:)
+func (m_ MenuItemCell) DrawStateImageWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("drawStateImageWithFrame:inView:"), cellFrame, controlView)
+}
+
+
+// Draws the title associated with the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/drawTitle(withFrame:in:)
+func (m_ MenuItemCell) DrawTitleWithFrameInView(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("drawTitleWithFrame:inView:"), cellFrame, controlView)
+}
+
+
+// Returns the rectangle into which the menu item’s key equivalent should be drawn.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/keyEquivalentRect(forBounds:)
+func (m_ MenuItemCell) KeyEquivalentRectForBounds(cellFrame objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("keyEquivalentRectForBounds:"), cellFrame)
+	return rv
+}
+
+
+// Returns the rectangle into which the menu item’s state image should be drawn.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/stateImageRect(forBounds:)
+func (m_ MenuItemCell) StateImageRectForBounds(cellFrame objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("stateImageRectForBounds:"), cellFrame)
+	return rv
+}
+
+
+// Returns the rectangle into which the menu item’s title should be drawn.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/titleRect(forBounds:)
+func (m_ MenuItemCell) TitleRectForBounds(cellFrame objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](m_.ID, objc.Sel("titleRectForBounds:"), cellFrame)
+	return rv
+}
+
+
 // The width of the image associated with the menu item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/imagewidth
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/imageWidth
 func (m_ MenuItemCell) ImageWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("imageWidth"))
 	return rv
 }
 
 
-// The width of the image associated with the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/imagewidth
-func (m_ MenuItemCell) SetImageWidth(value float64) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImageWidth:"), value)
-}
-
-
 // The width of the menu item’s key equivalent string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/keyequivalentwidth
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/keyEquivalentWidth
 func (m_ MenuItemCell) KeyEquivalentWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("keyEquivalentWidth"))
 	return rv
 }
 
 
-// The width of the menu item’s key equivalent string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/keyequivalentwidth
-func (m_ MenuItemCell) SetKeyEquivalentWidth(value float64) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyEquivalentWidth:"), value)
-}
-
-
 // The menu item object associated with the cell.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/menuitem
-func (m_ MenuItemCell) MenuItem() objc.IObject /* cross-framework: MenuItem */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/menuItem
+func (m_ MenuItemCell) MenuItem() IMenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("menuItem"))
 	return rv
 }
@@ -153,8 +257,8 @@ func (m_ MenuItemCell) MenuItem() objc.IObject /* cross-framework: MenuItem */ {
 // The menu item object associated with the cell.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/menuitem
-func (m_ MenuItemCell) SetMenuItem(value objc.IObject /* cross-framework: MenuItem */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/menuItem
+func (m_ MenuItemCell) SetMenuItem(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuItem:"), value)
 }
 
@@ -162,7 +266,7 @@ func (m_ MenuItemCell) SetMenuItem(value objc.IObject /* cross-framework: MenuIt
 // A Boolean value indicating whether the menu item needs to be displayed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needsdisplay
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/needsDisplay
 func (m_ MenuItemCell) NeedsDisplay() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("needsDisplay"))
 	return rv
@@ -172,7 +276,7 @@ func (m_ MenuItemCell) NeedsDisplay() bool {
 // A Boolean value indicating whether the menu item needs to be displayed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needsdisplay
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/needsDisplay
 func (m_ MenuItemCell) SetNeedsDisplay(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNeedsDisplay:"), value)
 }
@@ -181,7 +285,7 @@ func (m_ MenuItemCell) SetNeedsDisplay(value bool) {
 // A Boolean value indicating whether the size of the menu needs to be calculated.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needssizing
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/needsSizing
 func (m_ MenuItemCell) NeedsSizing() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("needsSizing"))
 	return rv
@@ -191,7 +295,7 @@ func (m_ MenuItemCell) NeedsSizing() bool {
 // A Boolean value indicating whether the size of the menu needs to be calculated.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/needssizing
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/needsSizing
 func (m_ MenuItemCell) SetNeedsSizing(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setNeedsSizing:"), value)
 }
@@ -200,26 +304,17 @@ func (m_ MenuItemCell) SetNeedsSizing(value bool) {
 // The width of the image used to indicate the state of the menu item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/stateimagewidth
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/stateImageWidth
 func (m_ MenuItemCell) StateImageWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("stateImageWidth"))
 	return rv
 }
 
 
-// The width of the image used to indicate the state of the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/stateimagewidth
-func (m_ MenuItemCell) SetStateImageWidth(value float64) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setStateImageWidth:"), value)
-}
-
-
 // The integer tag of the selected menu item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/tag
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/tag
 func (m_ MenuItemCell) Tag() int {
 	rv := objc.Send[int](m_.ID, objc.Sel("tag"))
 	return rv
@@ -229,7 +324,7 @@ func (m_ MenuItemCell) Tag() int {
 // The integer tag of the selected menu item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/tag
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/tag
 func (m_ MenuItemCell) SetTag(value int) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
 }
@@ -238,20 +333,10 @@ func (m_ MenuItemCell) SetTag(value int) {
 // The width of the menu item’s text, measured in points.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/titlewidth
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemCell/titleWidth
 func (m_ MenuItemCell) TitleWidth() float64 {
 	rv := objc.Send[float64](m_.ID, objc.Sel("titleWidth"))
 	return rv
 }
-
-
-// The width of the menu item’s text, measured in points.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitemcell/titlewidth
-func (m_ MenuItemCell) SetTitleWidth(value float64) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitleWidth:"), value)
-}
-
 
 

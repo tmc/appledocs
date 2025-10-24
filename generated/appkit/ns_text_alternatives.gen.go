@@ -32,10 +32,11 @@ type _TextAlternativesClass struct {
 type ITextAlternatives interface {
 	objectivec.IObject
 	// properties:
-	AlternativeStrings() []string
+	AlternativeStrings() objc.IObject /* cross-framework: NSString */
+	SetAlternativeStrings(value objc.IObject /* cross-framework: NSString */)
 	PrimaryString() objc.IObject /* cross-framework: NSString */
+	SetPrimaryString(value objc.IObject /* cross-framework: NSString */)
 	// methods:
-	NoteSelectedAlternativeString(alternativeString objc.IObject /* cross-framework: NSString */)
 }
 
 // A list of alternative strings for a piece of text.
@@ -91,34 +92,31 @@ func NewTextAlternatives() TextAlternatives {
 
 
 
-// Initializes an instance.
+// An array of alternative possible interpretations that the user might select.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/init(primaryString:alternativeStrings:)
-func NewTextAlternativesWithPrimaryStringAlternativeStrings(primaryString objc.IObject /* cross-framework: NSString */, alternativeStrings []string) TextAlternatives {
-	instance := getTextAlternativesClass().Alloc()
-	rv := objc.Send[TextAlternatives](instance.ID, objc.Sel("initWithPrimaryString:alternativeStrings:"), primaryString, alternativeStrings)
-	rv.Autorelease()
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/alternativestrings
+func (t_ TextAlternatives) AlternativeStrings() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("alternativeStrings"))
 	return rv
-}
-
-
-
-// Sent to the object by the text view when the user chooses one of the alternative strings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/noteSelectedAlternativeString(_:)
-func (t_ TextAlternatives) NoteSelectedAlternativeString(alternativeString objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("noteSelectedAlternativeString:"), alternativeString)
 }
 
 
 // An array of alternative possible interpretations that the user might select.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/alternativeStrings
-func (t_ TextAlternatives) AlternativeStrings() []string {
-	rv := objc.Send[[]string](t_.ID, objc.Sel("alternativeStrings"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/alternativestrings
+func (t_ TextAlternatives) SetAlternativeStrings(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAlternativeStrings:"), value)
+}
+
+
+// The text that was initially chosen as the input string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/primarystring
+func (t_ TextAlternatives) PrimaryString() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("primaryString"))
 	return rv
 }
 
@@ -126,10 +124,10 @@ func (t_ TextAlternatives) AlternativeStrings() []string {
 // The text that was initially chosen as the input string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextAlternatives/primaryString
-func (t_ TextAlternatives) PrimaryString() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("primaryString"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextalternatives/primarystring
+func (t_ TextAlternatives) SetPrimaryString(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setPrimaryString:"), value)
 }
+
 
 

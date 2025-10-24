@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // deleteToMarkProtocol is the deleteToMark: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to deleteToMark:.
 var deleteToMarkProtocol *objc.Protocol
 

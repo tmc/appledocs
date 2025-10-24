@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveRightAndModifySelectionProtocol is the moveRightAndModifySelection: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveRightAndModifySelection:.
 var moveRightAndModifySelectionProtocol *objc.Protocol
 

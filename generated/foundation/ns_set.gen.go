@@ -40,7 +40,7 @@ type ISet interface {
 	SetByAddingObjectsFromArray(other []objc.ID) unsafe.Pointer
 	AnyObject() unsafe.Pointer
 	ContainsObject(anObject unsafe.Pointer) bool
-	DescriptionWithLocale(locale objectivec.IObject) IString
+	DescriptionWithLocale(locale objc.IObject) IString
 	EnumerateIndexPathsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	EnumerateObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
@@ -49,12 +49,12 @@ type ISet interface {
 	IsEqualToSet(otherSet unsafe.Pointer) bool
 	IsSubsetOfSet(otherSet unsafe.Pointer) bool
 	MakeObjectsPerformSelector(aSelector objc.SEL)
-	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject)
+	MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objc.IObject)
 	Member(object unsafe.Pointer) unsafe.Pointer
 	ObjectEnumerator() unsafe.Pointer
 	ObjectsWithOptionsPassingTest(opts EnumerationOptions, predicate unsafe.Pointer) unsafe.Pointer
 	ObjectsPassingTest(predicate unsafe.Pointer) unsafe.Pointer
-	SortedArrayUsingDescriptors(sortDescriptors []ISortDescriptor) []objc.ID
+	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID
 }
 
 // A static, unordered collection of unique objects.
@@ -142,7 +142,7 @@ func NewSetWithCollectionViewIndexPath(indexPath IIndexPath) Set {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
-func NewSetWithCollectionViewIndexPaths(indexPaths []IIndexPath) Set {
+func NewSetWithCollectionViewIndexPaths(indexPaths []IndexPath) Set {
 	rv := objc.Send[Set](objc.ID(getSetClass().class), objc.Sel("setWithCollectionViewIndexPaths:"), indexPaths)
 	return rv
 }
@@ -217,7 +217,7 @@ func (sc _SetClass) SetWithCollectionViewIndexPath(indexPath IIndexPath) unsafe.
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/init(collectionViewIndexPaths:)
-func (sc _SetClass) SetWithCollectionViewIndexPaths(indexPaths []IIndexPath) unsafe.Pointer {
+func (sc _SetClass) SetWithCollectionViewIndexPaths(indexPaths []IndexPath) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("setWithCollectionViewIndexPaths:"), indexPaths)
 	return rv
 }
@@ -346,7 +346,7 @@ func (s_ Set) ContainsObject(anObject unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/description(withLocale:)
-func (s_ Set) DescriptionWithLocale(locale objectivec.IObject) IString {
+func (s_ Set) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -430,7 +430,7 @@ func (s_ Set) MakeObjectsPerformSelector(aSelector objc.SEL) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/makeObjectsPerformSelector:withObject:
-func (s_ Set) MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objectivec.IObject) {
+func (s_ Set) MakeObjectsPerformSelectorWithObject(aSelector objc.SEL, argument objc.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("makeObjectsPerformSelector:withObject:"), aSelector, argument)
 }
 
@@ -497,7 +497,7 @@ func (s_ Set) RemoveObserverForKeyPathContext(observer objc.IObject /* cross-fra
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/setValue(_:forKey:)
-func (s_ Set) SetValueForKey(value objectivec.IObject, key IString) {
+func (s_ Set) SetValueForKey(value objc.IObject, key IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValue:forKey:"), value, key)
 }
 
@@ -506,7 +506,7 @@ func (s_ Set) SetValueForKey(value objectivec.IObject, key IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSet/sortedArray(using:)
-func (s_ Set) SortedArrayUsingDescriptors(sortDescriptors []ISortDescriptor) []objc.ID {
+func (s_ Set) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID {
 	rv := objc.Send[[]objc.ID](s_.ID, objc.Sel("sortedArrayUsingDescriptors:"), sortDescriptors)
 	return rv
 }

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // LayoutManagerDelegateProtocol is the NSLayoutManagerDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSLayoutManagerDelegate.
 var LayoutManagerDelegateProtocol *objc.Protocol
 

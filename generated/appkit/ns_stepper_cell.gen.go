@@ -29,6 +29,7 @@ type _StepperCellClass struct {
 // An interface definition for the [StepperCell] class.
 type IStepperCell interface {
 	IActionCell
+	// properties:
 	Autorepeat() bool
 	SetAutorepeat(value bool)
 	Increment() float64
@@ -39,6 +40,7 @@ type IStepperCell interface {
 	SetMinValue(value float64)
 	ValueWraps() bool
 	SetValueWraps(value bool)
+	// methods:
 }
 
 // An object controls the appearance and behavior of an object.
@@ -97,7 +99,7 @@ func NewStepperCell() StepperCell {
 // A Boolean value indicating how the receiver responds to mouse events.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/autorepeat
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/autorepeat
 func (s_ StepperCell) Autorepeat() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("autorepeat"))
 	return rv
@@ -107,7 +109,7 @@ func (s_ StepperCell) Autorepeat() bool {
 // A Boolean value indicating how the receiver responds to mouse events.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/autorepeat
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/autorepeat
 func (s_ StepperCell) SetAutorepeat(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAutorepeat:"), value)
 }
@@ -116,7 +118,7 @@ func (s_ StepperCell) SetAutorepeat(value bool) {
 // The amount by which the receiver will change per increment or decrement.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/increment
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/increment
 func (s_ StepperCell) Increment() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("increment"))
 	return rv
@@ -126,7 +128,7 @@ func (s_ StepperCell) Increment() float64 {
 // The amount by which the receiver will change per increment or decrement.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/increment
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/increment
 func (s_ StepperCell) SetIncrement(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIncrement:"), value)
 }
@@ -135,7 +137,7 @@ func (s_ StepperCell) SetIncrement(value float64) {
 // The maximum value for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/maxvalue
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/maxValue
 func (s_ StepperCell) MaxValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
 	return rv
@@ -145,7 +147,7 @@ func (s_ StepperCell) MaxValue() float64 {
 // The maximum value for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/maxvalue
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/maxValue
 func (s_ StepperCell) SetMaxValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
 }
@@ -154,7 +156,7 @@ func (s_ StepperCell) SetMaxValue(value float64) {
 // The minimum value for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/minvalue
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/minValue
 func (s_ StepperCell) MinValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
 	return rv
@@ -164,7 +166,7 @@ func (s_ StepperCell) MinValue() float64 {
 // The minimum value for the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/minvalue
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/minValue
 func (s_ StepperCell) SetMinValue(value float64) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
 }
@@ -173,7 +175,7 @@ func (s_ StepperCell) SetMinValue(value float64) {
 // A Boolean value indicating whether the receiver wraps around the minimum and maximum values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/valuewraps
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/valueWraps
 func (s_ StepperCell) ValueWraps() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("valueWraps"))
 	return rv
@@ -183,7 +185,7 @@ func (s_ StepperCell) ValueWraps() bool {
 // A Boolean value indicating whether the receiver wraps around the minimum and maximum values.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssteppercell/valuewraps
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStepperCell/valueWraps
 func (s_ StepperCell) SetValueWraps(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setValueWraps:"), value)
 }

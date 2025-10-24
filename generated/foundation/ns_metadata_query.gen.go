@@ -33,10 +33,10 @@ type IMetadataQuery interface {
 	// properties:
 	SearchScopes() IArray
 	SetSearchScopes(value IArray)
-	Delegate() MetadataQueryDelegate /* not a class type */
-	SetDelegate(value MetadataQueryDelegate /* not a class type */)
-	GroupedResults() objc.IObject /* cross-framework: MetadataQueryResultGroup */
-	SetGroupedResults(value objc.IObject /* cross-framework: MetadataQueryResultGroup */)
+	Delegate() objc.IObject /* cross-framework: MetadataQueryDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: MetadataQueryDelegate */)
+	GroupedResults() MetadataQueryResultGroup /* not a class type */
+	SetGroupedResults(value MetadataQueryResultGroup /* not a class type */)
 	GroupingAttributes() IString
 	SetGroupingAttributes(value IString)
 	IsGathering() bool
@@ -53,16 +53,12 @@ type IMetadataQuery interface {
 	SetPredicate(value IPredicate)
 	ResultCount() int
 	SetResultCount(value int)
-	Results() unsafe.Pointer
-	SetResults(value unsafe.Pointer)
-	SearchItems() unsafe.Pointer
-	SetSearchItems(value unsafe.Pointer)
 	SortDescriptors() ISortDescriptor
 	SetSortDescriptors(value ISortDescriptor)
 	ValueListAttributes() IString
 	SetValueListAttributes(value IString)
-	ValueLists() objc.IObject /* cross-framework: MetadataQueryAttributeValueTuple */
-	SetValueLists(value objc.IObject /* cross-framework: MetadataQueryAttributeValueTuple */)
+	ValueLists() MetadataQueryAttributeValueTuple /* not a class type */
+	SetValueLists(value MetadataQueryAttributeValueTuple /* not a class type */)
 	// methods:
 }
 
@@ -142,8 +138,8 @@ func (m_ MetadataQuery) SetSearchScopes(value IArray) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/delegate
-func (m_ MetadataQuery) Delegate() MetadataQueryDelegate /* not a class type */ {
-	rv := objc.Send[MetadataQueryDelegate](m_.ID, objc.Sel("delegate"))
+func (m_ MetadataQuery) Delegate() objc.IObject /* cross-framework: MetadataQueryDelegate */ {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -152,7 +148,7 @@ func (m_ MetadataQuery) Delegate() MetadataQueryDelegate /* not a class type */ 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/delegate
-func (m_ MetadataQuery) SetDelegate(value MetadataQueryDelegate /* not a class type */) {
+func (m_ MetadataQuery) SetDelegate(value objc.IObject /* cross-framework: MetadataQueryDelegate */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -161,8 +157,8 @@ func (m_ MetadataQuery) SetDelegate(value MetadataQueryDelegate /* not a class t
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
-func (m_ MetadataQuery) GroupedResults() objc.IObject /* cross-framework: MetadataQueryResultGroup */ {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("groupedResults"))
+func (m_ MetadataQuery) GroupedResults() MetadataQueryResultGroup /* not a class type */ {
+	rv := objc.Send[MetadataQueryResultGroup](m_.ID, objc.Sel("groupedResults"))
 	return rv
 }
 
@@ -171,7 +167,7 @@ func (m_ MetadataQuery) GroupedResults() objc.IObject /* cross-framework: Metada
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/groupedresults
-func (m_ MetadataQuery) SetGroupedResults(value objc.IObject /* cross-framework: MetadataQueryResultGroup */) {
+func (m_ MetadataQuery) SetGroupedResults(value MetadataQueryResultGroup /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setGroupedResults:"), value)
 }
 
@@ -328,44 +324,6 @@ func (m_ MetadataQuery) SetResultCount(value int) {
 }
 
 
-// An array containing the query’s results.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/results
-func (m_ MetadataQuery) Results() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("results"))
-	return rv
-}
-
-
-// An array containing the query’s results.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/results
-func (m_ MetadataQuery) SetResults(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setResults:"), value)
-}
-
-
-// An array of objects that define the query’s scope.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/searchitems
-func (m_ MetadataQuery) SearchItems() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("searchItems"))
-	return rv
-}
-
-
-// An array of objects that define the query’s scope.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/searchitems
-func (m_ MetadataQuery) SetSearchItems(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSearchItems:"), value)
-}
-
-
 // An array of sort descriptor objects.
 //
 // [Full Topic]
@@ -408,8 +366,8 @@ func (m_ MetadataQuery) SetValueListAttributes(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-func (m_ MetadataQuery) ValueLists() objc.IObject /* cross-framework: MetadataQueryAttributeValueTuple */ {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("valueLists"))
+func (m_ MetadataQuery) ValueLists() MetadataQueryAttributeValueTuple /* not a class type */ {
+	rv := objc.Send[MetadataQueryAttributeValueTuple](m_.ID, objc.Sel("valueLists"))
 	return rv
 }
 
@@ -418,7 +376,7 @@ func (m_ MetadataQuery) ValueLists() objc.IObject /* cross-framework: MetadataQu
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsmetadataquery/valuelists
-func (m_ MetadataQuery) SetValueLists(value objc.IObject /* cross-framework: MetadataQueryAttributeValueTuple */) {
+func (m_ MetadataQuery) SetValueLists(value MetadataQueryAttributeValueTuple /* not a class type */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setValueLists:"), value)
 }
 

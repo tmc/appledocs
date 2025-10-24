@@ -33,27 +33,21 @@ type _PredicateEditorRowTemplateClass struct {
 type IPredicateEditorRowTemplate interface {
 	objectivec.IObject
 	// properties:
-	ObjectValue() unsafe.Pointer
-	SetObjectValue(value unsafe.Pointer)
+	CompoundTypes() []foundation.Number
+	LeftExpressions() []coredata.Expression
+	Modifier() ComparisonPredicateModifier /* not a class type */
+	Operators() []foundation.Number
+	Options() uint
+	RightExpressionAttributeType() AttributeType /* not a class type */
+	RightExpressions() []coredata.Expression
+	TemplateViews() []View
 	RowTemplates() IPredicateEditorRowTemplate
 	SetRowTemplates(value IPredicateEditorRowTemplate)
-	CompoundTypes() objc.IObject /* cross-framework: NSNumber */
-	SetCompoundTypes(value objc.IObject /* cross-framework: NSNumber */)
-	LeftExpressions() objc.IObject /* cross-framework: Expression */
-	SetLeftExpressions(value objc.IObject /* cross-framework: Expression */)
-	Modifier() unsafe.Pointer
-	SetModifier(value unsafe.Pointer)
-	Operators() objc.IObject /* cross-framework: NSNumber */
-	SetOperators(value objc.IObject /* cross-framework: NSNumber */)
-	Options() int
-	SetOptions(value int)
-	RightExpressionAttributeType() AttributeType /* not a class type */
-	SetRightExpressionAttributeType(value AttributeType /* not a class type */)
-	RightExpressions() objc.IObject /* cross-framework: Expression */
-	SetRightExpressions(value objc.IObject /* cross-framework: Expression */)
-	TemplateViews() IView
-	SetTemplateViews(value IView)
 	// methods:
+	DisplayableSubpredicatesOfPredicate(predicate foundation.Predicate) []foundation.Predicate
+	MatchForPredicate(predicate foundation.Predicate) float64
+	PredicateWithSubpredicates(subpredicates []foundation.Predicate) foundation.Predicate
+	SetPredicate(predicate foundation.Predicate)
 }
 
 // A template that describes available predicates and how to display them.
@@ -109,22 +103,169 @@ func NewPredicateEditorRowTemplate() PredicateEditorRowTemplate {
 
 
 
-// The value of the receiver’s cell as an Objective-C object.
+// Initializes and returns a row template suitable for displaying compound predicates.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
-func (p_ PredicateEditorRowTemplate) ObjectValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("objectValue"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/init(compoundTypes:)
+func NewPredicateEditorRowTemplateWithCompoundTypes(compoundTypes []foundation.Number) PredicateEditorRowTemplate {
+	instance := getPredicateEditorRowTemplateClass().Alloc()
+	rv := objc.Send[PredicateEditorRowTemplate](instance.ID, objc.Sel("initWithCompoundTypes:"), compoundTypes)
+	rv.Autorelease()
 	return rv
 }
 
 
-// The value of the receiver’s cell as an Objective-C object.
+// Initializes and returns a “pop-up-pop-up-view”–style row template.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontrol/objectvalue
-func (p_ PredicateEditorRowTemplate) SetObjectValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setObjectValue:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressionAttributeType:modifier:operators:options:)
+func NewPredicateEditorRowTemplateWithLeftExpressionsRightExpressionAttributeTypeModifierOperatorsOptions(leftExpressions []coredata.Expression, attributeType AttributeType /* not a class type */, modifier ComparisonPredicateModifier /* not a class type */, operators []foundation.Number, options uint) PredicateEditorRowTemplate {
+	instance := getPredicateEditorRowTemplateClass().Alloc()
+	rv := objc.Send[PredicateEditorRowTemplate](instance.ID, objc.Sel("initWithLeftExpressions:rightExpressionAttributeType:modifier:operators:options:"), leftExpressions, attributeType, modifier, operators, options)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns a “pop-up-pop-up-pop-up”–style row template.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/init(leftExpressions:rightExpressions:modifier:operators:options:)
+func NewPredicateEditorRowTemplateWithLeftExpressionsRightExpressionsModifierOperatorsOptions(leftExpressions []coredata.Expression, rightExpressions []coredata.Expression, modifier ComparisonPredicateModifier /* not a class type */, operators []foundation.Number, options uint) PredicateEditorRowTemplate {
+	instance := getPredicateEditorRowTemplateClass().Alloc()
+	rv := objc.Send[PredicateEditorRowTemplate](instance.ID, objc.Sel("initWithLeftExpressions:rightExpressions:modifier:operators:options:"), leftExpressions, rightExpressions, modifier, operators, options)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns an array of predicate templates for the given attribute key paths for a given entity.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/templates(withAttributeKeyPaths:in:)
+func (pc _PredicateEditorRowTemplateClass) TemplatesWithAttributeKeyPathsInEntityDescription(keyPaths []string, entityDescription coredata.EntityDescription) []PredicateEditorRowTemplate {
+	rv := objc.Send[[]PredicateEditorRowTemplate](objc.ID(pc.class), objc.Sel("templatesWithAttributeKeyPaths:inEntityDescription:"), keyPaths, entityDescription)
+	return rv
+}
+
+
+// Returns the subpredicates that should be made sub-rows of a given predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/displayableSubpredicates(of:)
+func (p_ PredicateEditorRowTemplate) DisplayableSubpredicatesOfPredicate(predicate foundation.Predicate) []foundation.Predicate {
+	rv := objc.Send[[]foundation.Predicate](p_.ID, objc.Sel("displayableSubpredicatesOfPredicate:"), predicate)
+	return rv
+}
+
+
+// Returns a positive number if the receiver can represent a given predicate, and if it cannot.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/match(for:)
+func (p_ PredicateEditorRowTemplate) MatchForPredicate(predicate foundation.Predicate) float64 {
+	rv := objc.Send[float64](p_.ID, objc.Sel("matchForPredicate:"), predicate)
+	return rv
+}
+
+
+// Returns the predicate represented by the receiver’s views’ values and the given sub-predicates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/predicate(withSubpredicates:)
+func (p_ PredicateEditorRowTemplate) PredicateWithSubpredicates(subpredicates []foundation.Predicate) foundation.Predicate {
+	rv := objc.Send[foundation.Predicate](p_.ID, objc.Sel("predicateWithSubpredicates:"), subpredicates)
+	return rv
+}
+
+
+// Sets the value of the views according to the given predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/setPredicate(_:)
+func (p_ PredicateEditorRowTemplate) SetPredicate(predicate foundation.Predicate) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setPredicate:"), predicate)
+}
+
+
+// Returns the compound predicate types.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/compoundTypes
+func (p_ PredicateEditorRowTemplate) CompoundTypes() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](p_.ID, objc.Sel("compoundTypes"))
+	return rv
+}
+
+
+// Returns the left hand expressions for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/leftExpressions
+func (p_ PredicateEditorRowTemplate) LeftExpressions() []coredata.Expression {
+	rv := objc.Send[[]coredata.Expression](p_.ID, objc.Sel("leftExpressions"))
+	return rv
+}
+
+
+// Returns the comparison predicate modifier for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/modifier
+func (p_ PredicateEditorRowTemplate) Modifier() ComparisonPredicateModifier /* not a class type */ {
+	rv := objc.Send[ComparisonPredicateModifier](p_.ID, objc.Sel("modifier"))
+	return rv
+}
+
+
+// Returns the array of comparison predicate operators.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/operators
+func (p_ PredicateEditorRowTemplate) Operators() []foundation.Number {
+	rv := objc.Send[[]foundation.Number](p_.ID, objc.Sel("operators"))
+	return rv
+}
+
+
+// Returns the comparison predicate options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/options
+func (p_ PredicateEditorRowTemplate) Options() uint {
+	rv := objc.Send[uint](p_.ID, objc.Sel("options"))
+	return rv
+}
+
+
+// Returns the attribute type of the receiver’s right expression.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressionAttributeType
+func (p_ PredicateEditorRowTemplate) RightExpressionAttributeType() AttributeType /* not a class type */ {
+	rv := objc.Send[AttributeType](p_.ID, objc.Sel("rightExpressionAttributeType"))
+	return rv
+}
+
+
+// Returns the right hand expressions for the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/rightExpressions
+func (p_ PredicateEditorRowTemplate) RightExpressions() []coredata.Expression {
+	rv := objc.Send[[]coredata.Expression](p_.ID, objc.Sel("rightExpressions"))
+	return rv
+}
+
+
+// Returns the views that display this template’s predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPredicateEditorRowTemplate/templateViews
+func (p_ PredicateEditorRowTemplate) TemplateViews() []View {
+	rv := objc.Send[[]View](p_.ID, objc.Sel("templateViews"))
+	return rv
 }
 
 
@@ -145,158 +286,5 @@ func (p_ PredicateEditorRowTemplate) RowTemplates() IPredicateEditorRowTemplate 
 func (p_ PredicateEditorRowTemplate) SetRowTemplates(value IPredicateEditorRowTemplate) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setRowTemplates:"), value)
 }
-
-
-// Returns the compound predicate types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/compoundtypes
-func (p_ PredicateEditorRowTemplate) CompoundTypes() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("compoundTypes"))
-	return rv
-}
-
-
-// Returns the compound predicate types.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/compoundtypes
-func (p_ PredicateEditorRowTemplate) SetCompoundTypes(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setCompoundTypes:"), value)
-}
-
-
-// Returns the left hand expressions for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/leftexpressions
-func (p_ PredicateEditorRowTemplate) LeftExpressions() objc.IObject /* cross-framework: Expression */ {
-	rv := objc.Send[coredata.Expression](p_.ID, objc.Sel("leftExpressions"))
-	return rv
-}
-
-
-// Returns the left hand expressions for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/leftexpressions
-func (p_ PredicateEditorRowTemplate) SetLeftExpressions(value objc.IObject /* cross-framework: Expression */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLeftExpressions:"), value)
-}
-
-
-// Returns the comparison predicate modifier for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/modifier
-func (p_ PredicateEditorRowTemplate) Modifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("modifier"))
-	return rv
-}
-
-
-// Returns the comparison predicate modifier for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/modifier
-func (p_ PredicateEditorRowTemplate) SetModifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setModifier:"), value)
-}
-
-
-// Returns the array of comparison predicate operators.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/operators
-func (p_ PredicateEditorRowTemplate) Operators() objc.IObject /* cross-framework: NSNumber */ {
-	rv := objc.Send[foundation.NSNumber](p_.ID, objc.Sel("operators"))
-	return rv
-}
-
-
-// Returns the array of comparison predicate operators.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/operators
-func (p_ PredicateEditorRowTemplate) SetOperators(value objc.IObject /* cross-framework: NSNumber */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOperators:"), value)
-}
-
-
-// Returns the comparison predicate options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/options
-func (p_ PredicateEditorRowTemplate) Options() int {
-	rv := objc.Send[int](p_.ID, objc.Sel("options"))
-	return rv
-}
-
-
-// Returns the comparison predicate options.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/options
-func (p_ PredicateEditorRowTemplate) SetOptions(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setOptions:"), value)
-}
-
-
-// Returns the attribute type of the receiver’s right expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressionattributetype
-func (p_ PredicateEditorRowTemplate) RightExpressionAttributeType() AttributeType /* not a class type */ {
-	rv := objc.Send[AttributeType](p_.ID, objc.Sel("rightExpressionAttributeType"))
-	return rv
-}
-
-
-// Returns the attribute type of the receiver’s right expression.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressionattributetype
-func (p_ PredicateEditorRowTemplate) SetRightExpressionAttributeType(value AttributeType /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRightExpressionAttributeType:"), value)
-}
-
-
-// Returns the right hand expressions for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressions
-func (p_ PredicateEditorRowTemplate) RightExpressions() objc.IObject /* cross-framework: Expression */ {
-	rv := objc.Send[coredata.Expression](p_.ID, objc.Sel("rightExpressions"))
-	return rv
-}
-
-
-// Returns the right hand expressions for the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/rightexpressions
-func (p_ PredicateEditorRowTemplate) SetRightExpressions(value objc.IObject /* cross-framework: Expression */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setRightExpressions:"), value)
-}
-
-
-// Returns the views that display this template’s predicate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/templateviews
-func (p_ PredicateEditorRowTemplate) TemplateViews() IView {
-	rv := objc.Send[View](p_.ID, objc.Sel("templateViews"))
-	return rv
-}
-
-
-// Returns the views that display this template’s predicate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspredicateeditorrowtemplate/templateviews
-func (p_ PredicateEditorRowTemplate) SetTemplateViews(value IView) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setTemplateViews:"), value)
-}
-
 
 

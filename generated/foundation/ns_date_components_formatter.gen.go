@@ -55,7 +55,7 @@ type IDateComponentsFormatter interface {
 	SetZeroFormattingBehavior(value DateComponentsFormatterZeroFormattingBehavior)
 	// methods:
 	GetObjectValueForStringErrorDescription(obj unsafe.Pointer, string_ IString, error_ IString) bool
-	StringForObjectValue(obj objectivec.IObject) IString
+	StringForObjectValue(obj objc.IObject) IString
 	StringFromTimeInterval(ti float64) IString
 	StringFromDateComponents(components IDateComponents) IString
 	StringFromDateToDate(startDate IDate, endDate IDate) IString
@@ -138,7 +138,7 @@ func (d_ DateComponentsFormatter) GetObjectValueForStringErrorDescription(obj un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateComponentsFormatter/string(for:)
-func (d_ DateComponentsFormatter) StringForObjectValue(obj objectivec.IObject) IString {
+func (d_ DateComponentsFormatter) StringForObjectValue(obj objc.IObject) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }

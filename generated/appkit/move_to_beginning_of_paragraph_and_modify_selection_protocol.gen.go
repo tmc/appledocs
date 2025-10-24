@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveToBeginningOfParagraphAndModifySelectionProtocol is the moveToBeginningOfParagraphAndModifySelection: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveToBeginningOfParagraphAndModifySelection:.
 var moveToBeginningOfParagraphAndModifySelectionProtocol *objc.Protocol
 

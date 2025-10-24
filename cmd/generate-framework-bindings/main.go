@@ -749,6 +749,13 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 				if strings.HasPrefix(externalID, "c:objc(pl)") && (strings.Contains(externalID, "(im)") || strings.Contains(externalID, "(cm)")) {
 					method, err := occ2go.ParseMethod(doc)
 					if err == nil && method != nil {
+						// Skip class methods for protocols - protocols should only have instance methods.
+						// Apple's docs sometimes incorrectly list both (cm) and (im) variants of the
+						// same method, which would create duplicates in the generated interface.
+						if method.IsClassMethod {
+							continue
+						}
+
 						parts := strings.Split(externalID, "(")
 						if len(parts) >= 2 {
 							protocolName := strings.TrimPrefix(parts[1], "pl)")
@@ -756,11 +763,6 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 								protocolSeenSelectors[protocolName] = make(map[string]bool)
 							}
 							methodKey := method.Selector
-							if method.IsClassMethod {
-								methodKey = "class:" + methodKey
-							} else {
-								methodKey = "instance:" + methodKey
-							}
 							if !protocolSeenSelectors[protocolName][methodKey] {
 								protocolMethodsMap[protocolName] = append(protocolMethodsMap[protocolName], method)
 								protocolSeenSelectors[protocolName][methodKey] = true
@@ -772,11 +774,24 @@ func generateFramework(framework, inputDir, outputDir, filterRegexp string, txta
 			}
 			for i := range protocols {
 				if methods, ok := protocolMethodsMap[protocols[i].Name]; ok {
+					// Track seen method names to avoid duplicates (same method can appear
+					// in multiple doc files, e.g., -swift.method.json and -swift.type.method.json)
+					seenOptional := make(map[string]bool)
+					seenRequired := make(map[string]bool)
+
 					for _, method := range methods {
 						if method.IsOptional {
-							protocols[i].OptionalMethods = append(protocols[i].OptionalMethods, method)
+							// Only add if not already seen
+							if !seenOptional[method.Name] {
+								protocols[i].OptionalMethods = append(protocols[i].OptionalMethods, method)
+								seenOptional[method.Name] = true
+							}
 						} else {
-							protocols[i].RequiredMethods = append(protocols[i].RequiredMethods, method)
+							// Only add if not already seen
+							if !seenRequired[method.Name] {
+								protocols[i].RequiredMethods = append(protocols[i].RequiredMethods, method)
+								seenRequired[method.Name] = true
+							}
 						}
 					}
 				}

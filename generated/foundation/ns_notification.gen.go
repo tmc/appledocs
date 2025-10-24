@@ -106,7 +106,7 @@ func NewNotificationWithCoder(coder ICoder) Notification {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:)
-func NewNotificationWithNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject) Notification {
+func NewNotificationWithNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject objc.IObject) Notification {
 	rv := objc.Send[Notification](objc.ID(getNotificationClass().class), objc.Sel("notificationWithName:object:"), aName, anObject)
 	return rv
 }
@@ -116,7 +116,7 @@ func NewNotificationWithNameObject(aName objc.IObject /* cross-framework: Notifi
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:userInfo:)
-func NewNotificationWithNameObjectUserInfo(name objc.IObject /* cross-framework: NotificationName */, object objectivec.IObject, userInfo IDictionary) Notification {
+func NewNotificationWithNameObjectUserInfo(name objc.IObject /* cross-framework: NotificationName */, object objc.IObject, userInfo IDictionary) Notification {
 	instance := getNotificationClass().Alloc()
 	rv := objc.Send[Notification](instance.ID, objc.Sel("initWithName:object:userInfo:"), name, object, userInfo)
 	rv.Autorelease()
@@ -129,7 +129,7 @@ func NewNotificationWithNameObjectUserInfo(name objc.IObject /* cross-framework:
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/init(name:object:)
-func (nc _NotificationClass) NotificationWithNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject) unsafe.Pointer {
+func (nc _NotificationClass) NotificationWithNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject objc.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("notificationWithName:object:"), aName, anObject)
 	return rv
 }
@@ -139,7 +139,7 @@ func (nc _NotificationClass) NotificationWithNameObject(aName objc.IObject /* cr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNotification/notificationWithName:object:userInfo:
-func (nc _NotificationClass) NotificationWithNameObjectUserInfo(aName objc.IObject /* cross-framework: NotificationName */, anObject objectivec.IObject, aUserInfo IDictionary) unsafe.Pointer {
+func (nc _NotificationClass) NotificationWithNameObjectUserInfo(aName objc.IObject /* cross-framework: NotificationName */, anObject objc.IObject, aUserInfo IDictionary) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(nc.class), objc.Sel("notificationWithName:object:userInfo:"), aName, anObject, aUserInfo)
 	return rv
 }

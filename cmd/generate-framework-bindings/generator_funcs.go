@@ -83,12 +83,12 @@ func (gf GeneratorFuncs) formatMethodParams(method *occ2go.ParsedMethod) string 
 
 		goType := mapObjCTypeToGo(p.Type, gf.Framework)
 
-		// Convert objc.ID to objectivec.IObject (or IObject if we're IN objectivec) for better type safety
+		// Convert objc.ID to objc.IObject (or IObject if we're IN objectivec) for better type safety
 		if goType == "objc.ID" {
 			if strings.ToLower(gf.Framework) == "objectivec" {
 				goType = "IObject"
 			} else {
-				goType = "objectivec.IObject"
+				goType = "objc.IObject"
 			}
 		} else {
 			// Use data-driven type checking instead of heuristics
@@ -250,10 +250,29 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		}
 	}
 
-	// Handle slices - preserve brackets and recurse on element type
+	// Handle slices - check for hierarchy violations
 	if strings.HasPrefix(goType, "[]") {
-		elementType := strings.TrimPrefix(goType, "[]")
-		return "[]" + gf.concreteReturnType(elementType)
+		elemType := goType[2:]
+
+		// Check if element type has a package qualifier
+		if strings.Contains(elemType, ".") {
+			parts := strings.SplitN(elemType, ".", 2)
+			if len(parts) == 2 {
+				pkg := parts[0]
+				// Check framework hierarchy
+				currentLevel := getFrameworkLevel(strings.ToLower(gf.Framework))
+				targetLevel := getFrameworkLevel(pkg)
+
+				// If this is a hierarchy violation (lower framework importing higher framework type),
+				// convert to []objc.ID
+				if currentLevel >= 0 && targetLevel > currentLevel {
+					return "[]objc.ID"
+				}
+			}
+		}
+
+		// No hierarchy violation, preserve as-is
+		return goType
 	}
 
 	// Handle maps - preserve entire map type
@@ -268,6 +287,27 @@ func (gf GeneratorFuncs) concreteReturnType(goType string) string {
 		goType == "uint8" || goType == "uint16" || goType == "uint32" || goType == "uint64" ||
 		goType == "uintptr" || goType == "byte" || goType == "rune" {
 		return goType
+	}
+
+	// Handle function types (e.g., "func()", "func(int) string")
+	if strings.HasPrefix(goType, "func(") || goType == "func" {
+		return goType
+	}
+
+	// Handle special cross-framework typedef types that should be preserved
+	// IMP is a typedef for func() in ObjectiveC framework, preserve it as-is
+	if goType == "IMP" {
+		return "IMP"
+	}
+
+	// Handle typedef resolution - if this is a typedef, resolve to underlying type
+	// This fixes issues like TimeInterval (typedef for float64) being treated as objc.ID
+	if typedef, isTypedef := gf.typedefIndex[goType]; isTypedef {
+		// Resolve the typedef to its base type and recursively process
+		baseType := typedef.BaseType
+		// Map the base type to Go (e.g., "double" -> "float64", "NSInteger" -> "int")
+		resolvedType := mapObjCTypeToGo(baseType, gf.Framework)
+		return gf.concreteReturnType(resolvedType)
 	}
 
 	// Handle qualified types from standard packages (objc., unsafe., etc.)

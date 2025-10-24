@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // ComboBoxDelegateProtocol is the NSComboBoxDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSComboBoxDelegate.
 var ComboBoxDelegateProtocol *objc.Protocol
 

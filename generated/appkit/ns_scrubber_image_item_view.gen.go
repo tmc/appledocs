@@ -32,10 +32,9 @@ type IScrubberImageItemView interface {
 	// properties:
 	Image() IImage
 	SetImage(value IImage)
-	ImageAlignment() ImageAlignment /* not a class type */
-	SetImageAlignment(value ImageAlignment /* not a class type */)
-	ImageView() objc.IObject /* cross-framework: ImageView */
-	SetImageView(value objc.IObject /* cross-framework: ImageView */)
+	ImageAlignment() ImageAlignment
+	SetImageAlignment(value ImageAlignment)
+	ImageView() IImageView
 	// methods:
 }
 
@@ -97,7 +96,7 @@ func NewScrubberImageItemView() ScrubberImageItemView {
 // The image displayed by the scrubber item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/image
 func (s_ ScrubberImageItemView) Image() IImage {
 	rv := objc.Send[Image](s_.ID, objc.Sel("image"))
 	return rv
@@ -107,7 +106,7 @@ func (s_ ScrubberImageItemView) Image() IImage {
 // The image displayed by the scrubber item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/image
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/image
 func (s_ ScrubberImageItemView) SetImage(value IImage) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImage:"), value)
 }
@@ -116,8 +115,8 @@ func (s_ ScrubberImageItemView) SetImage(value IImage) {
 // The alignment of the image within the scrubber item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imagealignment
-func (s_ ScrubberImageItemView) ImageAlignment() ImageAlignment /* not a class type */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageAlignment
+func (s_ ScrubberImageItemView) ImageAlignment() ImageAlignment {
 	rv := objc.Send[ImageAlignment](s_.ID, objc.Sel("imageAlignment"))
 	return rv
 }
@@ -126,8 +125,8 @@ func (s_ ScrubberImageItemView) ImageAlignment() ImageAlignment /* not a class t
 // The alignment of the image within the scrubber item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imagealignment
-func (s_ ScrubberImageItemView) SetImageAlignment(value ImageAlignment /* not a class type */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageAlignment
+func (s_ ScrubberImageItemView) SetImageAlignment(value ImageAlignment) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setImageAlignment:"), value)
 }
 
@@ -135,19 +134,10 @@ func (s_ ScrubberImageItemView) SetImageAlignment(value ImageAlignment /* not a 
 // The image view that the scrubber item uses to display its image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
-func (s_ ScrubberImageItemView) ImageView() objc.IObject /* cross-framework: ImageView */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberImageItemView/imageView
+func (s_ ScrubberImageItemView) ImageView() IImageView {
 	rv := objc.Send[ImageView](s_.ID, objc.Sel("imageView"))
 	return rv
-}
-
-
-// The image view that the scrubber item uses to display its image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberimageitemview/imageview
-func (s_ ScrubberImageItemView) SetImageView(value objc.IObject /* cross-framework: ImageView */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setImageView:"), value)
 }
 
 

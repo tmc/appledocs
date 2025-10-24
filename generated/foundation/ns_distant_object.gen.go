@@ -104,7 +104,7 @@ func NewDistantObjectWithCoder(inCoder ICoder) DistantObject {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithLocal:connection:
-func NewDistantObjectWithLocalConnection(target objectivec.IObject, connection IConnection) DistantObject {
+func NewDistantObjectWithLocalConnection(target objc.IObject, connection IConnection) DistantObject {
 	instance := getDistantObjectClass().Alloc()
 	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithLocal:connection:"), target, connection)
 	rv.Autorelease()
@@ -116,7 +116,7 @@ func NewDistantObjectWithLocalConnection(target objectivec.IObject, connection I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/initWithTarget:connection:
-func NewDistantObjectWithTargetConnection(target objectivec.IObject, connection IConnection) DistantObject {
+func NewDistantObjectWithTargetConnection(target objc.IObject, connection IConnection) DistantObject {
 	instance := getDistantObjectClass().Alloc()
 	rv := objc.Send[DistantObject](instance.ID, objc.Sel("initWithTarget:connection:"), target, connection)
 	rv.Autorelease()
@@ -129,7 +129,7 @@ func NewDistantObjectWithTargetConnection(target objectivec.IObject, connection 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/proxyWithLocal:connection:
-func (dc _DistantObjectClass) ProxyWithLocalConnection(target objectivec.IObject, connection IConnection) objc.ID {
+func (dc _DistantObjectClass) ProxyWithLocalConnection(target objc.IObject, connection IConnection) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("proxyWithLocal:connection:"), target, connection)
 	return rv
 }
@@ -139,7 +139,7 @@ func (dc _DistantObjectClass) ProxyWithLocalConnection(target objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDistantObject/proxyWithTarget:connection:
-func (dc _DistantObjectClass) ProxyWithTargetConnection(target objectivec.IObject, connection IConnection) objc.ID {
+func (dc _DistantObjectClass) ProxyWithTargetConnection(target objc.IObject, connection IConnection) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("proxyWithTarget:connection:"), target, connection)
 	return rv
 }

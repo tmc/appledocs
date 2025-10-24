@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // imageDidNotDrawProtocol is the imageDidNotDraw: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to imageDidNotDraw:.
 var imageDidNotDrawProtocol *objc.Protocol
 

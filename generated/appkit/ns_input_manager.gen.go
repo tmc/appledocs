@@ -7,6 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -79,5 +81,37 @@ func NewInputManager() InputManager {
 }
 
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager/initWithName:host:
+func NewInputManagerWithNameHost(inputServerName objc.IObject /* cross-framework: NSString */, hostName objc.IObject /* cross-framework: NSString */) InputManager {
+	instance := getInputManagerClass().Alloc()
+	rv := objc.Send[InputManager](instance.ID, objc.Sel("initWithName:host:"), inputServerName, hostName)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager/currentInputManager
+func (ic _InputManagerClass) CurrentInputManager() IInputManager {
+	rv := objc.Send[InputManager](objc.ID(ic.class), objc.Sel("currentInputManager"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager/cycleToNextInputLanguage:
+func (ic _InputManagerClass) CycleToNextInputLanguage(sender objc.IObject) {
+	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("cycleToNextInputLanguage:"), sender)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInputManager/cycleToNextInputServerInLanguage:
+func (ic _InputManagerClass) CycleToNextInputServerInLanguage(sender objc.IObject) {
+	objc.Send[objc.ID](objc.ID(ic.class), objc.Sel("cycleToNextInputServerInLanguage:"), sender)
+}
 
 

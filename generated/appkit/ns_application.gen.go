@@ -37,28 +37,45 @@ type IApplication interface {
 	SetAppearance(value IAppearance)
 	ApplicationIconImage() IImage
 	SetApplicationIconImage(value IImage)
+	ApplicationShouldSuppressHighDynamicRangeContent() bool
+	Context() IGraphicsContext
 	CurrentEvent() IEvent
+	CurrentSystemPresentationOptions() ApplicationPresentationOptions
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DockTile() IDockTile
 	EffectiveAppearance() IAppearance
+	EnabledRemoteNotificationTypes() RemoteNotificationType
 	HelpMenu() IMenu
 	SetHelpMenu(value IMenu)
+	AutomaticCustomizeTouchBarMenuItemEnabled() bool
+	SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool)
+	Active() bool
+	FullKeyboardAccessEnabled() bool
+	Hidden() bool
+	ProtectedDataAvailable() bool
+	RegisteredForRemoteNotifications() bool
 	Running() bool
+	KeyWindow() IWindow
+	MainMenu() IMenu
+	SetMainMenu(value IMenu)
+	MainWindow() IWindow
 	ModalWindow() IWindow
-	OrderedWindows() []IWindow
+	OcclusionState() ApplicationOcclusionState
+	OrderedDocuments() []Document
+	OrderedWindows() []Window
+	PresentationOptions() ApplicationPresentationOptions
+	SetPresentationOptions(value ApplicationPresentationOptions)
+	ServicesMenu() IMenu
+	SetServicesMenu(value IMenu)
 	ServicesProvider() objc.ID
 	SetServicesProvider(value objc.ID)
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
+	Windows() []Window
+	WindowsMenu() IMenu
+	SetWindowsMenu(value IMenu)
 	NSApp() IApplication
 	SetNSApp(value IApplication)
-	ApplicationShouldSuppressHighDynamicRangeContent() bool
-	SetApplicationShouldSuppressHighDynamicRangeContent(value bool)
-	CurrentSystemPresentationOptions() unsafe.Pointer
-	SetCurrentSystemPresentationOptions(value unsafe.Pointer)
-	Delegate() ApplicationDelegate /* not a class type */
-	SetDelegate(value ApplicationDelegate /* not a class type */)
-	DockTile() IDockTile
-	SetDockTile(value IDockTile)
-	EnabledRemoteNotificationTypes() unsafe.Pointer
-	SetEnabledRemoteNotificationTypes(value unsafe.Pointer)
 	IsActive() bool
 	SetIsActive(value bool)
 	IsFullKeyboardAccessEnabled() bool
@@ -67,53 +84,72 @@ type IApplication interface {
 	SetIsRegisteredForRemoteNotifications(value bool)
 	IsRunning() bool
 	SetIsRunning(value bool)
-	OrderedDocuments() objc.IObject /* cross-framework: Document */
-	SetOrderedDocuments(value objc.IObject /* cross-framework: Document */)
-	PresentationOptions() unsafe.Pointer
-	SetPresentationOptions(value unsafe.Pointer)
 	ActivationPolicy() unsafe.Pointer
 	SetActivationPolicy(value unsafe.Pointer)
 	// methods:
 	AbortModal()
 	Activate()
+	ActivateContextHelpMode(sender objc.IObject)
+	AddWindowsItemTitleFilename(win IWindow, string_ objc.IObject /* cross-framework: NSString */, isFilename bool)
+	ArrangeInFront(sender objc.IObject)
 	BeginModalSessionForWindow(window IWindow) objc.IObject /* cross-framework: ModalSession */
 	CancelUserAttentionRequest(request int)
+	ChangeWindowsItemTitleFilename(win IWindow, string_ objc.IObject /* cross-framework: NSString */, isFilename bool)
+	CompleteStateRestoration()
 	Deactivate()
+	DisableRelaunchOnLogin()
 	DiscardEventsMatchingMaskBeforeEvent(mask EventMask, lastEvent IEvent)
 	EnableRelaunchOnLogin()
 	EndModalSession(session objc.IObject /* cross-framework: ModalSession */)
+	EnumerateWindowsWithOptionsUsingBlock(options WindowListOptions, block unsafe.Pointer)
+	ExtendStateRestoration()
 	FinishLaunching()
-	Hide(sender objectivec.IObject)
+	Hide(sender objc.IObject)
+	HideOtherApplications(sender objc.IObject)
+	MiniaturizeAll(sender objc.IObject)
 	NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask, expiration objc.IObject /* cross-framework: NSDate */, mode RunLoopMode /* not a class type */, deqFlag bool) IEvent
-	OrderFrontStandardAboutPanel(sender objectivec.IObject)
+	OrderFrontCharacterPalette(sender objc.IObject)
+	OrderFrontColorPanel(sender objc.IObject)
+	OrderFrontStandardAboutPanel(sender objc.IObject)
+	OrderFrontStandardAboutPanelWithOptions(optionsDictionary foundation.IDictionary)
 	PostEventAtStart(event IEvent, atStart bool)
 	PreventWindowOrdering()
-	RegisterForRemoteNotifications()
 	RegisterServicesMenuSendTypesReturnTypes(sendTypes []string, returnTypes []string)
-	RegisterUserInterfaceItemSearchHandler(handler objectivec.IObject)
+	RegisterForRemoteNotifications()
+	RegisterForRemoteNotificationTypes(types RemoteNotificationType)
+	RegisterUserInterfaceItemSearchHandler(handler objc.IObject)
+	RemoveWindowsItem(win IWindow)
 	ReplyToApplicationShouldTerminate(shouldTerminate bool)
-	ReplyToOpenOrPrint(reply ApplicationDelegateReply /* not a class type */)
+	ReplyToOpenOrPrint(reply ApplicationDelegateReply)
+	ReportException(exception foundation.Exception)
 	RequestUserAttention(requestType RequestUserAttentionType) int
+	RestoreWindowWithIdentifierStateCompletionHandler(identifier objc.IObject /* cross-framework: UserInterfaceItemIdentifier */, state foundation.Coder, completionHandler unsafe.Pointer) bool
 	Run()
 	RunModalForWindow(window IWindow) objc.IObject /* cross-framework: ModalResponse */
 	RunModalSession(session objc.IObject /* cross-framework: ModalSession */) objc.IObject /* cross-framework: ModalResponse */
-	SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework: NSString */, stringToSearch objc.IObject /* cross-framework: NSString */, searchRange objc.IObject /* cross-framework: Range */, foundRange objc.IObject /* cross-framework: Range */) bool
-	SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool
+	RunPageLayout(sender objc.IObject)
+	SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework: NSString */, stringToSearch objc.IObject /* cross-framework: NSString */, searchRange corefoundation.Range, foundRange corefoundation.Range) bool
+	SendActionToFrom(action objc.SEL, target objc.IObject, sender objc.IObject) bool
 	SendEvent(event IEvent)
 	SetWindowsNeedUpdate(needUpdate bool)
-	ShowHelp(sender objectivec.IObject)
-	Stop(sender objectivec.IObject)
+	ShowHelp(sender objc.IObject)
+	Stop(sender objc.IObject)
 	StopModal()
 	StopModalWithCode(returnCode objc.IObject /* cross-framework: ModalResponse */)
 	TargetForAction(action objc.SEL) objc.ID
-	TargetForActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) objc.ID
-	Terminate(sender objectivec.IObject)
-	TryToPerformWith(action objc.SEL, object objectivec.IObject) bool
-	UnhideAllApplications(sender objectivec.IObject)
+	TargetForActionToFrom(action objc.SEL, target objc.IObject, sender objc.IObject) objc.ID
+	Terminate(sender objc.IObject)
+	ToggleTouchBarCustomizationPalette(sender objc.IObject)
+	TryToPerformWith(action objc.SEL, object objc.IObject) bool
+	Unhide(sender objc.IObject)
+	UnhideAllApplications(sender objc.IObject)
 	UnhideWithoutActivation()
-	UnregisterUserInterfaceItemSearchHandler(handler objectivec.IObject)
+	UnregisterForRemoteNotifications()
+	UnregisterUserInterfaceItemSearchHandler(handler objc.IObject)
+	UpdateWindowsItem(win IWindow)
 	UpdateWindows()
 	ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework: PasteboardType */, returnType objc.IObject /* cross-framework: PasteboardType */) objc.ID
+	WindowWithWindowNumber(windowNum int) IWindow
 	YieldActivationToApplication(application IRunningApplication)
 	YieldActivationToApplicationWithBundleIdentifier(bundleIdentifier objc.IObject /* cross-framework: NSString */)
 }
@@ -177,7 +213,7 @@ func NewApplication() Application {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/detachDrawingThread(_:toTarget:with:)
-func (ac _ApplicationClass) DetachDrawingThreadToTargetWithObject(selector objc.SEL, target objectivec.IObject, argument objectivec.IObject) {
+func (ac _ApplicationClass) DetachDrawingThreadToTargetWithObject(selector objc.SEL, target objc.IObject, argument objc.IObject) {
 	objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("detachDrawingThread:toTarget:withObject:"), selector, target, argument)
 }
 
@@ -209,12 +245,39 @@ func (a_ Application) Activate() {
 }
 
 
+// Places the receiver in context-sensitive help mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/activateContextHelpMode(_:)
+func (a_ Application) ActivateContextHelpMode(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("activateContextHelpMode:"), sender)
+}
+
+
+// Adds an item to the Window menu for a given window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/addWindowsItem(_:title:filename:)
+func (a_ Application) AddWindowsItemTitleFilename(win IWindow, string_ objc.IObject /* cross-framework: NSString */, isFilename bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("addWindowsItem:title:filename:"), win, string_, isFilename)
+}
+
+
+// Arranges windows listed in the Window menu in front of all other windows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/arrangeInFront(_:)
+func (a_ Application) ArrangeInFront(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("arrangeInFront:"), sender)
+}
+
+
 // Sets up a modal session with the given window and returns a pointer to the structure representing the session.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/beginModalSession(for:)
 func (a_ Application) BeginModalSessionForWindow(window IWindow) objc.IObject /* cross-framework: ModalSession */ {
-	rv := objc.Send[ModalSession](a_.ID, objc.Sel("beginModalSessionForWindow:"), window)
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("beginModalSessionForWindow:"), window)
 	return rv
 }
 
@@ -228,12 +291,39 @@ func (a_ Application) CancelUserAttentionRequest(request int) {
 }
 
 
+// Changes the item for a given window in the Window menu to a given string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/changeWindowsItem(_:title:filename:)
+func (a_ Application) ChangeWindowsItemTitleFilename(win IWindow, string_ objc.IObject /* cross-framework: NSString */, isFilename bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("changeWindowsItem:title:filename:"), win, string_, isFilename)
+}
+
+
+// Completes the extended state restoration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/completeStateRestoration()
+func (a_ Application) CompleteStateRestoration() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("completeStateRestoration"))
+}
+
+
 // Deactivates the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/deactivate()
 func (a_ Application) Deactivate() {
 	objc.Send[objc.ID](a_.ID, objc.Sel("deactivate"))
+}
+
+
+// Disables relaunching the app on login.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/disableRelaunchOnLogin()
+func (a_ Application) DisableRelaunchOnLogin() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("disableRelaunchOnLogin"))
 }
 
 
@@ -264,6 +354,24 @@ func (a_ Application) EndModalSession(session objc.IObject /* cross-framework: M
 }
 
 
+// Executes a block for each of the app’s windows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/enumerateWindows(options:using:)
+func (a_ Application) EnumerateWindowsWithOptionsUsingBlock(options WindowListOptions, block unsafe.Pointer) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("enumerateWindowsWithOptions:usingBlock:"), options, block)
+}
+
+
+// Allows an app to extend its state restoration period.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/extendStateRestoration()
+func (a_ Application) ExtendStateRestoration() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("extendStateRestoration"))
+}
+
+
 // Activates the app, opens any files specified by the user default, and unhighlights the app’s icon.
 //
 // [Full Topic]
@@ -277,8 +385,26 @@ func (a_ Application) FinishLaunching() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/hide(_:)
-func (a_ Application) Hide(sender objectivec.IObject) {
+func (a_ Application) Hide(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("hide:"), sender)
+}
+
+
+// Hides all apps, except the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/hideOtherApplications(_:)
+func (a_ Application) HideOtherApplications(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("hideOtherApplications:"), sender)
+}
+
+
+// Miniaturizes all the receiver’s windows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/miniaturizeAll(_:)
+func (a_ Application) MiniaturizeAll(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("miniaturizeAll:"), sender)
 }
 
 
@@ -292,12 +418,39 @@ func (a_ Application) NextEventMatchingMaskUntilDateInModeDequeue(mask EventMask
 }
 
 
+// Opens the character palette.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderFrontCharacterPalette(_:)
+func (a_ Application) OrderFrontCharacterPalette(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("orderFrontCharacterPalette:"), sender)
+}
+
+
+// Brings up the color panel, an instance of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderFrontColorPanel(_:)
+func (a_ Application) OrderFrontColorPanel(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("orderFrontColorPanel:"), sender)
+}
+
+
 // Displays a standard About window.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderFrontStandardAboutPanel(_:)
-func (a_ Application) OrderFrontStandardAboutPanel(sender objectivec.IObject) {
+func (a_ Application) OrderFrontStandardAboutPanel(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("orderFrontStandardAboutPanel:"), sender)
+}
+
+
+// Displays a standard About window with information from a given options dictionary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderFrontStandardAboutPanel(options:)
+func (a_ Application) OrderFrontStandardAboutPanelWithOptions(optionsDictionary foundation.IDictionary) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("orderFrontStandardAboutPanelWithOptions:"), optionsDictionary)
 }
 
 
@@ -319,15 +472,6 @@ func (a_ Application) PreventWindowOrdering() {
 }
 
 
-// Register for notifications sent by Apple Push Notification service (APNs).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/registerForRemoteNotifications()
-func (a_ Application) RegisterForRemoteNotifications() {
-	objc.Send[objc.ID](a_.ID, objc.Sel("registerForRemoteNotifications"))
-}
-
-
 // Registers the pasteboard types the receiver can send and receive in response to service requests.
 //
 // [Full Topic]
@@ -337,12 +481,39 @@ func (a_ Application) RegisterServicesMenuSendTypesReturnTypes(sendTypes []strin
 }
 
 
+// Register for notifications sent by Apple Push Notification service (APNs).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/registerForRemoteNotifications()
+func (a_ Application) RegisterForRemoteNotifications() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("registerForRemoteNotifications"))
+}
+
+
+// Register to receive notifications of the specified types from a provider through the Apple Push Notification service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/registerForRemoteNotifications(matching:)
+func (a_ Application) RegisterForRemoteNotificationTypes(types RemoteNotificationType) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("registerForRemoteNotificationTypes:"), types)
+}
+
+
 // Register an object that provides help data to your app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/registerUserInterfaceItemSearchHandler(_:)
-func (a_ Application) RegisterUserInterfaceItemSearchHandler(handler objectivec.IObject) {
+func (a_ Application) RegisterUserInterfaceItemSearchHandler(handler objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("registerUserInterfaceItemSearchHandler:"), handler)
+}
+
+
+// Removes the Window menu item for a given window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/removeWindowsItem(_:)
+func (a_ Application) RemoveWindowsItem(win IWindow) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("removeWindowsItem:"), win)
 }
 
 
@@ -359,8 +530,17 @@ func (a_ Application) ReplyToApplicationShouldTerminate(shouldTerminate bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/reply(toOpenOrPrint:)
-func (a_ Application) ReplyToOpenOrPrint(reply ApplicationDelegateReply /* not a class type */) {
+func (a_ Application) ReplyToOpenOrPrint(reply ApplicationDelegateReply) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("replyToOpenOrPrint:"), reply)
+}
+
+
+// Logs a given exception by calling .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/reportException(_:)
+func (a_ Application) ReportException(exception foundation.Exception) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("reportException:"), exception)
 }
 
 
@@ -370,6 +550,16 @@ func (a_ Application) ReplyToOpenOrPrint(reply ApplicationDelegateReply /* not a
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/requestUserAttention(_:)
 func (a_ Application) RequestUserAttention(requestType RequestUserAttentionType) int {
 	rv := objc.Send[int](a_.ID, objc.Sel("requestUserAttention:"), requestType)
+	return rv
+}
+
+
+// Invoked to request that a window be restored.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/restoreWindow(withIdentifier:state:completionHandler:)
+func (a_ Application) RestoreWindowWithIdentifierStateCompletionHandler(identifier objc.IObject /* cross-framework: UserInterfaceItemIdentifier */, state foundation.Coder, completionHandler unsafe.Pointer) bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("restoreWindowWithIdentifier:state:completionHandler:"), identifier, state, completionHandler)
 	return rv
 }
 
@@ -388,7 +578,7 @@ func (a_ Application) Run() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/runModal(for:)
 func (a_ Application) RunModalForWindow(window IWindow) objc.IObject /* cross-framework: ModalResponse */ {
-	rv := objc.Send[ModalResponse](a_.ID, objc.Sel("runModalForWindow:"), window)
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runModalForWindow:"), window)
 	return rv
 }
 
@@ -398,8 +588,17 @@ func (a_ Application) RunModalForWindow(window IWindow) objc.IObject /* cross-fr
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/runModalSession(_:)
 func (a_ Application) RunModalSession(session objc.IObject /* cross-framework: ModalSession */) objc.IObject /* cross-framework: ModalResponse */ {
-	rv := objc.Send[ModalResponse](a_.ID, objc.Sel("runModalSession:"), session)
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("runModalSession:"), session)
 	return rv
+}
+
+
+// Displays the receiver’s page layout panel, an instance of .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/runPageLayout(_:)
+func (a_ Application) RunPageLayout(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("runPageLayout:"), sender)
 }
 
 
@@ -407,7 +606,7 @@ func (a_ Application) RunModalSession(session objc.IObject /* cross-framework: M
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/searchString(_:inUserInterfaceItemString:range:found:)
-func (a_ Application) SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework: NSString */, stringToSearch objc.IObject /* cross-framework: NSString */, searchRange objc.IObject /* cross-framework: Range */, foundRange objc.IObject /* cross-framework: Range */) bool {
+func (a_ Application) SearchStringInUserInterfaceItemStringSearchRangeFoundRange(searchString objc.IObject /* cross-framework: NSString */, stringToSearch objc.IObject /* cross-framework: NSString */, searchRange corefoundation.Range, foundRange corefoundation.Range) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("searchString:inUserInterfaceItemString:searchRange:foundRange:"), searchString, stringToSearch, searchRange, foundRange)
 	return rv
 }
@@ -417,7 +616,7 @@ func (a_ Application) SearchStringInUserInterfaceItemStringSearchRangeFoundRange
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/sendAction(_:to:from:)
-func (a_ Application) SendActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) bool {
+func (a_ Application) SendActionToFrom(action objc.SEL, target objc.IObject, sender objc.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("sendAction:to:from:"), action, target, sender)
 	return rv
 }
@@ -445,7 +644,7 @@ func (a_ Application) SetWindowsNeedUpdate(needUpdate bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/showHelp(_:)
-func (a_ Application) ShowHelp(sender objectivec.IObject) {
+func (a_ Application) ShowHelp(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("showHelp:"), sender)
 }
 
@@ -454,7 +653,7 @@ func (a_ Application) ShowHelp(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/stop(_:)
-func (a_ Application) Stop(sender objectivec.IObject) {
+func (a_ Application) Stop(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("stop:"), sender)
 }
 
@@ -491,7 +690,7 @@ func (a_ Application) TargetForAction(action objc.SEL) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/target(forAction:to:from:)
-func (a_ Application) TargetForActionToFrom(action objc.SEL, target objectivec.IObject, sender objectivec.IObject) objc.ID {
+func (a_ Application) TargetForActionToFrom(action objc.SEL, target objc.IObject, sender objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("targetForAction:to:from:"), action, target, sender)
 	return rv
 }
@@ -501,8 +700,17 @@ func (a_ Application) TargetForActionToFrom(action objc.SEL, target objectivec.I
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/terminate(_:)
-func (a_ Application) Terminate(sender objectivec.IObject) {
+func (a_ Application) Terminate(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("terminate:"), sender)
+}
+
+
+// Show or hides the interface for customizing the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/toggleTouchBarCustomizationPalette(_:)
+func (a_ Application) ToggleTouchBarCustomizationPalette(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("toggleTouchBarCustomizationPalette:"), sender)
 }
 
 
@@ -510,9 +718,18 @@ func (a_ Application) Terminate(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/tryToPerform(_:with:)
-func (a_ Application) TryToPerformWith(action objc.SEL, object objectivec.IObject) bool {
+func (a_ Application) TryToPerformWith(action objc.SEL, object objc.IObject) bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("tryToPerform:with:"), action, object)
 	return rv
+}
+
+
+// Restores hidden windows to the screen and makes the receiver active.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/unhide(_:)
+func (a_ Application) Unhide(sender objc.IObject) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("unhide:"), sender)
 }
 
 
@@ -520,7 +737,7 @@ func (a_ Application) TryToPerformWith(action objc.SEL, object objectivec.IObjec
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/unhideAllApplications(_:)
-func (a_ Application) UnhideAllApplications(sender objectivec.IObject) {
+func (a_ Application) UnhideAllApplications(sender objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("unhideAllApplications:"), sender)
 }
 
@@ -534,12 +751,30 @@ func (a_ Application) UnhideWithoutActivation() {
 }
 
 
+// Unregister for notifications received from Apple Push Notification service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/unregisterForRemoteNotifications()
+func (a_ Application) UnregisterForRemoteNotifications() {
+	objc.Send[objc.ID](a_.ID, objc.Sel("unregisterForRemoteNotifications"))
+}
+
+
 // Unregister an object that provides help data to your app.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/unregisterUserInterfaceItemSearchHandler(_:)
-func (a_ Application) UnregisterUserInterfaceItemSearchHandler(handler objectivec.IObject) {
+func (a_ Application) UnregisterUserInterfaceItemSearchHandler(handler objc.IObject) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("unregisterUserInterfaceItemSearchHandler:"), handler)
+}
+
+
+// Updates the Window menu item for a given window to reflect the edited status of that window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/updateWindowsItem(_:)
+func (a_ Application) UpdateWindowsItem(win IWindow) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("updateWindowsItem:"), win)
 }
 
 
@@ -558,6 +793,16 @@ func (a_ Application) UpdateWindows() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/validRequestor(forSendType:returnType:)
 func (a_ Application) ValidRequestorForSendTypeReturnType(sendType objc.IObject /* cross-framework: PasteboardType */, returnType objc.IObject /* cross-framework: PasteboardType */) objc.ID {
 	rv := objc.Send[objc.ID](a_.ID, objc.Sel("validRequestorForSendType:returnType:"), sendType, returnType)
+	return rv
+}
+
+
+// Returns the window corresponding to the specified window number.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/window(withWindowNumber:)
+func (a_ Application) WindowWithWindowNumber(windowNum int) IWindow {
+	rv := objc.Send[Window](a_.ID, objc.Sel("windowWithWindowNumber:"), windowNum)
 	return rv
 }
 
@@ -618,6 +863,26 @@ func (a_ Application) SetApplicationIconImage(value IImage) {
 }
 
 
+// A boolean value indicating whether your application should suppress HDR content based on established policy. Built-in AppKit components such as NSImageView will automatically behave correctly with HDR content. You should use this value in conjunction with notifications ( and ) to suppress HDR content in your application when signaled to do so.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/applicationShouldSuppressHighDynamicRangeContent
+func (a_ Application) ApplicationShouldSuppressHighDynamicRangeContent() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("applicationShouldSuppressHighDynamicRangeContent"))
+	return rv
+}
+
+
+// The graphics context associated with the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/context
+func (a_ Application) Context() IGraphicsContext {
+	rv := objc.Send[GraphicsContext](a_.ID, objc.Sel("context"))
+	return rv
+}
+
+
 // The last event object that the app retrieved from the event queue.
 //
 // [Full Topic]
@@ -628,12 +893,61 @@ func (a_ Application) CurrentEvent() IEvent {
 }
 
 
+// The set of app presentation options that are currently in effect for the system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/currentSystemPresentationOptions
+func (a_ Application) CurrentSystemPresentationOptions() ApplicationPresentationOptions {
+	rv := objc.Send[ApplicationPresentationOptions](a_.ID, objc.Sel("currentSystemPresentationOptions"))
+	return rv
+}
+
+
+// The app delegate object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/delegate
+func (a_ Application) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The app delegate object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/delegate
+func (a_ Application) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// The app’s Dock tile.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/dockTile
+func (a_ Application) DockTile() IDockTile {
+	rv := objc.Send[DockTile](a_.ID, objc.Sel("dockTile"))
+	return rv
+}
+
+
 // The appearance that AppKit uses to draw the app’s interface.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/effectiveAppearance
 func (a_ Application) EffectiveAppearance() IAppearance {
 	rv := objc.Send[Appearance](a_.ID, objc.Sel("effectiveAppearance"))
+	return rv
+}
+
+
+// The types of push notifications that the app accepts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/enabledRemoteNotificationTypes
+func (a_ Application) EnabledRemoteNotificationTypes() RemoteNotificationType {
+	rv := objc.Send[RemoteNotificationType](a_.ID, objc.Sel("enabledRemoteNotificationTypes"))
 	return rv
 }
 
@@ -657,12 +971,118 @@ func (a_ Application) SetHelpMenu(value IMenu) {
 }
 
 
+// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isAutomaticCustomizeTouchBarMenuItemEnabled
+func (a_ Application) AutomaticCustomizeTouchBarMenuItemEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("automaticCustomizeTouchBarMenuItemEnabled"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the main menu contains an item for customizing the contents of the Touch Bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isAutomaticCustomizeTouchBarMenuItemEnabled
+func (a_ Application) SetAutomaticCustomizeTouchBarMenuItemEnabled(value bool) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setAutomaticCustomizeTouchBarMenuItemEnabled:"), value)
+}
+
+
+// A Boolean value indicating whether this is the active app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isActive
+func (a_ Application) Active() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("active"))
+	return rv
+}
+
+
+// A Boolean value indicating whether Full Keyboard Access is enabled in the Keyboard preference pane.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isFullKeyboardAccessEnabled
+func (a_ Application) FullKeyboardAccessEnabled() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("fullKeyboardAccessEnabled"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the app is hidden.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isHidden
+func (a_ Application) Hidden() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("hidden"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isProtectedDataAvailable
+func (a_ Application) ProtectedDataAvailable() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("protectedDataAvailable"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the app is registered with Apple Push Notification service (APNs).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isRegisteredForRemoteNotifications
+func (a_ Application) RegisteredForRemoteNotifications() bool {
+	rv := objc.Send[bool](a_.ID, objc.Sel("registeredForRemoteNotifications"))
+	return rv
+}
+
+
 // A Boolean value indicating whether the main event loop is running.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/isRunning
 func (a_ Application) Running() bool {
 	rv := objc.Send[bool](a_.ID, objc.Sel("running"))
+	return rv
+}
+
+
+// The window that currently receives keyboard events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/keyWindow
+func (a_ Application) KeyWindow() IWindow {
+	rv := objc.Send[Window](a_.ID, objc.Sel("keyWindow"))
+	return rv
+}
+
+
+// The app’s main menu bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/mainMenu
+func (a_ Application) MainMenu() IMenu {
+	rv := objc.Send[Menu](a_.ID, objc.Sel("mainMenu"))
+	return rv
+}
+
+
+// The app’s main menu bar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/mainMenu
+func (a_ Application) SetMainMenu(value IMenu) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setMainMenu:"), value)
+}
+
+
+// The app’s main window.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/mainWindow
+func (a_ Application) MainWindow() IWindow {
+	rv := objc.Send[Window](a_.ID, objc.Sel("mainWindow"))
 	return rv
 }
 
@@ -677,13 +1097,71 @@ func (a_ Application) ModalWindow() IWindow {
 }
 
 
+// The occlusion state of the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/occlusionState-swift.property
+func (a_ Application) OcclusionState() ApplicationOcclusionState {
+	rv := objc.Send[ApplicationOcclusionState](a_.ID, objc.Sel("occlusionState"))
+	return rv
+}
+
+
+// An array of document objects arranged according to the front-to-back ordering of their associated windows.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderedDocuments
+func (a_ Application) OrderedDocuments() []Document {
+	rv := objc.Send[[]Document](a_.ID, objc.Sel("orderedDocuments"))
+	return rv
+}
+
+
 // An array of window objects arranged according to their front-to-back ordering on the screen.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/orderedWindows
-func (a_ Application) OrderedWindows() []IWindow {
+func (a_ Application) OrderedWindows() []Window {
 	rv := objc.Send[[]Window](a_.ID, objc.Sel("orderedWindows"))
 	return rv
+}
+
+
+// The presentation options that should be in effect for the system when this app is active.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/presentationOptions-swift.property
+func (a_ Application) PresentationOptions() ApplicationPresentationOptions {
+	rv := objc.Send[ApplicationPresentationOptions](a_.ID, objc.Sel("presentationOptions"))
+	return rv
+}
+
+
+// The presentation options that should be in effect for the system when this app is active.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/presentationOptions-swift.property
+func (a_ Application) SetPresentationOptions(value ApplicationPresentationOptions) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationOptions:"), value)
+}
+
+
+// The app’s Services menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/servicesMenu
+func (a_ Application) ServicesMenu() IMenu {
+	rv := objc.Send[Menu](a_.ID, objc.Sel("servicesMenu"))
+	return rv
+}
+
+
+// The app’s Services menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/servicesMenu
+func (a_ Application) SetServicesMenu(value IMenu) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setServicesMenu:"), value)
 }
 
 
@@ -726,6 +1204,35 @@ func (a_ Application) UserInterfaceLayoutDirection() UserInterfaceLayoutDirectio
 }
 
 
+// An array of the app’s window objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/windows
+func (a_ Application) Windows() []Window {
+	rv := objc.Send[[]Window](a_.ID, objc.Sel("windows"))
+	return rv
+}
+
+
+// The Window menu of the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/windowsMenu
+func (a_ Application) WindowsMenu() IMenu {
+	rv := objc.Send[Menu](a_.ID, objc.Sel("windowsMenu"))
+	return rv
+}
+
+
+// The Window menu of the app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplication/windowsMenu
+func (a_ Application) SetWindowsMenu(value IMenu) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setWindowsMenu:"), value)
+}
+
+
 // The global variable for the shared app instance.
 //
 // [Full Topic]
@@ -742,101 +1249,6 @@ func (a_ Application) NSApp() IApplication {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapp
 func (a_ Application) SetNSApp(value IApplication) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setNSApp:"), value)
-}
-
-
-// A boolean value indicating whether your application should suppress HDR content based on established policy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationshouldsuppresshighdynamicrangecontent
-func (a_ Application) ApplicationShouldSuppressHighDynamicRangeContent() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("applicationShouldSuppressHighDynamicRangeContent"))
-	return rv
-}
-
-
-// A boolean value indicating whether your application should suppress HDR content based on established policy.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/applicationshouldsuppresshighdynamicrangecontent
-func (a_ Application) SetApplicationShouldSuppressHighDynamicRangeContent(value bool) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setApplicationShouldSuppressHighDynamicRangeContent:"), value)
-}
-
-
-// The set of app presentation options that are currently in effect for the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/currentsystempresentationoptions
-func (a_ Application) CurrentSystemPresentationOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("currentSystemPresentationOptions"))
-	return rv
-}
-
-
-// The set of app presentation options that are currently in effect for the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/currentsystempresentationoptions
-func (a_ Application) SetCurrentSystemPresentationOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentSystemPresentationOptions:"), value)
-}
-
-
-// The app delegate object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/delegate
-func (a_ Application) Delegate() ApplicationDelegate /* not a class type */ {
-	rv := objc.Send[ApplicationDelegate](a_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The app delegate object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/delegate
-func (a_ Application) SetDelegate(value ApplicationDelegate /* not a class type */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
-// The app’s Dock tile.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/docktile
-func (a_ Application) DockTile() IDockTile {
-	rv := objc.Send[DockTile](a_.ID, objc.Sel("dockTile"))
-	return rv
-}
-
-
-// The app’s Dock tile.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/docktile
-func (a_ Application) SetDockTile(value IDockTile) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setDockTile:"), value)
-}
-
-
-// The types of push notifications that the app accepts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/enabledremotenotificationtypes
-func (a_ Application) EnabledRemoteNotificationTypes() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("enabledRemoteNotificationTypes"))
-	return rv
-}
-
-
-// The types of push notifications that the app accepts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/enabledremotenotificationtypes
-func (a_ Application) SetEnabledRemoteNotificationTypes(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setEnabledRemoteNotificationTypes:"), value)
 }
 
 
@@ -913,44 +1325,6 @@ func (a_ Application) IsRunning() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/isrunning
 func (a_ Application) SetIsRunning(value bool) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setIsRunning:"), value)
-}
-
-
-// An array of document objects arranged according to the front-to-back ordering of their associated windows.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/ordereddocuments
-func (a_ Application) OrderedDocuments() objc.IObject /* cross-framework: Document */ {
-	rv := objc.Send[Document](a_.ID, objc.Sel("orderedDocuments"))
-	return rv
-}
-
-
-// An array of document objects arranged according to the front-to-back ordering of their associated windows.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/ordereddocuments
-func (a_ Application) SetOrderedDocuments(value objc.IObject /* cross-framework: Document */) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setOrderedDocuments:"), value)
-}
-
-
-// The presentation options that should be in effect for the system when this app is active.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.property
-func (a_ Application) PresentationOptions() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("presentationOptions"))
-	return rv
-}
-
-
-// The presentation options that should be in effect for the system when this app is active.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsapplication/presentationoptions-swift.property
-func (a_ Application) SetPresentationOptions(value unsafe.Pointer) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setPresentationOptions:"), value)
 }
 
 

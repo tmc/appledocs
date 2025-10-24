@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [ScrubberProportionalLayout] class.
@@ -88,10 +89,35 @@ func NewScrubberProportionalLayout() ScrubberProportionalLayout {
 
 
 
+// Initializes and returns a newly allocated proprotional layout object from a storyboard or nib file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/init(coder:)
+func NewScrubberProportionalLayoutWithCoder(coder foundation.Coder) ScrubberProportionalLayout {
+	instance := getScrubberProportionalLayoutClass().Alloc()
+	rv := objc.Send[ScrubberProportionalLayout](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns a newly allocated proportional layout, configured to display the given number of items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/init(numberOfVisibleItems:)
+func NewScrubberProportionalLayoutWithNumberOfVisibleItems(numberOfVisibleItems int) ScrubberProportionalLayout {
+	instance := getScrubberProportionalLayoutClass().Alloc()
+	rv := objc.Send[ScrubberProportionalLayout](instance.ID, objc.Sel("initWithNumberOfVisibleItems:"), numberOfVisibleItems)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The number of items visible in the scrubber at once.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberproportionallayout/numberofvisibleitems
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/numberOfVisibleItems
 func (s_ ScrubberProportionalLayout) NumberOfVisibleItems() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("numberOfVisibleItems"))
 	return rv
@@ -101,10 +127,9 @@ func (s_ ScrubberProportionalLayout) NumberOfVisibleItems() int {
 // The number of items visible in the scrubber at once.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscrubberproportionallayout/numberofvisibleitems
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScrubberProportionalLayout/numberOfVisibleItems
 func (s_ ScrubberProportionalLayout) SetNumberOfVisibleItems(value int) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfVisibleItems:"), value)
 }
-
 
 

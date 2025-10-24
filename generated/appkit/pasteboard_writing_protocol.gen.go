@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // PasteboardWritingProtocol is the NSPasteboardWriting protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSPasteboardWriting.
 var PasteboardWritingProtocol *objc.Protocol
 

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // accessibilityFocusedUIElementProtocol is the accessibilityFocusedUIElement protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to accessibilityFocusedUIElement.
 var accessibilityFocusedUIElementProtocol *objc.Protocol
 

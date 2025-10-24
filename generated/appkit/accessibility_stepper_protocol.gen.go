@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // AccessibilityStepperProtocol is the NSAccessibilityStepper protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSAccessibilityStepper.
 var AccessibilityStepperProtocol *objc.Protocol
 

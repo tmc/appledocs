@@ -1334,7 +1334,7 @@ func (o_ Object) ImageVersion() uint {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/indicesOfObjects(byEvaluatingObjectSpecifier:)
 func (o_ Object) IndicesOfObjectsByEvaluatingObjectSpecifier(specifier IObject) []objc.ID {
-	rv := objc.Send[[]foundation.Number](o_.ID, objc.Sel("indicesOfObjectsByEvaluatingObjectSpecifier:"), specifier)
+	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("indicesOfObjectsByEvaluatingObjectSpecifier:"), specifier)
 	return rv
 }
 
@@ -1611,7 +1611,7 @@ func (o_ Object) ObserveValueForKeyPathOfObjectChangeContext(keyPath IObject, ob
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/optionDescriptionsForBinding(_:)
 func (o_ Object) OptionDescriptionsForBinding(binding string) []objc.ID {
-	rv := objc.Send[[]coredata.AttributeDescription](o_.ID, objc.Sel("optionDescriptionsForBinding:"), objc.String(binding))
+	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("optionDescriptionsForBinding:"), objc.String(binding))
 	return rv
 }
 

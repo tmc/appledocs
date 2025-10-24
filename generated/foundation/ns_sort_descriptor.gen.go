@@ -42,7 +42,7 @@ type ISortDescriptor interface {
 	SetKeyPath(value unsafe.Pointer)
 	// methods:
 	AllowEvaluation()
-	CompareObjectToObject(object1 objectivec.IObject, object2 objectivec.IObject) ComparisonResult
+	CompareObjectToObject(object1 objc.IObject, object2 objc.IObject) ComparisonResult
 }
 
 // An immutable description of how to order a collection of objects according to a property common to all the objects.
@@ -190,7 +190,7 @@ func (s_ SortDescriptor) AllowEvaluation() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSSortDescriptor/compare(_:to:)
-func (s_ SortDescriptor) CompareObjectToObject(object1 objectivec.IObject, object2 objectivec.IObject) ComparisonResult {
+func (s_ SortDescriptor) CompareObjectToObject(object1 objc.IObject, object2 objc.IObject) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compareObject:toObject:"), object1, object2)
 	return rv
 }

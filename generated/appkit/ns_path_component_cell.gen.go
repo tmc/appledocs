@@ -33,8 +33,8 @@ type IPathComponentCell interface {
 	// properties:
 	Image() IImage
 	SetImage(value IImage)
-	Url() objc.IObject /* cross-framework: URL */
-	SetUrl(value objc.IObject /* cross-framework: URL */)
+	URL() objc.IObject /* cross-framework: NSURL */
+	SetURL(value objc.IObject /* cross-framework: NSURL */)
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewPathComponentCell() PathComponentCell {
 // The image displayed for this component cell.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell/image
 func (p_ PathComponentCell) Image() IImage {
 	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
@@ -106,7 +106,7 @@ func (p_ PathComponentCell) Image() IImage {
 // The image displayed for this component cell.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/image
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell/image
 func (p_ PathComponentCell) SetImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
 }
@@ -115,9 +115,9 @@ func (p_ PathComponentCell) SetImage(value IImage) {
 // The portion of the path from the root through the component represented by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-func (p_ PathComponentCell) Url() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell/url
+func (p_ PathComponentCell) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](p_.ID, objc.Sel("URL"))
 	return rv
 }
 
@@ -125,9 +125,9 @@ func (p_ PathComponentCell) Url() objc.IObject /* cross-framework: URL */ {
 // The portion of the path from the root through the component represented by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcomponentcell/url
-func (p_ PathComponentCell) SetUrl(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathComponentCell/url
+func (p_ PathComponentCell) SetURL(value objc.IObject /* cross-framework: NSURL */) {
+	objc.Send[objc.ID](p_.ID, objc.Sel("setURL:"), value)
 }
 
 

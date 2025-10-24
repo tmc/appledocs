@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // AccessibilityLayoutAreaProtocol is the NSAccessibilityLayoutArea protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSAccessibilityLayoutArea.
 var AccessibilityLayoutAreaProtocol *objc.Protocol
 

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveToBeginningOfParagraphProtocol is the moveToBeginningOfParagraph: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveToBeginningOfParagraph:.
 var moveToBeginningOfParagraphProtocol *objc.Protocol
 

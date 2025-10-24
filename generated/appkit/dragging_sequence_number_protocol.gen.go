@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // draggingSequenceNumberProtocol is the draggingSequenceNumber protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to draggingSequenceNumber.
 var draggingSequenceNumberProtocol *objc.Protocol
 

@@ -32,11 +32,10 @@ type _FilePromiseReceiverClass struct {
 type IFilePromiseReceiver interface {
 	objectivec.IObject
 	// properties:
-	FileNames() objc.IObject /* cross-framework: NSString */
-	SetFileNames(value objc.IObject /* cross-framework: NSString */)
-	FileTypes() objc.IObject /* cross-framework: NSString */
-	SetFileTypes(value objc.IObject /* cross-framework: NSString */)
+	FileNames() []string
+	FileTypes() []string
 	// methods:
+	ReceivePromisedFilesAtDestinationOptionsOperationQueueReader(destinationDir objc.IObject /* cross-framework: NSURL */, options objc.IObject /* cross-framework: NSDictionary */, operationQueue foundation.OperationQueue, reader unsafe.Pointer)
 }
 
 // An object that receives a file promise from the pasteboard.
@@ -92,41 +91,51 @@ func NewFilePromiseReceiver() FilePromiseReceiver {
 
 
 
-// An array containing names of the promised files being written to the destination location.
+// An array containing dragged file types that are readable.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromisereceiver/filenames
-func (f_ FilePromiseReceiver) FileNames() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("fileNames"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes
+func (fc _FilePromiseReceiverClass) ReadableDraggedTypes() []string {
+	rv := objc.Send[[]string](objc.ID(fc.class), objc.Sel("readableDraggedTypes"))
 	return rv
+}
+
+// Fulfills the promises at the specified destination.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/receivePromisedFiles(atDestination:options:operationQueue:reader:)
+func (f_ FilePromiseReceiver) ReceivePromisedFilesAtDestinationOptionsOperationQueueReader(destinationDir objc.IObject /* cross-framework: NSURL */, options objc.IObject /* cross-framework: NSDictionary */, operationQueue foundation.OperationQueue, reader unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("receivePromisedFilesAtDestination:options:operationQueue:reader:"), destinationDir, options, operationQueue, reader)
 }
 
 
 // An array containing names of the promised files being written to the destination location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromisereceiver/filenames
-func (f_ FilePromiseReceiver) SetFileNames(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileNames:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/fileNames
+func (f_ FilePromiseReceiver) FileNames() []string {
+	rv := objc.Send[[]string](f_.ID, objc.Sel("fileNames"))
+	return rv
 }
 
 
 // An array containing types of the promised files being written to the destination location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromisereceiver/filetypes
-func (f_ FilePromiseReceiver) FileTypes() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](f_.ID, objc.Sel("fileTypes"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/fileTypes
+func (f_ FilePromiseReceiver) FileTypes() []string {
+	rv := objc.Send[[]string](f_.ID, objc.Sel("fileTypes"))
 	return rv
 }
 
 
-// An array containing types of the promised files being written to the destination location.
+// An array containing dragged file types that are readable.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsfilepromisereceiver/filetypes
-func (f_ FilePromiseReceiver) SetFileTypes(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](f_.ID, objc.Sel("setFileTypes:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFilePromiseReceiver/readableDraggedTypes
+func (f_ FilePromiseReceiver) ReadableDraggedTypes() []string {
+	rv := objc.Send[[]string](f_.ID, objc.Sel("readableDraggedTypes"))
+	return rv
 }
 
 

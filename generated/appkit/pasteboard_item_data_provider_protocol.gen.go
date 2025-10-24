@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // PasteboardItemDataProviderProtocol is the NSPasteboardItemDataProvider protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSPasteboardItemDataProvider.
 var PasteboardItemDataProviderProtocol *objc.Protocol
 

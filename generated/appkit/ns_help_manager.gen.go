@@ -34,13 +34,13 @@ type IHelpManager interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	ContextHelpForObject(object objectivec.IObject) objc.IObject /* cross-framework: AttributedString */
+	ContextHelpForObject(object objc.IObject) foundation.AttributedString
 	FindStringInBook(query objc.IObject /* cross-framework: NSString */, book objc.IObject /* cross-framework: HelpBookName */)
 	OpenHelpAnchorInBook(anchor objc.IObject /* cross-framework: HelpAnchorName */, book objc.IObject /* cross-framework: HelpBookName */)
-	RegisterBooksInBundle(bundle objc.IObject /* cross-framework: Bundle */) bool
-	RemoveContextHelpForObject(object objectivec.IObject)
-	SetContextHelpForObject(attrString objc.IObject /* cross-framework: AttributedString */, object objectivec.IObject)
-	ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt objc.IObject /* cross-framework: Point */) bool
+	RegisterBooksInBundle(bundle foundation.Bundle) bool
+	RemoveContextHelpForObject(object objc.IObject)
+	SetContextHelpForObject(attrString foundation.AttributedString, object objc.IObject)
+	ShowContextHelpForObjectLocationHint(object objc.IObject, pt objc.IObject /* cross-framework: Point */) bool
 }
 
 // An object for displaying online help for an app.
@@ -116,7 +116,7 @@ func (hc _HelpManagerClass) SharedHelpManager() HelpManager {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/contextHelp(for:)
-func (h_ HelpManager) ContextHelpForObject(object objectivec.IObject) objc.IObject /* cross-framework: AttributedString */ {
+func (h_ HelpManager) ContextHelpForObject(object objc.IObject) foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](h_.ID, objc.Sel("contextHelpForObject:"), object)
 	return rv
 }
@@ -144,7 +144,7 @@ func (h_ HelpManager) OpenHelpAnchorInBook(anchor objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/registerBooks(in:)
-func (h_ HelpManager) RegisterBooksInBundle(bundle objc.IObject /* cross-framework: Bundle */) bool {
+func (h_ HelpManager) RegisterBooksInBundle(bundle foundation.Bundle) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("registerBooksInBundle:"), bundle)
 	return rv
 }
@@ -154,7 +154,7 @@ func (h_ HelpManager) RegisterBooksInBundle(bundle objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/removeContextHelp(for:)
-func (h_ HelpManager) RemoveContextHelpForObject(object objectivec.IObject) {
+func (h_ HelpManager) RemoveContextHelpForObject(object objc.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("removeContextHelpForObject:"), object)
 }
 
@@ -163,7 +163,7 @@ func (h_ HelpManager) RemoveContextHelpForObject(object objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/setContextHelp(_:for:)
-func (h_ HelpManager) SetContextHelpForObject(attrString objc.IObject /* cross-framework: AttributedString */, object objectivec.IObject) {
+func (h_ HelpManager) SetContextHelpForObject(attrString foundation.AttributedString, object objc.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setContextHelp:forObject:"), attrString, object)
 }
 
@@ -172,7 +172,7 @@ func (h_ HelpManager) SetContextHelpForObject(attrString objc.IObject /* cross-f
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHelpManager/showContextHelp(for:locationHint:)
-func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objectivec.IObject, pt objc.IObject /* cross-framework: Point */) bool {
+func (h_ HelpManager) ShowContextHelpForObjectLocationHint(object objc.IObject, pt objc.IObject /* cross-framework: Point */) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("showContextHelpForObject:locationHint:"), object, pt)
 	return rv
 }

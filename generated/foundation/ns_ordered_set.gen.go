@@ -42,8 +42,8 @@ type IOrderedSet interface {
 	SetReversed(value IOrderedSet)
 	// methods:
 	ContainsObject(object unsafe.Pointer) bool
-	DescriptionWithLocale(locale objectivec.IObject) IString
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString
+	DescriptionWithLocale(locale objc.IObject) IString
+	DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString
 	DifferenceFromOrderedSet(other unsafe.Pointer) unsafe.Pointer
 	DifferenceFromOrderedSetWithOptions(other unsafe.Pointer, options OrderedCollectionDifferenceCalculationOptions) unsafe.Pointer
 	DifferenceFromOrderedSetWithOptionsUsingEquivalenceTest(other unsafe.Pointer, options OrderedCollectionDifferenceCalculationOptions, block bool) unsafe.Pointer
@@ -72,7 +72,7 @@ type IOrderedSet interface {
 	ReverseObjectEnumerator() unsafe.Pointer
 	SortedArrayUsingComparator(cmptr Comparator /* not a class type */) []objc.ID
 	SortedArrayWithOptionsUsingComparator(opts SortOptions, cmptr Comparator /* not a class type */) []objc.ID
-	SortedArrayUsingDescriptors(sortDescriptors []ISortDescriptor) []objc.ID
+	SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID
 	ObjectAtIndexedSubscript(idx uint) unsafe.Pointer
 }
 
@@ -395,7 +395,7 @@ func (o_ OrderedSet) ContainsObject(object unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:)
-func (o_ OrderedSet) DescriptionWithLocale(locale objectivec.IObject) IString {
+func (o_ OrderedSet) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -405,7 +405,7 @@ func (o_ OrderedSet) DescriptionWithLocale(locale objectivec.IObject) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/description(withLocale:indent:)
-func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString {
+func (o_ OrderedSet) DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString {
 	rv := objc.Send[String](o_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }
@@ -689,7 +689,7 @@ func (o_ OrderedSet) ReverseObjectEnumerator() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/setValue(_:forKey:)
-func (o_ OrderedSet) SetValueForKey(value objectivec.IObject, key IString) {
+func (o_ OrderedSet) SetValueForKey(value objc.IObject, key IString) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setValue:forKey:"), value, key)
 }
 
@@ -718,7 +718,7 @@ func (o_ OrderedSet) SortedArrayWithOptionsUsingComparator(opts SortOptions, cmp
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSOrderedSet/sortedArray(using:)
-func (o_ OrderedSet) SortedArrayUsingDescriptors(sortDescriptors []ISortDescriptor) []objc.ID {
+func (o_ OrderedSet) SortedArrayUsingDescriptors(sortDescriptors []SortDescriptor) []objc.ID {
 	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("sortedArrayUsingDescriptors:"), sortDescriptors)
 	return rv
 }

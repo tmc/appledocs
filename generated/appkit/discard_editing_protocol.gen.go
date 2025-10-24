@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // discardEditingProtocol is the discardEditing protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to discardEditing.
 var discardEditingProtocol *objc.Protocol
 

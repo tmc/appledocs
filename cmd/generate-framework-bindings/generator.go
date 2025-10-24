@@ -214,9 +214,43 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 
 	// Handle slices FIRST - before checking for qualified types
 	// This ensures []foundation.Number is processed correctly (element type contains ".")
+	// NOTE: For slices, we keep the CONCRETE type ([]Connection not []IConnection) because
+	// in Go you cannot convert between []ConcreteType and []InterfaceType,even if ConcreteType implements InterfaceType.
+	// We process the element type but strip any "I" interface prefix from the result.
 	if strings.HasPrefix(goType, "[]") {
 		elemType := goType[2:]
 		convertedElemType := g.TypeToInterfaceType(elemType)
+
+		// If the element type was converted to IObject (hierarchy violation fallback), use []objc.ID
+		if convertedElemType == "IObject" || convertedElemType == "objectivec.IObject" {
+			return "[]objc.ID"
+		}
+
+		// Check for hierarchy violations in qualified element types
+		if strings.Contains(convertedElemType, ".") {
+			parts := strings.SplitN(convertedElemType, ".", 2)
+			if len(parts) == 2 {
+				pkg := parts[0]
+				typeName := parts[1]
+
+				// Check framework hierarchy
+				currentLevel := getFrameworkLevel(strings.ToLower(g.Framework))
+				targetLevel := getFrameworkLevel(pkg)
+				if currentLevel >= 0 && targetLevel > currentLevel {
+					// Hierarchy violation - use []objc.ID instead
+					return "[]objc.ID"
+				}
+
+				// Strip I prefix from qualified type: "foundation.IData" -> "foundation.Data"
+				// But DO NOT strip from objc.ID, objc.IObject, objc.IClass, etc. (objc runtime types)
+				if pkg != "objc" && len(typeName) > 1 && typeName[0] == 'I' && typeName[1] >= 'A' && typeName[1] <= 'Z' {
+					convertedElemType = pkg + "." + typeName[1:]
+				}
+			}
+		} else if len(convertedElemType) > 1 && convertedElemType[0] == 'I' && convertedElemType[1] >= 'A' && convertedElemType[1] <= 'Z' {
+			// Strip I prefix: "IConnection" -> "Connection"
+			convertedElemType = convertedElemType[1:]
+		}
 		return "[]" + convertedElemType
 	}
 
@@ -240,9 +274,10 @@ func (g *Generator) TypeToInterfaceType(goType string) string {
 			// Check for framework hierarchy violations (lower-level importing higher-level)
 			// This must come BEFORE struct check to ensure hierarchy violations fall back to IObject
 			// For ObjectiveC framework (level 0), use IObject (unqualified) for ANY other framework
+			// For other frameworks, use objc.IObject (the alias to github.com/tmc/appledocs/generated/objc)
 			currentLevel := getFrameworkLevel(strings.ToLower(g.Framework))
 			targetLevel := getFrameworkLevel(pkg)
-			fallbackType := "objectivec.IObject"
+			fallbackType := "objc.IObject"
 			if strings.ToLower(g.Framework) == "objectivec" {
 				fallbackType = "IObject"
 			}
@@ -541,20 +576,60 @@ func (g *Generator) prepare() {
 	if config != nil && config.SyntheticTypedefs != nil {
 		if syntheticTypedefs, ok := config.SyntheticTypedefs[g.Framework]; ok {
 			for _, st := range syntheticTypedefs {
-				// Check if typedef already exists
-				exists := false
-				for _, td := range g.Typedefs {
-					if td.Name == st.Name {
-						exists = true
-						break
+				// If this has enum_values, create an enum instead of a typedef
+				if len(st.EnumValues) > 0 {
+					// Check if enum already exists
+					enumExists := false
+					for _, e := range g.Enums {
+						if e.Name == st.Name {
+							enumExists = true
+							break
+						}
 					}
-				}
-				if !exists {
-					g.Typedefs = append(g.Typedefs, &occ2go.ParsedTypedef{
-						Name:     st.Name,
-						BaseType: st.BaseType,
-						Abstract: st.Abstract,
-					})
+					if !enumExists {
+						// Create enum with cases
+						cases := make([]*occ2go.ParsedEnumCase, len(st.EnumValues))
+						for i, ev := range st.EnumValues {
+							cases[i] = &occ2go.ParsedEnumCase{
+								Name:     ev.Name,
+								Value:    fmt.Sprintf("%d", ev.Value),
+								IntValue: ev.Value,
+								Abstract: ev.Abstract,
+							}
+						}
+						g.Enums = append(g.Enums, &occ2go.ParsedEnum{
+							Name:     st.Name,
+							BaseType: st.BaseType,
+							Cases:    cases,
+							Abstract: st.Abstract,
+						})
+					}
+				} else {
+					// NOTE: Parsed typedefs keep their original names with prefixes (e.g., CGDisplayReservationInterval)
+					// The template strips prefixes when generating code, but the typedef.Name field is unchanged
+					// So we must search using the ORIGINAL name from config (with prefix)
+
+					// Check if typedef already exists and update it, or add new one
+					typedefExists := false
+					for i, td := range g.Typedefs {
+						if td.Name == st.Name {
+							// Replace existing typedef with synthetic one
+							g.Typedefs[i] = &occ2go.ParsedTypedef{
+								Name:     st.Name, // Keep original name with prefix
+								BaseType: st.BaseType,
+								Abstract: st.Abstract,
+							}
+							typedefExists = true
+							break
+						}
+					}
+					if !typedefExists {
+						g.Typedefs = append(g.Typedefs, &occ2go.ParsedTypedef{
+							Name:     st.Name, // Keep original name with prefix
+							BaseType: st.BaseType,
+							Abstract: st.Abstract,
+						})
+					}
 				}
 			}
 		}
@@ -593,6 +668,18 @@ func (g *Generator) prepare() {
 		}
 	}
 	g.Structs = deduplicatedStructs
+
+	// Strip prefixes from struct names based on framework conventions
+	// - CoreFoundation: Strip CF prefix (CFRange → Range) but keep CG prefix for geometry types
+	// - Other frameworks: Keep original names
+	for _, structDef := range g.Structs {
+		if strings.EqualFold(g.Framework, "CoreFoundation") {
+			// In CoreFoundation, strip CF prefix but preserve CG prefix for geometry types
+			if strings.HasPrefix(structDef.Name, "CF") && !strings.HasPrefix(structDef.Name, "CG") {
+				structDef.Name = structDef.Name[2:] // Strip "CF" prefix (CFRange → Range)
+			}
+		}
+	}
 
 	// Build typedef names map to exclude from refTypes
 	typedefNames := make(map[string]bool)
@@ -910,6 +997,33 @@ func (g *Generator) GenerateTxtarFromModule(w io.Writer) error {
 	moduleContent, err := getTemplateVariant("module", g.Variant)
 	if err != nil {
 		return err
+	}
+
+	// Populate package-level type registries before template execution
+	// This ensures TypeToInterfaceType and mapCTypeToGoWithFramework can check
+	// if a type is defined in the current framework
+	currentFrameworkClasses = make(map[string]bool)
+	for _, class := range g.Classes {
+		currentFrameworkClasses[stripObjCPrefix(class.Name)] = true
+		currentFrameworkClasses[class.Name] = true
+	}
+
+	currentFrameworkTypedefs = make(map[string]bool)
+	for _, typedef := range g.Typedefs {
+		currentFrameworkTypedefs[stripObjCPrefix(typedef.Name)] = true
+		currentFrameworkTypedefs[typedef.Name] = true
+	}
+
+	currentFrameworkStructs = make(map[string]bool)
+	for _, structDef := range g.Structs {
+		currentFrameworkStructs[stripObjCPrefix(structDef.Name)] = true
+		currentFrameworkStructs[structDef.Name] = true
+	}
+
+	currentFrameworkEnums = make(map[string]bool)
+	for _, enum := range g.Enums {
+		currentFrameworkEnums[stripObjCPrefix(enum.Name)] = true
+		currentFrameworkEnums[enum.Name] = true
 	}
 
 	// Create master template and parse all sub-templates

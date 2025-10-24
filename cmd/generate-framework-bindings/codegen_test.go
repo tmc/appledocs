@@ -219,11 +219,9 @@ func TestMethodSignatureGeneration(t *testing.T) {
 				},
 			},
 			framework: "AppKit",
-			// Note: Without a populated cross-framework type registry,
-			// CGRect maps to "Rect" (unqualified). In actual generation,
-			// it would be qualified as "coregraphics.CGRect" after the
-			// type registry is built from parsed data.
-			wantSig: "func (c TestClass) InitWithFrame(frame Rect) TestClass",
+			// Note: CGRect maps to "corefoundation.CGRect" via the static type registry
+			// which provides framework-agnostic mappings for geometry types (defined in CoreFoundation).
+			wantSig: "func (c TestClass) InitWithFrame(frame corefoundation.CGRect) TestClass",
 		},
 	}
 

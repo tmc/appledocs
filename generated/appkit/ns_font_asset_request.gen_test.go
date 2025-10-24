@@ -12,7 +12,7 @@ var _ = appkit.NewFontAssetRequest
 // ExampleNewFontAssetRequestWithFontDescriptorsOptions demonstrates how to create a FontAssetRequest instance using NewFontAssetRequestWithFontDescriptorsOptions.
 func ExampleNewFontAssetRequestWithFontDescriptorsOptions() {
 	_ = appkit.NewFontAssetRequestWithFontDescriptorsOptions(
-		[]appkit.IFontDescriptor{}, // fontDescriptors []IFontDescriptor
+		[]appkit.FontDescriptor{}, // fontDescriptors []FontDescriptor
 		appkit.FontAssetRequestOptions{}, // options FontAssetRequestOptions
 	)
 	// Output:

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveToBeginningOfDocumentAndModifySelectionProtocol is the moveToBeginningOfDocumentAndModifySelection: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveToBeginningOfDocumentAndModifySelection:.
 var moveToBeginningOfDocumentAndModifySelectionProtocol *objc.Protocol
 

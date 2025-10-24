@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // ToolbarItemValidationProtocol is the NSToolbarItemValidation protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSToolbarItemValidation.
 var ToolbarItemValidationProtocol *objc.Protocol
 

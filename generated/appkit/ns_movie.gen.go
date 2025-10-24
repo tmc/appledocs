@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -78,6 +79,26 @@ func NewMovie() Movie {
 	return getMovieClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMovie/initWithCoder:
+func NewMovieWithCoder(coder foundation.Coder) Movie {
+	instance := getMovieClass().Alloc()
+	rv := objc.Send[Movie](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMovie/initWithMovie:
+func NewMovieWithMovie(movie unsafe.Pointer) Movie {
+	instance := getMovieClass().Alloc()
+	rv := objc.Send[Movie](instance.ID, objc.Sel("initWithMovie:"), movie)
+	rv.Autorelease()
+	return rv
+}
 
 
 

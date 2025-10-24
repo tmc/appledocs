@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,15 +33,12 @@ type _PrinterClass struct {
 type IPrinter interface {
 	objectivec.IObject
 	// properties:
-	DeviceDescription() DeviceDescriptionKey /* not a class type */
-	SetDeviceDescription(value DeviceDescriptionKey /* not a class type */)
+	DeviceDescription() foundation.IDictionary
 	LanguageLevel() int
-	SetLanguageLevel(value int)
 	Name() objc.IObject /* cross-framework: NSString */
-	SetName(value objc.IObject /* cross-framework: NSString */)
-	Type() unsafe.Pointer
-	SetType(value unsafe.Pointer)
+	Type() objc.IObject /* cross-framework: PrinterTypeName */
 	// methods:
+	PageSizeForPaper(paperName objc.IObject /* cross-framework: PrinterPaperName */) objc.IObject /* cross-framework: Size */
 }
 
 // An object that describes a printer’s capabilities.
@@ -96,12 +94,81 @@ func NewPrinter() Printer {
 
 
 
-// A dictionary of keys and values that describe the device.
+// Creates and returns a printer object initialized with the specified printer name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/devicedescription
-func (p_ Printer) DeviceDescription() DeviceDescriptionKey /* not a class type */ {
-	rv := objc.Send[DeviceDescriptionKey](p_.ID, objc.Sel("deviceDescription"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/init(name:)
+func NewPrinterWithName(name objc.IObject /* cross-framework: NSString */) Printer {
+	rv := objc.Send[Printer](objc.ID(getPrinterClass().class), objc.Sel("printerWithName:"), name)
+	return rv
+}
+
+
+// Creates and returns a printer object initialized to the first available printer with the specified make and model information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/init(type:)
+func NewPrinterWithType(type_ objc.IObject /* cross-framework: PrinterTypeName */) Printer {
+	rv := objc.Send[Printer](objc.ID(getPrinterClass().class), objc.Sel("printerWithType:"), type_)
+	return rv
+}
+
+
+
+// Creates and returns a printer object initialized with the specified printer name.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/init(name:)
+func (pc _PrinterClass) PrinterWithName(name objc.IObject /* cross-framework: NSString */) IPrinter {
+	rv := objc.Send[Printer](objc.ID(pc.class), objc.Sel("printerWithName:"), name)
+	return rv
+}
+
+
+// Creates and returns a printer object initialized to the first available printer with the specified make and model information.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/init(type:)
+func (pc _PrinterClass) PrinterWithType(type_ objc.IObject /* cross-framework: PrinterTypeName */) IPrinter {
+	rv := objc.Send[Printer](objc.ID(pc.class), objc.Sel("printerWithType:"), type_)
+	return rv
+}
+
+
+// Deprecated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/printerWithName:domain:includeUnavailable:
+func (pc _PrinterClass) PrinterWithNameDomainIncludeUnavailable(name objc.IObject /* cross-framework: NSString */, domain objc.IObject /* cross-framework: NSString */, flag bool) IPrinter {
+	rv := objc.Send[Printer](objc.ID(pc.class), objc.Sel("printerWithName:domain:includeUnavailable:"), name, domain, flag)
+	return rv
+}
+
+
+// Returns the names of all available printers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/printerNames
+func (pc _PrinterClass) PrinterNames() []string {
+	rv := objc.Send[[]string](objc.ID(pc.class), objc.Sel("printerNames"))
+	return rv
+}
+
+// Returns descriptions of the makes and models of all available printers.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/printerTypes
+func (pc _PrinterClass) PrinterTypes() []string {
+	rv := objc.Send[[]string](objc.ID(pc.class), objc.Sel("printerTypes"))
+	return rv
+}
+
+// Returns the size of the page for the specified paper type.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/pageSize(forPaper:)
+func (p_ Printer) PageSizeForPaper(paperName objc.IObject /* cross-framework: PrinterPaperName */) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](p_.ID, objc.Sel("pageSizeForPaper:"), paperName)
 	return rv
 }
 
@@ -109,56 +176,49 @@ func (p_ Printer) DeviceDescription() DeviceDescriptionKey /* not a class type *
 // A dictionary of keys and values that describe the device.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/devicedescription
-func (p_ Printer) SetDeviceDescription(value DeviceDescriptionKey /* not a class type */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setDeviceDescription:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/deviceDescription
+func (p_ Printer) DeviceDescription() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](p_.ID, objc.Sel("deviceDescription"))
+	return rv
 }
 
 
 // The PostScript language level recognized by the printer.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/languagelevel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/languageLevel
 func (p_ Printer) LanguageLevel() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("languageLevel"))
 	return rv
 }
 
 
-// The PostScript language level recognized by the printer.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/languagelevel
-func (p_ Printer) SetLanguageLevel(value int) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setLanguageLevel:"), value)
-}
-
-
 // The printer’s name.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/name
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/name
 func (p_ Printer) Name() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("name"))
 	return rv
 }
 
 
-// The printer’s name.
+// Returns the names of all available printers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/name
-func (p_ Printer) SetName(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setName:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/printerNames
+func (p_ Printer) PrinterNames() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("printerNames"))
+	return rv
 }
 
 
-// A description of the printer’s make and model.
+// Returns descriptions of the makes and models of all available printers.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/type
-func (p_ Printer) Type() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("type"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/printerTypes
+func (p_ Printer) PrinterTypes() []string {
+	rv := objc.Send[[]string](p_.ID, objc.Sel("printerTypes"))
 	return rv
 }
 
@@ -166,10 +226,10 @@ func (p_ Printer) Type() unsafe.Pointer {
 // A description of the printer’s make and model.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsprinter/type
-func (p_ Printer) SetType(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setType:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPrinter/type
+func (p_ Printer) Type() objc.IObject /* cross-framework: PrinterTypeName */ {
+	rv := objc.Send[objc.ID](p_.ID, objc.Sel("type"))
+	return rv
 }
-
 
 

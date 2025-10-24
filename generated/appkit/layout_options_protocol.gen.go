@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // layoutOptionsProtocol is the layoutOptions protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to layoutOptions.
 var layoutOptionsProtocol *objc.Protocol
 

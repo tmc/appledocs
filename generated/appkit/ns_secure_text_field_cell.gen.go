@@ -29,8 +29,10 @@ type _SecureTextFieldCellClass struct {
 // An interface definition for the [SecureTextFieldCell] class.
 type ISecureTextFieldCell interface {
 	ITextFieldCell
+	// properties:
 	EchosBullets() bool
 	SetEchosBullets(value bool)
+	// methods:
 }
 
 // A text field whose value is hidden from the user.
@@ -91,7 +93,7 @@ func NewSecureTextFieldCell() SecureTextFieldCell {
 // A Boolean that indicates whether the receiver echoes a bullet character rather than each character typed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssecuretextfieldcell/echosbullets
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextFieldCell/echosBullets
 func (s_ SecureTextFieldCell) EchosBullets() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("echosBullets"))
 	return rv
@@ -101,7 +103,7 @@ func (s_ SecureTextFieldCell) EchosBullets() bool {
 // A Boolean that indicates whether the receiver echoes a bullet character rather than each character typed.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nssecuretextfieldcell/echosbullets
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSecureTextFieldCell/echosBullets
 func (s_ SecureTextFieldCell) SetEchosBullets(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEchosBullets:"), value)
 }

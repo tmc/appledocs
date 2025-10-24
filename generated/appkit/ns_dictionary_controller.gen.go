@@ -31,23 +31,20 @@ type _DictionaryControllerClass struct {
 type IDictionaryController interface {
 	IArrayController
 	// properties:
-	ArrangedObjects() unsafe.Pointer
-	SetArrangedObjects(value unsafe.Pointer)
-	ExcludedKeys() objc.IObject /* cross-framework: NSString */
-	SetExcludedKeys(value objc.IObject /* cross-framework: NSString */)
-	IncludedKeys() objc.IObject /* cross-framework: NSString */
-	SetIncludedKeys(value objc.IObject /* cross-framework: NSString */)
+	ExcludedKeys() []string
+	SetExcludedKeys(value []string)
+	IncludedKeys() []string
+	SetIncludedKeys(value []string)
+	InitialValue() objc.ID
+	SetInitialValue(value objc.ID)
 	InitialKey() objc.IObject /* cross-framework: NSString */
 	SetInitialKey(value objc.IObject /* cross-framework: NSString */)
-	InitialValue() unsafe.Pointer
-	SetInitialValue(value unsafe.Pointer)
-	LocalizedKeyDictionary() objc.IObject /* cross-framework: NSString */
-	SetLocalizedKeyDictionary(value objc.IObject /* cross-framework: NSString */)
+	LocalizedKeyDictionary() foundation.IDictionary
+	SetLocalizedKeyDictionary(value foundation.IDictionary)
 	LocalizedKeyTable() objc.IObject /* cross-framework: NSString */
 	SetLocalizedKeyTable(value objc.IObject /* cross-framework: NSString */)
-	Content() unsafe.Pointer
-	SetContent(value unsafe.Pointer)
 	// methods:
+	NewObject() IDictionaryControllerKeyValuePair
 }
 
 // A bindings-compatible controller that manages the display and editing of a dictionary of key-value pairs.
@@ -105,31 +102,12 @@ func NewDictionaryController() DictionaryController {
 
 
 
-// An array containing the receiver’s content objects arranged using
+// Creates and returns a new key-value pair to represent an entry in the content dictionary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects
-func (d_ DictionaryController) ArrangedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("arrangedObjects"))
-	return rv
-}
-
-
-// An array containing the receiver’s content objects arranged using
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsarraycontroller/arrangedobjects
-func (d_ DictionaryController) SetArrangedObjects(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setArrangedObjects:"), value)
-}
-
-
-// The key names that are never displayed in the user interface items bound to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/excludedkeys
-func (d_ DictionaryController) ExcludedKeys() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("excludedKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/newObject()
+func (d_ DictionaryController) NewObject() IDictionaryControllerKeyValuePair {
+	rv := objc.Send[DictionaryControllerKeyValuePair](d_.ID, objc.Sel("newObject"))
 	return rv
 }
 
@@ -137,18 +115,38 @@ func (d_ DictionaryController) ExcludedKeys() objc.IObject /* cross-framework: N
 // The key names that are never displayed in the user interface items bound to the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/excludedkeys
-func (d_ DictionaryController) SetExcludedKeys(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setExcludedKeys:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/excludedKeys
+func (d_ DictionaryController) ExcludedKeys() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("excludedKeys"))
+	return rv
+}
+
+
+// The key names that are never displayed in the user interface items bound to the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/excludedKeys
+func (d_ DictionaryController) SetExcludedKeys(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setExcludedKeys:"), nsArray)
 }
 
 
 // The key names that are represented by a key-value pair, even if they are not present in the receiver’s content dictionary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/includedkeys
-func (d_ DictionaryController) IncludedKeys() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("includedKeys"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/includedKeys
+func (d_ DictionaryController) IncludedKeys() []string {
+	rv := objc.Send[[]string](d_.ID, objc.Sel("includedKeys"))
 	return rv
 }
 
@@ -156,16 +154,45 @@ func (d_ DictionaryController) IncludedKeys() objc.IObject /* cross-framework: N
 // The key names that are represented by a key-value pair, even if they are not present in the receiver’s content dictionary.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/includedkeys
-func (d_ DictionaryController) SetIncludedKeys(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludedKeys:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/includedKeys
+func (d_ DictionaryController) SetIncludedKeys(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](d_.ID, objc.Sel("setIncludedKeys:"), nsArray)
+}
+
+
+// The string used as the initial value for a newly inserted item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/initialValue
+func (d_ DictionaryController) InitialValue() objc.ID {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("initialValue"))
+	return rv
+}
+
+
+// The string used as the initial value for a newly inserted item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/initialValue
+func (d_ DictionaryController) SetInitialValue(value objc.ID) {
+	objc.Send[objc.ID](d_.ID, objc.Sel("setInitialValue:"), value)
 }
 
 
 // The string used as the initial key name for a newly inserted item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialkey
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/initialKey
 func (d_ DictionaryController) InitialKey() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("initialKey"))
 	return rv
@@ -175,37 +202,18 @@ func (d_ DictionaryController) InitialKey() objc.IObject /* cross-framework: NSS
 // The string used as the initial key name for a newly inserted item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialkey
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/initialKey
 func (d_ DictionaryController) SetInitialKey(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setInitialKey:"), value)
 }
 
 
-// The string used as the initial value for a newly inserted item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialvalue
-func (d_ DictionaryController) InitialValue() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("initialValue"))
-	return rv
-}
-
-
-// The string used as the initial value for a newly inserted item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/initialvalue
-func (d_ DictionaryController) SetInitialValue(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setInitialValue:"), value)
-}
-
-
 // The localized key names that are displayed by the receiver in place of the key names.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeydictionary
-func (d_ DictionaryController) LocalizedKeyDictionary() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("localizedKeyDictionary"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/localizedKeyDictionary
+func (d_ DictionaryController) LocalizedKeyDictionary() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](d_.ID, objc.Sel("localizedKeyDictionary"))
 	return rv
 }
 
@@ -213,8 +221,8 @@ func (d_ DictionaryController) LocalizedKeyDictionary() objc.IObject /* cross-fr
 // The localized key names that are displayed by the receiver in place of the key names.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeydictionary
-func (d_ DictionaryController) SetLocalizedKeyDictionary(value objc.IObject /* cross-framework: NSString */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/localizedKeyDictionary
+func (d_ DictionaryController) SetLocalizedKeyDictionary(value foundation.IDictionary) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKeyDictionary:"), value)
 }
 
@@ -222,7 +230,7 @@ func (d_ DictionaryController) SetLocalizedKeyDictionary(value objc.IObject /* c
 // the strings file used to localize key names.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeytable
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/localizedKeyTable
 func (d_ DictionaryController) LocalizedKeyTable() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("localizedKeyTable"))
 	return rv
@@ -232,28 +240,9 @@ func (d_ DictionaryController) LocalizedKeyTable() objc.IObject /* cross-framewo
 // the strings file used to localize key names.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdictionarycontroller/localizedkeytable
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDictionaryController/localizedKeyTable
 func (d_ DictionaryController) SetLocalizedKeyTable(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocalizedKeyTable:"), value)
-}
-
-
-// The receiver’s content object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/content
-func (d_ DictionaryController) Content() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("content"))
-	return rv
-}
-
-
-// The receiver’s content object.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/content
-func (d_ DictionaryController) SetContent(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setContent:"), value)
 }
 
 

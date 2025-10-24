@@ -32,38 +32,38 @@ type _ATSTypesetterClass struct {
 type IATSTypesetter interface {
 	ITypesetter
 	// properties:
-	AttributedString() objc.IObject /* cross-framework: AttributedString */
-	SetAttributedString(value objc.IObject /* cross-framework: AttributedString */)
+	AttributedString() foundation.AttributedString
+	SetAttributedString(value foundation.AttributedString)
 	BidiProcessingEnabled() bool
 	SetBidiProcessingEnabled(value bool)
 	CurrentTextContainer() ITextContainer
 	HyphenationFactor() float32
 	SetHyphenationFactor(value float32)
-	LayoutManager() objc.IObject /* cross-framework: LayoutManager */
+	LayoutManager() ILayoutManager
 	LineFragmentPadding() float64
 	SetLineFragmentPadding(value float64)
-	ParagraphGlyphRange() objc.IObject /* cross-framework: Range */
-	ParagraphSeparatorGlyphRange() objc.IObject /* cross-framework: Range */
+	ParagraphGlyphRange() corefoundation.Range
+	ParagraphSeparatorGlyphRange() corefoundation.Range
 	TypesetterBehavior() TypesetterBehavior
 	SetTypesetterBehavior(value TypesetterBehavior)
 	UsesFontLeading() bool
 	SetUsesFontLeading(value bool)
 	// methods:
 	BoundingBoxForControlGlyphAtIndexForTextContainerProposedLineFragmentGlyphPositionCharacterIndex(glyphIndex uint, textContainer ITextContainer, proposedRect objc.IObject /* cross-framework: Rect */, glyphPosition objc.IObject /* cross-framework: Point */, charIndex uint) objc.IObject /* cross-framework: Rect */
-	GetLineFragmentRectUsedRectForParagraphSeparatorGlyphRangeAtProposedOrigin(lineFragmentRect objc.IObject /* cross-framework: Rect */, lineFragmentUsedRect objc.IObject /* cross-framework: Rect */, paragraphSeparatorGlyphRange objc.IObject /* cross-framework: Range */, lineOrigin objc.IObject /* cross-framework: Point */)
+	GetLineFragmentRectUsedRectForParagraphSeparatorGlyphRangeAtProposedOrigin(lineFragmentRect objc.IObject /* cross-framework: Rect */, lineFragmentUsedRect objc.IObject /* cross-framework: Rect */, paragraphSeparatorGlyphRange corefoundation.Range, lineOrigin objc.IObject /* cross-framework: Point */)
 	HyphenCharacterForGlyphAtIndex(glyphIndex uint) unsafe.Pointer
 	HyphenationFactorForGlyphAtIndex(glyphIndex uint) float32
 	LayoutParagraphAtPoint(lineFragmentOrigin objc.IObject /* cross-framework: Point */) uint
 	LineSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(glyphIndex uint, rect objc.IObject /* cross-framework: Rect */) float64
 	ParagraphSpacingAfterGlyphAtIndexWithProposedLineFragmentRect(glyphIndex uint, rect objc.IObject /* cross-framework: Rect */) float64
 	ParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragmentRect(glyphIndex uint, rect objc.IObject /* cross-framework: Rect */) float64
-	SetHardInvalidationForGlyphRange(flag bool, glyphRange objc.IObject /* cross-framework: Range */)
-	SetParagraphGlyphRangeSeparatorGlyphRange(paragraphRange objc.IObject /* cross-framework: Range */, paragraphSeparatorRange objc.IObject /* cross-framework: Range */)
+	SetHardInvalidationForGlyphRange(flag bool, glyphRange corefoundation.Range)
+	SetParagraphGlyphRangeSeparatorGlyphRange(paragraphRange corefoundation.Range, paragraphSeparatorRange corefoundation.Range)
 	ShouldBreakLineByHyphenatingBeforeCharacterAtIndex(charIndex uint) bool
 	ShouldBreakLineByWordBeforeCharacterAtIndex(charIndex uint) bool
 	SubstituteFontForFont(originalFont IFont) IFont
 	TextTabForGlyphLocationWritingDirectionMaxLocation(glyphLocation float64, direction WritingDirection, maxLocation float64) ITextTab
-	WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset(lineRect objc.IObject /* cross-framework: Rect */, glyphRange objc.IObject /* cross-framework: Range */, usedRect objc.IObject /* cross-framework: Rect */, baselineOffset corefoundation.CGFloat)
+	WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset(lineRect objc.IObject /* cross-framework: Rect */, glyphRange corefoundation.Range, usedRect objc.IObject /* cross-framework: Rect */, baselineOffset corefoundation.CGFloat)
 }
 
 // A concrete typesetter object that places glyphs during the text layout process.
@@ -144,7 +144,7 @@ func (a_ ATSTypesetter) BoundingBoxForControlGlyphAtIndexForTextContainerPropose
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/getLineFragmentRect(_:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:)
-func (a_ ATSTypesetter) GetLineFragmentRectUsedRectForParagraphSeparatorGlyphRangeAtProposedOrigin(lineFragmentRect objc.IObject /* cross-framework: Rect */, lineFragmentUsedRect objc.IObject /* cross-framework: Rect */, paragraphSeparatorGlyphRange objc.IObject /* cross-framework: Range */, lineOrigin objc.IObject /* cross-framework: Point */) {
+func (a_ ATSTypesetter) GetLineFragmentRectUsedRectForParagraphSeparatorGlyphRangeAtProposedOrigin(lineFragmentRect objc.IObject /* cross-framework: Rect */, lineFragmentUsedRect objc.IObject /* cross-framework: Rect */, paragraphSeparatorGlyphRange corefoundation.Range, lineOrigin objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("getLineFragmentRect:usedRect:forParagraphSeparatorGlyphRange:atProposedOrigin:"), lineFragmentRect, lineFragmentUsedRect, paragraphSeparatorGlyphRange, lineOrigin)
 }
 
@@ -213,7 +213,7 @@ func (a_ ATSTypesetter) ParagraphSpacingBeforeGlyphAtIndexWithProposedLineFragme
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/setHardInvalidation(_:forGlyphRange:)
-func (a_ ATSTypesetter) SetHardInvalidationForGlyphRange(flag bool, glyphRange objc.IObject /* cross-framework: Range */) {
+func (a_ ATSTypesetter) SetHardInvalidationForGlyphRange(flag bool, glyphRange corefoundation.Range) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHardInvalidation:forGlyphRange:"), flag, glyphRange)
 }
 
@@ -222,7 +222,7 @@ func (a_ ATSTypesetter) SetHardInvalidationForGlyphRange(flag bool, glyphRange o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/setParagraphGlyphRange(_:separatorGlyphRange:)
-func (a_ ATSTypesetter) SetParagraphGlyphRangeSeparatorGlyphRange(paragraphRange objc.IObject /* cross-framework: Range */, paragraphSeparatorRange objc.IObject /* cross-framework: Range */) {
+func (a_ ATSTypesetter) SetParagraphGlyphRangeSeparatorGlyphRange(paragraphRange corefoundation.Range, paragraphSeparatorRange corefoundation.Range) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setParagraphGlyphRange:separatorGlyphRange:"), paragraphRange, paragraphSeparatorRange)
 }
 
@@ -271,7 +271,7 @@ func (a_ ATSTypesetter) TextTabForGlyphLocationWritingDirectionMaxLocation(glyph
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/willSetLineFragmentRect(_:forGlyphRange:usedRect:baselineOffset:)
-func (a_ ATSTypesetter) WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset(lineRect objc.IObject /* cross-framework: Rect */, glyphRange objc.IObject /* cross-framework: Range */, usedRect objc.IObject /* cross-framework: Rect */, baselineOffset corefoundation.CGFloat) {
+func (a_ ATSTypesetter) WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffset(lineRect objc.IObject /* cross-framework: Rect */, glyphRange corefoundation.Range, usedRect objc.IObject /* cross-framework: Rect */, baselineOffset corefoundation.CGFloat) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("willSetLineFragmentRect:forGlyphRange:usedRect:baselineOffset:"), lineRect, glyphRange, usedRect, baselineOffset)
 }
 
@@ -280,7 +280,7 @@ func (a_ ATSTypesetter) WillSetLineFragmentRectForGlyphRangeUsedRectBaselineOffs
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/attributedString
-func (a_ ATSTypesetter) AttributedString() objc.IObject /* cross-framework: AttributedString */ {
+func (a_ ATSTypesetter) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](a_.ID, objc.Sel("attributedString"))
 	return rv
 }
@@ -290,7 +290,7 @@ func (a_ ATSTypesetter) AttributedString() objc.IObject /* cross-framework: Attr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/attributedString
-func (a_ ATSTypesetter) SetAttributedString(value objc.IObject /* cross-framework: AttributedString */) {
+func (a_ ATSTypesetter) SetAttributedString(value foundation.AttributedString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setAttributedString:"), value)
 }
 
@@ -347,7 +347,7 @@ func (a_ ATSTypesetter) SetHyphenationFactor(value float32) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/layoutManager
-func (a_ ATSTypesetter) LayoutManager() objc.IObject /* cross-framework: LayoutManager */ {
+func (a_ ATSTypesetter) LayoutManager() ILayoutManager {
 	rv := objc.Send[LayoutManager](a_.ID, objc.Sel("layoutManager"))
 	return rv
 }
@@ -376,7 +376,7 @@ func (a_ ATSTypesetter) SetLineFragmentPadding(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/paragraphGlyphRange
-func (a_ ATSTypesetter) ParagraphGlyphRange() objc.IObject /* cross-framework: Range */ {
+func (a_ ATSTypesetter) ParagraphGlyphRange() corefoundation.Range {
 	rv := objc.Send[corefoundation.Range](a_.ID, objc.Sel("paragraphGlyphRange"))
 	return rv
 }
@@ -386,7 +386,7 @@ func (a_ ATSTypesetter) ParagraphGlyphRange() objc.IObject /* cross-framework: R
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSATSTypesetter/paragraphSeparatorGlyphRange
-func (a_ ATSTypesetter) ParagraphSeparatorGlyphRange() objc.IObject /* cross-framework: Range */ {
+func (a_ ATSTypesetter) ParagraphSeparatorGlyphRange() corefoundation.Range {
 	rv := objc.Send[corefoundation.Range](a_.ID, objc.Sel("paragraphSeparatorGlyphRange"))
 	return rv
 }

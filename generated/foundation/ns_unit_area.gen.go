@@ -97,12 +97,183 @@ func (uc _UnitAreaClass) SquareYards() UnitArea {
 	return rv
 }
 
+// The square centimeters unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareCentimeters
+func (uc _UnitAreaClass) SquareCentimeters() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareCentimeters"))
+	return rv
+}
+
+// The square feet unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareFeet
+func (uc _UnitAreaClass) SquareFeet() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareFeet"))
+	return rv
+}
+
+// The square inches unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareInches
+func (uc _UnitAreaClass) SquareInches() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareInches"))
+	return rv
+}
+
+// The square kilometers unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareKilometers
+func (uc _UnitAreaClass) SquareKilometers() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareKilometers"))
+	return rv
+}
+
+// The square megameters unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMegameters
+func (uc _UnitAreaClass) SquareMegameters() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMegameters"))
+	return rv
+}
+
+// The square meters unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMeters
+func (uc _UnitAreaClass) SquareMeters() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMeters"))
+	return rv
+}
+
+// The square micrometers unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMicrometers
+func (uc _UnitAreaClass) SquareMicrometers() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMicrometers"))
+	return rv
+}
+
+// The square millimeters unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMillimeters
+func (uc _UnitAreaClass) SquareMillimeters() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareMillimeters"))
+	return rv
+}
+
+// The square nanometers unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareNanometers
+func (uc _UnitAreaClass) SquareNanometers() UnitArea {
+	rv := objc.Send[UnitArea](objc.ID(uc.class), objc.Sel("squareNanometers"))
+	return rv
+}
+
 // The square yards unit of area.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareYards
 func (u_ UnitArea) SquareYards() IUnitArea {
 	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareYards"))
+	return rv
+}
+
+
+// The square centimeters unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareCentimeters
+func (u_ UnitArea) SquareCentimeters() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareCentimeters"))
+	return rv
+}
+
+
+// The square feet unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareFeet
+func (u_ UnitArea) SquareFeet() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareFeet"))
+	return rv
+}
+
+
+// The square inches unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareInches
+func (u_ UnitArea) SquareInches() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareInches"))
+	return rv
+}
+
+
+// The square kilometers unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareKilometers
+func (u_ UnitArea) SquareKilometers() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareKilometers"))
+	return rv
+}
+
+
+// The square megameters unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMegameters
+func (u_ UnitArea) SquareMegameters() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMegameters"))
+	return rv
+}
+
+
+// The square meters unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMeters
+func (u_ UnitArea) SquareMeters() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMeters"))
+	return rv
+}
+
+
+// The square micrometers unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMicrometers
+func (u_ UnitArea) SquareMicrometers() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMicrometers"))
+	return rv
+}
+
+
+// The square millimeters unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareMillimeters
+func (u_ UnitArea) SquareMillimeters() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareMillimeters"))
+	return rv
+}
+
+
+// The square nanometers unit of area.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/UnitArea/squareNanometers
+func (u_ UnitArea) SquareNanometers() IUnitArea {
+	rv := objc.Send[UnitArea](u_.ID, objc.Sel("squareNanometers"))
 	return rv
 }
 

@@ -32,8 +32,8 @@ type IValueTransformer interface {
 	objectivec.IObject
 	// properties:
 	// methods:
-	ReverseTransformedValue(value objectivec.IObject) objc.ID
-	TransformedValue(value objectivec.IObject) objc.ID
+	ReverseTransformedValue(value objc.IObject) objc.ID
+	TransformedValue(value objc.IObject) objc.ID
 }
 
 // An abstract class used to transform values from one representation to another.
@@ -153,7 +153,7 @@ func (vc _ValueTransformerClass) ValueTransformerNames() []string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/reverseTransformedValue(_:)
-func (v_ ValueTransformer) ReverseTransformedValue(value objectivec.IObject) objc.ID {
+func (v_ ValueTransformer) ReverseTransformedValue(value objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("reverseTransformedValue:"), value)
 	return rv
 }
@@ -163,7 +163,7 @@ func (v_ ValueTransformer) ReverseTransformedValue(value objectivec.IObject) obj
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/ValueTransformer/transformedValue(_:)
-func (v_ ValueTransformer) TransformedValue(value objectivec.IObject) objc.ID {
+func (v_ ValueTransformer) TransformedValue(value objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("transformedValue:"), value)
 	return rv
 }

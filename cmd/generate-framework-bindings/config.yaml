@@ -46,11 +46,37 @@ unsafe_selector_patterns:
 # These are types that should be defined but aren't documented by Apple
 # NOTE: Names should NOT include the framework prefix (CG/CF/NS) as it will be stripped by the template
 synthetic_typedefs:
-  CoreFoundation:
-    - name: CGFloat
-      base_type: double
-      abstract: "A type for floating-point scalar values in Core Graphics and related frameworks."
-      comment: "Maps to 'type Float = float64' after prefix stripping"
+  CoreFoundation: []
+    # CGFloat is now mapped directly to float64 in typemapping.go
+  CoreGraphics:
+    - name: CGDisplayReservationInterval
+      base_type: float32
+    - name: CGDisplayFadeInterval
+      base_type: float32
+    - name: CGDirectDisplayID
+      base_type: uint32
+    # - name: CGFloat
+    #   base_type: double
+    #   abstract: "A type for floating-point scalar values in Core Graphics and related frameworks."
+    #   comment: "No longer needed - CGFloat maps directly to float64"
+
+  Foundation:
+    - name: ItemProviderRepresentationVisibility
+      base_type: int
+      abstract: "Specifications that control which categories of processes can see an item."
+      enum_values:
+        - name: ItemProviderRepresentationVisibilityAll
+          value: 0
+          abstract: "A representation visibility specification conferring item visibility to all processes."
+        - name: ItemProviderRepresentationVisibilityTeam
+          value: 1
+          abstract: "A representation visibility specification confining item visibility to processes created by the app's development team."
+        - name: ItemProviderRepresentationVisibilityGroup
+          value: 2
+          abstract: "A representation visibility specification confining item visibility to the app's app group."
+        - name: ItemProviderRepresentationVisibilityOwnProcess
+          value: 3
+          abstract: "A representation visibility specification confining item visibility to the app that is the source of the item."
 
 frameworks:
   Foundation:

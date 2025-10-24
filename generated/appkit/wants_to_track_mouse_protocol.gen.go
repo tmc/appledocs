@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // wantsToTrackMouseProtocol is the wantsToTrackMouse protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to wantsToTrackMouse.
 var wantsToTrackMouseProtocol *objc.Protocol
 

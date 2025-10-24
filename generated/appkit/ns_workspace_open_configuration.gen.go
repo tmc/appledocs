@@ -38,8 +38,8 @@ type IWorkspaceOpenConfiguration interface {
 	SetAddsToRecentItems(value bool)
 	AllowsRunningApplicationSubstitution() bool
 	SetAllowsRunningApplicationSubstitution(value bool)
-	AppleEvent() objc.IObject /* cross-framework: AppleEventDescriptor */
-	SetAppleEvent(value objc.IObject /* cross-framework: AppleEventDescriptor */)
+	AppleEvent() foundation.AppleEventDescriptor
+	SetAppleEvent(value foundation.AppleEventDescriptor)
 	Architecture() unsafe.Pointer
 	SetArchitecture(value unsafe.Pointer)
 	Arguments() []string
@@ -187,7 +187,7 @@ func (w_ WorkspaceOpenConfiguration) SetAllowsRunningApplicationSubstitution(val
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-func (w_ WorkspaceOpenConfiguration) AppleEvent() objc.IObject /* cross-framework: AppleEventDescriptor */ {
+func (w_ WorkspaceOpenConfiguration) AppleEvent() foundation.AppleEventDescriptor {
 	rv := objc.Send[foundation.AppleEventDescriptor](w_.ID, objc.Sel("appleEvent"))
 	return rv
 }
@@ -197,7 +197,7 @@ func (w_ WorkspaceOpenConfiguration) AppleEvent() objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWorkspace/OpenConfiguration/appleEvent
-func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value objc.IObject /* cross-framework: AppleEventDescriptor */) {
+func (w_ WorkspaceOpenConfiguration) SetAppleEvent(value foundation.AppleEventDescriptor) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setAppleEvent:"), value)
 }
 

@@ -32,18 +32,18 @@ type _WindowTabClass struct {
 type IWindowTab interface {
 	objectivec.IObject
 	// properties:
-	AccessoryView() IView
-	SetAccessoryView(value IView)
-	AttributedTitle() objc.IObject /* cross-framework: AttributedString */
-	SetAttributedTitle(value objc.IObject /* cross-framework: AttributedString */)
-	Title() objc.IObject /* cross-framework: NSString */
-	SetTitle(value objc.IObject /* cross-framework: NSString */)
-	ToolTip() objc.IObject /* cross-framework: NSString */
-	SetToolTip(value objc.IObject /* cross-framework: NSString */)
 	Tab() IWindowTab
 	SetTab(value IWindowTab)
 	TabbingIdentifier() unsafe.Pointer
 	SetTabbingIdentifier(value unsafe.Pointer)
+	AccessoryView() IView
+	SetAccessoryView(value IView)
+	AttributedTitle() foundation.AttributedString
+	SetAttributedTitle(value foundation.AttributedString)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	ToolTip() objc.IObject /* cross-framework: NSString */
+	SetToolTip(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -100,82 +100,6 @@ func NewWindowTab() WindowTab {
 
 
 
-// An optional accessory view for the tab.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
-func (w_ WindowTab) AccessoryView() IView {
-	rv := objc.Send[View](w_.ID, objc.Sel("accessoryView"))
-	return rv
-}
-
-
-// An optional accessory view for the tab.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/accessoryView
-func (w_ WindowTab) SetAccessoryView(value IView) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessoryView:"), value)
-}
-
-
-// The title for the window tab, specified as an attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) AttributedTitle() objc.IObject /* cross-framework: AttributedString */ {
-	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedTitle"))
-	return rv
-}
-
-
-// The title for the window tab, specified as an attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/attributedTitle
-func (w_ WindowTab) SetAttributedTitle(value objc.IObject /* cross-framework: AttributedString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
-}
-
-
-// The title for the window tab.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
-func (w_ WindowTab) Title() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("title"))
-	return rv
-}
-
-
-// The title for the window tab.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/title
-func (w_ WindowTab) SetTitle(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
-}
-
-
-// The tooltip for this window tab.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
-func (w_ WindowTab) ToolTip() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("toolTip"))
-	return rv
-}
-
-
-// The tooltip for this window tab.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowTab/toolTip
-func (w_ WindowTab) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), value)
-}
-
-
 // An object that represents information about a window when it displays as a tab.
 //
 // [Full Topic]
@@ -211,6 +135,82 @@ func (w_ WindowTab) TabbingIdentifier() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nswindow/tabbingidentifier-swift.property
 func (w_ WindowTab) SetTabbingIdentifier(value unsafe.Pointer) {
 	objc.Send[objc.ID](w_.ID, objc.Sel("setTabbingIdentifier:"), value)
+}
+
+
+// An optional accessory view for the tab.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/accessoryview
+func (w_ WindowTab) AccessoryView() IView {
+	rv := objc.Send[View](w_.ID, objc.Sel("accessoryView"))
+	return rv
+}
+
+
+// An optional accessory view for the tab.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/accessoryview
+func (w_ WindowTab) SetAccessoryView(value IView) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAccessoryView:"), value)
+}
+
+
+// The title for the window tab, specified as an attributed string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/attributedtitle
+func (w_ WindowTab) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](w_.ID, objc.Sel("attributedTitle"))
+	return rv
+}
+
+
+// The title for the window tab, specified as an attributed string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/attributedtitle
+func (w_ WindowTab) SetAttributedTitle(value foundation.AttributedString) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setAttributedTitle:"), value)
+}
+
+
+// The title for the window tab.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/title
+func (w_ WindowTab) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// The title for the window tab.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/title
+func (w_ WindowTab) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setTitle:"), value)
+}
+
+
+// The tooltip for this window tab.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/tooltip
+func (w_ WindowTab) ToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](w_.ID, objc.Sel("toolTip"))
+	return rv
+}
+
+
+// The tooltip for this window tab.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nswindowtab/tooltip
+func (w_ WindowTab) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](w_.ID, objc.Sel("setToolTip:"), value)
 }
 
 

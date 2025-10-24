@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // indentProtocol is the indent: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to indent:.
 var indentProtocol *objc.Protocol
 

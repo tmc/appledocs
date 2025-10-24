@@ -36,8 +36,8 @@ type IClipView interface {
 	SetAutomaticallyAdjustsContentInsets(value bool)
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	ContentInsets() objc.IObject /* cross-framework: EdgeInsets */
-	SetContentInsets(value objc.IObject /* cross-framework: EdgeInsets */)
+	ContentInsets() foundation.EdgeInsets
+	SetContentInsets(value foundation.EdgeInsets)
 	CopiesOnScroll() bool
 	SetCopiesOnScroll(value bool)
 	DocumentCursor() ICursor
@@ -52,8 +52,8 @@ type IClipView interface {
 	Autoscroll(event IEvent) bool
 	ConstrainBoundsRect(proposedBounds objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
 	ScrollToPoint(newOrigin objc.IObject /* cross-framework: Point */)
-	ViewBoundsChanged(notification objc.IObject /* cross-framework: Notification */)
-	ViewFrameChanged(notification objc.IObject /* cross-framework: Notification */)
+	ViewBoundsChanged(notification foundation.Notification)
+	ViewFrameChanged(notification foundation.Notification)
 }
 
 // An object that clips a document view to a scroll view’s frame.
@@ -144,7 +144,7 @@ func (c_ ClipView) ScrollToPoint(newOrigin objc.IObject /* cross-framework: Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewBoundsChanged(_:)
-func (c_ ClipView) ViewBoundsChanged(notification objc.IObject /* cross-framework: Notification */) {
+func (c_ ClipView) ViewBoundsChanged(notification foundation.Notification) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewBoundsChanged:"), notification)
 }
 
@@ -153,7 +153,7 @@ func (c_ ClipView) ViewBoundsChanged(notification objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/viewFrameChanged(_:)
-func (c_ ClipView) ViewFrameChanged(notification objc.IObject /* cross-framework: Notification */) {
+func (c_ ClipView) ViewFrameChanged(notification foundation.Notification) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("viewFrameChanged:"), notification)
 }
 
@@ -200,7 +200,7 @@ func (c_ ClipView) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/contentInsets
-func (c_ ClipView) ContentInsets() objc.IObject /* cross-framework: EdgeInsets */ {
+func (c_ ClipView) ContentInsets() foundation.EdgeInsets {
 	rv := objc.Send[foundation.EdgeInsets](c_.ID, objc.Sel("contentInsets"))
 	return rv
 }
@@ -210,7 +210,7 @@ func (c_ ClipView) ContentInsets() objc.IObject /* cross-framework: EdgeInsets *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSClipView/contentInsets
-func (c_ ClipView) SetContentInsets(value objc.IObject /* cross-framework: EdgeInsets */) {
+func (c_ ClipView) SetContentInsets(value foundation.EdgeInsets) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentInsets:"), value)
 }
 

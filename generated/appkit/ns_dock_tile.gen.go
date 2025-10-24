@@ -39,8 +39,6 @@ type IDockTile interface {
 	SetBadgeLabel(value objc.IObject /* cross-framework: NSString */)
 	ContentView() IView
 	SetContentView(value IView)
-	Owner() unsafe.Pointer
-	SetOwner(value unsafe.Pointer)
 	ShowsApplicationBadge() bool
 	SetShowsApplicationBadge(value bool)
 	Size() objc.IObject /* cross-framework: Size */
@@ -48,6 +46,7 @@ type IDockTile interface {
 	DockTile() IDockTile
 	SetDockTile(value IDockTile)
 	// methods:
+	Display()
 }
 
 // The visual representation of your app’s miniaturized windows and app icon as they appear in the Dock.
@@ -101,6 +100,15 @@ func NewDockTile() DockTile {
 	return getDockTileClass().New()
 }
 
+
+
+// Redraws the dock tile’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDockTile/display()
+func (d_ DockTile) Display() {
+	objc.Send[objc.ID](d_.ID, objc.Sel("display"))
+}
 
 
 // The image used for the app’s icon.
@@ -157,25 +165,6 @@ func (d_ DockTile) ContentView() IView {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/contentview
 func (d_ DockTile) SetContentView(value IView) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setContentView:"), value)
-}
-
-
-// The object represented by the dock tile.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/owner
-func (d_ DockTile) Owner() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("owner"))
-	return rv
-}
-
-
-// The object represented by the dock tile.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdocktile/owner
-func (d_ DockTile) SetOwner(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setOwner:"), value)
 }
 
 

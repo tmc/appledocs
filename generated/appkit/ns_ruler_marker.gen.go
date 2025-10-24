@@ -115,7 +115,7 @@ func NewRulerMarker() RulerMarker {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerMarker/init(coder:)
-func NewRulerMarkerWithCoder(coder objc.IObject /* cross-framework: Coder */) RulerMarker {
+func NewRulerMarkerWithCoder(coder foundation.Coder) RulerMarker {
 	instance := getRulerMarkerClass().Alloc()
 	rv := objc.Send[RulerMarker](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()

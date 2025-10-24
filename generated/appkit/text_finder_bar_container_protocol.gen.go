@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // TextFinderBarContainerProtocol is the NSTextFinderBarContainer protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSTextFinderBarContainer.
 var TextFinderBarContainerProtocol *objc.Protocol
 

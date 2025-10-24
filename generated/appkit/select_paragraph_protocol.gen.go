@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // selectParagraphProtocol is the selectParagraph: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to selectParagraph:.
 var selectParagraphProtocol *objc.Protocol
 

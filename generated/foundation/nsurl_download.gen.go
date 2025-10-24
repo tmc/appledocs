@@ -97,7 +97,7 @@ func NewURLDownload() URLDownload {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(request:delegate:)
-func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLDownload {
+func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objc.IObject) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
 	rv.Autorelease()
@@ -109,7 +109,7 @@ func NewURLDownloadWithRequestDelegate(request IURLRequest, delegate objectivec.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLDownload/init(resumeData:delegate:path:)
-func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objectivec.IObject, path IString) URLDownload {
+func NewURLDownloadWithResumeDataDelegatePath(resumeData IData, delegate objc.IObject, path IString) URLDownload {
 	instance := getURLDownloadClass().Alloc()
 	rv := objc.Send[URLDownload](instance.ID, objc.Sel("initWithResumeData:delegate:path:"), resumeData, delegate, path)
 	rv.Autorelease()

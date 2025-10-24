@@ -32,15 +32,15 @@ type ITableCellView interface {
 	// properties:
 	BackgroundStyle() BackgroundStyle
 	SetBackgroundStyle(value BackgroundStyle)
-	DraggingImageComponents() []IDraggingImageComponent
+	DraggingImageComponents() []DraggingImageComponent
 	ImageView() IImageView
 	SetImageView(value IImageView)
 	ObjectValue() objc.ID
 	SetObjectValue(value objc.ID)
 	RowSizeStyle() TableViewRowSizeStyle
 	SetRowSizeStyle(value TableViewRowSizeStyle)
-	TextField() objc.IObject /* cross-framework: TextField */
-	SetTextField(value objc.IObject /* cross-framework: TextField */)
+	TextField() ITextField
+	SetTextField(value ITextField)
 	// methods:
 }
 
@@ -122,7 +122,7 @@ func (t_ TableCellView) SetBackgroundStyle(value BackgroundStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/draggingImageComponents
-func (t_ TableCellView) DraggingImageComponents() []IDraggingImageComponent {
+func (t_ TableCellView) DraggingImageComponents() []DraggingImageComponent {
 	rv := objc.Send[[]DraggingImageComponent](t_.ID, objc.Sel("draggingImageComponents"))
 	return rv
 }
@@ -189,7 +189,7 @@ func (t_ TableCellView) SetRowSizeStyle(value TableViewRowSizeStyle) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-func (t_ TableCellView) TextField() objc.IObject /* cross-framework: TextField */ {
+func (t_ TableCellView) TextField() ITextField {
 	rv := objc.Send[TextField](t_.ID, objc.Sel("textField"))
 	return rv
 }
@@ -199,7 +199,7 @@ func (t_ TableCellView) TextField() objc.IObject /* cross-framework: TextField *
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableCellView/textField
-func (t_ TableCellView) SetTextField(value objc.IObject /* cross-framework: TextField */) {
+func (t_ TableCellView) SetTextField(value ITextField) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTextField:"), value)
 }
 

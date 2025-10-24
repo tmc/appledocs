@@ -64,8 +64,8 @@ func (v_ Value) CGVectorValue() objc.IObject /* cross-framework: Vector */ {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/directionalEdgeInsetsValue
-func (v_ Value) DirectionalEdgeInsetsValue() DirectionalEdgeInsets /* not a class type */ {
-	rv := objc.Send[DirectionalEdgeInsets](v_.ID, objc.Sel("directionalEdgeInsetsValue"))
+func (v_ Value) DirectionalEdgeInsetsValue() objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("directionalEdgeInsetsValue"))
 	return rv
 }
 

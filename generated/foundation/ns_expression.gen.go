@@ -31,7 +31,7 @@ type _ExpressionClass struct {
 type IExpression interface {
 	objectivec.IObject
 	// properties:
-	Arguments() []IExpression
+	Arguments() []Expression
 	Collection() objc.ID
 	ConstantValue() objc.ID
 	ExpressionBlock() unsafe.Pointer
@@ -55,7 +55,7 @@ type IExpression interface {
 	SetTrue(value IExpression)
 	// methods:
 	AllowEvaluation()
-	ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID
+	ExpressionValueWithObjectContext(object objc.IObject, context IMutableDictionary) objc.ID
 }
 
 // An expression for use in a comparison predicate.
@@ -115,7 +115,7 @@ func NewExpression() Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forAggregate:)
-func NewExpressionForAggregate(subexpressions []IExpression) Expression {
+func NewExpressionForAggregate(subexpressions []Expression) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForAggregate:"), subexpressions)
 	return rv
 }
@@ -125,7 +125,7 @@ func NewExpressionForAggregate(subexpressions []IExpression) Expression {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(block:arguments:)
-func NewExpressionForBlockArguments(block unsafe.Pointer, arguments []IExpression) Expression {
+func NewExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForBlock:arguments:"), block, arguments)
 	return rv
 }
@@ -145,7 +145,7 @@ func NewExpressionForConditionalTrueExpressionFalseExpression(predicate IPredica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forConstantValue:)
-func NewExpressionForConstantValue(obj objectivec.IObject) Expression {
+func NewExpressionForConstantValue(obj objc.IObject) Expression {
 	rv := objc.Send[Expression](objc.ID(getExpressionClass().class), objc.Sel("expressionForConstantValue:"), obj)
 	return rv
 }
@@ -310,7 +310,7 @@ func (ec _ExpressionClass) ExpressionWithFormat(expressionFormat IString) IExpre
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(block:arguments:)
-func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arguments []IExpression) IExpression {
+func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arguments []Expression) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForBlock:arguments:"), block, arguments)
 	return rv
 }
@@ -320,7 +320,7 @@ func (ec _ExpressionClass) ExpressionForBlockArguments(block unsafe.Pointer, arg
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forAggregate:)
-func (ec _ExpressionClass) ExpressionForAggregate(subexpressions []IExpression) IExpression {
+func (ec _ExpressionClass) ExpressionForAggregate(subexpressions []Expression) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForAggregate:"), subexpressions)
 	return rv
 }
@@ -340,7 +340,7 @@ func (ec _ExpressionClass) ExpressionForConditionalTrueExpressionFalseExpression
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/init(forConstantValue:)
-func (ec _ExpressionClass) ExpressionForConstantValue(obj objectivec.IObject) IExpression {
+func (ec _ExpressionClass) ExpressionForConstantValue(obj objc.IObject) IExpression {
 	rv := objc.Send[Expression](objc.ID(ec.class), objc.Sel("expressionForConstantValue:"), obj)
 	return rv
 }
@@ -459,7 +459,7 @@ func (e_ Expression) AllowEvaluation() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/expressionValue(with:context:)
-func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject, context IMutableDictionary) objc.ID {
+func (e_ Expression) ExpressionValueWithObjectContext(object objc.IObject, context IMutableDictionary) objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("expressionValueWithObject:context:"), object, context)
 	return rv
 }
@@ -469,7 +469,7 @@ func (e_ Expression) ExpressionValueWithObjectContext(object objectivec.IObject,
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExpression/arguments
-func (e_ Expression) Arguments() []IExpression {
+func (e_ Expression) Arguments() []Expression {
 	rv := objc.Send[[]Expression](e_.ID, objc.Sel("arguments"))
 	return rv
 }

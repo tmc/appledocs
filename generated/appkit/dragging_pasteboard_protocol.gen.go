@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // draggingPasteboardProtocol is the draggingPasteboard protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to draggingPasteboard.
 var draggingPasteboardProtocol *objc.Protocol
 

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // UserInterfaceItemSearchingProtocol is the NSUserInterfaceItemSearching protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSUserInterfaceItemSearching.
 var UserInterfaceItemSearchingProtocol *objc.Protocol
 

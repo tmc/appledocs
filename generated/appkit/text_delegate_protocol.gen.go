@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // TextDelegateProtocol is the NSTextDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSTextDelegate.
 var TextDelegateProtocol *objc.Protocol
 

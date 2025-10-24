@@ -32,8 +32,6 @@ type IPositionalSpecifier interface {
 	objectivec.IObject
 	// properties:
 	InsertionIndex() int
-	InsertionContainer() unsafe.Pointer
-	SetInsertionContainer(value unsafe.Pointer)
 	InsertionKey() IString
 	SetInsertionKey(value IString)
 	InsertionReplaces() bool
@@ -105,25 +103,6 @@ func NewPositionalSpecifier() PositionalSpecifier {
 func (p_ PositionalSpecifier) InsertionIndex() int {
 	rv := objc.Send[int](p_.ID, objc.Sel("insertionIndex"))
 	return rv
-}
-
-
-// Returns the container in which the new or copied object or objects should be placed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
-func (p_ PositionalSpecifier) InsertionContainer() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](p_.ID, objc.Sel("insertionContainer"))
-	return rv
-}
-
-
-// Returns the container in which the new or copied object or objects should be placed.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nspositionalspecifier/insertioncontainer
-func (p_ PositionalSpecifier) SetInsertionContainer(value unsafe.Pointer) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setInsertionContainer:"), value)
 }
 
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +31,15 @@ type _TableViewRowActionClass struct {
 // An interface definition for the [TableViewRowAction] class.
 type ITableViewRowAction interface {
 	objectivec.IObject
-	BackgroundColor() NSColor
+	// properties:
+	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	Image() Image
+	Image() IImage
 	SetImage(value IImage)
-	Style() unsafe.Pointer
-	SetStyle(value unsafe.Pointer)
-	Title() string
-	SetTitle(value string)
+	Style() TableViewRowActionStyle
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	// methods:
 }
 
 // A single action to present when the user swipes horizontally on a table row.
@@ -93,12 +95,23 @@ func NewTableViewRowAction() TableViewRowAction {
 
 
 
-// The background color of the action button.
+// Creates and returns a new table view row action object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor
-func (t_ TableViewRowAction) BackgroundColor() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("backgroundColor"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/init(style:title:handler:)
+func NewTableViewRowActionWithStyleTitleHandler(style TableViewRowActionStyle, title objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) TableViewRowAction {
+	rv := objc.Send[TableViewRowAction](objc.ID(getTableViewRowActionClass().class), objc.Sel("rowActionWithStyle:title:handler:"), style, title, handler)
+	return rv
+}
+
+
+
+// Creates and returns a new table view row action object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/init(style:title:handler:)
+func (tc _TableViewRowActionClass) RowActionWithStyleTitleHandler(style TableViewRowActionStyle, title objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("rowActionWithStyle:title:handler:"), style, title, handler)
 	return rv
 }
 
@@ -106,22 +119,32 @@ func (t_ TableViewRowAction) BackgroundColor() NSColor {
 // The background color of the action button.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/backgroundcolor
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/backgroundColor
+func (t_ TableViewRowAction) BackgroundColor() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("backgroundColor"))
+	return rv
+}
+
+
+// The background color of the action button.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/backgroundColor
 func (t_ TableViewRowAction) SetBackgroundColor(value IColor) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setBackgroundColor:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/image
-func (t_ TableViewRowAction) Image() Image {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/image
+func (t_ TableViewRowAction) Image() IImage {
 	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/image
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/image
 func (t_ TableViewRowAction) SetImage(value IImage) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setImage:"), value)
 }
@@ -130,28 +153,9 @@ func (t_ TableViewRowAction) SetImage(value IImage) {
 // The style applied to the action button.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.property
-func (t_ TableViewRowAction) Style() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("style"))
-	return rv
-}
-
-
-// The style applied to the action button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/style-swift.property
-func (t_ TableViewRowAction) SetStyle(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStyle:"), value)
-}
-
-
-// The title of the action button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/title
-func (t_ TableViewRowAction) Title() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("title"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/style-swift.property
+func (t_ TableViewRowAction) Style() TableViewRowActionStyle {
+	rv := objc.Send[TableViewRowActionStyle](t_.ID, objc.Sel("style"))
 	return rv
 }
 
@@ -159,10 +163,19 @@ func (t_ TableViewRowAction) Title() string {
 // The title of the action button.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstableviewrowaction/title
-func (t_ TableViewRowAction) SetTitle(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/title
+func (t_ TableViewRowAction) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("title"))
+	return rv
 }
 
+
+// The title of the action button.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableViewRowAction/title
+func (t_ TableViewRowAction) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTitle:"), value)
+}
 
 

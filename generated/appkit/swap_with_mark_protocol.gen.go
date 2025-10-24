@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // swapWithMarkProtocol is the swapWithMark: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to swapWithMark:.
 var swapWithMarkProtocol *objc.Protocol
 

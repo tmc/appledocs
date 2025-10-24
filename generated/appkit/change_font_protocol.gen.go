@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // changeFontProtocol is the changeFont: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to changeFont:.
 var changeFontProtocol *objc.Protocol
 

@@ -9,6 +9,7 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/coredata"
 	"github.com/tmc/appledocs/generated/foundation"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ObjectController] class.
@@ -35,28 +36,36 @@ type IObjectController interface {
 	AutomaticallyPreparesContent() bool
 	SetAutomaticallyPreparesContent(value bool)
 	CanAdd() bool
-	SetCanAdd(value bool)
 	CanRemove() bool
-	SetCanRemove(value bool)
-	Content() unsafe.Pointer
-	SetContent(value unsafe.Pointer)
+	Content() objc.ID
+	SetContent(value objc.ID)
 	EntityName() objc.IObject /* cross-framework: NSString */
 	SetEntityName(value objc.IObject /* cross-framework: NSString */)
-	FetchPredicate() objc.IObject /* cross-framework: Predicate */
-	SetFetchPredicate(value objc.IObject /* cross-framework: Predicate */)
-	IsEditable() bool
-	SetIsEditable(value bool)
-	ManagedObjectContext() objc.IObject /* cross-framework: ManagedObjectContext */
-	SetManagedObjectContext(value objc.IObject /* cross-framework: ManagedObjectContext */)
+	FetchPredicate() foundation.Predicate
+	SetFetchPredicate(value foundation.Predicate)
+	Editable() bool
+	SetEditable(value bool)
+	ManagedObjectContext() coredata.ManagedObjectContext
+	SetManagedObjectContext(value coredata.ManagedObjectContext)
 	ObjectClass() objc.Class
 	SetObjectClass(value objc.Class)
-	SelectedObjects() unsafe.Pointer
-	SetSelectedObjects(value unsafe.Pointer)
-	Selection() unsafe.Pointer
-	SetSelection(value unsafe.Pointer)
+	SelectedObjects() objc.IObject /* cross-framework: NSArray */
+	Selection() objc.ID
 	UsesLazyFetching() bool
 	SetUsesLazyFetching(value bool)
+	IsEditable() bool
+	SetIsEditable(value bool)
 	// methods:
+	Add(sender objc.IObject)
+	AddObject(object objc.IObject)
+	DefaultFetchRequest() coredata.FetchRequest
+	Fetch(sender objc.IObject)
+	FetchWithRequestMergeError(fetchRequest coredata.FetchRequest, merge bool, error_ unsafe.Pointer) bool
+	NewObject() objc.ID
+	PrepareContent()
+	Remove(sender objc.IObject)
+	RemoveObject(object objc.IObject)
+	ValidateUserInterfaceItem(item objc.IObject) bool
 }
 
 // A controller that can manage an object’s properties referenced by key-value paths.
@@ -114,10 +123,127 @@ func NewObjectController() ObjectController {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/init(coder:)
+func NewObjectControllerWithCoder(coder foundation.Coder) ObjectController {
+	instance := getObjectControllerClass().Alloc()
+	rv := objc.Send[ObjectController](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Initializes and returns an object with the given content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/init(content:)
+func NewObjectControllerWithContent(content objc.IObject) ObjectController {
+	instance := getObjectControllerClass().Alloc()
+	rv := objc.Send[ObjectController](instance.ID, objc.Sel("initWithContent:"), content)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a new object and sets it as the receiver’s content object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/add(_:)
+func (o_ ObjectController) Add(sender objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("add:"), sender)
+}
+
+
+// Sets the receiver’s content object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/addObject(_:)
+func (o_ ObjectController) AddObject(object objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("addObject:"), object)
+}
+
+
+// Returns the default fetch request used by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/defaultFetchRequest()
+func (o_ ObjectController) DefaultFetchRequest() coredata.FetchRequest {
+	rv := objc.Send[coredata.FetchRequest](o_.ID, objc.Sel("defaultFetchRequest"))
+	return rv
+}
+
+
+// Causes the receiver to fetch the data objects specified by the entity name and fetch predicate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/fetch(_:)
+func (o_ ObjectController) Fetch(sender objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("fetch:"), sender)
+}
+
+
+// Subclasses should override this method to customize a fetch request, for example to specify fetch limits.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/fetch(with:merge:)
+func (o_ ObjectController) FetchWithRequestMergeError(fetchRequest coredata.FetchRequest, merge bool, error_ unsafe.Pointer) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("fetchWithRequest:merge:error:"), fetchRequest, merge, error_)
+	return rv
+}
+
+
+// Creates and returns a new object of the appropriate class.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/newObject()
+func (o_ ObjectController) NewObject() objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("newObject"))
+	return rv
+}
+
+
+// Typically overridden by subclasses that require additional control over the creation of new objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/prepareContent()
+func (o_ ObjectController) PrepareContent() {
+	objc.Send[objc.ID](o_.ID, objc.Sel("prepareContent"))
+}
+
+
+// Removes the receiver’s content object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/remove(_:)
+func (o_ ObjectController) Remove(sender objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("remove:"), sender)
+}
+
+
+// Removes a given object from the receiver’s content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/removeObject(_:)
+func (o_ ObjectController) RemoveObject(object objc.IObject) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("removeObject:"), object)
+}
+
+
+// Returns whether the receiver can handle the action method for a user interface item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/validateUserInterfaceItem(_:)
+func (o_ ObjectController) ValidateUserInterfaceItem(item objc.IObject) bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("validateUserInterfaceItem:"), item)
+	return rv
+}
+
+
 // A Boolean that shows whether the receiver automatically creates and inserts new content objects automatically when loading from a nib file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/automaticallypreparescontent
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/automaticallyPreparesContent
 func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("automaticallyPreparesContent"))
 	return rv
@@ -127,56 +253,38 @@ func (o_ ObjectController) AutomaticallyPreparesContent() bool {
 // A Boolean that shows whether the receiver automatically creates and inserts new content objects automatically when loading from a nib file.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/automaticallypreparescontent
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/automaticallyPreparesContent
 func (o_ ObjectController) SetAutomaticallyPreparesContent(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setAutomaticallyPreparesContent:"), value)
 }
 
 
-// A Boolean value that indicates whether an object can be added to the receiver using
+// A Boolean value that indicates whether an object can be added to the receiver using .
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canadd
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/canAdd
 func (o_ ObjectController) CanAdd() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canAdd"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether an object can be added to the receiver using
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canadd
-func (o_ ObjectController) SetCanAdd(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCanAdd:"), value)
-}
-
-
 // A Boolean value that indicates whether an object can be removed from the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canremove
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/canRemove
 func (o_ ObjectController) CanRemove() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("canRemove"))
 	return rv
 }
 
 
-// A Boolean value that indicates whether an object can be removed from the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/canremove
-func (o_ ObjectController) SetCanRemove(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setCanRemove:"), value)
-}
-
-
 // The receiver’s content object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/content
-func (o_ ObjectController) Content() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("content"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/content
+func (o_ ObjectController) Content() objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("content"))
 	return rv
 }
 
@@ -184,8 +292,8 @@ func (o_ ObjectController) Content() unsafe.Pointer {
 // The receiver’s content object.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/content
-func (o_ ObjectController) SetContent(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/content
+func (o_ ObjectController) SetContent(value objc.ID) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setContent:"), value)
 }
 
@@ -193,7 +301,7 @@ func (o_ ObjectController) SetContent(value unsafe.Pointer) {
 // The entity name used by the receiver to create new objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/entityname
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/entityName
 func (o_ ObjectController) EntityName() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](o_.ID, objc.Sel("entityName"))
 	return rv
@@ -203,7 +311,7 @@ func (o_ ObjectController) EntityName() objc.IObject /* cross-framework: NSStrin
 // The entity name used by the receiver to create new objects.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/entityname
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/entityName
 func (o_ ObjectController) SetEntityName(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setEntityName:"), value)
 }
@@ -212,8 +320,8 @@ func (o_ ObjectController) SetEntityName(value objc.IObject /* cross-framework: 
 // The receiver’s fetch predicate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-func (o_ ObjectController) FetchPredicate() objc.IObject /* cross-framework: Predicate */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/fetchPredicate
+func (o_ ObjectController) FetchPredicate() foundation.Predicate {
 	rv := objc.Send[foundation.Predicate](o_.ID, objc.Sel("fetchPredicate"))
 	return rv
 }
@@ -222,9 +330,105 @@ func (o_ ObjectController) FetchPredicate() objc.IObject /* cross-framework: Pre
 // The receiver’s fetch predicate.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/fetchpredicate
-func (o_ ObjectController) SetFetchPredicate(value objc.IObject /* cross-framework: Predicate */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/fetchPredicate
+func (o_ ObjectController) SetFetchPredicate(value foundation.Predicate) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setFetchPredicate:"), value)
+}
+
+
+// A Boolean that indicates whether the receiver allows adding and removing objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/isEditable
+func (o_ ObjectController) Editable() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("editable"))
+	return rv
+}
+
+
+// A Boolean that indicates whether the receiver allows adding and removing objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/isEditable
+func (o_ ObjectController) SetEditable(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setEditable:"), value)
+}
+
+
+// The receiver’s managed object context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/managedObjectContext
+func (o_ ObjectController) ManagedObjectContext() coredata.ManagedObjectContext {
+	rv := objc.Send[coredata.ManagedObjectContext](o_.ID, objc.Sel("managedObjectContext"))
+	return rv
+}
+
+
+// The receiver’s managed object context.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/managedObjectContext
+func (o_ ObjectController) SetManagedObjectContext(value coredata.ManagedObjectContext) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setManagedObjectContext:"), value)
+}
+
+
+// The object class to use when creating new objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/objectClass
+func (o_ ObjectController) ObjectClass() objc.Class {
+	rv := objc.Send[objc.Class](o_.ID, objc.Sel("objectClass"))
+	return rv
+}
+
+
+// The object class to use when creating new objects.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/objectClass
+func (o_ ObjectController) SetObjectClass(value objc.Class) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setObjectClass:"), value)
+}
+
+
+// An array of all objects to be affected by editing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/selectedObjects
+func (o_ ObjectController) SelectedObjects() objc.IObject /* cross-framework: NSArray */ {
+	rv := objc.Send[foundation.NSArray](o_.ID, objc.Sel("selectedObjects"))
+	return rv
+}
+
+
+// A proxy object representing the receiver’s selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/selection
+func (o_ ObjectController) Selection() objc.ID {
+	rv := objc.Send[objc.ID](o_.ID, objc.Sel("selection"))
+	return rv
+}
+
+
+// A Boolean that indicates whether the receiver uses lazy fetching.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/usesLazyFetching
+func (o_ ObjectController) UsesLazyFetching() bool {
+	rv := objc.Send[bool](o_.ID, objc.Sel("usesLazyFetching"))
+	return rv
+}
+
+
+// A Boolean that indicates whether the receiver uses lazy fetching.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSObjectController/usesLazyFetching
+func (o_ ObjectController) SetUsesLazyFetching(value bool) {
+	objc.Send[objc.ID](o_.ID, objc.Sel("setUsesLazyFetching:"), value)
 }
 
 
@@ -245,101 +449,5 @@ func (o_ ObjectController) IsEditable() bool {
 func (o_ ObjectController) SetIsEditable(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setIsEditable:"), value)
 }
-
-
-// The receiver’s managed object context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-func (o_ ObjectController) ManagedObjectContext() objc.IObject /* cross-framework: ManagedObjectContext */ {
-	rv := objc.Send[coredata.ManagedObjectContext](o_.ID, objc.Sel("managedObjectContext"))
-	return rv
-}
-
-
-// The receiver’s managed object context.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/managedobjectcontext
-func (o_ ObjectController) SetManagedObjectContext(value objc.IObject /* cross-framework: ManagedObjectContext */) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setManagedObjectContext:"), value)
-}
-
-
-// The object class to use when creating new objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/objectclass
-func (o_ ObjectController) ObjectClass() objc.Class {
-	rv := objc.Send[objc.Class](o_.ID, objc.Sel("objectClass"))
-	return rv
-}
-
-
-// The object class to use when creating new objects.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/objectclass
-func (o_ ObjectController) SetObjectClass(value objc.Class) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setObjectClass:"), value)
-}
-
-
-// An array of all objects to be affected by editing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/selectedobjects
-func (o_ ObjectController) SelectedObjects() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("selectedObjects"))
-	return rv
-}
-
-
-// An array of all objects to be affected by editing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/selectedobjects
-func (o_ ObjectController) SetSelectedObjects(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setSelectedObjects:"), value)
-}
-
-
-// A proxy object representing the receiver’s selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/selection
-func (o_ ObjectController) Selection() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](o_.ID, objc.Sel("selection"))
-	return rv
-}
-
-
-// A proxy object representing the receiver’s selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/selection
-func (o_ ObjectController) SetSelection(value unsafe.Pointer) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setSelection:"), value)
-}
-
-
-// A Boolean that indicates whether the receiver uses lazy fetching.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/useslazyfetching
-func (o_ ObjectController) UsesLazyFetching() bool {
-	rv := objc.Send[bool](o_.ID, objc.Sel("usesLazyFetching"))
-	return rv
-}
-
-
-// A Boolean that indicates whether the receiver uses lazy fetching.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsobjectcontroller/useslazyfetching
-func (o_ ObjectController) SetUsesLazyFetching(value bool) {
-	objc.Send[objc.ID](o_.ID, objc.Sel("setUsesLazyFetching:"), value)
-}
-
 
 

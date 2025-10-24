@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // AccessibilityRowProtocol is the NSAccessibilityRow protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSAccessibilityRow.
 var AccessibilityRowProtocol *objc.Protocol
 

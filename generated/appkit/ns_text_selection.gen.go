@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coreml"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -32,23 +32,24 @@ type _TextSelectionClass struct {
 type ITextSelection interface {
 	objectivec.IObject
 	// properties:
-	Affinity() unsafe.Pointer
-	SetAffinity(value unsafe.Pointer)
+	Affinity() TextSelectionAffinity
 	AnchorPositionOffset() float64
 	SetAnchorPositionOffset(value float64)
-	Granularity() unsafe.Pointer
-	SetGranularity(value unsafe.Pointer)
+	Granularity() TextSelectionGranularity
+	Logical() bool
+	SetLogical(value bool)
+	Transient() bool
+	SecondarySelectionLocation() objc.ID
+	SetSecondarySelectionLocation(value objc.ID)
+	TextRanges() []TextRange
+	TypingAttributes() foundation.IDictionary
+	SetTypingAttributes(value foundation.IDictionary)
 	IsLogical() bool
 	SetIsLogical(value bool)
 	IsTransient() bool
 	SetIsTransient(value bool)
-	SecondarySelectionLocation() TextLocation /* not a class type */
-	SetSecondarySelectionLocation(value TextLocation /* not a class type */)
-	TextRanges() objc.IObject /* cross-framework: TextRange */
-	SetTextRanges(value objc.IObject /* cross-framework: TextRange */)
-	TypingAttributes() objc.IObject /* cross-framework: Key */
-	SetTypingAttributes(value objc.IObject /* cross-framework: Key */)
 	// methods:
+	TextSelectionWithTextRanges(textRanges []TextRange) ITextSelection
 }
 
 // A class that represents a single logical selection context that corresponds to an insertion point.
@@ -102,12 +103,61 @@ func NewTextSelection() TextSelection {
 
 
 
-// Returns the selection affinity of the text selection.
+// Creates a test selection from data in an unarchiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/affinity-swift.property
-func (t_ TextSelection) Affinity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("affinity"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/init(coder:)
+func NewTextSelectionWithCoder(coder foundation.Coder) TextSelection {
+	instance := getTextSelectionClass().Alloc()
+	rv := objc.Send[TextSelection](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a new text selection with the location and selection affinity you provide.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/init(_:affinity:)
+func NewTextSelectionWithLocationAffinity(location objc.IObject, affinity TextSelectionAffinity) TextSelection {
+	instance := getTextSelectionClass().Alloc()
+	rv := objc.Send[TextSelection](instance.ID, objc.Sel("initWithLocation:affinity:"), location, affinity)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a new text selection with the range, selection affinity, and granularity you provide.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/init(range:affinity:granularity:)
+func NewTextSelectionWithRangeAffinityGranularity(range_ ITextRange, affinity TextSelectionAffinity, granularity TextSelectionGranularity) TextSelection {
+	instance := getTextSelectionClass().Alloc()
+	rv := objc.Send[TextSelection](instance.ID, objc.Sel("initWithRange:affinity:granularity:"), range_, affinity, granularity)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a new text selection with the ranges, selection affinity, and granularity you provide.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/init(_:affinity:granularity:)
+func NewTextSelectionWithRangesAffinityGranularity(textRanges []TextRange, affinity TextSelectionAffinity, granularity TextSelectionGranularity) TextSelection {
+	instance := getTextSelectionClass().Alloc()
+	rv := objc.Send[TextSelection](instance.ID, objc.Sel("initWithRanges:affinity:granularity:"), textRanges, affinity, granularity)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Creates a subselection of the current text selection with the ranges you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/textSelection(_:)
+func (t_ TextSelection) TextSelectionWithTextRanges(textRanges []TextRange) ITextSelection {
+	rv := objc.Send[TextSelection](t_.ID, objc.Sel("textSelectionWithTextRanges:"), textRanges)
 	return rv
 }
 
@@ -115,16 +165,17 @@ func (t_ TextSelection) Affinity() unsafe.Pointer {
 // Returns the selection affinity of the text selection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/affinity-swift.property
-func (t_ TextSelection) SetAffinity(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAffinity:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/affinity-swift.property
+func (t_ TextSelection) Affinity() TextSelectionAffinity {
+	rv := objc.Send[TextSelectionAffinity](t_.ID, objc.Sel("affinity"))
+	return rv
 }
 
 
 // Represents the anchor position offset from the beginning of a line fragment in the visual order for the initial tap or click location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/anchorpositionoffset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/anchorPositionOffset
 func (t_ TextSelection) AnchorPositionOffset() float64 {
 	rv := objc.Send[float64](t_.ID, objc.Sel("anchorPositionOffset"))
 	return rv
@@ -134,7 +185,7 @@ func (t_ TextSelection) AnchorPositionOffset() float64 {
 // Represents the anchor position offset from the beginning of a line fragment in the visual order for the initial tap or click location.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/anchorpositionoffset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/anchorPositionOffset
 func (t_ TextSelection) SetAnchorPositionOffset(value float64) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setAnchorPositionOffset:"), value)
 }
@@ -143,19 +194,87 @@ func (t_ TextSelection) SetAnchorPositionOffset(value float64) {
 // The granularity of the selection.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/granularity-swift.property
-func (t_ TextSelection) Granularity() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("granularity"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/granularity-swift.property
+func (t_ TextSelection) Granularity() TextSelectionGranularity {
+	rv := objc.Send[TextSelectionGranularity](t_.ID, objc.Sel("granularity"))
 	return rv
 }
 
 
-// The granularity of the selection.
+// A Boolean value that indicates whether the framework interprets the selection as logical or visual.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/granularity-swift.property
-func (t_ TextSelection) SetGranularity(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setGranularity:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/isLogical
+func (t_ TextSelection) Logical() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("logical"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the framework interprets the selection as logical or visual.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/isLogical
+func (t_ TextSelection) SetLogical(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLogical:"), value)
+}
+
+
+// A Boolean value that indicates transient text selection during drag handling.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/isTransient
+func (t_ TextSelection) Transient() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("transient"))
+	return rv
+}
+
+
+// Specifies the secondary character location when user taps or clicks at a directional boundary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/secondarySelectionLocation
+func (t_ TextSelection) SecondarySelectionLocation() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("secondarySelectionLocation"))
+	return rv
+}
+
+
+// Specifies the secondary character location when user taps or clicks at a directional boundary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/secondarySelectionLocation
+func (t_ TextSelection) SetSecondarySelectionLocation(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSecondarySelectionLocation:"), value)
+}
+
+
+// Represents an array of noncontiguous logical ranges in the selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/textRanges
+func (t_ TextSelection) TextRanges() []TextRange {
+	rv := objc.Send[[]TextRange](t_.ID, objc.Sel("textRanges"))
+	return rv
+}
+
+
+// The template attributes the framework uses for characters that replace the contents of this selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/typingAttributes
+func (t_ TextSelection) TypingAttributes() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("typingAttributes"))
+	return rv
+}
+
+
+// The template attributes the framework uses for characters that replace the contents of this selection.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextSelection/typingAttributes
+func (t_ TextSelection) SetTypingAttributes(value foundation.IDictionary) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
 }
 
 
@@ -195,63 +314,5 @@ func (t_ TextSelection) IsTransient() bool {
 func (t_ TextSelection) SetIsTransient(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsTransient:"), value)
 }
-
-
-// Specifies the secondary character location when user taps or clicks at a directional boundary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/secondaryselectionlocation
-func (t_ TextSelection) SecondarySelectionLocation() TextLocation /* not a class type */ {
-	rv := objc.Send[TextLocation](t_.ID, objc.Sel("secondarySelectionLocation"))
-	return rv
-}
-
-
-// Specifies the secondary character location when user taps or clicks at a directional boundary.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/secondaryselectionlocation
-func (t_ TextSelection) SetSecondarySelectionLocation(value TextLocation /* not a class type */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setSecondarySelectionLocation:"), value)
-}
-
-
-// Represents an array of noncontiguous logical ranges in the selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/textranges
-func (t_ TextSelection) TextRanges() objc.IObject /* cross-framework: TextRange */ {
-	rv := objc.Send[TextRange](t_.ID, objc.Sel("textRanges"))
-	return rv
-}
-
-
-// Represents an array of noncontiguous logical ranges in the selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/textranges
-func (t_ TextSelection) SetTextRanges(value objc.IObject /* cross-framework: TextRange */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTextRanges:"), value)
-}
-
-
-// The template attributes the framework uses for characters that replace the contents of this selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/typingattributes
-func (t_ TextSelection) TypingAttributes() objc.IObject /* cross-framework: Key */ {
-	rv := objc.Send[coreml.Key](t_.ID, objc.Sel("typingAttributes"))
-	return rv
-}
-
-
-// The template attributes the framework uses for characters that replace the contents of this selection.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextselection/typingattributes
-func (t_ TextSelection) SetTypingAttributes(value objc.IObject /* cross-framework: Key */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTypingAttributes:"), value)
-}
-
 
 

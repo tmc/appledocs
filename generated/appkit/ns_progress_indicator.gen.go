@@ -48,8 +48,8 @@ type IProgressIndicator interface {
 	SetMaxValue(value float64)
 	MinValue() float64
 	SetMinValue(value float64)
-	ObservedProgress() objc.IObject /* cross-framework: Progress */
-	SetObservedProgress(value objc.IObject /* cross-framework: Progress */)
+	ObservedProgress() foundation.Progress
+	SetObservedProgress(value foundation.Progress)
 	Style() ProgressIndicatorStyle
 	SetStyle(value ProgressIndicatorStyle)
 	UsesThreadedAnimation() bool
@@ -63,8 +63,8 @@ type IProgressIndicator interface {
 	// methods:
 	IncrementBy(delta float64)
 	SizeToFit()
-	StartAnimation(sender objectivec.IObject)
-	StopAnimation(sender objectivec.IObject)
+	StartAnimation(sender objc.IObject)
+	StopAnimation(sender objc.IObject)
 }
 
 // An interface that provides visual feedback to the user about the status of an ongoing task.
@@ -144,7 +144,7 @@ func (p_ ProgressIndicator) SizeToFit() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/startAnimation(_:)
-func (p_ ProgressIndicator) StartAnimation(sender objectivec.IObject) {
+func (p_ ProgressIndicator) StartAnimation(sender objc.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("startAnimation:"), sender)
 }
 
@@ -153,7 +153,7 @@ func (p_ ProgressIndicator) StartAnimation(sender objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/stopAnimation(_:)
-func (p_ ProgressIndicator) StopAnimation(sender objectivec.IObject) {
+func (p_ ProgressIndicator) StopAnimation(sender objc.IObject) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("stopAnimation:"), sender)
 }
 
@@ -314,7 +314,7 @@ func (p_ ProgressIndicator) SetMinValue(value float64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
-func (p_ ProgressIndicator) ObservedProgress() objc.IObject /* cross-framework: Progress */ {
+func (p_ ProgressIndicator) ObservedProgress() foundation.Progress {
 	rv := objc.Send[foundation.Progress](p_.ID, objc.Sel("observedProgress"))
 	return rv
 }
@@ -324,7 +324,7 @@ func (p_ ProgressIndicator) ObservedProgress() objc.IObject /* cross-framework: 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSProgressIndicator/observedProgress
-func (p_ ProgressIndicator) SetObservedProgress(value objc.IObject /* cross-framework: Progress */) {
+func (p_ ProgressIndicator) SetObservedProgress(value foundation.Progress) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setObservedProgress:"), value)
 }
 

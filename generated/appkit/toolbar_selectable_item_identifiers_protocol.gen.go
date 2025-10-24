@@ -10,6 +10,7 @@ import "github.com/ebitengine/purego/objc"
 //   - Mac Catalyst 13.1+
 //   - iOS 13.0+
 //   - iPadOS 13.0+
+//   - macOS +
 //
 // Use this protocol when registering custom classes that conform to toolbarSelectableItemIdentifiers:.
 var toolbarSelectableItemIdentifiersProtocol *objc.Protocol

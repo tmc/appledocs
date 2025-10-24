@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // windowShouldZoomProtocol is the windowShouldZoom: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to windowShouldZoom:.
 var windowShouldZoomProtocol *objc.Protocol
 

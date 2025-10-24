@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [BrowserCell] class.
@@ -29,14 +30,23 @@ type _BrowserCellClass struct {
 // An interface definition for the [BrowserCell] class.
 type IBrowserCell interface {
 	ICell
-	AlternateImage() Image
+	// properties:
+	AlternateImage() IImage
 	SetAlternateImage(value IImage)
-	Image() Image
+	Image() IImage
 	SetImage(value IImage)
+	Leaf() bool
+	SetLeaf(value bool)
+	Loaded() bool
+	SetLoaded(value bool)
 	IsLeaf() bool
 	SetIsLeaf(value bool)
 	IsLoaded() bool
 	SetIsLoaded(value bool)
+	// methods:
+	HighlightColorInView(controlView IView) IColor
+	Reset()
+	Set()
 }
 
 // The user interface of a browser.
@@ -94,11 +104,88 @@ func NewBrowserCell() BrowserCell {
 
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/init(imageCell:)
+func NewBrowserCellImageCell(image IImage) BrowserCell {
+	instance := getBrowserCellClass().Alloc()
+	rv := objc.Send[BrowserCell](instance.ID, objc.Sel("initImageCell:"), image)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/init(textCell:)
+func NewBrowserCellTextCell(string_ objc.IObject /* cross-framework: NSString */) BrowserCell {
+	instance := getBrowserCellClass().Alloc()
+	rv := objc.Send[BrowserCell](instance.ID, objc.Sel("initTextCell:"), string_)
+	rv.Autorelease()
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/init(coder:)
+func NewBrowserCellWithCoder(coder foundation.Coder) BrowserCell {
+	instance := getBrowserCellClass().Alloc()
+	rv := objc.Send[BrowserCell](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns the default image for branch cells in a browser.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/branchImage
+func (bc _BrowserCellClass) BranchImage() IImage {
+	rv := objc.Send[Image](objc.ID(bc.class), objc.Sel("branchImage"))
+	return rv
+}
+
+// Returns the default image for branch browser cells that are highlighted.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/highlightedBranchImage
+func (bc _BrowserCellClass) HighlightedBranchImage() IImage {
+	rv := objc.Send[Image](objc.ID(bc.class), objc.Sel("highlightedBranchImage"))
+	return rv
+}
+
+// Returns the highlight color that the receiver wants to display.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/highlightColor(in:)
+func (b_ BrowserCell) HighlightColorInView(controlView IView) IColor {
+	rv := objc.Send[Color](b_.ID, objc.Sel("highlightColorInView:"), controlView)
+	return rv
+}
+
+
+// Unhighlights the receiver and unsets its state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/reset()
+func (b_ BrowserCell) Reset() {
+	objc.Send[objc.ID](b_.ID, objc.Sel("reset"))
+}
+
+
+// Highlights the receiver and sets its state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/set()
+func (b_ BrowserCell) Set() {
+	objc.Send[objc.ID](b_.ID, objc.Sel("set"))
+}
+
+
 // The browser cell’s image for the highlighted state.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/alternateimage
-func (b_ BrowserCell) AlternateImage() Image {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/alternateImage
+func (b_ BrowserCell) AlternateImage() IImage {
 	rv := objc.Send[Image](b_.ID, objc.Sel("alternateImage"))
 	return rv
 }
@@ -107,17 +194,37 @@ func (b_ BrowserCell) AlternateImage() Image {
 // The browser cell’s image for the highlighted state.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/alternateimage
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/alternateImage
 func (b_ BrowserCell) SetAlternateImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setAlternateImage:"), value)
+}
+
+
+// Returns the default image for branch cells in a browser.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/branchImage
+func (b_ BrowserCell) BranchImage() IImage {
+	rv := objc.Send[Image](b_.ID, objc.Sel("branchImage"))
+	return rv
+}
+
+
+// Returns the default image for branch browser cells that are highlighted.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/highlightedBranchImage
+func (b_ BrowserCell) HighlightedBranchImage() IImage {
+	rv := objc.Send[Image](b_.ID, objc.Sel("highlightedBranchImage"))
+	return rv
 }
 
 
 // The browser cell’s image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/image
-func (b_ BrowserCell) Image() Image {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/image
+func (b_ BrowserCell) Image() IImage {
 	rv := objc.Send[Image](b_.ID, objc.Sel("image"))
 	return rv
 }
@@ -126,9 +233,47 @@ func (b_ BrowserCell) Image() Image {
 // The browser cell’s image.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsbrowsercell/image
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/image
 func (b_ BrowserCell) SetImage(value IImage) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setImage:"), value)
+}
+
+
+// A Boolean that indicates whether the browser cell is a leaf or a branch cell.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/isLeaf
+func (b_ BrowserCell) Leaf() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("leaf"))
+	return rv
+}
+
+
+// A Boolean that indicates whether the browser cell is a leaf or a branch cell.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/isLeaf
+func (b_ BrowserCell) SetLeaf(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setLeaf:"), value)
+}
+
+
+// A Boolean that indicates whether the cell is ready to display.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/isLoaded
+func (b_ BrowserCell) Loaded() bool {
+	rv := objc.Send[bool](b_.ID, objc.Sel("loaded"))
+	return rv
+}
+
+
+// A Boolean that indicates whether the cell is ready to display.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBrowserCell/isLoaded
+func (b_ BrowserCell) SetLoaded(value bool) {
+	objc.Send[objc.ID](b_.ID, objc.Sel("setLoaded:"), value)
 }
 
 
@@ -168,6 +313,5 @@ func (b_ BrowserCell) IsLoaded() bool {
 func (b_ BrowserCell) SetIsLoaded(value bool) {
 	objc.Send[objc.ID](b_.ID, objc.Sel("setIsLoaded:"), value)
 }
-
 
 

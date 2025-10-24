@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // FontChangingProtocol is the NSFontChanging protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSFontChanging.
 var FontChangingProtocol *objc.Protocol
 

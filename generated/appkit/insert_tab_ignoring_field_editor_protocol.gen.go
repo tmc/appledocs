@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // insertTabIgnoringFieldEditorProtocol is the insertTabIgnoringFieldEditor: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to insertTabIgnoringFieldEditor:.
 var insertTabIgnoringFieldEditorProtocol *objc.Protocol
 

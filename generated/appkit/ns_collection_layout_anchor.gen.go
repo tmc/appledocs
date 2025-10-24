@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,13 +31,12 @@ type _CollectionLayoutAnchorClass struct {
 // An interface definition for the [CollectionLayoutAnchor] class.
 type ICollectionLayoutAnchor interface {
 	objectivec.IObject
-	IsFractionalOffset() bool
+	// properties:
 	Edges() DirectionalRectEdge
-	SetEdges(value IDirectionalRectEdge)
 	IsAbsoluteOffset() bool
-	SetIsAbsoluteOffset(value bool)
-	Offset() coregraphics.CGPoint
-	SetOffset(value coregraphics.CGPoint)
+	IsFractionalOffset() bool
+	Offset() objc.IObject /* cross-framework: Point */
+	// methods:
 }
 
 // An object that defines how to attach a supplementary item to an item in a collection view.
@@ -93,6 +92,87 @@ func NewCollectionLayoutAnchor() CollectionLayoutAnchor {
 
 
 
+// Creates an anchor with the specified edges to attach to.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/init(edges:)
+func NewCollectionLayoutAnchorWithEdges(edges DirectionalRectEdge) CollectionLayoutAnchor {
+	rv := objc.Send[CollectionLayoutAnchor](objc.ID(getCollectionLayoutAnchorClass().class), objc.Sel("layoutAnchorWithEdges:"), edges)
+	return rv
+}
+
+
+// Creates an anchor with the specified edges to attach to, offset by the provided absolute value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/init(edges:absoluteOffset:)
+func NewCollectionLayoutAnchorWithEdgesAbsoluteOffset(edges DirectionalRectEdge, absoluteOffset objc.IObject /* cross-framework: Point */) CollectionLayoutAnchor {
+	rv := objc.Send[CollectionLayoutAnchor](objc.ID(getCollectionLayoutAnchorClass().class), objc.Sel("layoutAnchorWithEdges:absoluteOffset:"), edges, absoluteOffset)
+	return rv
+}
+
+
+// Creates an anchor with the specified edges to attach to, offset by the provided fractional value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/init(edges:fractionalOffset:)
+func NewCollectionLayoutAnchorWithEdgesFractionalOffset(edges DirectionalRectEdge, fractionalOffset objc.IObject /* cross-framework: Point */) CollectionLayoutAnchor {
+	rv := objc.Send[CollectionLayoutAnchor](objc.ID(getCollectionLayoutAnchorClass().class), objc.Sel("layoutAnchorWithEdges:fractionalOffset:"), edges, fractionalOffset)
+	return rv
+}
+
+
+
+// Creates an anchor with the specified edges to attach to.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/init(edges:)
+func (cc _CollectionLayoutAnchorClass) LayoutAnchorWithEdges(edges DirectionalRectEdge) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layoutAnchorWithEdges:"), edges)
+	return rv
+}
+
+
+// Creates an anchor with the specified edges to attach to, offset by the provided absolute value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/init(edges:absoluteOffset:)
+func (cc _CollectionLayoutAnchorClass) LayoutAnchorWithEdgesAbsoluteOffset(edges DirectionalRectEdge, absoluteOffset objc.IObject /* cross-framework: Point */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layoutAnchorWithEdges:absoluteOffset:"), edges, absoluteOffset)
+	return rv
+}
+
+
+// Creates an anchor with the specified edges to attach to, offset by the provided fractional value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/init(edges:fractionalOffset:)
+func (cc _CollectionLayoutAnchorClass) LayoutAnchorWithEdgesFractionalOffset(edges DirectionalRectEdge, fractionalOffset objc.IObject /* cross-framework: Point */) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("layoutAnchorWithEdges:fractionalOffset:"), edges, fractionalOffset)
+	return rv
+}
+
+
+// The edges of the item an anchor is attached to.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/edges
+func (c_ CollectionLayoutAnchor) Edges() DirectionalRectEdge {
+	rv := objc.Send[DirectionalRectEdge](c_.ID, objc.Sel("edges"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the anchor’s offset is expressed as an absolute value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/isAbsoluteOffset
+func (c_ CollectionLayoutAnchor) IsAbsoluteOffset() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isAbsoluteOffset"))
+	return rv
+}
+
+
 // A Boolean value that indicates whether the anchor’s offset is expressed as a fraction of its supplementary item’s dimension.
 //
 // [Full Topic]
@@ -103,61 +183,13 @@ func (c_ CollectionLayoutAnchor) IsFractionalOffset() bool {
 }
 
 
-// The edges of the item an anchor is attached to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/edges
-func (c_ CollectionLayoutAnchor) Edges() DirectionalRectEdge {
-	rv := objc.Send[DirectionalRectEdge](c_.ID, objc.Sel("edges"))
-	return rv
-}
-
-
-// The edges of the item an anchor is attached to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/edges
-func (c_ CollectionLayoutAnchor) SetEdges(value IDirectionalRectEdge) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setEdges:"), value)
-}
-
-
-// A Boolean value that indicates whether the anchor’s offset is expressed as an absolute value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/isabsoluteoffset
-func (c_ CollectionLayoutAnchor) IsAbsoluteOffset() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("isAbsoluteOffset"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the anchor’s offset is expressed as an absolute value.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/isabsoluteoffset
-func (c_ CollectionLayoutAnchor) SetIsAbsoluteOffset(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setIsAbsoluteOffset:"), value)
-}
-
-
 // The floating-point value of the anchor’s offset from the item it’s attached to.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/offset
-func (c_ CollectionLayoutAnchor) Offset() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("offset"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionLayoutAnchor/offset
+func (c_ CollectionLayoutAnchor) Offset() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](c_.ID, objc.Sel("offset"))
 	return rv
 }
-
-
-// The floating-point value of the anchor’s offset from the item it’s attached to.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionlayoutanchor/offset
-func (c_ CollectionLayoutAnchor) SetOffset(value coregraphics.CGPoint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setOffset:"), value)
-}
-
 
 

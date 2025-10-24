@@ -36,12 +36,12 @@ type IRunLoop interface {
 	AcceptInputForModeBeforeDate(mode objc.IObject /* cross-framework: RunLoopMode */, limitDate IDate)
 	AddTimerForMode(timer ITimer, mode objc.IObject /* cross-framework: RunLoopMode */)
 	AddPortForMode(aPort IPort, mode objc.IObject /* cross-framework: RunLoopMode */)
-	CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject)
-	CancelPerformSelectorsWithTarget(target objectivec.IObject)
+	CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objc.IObject, arg objc.IObject)
+	CancelPerformSelectorsWithTarget(target objc.IObject)
 	GetCFRunLoop() RunLoopRef /* not a class type */
 	LimitDateForMode(mode objc.IObject /* cross-framework: RunLoopMode */) IDate
 	PerformBlock(block unsafe.Pointer)
-	PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint, modes []string)
+	PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objc.IObject, arg objc.IObject, order uint, modes []string)
 	PerformInModesBlock(modes []string, block unsafe.Pointer)
 	RemovePortForMode(aPort IPort, mode objc.IObject /* cross-framework: RunLoopMode */)
 	Run()
@@ -151,7 +151,7 @@ func (r_ RunLoop) AddPortForMode(aPort IPort, mode objc.IObject /* cross-framewo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/cancelPerform(_:target:argument:)
-func (r_ RunLoop) CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject) {
+func (r_ RunLoop) CancelPerformSelectorTargetArgument(aSelector objc.SEL, target objc.IObject, arg objc.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("cancelPerformSelector:target:argument:"), aSelector, target, arg)
 }
 
@@ -160,7 +160,7 @@ func (r_ RunLoop) CancelPerformSelectorTargetArgument(aSelector objc.SEL, target
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/cancelPerformSelectors(withTarget:)
-func (r_ RunLoop) CancelPerformSelectorsWithTarget(target objectivec.IObject) {
+func (r_ RunLoop) CancelPerformSelectorsWithTarget(target objc.IObject) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("cancelPerformSelectorsWithTarget:"), target)
 }
 
@@ -198,7 +198,7 @@ func (r_ RunLoop) PerformBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RunLoop/perform(_:target:argument:order:modes:)
-func (r_ RunLoop) PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objectivec.IObject, arg objectivec.IObject, order uint, modes []string) {
+func (r_ RunLoop) PerformSelectorTargetArgumentOrderModes(aSelector objc.SEL, target objc.IObject, arg objc.IObject, order uint, modes []string) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("performSelector:target:argument:order:modes:"), aSelector, target, arg, order, modes)
 }
 

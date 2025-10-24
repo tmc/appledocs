@@ -32,7 +32,7 @@ type IInvocation interface {
 	objectivec.IObject
 	// properties:
 	ArgumentsRetained() bool
-	MethodSignature() objc.IObject /* cross-framework: MethodSignature */
+	MethodSignature() MethodSignature /* not a class type */
 	Selector() objc.SEL
 	SetSelector(value objc.SEL)
 	Target() objc.ID
@@ -42,7 +42,7 @@ type IInvocation interface {
 	GetReturnValue(retLoc unsafe.Pointer)
 	Invoke()
 	InvokeUsingIMP(imp unsafe.Pointer)
-	InvokeWithTarget(target objectivec.IObject)
+	InvokeWithTarget(target objc.IObject)
 	RetainArguments()
 	SetArgumentAtIndex(argumentLocation unsafe.Pointer, idx int)
 	SetReturnValue(retLoc unsafe.Pointer)
@@ -105,7 +105,7 @@ func NewInvocation() Invocation {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/invocationWithMethodSignature:
-func (ic _InvocationClass) InvocationWithMethodSignature(sig objc.IObject /* cross-framework: MethodSignature */) IInvocation {
+func (ic _InvocationClass) InvocationWithMethodSignature(sig MethodSignature /* not a class type */) IInvocation {
 	rv := objc.Send[Invocation](objc.ID(ic.class), objc.Sel("invocationWithMethodSignature:"), sig)
 	return rv
 }
@@ -149,7 +149,7 @@ func (i_ Invocation) InvokeUsingIMP(imp unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/invokeWithTarget:
-func (i_ Invocation) InvokeWithTarget(target objectivec.IObject) {
+func (i_ Invocation) InvokeWithTarget(target objc.IObject) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("invokeWithTarget:"), target)
 }
 
@@ -195,8 +195,8 @@ func (i_ Invocation) ArgumentsRetained() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSInvocation/methodSignature
-func (i_ Invocation) MethodSignature() objc.IObject /* cross-framework: MethodSignature */ {
-	rv := objc.Send[objc.ID](i_.ID, objc.Sel("methodSignature"))
+func (i_ Invocation) MethodSignature() MethodSignature /* not a class type */ {
+	rv := objc.Send[MethodSignature](i_.ID, objc.Sel("methodSignature"))
 	return rv
 }
 

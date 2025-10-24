@@ -34,7 +34,7 @@ type IUserAutomatorTask interface {
 	Variables() IDictionary
 	SetVariables(value IDictionary)
 	// methods:
-	ExecuteWithInputCompletionHandler(input objectivec.IObject, handler UserAutomatorTaskCompletionHandler /* not a class type */)
+	ExecuteWithInputCompletionHandler(input objc.IObject, handler UserAutomatorTaskCompletionHandler /* not a class type */)
 }
 
 // An object that executes Automator workflows.
@@ -96,7 +96,7 @@ func NewUserAutomatorTask() UserAutomatorTask {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserAutomatorTask/execute(withInput:completionHandler:)
-func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objectivec.IObject, handler UserAutomatorTaskCompletionHandler /* not a class type */) {
+func (u_ UserAutomatorTask) ExecuteWithInputCompletionHandler(input objc.IObject, handler UserAutomatorTaskCompletionHandler /* not a class type */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("executeWithInput:completionHandler:"), input, handler)
 }
 

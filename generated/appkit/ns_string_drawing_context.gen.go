@@ -32,12 +32,12 @@ type _StringDrawingContextClass struct {
 type IStringDrawingContext interface {
 	objectivec.IObject
 	// properties:
-	ActualScaleFactor() float64
-	SetActualScaleFactor(value float64)
 	MinimumScaleFactor() float64
 	SetMinimumScaleFactor(value float64)
-	TotalBounds() objc.IObject /* cross-framework: Rect */
-	SetTotalBounds(value objc.IObject /* cross-framework: Rect */)
+	ActualScaleFactor() float64
+	SetActualScaleFactor(value float64)
+	TotalBounds() corefoundation.CGRect
+	SetTotalBounds(value corefoundation.CGRect)
 	// methods:
 }
 
@@ -94,6 +94,25 @@ func NewStringDrawingContext() StringDrawingContext {
 
 
 
+// The scale factor that determines the smallest font size to use during drawing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/minimumScaleFactor
+func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minimumScaleFactor"))
+	return rv
+}
+
+
+// The scale factor that determines the smallest font size to use during drawing.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStringDrawingContext/minimumScaleFactor
+func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumScaleFactor:"), value)
+}
+
+
 // The actual scale factor that the system applied to the font during drawing.
 //
 // [Full Topic]
@@ -113,31 +132,12 @@ func (s_ StringDrawingContext) SetActualScaleFactor(value float64) {
 }
 
 
-// The scale factor that determines the smallest font size to use during drawing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/minimumscalefactor
-func (s_ StringDrawingContext) MinimumScaleFactor() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("minimumScaleFactor"))
-	return rv
-}
-
-
-// The scale factor that determines the smallest font size to use during drawing.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/minimumscalefactor
-func (s_ StringDrawingContext) SetMinimumScaleFactor(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumScaleFactor:"), value)
-}
-
-
 // The most recent bounding rectangle that the system used to draw the string.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/totalbounds
-func (s_ StringDrawingContext) TotalBounds() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("totalBounds"))
+func (s_ StringDrawingContext) TotalBounds() corefoundation.CGRect {
+	rv := objc.Send[corefoundation.CGRect](s_.ID, objc.Sel("totalBounds"))
 	return rv
 }
 
@@ -146,7 +146,7 @@ func (s_ StringDrawingContext) TotalBounds() objc.IObject /* cross-framework: Re
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsstringdrawingcontext/totalbounds
-func (s_ StringDrawingContext) SetTotalBounds(value objc.IObject /* cross-framework: Rect */) {
+func (s_ StringDrawingContext) SetTotalBounds(value corefoundation.CGRect) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setTotalBounds:"), value)
 }
 

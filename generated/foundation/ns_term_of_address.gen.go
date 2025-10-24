@@ -32,7 +32,7 @@ type ITermOfAddress interface {
 	objectivec.IObject
 	// properties:
 	LanguageIdentifier() IString
-	Pronouns() []IMorphologyPronoun
+	Pronouns() []MorphologyPronoun
 	// methods:
 }
 
@@ -107,7 +107,7 @@ func (tc _TermOfAddressClass) Feminine() unsafe.Pointer {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/localizedForLanguageIdentifier:withPronouns:
-func (tc _TermOfAddressClass) LocalizedForLanguageIdentifierWithPronouns(language IString, pronouns []IMorphologyPronoun) unsafe.Pointer {
+func (tc _TermOfAddressClass) LocalizedForLanguageIdentifierWithPronouns(language IString, pronouns []MorphologyPronoun) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(tc.class), objc.Sel("localizedForLanguageIdentifier:withPronouns:"), language, pronouns)
 	return rv
 }
@@ -139,7 +139,7 @@ func (t_ TermOfAddress) LanguageIdentifier() IString {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSTermOfAddress/pronouns
-func (t_ TermOfAddress) Pronouns() []IMorphologyPronoun {
+func (t_ TermOfAddress) Pronouns() []MorphologyPronoun {
 	rv := objc.Send[[]MorphologyPronoun](t_.ID, objc.Sel("pronouns"))
 	return rv
 }

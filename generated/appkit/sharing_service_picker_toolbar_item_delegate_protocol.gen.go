@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // SharingServicePickerToolbarItemDelegateProtocol is the NSSharingServicePickerToolbarItemDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSSharingServicePickerToolbarItemDelegate.
 var SharingServicePickerToolbarItemDelegateProtocol *objc.Protocol
 

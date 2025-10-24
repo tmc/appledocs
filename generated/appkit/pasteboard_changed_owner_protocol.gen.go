@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // pasteboardChangedOwnerProtocol is the pasteboardChangedOwner: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to pasteboardChangedOwner:.
 var pasteboardChangedOwnerProtocol *objc.Protocol
 

@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [TextTable] class.
@@ -34,11 +35,14 @@ type ITextTable interface {
 	SetCollapsesBorders(value bool)
 	HidesEmptyCells() bool
 	SetHidesEmptyCells(value bool)
-	LayoutAlgorithm() unsafe.Pointer
-	SetLayoutAlgorithm(value unsafe.Pointer)
-	NumberOfColumns() int
-	SetNumberOfColumns(value int)
+	LayoutAlgorithm() TextTableLayoutAlgorithm
+	SetLayoutAlgorithm(value TextTableLayoutAlgorithm)
+	NumberOfColumns() uint
+	SetNumberOfColumns(value uint)
 	// methods:
+	BoundsRectForBlockContentRectInRectTextContainerCharacterRange(block ITextTableBlock, contentRect objc.IObject /* cross-framework: Rect */, rect objc.IObject /* cross-framework: Rect */, textContainer ITextContainer, charRange corefoundation.Range) objc.IObject /* cross-framework: Rect */
+	DrawBackgroundForBlockWithFrameInViewCharacterRangeLayoutManager(block ITextTableBlock, frameRect objc.IObject /* cross-framework: Rect */, controlView IView, charRange corefoundation.Range, layoutManager ILayoutManager)
+	RectForBlockLayoutAtPointInRectTextContainerCharacterRange(block ITextTableBlock, startingPoint objc.IObject /* cross-framework: Point */, rect objc.IObject /* cross-framework: Rect */, textContainer ITextContainer, charRange corefoundation.Range) objc.IObject /* cross-framework: Rect */
 }
 
 // An object that represents a text table as a whole.
@@ -96,10 +100,39 @@ func NewTextTable() TextTable {
 
 
 
+// Returns the rectangle the text table block actually occupies, including padding, borders, and margins.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/boundsRect(for:contentRect:in:textContainer:characterRange:)
+func (t_ TextTable) BoundsRectForBlockContentRectInRectTextContainerCharacterRange(block ITextTableBlock, contentRect objc.IObject /* cross-framework: Rect */, rect objc.IObject /* cross-framework: Rect */, textContainer ITextContainer, charRange corefoundation.Range) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("boundsRectForBlock:contentRect:inRect:textContainer:characterRange:"), block, contentRect, rect, textContainer, charRange)
+	return rv
+}
+
+
+// Draws any colors and other decorations for a text table block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/drawBackground(for:withFrame:in:characterRange:layoutManager:)
+func (t_ TextTable) DrawBackgroundForBlockWithFrameInViewCharacterRangeLayoutManager(block ITextTableBlock, frameRect objc.IObject /* cross-framework: Rect */, controlView IView, charRange corefoundation.Range, layoutManager ILayoutManager) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("drawBackgroundForBlock:withFrame:inView:characterRange:layoutManager:"), block, frameRect, controlView, charRange, layoutManager)
+}
+
+
+// Returns the rectangle within which glyphs should be laid out for a text table block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/rect(for:layoutAt:in:textContainer:characterRange:)
+func (t_ TextTable) RectForBlockLayoutAtPointInRectTextContainerCharacterRange(block ITextTableBlock, startingPoint objc.IObject /* cross-framework: Point */, rect objc.IObject /* cross-framework: Rect */, textContainer ITextContainer, charRange corefoundation.Range) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("rectForBlock:layoutAtPoint:inRect:textContainer:characterRange:"), block, startingPoint, rect, textContainer, charRange)
+	return rv
+}
+
+
 // A Boolean value indicating whether the text table borders are collapsible.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/collapsesborders
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/collapsesBorders
 func (t_ TextTable) CollapsesBorders() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("collapsesBorders"))
 	return rv
@@ -109,7 +142,7 @@ func (t_ TextTable) CollapsesBorders() bool {
 // A Boolean value indicating whether the text table borders are collapsible.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/collapsesborders
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/collapsesBorders
 func (t_ TextTable) SetCollapsesBorders(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setCollapsesBorders:"), value)
 }
@@ -118,7 +151,7 @@ func (t_ TextTable) SetCollapsesBorders(value bool) {
 // A Boolean value indicating whether the text table hides empty cells.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/hidesemptycells
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/hidesEmptyCells
 func (t_ TextTable) HidesEmptyCells() bool {
 	rv := objc.Send[bool](t_.ID, objc.Sel("hidesEmptyCells"))
 	return rv
@@ -128,7 +161,7 @@ func (t_ TextTable) HidesEmptyCells() bool {
 // A Boolean value indicating whether the text table hides empty cells.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/hidesemptycells
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/hidesEmptyCells
 func (t_ TextTable) SetHidesEmptyCells(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setHidesEmptyCells:"), value)
 }
@@ -137,9 +170,9 @@ func (t_ TextTable) SetHidesEmptyCells(value bool) {
 // The text table layout algorithm.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.property
-func (t_ TextTable) LayoutAlgorithm() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("layoutAlgorithm"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/layoutAlgorithm-swift.property
+func (t_ TextTable) LayoutAlgorithm() TextTableLayoutAlgorithm {
+	rv := objc.Send[TextTableLayoutAlgorithm](t_.ID, objc.Sel("layoutAlgorithm"))
 	return rv
 }
 
@@ -147,8 +180,8 @@ func (t_ TextTable) LayoutAlgorithm() unsafe.Pointer {
 // The text table layout algorithm.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/layoutalgorithm-swift.property
-func (t_ TextTable) SetLayoutAlgorithm(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/layoutAlgorithm-swift.property
+func (t_ TextTable) SetLayoutAlgorithm(value TextTableLayoutAlgorithm) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setLayoutAlgorithm:"), value)
 }
 
@@ -156,9 +189,9 @@ func (t_ TextTable) SetLayoutAlgorithm(value unsafe.Pointer) {
 // The number of columns in the text table.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/numberofcolumns
-func (t_ TextTable) NumberOfColumns() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("numberOfColumns"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/numberOfColumns
+func (t_ TextTable) NumberOfColumns() uint {
+	rv := objc.Send[uint](t_.ID, objc.Sel("numberOfColumns"))
 	return rv
 }
 
@@ -166,8 +199,8 @@ func (t_ TextTable) NumberOfColumns() int {
 // The number of columns in the text table.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttable/numberofcolumns
-func (t_ TextTable) SetNumberOfColumns(value int) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTable/numberOfColumns
+func (t_ TextTable) SetNumberOfColumns(value uint) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setNumberOfColumns:"), value)
 }
 

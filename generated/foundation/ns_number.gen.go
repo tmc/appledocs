@@ -70,7 +70,7 @@ type INumber interface {
 	SetObjCType(value unsafe.Pointer)
 	// methods:
 	Compare(otherNumber INumber) ComparisonResult
-	DescriptionWithLocale(locale objectivec.IObject) IString
+	DescriptionWithLocale(locale objc.IObject) IString
 	IsEqualToNumber(number INumber) bool
 }
 
@@ -484,7 +484,7 @@ func (n_ Number) Compare(otherNumber INumber) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSNumber/description(withLocale:)
-func (n_ Number) DescriptionWithLocale(locale objectivec.IObject) IString {
+func (n_ Number) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](n_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }

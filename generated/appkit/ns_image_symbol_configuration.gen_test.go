@@ -9,12 +9,35 @@ import (
 // Suppress unused import errors
 var _ = appkit.NewImageSymbolConfiguration
 
-// ExampleNewImageSymbolConfigurationWithPointSizeWeight demonstrates how to create a ImageSymbolConfiguration instance using NewImageSymbolConfigurationWithPointSizeWeight.
-// Creates a symbol configuration with the specified point size and font weight.
-func ExampleNewImageSymbolConfigurationWithPointSizeWeight() {
-	_ = appkit.NewImageSymbolConfigurationWithPointSizeWeight(
-		0.0, // pointSize float64
-		appkit.FontWeight /* not a class type */{}, // weight FontWeight /* not a class type */
+// ExampleNewImageSymbolConfigurationWithColorRenderingMode demonstrates how to create a ImageSymbolConfiguration instance using NewImageSymbolConfigurationWithColorRenderingMode.
+// Create a configuration with a specific color rendering mode.
+func ExampleNewImageSymbolConfigurationWithColorRenderingMode() {
+	_ = appkit.NewImageSymbolConfigurationWithColorRenderingMode(
+		appkit.ImageSymbolColorRenderingMode{}, // mode ImageSymbolColorRenderingMode
+	)
+	// Output:
+}
+// ExampleNewImageSymbolConfigurationWithPaletteColors demonstrates how to create a ImageSymbolConfiguration instance using NewImageSymbolConfigurationWithPaletteColors.
+// Creates a color configuration by specifying a palette of colors.
+func ExampleNewImageSymbolConfigurationWithPaletteColors() {
+	_ = appkit.NewImageSymbolConfigurationWithPaletteColors(
+		[]appkit.Color{}, // paletteColors []Color
+	)
+	// Output:
+}
+// ExampleNewImageSymbolConfigurationWithScale demonstrates how to create a ImageSymbolConfiguration instance using NewImageSymbolConfigurationWithScale.
+// Creates a symbol configuration using the scale you specify.
+func ExampleNewImageSymbolConfigurationWithScale() {
+	_ = appkit.NewImageSymbolConfigurationWithScale(
+		appkit.ImageSymbolScale{}, // scale ImageSymbolScale
+	)
+	// Output:
+}
+// ExampleNewImageSymbolConfigurationWithVariableValueMode demonstrates how to create a ImageSymbolConfiguration instance using NewImageSymbolConfigurationWithVariableValueMode.
+// Create a configuration with a specified variable value mode.
+func ExampleNewImageSymbolConfigurationWithVariableValueMode() {
+	_ = appkit.NewImageSymbolConfigurationWithVariableValueMode(
+		appkit.ImageSymbolVariableValueMode{}, // variableValueMode ImageSymbolVariableValueMode
 	)
 	// Output:
 }

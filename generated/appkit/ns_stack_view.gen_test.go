@@ -13,7 +13,7 @@ var _ = appkit.NewStackView
 // Creates and returns a stack view with a specified array of views.
 func ExampleNewStackViewWithViews() {
 	_ = appkit.NewStackViewWithViews(
-		[]appkit.IView{}, // views []IView
+		[]appkit.View{}, // views []View
 	)
 	// Output:
 }

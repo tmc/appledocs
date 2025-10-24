@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // PasteboardReadingProtocol is the NSPasteboardReading protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSPasteboardReading.
 var PasteboardReadingProtocol *objc.Protocol
 

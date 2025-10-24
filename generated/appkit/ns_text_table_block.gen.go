@@ -30,14 +30,11 @@ type _TextTableBlockClass struct {
 type ITextTableBlock interface {
 	ITextBlock
 	// properties:
+	ColumnSpan() int
 	RowSpan() int
 	StartingColumn() int
-	ColumnSpan() int
-	SetColumnSpan(value int)
 	StartingRow() int
-	SetStartingRow(value int)
 	Table() ITextTable
-	SetTable(value ITextTable)
 	// methods:
 }
 
@@ -94,6 +91,29 @@ func NewTextTableBlock() TextTableBlock {
 
 
 
+// Returns an initialized text table block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTableBlock/init(table:startingRow:rowSpan:startingColumn:columnSpan:)
+func NewTextTableBlockWithTableStartingRowRowSpanStartingColumnColumnSpan(table ITextTable, row int, rowSpan int, col int, colSpan int) TextTableBlock {
+	instance := getTextTableBlockClass().Alloc()
+	rv := objc.Send[TextTableBlock](instance.ID, objc.Sel("initWithTable:startingRow:rowSpan:startingColumn:columnSpan:"), table, row, rowSpan, col, colSpan)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns the number of table columns spanned by this text table block.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTableBlock/columnSpan
+func (t_ TextTableBlock) ColumnSpan() int {
+	rv := objc.Send[int](t_.ID, objc.Sel("columnSpan"))
+	return rv
+}
+
+
 // Returns the number of table rows spanned by this text table block.
 //
 // [Full Topic]
@@ -114,61 +134,23 @@ func (t_ TextTableBlock) StartingColumn() int {
 }
 
 
-// Returns the number of table columns spanned by this text table block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/columnspan
-func (t_ TextTableBlock) ColumnSpan() int {
-	rv := objc.Send[int](t_.ID, objc.Sel("columnSpan"))
-	return rv
-}
-
-
-// Returns the number of table columns spanned by this text table block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/columnspan
-func (t_ TextTableBlock) SetColumnSpan(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setColumnSpan:"), value)
-}
-
-
 // Returns the table row at which this text table block starts.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/startingrow
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTableBlock/startingRow
 func (t_ TextTableBlock) StartingRow() int {
 	rv := objc.Send[int](t_.ID, objc.Sel("startingRow"))
 	return rv
 }
 
 
-// Returns the table row at which this text table block starts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/startingrow
-func (t_ TextTableBlock) SetStartingRow(value int) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setStartingRow:"), value)
-}
-
-
 // Returns the table containing this text table block.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/table
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextTableBlock/table
 func (t_ TextTableBlock) Table() ITextTable {
 	rv := objc.Send[TextTable](t_.ID, objc.Sel("table"))
 	return rv
 }
-
-
-// Returns the table containing this text table block.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstexttableblock/table
-func (t_ TextTableBlock) SetTable(value ITextTable) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setTable:"), value)
-}
-
 
 

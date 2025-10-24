@@ -32,7 +32,7 @@ type IPresentationIntent interface {
 	objectivec.IObject
 	// properties:
 	Column() int
-	ColumnAlignments() []INumber
+	ColumnAlignments() []Number
 	ColumnCount() int
 	HeaderLevel() int
 	Identity() int
@@ -183,7 +183,7 @@ func (pc _PresentationIntentClass) TableHeaderRowIntentWithIdentityNestedInsideI
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:
-func (pc _PresentationIntentClass) TableIntentWithIdentityColumnCountAlignmentsNestedInsideIntent(identity int, columnCount int, alignments []INumber, parent IPresentationIntent) IPresentationIntent {
+func (pc _PresentationIntentClass) TableIntentWithIdentityColumnCountAlignmentsNestedInsideIntent(identity int, columnCount int, alignments []Number, parent IPresentationIntent) IPresentationIntent {
 	rv := objc.Send[PresentationIntent](objc.ID(pc.class), objc.Sel("tableIntentWithIdentity:columnCount:alignments:nestedInsideIntent:"), identity, columnCount, alignments, parent)
 	return rv
 }
@@ -243,7 +243,7 @@ func (p_ PresentationIntent) Column() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPresentationIntent/columnAlignments
-func (p_ PresentationIntent) ColumnAlignments() []INumber {
+func (p_ PresentationIntent) ColumnAlignments() []Number {
 	rv := objc.Send[[]Number](p_.ID, objc.Sel("columnAlignments"))
 	return rv
 }

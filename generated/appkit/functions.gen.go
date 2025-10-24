@@ -11,50 +11,80 @@ import (
 )
 
 
-// AppKit Functions (38 total)
+// AppKit Functions (68 total)
 //
 // Type-safe package-level functions with graceful error handling.
 // Missing symbols are silently ignored during init; functions will panic when called if unavailable.
 
 var (
-	_NSAccessibilityRaiseBadArgumentException func(objc.ID, unsafe.Pointer, objc.ID)
+	_NSAccessibilityActionDescription func(AccessibilityActionName) unsafe.Pointer
+	_NSAccessibilityRoleDescriptionForUIElement func(objc.ID) unsafe.Pointer
+	_NSAccessibilityRoleDescription func(AccessibilityRole, AccessibilitySubrole) unsafe.Pointer
+	_NSAccessibilityPostNotification func(objc.ID, AccessibilityNotificationName)
+	_NSAccessibilityPostNotificationWithUserInfo func(objc.ID, AccessibilityNotificationName, unsafe.Pointer)
+	_NSAccessibilityRaiseBadArgumentException func(objc.ID, AccessibilityAttributeName, objc.ID)
+	_NSAccessibilityPointInView func(unsafe.Pointer, corefoundation.Point) corefoundation.Point
+	_NSAccessibilityFrameInView func(unsafe.Pointer, corefoundation.Rect) corefoundation.Rect
+	_NSAccessibilitySetMayContainProtectedContent func(bool) bool
+	_NSAccessibilityUnignoredAncestor func(objc.ID) objc.ID
+	_NSAccessibilityUnignoredChildren func(unsafe.Pointer) unsafe.Pointer
+	_NSAccessibilityUnignoredChildrenForOnlyChild func(objc.ID) unsafe.Pointer
+	_NSAccessibilityUnignoredDescendant func(objc.ID) objc.ID
+	_NSApplicationLoad func() bool
+	_NSApplicationMain func(int, unsafe.Pointer) int
+	_NSAvailableWindowDepths func() unsafe.Pointer
 	_NSBeep func()
 	_NSBeginAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, objc.ID, objc.SEL, objc.SEL, unsafe.Pointer, unsafe.Pointer)
 	_NSBeginCriticalAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, objc.ID, objc.SEL, objc.SEL, unsafe.Pointer, unsafe.Pointer)
 	_NSBeginInformationalAlertSheet func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, objc.ID, objc.SEL, objc.SEL, unsafe.Pointer, unsafe.Pointer)
-	_NSConvertGlyphsToPackedGlyphs func(unsafe.Pointer, int64, unsafe.Pointer, unsafe.Pointer) int64
-	_NSCopyBits func(int64, corefoundation.Rect, corefoundation.Point)
+	_NSBestDepth func(ColorSpaceName, int, int, bool, unsafe.Pointer) WindowDepth
+	_NSNumberOfColorComponents func(ColorSpaceName) int
+	_NSConvertGlyphsToPackedGlyphs func(unsafe.Pointer, int, MultibyteGlyphPacking, unsafe.Pointer) int
+	_NSCopyBits func(int, corefoundation.Rect, corefoundation.Point)
 	_NSCountWindows func(unsafe.Pointer)
-	_NSCountWindowsForContext func(int64, unsafe.Pointer)
+	_NSCountWindowsForContext func(int, unsafe.Pointer)
 	_NSDisableScreenUpdates func()
 	_NSDottedFrameRect func(corefoundation.Rect)
-	_NSDrawColorTiledRects func(corefoundation.Rect, corefoundation.Rect, unsafe.Pointer, unsafe.Pointer, int64) corefoundation.Rect
+	_NSDrawBitmap func(corefoundation.Rect, int, int, int, int, int, int, bool, bool, ColorSpaceName, unsafe.Pointer, unsafe.Pointer)
+	_NSDrawColorTiledRects func(corefoundation.Rect, corefoundation.Rect, unsafe.Pointer, unsafe.Pointer, int) corefoundation.Rect
+	_NSDrawTiledRects func(corefoundation.Rect, corefoundation.Rect, unsafe.Pointer, []float64, int) corefoundation.Rect
 	_NSEnableScreenUpdates func()
+	_NSSetFocusRingStyle func(FocusRingPlacement)
 	_NSGetAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) objc.ID
 	_NSGetCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) objc.ID
 	_NSGetInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) objc.ID
-	_NSGetWindowServerMemory func(int64, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
-	_NSInterfaceStyleForKey func(unsafe.Pointer, unsafe.Pointer) unsafe.Pointer
-	_NSOpenGLGetOption func(unsafe.Pointer, unsafe.Pointer)
+	_NSGetWindowServerMemory func(int, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_NSHighlightRect func(corefoundation.Rect)
+	_NSInterfaceStyleForKey func(unsafe.Pointer, unsafe.Pointer) InterfaceStyle
+	_NSIsControllerMarker func(objc.ID) bool
+	_NSOpenGLGetOption func(OpenGLGlobalOption, unsafe.Pointer)
 	_NSOpenGLGetVersion func(unsafe.Pointer, unsafe.Pointer)
-	_NSOpenGLSetOption func(unsafe.Pointer, unsafe.Pointer)
-	_NSCreateFileContentsPboardType func(unsafe.Pointer) unsafe.Pointer
-	_NSCreateFilenamePboardType func(unsafe.Pointer) unsafe.Pointer
-	_NSGetFileType func(unsafe.Pointer) unsafe.Pointer
+	_NSOpenGLSetOption func(OpenGLGlobalOption, unsafe.Pointer)
+	_NSCreateFileContentsPboardType func(unsafe.Pointer) PasteboardType
+	_NSCreateFilenamePboardType func(unsafe.Pointer) PasteboardType
+	_NSGetFileType func(PasteboardType) unsafe.Pointer
 	_NSGetFileTypes func([]unsafe.Pointer) []unsafe.Pointer
 	_NSReadPixel func(corefoundation.Point) unsafe.Pointer
 	_NSReleaseAlertPanel func(objc.ID)
-	_NSRunAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
-	_NSRunAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
-	_NSRunCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
-	_NSRunCriticalAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
-	_NSRunInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
-	_NSRunInformationalAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int64
-	_NSSetShowsServicesMenuItem func(unsafe.Pointer, bool) int64
-	_NSShowAnimationEffect func(unsafe.Pointer, corefoundation.Point, corefoundation.Size, objc.ID, objc.SEL, unsafe.Pointer)
+	_NSRunAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_NSRunAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_NSRunCriticalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_NSRunCriticalAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_NSRunInformationalAlertPanel func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_NSRunInformationalAlertPanelRelativeToWindow func(unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer, unsafe.Pointer) int
+	_NSSetShowsServicesMenuItem func(unsafe.Pointer, bool) int
+	_NSShowAnimationEffect func(AnimationEffect, corefoundation.Point, corefoundation.Size, objc.ID, objc.SEL, unsafe.Pointer)
 	_NSShowsServicesMenuItem func(unsafe.Pointer) bool
-	_NSWindowList func(int64, int64)
-	_NSWindowListForContext func(int64, int64, int64)
+	_NSUpdateDynamicServices func()
+	_NSBitsPerPixelFromDepth func(WindowDepth) int
+	_NSBitsPerSampleFromDepth func(WindowDepth) int
+	_NSColorSpaceFromDepth func(WindowDepth) ColorSpaceName
+	_NSPlanarFromDepth func(WindowDepth) bool
+	_NSWindowList func(int, int)
+	_NSWindowListForContext func(int, int, int)
+	_NSPerformService func(unsafe.Pointer, unsafe.Pointer) bool
+	_NSRegisterServicesProvider func(objc.ID, ServiceProviderName)
+	_NSUnregisterServicesProvider func(ServiceProviderName)
 )
 
 func init() {
@@ -62,24 +92,46 @@ func init() {
 	if err != nil {
 		panic(err)
 	}
+	tryRegister(&_NSAccessibilityActionDescription, lib, "NSAccessibilityActionDescription")
+	tryRegister(&_NSAccessibilityRoleDescriptionForUIElement, lib, "NSAccessibilityRoleDescriptionForUIElement")
+	tryRegister(&_NSAccessibilityRoleDescription, lib, "NSAccessibilityRoleDescription")
+	tryRegister(&_NSAccessibilityPostNotification, lib, "NSAccessibilityPostNotification")
+	tryRegister(&_NSAccessibilityPostNotificationWithUserInfo, lib, "NSAccessibilityPostNotificationWithUserInfo")
 	tryRegister(&_NSAccessibilityRaiseBadArgumentException, lib, "NSAccessibilityRaiseBadArgumentException")
+	tryRegister(&_NSAccessibilityPointInView, lib, "NSAccessibilityPointInView")
+	tryRegister(&_NSAccessibilityFrameInView, lib, "NSAccessibilityFrameInView")
+	tryRegister(&_NSAccessibilitySetMayContainProtectedContent, lib, "NSAccessibilitySetMayContainProtectedContent")
+	tryRegister(&_NSAccessibilityUnignoredAncestor, lib, "NSAccessibilityUnignoredAncestor")
+	tryRegister(&_NSAccessibilityUnignoredChildren, lib, "NSAccessibilityUnignoredChildren")
+	tryRegister(&_NSAccessibilityUnignoredChildrenForOnlyChild, lib, "NSAccessibilityUnignoredChildrenForOnlyChild")
+	tryRegister(&_NSAccessibilityUnignoredDescendant, lib, "NSAccessibilityUnignoredDescendant")
+	tryRegister(&_NSApplicationLoad, lib, "NSApplicationLoad")
+	tryRegister(&_NSApplicationMain, lib, "NSApplicationMain")
+	tryRegister(&_NSAvailableWindowDepths, lib, "NSAvailableWindowDepths")
 	tryRegister(&_NSBeep, lib, "NSBeep")
 	tryRegister(&_NSBeginAlertSheet, lib, "NSBeginAlertSheet")
 	tryRegister(&_NSBeginCriticalAlertSheet, lib, "NSBeginCriticalAlertSheet")
 	tryRegister(&_NSBeginInformationalAlertSheet, lib, "NSBeginInformationalAlertSheet")
+	tryRegister(&_NSBestDepth, lib, "NSBestDepth")
+	tryRegister(&_NSNumberOfColorComponents, lib, "NSNumberOfColorComponents")
 	tryRegister(&_NSConvertGlyphsToPackedGlyphs, lib, "NSConvertGlyphsToPackedGlyphs")
 	tryRegister(&_NSCopyBits, lib, "NSCopyBits")
 	tryRegister(&_NSCountWindows, lib, "NSCountWindows")
 	tryRegister(&_NSCountWindowsForContext, lib, "NSCountWindowsForContext")
 	tryRegister(&_NSDisableScreenUpdates, lib, "NSDisableScreenUpdates")
 	tryRegister(&_NSDottedFrameRect, lib, "NSDottedFrameRect")
+	tryRegister(&_NSDrawBitmap, lib, "NSDrawBitmap")
 	tryRegister(&_NSDrawColorTiledRects, lib, "NSDrawColorTiledRects")
+	tryRegister(&_NSDrawTiledRects, lib, "NSDrawTiledRects")
 	tryRegister(&_NSEnableScreenUpdates, lib, "NSEnableScreenUpdates")
+	tryRegister(&_NSSetFocusRingStyle, lib, "NSSetFocusRingStyle")
 	tryRegister(&_NSGetAlertPanel, lib, "NSGetAlertPanel")
 	tryRegister(&_NSGetCriticalAlertPanel, lib, "NSGetCriticalAlertPanel")
 	tryRegister(&_NSGetInformationalAlertPanel, lib, "NSGetInformationalAlertPanel")
 	tryRegister(&_NSGetWindowServerMemory, lib, "NSGetWindowServerMemory")
+	tryRegister(&_NSHighlightRect, lib, "NSHighlightRect")
 	tryRegister(&_NSInterfaceStyleForKey, lib, "NSInterfaceStyleForKey")
+	tryRegister(&_NSIsControllerMarker, lib, "NSIsControllerMarker")
 	tryRegister(&_NSOpenGLGetOption, lib, "NSOpenGLGetOption")
 	tryRegister(&_NSOpenGLGetVersion, lib, "NSOpenGLGetVersion")
 	tryRegister(&_NSOpenGLSetOption, lib, "NSOpenGLSetOption")
@@ -98,8 +150,16 @@ func init() {
 	tryRegister(&_NSSetShowsServicesMenuItem, lib, "NSSetShowsServicesMenuItem")
 	tryRegister(&_NSShowAnimationEffect, lib, "NSShowAnimationEffect")
 	tryRegister(&_NSShowsServicesMenuItem, lib, "NSShowsServicesMenuItem")
+	tryRegister(&_NSUpdateDynamicServices, lib, "NSUpdateDynamicServices")
+	tryRegister(&_NSBitsPerPixelFromDepth, lib, "NSBitsPerPixelFromDepth")
+	tryRegister(&_NSBitsPerSampleFromDepth, lib, "NSBitsPerSampleFromDepth")
+	tryRegister(&_NSColorSpaceFromDepth, lib, "NSColorSpaceFromDepth")
+	tryRegister(&_NSPlanarFromDepth, lib, "NSPlanarFromDepth")
 	tryRegister(&_NSWindowList, lib, "NSWindowList")
 	tryRegister(&_NSWindowListForContext, lib, "NSWindowListForContext")
+	tryRegister(&_NSPerformService, lib, "NSPerformService")
+	tryRegister(&_NSRegisterServicesProvider, lib, "NSRegisterServicesProvider")
+	tryRegister(&_NSUnregisterServicesProvider, lib, "NSUnregisterServicesProvider")
 }
 
 // tryRegister attempts to register a function, silently ignoring failures.
@@ -116,6 +176,61 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 
 
 
+// Returns a standard description for an action.
+//
+// Added in macOS .
+// Returns a standard description for an action.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Action/description
+func NSAccessibilityActionDescription(action AccessibilityActionName) unsafe.Pointer {
+	return _NSAccessibilityActionDescription(action)
+}
+
+// Returns a standard role description for a user interface element.
+//
+// Added in macOS .
+// Returns a standard role description for a user interface element.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Role/description(for:)
+func NSAccessibilityRoleDescriptionForUIElement(element objc.ID) unsafe.Pointer {
+	return _NSAccessibilityRoleDescriptionForUIElement(element)
+}
+
+// Returns a standard description for a role and subrole.
+//
+// Added in macOS .
+// Returns a standard description for a role and subrole.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/Role/description(with:)
+func NSAccessibilityRoleDescription(role AccessibilityRole, subrole AccessibilitySubrole) unsafe.Pointer {
+	return _NSAccessibilityRoleDescription(role, subrole)
+}
+
+// Sends a notification to any observing assistive apps.
+//
+// Added in macOS .
+// Sends a notification to any observing assistive apps.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:)
+func NSAccessibilityPostNotification(element objc.ID, notification AccessibilityNotificationName) {
+	_NSAccessibilityPostNotification(element, notification)
+}
+
+// Sends a notification and an optional user info dictionary to any observing assistive apps.
+//
+// Added in macOS 10.7.
+// Sends a notification and an optional user info dictionary to any observing assistive apps.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/post(element:notification:userInfo:)
+func NSAccessibilityPostNotificationWithUserInfo(element objc.ID, notification AccessibilityNotificationName, userInfo unsafe.Pointer) {
+	_NSAccessibilityPostNotificationWithUserInfo(element, notification, userInfo)
+}
+
 // Raises an error if the parameter is the wrong type or has an illegal value
 //
 // Deprecated: This function was deprecated in macOS 10.11.
@@ -125,12 +240,123 @@ func tryRegister(fn interface{}, lib uintptr, name string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/raiseBadArgumentException(_:_:_:)
-func NSAccessibilityRaiseBadArgumentException(element objc.ID, attribute unsafe.Pointer, value objc.ID) {
+func NSAccessibilityRaiseBadArgumentException(element objc.ID, attribute AccessibilityAttributeName, value objc.ID) {
 	_NSAccessibilityRaiseBadArgumentException(element, attribute, value)
 }
 
-// Plays the system beep.
+// Returns the point in screen coordinates.
+//
+// Added in macOS 10.10.
+// Returns the point in screen coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/screenPoint(fromView:point:)
+func NSAccessibilityPointInView(parentView unsafe.Pointer, point corefoundation.Point) corefoundation.Point {
+	return _NSAccessibilityPointInView(parentView, point)
+}
 
+// Returns the frame in screen coordinates.
+//
+// Added in macOS 10.10.
+// Returns the frame in screen coordinates.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/screenRect(fromView:rect:)
+func NSAccessibilityFrameInView(parentView unsafe.Pointer, frame corefoundation.Rect) corefoundation.Rect {
+	return _NSAccessibilityFrameInView(parentView, frame)
+}
+
+// Sets whether the app may have protected content.
+//
+// Added in macOS .
+// Sets whether the app may have protected content.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/setMayContainProtectedContent(_:)
+func NSAccessibilitySetMayContainProtectedContent(flag bool) bool {
+	return _NSAccessibilitySetMayContainProtectedContent(flag)
+}
+
+// Returns an unignored accessibility object, ascending the hierarchy, if necessary.
+//
+// Added in macOS .
+// Returns an unignored accessibility object, ascending the hierarchy, if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/unignoredAncestor(of:)
+func NSAccessibilityUnignoredAncestor(element objc.ID) objc.ID {
+	return _NSAccessibilityUnignoredAncestor(element)
+}
+
+// Returns a list of unignored accessibility objects, descending the hierarchy, if necessary.
+//
+// Added in macOS .
+// Returns a list of unignored accessibility objects, descending the hierarchy, if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildren(from:)
+func NSAccessibilityUnignoredChildren(originalChildren unsafe.Pointer) unsafe.Pointer {
+	return _NSAccessibilityUnignoredChildren(originalChildren)
+}
+
+// Returns a list of unignored accessibility objects, descending the hierarchy, if necessary.
+//
+// Added in macOS .
+// Returns a list of unignored accessibility objects, descending the hierarchy, if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/unignoredChildrenForOnlyChild(from:)
+func NSAccessibilityUnignoredChildrenForOnlyChild(originalChild objc.ID) unsafe.Pointer {
+	return _NSAccessibilityUnignoredChildrenForOnlyChild(originalChild)
+}
+
+// Returns an unignored accessibility object, descending the hierarchy, if necessary.
+//
+// Added in macOS .
+// Returns an unignored accessibility object, descending the hierarchy, if necessary.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibility-swift.struct/unignoredDescendant(of:)
+func NSAccessibilityUnignoredDescendant(element objc.ID) objc.ID {
+	return _NSAccessibilityUnignoredDescendant(element)
+}
+
+// Startup function to call when running Cocoa code from a Carbon application.
+//
+// Added in macOS .
+// Startup function to call when running Cocoa code from a Carbon application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplicationLoad
+func NSApplicationLoad() bool {
+	return _NSApplicationLoad()
+}
+
+// Called by the main function to create and run the application.
+//
+// Added in macOS .
+// Called by the main function to create and run the application.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSApplicationMain
+func NSApplicationMain(argc int, argv unsafe.Pointer) int {
+	return _NSApplicationMain(argc, argv)
+}
+
+// Returns the available window depth values.
+//
+// Added in macOS .
+// Returns the available window depth values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAvailableWindowDepths
+func NSAvailableWindowDepths() unsafe.Pointer {
+	return _NSAvailableWindowDepths()
+}
+
+// Plays the system beep.
+//
+// Added in macOS .
 // Plays the system beep.
 //
 // [Full Topic]
@@ -178,6 +404,28 @@ func NSBeginInformationalAlertSheet(title unsafe.Pointer, defaultButton unsafe.P
 	_NSBeginInformationalAlertSheet(title, defaultButton, alternateButton, otherButton, docWindow, modalDelegate, didEndSelector, didDismissSelector, contextInfo, msgFormat)
 }
 
+// Attempts to return a window depth adequate for the specified parameters.
+//
+// Added in macOS .
+// Attempts to return a window depth adequate for the specified parameters.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSBestDepth
+func NSBestDepth(colorSpace ColorSpaceName, bps int, bpp int, planar bool, exactMatch unsafe.Pointer) WindowDepth {
+	return _NSBestDepth(colorSpace, bps, bpp, planar, exactMatch)
+}
+
+// Returns the number of color components in the specified color space.
+//
+// Added in macOS .
+// Returns the number of color components in the specified color space.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorSpaceName/numberOfColorComponents
+func NSNumberOfColorComponents(colorSpaceName ColorSpaceName) int {
+	return _NSNumberOfColorComponents(colorSpaceName)
+}
+
 // Prepares a set of glyphs for processing by character-based routines.
 //
 // Deprecated: This function was deprecated in macOS 10.13.
@@ -187,7 +435,7 @@ func NSBeginInformationalAlertSheet(title unsafe.Pointer, defaultButton unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSConvertGlyphsToPackedGlyphs(_:_:_:_:)
-func NSConvertGlyphsToPackedGlyphs(glBuf unsafe.Pointer, count int64, packing unsafe.Pointer, packedGlyphs unsafe.Pointer) int64 {
+func NSConvertGlyphsToPackedGlyphs(glBuf unsafe.Pointer, count int, packing MultibyteGlyphPacking, packedGlyphs unsafe.Pointer) int {
 	return _NSConvertGlyphsToPackedGlyphs(glBuf, count, packing, packedGlyphs)
 }
 
@@ -200,7 +448,7 @@ func NSConvertGlyphsToPackedGlyphs(glBuf unsafe.Pointer, count int64, packing un
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCopyBits(_:_:_:)
-func NSCopyBits(srcGState int64, srcRect corefoundation.Rect, destPoint corefoundation.Point) {
+func NSCopyBits(srcGState int, srcRect corefoundation.Rect, destPoint corefoundation.Point) {
 	_NSCopyBits(srcGState, srcRect, destPoint)
 }
 
@@ -226,7 +474,7 @@ func NSCountWindows(count unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCountWindowsForContext
-func NSCountWindowsForContext(context int64, count unsafe.Pointer) {
+func NSCountWindowsForContext(context int, count unsafe.Pointer) {
 	_NSCountWindowsForContext(context, count)
 }
 
@@ -244,7 +492,8 @@ func NSDisableScreenUpdates() {
 }
 
 // Draws a bordered rectangle.
-
+//
+// Added in macOS .
 // Draws a bordered rectangle.
 //
 // [Full Topic]
@@ -253,14 +502,37 @@ func NSDottedFrameRect(rect corefoundation.Rect) {
 	_NSDottedFrameRect(rect)
 }
 
-// Draws a single-color, bordered rectangle.
+// Draws a bitmap image.
+//
+// Added in macOS .
+// Draws a bitmap image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawBitmap(_:_:_:_:_:_:_:_:_:_:_:)
+func NSDrawBitmap(rect corefoundation.Rect, width int, height int, bps int, spp int, bpp int, bpr int, isPlanar bool, hasAlpha bool, colorSpaceName ColorSpaceName, data unsafe.Pointer, p11 unsafe.Pointer) {
+	_NSDrawBitmap(rect, width, height, bps, spp, bpp, bpr, isPlanar, hasAlpha, colorSpaceName, data, p11)
+}
 
+// Draws a single-color, bordered rectangle.
+//
+// Added in macOS .
 // Draws a single-color, bordered rectangle.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawColorTiledRects(_:_:_:_:_:)
-func NSDrawColorTiledRects(boundsRect corefoundation.Rect, clipRect corefoundation.Rect, sides unsafe.Pointer, colors unsafe.Pointer, count int64) corefoundation.Rect {
+func NSDrawColorTiledRects(boundsRect corefoundation.Rect, clipRect corefoundation.Rect, sides unsafe.Pointer, colors unsafe.Pointer, count int) corefoundation.Rect {
 	return _NSDrawColorTiledRects(boundsRect, clipRect, sides, colors, count)
+}
+
+// Draws rectangles with borders.
+//
+// Added in macOS .
+// Draws rectangles with borders.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDrawTiledRects(_:_:_:_:_:)
+func NSDrawTiledRects(boundsRect corefoundation.Rect, clipRect corefoundation.Rect, sides unsafe.Pointer, grays []float64, count int) corefoundation.Rect {
+	return _NSDrawTiledRects(boundsRect, clipRect, sides, grays, count)
 }
 
 // Enables screen updates.
@@ -274,6 +546,17 @@ func NSDrawColorTiledRects(boundsRect corefoundation.Rect, clipRect corefoundati
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEnableScreenUpdates()
 func NSEnableScreenUpdates() {
 	_NSEnableScreenUpdates()
+}
+
+// Specifies how the system draws the focus ring.
+//
+// Added in macOS .
+// Specifies how the system draws the focus ring.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFocusRingPlacement/set()
+func NSSetFocusRingStyle(placement FocusRingPlacement) {
+	_NSSetFocusRingStyle(placement)
 }
 
 // Returns an alert panel.
@@ -324,8 +607,21 @@ func NSGetInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSGetWindowServerMemory(_:_:_:_:)
-func NSGetWindowServerMemory(context int64, virtualMemory unsafe.Pointer, windowBackingMemory unsafe.Pointer, windowDumpString unsafe.Pointer) int64 {
+func NSGetWindowServerMemory(context int, virtualMemory unsafe.Pointer, windowBackingMemory unsafe.Pointer, windowDumpString unsafe.Pointer) int {
 	return _NSGetWindowServerMemory(context, virtualMemory, windowBackingMemory, windowDumpString)
+}
+
+// Highlights the specified rect by filling it with white.
+//
+// Deprecated: This function was deprecated in macOS 10.0.
+//
+// Added in macOS 10.0.
+// Highlights the specified rect by filling it with white.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSHighlightRect
+func NSHighlightRect(rect corefoundation.Rect) {
+	_NSHighlightRect(rect)
 }
 
 // Returns an interface style value for the specified key and responder.
@@ -337,8 +633,19 @@ func NSGetWindowServerMemory(context int64, virtualMemory unsafe.Pointer, window
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSInterfaceStyleForKey
-func NSInterfaceStyleForKey(key unsafe.Pointer, responder unsafe.Pointer) unsafe.Pointer {
+func NSInterfaceStyleForKey(key unsafe.Pointer, responder unsafe.Pointer) InterfaceStyle {
 	return _NSInterfaceStyleForKey(key, responder)
+}
+
+// Tests whether a given object is special marker object used for indicating the state of a selection in relation to a key.
+//
+// Added in macOS .
+// Tests whether a given object is special marker object used for indicating the state of a selection in relation to a key.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSIsControllerMarker(_:)
+func NSIsControllerMarker(object objc.ID) bool {
+	return _NSIsControllerMarker(object)
 }
 
 // Returns global OpenGL options.
@@ -350,7 +657,7 @@ func NSInterfaceStyleForKey(key unsafe.Pointer, responder unsafe.Pointer) unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLGetOption
-func NSOpenGLGetOption(pname unsafe.Pointer, param unsafe.Pointer) {
+func NSOpenGLGetOption(pname OpenGLGlobalOption, param unsafe.Pointer) {
 	_NSOpenGLGetOption(pname, param)
 }
 
@@ -376,42 +683,46 @@ func NSOpenGLGetVersion(major unsafe.Pointer, minor unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLSetOption
-func NSOpenGLSetOption(pname unsafe.Pointer, param unsafe.Pointer) {
+func NSOpenGLSetOption(pname OpenGLGlobalOption, param unsafe.Pointer) {
 	_NSOpenGLSetOption(pname, param)
 }
 
 // Returns a pasteboard type based on the passed file type.
-
+//
+// Added in macOS .
 // Returns a pasteboard type based on the passed file type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/fileContentsType(forPathExtension:)
-func NSCreateFileContentsPboardType(fileType unsafe.Pointer) unsafe.Pointer {
+func NSCreateFileContentsPboardType(fileType unsafe.Pointer) PasteboardType {
 	return _NSCreateFileContentsPboardType(fileType)
 }
 
 // Returns a pasteboard type based on the passed file type.
-
+//
+// Added in macOS .
 // Returns a pasteboard type based on the passed file type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/fileNameType(forPathExtension:)
-func NSCreateFilenamePboardType(fileType unsafe.Pointer) unsafe.Pointer {
+func NSCreateFilenamePboardType(fileType unsafe.Pointer) PasteboardType {
 	return _NSCreateFilenamePboardType(fileType)
 }
 
 // A file type based on the passed pasteboard type.
-
+//
+// Added in macOS .
 // A file type based on the passed pasteboard type.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPasteboard/PasteboardType/representedPathExtension
-func NSGetFileType(pboardType unsafe.Pointer) unsafe.Pointer {
+func NSGetFileType(pboardType PasteboardType) unsafe.Pointer {
 	return _NSGetFileType(pboardType)
 }
 
 // Returns an array of file types based on the passed pasteboard types.
-
+//
+// Added in macOS .
 // Returns an array of file types based on the passed pasteboard types.
 //
 // [Full Topic]
@@ -455,7 +766,7 @@ func NSReleaseAlertPanel(panel objc.ID) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunAlertPanel
-func NSRunAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) int64 {
+func NSRunAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) int {
 	return _NSRunAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
 }
 
@@ -466,7 +777,7 @@ func NSRunAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButt
 // Added in macOS 10.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunAlertPanelRelativeToWindow
-func NSRunAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) int64 {
+func NSRunAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) int {
 	return _NSRunAlertPanelRelativeToWindow(title, msgFormat, defaultButton, alternateButton, otherButton, docWindow)
 }
 
@@ -479,7 +790,7 @@ func NSRunAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Poin
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunCriticalAlertPanel
-func NSRunCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) int64 {
+func NSRunCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) int {
 	return _NSRunCriticalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
 }
 
@@ -490,7 +801,7 @@ func NSRunCriticalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, def
 // Added in macOS 10.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunCriticalAlertPanelRelativeToWindow
-func NSRunCriticalAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) int64 {
+func NSRunCriticalAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) int {
 	return _NSRunCriticalAlertPanelRelativeToWindow(title, msgFormat, defaultButton, alternateButton, otherButton, docWindow)
 }
 
@@ -503,7 +814,7 @@ func NSRunCriticalAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat uns
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunInformationalAlertPanel
-func NSRunInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) int64 {
+func NSRunInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer) int {
 	return _NSRunInformationalAlertPanel(title, msgFormat, defaultButton, alternateButton, otherButton)
 }
 
@@ -514,17 +825,18 @@ func NSRunInformationalAlertPanel(title unsafe.Pointer, msgFormat unsafe.Pointer
 // Added in macOS 10.0.
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRunInformationalAlertPanelRelativeToWindow
-func NSRunInformationalAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) int64 {
+func NSRunInformationalAlertPanelRelativeToWindow(title unsafe.Pointer, msgFormat unsafe.Pointer, defaultButton unsafe.Pointer, alternateButton unsafe.Pointer, otherButton unsafe.Pointer, docWindow unsafe.Pointer) int {
 	return _NSRunInformationalAlertPanelRelativeToWindow(title, msgFormat, defaultButton, alternateButton, otherButton, docWindow)
 }
 
 // Specifies whether an item should be included in Services menus.
-
+//
+// Added in macOS .
 // Specifies whether an item should be included in Services menus.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSetShowsServicesMenuItem(_:_:)
-func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled bool) int64 {
+func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled bool) int {
 	return _NSSetShowsServicesMenuItem(itemName, enabled)
 }
 
@@ -537,18 +849,74 @@ func NSSetShowsServicesMenuItem(itemName unsafe.Pointer, enabled bool) int64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShowAnimationEffect
-func NSShowAnimationEffect(animationEffect unsafe.Pointer, centerLocation corefoundation.Point, size corefoundation.Size, animationDelegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
+func NSShowAnimationEffect(animationEffect AnimationEffect, centerLocation corefoundation.Point, size corefoundation.Size, animationDelegate objc.ID, didEndSelector objc.SEL, contextInfo unsafe.Pointer) {
 	_NSShowAnimationEffect(animationEffect, centerLocation, size, animationDelegate, didEndSelector, contextInfo)
 }
 
 // Specifies whether a Services menu item is currently enabled.
-
+//
+// Added in macOS .
 // Specifies whether a Services menu item is currently enabled.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSShowsServicesMenuItem(_:)
 func NSShowsServicesMenuItem(itemName unsafe.Pointer) bool {
 	return _NSShowsServicesMenuItem(itemName)
+}
+
+// Causes the services information for the system to be updated.
+//
+// Added in macOS .
+// Causes the services information for the system to be updated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUpdateDynamicServices()
+func NSUpdateDynamicServices() {
+	_NSUpdateDynamicServices()
+}
+
+// Returns the bits per pixel for the specified window depth.
+//
+// Added in macOS .
+// Returns the bits per pixel for the specified window depth.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/bitsPerPixel
+func NSBitsPerPixelFromDepth(depth WindowDepth) int {
+	return _NSBitsPerPixelFromDepth(depth)
+}
+
+// Returns the bits per sample for the specified window depth.
+//
+// Added in macOS .
+// Returns the bits per sample for the specified window depth.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/bitsPerSample
+func NSBitsPerSampleFromDepth(depth WindowDepth) int {
+	return _NSBitsPerSampleFromDepth(depth)
+}
+
+// Returns the name of the color space corresponding to the passed window depth.
+//
+// Added in macOS .
+// Returns the name of the color space corresponding to the passed window depth.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/colorSpaceName
+func NSColorSpaceFromDepth(depth WindowDepth) ColorSpaceName {
+	return _NSColorSpaceFromDepth(depth)
+}
+
+// Returns whether the specified window depth is planar.
+//
+// Added in macOS .
+// Returns whether the specified window depth is planar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindow/Depth/isPlanar
+func NSPlanarFromDepth(depth WindowDepth) bool {
+	return _NSPlanarFromDepth(depth)
 }
 
 // Gets information about onscreen windows.
@@ -560,7 +928,7 @@ func NSShowsServicesMenuItem(itemName unsafe.Pointer) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowList
-func NSWindowList(size int64, list int64) {
+func NSWindowList(size int, list int) {
 	_NSWindowList(size, list)
 }
 
@@ -573,8 +941,41 @@ func NSWindowList(size int64, list int64) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSWindowListForContext
-func NSWindowListForContext(context int64, size int64, list int64) {
+func NSWindowListForContext(context int, size int, list int) {
 	_NSWindowListForContext(context, size, list)
+}
+
+// Programmatically invokes a Services menu service.
+//
+// Added in macOS .
+// Programmatically invokes a Services menu service.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPerformService(_:_:)
+func NSPerformService(itemName unsafe.Pointer, pboard unsafe.Pointer) bool {
+	return _NSPerformService(itemName, pboard)
+}
+
+// Registers a service provider.
+//
+// Added in macOS .
+// Registers a service provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRegisterServicesProvider(_:_:)
+func NSRegisterServicesProvider(provider objc.ID, name ServiceProviderName) {
+	_NSRegisterServicesProvider(provider, name)
+}
+
+// Unregisters a service provider.
+//
+// Added in macOS .
+// Unregisters a service provider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUnregisterServicesProvider(_:)
+func NSUnregisterServicesProvider(name ServiceProviderName) {
+	_NSUnregisterServicesProvider(name)
 }
 
 

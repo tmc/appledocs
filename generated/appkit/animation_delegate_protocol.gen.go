@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // AnimationDelegateProtocol is the NSAnimationDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSAnimationDelegate.
 var AnimationDelegateProtocol *objc.Protocol
 

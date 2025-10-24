@@ -98,7 +98,7 @@ func NewURLConnection() URLConnection {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:)
-func NewURLConnectionWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) URLConnection {
+func NewURLConnectionWithRequestDelegate(request IURLRequest, delegate objc.IObject) URLConnection {
 	instance := getURLConnectionClass().Alloc()
 	rv := objc.Send[URLConnection](instance.ID, objc.Sel("initWithRequest:delegate:"), request, delegate)
 	rv.Autorelease()
@@ -110,7 +110,7 @@ func NewURLConnectionWithRequestDelegate(request IURLRequest, delegate objective
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/init(request:delegate:startImmediately:)
-func NewURLConnectionWithRequestDelegateStartImmediately(request IURLRequest, delegate objectivec.IObject, startImmediately bool) URLConnection {
+func NewURLConnectionWithRequestDelegateStartImmediately(request IURLRequest, delegate objc.IObject, startImmediately bool) URLConnection {
 	instance := getURLConnectionClass().Alloc()
 	rv := objc.Send[URLConnection](instance.ID, objc.Sel("initWithRequest:delegate:startImmediately:"), request, delegate, startImmediately)
 	rv.Autorelease()
@@ -133,7 +133,7 @@ func (uc _URLConnectionClass) CanHandleRequest(request IURLRequest) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURLConnection/connectionWithRequest:delegate:
-func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request IURLRequest, delegate objectivec.IObject) IURLConnection {
+func (uc _URLConnectionClass) ConnectionWithRequestDelegate(request IURLRequest, delegate objc.IObject) IURLConnection {
 	rv := objc.Send[URLConnection](objc.ID(uc.class), objc.Sel("connectionWithRequest:delegate:"), request, delegate)
 	return rv
 }

@@ -30,14 +30,16 @@ type _TokenFieldCellClass struct {
 // An interface definition for the [TokenFieldCell] class.
 type ITokenFieldCell interface {
 	ITextFieldCell
+	// properties:
+	CompletionDelay() float64
+	SetCompletionDelay(value float64)
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
 	TokenStyle() TokenStyle
 	SetTokenStyle(value TokenStyle)
-	CompletionDelay() unsafe.Pointer
-	SetCompletionDelay(value unsafe.Pointer)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
 	TokenizingCharacterSet() foundation.CharacterSet
-	SetTokenizingCharacterSet(value foundation.ICharacterSet)
+	SetTokenizingCharacterSet(value foundation.CharacterSet)
+	// methods:
 }
 
 // A text field cell subclass that enables tokenized editing of an array of objects.
@@ -95,6 +97,82 @@ func NewTokenFieldCell() TokenFieldCell {
 
 
 
+// Returns the default completion delay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/defaultCompletionDelay
+func (tc _TokenFieldCellClass) DefaultCompletionDelay() float64 {
+	rv := objc.Send[float64](objc.ID(tc.class), objc.Sel("defaultCompletionDelay"))
+	return rv
+}
+
+// Returns the default tokenizing character set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/defaultTokenizingCharacterSet
+func (tc _TokenFieldCellClass) DefaultTokenizingCharacterSet() foundation.CharacterSet {
+	rv := objc.Send[foundation.CharacterSet](objc.ID(tc.class), objc.Sel("defaultTokenizingCharacterSet"))
+	return rv
+}
+
+// The receiver’s completion delay to a given delay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/completionDelay
+func (t_ TokenFieldCell) CompletionDelay() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("completionDelay"))
+	return rv
+}
+
+
+// The receiver’s completion delay to a given delay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/completionDelay
+func (t_ TokenFieldCell) SetCompletionDelay(value float64) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
+}
+
+
+// Returns the default completion delay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/defaultCompletionDelay
+func (t_ TokenFieldCell) DefaultCompletionDelay() float64 {
+	rv := objc.Send[float64](t_.ID, objc.Sel("defaultCompletionDelay"))
+	return rv
+}
+
+
+// Returns the default tokenizing character set.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/defaultTokenizingCharacterSet
+func (t_ TokenFieldCell) DefaultTokenizingCharacterSet() foundation.CharacterSet {
+	rv := objc.Send[foundation.CharacterSet](t_.ID, objc.Sel("defaultTokenizingCharacterSet"))
+	return rv
+}
+
+
+// The receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/delegate
+func (t_ TokenFieldCell) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The receiver’s delegate.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/delegate
+func (t_ TokenFieldCell) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
 // The token style of the receiver.
 //
 // [Full Topic]
@@ -114,48 +192,10 @@ func (t_ TokenFieldCell) SetTokenStyle(value TokenStyle) {
 }
 
 
-// The receiver’s completion delay to a given delay.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/completiondelay
-func (t_ TokenFieldCell) CompletionDelay() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("completionDelay"))
-	return rv
-}
-
-
-// The receiver’s completion delay to a given delay.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/completiondelay
-func (t_ TokenFieldCell) SetCompletionDelay(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCompletionDelay:"), value)
-}
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/delegate
-func (t_ TokenFieldCell) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// The receiver’s delegate.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/delegate
-func (t_ TokenFieldCell) SetDelegate(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
 // The receiver’s tokenizing character set to a given character set.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/tokenizingCharacterSet
 func (t_ TokenFieldCell) TokenizingCharacterSet() foundation.CharacterSet {
 	rv := objc.Send[foundation.CharacterSet](t_.ID, objc.Sel("tokenizingCharacterSet"))
 	return rv
@@ -165,8 +205,8 @@ func (t_ TokenFieldCell) TokenizingCharacterSet() foundation.CharacterSet {
 // The receiver’s tokenizing character set to a given character set.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstokenfieldcell/tokenizingcharacterset
-func (t_ TokenFieldCell) SetTokenizingCharacterSet(value foundation.ICharacterSet) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTokenFieldCell/tokenizingCharacterSet
+func (t_ TokenFieldCell) SetTokenizingCharacterSet(value foundation.CharacterSet) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTokenizingCharacterSet:"), value)
 }
 

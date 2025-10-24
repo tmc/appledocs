@@ -33,8 +33,8 @@ type IFileManager interface {
 	// properties:
 	CurrentDirectoryPath() IString
 	SetCurrentDirectoryPath(value IString)
-	Delegate() unsafe.Pointer
-	SetDelegate(value unsafe.Pointer)
+	Delegate() objc.IObject /* cross-framework: FileManagerDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: FileManagerDelegate */)
 	HomeDirectoryForCurrentUser() IURL
 	SetHomeDirectoryForCurrentUser(value IURL)
 	TemporaryDirectory() IURL
@@ -47,7 +47,10 @@ type IFileManager interface {
 	// methods:
 	AttributesOfItemAtPathError(path IString, error_ IError) IDictionary
 	GetFileProviderServicesForItemAtURLCompletionHandler(url IURL, completionHandler IDictionary)
+	ReplaceItemAtURLWithItemAtURLBackupItemNameOptionsResultingItemURLError(originalItemURL IURL, newItemURL IURL, backupItemName IString, options FileManagerItemReplacementOptions /* not a class type */, resultingURL IURL, error_ IError) bool
 	StartDownloadingUbiquitousItemAtURLError(url IURL, error_ IError) bool
+	URLForDirectoryInDomainAppropriateForURLCreateError(directory SearchPathDirectory, domain SearchPathDomainMask, url IURL, shouldCreate bool, error_ IError) IURL
+	URLsForDirectoryInDomains(directory SearchPathDirectory, domainMask SearchPathDomainMask) []URL
 }
 
 // A convenient interface to the contents of the file system, and the primary means of interacting with it.
@@ -122,12 +125,42 @@ func (f_ FileManager) GetFileProviderServicesForItemAtURLCompletionHandler(url I
 }
 
 
+// Replaces the contents of the item at the specified URL in a manner that ensures no data loss occurs.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/replaceItem(at:withItemAt:backupItemName:options:resultingItemURL:)
+func (f_ FileManager) ReplaceItemAtURLWithItemAtURLBackupItemNameOptionsResultingItemURLError(originalItemURL IURL, newItemURL IURL, backupItemName IString, options FileManagerItemReplacementOptions /* not a class type */, resultingURL IURL, error_ IError) bool {
+	rv := objc.Send[bool](f_.ID, objc.Sel("replaceItemAtURL:withItemAtURL:backupItemName:options:resultingItemURL:error:"), originalItemURL, newItemURL, backupItemName, options, resultingURL, error_)
+	return rv
+}
+
+
 // Starts downloading (if necessary) the specified item to the local system.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/startDownloadingUbiquitousItem(at:)
 func (f_ FileManager) StartDownloadingUbiquitousItemAtURLError(url IURL, error_ IError) bool {
 	rv := objc.Send[bool](f_.ID, objc.Sel("startDownloadingUbiquitousItemAtURL:error:"), url, error_)
+	return rv
+}
+
+
+// Locates and optionally creates the specified common directory in a domain.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/url(for:in:appropriateFor:create:)
+func (f_ FileManager) URLForDirectoryInDomainAppropriateForURLCreateError(directory SearchPathDirectory, domain SearchPathDomainMask, url IURL, shouldCreate bool, error_ IError) IURL {
+	rv := objc.Send[URL](f_.ID, objc.Sel("URLForDirectory:inDomain:appropriateForURL:create:error:"), directory, domain, url, shouldCreate, error_)
+	return rv
+}
+
+
+// Returns an array of URLs for the specified common directory in the requested domains.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/FileManager/urls(for:in:)
+func (f_ FileManager) URLsForDirectoryInDomains(directory SearchPathDirectory, domainMask SearchPathDomainMask) []URL {
+	rv := objc.Send[[]URL](f_.ID, objc.Sel("URLsForDirectory:inDomains:"), directory, domainMask)
 	return rv
 }
 
@@ -155,8 +188,8 @@ func (f_ FileManager) SetCurrentDirectoryPath(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/delegate
-func (f_ FileManager) Delegate() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](f_.ID, objc.Sel("delegate"))
+func (f_ FileManager) Delegate() objc.IObject /* cross-framework: FileManagerDelegate */ {
+	rv := objc.Send[objc.ID](f_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -165,7 +198,7 @@ func (f_ FileManager) Delegate() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/filemanager/delegate
-func (f_ FileManager) SetDelegate(value unsafe.Pointer) {
+func (f_ FileManager) SetDelegate(value objc.IObject /* cross-framework: FileManagerDelegate */) {
 	objc.Send[objc.ID](f_.ID, objc.Sel("setDelegate:"), value)
 }
 

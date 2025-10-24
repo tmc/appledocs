@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveToEndOfLineProtocol is the moveToEndOfLine: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveToEndOfLine:.
 var moveToEndOfLineProtocol *objc.Protocol
 

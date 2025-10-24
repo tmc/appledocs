@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/objectivec"
 )
 
 // The class instance for the [ColorPanel] class.
@@ -32,19 +33,23 @@ type IColorPanel interface {
 	// properties:
 	AccessoryView() IView
 	SetAccessoryView(value IView)
-	Alpha() float64
-	SetAlpha(value float64)
 	Color() IColor
 	SetColor(value IColor)
+	Continuous() bool
+	SetContinuous(value bool)
+	ShowsAlpha() bool
+	SetShowsAlpha(value bool)
+	Alpha() float64
+	SetAlpha(value float64)
 	IsContinuous() bool
 	SetIsContinuous(value bool)
 	MaximumLinearExposure() float64
 	SetMaximumLinearExposure(value float64)
 	Mode() unsafe.Pointer
 	SetMode(value unsafe.Pointer)
-	ShowsAlpha() bool
-	SetShowsAlpha(value bool)
 	// methods:
+	SetAction(selector objc.SEL)
+	SetTarget(target objc.IObject)
 }
 
 // A standard user interface for selecting color in an app.
@@ -102,10 +107,38 @@ func NewColorPanel() ColorPanel {
 
 
 
+// Drags a color into a destination view from the specified source view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/dragColor(_:with:from:)
+func (cc _ColorPanelClass) DragColorWithEventFromView(color IColor, event IEvent, sourceView IView) bool {
+	rv := objc.Send[bool](objc.ID(cc.class), objc.Sel("dragColor:withEvent:fromView:"), color, event, sourceView)
+	return rv
+}
+
+
+// Sets the color panel’s action message.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setAction(_:)
+func (c_ ColorPanel) SetAction(selector objc.SEL) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setAction:"), selector)
+}
+
+
+// Sets the target of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/setTarget(_:)
+func (c_ ColorPanel) SetTarget(target objc.IObject) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setTarget:"), target)
+}
+
+
 // The accessory view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/accessoryview
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/accessoryView
 func (c_ ColorPanel) AccessoryView() IView {
 	rv := objc.Send[View](c_.ID, objc.Sel("accessoryView"))
 	return rv
@@ -115,9 +148,66 @@ func (c_ ColorPanel) AccessoryView() IView {
 // The accessory view.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/accessoryview
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/accessoryView
 func (c_ ColorPanel) SetAccessoryView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAccessoryView:"), value)
+}
+
+
+// The color of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/color
+func (c_ ColorPanel) Color() IColor {
+	rv := objc.Send[Color](c_.ID, objc.Sel("color"))
+	return rv
+}
+
+
+// The color of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/color
+func (c_ ColorPanel) SetColor(value IColor) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
+}
+
+
+// A Boolean value indicating whether the receiver continuously sends the action message to the target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/isContinuous
+func (c_ ColorPanel) Continuous() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("continuous"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the receiver continuously sends the action message to the target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/isContinuous
+func (c_ ColorPanel) SetContinuous(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setContinuous:"), value)
+}
+
+
+// A Boolean value that indicates whether the receiver shows alpha values and an opacity slider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/showsAlpha
+func (c_ ColorPanel) ShowsAlpha() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("showsAlpha"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the receiver shows alpha values and an opacity slider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorPanel/showsAlpha
+func (c_ ColorPanel) SetShowsAlpha(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsAlpha:"), value)
 }
 
 
@@ -137,25 +227,6 @@ func (c_ ColorPanel) Alpha() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/alpha
 func (c_ ColorPanel) SetAlpha(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setAlpha:"), value)
-}
-
-
-// The color of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/color
-func (c_ ColorPanel) Color() IColor {
-	rv := objc.Send[Color](c_.ID, objc.Sel("color"))
-	return rv
-}
-
-
-// The color of the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/color
-func (c_ ColorPanel) SetColor(value IColor) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setColor:"), value)
 }
 
 
@@ -213,25 +284,6 @@ func (c_ ColorPanel) Mode() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/mode-swift.property
 func (c_ ColorPanel) SetMode(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMode:"), value)
-}
-
-
-// A Boolean value that indicates whether the receiver shows alpha values and an opacity slider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/showsalpha
-func (c_ ColorPanel) ShowsAlpha() bool {
-	rv := objc.Send[bool](c_.ID, objc.Sel("showsAlpha"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the receiver shows alpha values and an opacity slider.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscolorpanel/showsalpha
-func (c_ ColorPanel) SetShowsAlpha(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setShowsAlpha:"), value)
 }
 
 

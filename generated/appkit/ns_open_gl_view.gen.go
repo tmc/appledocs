@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [OpenGLView] class.
@@ -96,39 +97,62 @@ func NewOpenGLView() OpenGLView {
 
 
 
-// The
+// Returns an object initialized with the specified frame rectangle and pixel format.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglview/openglcontext
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/init(frame:pixelFormat:)
+func NewOpenGLViewWithFramePixelFormat(frameRect objc.IObject /* cross-framework: Rect */, format IOpenGLPixelFormat) OpenGLView {
+	instance := getOpenGLViewClass().Alloc()
+	rv := objc.Send[OpenGLView](instance.ID, objc.Sel("initWithFrame:pixelFormat:"), frameRect, format)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Returns a default object.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/defaultPixelFormat()
+func (oc _OpenGLViewClass) DefaultPixelFormat() IOpenGLPixelFormat {
+	rv := objc.Send[OpenGLPixelFormat](objc.ID(oc.class), objc.Sel("defaultPixelFormat"))
+	return rv
+}
+
+
+// The object associated with the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/openGLContext
 func (o_ OpenGLView) OpenGLContext() IOpenGLContext {
 	rv := objc.Send[OpenGLContext](o_.ID, objc.Sel("openGLContext"))
 	return rv
 }
 
 
-// The
+// The object associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglview/openglcontext
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/openGLContext
 func (o_ OpenGLView) SetOpenGLContext(value IOpenGLContext) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setOpenGLContext:"), value)
 }
 
 
-// The
+// The object associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglview/pixelformat
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/pixelFormat
 func (o_ OpenGLView) PixelFormat() IOpenGLPixelFormat {
 	rv := objc.Send[OpenGLPixelFormat](o_.ID, objc.Sel("pixelFormat"))
 	return rv
 }
 
 
-// The
+// The object associated with the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglview/pixelformat
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/pixelFormat
 func (o_ OpenGLView) SetPixelFormat(value IOpenGLPixelFormat) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setPixelFormat:"), value)
 }
@@ -137,7 +161,7 @@ func (o_ OpenGLView) SetPixelFormat(value IOpenGLPixelFormat) {
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglview/wantsbestresolutionopenglsurface
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
 func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsBestResolutionOpenGLSurface"))
 	return rv
@@ -147,7 +171,7 @@ func (o_ OpenGLView) WantsBestResolutionOpenGLSurface() bool {
 // A Boolean value indicating whether the view wants an OpenGL backing surface with a resolution greater than 1 pixel per point.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglview/wantsbestresolutionopenglsurface
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsBestResolutionOpenGLSurface
 func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsBestResolutionOpenGLSurface:"), value)
 }
@@ -156,7 +180,7 @@ func (o_ OpenGLView) SetWantsBestResolutionOpenGLSurface(value bool) {
 // Enables extended dynamic range values on the screen.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglview/wantsextendeddynamicrangeopenglsurface
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
 func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 	rv := objc.Send[bool](o_.ID, objc.Sel("wantsExtendedDynamicRangeOpenGLSurface"))
 	return rv
@@ -166,10 +190,9 @@ func (o_ OpenGLView) WantsExtendedDynamicRangeOpenGLSurface() bool {
 // Enables extended dynamic range values on the screen.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsopenglview/wantsextendeddynamicrangeopenglsurface
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSOpenGLView/wantsExtendedDynamicRangeOpenGLSurface
 func (o_ OpenGLView) SetWantsExtendedDynamicRangeOpenGLSurface(value bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("setWantsExtendedDynamicRangeOpenGLSurface:"), value)
 }
-
 
 

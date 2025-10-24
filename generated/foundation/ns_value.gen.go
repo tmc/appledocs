@@ -241,7 +241,7 @@ func NewValueWithCoder(coder ICoder) Value {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(directionalEdgeInsets:)
-func NewValueWithDirectionalEdgeInsets(insets DirectionalEdgeInsets /* not a class type */) Value {
+func NewValueWithDirectionalEdgeInsets(insets objectivec.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithDirectionalEdgeInsets:"), insets)
 	return rv
 }
@@ -287,7 +287,7 @@ func NewValueWithMKCoordinateSpan(span unsafe.Pointer) Value {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(nonretainedObject:)
-func NewValueWithNonretainedObject(anObject objectivec.IObject) Value {
+func NewValueWithNonretainedObject(anObject objc.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithNonretainedObject:"), anObject)
 	return rv
 }
@@ -592,7 +592,7 @@ func (vc _ValueClass) ValueWithObjCType(value unsafe.Pointer, type_ unsafe.Point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(directionalEdgeInsets:)
-func (vc _ValueClass) ValueWithDirectionalEdgeInsets(insets DirectionalEdgeInsets /* not a class type */) IValue {
+func (vc _ValueClass) ValueWithDirectionalEdgeInsets(insets objectivec.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithDirectionalEdgeInsets:"), insets)
 	return rv
 }
@@ -610,7 +610,7 @@ func (vc _ValueClass) ValueWithEdgeInsets(insets objc.IObject /* cross-framework
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/init(nonretainedObject:)
-func (vc _ValueClass) ValueWithNonretainedObject(anObject objectivec.IObject) IValue {
+func (vc _ValueClass) ValueWithNonretainedObject(anObject objc.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithNonretainedObject:"), anObject)
 	return rv
 }

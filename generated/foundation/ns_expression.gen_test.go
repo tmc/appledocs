@@ -13,7 +13,7 @@ var _ = foundation.NewExpression
 // Creates an aggregate expression for a specified collection.
 func ExampleNewExpressionForAggregate() {
 	_ = foundation.NewExpressionForAggregate(
-		[]foundation.IExpression{}, // subexpressions []IExpression
+		[]foundation.Expression{}, // subexpressions []Expression
 	)
 	// Output:
 }

@@ -42,7 +42,7 @@ type IDate interface {
 	// methods:
 	DateByAddingTimeInterval(ti float64) unsafe.Pointer
 	Compare(other IDate) ComparisonResult
-	DescriptionWithLocale(locale objectivec.IObject) IString
+	DescriptionWithLocale(locale objc.IObject) IString
 	EarlierDate(anotherDate IDate) IDate
 	IsEqualToDate(otherDate IDate) bool
 	LaterDate(anotherDate IDate) IDate
@@ -219,7 +219,7 @@ func (dc _DateClass) DateWithNaturalLanguageString(string_ IString) objc.ID {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/date(withNaturalLanguageString:locale:)
-func (dc _DateClass) DateWithNaturalLanguageStringLocale(string_ IString, locale objectivec.IObject) objc.ID {
+func (dc _DateClass) DateWithNaturalLanguageStringLocale(string_ IString, locale objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(dc.class), objc.Sel("dateWithNaturalLanguageString:locale:"), string_, locale)
 	return rv
 }
@@ -324,7 +324,7 @@ func (d_ Date) Compare(other IDate) ComparisonResult {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDate/description(with:)
-func (d_ Date) DescriptionWithLocale(locale objectivec.IObject) IString {
+func (d_ Date) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }

@@ -38,8 +38,8 @@ type IRulerView interface {
 	ClientView() IView
 	SetClientView(value IView)
 	Flipped() bool
-	Markers() []IRulerMarker
-	SetMarkers(value []IRulerMarker)
+	Markers() []RulerMarker
+	SetMarkers(value []RulerMarker)
 	MeasurementUnits() objc.IObject /* cross-framework: RulerViewUnitName */
 	SetMeasurementUnits(value objc.IObject /* cross-framework: RulerViewUnitName */)
 	Orientation() RulerOrientation
@@ -128,7 +128,7 @@ func NewRulerView() RulerView {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/init(coder:)
-func NewRulerViewWithCoder(coder objc.IObject /* cross-framework: Coder */) RulerView {
+func NewRulerViewWithCoder(coder foundation.Coder) RulerView {
 	instance := getRulerViewClass().Alloc()
 	rv := objc.Send[RulerView](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -153,7 +153,7 @@ func NewRulerViewWithScrollViewOrientation(scrollView IScrollView, orientation R
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/registerUnit(withName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:)
-func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName objc.IObject /* cross-framework: RulerViewUnitName */, abbreviation objc.IObject /* cross-framework: NSString */, conversionFactor float64, stepUpCycle []objc.IObject /* cross-framework: Number */, stepDownCycle []objc.IObject /* cross-framework: Number */) {
+func (rc _RulerViewClass) RegisterUnitWithNameAbbreviationUnitToPointsConversionFactorStepUpCycleStepDownCycle(unitName objc.IObject /* cross-framework: RulerViewUnitName */, abbreviation objc.IObject /* cross-framework: NSString */, conversionFactor float64, stepUpCycle []foundation.Number, stepDownCycle []foundation.Number) {
 	objc.Send[objc.ID](objc.ID(rc.class), objc.Sel("registerUnitWithName:abbreviation:unitToPointsConversionFactor:stepUpCycle:stepDownCycle:"), unitName, abbreviation, conversionFactor, stepUpCycle, stepDownCycle)
 }
 
@@ -284,7 +284,7 @@ func (r_ RulerView) Flipped() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/markers
-func (r_ RulerView) Markers() []IRulerMarker {
+func (r_ RulerView) Markers() []RulerMarker {
 	rv := objc.Send[[]RulerMarker](r_.ID, objc.Sel("markers"))
 	return rv
 }
@@ -294,7 +294,7 @@ func (r_ RulerView) Markers() []IRulerMarker {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/markers
-func (r_ RulerView) SetMarkers(value []IRulerMarker) {
+func (r_ RulerView) SetMarkers(value []RulerMarker) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -314,7 +314,7 @@ func (r_ RulerView) SetMarkers(value []IRulerMarker) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRulerView/measurementUnits
 func (r_ RulerView) MeasurementUnits() objc.IObject /* cross-framework: RulerViewUnitName */ {
-	rv := objc.Send[RulerViewUnitName](r_.ID, objc.Sel("measurementUnits"))
+	rv := objc.Send[objc.ID](r_.ID, objc.Sel("measurementUnits"))
 	return rv
 }
 

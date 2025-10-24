@@ -33,7 +33,7 @@ type IAssertionHandler interface {
 	// properties:
 	// methods:
 	HandleFailureInFunctionFileLineNumberDescription(functionName IString, fileName IString, line int, format IString)
-	HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName IString, line int, format IString)
+	HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objc.IObject, fileName IString, line int, format IString)
 }
 
 // An object that logs an assertion to the console.
@@ -107,7 +107,7 @@ func (a_ AssertionHandler) HandleFailureInFunctionFileLineNumberDescription(func
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSAssertionHandler/handleFailureInMethod:object:file:lineNumber:description:
-func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objectivec.IObject, fileName IString, line int, format IString) {
+func (a_ AssertionHandler) HandleFailureInMethodObjectFileLineNumberDescription(selector objc.SEL, object objc.IObject, fileName IString, line int, format IString) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("handleFailureInMethod:object:file:lineNumber:description:"), selector, object, fileName, line, format)
 }
 

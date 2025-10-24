@@ -36,29 +36,48 @@ type IToolbar interface {
 	SetAllowsDisplayModeCustomization(value bool)
 	AllowsExtensionItems() bool
 	SetAllowsExtensionItems(value bool)
+	AllowsUserCustomization() bool
+	SetAllowsUserCustomization(value bool)
+	AutosavesConfiguration() bool
+	SetAutosavesConfiguration(value bool)
 	CenteredItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */
 	SetCenteredItemIdentifier(value objc.IObject /* cross-framework: ToolbarItemIdentifier */)
 	CenteredItemIdentifiers() unsafe.Pointer
 	SetCenteredItemIdentifiers(value unsafe.Pointer)
 	ConfigurationDictionary() foundation.IDictionary
+	CustomizationPaletteIsRunning() bool
+	Delegate() objc.ID
+	SetDelegate(value objc.ID)
+	DisplayMode() ToolbarDisplayMode
+	SetDisplayMode(value ToolbarDisplayMode)
 	FullScreenAccessoryView() IView
 	SetFullScreenAccessoryView(value IView)
 	FullScreenAccessoryViewMaxHeight() float64
 	SetFullScreenAccessoryViewMaxHeight(value float64)
 	FullScreenAccessoryViewMinHeight() float64
 	SetFullScreenAccessoryViewMinHeight(value float64)
+	Identifier() objc.IObject /* cross-framework: ToolbarIdentifier */
+	Visible() bool
+	SetVisible(value bool)
 	ItemIdentifiers() []string
 	SetItemIdentifiers(value []string)
+	Items() []ToolbarItem
+	SelectedItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */
+	SetSelectedItemIdentifier(value objc.IObject /* cross-framework: ToolbarItemIdentifier */)
 	ShowsBaselineSeparator() bool
 	SetShowsBaselineSeparator(value bool)
 	SizeMode() ToolbarSizeMode
 	SetSizeMode(value ToolbarSizeMode)
+	VisibleItems() []ToolbarItem
 	Configuration() objc.IObject /* cross-framework: NSString */
 	SetConfiguration(value objc.IObject /* cross-framework: NSString */)
 	IsVisible() bool
 	SetIsVisible(value bool)
 	// methods:
+	InsertItemWithItemIdentifierAtIndex(itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, index int)
+	RemoveItemAtIndex(index int)
 	RemoveItemWithItemIdentifier(itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */)
+	RunCustomizationPalette(sender objc.IObject)
 	ValidateVisibleItems()
 }
 
@@ -128,12 +147,39 @@ func NewToolbarWithIdentifier(identifier objc.IObject /* cross-framework: Toolba
 
 
 
+// Inserts an item into the toolbar at the specified index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/insertItem(withItemIdentifier:at:)
+func (t_ Toolbar) InsertItemWithItemIdentifierAtIndex(itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */, index int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("insertItemWithItemIdentifier:atIndex:"), itemIdentifier, index)
+}
+
+
+// Removes the item at the specified index in the toolbar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/removeItem(at:)
+func (t_ Toolbar) RemoveItemAtIndex(index int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("removeItemAtIndex:"), index)
+}
+
+
 // Removes the item with matching in the receiving toolbar. If multiple items share the same identifier (as is the case with space items) all matching items will be removed. To remove only a single space item, use instead.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/removeItem(identifier:)
 func (t_ Toolbar) RemoveItemWithItemIdentifier(itemIdentifier objc.IObject /* cross-framework: ToolbarItemIdentifier */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("removeItemWithItemIdentifier:"), itemIdentifier)
+}
+
+
+// Displays the toolbar’s customization palette and handles any user-initiated customizations.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/runCustomizationPalette(_:)
+func (t_ Toolbar) RunCustomizationPalette(sender objc.IObject) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("runCustomizationPalette:"), sender)
 }
 
 
@@ -184,12 +230,50 @@ func (t_ Toolbar) SetAllowsExtensionItems(value bool) {
 }
 
 
+// A Boolean value that indicates whether users can modify the contents of the toolbar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/allowsUserCustomization
+func (t_ Toolbar) AllowsUserCustomization() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("allowsUserCustomization"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether users can modify the contents of the toolbar.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/allowsUserCustomization
+func (t_ Toolbar) SetAllowsUserCustomization(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAllowsUserCustomization:"), value)
+}
+
+
+// A Boolean value that indicates whether the toolbar autosaves its configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/autosavesConfiguration
+func (t_ Toolbar) AutosavesConfiguration() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("autosavesConfiguration"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the toolbar autosaves its configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/autosavesConfiguration
+func (t_ Toolbar) SetAutosavesConfiguration(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setAutosavesConfiguration:"), value)
+}
+
+
 // The item to display in the center of the toolbar.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/centeredItemIdentifier
 func (t_ Toolbar) CenteredItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */ {
-	rv := objc.Send[ToolbarItemIdentifier](t_.ID, objc.Sel("centeredItemIdentifier"))
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("centeredItemIdentifier"))
 	return rv
 }
 
@@ -229,6 +313,54 @@ func (t_ Toolbar) SetCenteredItemIdentifiers(value unsafe.Pointer) {
 func (t_ Toolbar) ConfigurationDictionary() foundation.IDictionary {
 	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("configurationDictionary"))
 	return rv
+}
+
+
+// A Boolean value that indicates whether the toolbar’s customization palette is in use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/customizationPaletteIsRunning
+func (t_ Toolbar) CustomizationPaletteIsRunning() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("customizationPaletteIsRunning"))
+	return rv
+}
+
+
+// The object you use to customize the toolbar contents and configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/delegate
+func (t_ Toolbar) Delegate() objc.ID {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// The object you use to customize the toolbar contents and configuration.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/delegate
+func (t_ Toolbar) SetDelegate(value objc.ID) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// A value that indicates whether the toolbar displays items using a name, icon, or combination of elements.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/displayMode-swift.property
+func (t_ Toolbar) DisplayMode() ToolbarDisplayMode {
+	rv := objc.Send[ToolbarDisplayMode](t_.ID, objc.Sel("displayMode"))
+	return rv
+}
+
+
+// A value that indicates whether the toolbar displays items using a name, icon, or combination of elements.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/displayMode-swift.property
+func (t_ Toolbar) SetDisplayMode(value ToolbarDisplayMode) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setDisplayMode:"), value)
 }
 
 
@@ -289,6 +421,35 @@ func (t_ Toolbar) SetFullScreenAccessoryViewMinHeight(value float64) {
 }
 
 
+// The value you use to identify the toolbar in your app.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/identifier-swift.property
+func (t_ Toolbar) Identifier() objc.IObject /* cross-framework: ToolbarIdentifier */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the toolbar is visible.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/isVisible
+func (t_ Toolbar) Visible() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("visible"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the toolbar is visible.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/isVisible
+func (t_ Toolbar) SetVisible(value bool) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setVisible:"), value)
+}
+
+
 // An array of itemIdentifiers that represent the current items in the toolbar. Setting this property will set the current items in the toolbar by diffing against items that already exist. Use this with great caution if is enabled as it will override any customizations the user has made. This property is key value observable.
 //
 // [Full Topic]
@@ -315,6 +476,35 @@ func (t_ Toolbar) SetItemIdentifiers(value []string) {
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](t_.ID, objc.Sel("setItemIdentifiers:"), nsArray)
+}
+
+
+// An array containing the toolbar’s current items, in order.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/items
+func (t_ Toolbar) Items() []ToolbarItem {
+	rv := objc.Send[[]ToolbarItem](t_.ID, objc.Sel("items"))
+	return rv
+}
+
+
+// The identifier of the toolbar’s currently selected item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/selectedItemIdentifier
+func (t_ Toolbar) SelectedItemIdentifier() objc.IObject /* cross-framework: ToolbarItemIdentifier */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("selectedItemIdentifier"))
+	return rv
+}
+
+
+// The identifier of the toolbar’s currently selected item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/selectedItemIdentifier
+func (t_ Toolbar) SetSelectedItemIdentifier(value objc.IObject /* cross-framework: ToolbarItemIdentifier */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectedItemIdentifier:"), value)
 }
 
 
@@ -353,6 +543,16 @@ func (t_ Toolbar) SizeMode() ToolbarSizeMode {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/sizeMode-swift.property
 func (t_ Toolbar) SetSizeMode(value ToolbarSizeMode) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSizeMode:"), value)
+}
+
+
+// An array containing the toolbar’s currently visible items.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSToolbar/visibleItems
+func (t_ Toolbar) VisibleItems() []ToolbarItem {
+	rv := objc.Send[[]ToolbarItem](t_.ID, objc.Sel("visibleItems"))
+	return rv
 }
 
 

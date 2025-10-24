@@ -39,8 +39,8 @@ type IDictionary interface {
 	// methods:
 	AllKeysForObject(anObject unsafe.Pointer) []objc.ID
 	CountByEnumeratingWithStateObjectsCount(state objc.IObject /* cross-framework: FastEnumerationState */, buffer []unsafe.Pointer, len_ uint) uint
-	DescriptionWithLocale(locale objectivec.IObject) IString
-	DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString
+	DescriptionWithLocale(locale objc.IObject) IString
+	DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString
 	EnumerateKeysAndObjectsUsingBlock(block unsafe.Pointer)
 	EnumerateKeysAndObjectsWithOptionsUsingBlock(opts EnumerationOptions, block unsafe.Pointer)
 	FileCreationDate() IDate
@@ -203,7 +203,7 @@ func NewDictionaryWithDictionaryCopyItems(otherDictionary IDictionary, flag bool
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
-func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objectivec.IObject) Dictionary {
+func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objc.IObject) Dictionary {
 	rv := objc.Send[Dictionary](objc.ID(getDictionaryClass().class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
 	return rv
 }
@@ -213,7 +213,7 @@ func NewDictionaryWithObjectForKey(object unsafe.Pointer, key objectivec.IObject
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/initWithObjectsAndKeys:
-func NewDictionaryWithObjectsAndKeys(firstObject objectivec.IObject) Dictionary {
+func NewDictionaryWithObjectsAndKeys(firstObject objc.IObject) Dictionary {
 	instance := getDictionaryClass().Alloc()
 	rv := objc.Send[Dictionary](instance.ID, objc.Sel("initWithObjectsAndKeys:"), firstObject)
 	rv.Autorelease()
@@ -310,7 +310,7 @@ func (dc _DictionaryClass) DictionaryWithObjectsForKeysCount(objects []unsafe.Po
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/dictionaryWithObjectsAndKeys:
-func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objectivec.IObject) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithObjectsAndKeys(firstObject objc.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithObjectsAndKeys:"), firstObject)
 	return rv
 }
@@ -330,7 +330,7 @@ func (dc _DictionaryClass) DictionaryWithContentsOfURL(url IURL) IDictionary {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/init(object:forKey:)
-func (dc _DictionaryClass) DictionaryWithObjectForKey(object unsafe.Pointer, key objectivec.IObject) unsafe.Pointer {
+func (dc _DictionaryClass) DictionaryWithObjectForKey(object unsafe.Pointer, key objc.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(dc.class), objc.Sel("dictionaryWithObject:forKey:"), object, key)
 	return rv
 }
@@ -370,7 +370,7 @@ func (d_ Dictionary) CountByEnumeratingWithStateObjectsCount(state objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:)
-func (d_ Dictionary) DescriptionWithLocale(locale objectivec.IObject) IString {
+func (d_ Dictionary) DescriptionWithLocale(locale objc.IObject) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:"), locale)
 	return rv
 }
@@ -380,7 +380,7 @@ func (d_ Dictionary) DescriptionWithLocale(locale objectivec.IObject) IString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSDictionary/description(withLocale:indent:)
-func (d_ Dictionary) DescriptionWithLocaleIndent(locale objectivec.IObject, level uint) IString {
+func (d_ Dictionary) DescriptionWithLocaleIndent(locale objc.IObject, level uint) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("descriptionWithLocale:indent:"), locale, level)
 	return rv
 }

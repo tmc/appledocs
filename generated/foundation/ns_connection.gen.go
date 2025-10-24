@@ -123,7 +123,7 @@ func NewConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) Con
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/allConnections
-func (cc _ConnectionClass) AllConnections() []IConnection {
+func (cc _ConnectionClass) AllConnections() []Connection {
 	rv := objc.Send[[]Connection](objc.ID(cc.class), objc.Sel("allConnections"))
 	return rv
 }
@@ -203,7 +203,7 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHostUsingName
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/serviceConnectionWithName:rootObject:
-func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name IString, root objectivec.IObject) unsafe.Pointer {
+func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name IString, root objc.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:"), name, root)
 	return rv
 }
@@ -213,7 +213,7 @@ func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name IString, roo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/serviceConnectionWithName:rootObject:usingNameServer:
-func (cc _ConnectionClass) ServiceConnectionWithNameRootObjectUsingNameServer(name IString, root objectivec.IObject, server IPortNameServer) unsafe.Pointer {
+func (cc _ConnectionClass) ServiceConnectionWithNameRootObjectUsingNameServer(name IString, root objc.IObject, server IPortNameServer) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:usingNameServer:"), name, root, server)
 	return rv
 }

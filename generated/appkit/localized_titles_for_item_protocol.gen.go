@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // localizedTitlesForItemProtocol is the localizedTitlesForItem: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to localizedTitlesForItem:.
 var localizedTitlesForItemProtocol *objc.Protocol
 

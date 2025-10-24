@@ -10,7 +10,6 @@ import (
 	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
-	"github.com/tmc/appledocs/generated/quartzcore"
 )
 
 // The class instance for the [Screen] class.
@@ -34,32 +33,41 @@ type _ScreenClass struct {
 type IScreen interface {
 	objectivec.IObject
 	// properties:
-	CGDirectDisplayID() DirectDisplayID /* not a class type */
-	AuxiliaryTopLeftArea() objc.IObject /* cross-framework: Rect */
-	AuxiliaryTopRightArea() objc.IObject /* cross-framework: Rect */
 	BackingScaleFactor() float64
 	ColorSpace() IColorSpace
 	Depth() WindowDepth
 	DeviceDescription() foundation.IDictionary
 	DisplayUpdateGranularity() float64
 	Frame() objc.IObject /* cross-framework: Rect */
-	LastDisplayUpdateTimestamp() float64
 	LocalizedName() objc.IObject /* cross-framework: NSString */
-	MaximumExtendedDynamicRangeColorComponentValue() float64
-	MaximumFramesPerSecond() int
-	MaximumPotentialExtendedDynamicRangeColorComponentValue() float64
-	MaximumReferenceExtendedDynamicRangeColorComponentValue() float64
-	MaximumRefreshInterval() float64
-	MinimumRefreshInterval() float64
-	SafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */
+	SafeAreaInsets() foundation.EdgeInsets
 	SupportedWindowDepths() NSWindowDepth
 	VisibleFrame() objc.IObject /* cross-framework: Rect */
+	AuxiliaryTopLeftArea() objc.IObject /* cross-framework: Rect */
+	SetAuxiliaryTopLeftArea(value objc.IObject /* cross-framework: Rect */)
+	AuxiliaryTopRightArea() objc.IObject /* cross-framework: Rect */
+	SetAuxiliaryTopRightArea(value objc.IObject /* cross-framework: Rect */)
+	CgDirectDisplayID() DirectDisplayID /* not a class type */
+	SetCgDirectDisplayID(value DirectDisplayID /* not a class type */)
+	LastDisplayUpdateTimestamp() float64
+	SetLastDisplayUpdateTimestamp(value float64)
+	MaximumExtendedDynamicRangeColorComponentValue() float64
+	SetMaximumExtendedDynamicRangeColorComponentValue(value float64)
+	MaximumFramesPerSecond() int
+	SetMaximumFramesPerSecond(value int)
+	MaximumPotentialExtendedDynamicRangeColorComponentValue() float64
+	SetMaximumPotentialExtendedDynamicRangeColorComponentValue(value float64)
+	MaximumReferenceExtendedDynamicRangeColorComponentValue() float64
+	SetMaximumReferenceExtendedDynamicRangeColorComponentValue(value float64)
+	MaximumRefreshInterval() float64
+	SetMaximumRefreshInterval(value float64)
+	MinimumRefreshInterval() float64
+	SetMinimumRefreshInterval(value float64)
 	// methods:
 	BackingAlignedRectOptions(rect objc.IObject /* cross-framework: Rect */, options AlignmentOptions /* not a class type */) objc.IObject /* cross-framework: Rect */
 	CanRepresentDisplayGamut(displayGamut DisplayGamut) bool
 	ConvertRectFromBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
 	ConvertRectToBacking(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
-	DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) objc.IObject /* cross-framework: DisplayLink */
 }
 
 // An object that describes the attributes of a computer’s monitor or screen.
@@ -115,33 +123,6 @@ func NewScreen() Screen {
 
 
 
-// Returns a screen object representing the screen that can best represent color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deepest
-func (sc _ScreenClass) DeepestScreen() Screen {
-	rv := objc.Send[Screen](objc.ID(sc.class), objc.Sel("deepestScreen"))
-	return rv
-}
-
-// Returns the screen object containing the window with the keyboard focus.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/main
-func (sc _ScreenClass) MainScreen() Screen {
-	rv := objc.Send[Screen](objc.ID(sc.class), objc.Sel("mainScreen"))
-	return rv
-}
-
-// Returns an array of screen objects representing all of the screens available on the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screens
-func (sc _ScreenClass) Screens() []IScreen {
-	rv := objc.Send[[]Screen](objc.ID(sc.class), objc.Sel("screens"))
-	return rv
-}
-
 // Returns a Boolean value indicating whether each screen can have its own set of spaces.
 //
 // [Full Topic]
@@ -191,40 +172,6 @@ func (s_ Screen) ConvertRectToBacking(rect objc.IObject /* cross-framework: Rect
 }
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/displayLink(target:selector:)
-func (s_ Screen) DisplayLinkWithTargetSelector(target objectivec.IObject, selector objc.SEL) objc.IObject /* cross-framework: DisplayLink */ {
-	rv := objc.Send[quartzcore.DisplayLink](s_.ID, objc.Sel("displayLinkWithTarget:selector:"), target, selector)
-	return rv
-}
-
-
-// The CGDirectDisplayID for this screen. This will return kCGNullDirectDisplay if there isn’t one.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/CGDirectDisplayID-7uvhw
-func (s_ Screen) CGDirectDisplayID() DirectDisplayID /* not a class type */ {
-	rv := objc.Send[DirectDisplayID](s_.ID, objc.Sel("CGDirectDisplayID"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/auxiliaryTopLeftArea-4ow3p
-func (s_ Screen) AuxiliaryTopLeftArea() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("auxiliaryTopLeftArea"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/auxiliaryTopRightArea-6gb2v
-func (s_ Screen) AuxiliaryTopRightArea() objc.IObject /* cross-framework: Rect */ {
-	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("auxiliaryTopRightArea"))
-	return rv
-}
-
-
 // The backing store pixel scale factor for the screen.
 //
 // [Full Topic]
@@ -241,16 +188,6 @@ func (s_ Screen) BackingScaleFactor() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/colorSpace
 func (s_ Screen) ColorSpace() IColorSpace {
 	rv := objc.Send[ColorSpace](s_.ID, objc.Sel("colorSpace"))
-	return rv
-}
-
-
-// Returns a screen object representing the screen that can best represent color.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/deepest
-func (s_ Screen) DeepestScreen() IScreen {
-	rv := objc.Send[Screen](s_.ID, objc.Sel("deepestScreen"))
 	return rv
 }
 
@@ -280,7 +217,7 @@ func (s_ Screen) DeviceDescription() foundation.IDictionary {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/displayUpdateGranularity
 func (s_ Screen) DisplayUpdateGranularity() float64 {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("displayUpdateGranularity"))
+	rv := objc.Send[float64](s_.ID, objc.Sel("displayUpdateGranularity"))
 	return rv
 }
 
@@ -295,16 +232,6 @@ func (s_ Screen) Frame() objc.IObject /* cross-framework: Rect */ {
 }
 
 
-// The time of the last framebuffer update, expressed as the number of seconds since system startup.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/lastDisplayUpdateTimestamp
-func (s_ Screen) LastDisplayUpdateTimestamp() float64 {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("lastDisplayUpdateTimestamp"))
-	return rv
-}
-
-
 // The localized name of the display.
 //
 // [Full Topic]
@@ -315,92 +242,12 @@ func (s_ Screen) LocalizedName() objc.IObject /* cross-framework: NSString */ {
 }
 
 
-// Returns the screen object containing the window with the keyboard focus.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/main
-func (s_ Screen) MainScreen() IScreen {
-	rv := objc.Send[Screen](s_.ID, objc.Sel("mainScreen"))
-	return rv
-}
-
-
-// The current maximum color component value for the screen.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumExtendedDynamicRangeColorComponentValue
-func (s_ Screen) MaximumExtendedDynamicRangeColorComponentValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("maximumExtendedDynamicRangeColorComponentValue"))
-	return rv
-}
-
-
-// The maximum number of frames per second that the screen supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumFramesPerSecond
-func (s_ Screen) MaximumFramesPerSecond() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("maximumFramesPerSecond"))
-	return rv
-}
-
-
-// The maximum possible color component value for the screen when it’s in extended dynamic range (EDR) mode.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumPotentialExtendedDynamicRangeColorComponentValue
-func (s_ Screen) MaximumPotentialExtendedDynamicRangeColorComponentValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("maximumPotentialExtendedDynamicRangeColorComponentValue"))
-	return rv
-}
-
-
-// The current maximum color component value for reference rendering to the screen.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumReferenceExtendedDynamicRangeColorComponentValue
-func (s_ Screen) MaximumReferenceExtendedDynamicRangeColorComponentValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("maximumReferenceExtendedDynamicRangeColorComponentValue"))
-	return rv
-}
-
-
-// The largest refresh interval that the screen supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/maximumRefreshInterval
-func (s_ Screen) MaximumRefreshInterval() float64 {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("maximumRefreshInterval"))
-	return rv
-}
-
-
-// The shortest refresh interval that the screen supports.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/minimumRefreshInterval
-func (s_ Screen) MinimumRefreshInterval() float64 {
-	rv := objc.Send[TimeInterval](s_.ID, objc.Sel("minimumRefreshInterval"))
-	return rv
-}
-
-
 // The distances from the screen’s edges at which content isn’t obscured.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/safeAreaInsets
-func (s_ Screen) SafeAreaInsets() objc.IObject /* cross-framework: EdgeInsets */ {
+func (s_ Screen) SafeAreaInsets() foundation.EdgeInsets {
 	rv := objc.Send[foundation.EdgeInsets](s_.ID, objc.Sel("safeAreaInsets"))
-	return rv
-}
-
-
-// Returns an array of screen objects representing all of the screens available on the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSScreen/screens
-func (s_ Screen) Screens() []IScreen {
-	rv := objc.Send[[]Screen](s_.ID, objc.Sel("screens"))
 	return rv
 }
 
@@ -432,6 +279,196 @@ func (s_ Screen) SupportedWindowDepths() NSWindowDepth {
 func (s_ Screen) VisibleFrame() objc.IObject /* cross-framework: Rect */ {
 	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("visibleFrame"))
 	return rv
+}
+
+
+// The unobscured portion of the top-left corner of the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/auxiliarytopleftarea-uglc
+func (s_ Screen) AuxiliaryTopLeftArea() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("auxiliaryTopLeftArea"))
+	return rv
+}
+
+
+// The unobscured portion of the top-left corner of the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/auxiliarytopleftarea-uglc
+func (s_ Screen) SetAuxiliaryTopLeftArea(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAuxiliaryTopLeftArea:"), value)
+}
+
+
+// The unobscured portion of the top-right corner of the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/auxiliarytoprightarea-gr2n
+func (s_ Screen) AuxiliaryTopRightArea() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("auxiliaryTopRightArea"))
+	return rv
+}
+
+
+// The unobscured portion of the top-right corner of the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/auxiliarytoprightarea-gr2n
+func (s_ Screen) SetAuxiliaryTopRightArea(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAuxiliaryTopRightArea:"), value)
+}
+
+
+// The CGDirectDisplayID for this screen. This will return nil if there isn’t one and will never return kCGNullDirectDisplay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/cgdirectdisplayid-8ph5i
+func (s_ Screen) CgDirectDisplayID() DirectDisplayID /* not a class type */ {
+	rv := objc.Send[DirectDisplayID](s_.ID, objc.Sel("cgDirectDisplayID"))
+	return rv
+}
+
+
+// The CGDirectDisplayID for this screen. This will return nil if there isn’t one and will never return kCGNullDirectDisplay.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/cgdirectdisplayid-8ph5i
+func (s_ Screen) SetCgDirectDisplayID(value DirectDisplayID /* not a class type */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCgDirectDisplayID:"), value)
+}
+
+
+// The time of the last framebuffer update, expressed as the number of seconds since system startup.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/lastdisplayupdatetimestamp
+func (s_ Screen) LastDisplayUpdateTimestamp() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("lastDisplayUpdateTimestamp"))
+	return rv
+}
+
+
+// The time of the last framebuffer update, expressed as the number of seconds since system startup.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/lastdisplayupdatetimestamp
+func (s_ Screen) SetLastDisplayUpdateTimestamp(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setLastDisplayUpdateTimestamp:"), value)
+}
+
+
+// The current maximum color component value for the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumextendeddynamicrangecolorcomponentvalue
+func (s_ Screen) MaximumExtendedDynamicRangeColorComponentValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maximumExtendedDynamicRangeColorComponentValue"))
+	return rv
+}
+
+
+// The current maximum color component value for the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumextendeddynamicrangecolorcomponentvalue
+func (s_ Screen) SetMaximumExtendedDynamicRangeColorComponentValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumExtendedDynamicRangeColorComponentValue:"), value)
+}
+
+
+// The maximum number of frames per second that the screen supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumframespersecond
+func (s_ Screen) MaximumFramesPerSecond() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("maximumFramesPerSecond"))
+	return rv
+}
+
+
+// The maximum number of frames per second that the screen supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumframespersecond
+func (s_ Screen) SetMaximumFramesPerSecond(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumFramesPerSecond:"), value)
+}
+
+
+// The maximum possible color component value for the screen when it’s in extended dynamic range (EDR) mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumpotentialextendeddynamicrangecolorcomponentvalue
+func (s_ Screen) MaximumPotentialExtendedDynamicRangeColorComponentValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maximumPotentialExtendedDynamicRangeColorComponentValue"))
+	return rv
+}
+
+
+// The maximum possible color component value for the screen when it’s in extended dynamic range (EDR) mode.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumpotentialextendeddynamicrangecolorcomponentvalue
+func (s_ Screen) SetMaximumPotentialExtendedDynamicRangeColorComponentValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumPotentialExtendedDynamicRangeColorComponentValue:"), value)
+}
+
+
+// The current maximum color component value for reference rendering to the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumreferenceextendeddynamicrangecolorcomponentvalue
+func (s_ Screen) MaximumReferenceExtendedDynamicRangeColorComponentValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maximumReferenceExtendedDynamicRangeColorComponentValue"))
+	return rv
+}
+
+
+// The current maximum color component value for reference rendering to the screen.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumreferenceextendeddynamicrangecolorcomponentvalue
+func (s_ Screen) SetMaximumReferenceExtendedDynamicRangeColorComponentValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumReferenceExtendedDynamicRangeColorComponentValue:"), value)
+}
+
+
+// The largest refresh interval that the screen supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumrefreshinterval
+func (s_ Screen) MaximumRefreshInterval() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maximumRefreshInterval"))
+	return rv
+}
+
+
+// The largest refresh interval that the screen supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/maximumrefreshinterval
+func (s_ Screen) SetMaximumRefreshInterval(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaximumRefreshInterval:"), value)
+}
+
+
+// The shortest refresh interval that the screen supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/minimumrefreshinterval
+func (s_ Screen) MinimumRefreshInterval() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minimumRefreshInterval"))
+	return rv
+}
+
+
+// The shortest refresh interval that the screen supports.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsscreen/minimumrefreshinterval
+func (s_ Screen) SetMinimumRefreshInterval(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinimumRefreshInterval:"), value)
 }
 
 

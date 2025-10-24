@@ -210,7 +210,7 @@ func (o_ Object) SetAccessibilityAttributedLabelBlock(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityAttributedUserInputLabels
 func (o_ Object) AccessibilityAttributedUserInputLabels() []objc.ID {
-	rv := objc.Send[[]foundation.AttributedString](o_.ID, objc.Sel("accessibilityAttributedUserInputLabels"))
+	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityAttributedUserInputLabels"))
 	return rv
 }
 func (o_ Object) SetAccessibilityAttributedUserInputLabels(value []objc.ID) {
@@ -272,7 +272,7 @@ func (o_ Object) SetAccessibilityContainerTypeBlock(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomActions
 func (o_ Object) AccessibilityCustomActions() []objc.ID {
-	rv := objc.Send[[]appkit.AccessibilityCustomAction](o_.ID, objc.Sel("accessibilityCustomActions"))
+	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityCustomActions"))
 	return rv
 }
 func (o_ Object) SetAccessibilityCustomActions(value []objc.ID) {
@@ -292,7 +292,7 @@ func (o_ Object) SetAccessibilityCustomActionsBlock(value unsafe.Pointer) {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObject-swift.class/accessibilityCustomRotors
 func (o_ Object) AccessibilityCustomRotors() []objc.ID {
-	rv := objc.Send[[]appkit.AccessibilityCustomRotor](o_.ID, objc.Sel("accessibilityCustomRotors"))
+	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("accessibilityCustomRotors"))
 	return rv
 }
 func (o_ Object) SetAccessibilityCustomRotors(value []objc.ID) {

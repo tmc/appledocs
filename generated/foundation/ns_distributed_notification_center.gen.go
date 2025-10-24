@@ -34,13 +34,13 @@ type IDistributedNotificationCenter interface {
 	Suspended() bool
 	SetSuspended(value bool)
 	// methods:
-	AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework: NotificationName */, anObject IString)
-	AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name objc.IObject /* cross-framework: NotificationName */, object IString, suspensionBehavior NotificationSuspensionBehavior)
+	AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework: NotificationName */, anObject IString)
+	AddObserverSelectorNameObjectSuspensionBehavior(observer objc.IObject, selector objc.SEL, name objc.IObject /* cross-framework: NotificationName */, object IString, suspensionBehavior NotificationSuspensionBehavior)
 	PostNotificationNameObject(aName objc.IObject /* cross-framework: NotificationName */, anObject IString)
 	PostNotificationNameObjectUserInfo(aName objc.IObject /* cross-framework: NotificationName */, anObject IString, aUserInfo IDictionary)
 	PostNotificationNameObjectUserInfoDeliverImmediately(name objc.IObject /* cross-framework: NotificationName */, object IString, userInfo IDictionary, deliverImmediately bool)
 	PostNotificationNameObjectUserInfoOptions(name objc.IObject /* cross-framework: NotificationName */, object IString, userInfo IDictionary, options DistributedNotificationOptions)
-	RemoveObserverNameObject(observer objectivec.IObject, aName objc.IObject /* cross-framework: NotificationName */, anObject IString)
+	RemoveObserverNameObject(observer objc.IObject, aName objc.IObject /* cross-framework: NotificationName */, anObject IString)
 }
 
 // A notification dispatch mechanism that enables the broadcast of notifications across task boundaries.
@@ -122,7 +122,7 @@ func (dc _DistributedNotificationCenterClass) NotificationCenterForType(notifica
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:)
-func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer objectivec.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework: NotificationName */, anObject IString) {
+func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer objc.IObject, aSelector objc.SEL, aName objc.IObject /* cross-framework: NotificationName */, anObject IString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:"), observer, aSelector, aName, anObject)
 }
 
@@ -131,7 +131,7 @@ func (d_ DistributedNotificationCenter) AddObserverSelectorNameObject(observer o
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/addObserver(_:selector:name:object:suspensionBehavior:)
-func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionBehavior(observer objectivec.IObject, selector objc.SEL, name objc.IObject /* cross-framework: NotificationName */, object IString, suspensionBehavior NotificationSuspensionBehavior) {
+func (d_ DistributedNotificationCenter) AddObserverSelectorNameObjectSuspensionBehavior(observer objc.IObject, selector objc.SEL, name objc.IObject /* cross-framework: NotificationName */, object IString, suspensionBehavior NotificationSuspensionBehavior) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("addObserver:selector:name:object:suspensionBehavior:"), observer, selector, name, object, suspensionBehavior)
 }
 
@@ -176,7 +176,7 @@ func (d_ DistributedNotificationCenter) PostNotificationNameObjectUserInfoOption
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DistributedNotificationCenter/removeObserver(_:name:object:)
-func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objectivec.IObject, aName objc.IObject /* cross-framework: NotificationName */, anObject IString) {
+func (d_ DistributedNotificationCenter) RemoveObserverNameObject(observer objc.IObject, aName objc.IObject /* cross-framework: NotificationName */, anObject IString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("removeObserver:name:object:"), observer, aName, anObject)
 }
 

@@ -33,38 +33,37 @@ type _MenuClass struct {
 type IMenu interface {
 	objectivec.IObject
 	// properties:
-	AutomaticallyInsertsWritingToolsItems() bool
-	SetAutomaticallyInsertsWritingToolsItems(value bool)
-	ItemArray() []objc.IObject /* cross-framework: MenuItem */
-	SetItemArray(value []objc.IObject /* cross-framework: MenuItem */)
-	MenuChangedMessagesEnabled() bool
-	SetMenuChangedMessagesEnabled(value bool)
+	ItemArray() []MenuItem
+	SetItemArray(value []MenuItem)
+	NumberOfItems() int
 	AllowsContextMenuPlugIns() bool
 	SetAllowsContextMenuPlugIns(value bool)
 	AutoenablesItems() bool
 	SetAutoenablesItems(value bool)
-	Delegate() MenuDelegate /* not a class type */
-	SetDelegate(value MenuDelegate /* not a class type */)
+	AutomaticallyInsertsWritingToolsItems() bool
+	SetAutomaticallyInsertsWritingToolsItems(value bool)
+	Delegate() objc.IObject /* cross-framework: MenuDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: MenuDelegate */)
 	Font() IFont
 	SetFont(value IFont)
-	HighlightedItem() objc.IObject /* cross-framework: MenuItem */
-	SetHighlightedItem(value objc.IObject /* cross-framework: MenuItem */)
+	HighlightedItem() IMenuItem
+	SetHighlightedItem(value IMenuItem)
 	IsTornOff() bool
 	SetIsTornOff(value bool)
-	Items() objc.IObject /* cross-framework: MenuItem */
-	SetItems(value objc.IObject /* cross-framework: MenuItem */)
+	Items() IMenuItem
+	SetItems(value IMenuItem)
 	MenuBarHeight() float64
 	SetMenuBarHeight(value float64)
+	MenuChangedMessagesEnabled() bool
+	SetMenuChangedMessagesEnabled(value bool)
 	MinimumWidth() float64
 	SetMinimumWidth(value float64)
-	NumberOfItems() int
-	SetNumberOfItems(value int)
 	PresentationStyle() unsafe.Pointer
 	SetPresentationStyle(value unsafe.Pointer)
 	PropertiesToUpdate() unsafe.Pointer
 	SetPropertiesToUpdate(value unsafe.Pointer)
-	SelectedItems() objc.IObject /* cross-framework: MenuItem */
-	SetSelectedItems(value objc.IObject /* cross-framework: MenuItem */)
+	SelectedItems() IMenuItem
+	SetSelectedItems(value IMenuItem)
 	SelectionMode() unsafe.Pointer
 	SetSelectionMode(value unsafe.Pointer)
 	ShowsStateColumn() bool
@@ -78,7 +77,23 @@ type IMenu interface {
 	UserInterfaceLayoutDirection() UserInterfaceLayoutDirection
 	SetUserInterfaceLayoutDirection(value UserInterfaceLayoutDirection)
 	// methods:
-	PopUpMenuPositioningItemAtLocationInView(item objc.IObject /* cross-framework: MenuItem */, location objc.IObject /* cross-framework: Point */, view IView) bool
+	AddItem(newItem IMenuItem)
+	AddItemWithTitleActionKeyEquivalent(string_ objc.IObject /* cross-framework: NSString */, selector objc.SEL, charCode objc.IObject /* cross-framework: NSString */) IMenuItem
+	IndexOfItem(item IMenuItem) int
+	IndexOfItemWithRepresentedObject(object objc.IObject) int
+	IndexOfItemWithSubmenu(submenu IMenu) int
+	IndexOfItemWithTag(tag int) int
+	IndexOfItemWithTargetAndAction(target objc.IObject, actionSelector objc.SEL) int
+	IndexOfItemWithTitle(title objc.IObject /* cross-framework: NSString */) int
+	InsertItemAtIndex(newItem IMenuItem, index int)
+	InsertItemWithTitleActionKeyEquivalentAtIndex(string_ objc.IObject /* cross-framework: NSString */, selector objc.SEL, charCode objc.IObject /* cross-framework: NSString */, index int) IMenuItem
+	ItemAtIndex(index int) IMenuItem
+	ItemWithTag(tag int) IMenuItem
+	ItemWithTitle(title objc.IObject /* cross-framework: NSString */) IMenuItem
+	ItemChanged(item IMenuItem)
+	RemoveAllItems()
+	RemoveItem(item IMenuItem)
+	RemoveItemAtIndex(index int)
 }
 
 // An object that manages an app’s menus.
@@ -141,37 +156,167 @@ func (mc _MenuClass) PopUpContextMenuWithEventForView(menu IMenu, event IEvent, 
 }
 
 
-// Displays a contextual menu over a view for an event using a specified font.
+// Adds a menu item to the end of the menu.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUpContextMenu(_:with:for:with:)
-func (mc _MenuClass) PopUpContextMenuWithEventForViewWithFont(menu IMenu, event IEvent, view IView, font IFont) {
-	objc.Send[objc.ID](objc.ID(mc.class), objc.Sel("popUpContextMenu:withEvent:forView:withFont:"), menu, event, view, font)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/addItem(_:)
+func (m_ Menu) AddItem(newItem IMenuItem) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("addItem:"), newItem)
 }
 
 
-// Pops up the menu at the specified location.
+// Creates a new menu item and adds it to the end of the menu.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/popUp(positioning:at:in:)
-func (m_ Menu) PopUpMenuPositioningItemAtLocationInView(item objc.IObject /* cross-framework: MenuItem */, location objc.IObject /* cross-framework: Point */, view IView) bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("popUpMenuPositioningItem:atLocation:inView:"), item, location, view)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/addItem(withTitle:action:keyEquivalent:)
+func (m_ Menu) AddItemWithTitleActionKeyEquivalent(string_ objc.IObject /* cross-framework: NSString */, selector objc.SEL, charCode objc.IObject /* cross-framework: NSString */) IMenuItem {
+	rv := objc.Send[MenuItem](m_.ID, objc.Sel("addItemWithTitle:action:keyEquivalent:"), string_, selector, charCode)
 	return rv
 }
 
 
+// Returns the index identifying the location of a specified menu item in the menu.
+//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/automaticallyInsertsWritingToolsItems
-func (m_ Menu) AutomaticallyInsertsWritingToolsItems() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("automaticallyInsertsWritingToolsItems"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/index(of:)
+func (m_ Menu) IndexOfItem(item IMenuItem) int {
+	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItem:"), item)
 	return rv
 }
 
 
+// Returns the index of the first menu item in the menu that has a given represented object.
+//
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/automaticallyInsertsWritingToolsItems
-func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyInsertsWritingToolsItems:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withRepresentedObject:)
+func (m_ Menu) IndexOfItemWithRepresentedObject(object objc.IObject) int {
+	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithRepresentedObject:"), object)
+	return rv
+}
+
+
+// Returns the index of the menu item in the menu with the given submenu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withSubmenu:)
+func (m_ Menu) IndexOfItemWithSubmenu(submenu IMenu) int {
+	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithSubmenu:"), submenu)
+	return rv
+}
+
+
+// Returns the index of the first menu item in the menu identified by a tag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withTag:)
+func (m_ Menu) IndexOfItemWithTag(tag int) int {
+	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithTag:"), tag)
+	return rv
+}
+
+
+// Returns the index of the first menu item in the menu that has a specified action and target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withTarget:andAction:)
+func (m_ Menu) IndexOfItemWithTargetAndAction(target objc.IObject, actionSelector objc.SEL) int {
+	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithTarget:andAction:"), target, actionSelector)
+	return rv
+}
+
+
+// Returns the index of the first menu item in the menu that has a specified title.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/indexOfItem(withTitle:)
+func (m_ Menu) IndexOfItemWithTitle(title objc.IObject /* cross-framework: NSString */) int {
+	rv := objc.Send[int](m_.ID, objc.Sel("indexOfItemWithTitle:"), title)
+	return rv
+}
+
+
+// Inserts a menu item into the menu at a specific location.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/insertItem(_:at:)
+func (m_ Menu) InsertItemAtIndex(newItem IMenuItem, index int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("insertItem:atIndex:"), newItem, index)
+}
+
+
+// Creates and adds a menu item at a specified location in the menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/insertItem(withTitle:action:keyEquivalent:at:)
+func (m_ Menu) InsertItemWithTitleActionKeyEquivalentAtIndex(string_ objc.IObject /* cross-framework: NSString */, selector objc.SEL, charCode objc.IObject /* cross-framework: NSString */, index int) IMenuItem {
+	rv := objc.Send[MenuItem](m_.ID, objc.Sel("insertItemWithTitle:action:keyEquivalent:atIndex:"), string_, selector, charCode, index)
+	return rv
+}
+
+
+// Returns the menu item at a specific location of the menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/item(at:)
+func (m_ Menu) ItemAtIndex(index int) IMenuItem {
+	rv := objc.Send[MenuItem](m_.ID, objc.Sel("itemAtIndex:"), index)
+	return rv
+}
+
+
+// Returns the first menu item in the menu with the specified tag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/item(withTag:)
+func (m_ Menu) ItemWithTag(tag int) IMenuItem {
+	rv := objc.Send[MenuItem](m_.ID, objc.Sel("itemWithTag:"), tag)
+	return rv
+}
+
+
+// Returns the first menu item in the menu with a specified title.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/item(withTitle:)
+func (m_ Menu) ItemWithTitle(title objc.IObject /* cross-framework: NSString */) IMenuItem {
+	rv := objc.Send[MenuItem](m_.ID, objc.Sel("itemWithTitle:"), title)
+	return rv
+}
+
+
+// Invoked when a menu item is modified visually (for example, its title changes).
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/itemChanged(_:)
+func (m_ Menu) ItemChanged(item IMenuItem) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("itemChanged:"), item)
+}
+
+
+// Removes all the menu items in the menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/removeAllItems()
+func (m_ Menu) RemoveAllItems() {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeAllItems"))
+}
+
+
+// Removes a menu item from the menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/removeItem(_:)
+func (m_ Menu) RemoveItem(item IMenuItem) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeItem:"), item)
+}
+
+
+// Removes the menu item at a specified location in the menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/removeItem(at:)
+func (m_ Menu) RemoveItemAtIndex(index int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("removeItemAtIndex:"), index)
 }
 
 
@@ -179,7 +324,7 @@ func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/items
-func (m_ Menu) ItemArray() []objc.IObject /* cross-framework: MenuItem */ {
+func (m_ Menu) ItemArray() []MenuItem {
 	rv := objc.Send[[]MenuItem](m_.ID, objc.Sel("itemArray"))
 	return rv
 }
@@ -189,7 +334,7 @@ func (m_ Menu) ItemArray() []objc.IObject /* cross-framework: MenuItem */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/items
-func (m_ Menu) SetItemArray(value []objc.IObject /* cross-framework: MenuItem */) {
+func (m_ Menu) SetItemArray(value []MenuItem) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -204,22 +349,13 @@ func (m_ Menu) SetItemArray(value []objc.IObject /* cross-framework: MenuItem */
 }
 
 
-// Indicates whether messages are sent to the application’s windows each time the menu changes.
+// The number of menu items in the menu, including separator items.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuChangedMessagesEnabled
-func (m_ Menu) MenuChangedMessagesEnabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("menuChangedMessagesEnabled"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/numberOfItems
+func (m_ Menu) NumberOfItems() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("numberOfItems"))
 	return rv
-}
-
-
-// Indicates whether messages are sent to the application’s windows each time the menu changes.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenu/menuChangedMessagesEnabled
-func (m_ Menu) SetMenuChangedMessagesEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuChangedMessagesEnabled:"), value)
 }
 
 
@@ -261,12 +397,27 @@ func (m_ Menu) SetAutoenablesItems(value bool) {
 }
 
 
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/automaticallyinsertswritingtoolsitems
+func (m_ Menu) AutomaticallyInsertsWritingToolsItems() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("automaticallyInsertsWritingToolsItems"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/automaticallyinsertswritingtoolsitems
+func (m_ Menu) SetAutomaticallyInsertsWritingToolsItems(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAutomaticallyInsertsWritingToolsItems:"), value)
+}
+
+
 // The delegate of the menu.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/delegate
-func (m_ Menu) Delegate() MenuDelegate /* not a class type */ {
-	rv := objc.Send[MenuDelegate](m_.ID, objc.Sel("delegate"))
+func (m_ Menu) Delegate() objc.IObject /* cross-framework: MenuDelegate */ {
+	rv := objc.Send[objc.ID](m_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -275,7 +426,7 @@ func (m_ Menu) Delegate() MenuDelegate /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/delegate
-func (m_ Menu) SetDelegate(value MenuDelegate /* not a class type */) {
+func (m_ Menu) SetDelegate(value objc.IObject /* cross-framework: MenuDelegate */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), value)
 }
 
@@ -303,7 +454,7 @@ func (m_ Menu) SetFont(value IFont) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/highlighteditem
-func (m_ Menu) HighlightedItem() objc.IObject /* cross-framework: MenuItem */ {
+func (m_ Menu) HighlightedItem() IMenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("highlightedItem"))
 	return rv
 }
@@ -313,7 +464,7 @@ func (m_ Menu) HighlightedItem() objc.IObject /* cross-framework: MenuItem */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/highlighteditem
-func (m_ Menu) SetHighlightedItem(value objc.IObject /* cross-framework: MenuItem */) {
+func (m_ Menu) SetHighlightedItem(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setHighlightedItem:"), value)
 }
 
@@ -341,7 +492,7 @@ func (m_ Menu) SetIsTornOff(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/items
-func (m_ Menu) Items() objc.IObject /* cross-framework: MenuItem */ {
+func (m_ Menu) Items() IMenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("items"))
 	return rv
 }
@@ -351,7 +502,7 @@ func (m_ Menu) Items() objc.IObject /* cross-framework: MenuItem */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/items
-func (m_ Menu) SetItems(value objc.IObject /* cross-framework: MenuItem */) {
+func (m_ Menu) SetItems(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setItems:"), value)
 }
 
@@ -375,6 +526,25 @@ func (m_ Menu) SetMenuBarHeight(value float64) {
 }
 
 
+// Indicates whether messages are sent to the application’s windows each time the menu changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/menuchangedmessagesenabled
+func (m_ Menu) MenuChangedMessagesEnabled() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("menuChangedMessagesEnabled"))
+	return rv
+}
+
+
+// Indicates whether messages are sent to the application’s windows each time the menu changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/menuchangedmessagesenabled
+func (m_ Menu) SetMenuChangedMessagesEnabled(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMenuChangedMessagesEnabled:"), value)
+}
+
+
 // The minimum width of the menu in screen coordinates.
 //
 // [Full Topic]
@@ -391,25 +561,6 @@ func (m_ Menu) MinimumWidth() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/minimumwidth
 func (m_ Menu) SetMinimumWidth(value float64) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setMinimumWidth:"), value)
-}
-
-
-// The number of menu items in the menu, including separator items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/numberofitems
-func (m_ Menu) NumberOfItems() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("numberOfItems"))
-	return rv
-}
-
-
-// The number of menu items in the menu, including separator items.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/numberofitems
-func (m_ Menu) SetNumberOfItems(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setNumberOfItems:"), value)
 }
 
 
@@ -455,7 +606,7 @@ func (m_ Menu) SetPropertiesToUpdate(value unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/selecteditems
-func (m_ Menu) SelectedItems() objc.IObject /* cross-framework: MenuItem */ {
+func (m_ Menu) SelectedItems() IMenuItem {
 	rv := objc.Send[MenuItem](m_.ID, objc.Sel("selectedItems"))
 	return rv
 }
@@ -465,7 +616,7 @@ func (m_ Menu) SelectedItems() objc.IObject /* cross-framework: MenuItem */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenu/selecteditems
-func (m_ Menu) SetSelectedItems(value objc.IObject /* cross-framework: MenuItem */) {
+func (m_ Menu) SetSelectedItems(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setSelectedItems:"), value)
 }
 

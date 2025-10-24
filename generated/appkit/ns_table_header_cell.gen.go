@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [TableHeaderCell] class.
@@ -29,6 +30,10 @@ type _TableHeaderCellClass struct {
 // An interface definition for the [TableHeaderCell] class.
 type ITableHeaderCell interface {
 	ITextFieldCell
+	// properties:
+	// methods:
+	DrawSortIndicatorWithFrameInViewAscendingPriority(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView, ascending bool, priority int)
+	SortIndicatorRectForBounds(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */
 }
 
 // An object that a table header view uses to draw the content of the column headers.
@@ -84,6 +89,25 @@ func NewTableHeaderCell() TableHeaderCell {
 	return getTableHeaderCellClass().New()
 }
 
+
+
+// Draws a sorting indicator given a cell frame contained inside a view.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderCell/drawSortIndicator(withFrame:in:ascending:priority:)
+func (t_ TableHeaderCell) DrawSortIndicatorWithFrameInViewAscendingPriority(cellFrame objc.IObject /* cross-framework: Rect */, controlView IView, ascending bool, priority int) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("drawSortIndicatorWithFrame:inView:ascending:priority:"), cellFrame, controlView, ascending, priority)
+}
+
+
+// Returns the location to display the sorting indicator given .
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderCell/sortIndicatorRect(forBounds:)
+func (t_ TableHeaderCell) SortIndicatorRectForBounds(rect objc.IObject /* cross-framework: Rect */) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("sortIndicatorRectForBounds:"), rect)
+	return rv
+}
 
 
 

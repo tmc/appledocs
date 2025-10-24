@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // scrollLineUpProtocol is the scrollLineUp: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to scrollLineUp:.
 var scrollLineUpProtocol *objc.Protocol
 

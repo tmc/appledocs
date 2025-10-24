@@ -6,6 +6,10 @@ import "github.com/ebitengine/purego/objc"
 
 // AlignmentFeedbackTokenProtocol is the NSAlignmentFeedbackToken protocol.
 //
+// Availability:
+//   - Mac Catalyst +
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSAlignmentFeedbackToken.
 var AlignmentFeedbackTokenProtocol *objc.Protocol
 

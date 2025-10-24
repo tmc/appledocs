@@ -99,7 +99,7 @@ func NewURLProtocol() URLProtocol {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/init(request:cachedResponse:client:)
-func NewURLProtocolWithRequestCachedResponseClient(request IURLRequest, cachedResponse ICachedURLResponse, client objectivec.IObject) URLProtocol {
+func NewURLProtocolWithRequestCachedResponseClient(request IURLRequest, cachedResponse ICachedURLResponse, client objc.IObject) URLProtocol {
 	instance := getURLProtocolClass().Alloc()
 	rv := objc.Send[URLProtocol](instance.ID, objc.Sel("initWithRequest:cachedResponse:client:"), request, cachedResponse, client)
 	rv.Autorelease()
@@ -111,7 +111,7 @@ func NewURLProtocolWithRequestCachedResponseClient(request IURLRequest, cachedRe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/init(task:cachedResponse:client:)
-func NewURLProtocolWithTaskCachedResponseClient(task IURLSessionTask, cachedResponse ICachedURLResponse, client objectivec.IObject) URLProtocol {
+func NewURLProtocolWithTaskCachedResponseClient(task IURLSessionTask, cachedResponse ICachedURLResponse, client objc.IObject) URLProtocol {
 	instance := getURLProtocolClass().Alloc()
 	rv := objc.Send[URLProtocol](instance.ID, objc.Sel("initWithTask:cachedResponse:client:"), task, cachedResponse, client)
 	rv.Autorelease()

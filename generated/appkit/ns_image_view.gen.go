@@ -41,8 +41,8 @@ type IImageView interface {
 	ImageAlignment() ImageAlignment
 	SetImageAlignment(value ImageAlignment)
 	ImageDynamicRange() ImageDynamicRange
-	ImageFrameStyle() ImageFrameStyle /* not a class type */
-	SetImageFrameStyle(value ImageFrameStyle /* not a class type */)
+	ImageFrameStyle() ImageFrameStyle
+	SetImageFrameStyle(value ImageFrameStyle)
 	ImageScaling() ImageScaling
 	SetImageScaling(value ImageScaling)
 	Editable() bool
@@ -371,7 +371,7 @@ func (i_ ImageView) ImageDynamicRange() ImageDynamicRange {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/imageFrameStyle
-func (i_ ImageView) ImageFrameStyle() ImageFrameStyle /* not a class type */ {
+func (i_ ImageView) ImageFrameStyle() ImageFrameStyle {
 	rv := objc.Send[ImageFrameStyle](i_.ID, objc.Sel("imageFrameStyle"))
 	return rv
 }
@@ -381,7 +381,7 @@ func (i_ ImageView) ImageFrameStyle() ImageFrameStyle /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSImageView/imageFrameStyle
-func (i_ ImageView) SetImageFrameStyle(value ImageFrameStyle /* not a class type */) {
+func (i_ ImageView) SetImageFrameStyle(value ImageFrameStyle) {
 	objc.Send[objc.ID](i_.ID, objc.Sel("setImageFrameStyle:"), value)
 }
 

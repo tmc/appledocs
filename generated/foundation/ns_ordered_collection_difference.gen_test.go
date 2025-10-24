@@ -13,7 +13,7 @@ var _ = foundation.NewOrderedCollectionDifference
 // Creates an ordered collection difference using an array of ordered collection changes.
 func ExampleNewOrderedCollectionDifferenceWithChanges() {
 	_ = foundation.NewOrderedCollectionDifferenceWithChanges(
-		[]foundation.IOrderedCollectionChange{}, // changes []IOrderedCollectionChange
+		[]foundation.OrderedCollectionChange{}, // changes []OrderedCollectionChange
 	)
 	// Output:
 }

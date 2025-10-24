@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveParagraphForwardAndModifySelectionProtocol is the moveParagraphForwardAndModifySelection: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveParagraphForwardAndModifySelection:.
 var moveParagraphForwardAndModifySelectionProtocol *objc.Protocol
 

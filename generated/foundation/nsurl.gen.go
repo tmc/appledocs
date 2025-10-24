@@ -75,10 +75,10 @@ type IURL interface {
 	SetStandardizingPath(value IURL)
 	// methods:
 	URLByAppendingPathComponent(pathComponent IString) IURL
-	URLByAppendingPathComponentConformingToType(partialName IString, contentType objectivec.IObject) IURL
+	URLByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject) IURL
 	URLByAppendingPathComponentIsDirectory(pathComponent IString, isDirectory bool) IURL
 	URLByAppendingPathExtension(pathExtension IString) IURL
-	URLByAppendingPathExtensionForType(contentType objectivec.IObject) IURL
+	URLByAppendingPathExtensionForType(contentType objc.IObject) IURL
 	BookmarkDataWithOptionsIncludingResourceValuesForKeysRelativeToURLError(options URLBookmarkCreationOptions, keys []string, relativeURL IURL, error_ IError) IData
 	CheckPromisedItemIsReachableAndReturnError(error_ IError) bool
 	CheckResourceIsReachableAndReturnError(error_ IError) bool
@@ -91,9 +91,9 @@ type IURL interface {
 	RemoveAllCachedResourceValues()
 	RemoveCachedResourceValueForKey(key objc.IObject /* cross-framework: URLResourceKey */)
 	ResourceValuesForKeysError(keys []string, error_ IError) IDictionary
-	SetResourceValueForKeyError(value objectivec.IObject, key objc.IObject /* cross-framework: URLResourceKey */, error_ IError) bool
+	SetResourceValueForKeyError(value objc.IObject, key objc.IObject /* cross-framework: URLResourceKey */, error_ IError) bool
 	SetResourceValuesError(keyedValues IDictionary, error_ IError) bool
-	SetTemporaryResourceValueForKey(value objectivec.IObject, key objc.IObject /* cross-framework: URLResourceKey */)
+	SetTemporaryResourceValueForKey(value objc.IObject, key objc.IObject /* cross-framework: URLResourceKey */)
 	StartAccessingSecurityScopedResource() bool
 	StopAccessingSecurityScopedResource()
 	WriteToPasteboard(pasteBoard objectivec.IObject)
@@ -485,7 +485,7 @@ func (u_ URL) URLByAppendingPathComponent(pathComponent IString) IURL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathComponent(_:conformingTo:)
-func (u_ URL) URLByAppendingPathComponentConformingToType(partialName IString, contentType objectivec.IObject) IURL {
+func (u_ URL) URLByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathComponent:conformingToType:"), partialName, contentType)
 	return rv
 }
@@ -515,7 +515,7 @@ func (u_ URL) URLByAppendingPathExtension(pathExtension IString) IURL {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/appendingPathExtension(for:)
-func (u_ URL) URLByAppendingPathExtensionForType(contentType objectivec.IObject) IURL {
+func (u_ URL) URLByAppendingPathExtensionForType(contentType objc.IObject) IURL {
 	rv := objc.Send[URL](u_.ID, objc.Sel("URLByAppendingPathExtensionForType:"), contentType)
 	return rv
 }
@@ -643,7 +643,7 @@ func (u_ URL) ResourceValuesForKeysError(keys []string, error_ IError) IDictiona
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setResourceValue(_:forKey:)
-func (u_ URL) SetResourceValueForKeyError(value objectivec.IObject, key objc.IObject /* cross-framework: URLResourceKey */, error_ IError) bool {
+func (u_ URL) SetResourceValueForKeyError(value objc.IObject, key objc.IObject /* cross-framework: URLResourceKey */, error_ IError) bool {
 	rv := objc.Send[bool](u_.ID, objc.Sel("setResourceValue:forKey:error:"), value, key, error_)
 	return rv
 }
@@ -663,7 +663,7 @@ func (u_ URL) SetResourceValuesError(keyedValues IDictionary, error_ IError) boo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSURL/setTemporaryResourceValue(_:forKey:)
-func (u_ URL) SetTemporaryResourceValueForKey(value objectivec.IObject, key objc.IObject /* cross-framework: URLResourceKey */) {
+func (u_ URL) SetTemporaryResourceValueForKey(value objc.IObject, key objc.IObject /* cross-framework: URLResourceKey */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setTemporaryResourceValue:forKey:"), value, key)
 }
 

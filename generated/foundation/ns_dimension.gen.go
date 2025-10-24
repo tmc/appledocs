@@ -91,6 +91,19 @@ func NewDimension() Dimension {
 
 
 
+// Initializes a dimensional unit with the symbol and unit converter you specify.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/Dimension/init(symbol:converter:)
+func NewDimensionWithSymbolConverter(symbol IString, converter IUnitConverter) Dimension {
+	instance := getDimensionClass().Alloc()
+	rv := objc.Send[Dimension](instance.ID, objc.Sel("initWithSymbol:converter:"), symbol, converter)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Returns the base unit.
 //
 // [Full Topic]
@@ -128,6 +141,5 @@ func (d_ Dimension) Coefficient() float64 {
 func (d_ Dimension) SetCoefficient(value float64) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCoefficient:"), value)
 }
-
 
 

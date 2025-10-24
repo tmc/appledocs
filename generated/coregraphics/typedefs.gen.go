@@ -112,11 +112,8 @@ type DataProviderRewindCallback = func(unsafe.Pointer)
 // CGDataProviderSkipForwardCallback is a callback function
 // C type: long long (*)(void *, long long)
 type DataProviderSkipForwardCallback = func(unsafe.Pointer, int64) int64
-// DirectDisplayID - A unique identifier for an attached display.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDirectDisplayID
-// CGDirectDisplayID has base type: uint32_t
-type DirectDisplayID uintptr
+// DirectDisplayID type alias
+type DirectDisplayID = uint32
 // DisplayBlendFraction - The percentage of blend color used in a fade operation.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayBlendFraction
@@ -137,11 +134,8 @@ type DisplayCount uintptr
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayErr
 // CGDisplayErr has base type: CGError
 type DisplayErr uintptr
-// DisplayFadeInterval - The duration in seconds of a fade operation or a fade hardware reservation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayFadeInterval
-// CGDisplayFadeInterval has base type: float
-type DisplayFadeInterval uintptr
+// DisplayFadeInterval type alias
+type DisplayFadeInterval = float32
 // DisplayFadeReservationToken - A token issued by Quartz when reserving one or more displays for a fade operation during a specified interval.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayFadeReservationToken
@@ -158,11 +152,8 @@ type DisplayModeRef uintptr
 // CGDisplayReconfigurationCallBack is a callback function
 // C type: void (*)(unsigned int, enum CGDisplayChangeSummaryFlags, void *)
 type DisplayReconfigurationCallBack = func(uint32, DisplayChangeSummaryFlags, unsafe.Pointer)
-// DisplayReservationInterval - The time interval for a fade reservation.
-//
-// [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayReservationInterval
-// CGDisplayReservationInterval has base type: float
-type DisplayReservationInterval uintptr
+// DisplayReservationInterval type alias
+type DisplayReservationInterval = float32
 // DisplayStreamRef - A reference to a display stream object.
 //
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGDisplayStream

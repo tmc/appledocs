@@ -33,8 +33,8 @@ type ITableRowView interface {
 	// properties:
 	BackgroundColor() IColor
 	SetBackgroundColor(value IColor)
-	DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle /* not a class type */
-	SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle /* not a class type */)
+	DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle
+	SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle)
 	IndentationForDropOperation() float64
 	SetIndentationForDropOperation(value float64)
 	InteriorBackgroundStyle() BackgroundStyle
@@ -53,8 +53,8 @@ type ITableRowView interface {
 	TargetForDropOperation() bool
 	SetTargetForDropOperation(value bool)
 	NumberOfColumns() int
-	SelectionHighlightStyle() TableViewSelectionHighlightStyle /* not a class type */
-	SetSelectionHighlightStyle(value TableViewSelectionHighlightStyle /* not a class type */)
+	SelectionHighlightStyle() TableViewSelectionHighlightStyle
+	SetSelectionHighlightStyle(value TableViewSelectionHighlightStyle)
 	IsEmphasized() bool
 	SetIsEmphasized(value bool)
 	IsFloating() bool
@@ -201,7 +201,7 @@ func (t_ TableRowView) SetBackgroundColor(value IColor) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/draggingDestinationFeedbackStyle
-func (t_ TableRowView) DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle /* not a class type */ {
+func (t_ TableRowView) DraggingDestinationFeedbackStyle() TableViewDraggingDestinationFeedbackStyle {
 	rv := objc.Send[TableViewDraggingDestinationFeedbackStyle](t_.ID, objc.Sel("draggingDestinationFeedbackStyle"))
 	return rv
 }
@@ -211,7 +211,7 @@ func (t_ TableRowView) DraggingDestinationFeedbackStyle() TableViewDraggingDesti
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/draggingDestinationFeedbackStyle
-func (t_ TableRowView) SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle /* not a class type */) {
+func (t_ TableRowView) SetDraggingDestinationFeedbackStyle(value TableViewDraggingDestinationFeedbackStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setDraggingDestinationFeedbackStyle:"), value)
 }
 
@@ -384,7 +384,7 @@ func (t_ TableRowView) NumberOfColumns() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/selectionHighlightStyle
-func (t_ TableRowView) SelectionHighlightStyle() TableViewSelectionHighlightStyle /* not a class type */ {
+func (t_ TableRowView) SelectionHighlightStyle() TableViewSelectionHighlightStyle {
 	rv := objc.Send[TableViewSelectionHighlightStyle](t_.ID, objc.Sel("selectionHighlightStyle"))
 	return rv
 }
@@ -394,7 +394,7 @@ func (t_ TableRowView) SelectionHighlightStyle() TableViewSelectionHighlightStyl
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableRowView/selectionHighlightStyle
-func (t_ TableRowView) SetSelectionHighlightStyle(value TableViewSelectionHighlightStyle /* not a class type */) {
+func (t_ TableRowView) SetSelectionHighlightStyle(value TableViewSelectionHighlightStyle) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setSelectionHighlightStyle:"), value)
 }
 

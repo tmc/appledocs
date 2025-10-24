@@ -13,7 +13,7 @@ import (
 // [Full Topic]: https://developer.apple.com/documentation/CoreGraphics/CGBitmapParameters-1cm7j
 type CGBitmapParameters struct {
 	AlignedBytesPerRow uintptr
-	ByteOrder corefoundation.ByteOrder
+	ByteOrder int32
 	BytesPerPixel uintptr
 	ColorSpace ColorSpaceRef
 	Component Component
@@ -46,7 +46,7 @@ type CGColorDataFormat struct {
 	Bits_per_component uintptr
 	Bytes_per_row uintptr
 	Colorspace_info TypeRef
-	Decode corefoundation.CGFloat
+	Decode *float64
 	Intent ColorRenderingIntent
 	Version uint32
 }

@@ -96,7 +96,7 @@ func NewAccessibilityElement() AccessibilityElement {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityElement-swift.class/element(withRole:frame:label:parent:)
-func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role AccessibilityRole /* not a class type */, frame objc.IObject /* cross-framework: Rect */, label objc.IObject /* cross-framework: NSString */, parent objectivec.IObject) objc.ID {
+func (ac _AccessibilityElementClass) AccessibilityElementWithRoleFrameLabelParent(role objc.IObject /* cross-framework: AccessibilityRole */, frame objc.IObject /* cross-framework: Rect */, label objc.IObject /* cross-framework: NSString */, parent objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(ac.class), objc.Sel("accessibilityElementWithRole:frame:label:parent:"), role, frame, label, parent)
 	return rv
 }

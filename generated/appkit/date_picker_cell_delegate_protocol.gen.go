@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // DatePickerCellDelegateProtocol is the NSDatePickerCellDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSDatePickerCellDelegate.
 var DatePickerCellDelegateProtocol *objc.Protocol
 

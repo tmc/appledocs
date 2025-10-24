@@ -28,6 +28,11 @@ type AttributedStringFormattingContextKey = string
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/Identifier
 // NSCalendarIdentifier is a string typedef
 type CalendarIdentifier = string
+// ExceptionName type alias
+//
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSExceptionName
+// NSExceptionName is a string typedef
+type ExceptionName = string
 // FileProviderServiceName - The name used to identify a File Provider service.
 //
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileProviderServiceName

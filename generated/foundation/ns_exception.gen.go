@@ -35,8 +35,8 @@ type IException interface {
 	SetCallStackReturnAddresses(value INumber)
 	CallStackSymbols() IString
 	SetCallStackSymbols(value IString)
-	Name() ExceptionName /* not a class type */
-	SetName(value ExceptionName /* not a class type */)
+	Name() objc.IObject /* cross-framework: ExceptionName */
+	SetName(value objc.IObject /* cross-framework: ExceptionName */)
 	Reason() IString
 	SetReason(value IString)
 	UserInfo() unsafe.Pointer
@@ -139,8 +139,8 @@ func (e_ Exception) SetCallStackSymbols(value IString) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/name-swift.property
-func (e_ Exception) Name() ExceptionName /* not a class type */ {
-	rv := objc.Send[ExceptionName](e_.ID, objc.Sel("name"))
+func (e_ Exception) Name() objc.IObject /* cross-framework: ExceptionName */ {
+	rv := objc.Send[objc.ID](e_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -149,7 +149,7 @@ func (e_ Exception) Name() ExceptionName /* not a class type */ {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsexception/name-swift.property
-func (e_ Exception) SetName(value ExceptionName /* not a class type */) {
+func (e_ Exception) SetName(value objc.IObject /* cross-framework: ExceptionName */) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setName:"), value)
 }
 

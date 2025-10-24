@@ -32,12 +32,9 @@ type _DataAssetClass struct {
 type IDataAsset interface {
 	objectivec.IObject
 	// properties:
-	Data() objc.IObject /* cross-framework: Data */
-	SetData(value objc.IObject /* cross-framework: Data */)
-	Name() unsafe.Pointer
-	SetName(value unsafe.Pointer)
+	Data() objc.IObject /* cross-framework: NSData */
+	Name() objc.IObject /* cross-framework: DataAssetName */
 	TypeIdentifier() objc.IObject /* cross-framework: NSString */
-	SetTypeIdentifier(value objc.IObject /* cross-framework: NSString */)
 	// methods:
 }
 
@@ -94,61 +91,58 @@ func NewDataAsset() DataAsset {
 
 
 
-// The raw data values in the data asset.
+// Initializes and returns an object with a reference to the named data asset in an asset catalog.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/data
-func (d_ DataAsset) Data() objc.IObject /* cross-framework: Data */ {
-	rv := objc.Send[foundation.Data](d_.ID, objc.Sel("data"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:)
+func NewDataAssetWithName(name objc.IObject /* cross-framework: DataAssetName */) DataAsset {
+	instance := getDataAssetClass().Alloc()
+	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:"), name)
+	rv.Autorelease()
 	return rv
 }
 
 
+// Initializes and returns an object with a reference to the named data asset that’s in an asset catalog in the specified bundle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/init(name:bundle:)
+func NewDataAssetWithNameBundle(name objc.IObject /* cross-framework: DataAssetName */, bundle foundation.Bundle) DataAsset {
+	instance := getDataAssetClass().Alloc()
+	rv := objc.Send[DataAsset](instance.ID, objc.Sel("initWithName:bundle:"), name, bundle)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The raw data values in the data asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/data
-func (d_ DataAsset) SetData(value objc.IObject /* cross-framework: Data */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setData:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/data
+func (d_ DataAsset) Data() objc.IObject /* cross-framework: NSData */ {
+	rv := objc.Send[foundation.NSData](d_.ID, objc.Sel("data"))
+	return rv
 }
 
 
 // The name of the data set in the asset catalog.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.property
-func (d_ DataAsset) Name() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](d_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/name-swift.property
+func (d_ DataAsset) Name() objc.IObject /* cross-framework: DataAssetName */ {
+	rv := objc.Send[objc.ID](d_.ID, objc.Sel("name"))
 	return rv
-}
-
-
-// The name of the data set in the asset catalog.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/name-swift.property
-func (d_ DataAsset) SetName(value unsafe.Pointer) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setName:"), value)
 }
 
 
 // The uniform type identifier for the data asset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSDataAsset/typeIdentifier
 func (d_ DataAsset) TypeIdentifier() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](d_.ID, objc.Sel("typeIdentifier"))
 	return rv
 }
-
-
-// The uniform type identifier for the data asset.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsdataasset/typeidentifier
-func (d_ DataAsset) SetTypeIdentifier(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](d_.ID, objc.Sel("setTypeIdentifier:"), value)
-}
-
 
 

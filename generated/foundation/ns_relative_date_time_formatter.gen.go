@@ -45,7 +45,7 @@ type IRelativeDateTimeFormatter interface {
 	LocalizedStringForDateRelativeToDate(date IDate, referenceDate IDate) IString
 	LocalizedStringFromDateComponents(dateComponents IDateComponents) IString
 	LocalizedStringFromTimeInterval(timeInterval float64) IString
-	StringForObjectValue(obj objectivec.IObject) IString
+	StringForObjectValue(obj objc.IObject) IString
 }
 
 // A formatter that creates locale-aware string representations of a relative date or time.
@@ -137,7 +137,7 @@ func (r_ RelativeDateTimeFormatter) LocalizedStringFromTimeInterval(timeInterval
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/RelativeDateTimeFormatter/string(for:)
-func (r_ RelativeDateTimeFormatter) StringForObjectValue(obj objectivec.IObject) IString {
+func (r_ RelativeDateTimeFormatter) StringForObjectValue(obj objc.IObject) IString {
 	rv := objc.Send[String](r_.ID, objc.Sel("stringForObjectValue:"), obj)
 	return rv
 }

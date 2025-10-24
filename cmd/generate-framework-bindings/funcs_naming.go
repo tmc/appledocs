@@ -34,6 +34,12 @@ func stripObjCPrefix(className string) string {
 	return occ2go.StripObjCPrefix(className)
 }
 
+// ClassInfo represents a simplified class structure for testing purposes
+type ClassInfo struct {
+	Name    string
+	Methods []MethodInfo
+}
+
 // MethodInfo represents parsed information about an Objective-C method
 type MethodInfo struct {
 	Selector   string
@@ -107,6 +113,14 @@ func classIOSFileName(className string) string {
 // Delegates to occ2go.ProtocolFileName.
 func protocolFileName(protocolName string) string {
 	return occ2go.ProtocolFileName(protocolName)
+}
+
+// protocolInterfaceFileName converts a protocol name to an interface file name (snake_case).
+// E.g., "NSApplicationDelegate" -> "ns_application_delegate_protocol.gen.go"
+func protocolInterfaceFileName(protocolName string) string {
+	base := occ2go.ProtocolFileName(protocolName)
+	// Replace .gen.go with _protocol.gen.go
+	return base[:len(base)-len(".gen.go")] + "_protocol.gen.go"
 }
 
 // classTestFileName converts a class name to a test file name (snake_case).

@@ -32,14 +32,13 @@ type _PathControlItemClass struct {
 type IPathControlItem interface {
 	objectivec.IObject
 	// properties:
-	AttributedTitle() objc.IObject /* cross-framework: AttributedString */
-	SetAttributedTitle(value objc.IObject /* cross-framework: AttributedString */)
+	AttributedTitle() foundation.AttributedString
+	SetAttributedTitle(value foundation.AttributedString)
 	Image() IImage
 	SetImage(value IImage)
 	Title() objc.IObject /* cross-framework: NSString */
 	SetTitle(value objc.IObject /* cross-framework: NSString */)
-	Url() objc.IObject /* cross-framework: URL */
-	SetUrl(value objc.IObject /* cross-framework: URL */)
+	URL() objc.IObject /* cross-framework: NSURL */
 	// methods:
 }
 
@@ -90,22 +89,22 @@ func NewPathControlItem() PathControlItem {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/attributedtitle
-func (p_ PathControlItem) AttributedTitle() objc.IObject /* cross-framework: AttributedString */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControlItem/attributedTitle
+func (p_ PathControlItem) AttributedTitle() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](p_.ID, objc.Sel("attributedTitle"))
 	return rv
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/attributedtitle
-func (p_ PathControlItem) SetAttributedTitle(value objc.IObject /* cross-framework: AttributedString */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControlItem/attributedTitle
+func (p_ PathControlItem) SetAttributedTitle(value foundation.AttributedString) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setAttributedTitle:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/image
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControlItem/image
 func (p_ PathControlItem) Image() IImage {
 	rv := objc.Send[Image](p_.ID, objc.Sel("image"))
 	return rv
@@ -113,14 +112,14 @@ func (p_ PathControlItem) Image() IImage {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/image
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControlItem/image
 func (p_ PathControlItem) SetImage(value IImage) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setImage:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/title
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControlItem/title
 func (p_ PathControlItem) Title() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](p_.ID, objc.Sel("title"))
 	return rv
@@ -128,24 +127,17 @@ func (p_ PathControlItem) Title() objc.IObject /* cross-framework: NSString */ {
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/title
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControlItem/title
 func (p_ PathControlItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setTitle:"), value)
 }
 
 
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/url
-func (p_ PathControlItem) Url() objc.IObject /* cross-framework: URL */ {
-	rv := objc.Send[foundation.URL](p_.ID, objc.Sel("url"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSPathControlItem/url
+func (p_ PathControlItem) URL() objc.IObject /* cross-framework: NSURL */ {
+	rv := objc.Send[foundation.NSURL](p_.ID, objc.Sel("URL"))
 	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nspathcontrolitem/url
-func (p_ PathControlItem) SetUrl(value objc.IObject /* cross-framework: URL */) {
-	objc.Send[objc.ID](p_.ID, objc.Sel("setUrl:"), value)
 }
 
 

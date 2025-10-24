@@ -96,6 +96,16 @@ func NewMenuItemBadge() MenuItemBadge {
 
 
 
+// Creates an alert-style badge with an integer count and a predefined label that represents the number of alerts.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItemBadge/alerts(count:)
+func (mc _MenuItemBadgeClass) AlertsWithCount(itemCount int) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("alertsWithCount:"), itemCount)
+	return rv
+}
+
+
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/badge
 func (m_ MenuItemBadge) Badge() IMenuItemBadge {

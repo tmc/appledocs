@@ -58,8 +58,8 @@ type IMutableDictionary interface {
 	RemoveObjectForKey(aKey unsafe.Pointer)
 	RemoveObjectsForKeys(keyArray []objc.ID)
 	SetDictionary(otherDictionary IDictionary)
-	SetObjectForKey(anObject unsafe.Pointer, aKey objectivec.IObject)
-	SetObjectForKeyedSubscript(obj unsafe.Pointer, key objectivec.IObject)
+	SetObjectForKey(anObject unsafe.Pointer, aKey objc.IObject)
+	SetObjectForKeyedSubscript(obj unsafe.Pointer, key objc.IObject)
 }
 
 // A dynamic collection of objects associated with unique keys.
@@ -179,7 +179,7 @@ func NewMutableDictionaryWithOBEXHeadersDataHeadersDataSize(inHeadersData unsafe
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
-func NewMutableDictionaryWithSharedKeySet(keyset objectivec.IObject) MutableDictionary {
+func NewMutableDictionaryWithSharedKeySet(keyset objc.IObject) MutableDictionary {
 	rv := objc.Send[MutableDictionary](objc.ID(getMutableDictionaryClass().class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
@@ -232,7 +232,7 @@ func (mc _MutableDictionaryClass) DictionaryWithContentsOfURL(url IURL) unsafe.P
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/init(sharedKeySet:)
-func (mc _MutableDictionaryClass) DictionaryWithSharedKeySet(keyset objectivec.IObject) unsafe.Pointer {
+func (mc _MutableDictionaryClass) DictionaryWithSharedKeySet(keyset objc.IObject) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("dictionaryWithSharedKeySet:"), keyset)
 	return rv
 }
@@ -463,7 +463,7 @@ func (m_ MutableDictionary) SetDictionary(otherDictionary IDictionary) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setObject(_:forKey:)
-func (m_ MutableDictionary) SetObjectForKey(anObject unsafe.Pointer, aKey objectivec.IObject) {
+func (m_ MutableDictionary) SetObjectForKey(anObject unsafe.Pointer, aKey objc.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKey:"), anObject, aKey)
 }
 
@@ -472,7 +472,7 @@ func (m_ MutableDictionary) SetObjectForKey(anObject unsafe.Pointer, aKey object
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableDictionary/setObject:forKeyedSubscript:
-func (m_ MutableDictionary) SetObjectForKeyedSubscript(obj unsafe.Pointer, key objectivec.IObject) {
+func (m_ MutableDictionary) SetObjectForKeyedSubscript(obj unsafe.Pointer, key objc.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setObject:forKeyedSubscript:"), obj, key)
 }
 

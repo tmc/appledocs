@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // validAttributesForMarkedTextProtocol is the validAttributesForMarkedText protocol.
 //
 // Availability:
-//   - macOS 10.0+
+//   - macOS 10.0+ (Deprecated in 10.6)
 //
 // Use this protocol when registering custom classes that conform to validAttributesForMarkedText.
 var validAttributesForMarkedTextProtocol *objc.Protocol

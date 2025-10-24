@@ -32,32 +32,29 @@ type _TouchBarItemClass struct {
 type ITouchBarItem interface {
 	objectivec.IObject
 	// properties:
+	CustomizationLabel() objc.IObject /* cross-framework: NSString */
+	Identifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */
+	Visible() bool
+	View() IView
+	ViewController() IViewController
+	VisibilityPriority() objc.IObject /* cross-framework: TouchBarItemPriority */
+	SetVisibilityPriority(value objc.IObject /* cross-framework: TouchBarItemPriority */)
 	IsContinuous() bool
 	SetIsContinuous(value bool)
-	GroupTouchBar() ITouchBar
-	SetGroupTouchBar(value ITouchBar)
+	GroupTouchBar() objc.IObject /* cross-framework: TouchBar */
+	SetGroupTouchBar(value objc.IObject /* cross-framework: TouchBar */)
 	CollapsedRepresentation() IView
 	SetCollapsedRepresentation(value IView)
-	PopoverTouchBar() ITouchBar
-	SetPopoverTouchBar(value ITouchBar)
-	PressAndHoldTouchBar() ITouchBar
-	SetPressAndHoldTouchBar(value ITouchBar)
+	PopoverTouchBar() objc.IObject /* cross-framework: TouchBar */
+	SetPopoverTouchBar(value objc.IObject /* cross-framework: TouchBar */)
+	PressAndHoldTouchBar() objc.IObject /* cross-framework: TouchBar */
+	SetPressAndHoldTouchBar(value objc.IObject /* cross-framework: TouchBar */)
 	TrackingMode() unsafe.Pointer
 	SetTrackingMode(value unsafe.Pointer)
 	PrincipalItemIdentifier() unsafe.Pointer
 	SetPrincipalItemIdentifier(value unsafe.Pointer)
-	CustomizationLabel() objc.IObject /* cross-framework: NSString */
-	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
-	Identifier() unsafe.Pointer
-	SetIdentifier(value unsafe.Pointer)
 	IsVisible() bool
 	SetIsVisible(value bool)
-	View() IView
-	SetView(value IView)
-	ViewController() objc.IObject /* cross-framework: ViewController */
-	SetViewController(value objc.IObject /* cross-framework: ViewController */)
-	VisibilityPriority() unsafe.Pointer
-	SetVisibilityPriority(value unsafe.Pointer)
 	// methods:
 }
 
@@ -114,6 +111,100 @@ func NewTouchBarItem() TouchBarItem {
 
 
 
+// Initializes and returns a new item from a storyboard or nib file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/init(coder:)
+func NewTouchBarItemWithCoder(coder foundation.Coder) TouchBarItem {
+	instance := getTouchBarItemClass().Alloc()
+	rv := objc.Send[TouchBarItem](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a new item with the specified identifier.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/init(identifier:)
+func NewTouchBarItemWithIdentifier(identifier objc.IObject /* cross-framework: TouchBarItemIdentifier */) TouchBarItem {
+	instance := getTouchBarItemClass().Alloc()
+	rv := objc.Send[TouchBarItem](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// The user-visible string identifying this item during bar customization.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/customizationLabel
+func (t_ TouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("customizationLabel"))
+	return rv
+}
+
+
+// The identifier for this item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/identifier-swift.property
+func (t_ TouchBarItem) Identifier() objc.IObject /* cross-framework: TouchBarItemIdentifier */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// A Boolean value that reflects whether or not the item is visible.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/isVisible
+func (t_ TouchBarItem) Visible() bool {
+	rv := objc.Send[bool](t_.ID, objc.Sel("visible"))
+	return rv
+}
+
+
+// The view associated with this item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/view
+func (t_ TouchBarItem) View() IView {
+	rv := objc.Send[View](t_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// The view controller associated with this item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/viewController
+func (t_ TouchBarItem) ViewController() IViewController {
+	rv := objc.Send[ViewController](t_.ID, objc.Sel("viewController"))
+	return rv
+}
+
+
+// Determines which items are shown in a bar when space is limited.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/visibilityPriority
+func (t_ TouchBarItem) VisibilityPriority() objc.IObject /* cross-framework: TouchBarItemPriority */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("visibilityPriority"))
+	return rv
+}
+
+
+// Determines which items are shown in a bar when space is limited.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTouchBarItem/visibilityPriority
+func (t_ TouchBarItem) SetVisibilityPriority(value objc.IObject /* cross-framework: TouchBarItemPriority */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
+}
+
+
 // A Boolean value indicating whether the receiver’s cell sends its action message continuously to its target during mouse tracking.
 //
 // [Full Topic]
@@ -137,8 +228,8 @@ func (t_ TouchBarItem) SetIsContinuous(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-func (t_ TouchBarItem) GroupTouchBar() ITouchBar {
-	rv := objc.Send[TouchBar](t_.ID, objc.Sel("groupTouchBar"))
+func (t_ TouchBarItem) GroupTouchBar() objc.IObject /* cross-framework: TouchBar */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("groupTouchBar"))
 	return rv
 }
 
@@ -147,7 +238,7 @@ func (t_ TouchBarItem) GroupTouchBar() ITouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgrouptouchbaritem/grouptouchbar
-func (t_ TouchBarItem) SetGroupTouchBar(value ITouchBar) {
+func (t_ TouchBarItem) SetGroupTouchBar(value objc.IObject /* cross-framework: TouchBar */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setGroupTouchBar:"), value)
 }
 
@@ -175,8 +266,8 @@ func (t_ TouchBarItem) SetCollapsedRepresentation(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (t_ TouchBarItem) PopoverTouchBar() ITouchBar {
-	rv := objc.Send[TouchBar](t_.ID, objc.Sel("popoverTouchBar"))
+func (t_ TouchBarItem) PopoverTouchBar() objc.IObject /* cross-framework: TouchBar */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("popoverTouchBar"))
 	return rv
 }
 
@@ -185,7 +276,7 @@ func (t_ TouchBarItem) PopoverTouchBar() ITouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/popovertouchbar
-func (t_ TouchBarItem) SetPopoverTouchBar(value ITouchBar) {
+func (t_ TouchBarItem) SetPopoverTouchBar(value objc.IObject /* cross-framework: TouchBar */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPopoverTouchBar:"), value)
 }
 
@@ -194,8 +285,8 @@ func (t_ TouchBarItem) SetPopoverTouchBar(value ITouchBar) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (t_ TouchBarItem) PressAndHoldTouchBar() ITouchBar {
-	rv := objc.Send[TouchBar](t_.ID, objc.Sel("pressAndHoldTouchBar"))
+func (t_ TouchBarItem) PressAndHoldTouchBar() objc.IObject /* cross-framework: TouchBar */ {
+	rv := objc.Send[objc.ID](t_.ID, objc.Sel("pressAndHoldTouchBar"))
 	return rv
 }
 
@@ -204,7 +295,7 @@ func (t_ TouchBarItem) PressAndHoldTouchBar() ITouchBar {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nspopovertouchbaritem/pressandholdtouchbar
-func (t_ TouchBarItem) SetPressAndHoldTouchBar(value ITouchBar) {
+func (t_ TouchBarItem) SetPressAndHoldTouchBar(value objc.IObject /* cross-framework: TouchBar */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setPressAndHoldTouchBar:"), value)
 }
 
@@ -247,44 +338,6 @@ func (t_ TouchBarItem) SetPrincipalItemIdentifier(value unsafe.Pointer) {
 }
 
 
-// The user-visible string identifying this item during bar customization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/customizationlabel
-func (t_ TouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
-	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("customizationLabel"))
-	return rv
-}
-
-
-// The user-visible string identifying this item during bar customization.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/customizationlabel
-func (t_ TouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setCustomizationLabel:"), value)
-}
-
-
-// The identifier for this item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.property
-func (t_ TouchBarItem) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// The identifier for this item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/identifier-swift.property
-func (t_ TouchBarItem) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setIdentifier:"), value)
-}
-
-
 // A Boolean value that reflects whether or not the item is visible.
 //
 // [Full Topic]
@@ -302,63 +355,5 @@ func (t_ TouchBarItem) IsVisible() bool {
 func (t_ TouchBarItem) SetIsVisible(value bool) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setIsVisible:"), value)
 }
-
-
-// The view associated with this item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/view
-func (t_ TouchBarItem) View() IView {
-	rv := objc.Send[View](t_.ID, objc.Sel("view"))
-	return rv
-}
-
-
-// The view associated with this item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/view
-func (t_ TouchBarItem) SetView(value IView) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setView:"), value)
-}
-
-
-// The view controller associated with this item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/viewcontroller
-func (t_ TouchBarItem) ViewController() objc.IObject /* cross-framework: ViewController */ {
-	rv := objc.Send[ViewController](t_.ID, objc.Sel("viewController"))
-	return rv
-}
-
-
-// The view controller associated with this item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/viewcontroller
-func (t_ TouchBarItem) SetViewController(value objc.IObject /* cross-framework: ViewController */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setViewController:"), value)
-}
-
-
-// Determines which items are shown in a bar when space is limited.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/visibilitypriority
-func (t_ TouchBarItem) VisibilityPriority() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("visibilityPriority"))
-	return rv
-}
-
-
-// Determines which items are shown in a bar when space is limited.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstouchbaritem/visibilitypriority
-func (t_ TouchBarItem) SetVisibilityPriority(value unsafe.Pointer) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibilityPriority:"), value)
-}
-
 
 

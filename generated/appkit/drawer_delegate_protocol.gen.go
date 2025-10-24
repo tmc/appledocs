@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // DrawerDelegateProtocol is the NSDrawerDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSDrawerDelegate.
 var DrawerDelegateProtocol *objc.Protocol
 

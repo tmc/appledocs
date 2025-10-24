@@ -54,7 +54,7 @@ type ILocale interface {
 	Locale() ILocale
 	SetLocale(value ILocale)
 	// methods:
-	DisplayNameForKeyValue(key objc.IObject /* cross-framework: LocaleKey */, value objectivec.IObject) IString
+	DisplayNameForKeyValue(key objc.IObject /* cross-framework: LocaleKey */, value objc.IObject) IString
 	LocalizedStringForCalendarIdentifier(calendarIdentifier IString) IString
 	LocalizedStringForCollationIdentifier(collationIdentifier IString) IString
 	LocalizedStringForCollatorIdentifier(collatorIdentifier IString) IString
@@ -320,7 +320,7 @@ func (lc _LocaleClass) SystemLocale() Locale {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSLocale/displayName(forKey:value:)
-func (l_ Locale) DisplayNameForKeyValue(key objc.IObject /* cross-framework: LocaleKey */, value objectivec.IObject) IString {
+func (l_ Locale) DisplayNameForKeyValue(key objc.IObject /* cross-framework: LocaleKey */, value objc.IObject) IString {
 	rv := objc.Send[String](l_.ID, objc.Sel("displayNameForKey:value:"), key, value)
 	return rv
 }

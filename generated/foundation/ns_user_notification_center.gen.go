@@ -31,15 +31,15 @@ type _UserNotificationCenterClass struct {
 type IUserNotificationCenter interface {
 	objectivec.IObject
 	// properties:
-	DeliveredNotifications() []IUserNotification
+	DeliveredNotifications() []UserNotification
 	ActualDeliveryDate() IDate
 	SetActualDeliveryDate(value IDate)
 	DeliveryDate() IDate
 	SetDeliveryDate(value IDate)
 	IsPresented() bool
 	SetIsPresented(value bool)
-	Delegate() UserNotificationCenterDelegate /* not a class type */
-	SetDelegate(value UserNotificationCenterDelegate /* not a class type */)
+	Delegate() objc.IObject /* cross-framework: UserNotificationCenterDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: UserNotificationCenterDelegate */)
 	ScheduledNotifications() IUserNotification
 	SetScheduledNotifications(value IUserNotification)
 	// methods:
@@ -102,7 +102,7 @@ func NewUserNotificationCenter() UserNotificationCenter {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSUserNotificationCenter/deliveredNotifications
-func (u_ UserNotificationCenter) DeliveredNotifications() []IUserNotification {
+func (u_ UserNotificationCenter) DeliveredNotifications() []UserNotification {
 	rv := objc.Send[[]UserNotification](u_.ID, objc.Sel("deliveredNotifications"))
 	return rv
 }
@@ -169,8 +169,8 @@ func (u_ UserNotificationCenter) SetIsPresented(value bool) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/delegate
-func (u_ UserNotificationCenter) Delegate() UserNotificationCenterDelegate /* not a class type */ {
-	rv := objc.Send[UserNotificationCenterDelegate](u_.ID, objc.Sel("delegate"))
+func (u_ UserNotificationCenter) Delegate() objc.IObject /* cross-framework: UserNotificationCenterDelegate */ {
+	rv := objc.Send[objc.ID](u_.ID, objc.Sel("delegate"))
 	return rv
 }
 
@@ -179,7 +179,7 @@ func (u_ UserNotificationCenter) Delegate() UserNotificationCenterDelegate /* no
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsusernotificationcenter/delegate
-func (u_ UserNotificationCenter) SetDelegate(value UserNotificationCenterDelegate /* not a class type */) {
+func (u_ UserNotificationCenter) SetDelegate(value objc.IObject /* cross-framework: UserNotificationCenterDelegate */) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setDelegate:"), value)
 }
 

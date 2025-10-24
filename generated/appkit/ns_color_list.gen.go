@@ -38,9 +38,6 @@ type IColorList interface {
 	Name() unsafe.Pointer
 	SetName(value unsafe.Pointer)
 	// methods:
-	InsertColorKeyAtIndex(color IColor, key objc.IObject /* cross-framework: ColorName */, loc uint)
-	RemoveColorWithKey(key objc.IObject /* cross-framework: ColorName */)
-	RemoveFile()
 }
 
 // An ordered list of color objects, identified by keys.
@@ -96,51 +93,22 @@ func NewColorList() ColorList {
 
 
 
-// Searches the available color lists array and returns the color list with the specified name.
+// Returns an array of all color lists found in the standard color list directories.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/init(named:)
-func NewColorListNamed(name objc.IObject /* cross-framework: ColorListName */) ColorList {
-	rv := objc.Send[ColorList](objc.ID(getColorListClass().class), objc.Sel("colorListNamed:"), name)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/availableColorLists
+func (cc _ColorListClass) AvailableColorLists() []ColorList {
+	rv := objc.Send[[]ColorList](objc.ID(cc.class), objc.Sel("availableColorLists"))
 	return rv
 }
 
-
-
-// Searches the available color lists array and returns the color list with the specified name.
+// Returns an array of all color lists found in the standard color list directories.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/init(named:)
-func (cc _ColorListClass) ColorListNamed(name objc.IObject /* cross-framework: ColorListName */) IColorList {
-	rv := objc.Send[ColorList](objc.ID(cc.class), objc.Sel("colorListNamed:"), name)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/availableColorLists
+func (c_ ColorList) AvailableColorLists() []ColorList {
+	rv := objc.Send[[]ColorList](c_.ID, objc.Sel("availableColorLists"))
 	return rv
-}
-
-
-// Inserts the specified color at the specified location in the color list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/insertColor(_:key:at:)
-func (c_ ColorList) InsertColorKeyAtIndex(color IColor, key objc.IObject /* cross-framework: ColorName */, loc uint) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("insertColor:key:atIndex:"), color, key, loc)
-}
-
-
-// Removes the color associated with the specified key from the color list.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/removeColor(withKey:)
-func (c_ ColorList) RemoveColorWithKey(key objc.IObject /* cross-framework: ColorName */) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeColorWithKey:"), key)
-}
-
-
-// Removes the file from which the list was created, if the file is in a standard search path and owned by the user.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSColorList/removeFile()
-func (c_ ColorList) RemoveFile() {
-	objc.Send[objc.ID](c_.ID, objc.Sel("removeFile"))
 }
 
 
@@ -199,5 +167,6 @@ func (c_ ColorList) Name() unsafe.Pointer {
 func (c_ ColorList) SetName(value unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
 }
+
 
 

@@ -34,8 +34,8 @@ type IPredicate interface {
 	PredicateFormat() IString
 	// methods:
 	AllowEvaluation()
-	EvaluateWithObject(object objectivec.IObject) bool
-	EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings IDictionary) bool
+	EvaluateWithObject(object objc.IObject) bool
+	EvaluateWithObjectSubstitutionVariables(object objc.IObject, bindings IDictionary) bool
 	PredicateWithSubstitutionVariables(variables IDictionary) unsafe.Pointer
 }
 
@@ -216,7 +216,7 @@ func (p_ Predicate) AllowEvaluation() {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/evaluate(with:)
-func (p_ Predicate) EvaluateWithObject(object objectivec.IObject) bool {
+func (p_ Predicate) EvaluateWithObject(object objc.IObject) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:"), object)
 	return rv
 }
@@ -226,7 +226,7 @@ func (p_ Predicate) EvaluateWithObject(object objectivec.IObject) bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSPredicate/evaluate(with:substitutionVariables:)
-func (p_ Predicate) EvaluateWithObjectSubstitutionVariables(object objectivec.IObject, bindings IDictionary) bool {
+func (p_ Predicate) EvaluateWithObjectSubstitutionVariables(object objc.IObject, bindings IDictionary) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("evaluateWithObject:substitutionVariables:"), object, bindings)
 	return rv
 }

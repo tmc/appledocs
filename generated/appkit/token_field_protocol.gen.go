@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // tokenFieldProtocol is the tokenField: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to tokenField:.
 var tokenFieldProtocol *objc.Protocol
 

@@ -35,22 +35,18 @@ type ISavePanel interface {
 	// properties:
 	AccessoryView() IView
 	SetAccessoryView(value IView)
-	AllowedContentTypes() []objc.IObject /* cross-framework: UTType */
-	SetAllowedContentTypes(value []objc.IObject /* cross-framework: UTType */)
+	AllowedContentTypes() []uniformtypeidentifiers.UTType
+	SetAllowedContentTypes(value []uniformtypeidentifiers.UTType)
+	AllowedFileTypes() []string
+	SetAllowedFileTypes(value []string)
 	AllowsOtherFileTypes() bool
 	SetAllowsOtherFileTypes(value bool)
 	CanCreateDirectories() bool
 	SetCanCreateDirectories(value bool)
 	CanSelectHiddenExtension() bool
 	SetCanSelectHiddenExtension(value bool)
-	CurrentContentType() objc.IObject /* cross-framework: UTType */
-	SetCurrentContentType(value objc.IObject /* cross-framework: UTType */)
-	Delegate() objc.ID
-	SetDelegate(value objc.ID)
 	DirectoryURL() objc.IObject /* cross-framework: NSURL */
 	SetDirectoryURL(value objc.IObject /* cross-framework: NSURL */)
-	Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */
-	SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */)
 	Expanded() bool
 	ExtensionHidden() bool
 	SetExtensionHidden(value bool)
@@ -62,8 +58,6 @@ type ISavePanel interface {
 	SetNameFieldStringValue(value objc.IObject /* cross-framework: NSString */)
 	Prompt() objc.IObject /* cross-framework: NSString */
 	SetPrompt(value objc.IObject /* cross-framework: NSString */)
-	ShowsContentTypes() bool
-	SetShowsContentTypes(value bool)
 	ShowsHiddenFiles() bool
 	SetShowsHiddenFiles(value bool)
 	ShowsTagField() bool
@@ -75,15 +69,21 @@ type ISavePanel interface {
 	TreatsFilePackagesAsDirectories() bool
 	SetTreatsFilePackagesAsDirectories(value bool)
 	URL() objc.IObject /* cross-framework: NSURL */
+	CurrentContentType() uniformtypeidentifiers.UTType
+	SetCurrentContentType(value uniformtypeidentifiers.UTType)
+	Delegate() objc.IObject /* cross-framework: OpenSavePanelDelegate */
+	SetDelegate(value objc.IObject /* cross-framework: OpenSavePanelDelegate */)
+	Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */
+	SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */)
 	IsExpanded() bool
 	SetIsExpanded(value bool)
 	IsExtensionHidden() bool
 	SetIsExtensionHidden(value bool)
+	ShowsContentTypes() bool
+	SetShowsContentTypes(value bool)
 	// methods:
 	BeginWithCompletionHandler(handler unsafe.Pointer)
 	BeginSheetModalForWindowCompletionHandler(window IWindow, handler unsafe.Pointer)
-	Cancel(sender objectivec.IObject)
-	Ok(sender objectivec.IObject)
 	RunModal() objc.IObject /* cross-framework: ModalResponse */
 	ValidateVisibleColumns()
 }
@@ -143,16 +143,6 @@ func NewSavePanel() SavePanel {
 
 
 
-// Creates a new Save panel and initializes it with default information.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/savePanel
-func (sc _SavePanelClass) SavePanel() ISavePanel {
-	rv := objc.Send[SavePanel](objc.ID(sc.class), objc.Sel("savePanel"))
-	return rv
-}
-
-
 // Presents the panel as a modeless window.
 //
 // [Full Topic]
@@ -171,30 +161,12 @@ func (s_ SavePanel) BeginSheetModalForWindowCompletionHandler(window IWindow, ha
 }
 
 
-// The action method that the panel calls when the user clicks the Cancel button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/cancel(_:)
-func (s_ SavePanel) Cancel(sender objectivec.IObject) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("cancel:"), sender)
-}
-
-
-// The action method that the panel calls when the user clicks the OK button.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/ok(_:)
-func (s_ SavePanel) Ok(sender objectivec.IObject) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("ok:"), sender)
-}
-
-
 // Displays the panel and begins its event loop with the current working (or last-selected) directory as the default starting point.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/runModal()
 func (s_ SavePanel) RunModal() objc.IObject /* cross-framework: ModalResponse */ {
-	rv := objc.Send[ModalResponse](s_.ID, objc.Sel("runModal"))
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("runModal"))
 	return rv
 }
 
@@ -231,7 +203,7 @@ func (s_ SavePanel) SetAccessoryView(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) AllowedContentTypes() []objc.IObject /* cross-framework: UTType */ {
+func (s_ SavePanel) AllowedContentTypes() []uniformtypeidentifiers.UTType {
 	rv := objc.Send[[]uniformtypeidentifiers.UTType](s_.ID, objc.Sel("allowedContentTypes"))
 	return rv
 }
@@ -241,7 +213,7 @@ func (s_ SavePanel) AllowedContentTypes() []objc.IObject /* cross-framework: UTT
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedContentTypes
-func (s_ SavePanel) SetAllowedContentTypes(value []objc.IObject /* cross-framework: UTType */) {
+func (s_ SavePanel) SetAllowedContentTypes(value []uniformtypeidentifiers.UTType) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -253,6 +225,35 @@ func (s_ SavePanel) SetAllowedContentTypes(value []objc.IObject /* cross-framewo
 		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
 	}
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedContentTypes:"), nsArray)
+}
+
+
+// An array of filename extensions or UTIs that represent the allowed file types for the panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedFileTypes
+func (s_ SavePanel) AllowedFileTypes() []string {
+	rv := objc.Send[[]string](s_.ID, objc.Sel("allowedFileTypes"))
+	return rv
+}
+
+
+// An array of filename extensions or UTIs that represent the allowed file types for the panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/allowedFileTypes
+func (s_ SavePanel) SetAllowedFileTypes(value []string) {
+	// Convert Go slice to NSArray
+	var nsArray objc.ID
+	if len(value) > 0 {
+		nsArray = objc.ID(objc.GetClass("NSMutableArray")).Send(objc.Sel("arrayWithCapacity:"), len(value))
+		for _, item := range value {
+			nsArray.Send(objc.Sel("addObject:"), item)
+		}
+	} else {
+		nsArray = objc.ID(objc.GetClass("NSArray")).Send(objc.Sel("array"))
+	}
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowedFileTypes:"), nsArray)
 }
 
 
@@ -313,44 +314,6 @@ func (s_ SavePanel) SetCanSelectHiddenExtension(value bool) {
 }
 
 
-// :The current type. If set to , resets to the first allowed content type. Returns if is empty. : Not used.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-func (s_ SavePanel) CurrentContentType() objc.IObject /* cross-framework: UTType */ {
-	rv := objc.Send[uniformtypeidentifiers.UTType](s_.ID, objc.Sel("currentContentType"))
-	return rv
-}
-
-
-// :The current type. If set to , resets to the first allowed content type. Returns if is empty. : Not used.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/currentContentType
-func (s_ SavePanel) SetCurrentContentType(value objc.IObject /* cross-framework: UTType */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentContentType:"), value)
-}
-
-
-// A custom object you use to manage interactions with an open or save panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/delegate
-func (s_ SavePanel) Delegate() objc.ID {
-	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
-	return rv
-}
-
-
-// A custom object you use to manage interactions with an open or save panel.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/delegate
-func (s_ SavePanel) SetDelegate(value objc.ID) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
-}
-
-
 // The current directory shown in the panel.
 //
 // [Full Topic]
@@ -367,21 +330,6 @@ func (s_ SavePanel) DirectoryURL() objc.IObject /* cross-framework: NSURL */ {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/directoryURL
 func (s_ SavePanel) SetDirectoryURL(value objc.IObject /* cross-framework: NSURL */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDirectoryURL:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/identifier
-func (s_ SavePanel) Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */ {
-	rv := objc.Send[UserInterfaceItemIdentifier](s_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/identifier
-func (s_ SavePanel) SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
 }
 
 
@@ -487,25 +435,6 @@ func (s_ SavePanel) Prompt() objc.IObject /* cross-framework: NSString */ {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/prompt
 func (s_ SavePanel) SetPrompt(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setPrompt:"), value)
-}
-
-
-// : Whether or not to show a control for selecting the type of the saved file. The control shows the types in . Default is . : Not used.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsContentTypes
-func (s_ SavePanel) ShowsContentTypes() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("showsContentTypes"))
-	return rv
-}
-
-
-// : Whether or not to show a control for selecting the type of the saved file. The control shows the types in . Default is . : Not used.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSavePanel/showsContentTypes
-func (s_ SavePanel) SetShowsContentTypes(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsContentTypes:"), value)
 }
 
 
@@ -624,6 +553,59 @@ func (s_ SavePanel) URL() objc.IObject /* cross-framework: NSURL */ {
 }
 
 
+// :The current type. If set to
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/currentcontenttype
+func (s_ SavePanel) CurrentContentType() uniformtypeidentifiers.UTType {
+	rv := objc.Send[uniformtypeidentifiers.UTType](s_.ID, objc.Sel("currentContentType"))
+	return rv
+}
+
+
+// :The current type. If set to
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/currentcontenttype
+func (s_ SavePanel) SetCurrentContentType(value uniformtypeidentifiers.UTType) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setCurrentContentType:"), value)
+}
+
+
+// A custom object you use to manage interactions with an open or save panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/delegate
+func (s_ SavePanel) Delegate() objc.IObject /* cross-framework: OpenSavePanelDelegate */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("delegate"))
+	return rv
+}
+
+
+// A custom object you use to manage interactions with an open or save panel.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/delegate
+func (s_ SavePanel) SetDelegate(value objc.IObject /* cross-framework: OpenSavePanelDelegate */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setDelegate:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/identifier
+func (s_ SavePanel) Identifier() objc.IObject /* cross-framework: UserInterfaceItemIdentifier */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("identifier"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/identifier
+func (s_ SavePanel) SetIdentifier(value objc.IObject /* cross-framework: UserInterfaceItemIdentifier */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
+}
+
+
 // A Boolean value that indicates whether whether the panel is expanded.
 //
 // [Full Topic]
@@ -659,6 +641,25 @@ func (s_ SavePanel) IsExtensionHidden() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/isextensionhidden
 func (s_ SavePanel) SetIsExtensionHidden(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsExtensionHidden:"), value)
+}
+
+
+// : Whether or not to show a control for selecting the type of the saved file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/showscontenttypes
+func (s_ SavePanel) ShowsContentTypes() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("showsContentTypes"))
+	return rv
+}
+
+
+// : Whether or not to show a control for selecting the type of the saved file.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nssavepanel/showscontenttypes
+func (s_ SavePanel) SetShowsContentTypes(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setShowsContentTypes:"), value)
 }
 
 

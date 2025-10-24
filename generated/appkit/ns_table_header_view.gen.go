@@ -34,8 +34,8 @@ type ITableHeaderView interface {
 	DraggedColumn() int
 	DraggedDistance() float64
 	ResizedColumn() int
-	TableView() objc.IObject /* cross-framework: TableView */
-	SetTableView(value objc.IObject /* cross-framework: TableView */)
+	TableView() ITableView
+	SetTableView(value ITableView)
 	// methods:
 	ColumnAtPoint(point objc.IObject /* cross-framework: Point */) int
 	HeaderRectOfColumn(column int) objc.IObject /* cross-framework: Rect */
@@ -150,7 +150,7 @@ func (t_ TableHeaderView) ResizedColumn() int {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
-func (t_ TableHeaderView) TableView() objc.IObject /* cross-framework: TableView */ {
+func (t_ TableHeaderView) TableView() ITableView {
 	rv := objc.Send[TableView](t_.ID, objc.Sel("tableView"))
 	return rv
 }
@@ -160,7 +160,7 @@ func (t_ TableHeaderView) TableView() objc.IObject /* cross-framework: TableView
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTableHeaderView/tableView
-func (t_ TableHeaderView) SetTableView(value objc.IObject /* cross-framework: TableView */) {
+func (t_ TableHeaderView) SetTableView(value ITableView) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setTableView:"), value)
 }
 

@@ -7,7 +7,7 @@ import "github.com/ebitengine/purego/objc"
 // accessibilityPerformShowDefaultUIProtocol is the accessibilityPerformShowDefaultUI protocol.
 //
 // Availability:
-//   - macOS 10.10+
+//   - macOS +
 //
 // Use this protocol when registering custom classes that conform to accessibilityPerformShowDefaultUI.
 var accessibilityPerformShowDefaultUIProtocol *objc.Protocol

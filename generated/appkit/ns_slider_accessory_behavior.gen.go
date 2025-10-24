@@ -91,7 +91,7 @@ func NewSliderAccessoryBehaviorWithHandler(handler unsafe.Pointer) SliderAccesso
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/init(target:action:)
-func NewSliderAccessoryBehaviorWithTargetAction(target objectivec.IObject, action objc.SEL) SliderAccessoryBehavior {
+func NewSliderAccessoryBehaviorWithTargetAction(target objc.IObject, action objc.SEL) SliderAccessoryBehavior {
 	rv := objc.Send[SliderAccessoryBehavior](objc.ID(getSliderAccessoryBehaviorClass().class), objc.Sel("behaviorWithTarget:action:"), target, action)
 	return rv
 }
@@ -108,7 +108,7 @@ func (sc _SliderAccessoryBehaviorClass) BehaviorWithHandler(handler unsafe.Point
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessoryBehavior/init(target:action:)
-func (sc _SliderAccessoryBehaviorClass) BehaviorWithTargetAction(target objectivec.IObject, action objc.SEL) ISliderAccessoryBehavior {
+func (sc _SliderAccessoryBehaviorClass) BehaviorWithTargetAction(target objc.IObject, action objc.SEL) ISliderAccessoryBehavior {
 	rv := objc.Send[SliderAccessoryBehavior](objc.ID(sc.class), objc.Sel("behaviorWithTarget:action:"), target, action)
 	return rv
 }

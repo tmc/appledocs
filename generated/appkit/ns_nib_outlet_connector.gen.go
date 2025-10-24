@@ -31,6 +31,7 @@ type INibOutletConnector interface {
 	INibConnector
 	// properties:
 	// methods:
+	EstablishConnection()
 }
 
 // An outlet connection between Interface Builder objects.
@@ -84,6 +85,13 @@ func NewNibOutletConnector() NibOutletConnector {
 	return getNibOutletConnectorClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibOutletConnector/establishConnection
+func (n_ NibOutletConnector) EstablishConnection() {
+	objc.Send[objc.ID](n_.ID, objc.Sel("establishConnection"))
+}
 
 
 

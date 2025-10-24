@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // SearchFieldDelegateProtocol is the NSSearchFieldDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSSearchFieldDelegate.
 var SearchFieldDelegateProtocol *objc.Protocol
 

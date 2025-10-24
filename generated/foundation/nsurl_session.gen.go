@@ -133,7 +133,7 @@ func NewURLSessionWithConfiguration(configuration IURLSessionConfiguration) URLS
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
-func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate objectivec.IObject, queue IOperationQueue) URLSession {
+func NewURLSessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate objc.IObject, queue IOperationQueue) URLSession {
 	rv := objc.Send[URLSession](objc.ID(getURLSessionClass().class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv
 }
@@ -154,7 +154,7 @@ func (uc _URLSessionClass) SessionWithConfiguration(configuration IURLSessionCon
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSession/init(configuration:delegate:delegateQueue:)
-func (uc _URLSessionClass) SessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate objectivec.IObject, queue IOperationQueue) IURLSession {
+func (uc _URLSessionClass) SessionWithConfigurationDelegateDelegateQueue(configuration IURLSessionConfiguration, delegate objc.IObject, queue IOperationQueue) IURLSession {
 	rv := objc.Send[URLSession](objc.ID(uc.class), objc.Sel("sessionWithConfiguration:delegate:delegateQueue:"), configuration, delegate, queue)
 	return rv
 }

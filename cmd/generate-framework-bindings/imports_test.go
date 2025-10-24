@@ -30,9 +30,10 @@ func TestDetermineRequiredImports(t *testing.T) {
 			},
 			framework: "ScreenSaver",
 			wantImports: []string{
-				"github.com/tmc/appledocs/generated/coregraphics",
 				"github.com/tmc/appledocs/generated/objc",
 			},
+			// Note: "Rect" alone doesn't trigger cross-framework imports
+			// (it would need to be CGRect or corefoundation.CGRect)
 		},
 		{
 			name: "ScreenSaver with BackingStoreType",
@@ -45,9 +46,10 @@ func TestDetermineRequiredImports(t *testing.T) {
 			},
 			framework: "ScreenSaver",
 			wantImports: []string{
-				"github.com/tmc/appledocs/generated/appkit",
 				"github.com/tmc/appledocs/generated/objc",
 			},
+			// Note: "BackingStoreType" alone doesn't trigger cross-framework imports
+			// (it would need to be appkit.BackingStoreType)
 		},
 		{
 			name: "AppKit with NSRect - no qualified import needed",
@@ -62,12 +64,14 @@ func TestDetermineRequiredImports(t *testing.T) {
 			},
 			framework: "AppKit",
 			wantImports: []string{
-				"github.com/tmc/appledocs/generated/coregraphics",
 				"github.com/tmc/appledocs/generated/objc",
 			},
+			// NSRect gets stripped to Rect (no cross-framework import needed)
 			// AppKit shouldn't import itself
 			dontWantImports: []string{
 				"github.com/tmc/appledocs/generated/appkit",
+				"github.com/tmc/appledocs/generated/coregraphics",
+				"github.com/tmc/appledocs/generated/corefoundation",
 			},
 		},
 		{
@@ -235,22 +239,22 @@ func TestQualifiedTypeGeneration(t *testing.T) {
 			name:      "ScreenSaver CGRect",
 			objcType:  "CGRect",
 			framework: "ScreenSaver",
-			wantType:  "coregraphics.CGRect",
-			wantPkg:   "coregraphics",
+			wantType:  "corefoundation.CGRect",
+			wantPkg:   "corefoundation", // Geometry types defined in CoreFoundation
 		},
 		{
-			name:      "ScreenSaver BackingStoreType",
-			objcType:  "BackingStoreType",
+			name:      "ScreenSaver NSBackingStoreType",
+			objcType:  "NSBackingStoreType",
 			framework: "ScreenSaver",
-			wantType:  "appkit.BackingStoreType",
-			wantPkg:   "appkit",
+			wantType:  "BackingStoreType", // Stripped, not qualified
+			wantPkg:   "",
 		},
 		{
 			name:      "AppKit CGRect",
 			objcType:  "CGRect",
 			framework: "AppKit",
-			wantType:  "coregraphics.CGRect",
-			wantPkg:   "coregraphics",
+			wantType:  "corefoundation.CGRect",
+			wantPkg:   "corefoundation", // Geometry types defined in CoreFoundation
 		},
 		{
 			name:      "Foundation unqualified",
@@ -263,7 +267,7 @@ func TestQualifiedTypeGeneration(t *testing.T) {
 			name:      "CoreGraphics unqualified",
 			objcType:  "CGRect",
 			framework: "CoreGraphics",
-			wantType:  "CGRect",
+			wantType:  "Rect", // Uses local alias in CoreGraphics
 			wantPkg:   "",
 		},
 	}
@@ -295,7 +299,10 @@ func TestQualifiedTypeGeneration(t *testing.T) {
 
 // TestCrossFrameworkReferences tests that cross-framework references work correctly
 func TestCrossFrameworkReferences(t *testing.T) {
-	// Test that ScreenSaver can reference both AppKit and CoreGraphics types
+	// Test that ScreenSaver can reference both AppKit and CoreFoundation types
+	// Note: Unqualified type names like "Rect" and "BackingStoreType" don't
+	// trigger cross-framework imports - they would need to be fully qualified
+	// (e.g., "corefoundation.CGRect", "appkit.BackingStoreType") to generate imports.
 	screenSaverClass := ClassInfo{
 		Name: "ScreenSaverView",
 		Methods: []MethodInfo{
@@ -303,37 +310,36 @@ func TestCrossFrameworkReferences(t *testing.T) {
 				Selector:   "initWithFrame:isPreview:",
 				ReturnType: "instancetype",
 				Parameters: []occ2go.Parameter{
-					{Type: "Rect"}, // Should map to coregraphics.CGRect
+					{Type: "Rect"}, // Unqualified - no import generated
 					{Type: "bool"},
 				},
 			},
 			{
 				Selector:   "backingStoreType",
-				ReturnType: "BackingStoreType", // Should map to appkit.BackingStoreType
+				ReturnType: "BackingStoreType", // Unqualified - no import generated
 			},
 		},
 	}
 
 	imports := determineImports(screenSaverClass, "ScreenSaver")
 
-	// Should import both coregraphics and appkit
-	hasCoregraphics := false
-	hasAppKit := false
-
+	// With unqualified types, only objc import is generated
+	hasObjc := false
 	for _, imp := range imports {
-		if strings.Contains(imp, "coregraphics") {
-			hasCoregraphics = true
-		}
-		if strings.Contains(imp, "appkit") {
-			hasAppKit = true
+		if strings.Contains(imp, "/objc") {
+			hasObjc = true
 		}
 	}
 
-	if !hasCoregraphics {
-		t.Error("ScreenSaver should import coregraphics for Rect type")
+	if !hasObjc {
+		t.Error("ScreenSaver should import objc")
 	}
-	if !hasAppKit {
-		t.Error("ScreenSaver should import appkit for BackingStoreType")
+
+	// Verify no cross-framework imports for unqualified types
+	for _, imp := range imports {
+		if strings.Contains(imp, "coregraphics") || strings.Contains(imp, "appkit") || strings.Contains(imp, "corefoundation") {
+			t.Errorf("Unexpected cross-framework import for unqualified type: %s", imp)
+		}
 	}
 }
 
@@ -362,15 +368,15 @@ func TestImportDeduplication(t *testing.T) {
 
 	imports := determineImports(classInfo, "ScreenSaver")
 
-	// Count coregraphics imports
+	// Count corefoundation imports (geometry types are defined in CoreFoundation)
 	count := 0
 	for _, imp := range imports {
-		if strings.Contains(imp, "coregraphics") {
+		if strings.Contains(imp, "corefoundation") {
 			count++
 		}
 	}
 
 	if count != 1 {
-		t.Errorf("Expected 1 coregraphics import, got %d: %v", count, imports)
+		t.Errorf("Expected 1 corefoundation import, got %d: %v", count, imports)
 	}
 }

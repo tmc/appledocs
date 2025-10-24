@@ -37,12 +37,8 @@ type IScriptCommand interface {
 	SetArguments(value IString)
 	CommandDescription() IScriptCommandDescription
 	SetCommandDescription(value IScriptCommandDescription)
-	DirectParameter() unsafe.Pointer
-	SetDirectParameter(value unsafe.Pointer)
 	EvaluatedArguments() IString
 	SetEvaluatedArguments(value IString)
-	EvaluatedReceivers() unsafe.Pointer
-	SetEvaluatedReceivers(value unsafe.Pointer)
 	IsWellFormed() bool
 	SetIsWellFormed(value bool)
 	ReceiversSpecifier() IScriptObjectSpecifier
@@ -56,7 +52,7 @@ type IScriptCommand interface {
 	ScriptErrorString() IString
 	SetScriptErrorString(value IString)
 	// methods:
-	ResumeExecutionWithResult(result objectivec.IObject)
+	ResumeExecutionWithResult(result objc.IObject)
 	SuspendExecution()
 }
 
@@ -117,7 +113,7 @@ func NewScriptCommand() ScriptCommand {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSScriptCommand/resumeExecution(withResult:)
-func (s_ ScriptCommand) ResumeExecutionWithResult(result objectivec.IObject) {
+func (s_ ScriptCommand) ResumeExecutionWithResult(result objc.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("resumeExecutionWithResult:"), result)
 }
 
@@ -188,25 +184,6 @@ func (s_ ScriptCommand) SetCommandDescription(value IScriptCommandDescription) {
 }
 
 
-// Sets the object that corresponds to the direct parameter of the Apple event from which the receiver derives.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/directparameter
-func (s_ ScriptCommand) DirectParameter() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("directParameter"))
-	return rv
-}
-
-
-// Sets the object that corresponds to the direct parameter of the Apple event from which the receiver derives.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/directparameter
-func (s_ ScriptCommand) SetDirectParameter(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDirectParameter:"), value)
-}
-
-
 // Returns a dictionary containing the arguments of the command, evaluated from object specifiers to objects if necessary. The keys in the dictionary are the argument names.
 //
 // [Full Topic]
@@ -223,25 +200,6 @@ func (s_ ScriptCommand) EvaluatedArguments() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/evaluatedarguments
 func (s_ ScriptCommand) SetEvaluatedArguments(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluatedArguments:"), value)
-}
-
-
-// Returns the object or objects to which the command is to be sent (called both the “receivers” or “targets” of script commands).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/evaluatedreceivers
-func (s_ ScriptCommand) EvaluatedReceivers() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("evaluatedReceivers"))
-	return rv
-}
-
-
-// Returns the object or objects to which the command is to be sent (called both the “receivers” or “targets” of script commands).
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/foundation/nsscriptcommand/evaluatedreceivers
-func (s_ ScriptCommand) SetEvaluatedReceivers(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setEvaluatedReceivers:"), value)
 }
 
 

@@ -32,8 +32,8 @@ type _FontAssetRequestClass struct {
 type IFontAssetRequest interface {
 	objectivec.IObject
 	// properties:
-	DownloadedFontDescriptors() []IFontDescriptor
-	Progress() objc.IObject /* cross-framework: Progress */
+	DownloadedFontDescriptors() []FontDescriptor
+	Progress() foundation.Progress
 	// methods:
 	DownloadFontAssetsWithCompletionHandler(completionHandler unsafe.Pointer)
 }
@@ -86,7 +86,7 @@ func NewFontAssetRequest() FontAssetRequest {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/init(fontDescriptors:options:)
-func NewFontAssetRequestWithFontDescriptorsOptions(fontDescriptors []IFontDescriptor, options FontAssetRequestOptions) FontAssetRequest {
+func NewFontAssetRequestWithFontDescriptorsOptions(fontDescriptors []FontDescriptor, options FontAssetRequestOptions) FontAssetRequest {
 	instance := getFontAssetRequestClass().Alloc()
 	rv := objc.Send[FontAssetRequest](instance.ID, objc.Sel("initWithFontDescriptors:options:"), fontDescriptors, options)
 	rv.Autorelease()
@@ -104,7 +104,7 @@ func (f_ FontAssetRequest) DownloadFontAssetsWithCompletionHandler(completionHan
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/downloadedFontDescriptors
-func (f_ FontAssetRequest) DownloadedFontDescriptors() []IFontDescriptor {
+func (f_ FontAssetRequest) DownloadedFontDescriptors() []FontDescriptor {
 	rv := objc.Send[[]FontDescriptor](f_.ID, objc.Sel("downloadedFontDescriptors"))
 	return rv
 }
@@ -112,7 +112,7 @@ func (f_ FontAssetRequest) DownloadedFontDescriptors() []IFontDescriptor {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSFontAssetRequest/progress
-func (f_ FontAssetRequest) Progress() objc.IObject /* cross-framework: Progress */ {
+func (f_ FontAssetRequest) Progress() foundation.Progress {
 	rv := objc.Send[foundation.Progress](f_.ID, objc.Sel("progress"))
 	return rv
 }

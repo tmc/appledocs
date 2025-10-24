@@ -13,7 +13,7 @@ var _ = foundation.NewCompoundPredicate
 // Returns a new predicate that you form using an AND operation on the predicates in a specified array.
 func ExampleNewCompoundPredicateAndPredicateWithSubpredicates() {
 	_ = foundation.NewCompoundPredicateAndPredicateWithSubpredicates(
-		[]foundation.IPredicate{}, // subpredicates []IPredicate
+		[]foundation.Predicate{}, // subpredicates []Predicate
 	)
 	// Output:
 }
@@ -21,7 +21,7 @@ func ExampleNewCompoundPredicateAndPredicateWithSubpredicates() {
 // Returns a new predicate that you form using an OR operation on the predicates in a specified array.
 func ExampleNewCompoundPredicateOrPredicateWithSubpredicates() {
 	_ = foundation.NewCompoundPredicateOrPredicateWithSubpredicates(
-		[]foundation.IPredicate{}, // subpredicates []IPredicate
+		[]foundation.Predicate{}, // subpredicates []Predicate
 	)
 	// Output:
 }
@@ -30,7 +30,7 @@ func ExampleNewCompoundPredicateOrPredicateWithSubpredicates() {
 func ExampleNewCompoundPredicateWithTypeSubpredicates() {
 	_ = foundation.NewCompoundPredicateWithTypeSubpredicates(
 		foundation.CompoundPredicateType{}, // type CompoundPredicateType
-		[]foundation.IPredicate{}, // subpredicates []IPredicate
+		[]foundation.Predicate{}, // subpredicates []Predicate
 	)
 	// Output:
 }

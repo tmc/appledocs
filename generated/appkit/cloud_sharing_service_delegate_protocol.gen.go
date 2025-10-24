@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // CloudSharingServiceDelegateProtocol is the NSCloudSharingServiceDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSCloudSharingServiceDelegate.
 var CloudSharingServiceDelegateProtocol *objc.Protocol
 

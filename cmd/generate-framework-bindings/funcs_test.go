@@ -190,7 +190,7 @@ func TestParameterToGoType(t *testing.T) {
 		{"double", "AppKit", "float64"},
 		{"float", "AppKit", "float32"},
 		{"void *", "AppKit", "unsafe.Pointer"},
-		{"id", "AppKit", "unsafe.Pointer"},
+		{"id", "AppKit", "objc.ID"},
 	}
 
 	for _, tt := range tests {
@@ -485,7 +485,7 @@ func TestMapObjCTypeToGo_BlockTypes(t *testing.T) {
 			name:      "block with return value",
 			objcType:  "BOOL (^)(id, NSError *)",
 			framework: "Foundation",
-			expected:  "func(unsafe.Pointer, unsafe.Pointer) bool", // Note: parameters map to unsafe.Pointer
+			expected:  "func(objc.ID, unsafe.Pointer) bool", // Note: id maps to objc.ID, NSError * maps to unsafe.Pointer
 		},
 	}
 

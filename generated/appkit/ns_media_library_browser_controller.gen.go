@@ -34,12 +34,14 @@ type IMediaLibraryBrowserController interface {
 	// properties:
 	Frame() objc.IObject /* cross-framework: Rect */
 	SetFrame(value objc.IObject /* cross-framework: Rect */)
+	Visible() bool
+	SetVisible(value bool)
+	MediaLibraries() MediaLibrary
+	SetMediaLibraries(value MediaLibrary)
 	IsVisible() bool
 	SetIsVisible(value bool)
-	MediaLibraries() unsafe.Pointer
-	SetMediaLibraries(value unsafe.Pointer)
 	// methods:
-	TogglePanel(sender objectivec.IObject)
+	TogglePanel(sender objc.IObject)
 }
 
 // An object that configures and displays a Media Library Browser panel.
@@ -95,11 +97,20 @@ func NewMediaLibraryBrowserController() MediaLibraryBrowserController {
 
 
 
+// Returns the shared Media Library Browser instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/shared
+func (mc _MediaLibraryBrowserControllerClass) SharedMediaLibraryBrowserController() MediaLibraryBrowserController {
+	rv := objc.Send[MediaLibraryBrowserController](objc.ID(mc.class), objc.Sel("sharedMediaLibraryBrowserController"))
+	return rv
+}
+
 // Toggles the visibility of the Media Library Browser.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/togglePanel(_:)
-func (m_ MediaLibraryBrowserController) TogglePanel(sender objectivec.IObject) {
+func (m_ MediaLibraryBrowserController) TogglePanel(sender objc.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("togglePanel:"), sender)
 }
 
@@ -126,6 +137,54 @@ func (m_ MediaLibraryBrowserController) SetFrame(value objc.IObject /* cross-fra
 // A Boolean value that determines whether the Media Library Browser panel is visible.
 //
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/isVisible
+func (m_ MediaLibraryBrowserController) Visible() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("visible"))
+	return rv
+}
+
+
+// A Boolean value that determines whether the Media Library Browser panel is visible.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/isVisible
+func (m_ MediaLibraryBrowserController) SetVisible(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setVisible:"), value)
+}
+
+
+// The media library that is in use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/mediaLibraries
+func (m_ MediaLibraryBrowserController) MediaLibraries() MediaLibrary {
+	rv := objc.Send[MediaLibrary](m_.ID, objc.Sel("mediaLibraries"))
+	return rv
+}
+
+
+// The media library that is in use.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/mediaLibraries
+func (m_ MediaLibraryBrowserController) SetMediaLibraries(value MediaLibrary) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibraries:"), value)
+}
+
+
+// Returns the shared Media Library Browser instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMediaLibraryBrowserController/shared
+func (m_ MediaLibraryBrowserController) SharedMediaLibraryBrowserController() IMediaLibraryBrowserController {
+	rv := objc.Send[MediaLibraryBrowserController](m_.ID, objc.Sel("sharedMediaLibraryBrowserController"))
+	return rv
+}
+
+
+// A Boolean value that determines whether the Media Library Browser panel is visible.
+//
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
 func (m_ MediaLibraryBrowserController) IsVisible() bool {
 	rv := objc.Send[bool](m_.ID, objc.Sel("isVisible"))
@@ -139,25 +198,6 @@ func (m_ MediaLibraryBrowserController) IsVisible() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/isvisible
 func (m_ MediaLibraryBrowserController) SetIsVisible(value bool) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setIsVisible:"), value)
-}
-
-
-// The media library that is in use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/medialibraries
-func (m_ MediaLibraryBrowserController) MediaLibraries() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("mediaLibraries"))
-	return rv
-}
-
-
-// The media library that is in use.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmedialibrarybrowsercontroller/medialibraries
-func (m_ MediaLibraryBrowserController) SetMediaLibraries(value unsafe.Pointer) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMediaLibraries:"), value)
 }
 
 

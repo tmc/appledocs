@@ -1409,6 +1409,18 @@ type {{$typeName}} int
 type {{$typeName}} uint
 {{else if eq $typedef.BaseType "double" -}}
 type {{$typeName}} = float64
+{{else if eq $typedef.BaseType "float32" -}}
+type {{$typeName}} = float32
+{{else if eq $typedef.BaseType "float64" -}}
+type {{$typeName}} = float64
+{{else if eq $typedef.BaseType "uint32" -}}
+type {{$typeName}} = uint32
+{{else if eq $typedef.BaseType "int32" -}}
+type {{$typeName}} = int32
+{{else if eq $typedef.BaseType "uint64" -}}
+type {{$typeName}} = uint64
+{{else if eq $typedef.BaseType "int64" -}}
+type {{$typeName}} = int64
 {{else if or (eq $typedef.BaseType "NSString *") (eq $typedef.BaseType "NSString*") -}}
 // {{$typedef.Name}} is a string typedef
 type {{$typeName}} = string

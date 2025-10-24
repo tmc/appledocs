@@ -35,8 +35,8 @@ type ICustomTouchBarItem interface {
 	SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */)
 	View() IView
 	SetView(value IView)
-	ViewController() objc.IObject /* cross-framework: ViewController */
-	SetViewController(value objc.IObject /* cross-framework: ViewController */)
+	ViewController() IViewController
+	SetViewController(value IViewController)
 	// methods:
 }
 
@@ -96,7 +96,7 @@ func NewCustomTouchBarItem() CustomTouchBarItem {
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/customizationlabel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/customizationLabel
 func (c_ CustomTouchBarItem) CustomizationLabel() objc.IObject /* cross-framework: NSString */ {
 	rv := objc.Send[foundation.NSString](c_.ID, objc.Sel("customizationLabel"))
 	return rv
@@ -106,7 +106,7 @@ func (c_ CustomTouchBarItem) CustomizationLabel() objc.IObject /* cross-framewor
 // The user-visible string identifying this item during bar customization.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/customizationlabel
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/customizationLabel
 func (c_ CustomTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-framework: NSString */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setCustomizationLabel:"), value)
 }
@@ -115,7 +115,7 @@ func (c_ CustomTouchBarItem) SetCustomizationLabel(value objc.IObject /* cross-f
 // The view displayed in the bar to represent this item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/view
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/view
 func (c_ CustomTouchBarItem) View() IView {
 	rv := objc.Send[View](c_.ID, objc.Sel("view"))
 	return rv
@@ -125,7 +125,7 @@ func (c_ CustomTouchBarItem) View() IView {
 // The view displayed in the bar to represent this item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/view
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/view
 func (c_ CustomTouchBarItem) SetView(value IView) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setView:"), value)
 }
@@ -134,8 +134,8 @@ func (c_ CustomTouchBarItem) SetView(value IView) {
 // A view controller whose view is displayed in the bar to represent this item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/viewcontroller
-func (c_ CustomTouchBarItem) ViewController() objc.IObject /* cross-framework: ViewController */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/viewController
+func (c_ CustomTouchBarItem) ViewController() IViewController {
 	rv := objc.Send[ViewController](c_.ID, objc.Sel("viewController"))
 	return rv
 }
@@ -144,8 +144,8 @@ func (c_ CustomTouchBarItem) ViewController() objc.IObject /* cross-framework: V
 // A view controller whose view is displayed in the bar to represent this item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscustomtouchbaritem/viewcontroller
-func (c_ CustomTouchBarItem) SetViewController(value objc.IObject /* cross-framework: ViewController */) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCustomTouchBarItem/viewController
+func (c_ CustomTouchBarItem) SetViewController(value IViewController) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setViewController:"), value)
 }
 

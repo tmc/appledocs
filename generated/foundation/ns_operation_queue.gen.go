@@ -7,7 +7,6 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/cloudkit"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -39,7 +38,7 @@ type IOperationQueue interface {
 	Name() IString
 	SetName(value IString)
 	OperationCount() uint
-	Operations() []objectivec.IObject
+	Operations() []objc.IObject /* cross-framework: Operation */
 	Progress() IProgress
 	QualityOfService() QualityOfService
 	SetQualityOfService(value QualityOfService)
@@ -54,8 +53,8 @@ type IOperationQueue interface {
 	// methods:
 	AddBarrierBlock(barrier unsafe.Pointer)
 	AddOperationWithBlock(block unsafe.Pointer)
-	AddOperation(op objectivec.IObject)
-	AddOperationsWaitUntilFinished(ops []objectivec.IObject, wait bool)
+	AddOperation(op objc.IObject /* cross-framework: Operation */)
+	AddOperationsWaitUntilFinished(ops []objc.IObject /* cross-framework: Operation */, wait bool)
 	CancelAllOperations()
 	WaitUntilAllOperationsAreFinished()
 }
@@ -153,7 +152,7 @@ func (o_ OperationQueue) AddOperationWithBlock(block unsafe.Pointer) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addOperation(_:)-64o8a
-func (o_ OperationQueue) AddOperation(op objectivec.IObject) {
+func (o_ OperationQueue) AddOperation(op objc.IObject /* cross-framework: Operation */) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addOperation:"), op)
 }
 
@@ -162,7 +161,7 @@ func (o_ OperationQueue) AddOperation(op objectivec.IObject) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/addOperations(_:waitUntilFinished:)
-func (o_ OperationQueue) AddOperationsWaitUntilFinished(ops []objectivec.IObject, wait bool) {
+func (o_ OperationQueue) AddOperationsWaitUntilFinished(ops []objc.IObject /* cross-framework: Operation */, wait bool) {
 	objc.Send[objc.ID](o_.ID, objc.Sel("addOperations:waitUntilFinished:"), ops, wait)
 }
 
@@ -276,8 +275,8 @@ func (o_ OperationQueue) OperationCount() uint {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/OperationQueue/operations
-func (o_ OperationQueue) Operations() []objectivec.IObject {
-	rv := objc.Send[[]objc.ID](o_.ID, objc.Sel("operations"))
+func (o_ OperationQueue) Operations() []objc.IObject /* cross-framework: Operation */ {
+	rv := objc.Send[[]Operation](o_.ID, objc.Sel("operations"))
 	return rv
 }
 

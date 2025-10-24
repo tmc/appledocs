@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,6 +32,7 @@ type _ItemBadgeClass struct {
 type IItemBadge interface {
 	objectivec.IObject
 	// properties:
+	Text() objc.IObject /* cross-framework: NSString */
 	IsBordered() bool
 	SetIsBordered(value bool)
 	IsEnabled() bool
@@ -101,6 +103,46 @@ func NewItemBadge() ItemBadge {
 	return getItemBadgeClass().New()
 }
 
+
+
+// Creates a badge displaying a localized numerical count.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/badgeWithCount:
+func (ic _ItemBadgeClass) BadgeWithCount(count int) IItemBadge {
+	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("badgeWithCount:"), count)
+	return rv
+}
+
+
+// Creates a badge displaying a text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/badgeWithText:
+func (ic _ItemBadgeClass) BadgeWithText(text objc.IObject /* cross-framework: NSString */) IItemBadge {
+	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("badgeWithText:"), text)
+	return rv
+}
+
+
+// Creates a badge styled as an indicator. In this context, an indicator is simply a badge without any text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/indicatorBadge
+func (ic _ItemBadgeClass) IndicatorBadge() IItemBadge {
+	rv := objc.Send[ItemBadge](objc.ID(ic.class), objc.Sel("indicatorBadge"))
+	return rv
+}
+
+
+// The text to be displayed within the badge.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSItemBadge-c.class/text
+func (i_ ItemBadge) Text() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](i_.ID, objc.Sel("text"))
+	return rv
+}
 
 
 // A Boolean value that indicates whether the toolbar item has a bordered style.

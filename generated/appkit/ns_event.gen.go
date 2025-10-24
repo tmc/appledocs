@@ -39,33 +39,26 @@ type IEvent interface {
 	AssociatedEventsMask() EventMask
 	ButtonMask() EventButtonMask
 	ButtonNumber() int
-	CapabilityMask() uint
 	CGEvent() EventRef /* not a class type */
 	Characters() objc.IObject /* cross-framework: NSString */
 	CharactersIgnoringModifiers() objc.IObject /* cross-framework: NSString */
 	ClickCount() int
-	Context() IGraphicsContext
 	Data1() int
 	Data2() int
 	DeltaX() float64
 	DeltaY() float64
 	DeltaZ() float64
-	DeviceID() uint
 	EventNumber() int
 	EventRef() unsafe.Pointer
 	HasPreciseScrollingDeltas() bool
 	ARepeat() bool
 	DirectionInvertedFromDevice() bool
-	EnteringProximity() bool
 	KeyCode() unsafe.Pointer
 	LocationInWindow() objc.IObject /* cross-framework: Point */
 	Magnification() float64
 	ModifierFlags() EventModifierFlags
 	MomentumPhase() EventPhase
 	Phase() EventPhase
-	PointingDeviceID() uint
-	PointingDeviceSerialNumber() uint
-	PointingDeviceType() PointingDeviceType
 	Pressure() float32
 	PressureBehavior() PressureBehavior
 	Rotation() float32
@@ -74,37 +67,52 @@ type IEvent interface {
 	Stage() int
 	StageTransition() float64
 	Subtype() EventSubtype
-	SystemTabletID() uint
-	TabletID() uint
 	TangentialPressure() float32
 	Tilt() objc.IObject /* cross-framework: Point */
 	Timestamp() float64
 	TrackingArea() ITrackingArea
 	TrackingNumber() int
 	Type() EventType
-	UniqueID() uint64
 	UserData() unsafe.Pointer
 	VendorDefined() objc.ID
-	VendorID() uint
-	VendorPointingDeviceType() uint
 	Window() IWindow
 	WindowNumber() int
+	CapabilityMask() int
+	SetCapabilityMask(value int)
+	Context() IGraphicsContext
+	SetContext(value IGraphicsContext)
+	DeviceID() int
+	SetDeviceID(value int)
 	IsARepeat() bool
 	SetIsARepeat(value bool)
 	IsDirectionInvertedFromDevice() bool
 	SetIsDirectionInvertedFromDevice(value bool)
 	IsEnteringProximity() bool
 	SetIsEnteringProximity(value bool)
+	PointingDeviceID() int
+	SetPointingDeviceID(value int)
+	PointingDeviceSerialNumber() int
+	SetPointingDeviceSerialNumber(value int)
+	PointingDeviceType() unsafe.Pointer
+	SetPointingDeviceType(value unsafe.Pointer)
 	SpecialKey() unsafe.Pointer
 	SetSpecialKey(value unsafe.Pointer)
+	SystemTabletID() int
+	SetSystemTabletID(value int)
+	TabletID() int
+	SetTabletID(value int)
+	UniqueID() uint64
+	SetUniqueID(value uint64)
+	VendorID() int
+	SetVendorID(value int)
+	VendorPointingDeviceType() int
+	SetVendorPointingDeviceType(value int)
 	// methods:
 	AllTouches() unsafe.Pointer
-	CharactersByApplyingModifiers(modifiers EventModifierFlags) objc.IObject /* cross-framework: String */
-	CoalescedTouchesForTouch(touch ITouch) []ITouch
-	LocationInNode(node Node /* not a class type */) objc.IObject /* cross-framework: Point */
+	CharactersByApplyingModifiers(modifiers EventModifierFlags) foundation.String
+	CoalescedTouchesForTouch(touch ITouch) []Touch
 	TouchesForView(view IView) unsafe.Pointer
 	TouchesMatchingPhaseInView(phase TouchPhase, view IView) unsafe.Pointer
-	TrackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(options EventSwipeTrackingOptions, minDampenThreshold float64, maxDampenThreshold float64, trackingHandler unsafe.Pointer)
 }
 
 // An object that contains information about an input action, such as a mouse click or a key press.
@@ -265,26 +273,8 @@ func (ec _EventClass) OtherEventWithTypeLocationModifierFlagsTimestampWindowNumb
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/removeMonitor(_:)
-func (ec _EventClass) RemoveMonitor(eventMonitor objectivec.IObject) {
+func (ec _EventClass) RemoveMonitor(eventMonitor objc.IObject) {
 	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("removeMonitor:"), eventMonitor)
-}
-
-
-// Begins generating periodic events for the current thread.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/startPeriodicEvents(afterDelay:withPeriod:)
-func (ec _EventClass) StartPeriodicEventsAfterDelayWithPeriod(delay float64, period float64) {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("startPeriodicEventsAfterDelay:withPeriod:"), delay, period)
-}
-
-
-// Stops generating periodic events for the current thread and discards any periodic events remaining in the queue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/stopPeriodicEvents()
-func (ec _EventClass) StopPeriodicEvents() {
-	objc.Send[objc.ID](objc.ID(ec.class), objc.Sel("stopPeriodicEvents"))
 }
 
 
@@ -293,7 +283,7 @@ func (ec _EventClass) StopPeriodicEvents() {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/doubleClickInterval
 func (ec _EventClass) DoubleClickInterval() float64 {
-	rv := objc.Send[TimeInterval](objc.ID(ec.class), objc.Sel("doubleClickInterval"))
+	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("doubleClickInterval"))
 	return rv
 }
 
@@ -306,21 +296,12 @@ func (ec _EventClass) MouseCoalescingEnabled() bool {
 	return rv
 }
 
-// A Boolean value that indicates whether to track fluid swipe gestures using scroll events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isSwipeTrackingFromScrollEventsEnabled
-func (ec _EventClass) SwipeTrackingFromScrollEventsEnabled() bool {
-	rv := objc.Send[bool](objc.ID(ec.class), objc.Sel("swipeTrackingFromScrollEventsEnabled"))
-	return rv
-}
-
 // The number of seconds someone must hold down a key before the first key repeat event occurs.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyRepeatDelay
 func (ec _EventClass) KeyRepeatDelay() float64 {
-	rv := objc.Send[TimeInterval](objc.ID(ec.class), objc.Sel("keyRepeatDelay"))
+	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("keyRepeatDelay"))
 	return rv
 }
 
@@ -329,7 +310,7 @@ func (ec _EventClass) KeyRepeatDelay() float64 {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyRepeatInterval
 func (ec _EventClass) KeyRepeatInterval() float64 {
-	rv := objc.Send[TimeInterval](objc.ID(ec.class), objc.Sel("keyRepeatInterval"))
+	rv := objc.Send[float64](objc.ID(ec.class), objc.Sel("keyRepeatInterval"))
 	return rv
 }
 
@@ -365,7 +346,7 @@ func (e_ Event) AllTouches() unsafe.Pointer {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/characters(byApplyingModifiers:)
-func (e_ Event) CharactersByApplyingModifiers(modifiers EventModifierFlags) objc.IObject /* cross-framework: String */ {
+func (e_ Event) CharactersByApplyingModifiers(modifiers EventModifierFlags) foundation.String {
 	rv := objc.Send[foundation.String](e_.ID, objc.Sel("charactersByApplyingModifiers:"), modifiers)
 	return rv
 }
@@ -375,18 +356,8 @@ func (e_ Event) CharactersByApplyingModifiers(modifiers EventModifierFlags) objc
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/coalescedTouches(for:)
-func (e_ Event) CoalescedTouchesForTouch(touch ITouch) []ITouch {
+func (e_ Event) CoalescedTouchesForTouch(touch ITouch) []Touch {
 	rv := objc.Send[[]Touch](e_.ID, objc.Sel("coalescedTouchesForTouch:"), touch)
-	return rv
-}
-
-
-// Returns the location of the receiver in the coordinate system of the given node.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/location(in:)
-func (e_ Event) LocationInNode(node Node /* not a class type */) objc.IObject /* cross-framework: Point */ {
-	rv := objc.Send[corefoundation.Point](e_.ID, objc.Sel("locationInNode:"), node)
 	return rv
 }
 
@@ -408,15 +379,6 @@ func (e_ Event) TouchesForView(view IView) unsafe.Pointer {
 func (e_ Event) TouchesMatchingPhaseInView(phase TouchPhase, view IView) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("touchesMatchingPhase:inView:"), phase, view)
 	return rv
-}
-
-
-// Allows tracking and user interface feedback of scroll wheel events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/trackSwipeEvent(options:dampenAmountThresholdMin:max:usingHandler:)
-func (e_ Event) TrackSwipeEventWithOptionsDampenAmountThresholdMinMaxUsingHandler(options EventSwipeTrackingOptions, minDampenThreshold float64, maxDampenThreshold float64, trackingHandler unsafe.Pointer) {
-	objc.Send[objc.ID](e_.ID, objc.Sel("trackSwipeEventWithOptions:dampenAmountThresholdMin:max:usingHandler:"), options, minDampenThreshold, maxDampenThreshold, trackingHandler)
 }
 
 
@@ -480,16 +442,6 @@ func (e_ Event) ButtonNumber() int {
 }
 
 
-// A mask that indicates the capabilities of the tablet device that generated this event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/capabilityMask
-func (e_ Event) CapabilityMask() uint {
-	rv := objc.Send[uint](e_.ID, objc.Sel("capabilityMask"))
-	return rv
-}
-
-
 // The Core Graphics event object corresponding to this event.
 //
 // [Full Topic]
@@ -526,16 +478,6 @@ func (e_ Event) CharactersIgnoringModifiers() objc.IObject /* cross-framework: N
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/clickCount
 func (e_ Event) ClickCount() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("clickCount"))
-	return rv
-}
-
-
-// The display graphics context for this event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/context
-func (e_ Event) Context() IGraphicsContext {
-	rv := objc.Send[GraphicsContext](e_.ID, objc.Sel("context"))
 	return rv
 }
 
@@ -590,22 +532,12 @@ func (e_ Event) DeltaZ() float64 {
 }
 
 
-// A special identifier the system matches against tablet-pointer and tablet-proximity events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/deviceID
-func (e_ Event) DeviceID() uint {
-	rv := objc.Send[uint](e_.ID, objc.Sel("deviceID"))
-	return rv
-}
-
-
 // The maximum number of seconds in which a second mouse click must occur for an event to be a double-click event.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/doubleClickInterval
 func (e_ Event) DoubleClickInterval() float64 {
-	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("doubleClickInterval"))
+	rv := objc.Send[float64](e_.ID, objc.Sel("doubleClickInterval"))
 	return rv
 }
 
@@ -660,16 +592,6 @@ func (e_ Event) DirectionInvertedFromDevice() bool {
 }
 
 
-// A Boolean value that indicates whether a pointing device is entering or leaving the proximity of its tablet.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isEnteringProximity
-func (e_ Event) EnteringProximity() bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("enteringProximity"))
-	return rv
-}
-
-
 // A Boolean value that indicates whether the system coalesces mouse movement events.
 //
 // [Full Topic]
@@ -689,16 +611,6 @@ func (e_ Event) SetMouseCoalescingEnabled(value bool) {
 }
 
 
-// A Boolean value that indicates whether to track fluid swipe gestures using scroll events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/isSwipeTrackingFromScrollEventsEnabled
-func (e_ Event) SwipeTrackingFromScrollEventsEnabled() bool {
-	rv := objc.Send[bool](e_.ID, objc.Sel("swipeTrackingFromScrollEventsEnabled"))
-	return rv
-}
-
-
 // The virtual code for the key associated with the event.
 //
 // [Full Topic]
@@ -714,7 +626,7 @@ func (e_ Event) KeyCode() unsafe.Pointer {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyRepeatDelay
 func (e_ Event) KeyRepeatDelay() float64 {
-	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("keyRepeatDelay"))
+	rv := objc.Send[float64](e_.ID, objc.Sel("keyRepeatDelay"))
 	return rv
 }
 
@@ -724,7 +636,7 @@ func (e_ Event) KeyRepeatDelay() float64 {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/keyRepeatInterval
 func (e_ Event) KeyRepeatInterval() float64 {
-	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("keyRepeatInterval"))
+	rv := objc.Send[float64](e_.ID, objc.Sel("keyRepeatInterval"))
 	return rv
 }
 
@@ -785,36 +697,6 @@ func (e_ Event) MouseLocation() objc.IObject /* cross-framework: Point */ {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/phase-swift.property
 func (e_ Event) Phase() EventPhase {
 	rv := objc.Send[EventPhase](e_.ID, objc.Sel("phase"))
-	return rv
-}
-
-
-// The index of the pointing device currently in proximity with the tablet.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/pointingDeviceID
-func (e_ Event) PointingDeviceID() uint {
-	rv := objc.Send[uint](e_.ID, objc.Sel("pointingDeviceID"))
-	return rv
-}
-
-
-// The vendor-assigned serial number of a pointing device.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/pointingDeviceSerialNumber
-func (e_ Event) PointingDeviceSerialNumber() uint {
-	rv := objc.Send[uint](e_.ID, objc.Sel("pointingDeviceSerialNumber"))
-	return rv
-}
-
-
-// The kind of pointing device associated with this event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/pointingDeviceType-swift.property
-func (e_ Event) PointingDeviceType() PointingDeviceType {
-	rv := objc.Send[PointingDeviceType](e_.ID, objc.Sel("pointingDeviceType"))
 	return rv
 }
 
@@ -909,26 +791,6 @@ func (e_ Event) Subtype() EventSubtype {
 }
 
 
-// The index of the tablet device connected to the system.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/systemTabletID
-func (e_ Event) SystemTabletID() uint {
-	rv := objc.Send[uint](e_.ID, objc.Sel("systemTabletID"))
-	return rv
-}
-
-
-// The USB model identifier of the tablet device associated with this event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/tabletID
-func (e_ Event) TabletID() uint {
-	rv := objc.Send[uint](e_.ID, objc.Sel("tabletID"))
-	return rv
-}
-
-
 // The tangential pressure on the device that generated this event.
 //
 // [Full Topic]
@@ -954,7 +816,7 @@ func (e_ Event) Tilt() objc.IObject /* cross-framework: Point */ {
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/timestamp
 func (e_ Event) Timestamp() float64 {
-	rv := objc.Send[TimeInterval](e_.ID, objc.Sel("timestamp"))
+	rv := objc.Send[float64](e_.ID, objc.Sel("timestamp"))
 	return rv
 }
 
@@ -989,16 +851,6 @@ func (e_ Event) Type() EventType {
 }
 
 
-// The unique identifier of the pointing device that generated this event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/uniqueID
-func (e_ Event) UniqueID() uint64 {
-	rv := objc.Send[uint64](e_.ID, objc.Sel("uniqueID"))
-	return rv
-}
-
-
 // The data associated with a mouse-tracking event.
 //
 // [Full Topic]
@@ -1015,26 +867,6 @@ func (e_ Event) UserData() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/vendorDefined
 func (e_ Event) VendorDefined() objc.ID {
 	rv := objc.Send[objc.ID](e_.ID, objc.Sel("vendorDefined"))
-	return rv
-}
-
-
-// The vendor identifier of the tablet associated with the event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/vendorID
-func (e_ Event) VendorID() uint {
-	rv := objc.Send[uint](e_.ID, objc.Sel("vendorID"))
-	return rv
-}
-
-
-// A coded bit field whose set bits indicate the type of pointing device (within a vendor selection) associated with the event.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSEvent/vendorPointingDeviceType
-func (e_ Event) VendorPointingDeviceType() uint {
-	rv := objc.Send[uint](e_.ID, objc.Sel("vendorPointingDeviceType"))
 	return rv
 }
 
@@ -1056,6 +888,63 @@ func (e_ Event) Window() IWindow {
 func (e_ Event) WindowNumber() int {
 	rv := objc.Send[int](e_.ID, objc.Sel("windowNumber"))
 	return rv
+}
+
+
+// A mask that indicates the capabilities of the tablet device that generated this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/capabilitymask
+func (e_ Event) CapabilityMask() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("capabilityMask"))
+	return rv
+}
+
+
+// A mask that indicates the capabilities of the tablet device that generated this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/capabilitymask
+func (e_ Event) SetCapabilityMask(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setCapabilityMask:"), value)
+}
+
+
+// The display graphics context for this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/context
+func (e_ Event) Context() IGraphicsContext {
+	rv := objc.Send[GraphicsContext](e_.ID, objc.Sel("context"))
+	return rv
+}
+
+
+// The display graphics context for this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/context
+func (e_ Event) SetContext(value IGraphicsContext) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setContext:"), value)
+}
+
+
+// A special identifier the system matches against tablet-pointer and tablet-proximity events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deviceid
+func (e_ Event) DeviceID() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("deviceID"))
+	return rv
+}
+
+
+// A special identifier the system matches against tablet-pointer and tablet-proximity events.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/deviceid
+func (e_ Event) SetDeviceID(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setDeviceID:"), value)
 }
 
 
@@ -1116,6 +1005,63 @@ func (e_ Event) SetIsEnteringProximity(value bool) {
 }
 
 
+// The index of the pointing device currently in proximity with the tablet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceid
+func (e_ Event) PointingDeviceID() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("pointingDeviceID"))
+	return rv
+}
+
+
+// The index of the pointing device currently in proximity with the tablet.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceid
+func (e_ Event) SetPointingDeviceID(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceID:"), value)
+}
+
+
+// The vendor-assigned serial number of a pointing device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceserialnumber
+func (e_ Event) PointingDeviceSerialNumber() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("pointingDeviceSerialNumber"))
+	return rv
+}
+
+
+// The vendor-assigned serial number of a pointing device.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdeviceserialnumber
+func (e_ Event) SetPointingDeviceSerialNumber(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceSerialNumber:"), value)
+}
+
+
+// The kind of pointing device associated with this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.property
+func (e_ Event) PointingDeviceType() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](e_.ID, objc.Sel("pointingDeviceType"))
+	return rv
+}
+
+
+// The kind of pointing device associated with this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/pointingdevicetype-swift.property
+func (e_ Event) SetPointingDeviceType(value unsafe.Pointer) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setPointingDeviceType:"), value)
+}
+
+
 // The code associated with a function key or other special key.
 //
 // [Full Topic]
@@ -1132,6 +1078,101 @@ func (e_ Event) SpecialKey() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/specialkey-swift.property
 func (e_ Event) SetSpecialKey(value unsafe.Pointer) {
 	objc.Send[objc.ID](e_.ID, objc.Sel("setSpecialKey:"), value)
+}
+
+
+// The index of the tablet device connected to the system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/systemtabletid
+func (e_ Event) SystemTabletID() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("systemTabletID"))
+	return rv
+}
+
+
+// The index of the tablet device connected to the system.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/systemtabletid
+func (e_ Event) SetSystemTabletID(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setSystemTabletID:"), value)
+}
+
+
+// The USB model identifier of the tablet device associated with this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tabletid
+func (e_ Event) TabletID() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("tabletID"))
+	return rv
+}
+
+
+// The USB model identifier of the tablet device associated with this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/tabletid
+func (e_ Event) SetTabletID(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setTabletID:"), value)
+}
+
+
+// The unique identifier of the pointing device that generated this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/uniqueid
+func (e_ Event) UniqueID() uint64 {
+	rv := objc.Send[uint64](e_.ID, objc.Sel("uniqueID"))
+	return rv
+}
+
+
+// The unique identifier of the pointing device that generated this event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/uniqueid
+func (e_ Event) SetUniqueID(value uint64) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setUniqueID:"), value)
+}
+
+
+// The vendor identifier of the tablet associated with the event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorid
+func (e_ Event) VendorID() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("vendorID"))
+	return rv
+}
+
+
+// The vendor identifier of the tablet associated with the event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorid
+func (e_ Event) SetVendorID(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setVendorID:"), value)
+}
+
+
+// A coded bit field whose set bits indicate the type of pointing device (within a vendor selection) associated with the event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorpointingdevicetype
+func (e_ Event) VendorPointingDeviceType() int {
+	rv := objc.Send[int](e_.ID, objc.Sel("vendorPointingDeviceType"))
+	return rv
+}
+
+
+// A coded bit field whose set bits indicate the type of pointing device (within a vendor selection) associated with the event.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsevent/vendorpointingdevicetype
+func (e_ Event) SetVendorPointingDeviceType(value int) {
+	objc.Send[objc.ID](e_.ID, objc.Sel("setVendorPointingDeviceType:"), value)
 }
 
 

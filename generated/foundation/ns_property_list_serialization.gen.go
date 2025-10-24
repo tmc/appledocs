@@ -105,7 +105,7 @@ func NewPropertyListSerialization() PropertyListSerialization {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization/data(fromPropertyList:format:options:)
-func (pc _PropertyListSerializationClass) DataWithPropertyListFormatOptionsError(plist objectivec.IObject, format PropertyListFormat, opt objc.IObject /* cross-framework: PropertyListWriteOptions */, error_ IError) IData {
+func (pc _PropertyListSerializationClass) DataWithPropertyListFormatOptionsError(plist objc.IObject, format PropertyListFormat, opt objc.IObject /* cross-framework: PropertyListWriteOptions */, error_ IError) IData {
 	rv := objc.Send[Data](objc.ID(pc.class), objc.Sel("dataWithPropertyList:format:options:error:"), plist, format, opt, error_)
 	return rv
 }
@@ -115,7 +115,7 @@ func (pc _PropertyListSerializationClass) DataWithPropertyListFormatOptionsError
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization/dataFromPropertyList(_:format:errorDescription:)
-func (pc _PropertyListSerializationClass) DataFromPropertyListFormatErrorDescription(plist objectivec.IObject, format PropertyListFormat, errorString IString) IData {
+func (pc _PropertyListSerializationClass) DataFromPropertyListFormatErrorDescription(plist objc.IObject, format PropertyListFormat, errorString IString) IData {
 	rv := objc.Send[Data](objc.ID(pc.class), objc.Sel("dataFromPropertyList:format:errorDescription:"), plist, format, errorString)
 	return rv
 }
@@ -125,7 +125,7 @@ func (pc _PropertyListSerializationClass) DataFromPropertyListFormatErrorDescrip
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization/propertyList(_:isValidFor:)
-func (pc _PropertyListSerializationClass) PropertyListIsValidForFormat(plist objectivec.IObject, format PropertyListFormat) bool {
+func (pc _PropertyListSerializationClass) PropertyListIsValidForFormat(plist objc.IObject, format PropertyListFormat) bool {
 	rv := objc.Send[bool](objc.ID(pc.class), objc.Sel("propertyList:isValidForFormat:"), plist, format)
 	return rv
 }
@@ -165,7 +165,7 @@ func (pc _PropertyListSerializationClass) PropertyListFromDataMutabilityOptionFo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PropertyListSerialization/writePropertyList(_:to:format:options:error:)
-func (pc _PropertyListSerializationClass) WritePropertyListToStreamFormatOptionsError(plist objectivec.IObject, stream IOutputStream, format PropertyListFormat, opt objc.IObject /* cross-framework: PropertyListWriteOptions */, error_ IError) int {
+func (pc _PropertyListSerializationClass) WritePropertyListToStreamFormatOptionsError(plist objc.IObject, stream IOutputStream, format PropertyListFormat, opt objc.IObject /* cross-framework: PropertyListWriteOptions */, error_ IError) int {
 	rv := objc.Send[int](objc.ID(pc.class), objc.Sel("writePropertyList:toStream:format:options:error:"), plist, stream, format, opt, error_)
 	return rv
 }

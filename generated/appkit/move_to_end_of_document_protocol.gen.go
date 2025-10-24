@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveToEndOfDocumentProtocol is the moveToEndOfDocument: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveToEndOfDocument:.
 var moveToEndOfDocumentProtocol *objc.Protocol
 

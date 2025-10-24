@@ -31,12 +31,9 @@ type _TextParagraphClass struct {
 type ITextParagraph interface {
 	ITextElement
 	// properties:
-	AttributedString() objc.IObject /* cross-framework: AttributedString */
-	SetAttributedString(value objc.IObject /* cross-framework: AttributedString */)
-	ParagraphContentRange() objc.IObject /* cross-framework: TextRange */
-	SetParagraphContentRange(value objc.IObject /* cross-framework: TextRange */)
-	ParagraphSeparatorRange() objc.IObject /* cross-framework: TextRange */
-	SetParagraphSeparatorRange(value objc.IObject /* cross-framework: TextRange */)
+	AttributedString() foundation.AttributedString
+	ParagraphContentRange() ITextRange
+	ParagraphSeparatorRange() ITextRange
 	// methods:
 }
 
@@ -93,61 +90,46 @@ func NewTextParagraph() TextParagraph {
 
 
 
+// Creates a new paragraph with the attributed string you provide.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph/init(attributedString:)
+func NewTextParagraphWithAttributedString(attributedString foundation.AttributedString) TextParagraph {
+	instance := getTextParagraphClass().Alloc()
+	rv := objc.Send[TextParagraph](instance.ID, objc.Sel("initWithAttributedString:"), attributedString)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // Returns the source attributed string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-func (t_ TextParagraph) AttributedString() objc.IObject /* cross-framework: AttributedString */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph/attributedString
+func (t_ TextParagraph) AttributedString() foundation.AttributedString {
 	rv := objc.Send[foundation.AttributedString](t_.ID, objc.Sel("attributedString"))
 	return rv
 }
 
 
-// Returns the source attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/attributedstring
-func (t_ TextParagraph) SetAttributedString(value objc.IObject /* cross-framework: AttributedString */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setAttributedString:"), value)
-}
-
-
 // Returns the range of the paragraph in the containing text’s attributed string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
-func (t_ TextParagraph) ParagraphContentRange() objc.IObject /* cross-framework: TextRange */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph/paragraphContentRange
+func (t_ TextParagraph) ParagraphContentRange() ITextRange {
 	rv := objc.Send[TextRange](t_.ID, objc.Sel("paragraphContentRange"))
 	return rv
 }
 
 
-// Returns the range of the paragraph in the containing text’s attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphcontentrange
-func (t_ TextParagraph) SetParagraphContentRange(value objc.IObject /* cross-framework: TextRange */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphContentRange:"), value)
-}
-
-
 // Returns the range of the paragraph separator in the containing text’s attributed string.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
-func (t_ TextParagraph) ParagraphSeparatorRange() objc.IObject /* cross-framework: TextRange */ {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextParagraph/paragraphSeparatorRange
+func (t_ TextParagraph) ParagraphSeparatorRange() ITextRange {
 	rv := objc.Send[TextRange](t_.ID, objc.Sel("paragraphSeparatorRange"))
 	return rv
 }
-
-
-// Returns the range of the paragraph separator in the containing text’s attributed string.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nstextparagraph/paragraphseparatorrange
-func (t_ TextParagraph) SetParagraphSeparatorRange(value objc.IObject /* cross-framework: TextRange */) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setParagraphSeparatorRange:"), value)
-}
-
 
 

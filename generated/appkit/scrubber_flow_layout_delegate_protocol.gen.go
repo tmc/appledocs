@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // ScrubberFlowLayoutDelegateProtocol is the NSScrubberFlowLayoutDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSScrubberFlowLayoutDelegate.
 var ScrubberFlowLayoutDelegateProtocol *objc.Protocol
 

@@ -31,6 +31,7 @@ type INibControlConnector interface {
 	INibConnector
 	// properties:
 	// methods:
+	EstablishConnection()
 }
 
 // A control connection between two Interface Builder objects.
@@ -84,6 +85,13 @@ func NewNibControlConnector() NibControlConnector {
 	return getNibControlConnectorClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibControlConnector/establishConnection
+func (n_ NibControlConnector) EstablishConnection() {
+	objc.Send[objc.ID](n_.ID, objc.Sel("establishConnection"))
+}
 
 
 

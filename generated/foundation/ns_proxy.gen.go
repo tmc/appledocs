@@ -38,7 +38,7 @@ type IProxy interface {
 	Dealloc()
 	Finalize()
 	ForwardInvocation(invocation IInvocation)
-	MethodSignatureForSelector(sel objc.SEL) objc.IObject /* cross-framework: MethodSignature */
+	MethodSignatureForSelector(sel objc.SEL) MethodSignature /* not a class type */
 	RetainWeakReference() bool
 }
 
@@ -154,8 +154,8 @@ func (p_ Proxy) ForwardInvocation(invocation IInvocation) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSProxy/methodSignatureForSelector:
-func (p_ Proxy) MethodSignatureForSelector(sel objc.SEL) objc.IObject /* cross-framework: MethodSignature */ {
-	rv := objc.Send[objc.ID](p_.ID, objc.Sel("methodSignatureForSelector:"), sel)
+func (p_ Proxy) MethodSignatureForSelector(sel objc.SEL) MethodSignature /* not a class type */ {
+	rv := objc.Send[MethodSignature](p_.ID, objc.Sel("methodSignatureForSelector:"), sel)
 	return rv
 }
 

@@ -48,10 +48,10 @@ type IParagraphStyle interface {
 	MinimumLineHeight() float64
 	ParagraphSpacing() float64
 	ParagraphSpacingBefore() float64
-	TabStops() []ITextTab
+	TabStops() []TextTab
 	TailIndent() float64
-	TextBlocks() []ITextBlock
-	TextLists() []ITextList
+	TextBlocks() []TextBlock
+	TextLists() []TextList
 	TighteningFactorForTruncation() float32
 	UsesDefaultHyphenation() bool
 	// methods:
@@ -303,7 +303,7 @@ func (p_ ParagraphStyle) ParagraphSpacingBefore() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/tabStops
-func (p_ ParagraphStyle) TabStops() []ITextTab {
+func (p_ ParagraphStyle) TabStops() []TextTab {
 	rv := objc.Send[[]TextTab](p_.ID, objc.Sel("tabStops"))
 	return rv
 }
@@ -323,7 +323,7 @@ func (p_ ParagraphStyle) TailIndent() float64 {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/textBlocks
-func (p_ ParagraphStyle) TextBlocks() []ITextBlock {
+func (p_ ParagraphStyle) TextBlocks() []TextBlock {
 	rv := objc.Send[[]TextBlock](p_.ID, objc.Sel("textBlocks"))
 	return rv
 }
@@ -333,7 +333,7 @@ func (p_ ParagraphStyle) TextBlocks() []ITextBlock {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSParagraphStyle/textLists
-func (p_ ParagraphStyle) TextLists() []ITextList {
+func (p_ ParagraphStyle) TextLists() []TextList {
 	rv := objc.Send[[]TextList](p_.ID, objc.Sel("textLists"))
 	return rv
 }

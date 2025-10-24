@@ -33,11 +33,11 @@ type _ViewControllerClass struct {
 type IViewController interface {
 	IResponder
 	// properties:
-	ChildViewControllers() []IViewController
-	SetChildViewControllers(value []IViewController)
+	ChildViewControllers() []ViewController
+	SetChildViewControllers(value []ViewController)
 	ExtensionContext() objc.IObject /* cross-framework: NSExtensionContext */
 	ViewLoaded() bool
-	NibBundle() objc.IObject /* cross-framework: Bundle */
+	NibBundle() foundation.Bundle
 	NibName() objc.IObject /* cross-framework: NibName */
 	ParentViewController() IViewController
 	PreferredContentSize() objc.IObject /* cross-framework: Size */
@@ -46,7 +46,7 @@ type IViewController interface {
 	PreferredMinimumSize() objc.IObject /* cross-framework: Size */
 	PreferredScreenOrigin() objc.IObject /* cross-framework: Point */
 	SetPreferredScreenOrigin(value objc.IObject /* cross-framework: Point */)
-	PresentedViewControllers() []IViewController
+	PresentedViewControllers() []ViewController
 	PresentingViewController() IViewController
 	RepresentedObject() objc.ID
 	SetRepresentedObject(value objc.ID)
@@ -67,17 +67,17 @@ type IViewController interface {
 	// methods:
 	AddChildViewController(childViewController IViewController)
 	CommitEditing() bool
-	CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objectivec.IObject, didCommitSelector objc.SEL, contextInfo unsafe.Pointer)
+	CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objc.IObject, didCommitSelector objc.SEL, contextInfo unsafe.Pointer)
 	DiscardEditing()
-	DismissController(sender objectivec.IObject)
+	DismissController(sender objc.IObject)
 	DismissViewController(viewController IViewController)
 	InsertChildViewControllerAtIndex(childViewController IViewController, index int)
 	LoadView()
 	LoadViewIfNeeded()
 	PreferredContentSizeDidChangeForViewController(viewController IViewController)
-	PresentViewControllerAnimator(viewController IViewController, animator objectivec.IObject)
-	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect objc.IObject /* cross-framework: Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior)
-	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect objc.IObject /* cross-framework: Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior, hasFullSizeContent bool)
+	PresentViewControllerAnimator(viewController IViewController, animator objc.IObject)
+	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect objc.IObject /* cross-framework: Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior /* not a class type */)
+	PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect objc.IObject /* cross-framework: Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior /* not a class type */, hasFullSizeContent bool)
 	PresentViewControllerAsModalWindow(viewController IViewController)
 	PresentViewControllerAsSheet(viewController IViewController)
 	RemoveChildViewControllerAtIndex(index int)
@@ -151,7 +151,7 @@ func NewViewController() ViewController {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(coder:)
-func NewViewControllerWithCoder(coder objc.IObject /* cross-framework: Coder */) ViewController {
+func NewViewControllerWithCoder(coder foundation.Coder) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -163,7 +163,7 @@ func NewViewControllerWithCoder(coder objc.IObject /* cross-framework: Coder */)
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/init(nibName:bundle:)
-func NewViewControllerWithNibNameBundle(nibNameOrNil objc.IObject /* cross-framework: NibName */, nibBundleOrNil objc.IObject /* cross-framework: Bundle */) ViewController {
+func NewViewControllerWithNibNameBundle(nibNameOrNil objc.IObject /* cross-framework: NibName */, nibBundleOrNil foundation.Bundle) ViewController {
 	instance := getViewControllerClass().Alloc()
 	rv := objc.Send[ViewController](instance.ID, objc.Sel("initWithNibName:bundle:"), nibNameOrNil, nibBundleOrNil)
 	rv.Autorelease()
@@ -195,7 +195,7 @@ func (v_ ViewController) CommitEditing() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/commitEditing(withDelegate:didCommit:contextInfo:)
-func (v_ ViewController) CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objectivec.IObject, didCommitSelector objc.SEL, contextInfo unsafe.Pointer) {
+func (v_ ViewController) CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objc.IObject, didCommitSelector objc.SEL, contextInfo unsafe.Pointer) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("commitEditingWithDelegate:didCommitSelector:contextInfo:"), delegate, didCommitSelector, contextInfo)
 }
 
@@ -211,7 +211,7 @@ func (v_ ViewController) DiscardEditing() {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/dismiss(_:)-3n76y
-func (v_ ViewController) DismissController(sender objectivec.IObject) {
+func (v_ ViewController) DismissController(sender objc.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("dismissController:"), sender)
 }
 
@@ -263,7 +263,7 @@ func (v_ ViewController) PreferredContentSizeDidChangeForViewController(viewCont
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:animator:)
-func (v_ ViewController) PresentViewControllerAnimator(viewController IViewController, animator objectivec.IObject) {
+func (v_ ViewController) PresentViewControllerAnimator(viewController IViewController, animator objc.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:animator:"), viewController, animator)
 }
 
@@ -272,14 +272,14 @@ func (v_ ViewController) PresentViewControllerAnimator(viewController IViewContr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:)
-func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect objc.IObject /* cross-framework: Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior) {
+func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehavior(viewController IViewController, positioningRect objc.IObject /* cross-framework: Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:"), viewController, positioningRect, positioningView, preferredEdge, behavior)
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/present(_:asPopoverRelativeTo:of:preferredEdge:behavior:hasFullSizeContent:)
-func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect objc.IObject /* cross-framework: Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior, hasFullSizeContent bool) {
+func (v_ ViewController) PresentViewControllerAsPopoverRelativeToRectOfViewPreferredEdgeBehaviorHasFullSizeContent(viewController IViewController, positioningRect objc.IObject /* cross-framework: Rect */, positioningView IView, preferredEdge RectEdge /* not a class type */, behavior PopoverBehavior /* not a class type */, hasFullSizeContent bool) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("presentViewController:asPopoverRelativeToRect:ofView:preferredEdge:behavior:hasFullSizeContent:"), viewController, positioningRect, positioningView, preferredEdge, behavior, hasFullSizeContent)
 }
 
@@ -414,7 +414,7 @@ func (v_ ViewController) ViewWillTransitionToSize(newSize objc.IObject /* cross-
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/children
-func (v_ ViewController) ChildViewControllers() []IViewController {
+func (v_ ViewController) ChildViewControllers() []ViewController {
 	rv := objc.Send[[]ViewController](v_.ID, objc.Sel("childViewControllers"))
 	return rv
 }
@@ -424,7 +424,7 @@ func (v_ ViewController) ChildViewControllers() []IViewController {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/children
-func (v_ ViewController) SetChildViewControllers(value []IViewController) {
+func (v_ ViewController) SetChildViewControllers(value []ViewController) {
 	// Convert Go slice to NSArray
 	var nsArray objc.ID
 	if len(value) > 0 {
@@ -463,7 +463,7 @@ func (v_ ViewController) ViewLoaded() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/nibBundle
-func (v_ ViewController) NibBundle() objc.IObject /* cross-framework: Bundle */ {
+func (v_ ViewController) NibBundle() foundation.Bundle {
 	rv := objc.Send[foundation.Bundle](v_.ID, objc.Sel("nibBundle"))
 	return rv
 }
@@ -474,7 +474,7 @@ func (v_ ViewController) NibBundle() objc.IObject /* cross-framework: Bundle */ 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/nibName
 func (v_ ViewController) NibName() objc.IObject /* cross-framework: NibName */ {
-	rv := objc.Send[NibName](v_.ID, objc.Sel("nibName"))
+	rv := objc.Send[objc.ID](v_.ID, objc.Sel("nibName"))
 	return rv
 }
 
@@ -551,7 +551,7 @@ func (v_ ViewController) SetPreferredScreenOrigin(value objc.IObject /* cross-fr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSViewController/presentedViewControllers
-func (v_ ViewController) PresentedViewControllers() []IViewController {
+func (v_ ViewController) PresentedViewControllers() []ViewController {
 	rv := objc.Send[[]ViewController](v_.ID, objc.Sel("presentedViewControllers"))
 	return rv
 }

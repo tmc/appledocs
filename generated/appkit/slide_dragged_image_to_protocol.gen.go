@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // slideDraggedImageToProtocol is the slideDraggedImageTo: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to slideDraggedImageTo:.
 var slideDraggedImageToProtocol *objc.Protocol
 

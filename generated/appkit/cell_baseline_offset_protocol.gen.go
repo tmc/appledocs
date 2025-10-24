@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // cellBaselineOffsetProtocol is the cellBaselineOffset protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to cellBaselineOffset.
 var cellBaselineOffsetProtocol *objc.Protocol
 

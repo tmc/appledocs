@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // StackViewDelegateProtocol is the NSStackViewDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSStackViewDelegate.
 var StackViewDelegateProtocol *objc.Protocol
 

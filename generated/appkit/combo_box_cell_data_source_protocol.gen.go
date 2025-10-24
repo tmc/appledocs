@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // ComboBoxCellDataSourceProtocol is the NSComboBoxCellDataSource protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSComboBoxCellDataSource.
 var ComboBoxCellDataSourceProtocol *objc.Protocol
 

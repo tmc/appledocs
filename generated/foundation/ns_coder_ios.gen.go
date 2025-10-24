@@ -64,8 +64,8 @@ func (c_ Coder) DecodeCGVectorForKey(key IString) objc.IObject /* cross-framewor
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/decodeDirectionalEdgeInsets(forKey:)
-func (c_ Coder) DecodeDirectionalEdgeInsetsForKey(key IString) DirectionalEdgeInsets /* not a class type */ {
-	rv := objc.Send[DirectionalEdgeInsets](c_.ID, objc.Sel("decodeDirectionalEdgeInsetsForKey:"), key)
+func (c_ Coder) DecodeDirectionalEdgeInsetsForKey(key IString) objectivec.IObject {
+	rv := objc.Send[objectivec.IObject](c_.ID, objc.Sel("decodeDirectionalEdgeInsetsForKey:"), key)
 	return rv
 }
 
@@ -131,7 +131,7 @@ func (c_ Coder) EncodeCGSizeForKey(size objc.IObject /* cross-framework: Size */
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCoder/encode(_:forKey:)-7oo2n
-func (c_ Coder) EncodeDirectionalEdgeInsetsForKey(insets DirectionalEdgeInsets /* not a class type */, key IString) {
+func (c_ Coder) EncodeDirectionalEdgeInsetsForKey(insets objectivec.IObject, key IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("encodeDirectionalEdgeInsets:forKey:"), insets, key)
 }
 

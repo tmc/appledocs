@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // moveDownProtocol is the moveDown: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to moveDown:.
 var moveDownProtocol *objc.Protocol
 

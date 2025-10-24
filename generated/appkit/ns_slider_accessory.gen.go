@@ -33,6 +33,8 @@ type ISliderAccessory interface {
 	// properties:
 	Behavior() ISliderAccessoryBehavior
 	SetBehavior(value ISliderAccessoryBehavior)
+	Enabled() bool
+	SetEnabled(value bool)
 	IsEnabled() bool
 	SetIsEnabled(value bool)
 	// methods:
@@ -85,6 +87,23 @@ func NewSliderAccessory() SliderAccessory {
 
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/init(image:)
+func NewSliderAccessoryWithImage(image IImage) SliderAccessory {
+	rv := objc.Send[SliderAccessory](objc.ID(getSliderAccessoryClass().class), objc.Sel("accessoryWithImage:"), image)
+	return rv
+}
+
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/init(image:)
+func (sc _SliderAccessoryClass) AccessoryWithImage(image IImage) ISliderAccessory {
+	rv := objc.Send[SliderAccessory](objc.ID(sc.class), objc.Sel("accessoryWithImage:"), image)
+	return rv
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/behavior
 func (s_ SliderAccessory) Behavior() ISliderAccessoryBehavior {
 	rv := objc.Send[SliderAccessoryBehavior](s_.ID, objc.Sel("behavior"))
@@ -96,6 +115,21 @@ func (s_ SliderAccessory) Behavior() ISliderAccessoryBehavior {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/behavior
 func (s_ SliderAccessory) SetBehavior(value ISliderAccessoryBehavior) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setBehavior:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/isEnabled
+func (s_ SliderAccessory) Enabled() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("enabled"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderAccessory/isEnabled
+func (s_ SliderAccessory) SetEnabled(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setEnabled:"), value)
 }
 
 
@@ -112,6 +146,5 @@ func (s_ SliderAccessory) IsEnabled() bool {
 func (s_ SliderAccessory) SetIsEnabled(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsEnabled:"), value)
 }
-
 
 

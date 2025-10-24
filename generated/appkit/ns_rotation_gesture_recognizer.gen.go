@@ -30,12 +30,12 @@ type _RotationGestureRecognizerClass struct {
 type IRotationGestureRecognizer interface {
 	IGestureRecognizer
 	// properties:
-	DelaysRotationEvents() bool
-	SetDelaysRotationEvents(value bool)
 	Rotation() float64
 	SetRotation(value float64)
 	RotationInDegrees() float64
 	SetRotationInDegrees(value float64)
+	DelaysRotationEvents() bool
+	SetDelaysRotationEvents(value bool)
 	// methods:
 }
 
@@ -94,6 +94,44 @@ func NewRotationGestureRecognizer() RotationGestureRecognizer {
 
 
 
+// The rotation of the gesture in radians.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRotationGestureRecognizer/rotation
+func (r_ RotationGestureRecognizer) Rotation() float64 {
+	rv := objc.Send[float64](r_.ID, objc.Sel("rotation"))
+	return rv
+}
+
+
+// The rotation of the gesture in radians.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRotationGestureRecognizer/rotation
+func (r_ RotationGestureRecognizer) SetRotation(value float64) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRotation:"), value)
+}
+
+
+// The rotation of the gesture in degrees.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRotationGestureRecognizer/rotationInDegrees
+func (r_ RotationGestureRecognizer) RotationInDegrees() float64 {
+	rv := objc.Send[float64](r_.ID, objc.Sel("rotationInDegrees"))
+	return rv
+}
+
+
+// The rotation of the gesture in degrees.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSRotationGestureRecognizer/rotationInDegrees
+func (r_ RotationGestureRecognizer) SetRotationInDegrees(value float64) {
+	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationInDegrees:"), value)
+}
+
+
 // A Boolean value that indicates whether rotation events are delivered only after gesture recognition fails.
 //
 // [Full Topic]
@@ -110,44 +148,6 @@ func (r_ RotationGestureRecognizer) DelaysRotationEvents() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsgesturerecognizer/delaysrotationevents
 func (r_ RotationGestureRecognizer) SetDelaysRotationEvents(value bool) {
 	objc.Send[objc.ID](r_.ID, objc.Sel("setDelaysRotationEvents:"), value)
-}
-
-
-// The rotation of the gesture in radians.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotation
-func (r_ RotationGestureRecognizer) Rotation() float64 {
-	rv := objc.Send[float64](r_.ID, objc.Sel("rotation"))
-	return rv
-}
-
-
-// The rotation of the gesture in radians.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotation
-func (r_ RotationGestureRecognizer) SetRotation(value float64) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRotation:"), value)
-}
-
-
-// The rotation of the gesture in degrees.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotationindegrees
-func (r_ RotationGestureRecognizer) RotationInDegrees() float64 {
-	rv := objc.Send[float64](r_.ID, objc.Sel("rotationInDegrees"))
-	return rv
-}
-
-
-// The rotation of the gesture in degrees.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsrotationgesturerecognizer/rotationindegrees
-func (r_ RotationGestureRecognizer) SetRotationInDegrees(value float64) {
-	objc.Send[objc.ID](r_.ID, objc.Sel("setRotationInDegrees:"), value)
 }
 
 

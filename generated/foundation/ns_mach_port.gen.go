@@ -36,7 +36,7 @@ type IMachPort interface {
 	Delegate() objc.ID
 	RemoveFromRunLoopForMode(runLoop IRunLoop, mode objc.IObject /* cross-framework: RunLoopMode */)
 	ScheduleInRunLoopForMode(runLoop IRunLoop, mode objc.IObject /* cross-framework: RunLoopMode */)
-	SetDelegate(anObject objectivec.IObject)
+	SetDelegate(anObject objc.IObject)
 }
 
 // A port that can be used as an endpoint for distributed object connections (or raw messaging).
@@ -171,7 +171,7 @@ func (m_ MachPort) ScheduleInRunLoopForMode(runLoop IRunLoop, mode objc.IObject 
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMachPort/setDelegate(_:)
-func (m_ MachPort) SetDelegate(anObject objectivec.IObject) {
+func (m_ MachPort) SetDelegate(anObject objc.IObject) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setDelegate:"), anObject)
 }
 

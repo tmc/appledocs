@@ -31,13 +31,11 @@ type _StoryboardSegueClass struct {
 type IStoryboardSegue interface {
 	objectivec.IObject
 	// properties:
-	DestinationController() unsafe.Pointer
-	SetDestinationController(value unsafe.Pointer)
-	Identifier() unsafe.Pointer
-	SetIdentifier(value unsafe.Pointer)
-	SourceController() unsafe.Pointer
-	SetSourceController(value unsafe.Pointer)
+	DestinationController() objc.ID
+	Identifier() objc.IObject /* cross-framework: StoryboardSegueIdentifier */
+	SourceController() objc.ID
 	// methods:
+	Perform()
 }
 
 // A transition or containment relationship between two scenes in a storyboard.
@@ -93,50 +91,64 @@ func NewStoryboardSegue() StoryboardSegue {
 
 
 
-// The ending/contained view controller or window controller for the storyboard segue.
+// The designated initializer for a storyboard segue.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstoryboardsegue/destinationcontroller
-func (s_ StoryboardSegue) DestinationController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("destinationController"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:)
+func NewStoryboardSegueWithIdentifierSourceDestination(identifier objc.IObject /* cross-framework: StoryboardSegueIdentifier */, sourceController objc.IObject, destinationController objc.IObject) StoryboardSegue {
+	instance := getStoryboardSegueClass().Alloc()
+	rv := objc.Send[StoryboardSegue](instance.ID, objc.Sel("initWithIdentifier:source:destination:"), identifier, sourceController, destinationController)
+	rv.Autorelease()
 	return rv
+}
+
+
+// Creates a storyboard segue and a block used when the segue is performed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:performHandler:)
+func NewStoryboardSegueWithIdentifierSourceDestinationPerformHandler(identifier objc.IObject /* cross-framework: StoryboardSegueIdentifier */, sourceController objc.IObject, destinationController objc.IObject, performHandler unsafe.Pointer) StoryboardSegue {
+	rv := objc.Send[StoryboardSegue](objc.ID(getStoryboardSegueClass().class), objc.Sel("segueWithIdentifier:source:destination:performHandler:"), identifier, sourceController, destinationController, performHandler)
+	return rv
+}
+
+
+
+// Creates a storyboard segue and a block used when the segue is performed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/init(identifier:source:destination:performHandler:)
+func (sc _StoryboardSegueClass) SegueWithIdentifierSourceDestinationPerformHandler(identifier objc.IObject /* cross-framework: StoryboardSegueIdentifier */, sourceController objc.IObject, destinationController objc.IObject, performHandler unsafe.Pointer) unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](objc.ID(sc.class), objc.Sel("segueWithIdentifier:source:destination:performHandler:"), identifier, sourceController, destinationController, performHandler)
+	return rv
+}
+
+
+// Performs a visual transition from one controller to another.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/perform()
+func (s_ StoryboardSegue) Perform() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("perform"))
 }
 
 
 // The ending/contained view controller or window controller for the storyboard segue.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstoryboardsegue/destinationcontroller
-func (s_ StoryboardSegue) SetDestinationController(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setDestinationController:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/destinationController
+func (s_ StoryboardSegue) DestinationController() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("destinationController"))
+	return rv
 }
 
 
 // An optional, unique identifier for the storyboard segue that you can specify using the Identity inspector in Interface Builder.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstoryboardsegue/identifier-swift.property
-func (s_ StoryboardSegue) Identifier() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("identifier"))
-	return rv
-}
-
-
-// An optional, unique identifier for the storyboard segue that you can specify using the Identity inspector in Interface Builder.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstoryboardsegue/identifier-swift.property
-func (s_ StoryboardSegue) SetIdentifier(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setIdentifier:"), value)
-}
-
-
-// The starting/containing view controller or window controller for the storyboard segue.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstoryboardsegue/sourcecontroller
-func (s_ StoryboardSegue) SourceController() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("sourceController"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/identifier-swift.property
+func (s_ StoryboardSegue) Identifier() objc.IObject /* cross-framework: StoryboardSegueIdentifier */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("identifier"))
 	return rv
 }
 
@@ -144,10 +156,10 @@ func (s_ StoryboardSegue) SourceController() unsafe.Pointer {
 // The starting/containing view controller or window controller for the storyboard segue.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsstoryboardsegue/sourcecontroller
-func (s_ StoryboardSegue) SetSourceController(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setSourceController:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSStoryboardSegue/sourceController
+func (s_ StoryboardSegue) SourceController() objc.ID {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("sourceController"))
+	return rv
 }
-
 
 

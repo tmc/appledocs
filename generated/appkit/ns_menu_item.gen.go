@@ -31,69 +31,30 @@ type _MenuItemClass struct {
 // An interface definition for the [MenuItem] class.
 type IMenuItem interface {
 	objectivec.IObject
-	Mnemonic() foundation.String
-	MnemonicLocation() uint
-	SetMnemonicLocation(location uint)
-	SetTitleWithMnemonic(stringWithAmpersand string)
-	Action() objc.SEL
-	SetAction(value objc.SEL)
+	// properties:
 	AllowsAutomaticKeyEquivalentLocalization() bool
 	SetAllowsAutomaticKeyEquivalentLocalization(value bool)
 	AllowsAutomaticKeyEquivalentMirroring() bool
 	SetAllowsAutomaticKeyEquivalentMirroring(value bool)
 	AllowsKeyEquivalentWhenHidden() bool
 	SetAllowsKeyEquivalentWhenHidden(value bool)
+	KeyEquivalent() objc.IObject /* cross-framework: NSString */
+	SetKeyEquivalent(value objc.IObject /* cross-framework: NSString */)
+	KeyEquivalentModifierMask() EventModifierFlags
+	SetKeyEquivalentModifierMask(value EventModifierFlags)
+	UserKeyEquivalent() objc.IObject /* cross-framework: NSString */
+	Action() unsafe.Pointer
+	SetAction(value unsafe.Pointer)
 	AttributedTitle() foundation.AttributedString
-	SetAttributedTitle(value foundation.IAttributedString)
-	Badge() NSMenuItemBadge
+	SetAttributedTitle(value foundation.AttributedString)
+	Badge() IMenuItemBadge
 	SetBadge(value IMenuItemBadge)
 	HasSubmenu() bool
-	Image() Image
+	SetHasSubmenu(value bool)
+	Image() IImage
 	SetImage(value IImage)
 	IndentationLevel() int
 	SetIndentationLevel(value int)
-	Alternate() bool
-	SetAlternate(value bool)
-	Enabled() bool
-	SetEnabled(value bool)
-	Hidden() bool
-	SetHidden(value bool)
-	HiddenOrHasHiddenAncestor() bool
-	Highlighted() bool
-	SectionHeader() bool
-	SeparatorItem() bool
-	KeyEquivalent() string
-	SetKeyEquivalent(value string)
-	KeyEquivalentModifierMask() EventModifierFlags
-	SetKeyEquivalentModifierMask(value EventModifierFlags)
-	Menu() NSMenu
-	SetMenu(value IMenu)
-	MixedStateImage() Image
-	SetMixedStateImage(value IImage)
-	OffStateImage() Image
-	SetOffStateImage(value IImage)
-	OnStateImage() Image
-	SetOnStateImage(value IImage)
-	ParentItem() NSMenuItem
-	RepresentedObject() objc.ID
-	SetRepresentedObject(value objc.ID)
-	State() ControlStateValue
-	SetState(value IControlStateValue)
-	Submenu() NSMenu
-	SetSubmenu(value IMenu)
-	Subtitle() string
-	SetSubtitle(value string)
-	Tag() int
-	SetTag(value int)
-	Target() objc.ID
-	SetTarget(value objc.ID)
-	Title() string
-	SetTitle(value string)
-	ToolTip() string
-	SetToolTip(value string)
-	UserKeyEquivalent() string
-	View() NSView
-	SetView(value IView)
 	IsAlternate() bool
 	SetIsAlternate(value bool)
 	IsEnabled() bool
@@ -108,8 +69,31 @@ type IMenuItem interface {
 	SetIsSectionHeader(value bool)
 	IsSeparatorItem() bool
 	SetIsSeparatorItem(value bool)
-	Parent() NSMenuItem
+	Menu() IMenu
+	SetMenu(value IMenu)
+	MixedStateImage() IImage
+	SetMixedStateImage(value IImage)
+	OffStateImage() IImage
+	SetOffStateImage(value IImage)
+	OnStateImage() IImage
+	SetOnStateImage(value IImage)
+	Parent() IMenuItem
 	SetParent(value IMenuItem)
+	State() unsafe.Pointer
+	SetState(value unsafe.Pointer)
+	Submenu() IMenu
+	SetSubmenu(value IMenu)
+	Subtitle() objc.IObject /* cross-framework: NSString */
+	SetSubtitle(value objc.IObject /* cross-framework: NSString */)
+	Tag() int
+	SetTag(value int)
+	Title() objc.IObject /* cross-framework: NSString */
+	SetTitle(value objc.IObject /* cross-framework: NSString */)
+	ToolTip() objc.IObject /* cross-framework: NSString */
+	SetToolTip(value objc.IObject /* cross-framework: NSString */)
+	View() IView
+	SetView(value IView)
+	// methods:
 }
 
 // A command item in an app menu.
@@ -165,49 +149,6 @@ func NewMenuItem() MenuItem {
 
 
 
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/init(coder:)
-func NewMenuItemWithCoder(coder foundation.ICoder) MenuItem {
-	instance := getMenuItemClass().Alloc()
-	rv := objc.Send[MenuItem](instance.ID, objc.Sel("initWithCoder:"), coder)
-	rv.Autorelease()
-	return rv
-}
-
-
-// Returns an initialized instance of .
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/init(title:action:keyEquivalent:)
-func NewMenuItemWithTitleActionKeyEquivalent(string_ string, selector objc.SEL, charCode string) MenuItem {
-	instance := getMenuItemClass().Alloc()
-	rv := objc.Send[MenuItem](instance.ID, objc.Sel("initWithTitle:action:keyEquivalent:"), objc.String(string_), selector, objc.String(charCode))
-	rv.Autorelease()
-	return rv
-}
-
-
-
-// Returns a menu item representing a section header for a logical grouping of menu commands.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/sectionHeaderWithTitle:
-func (mc _MenuItemClass) SectionHeaderWithTitle(title string) unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](objc.ID(mc.class), objc.Sel("sectionHeaderWithTitle:"), objc.String(title))
-	return rv
-}
-
-
-// Returns a menu item that is used to separate logical groups of menu commands.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/separator()
-func (mc _MenuItemClass) SeparatorItem() MenuItem {
-	rv := objc.Send[MenuItem](objc.ID(mc.class), objc.Sel("separatorItem"))
-	return rv
-}
-
-
 // Returns a Boolean value that indicates whether menu items conform to user preferences for key equivalents.
 //
 // [Full Topic]
@@ -216,72 +157,6 @@ func (mc _MenuItemClass) UsesUserKeyEquivalents() bool {
 	rv := objc.Send[bool](objc.ID(mc.class), objc.Sel("usesUserKeyEquivalents"))
 	return rv
 }
-
-// An array of standard menu items related to Writing Tools. Each call to this method returns an array of newly allocated instances of NSMenuItem.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/writingToolsItems
-func (mc _MenuItemClass) WritingToolsItems() []MenuItem {
-	rv := objc.Send[[]MenuItem](objc.ID(mc.class), objc.Sel("writingToolsItems"))
-	return rv
-}
-
-// Returns the character in the menu item title that appears underlined for use as a mnemonic.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/mnemonic
-func (m_ MenuItem) Mnemonic() foundation.String {
-	rv := objc.Send[foundation.String](m_.ID, objc.Sel("mnemonic"))
-	return rv
-}
-
-
-// Returns the position of the underlined character in the menu item title used as a mnemonic.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/mnemonicLocation
-func (m_ MenuItem) MnemonicLocation() uint {
-	rv := objc.Send[uint](m_.ID, objc.Sel("mnemonicLocation"))
-	return rv
-}
-
-
-// Sets the character of the menu item title at location that is to be underlined.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/setMnemonicLocation:
-func (m_ MenuItem) SetMnemonicLocation(location uint) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMnemonicLocation:"), location)
-}
-
-
-// Sets the title of a menu item with a character denoting an access key.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/setTitleWithMnemonic(_:)
-func (m_ MenuItem) SetTitleWithMnemonic(stringWithAmpersand string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitleWithMnemonic:"), objc.String(stringWithAmpersand))
-}
-
-
-// The menu item’s action-method selector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/action
-func (m_ MenuItem) Action() objc.SEL {
-	rv := objc.Send[objc.SEL](m_.ID, objc.Sel("action"))
-	return rv
-}
-
-
-// The menu item’s action-method selector.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/action
-func (m_ MenuItem) SetAction(value objc.SEL) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
-}
-
 
 // A Boolean value that determines whether the system automatically remaps the keyboard shortcut to support localized keyboards.
 //
@@ -336,181 +211,12 @@ func (m_ MenuItem) SetAllowsKeyEquivalentWhenHidden(value bool) {
 }
 
 
-// A custom string for a menu item.
+// The menu item’s unmodified key equivalent.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/attributedTitle
-func (m_ MenuItem) AttributedTitle() foundation.AttributedString {
-	rv := objc.Send[foundation.AttributedString](m_.ID, objc.Sel("attributedTitle"))
-	return rv
-}
-
-
-// A custom string for a menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/attributedTitle
-func (m_ MenuItem) SetAttributedTitle(value foundation.IAttributedString) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributedTitle:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/badge
-func (m_ MenuItem) Badge() NSMenuItemBadge {
-	rv := objc.Send[NSMenuItemBadge](m_.ID, objc.Sel("badge"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/badge
-func (m_ MenuItem) SetBadge(value IMenuItemBadge) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setBadge:"), value)
-}
-
-
-// A Boolean value that indicates whether the menu item has a submenu.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/hasSubmenu
-func (m_ MenuItem) HasSubmenu() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hasSubmenu"))
-	return rv
-}
-
-
-// The menu item’s image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/image
-func (m_ MenuItem) Image() Image {
-	rv := objc.Send[Image](m_.ID, objc.Sel("image"))
-	return rv
-}
-
-
-// The menu item’s image.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/image
-func (m_ MenuItem) SetImage(value IImage) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
-}
-
-
-// The menu item indentation level for the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/indentationLevel
-func (m_ MenuItem) IndentationLevel() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("indentationLevel"))
-	return rv
-}
-
-
-// The menu item indentation level for the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/indentationLevel
-func (m_ MenuItem) SetIndentationLevel(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setIndentationLevel:"), value)
-}
-
-
-// A Boolean value that marks the menu item as an alternate to the previous menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isAlternate
-func (m_ MenuItem) Alternate() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("alternate"))
-	return rv
-}
-
-
-// A Boolean value that marks the menu item as an alternate to the previous menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isAlternate
-func (m_ MenuItem) SetAlternate(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setAlternate:"), value)
-}
-
-
-// A Boolean value that indicates whether the menu item is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isEnabled
-func (m_ MenuItem) Enabled() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("enabled"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the menu item is enabled.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isEnabled
-func (m_ MenuItem) SetEnabled(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setEnabled:"), value)
-}
-
-
-// A Boolean value that indicates whether the menu item is hidden.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isHidden
-func (m_ MenuItem) Hidden() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hidden"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the menu item is hidden.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isHidden
-func (m_ MenuItem) SetHidden(value bool) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setHidden:"), value)
-}
-
-
-// A Boolean value that indicates whether the menu item or any of its superitems is hidden.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isHiddenOrHasHiddenAncestor
-func (m_ MenuItem) HiddenOrHasHiddenAncestor() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("hiddenOrHasHiddenAncestor"))
-	return rv
-}
-
-
-// A Boolean value that indicates whether the menu item should be drawn highlighted.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isHighlighted
-func (m_ MenuItem) Highlighted() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("highlighted"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the menu item is a section header.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isSectionHeader
-func (m_ MenuItem) SectionHeader() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("sectionHeader"))
-	return rv
-}
-
-
-// A Boolean value indicating whether the menu item is a separator item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/isSeparatorItem
-func (m_ MenuItem) SeparatorItem() bool {
-	rv := objc.Send[bool](m_.ID, objc.Sel("separatorItem"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/keyEquivalent
+func (m_ MenuItem) KeyEquivalent() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("keyEquivalent"))
 	return rv
 }
 
@@ -519,18 +225,8 @@ func (m_ MenuItem) SeparatorItem() bool {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/keyEquivalent
-func (m_ MenuItem) KeyEquivalent() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("keyEquivalent"))
-	return rv
-}
-
-
-// The menu item’s unmodified key equivalent.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/keyEquivalent
-func (m_ MenuItem) SetKeyEquivalent(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyEquivalent:"), objc.String(value))
+func (m_ MenuItem) SetKeyEquivalent(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setKeyEquivalent:"), value)
 }
 
 
@@ -553,246 +249,12 @@ func (m_ MenuItem) SetKeyEquivalentModifierMask(value EventModifierFlags) {
 }
 
 
-// The menu item’s menu.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/menu
-func (m_ MenuItem) Menu() NSMenu {
-	rv := objc.Send[NSMenu](m_.ID, objc.Sel("menu"))
-	return rv
-}
-
-
-// The menu item’s menu.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/menu
-func (m_ MenuItem) SetMenu(value IMenu) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
-}
-
-
-// The image of the menu item that indicates a “mixed” state, that is, a state neither “on” nor “off.”
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/mixedStateImage
-func (m_ MenuItem) MixedStateImage() Image {
-	rv := objc.Send[Image](m_.ID, objc.Sel("mixedStateImage"))
-	return rv
-}
-
-
-// The image of the menu item that indicates a “mixed” state, that is, a state neither “on” nor “off.”
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/mixedStateImage
-func (m_ MenuItem) SetMixedStateImage(value IImage) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setMixedStateImage:"), value)
-}
-
-
-// The image of the menu item that indicates an “off” state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/offStateImage
-func (m_ MenuItem) OffStateImage() Image {
-	rv := objc.Send[Image](m_.ID, objc.Sel("offStateImage"))
-	return rv
-}
-
-
-// The image of the menu item that indicates an “off” state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/offStateImage
-func (m_ MenuItem) SetOffStateImage(value IImage) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOffStateImage:"), value)
-}
-
-
-// The image of the menu item that indicates an “on” state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/onStateImage
-func (m_ MenuItem) OnStateImage() Image {
-	rv := objc.Send[Image](m_.ID, objc.Sel("onStateImage"))
-	return rv
-}
-
-
-// The image of the menu item that indicates an “on” state.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/onStateImage
-func (m_ MenuItem) SetOnStateImage(value IImage) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setOnStateImage:"), value)
-}
-
-
-// The menu item whose submenu contains the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/parent
-func (m_ MenuItem) ParentItem() NSMenuItem {
-	rv := objc.Send[NSMenuItem](m_.ID, objc.Sel("parentItem"))
-	return rv
-}
-
-
-// The object represented by the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/representedObject
-func (m_ MenuItem) RepresentedObject() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("representedObject"))
-	return rv
-}
-
-
-// The object represented by the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/representedObject
-func (m_ MenuItem) SetRepresentedObject(value objc.ID) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setRepresentedObject:"), value)
-}
-
-
-// The state of the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/state
-func (m_ MenuItem) State() ControlStateValue {
-	rv := objc.Send[ControlStateValue](m_.ID, objc.Sel("state"))
-	return rv
-}
-
-
-// The state of the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/state
-func (m_ MenuItem) SetState(value IControlStateValue) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
-}
-
-
-// The submenu of the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/submenu
-func (m_ MenuItem) Submenu() NSMenu {
-	rv := objc.Send[NSMenu](m_.ID, objc.Sel("submenu"))
-	return rv
-}
-
-
-// The submenu of the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/submenu
-func (m_ MenuItem) SetSubmenu(value IMenu) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubmenu:"), value)
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/subtitle
-func (m_ MenuItem) Subtitle() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("subtitle"))
-	return rv
-}
-
-
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/subtitle
-func (m_ MenuItem) SetSubtitle(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), objc.String(value))
-}
-
-
-// The menu item’s tag.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/tag
-func (m_ MenuItem) Tag() int {
-	rv := objc.Send[int](m_.ID, objc.Sel("tag"))
-	return rv
-}
-
-
-// The menu item’s tag.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/tag
-func (m_ MenuItem) SetTag(value int) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
-}
-
-
-// The menu item’s target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/target
-func (m_ MenuItem) Target() objc.ID {
-	rv := objc.Send[objc.ID](m_.ID, objc.Sel("target"))
-	return rv
-}
-
-
-// The menu item’s target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/target
-func (m_ MenuItem) SetTarget(value objc.ID) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTarget:"), value)
-}
-
-
-// The menu item’s title.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/title
-func (m_ MenuItem) Title() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("title"))
-	return rv
-}
-
-
-// The menu item’s title.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/title
-func (m_ MenuItem) SetTitle(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), objc.String(value))
-}
-
-
-// A help tag for the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/toolTip
-func (m_ MenuItem) ToolTip() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("toolTip"))
-	return rv
-}
-
-
-// A help tag for the menu item.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/toolTip
-func (m_ MenuItem) SetToolTip(value string) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setToolTip:"), objc.String(value))
-}
-
-
 // The user-assigned key equivalent for the menu item.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/userKeyEquivalent
-func (m_ MenuItem) UserKeyEquivalent() string {
-	rv := objc.Send[string](m_.ID, objc.Sel("userKeyEquivalent"))
+func (m_ MenuItem) UserKeyEquivalent() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("userKeyEquivalent"))
 	return rv
 }
 
@@ -816,32 +278,113 @@ func (m_ MenuItem) SetUsesUserKeyEquivalents(value bool) {
 }
 
 
-// The content view for the menu item.
+// The menu item’s action-method selector.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/view
-func (m_ MenuItem) View() NSView {
-	rv := objc.Send[NSView](m_.ID, objc.Sel("view"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/action
+func (m_ MenuItem) Action() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("action"))
 	return rv
 }
 
 
-// The content view for the menu item.
+// The menu item’s action-method selector.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/view
-func (m_ MenuItem) SetView(value IView) {
-	objc.Send[objc.ID](m_.ID, objc.Sel("setView:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/action
+func (m_ MenuItem) SetAction(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAction:"), value)
 }
 
 
-// An array of standard menu items related to Writing Tools. Each call to this method returns an array of newly allocated instances of NSMenuItem.
+// A custom string for a menu item.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSMenuItem/writingToolsItems
-func (m_ MenuItem) WritingToolsItems() []MenuItem {
-	rv := objc.Send[[]MenuItem](m_.ID, objc.Sel("writingToolsItems"))
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/attributedtitle
+func (m_ MenuItem) AttributedTitle() foundation.AttributedString {
+	rv := objc.Send[foundation.AttributedString](m_.ID, objc.Sel("attributedTitle"))
 	return rv
+}
+
+
+// A custom string for a menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/attributedtitle
+func (m_ MenuItem) SetAttributedTitle(value foundation.AttributedString) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setAttributedTitle:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/badge
+func (m_ MenuItem) Badge() IMenuItemBadge {
+	rv := objc.Send[MenuItemBadge](m_.ID, objc.Sel("badge"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/badge
+func (m_ MenuItem) SetBadge(value IMenuItemBadge) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setBadge:"), value)
+}
+
+
+// A Boolean value that indicates whether the menu item has a submenu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/hassubmenu
+func (m_ MenuItem) HasSubmenu() bool {
+	rv := objc.Send[bool](m_.ID, objc.Sel("hasSubmenu"))
+	return rv
+}
+
+
+// A Boolean value that indicates whether the menu item has a submenu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/hassubmenu
+func (m_ MenuItem) SetHasSubmenu(value bool) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setHasSubmenu:"), value)
+}
+
+
+// The menu item’s image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/image
+func (m_ MenuItem) Image() IImage {
+	rv := objc.Send[Image](m_.ID, objc.Sel("image"))
+	return rv
+}
+
+
+// The menu item’s image.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/image
+func (m_ MenuItem) SetImage(value IImage) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setImage:"), value)
+}
+
+
+// The menu item indentation level for the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/indentationlevel
+func (m_ MenuItem) IndentationLevel() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("indentationLevel"))
+	return rv
+}
+
+
+// The menu item indentation level for the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/indentationlevel
+func (m_ MenuItem) SetIndentationLevel(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setIndentationLevel:"), value)
 }
 
 
@@ -978,12 +521,88 @@ func (m_ MenuItem) SetIsSeparatorItem(value bool) {
 }
 
 
+// The menu item’s menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/menu
+func (m_ MenuItem) Menu() IMenu {
+	rv := objc.Send[Menu](m_.ID, objc.Sel("menu"))
+	return rv
+}
+
+
+// The menu item’s menu.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/menu
+func (m_ MenuItem) SetMenu(value IMenu) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMenu:"), value)
+}
+
+
+// The image of the menu item that indicates a “mixed” state, that is, a state neither “on” nor “off.”
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/mixedstateimage
+func (m_ MenuItem) MixedStateImage() IImage {
+	rv := objc.Send[Image](m_.ID, objc.Sel("mixedStateImage"))
+	return rv
+}
+
+
+// The image of the menu item that indicates a “mixed” state, that is, a state neither “on” nor “off.”
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/mixedstateimage
+func (m_ MenuItem) SetMixedStateImage(value IImage) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setMixedStateImage:"), value)
+}
+
+
+// The image of the menu item that indicates an “off” state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/offstateimage
+func (m_ MenuItem) OffStateImage() IImage {
+	rv := objc.Send[Image](m_.ID, objc.Sel("offStateImage"))
+	return rv
+}
+
+
+// The image of the menu item that indicates an “off” state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/offstateimage
+func (m_ MenuItem) SetOffStateImage(value IImage) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOffStateImage:"), value)
+}
+
+
+// The image of the menu item that indicates an “on” state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/onstateimage
+func (m_ MenuItem) OnStateImage() IImage {
+	rv := objc.Send[Image](m_.ID, objc.Sel("onStateImage"))
+	return rv
+}
+
+
+// The image of the menu item that indicates an “on” state.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/onstateimage
+func (m_ MenuItem) SetOnStateImage(value IImage) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setOnStateImage:"), value)
+}
+
+
 // The menu item whose submenu contains the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/parent
-func (m_ MenuItem) Parent() NSMenuItem {
-	rv := objc.Send[NSMenuItem](m_.ID, objc.Sel("parent"))
+func (m_ MenuItem) Parent() IMenuItem {
+	rv := objc.Send[MenuItem](m_.ID, objc.Sel("parent"))
 	return rv
 }
 
@@ -995,5 +614,135 @@ func (m_ MenuItem) Parent() NSMenuItem {
 func (m_ MenuItem) SetParent(value IMenuItem) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setParent:"), value)
 }
+
+
+// The state of the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/state
+func (m_ MenuItem) State() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](m_.ID, objc.Sel("state"))
+	return rv
+}
+
+
+// The state of the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/state
+func (m_ MenuItem) SetState(value unsafe.Pointer) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setState:"), value)
+}
+
+
+// The submenu of the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/submenu
+func (m_ MenuItem) Submenu() IMenu {
+	rv := objc.Send[Menu](m_.ID, objc.Sel("submenu"))
+	return rv
+}
+
+
+// The submenu of the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/submenu
+func (m_ MenuItem) SetSubmenu(value IMenu) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubmenu:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/subtitle
+func (m_ MenuItem) Subtitle() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("subtitle"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/subtitle
+func (m_ MenuItem) SetSubtitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setSubtitle:"), value)
+}
+
+
+// The menu item’s tag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/tag
+func (m_ MenuItem) Tag() int {
+	rv := objc.Send[int](m_.ID, objc.Sel("tag"))
+	return rv
+}
+
+
+// The menu item’s tag.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/tag
+func (m_ MenuItem) SetTag(value int) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTag:"), value)
+}
+
+
+// The menu item’s title.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/title
+func (m_ MenuItem) Title() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("title"))
+	return rv
+}
+
+
+// The menu item’s title.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/title
+func (m_ MenuItem) SetTitle(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setTitle:"), value)
+}
+
+
+// A help tag for the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/tooltip
+func (m_ MenuItem) ToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](m_.ID, objc.Sel("toolTip"))
+	return rv
+}
+
+
+// A help tag for the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/tooltip
+func (m_ MenuItem) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setToolTip:"), value)
+}
+
+
+// The content view for the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/view
+func (m_ MenuItem) View() IView {
+	rv := objc.Send[View](m_.ID, objc.Sel("view"))
+	return rv
+}
+
+
+// The content view for the menu item.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nsmenuitem/view
+func (m_ MenuItem) SetView(value IView) {
+	objc.Send[objc.ID](m_.ID, objc.Sel("setView:"), value)
+}
+
 
 

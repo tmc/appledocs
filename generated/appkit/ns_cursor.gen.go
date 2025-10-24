@@ -102,7 +102,7 @@ func NewCursor() Cursor {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/init(coder:)
-func NewCursorWithCoder(coder objc.IObject /* cross-framework: Coder */) Cursor {
+func NewCursorWithCoder(coder foundation.Coder) Cursor {
 	instance := getCursorClass().Alloc()
 	rv := objc.Send[Cursor](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
@@ -135,26 +135,6 @@ func NewCursorWithImageHotSpot(newImage IImage, point objc.IObject /* cross-fram
 
 
 
-// Returns the cursor for resizing a column (vertical divider) in the specified directions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/columnResizeCursorInDirections:
-func (cc _CursorClass) ColumnResizeCursorInDirections(directions HorizontalDirections) ICursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("columnResizeCursorInDirections:"), directions)
-	return rv
-}
-
-
-// Returns the cursor for resizing a rectangular frame from the specified edge or corner.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/frameResizeCursorFromPosition:inDirections:
-func (cc _CursorClass) FrameResizeCursorFromPositionInDirections(position CursorFrameResizePosition, directions CursorFrameResizeDirections) ICursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("frameResizeCursorFromPosition:inDirections:"), position, directions)
-	return rv
-}
-
-
 // Makes the current cursor invisible.
 //
 // [Full Topic]
@@ -170,16 +150,6 @@ func (cc _CursorClass) Hide() {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/pop()-swift.type.method
 func (cc _CursorClass) Pop() {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("pop"))
-}
-
-
-// Returns the cursor for resizing a row (horizontal divider) in the specified directions.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/rowResizeCursorInDirections:
-func (cc _CursorClass) RowResizeCursorInDirections(directions VerticalDirections) ICursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("rowResizeCursorInDirections:"), directions)
-	return rv
 }
 
 
@@ -216,15 +186,6 @@ func (cc _CursorClass) ArrowCursor() Cursor {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/closedHand
 func (cc _CursorClass) ClosedHandCursor() Cursor {
 	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("closedHandCursor"))
-	return rv
-}
-
-// Returns the cursor for resizing a column (vertical divider) in either direction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/columnResize
-func (cc _CursorClass) ColumnResizeCursor() Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("columnResizeCursor"))
 	return rv
 }
 
@@ -336,69 +297,6 @@ func (cc _CursorClass) PointingHandCursor() Cursor {
 	return rv
 }
 
-// Returns the resize-down system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeDown
-func (cc _CursorClass) ResizeDownCursor() Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeDownCursor"))
-	return rv
-}
-
-// Returns the resize-left system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeLeft
-func (cc _CursorClass) ResizeLeftCursor() Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeLeftCursor"))
-	return rv
-}
-
-// Returns the resize-left-and-right system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeLeftRight
-func (cc _CursorClass) ResizeLeftRightCursor() Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeLeftRightCursor"))
-	return rv
-}
-
-// Returns the resize-right system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeRight
-func (cc _CursorClass) ResizeRightCursor() Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeRightCursor"))
-	return rv
-}
-
-// Returns the resize-up system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeUp
-func (cc _CursorClass) ResizeUpCursor() Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeUpCursor"))
-	return rv
-}
-
-// Returns the resize-up-and-down system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeUpDown
-func (cc _CursorClass) ResizeUpDownCursor() Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("resizeUpDownCursor"))
-	return rv
-}
-
-// Returns the cursor for resizing a row (horizontal divider) in either direction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/rowResize
-func (cc _CursorClass) RowResizeCursor() Cursor {
-	rv := objc.Send[Cursor](objc.ID(cc.class), objc.Sel("rowResizeCursor"))
-	return rv
-}
-
 // Returns the zoom-in cursor.
 //
 // [Full Topic]
@@ -460,16 +358,6 @@ func (c_ Cursor) ArrowCursor() ICursor {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/closedHand
 func (c_ Cursor) ClosedHandCursor() ICursor {
 	rv := objc.Send[Cursor](c_.ID, objc.Sel("closedHandCursor"))
-	return rv
-}
-
-
-// Returns the cursor for resizing a column (vertical divider) in either direction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/columnResize
-func (c_ Cursor) ColumnResizeCursor() ICursor {
-	rv := objc.Send[Cursor](c_.ID, objc.Sel("columnResizeCursor"))
 	return rv
 }
 
@@ -630,76 +518,6 @@ func (c_ Cursor) OperationNotAllowedCursor() ICursor {
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/pointingHand
 func (c_ Cursor) PointingHandCursor() ICursor {
 	rv := objc.Send[Cursor](c_.ID, objc.Sel("pointingHandCursor"))
-	return rv
-}
-
-
-// Returns the resize-down system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeDown
-func (c_ Cursor) ResizeDownCursor() ICursor {
-	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeDownCursor"))
-	return rv
-}
-
-
-// Returns the resize-left system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeLeft
-func (c_ Cursor) ResizeLeftCursor() ICursor {
-	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeLeftCursor"))
-	return rv
-}
-
-
-// Returns the resize-left-and-right system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeLeftRight
-func (c_ Cursor) ResizeLeftRightCursor() ICursor {
-	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeLeftRightCursor"))
-	return rv
-}
-
-
-// Returns the resize-right system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeRight
-func (c_ Cursor) ResizeRightCursor() ICursor {
-	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeRightCursor"))
-	return rv
-}
-
-
-// Returns the resize-up system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeUp
-func (c_ Cursor) ResizeUpCursor() ICursor {
-	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeUpCursor"))
-	return rv
-}
-
-
-// Returns the resize-up-and-down system cursor.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/resizeUpDown
-func (c_ Cursor) ResizeUpDownCursor() ICursor {
-	rv := objc.Send[Cursor](c_.ID, objc.Sel("resizeUpDownCursor"))
-	return rv
-}
-
-
-// Returns the cursor for resizing a row (horizontal divider) in either direction.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCursor/rowResize
-func (c_ Cursor) RowResizeCursor() ICursor {
-	rv := objc.Send[Cursor](c_.ID, objc.Sel("rowResizeCursor"))
 	return rv
 }
 

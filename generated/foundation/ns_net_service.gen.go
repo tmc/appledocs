@@ -31,7 +31,7 @@ type _NetServiceClass struct {
 type INetService interface {
 	objectivec.IObject
 	// properties:
-	Addresses() []IData
+	Addresses() []Data
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	Domain() IString
@@ -146,7 +146,7 @@ func (nc _NetServiceClass) DictionaryFromTXTRecordData(txtData IData) IDictionar
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NetService/addresses
-func (n_ NetService) Addresses() []IData {
+func (n_ NetService) Addresses() []Data {
 	rv := objc.Send[[]Data](n_.ID, objc.Sel("addresses"))
 	return rv
 }

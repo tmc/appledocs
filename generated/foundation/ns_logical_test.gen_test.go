@@ -13,7 +13,7 @@ var _ = foundation.NewLogicalTest
 // Returns an   object initialized to perform an   operation with the   objects in a given array.
 func ExampleNewLogicalTestAndTestWithTests() {
 	_ = foundation.NewLogicalTestAndTestWithTests(
-		[]foundation.ISpecifierTest{}, // subTests []ISpecifierTest
+		[]foundation.SpecifierTest{}, // subTests []SpecifierTest
 	)
 	// Output:
 }
@@ -21,7 +21,7 @@ func ExampleNewLogicalTestAndTestWithTests() {
 // Returns an   object initialized to perform an   operation with the   objects in a given array.
 func ExampleNewLogicalTestOrTestWithTests() {
 	_ = foundation.NewLogicalTestOrTestWithTests(
-		[]foundation.ISpecifierTest{}, // subTests []ISpecifierTest
+		[]foundation.SpecifierTest{}, // subTests []SpecifierTest
 	)
 	// Output:
 }

@@ -33,7 +33,7 @@ type IMutableAttributedString interface {
 	// properties:
 	MutableString() IMutableString
 	// methods:
-	AddAttributeValueRange(name objc.IObject /* cross-framework: AttributedStringKey */, value objectivec.IObject, range_ objc.IObject /* cross-framework: Range */)
+	AddAttributeValueRange(name objc.IObject /* cross-framework: AttributedStringKey */, value objc.IObject, range_ objc.IObject /* cross-framework: Range */)
 	AddAttributesRange(attrs IDictionary, range_ objc.IObject /* cross-framework: Range */)
 	AppendAttributedString(attrString IAttributedString)
 	AppendLocalizedFormat(format IAttributedString)
@@ -120,7 +120,7 @@ func NewMutableAttributedString() MutableAttributedString {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMutableAttributedString/addAttribute(_:value:range:)
-func (m_ MutableAttributedString) AddAttributeValueRange(name objc.IObject /* cross-framework: AttributedStringKey */, value objectivec.IObject, range_ objc.IObject /* cross-framework: Range */) {
+func (m_ MutableAttributedString) AddAttributeValueRange(name objc.IObject /* cross-framework: AttributedStringKey */, value objc.IObject, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("addAttribute:value:range:"), name, value, range_)
 }
 

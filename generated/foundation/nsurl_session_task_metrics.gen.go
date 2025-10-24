@@ -33,7 +33,7 @@ type IURLSessionTaskMetrics interface {
 	// properties:
 	RedirectCount() uint
 	TaskInterval() IDateInterval
-	TransactionMetrics() []IURLSessionTaskTransactionMetrics
+	TransactionMetrics() []URLSessionTaskTransactionMetrics
 	// methods:
 }
 
@@ -115,7 +115,7 @@ func (u_ URLSessionTaskMetrics) TaskInterval() IDateInterval {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLSessionTaskMetrics/transactionMetrics
-func (u_ URLSessionTaskMetrics) TransactionMetrics() []IURLSessionTaskTransactionMetrics {
+func (u_ URLSessionTaskMetrics) TransactionMetrics() []URLSessionTaskTransactionMetrics {
 	rv := objc.Send[[]URLSessionTaskTransactionMetrics](u_.ID, objc.Sel("transactionMetrics"))
 	return rv
 }

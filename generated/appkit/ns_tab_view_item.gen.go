@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,26 +32,28 @@ type _TabViewItemClass struct {
 // An interface definition for the [TabViewItem] class.
 type ITabViewItem interface {
 	objectivec.IObject
-	DrawLabelInRect(shouldTruncateLabel bool, labelRect coregraphics.CGRect)
-	SizeOfLabel(computeMin bool) coregraphics.CGSize
-	Color() NSColor
+	// properties:
+	Color() IColor
 	SetColor(value IColor)
 	Identifier() objc.ID
 	SetIdentifier(value objc.ID)
-	Image() Image
+	Image() IImage
 	SetImage(value IImage)
-	InitialFirstResponder() NSView
+	InitialFirstResponder() IView
 	SetInitialFirstResponder(value IView)
-	Label() string
-	SetLabel(value string)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
 	TabState() TabState
-	TabView() NSTabView
-	ToolTip() string
-	SetToolTip(value string)
-	View() NSView
+	TabView() ITabView
+	ToolTip() objc.IObject /* cross-framework: NSString */
+	SetToolTip(value objc.IObject /* cross-framework: NSString */)
+	View() IView
 	SetView(value IView)
-	ViewController() NSViewController
+	ViewController() IViewController
 	SetViewController(value IViewController)
+	// methods:
+	DrawLabelInRect(shouldTruncateLabel bool, labelRect objc.IObject /* cross-framework: Rect */)
+	SizeOfLabel(computeMin bool) objc.IObject /* cross-framework: Size */
 }
 
 // An item in a tab view.
@@ -110,7 +113,7 @@ func NewTabViewItem() TabViewItem {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/init(identifier:)
-func NewTabViewItemWithIdentifier(identifier objectivec.IObject) TabViewItem {
+func NewTabViewItemWithIdentifier(identifier objc.IObject) TabViewItem {
 	instance := getTabViewItemClass().Alloc()
 	rv := objc.Send[TabViewItem](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
 	rv.Autorelease()
@@ -139,7 +142,7 @@ func (tc _TabViewItemClass) TabViewItemWithViewController(viewController IViewCo
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/drawLabel(_:in:)
-func (t_ TabViewItem) DrawLabelInRect(shouldTruncateLabel bool, labelRect coregraphics.CGRect) {
+func (t_ TabViewItem) DrawLabelInRect(shouldTruncateLabel bool, labelRect objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("drawLabel:inRect:"), shouldTruncateLabel, labelRect)
 }
 
@@ -148,8 +151,8 @@ func (t_ TabViewItem) DrawLabelInRect(shouldTruncateLabel bool, labelRect coregr
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/sizeOfLabel(_:)
-func (t_ TabViewItem) SizeOfLabel(computeMin bool) coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](t_.ID, objc.Sel("sizeOfLabel:"), computeMin)
+func (t_ TabViewItem) SizeOfLabel(computeMin bool) objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](t_.ID, objc.Sel("sizeOfLabel:"), computeMin)
 	return rv
 }
 
@@ -158,8 +161,8 @@ func (t_ TabViewItem) SizeOfLabel(computeMin bool) coregraphics.CGSize {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/color
-func (t_ TabViewItem) Color() NSColor {
-	rv := objc.Send[NSColor](t_.ID, objc.Sel("color"))
+func (t_ TabViewItem) Color() IColor {
+	rv := objc.Send[Color](t_.ID, objc.Sel("color"))
 	return rv
 }
 
@@ -194,7 +197,7 @@ func (t_ TabViewItem) SetIdentifier(value objc.ID) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/image
-func (t_ TabViewItem) Image() Image {
+func (t_ TabViewItem) Image() IImage {
 	rv := objc.Send[Image](t_.ID, objc.Sel("image"))
 	return rv
 }
@@ -211,8 +214,8 @@ func (t_ TabViewItem) SetImage(value IImage) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/initialFirstResponder
-func (t_ TabViewItem) InitialFirstResponder() NSView {
-	rv := objc.Send[NSView](t_.ID, objc.Sel("initialFirstResponder"))
+func (t_ TabViewItem) InitialFirstResponder() IView {
+	rv := objc.Send[View](t_.ID, objc.Sel("initialFirstResponder"))
 	return rv
 }
 
@@ -230,8 +233,8 @@ func (t_ TabViewItem) SetInitialFirstResponder(value IView) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/label
-func (t_ TabViewItem) Label() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("label"))
+func (t_ TabViewItem) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("label"))
 	return rv
 }
 
@@ -240,8 +243,8 @@ func (t_ TabViewItem) Label() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/label
-func (t_ TabViewItem) SetLabel(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), objc.String(value))
+func (t_ TabViewItem) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setLabel:"), value)
 }
 
 
@@ -259,8 +262,8 @@ func (t_ TabViewItem) TabState() TabState {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/tabView
-func (t_ TabViewItem) TabView() NSTabView {
-	rv := objc.Send[NSTabView](t_.ID, objc.Sel("tabView"))
+func (t_ TabViewItem) TabView() ITabView {
+	rv := objc.Send[TabView](t_.ID, objc.Sel("tabView"))
 	return rv
 }
 
@@ -269,8 +272,8 @@ func (t_ TabViewItem) TabView() NSTabView {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/toolTip
-func (t_ TabViewItem) ToolTip() string {
-	rv := objc.Send[string](t_.ID, objc.Sel("toolTip"))
+func (t_ TabViewItem) ToolTip() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](t_.ID, objc.Sel("toolTip"))
 	return rv
 }
 
@@ -279,8 +282,8 @@ func (t_ TabViewItem) ToolTip() string {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/toolTip
-func (t_ TabViewItem) SetToolTip(value string) {
-	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), objc.String(value))
+func (t_ TabViewItem) SetToolTip(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setToolTip:"), value)
 }
 
 
@@ -288,8 +291,8 @@ func (t_ TabViewItem) SetToolTip(value string) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/view
-func (t_ TabViewItem) View() NSView {
-	rv := objc.Send[NSView](t_.ID, objc.Sel("view"))
+func (t_ TabViewItem) View() IView {
+	rv := objc.Send[View](t_.ID, objc.Sel("view"))
 	return rv
 }
 
@@ -305,8 +308,8 @@ func (t_ TabViewItem) SetView(value IView) {
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTabViewItem/viewController
-func (t_ TabViewItem) ViewController() NSViewController {
-	rv := objc.Send[NSViewController](t_.ID, objc.Sel("viewController"))
+func (t_ TabViewItem) ViewController() IViewController {
+	rv := objc.Send[ViewController](t_.ID, objc.Sel("viewController"))
 	return rv
 }
 

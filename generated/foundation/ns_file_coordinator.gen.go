@@ -36,6 +36,7 @@ type IFileCoordinator interface {
 	NSUserCancelledError() int
 	SetNSUserCancelledError(value int)
 	// methods:
+	CoordinateReadingItemAtURLOptionsErrorByAccessor(url IURL, options FileCoordinatorReadingOptions /* not a class type */, outError IError, reader unsafe.Pointer)
 }
 
 // An object that coordinates the reading and writing of files and directories among file presenters.
@@ -89,6 +90,15 @@ func NewFileCoordinator() FileCoordinator {
 	return getFileCoordinatorClass().New()
 }
 
+
+
+// Initiates a read operation on a single file or directory using the specified options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/Foundation/NSFileCoordinator/coordinate(readingItemAt:options:error:byAccessor:)
+func (f_ FileCoordinator) CoordinateReadingItemAtURLOptionsErrorByAccessor(url IURL, options FileCoordinatorReadingOptions /* not a class type */, outError IError, reader unsafe.Pointer) {
+	objc.Send[objc.ID](f_.ID, objc.Sel("coordinateReadingItemAtURL:options:error:byAccessor:"), url, options, outError, reader)
+}
 
 
 // A string that uniquely identifies the file access that was performed by this file coordinator.

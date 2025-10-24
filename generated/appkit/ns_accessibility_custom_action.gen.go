@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,14 +31,16 @@ type _AccessibilityCustomActionClass struct {
 // An interface definition for the [AccessibilityCustomAction] class.
 type IAccessibilityCustomAction interface {
 	objectivec.IObject
-	Handler() bool
-	SetHandler(value bool)
-	Name() string
-	SetName(value string)
-	Selector() unsafe.Pointer
-	SetSelector(value unsafe.Pointer)
-	Target() unsafe.Pointer
-	SetTarget(value unsafe.Pointer)
+	// properties:
+	Handler() unsafe.Pointer
+	SetHandler(value unsafe.Pointer)
+	Name() objc.IObject /* cross-framework: NSString */
+	SetName(value objc.IObject /* cross-framework: NSString */)
+	Selector() objc.SEL
+	SetSelector(value objc.SEL)
+	Target() objc.ID
+	SetTarget(value objc.ID)
+	// methods:
 }
 
 // A custom action to perform on an accessible object.
@@ -93,12 +96,37 @@ func NewAccessibilityCustomAction() AccessibilityCustomAction {
 
 
 
+// Creates a custom action object with the specified name and handler.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/init(name:handler:)
+func NewAccessibilityCustomActionWithNameHandler(name objc.IObject /* cross-framework: NSString */, handler unsafe.Pointer) AccessibilityCustomAction {
+	instance := getAccessibilityCustomActionClass().Alloc()
+	rv := objc.Send[AccessibilityCustomAction](instance.ID, objc.Sel("initWithName:handler:"), name, handler)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates a custom action object with the specified name, target, and selector.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/init(name:target:selector:)
+func NewAccessibilityCustomActionWithNameTargetSelector(name objc.IObject /* cross-framework: NSString */, target objc.IObject, selector objc.SEL) AccessibilityCustomAction {
+	instance := getAccessibilityCustomActionClass().Alloc()
+	rv := objc.Send[AccessibilityCustomAction](instance.ID, objc.Sel("initWithName:target:selector:"), name, target, selector)
+	rv.Autorelease()
+	return rv
+}
+
+
+
 // The closure that handles the execution of the action.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/handler
-func (a_ AccessibilityCustomAction) Handler() bool {
-	rv := objc.Send[bool](a_.ID, objc.Sel("handler"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/handler
+func (a_ AccessibilityCustomAction) Handler() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("handler"))
 	return rv
 }
 
@@ -106,8 +134,8 @@ func (a_ AccessibilityCustomAction) Handler() bool {
 // The closure that handles the execution of the action.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/handler
-func (a_ AccessibilityCustomAction) SetHandler(value bool) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/handler
+func (a_ AccessibilityCustomAction) SetHandler(value unsafe.Pointer) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setHandler:"), value)
 }
 
@@ -115,9 +143,9 @@ func (a_ AccessibilityCustomAction) SetHandler(value bool) {
 // A localized name that describes the action.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/name
-func (a_ AccessibilityCustomAction) Name() string {
-	rv := objc.Send[string](a_.ID, objc.Sel("name"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/name
+func (a_ AccessibilityCustomAction) Name() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](a_.ID, objc.Sel("name"))
 	return rv
 }
 
@@ -125,18 +153,18 @@ func (a_ AccessibilityCustomAction) Name() string {
 // A localized name that describes the action.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/name
-func (a_ AccessibilityCustomAction) SetName(value string) {
-	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), objc.String(value))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/name
+func (a_ AccessibilityCustomAction) SetName(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](a_.ID, objc.Sel("setName:"), value)
 }
 
 
 // The method to call on the target to perform the action.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/selector
-func (a_ AccessibilityCustomAction) Selector() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("selector"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/selector
+func (a_ AccessibilityCustomAction) Selector() objc.SEL {
+	rv := objc.Send[objc.SEL](a_.ID, objc.Sel("selector"))
 	return rv
 }
 
@@ -144,8 +172,8 @@ func (a_ AccessibilityCustomAction) Selector() unsafe.Pointer {
 // The method to call on the target to perform the action.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/selector
-func (a_ AccessibilityCustomAction) SetSelector(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/selector
+func (a_ AccessibilityCustomAction) SetSelector(value objc.SEL) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setSelector:"), value)
 }
 
@@ -153,9 +181,9 @@ func (a_ AccessibilityCustomAction) SetSelector(value unsafe.Pointer) {
 // The object that performs the action through a selector.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/target
-func (a_ AccessibilityCustomAction) Target() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](a_.ID, objc.Sel("target"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/target
+func (a_ AccessibilityCustomAction) Target() objc.ID {
+	rv := objc.Send[objc.ID](a_.ID, objc.Sel("target"))
 	return rv
 }
 
@@ -163,10 +191,9 @@ func (a_ AccessibilityCustomAction) Target() unsafe.Pointer {
 // The object that performs the action through a selector.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsaccessibilitycustomaction/target
-func (a_ AccessibilityCustomAction) SetTarget(value unsafe.Pointer) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSAccessibilityCustomAction/target
+func (a_ AccessibilityCustomAction) SetTarget(value objc.ID) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setTarget:"), value)
 }
-
 
 

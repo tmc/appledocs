@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // TextInputTraitsProtocol is the NSTextInputTraits protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSTextInputTraits.
 var TextInputTraitsProtocol *objc.Protocol
 

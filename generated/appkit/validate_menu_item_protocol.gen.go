@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // validateMenuItemProtocol is the validateMenuItem: protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to validateMenuItem:.
 var validateMenuItemProtocol *objc.Protocol
 

@@ -15,11 +15,3 @@ func ExampleNewShadow() {
 	_ = appkit.NewShadow()
 	// Output:
 }
-// ExampleShadow_Set demonstrates using Set on a Shadow instance.
-// Sets the shadow of subsequent drawing operations to the current shadow.
-func ExampleShadow_Set() {
-	obj := appkit.NewShadow()
-	obj.Set()
-	// Output:
-	}
-

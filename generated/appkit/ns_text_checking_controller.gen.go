@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -30,10 +31,13 @@ type _TextCheckingControllerClass struct {
 // An interface definition for the [TextCheckingController] class.
 type ITextCheckingController interface {
 	objectivec.IObject
-	Client() unsafe.Pointer
-	SetClient(value unsafe.Pointer)
+	// properties:
+	Client() TextCheckingClient /* not a class type */
+	SetClient(value TextCheckingClient /* not a class type */)
 	SpellCheckerDocumentTag() int
 	SetSpellCheckerDocumentTag(value int)
+	// methods:
+	DidChangeTextInRange(range_ corefoundation.Range)
 }
 
 
@@ -83,16 +87,23 @@ func NewTextCheckingController() TextCheckingController {
 
 
 // [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTextCheckingController/didChangeText(in:)
+func (t_ TextCheckingController) DidChangeTextInRange(range_ corefoundation.Range) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("didChangeTextInRange:"), range_)
+}
+
+
+// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcheckingcontroller/client
-func (t_ TextCheckingController) Client() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("client"))
+func (t_ TextCheckingController) Client() TextCheckingClient /* not a class type */ {
+	rv := objc.Send[TextCheckingClient](t_.ID, objc.Sel("client"))
 	return rv
 }
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nstextcheckingcontroller/client
-func (t_ TextCheckingController) SetClient(value unsafe.Pointer) {
+func (t_ TextCheckingController) SetClient(value TextCheckingClient /* not a class type */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setClient:"), value)
 }
 

@@ -8,7 +8,6 @@ import (
 
 	"github.com/tmc/appledocs/generated/objc"
 	"github.com/tmc/appledocs/generated/corefoundation"
-	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -33,10 +32,11 @@ type _TrackingAreaClass struct {
 type ITrackingArea interface {
 	objectivec.IObject
 	// properties:
-	Options() TrackingAreaOptions
-	Owner() objc.ID
+	Options() TrackingAreaOptions /* not a class type */
 	Rect() objc.IObject /* cross-framework: Rect */
-	UserInfo() foundation.IDictionary
+	SetRect(value objc.IObject /* cross-framework: Rect */)
+	UserInfo() unsafe.Pointer
+	SetUserInfo(value unsafe.Pointer)
 	VisibleRect() objc.IObject /* cross-framework: Rect */
 	SetVisibleRect(value objc.IObject /* cross-framework: Rect */)
 	// methods:
@@ -95,35 +95,12 @@ func NewTrackingArea() TrackingArea {
 
 
 
-// Initializes and returns an object defining a region of a view to receive mouse-tracking events, mouse-moved events, cursor-update events, or possibly all these events.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/init(rect:options:owner:userInfo:)
-func NewTrackingAreaWithRectOptionsOwnerUserInfo(rect objc.IObject /* cross-framework: Rect */, options TrackingAreaOptions, owner objectivec.IObject, userInfo foundation.IDictionary) TrackingArea {
-	instance := getTrackingAreaClass().Alloc()
-	rv := objc.Send[TrackingArea](instance.ID, objc.Sel("initWithRect:options:owner:userInfo:"), rect, options, owner, userInfo)
-	rv.Autorelease()
-	return rv
-}
-
-
-
 // The options specified for the receiver.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/options-swift.property
-func (t_ TrackingArea) Options() TrackingAreaOptions {
+func (t_ TrackingArea) Options() TrackingAreaOptions /* not a class type */ {
 	rv := objc.Send[TrackingAreaOptions](t_.ID, objc.Sel("options"))
-	return rv
-}
-
-
-// The object owning the receiver, which is the recipient of mouse-tracking, mouse-movement, and cursor-update messages.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/owner
-func (t_ TrackingArea) Owner() objc.ID {
-	rv := objc.Send[objc.ID](t_.ID, objc.Sel("owner"))
 	return rv
 }
 
@@ -131,9 +108,28 @@ func (t_ TrackingArea) Owner() objc.ID {
 // The rectangle defining the area encompassed by the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/rect
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/rect
 func (t_ TrackingArea) Rect() objc.IObject /* cross-framework: Rect */ {
 	rv := objc.Send[corefoundation.Rect](t_.ID, objc.Sel("rect"))
+	return rv
+}
+
+
+// The rectangle defining the area encompassed by the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/rect
+func (t_ TrackingArea) SetRect(value objc.IObject /* cross-framework: Rect */) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setRect:"), value)
+}
+
+
+// The dictionary containing the data associated with the receiver when it was created.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/userinfo
+func (t_ TrackingArea) UserInfo() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](t_.ID, objc.Sel("userInfo"))
 	return rv
 }
 
@@ -141,10 +137,9 @@ func (t_ TrackingArea) Rect() objc.IObject /* cross-framework: Rect */ {
 // The dictionary containing the data associated with the receiver when it was created.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSTrackingArea/userInfo
-func (t_ TrackingArea) UserInfo() foundation.IDictionary {
-	rv := objc.Send[foundation.IDictionary](t_.ID, objc.Sel("userInfo"))
-	return rv
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nstrackingarea/userinfo
+func (t_ TrackingArea) SetUserInfo(value unsafe.Pointer) {
+	objc.Send[objc.ID](t_.ID, objc.Sel("setUserInfo:"), value)
 }
 
 
@@ -165,5 +160,6 @@ func (t_ TrackingArea) VisibleRect() objc.IObject /* cross-framework: Rect */ {
 func (t_ TrackingArea) SetVisibleRect(value objc.IObject /* cross-framework: Rect */) {
 	objc.Send[objc.ID](t_.ID, objc.Sel("setVisibleRect:"), value)
 }
+
 
 

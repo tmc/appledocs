@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,9 +32,14 @@ type _UserInterfaceCompressionOptionsClass struct {
 type IUserInterfaceCompressionOptions interface {
 	objectivec.IObject
 	// properties:
+	Empty() bool
 	IsEmpty() bool
 	SetIsEmpty(value bool)
 	// methods:
+	ContainsOptions(options IUserInterfaceCompressionOptions) bool
+	IntersectsOptions(options IUserInterfaceCompressionOptions) bool
+	OptionsByRemovingOptions(options IUserInterfaceCompressionOptions) IUserInterfaceCompressionOptions
+	OptionsByAddingOptions(options IUserInterfaceCompressionOptions) IUserInterfaceCompressionOptions
 }
 
 // An object that specifies how user interface elements resize themselves when space is constrained.
@@ -89,6 +95,188 @@ func NewUserInterfaceCompressionOptions() UserInterfaceCompressionOptions {
 
 
 
+// Creates an option object from data in an unarchiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/init(coder:)
+func NewUserInterfaceCompressionOptionsWithCoder(coder foundation.Coder) UserInterfaceCompressionOptions {
+	instance := getUserInterfaceCompressionOptionsClass().Alloc()
+	rv := objc.Send[UserInterfaceCompressionOptions](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an option object that represents the union of the supplied options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/init(options:)
+func NewUserInterfaceCompressionOptionsWithCompressionOptions(options unsafe.Pointer) UserInterfaceCompressionOptions {
+	instance := getUserInterfaceCompressionOptionsClass().Alloc()
+	rv := objc.Send[UserInterfaceCompressionOptions](instance.ID, objc.Sel("initWithCompressionOptions:"), options)
+	rv.Autorelease()
+	return rv
+}
+
+
+// Creates an option object with the given identifier string.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/init(identifier:)
+func NewUserInterfaceCompressionOptionsWithIdentifier(identifier objc.IObject /* cross-framework: NSString */) UserInterfaceCompressionOptions {
+	instance := getUserInterfaceCompressionOptionsClass().Alloc()
+	rv := objc.Send[UserInterfaceCompressionOptions](instance.ID, objc.Sel("initWithIdentifier:"), identifier)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// An option specifying that views should no longer maintain equal width constraints.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/breakEqualWidths
+func (uc _UserInterfaceCompressionOptionsClass) BreakEqualWidthsOption() UserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](objc.ID(uc.class), objc.Sel("breakEqualWidthsOption"))
+	return rv
+}
+
+// An option specifying that views should hide their images.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/hideImages
+func (uc _UserInterfaceCompressionOptionsClass) HideImagesOption() UserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](objc.ID(uc.class), objc.Sel("hideImagesOption"))
+	return rv
+}
+
+// An option specifying that views should hide their text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/hideText
+func (uc _UserInterfaceCompressionOptionsClass) HideTextOption() UserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](objc.ID(uc.class), objc.Sel("hideTextOption"))
+	return rv
+}
+
+// An option specifying that views should reduce their internal metrics.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/reduceMetrics
+func (uc _UserInterfaceCompressionOptionsClass) ReduceMetricsOption() UserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](objc.ID(uc.class), objc.Sel("reduceMetricsOption"))
+	return rv
+}
+
+// An option that represents the union of all standard compression options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/standardOptions
+func (uc _UserInterfaceCompressionOptionsClass) StandardOptions() UserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](objc.ID(uc.class), objc.Sel("standardOptions"))
+	return rv
+}
+
+// Determines whether the supplied compression options are all present in the current instance.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/contains(_:)
+func (u_ UserInterfaceCompressionOptions) ContainsOptions(options IUserInterfaceCompressionOptions) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("containsOptions:"), options)
+	return rv
+}
+
+
+// Determines whether the supplied compression options intersect with the current instance’s options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/intersects(_:)
+func (u_ UserInterfaceCompressionOptions) IntersectsOptions(options IUserInterfaceCompressionOptions) bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("intersectsOptions:"), options)
+	return rv
+}
+
+
+// Creates a new compression options object with the supplied options removed.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/subtracting(_:)
+func (u_ UserInterfaceCompressionOptions) OptionsByRemovingOptions(options IUserInterfaceCompressionOptions) IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](u_.ID, objc.Sel("optionsByRemovingOptions:"), options)
+	return rv
+}
+
+
+// Creates a new compression options object representing the union with the provided options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/union(_:)
+func (u_ UserInterfaceCompressionOptions) OptionsByAddingOptions(options IUserInterfaceCompressionOptions) IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](u_.ID, objc.Sel("optionsByAddingOptions:"), options)
+	return rv
+}
+
+
+// An option specifying that views should no longer maintain equal width constraints.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/breakEqualWidths
+func (u_ UserInterfaceCompressionOptions) BreakEqualWidthsOption() IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](u_.ID, objc.Sel("breakEqualWidthsOption"))
+	return rv
+}
+
+
+// An option specifying that views should hide their images.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/hideImages
+func (u_ UserInterfaceCompressionOptions) HideImagesOption() IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](u_.ID, objc.Sel("hideImagesOption"))
+	return rv
+}
+
+
+// An option specifying that views should hide their text.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/hideText
+func (u_ UserInterfaceCompressionOptions) HideTextOption() IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](u_.ID, objc.Sel("hideTextOption"))
+	return rv
+}
+
+
+// A Boolean value that denotes whether the option is empty.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/isEmpty
+func (u_ UserInterfaceCompressionOptions) Empty() bool {
+	rv := objc.Send[bool](u_.ID, objc.Sel("empty"))
+	return rv
+}
+
+
+// An option specifying that views should reduce their internal metrics.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/reduceMetrics
+func (u_ UserInterfaceCompressionOptions) ReduceMetricsOption() IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](u_.ID, objc.Sel("reduceMetricsOption"))
+	return rv
+}
+
+
+// An option that represents the union of all standard compression options.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSUserInterfaceCompressionOptions/standardOptions
+func (u_ UserInterfaceCompressionOptions) StandardOptions() IUserInterfaceCompressionOptions {
+	rv := objc.Send[UserInterfaceCompressionOptions](u_.ID, objc.Sel("standardOptions"))
+	return rv
+}
+
+
 // A Boolean value that denotes whether the option is empty.
 //
 // [Full Topic]
@@ -106,6 +294,5 @@ func (u_ UserInterfaceCompressionOptions) IsEmpty() bool {
 func (u_ UserInterfaceCompressionOptions) SetIsEmpty(value bool) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setIsEmpty:"), value)
 }
-
 
 

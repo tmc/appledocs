@@ -7,7 +7,8 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
+	"github.com/tmc/appledocs/generated/foundation"
 )
 
 // The class instance for the [SliderCell] class.
@@ -30,27 +31,37 @@ type _SliderCellClass struct {
 // An interface definition for the [SliderCell] class.
 type ISliderCell interface {
 	IActionCell
-	KnobRectFlipped(flipped bool) coregraphics.CGRect
-	SliderType() SliderType
-	SetSliderType(value SliderType)
+	// properties:
 	AllowsTickMarkValuesOnly() bool
 	SetAllowsTickMarkValuesOnly(value bool)
 	AltIncrementValue() float64
 	SetAltIncrementValue(value float64)
-	IsVertical() bool
-	SetIsVertical(value bool)
+	Vertical() bool
+	SetVertical(value bool)
 	KnobThickness() float64
-	SetKnobThickness(value float64)
 	MaxValue() float64
 	SetMaxValue(value float64)
 	MinValue() float64
 	SetMinValue(value float64)
 	NumberOfTickMarks() int
 	SetNumberOfTickMarks(value int)
-	TickMarkPosition() unsafe.Pointer
-	SetTickMarkPosition(value unsafe.Pointer)
-	TrackRect() coregraphics.CGRect
-	SetTrackRect(value coregraphics.CGRect)
+	SliderType() SliderType
+	SetSliderType(value SliderType)
+	TickMarkPosition() TickMarkPosition
+	SetTickMarkPosition(value TickMarkPosition)
+	TrackRect() objc.IObject /* cross-framework: Rect */
+	IsVertical() bool
+	SetIsVertical(value bool)
+	// methods:
+	BarRectFlipped(flipped bool) objc.IObject /* cross-framework: Rect */
+	ClosestTickMarkValueToValue(value float64) float64
+	DrawBarInsideFlipped(rect objc.IObject /* cross-framework: Rect */, flipped bool)
+	DrawKnob()
+	DrawTickMarks()
+	IndexOfTickMarkAtPoint(point objc.IObject /* cross-framework: Point */) int
+	KnobRectFlipped(flipped bool) objc.IObject /* cross-framework: Rect */
+	RectOfTickMarkAtIndex(index int) objc.IObject /* cross-framework: Rect */
+	TickMarkValueAtIndex(index int) float64
 }
 
 // The appearance and behavior of an object.
@@ -108,12 +119,232 @@ func NewSliderCell() SliderCell {
 
 
 
+// Returns a Boolean value indicating whether the continues to track the pointer until the next mouse up.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/prefersTrackingUntilMouseUp
+func (sc _SliderCellClass) PrefersTrackingUntilMouseUp() bool {
+	rv := objc.Send[bool](objc.ID(sc.class), objc.Sel("prefersTrackingUntilMouseUp"))
+	return rv
+}
+
+// Returns the rectangle in which the bar is drawn.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/barRect(flipped:)
+func (s_ SliderCell) BarRectFlipped(flipped bool) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("barRectFlipped:"), flipped)
+	return rv
+}
+
+
+// Returns the value of the tick mark closest to the specified value.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/closestTickMarkValue(toValue:)
+func (s_ SliderCell) ClosestTickMarkValueToValue(value float64) float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("closestTickMarkValueToValue:"), value)
+	return rv
+}
+
+
+// Draws the slider’s bar—but not its bezel or knob—inside the specified rectangle.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/drawBar(inside:flipped:)
+func (s_ SliderCell) DrawBarInsideFlipped(rect objc.IObject /* cross-framework: Rect */, flipped bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawBarInside:flipped:"), rect, flipped)
+}
+
+
+// Calculates the rectangle in which the knob should be drawn, then calls to actually draw the knob.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/drawKnob()
+func (s_ SliderCell) DrawKnob() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawKnob"))
+}
+
+
+// Draws the slider’s tick marks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/drawTickMarks()
+func (s_ SliderCell) DrawTickMarks() {
+	objc.Send[objc.ID](s_.ID, objc.Sel("drawTickMarks"))
+}
+
+
+// Returns the index of the tick mark closest to the location of the slider represented by the specified point.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/indexOfTickMark(at:)
+func (s_ SliderCell) IndexOfTickMarkAtPoint(point objc.IObject /* cross-framework: Point */) int {
+	rv := objc.Send[int](s_.ID, objc.Sel("indexOfTickMarkAtPoint:"), point)
+	return rv
+}
+
+
 // Returns the rectangle in which the slider knob is drawn.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/knobRect(flipped:)
-func (s_ SliderCell) KnobRectFlipped(flipped bool) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("knobRectFlipped:"), flipped)
+func (s_ SliderCell) KnobRectFlipped(flipped bool) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("knobRectFlipped:"), flipped)
+	return rv
+}
+
+
+// Returns the bounding rectangle of the tick mark at the specified index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/rectOfTickMark(at:)
+func (s_ SliderCell) RectOfTickMarkAtIndex(index int) objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("rectOfTickMarkAtIndex:"), index)
+	return rv
+}
+
+
+// Returns the receiver’s value represented by the tick mark at the specified index.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/tickMarkValue(at:)
+func (s_ SliderCell) TickMarkValueAtIndex(index int) float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("tickMarkValueAtIndex:"), index)
+	return rv
+}
+
+
+// A Boolean value indicating whether the receiver fixes its values to those values represented by its tick marks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/allowsTickMarkValuesOnly
+func (s_ SliderCell) AllowsTickMarkValuesOnly() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("allowsTickMarkValuesOnly"))
+	return rv
+}
+
+
+// A Boolean value indicating whether the receiver fixes its values to those values represented by its tick marks.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/allowsTickMarkValuesOnly
+func (s_ SliderCell) SetAllowsTickMarkValuesOnly(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsTickMarkValuesOnly:"), value)
+}
+
+
+// The amount by which the slider changes its value when the user Option-drags the knob.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/altIncrementValue
+func (s_ SliderCell) AltIncrementValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("altIncrementValue"))
+	return rv
+}
+
+
+// The amount by which the slider changes its value when the user Option-drags the knob.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/altIncrementValue
+func (s_ SliderCell) SetAltIncrementValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setAltIncrementValue:"), value)
+}
+
+
+// An integer indicating the orientation (vertical or horizontal) of the slider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/isVertical
+func (s_ SliderCell) Vertical() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("vertical"))
+	return rv
+}
+
+
+// An integer indicating the orientation (vertical or horizontal) of the slider.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/isVertical
+func (s_ SliderCell) SetVertical(value bool) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setVertical:"), value)
+}
+
+
+// The thickness of the slider knob, in pixels.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/knobThickness
+func (s_ SliderCell) KnobThickness() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("knobThickness"))
+	return rv
+}
+
+
+// The maximum value the slider can send to its target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/maxValue
+func (s_ SliderCell) MaxValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
+	return rv
+}
+
+
+// The maximum value the slider can send to its target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/maxValue
+func (s_ SliderCell) SetMaxValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
+}
+
+
+// The minimum value the slider can send to its target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/minValue
+func (s_ SliderCell) MinValue() float64 {
+	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
+	return rv
+}
+
+
+// The minimum value the slider can send to its target.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/minValue
+func (s_ SliderCell) SetMinValue(value float64) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
+}
+
+
+// The number of tick marks associated with the slider, including the tick marks assigned to the minimum and maximum values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/numberOfTickMarks
+func (s_ SliderCell) NumberOfTickMarks() int {
+	rv := objc.Send[int](s_.ID, objc.Sel("numberOfTickMarks"))
+	return rv
+}
+
+
+// The number of tick marks associated with the slider, including the tick marks assigned to the minimum and maximum values.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/numberOfTickMarks
+func (s_ SliderCell) SetNumberOfTickMarks(value int) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfTickMarks:"), value)
+}
+
+
+// Returns a Boolean value indicating whether the continues to track the pointer until the next mouse up.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/prefersTrackingUntilMouseUp
+func (s_ SliderCell) PrefersTrackingUntilMouseUp() bool {
+	rv := objc.Send[bool](s_.ID, objc.Sel("prefersTrackingUntilMouseUp"))
 	return rv
 }
 
@@ -137,41 +368,32 @@ func (s_ SliderCell) SetSliderType(value SliderType) {
 }
 
 
-// A Boolean value indicating whether the receiver fixes its values to those values represented by its tick marks.
+// The position of the tick marks relative to the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/allowstickmarkvaluesonly
-func (s_ SliderCell) AllowsTickMarkValuesOnly() bool {
-	rv := objc.Send[bool](s_.ID, objc.Sel("allowsTickMarkValuesOnly"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/tickMarkPosition
+func (s_ SliderCell) TickMarkPosition() TickMarkPosition {
+	rv := objc.Send[TickMarkPosition](s_.ID, objc.Sel("tickMarkPosition"))
 	return rv
 }
 
 
-// A Boolean value indicating whether the receiver fixes its values to those values represented by its tick marks.
+// The position of the tick marks relative to the receiver.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/allowstickmarkvaluesonly
-func (s_ SliderCell) SetAllowsTickMarkValuesOnly(value bool) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAllowsTickMarkValuesOnly:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/tickMarkPosition
+func (s_ SliderCell) SetTickMarkPosition(value TickMarkPosition) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setTickMarkPosition:"), value)
 }
 
 
-// The amount by which the slider changes its value when the user Option-drags the knob.
+// The rectangle within which the cell tracks the pointer while the mouse button is down.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/altincrementvalue
-func (s_ SliderCell) AltIncrementValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("altIncrementValue"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSliderCell/trackRect
+func (s_ SliderCell) TrackRect() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("trackRect"))
 	return rv
-}
-
-
-// The amount by which the slider changes its value when the user Option-drags the knob.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/altincrementvalue
-func (s_ SliderCell) SetAltIncrementValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setAltIncrementValue:"), value)
 }
 
 
@@ -191,120 +413,6 @@ func (s_ SliderCell) IsVertical() bool {
 // [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/isvertical
 func (s_ SliderCell) SetIsVertical(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsVertical:"), value)
-}
-
-
-// The thickness of the slider knob, in pixels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/knobthickness
-func (s_ SliderCell) KnobThickness() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("knobThickness"))
-	return rv
-}
-
-
-// The thickness of the slider knob, in pixels.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/knobthickness
-func (s_ SliderCell) SetKnobThickness(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setKnobThickness:"), value)
-}
-
-
-// The maximum value the slider can send to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/maxvalue
-func (s_ SliderCell) MaxValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("maxValue"))
-	return rv
-}
-
-
-// The maximum value the slider can send to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/maxvalue
-func (s_ SliderCell) SetMaxValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMaxValue:"), value)
-}
-
-
-// The minimum value the slider can send to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/minvalue
-func (s_ SliderCell) MinValue() float64 {
-	rv := objc.Send[float64](s_.ID, objc.Sel("minValue"))
-	return rv
-}
-
-
-// The minimum value the slider can send to its target.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/minvalue
-func (s_ SliderCell) SetMinValue(value float64) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setMinValue:"), value)
-}
-
-
-// The number of tick marks associated with the slider, including the tick marks assigned to the minimum and maximum values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/numberoftickmarks
-func (s_ SliderCell) NumberOfTickMarks() int {
-	rv := objc.Send[int](s_.ID, objc.Sel("numberOfTickMarks"))
-	return rv
-}
-
-
-// The number of tick marks associated with the slider, including the tick marks assigned to the minimum and maximum values.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/numberoftickmarks
-func (s_ SliderCell) SetNumberOfTickMarks(value int) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setNumberOfTickMarks:"), value)
-}
-
-
-// The position of the tick marks relative to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/tickmarkposition
-func (s_ SliderCell) TickMarkPosition() unsafe.Pointer {
-	rv := objc.Send[unsafe.Pointer](s_.ID, objc.Sel("tickMarkPosition"))
-	return rv
-}
-
-
-// The position of the tick marks relative to the receiver.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/tickmarkposition
-func (s_ SliderCell) SetTickMarkPosition(value unsafe.Pointer) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTickMarkPosition:"), value)
-}
-
-
-// The rectangle within which the cell tracks the pointer while the mouse button is down.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/trackrect
-func (s_ SliderCell) TrackRect() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("trackRect"))
-	return rv
-}
-
-
-// The rectangle within which the cell tracks the pointer while the mouse button is down.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nsslidercell/trackrect
-func (s_ SliderCell) SetTrackRect(value coregraphics.CGRect) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setTrackRect:"), value)
 }
 
 

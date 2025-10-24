@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
@@ -32,20 +32,20 @@ type _CollectionViewLayoutInvalidationContextClass struct {
 // An interface definition for the [CollectionViewLayoutInvalidationContext] class.
 type ICollectionViewLayoutInvalidationContext interface {
 	objectivec.IObject
-	ContentOffsetAdjustment() coregraphics.CGPoint
-	SetContentOffsetAdjustment(value coregraphics.CGPoint)
-	ContentSizeAdjustment() coregraphics.CGSize
-	SetContentSizeAdjustment(value coregraphics.CGSize)
+	// properties:
+	ContentOffsetAdjustment() objc.IObject /* cross-framework: Point */
+	SetContentOffsetAdjustment(value objc.IObject /* cross-framework: Point */)
+	ContentSizeAdjustment() objc.IObject /* cross-framework: Size */
+	SetContentSizeAdjustment(value objc.IObject /* cross-framework: Size */)
 	InvalidateDataSourceCounts() bool
-	SetInvalidateDataSourceCounts(value bool)
 	InvalidateEverything() bool
-	SetInvalidateEverything(value bool)
-	InvalidatedDecorationIndexPaths() foundation.IndexPath
-	SetInvalidatedDecorationIndexPaths(value foundation.IIndexPath)
-	InvalidatedItemIndexPaths() foundation.IndexPath
-	SetInvalidatedItemIndexPaths(value foundation.IIndexPath)
-	InvalidatedSupplementaryIndexPaths() foundation.IndexPath
-	SetInvalidatedSupplementaryIndexPaths(value foundation.IIndexPath)
+	InvalidatedDecorationIndexPaths() foundation.IDictionary
+	InvalidatedItemIndexPaths() unsafe.Pointer
+	InvalidatedSupplementaryIndexPaths() foundation.IDictionary
+	// methods:
+	InvalidateDecorationElementsOfKindAtIndexPaths(elementKind objc.IObject /* cross-framework: CollectionViewDecorationElementKind */, indexPaths unsafe.Pointer)
+	InvalidateItemsAtIndexPaths(indexPaths unsafe.Pointer)
+	InvalidateSupplementaryElementsOfKindAtIndexPaths(elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPaths unsafe.Pointer)
 }
 
 // An object that identifies the portions of your layout that need to be updated.
@@ -101,12 +101,39 @@ func NewCollectionViewLayoutInvalidationContext() CollectionViewLayoutInvalidati
 
 
 
+// Marks the specified decoration views as invalid so that their layout information can be updated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/invalidateDecorationElements(ofKind:at:)
+func (c_ CollectionViewLayoutInvalidationContext) InvalidateDecorationElementsOfKindAtIndexPaths(elementKind objc.IObject /* cross-framework: CollectionViewDecorationElementKind */, indexPaths unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateDecorationElementsOfKind:atIndexPaths:"), elementKind, indexPaths)
+}
+
+
+// Marks the specified items as invalid so that their layout information can be updated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/invalidateItems(at:)
+func (c_ CollectionViewLayoutInvalidationContext) InvalidateItemsAtIndexPaths(indexPaths unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateItemsAtIndexPaths:"), indexPaths)
+}
+
+
+// Marks the specified supplementary views as invalid so that their layout information can be updated.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/invalidateSupplementaryElements(ofKind:at:)
+func (c_ CollectionViewLayoutInvalidationContext) InvalidateSupplementaryElementsOfKindAtIndexPaths(elementKind objc.IObject /* cross-framework: CollectionViewSupplementaryElementKind */, indexPaths unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("invalidateSupplementaryElementsOfKind:atIndexPaths:"), elementKind, indexPaths)
+}
+
+
 // The delta value to add to the collection view’s content offset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/contentoffsetadjustment
-func (c_ CollectionViewLayoutInvalidationContext) ContentOffsetAdjustment() coregraphics.CGPoint {
-	rv := objc.Send[coregraphics.CGPoint](c_.ID, objc.Sel("contentOffsetAdjustment"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/contentOffsetAdjustment
+func (c_ CollectionViewLayoutInvalidationContext) ContentOffsetAdjustment() objc.IObject /* cross-framework: Point */ {
+	rv := objc.Send[corefoundation.Point](c_.ID, objc.Sel("contentOffsetAdjustment"))
 	return rv
 }
 
@@ -114,8 +141,8 @@ func (c_ CollectionViewLayoutInvalidationContext) ContentOffsetAdjustment() core
 // The delta value to add to the collection view’s content offset.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/contentoffsetadjustment
-func (c_ CollectionViewLayoutInvalidationContext) SetContentOffsetAdjustment(value coregraphics.CGPoint) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/contentOffsetAdjustment
+func (c_ CollectionViewLayoutInvalidationContext) SetContentOffsetAdjustment(value objc.IObject /* cross-framework: Point */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentOffsetAdjustment:"), value)
 }
 
@@ -123,9 +150,9 @@ func (c_ CollectionViewLayoutInvalidationContext) SetContentOffsetAdjustment(val
 // The delta value to add to the collection view’s content size.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/contentsizeadjustment
-func (c_ CollectionViewLayoutInvalidationContext) ContentSizeAdjustment() coregraphics.CGSize {
-	rv := objc.Send[coregraphics.CGSize](c_.ID, objc.Sel("contentSizeAdjustment"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/contentSizeAdjustment
+func (c_ CollectionViewLayoutInvalidationContext) ContentSizeAdjustment() objc.IObject /* cross-framework: Size */ {
+	rv := objc.Send[corefoundation.Size](c_.ID, objc.Sel("contentSizeAdjustment"))
 	return rv
 }
 
@@ -133,8 +160,8 @@ func (c_ CollectionViewLayoutInvalidationContext) ContentSizeAdjustment() coregr
 // The delta value to add to the collection view’s content size.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/contentsizeadjustment
-func (c_ CollectionViewLayoutInvalidationContext) SetContentSizeAdjustment(value coregraphics.CGSize) {
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/contentSizeAdjustment
+func (c_ CollectionViewLayoutInvalidationContext) SetContentSizeAdjustment(value objc.IObject /* cross-framework: Size */) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setContentSizeAdjustment:"), value)
 }
 
@@ -142,66 +169,29 @@ func (c_ CollectionViewLayoutInvalidationContext) SetContentSizeAdjustment(value
 // A Boolean that indicates whether the layout object should ask for new section and item counts.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedatasourcecounts
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/invalidateDataSourceCounts
 func (c_ CollectionViewLayoutInvalidationContext) InvalidateDataSourceCounts() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("invalidateDataSourceCounts"))
 	return rv
 }
 
 
-// A Boolean that indicates whether the layout object should ask for new section and item counts.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedatasourcecounts
-func (c_ CollectionViewLayoutInvalidationContext) SetInvalidateDataSourceCounts(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidateDataSourceCounts:"), value)
-}
-
-
 // A Boolean that indicates whether all layout data should be marked as invalid.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateeverything
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/invalidateEverything
 func (c_ CollectionViewLayoutInvalidationContext) InvalidateEverything() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("invalidateEverything"))
 	return rv
 }
 
 
-// A Boolean that indicates whether all layout data should be marked as invalid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateeverything
-func (c_ CollectionViewLayoutInvalidationContext) SetInvalidateEverything(value bool) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidateEverything:"), value)
-}
-
-
 // A dictionary containing the decoration views whose layout attributes are invalid.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateddecorationindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) InvalidatedDecorationIndexPaths() foundation.IndexPath {
-	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedDecorationIndexPaths"))
-	return rv
-}
-
-
-// A dictionary containing the decoration views whose layout attributes are invalid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateddecorationindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedDecorationIndexPaths(value foundation.IIndexPath) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedDecorationIndexPaths:"), value)
-}
-
-
-// The set of items whose layout attributes are invalid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateditemindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) InvalidatedItemIndexPaths() foundation.IndexPath {
-	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedItemIndexPaths"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/invalidatedDecorationIndexPaths
+func (c_ CollectionViewLayoutInvalidationContext) InvalidatedDecorationIndexPaths() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](c_.ID, objc.Sel("invalidatedDecorationIndexPaths"))
 	return rv
 }
 
@@ -209,18 +199,9 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidatedItemIndexPaths() fo
 // The set of items whose layout attributes are invalid.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidateditemindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedItemIndexPaths(value foundation.IIndexPath) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedItemIndexPaths:"), value)
-}
-
-
-// A dictionary containing the supplementary views whose layout attributes are invalid.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedsupplementaryindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) InvalidatedSupplementaryIndexPaths() foundation.IndexPath {
-	rv := objc.Send[foundation.IndexPath](c_.ID, objc.Sel("invalidatedSupplementaryIndexPaths"))
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/invalidatedItemIndexPaths
+func (c_ CollectionViewLayoutInvalidationContext) InvalidatedItemIndexPaths() unsafe.Pointer {
+	rv := objc.Send[unsafe.Pointer](c_.ID, objc.Sel("invalidatedItemIndexPaths"))
 	return rv
 }
 
@@ -228,9 +209,10 @@ func (c_ CollectionViewLayoutInvalidationContext) InvalidatedSupplementaryIndexP
 // A dictionary containing the supplementary views whose layout attributes are invalid.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/appkit/nscollectionviewlayoutinvalidationcontext/invalidatedsupplementaryindexpaths
-func (c_ CollectionViewLayoutInvalidationContext) SetInvalidatedSupplementaryIndexPaths(value foundation.IIndexPath) {
-	objc.Send[objc.ID](c_.ID, objc.Sel("setInvalidatedSupplementaryIndexPaths:"), value)
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSCollectionViewLayoutInvalidationContext/invalidatedSupplementaryIndexPaths
+func (c_ CollectionViewLayoutInvalidationContext) InvalidatedSupplementaryIndexPaths() foundation.IDictionary {
+	rv := objc.Send[foundation.IDictionary](c_.ID, objc.Sel("invalidatedSupplementaryIndexPaths"))
+	return rv
 }
 
 

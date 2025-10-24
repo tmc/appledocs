@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,7 +32,15 @@ type _NibConnectorClass struct {
 type INibConnector interface {
 	objectivec.IObject
 	// properties:
+	Destination() objc.ID
+	SetDestination(value objc.ID)
+	Label() objc.IObject /* cross-framework: NSString */
+	SetLabel(value objc.IObject /* cross-framework: NSString */)
+	Source() objc.ID
+	SetSource(value objc.ID)
 	// methods:
+	EstablishConnection()
+	ReplaceObjectWithObject(oldObject objc.IObject, newObject objc.IObject)
 }
 
 // A connection between two nibs.
@@ -83,6 +92,65 @@ func NewNibConnector() NibConnector {
 	return getNibConnectorClass().New()
 }
 
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/establishConnection
+func (n_ NibConnector) EstablishConnection() {
+	objc.Send[objc.ID](n_.ID, objc.Sel("establishConnection"))
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/replaceObject:withObject:
+func (n_ NibConnector) ReplaceObjectWithObject(oldObject objc.IObject, newObject objc.IObject) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("replaceObject:withObject:"), oldObject, newObject)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/destination
+func (n_ NibConnector) Destination() objc.ID {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("destination"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/destination
+func (n_ NibConnector) SetDestination(value objc.ID) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setDestination:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/label
+func (n_ NibConnector) Label() objc.IObject /* cross-framework: NSString */ {
+	rv := objc.Send[foundation.NSString](n_.ID, objc.Sel("label"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/label
+func (n_ NibConnector) SetLabel(value objc.IObject /* cross-framework: NSString */) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setLabel:"), value)
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/source
+func (n_ NibConnector) Source() objc.ID {
+	rv := objc.Send[objc.ID](n_.ID, objc.Sel("source"))
+	return rv
+}
+
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSNibConnector/source
+func (n_ NibConnector) SetSource(value objc.ID) {
+	objc.Send[objc.ID](n_.ID, objc.Sel("setSource:"), value)
+}
 
 
 

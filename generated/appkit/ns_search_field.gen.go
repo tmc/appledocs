@@ -7,7 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
-	"github.com/tmc/appledocs/generated/coregraphics"
+	"github.com/tmc/appledocs/generated/corefoundation"
 )
 
 // The class instance for the [SearchField] class.
@@ -30,28 +30,27 @@ type _SearchFieldClass struct {
 // An interface definition for the [SearchField] class.
 type ISearchField interface {
 	ITextField
-	RectForCancelButtonWhenCentered(isCentered bool) coregraphics.CGRect
-	RectForSearchButtonWhenCentered(isCentered bool) coregraphics.CGRect
-	RectForSearchTextWhenCentered(isCentered bool) coregraphics.CGRect
-	CancelButtonBounds() coregraphics.CGRect
+	// properties:
+	CancelButtonBounds() objc.IObject /* cross-framework: Rect */
 	CentersPlaceholder() bool
 	SetCentersPlaceholder(value bool)
 	Delegate() objc.ID
 	SetDelegate(value objc.ID)
 	MaximumRecents() int
 	SetMaximumRecents(value int)
+	RecentsAutosaveName() objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */
+	SetRecentsAutosaveName(value objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */)
 	RecentSearches() []string
 	SetRecentSearches(value []string)
-	RecentsAutosaveName() SearchFieldRecentsAutosaveName
-	SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName)
-	SearchButtonBounds() coregraphics.CGRect
-	SearchMenuTemplate() NSMenu
+	SearchButtonBounds() objc.IObject /* cross-framework: Rect */
+	SearchMenuTemplate() IMenu
 	SetSearchMenuTemplate(value IMenu)
-	SearchTextBounds() coregraphics.CGRect
+	SearchTextBounds() objc.IObject /* cross-framework: Rect */
 	SendsSearchStringImmediately() bool
 	SetSendsSearchStringImmediately(value bool)
 	SendsWholeSearchString() bool
 	SetSendsWholeSearchString(value bool)
+	// methods:
 }
 
 // A text field optimized for performing text-based searches.
@@ -112,39 +111,9 @@ func NewSearchField() SearchField {
 // The rectangle for the cancel button within the bounds of the search field.
 //
 // [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/rectForCancelButton(whenCentered:)
-func (s_ SearchField) RectForCancelButtonWhenCentered(isCentered bool) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rectForCancelButtonWhenCentered:"), isCentered)
-	return rv
-}
-
-
-// The rectangle for the search button within the bounds of the search field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/rectForSearchButton(whenCentered:)
-func (s_ SearchField) RectForSearchButtonWhenCentered(isCentered bool) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rectForSearchButtonWhenCentered:"), isCentered)
-	return rv
-}
-
-
-// The rectangle for the search text within the bounds of the field.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/rectForSearchText(whenCentered:)
-func (s_ SearchField) RectForSearchTextWhenCentered(isCentered bool) coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("rectForSearchTextWhenCentered:"), isCentered)
-	return rv
-}
-
-
-// The rectangle for the cancel button within the bounds of the search field.
-//
-// [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/cancelButtonBounds
-func (s_ SearchField) CancelButtonBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("cancelButtonBounds"))
+func (s_ SearchField) CancelButtonBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("cancelButtonBounds"))
 	return rv
 }
 
@@ -206,6 +175,25 @@ func (s_ SearchField) SetMaximumRecents(value int) {
 }
 
 
+// The name under which the search field automatically archives the list of recent search strings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentsAutosaveName-swift.property
+func (s_ SearchField) RecentsAutosaveName() objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */ {
+	rv := objc.Send[objc.ID](s_.ID, objc.Sel("recentsAutosaveName"))
+	return rv
+}
+
+
+// The name under which the search field automatically archives the list of recent search strings.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentsAutosaveName-swift.property
+func (s_ SearchField) SetRecentsAutosaveName(value objc.IObject /* cross-framework: SearchFieldRecentsAutosaveName */) {
+	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentsAutosaveName:"), value)
+}
+
+
 // The list of recent search strings for the control.
 //
 // [Full Topic]
@@ -235,31 +223,12 @@ func (s_ SearchField) SetRecentSearches(value []string) {
 }
 
 
-// The name under which the search field automatically archives the list of recent search strings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentsAutosaveName-swift.property
-func (s_ SearchField) RecentsAutosaveName() SearchFieldRecentsAutosaveName {
-	rv := objc.Send[SearchFieldRecentsAutosaveName](s_.ID, objc.Sel("recentsAutosaveName"))
-	return rv
-}
-
-
-// The name under which the search field automatically archives the list of recent search strings.
-//
-// [Full Topic]
-// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/recentsAutosaveName-swift.property
-func (s_ SearchField) SetRecentsAutosaveName(value ISearchFieldRecentsAutosaveName) {
-	objc.Send[objc.ID](s_.ID, objc.Sel("setRecentsAutosaveName:"), value)
-}
-
-
 // The rectangle for the search button within the bounds of the search field.
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchButtonBounds
-func (s_ SearchField) SearchButtonBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("searchButtonBounds"))
+func (s_ SearchField) SearchButtonBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("searchButtonBounds"))
 	return rv
 }
 
@@ -268,8 +237,8 @@ func (s_ SearchField) SearchButtonBounds() coregraphics.CGRect {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchMenuTemplate
-func (s_ SearchField) SearchMenuTemplate() NSMenu {
-	rv := objc.Send[NSMenu](s_.ID, objc.Sel("searchMenuTemplate"))
+func (s_ SearchField) SearchMenuTemplate() IMenu {
+	rv := objc.Send[Menu](s_.ID, objc.Sel("searchMenuTemplate"))
 	return rv
 }
 
@@ -287,8 +256,8 @@ func (s_ SearchField) SetSearchMenuTemplate(value IMenu) {
 //
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/AppKit/NSSearchField/searchTextBounds
-func (s_ SearchField) SearchTextBounds() coregraphics.CGRect {
-	rv := objc.Send[coregraphics.CGRect](s_.ID, objc.Sel("searchTextBounds"))
+func (s_ SearchField) SearchTextBounds() objc.IObject /* cross-framework: Rect */ {
+	rv := objc.Send[corefoundation.Rect](s_.ID, objc.Sel("searchTextBounds"))
 	return rv
 }
 

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // ValidatedUserInterfaceItemProtocol is the NSValidatedUserInterfaceItem protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSValidatedUserInterfaceItem.
 var ValidatedUserInterfaceItemProtocol *objc.Protocol
 

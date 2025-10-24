@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // PageControllerDelegateProtocol is the NSPageControllerDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSPageControllerDelegate.
 var PageControllerDelegateProtocol *objc.Protocol
 

@@ -6,6 +6,9 @@ import "github.com/ebitengine/purego/objc"
 
 // FilePromiseProviderDelegateProtocol is the NSFilePromiseProviderDelegate protocol.
 //
+// Availability:
+//   - macOS +
+//
 // Use this protocol when registering custom classes that conform to NSFilePromiseProviderDelegate.
 var FilePromiseProviderDelegateProtocol *objc.Protocol
 

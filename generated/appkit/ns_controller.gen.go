@@ -7,6 +7,7 @@ import (
 	"unsafe"
 
 	"github.com/tmc/appledocs/generated/objc"
+	"github.com/tmc/appledocs/generated/foundation"
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
@@ -31,20 +32,31 @@ type _ControllerClass struct {
 type IController interface {
 	objectivec.IObject
 	// properties:
+	Editing() bool
+	IsEditing() bool
+	SetIsEditing(value bool)
 	// methods:
+	CommitEditing() bool
+	CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objc.IObject, didCommitSelector objc.SEL, contextInfo unsafe.Pointer)
+	DiscardEditing()
+	ObjectDidBeginEditing(editor objc.IObject)
+	ObjectDidEndEditing(editor objc.IObject)
 }
 
-// A parent class referenced by other AppKit classes.
+// An abstract class that implements the and informal protocols required for controller classes.
 
 
-// A parent class referenced by other AppKit classes. [Full Topic]
+// An abstract class that implements the and informal protocols required for controller classes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController
 type Controller struct {
 	objectivec.Object
 }
 
 // ControllerFrom constructs a [Controller] from an unsafe.Pointer.
 //
-// A parent class referenced by other AppKit classes.
+// An abstract class that implements the and informal protocols required for controller classes.
 func ControllerFrom(ptr unsafe.Pointer) Controller {
 	return Controller{objectivec.Object{objc.ID(ptr)}}
 }
@@ -81,5 +93,90 @@ func NewController() Controller {
 }
 
 
+
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController/init(coder:)
+func NewControllerWithCoder(coder foundation.Coder) Controller {
+	instance := getControllerClass().Alloc()
+	rv := objc.Send[Controller](instance.ID, objc.Sel("initWithCoder:"), coder)
+	rv.Autorelease()
+	return rv
+}
+
+
+
+// Attempts to commit any pending edits.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController/commitEditing()
+func (c_ Controller) CommitEditing() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("commitEditing"))
+	return rv
+}
+
+
+// Attempts to commit any pending changes in known editors of the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController/commitEditing(withDelegate:didCommit:contextInfo:)
+func (c_ Controller) CommitEditingWithDelegateDidCommitSelectorContextInfo(delegate objc.IObject, didCommitSelector objc.SEL, contextInfo unsafe.Pointer) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("commitEditingWithDelegate:didCommitSelector:contextInfo:"), delegate, didCommitSelector, contextInfo)
+}
+
+
+// Discards any pending changes by registered editors.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController/discardEditing()
+func (c_ Controller) DiscardEditing() {
+	objc.Send[objc.ID](c_.ID, objc.Sel("discardEditing"))
+}
+
+
+// Invoked to inform the receiver that has uncommitted changes that can affect the receiver.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController/objectDidBeginEditing(_:)
+func (c_ Controller) ObjectDidBeginEditing(editor objc.IObject) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("objectDidBeginEditing:"), editor)
+}
+
+
+// Invoked to inform the receiver that has committed or discarded its changes.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController/objectDidEndEditing(_:)
+func (c_ Controller) ObjectDidEndEditing(editor objc.IObject) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("objectDidEndEditing:"), editor)
+}
+
+
+// A Boolean value indicating if any editors are registered with the controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/AppKit/NSController/isEditing
+func (c_ Controller) Editing() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("editing"))
+	return rv
+}
+
+
+// A Boolean value indicating if any editors are registered with the controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
+func (c_ Controller) IsEditing() bool {
+	rv := objc.Send[bool](c_.ID, objc.Sel("isEditing"))
+	return rv
+}
+
+
+// A Boolean value indicating if any editors are registered with the controller.
+//
+// [Full Topic]
+// [Full Topic]: https://developer.apple.com/documentation/appkit/nscontroller/isediting
+func (c_ Controller) SetIsEditing(value bool) {
+	objc.Send[objc.ID](c_.ID, objc.Sel("setIsEditing:"), value)
+}
 
 
