@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSUnitIlluminance */
 
 
-
-
+/* debug [class_header]: Header for NSUnitIlluminance */
 // The class instance for the [UnitIlluminance] class.
 var (
 	UnitIlluminanceClass     _UnitIlluminanceClass
@@ -29,30 +29,30 @@ func getUnitIlluminanceClass() _UnitIlluminanceClass {
 type _UnitIlluminanceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for UnitIlluminance */
 // An interface definition for the [UnitIlluminance] class.
 type IUnitIlluminance interface {
 	IDimension
 	
-
+/* debug [class_interface_properties]: Properties for UnitIlluminance */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for UnitIlluminance */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for UnitIlluminance */
 // Alloc allocates a new instance without initialization.
 func (uc _UnitIlluminanceClass) Alloc() UnitIlluminance {
 	rv := objc.Send[UnitIlluminance](objc.ID(uc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (u_ UnitIlluminance) Autorelease() UnitIlluminance {
 func NewUnitIlluminance() UnitIlluminance {
 	return getUnitIlluminanceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for UnitIlluminance */
 // A unit of measure for illuminance.
 //
 // You typically use instances of to represent specific quantities of illuminance using the class.
@@ -108,20 +108,20 @@ func UnitIlluminanceFrom(ptr unsafe.Pointer) UnitIlluminance {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for UnitIlluminance *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for UnitIlluminance */
+/* debug [class_methods]: End class methods */
 
 
 
-
-
-
-
-
+/* debug [class_properties_class]: Class properties for UnitIlluminance */
 
 // The lux unit of illuminance.
 //
@@ -130,17 +130,17 @@ func UnitIlluminanceFrom(ptr unsafe.Pointer) UnitIlluminance {
 func (uc _UnitIlluminanceClass) Lux() UnitIlluminance {
 	rv := objc.Send[UnitIlluminance](objc.ID(uc.class), objc.Sel("lux"))
 	return rv
-}
+}/* debug [class_properties_class/property]: lux */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for UnitIlluminance */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
+/* debug [instance_properties]: Instance properties for UnitIlluminance */
 
 // The lux unit of illuminance.
 //
@@ -149,12 +149,12 @@ func (uc _UnitIlluminanceClass) Lux() UnitIlluminance {
 func (u_ UnitIlluminance) Lux() IUnitIlluminance {
 	rv := objc.Send[UnitIlluminance](u_.ID, objc.Sel("lux"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lux */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSUnitIlluminance */
 
 
 

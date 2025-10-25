@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSConnection */
 
 
-
-
+/* debug [class_header]: Header for NSConnection */
 // The class instance for the [Connection] class.
 var (
 	ConnectionClass     _ConnectionClass
@@ -30,16 +30,16 @@ func getConnectionClass() _ConnectionClass {
 type _ConnectionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for Connection */
 // An interface definition for the [Connection] class.
 type IConnection interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for Connection */
 	// properties:
 	IndependentConversationQueueing() bool
 	SetIndependentConversationQueueing(value bool)
@@ -58,19 +58,19 @@ type IConnection interface {
 	SendPort() IPort
 	Statistics() IDictionary
 	Valid() bool
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for Connection */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for Connection */
 // Alloc allocates a new instance without initialization.
 func (cc _ConnectionClass) Alloc() Connection {
 	rv := objc.Send[Connection](objc.ID(cc.class), objc.Sel("alloc"))
@@ -100,11 +100,11 @@ func (c_ Connection) Autorelease() Connection {
 func NewConnection() Connection {
 	return getConnectionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for Connection */
 // An object that manages the communication between objects in different threads or between a thread and a process running on a local or remote system.
 //
 // Connection objects form the backbone of the distributed objects mechanism and normally operate in the background. You use the methods of explicitly when vending an object to other applications, when accessing such a vended object through a proxy, and when altering default communication parameters. At other times, you simply interact with a vended object or its proxy. A single connection object may be shared by multiple threads and used to access a vended object.
@@ -124,11 +124,11 @@ type Connection struct {
 func ConnectionFrom(ptr unsafe.Pointer) Connection {
 	return Connection{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for Connection */
 
 // Returns an object initialized with given send and receive ports.
 //
@@ -139,13 +139,13 @@ func NewConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) Con
 	rv := objc.Send[Connection](instance.ID, objc.Sel("initWithReceivePort:sendPort:"), receivePort, sendPort)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewConnectionWithReceivePortSendPort */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for Connection */
 
 // Returns all valid objects in the process.
 //
@@ -154,7 +154,7 @@ func NewConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) Con
 func (cc _ConnectionClass) AllConnections() []Connection {
 	rv := objc.Send[[]Connection](objc.ID(cc.class), objc.Sel("allConnections"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=AllConnections) */
 
 
 // Returns an object that communicates using given send and receive ports.
@@ -164,7 +164,7 @@ func (cc _ConnectionClass) AllConnections() []Connection {
 func (cc _ConnectionClass) ConnectionWithReceivePortSendPort(receivePort IPort, sendPort IPort) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("connectionWithReceivePort:sendPort:"), receivePort, sendPort)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConnectionWithReceivePortSendPort) */
 
 
 // Returns the object whose send port links it to the object registered with the default under a given name on a given host.
@@ -174,7 +174,7 @@ func (cc _ConnectionClass) ConnectionWithReceivePortSendPort(receivePort IPort, 
 func (cc _ConnectionClass) ConnectionWithRegisteredNameHost(name IString, hostName IString) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("connectionWithRegisteredName:host:"), name, hostName)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConnectionWithRegisteredNameHost) */
 
 
 // Returns the object whose send port links it to the object registered under a given name with a given server on a given host.
@@ -184,7 +184,7 @@ func (cc _ConnectionClass) ConnectionWithRegisteredNameHost(name IString, hostNa
 func (cc _ConnectionClass) ConnectionWithRegisteredNameHostUsingNameServer(name IString, hostName IString, server IPortNameServer) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("connectionWithRegisteredName:host:usingNameServer:"), name, hostName, server)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ConnectionWithRegisteredNameHostUsingNameServer) */
 
 
 // Returns a token object representing any conversation in progress in the current thread.
@@ -194,7 +194,7 @@ func (cc _ConnectionClass) ConnectionWithRegisteredNameHostUsingNameServer(name 
 func (cc _ConnectionClass) CurrentConversation() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("currentConversation"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CurrentConversation) */
 
 
 // Returns the default object for the current thread.
@@ -204,7 +204,7 @@ func (cc _ConnectionClass) CurrentConversation() objc.ID {
 func (cc _ConnectionClass) DefaultConnection() IConnection {
 	rv := objc.Send[Connection](objc.ID(cc.class), objc.Sel("defaultConnection"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DefaultConnection) */
 
 
 // Returns a proxy for the root object of the object registered with the default under a given name on a given host.
@@ -214,7 +214,7 @@ func (cc _ConnectionClass) DefaultConnection() IConnection {
 func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name IString, hostName IString) IDistantObject {
 	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:"), name, hostName)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RootProxyForConnectionWithRegisteredNameHost) */
 
 
 // Returns a proxy for the root object of the object registered with under on a given host.
@@ -224,7 +224,7 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHost(name ISt
 func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHostUsingNameServer(name IString, hostName IString, server IPortNameServer) IDistantObject {
 	rv := objc.Send[DistantObject](objc.ID(cc.class), objc.Sel("rootProxyForConnectionWithRegisteredName:host:usingNameServer:"), name, hostName, server)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RootProxyForConnectionWithRegisteredNameHostUsingNameServer) */
 
 
 // Creates and returns a new connection object representing a vended service on the default system port name server.
@@ -234,7 +234,7 @@ func (cc _ConnectionClass) RootProxyForConnectionWithRegisteredNameHostUsingName
 func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name IString, root objc.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:"), name, root)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ServiceConnectionWithNameRootObject) */
 
 
 // Creates and returns a new connection object representing a vended service on the specified port name server.
@@ -244,23 +244,23 @@ func (cc _ConnectionClass) ServiceConnectionWithNameRootObject(name IString, roo
 func (cc _ConnectionClass) ServiceConnectionWithNameRootObjectUsingNameServer(name IString, root objc.IObject, server IPortNameServer) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("serviceConnectionWithName:rootObject:usingNameServer:"), name, root, server)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ServiceConnectionWithNameRootObjectUsingNameServer) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for Connection */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for Connection */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for Connection */
 
 // A Boolean value that indicates whether the receiver handles remote messages atomically.
 //
@@ -269,7 +269,7 @@ func (cc _ConnectionClass) ServiceConnectionWithNameRootObjectUsingNameServer(na
 func (c_ Connection) IndependentConversationQueueing() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("independentConversationQueueing"))
 	return rv
-}
+}/* debug [instance_properties/getter]: independentConversationQueueing */
 
 
 // A Boolean value that indicates whether the receiver handles remote messages atomically.
@@ -278,7 +278,7 @@ func (c_ Connection) IndependentConversationQueueing() bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/independentConversationQueueing
 func (c_ Connection) SetIndependentConversationQueueing(value bool) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setIndependentConversationQueueing:"), value)
-}
+}/* debug [instance_properties/setter]: independentConversationQueueing */
 
 
 // The local objects that have been sent over the connection and still have proxies at the other end.
@@ -288,7 +288,7 @@ func (c_ Connection) SetIndependentConversationQueueing(value bool) {
 func (c_ Connection) LocalObjects() IArray {
 	rv := objc.Send[Array](c_.ID, objc.Sel("localObjects"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localObjects */
 
 
 // A Boolean value that indicates whether the receiver supports requests from multiple threads.
@@ -298,7 +298,7 @@ func (c_ Connection) LocalObjects() IArray {
 func (c_ Connection) MultipleThreadsEnabled() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("multipleThreadsEnabled"))
 	return rv
-}
+}/* debug [instance_properties/getter]: multipleThreadsEnabled */
 
 
 // The port on which the receiver receives incoming network messages.
@@ -308,7 +308,7 @@ func (c_ Connection) MultipleThreadsEnabled() bool {
 func (c_ Connection) ReceivePort() IPort {
 	rv := objc.Send[Port](c_.ID, objc.Sel("receivePort"))
 	return rv
-}
+}/* debug [instance_properties/getter]: receivePort */
 
 
 // The local proxies for remote objects that have been received over the connection but not deallocated yet.
@@ -318,7 +318,7 @@ func (c_ Connection) ReceivePort() IPort {
 func (c_ Connection) RemoteObjects() IArray {
 	rv := objc.Send[Array](c_.ID, objc.Sel("remoteObjects"))
 	return rv
-}
+}/* debug [instance_properties/getter]: remoteObjects */
 
 
 // The timeout interval for replies to outgoing remote messages.
@@ -328,7 +328,7 @@ func (c_ Connection) RemoteObjects() IArray {
 func (c_ Connection) ReplyTimeout() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("replyTimeout"))
 	return rv
-}
+}/* debug [instance_properties/getter]: replyTimeout */
 
 
 // The timeout interval for replies to outgoing remote messages.
@@ -337,7 +337,7 @@ func (c_ Connection) ReplyTimeout() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/replyTimeout
 func (c_ Connection) SetReplyTimeout(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setReplyTimeout:"), value)
-}
+}/* debug [instance_properties/setter]: replyTimeout */
 
 
 // The set of request modes the receiver’s receive port is registered for with its object.
@@ -347,7 +347,7 @@ func (c_ Connection) SetReplyTimeout(value float64) {
 func (c_ Connection) RequestModes() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("requestModes"))
 	return rv
-}
+}/* debug [instance_properties/getter]: requestModes */
 
 
 // The timeout interval for outgoing remote messages.
@@ -357,7 +357,7 @@ func (c_ Connection) RequestModes() []string {
 func (c_ Connection) RequestTimeout() float64 {
 	rv := objc.Send[float64](c_.ID, objc.Sel("requestTimeout"))
 	return rv
-}
+}/* debug [instance_properties/getter]: requestTimeout */
 
 
 // The timeout interval for outgoing remote messages.
@@ -366,7 +366,7 @@ func (c_ Connection) RequestTimeout() float64 {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/requestTimeout
 func (c_ Connection) SetRequestTimeout(value float64) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRequestTimeout:"), value)
-}
+}/* debug [instance_properties/setter]: requestTimeout */
 
 
 // The object that the receiver (or its parent) makes available to other applications or threads.
@@ -376,7 +376,7 @@ func (c_ Connection) SetRequestTimeout(value float64) {
 func (c_ Connection) RootObject() objc.ID {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("rootObject"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rootObject */
 
 
 // The object that the receiver (or its parent) makes available to other applications or threads.
@@ -385,7 +385,7 @@ func (c_ Connection) RootObject() objc.ID {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConnection/rootObject-c.property
 func (c_ Connection) SetRootObject(value objc.ID) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setRootObject:"), value)
-}
+}/* debug [instance_properties/setter]: rootObject */
 
 
 // The proxy for the root object of the receiver’s peer in another application or thread.
@@ -395,7 +395,7 @@ func (c_ Connection) SetRootObject(value objc.ID) {
 func (c_ Connection) RootProxy() IDistantObject {
 	rv := objc.Send[DistantObject](c_.ID, objc.Sel("rootProxy"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rootProxy */
 
 
 // The port that the connection sends outgoing network messages through.
@@ -405,7 +405,7 @@ func (c_ Connection) RootProxy() IDistantObject {
 func (c_ Connection) SendPort() IPort {
 	rv := objc.Send[Port](c_.ID, objc.Sel("sendPort"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sendPort */
 
 
 // A dictionary containing various statistics for the receiver.
@@ -415,7 +415,7 @@ func (c_ Connection) SendPort() IPort {
 func (c_ Connection) Statistics() IDictionary {
 	rv := objc.Send[Dictionary](c_.ID, objc.Sel("statistics"))
 	return rv
-}
+}/* debug [instance_properties/getter]: statistics */
 
 
 // A Boolean value that indicates whether the receiver is known to be valid.
@@ -425,11 +425,11 @@ func (c_ Connection) Statistics() IDictionary {
 func (c_ Connection) Valid() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("valid"))
 	return rv
-}
+}/* debug [instance_properties/getter]: valid */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSConnection */
 
 

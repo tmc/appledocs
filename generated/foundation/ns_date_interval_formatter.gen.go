@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSDateIntervalFormatter */
 
 
-
-
+/* debug [class_header]: Header for NSDateIntervalFormatter */
 // The class instance for the [DateIntervalFormatter] class.
 var (
 	DateIntervalFormatterClass     _DateIntervalFormatterClass
@@ -29,16 +29,16 @@ func getDateIntervalFormatterClass() _DateIntervalFormatterClass {
 type _DateIntervalFormatterClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for DateIntervalFormatter */
 // An interface definition for the [DateIntervalFormatter] class.
 type IDateIntervalFormatter interface {
 	IFormatter
 	
-
+/* debug [class_interface_properties]: Properties for DateIntervalFormatter */
 	// properties:
 	Calendar() ICalendar
 	SetCalendar(value ICalendar)
@@ -52,21 +52,21 @@ type IDateIntervalFormatter interface {
 	SetTimeStyle(value DateIntervalFormatterStyle)
 	TimeZone() ITimeZone
 	SetTimeZone(value ITimeZone)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for DateIntervalFormatter */
 	// methods:
 	StringFromDateInterval(dateInterval IDateInterval) IString
 	StringFromDateToDate(fromDate IDate, toDate IDate) IString
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for DateIntervalFormatter */
 // Alloc allocates a new instance without initialization.
 func (dc _DateIntervalFormatterClass) Alloc() DateIntervalFormatter {
 	rv := objc.Send[DateIntervalFormatter](objc.ID(dc.class), objc.Sel("alloc"))
@@ -96,11 +96,11 @@ func (d_ DateIntervalFormatter) Autorelease() DateIntervalFormatter {
 func NewDateIntervalFormatter() DateIntervalFormatter {
 	return getDateIntervalFormatterClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for DateIntervalFormatter */
 // A formatter that creates string representations of time intervals.
 //
 // A object creates user-readable strings from pairs of dates. Use a date interval formatter to create user-readable strings of the form for your app’s interface, where and are date values that you supply. The formatter uses locale and language information, along with custom formatting options, to define the content of the resulting string. You can specify different styles for the date and time information in each date value. To use this class, create an instance, configure its properties, and call the method to generate a string. The properties of this class let you configure the calendar and specify the style to apply to date and time values. Given a current date of January 16, 2015, Configuring the Formatter Options shows how to configure a formatter object and generate the string “1/16/15 - 1/17/15”. Configuring a formatter object The method may be called safely from any thread of your app. It is also safe to share a single instance of this class from multiple threads, with the caveat that you should not change the configuration of the object while another thread is using it to generate a string.
@@ -122,32 +122,32 @@ func DateIntervalFormatterFrom(ptr unsafe.Pointer) DateIntervalFormatter {
 		Formatter: FormatterFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for DateIntervalFormatter *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for DateIntervalFormatter */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for DateIntervalFormatter */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for DateIntervalFormatter */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/string(from:)
 func (d_ DateIntervalFormatter) StringFromDateInterval(dateInterval IDateInterval) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDateInterval:"), dateInterval)
 	return rv
-}
+}/* debug [instance_methods/method]: StringFromDateInterval */
 
 
 // Returns a formatted string based on the specified start and end dates.
@@ -157,13 +157,13 @@ func (d_ DateIntervalFormatter) StringFromDateInterval(dateInterval IDateInterva
 func (d_ DateIntervalFormatter) StringFromDateToDate(fromDate IDate, toDate IDate) IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("stringFromDate:toDate:"), fromDate, toDate)
 	return rv
-}
+}/* debug [instance_methods/method]: StringFromDateToDate */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for DateIntervalFormatter */
 
 // The calendar to use for date values.
 //
@@ -172,7 +172,7 @@ func (d_ DateIntervalFormatter) StringFromDateToDate(fromDate IDate, toDate IDat
 func (d_ DateIntervalFormatter) Calendar() ICalendar {
 	rv := objc.Send[Calendar](d_.ID, objc.Sel("calendar"))
 	return rv
-}
+}/* debug [instance_properties/getter]: calendar */
 
 
 // The calendar to use for date values.
@@ -181,7 +181,7 @@ func (d_ DateIntervalFormatter) Calendar() ICalendar {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/calendar
 func (d_ DateIntervalFormatter) SetCalendar(value ICalendar) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setCalendar:"), value)
-}
+}/* debug [instance_properties/setter]: calendar */
 
 
 // The style to use when formatting day, month, and year information.
@@ -191,7 +191,7 @@ func (d_ DateIntervalFormatter) SetCalendar(value ICalendar) {
 func (d_ DateIntervalFormatter) DateStyle() DateIntervalFormatterStyle {
 	rv := objc.Send[DateIntervalFormatterStyle](d_.ID, objc.Sel("dateStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: dateStyle */
 
 
 // The style to use when formatting day, month, and year information.
@@ -200,7 +200,7 @@ func (d_ DateIntervalFormatter) DateStyle() DateIntervalFormatterStyle {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/dateStyle
 func (d_ DateIntervalFormatter) SetDateStyle(value DateIntervalFormatterStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateStyle:"), value)
-}
+}/* debug [instance_properties/setter]: dateStyle */
 
 
 // The template for formatting one date and time value.
@@ -210,7 +210,7 @@ func (d_ DateIntervalFormatter) SetDateStyle(value DateIntervalFormatterStyle) {
 func (d_ DateIntervalFormatter) DateTemplate() IString {
 	rv := objc.Send[String](d_.ID, objc.Sel("dateTemplate"))
 	return rv
-}
+}/* debug [instance_properties/getter]: dateTemplate */
 
 
 // The template for formatting one date and time value.
@@ -219,7 +219,7 @@ func (d_ DateIntervalFormatter) DateTemplate() IString {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/dateTemplate
 func (d_ DateIntervalFormatter) SetDateTemplate(value IString) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setDateTemplate:"), value)
-}
+}/* debug [instance_properties/setter]: dateTemplate */
 
 
 // The locale to use when formatting date and time values.
@@ -229,7 +229,7 @@ func (d_ DateIntervalFormatter) SetDateTemplate(value IString) {
 func (d_ DateIntervalFormatter) Locale() ILocale {
 	rv := objc.Send[Locale](d_.ID, objc.Sel("locale"))
 	return rv
-}
+}/* debug [instance_properties/getter]: locale */
 
 
 // The locale to use when formatting date and time values.
@@ -238,7 +238,7 @@ func (d_ DateIntervalFormatter) Locale() ILocale {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/locale
 func (d_ DateIntervalFormatter) SetLocale(value ILocale) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setLocale:"), value)
-}
+}/* debug [instance_properties/setter]: locale */
 
 
 // The style to use when formatting hour, minute, and second information.
@@ -248,7 +248,7 @@ func (d_ DateIntervalFormatter) SetLocale(value ILocale) {
 func (d_ DateIntervalFormatter) TimeStyle() DateIntervalFormatterStyle {
 	rv := objc.Send[DateIntervalFormatterStyle](d_.ID, objc.Sel("timeStyle"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeStyle */
 
 
 // The style to use when formatting hour, minute, and second information.
@@ -257,7 +257,7 @@ func (d_ DateIntervalFormatter) TimeStyle() DateIntervalFormatterStyle {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/timeStyle
 func (d_ DateIntervalFormatter) SetTimeStyle(value DateIntervalFormatterStyle) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeStyle:"), value)
-}
+}/* debug [instance_properties/setter]: timeStyle */
 
 
 // The time zone with which to specify time values.
@@ -267,7 +267,7 @@ func (d_ DateIntervalFormatter) SetTimeStyle(value DateIntervalFormatterStyle) {
 func (d_ DateIntervalFormatter) TimeZone() ITimeZone {
 	rv := objc.Send[TimeZone](d_.ID, objc.Sel("timeZone"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeZone */
 
 
 // The time zone with which to specify time values.
@@ -276,12 +276,12 @@ func (d_ DateIntervalFormatter) TimeZone() ITimeZone {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/DateIntervalFormatter/timeZone
 func (d_ DateIntervalFormatter) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](d_.ID, objc.Sel("setTimeZone:"), value)
-}
+}/* debug [instance_properties/setter]: timeZone */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSDateIntervalFormatter */
 
 
 

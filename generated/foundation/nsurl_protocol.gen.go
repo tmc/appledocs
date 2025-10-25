@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSURLProtocol */
 
 
-
-
+/* debug [class_header]: Header for NSURLProtocol */
 // The class instance for the [URLProtocol] class.
 var (
 	URLProtocolClass     _URLProtocolClass
@@ -30,16 +30,16 @@ func getURLProtocolClass() _URLProtocolClass {
 type _URLProtocolClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for URLProtocol */
 // An interface definition for the [URLProtocol] class.
 type IURLProtocol interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for URLProtocol */
 	// properties:
 	CachedResponse() ICachedURLResponse
 	Client() unsafe.Pointer
@@ -47,21 +47,21 @@ type IURLProtocol interface {
 	Task() IURLSessionTask
 	ProtocolClasses() objc.Class
 	SetProtocolClasses(value objc.Class)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for URLProtocol */
 	// methods:
 	StartLoading()
 	StopLoading()
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for URLProtocol */
 // Alloc allocates a new instance without initialization.
 func (uc _URLProtocolClass) Alloc() URLProtocol {
 	rv := objc.Send[URLProtocol](objc.ID(uc.class), objc.Sel("alloc"))
@@ -91,11 +91,11 @@ func (u_ URLProtocol) Autorelease() URLProtocol {
 func NewURLProtocol() URLProtocol {
 	return getURLProtocolClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for URLProtocol */
 // An abstract class that handles the loading of protocol-specific URL data.
 //
 // Don’t instantiate a subclass directly. Instead, create subclasses for any custom protocols or URL schemes that your app supports. When a download starts, the system creates the appropriate protocol object to handle the corresponding URL request. You define your protocol class and call the class method during your app’s launch time so that the system is aware of your protocol. To support the customization of protocol-specific requests, create extensions to the class to provide any custom API that you need. You can store and retrieve protocol-specific request data by using ’s class methods and . Create a for each request your subclass processes successfully. You may want to create a custom class to provide protocol specific information.
@@ -115,11 +115,11 @@ type URLProtocol struct {
 func URLProtocolFrom(ptr unsafe.Pointer) URLProtocol {
 	return URLProtocol{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for URLProtocol */
 
 // Creates a URL protocol instance to handle the request.
 //
@@ -130,7 +130,7 @@ func NewURLProtocolWithRequestCachedResponseClient(request IURLRequest, cachedRe
 	rv := objc.Send[URLProtocol](instance.ID, objc.Sel("initWithRequest:cachedResponse:client:"), request, cachedResponse, client)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewURLProtocolWithRequestCachedResponseClient */
 
 
 // Creates a URL protocol instance to handle the task.
@@ -142,13 +142,13 @@ func NewURLProtocolWithTaskCachedResponseClient(task IURLSessionTask, cachedResp
 	rv := objc.Send[URLProtocol](instance.ID, objc.Sel("initWithTask:cachedResponse:client:"), task, cachedResponse, client)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewURLProtocolWithTaskCachedResponseClient */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for URLProtocol */
 
 // Determines whether the protocol subclass can handle the specified task.
 //
@@ -157,7 +157,7 @@ func NewURLProtocolWithTaskCachedResponseClient(task IURLSessionTask, cachedResp
 func (uc _URLProtocolClass) CanInitWithTask(task IURLSessionTask) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canInitWithTask:"), task)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CanInitWithTask) */
 
 
 // Determines whether the protocol subclass can handle the specified request.
@@ -167,7 +167,7 @@ func (uc _URLProtocolClass) CanInitWithTask(task IURLSessionTask) bool {
 func (uc _URLProtocolClass) CanInitWithRequest(request IURLRequest) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("canInitWithRequest:"), request)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CanInitWithRequest) */
 
 
 // Returns a canonical version of the specified request.
@@ -177,7 +177,7 @@ func (uc _URLProtocolClass) CanInitWithRequest(request IURLRequest) bool {
 func (uc _URLProtocolClass) CanonicalRequestForRequest(request IURLRequest) IURLRequest {
 	rv := objc.Send[URLRequest](objc.ID(uc.class), objc.Sel("canonicalRequestForRequest:"), request)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CanonicalRequestForRequest) */
 
 
 // Attempts to register a subclass of , making it visible to the URL loading system.
@@ -187,7 +187,7 @@ func (uc _URLProtocolClass) CanonicalRequestForRequest(request IURLRequest) IURL
 func (uc _URLProtocolClass) RegisterClass(protocolClass objc.Class) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("registerClass:"), protocolClass)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RegisterClass) */
 
 
 // Removes the property associated with the specified key in the specified request.
@@ -196,7 +196,7 @@ func (uc _URLProtocolClass) RegisterClass(protocolClass objc.Class) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/removeProperty(forKey:in:)
 func (uc _URLProtocolClass) RemovePropertyForKeyInRequest(key IString, request IMutableURLRequest) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("removePropertyForKey:inRequest:"), key, request)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RemovePropertyForKeyInRequest) */
 
 
 // A Boolean value indicating whether two requests are equivalent for cache purposes.
@@ -206,7 +206,7 @@ func (uc _URLProtocolClass) RemovePropertyForKeyInRequest(key IString, request I
 func (uc _URLProtocolClass) RequestIsCacheEquivalentToRequest(a IURLRequest, b IURLRequest) bool {
 	rv := objc.Send[bool](objc.ID(uc.class), objc.Sel("requestIsCacheEquivalent:toRequest:"), a, b)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RequestIsCacheEquivalentToRequest) */
 
 
 // Unregisters the specified subclass of .
@@ -215,18 +215,18 @@ func (uc _URLProtocolClass) RequestIsCacheEquivalentToRequest(a IURLRequest, b I
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/unregisterClass(_:)
 func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 	objc.Send[objc.ID](objc.ID(uc.class), objc.Sel("unregisterClass:"), protocolClass)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=UnregisterClass) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for URLProtocol */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for URLProtocol */
 
 // Starts protocol-specific loading of the request.
 //
@@ -234,7 +234,7 @@ func (uc _URLProtocolClass) UnregisterClass(protocolClass objc.Class) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/startLoading()
 func (u_ URLProtocol) StartLoading() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("startLoading"))
-}
+}/* debug [instance_methods/method]: StartLoading */
 
 
 // Stops protocol-specific loading of the request.
@@ -243,13 +243,13 @@ func (u_ URLProtocol) StartLoading() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/URLProtocol/stopLoading()
 func (u_ URLProtocol) StopLoading() {
 	objc.Send[objc.ID](u_.ID, objc.Sel("stopLoading"))
-}
+}/* debug [instance_methods/method]: StopLoading */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for URLProtocol */
 
 // The protocol’s cached response.
 //
@@ -258,7 +258,7 @@ func (u_ URLProtocol) StopLoading() {
 func (u_ URLProtocol) CachedResponse() ICachedURLResponse {
 	rv := objc.Send[CachedURLResponse](u_.ID, objc.Sel("cachedResponse"))
 	return rv
-}
+}/* debug [instance_properties/getter]: cachedResponse */
 
 
 // The object the protocol uses to communicate with the URL loading system.
@@ -268,7 +268,7 @@ func (u_ URLProtocol) CachedResponse() ICachedURLResponse {
 func (u_ URLProtocol) Client() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](u_.ID, objc.Sel("client"))
 	return rv
-}
+}/* debug [instance_properties/getter]: client */
 
 
 // The protocol’s request.
@@ -278,7 +278,7 @@ func (u_ URLProtocol) Client() unsafe.Pointer {
 func (u_ URLProtocol) Request() IURLRequest {
 	rv := objc.Send[URLRequest](u_.ID, objc.Sel("request"))
 	return rv
-}
+}/* debug [instance_properties/getter]: request */
 
 
 // The protocol’s task.
@@ -288,7 +288,7 @@ func (u_ URLProtocol) Request() IURLRequest {
 func (u_ URLProtocol) Task() IURLSessionTask {
 	rv := objc.Send[URLSessionTask](u_.ID, objc.Sel("task"))
 	return rv
-}
+}/* debug [instance_properties/getter]: task */
 
 
 // An array of extra protocol subclasses that handle requests in a session.
@@ -298,7 +298,7 @@ func (u_ URLProtocol) Task() IURLSessionTask {
 func (u_ URLProtocol) ProtocolClasses() objc.Class {
 	rv := objc.Send[objc.Class](u_.ID, objc.Sel("protocolClasses"))
 	return rv
-}
+}/* debug [instance_properties/getter]: protocolClasses */
 
 
 // An array of extra protocol subclasses that handle requests in a session.
@@ -307,11 +307,11 @@ func (u_ URLProtocol) ProtocolClasses() objc.Class {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/urlsessionconfiguration/protocolclasses
 func (u_ URLProtocol) SetProtocolClasses(value objc.Class) {
 	objc.Send[objc.ID](u_.ID, objc.Sel("setProtocolClasses:"), value)
-}
+}/* debug [instance_properties/setter]: protocolClasses */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSURLProtocol */
 
 

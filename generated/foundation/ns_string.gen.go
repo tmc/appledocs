@@ -11,10 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSString */
 
 
-
-
+/* debug [class_header]: Header for NSString */
 // The class instance for the [String] class.
 var (
 	StringClass     _StringClass
@@ -31,16 +31,16 @@ func getStringClass() _StringClass {
 type _StringClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for String */
 // An interface definition for the [String] class.
 type IString interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for String */
 	// properties:
 	StringByAbbreviatingWithTildeInPath() IString
 	BoolValue() bool
@@ -106,10 +106,10 @@ type IString interface {
 	SetStandardizingPath(value IString)
 	Uppercased() IString
 	SetUppercased(value IString)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for String */
 	// methods:
 	StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString
 	StringByAppendingString(aString IString) IString
@@ -190,14 +190,14 @@ type IString interface {
 	VariantFittingPresentationWidth(width int) IString
 	WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc StringEncoding /* not a class type */, error_ IError) bool
 	WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool, enc StringEncoding /* not a class type */, error_ IError) bool
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for String */
 // Alloc allocates a new instance without initialization.
 func (sc _StringClass) Alloc() String {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("alloc"))
@@ -227,11 +227,11 @@ func (s_ String) Autorelease() String {
 func NewString() String {
 	return getStringClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for String */
 // A static, plain-text Unicode string object.
 //
 // You can use this type in Swift when you need reference semantics or other Foundation-specific behavior. The class and its mutable subclass, , provide an extensive set of APIs for working with strings, including methods for comparing, searching, and modifying strings. objects are used throughout Foundation and other Cocoa frameworks, serving as the basis for all textual and linguistic functionality on the platform. is with its Core Foundation counterpart, . See for more information.
@@ -251,11 +251,11 @@ type String struct {
 func StringFrom(ptr unsafe.Pointer) String {
 	return String{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for String */
 
 // Returns an initialized object containing a given number of bytes from a given buffer of bytes interpreted in a given encoding.
 //
@@ -266,7 +266,7 @@ func NewStringWithBytesLengthEncoding(bytes objectivec.IObject, len_ uint, encod
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytes:length:encoding:"), bytes, len_, encoding)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithBytesLengthEncoding */
 
 
 // [Full Topic]
@@ -276,7 +276,7 @@ func NewStringWithBytesNoCopyLengthEncodingDeallocator(bytes objectivec.IObject,
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:deallocator:"), bytes, len_, encoding, deallocator)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithBytesNoCopyLengthEncodingDeallocator */
 
 
 // Returns an initialized object that contains a given number of bytes from a given buffer of bytes interpreted in a given encoding, and optionally frees the buffer.
@@ -288,7 +288,7 @@ func NewStringWithBytesNoCopyLengthEncodingFreeWhenDone(bytes objectivec.IObject
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithBytesNoCopy:length:encoding:freeWhenDone:"), bytes, len_, encoding, freeBuffer)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithBytesNoCopyLengthEncodingFreeWhenDone */
 
 
 // Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding.
@@ -300,7 +300,7 @@ func NewStringWithCString(bytes objectivec.IObject) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:"), bytes)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithCString */
 
 
 // Returns an object initialized using the characters in a given C array, interpreted according to a given encoding.
@@ -312,7 +312,7 @@ func NewStringWithCStringEncoding(nullTerminatedCString objectivec.IObject, enco
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:encoding:"), nullTerminatedCString, encoding)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithCStringEncoding */
 
 
 // Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding.
@@ -324,7 +324,7 @@ func NewStringWithCStringLength(bytes objectivec.IObject, length uint) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCString:length:"), bytes, length)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithCStringLength */
 
 
 // Initializes the receiver, a newly allocated object, by converting the data in a given C-string from the default C-string encoding into the Unicode character encoding.
@@ -336,7 +336,7 @@ func NewStringWithCStringNoCopyLengthFreeWhenDone(bytes objectivec.IObject, leng
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCStringNoCopy:length:freeWhenDone:"), bytes, length, freeBuffer)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithCStringNoCopyLengthFreeWhenDone */
 
 
 // Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units.
@@ -348,7 +348,7 @@ func NewStringWithCharactersLength(characters Unichar, length uint) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharacters:length:"), characters, length)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithCharactersLength */
 
 
 // [Full Topic]
@@ -358,7 +358,7 @@ func NewStringWithCharactersNoCopyLengthDeallocator(chars Unichar, len_ uint, de
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:deallocator:"), chars, len_, deallocator)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithCharactersNoCopyLengthDeallocator */
 
 
 // Returns an initialized object that contains a given number of characters from a given C array of UTF-16 code units.
@@ -370,7 +370,7 @@ func NewStringWithCharactersNoCopyLengthFreeWhenDone(characters Unichar, length 
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCharactersNoCopy:length:freeWhenDone:"), characters, length, freeBuffer)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithCharactersNoCopyLengthFreeWhenDone */
 
 
 // [Full Topic]
@@ -380,7 +380,7 @@ func NewStringWithCoder(coder ICoder) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithCoder */
 
 
 // Initializes the receiver, a newly allocated object, by reading data from the file named by .
@@ -392,7 +392,7 @@ func NewStringWithContentsOfFile(path IString) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:"), path)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithContentsOfFile */
 
 
 // Returns an object initialized by reading data from the file at a given path using a given encoding.
@@ -404,7 +404,7 @@ func NewStringWithContentsOfFileEncodingError(path IString, enc StringEncoding /
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:encoding:error:"), path, enc, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithContentsOfFileEncodingError */
 
 
 // Returns an object initialized by reading data from the file at a given path and returns by reference the encoding used to interpret the characters.
@@ -416,7 +416,7 @@ func NewStringWithContentsOfFileUsedEncodingError(path IString, enc StringEncodi
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfFile:usedEncoding:error:"), path, enc, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithContentsOfFileUsedEncodingError */
 
 
 // Initializes the receiver, a newly allocated object, by reading data from the location named by a given URL.
@@ -428,7 +428,7 @@ func NewStringWithContentsOfURL(url IURL) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:"), url)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithContentsOfURL */
 
 
 // Returns an object initialized by reading data from a given URL interpreted using a given encoding.
@@ -440,7 +440,7 @@ func NewStringWithContentsOfURLEncodingError(url IURL, enc StringEncoding /* not
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:encoding:error:"), url, enc, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithContentsOfURLEncodingError */
 
 
 // Returns an object initialized by reading data from a given URL and returns by reference the encoding used to interpret the data.
@@ -452,7 +452,7 @@ func NewStringWithContentsOfURLUsedEncodingError(url IURL, enc StringEncoding /*
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithContentsOfURLUsedEncodingError */
 
 
 // Returns an object initialized by converting given data into UTF-16 code units using a given encoding.
@@ -464,7 +464,7 @@ func NewStringWithDataEncoding(data IData, encoding StringEncoding /* not a clas
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithData:encoding:"), data, encoding)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithDataEncoding */
 
 
 // Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted.
@@ -476,7 +476,7 @@ func NewStringWithFormat(format IString) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:"), format)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithFormat */
 
 
 // Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted without any localization.
@@ -488,7 +488,7 @@ func NewStringWithFormatArguments(format IString, argList objectivec.IObject) St
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:arguments:"), format, argList)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithFormatArguments */
 
 
 // Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale.
@@ -500,7 +500,7 @@ func NewStringWithFormatLocale(format IString, locale objc.IObject) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:"), format, locale)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithFormatLocale */
 
 
 // Returns an object initialized by using a given format string as a template into which the remaining argument values are substituted according to given locale information. This method is meant to be called from within a variadic function, where the argument list will be available.
@@ -512,7 +512,7 @@ func NewStringWithFormatLocaleArguments(format IString, locale objc.IObject, arg
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithFormat:locale:arguments:"), format, locale, argList)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithFormatLocaleArguments */
 
 
 // Returns an object initialized by copying the characters from another given string.
@@ -524,7 +524,7 @@ func NewStringWithString(aString IString) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithString:"), aString)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithString */
 
 
 // Returns an object initialized by copying the characters from a given C array of UTF8-encoded bytes.
@@ -536,7 +536,7 @@ func NewStringWithUTF8String(nullTerminatedCString objectivec.IObject) String {
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithUTF8String:"), nullTerminatedCString)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithUTF8String */
 
 
 // [Full Topic]
@@ -546,7 +546,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError(format IStr
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:arguments:error:"), format, validFormatSpecifiers, argList, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithValidatedFormatValidFormatSpecifiersArgumentsError */
 
 
 // [Full Topic]
@@ -556,7 +556,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersError(format IString, vali
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithValidatedFormatValidFormatSpecifiersError */
 
 
 // [Full Topic]
@@ -566,7 +566,7 @@ func NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError(forma
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:arguments:error:"), format, validFormatSpecifiers, locale, argList, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithValidatedFormatValidFormatSpecifiersLocaleArgumentsError */
 
 
 // [Full Topic]
@@ -576,20 +576,20 @@ func NewStringWithValidatedFormatValidFormatSpecifiersLocaleError(format IString
 	rv := objc.Send[String](instance.ID, objc.Sel("initWithValidatedFormat:validFormatSpecifiers:locale:error:"), format, validFormatSpecifiers, locale, error_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewStringWithValidatedFormatValidFormatSpecifiersLocaleError */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for String */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/deferredLocalizedIntentsStringWithFormat:
 func (sc _StringClass) DeferredLocalizedIntentsStringWithFormat(format IString) IString {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:"), format)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DeferredLocalizedIntentsStringWithFormat) */
 
 
 // [Full Topic]
@@ -597,7 +597,7 @@ func (sc _StringClass) DeferredLocalizedIntentsStringWithFormat(format IString) 
 func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTable(format IString, table IString) IString {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:fromTable:"), format, table)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DeferredLocalizedIntentsStringWithFormatFromTable) */
 
 
 // [Full Topic]
@@ -605,7 +605,7 @@ func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTable(format 
 func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTableArguments(format IString, table IString, arguments objectivec.IObject) IString {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("deferredLocalizedIntentsStringWithFormat:fromTable:arguments:"), format, table, arguments)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DeferredLocalizedIntentsStringWithFormatFromTableArguments) */
 
 
 // Returns a string containing the bytes in a given C array, interpreted according to a given encoding.
@@ -615,7 +615,7 @@ func (sc _StringClass) DeferredLocalizedIntentsStringWithFormatFromTableArgument
 func (sc _StringClass) StringWithCStringEncoding(cString objectivec.IObject, enc StringEncoding /* not a class type */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithCString:encoding:"), cString, enc)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithCStringEncoding) */
 
 
 // Returns a string created by copying the data from a given C array of UTF8-encoded bytes.
@@ -625,7 +625,7 @@ func (sc _StringClass) StringWithCStringEncoding(cString objectivec.IObject, enc
 func (sc _StringClass) StringWithUTF8String(nullTerminatedCString objectivec.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithUTF8String:"), nullTerminatedCString)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithUTF8String) */
 
 
 // Returns a string created by reading data from a given URL interpreted using a given encoding.
@@ -635,7 +635,7 @@ func (sc _StringClass) StringWithUTF8String(nullTerminatedCString objectivec.IOb
 func (sc _StringClass) StringWithContentsOfURLEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:encoding:error:"), url, enc, error_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithContentsOfURLEncodingError) */
 
 
 // Returns a string created by reading data from a given URL and returns by reference the encoding used to interpret the data.
@@ -645,7 +645,7 @@ func (sc _StringClass) StringWithContentsOfURLEncodingError(url IURL, enc String
 func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url IURL, enc StringEncoding /* not a class type */, error_ IError) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:usedEncoding:error:"), url, enc, error_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithContentsOfURLUsedEncodingError) */
 
 
 // Returns a human-readable string giving the name of a given encoding.
@@ -655,7 +655,7 @@ func (sc _StringClass) StringWithContentsOfURLUsedEncodingError(url IURL, enc St
 func (sc _StringClass) LocalizedNameOfStringEncoding(encoding StringEncoding /* not a class type */) IString {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("localizedNameOfStringEncoding:"), encoding)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedNameOfStringEncoding) */
 
 
 // Returns a string created by using a given format string as a template into which the remaining argument values are substituted according to the current locale.
@@ -665,7 +665,7 @@ func (sc _StringClass) LocalizedNameOfStringEncoding(encoding StringEncoding /* 
 func (sc _StringClass) LocalizedStringWithFormat(format IString) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("localizedStringWithFormat:"), format)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedStringWithFormat) */
 
 
 // [Full Topic]
@@ -673,7 +673,7 @@ func (sc _StringClass) LocalizedStringWithFormat(format IString) objectivec.IObj
 func (sc _StringClass) LocalizedStringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ IError) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("localizedStringWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedStringWithValidatedFormatValidFormatSpecifiersError) */
 
 
 // Returns a localized string intended for display in a notification alert.
@@ -683,7 +683,7 @@ func (sc _StringClass) LocalizedStringWithValidatedFormatValidFormatSpecifiersEr
 func (sc _StringClass) LocalizedUserNotificationStringForKeyArguments(key IString, arguments IArray) IString {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("localizedUserNotificationStringForKey:arguments:"), key, arguments)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=LocalizedUserNotificationStringForKeyArguments) */
 
 
 // Returns a string built from the strings in a given array by concatenating them with a path separator between each pair.
@@ -693,7 +693,7 @@ func (sc _StringClass) LocalizedUserNotificationStringForKeyArguments(key IStrin
 func (sc _StringClass) PathWithComponents(components []string) IString {
 	rv := objc.Send[String](objc.ID(sc.class), objc.Sel("pathWithComponents:"), components)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=PathWithComponents) */
 
 
 // Returns an empty string.
@@ -703,7 +703,7 @@ func (sc _StringClass) PathWithComponents(components []string) IString {
 func (sc _StringClass) String() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("string"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=String) */
 
 
 // Creates a new string using a given C-string.
@@ -713,7 +713,7 @@ func (sc _StringClass) String() objectivec.IObject {
 func (sc _StringClass) StringWithCString(bytes objectivec.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithCString:"), bytes)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithCString) */
 
 
 // Returns a string containing the characters in a given C-string.
@@ -723,7 +723,7 @@ func (sc _StringClass) StringWithCString(bytes objectivec.IObject) objc.ID {
 func (sc _StringClass) StringWithCStringLength(bytes objectivec.IObject, length uint) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithCString:length:"), bytes, length)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithCStringLength) */
 
 
 // Returns a string created by reading data from the file named by a given URL.
@@ -733,7 +733,7 @@ func (sc _StringClass) StringWithCStringLength(bytes objectivec.IObject, length 
 func (sc _StringClass) StringWithContentsOfURL(url IURL) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfURL:"), url)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithContentsOfURL) */
 
 
 // Returns a string created by reading data from the file named by a given path.
@@ -743,7 +743,7 @@ func (sc _StringClass) StringWithContentsOfURL(url IURL) objc.ID {
 func (sc _StringClass) StringWithContentsOfFile(path IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:"), path)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithContentsOfFile) */
 
 
 // Returns the string encoding for the given data as detected by attempting to create a string according to the specified encoding options.
@@ -753,7 +753,7 @@ func (sc _StringClass) StringWithContentsOfFile(path IString) objc.ID {
 func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion(data IData, opts IDictionary, string_ IString, usedLossyConversion objectivec.IObject) StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](objc.ID(sc.class), objc.Sel("stringEncodingForData:encodingOptions:convertedString:usedLossyConversion:"), data, opts, string_, usedLossyConversion)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringEncodingForDataEncodingOptionsConvertedStringUsedLossyConversion) */
 
 
 // Returns a string containing a given number of characters taken from a given C array of UTF-16 code units.
@@ -763,7 +763,7 @@ func (sc _StringClass) StringEncodingForDataEncodingOptionsConvertedStringUsedLo
 func (sc _StringClass) StringWithCharactersLength(characters uint16 /* not a class type */, length uint) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithCharacters:length:"), characters, length)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithCharactersLength) */
 
 
 // Returns a string created by reading data from the file at a given path interpreted using a given encoding.
@@ -773,7 +773,7 @@ func (sc _StringClass) StringWithCharactersLength(characters uint16 /* not a cla
 func (sc _StringClass) StringWithContentsOfFileEncodingError(path IString, enc StringEncoding /* not a class type */, error_ IError) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:encoding:error:"), path, enc, error_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithContentsOfFileEncodingError) */
 
 
 // Returns a string created by reading data from the file at a given path and returns by reference the encoding used to interpret the file.
@@ -783,7 +783,7 @@ func (sc _StringClass) StringWithContentsOfFileEncodingError(path IString, enc S
 func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path IString, enc StringEncoding /* not a class type */, error_ IError) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithContentsOfFile:usedEncoding:error:"), path, enc, error_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithContentsOfFileUsedEncodingError) */
 
 
 // Returns a string created by using a given format string as a template into which the remaining argument values are substituted.
@@ -793,7 +793,7 @@ func (sc _StringClass) StringWithContentsOfFileUsedEncodingError(path IString, e
 func (sc _StringClass) StringWithFormat(format IString) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithFormat:"), format)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithFormat) */
 
 
 // Returns a string created by copying the characters from another given string.
@@ -803,7 +803,7 @@ func (sc _StringClass) StringWithFormat(format IString) objectivec.IObject {
 func (sc _StringClass) StringWithString(string_ IString) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithString:"), string_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithString) */
 
 
 // [Full Topic]
@@ -811,13 +811,13 @@ func (sc _StringClass) StringWithString(string_ IString) objectivec.IObject {
 func (sc _StringClass) StringWithValidatedFormatValidFormatSpecifiersError(format IString, validFormatSpecifiers IString, error_ IError) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(sc.class), objc.Sel("stringWithValidatedFormat:validFormatSpecifiers:error:"), format, validFormatSpecifiers, error_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=StringWithValidatedFormatValidFormatSpecifiersError) */
+
+/* debug [class_methods]: End class methods */
 
 
 
-
-
-
+/* debug [class_properties_class]: Class properties for String */
 
 // Returns a zero-terminated list of the encodings string objects support in the application’s environment.
 //
@@ -826,7 +826,7 @@ func (sc _StringClass) StringWithValidatedFormatValidFormatSpecifiersError(forma
 func (sc _StringClass) AvailableStringEncodings() StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](objc.ID(sc.class), objc.Sel("availableStringEncodings"))
 	return rv
-}
+}/* debug [class_properties_class/property]: availableStringEncodings */
 
 // Returns the C-string encoding assumed for any method accepting a C string as an argument.
 //
@@ -835,12 +835,12 @@ func (sc _StringClass) AvailableStringEncodings() StringEncoding /* not a class 
 func (sc _StringClass) DefaultCStringEncoding() StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](objc.ID(sc.class), objc.Sel("defaultCStringEncoding"))
 	return rv
-}
+}/* debug [class_properties_class/property]: defaultCStringEncoding */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
+/* debug [instance_methods]: Instance methods for String */
 
 // Returns a new string made from the receiver by replacing all characters not in the specified set with percent-encoded characters.
 //
@@ -849,7 +849,7 @@ func (sc _StringClass) DefaultCStringEncoding() StringEncoding /* not a class ty
 func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedCharacters ICharacterSet) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAddingPercentEncodingWithAllowedCharacters:"), allowedCharacters)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByAddingPercentEncodingWithAllowedCharacters */
 
 
 // Returns a new string made by appending a given string to the receiver.
@@ -859,7 +859,7 @@ func (s_ String) StringByAddingPercentEncodingWithAllowedCharacters(allowedChara
 func (s_ String) StringByAppendingString(aString IString) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingString:"), aString)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByAppendingString */
 
 
 // Returns a new string made by appending to the receiver a given string.
@@ -869,7 +869,7 @@ func (s_ String) StringByAppendingString(aString IString) IString {
 func (s_ String) StringByAppendingPathComponent(str IString) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:"), str)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByAppendingPathComponent */
 
 
 // [Full Topic]
@@ -877,7 +877,7 @@ func (s_ String) StringByAppendingPathComponent(str IString) IString {
 func (s_ String) StringByAppendingPathComponentConformingToType(partialName IString, contentType objc.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathComponent:conformingToType:"), partialName, contentType)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByAppendingPathComponentConformingToType */
 
 
 // Returns a new string made by appending to the receiver an extension separator followed by a given extension.
@@ -887,7 +887,7 @@ func (s_ String) StringByAppendingPathComponentConformingToType(partialName IStr
 func (s_ String) StringByAppendingPathExtension(str IString) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtension:"), str)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByAppendingPathExtension */
 
 
 // [Full Topic]
@@ -895,7 +895,7 @@ func (s_ String) StringByAppendingPathExtension(str IString) IString {
 func (s_ String) StringByAppendingPathExtensionForType(contentType objc.IObject) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingPathExtensionForType:"), contentType)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByAppendingPathExtensionForType */
 
 
 // Returns a new string by applying a specified transform to the string.
@@ -905,7 +905,7 @@ func (s_ String) StringByAppendingPathExtensionForType(contentType objc.IObject)
 func (s_ String) StringByApplyingTransformReverse(transform StringTransform, reverse bool) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByApplyingTransform:reverse:"), transform, reverse)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByApplyingTransformReverse */
 
 
 // Calculates and returns the bounding rect for the receiver drawn using the given options and display characteristics, within the specified rectangle in the current graphics context.
@@ -915,7 +915,7 @@ func (s_ String) StringByApplyingTransformReverse(transform StringTransform, rev
 func (s_ String) BoundingRectWithSizeOptionsAttributes(size corefoundation.CGSize, options StringDrawingOptions, attributes IDictionary) corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:"), size, options, attributes)
 	return rv
-}
+}/* debug [instance_methods/method]: BoundingRectWithSizeOptionsAttributes */
 
 
 // Calculates and returns the bounding rect for the receiver drawn using the given options and display characteristics, within the specified rectangle in the current graphics context.
@@ -925,7 +925,7 @@ func (s_ String) BoundingRectWithSizeOptionsAttributes(size corefoundation.CGSiz
 func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size corefoundation.CGSize, options StringDrawingOptions, attributes IDictionary, context objectivec.IObject) corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](s_.ID, objc.Sel("boundingRectWithSize:options:attributes:context:"), size, options, attributes, context)
 	return rv
-}
+}/* debug [instance_methods/method]: BoundingRectWithSizeOptionsAttributesContext */
 
 
 // Returns a representation of the string as a C string using a given encoding.
@@ -935,7 +935,7 @@ func (s_ String) BoundingRectWithSizeOptionsAttributesContext(size corefoundatio
 func (s_ String) CStringUsingEncoding(encoding StringEncoding /* not a class type */) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("cStringUsingEncoding:"), encoding)
 	return rv
-}
+}/* debug [instance_methods/method]: CStringUsingEncoding */
 
 
 // Returns a Boolean value that indicates whether the receiver can be converted to a given encoding without loss of information.
@@ -945,7 +945,7 @@ func (s_ String) CStringUsingEncoding(encoding StringEncoding /* not a class typ
 func (s_ String) CanBeConvertedToEncoding(encoding StringEncoding /* not a class type */) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("canBeConvertedToEncoding:"), encoding)
 	return rv
-}
+}/* debug [instance_methods/method]: CanBeConvertedToEncoding */
 
 
 // Returns a capitalized representation of the receiver using the specified locale.
@@ -955,7 +955,7 @@ func (s_ String) CanBeConvertedToEncoding(encoding StringEncoding /* not a class
 func (s_ String) CapitalizedStringWithLocale(locale ILocale) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("capitalizedStringWithLocale:"), locale)
 	return rv
-}
+}/* debug [instance_methods/method]: CapitalizedStringWithLocale */
 
 
 // Returns the result of invoking with as the only option.
@@ -965,7 +965,7 @@ func (s_ String) CapitalizedStringWithLocale(locale ILocale) IString {
 func (s_ String) CaseInsensitiveCompare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("caseInsensitiveCompare:"), string_)
 	return rv
-}
+}/* debug [instance_methods/method]: CaseInsensitiveCompare */
 
 
 // Returns the character at a given UTF-16 code unit index.
@@ -975,7 +975,7 @@ func (s_ String) CaseInsensitiveCompare(string_ IString) ComparisonResult {
 func (s_ String) CharacterAtIndex(index uint) uint16 /* not a class type */ {
 	rv := objc.Send[uint16](s_.ID, objc.Sel("characterAtIndex:"), index)
 	return rv
-}
+}/* debug [instance_methods/method]: CharacterAtIndex */
 
 
 // Returns a string containing characters the receiver and a given string have in common, starting from the beginning of each up to the first characters that aren’t equivalent.
@@ -985,7 +985,7 @@ func (s_ String) CharacterAtIndex(index uint) uint16 /* not a class type */ {
 func (s_ String) CommonPrefixWithStringOptions(str IString, mask StringCompareOptions) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("commonPrefixWithString:options:"), str, mask)
 	return rv
-}
+}/* debug [instance_methods/method]: CommonPrefixWithStringOptions */
 
 
 // Returns the result of invoking with no options and the receiver’s full extent as the range.
@@ -995,7 +995,7 @@ func (s_ String) CommonPrefixWithStringOptions(str IString, mask StringCompareOp
 func (s_ String) Compare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:"), string_)
 	return rv
-}
+}/* debug [instance_methods/method]: Compare */
 
 
 // Compares the string with the specified string using the given options.
@@ -1005,7 +1005,7 @@ func (s_ String) Compare(string_ IString) ComparisonResult {
 func (s_ String) CompareOptions(string_ IString, mask StringCompareOptions) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:"), string_, mask)
 	return rv
-}
+}/* debug [instance_methods/method]: CompareOptions */
 
 
 // Returns the result of invoking with a locale.
@@ -1015,7 +1015,7 @@ func (s_ String) CompareOptions(string_ IString, mask StringCompareOptions) Comp
 func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:"), string_, mask, rangeOfReceiverToCompare)
 	return rv
-}
+}/* debug [instance_methods/method]: CompareOptionsRange */
 
 
 // Compares the string using the specified options and returns the lexical ordering for the range.
@@ -1025,7 +1025,7 @@ func (s_ String) CompareOptionsRange(string_ IString, mask StringCompareOptions,
 func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOptions, rangeOfReceiverToCompare objc.IObject /* cross-framework: Range */, locale objc.IObject) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("compare:options:range:locale:"), string_, mask, rangeOfReceiverToCompare, locale)
 	return rv
-}
+}/* debug [instance_methods/method]: CompareOptionsRangeLocale */
 
 
 // Interprets the receiver as a path in the file system and attempts to perform filename completion, returning a numeric value that indicates whether a match was possible, and by reference the longest path that matches the receiver.
@@ -1035,7 +1035,7 @@ func (s_ String) CompareOptionsRangeLocale(string_ IString, mask StringCompareOp
 func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(outputName IString, flag bool, outputArray []string, filterTypes []string) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("completePathIntoString:caseSensitive:matchesIntoArray:filterTypes:"), outputName, flag, outputArray, filterTypes)
 	return rv
-}
+}/* debug [instance_methods/method]: CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes */
 
 
 // Returns an array containing substrings from the receiver that have been divided by a given separator.
@@ -1045,7 +1045,7 @@ func (s_ String) CompletePathIntoStringCaseSensitiveMatchesIntoArrayFilterTypes(
 func (s_ String) ComponentsSeparatedByString(separator IString) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByString:"), separator)
 	return rv
-}
+}/* debug [instance_methods/method]: ComponentsSeparatedByString */
 
 
 // Returns an array containing substrings from the receiver that have been divided by characters in a given set.
@@ -1055,7 +1055,7 @@ func (s_ String) ComponentsSeparatedByString(separator IString) []string {
 func (s_ String) ComponentsSeparatedByCharactersInSet(separator ICharacterSet) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("componentsSeparatedByCharactersInSet:"), separator)
 	return rv
-}
+}/* debug [instance_methods/method]: ComponentsSeparatedByCharactersInSet */
 
 
 // Returns a Boolean value indicating whether the string contains a given string by performing a case-sensitive, locale-unaware search.
@@ -1065,7 +1065,7 @@ func (s_ String) ComponentsSeparatedByCharactersInSet(separator ICharacterSet) [
 func (s_ String) ContainsString(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("containsString:"), str)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainsString */
 
 
 // Returns an object containing a representation of the receiver encoded using a given encoding.
@@ -1075,7 +1075,7 @@ func (s_ String) ContainsString(str IString) bool {
 func (s_ String) DataUsingEncoding(encoding StringEncoding /* not a class type */) IData {
 	rv := objc.Send[Data](s_.ID, objc.Sel("dataUsingEncoding:"), encoding)
 	return rv
-}
+}/* debug [instance_methods/method]: DataUsingEncoding */
 
 
 // Returns an object containing a representation of the receiver encoded using a given encoding.
@@ -1085,7 +1085,7 @@ func (s_ String) DataUsingEncoding(encoding StringEncoding /* not a class type *
 func (s_ String) DataUsingEncodingAllowLossyConversion(encoding StringEncoding /* not a class type */, lossy bool) IData {
 	rv := objc.Send[Data](s_.ID, objc.Sel("dataUsingEncoding:allowLossyConversion:"), encoding, lossy)
 	return rv
-}
+}/* debug [instance_methods/method]: DataUsingEncodingAllowLossyConversion */
 
 
 // Draws the receiver with the font and other display characteristics of the given attributes, at the specified point in the current graphics context.
@@ -1094,7 +1094,7 @@ func (s_ String) DataUsingEncodingAllowLossyConversion(encoding StringEncoding /
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(at:withAttributes:)
 func (s_ String) DrawAtPointWithAttributes(point corefoundation.CGPoint, attrs IDictionary) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawAtPoint:withAttributes:"), point, attrs)
-}
+}/* debug [instance_methods/method]: DrawAtPointWithAttributes */
 
 
 // Draws the attributed string inside the specified bounding rectangle.
@@ -1103,7 +1103,7 @@ func (s_ String) DrawAtPointWithAttributes(point corefoundation.CGPoint, attrs I
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(in:withAttributes:)
 func (s_ String) DrawInRectWithAttributes(rect corefoundation.CGRect, attrs IDictionary) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawInRect:withAttributes:"), rect, attrs)
-}
+}/* debug [instance_methods/method]: DrawInRectWithAttributes */
 
 
 // Draws the receiver with the specified options and other display characteristics of the given attributes, within the specified rectangle in the current graphics context.
@@ -1112,7 +1112,7 @@ func (s_ String) DrawInRectWithAttributes(rect corefoundation.CGRect, attrs IDic
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:)
 func (s_ String) DrawWithRectOptionsAttributes(rect corefoundation.CGRect, options StringDrawingOptions, attributes IDictionary) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:"), rect, options, attributes)
-}
+}/* debug [instance_methods/method]: DrawWithRectOptionsAttributes */
 
 
 // Draws the attributed string in the specified bounding rectangle using the provided options.
@@ -1121,7 +1121,7 @@ func (s_ String) DrawWithRectOptionsAttributes(rect corefoundation.CGRect, optio
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/draw(with:options:attributes:context:)
 func (s_ String) DrawWithRectOptionsAttributesContext(rect corefoundation.CGRect, options StringDrawingOptions, attributes IDictionary, context objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("drawWithRect:options:attributes:context:"), rect, options, attributes, context)
-}
+}/* debug [instance_methods/method]: DrawWithRectOptionsAttributesContext */
 
 
 // Enumerates all the lines in the string.
@@ -1130,7 +1130,7 @@ func (s_ String) DrawWithRectOptionsAttributesContext(rect corefoundation.CGRect
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateLines(_:)
 func (s_ String) EnumerateLinesUsingBlock(block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateLinesUsingBlock:"), block)
-}
+}/* debug [instance_methods/method]: EnumerateLinesUsingBlock */
 
 
 // Enumerates the substrings of the specified type in the specified range of the string.
@@ -1139,7 +1139,7 @@ func (s_ String) EnumerateLinesUsingBlock(block unsafe.Pointer) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/enumerateSubstrings(in:options:using:)
 func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject /* cross-framework: Range */, opts StringEnumerationOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("enumerateSubstringsInRange:options:usingBlock:"), range_, opts, block)
-}
+}/* debug [instance_methods/method]: EnumerateSubstringsInRangeOptionsUsingBlock */
 
 
 // Creates a string suitable for comparison by removing the specified character distinctions from a string.
@@ -1149,7 +1149,7 @@ func (s_ String) EnumerateSubstringsInRangeOptionsUsingBlock(range_ objc.IObject
 func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, locale ILocale) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByFoldingWithOptions:locale:"), options, locale)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByFoldingWithOptionsLocale */
 
 
 // Gets a given range of characters as bytes in a specified encoding.
@@ -1159,7 +1159,7 @@ func (s_ String) StringByFoldingWithOptionsLocale(options StringCompareOptions, 
 func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(buffer objectivec.IObject, maxBufferCount uint, usedBufferCount uint, encoding StringEncoding /* not a class type */, options StringEncodingConversionOptions, range_ objc.IObject /* cross-framework: Range */, leftover RangePointer) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getBytes:maxLength:usedLength:encoding:options:range:remainingRange:"), buffer, maxBufferCount, usedBufferCount, encoding, options, range_, leftover)
 	return rv
-}
+}/* debug [instance_methods/method]: GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange */
 
 
 // Converts the string to a given encoding and stores it in a buffer.
@@ -1169,7 +1169,7 @@ func (s_ String) GetBytesMaxLengthUsedLengthEncodingOptionsRangeRemainingRange(b
 func (s_ String) GetCStringMaxLengthEncoding(buffer objectivec.IObject, maxBufferCount uint, encoding StringEncoding /* not a class type */) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getCString:maxLength:encoding:"), buffer, maxBufferCount, encoding)
 	return rv
-}
+}/* debug [instance_methods/method]: GetCStringMaxLengthEncoding */
 
 
 // Copies all characters from the receiver into a given buffer.
@@ -1178,7 +1178,7 @@ func (s_ String) GetCStringMaxLengthEncoding(buffer objectivec.IObject, maxBuffe
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:)
 func (s_ String) GetCharacters(buffer Unichar) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:"), buffer)
-}
+}/* debug [instance_methods/method]: GetCharacters */
 
 
 // Copies characters from a given range in the receiver into a given buffer.
@@ -1187,7 +1187,7 @@ func (s_ String) GetCharacters(buffer Unichar) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getCharacters(_:range:)
 func (s_ String) GetCharactersRange(buffer Unichar, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getCharacters:range:"), buffer, range_)
-}
+}/* debug [instance_methods/method]: GetCharactersRange */
 
 
 // Interprets the receiver as a system-independent path and fills a buffer with a C-string in a format and encoding suitable for use with file-system calls.
@@ -1197,7 +1197,7 @@ func (s_ String) GetCharactersRange(buffer Unichar, range_ objc.IObject /* cross
 func (s_ String) GetFileSystemRepresentationMaxLength(cname objectivec.IObject, max uint) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("getFileSystemRepresentation:maxLength:"), cname, max)
 	return rv
-}
+}/* debug [instance_methods/method]: GetFileSystemRepresentationMaxLength */
 
 
 // Returns by reference the beginning of the first line and the end of the last line touched by the given range.
@@ -1206,7 +1206,7 @@ func (s_ String) GetFileSystemRepresentationMaxLength(cname objectivec.IObject, 
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getLineStart(_:end:contentsEnd:for:)
 func (s_ String) GetLineStartEndContentsEndForRange(startPtr uint, lineEndPtr uint, contentsEndPtr uint, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getLineStart:end:contentsEnd:forRange:"), startPtr, lineEndPtr, contentsEndPtr, range_)
-}
+}/* debug [instance_methods/method]: GetLineStartEndContentsEndForRange */
 
 
 // Returns by reference the beginning of the first paragraph and the end of the last paragraph touched by the given range.
@@ -1215,7 +1215,7 @@ func (s_ String) GetLineStartEndContentsEndForRange(startPtr uint, lineEndPtr ui
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSString/getParagraphStart(_:end:contentsEnd:for:)
 func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr uint, parEndPtr uint, contentsEndPtr uint, range_ objc.IObject /* cross-framework: Range */) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("getParagraphStart:end:contentsEnd:forRange:"), startPtr, parEndPtr, contentsEndPtr, range_)
-}
+}/* debug [instance_methods/method]: GetParagraphStartEndContentsEndForRange */
 
 
 // Returns a Boolean value that indicates whether a given string matches the beginning characters of the receiver.
@@ -1225,7 +1225,7 @@ func (s_ String) GetParagraphStartEndContentsEndForRange(startPtr uint, parEndPt
 func (s_ String) HasPrefix(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasPrefix:"), str)
 	return rv
-}
+}/* debug [instance_methods/method]: HasPrefix */
 
 
 // Returns a Boolean value that indicates whether a given string matches the ending characters of the receiver.
@@ -1235,7 +1235,7 @@ func (s_ String) HasPrefix(str IString) bool {
 func (s_ String) HasSuffix(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("hasSuffix:"), str)
 	return rv
-}
+}/* debug [instance_methods/method]: HasSuffix */
 
 
 // Returns a Boolean value that indicates whether a given string is equal to the receiver using a literal Unicode-based comparison.
@@ -1245,7 +1245,7 @@ func (s_ String) HasSuffix(str IString) bool {
 func (s_ String) IsEqualToString(aString IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isEqualToString:"), aString)
 	return rv
-}
+}/* debug [instance_methods/method]: IsEqualToString */
 
 
 // Returns the number of bytes required to store the receiver in a given encoding.
@@ -1255,7 +1255,7 @@ func (s_ String) IsEqualToString(aString IString) bool {
 func (s_ String) LengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("lengthOfBytesUsingEncoding:"), enc)
 	return rv
-}
+}/* debug [instance_methods/method]: LengthOfBytesUsingEncoding */
 
 
 // Returns the range of characters representing the line or lines containing a given range.
@@ -1265,7 +1265,7 @@ func (s_ String) LengthOfBytesUsingEncoding(enc StringEncoding /* not a class ty
 func (s_ String) LineRangeForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("lineRangeForRange:"), range_)
 	return rv
-}
+}/* debug [instance_methods/method]: LineRangeForRange */
 
 
 // Compares the string with a given string using a case-insensitive, localized, comparison.
@@ -1275,7 +1275,7 @@ func (s_ String) LineRangeForRange(range_ objc.IObject /* cross-framework: Range
 func (s_ String) LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedCaseInsensitiveCompare:"), string_)
 	return rv
-}
+}/* debug [instance_methods/method]: LocalizedCaseInsensitiveCompare */
 
 
 // Returns a Boolean value indicating whether the string contains a given string by performing a case-insensitive, locale-aware search.
@@ -1285,7 +1285,7 @@ func (s_ String) LocalizedCaseInsensitiveCompare(string_ IString) ComparisonResu
 func (s_ String) LocalizedCaseInsensitiveContainsString(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("localizedCaseInsensitiveContainsString:"), str)
 	return rv
-}
+}/* debug [instance_methods/method]: LocalizedCaseInsensitiveContainsString */
 
 
 // Compares the string and a given string using a localized comparison.
@@ -1295,7 +1295,7 @@ func (s_ String) LocalizedCaseInsensitiveContainsString(str IString) bool {
 func (s_ String) LocalizedCompare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedCompare:"), string_)
 	return rv
-}
+}/* debug [instance_methods/method]: LocalizedCompare */
 
 
 // Compares strings as sorted by the Finder.
@@ -1305,7 +1305,7 @@ func (s_ String) LocalizedCompare(string_ IString) ComparisonResult {
 func (s_ String) LocalizedStandardCompare(string_ IString) ComparisonResult {
 	rv := objc.Send[ComparisonResult](s_.ID, objc.Sel("localizedStandardCompare:"), string_)
 	return rv
-}
+}/* debug [instance_methods/method]: LocalizedStandardCompare */
 
 
 // Returns a Boolean value indicating whether the string contains a given string by performing a case and diacritic insensitive, locale-aware search.
@@ -1315,7 +1315,7 @@ func (s_ String) LocalizedStandardCompare(string_ IString) ComparisonResult {
 func (s_ String) LocalizedStandardContainsString(str IString) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("localizedStandardContainsString:"), str)
 	return rv
-}
+}/* debug [instance_methods/method]: LocalizedStandardContainsString */
 
 
 // Finds and returns the range of the first occurrence of a given string within the string by performing a case and diacritic insensitive, locale-aware search.
@@ -1325,7 +1325,7 @@ func (s_ String) LocalizedStandardContainsString(str IString) bool {
 func (s_ String) LocalizedStandardRangeOfString(str IString) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("localizedStandardRangeOfString:"), str)
 	return rv
-}
+}/* debug [instance_methods/method]: LocalizedStandardRangeOfString */
 
 
 // Returns a version of the string with all letters converted to lowercase, taking into account the specified locale.
@@ -1335,7 +1335,7 @@ func (s_ String) LocalizedStandardRangeOfString(str IString) objc.IObject /* cro
 func (s_ String) LowercaseStringWithLocale(locale ILocale) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("lowercaseStringWithLocale:"), locale)
 	return rv
-}
+}/* debug [instance_methods/method]: LowercaseStringWithLocale */
 
 
 // Returns the maximum number of bytes needed to store the receiver in a given encoding.
@@ -1345,7 +1345,7 @@ func (s_ String) LowercaseStringWithLocale(locale ILocale) IString {
 func (s_ String) MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a class type */) uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("maximumLengthOfBytesUsingEncoding:"), enc)
 	return rv
-}
+}/* debug [instance_methods/method]: MaximumLengthOfBytesUsingEncoding */
 
 
 // Returns a new string formed from the receiver by either removing characters from the end, or by appending as many occurrences as necessary of a given pad string.
@@ -1355,7 +1355,7 @@ func (s_ String) MaximumLengthOfBytesUsingEncoding(enc StringEncoding /* not a c
 func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint, padString IString, padIndex uint) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByPaddingToLength:withString:startingAtIndex:"), newLength, padString, padIndex)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByPaddingToLengthWithStringStartingAtIndex */
 
 
 // Returns the range of characters representing the paragraph or paragraphs containing a given range.
@@ -1365,7 +1365,7 @@ func (s_ String) StringByPaddingToLengthWithStringStartingAtIndex(newLength uint
 func (s_ String) ParagraphRangeForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("paragraphRangeForRange:"), range_)
 	return rv
-}
+}/* debug [instance_methods/method]: ParagraphRangeForRange */
 
 
 // Parses the receiver as a text representation of a property list, returning an , , , or object, according to the topmost element.
@@ -1375,7 +1375,7 @@ func (s_ String) ParagraphRangeForRange(range_ objc.IObject /* cross-framework: 
 func (s_ String) PropertyList() objc.ID {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("propertyList"))
 	return rv
-}
+}/* debug [instance_methods/method]: PropertyList */
 
 
 // Returns a dictionary object initialized with the keys and values found in the receiver.
@@ -1385,7 +1385,7 @@ func (s_ String) PropertyList() objc.ID {
 func (s_ String) PropertyListFromStringsFileFormat() IDictionary {
 	rv := objc.Send[Dictionary](s_.ID, objc.Sel("propertyListFromStringsFileFormat"))
 	return rv
-}
+}/* debug [instance_methods/method]: PropertyListFromStringsFileFormat */
 
 
 // Finds and returns the range of the first occurrence of a given string within the string.
@@ -1395,7 +1395,7 @@ func (s_ String) PropertyListFromStringsFileFormat() IDictionary {
 func (s_ String) RangeOfString(searchString IString) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfString:"), searchString)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfString */
 
 
 // Finds and returns the range of the first occurrence of a given string within the string, subject to given options.
@@ -1405,7 +1405,7 @@ func (s_ String) RangeOfString(searchString IString) objc.IObject /* cross-frame
 func (s_ String) RangeOfStringOptions(searchString IString, mask StringCompareOptions) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfString:options:"), searchString, mask)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfStringOptions */
 
 
 // Finds and returns the range of the first occurrence of a given string, within the given range of the string, subject to given options.
@@ -1415,7 +1415,7 @@ func (s_ String) RangeOfStringOptions(searchString IString, mask StringCompareOp
 func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfString:options:range:"), searchString, mask, rangeOfReceiverToSearch)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfStringOptionsRange */
 
 
 // Finds and returns the range of the first occurrence of a given string within a given range of the string, subject to given options, using the specified locale, if any.
@@ -1425,7 +1425,7 @@ func (s_ String) RangeOfStringOptionsRange(searchString IString, mask StringComp
 func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */, locale ILocale) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfString:options:range:locale:"), searchString, mask, rangeOfReceiverToSearch, locale)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfStringOptionsRangeLocale */
 
 
 // Finds and returns the range in the string of the first character from a given character set.
@@ -1435,7 +1435,7 @@ func (s_ String) RangeOfStringOptionsRangeLocale(searchString IString, mask Stri
 func (s_ String) RangeOfCharacterFromSet(searchSet ICharacterSet) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfCharacterFromSet:"), searchSet)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfCharacterFromSet */
 
 
 // Finds and returns the range in the string of the first character, using given options, from a given character set.
@@ -1445,7 +1445,7 @@ func (s_ String) RangeOfCharacterFromSet(searchSet ICharacterSet) objc.IObject /
 func (s_ String) RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask StringCompareOptions) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:"), searchSet, mask)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfCharacterFromSetOptions */
 
 
 // Finds and returns the range in the string of the first character from a given character set found in a given range with given options.
@@ -1455,7 +1455,7 @@ func (s_ String) RangeOfCharacterFromSetOptions(searchSet ICharacterSet, mask St
 func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, mask StringCompareOptions, rangeOfReceiverToSearch objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfCharacterFromSet:options:range:"), searchSet, mask, rangeOfReceiverToSearch)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfCharacterFromSetOptionsRange */
 
 
 // Returns the range in the receiver of the composed character sequence located at a given index.
@@ -1465,7 +1465,7 @@ func (s_ String) RangeOfCharacterFromSetOptionsRange(searchSet ICharacterSet, ma
 func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfComposedCharacterSequenceAtIndex:"), index)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfComposedCharacterSequenceAtIndex */
 
 
 // Returns the range in the string of the composed character sequences for a given range.
@@ -1475,7 +1475,7 @@ func (s_ String) RangeOfComposedCharacterSequenceAtIndex(index uint) objc.IObjec
 func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /* cross-framework: Range */) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](s_.ID, objc.Sel("rangeOfComposedCharacterSequencesForRange:"), range_)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfComposedCharacterSequencesForRange */
 
 
 // Returns a new string in which the characters in a specified range of the receiver are replaced by a given string.
@@ -1485,7 +1485,7 @@ func (s_ String) RangeOfComposedCharacterSequencesForRange(range_ objc.IObject /
 func (s_ String) StringByReplacingCharactersInRangeWithString(range_ objc.IObject /* cross-framework: Range */, replacement IString) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingCharactersInRange:withString:"), range_, replacement)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByReplacingCharactersInRangeWithString */
 
 
 // Returns a new string in which all occurrences of a target string in the receiver are replaced by another given string.
@@ -1495,7 +1495,7 @@ func (s_ String) StringByReplacingCharactersInRangeWithString(range_ objc.IObjec
 func (s_ String) StringByReplacingOccurrencesOfStringWithString(target IString, replacement IString) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:"), target, replacement)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByReplacingOccurrencesOfStringWithString */
 
 
 // Returns a new string in which all occurrences of a target string in a specified range of the receiver are replaced by another given string.
@@ -1505,7 +1505,7 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithString(target IString, 
 func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(target IString, replacement IString, options StringCompareOptions, searchRange objc.IObject /* cross-framework: Range */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByReplacingOccurrencesOfString:withString:options:range:"), target, replacement, options, searchRange)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByReplacingOccurrencesOfStringWithStringOptionsRange */
 
 
 // Returns the bounding box size the receiver occupies when drawn with the given attributes.
@@ -1515,7 +1515,7 @@ func (s_ String) StringByReplacingOccurrencesOfStringWithStringOptionsRange(targ
 func (s_ String) SizeWithAttributes(attrs IDictionary) corefoundation.CGSize {
 	rv := objc.Send[corefoundation.CGSize](s_.ID, objc.Sel("sizeWithAttributes:"), attrs)
 	return rv
-}
+}/* debug [instance_methods/method]: SizeWithAttributes */
 
 
 // Returns a string made by appending to the receiver a string constructed from a given format string and the following arguments.
@@ -1525,7 +1525,7 @@ func (s_ String) SizeWithAttributes(attrs IDictionary) corefoundation.CGSize {
 func (s_ String) StringByAppendingFormat(format IString) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAppendingFormat:"), format)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByAppendingFormat */
 
 
 // Returns an array of strings made by separately appending to the receiver each string in a given array.
@@ -1535,7 +1535,7 @@ func (s_ String) StringByAppendingFormat(format IString) IString {
 func (s_ String) StringsByAppendingPaths(paths []string) []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("stringsByAppendingPaths:"), paths)
 	return rv
-}
+}/* debug [instance_methods/method]: StringsByAppendingPaths */
 
 
 // Returns a new string containing the characters of the receiver from the one at a given index to the end.
@@ -1545,7 +1545,7 @@ func (s_ String) StringsByAppendingPaths(paths []string) []string {
 func (s_ String) SubstringFromIndex(from uint) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringFromIndex:"), from)
 	return rv
-}
+}/* debug [instance_methods/method]: SubstringFromIndex */
 
 
 // Returns a new string containing the characters of the receiver up to, but not including, the one at a given index.
@@ -1555,7 +1555,7 @@ func (s_ String) SubstringFromIndex(from uint) IString {
 func (s_ String) SubstringToIndex(to uint) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringToIndex:"), to)
 	return rv
-}
+}/* debug [instance_methods/method]: SubstringToIndex */
 
 
 // Returns a string object containing the characters of the receiver that lie within a given range.
@@ -1565,7 +1565,7 @@ func (s_ String) SubstringToIndex(to uint) IString {
 func (s_ String) SubstringWithRange(range_ objc.IObject /* cross-framework: Range */) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("substringWithRange:"), range_)
 	return rv
-}
+}/* debug [instance_methods/method]: SubstringWithRange */
 
 
 // Returns a new string made by removing from both ends of the receiver characters contained in a given character set.
@@ -1575,7 +1575,7 @@ func (s_ String) SubstringWithRange(range_ objc.IObject /* cross-framework: Rang
 func (s_ String) StringByTrimmingCharactersInSet(set ICharacterSet) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByTrimmingCharactersInSet:"), set)
 	return rv
-}
+}/* debug [instance_methods/method]: StringByTrimmingCharactersInSet */
 
 
 // Returns a version of the string with all letters converted to uppercase, taking into account the specified locale.
@@ -1585,7 +1585,7 @@ func (s_ String) StringByTrimmingCharactersInSet(set ICharacterSet) IString {
 func (s_ String) UppercaseStringWithLocale(locale ILocale) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("uppercaseStringWithLocale:"), locale)
 	return rv
-}
+}/* debug [instance_methods/method]: UppercaseStringWithLocale */
 
 
 // Returns a string variation suitable for the specified presentation width.
@@ -1595,7 +1595,7 @@ func (s_ String) UppercaseStringWithLocale(locale ILocale) IString {
 func (s_ String) VariantFittingPresentationWidth(width int) IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("variantFittingPresentationWidth:"), width)
 	return rv
-}
+}/* debug [instance_methods/method]: VariantFittingPresentationWidth */
 
 
 // Writes the contents of the receiver to the URL specified by using the specified encoding.
@@ -1605,7 +1605,7 @@ func (s_ String) VariantFittingPresentationWidth(width int) IString {
 func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bool, enc StringEncoding /* not a class type */, error_ IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToURL:atomically:encoding:error:"), url, useAuxiliaryFile, enc, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: WriteToURLAtomicallyEncodingError */
 
 
 // Writes the contents of the receiver to a file at a given path using a given encoding.
@@ -1615,13 +1615,13 @@ func (s_ String) WriteToURLAtomicallyEncodingError(url IURL, useAuxiliaryFile bo
 func (s_ String) WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFile bool, enc StringEncoding /* not a class type */, error_ IError) bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("writeToFile:atomically:encoding:error:"), path, useAuxiliaryFile, enc, error_)
 	return rv
-}
+}/* debug [instance_methods/method]: WriteToFileAtomicallyEncodingError */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for String */
 
 // A new string that replaces the current home directory portion of the current path with a tilde ( ) character.
 //
@@ -1630,7 +1630,7 @@ func (s_ String) WriteToFileAtomicallyEncodingError(path IString, useAuxiliaryFi
 func (s_ String) StringByAbbreviatingWithTildeInPath() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByAbbreviatingWithTildeInPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stringByAbbreviatingWithTildeInPath */
 
 
 // Returns a zero-terminated list of the encodings string objects support in the application’s environment.
@@ -1640,7 +1640,7 @@ func (s_ String) StringByAbbreviatingWithTildeInPath() IString {
 func (s_ String) AvailableStringEncodings() StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](s_.ID, objc.Sel("availableStringEncodings"))
 	return rv
-}
+}/* debug [instance_properties/getter]: availableStringEncodings */
 
 
 // The Boolean value of the string.
@@ -1650,7 +1650,7 @@ func (s_ String) AvailableStringEncodings() StringEncoding /* not a class type *
 func (s_ String) BoolValue() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("boolValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: boolValue */
 
 
 // A capitalized representation of the string.
@@ -1660,7 +1660,7 @@ func (s_ String) BoolValue() bool {
 func (s_ String) CapitalizedString() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("capitalizedString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: capitalizedString */
 
 
 // A string made by normalizing the string’s contents using the Unicode Normalization Form D.
@@ -1670,7 +1670,7 @@ func (s_ String) CapitalizedString() IString {
 func (s_ String) DecomposedStringWithCanonicalMapping() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("decomposedStringWithCanonicalMapping"))
 	return rv
-}
+}/* debug [instance_properties/getter]: decomposedStringWithCanonicalMapping */
 
 
 // A string made by normalizing the receiver’s contents using the Unicode Normalization Form KD.
@@ -1680,7 +1680,7 @@ func (s_ String) DecomposedStringWithCanonicalMapping() IString {
 func (s_ String) DecomposedStringWithCompatibilityMapping() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("decomposedStringWithCompatibilityMapping"))
 	return rv
-}
+}/* debug [instance_properties/getter]: decomposedStringWithCompatibilityMapping */
 
 
 // Returns the C-string encoding assumed for any method accepting a C string as an argument.
@@ -1690,7 +1690,7 @@ func (s_ String) DecomposedStringWithCompatibilityMapping() IString {
 func (s_ String) DefaultCStringEncoding() StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](s_.ID, objc.Sel("defaultCStringEncoding"))
 	return rv
-}
+}/* debug [instance_properties/getter]: defaultCStringEncoding */
 
 
 // A new string made by deleting the last path component from the receiver, along with any final path separator.
@@ -1700,7 +1700,7 @@ func (s_ String) DefaultCStringEncoding() StringEncoding /* not a class type */ 
 func (s_ String) StringByDeletingLastPathComponent() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByDeletingLastPathComponent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stringByDeletingLastPathComponent */
 
 
 // A new string made by deleting the extension (if any, and only the last) from the receiver.
@@ -1710,7 +1710,7 @@ func (s_ String) StringByDeletingLastPathComponent() IString {
 func (s_ String) StringByDeletingPathExtension() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByDeletingPathExtension"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stringByDeletingPathExtension */
 
 
 // [Full Topic]
@@ -1718,7 +1718,7 @@ func (s_ String) StringByDeletingPathExtension() IString {
 func (s_ String) Description() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("description"))
 	return rv
-}
+}/* debug [instance_properties/getter]: description */
 
 
 // The floating-point value of the string as a .
@@ -1728,7 +1728,7 @@ func (s_ String) Description() IString {
 func (s_ String) DoubleValue() float64 {
 	rv := objc.Send[float64](s_.ID, objc.Sel("doubleValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: doubleValue */
 
 
 // A new string made by expanding the initial component of the receiver to its full path value.
@@ -1738,7 +1738,7 @@ func (s_ String) DoubleValue() float64 {
 func (s_ String) StringByExpandingTildeInPath() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByExpandingTildeInPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stringByExpandingTildeInPath */
 
 
 // The fastest encoding to which the receiver may be converted without loss of information.
@@ -1748,7 +1748,7 @@ func (s_ String) StringByExpandingTildeInPath() IString {
 func (s_ String) FastestEncoding() StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](s_.ID, objc.Sel("fastestEncoding"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fastestEncoding */
 
 
 // A file system-specific representation of the receiver.
@@ -1758,7 +1758,7 @@ func (s_ String) FastestEncoding() StringEncoding /* not a class type */ {
 func (s_ String) FileSystemRepresentation() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("fileSystemRepresentation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: fileSystemRepresentation */
 
 
 // The floating-point value of the string as a .
@@ -1768,7 +1768,7 @@ func (s_ String) FileSystemRepresentation() objectivec.IObject {
 func (s_ String) FloatValue() float32 {
 	rv := objc.Send[float32](s_.ID, objc.Sel("floatValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: floatValue */
 
 
 // An unsigned integer that can be used as a hash table address.
@@ -1778,7 +1778,7 @@ func (s_ String) FloatValue() float32 {
 func (s_ String) Hash() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("hash"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hash */
 
 
 // The integer value of the string.
@@ -1788,7 +1788,7 @@ func (s_ String) Hash() uint {
 func (s_ String) IntValue() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("intValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: intValue */
 
 
 // The value of the string.
@@ -1798,7 +1798,7 @@ func (s_ String) IntValue() int {
 func (s_ String) IntegerValue() int {
 	rv := objc.Send[int](s_.ID, objc.Sel("integerValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: integerValue */
 
 
 // A Boolean value that indicates whether the receiver represents an absolute path.
@@ -1808,7 +1808,7 @@ func (s_ String) IntegerValue() int {
 func (s_ String) AbsolutePath() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("absolutePath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: absolutePath */
 
 
 // The last path component of the receiver.
@@ -1818,7 +1818,7 @@ func (s_ String) AbsolutePath() bool {
 func (s_ String) LastPathComponent() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("lastPathComponent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lastPathComponent */
 
 
 // The number of UTF-16 code units in the receiver.
@@ -1828,7 +1828,7 @@ func (s_ String) LastPathComponent() IString {
 func (s_ String) Length() uint {
 	rv := objc.Send[uint](s_.ID, objc.Sel("length"))
 	return rv
-}
+}/* debug [instance_properties/getter]: length */
 
 
 // Returns a capitalized representation of the receiver using the current locale.
@@ -1838,7 +1838,7 @@ func (s_ String) Length() uint {
 func (s_ String) LocalizedCapitalizedString() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("localizedCapitalizedString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localizedCapitalizedString */
 
 
 // Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
@@ -1848,7 +1848,7 @@ func (s_ String) LocalizedCapitalizedString() IString {
 func (s_ String) LocalizedLowercaseString() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("localizedLowercaseString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localizedLowercaseString */
 
 
 // Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
@@ -1858,7 +1858,7 @@ func (s_ String) LocalizedLowercaseString() IString {
 func (s_ String) LocalizedUppercaseString() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("localizedUppercaseString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localizedUppercaseString */
 
 
 // The value of the string.
@@ -1868,7 +1868,7 @@ func (s_ String) LocalizedUppercaseString() IString {
 func (s_ String) LongLongValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("longLongValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: longLongValue */
 
 
 // A lowercase representation of the string.
@@ -1878,7 +1878,7 @@ func (s_ String) LongLongValue() objectivec.IObject {
 func (s_ String) LowercaseString() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("lowercaseString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lowercaseString */
 
 
 // The file-system path components of the receiver.
@@ -1888,7 +1888,7 @@ func (s_ String) LowercaseString() IString {
 func (s_ String) PathComponents() []string {
 	rv := objc.Send[[]string](s_.ID, objc.Sel("pathComponents"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pathComponents */
 
 
 // The path extension, if any, of the string as interpreted as a path.
@@ -1898,7 +1898,7 @@ func (s_ String) PathComponents() []string {
 func (s_ String) PathExtension() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("pathExtension"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pathExtension */
 
 
 // A string made by normalizing the string’s contents using the Unicode Normalization Form C.
@@ -1908,7 +1908,7 @@ func (s_ String) PathExtension() IString {
 func (s_ String) PrecomposedStringWithCanonicalMapping() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("precomposedStringWithCanonicalMapping"))
 	return rv
-}
+}/* debug [instance_properties/getter]: precomposedStringWithCanonicalMapping */
 
 
 // A string made by normalizing the receiver’s contents using the Unicode Normalization Form KC.
@@ -1918,7 +1918,7 @@ func (s_ String) PrecomposedStringWithCanonicalMapping() IString {
 func (s_ String) PrecomposedStringWithCompatibilityMapping() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("precomposedStringWithCompatibilityMapping"))
 	return rv
-}
+}/* debug [instance_properties/getter]: precomposedStringWithCompatibilityMapping */
 
 
 // Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
@@ -1928,7 +1928,7 @@ func (s_ String) PrecomposedStringWithCompatibilityMapping() IString {
 func (s_ String) StringByRemovingPercentEncoding() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByRemovingPercentEncoding"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stringByRemovingPercentEncoding */
 
 
 // A new string made from the receiver by resolving all symbolic links and standardizing path.
@@ -1938,7 +1938,7 @@ func (s_ String) StringByRemovingPercentEncoding() IString {
 func (s_ String) StringByResolvingSymlinksInPath() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByResolvingSymlinksInPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stringByResolvingSymlinksInPath */
 
 
 // The smallest encoding to which the receiver can be converted without loss of information.
@@ -1948,7 +1948,7 @@ func (s_ String) StringByResolvingSymlinksInPath() IString {
 func (s_ String) SmallestEncoding() StringEncoding /* not a class type */ {
 	rv := objc.Send[StringEncoding](s_.ID, objc.Sel("smallestEncoding"))
 	return rv
-}
+}/* debug [instance_properties/getter]: smallestEncoding */
 
 
 // A new string made by removing extraneous path components from the receiver.
@@ -1958,7 +1958,7 @@ func (s_ String) SmallestEncoding() StringEncoding /* not a class type */ {
 func (s_ String) StringByStandardizingPath() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("stringByStandardizingPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: stringByStandardizingPath */
 
 
 // An uppercase representation of the string.
@@ -1968,7 +1968,7 @@ func (s_ String) StringByStandardizingPath() IString {
 func (s_ String) UppercaseString() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("uppercaseString"))
 	return rv
-}
+}/* debug [instance_properties/getter]: uppercaseString */
 
 
 // A null-terminated UTF8 representation of the string.
@@ -1978,7 +1978,7 @@ func (s_ String) UppercaseString() IString {
 func (s_ String) UTF8String() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("UTF8String"))
 	return rv
-}
+}/* debug [instance_properties/getter]: UTF8String */
 
 
 // A new string that replaces the current home directory portion of the current path with a tilde (
@@ -1988,7 +1988,7 @@ func (s_ String) UTF8String() objectivec.IObject {
 func (s_ String) AbbreviatingWithTildeInPath() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("abbreviatingWithTildeInPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: abbreviatingWithTildeInPath */
 
 
 // A new string that replaces the current home directory portion of the current path with a tilde (
@@ -1997,7 +1997,7 @@ func (s_ String) AbbreviatingWithTildeInPath() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/abbreviatingwithtildeinpath
 func (s_ String) SetAbbreviatingWithTildeInPath(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setAbbreviatingWithTildeInPath:"), value)
-}
+}/* debug [instance_properties/setter]: abbreviatingWithTildeInPath */
 
 
 // A capitalized representation of the string.
@@ -2007,7 +2007,7 @@ func (s_ String) SetAbbreviatingWithTildeInPath(value IString) {
 func (s_ String) Capitalized() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("capitalized"))
 	return rv
-}
+}/* debug [instance_properties/getter]: capitalized */
 
 
 // A capitalized representation of the string.
@@ -2016,7 +2016,7 @@ func (s_ String) Capitalized() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/capitalized
 func (s_ String) SetCapitalized(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCapitalized:"), value)
-}
+}/* debug [instance_properties/setter]: capitalized */
 
 
 // [Full Topic]
@@ -2024,14 +2024,14 @@ func (s_ String) SetCapitalized(value IString) {
 func (s_ String) CustomPlaygroundQuickLook() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](s_.ID, objc.Sel("customPlaygroundQuickLook"))
 	return rv
-}
+}/* debug [instance_properties/getter]: customPlaygroundQuickLook */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/customplaygroundquicklook
 func (s_ String) SetCustomPlaygroundQuickLook(value objectivec.IObject) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setCustomPlaygroundQuickLook:"), value)
-}
+}/* debug [instance_properties/setter]: customPlaygroundQuickLook */
 
 
 // A new string made by deleting the last path component from the receiver, along with any final path separator.
@@ -2041,7 +2041,7 @@ func (s_ String) SetCustomPlaygroundQuickLook(value objectivec.IObject) {
 func (s_ String) DeletingLastPathComponent() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("deletingLastPathComponent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deletingLastPathComponent */
 
 
 // A new string made by deleting the last path component from the receiver, along with any final path separator.
@@ -2050,7 +2050,7 @@ func (s_ String) DeletingLastPathComponent() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletinglastpathcomponent
 func (s_ String) SetDeletingLastPathComponent(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingLastPathComponent:"), value)
-}
+}/* debug [instance_properties/setter]: deletingLastPathComponent */
 
 
 // A new string made by deleting the extension (if any, and only the last) from the receiver.
@@ -2060,7 +2060,7 @@ func (s_ String) SetDeletingLastPathComponent(value IString) {
 func (s_ String) DeletingPathExtension() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("deletingPathExtension"))
 	return rv
-}
+}/* debug [instance_properties/getter]: deletingPathExtension */
 
 
 // A new string made by deleting the extension (if any, and only the last) from the receiver.
@@ -2069,7 +2069,7 @@ func (s_ String) DeletingPathExtension() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/deletingpathextension
 func (s_ String) SetDeletingPathExtension(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setDeletingPathExtension:"), value)
-}
+}/* debug [instance_properties/setter]: deletingPathExtension */
 
 
 // A new string made by expanding the initial component of the receiver to its full path value.
@@ -2079,7 +2079,7 @@ func (s_ String) SetDeletingPathExtension(value IString) {
 func (s_ String) ExpandingTildeInPath() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("expandingTildeInPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: expandingTildeInPath */
 
 
 // A new string made by expanding the initial component of the receiver to its full path value.
@@ -2088,7 +2088,7 @@ func (s_ String) ExpandingTildeInPath() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/expandingtildeinpath
 func (s_ String) SetExpandingTildeInPath(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setExpandingTildeInPath:"), value)
-}
+}/* debug [instance_properties/setter]: expandingTildeInPath */
 
 
 // A Boolean value that indicates whether the receiver represents an absolute path.
@@ -2098,7 +2098,7 @@ func (s_ String) SetExpandingTildeInPath(value IString) {
 func (s_ String) IsAbsolutePath() bool {
 	rv := objc.Send[bool](s_.ID, objc.Sel("isAbsolutePath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: isAbsolutePath */
 
 
 // A Boolean value that indicates whether the receiver represents an absolute path.
@@ -2107,7 +2107,7 @@ func (s_ String) IsAbsolutePath() bool {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/isabsolutepath
 func (s_ String) SetIsAbsolutePath(value bool) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setIsAbsolutePath:"), value)
-}
+}/* debug [instance_properties/setter]: isAbsolutePath */
 
 
 // Returns a capitalized representation of the receiver using the current locale.
@@ -2117,7 +2117,7 @@ func (s_ String) SetIsAbsolutePath(value bool) {
 func (s_ String) LocalizedCapitalized() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("localizedCapitalized"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localizedCapitalized */
 
 
 // Returns a capitalized representation of the receiver using the current locale.
@@ -2126,7 +2126,7 @@ func (s_ String) LocalizedCapitalized() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedcapitalized
 func (s_ String) SetLocalizedCapitalized(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedCapitalized:"), value)
-}
+}/* debug [instance_properties/setter]: localizedCapitalized */
 
 
 // Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
@@ -2136,7 +2136,7 @@ func (s_ String) SetLocalizedCapitalized(value IString) {
 func (s_ String) LocalizedLowercase() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("localizedLowercase"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localizedLowercase */
 
 
 // Returns a version of the string with all letters converted to lowercase, taking into account the current locale.
@@ -2145,7 +2145,7 @@ func (s_ String) LocalizedLowercase() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizedlowercase
 func (s_ String) SetLocalizedLowercase(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedLowercase:"), value)
-}
+}/* debug [instance_properties/setter]: localizedLowercase */
 
 
 // Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
@@ -2155,7 +2155,7 @@ func (s_ String) SetLocalizedLowercase(value IString) {
 func (s_ String) LocalizedUppercase() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("localizedUppercase"))
 	return rv
-}
+}/* debug [instance_properties/getter]: localizedUppercase */
 
 
 // Returns a version of the string with all letters converted to uppercase, taking into account the current locale.
@@ -2164,7 +2164,7 @@ func (s_ String) LocalizedUppercase() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/localizeduppercase
 func (s_ String) SetLocalizedUppercase(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLocalizedUppercase:"), value)
-}
+}/* debug [instance_properties/setter]: localizedUppercase */
 
 
 // A lowercase representation of the string.
@@ -2174,7 +2174,7 @@ func (s_ String) SetLocalizedUppercase(value IString) {
 func (s_ String) Lowercased() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("lowercased"))
 	return rv
-}
+}/* debug [instance_properties/getter]: lowercased */
 
 
 // A lowercase representation of the string.
@@ -2183,7 +2183,7 @@ func (s_ String) Lowercased() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/lowercased
 func (s_ String) SetLowercased(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setLowercased:"), value)
-}
+}/* debug [instance_properties/setter]: lowercased */
 
 
 // Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
@@ -2193,7 +2193,7 @@ func (s_ String) SetLowercased(value IString) {
 func (s_ String) RemovingPercentEncoding() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("removingPercentEncoding"))
 	return rv
-}
+}/* debug [instance_properties/getter]: removingPercentEncoding */
 
 
 // Returns a new string made from the receiver by replacing all percent encoded sequences with the matching UTF-8 characters.
@@ -2202,7 +2202,7 @@ func (s_ String) RemovingPercentEncoding() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/removingpercentencoding
 func (s_ String) SetRemovingPercentEncoding(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setRemovingPercentEncoding:"), value)
-}
+}/* debug [instance_properties/setter]: removingPercentEncoding */
 
 
 // A new string made from the receiver by resolving all symbolic links and standardizing path.
@@ -2212,7 +2212,7 @@ func (s_ String) SetRemovingPercentEncoding(value IString) {
 func (s_ String) ResolvingSymlinksInPath() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("resolvingSymlinksInPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: resolvingSymlinksInPath */
 
 
 // A new string made from the receiver by resolving all symbolic links and standardizing path.
@@ -2221,7 +2221,7 @@ func (s_ String) ResolvingSymlinksInPath() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/resolvingsymlinksinpath
 func (s_ String) SetResolvingSymlinksInPath(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setResolvingSymlinksInPath:"), value)
-}
+}/* debug [instance_properties/setter]: resolvingSymlinksInPath */
 
 
 // A new string made by removing extraneous path components from the receiver.
@@ -2231,7 +2231,7 @@ func (s_ String) SetResolvingSymlinksInPath(value IString) {
 func (s_ String) StandardizingPath() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("standardizingPath"))
 	return rv
-}
+}/* debug [instance_properties/getter]: standardizingPath */
 
 
 // A new string made by removing extraneous path components from the receiver.
@@ -2240,7 +2240,7 @@ func (s_ String) StandardizingPath() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/standardizingpath
 func (s_ String) SetStandardizingPath(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setStandardizingPath:"), value)
-}
+}/* debug [instance_properties/setter]: standardizingPath */
 
 
 // An uppercase representation of the string.
@@ -2250,7 +2250,7 @@ func (s_ String) SetStandardizingPath(value IString) {
 func (s_ String) Uppercased() IString {
 	rv := objc.Send[String](s_.ID, objc.Sel("uppercased"))
 	return rv
-}
+}/* debug [instance_properties/getter]: uppercased */
 
 
 // An uppercase representation of the string.
@@ -2259,11 +2259,11 @@ func (s_ String) Uppercased() IString {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsstring/uppercased
 func (s_ String) SetUppercased(value IString) {
 	objc.Send[objc.ID](s_.ID, objc.Sel("setUppercased:"), value)
-}
+}/* debug [instance_properties/setter]: uppercased */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSString */
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSCalendar */
 
 
-
-
+/* debug [class_header]: Header for NSCalendar */
 // The class instance for the [Calendar] class.
 var (
 	CalendarClass     _CalendarClass
@@ -30,16 +30,16 @@ func getCalendarClass() _CalendarClass {
 type _CalendarClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for Calendar */
 // An interface definition for the [Calendar] class.
 type ICalendar interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for Calendar */
 	// properties:
 	AMSymbol() IString
 	CalendarIdentifier() CalendarIdentifier
@@ -70,10 +70,10 @@ type ICalendar interface {
 	VeryShortStandaloneWeekdaySymbols() []string
 	VeryShortWeekdaySymbols() []string
 	WeekdaySymbols() []string
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for Calendar */
 	// methods:
 	CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult
 	ComponentFromDate(unit CalendarUnit, date IDate) int
@@ -110,14 +110,14 @@ type ICalendar interface {
 	RangeOfUnitStartDateIntervalForDate(unit CalendarUnit, datep IDate, tip float64, date IDate) bool
 	RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip float64, date IDate) bool
 	StartOfDayForDate(date IDate) IDate
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for Calendar */
 // Alloc allocates a new instance without initialization.
 func (cc _CalendarClass) Alloc() Calendar {
 	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("alloc"))
@@ -147,11 +147,11 @@ func (c_ Calendar) Autorelease() Calendar {
 func NewCalendar() Calendar {
 	return getCalendarClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for Calendar */
 // A definition of the relationships between calendar units and absolute points in time, providing features for calculation and comparison of dates.
 //
 // In Swift, this object bridges to ; use when you need reference semantics or other Foundation-specific behavior. objects encapsulate information about systems of reckoning time in which the beginning, length, and divisions of a year are defined. They provide information about the calendar and support for calendrical computations such as determining the range of a given calendrical unit and adding units to a given absolute time. is with its Core Foundation counterpart, . See for more information on toll-free bridging.
@@ -171,11 +171,11 @@ type Calendar struct {
 func CalendarFrom(ptr unsafe.Pointer) Calendar {
 	return Calendar{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for Calendar */
 
 // Initializes a calendar according to a given identifier.
 //
@@ -186,7 +186,7 @@ func NewCalendarWithCalendarIdentifier(ident CalendarIdentifier) Calendar {
 	rv := objc.Send[Calendar](instance.ID, objc.Sel("initWithCalendarIdentifier:"), ident)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCalendarWithCalendarIdentifier */
 
 
 // Creates a new calendar specified by a given identifier.
@@ -196,13 +196,13 @@ func NewCalendarWithCalendarIdentifier(ident CalendarIdentifier) Calendar {
 func NewCalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier) Calendar {
 	rv := objc.Send[Calendar](objc.ID(getCalendarClass().class), objc.Sel("calendarWithIdentifier:"), calendarIdentifierConstant)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCalendarWithIdentifier */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for Calendar */
 
 // Creates a new calendar specified by a given identifier.
 //
@@ -211,13 +211,13 @@ func NewCalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier) Ca
 func (cc _CalendarClass) CalendarWithIdentifier(calendarIdentifierConstant CalendarIdentifier) ICalendar {
 	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("calendarWithIdentifier:"), calendarIdentifierConstant)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CalendarWithIdentifier) */
+
+/* debug [class_methods]: End class methods */
 
 
 
-
-
-
+/* debug [class_properties_class]: Class properties for Calendar */
 
 // A calendar that tracks changes to user’s preferred calendar.
 //
@@ -226,7 +226,7 @@ func (cc _CalendarClass) CalendarWithIdentifier(calendarIdentifierConstant Calen
 func (cc _CalendarClass) AutoupdatingCurrentCalendar() Calendar {
 	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("autoupdatingCurrentCalendar"))
 	return rv
-}
+}/* debug [class_properties_class/property]: autoupdatingCurrentCalendar */
 
 // The user’s current calendar.
 //
@@ -235,12 +235,12 @@ func (cc _CalendarClass) AutoupdatingCurrentCalendar() Calendar {
 func (cc _CalendarClass) CurrentCalendar() Calendar {
 	rv := objc.Send[Calendar](objc.ID(cc.class), objc.Sel("currentCalendar"))
 	return rv
-}
+}/* debug [class_properties_class/property]: currentCalendar */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
+/* debug [instance_methods]: Instance methods for Calendar */
 
 // Indicates the ordering of two given dates based on their components down to a given unit granularity.
 //
@@ -249,7 +249,7 @@ func (cc _CalendarClass) CurrentCalendar() Calendar {
 func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) ComparisonResult {
 	rv := objc.Send[ComparisonResult](c_.ID, objc.Sel("compareDate:toDate:toUnitGranularity:"), date1, date2, unit)
 	return rv
-}
+}/* debug [instance_methods/method]: CompareDateToDateToUnitGranularity */
 
 
 // Returns the specified date component from a given date.
@@ -259,7 +259,7 @@ func (c_ Calendar) CompareDateToDateToUnitGranularity(date1 IDate, date2 IDate, 
 func (c_ Calendar) ComponentFromDate(unit CalendarUnit, date IDate) int {
 	rv := objc.Send[int](c_.ID, objc.Sel("component:fromDate:"), unit, date)
 	return rv
-}
+}/* debug [instance_methods/method]: ComponentFromDate */
 
 
 // Returns the date components representing a given date.
@@ -269,7 +269,7 @@ func (c_ Calendar) ComponentFromDate(unit CalendarUnit, date IDate) int {
 func (c_ Calendar) ComponentsFromDate(unitFlags CalendarUnit, date IDate) IDateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDate:"), unitFlags, date)
 	return rv
-}
+}/* debug [instance_methods/method]: ComponentsFromDate */
 
 
 // Returns the difference between start and end dates given as date components.
@@ -279,7 +279,7 @@ func (c_ Calendar) ComponentsFromDate(unitFlags CalendarUnit, date IDate) IDateC
 func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags CalendarUnit, startingDateComp IDateComponents, resultDateComp IDateComponents, options CalendarOptions) IDateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDateComponents:toDateComponents:options:"), unitFlags, startingDateComp, resultDateComp, options)
 	return rv
-}
+}/* debug [instance_methods/method]: ComponentsFromDateComponentsToDateComponentsOptions */
 
 
 // Returns the difference between two supplied dates as date components.
@@ -289,7 +289,7 @@ func (c_ Calendar) ComponentsFromDateComponentsToDateComponentsOptions(unitFlags
 func (c_ Calendar) ComponentsFromDateToDateOptions(unitFlags CalendarUnit, startingDate IDate, resultDate IDate, opts CalendarOptions) IDateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("components:fromDate:toDate:options:"), unitFlags, startingDate, resultDate, opts)
 	return rv
-}
+}/* debug [instance_methods/method]: ComponentsFromDateToDateOptions */
 
 
 // Returns all the date components of a date, as if in a given time zone (instead of the receiving calendar’s time zone).
@@ -299,7 +299,7 @@ func (c_ Calendar) ComponentsFromDateToDateOptions(unitFlags CalendarUnit, start
 func (c_ Calendar) ComponentsInTimeZoneFromDate(timezone ITimeZone, date IDate) IDateComponents {
 	rv := objc.Send[DateComponents](c_.ID, objc.Sel("componentsInTimeZone:fromDate:"), timezone, date)
 	return rv
-}
+}/* debug [instance_methods/method]: ComponentsInTimeZoneFromDate */
 
 
 // Returns whether a given date matches all of the given date components.
@@ -309,7 +309,7 @@ func (c_ Calendar) ComponentsInTimeZoneFromDate(timezone ITimeZone, date IDate) 
 func (c_ Calendar) DateMatchesComponents(date IDate, components IDateComponents) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("date:matchesComponents:"), date, components)
 	return rv
-}
+}/* debug [instance_methods/method]: DateMatchesComponents */
 
 
 // Returns a date representing the absolute time calculated by adding given components to a given date.
@@ -319,7 +319,7 @@ func (c_ Calendar) DateMatchesComponents(date IDate, components IDateComponents)
 func (c_ Calendar) DateByAddingComponentsToDateOptions(comps IDateComponents, date IDate, opts CalendarOptions) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateByAddingComponents:toDate:options:"), comps, date, opts)
 	return rv
-}
+}/* debug [instance_methods/method]: DateByAddingComponentsToDateOptions */
 
 
 // Returns a date representing the absolute time calculated by adding the value of a given component to a given date.
@@ -329,7 +329,7 @@ func (c_ Calendar) DateByAddingComponentsToDateOptions(comps IDateComponents, da
 func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit CalendarUnit, value int, date IDate, options CalendarOptions) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateByAddingUnit:value:toDate:options:"), unit, value, date, options)
 	return rv
-}
+}/* debug [instance_methods/method]: DateByAddingUnitValueToDateOptions */
 
 
 // Creates a new date calculated with the given time.
@@ -339,7 +339,7 @@ func (c_ Calendar) DateByAddingUnitValueToDateOptions(unit CalendarUnit, value i
 func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s int, date IDate, opts CalendarOptions) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateBySettingHour:minute:second:ofDate:options:"), h, m, s, date, opts)
 	return rv
-}
+}/* debug [instance_methods/method]: DateBySettingHourMinuteSecondOfDateOptions */
 
 
 // Returns a new date representing the date calculated by setting a specific component of a given date to a given value, while trying to keep lower components the same.
@@ -349,7 +349,7 @@ func (c_ Calendar) DateBySettingHourMinuteSecondOfDateOptions(h int, m int, s in
 func (c_ Calendar) DateBySettingUnitValueOfDateOptions(unit CalendarUnit, v int, date IDate, opts CalendarOptions) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateBySettingUnit:value:ofDate:options:"), unit, v, date, opts)
 	return rv
-}
+}/* debug [instance_methods/method]: DateBySettingUnitValueOfDateOptions */
 
 
 // Returns a date created with the given components.
@@ -359,7 +359,7 @@ func (c_ Calendar) DateBySettingUnitValueOfDateOptions(unit CalendarUnit, v int,
 func (c_ Calendar) DateWithEraYearMonthDayHourMinuteSecondNanosecond(eraValue int, yearValue int, monthValue int, dayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateWithEra:year:month:day:hour:minute:second:nanosecond:"), eraValue, yearValue, monthValue, dayValue, hourValue, minuteValue, secondValue, nanosecondValue)
 	return rv
-}
+}/* debug [instance_methods/method]: DateWithEraYearMonthDayHourMinuteSecondNanosecond */
 
 
 // Returns a new date created with the given components base on a week-of-year value.
@@ -369,7 +369,7 @@ func (c_ Calendar) DateWithEraYearMonthDayHourMinuteSecondNanosecond(eraValue in
 func (c_ Calendar) DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecondNanosecond(eraValue int, yearValue int, weekValue int, weekdayValue int, hourValue int, minuteValue int, secondValue int, nanosecondValue int) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateWithEra:yearForWeekOfYear:weekOfYear:weekday:hour:minute:second:nanosecond:"), eraValue, yearValue, weekValue, weekdayValue, hourValue, minuteValue, secondValue, nanosecondValue)
 	return rv
-}
+}/* debug [instance_methods/method]: DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecondNanosecond */
 
 
 // Returns a date representing the absolute time calculated from given components.
@@ -379,7 +379,7 @@ func (c_ Calendar) DateWithEraYearForWeekOfYearWeekOfYearWeekdayHourMinuteSecond
 func (c_ Calendar) DateFromComponents(comps IDateComponents) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("dateFromComponents:"), comps)
 	return rv
-}
+}/* debug [instance_methods/method]: DateFromComponents */
 
 
 // Computes the dates that match (or most closely match) a given set of components, and calls the block once for each of them, until the enumeration is stopped.
@@ -388,7 +388,7 @@ func (c_ Calendar) DateFromComponents(comps IDateComponents) IDate {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/enumerateDates(startingAfter:matching:options:using:)
 func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock(start IDate, comps IDateComponents, opts CalendarOptions, block unsafe.Pointer) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("enumerateDatesStartingAfterDate:matchingComponents:options:usingBlock:"), start, comps, opts, block)
-}
+}/* debug [instance_methods/method]: EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsingBlock */
 
 
 // Returns by reference the era, year, week of year, and weekday component values for a given date.
@@ -397,7 +397,7 @@ func (c_ Calendar) EnumerateDatesStartingAfterDateMatchingComponentsOptionsUsing
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:year:month:day:from:)
 func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer int, yearValuePointer int, monthValuePointer int, dayValuePointer int, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:year:month:day:fromDate:"), eraValuePointer, yearValuePointer, monthValuePointer, dayValuePointer, date)
-}
+}/* debug [instance_methods/method]: GetEraYearMonthDayFromDate */
 
 
 // Returns by reference the era, year, week of year, and weekday component values for a given date.
@@ -406,7 +406,7 @@ func (c_ Calendar) GetEraYearMonthDayFromDate(eraValuePointer int, yearValuePoin
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getEra(_:yearForWeekOfYear:weekOfYear:weekday:from:)
 func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePointer int, yearValuePointer int, weekValuePointer int, weekdayValuePointer int, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getEra:yearForWeekOfYear:weekOfYear:weekday:fromDate:"), eraValuePointer, yearValuePointer, weekValuePointer, weekdayValuePointer, date)
-}
+}/* debug [instance_methods/method]: GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate */
 
 
 // Returns by reference the hour, minute, second, and nanosecond component values for a given date.
@@ -415,7 +415,7 @@ func (c_ Calendar) GetEraYearForWeekOfYearWeekOfYearWeekdayFromDate(eraValuePoin
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/getHour(_:minute:second:nanosecond:from:)
 func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer int, minuteValuePointer int, secondValuePointer int, nanosecondValuePointer int, date IDate) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("getHour:minute:second:nanosecond:fromDate:"), hourValuePointer, minuteValuePointer, secondValuePointer, nanosecondValuePointer, date)
-}
+}/* debug [instance_methods/method]: GetHourMinuteSecondNanosecondFromDate */
 
 
 // Indicates whether two dates are equal to a given unit of granularity.
@@ -425,7 +425,7 @@ func (c_ Calendar) GetHourMinuteSecondNanosecondFromDate(hourValuePointer int, m
 func (c_ Calendar) IsDateEqualToDateToUnitGranularity(date1 IDate, date2 IDate, unit CalendarUnit) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDate:equalToDate:toUnitGranularity:"), date1, date2, unit)
 	return rv
-}
+}/* debug [instance_methods/method]: IsDateEqualToDateToUnitGranularity */
 
 
 // Indicates whether two dates are in the same day.
@@ -435,7 +435,7 @@ func (c_ Calendar) IsDateEqualToDateToUnitGranularity(date1 IDate, date2 IDate, 
 func (c_ Calendar) IsDateInSameDayAsDate(date1 IDate, date2 IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDate:inSameDayAsDate:"), date1, date2)
 	return rv
-}
+}/* debug [instance_methods/method]: IsDateInSameDayAsDate */
 
 
 // Indicates whether the given date is in “today.”
@@ -445,7 +445,7 @@ func (c_ Calendar) IsDateInSameDayAsDate(date1 IDate, date2 IDate) bool {
 func (c_ Calendar) IsDateInToday(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInToday:"), date)
 	return rv
-}
+}/* debug [instance_methods/method]: IsDateInToday */
 
 
 // Indicates whether the given date is in “tomorrow.”
@@ -455,7 +455,7 @@ func (c_ Calendar) IsDateInToday(date IDate) bool {
 func (c_ Calendar) IsDateInTomorrow(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInTomorrow:"), date)
 	return rv
-}
+}/* debug [instance_methods/method]: IsDateInTomorrow */
 
 
 // Indicates whether a given date falls within a weekend period, as defined by the calendar and the calendar’s locale.
@@ -465,7 +465,7 @@ func (c_ Calendar) IsDateInTomorrow(date IDate) bool {
 func (c_ Calendar) IsDateInWeekend(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInWeekend:"), date)
 	return rv
-}
+}/* debug [instance_methods/method]: IsDateInWeekend */
 
 
 // Indicates whether the given date is in “yesterday.”
@@ -475,7 +475,7 @@ func (c_ Calendar) IsDateInWeekend(date IDate) bool {
 func (c_ Calendar) IsDateInYesterday(date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("isDateInYesterday:"), date)
 	return rv
-}
+}/* debug [instance_methods/method]: IsDateInYesterday */
 
 
 // Returns the maximum range limits of the values that a given unit can take on.
@@ -485,7 +485,7 @@ func (c_ Calendar) IsDateInYesterday(date IDate) bool {
 func (c_ Calendar) MaximumRangeOfUnit(unit CalendarUnit) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("maximumRangeOfUnit:"), unit)
 	return rv
-}
+}/* debug [instance_methods/method]: MaximumRangeOfUnit */
 
 
 // Returns the minimum range limits of the values that a given unit can take on.
@@ -495,7 +495,7 @@ func (c_ Calendar) MaximumRangeOfUnit(unit CalendarUnit) objc.IObject /* cross-f
 func (c_ Calendar) MinimumRangeOfUnit(unit CalendarUnit) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("minimumRangeOfUnit:"), unit)
 	return rv
-}
+}/* debug [instance_methods/method]: MinimumRangeOfUnit */
 
 
 // Returns the next date after a given date matching the given components.
@@ -505,7 +505,7 @@ func (c_ Calendar) MinimumRangeOfUnit(unit CalendarUnit) objc.IObject /* cross-f
 func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date IDate, comps IDateComponents, options CalendarOptions) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingComponents:options:"), date, comps, options)
 	return rv
-}
+}/* debug [instance_methods/method]: NextDateAfterDateMatchingComponentsOptions */
 
 
 // Returns the next date after a given date matching the given calendar unit value.
@@ -515,7 +515,7 @@ func (c_ Calendar) NextDateAfterDateMatchingComponentsOptions(date IDate, comps 
 func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit CalendarUnit, value int, options CalendarOptions) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingUnit:value:options:"), date, unit, value, options)
 	return rv
-}
+}/* debug [instance_methods/method]: NextDateAfterDateMatchingUnitValueOptions */
 
 
 // Returns the next date after a given date that matches the given hour, minute, and second, component values.
@@ -525,7 +525,7 @@ func (c_ Calendar) NextDateAfterDateMatchingUnitValueOptions(date IDate, unit Ca
 func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, hourValue int, minuteValue int, secondValue int, options CalendarOptions) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("nextDateAfterDate:matchingHour:minute:second:options:"), date, hourValue, minuteValue, secondValue, options)
 	return rv
-}
+}/* debug [instance_methods/method]: NextDateAfterDateMatchingHourMinuteSecondOptions */
 
 
 // Returns by reference the starting date and time interval range of the next weekend period after a given date.
@@ -535,7 +535,7 @@ func (c_ Calendar) NextDateAfterDateMatchingHourMinuteSecondOptions(date IDate, 
 func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip float64, options CalendarOptions, date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("nextWeekendStartDate:interval:options:afterDate:"), datep, tip, options, date)
 	return rv
-}
+}/* debug [instance_methods/method]: NextWeekendStartDateIntervalOptionsAfterDate */
 
 
 // Returns, for a given absolute time, the ordinal number of a smaller calendar unit (such as a day) within a specified larger calendar unit (such as a week).
@@ -545,7 +545,7 @@ func (c_ Calendar) NextWeekendStartDateIntervalOptionsAfterDate(datep IDate, tip
 func (c_ Calendar) OrdinalityOfUnitInUnitForDate(smaller CalendarUnit, larger CalendarUnit, date IDate) uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("ordinalityOfUnit:inUnit:forDate:"), smaller, larger, date)
 	return rv
-}
+}/* debug [instance_methods/method]: OrdinalityOfUnitInUnitForDate */
 
 
 // Returns the range of absolute time values that a smaller calendar unit (such as a day) can take on in a larger calendar unit (such as a month) that includes a specified absolute time.
@@ -555,7 +555,7 @@ func (c_ Calendar) OrdinalityOfUnitInUnitForDate(smaller CalendarUnit, larger Ca
 func (c_ Calendar) RangeOfUnitInUnitForDate(smaller CalendarUnit, larger CalendarUnit, date IDate) objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](c_.ID, objc.Sel("rangeOfUnit:inUnit:forDate:"), smaller, larger, date)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfUnitInUnitForDate */
 
 
 // Returns by reference the starting time and duration of a given calendar unit that contains a given date.
@@ -565,7 +565,7 @@ func (c_ Calendar) RangeOfUnitInUnitForDate(smaller CalendarUnit, larger Calenda
 func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit CalendarUnit, datep IDate, tip float64, date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rangeOfUnit:startDate:interval:forDate:"), unit, datep, tip, date)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfUnitStartDateIntervalForDate */
 
 
 // Returns whether a given date falls within a weekend period, and if so, returns by reference the start date and time interval of the weekend range.
@@ -575,7 +575,7 @@ func (c_ Calendar) RangeOfUnitStartDateIntervalForDate(unit CalendarUnit, datep 
 func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep IDate, tip float64, date IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("rangeOfWeekendStartDate:interval:containingDate:"), datep, tip, date)
 	return rv
-}
+}/* debug [instance_methods/method]: RangeOfWeekendStartDateIntervalContainingDate */
 
 
 // Returns the first moment of a given date as a date instance.
@@ -585,13 +585,13 @@ func (c_ Calendar) RangeOfWeekendStartDateIntervalContainingDate(datep IDate, ti
 func (c_ Calendar) StartOfDayForDate(date IDate) IDate {
 	rv := objc.Send[Date](c_.ID, objc.Sel("startOfDayForDate:"), date)
 	return rv
-}
+}/* debug [instance_methods/method]: StartOfDayForDate */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for Calendar */
 
 // The symbol used to represent “AM” for this calendar.
 //
@@ -600,7 +600,7 @@ func (c_ Calendar) StartOfDayForDate(date IDate) IDate {
 func (c_ Calendar) AMSymbol() IString {
 	rv := objc.Send[String](c_.ID, objc.Sel("AMSymbol"))
 	return rv
-}
+}/* debug [instance_properties/getter]: AMSymbol */
 
 
 // A calendar that tracks changes to user’s preferred calendar.
@@ -610,7 +610,7 @@ func (c_ Calendar) AMSymbol() IString {
 func (c_ Calendar) AutoupdatingCurrentCalendar() ICalendar {
 	rv := objc.Send[Calendar](c_.ID, objc.Sel("autoupdatingCurrentCalendar"))
 	return rv
-}
+}/* debug [instance_properties/getter]: autoupdatingCurrentCalendar */
 
 
 // An identifier for the calendar.
@@ -620,7 +620,7 @@ func (c_ Calendar) AutoupdatingCurrentCalendar() ICalendar {
 func (c_ Calendar) CalendarIdentifier() CalendarIdentifier {
 	rv := objc.Send[CalendarIdentifier](c_.ID, objc.Sel("calendarIdentifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: calendarIdentifier */
 
 
 // The user’s current calendar.
@@ -630,7 +630,7 @@ func (c_ Calendar) CalendarIdentifier() CalendarIdentifier {
 func (c_ Calendar) CurrentCalendar() ICalendar {
 	rv := objc.Send[Calendar](c_.ID, objc.Sel("currentCalendar"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentCalendar */
 
 
 // A list of era symbols for this calendar.
@@ -640,7 +640,7 @@ func (c_ Calendar) CurrentCalendar() ICalendar {
 func (c_ Calendar) EraSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("eraSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: eraSymbols */
 
 
 // The index of the first weekday of the receiver.
@@ -650,7 +650,7 @@ func (c_ Calendar) EraSymbols() []string {
 func (c_ Calendar) FirstWeekday() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("firstWeekday"))
 	return rv
-}
+}/* debug [instance_properties/getter]: firstWeekday */
 
 
 // The index of the first weekday of the receiver.
@@ -659,7 +659,7 @@ func (c_ Calendar) FirstWeekday() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/firstWeekday
 func (c_ Calendar) SetFirstWeekday(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setFirstWeekday:"), value)
-}
+}/* debug [instance_properties/setter]: firstWeekday */
 
 
 // The locale of the receiver.
@@ -669,7 +669,7 @@ func (c_ Calendar) SetFirstWeekday(value uint) {
 func (c_ Calendar) Locale() ILocale {
 	rv := objc.Send[Locale](c_.ID, objc.Sel("locale"))
 	return rv
-}
+}/* debug [instance_properties/getter]: locale */
 
 
 // The locale of the receiver.
@@ -678,7 +678,7 @@ func (c_ Calendar) Locale() ILocale {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/locale
 func (c_ Calendar) SetLocale(value ILocale) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setLocale:"), value)
-}
+}/* debug [instance_properties/setter]: locale */
 
 
 // A list of long era symbols for this calendar.
@@ -688,7 +688,7 @@ func (c_ Calendar) SetLocale(value ILocale) {
 func (c_ Calendar) LongEraSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("longEraSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: longEraSymbols */
 
 
 // The minimum number of days in the first week of the receiver.
@@ -698,7 +698,7 @@ func (c_ Calendar) LongEraSymbols() []string {
 func (c_ Calendar) MinimumDaysInFirstWeek() uint {
 	rv := objc.Send[uint](c_.ID, objc.Sel("minimumDaysInFirstWeek"))
 	return rv
-}
+}/* debug [instance_properties/getter]: minimumDaysInFirstWeek */
 
 
 // The minimum number of days in the first week of the receiver.
@@ -707,7 +707,7 @@ func (c_ Calendar) MinimumDaysInFirstWeek() uint {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/minimumDaysInFirstWeek
 func (c_ Calendar) SetMinimumDaysInFirstWeek(value uint) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setMinimumDaysInFirstWeek:"), value)
-}
+}/* debug [instance_properties/setter]: minimumDaysInFirstWeek */
 
 
 // A list of month symbols for this calendar.
@@ -717,7 +717,7 @@ func (c_ Calendar) SetMinimumDaysInFirstWeek(value uint) {
 func (c_ Calendar) MonthSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("monthSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: monthSymbols */
 
 
 // The symbol used to represent “PM” for this calendar.
@@ -727,7 +727,7 @@ func (c_ Calendar) MonthSymbols() []string {
 func (c_ Calendar) PMSymbol() IString {
 	rv := objc.Send[String](c_.ID, objc.Sel("PMSymbol"))
 	return rv
-}
+}/* debug [instance_properties/getter]: PMSymbol */
 
 
 // A list of quarter symbols for this calendar.
@@ -737,7 +737,7 @@ func (c_ Calendar) PMSymbol() IString {
 func (c_ Calendar) QuarterSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("quarterSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: quarterSymbols */
 
 
 // A list of short month symbols for this calendar.
@@ -747,7 +747,7 @@ func (c_ Calendar) QuarterSymbols() []string {
 func (c_ Calendar) ShortMonthSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("shortMonthSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shortMonthSymbols */
 
 
 // A list of short quarter symbols for this calendar.
@@ -757,7 +757,7 @@ func (c_ Calendar) ShortMonthSymbols() []string {
 func (c_ Calendar) ShortQuarterSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("shortQuarterSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shortQuarterSymbols */
 
 
 // A list of short standalone month symbols for this calendar.
@@ -767,7 +767,7 @@ func (c_ Calendar) ShortQuarterSymbols() []string {
 func (c_ Calendar) ShortStandaloneMonthSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneMonthSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shortStandaloneMonthSymbols */
 
 
 // A list of short standalone quarter symbols for this calendar.
@@ -777,7 +777,7 @@ func (c_ Calendar) ShortStandaloneMonthSymbols() []string {
 func (c_ Calendar) ShortStandaloneQuarterSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneQuarterSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shortStandaloneQuarterSymbols */
 
 
 // A list of short standalone weekday symbols for this calendar.
@@ -787,7 +787,7 @@ func (c_ Calendar) ShortStandaloneQuarterSymbols() []string {
 func (c_ Calendar) ShortStandaloneWeekdaySymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("shortStandaloneWeekdaySymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shortStandaloneWeekdaySymbols */
 
 
 // A list of shorter-named weekdays in this calendar.
@@ -797,7 +797,7 @@ func (c_ Calendar) ShortStandaloneWeekdaySymbols() []string {
 func (c_ Calendar) ShortWeekdaySymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("shortWeekdaySymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: shortWeekdaySymbols */
 
 
 // A list of standalone month symbols for this calendar.
@@ -807,7 +807,7 @@ func (c_ Calendar) ShortWeekdaySymbols() []string {
 func (c_ Calendar) StandaloneMonthSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("standaloneMonthSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: standaloneMonthSymbols */
 
 
 // A list of standalone quarter symbols for this calendar.
@@ -817,7 +817,7 @@ func (c_ Calendar) StandaloneMonthSymbols() []string {
 func (c_ Calendar) StandaloneQuarterSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("standaloneQuarterSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: standaloneQuarterSymbols */
 
 
 // A list of standalone weekday symbols for this calendar.
@@ -827,7 +827,7 @@ func (c_ Calendar) StandaloneQuarterSymbols() []string {
 func (c_ Calendar) StandaloneWeekdaySymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("standaloneWeekdaySymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: standaloneWeekdaySymbols */
 
 
 // The time zone for the calendar.
@@ -837,7 +837,7 @@ func (c_ Calendar) StandaloneWeekdaySymbols() []string {
 func (c_ Calendar) TimeZone() ITimeZone {
 	rv := objc.Send[TimeZone](c_.ID, objc.Sel("timeZone"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeZone */
 
 
 // The time zone for the calendar.
@@ -846,7 +846,7 @@ func (c_ Calendar) TimeZone() ITimeZone {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendar/timeZone
 func (c_ Calendar) SetTimeZone(value ITimeZone) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setTimeZone:"), value)
-}
+}/* debug [instance_properties/setter]: timeZone */
 
 
 // A list of very short month symbols for this calendar.
@@ -856,7 +856,7 @@ func (c_ Calendar) SetTimeZone(value ITimeZone) {
 func (c_ Calendar) VeryShortMonthSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("veryShortMonthSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: veryShortMonthSymbols */
 
 
 // A list of very short month symbols for this calendar.
@@ -866,7 +866,7 @@ func (c_ Calendar) VeryShortMonthSymbols() []string {
 func (c_ Calendar) VeryShortStandaloneMonthSymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("veryShortStandaloneMonthSymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: veryShortStandaloneMonthSymbols */
 
 
 // A list of very short standalone weekday symbols for this calendar.
@@ -876,7 +876,7 @@ func (c_ Calendar) VeryShortStandaloneMonthSymbols() []string {
 func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("veryShortStandaloneWeekdaySymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: veryShortStandaloneWeekdaySymbols */
 
 
 // A list of very-shortly-named weekdays in this calendar.
@@ -886,7 +886,7 @@ func (c_ Calendar) VeryShortStandaloneWeekdaySymbols() []string {
 func (c_ Calendar) VeryShortWeekdaySymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("veryShortWeekdaySymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: veryShortWeekdaySymbols */
 
 
 // A list of weekdays in this calendar.
@@ -896,11 +896,11 @@ func (c_ Calendar) VeryShortWeekdaySymbols() []string {
 func (c_ Calendar) WeekdaySymbols() []string {
 	rv := objc.Send[[]string](c_.ID, objc.Sel("weekdaySymbols"))
 	return rv
-}
+}/* debug [instance_properties/getter]: weekdaySymbols */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSCalendar */
 
 

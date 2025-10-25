@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSHTTPURLResponse */
 
 
-
-
+/* debug [class_header]: Header for NSHTTPURLResponse */
 // The class instance for the [HTTPURLResponse] class.
 var (
 	HTTPURLResponseClass     _HTTPURLResponseClass
@@ -30,33 +30,33 @@ func getHTTPURLResponseClass() _HTTPURLResponseClass {
 type _HTTPURLResponseClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for HTTPURLResponse */
 // An interface definition for the [HTTPURLResponse] class.
 type IHTTPURLResponse interface {
 	IURLResponse
 	
-
+/* debug [class_interface_properties]: Properties for HTTPURLResponse */
 	// properties:
 	StatusCode() int
 	AllHeaderFields() objectivec.IObject
 	SetAllHeaderFields(value objectivec.IObject)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for HTTPURLResponse */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for HTTPURLResponse */
 // Alloc allocates a new instance without initialization.
 func (hc _HTTPURLResponseClass) Alloc() HTTPURLResponse {
 	rv := objc.Send[HTTPURLResponse](objc.ID(hc.class), objc.Sel("alloc"))
@@ -86,11 +86,11 @@ func (h_ HTTPURLResponse) Autorelease() HTTPURLResponse {
 func NewHTTPURLResponse() HTTPURLResponse {
 	return getHTTPURLResponseClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for HTTPURLResponse */
 // The metadata associated with the response to an HTTP protocol URL load request.
 //
 // The class is a subclass of that provides methods for accessing information specific to HTTP protocol responses. Whenever you make HTTP URL load requests, any response objects you get back from the , , or class are instances of the class.
@@ -112,30 +112,30 @@ func HTTPURLResponseFrom(ptr unsafe.Pointer) HTTPURLResponse {
 		URLResponse: URLResponseFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for HTTPURLResponse *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for HTTPURLResponse */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for HTTPURLResponse */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for HTTPURLResponse */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for HTTPURLResponse */
 
 // The response’s HTTP status code.
 //
@@ -144,7 +144,7 @@ func HTTPURLResponseFrom(ptr unsafe.Pointer) HTTPURLResponse {
 func (h_ HTTPURLResponse) StatusCode() int {
 	rv := objc.Send[int](h_.ID, objc.Sel("statusCode"))
 	return rv
-}
+}/* debug [instance_properties/getter]: statusCode */
 
 
 // All HTTP header fields of the response.
@@ -154,7 +154,7 @@ func (h_ HTTPURLResponse) StatusCode() int {
 func (h_ HTTPURLResponse) AllHeaderFields() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("allHeaderFields"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allHeaderFields */
 
 
 // All HTTP header fields of the response.
@@ -163,12 +163,12 @@ func (h_ HTTPURLResponse) AllHeaderFields() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/httpurlresponse/allheaderfields
 func (h_ HTTPURLResponse) SetAllHeaderFields(value objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("setAllHeaderFields:"), value)
-}
+}/* debug [instance_properties/setter]: allHeaderFields */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSHTTPURLResponse */
 
 
 

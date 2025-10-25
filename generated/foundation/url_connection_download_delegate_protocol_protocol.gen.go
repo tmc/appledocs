@@ -25,7 +25,7 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSURLConnectionDownloadDelegate
 type PURLConnectionDownloadDelegate interface {
 	// Required methods
-	ConnectionDidFinishDownloadingDestinationURL(connection IURLConnection, destinationURL IURL)
+	ConnectionDidFinishDownloadingDestinationURL(connection IURLConnection, destinationURL IURL)/* debug [protocol_interface/required_method]: ConnectionDidFinishDownloadingDestinationURL */
 	// Optional methods
 	ConnectionDidWriteDataTotalBytesWrittenExpectedTotalBytes(connection IURLConnection, bytesWritten objectivec.IObject, totalBytesWritten objectivec.IObject, expectedTotalBytes objectivec.IObject)
 	HasConnectionDidWriteDataTotalBytesWrittenExpectedTotalBytes() bool

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSClassDescription */
 
 
-
-
+/* debug [class_header]: Header for NSClassDescription */
 // The class instance for the [ClassDescription] class.
 var (
 	ClassDescriptionClass     _ClassDescriptionClass
@@ -30,30 +30,30 @@ func getClassDescriptionClass() _ClassDescriptionClass {
 type _ClassDescriptionClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for ClassDescription */
 // An interface definition for the [ClassDescription] class.
 type IClassDescription interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for ClassDescription */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for ClassDescription */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for ClassDescription */
 // Alloc allocates a new instance without initialization.
 func (cc _ClassDescriptionClass) Alloc() ClassDescription {
 	rv := objc.Send[ClassDescription](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ ClassDescription) Autorelease() ClassDescription {
 func NewClassDescription() ClassDescription {
 	return getClassDescriptionClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for ClassDescription */
 // An abstract class that provides the interface for querying the relationships and properties of a class.
 //
 // Concrete subclasses of provide the available attributes of objects of a particular class and the relationships between that class and other classes. Defining these relationships between classes allows for more intelligent and flexible manipulation of objects with key-value coding. It is important to note that there are no class descriptions by default. To use objects in your code you have to implement them for your model classes. For all concrete subclasses, you must provide implementations for all instance methods of . ( provides only the implementation for the class methods that maintain the cache of registered class descriptions.) Once created, you must register a class description with the method . You can use the objects in the arrays returned by methods such as and to access—using key-value coding—the properties of an instance of the class to which a class description object corresponds. For more about attributes and relationships, see Cocoa Fundamentals Guide. For more about key-value coding, see . , which is used to map the relationships between scriptable classes, is the only concrete subclass of provided as part of the Cocoa framework.
@@ -107,11 +107,11 @@ type ClassDescription struct {
 func ClassDescriptionFrom(ptr unsafe.Pointer) ClassDescription {
 	return ClassDescription{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for ClassDescription */
 
 // Returns the class description for a given class.
 //
@@ -120,13 +120,13 @@ func ClassDescriptionFrom(ptr unsafe.Pointer) ClassDescription {
 func NewClassDescriptionForClass(aClass objc.Class) ClassDescription {
 	rv := objc.Send[ClassDescription](objc.ID(getClassDescriptionClass().class), objc.Sel("classDescriptionForClass:"), aClass)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewClassDescriptionForClass */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for ClassDescription */
 
 // Returns the class description for a given class.
 //
@@ -135,7 +135,7 @@ func NewClassDescriptionForClass(aClass objc.Class) ClassDescription {
 func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) IClassDescription {
 	rv := objc.Send[ClassDescription](objc.ID(cc.class), objc.Sel("classDescriptionForClass:"), aClass)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ClassDescriptionForClass) */
 
 
 // Removes all objects from the cache.
@@ -144,7 +144,7 @@ func (cc _ClassDescriptionClass) ClassDescriptionForClass(aClass objc.Class) ICl
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/invalidateClassDescriptionCache()
 func (cc _ClassDescriptionClass) InvalidateClassDescriptionCache() {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("invalidateClassDescriptionCache"))
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=InvalidateClassDescriptionCache) */
 
 
 // Registers an object for a given class in the cache.
@@ -153,26 +153,26 @@ func (cc _ClassDescriptionClass) InvalidateClassDescriptionCache() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSClassDescription/register(_:for:)
 func (cc _ClassDescriptionClass) RegisterClassDescriptionForClass(description IClassDescription, aClass objc.Class) {
 	objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("registerClassDescription:forClass:"), description, aClass)
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=RegisterClassDescriptionForClass) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for ClassDescription */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for ClassDescription */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for ClassDescription */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class NSClassDescription */
 
 

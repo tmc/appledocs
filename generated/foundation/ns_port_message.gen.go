@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSPortMessage */
 
 
-
-
+/* debug [class_header]: Header for NSPortMessage */
 // The class instance for the [PortMessage] class.
 var (
 	PortMessageClass     _PortMessageClass
@@ -30,36 +30,36 @@ func getPortMessageClass() _PortMessageClass {
 type _PortMessageClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for PortMessage */
 // An interface definition for the [PortMessage] class.
 type IPortMessage interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for PortMessage */
 	// properties:
 	Components() IArray
 	Msgid() uint32 /* not a class type */
 	SetMsgid(value uint32 /* not a class type */)
 	ReceivePort() IPort
 	SendPort() IPort
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for PortMessage */
 	// methods:
 	SendBeforeDate(date IDate) bool
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for PortMessage */
 // Alloc allocates a new instance without initialization.
 func (pc _PortMessageClass) Alloc() PortMessage {
 	rv := objc.Send[PortMessage](objc.ID(pc.class), objc.Sel("alloc"))
@@ -89,11 +89,11 @@ func (p_ PortMessage) Autorelease() PortMessage {
 func NewPortMessage() PortMessage {
 	return getPortMessageClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for PortMessage */
 // A low-level, operating system-independent type for inter-application (and inter-thread) messages.
 //
 // Port messages are used primarily by the distributed objects system. You should implement inter-application communication using distributed objects whenever possible and use only when necessary. An object has three major parts: the send and receive ports, which are objects that link the sender of the message to the receiver, and the components, which form the body of the message. The components are held as an object containing and objects. The message sends the components out through the send port; any replies to the message arrive on the receive port. See the class specification for information on handling incoming messages. An instance can be initialized with a pair of objects and an array of components. A port message’s body can contain only objects or objects. In the distributed objects system the byte/character arrays are usually encoded objects that are being forwarded from a proxy to the corresponding real object. An object also maintains a message identifier, which can be used to indicate the class of a message, such as an Objective-C method invocation, a connection request, an error, and so on. Use the and methods to access the identifier.
@@ -113,11 +113,11 @@ type PortMessage struct {
 func PortMessageFrom(ptr unsafe.Pointer) PortMessage {
 	return PortMessage{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for PortMessage */
 
 // Initializes a newly allocated object to send given data on a given port and to receiver replies on another given port.
 //
@@ -128,23 +128,23 @@ func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort I
 	rv := objc.Send[PortMessage](instance.ID, objc.Sel("initWithSendPort:receivePort:components:"), sendPort, replyPort, components)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewPortMessageWithSendPortReceivePortComponents */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for PortMessage */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for PortMessage */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for PortMessage */
 
 // Attempts to send the message before the specified date.
 //
@@ -153,13 +153,13 @@ func NewPortMessageWithSendPortReceivePortComponents(sendPort IPort, replyPort I
 func (p_ PortMessage) SendBeforeDate(date IDate) bool {
 	rv := objc.Send[bool](p_.ID, objc.Sel("sendBeforeDate:"), date)
 	return rv
-}
+}/* debug [instance_methods/method]: SendBeforeDate */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for PortMessage */
 
 // Returns the data components of the receiver.
 //
@@ -168,7 +168,7 @@ func (p_ PortMessage) SendBeforeDate(date IDate) bool {
 func (p_ PortMessage) Components() IArray {
 	rv := objc.Send[Array](p_.ID, objc.Sel("components"))
 	return rv
-}
+}/* debug [instance_properties/getter]: components */
 
 
 // Returns the identifier for the receiver.
@@ -178,7 +178,7 @@ func (p_ PortMessage) Components() IArray {
 func (p_ PortMessage) Msgid() uint32 /* not a class type */ {
 	rv := objc.Send[uint32](p_.ID, objc.Sel("msgid"))
 	return rv
-}
+}/* debug [instance_properties/getter]: msgid */
 
 
 // Returns the identifier for the receiver.
@@ -187,7 +187,7 @@ func (p_ PortMessage) Msgid() uint32 /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/PortMessage/msgid
 func (p_ PortMessage) SetMsgid(value uint32 /* not a class type */) {
 	objc.Send[objc.ID](p_.ID, objc.Sel("setMsgid:"), value)
-}
+}/* debug [instance_properties/setter]: msgid */
 
 
 // For an outgoing message, returns the port on which replies to the receiver will arrive. For an incoming message, returns the port the receiver did arrive on.
@@ -197,7 +197,7 @@ func (p_ PortMessage) SetMsgid(value uint32 /* not a class type */) {
 func (p_ PortMessage) ReceivePort() IPort {
 	rv := objc.Send[Port](p_.ID, objc.Sel("receivePort"))
 	return rv
-}
+}/* debug [instance_properties/getter]: receivePort */
 
 
 // For an outgoing message, returns the port the receiver will send itself through. For an incoming message, returns the port replies to the receiver should be sent through.
@@ -207,11 +207,11 @@ func (p_ PortMessage) ReceivePort() IPort {
 func (p_ PortMessage) SendPort() IPort {
 	rv := objc.Send[Port](p_.ID, objc.Sel("sendPort"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sendPort */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSPortMessage */
 
 

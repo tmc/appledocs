@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSHashTable */
 
 
-
-
+/* debug [class_header]: Header for NSHashTable */
 // The class instance for the [HashTable] class.
 var (
 	HashTableClass     _HashTableClass
@@ -30,25 +30,25 @@ func getHashTableClass() _HashTableClass {
 type _HashTableClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for HashTable */
 // An interface definition for the [HashTable] class.
 type IHashTable interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for HashTable */
 	// properties:
 	AllObjects() []objc.ID
 	AnyObject() objectivec.IObject
 	PointerFunctions() IPointerFunctions
 	SetRepresentation() unsafe.Pointer
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for HashTable */
 	// methods:
 	AddObject(object objectivec.IObject)
 	ContainsObject(anObject objectivec.IObject) bool
@@ -62,14 +62,14 @@ type IHashTable interface {
 	RemoveObject(object objectivec.IObject)
 	RemoveAllObjects()
 	UnionHashTable(other unsafe.Pointer)
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for HashTable */
 // Alloc allocates a new instance without initialization.
 func (hc _HashTableClass) Alloc() HashTable {
 	rv := objc.Send[HashTable](objc.ID(hc.class), objc.Sel("alloc"))
@@ -99,11 +99,11 @@ func (h_ HashTable) Autorelease() HashTable {
 func NewHashTable() HashTable {
 	return getHashTableClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for HashTable */
 // A collection similar to a set, but with broader range of available memory semantics.
 //
 // The hash table is modeled after with the following differences: It can hold weak references to its members. Its members may be copied on input or may use pointer identity for equality and hashing. It can contain arbitrary pointers (its members are not constrained to being objects). You can configure an instance to operate on arbitrary pointers and not just objects, although typically you are encouraged to use the C function API for void * pointers. The object-based API (such as ) will not work for non-object pointers without type-casting. Because of its options, is not a set because it can behave differently (for example, if pointer equality is specified two strings will both be entered). When configuring hash tables, note that only the options listed in guarantee that the rest of the API will work correctly—including copying, archiving, and fast enumeration. While other options are used for certain configurations, such as to hold arbitrary pointers, not all combinations of the options are valid. With some combinations the hash table may not work correctly, or may not even be initialized correctly.
@@ -123,11 +123,11 @@ type HashTable struct {
 func HashTableFrom(ptr unsafe.Pointer) HashTable {
 	return HashTable{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for HashTable */
 
 // Returns a hash table with given pointer functions options.
 //
@@ -136,7 +136,7 @@ func HashTableFrom(ptr unsafe.Pointer) HashTable {
 func NewHashTableWithOptions(options PointerFunctionsOptions) HashTable {
 	rv := objc.Send[HashTable](objc.ID(getHashTableClass().class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewHashTableWithOptions */
 
 
 // Returns a hash table initialized with the given attributes.
@@ -148,7 +148,7 @@ func NewHashTableWithOptionsCapacity(options PointerFunctionsOptions, initialCap
 	rv := objc.Send[HashTable](instance.ID, objc.Sel("initWithOptions:capacity:"), options, initialCapacity)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewHashTableWithOptionsCapacity */
 
 
 // Returns a hash table initialized with the given functions and capacity.
@@ -160,13 +160,13 @@ func NewHashTableWithPointerFunctionsCapacity(functions IPointerFunctions, initi
 	rv := objc.Send[HashTable](instance.ID, objc.Sel("initWithPointerFunctions:capacity:"), functions, initialCapacity)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewHashTableWithPointerFunctionsCapacity */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for HashTable */
 
 // Returns a new hash table for storing weak references to its contents.
 //
@@ -175,7 +175,7 @@ func NewHashTableWithPointerFunctionsCapacity(functions IPointerFunctions, initi
 func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(hc.class), objc.Sel("hashTableWithWeakObjects"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=HashTableWithWeakObjects) */
 
 
 // Returns a hash table with given pointer functions options.
@@ -185,7 +185,7 @@ func (hc _HashTableClass) HashTableWithWeakObjects() objc.ID {
 func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("hashTableWithOptions:"), options)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=HashTableWithOptions) */
 
 
 // Returns a new hash table for storing weak references to its contents.
@@ -195,18 +195,18 @@ func (hc _HashTableClass) HashTableWithOptions(options PointerFunctionsOptions) 
 func (hc _HashTableClass) WeakObjectsHashTable() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](objc.ID(hc.class), objc.Sel("weakObjectsHashTable"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=WeakObjectsHashTable) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for HashTable */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for HashTable */
 
 // Adds a given object to the hash table.
 //
@@ -214,7 +214,7 @@ func (hc _HashTableClass) WeakObjectsHashTable() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/add(_:)
 func (h_ HashTable) AddObject(object objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("addObject:"), object)
-}
+}/* debug [instance_methods/method]: AddObject */
 
 
 // Returns a Boolean value that indicates whether the hash table contains a given object.
@@ -224,7 +224,7 @@ func (h_ HashTable) AddObject(object objectivec.IObject) {
 func (h_ HashTable) ContainsObject(anObject objectivec.IObject) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("containsObject:"), anObject)
 	return rv
-}
+}/* debug [instance_methods/method]: ContainsObject */
 
 
 // Removes from the receiving hash table each element that isn’t a member of another given hash table.
@@ -233,7 +233,7 @@ func (h_ HashTable) ContainsObject(anObject objectivec.IObject) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/intersect(_:)
 func (h_ HashTable) IntersectHashTable(other unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("intersectHashTable:"), other)
-}
+}/* debug [instance_methods/method]: IntersectHashTable */
 
 
 // Returns a Boolean value that indicates whether a given hash table intersects with the receiving hash table.
@@ -243,7 +243,7 @@ func (h_ HashTable) IntersectHashTable(other unsafe.Pointer) {
 func (h_ HashTable) IntersectsHashTable(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("intersectsHashTable:"), other)
 	return rv
-}
+}/* debug [instance_methods/method]: IntersectsHashTable */
 
 
 // Returns a Boolean value that indicates whether a given hash table is equal to the receiving hash table.
@@ -253,7 +253,7 @@ func (h_ HashTable) IntersectsHashTable(other unsafe.Pointer) bool {
 func (h_ HashTable) IsEqualToHashTable(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isEqualToHashTable:"), other)
 	return rv
-}
+}/* debug [instance_methods/method]: IsEqualToHashTable */
 
 
 // Returns a Boolean value that indicates whether every element in the receiving hash table is also present in another given hash table.
@@ -263,7 +263,7 @@ func (h_ HashTable) IsEqualToHashTable(other unsafe.Pointer) bool {
 func (h_ HashTable) IsSubsetOfHashTable(other unsafe.Pointer) bool {
 	rv := objc.Send[bool](h_.ID, objc.Sel("isSubsetOfHashTable:"), other)
 	return rv
-}
+}/* debug [instance_methods/method]: IsSubsetOfHashTable */
 
 
 // Determines whether the hash table contains a given object, and returns that object if it is present
@@ -273,7 +273,7 @@ func (h_ HashTable) IsSubsetOfHashTable(other unsafe.Pointer) bool {
 func (h_ HashTable) Member(object objectivec.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("member:"), object)
 	return rv
-}
+}/* debug [instance_methods/method]: Member */
 
 
 // Removes each element in another given hash table from the receiving hash table, if present.
@@ -282,7 +282,7 @@ func (h_ HashTable) Member(object objectivec.IObject) objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/minus(_:)
 func (h_ HashTable) MinusHashTable(other unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("minusHashTable:"), other)
-}
+}/* debug [instance_methods/method]: MinusHashTable */
 
 
 // Returns an enumerator object that lets you access each object in the hash table.
@@ -292,7 +292,7 @@ func (h_ HashTable) MinusHashTable(other unsafe.Pointer) {
 func (h_ HashTable) ObjectEnumerator() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("objectEnumerator"))
 	return rv
-}
+}/* debug [instance_methods/method]: ObjectEnumerator */
 
 
 // Removes a given object from the hash table.
@@ -301,7 +301,7 @@ func (h_ HashTable) ObjectEnumerator() unsafe.Pointer {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/remove(_:)
 func (h_ HashTable) RemoveObject(object objectivec.IObject) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("removeObject:"), object)
-}
+}/* debug [instance_methods/method]: RemoveObject */
 
 
 // Removes all objects from the hash table.
@@ -310,7 +310,7 @@ func (h_ HashTable) RemoveObject(object objectivec.IObject) {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/removeAllObjects()
 func (h_ HashTable) RemoveAllObjects() {
 	objc.Send[objc.ID](h_.ID, objc.Sel("removeAllObjects"))
-}
+}/* debug [instance_methods/method]: RemoveAllObjects */
 
 
 // Adds each element in another given hash table to the receiving hash table, if not present.
@@ -319,13 +319,13 @@ func (h_ HashTable) RemoveAllObjects() {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSHashTable/union(_:)
 func (h_ HashTable) UnionHashTable(other unsafe.Pointer) {
 	objc.Send[objc.ID](h_.ID, objc.Sel("unionHashTable:"), other)
-}
+}/* debug [instance_methods/method]: UnionHashTable */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for HashTable */
 
 // The hash table’s members.
 //
@@ -334,7 +334,7 @@ func (h_ HashTable) UnionHashTable(other unsafe.Pointer) {
 func (h_ HashTable) AllObjects() []objc.ID {
 	rv := objc.Send[[]objc.ID](h_.ID, objc.Sel("allObjects"))
 	return rv
-}
+}/* debug [instance_properties/getter]: allObjects */
 
 
 // One of the objects in the hash table.
@@ -344,7 +344,7 @@ func (h_ HashTable) AllObjects() []objc.ID {
 func (h_ HashTable) AnyObject() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](h_.ID, objc.Sel("anyObject"))
 	return rv
-}
+}/* debug [instance_properties/getter]: anyObject */
 
 
 // The pointer functions for the hash table.
@@ -354,7 +354,7 @@ func (h_ HashTable) AnyObject() objectivec.IObject {
 func (h_ HashTable) PointerFunctions() IPointerFunctions {
 	rv := objc.Send[PointerFunctions](h_.ID, objc.Sel("pointerFunctions"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pointerFunctions */
 
 
 // A set that contains the hash table’s members.
@@ -364,11 +364,11 @@ func (h_ HashTable) PointerFunctions() IPointerFunctions {
 func (h_ HashTable) SetRepresentation() unsafe.Pointer {
 	rv := objc.Send[unsafe.Pointer](h_.ID, objc.Sel("setRepresentation"))
 	return rv
-}
+}/* debug [instance_properties/getter]: setRepresentation */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSHashTable */
 
 

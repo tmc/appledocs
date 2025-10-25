@@ -23,6 +23,6 @@ import (
 // See: doc://com.apple.foundation/documentation/Foundation/NSCoding
 type PCoding interface {
 	// Required methods
-	EncodeWithCoder(coder ICoder)
-	InitWithCoder(coder ICoder) objectivec.IObject
+	EncodeWithCoder(coder ICoder)/* debug [protocol_interface/required_method]: EncodeWithCoder */
+	InitWithCoder(coder ICoder) objectivec.IObject/* debug [protocol_interface/required_method]: InitWithCoder */
 }

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSUnitConverterLinear */
 
 
-
-
+/* debug [class_header]: Header for NSUnitConverterLinear */
 // The class instance for the [UnitConverterLinear] class.
 var (
 	UnitConverterLinearClass     _UnitConverterLinearClass
@@ -30,32 +30,32 @@ func getUnitConverterLinearClass() _UnitConverterLinearClass {
 type _UnitConverterLinearClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for UnitConverterLinear */
 // An interface definition for the [UnitConverterLinear] class.
 type IUnitConverterLinear interface {
 	IUnitConverter
 	
-
+/* debug [class_interface_properties]: Properties for UnitConverterLinear */
 	// properties:
 	Coefficient() float64
 	Constant() float64
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for UnitConverterLinear */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for UnitConverterLinear */
 // Alloc allocates a new instance without initialization.
 func (uc _UnitConverterLinearClass) Alloc() UnitConverterLinear {
 	rv := objc.Send[UnitConverterLinear](objc.ID(uc.class), objc.Sel("alloc"))
@@ -85,11 +85,11 @@ func (u_ UnitConverterLinear) Autorelease() UnitConverterLinear {
 func NewUnitConverterLinear() UnitConverterLinear {
 	return getUnitConverterLinearClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for UnitConverterLinear */
 // A description of how to convert between units using a linear equation.
 //
 // A linear equation for unit conversion takes the form , such that the following is true: is the value in terms of the base unit of the dimension. is the known coefficient to use for this unit’s conversion. is the value in terms of the unit on which you call this method. is the known constant to use for this unit’s conversion. The method performs the conversion in the form of , where represents the value passed in and represents the value returned. The method performs the inverse conversion in the form of , where represents the value passed in and represents the value returned. For example, consider the unit that defines. The method calculates the value in the base unit, , using the formula . The method calculates the value in using the formula , where the is and the is . Units that perform conversion using only a scale factor have a equal to the scale factor and a equal to . For example, consider the unit defines. The method calculates the value in meters using the formula . The calculates the value in kilometers using the formula , where the coefficient is and the constant is .
@@ -111,11 +111,11 @@ func UnitConverterLinearFrom(ptr unsafe.Pointer) UnitConverterLinear {
 		UnitConverter: UnitConverterFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for UnitConverterLinear */
 
 // Initializes the unit converter with the coefficient you specify.
 //
@@ -126,7 +126,7 @@ func NewUnitConverterLinearWithCoefficient(coefficient float64) UnitConverterLin
 	rv := objc.Send[UnitConverterLinear](instance.ID, objc.Sel("initWithCoefficient:"), coefficient)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewUnitConverterLinearWithCoefficient */
 
 
 // Creates a unit converter with the coefficient and constant you specify.
@@ -138,28 +138,28 @@ func NewUnitConverterLinearWithCoefficientConstant(coefficient float64, constant
 	rv := objc.Send[UnitConverterLinear](instance.ID, objc.Sel("initWithCoefficient:constant:"), coefficient, constant)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewUnitConverterLinearWithCoefficientConstant */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for UnitConverterLinear */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for UnitConverterLinear */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for UnitConverterLinear */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for UnitConverterLinear */
 
 // The coefficient to use in the linear unit conversion calculation.
 //
@@ -168,7 +168,7 @@ func NewUnitConverterLinearWithCoefficientConstant(coefficient float64, constant
 func (u_ UnitConverterLinear) Coefficient() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("coefficient"))
 	return rv
-}
+}/* debug [instance_properties/getter]: coefficient */
 
 
 // The constant to use in the linear unit conversion calculation.
@@ -178,11 +178,11 @@ func (u_ UnitConverterLinear) Coefficient() float64 {
 func (u_ UnitConverterLinear) Constant() float64 {
 	rv := objc.Send[float64](u_.ID, objc.Sel("constant"))
 	return rv
-}
+}/* debug [instance_properties/getter]: constant */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSUnitConverterLinear */
 
 

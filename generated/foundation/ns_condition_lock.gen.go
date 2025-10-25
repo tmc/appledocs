@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSConditionLock */
 
 
-
-
+/* debug [class_header]: Header for NSConditionLock */
 // The class instance for the [ConditionLock] class.
 var (
 	ConditionLockClass     _ConditionLockClass
@@ -30,24 +30,24 @@ func getConditionLockClass() _ConditionLockClass {
 type _ConditionLockClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for ConditionLock */
 // An interface definition for the [ConditionLock] class.
 type IConditionLock interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for ConditionLock */
 	// properties:
 	Condition() int
 	Name() IString
 	SetName(value IString)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for ConditionLock */
 	// methods:
 	LockBeforeDate(limit IDate) bool
 	LockWhenCondition(condition int)
@@ -55,14 +55,14 @@ type IConditionLock interface {
 	TryLock() bool
 	TryLockWhenCondition(condition int) bool
 	UnlockWithCondition(condition int)
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for ConditionLock */
 // Alloc allocates a new instance without initialization.
 func (cc _ConditionLockClass) Alloc() ConditionLock {
 	rv := objc.Send[ConditionLock](objc.ID(cc.class), objc.Sel("alloc"))
@@ -92,11 +92,11 @@ func (c_ ConditionLock) Autorelease() ConditionLock {
 func NewConditionLock() ConditionLock {
 	return getConditionLockClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for ConditionLock */
 // A lock that can be associated with specific, user-defined conditions.
 //
 // Using an object, you can ensure that a thread can acquire a lock only if a certain condition is met. Once it has acquired the lock and executed the critical section of code, the thread can relinquish the lock and set the associated condition to something new. The conditions themselves are arbitrary: you define them as needed for your application.
@@ -116,11 +116,11 @@ type ConditionLock struct {
 func ConditionLockFrom(ptr unsafe.Pointer) ConditionLock {
 	return ConditionLock{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for ConditionLock */
 
 // Initializes a newly allocated object and sets its condition.
 //
@@ -131,23 +131,23 @@ func NewConditionLockWithCondition(condition int) ConditionLock {
 	rv := objc.Send[ConditionLock](instance.ID, objc.Sel("initWithCondition:"), condition)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewConditionLockWithCondition */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for ConditionLock */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for ConditionLock */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for ConditionLock */
 
 // Attempts to acquire a lock before a specified moment in time.
 //
@@ -156,7 +156,7 @@ func NewConditionLockWithCondition(condition int) ConditionLock {
 func (c_ ConditionLock) LockBeforeDate(limit IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("lockBeforeDate:"), limit)
 	return rv
-}
+}/* debug [instance_methods/method]: LockBeforeDate */
 
 
 // Attempts to acquire a lock.
@@ -165,7 +165,7 @@ func (c_ ConditionLock) LockBeforeDate(limit IDate) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/lock(whenCondition:)
 func (c_ ConditionLock) LockWhenCondition(condition int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("lockWhenCondition:"), condition)
-}
+}/* debug [instance_methods/method]: LockWhenCondition */
 
 
 // Attempts to acquire a lock before a specified moment in time.
@@ -175,7 +175,7 @@ func (c_ ConditionLock) LockWhenCondition(condition int) {
 func (c_ ConditionLock) LockWhenConditionBeforeDate(condition int, limit IDate) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("lockWhenCondition:beforeDate:"), condition, limit)
 	return rv
-}
+}/* debug [instance_methods/method]: LockWhenConditionBeforeDate */
 
 
 // Attempts to acquire a lock without regard to the receiver’s condition.
@@ -185,7 +185,7 @@ func (c_ ConditionLock) LockWhenConditionBeforeDate(condition int, limit IDate) 
 func (c_ ConditionLock) TryLock() bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("tryLock"))
 	return rv
-}
+}/* debug [instance_methods/method]: TryLock */
 
 
 // Attempts to acquire a lock if the receiver’s condition is equal to the specified condition.
@@ -195,7 +195,7 @@ func (c_ ConditionLock) TryLock() bool {
 func (c_ ConditionLock) TryLockWhenCondition(condition int) bool {
 	rv := objc.Send[bool](c_.ID, objc.Sel("tryLockWhenCondition:"), condition)
 	return rv
-}
+}/* debug [instance_methods/method]: TryLockWhenCondition */
 
 
 // Relinquishes the lock and sets the receiver’s condition.
@@ -204,13 +204,13 @@ func (c_ ConditionLock) TryLockWhenCondition(condition int) bool {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/unlock(withCondition:)
 func (c_ ConditionLock) UnlockWithCondition(condition int) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("unlockWithCondition:"), condition)
-}
+}/* debug [instance_methods/method]: UnlockWithCondition */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for ConditionLock */
 
 // The condition associated with the receiver.
 //
@@ -219,7 +219,7 @@ func (c_ ConditionLock) UnlockWithCondition(condition int) {
 func (c_ ConditionLock) Condition() int {
 	rv := objc.Send[int](c_.ID, objc.Sel("condition"))
 	return rv
-}
+}/* debug [instance_properties/getter]: condition */
 
 
 // The name associated with the receiver.
@@ -229,7 +229,7 @@ func (c_ ConditionLock) Condition() int {
 func (c_ ConditionLock) Name() IString {
 	rv := objc.Send[String](c_.ID, objc.Sel("name"))
 	return rv
-}
+}/* debug [instance_properties/getter]: name */
 
 
 // The name associated with the receiver.
@@ -238,11 +238,11 @@ func (c_ ConditionLock) Name() IString {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSConditionLock/name
 func (c_ ConditionLock) SetName(value IString) {
 	objc.Send[objc.ID](c_.ID, objc.Sel("setName:"), value)
-}
+}/* debug [instance_properties/setter]: name */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSConditionLock */
 
 

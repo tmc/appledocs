@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class authCheck */
 
 
-
-
+/* debug [class_header]: Header for authCheck */
 // The class instance for the [authCheck] class.
 var (
 	AuthCheckClass     _authCheckClass
@@ -30,30 +30,30 @@ func getauthCheckClass() _authCheckClass {
 type _authCheckClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for authCheck */
 // An interface definition for the [authCheck] class.
 type IauthCheck interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for authCheck */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for authCheck */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for authCheck */
 // Alloc allocates a new instance without initialization.
 func (ac _authCheckClass) Alloc() authCheck {
 	rv := objc.Send[authCheck](objc.ID(ac.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (a_ authCheck) Autorelease() authCheck {
 func NewauthCheck() authCheck {
 	return getauthCheckClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for authCheck */
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type authCheck struct {
 func authCheckFrom(ptr unsafe.Pointer) authCheck {
 	return authCheck{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for authCheck *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for authCheck */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for authCheck */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for authCheck */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for authCheck */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class authCheck */
 
 
 

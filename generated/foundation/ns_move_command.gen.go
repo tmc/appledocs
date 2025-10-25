@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSMoveCommand */
 
 
-
-
+/* debug [class_header]: Header for NSMoveCommand */
 // The class instance for the [MoveCommand] class.
 var (
 	MoveCommandClass     _MoveCommandClass
@@ -29,32 +29,32 @@ func getMoveCommandClass() _MoveCommandClass {
 type _MoveCommandClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for MoveCommand */
 // An interface definition for the [MoveCommand] class.
 type IMoveCommand interface {
 	IScriptCommand
 	
-
+/* debug [class_interface_properties]: Properties for MoveCommand */
 	// properties:
 	KeySpecifier() IScriptObjectSpecifier
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for MoveCommand */
 	// methods:
 	SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for MoveCommand */
 // Alloc allocates a new instance without initialization.
 func (mc _MoveCommandClass) Alloc() MoveCommand {
 	rv := objc.Send[MoveCommand](objc.ID(mc.class), objc.Sel("alloc"))
@@ -84,11 +84,11 @@ func (m_ MoveCommand) Autorelease() MoveCommand {
 func NewMoveCommand() MoveCommand {
 	return getMoveCommandClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for MoveCommand */
 // A command that moves one or more scriptable objects.
 //
 // An instance of moves the specified scriptable object or objects; for example, it may move words to a new location in a document or a file to a new directory. is part of Cocoa’s built-in scripting support. It works automatically to support the AppleScript command through key-value coding. Most applications don’t need to subclass or invoke its methods. However, for circumstances where you might choose to subclass this command, see “Modifying a Standard Command” in in . When an instance of is executed, it does not make copies of moved objects. It removes objects from the source container or containers, then inserts them into the destination container.
@@ -110,25 +110,25 @@ func MoveCommandFrom(ptr unsafe.Pointer) MoveCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for MoveCommand *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for MoveCommand */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for MoveCommand */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for MoveCommand */
 
 // Sets the receiver’s object specifier.
 //
@@ -136,13 +136,13 @@ func MoveCommandFrom(ptr unsafe.Pointer) MoveCommand {
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSMoveCommand/setReceiversSpecifier(_:)
 func (m_ MoveCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier) {
 	objc.Send[objc.ID](m_.ID, objc.Sel("setReceiversSpecifier:"), receiversRef)
-}
+}/* debug [instance_methods/method]: SetReceiversSpecifier */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for MoveCommand */
 
 // Returns a specifier for the object or objects to be moved.
 //
@@ -151,12 +151,12 @@ func (m_ MoveCommand) SetReceiversSpecifier(receiversRef IScriptObjectSpecifier)
 func (m_ MoveCommand) KeySpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[ScriptObjectSpecifier](m_.ID, objc.Sel("keySpecifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: keySpecifier */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSMoveCommand */
 
 
 

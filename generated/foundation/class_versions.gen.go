@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class classVersions */
 
 
-
-
+/* debug [class_header]: Header for classVersions */
 // The class instance for the [classVersions] class.
 var (
 	ClassVersionsClass     _classVersionsClass
@@ -30,30 +30,30 @@ func getclassVersionsClass() _classVersionsClass {
 type _classVersionsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for classVersions */
 // An interface definition for the [classVersions] class.
 type IclassVersions interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for classVersions */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for classVersions */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for classVersions */
 // Alloc allocates a new instance without initialization.
 func (cc _classVersionsClass) Alloc() classVersions {
 	rv := objc.Send[classVersions](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ classVersions) Autorelease() classVersions {
 func NewclassVersions() classVersions {
 	return getclassVersionsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for classVersions */
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type classVersions struct {
 func classVersionsFrom(ptr unsafe.Pointer) classVersions {
 	return classVersions{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for classVersions *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for classVersions */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for classVersions */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for classVersions */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for classVersions */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class classVersions */
 
 
 

@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSUnitElectricResistance */
 
 
-
-
+/* debug [class_header]: Header for NSUnitElectricResistance */
 // The class instance for the [UnitElectricResistance] class.
 var (
 	UnitElectricResistanceClass     _UnitElectricResistanceClass
@@ -29,30 +29,30 @@ func getUnitElectricResistanceClass() _UnitElectricResistanceClass {
 type _UnitElectricResistanceClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for UnitElectricResistance */
 // An interface definition for the [UnitElectricResistance] class.
 type IUnitElectricResistance interface {
 	IDimension
 	
-
+/* debug [class_interface_properties]: Properties for UnitElectricResistance */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for UnitElectricResistance */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for UnitElectricResistance */
 // Alloc allocates a new instance without initialization.
 func (uc _UnitElectricResistanceClass) Alloc() UnitElectricResistance {
 	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (u_ UnitElectricResistance) Autorelease() UnitElectricResistance {
 func NewUnitElectricResistance() UnitElectricResistance {
 	return getUnitElectricResistanceClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for UnitElectricResistance */
 // A unit of measure for electric resistance.
 //
 // You typically use instances of to represent specific quantities of electric resistance using the class.
@@ -108,20 +108,20 @@ func UnitElectricResistanceFrom(ptr unsafe.Pointer) UnitElectricResistance {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for UnitElectricResistance *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for UnitElectricResistance */
+/* debug [class_methods]: End class methods */
 
 
 
-
-
-
-
-
+/* debug [class_properties_class]: Class properties for UnitElectricResistance */
 
 // The ohms unit of electric resistance.
 //
@@ -130,17 +130,17 @@ func UnitElectricResistanceFrom(ptr unsafe.Pointer) UnitElectricResistance {
 func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
 	rv := objc.Send[UnitElectricResistance](objc.ID(uc.class), objc.Sel("ohms"))
 	return rv
-}
+}/* debug [class_properties_class/property]: ohms */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for UnitElectricResistance */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
+/* debug [instance_properties]: Instance properties for UnitElectricResistance */
 
 // The ohms unit of electric resistance.
 //
@@ -149,12 +149,12 @@ func (uc _UnitElectricResistanceClass) Ohms() UnitElectricResistance {
 func (u_ UnitElectricResistance) Ohms() IUnitElectricResistance {
 	rv := objc.Send[UnitElectricResistance](u_.ID, objc.Sel("ohms"))
 	return rv
-}
+}/* debug [instance_properties/getter]: ohms */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSUnitElectricResistance */
 
 
 

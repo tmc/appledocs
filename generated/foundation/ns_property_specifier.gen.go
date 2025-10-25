@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSPropertySpecifier */
 
 
-
-
+/* debug [class_header]: Header for NSPropertySpecifier */
 // The class instance for the [PropertySpecifier] class.
 var (
 	PropertySpecifierClass     _PropertySpecifierClass
@@ -29,30 +29,30 @@ func getPropertySpecifierClass() _PropertySpecifierClass {
 type _PropertySpecifierClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for PropertySpecifier */
 // An interface definition for the [PropertySpecifier] class.
 type IPropertySpecifier interface {
 	IScriptObjectSpecifier
 	
-
+/* debug [class_interface_properties]: Properties for PropertySpecifier */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for PropertySpecifier */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for PropertySpecifier */
 // Alloc allocates a new instance without initialization.
 func (pc _PropertySpecifierClass) Alloc() PropertySpecifier {
 	rv := objc.Send[PropertySpecifier](objc.ID(pc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (p_ PropertySpecifier) Autorelease() PropertySpecifier {
 func NewPropertySpecifier() PropertySpecifier {
 	return getPropertySpecifierClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for PropertySpecifier */
 // A specifier for a simple attribute value, a one-to-one relationship, or all elements of a to-many relationship.
 //
 // You don’t typically subclass .
@@ -108,34 +108,34 @@ func PropertySpecifierFrom(ptr unsafe.Pointer) PropertySpecifier {
 		ScriptObjectSpecifier: ScriptObjectSpecifierFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for PropertySpecifier *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for PropertySpecifier */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for PropertySpecifier */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for PropertySpecifier */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for PropertySpecifier */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class NSPropertySpecifier */
 
 
 

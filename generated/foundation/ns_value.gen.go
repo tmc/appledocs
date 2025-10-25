@@ -11,10 +11,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSValue */
 
 
-
-
+/* debug [class_header]: Header for NSValue */
 // The class instance for the [Value] class.
 var (
 	ValueClass     _ValueClass
@@ -31,16 +31,16 @@ func getValueClass() _ValueClass {
 type _ValueClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for Value */
 // An interface definition for the [Value] class.
 type IValue interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for Value */
 	// properties:
 	CATransform3DValue() objectivec.IObject
 	EdgeInsetsValue() objc.IObject /* cross-framework: EdgeInsets */
@@ -70,21 +70,21 @@ type IValue interface {
 	SetTimeValue(value objectivec.IObject)
 	VideoDimensionsValue() VideoDimensions /* not a class type */
 	SetVideoDimensionsValue(value VideoDimensions /* not a class type */)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for Value */
 	// methods:
 	GetValueSize(value objectivec.IObject, size uint)
 	IsEqualToValue(value IValue) bool
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for Value */
 // Alloc allocates a new instance without initialization.
 func (vc _ValueClass) Alloc() Value {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("alloc"))
@@ -114,11 +114,11 @@ func (v_ Value) Autorelease() Value {
 func NewValue() Value {
 	return getValueClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for Value */
 // A simple container for a single C or Objective-C data item.
 //
 // An object can hold any of the scalar types such as , , and , as well as pointers, structures, and object references. Use this class to work with such data types in collections (such as and ), , and other APIs that require Objective-C objects. objects are always immutable.
@@ -138,11 +138,11 @@ type Value struct {
 func ValueFrom(ptr unsafe.Pointer) Value {
 	return Value{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for Value */
 
 // Initializes a value object to contain the specified value, interpreted with the specified Objective-C type.
 //
@@ -153,7 +153,7 @@ func NewValueWithBytesObjCType(value objectivec.IObject, type_ objectivec.IObjec
 	rv := objc.Send[Value](instance.ID, objc.Sel("initWithBytes:objCType:"), value, type_)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithBytesObjCType */
 
 
 // Creates a new value object containing the specified CoreAnimation transform structure.
@@ -163,7 +163,7 @@ func NewValueWithBytesObjCType(value objectivec.IObject, type_ objectivec.IObjec
 func NewValueWithCATransform3D(t objectivec.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCATransform3D:"), t)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCATransform3D */
 
 
 // Creates a new value object containing the specified CoreGraphics affine transform structure.
@@ -173,7 +173,7 @@ func NewValueWithCATransform3D(t objectivec.IObject) Value {
 func NewValueWithCGAffineTransform(transform corefoundation.CGAffineTransform) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGAffineTransform:"), transform)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCGAffineTransform */
 
 
 // Creates a new value object containing the specified CoreGraphics point structure.
@@ -183,7 +183,7 @@ func NewValueWithCGAffineTransform(transform corefoundation.CGAffineTransform) V
 func NewValueWithCGPoint(point corefoundation.CGPoint) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGPoint:"), point)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCGPoint */
 
 
 // Creates a new value object containing the specified CoreGraphics rectangle structure.
@@ -193,7 +193,7 @@ func NewValueWithCGPoint(point corefoundation.CGPoint) Value {
 func NewValueWithCGRect(rect corefoundation.CGRect) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGRect:"), rect)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCGRect */
 
 
 // Creates a new value object containing the specified CoreGraphics size structure.
@@ -203,7 +203,7 @@ func NewValueWithCGRect(rect corefoundation.CGRect) Value {
 func NewValueWithCGSize(size corefoundation.CGSize) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGSize:"), size)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCGSize */
 
 
 // Creates a new value object containing the specified CoreGraphics vector structure.
@@ -213,7 +213,7 @@ func NewValueWithCGSize(size corefoundation.CGSize) Value {
 func NewValueWithCGVector(vector corefoundation.CGVector) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCGVector:"), vector)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCGVector */
 
 
 // Creates a new value object containing the specified CoreMedia time structure.
@@ -223,7 +223,7 @@ func NewValueWithCGVector(vector corefoundation.CGVector) Value {
 func NewValueWithCMTime(time objectivec.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCMTime:"), time)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCMTime */
 
 
 // Creates a new value object containing the specified CoreMedia time mapping structure.
@@ -233,7 +233,7 @@ func NewValueWithCMTime(time objectivec.IObject) Value {
 func NewValueWithCMTimeMapping(timeMapping TimeMapping /* not a class type */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCMTimeMapping:"), timeMapping)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCMTimeMapping */
 
 
 // Creates a new value object containing the specified CoreMedia time range structure.
@@ -243,7 +243,7 @@ func NewValueWithCMTimeMapping(timeMapping TimeMapping /* not a class type */) V
 func NewValueWithCMTimeRange(timeRange TimeRange /* not a class type */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCMTimeRange:"), timeRange)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCMTimeRange */
 
 
 // [Full Topic]
@@ -251,7 +251,7 @@ func NewValueWithCMTimeRange(timeRange TimeRange /* not a class type */) Value {
 func NewValueWithCMVideoDimensions(dimensions VideoDimensions /* not a class type */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithCMVideoDimensions:"), dimensions)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCMVideoDimensions */
 
 
 // [Full Topic]
@@ -261,7 +261,7 @@ func NewValueWithCoder(coder ICoder) Value {
 	rv := objc.Send[Value](instance.ID, objc.Sel("initWithCoder:"), coder)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithCoder */
 
 
 // [Full Topic]
@@ -269,7 +269,7 @@ func NewValueWithCoder(coder ICoder) Value {
 func NewValueWithDirectionalEdgeInsets(insets objectivec.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithDirectionalEdgeInsets:"), insets)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithDirectionalEdgeInsets */
 
 
 // [Full Topic]
@@ -277,7 +277,7 @@ func NewValueWithDirectionalEdgeInsets(insets objectivec.IObject) Value {
 func NewValueWithEdgeInsets(insets objc.IObject /* cross-framework: EdgeInsets */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithEdgeInsets:"), insets)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithEdgeInsets */
 
 
 // [Full Topic]
@@ -285,7 +285,7 @@ func NewValueWithEdgeInsets(insets objc.IObject /* cross-framework: EdgeInsets *
 func NewValueWithGCPoint2(point objc.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithGCPoint2:"), point)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithGCPoint2 */
 
 
 // Creates a new value object containing the specified CoreLocation geographic coordinate structure.
@@ -295,7 +295,7 @@ func NewValueWithGCPoint2(point objc.IObject) Value {
 func NewValueWithMKCoordinate(coordinate LocationCoordinate2D /* not a class type */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithMKCoordinate:"), coordinate)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithMKCoordinate */
 
 
 // Creates a new value object containing the specified MapKit coordinate span structure.
@@ -305,7 +305,7 @@ func NewValueWithMKCoordinate(coordinate LocationCoordinate2D /* not a class typ
 func NewValueWithMKCoordinateSpan(span objc.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithMKCoordinateSpan:"), span)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithMKCoordinateSpan */
 
 
 // Creates a value object containing the specified object.
@@ -315,7 +315,7 @@ func NewValueWithMKCoordinateSpan(span objc.IObject) Value {
 func NewValueWithNonretainedObject(anObject objc.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithNonretainedObject:"), anObject)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithNonretainedObject */
 
 
 // Creates a value object containing the specified value, interpreted with the specified Objective-C type.
@@ -325,7 +325,7 @@ func NewValueWithNonretainedObject(anObject objc.IObject) Value {
 func NewValueWithObjCType(value objectivec.IObject, type_ objectivec.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("value:withObjCType:"), value, type_)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithObjCType */
 
 
 // Creates a new value object containing the specified Foundation point structure.
@@ -335,7 +335,7 @@ func NewValueWithObjCType(value objectivec.IObject, type_ objectivec.IObject) Va
 func NewValueWithPoint(point corefoundation.CGPoint) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithPoint:"), point)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithPoint */
 
 
 // Creates a value object containing the specified pointer.
@@ -345,7 +345,7 @@ func NewValueWithPoint(point corefoundation.CGPoint) Value {
 func NewValueWithPointer(pointer objectivec.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithPointer:"), pointer)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithPointer */
 
 
 // Creates a new value object containing the specified Foundation range structure.
@@ -355,7 +355,7 @@ func NewValueWithPointer(pointer objectivec.IObject) Value {
 func NewValueWithRange(range_ objc.IObject /* cross-framework: Range */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithRange:"), range_)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithRange */
 
 
 // Creates a new value object containing the specified Foundation rectangle structure.
@@ -365,7 +365,7 @@ func NewValueWithRange(range_ objc.IObject /* cross-framework: Range */) Value {
 func NewValueWithRect(rect corefoundation.CGRect) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithRect:"), rect)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithRect */
 
 
 // Creates a value object that contains the specified SceneKit 4 x 4 matrix.
@@ -375,7 +375,7 @@ func NewValueWithRect(rect corefoundation.CGRect) Value {
 func NewValueWithSCNMatrix4(v NMatrix4 /* not a class type */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithSCNMatrix4:"), v)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithSCNMatrix4 */
 
 
 // Creates a value object that contains the specified three-element SceneKit vector.
@@ -385,7 +385,7 @@ func NewValueWithSCNMatrix4(v NMatrix4 /* not a class type */) Value {
 func NewValueWithSCNVector3(v NVector3 /* not a class type */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithSCNVector3:"), v)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithSCNVector3 */
 
 
 // Creates a value object that contains the specified four-element SceneKit vector.
@@ -395,7 +395,7 @@ func NewValueWithSCNVector3(v NVector3 /* not a class type */) Value {
 func NewValueWithSCNVector4(v NVector4 /* not a class type */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithSCNVector4:"), v)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithSCNVector4 */
 
 
 // Creates a new value object containing the specified Foundation size structure.
@@ -405,7 +405,7 @@ func NewValueWithSCNVector4(v NVector4 /* not a class type */) Value {
 func NewValueWithSize(size corefoundation.CGSize) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithSize:"), size)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithSize */
 
 
 // Creates a new value object containing the specified UIKit edge insets structure.
@@ -415,7 +415,7 @@ func NewValueWithSize(size corefoundation.CGSize) Value {
 func NewValueWithUIEdgeInsets(insets EdgeInsets /* not a class type */) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithUIEdgeInsets:"), insets)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithUIEdgeInsets */
 
 
 // Creates a new value object containing the specified UIKit offset structure.
@@ -425,13 +425,13 @@ func NewValueWithUIEdgeInsets(insets EdgeInsets /* not a class type */) Value {
 func NewValueWithUIOffset(insets objectivec.IObject) Value {
 	rv := objc.Send[Value](objc.ID(getValueClass().class), objc.Sel("valueWithUIOffset:"), insets)
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewValueWithUIOffset */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for Value */
 
 // Creates a new value object containing the specified CoreAnimation transform structure.
 //
@@ -440,7 +440,7 @@ func NewValueWithUIOffset(insets objectivec.IObject) Value {
 func (vc _ValueClass) ValueWithCATransform3D(t objectivec.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCATransform3D:"), t)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCATransform3D) */
 
 
 // Creates a new value object containing the specified CoreGraphics affine transform structure.
@@ -450,7 +450,7 @@ func (vc _ValueClass) ValueWithCATransform3D(t objectivec.IObject) IValue {
 func (vc _ValueClass) ValueWithCGAffineTransform(transform corefoundation.CGAffineTransform) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCGAffineTransform:"), transform)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCGAffineTransform) */
 
 
 // Creates a new value object containing the specified CoreGraphics point structure.
@@ -460,7 +460,7 @@ func (vc _ValueClass) ValueWithCGAffineTransform(transform corefoundation.CGAffi
 func (vc _ValueClass) ValueWithCGPoint(point corefoundation.CGPoint) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCGPoint:"), point)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCGPoint) */
 
 
 // Creates a new value object containing the specified CoreGraphics rectangle structure.
@@ -470,7 +470,7 @@ func (vc _ValueClass) ValueWithCGPoint(point corefoundation.CGPoint) IValue {
 func (vc _ValueClass) ValueWithCGRect(rect corefoundation.CGRect) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCGRect:"), rect)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCGRect) */
 
 
 // Creates a new value object containing the specified CoreGraphics size structure.
@@ -480,7 +480,7 @@ func (vc _ValueClass) ValueWithCGRect(rect corefoundation.CGRect) IValue {
 func (vc _ValueClass) ValueWithCGSize(size corefoundation.CGSize) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCGSize:"), size)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCGSize) */
 
 
 // Creates a new value object containing the specified CoreGraphics vector structure.
@@ -490,7 +490,7 @@ func (vc _ValueClass) ValueWithCGSize(size corefoundation.CGSize) IValue {
 func (vc _ValueClass) ValueWithCGVector(vector corefoundation.CGVector) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCGVector:"), vector)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCGVector) */
 
 
 // Creates a new value object containing the specified CoreMedia time structure.
@@ -500,7 +500,7 @@ func (vc _ValueClass) ValueWithCGVector(vector corefoundation.CGVector) IValue {
 func (vc _ValueClass) ValueWithCMTime(time objectivec.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCMTime:"), time)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCMTime) */
 
 
 // Creates a new value object containing the specified CoreMedia time mapping structure.
@@ -510,7 +510,7 @@ func (vc _ValueClass) ValueWithCMTime(time objectivec.IObject) IValue {
 func (vc _ValueClass) ValueWithCMTimeMapping(timeMapping TimeMapping /* not a class type */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCMTimeMapping:"), timeMapping)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCMTimeMapping) */
 
 
 // Creates a new value object containing the specified CoreMedia time range structure.
@@ -520,7 +520,7 @@ func (vc _ValueClass) ValueWithCMTimeMapping(timeMapping TimeMapping /* not a cl
 func (vc _ValueClass) ValueWithCMTimeRange(timeRange TimeRange /* not a class type */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCMTimeRange:"), timeRange)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCMTimeRange) */
 
 
 // [Full Topic]
@@ -528,7 +528,7 @@ func (vc _ValueClass) ValueWithCMTimeRange(timeRange TimeRange /* not a class ty
 func (vc _ValueClass) ValueWithCMVideoDimensions(dimensions VideoDimensions /* not a class type */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithCMVideoDimensions:"), dimensions)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithCMVideoDimensions) */
 
 
 // [Full Topic]
@@ -536,7 +536,7 @@ func (vc _ValueClass) ValueWithCMVideoDimensions(dimensions VideoDimensions /* n
 func (vc _ValueClass) ValueWithGCPoint2(point objc.IObject) objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(vc.class), objc.Sel("valueWithGCPoint2:"), point)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithGCPoint2) */
 
 
 // Creates a new value object containing the specified CoreLocation geographic coordinate structure.
@@ -546,7 +546,7 @@ func (vc _ValueClass) ValueWithGCPoint2(point objc.IObject) objectivec.IObject {
 func (vc _ValueClass) ValueWithMKCoordinate(coordinate LocationCoordinate2D /* not a class type */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithMKCoordinate:"), coordinate)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithMKCoordinate) */
 
 
 // Creates a new value object containing the specified MapKit coordinate span structure.
@@ -556,7 +556,7 @@ func (vc _ValueClass) ValueWithMKCoordinate(coordinate LocationCoordinate2D /* n
 func (vc _ValueClass) ValueWithMKCoordinateSpan(span objc.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithMKCoordinateSpan:"), span)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithMKCoordinateSpan) */
 
 
 // Creates a value object that contains the specified SceneKit 4 x 4 matrix.
@@ -566,7 +566,7 @@ func (vc _ValueClass) ValueWithMKCoordinateSpan(span objc.IObject) IValue {
 func (vc _ValueClass) ValueWithSCNMatrix4(v NMatrix4 /* not a class type */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithSCNMatrix4:"), v)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithSCNMatrix4) */
 
 
 // Creates a value object that contains the specified three-element SceneKit vector.
@@ -576,7 +576,7 @@ func (vc _ValueClass) ValueWithSCNMatrix4(v NMatrix4 /* not a class type */) IVa
 func (vc _ValueClass) ValueWithSCNVector3(v NVector3 /* not a class type */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithSCNVector3:"), v)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithSCNVector3) */
 
 
 // Creates a value object that contains the specified four-element SceneKit vector.
@@ -586,7 +586,7 @@ func (vc _ValueClass) ValueWithSCNVector3(v NVector3 /* not a class type */) IVa
 func (vc _ValueClass) ValueWithSCNVector4(v NVector4 /* not a class type */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithSCNVector4:"), v)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithSCNVector4) */
 
 
 // Creates a new value object containing the specified UIKit edge insets structure.
@@ -596,7 +596,7 @@ func (vc _ValueClass) ValueWithSCNVector4(v NVector4 /* not a class type */) IVa
 func (vc _ValueClass) ValueWithUIEdgeInsets(insets EdgeInsets /* not a class type */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithUIEdgeInsets:"), insets)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithUIEdgeInsets) */
 
 
 // Creates a new value object containing the specified UIKit offset structure.
@@ -606,7 +606,7 @@ func (vc _ValueClass) ValueWithUIEdgeInsets(insets EdgeInsets /* not a class typ
 func (vc _ValueClass) ValueWithUIOffset(insets objectivec.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithUIOffset:"), insets)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithUIOffset) */
 
 
 // Creates a value object containing the specified value, interpreted with the specified Objective-C type.
@@ -616,7 +616,7 @@ func (vc _ValueClass) ValueWithUIOffset(insets objectivec.IObject) IValue {
 func (vc _ValueClass) ValueWithObjCType(value objectivec.IObject, type_ objectivec.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("value:withObjCType:"), value, type_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithObjCType) */
 
 
 // [Full Topic]
@@ -624,7 +624,7 @@ func (vc _ValueClass) ValueWithObjCType(value objectivec.IObject, type_ objectiv
 func (vc _ValueClass) ValueWithDirectionalEdgeInsets(insets objectivec.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithDirectionalEdgeInsets:"), insets)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithDirectionalEdgeInsets) */
 
 
 // [Full Topic]
@@ -632,7 +632,7 @@ func (vc _ValueClass) ValueWithDirectionalEdgeInsets(insets objectivec.IObject) 
 func (vc _ValueClass) ValueWithEdgeInsets(insets objc.IObject /* cross-framework: EdgeInsets */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithEdgeInsets:"), insets)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithEdgeInsets) */
 
 
 // Creates a value object containing the specified object.
@@ -642,7 +642,7 @@ func (vc _ValueClass) ValueWithEdgeInsets(insets objc.IObject /* cross-framework
 func (vc _ValueClass) ValueWithNonretainedObject(anObject objc.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithNonretainedObject:"), anObject)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithNonretainedObject) */
 
 
 // Creates a new value object containing the specified Foundation point structure.
@@ -652,7 +652,7 @@ func (vc _ValueClass) ValueWithNonretainedObject(anObject objc.IObject) IValue {
 func (vc _ValueClass) ValueWithPoint(point corefoundation.CGPoint) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithPoint:"), point)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithPoint) */
 
 
 // Creates a value object containing the specified pointer.
@@ -662,7 +662,7 @@ func (vc _ValueClass) ValueWithPoint(point corefoundation.CGPoint) IValue {
 func (vc _ValueClass) ValueWithPointer(pointer objectivec.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithPointer:"), pointer)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithPointer) */
 
 
 // Creates a new value object containing the specified Foundation range structure.
@@ -672,7 +672,7 @@ func (vc _ValueClass) ValueWithPointer(pointer objectivec.IObject) IValue {
 func (vc _ValueClass) ValueWithRange(range_ objc.IObject /* cross-framework: Range */) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithRange:"), range_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithRange) */
 
 
 // Creates a new value object containing the specified Foundation rectangle structure.
@@ -682,7 +682,7 @@ func (vc _ValueClass) ValueWithRange(range_ objc.IObject /* cross-framework: Ran
 func (vc _ValueClass) ValueWithRect(rect corefoundation.CGRect) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithRect:"), rect)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithRect) */
 
 
 // Creates a new value object containing the specified Foundation size structure.
@@ -692,7 +692,7 @@ func (vc _ValueClass) ValueWithRect(rect corefoundation.CGRect) IValue {
 func (vc _ValueClass) ValueWithSize(size corefoundation.CGSize) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithSize:"), size)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithSize) */
 
 
 // Creates a value object containing the specified value, interpreted with the specified Objective-C type.
@@ -702,24 +702,24 @@ func (vc _ValueClass) ValueWithSize(size corefoundation.CGSize) IValue {
 func (vc _ValueClass) ValueWithBytesObjCType(value objectivec.IObject, type_ objectivec.IObject) IValue {
 	rv := objc.Send[Value](objc.ID(vc.class), objc.Sel("valueWithBytes:objCType:"), value, type_)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=ValueWithBytesObjCType) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for Value */
+/* debug [class_properties_class]: End class properties */
 
 
 
-
-
-
-
-
+/* debug [instance_methods]: Instance methods for Value */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSValue/getValue(_:size:)
 func (v_ Value) GetValueSize(value objectivec.IObject, size uint) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("getValue:size:"), value, size)
-}
+}/* debug [instance_methods/method]: GetValueSize */
 
 
 // Returns a Boolean value that indicates whether the value object and another value object are equal.
@@ -729,13 +729,13 @@ func (v_ Value) GetValueSize(value objectivec.IObject, size uint) {
 func (v_ Value) IsEqualToValue(value IValue) bool {
 	rv := objc.Send[bool](v_.ID, objc.Sel("isEqualToValue:"), value)
 	return rv
-}
+}/* debug [instance_methods/method]: IsEqualToValue */
+
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
+/* debug [instance_properties]: Instance properties for Value */
 
 // The CoreAnimation transform structure representation of the value.
 //
@@ -744,7 +744,7 @@ func (v_ Value) IsEqualToValue(value IValue) bool {
 func (v_ Value) CATransform3DValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("CATransform3DValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CATransform3DValue */
 
 
 // [Full Topic]
@@ -752,7 +752,7 @@ func (v_ Value) CATransform3DValue() objectivec.IObject {
 func (v_ Value) EdgeInsetsValue() objc.IObject /* cross-framework: EdgeInsets */ {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("edgeInsetsValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: edgeInsetsValue */
 
 
 // [Full Topic]
@@ -760,7 +760,7 @@ func (v_ Value) EdgeInsetsValue() objc.IObject /* cross-framework: EdgeInsets */
 func (v_ Value) GCPoint2Value() objc.IObject {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("GCPoint2Value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: GCPoint2Value */
 
 
 // The CoreLocation geographic coordinate structure representation of the value.
@@ -770,7 +770,7 @@ func (v_ Value) GCPoint2Value() objc.IObject {
 func (v_ Value) MKCoordinateValue() LocationCoordinate2D /* not a class type */ {
 	rv := objc.Send[LocationCoordinate2D](v_.ID, objc.Sel("MKCoordinateValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: MKCoordinateValue */
 
 
 // The value as a non-retained pointer to an object.
@@ -780,7 +780,7 @@ func (v_ Value) MKCoordinateValue() LocationCoordinate2D /* not a class type */ 
 func (v_ Value) NonretainedObjectValue() objc.ID {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("nonretainedObjectValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: nonretainedObjectValue */
 
 
 // A C string containing the Objective-C type of the data contained in the value object.
@@ -790,7 +790,7 @@ func (v_ Value) NonretainedObjectValue() objc.ID {
 func (v_ Value) ObjCType() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("objCType"))
 	return rv
-}
+}/* debug [instance_properties/getter]: objCType */
 
 
 // The Foundation point structure representation of the value.
@@ -800,7 +800,7 @@ func (v_ Value) ObjCType() objectivec.IObject {
 func (v_ Value) PointValue() corefoundation.CGPoint {
 	rv := objc.Send[corefoundation.CGPoint](v_.ID, objc.Sel("pointValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pointValue */
 
 
 // Returns the value as an untyped pointer.
@@ -810,7 +810,7 @@ func (v_ Value) PointValue() corefoundation.CGPoint {
 func (v_ Value) PointerValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("pointerValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: pointerValue */
 
 
 // The Foundation range structure representation of the value.
@@ -820,7 +820,7 @@ func (v_ Value) PointerValue() objectivec.IObject {
 func (v_ Value) RangeValue() objc.IObject /* cross-framework: Range */ {
 	rv := objc.Send[objc.ID](v_.ID, objc.Sel("rangeValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rangeValue */
 
 
 // The Foundation rectangle structure representation of the value.
@@ -830,7 +830,7 @@ func (v_ Value) RangeValue() objc.IObject /* cross-framework: Range */ {
 func (v_ Value) RectValue() corefoundation.CGRect {
 	rv := objc.Send[corefoundation.CGRect](v_.ID, objc.Sel("rectValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: rectValue */
 
 
 // The Scene Kit 4 x 4 matrix representation of the value.
@@ -840,7 +840,7 @@ func (v_ Value) RectValue() corefoundation.CGRect {
 func (v_ Value) SCNMatrix4Value() NMatrix4 /* not a class type */ {
 	rv := objc.Send[NMatrix4](v_.ID, objc.Sel("SCNMatrix4Value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: SCNMatrix4Value */
 
 
 // The three-element Scene Kit vector representation of the value.
@@ -850,7 +850,7 @@ func (v_ Value) SCNMatrix4Value() NMatrix4 /* not a class type */ {
 func (v_ Value) SCNVector3Value() NVector3 /* not a class type */ {
 	rv := objc.Send[NVector3](v_.ID, objc.Sel("SCNVector3Value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: SCNVector3Value */
 
 
 // The four-element Scene Kit vector representation of the value.
@@ -860,7 +860,7 @@ func (v_ Value) SCNVector3Value() NVector3 /* not a class type */ {
 func (v_ Value) SCNVector4Value() NVector4 /* not a class type */ {
 	rv := objc.Send[NVector4](v_.ID, objc.Sel("SCNVector4Value"))
 	return rv
-}
+}/* debug [instance_properties/getter]: SCNVector4Value */
 
 
 // The Foundation size structure representation of the value.
@@ -870,7 +870,7 @@ func (v_ Value) SCNVector4Value() NVector4 /* not a class type */ {
 func (v_ Value) SizeValue() corefoundation.CGSize {
 	rv := objc.Send[corefoundation.CGSize](v_.ID, objc.Sel("sizeValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: sizeValue */
 
 
 // The CoreMedia time mapping structure representation of the value.
@@ -880,7 +880,7 @@ func (v_ Value) SizeValue() corefoundation.CGSize {
 func (v_ Value) CMTimeMappingValue() TimeMapping /* not a class type */ {
 	rv := objc.Send[TimeMapping](v_.ID, objc.Sel("CMTimeMappingValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CMTimeMappingValue */
 
 
 // The CoreMedia time range structure representation of the value.
@@ -890,7 +890,7 @@ func (v_ Value) CMTimeMappingValue() TimeMapping /* not a class type */ {
 func (v_ Value) CMTimeRangeValue() TimeRange /* not a class type */ {
 	rv := objc.Send[TimeRange](v_.ID, objc.Sel("CMTimeRangeValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CMTimeRangeValue */
 
 
 // The CoreMedia time structure representation of the value.
@@ -900,7 +900,7 @@ func (v_ Value) CMTimeRangeValue() TimeRange /* not a class type */ {
 func (v_ Value) CMTimeValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("CMTimeValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CMTimeValue */
 
 
 // [Full Topic]
@@ -908,7 +908,7 @@ func (v_ Value) CMTimeValue() objectivec.IObject {
 func (v_ Value) CMVideoDimensionsValue() VideoDimensions /* not a class type */ {
 	rv := objc.Send[VideoDimensions](v_.ID, objc.Sel("CMVideoDimensionsValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: CMVideoDimensionsValue */
 
 
 // Returns an integer that can be used as a table address in a hash table structure.
@@ -918,7 +918,7 @@ func (v_ Value) CMVideoDimensionsValue() VideoDimensions /* not a class type */ 
 func (v_ Value) Hash() int {
 	rv := objc.Send[int](v_.ID, objc.Sel("hash"))
 	return rv
-}
+}/* debug [instance_properties/getter]: hash */
 
 
 // Returns an integer that can be used as a table address in a hash table structure.
@@ -927,7 +927,7 @@ func (v_ Value) Hash() int {
 // [Full Topic]: https://developer.apple.com/documentation/ObjectiveC/NSObjectProtocol/hash
 func (v_ Value) SetHash(value int) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setHash:"), value)
-}
+}/* debug [instance_properties/setter]: hash */
 
 
 // The CoreMedia time mapping structure representation of the value.
@@ -937,7 +937,7 @@ func (v_ Value) SetHash(value int) {
 func (v_ Value) TimeMappingValue() TimeMapping /* not a class type */ {
 	rv := objc.Send[TimeMapping](v_.ID, objc.Sel("timeMappingValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeMappingValue */
 
 
 // The CoreMedia time mapping structure representation of the value.
@@ -946,7 +946,7 @@ func (v_ Value) TimeMappingValue() TimeMapping /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timemappingvalue
 func (v_ Value) SetTimeMappingValue(value TimeMapping /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeMappingValue:"), value)
-}
+}/* debug [instance_properties/setter]: timeMappingValue */
 
 
 // The CoreMedia time range structure representation of the value.
@@ -956,7 +956,7 @@ func (v_ Value) SetTimeMappingValue(value TimeMapping /* not a class type */) {
 func (v_ Value) TimeRangeValue() TimeRange /* not a class type */ {
 	rv := objc.Send[TimeRange](v_.ID, objc.Sel("timeRangeValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeRangeValue */
 
 
 // The CoreMedia time range structure representation of the value.
@@ -965,7 +965,7 @@ func (v_ Value) TimeRangeValue() TimeRange /* not a class type */ {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timerangevalue
 func (v_ Value) SetTimeRangeValue(value TimeRange /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeRangeValue:"), value)
-}
+}/* debug [instance_properties/setter]: timeRangeValue */
 
 
 // The CoreMedia time structure representation of the value.
@@ -975,7 +975,7 @@ func (v_ Value) SetTimeRangeValue(value TimeRange /* not a class type */) {
 func (v_ Value) TimeValue() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](v_.ID, objc.Sel("timeValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: timeValue */
 
 
 // The CoreMedia time structure representation of the value.
@@ -984,7 +984,7 @@ func (v_ Value) TimeValue() objectivec.IObject {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/timevalue
 func (v_ Value) SetTimeValue(value objectivec.IObject) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setTimeValue:"), value)
-}
+}/* debug [instance_properties/setter]: timeValue */
 
 
 // [Full Topic]
@@ -992,18 +992,18 @@ func (v_ Value) SetTimeValue(value objectivec.IObject) {
 func (v_ Value) VideoDimensionsValue() VideoDimensions /* not a class type */ {
 	rv := objc.Send[VideoDimensions](v_.ID, objc.Sel("videoDimensionsValue"))
 	return rv
-}
+}/* debug [instance_properties/getter]: videoDimensionsValue */
 
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsvalue/videodimensionsvalue
 func (v_ Value) SetVideoDimensionsValue(value VideoDimensions /* not a class type */) {
 	objc.Send[objc.ID](v_.ID, objc.Sel("setVideoDimensionsValue:"), value)
-}
+}/* debug [instance_properties/setter]: videoDimensionsValue */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSValue */
 
 

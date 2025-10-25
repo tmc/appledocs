@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class releasedProxies */
 
 
-
-
+/* debug [class_header]: Header for releasedProxies */
 // The class instance for the [releasedProxies] class.
 var (
 	ReleasedProxiesClass     _releasedProxiesClass
@@ -30,30 +30,30 @@ func getreleasedProxiesClass() _releasedProxiesClass {
 type _releasedProxiesClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for releasedProxies */
 // An interface definition for the [releasedProxies] class.
 type IreleasedProxies interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for releasedProxies */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for releasedProxies */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for releasedProxies */
 // Alloc allocates a new instance without initialization.
 func (rc _releasedProxiesClass) Alloc() releasedProxies {
 	rv := objc.Send[releasedProxies](objc.ID(rc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (r_ releasedProxies) Autorelease() releasedProxies {
 func NewreleasedProxies() releasedProxies {
 	return getreleasedProxiesClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for releasedProxies */
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type releasedProxies struct {
 func releasedProxiesFrom(ptr unsafe.Pointer) releasedProxies {
 	return releasedProxies{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for releasedProxies *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for releasedProxies */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for releasedProxies */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for releasedProxies */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for releasedProxies */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class releasedProxies */
 
 
 

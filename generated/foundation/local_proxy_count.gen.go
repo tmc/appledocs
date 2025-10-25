@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class localProxyCount */
 
 
-
-
+/* debug [class_header]: Header for localProxyCount */
 // The class instance for the [localProxyCount] class.
 var (
 	LocalProxyCountClass     _localProxyCountClass
@@ -30,30 +30,30 @@ func getlocalProxyCountClass() _localProxyCountClass {
 type _localProxyCountClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for localProxyCount */
 // An interface definition for the [localProxyCount] class.
 type IlocalProxyCount interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for localProxyCount */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for localProxyCount */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for localProxyCount */
 // Alloc allocates a new instance without initialization.
 func (lc _localProxyCountClass) Alloc() localProxyCount {
 	rv := objc.Send[localProxyCount](objc.ID(lc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (l_ localProxyCount) Autorelease() localProxyCount {
 func NewlocalProxyCount() localProxyCount {
 	return getlocalProxyCountClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for localProxyCount */
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type localProxyCount struct {
 func localProxyCountFrom(ptr unsafe.Pointer) localProxyCount {
 	return localProxyCount{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for localProxyCount *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for localProxyCount */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for localProxyCount */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for localProxyCount */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for localProxyCount */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class localProxyCount */
 
 
 

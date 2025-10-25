@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSCalendarDate */
 
 
-
-
+/* debug [class_header]: Header for NSCalendarDate */
 // The class instance for the [CalendarDate] class.
 var (
 	CalendarDateClass     _CalendarDateClass
@@ -30,30 +30,30 @@ func getCalendarDateClass() _CalendarDateClass {
 type _CalendarDateClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for CalendarDate */
 // An interface definition for the [CalendarDate] class.
 type ICalendarDate interface {
 	IDate
 	
-
+/* debug [class_interface_properties]: Properties for CalendarDate */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for CalendarDate */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for CalendarDate */
 // Alloc allocates a new instance without initialization.
 func (cc _CalendarDateClass) Alloc() CalendarDate {
 	rv := objc.Send[CalendarDate](objc.ID(cc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (c_ CalendarDate) Autorelease() CalendarDate {
 func NewCalendarDate() CalendarDate {
 	return getCalendarDateClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for CalendarDate */
 // A specialized date object with embedded calendar information.
 
 
@@ -107,11 +107,11 @@ func CalendarDateFrom(ptr unsafe.Pointer) CalendarDate {
 		Date: DateFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
-
-
+/* debug [class_init_methods]: Init methods for CalendarDate */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/initWithString:
@@ -120,7 +120,7 @@ func NewCalendarDateWithString(description IString) CalendarDate {
 	rv := objc.Send[CalendarDate](instance.ID, objc.Sel("initWithString:"), description)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCalendarDateWithString */
 
 
 // [Full Topic]
@@ -130,7 +130,7 @@ func NewCalendarDateWithStringCalendarFormat(description IString, format IString
 	rv := objc.Send[CalendarDate](instance.ID, objc.Sel("initWithString:calendarFormat:"), description, format)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCalendarDateWithStringCalendarFormat */
 
 
 // [Full Topic]
@@ -140,7 +140,7 @@ func NewCalendarDateWithStringCalendarFormatLocale(description IString, format I
 	rv := objc.Send[CalendarDate](instance.ID, objc.Sel("initWithString:calendarFormat:locale:"), description, format, locale)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCalendarDateWithStringCalendarFormatLocale */
 
 
 // [Full Topic]
@@ -150,20 +150,20 @@ func NewCalendarDateWithYearMonthDayHourMinuteSecondTimeZone(year int, month uin
 	rv := objc.Send[CalendarDate](instance.ID, objc.Sel("initWithYear:month:day:hour:minute:second:timeZone:"), year, month, day, hour, minute, second, aTimeZone)
 	rv.Autorelease()
 	return rv
-}
+}/* debug [class_init_methods/constructor]: NewCalendarDateWithYearMonthDayHourMinuteSecondTimeZone */
+
+/* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for CalendarDate */
 
 // [Full Topic]
 // [Full Topic]: https://developer.apple.com/documentation/Foundation/NSCalendarDate/calendarDate
 func (cc _CalendarDateClass) CalendarDate() objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("calendarDate"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=CalendarDate) */
 
 
 // [Full Topic]
@@ -171,7 +171,7 @@ func (cc _CalendarDateClass) CalendarDate() objc.ID {
 func (cc _CalendarDateClass) DateWithStringCalendarFormat(description IString, format IString) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("dateWithString:calendarFormat:"), description, format)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithStringCalendarFormat) */
 
 
 // [Full Topic]
@@ -179,7 +179,7 @@ func (cc _CalendarDateClass) DateWithStringCalendarFormat(description IString, f
 func (cc _CalendarDateClass) DateWithStringCalendarFormatLocale(description IString, format IString, locale objc.IObject) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("dateWithString:calendarFormat:locale:"), description, format, locale)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithStringCalendarFormatLocale) */
 
 
 // [Full Topic]
@@ -187,7 +187,7 @@ func (cc _CalendarDateClass) DateWithStringCalendarFormatLocale(description IStr
 func (cc _CalendarDateClass) DateWithYearMonthDayHourMinuteSecondTimeZone(year int, month uint, day uint, hour uint, minute uint, second uint, aTimeZone ITimeZone) objc.ID {
 	rv := objc.Send[objc.ID](objc.ID(cc.class), objc.Sel("dateWithYear:month:day:hour:minute:second:timeZone:"), year, month, day, hour, minute, second, aTimeZone)
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DateWithYearMonthDayHourMinuteSecondTimeZone) */
 
 
 // [Full Topic]
@@ -195,7 +195,7 @@ func (cc _CalendarDateClass) DateWithYearMonthDayHourMinuteSecondTimeZone(year i
 func (cc _CalendarDateClass) DistantFuture() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("distantFuture"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DistantFuture) */
 
 
 // [Full Topic]
@@ -203,26 +203,26 @@ func (cc _CalendarDateClass) DistantFuture() objectivec.IObject {
 func (cc _CalendarDateClass) DistantPast() objectivec.IObject {
 	rv := objc.Send[objectivec.IObject](objc.ID(cc.class), objc.Sel("distantPast"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=DistantPast) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for CalendarDate */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for CalendarDate */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for CalendarDate */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class NSCalendarDate */
 
 

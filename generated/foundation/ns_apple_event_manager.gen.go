@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class NSAppleEventManager */
 
 
-
-
+/* debug [class_header]: Header for NSAppleEventManager */
 // The class instance for the [AppleEventManager] class.
 var (
 	AppleEventManagerClass     _AppleEventManagerClass
@@ -30,34 +30,34 @@ func getAppleEventManagerClass() _AppleEventManagerClass {
 type _AppleEventManagerClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for AppleEventManager */
 // An interface definition for the [AppleEventManager] class.
 type IAppleEventManager interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for AppleEventManager */
 	// properties:
 	CurrentAppleEvent() IAppleEventDescriptor
 	SetCurrentAppleEvent(value IAppleEventDescriptor)
 	CurrentReplyAppleEvent() IAppleEventDescriptor
 	SetCurrentReplyAppleEvent(value IAppleEventDescriptor)
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for AppleEventManager */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for AppleEventManager */
 // Alloc allocates a new instance without initialization.
 func (ac _AppleEventManagerClass) Alloc() AppleEventManager {
 	rv := objc.Send[AppleEventManager](objc.ID(ac.class), objc.Sel("alloc"))
@@ -87,11 +87,11 @@ func (a_ AppleEventManager) Autorelease() AppleEventManager {
 func NewAppleEventManager() AppleEventManager {
 	return getAppleEventManagerClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for AppleEventManager */
 // A mechanism for registering handler routines for specific types of Apple events and dispatching events to those handlers.
 //
 // Cocoa provides built-in scriptability support that uses scriptability information supplied by an application to automatically convert Apple events into script command objects that perform the desired operation. However, some applications may want to perform more basic Apple event handling, in which an application registers handlers for the Apple events it can process, then calls on the Apple Event Manager to dispatch received Apple events to the appropriate handler. supports these mechanisms by providing methods to register and remove handlers and to dispatch Apple events to the appropriate handler, if one exists. For related information, see Each application has at most one instance of . To obtain a reference to it, you call the class method , which creates the instance if it doesn’t already exist. For information about the Apple Event Manager, see and Apple Events Programming Guide.
@@ -111,15 +111,15 @@ type AppleEventManager struct {
 func AppleEventManagerFrom(ptr unsafe.Pointer) AppleEventManager {
 	return AppleEventManager{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for AppleEventManager *//* debug [class_init_methods]: End init methods */
 
 
 
-
-
-
+/* debug [class_methods]: Class methods for AppleEventManager */
 
 // Returns the single instance of , creating it first if it doesn’t exist.
 //
@@ -128,23 +128,23 @@ func AppleEventManagerFrom(ptr unsafe.Pointer) AppleEventManager {
 func (ac _AppleEventManagerClass) SharedAppleEventManager() IAppleEventManager {
 	rv := objc.Send[AppleEventManager](objc.ID(ac.class), objc.Sel("sharedAppleEventManager"))
 	return rv
-}
+}/* debug [class_methods/method]: Class method for%!(EXTRA string=SharedAppleEventManager) */
+
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for AppleEventManager */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for AppleEventManager */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for AppleEventManager */
 
 // Returns the descriptor for
 //
@@ -153,7 +153,7 @@ func (ac _AppleEventManagerClass) SharedAppleEventManager() IAppleEventManager {
 func (a_ AppleEventManager) CurrentAppleEvent() IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("currentAppleEvent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentAppleEvent */
 
 
 // Returns the descriptor for
@@ -162,7 +162,7 @@ func (a_ AppleEventManager) CurrentAppleEvent() IAppleEventDescriptor {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentappleevent
 func (a_ AppleEventManager) SetCurrentAppleEvent(value IAppleEventDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentAppleEvent:"), value)
-}
+}/* debug [instance_properties/setter]: currentAppleEvent */
 
 
 // Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
@@ -172,7 +172,7 @@ func (a_ AppleEventManager) SetCurrentAppleEvent(value IAppleEventDescriptor) {
 func (a_ AppleEventManager) CurrentReplyAppleEvent() IAppleEventDescriptor {
 	rv := objc.Send[AppleEventDescriptor](a_.ID, objc.Sel("currentReplyAppleEvent"))
 	return rv
-}
+}/* debug [instance_properties/getter]: currentReplyAppleEvent */
 
 
 // Returns the corresponding reply event descriptor if an Apple event is being handled on the current thread.
@@ -181,12 +181,12 @@ func (a_ AppleEventManager) CurrentReplyAppleEvent() IAppleEventDescriptor {
 // [Full Topic]: https://developer.apple.com/documentation/foundation/nsappleeventmanager/currentreplyappleevent
 func (a_ AppleEventManager) SetCurrentReplyAppleEvent(value IAppleEventDescriptor) {
 	objc.Send[objc.ID](a_.ID, objc.Sel("setCurrentReplyAppleEvent:"), value)
-}
+}/* debug [instance_properties/setter]: currentReplyAppleEvent */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSAppleEventManager */
 
 
 

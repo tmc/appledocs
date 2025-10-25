@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSUnitMass */
 
 
-
-
+/* debug [class_header]: Header for NSUnitMass */
 // The class instance for the [UnitMass] class.
 var (
 	UnitMassClass     _UnitMassClass
@@ -29,30 +29,30 @@ func getUnitMassClass() _UnitMassClass {
 type _UnitMassClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for UnitMass */
 // An interface definition for the [UnitMass] class.
 type IUnitMass interface {
 	IDimension
 	
-
+/* debug [class_interface_properties]: Properties for UnitMass */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for UnitMass */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for UnitMass */
 // Alloc allocates a new instance without initialization.
 func (uc _UnitMassClass) Alloc() UnitMass {
 	rv := objc.Send[UnitMass](objc.ID(uc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (u_ UnitMass) Autorelease() UnitMass {
 func NewUnitMass() UnitMass {
 	return getUnitMassClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for UnitMass */
 // A unit of measure for mass.
 //
 // You typically use instances of to represent specific quantities of mass using the class.
@@ -108,20 +108,20 @@ func UnitMassFrom(ptr unsafe.Pointer) UnitMass {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for UnitMass *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for UnitMass */
+/* debug [class_methods]: End class methods */
 
 
 
-
-
-
-
-
+/* debug [class_properties_class]: Class properties for UnitMass */
 
 // The kilograms unit of mass.
 //
@@ -130,17 +130,17 @@ func UnitMassFrom(ptr unsafe.Pointer) UnitMass {
 func (uc _UnitMassClass) Kilograms() UnitMass {
 	rv := objc.Send[UnitMass](objc.ID(uc.class), objc.Sel("kilograms"))
 	return rv
-}
+}/* debug [class_properties_class/property]: kilograms */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for UnitMass */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
+/* debug [instance_properties]: Instance properties for UnitMass */
 
 // The kilograms unit of mass.
 //
@@ -149,12 +149,12 @@ func (uc _UnitMassClass) Kilograms() UnitMass {
 func (u_ UnitMass) Kilograms() IUnitMass {
 	rv := objc.Send[UnitMass](u_.ID, objc.Sel("kilograms"))
 	return rv
-}
+}/* debug [instance_properties/getter]: kilograms */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSUnitMass */
 
 
 

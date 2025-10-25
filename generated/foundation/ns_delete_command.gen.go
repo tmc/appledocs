@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSDeleteCommand */
 
 
-
-
+/* debug [class_header]: Header for NSDeleteCommand */
 // The class instance for the [DeleteCommand] class.
 var (
 	DeleteCommandClass     _DeleteCommandClass
@@ -29,31 +29,31 @@ func getDeleteCommandClass() _DeleteCommandClass {
 type _DeleteCommandClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for DeleteCommand */
 // An interface definition for the [DeleteCommand] class.
 type IDeleteCommand interface {
 	IScriptCommand
 	
-
+/* debug [class_interface_properties]: Properties for DeleteCommand */
 	// properties:
 	KeySpecifier() IScriptObjectSpecifier
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for DeleteCommand */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for DeleteCommand */
 // Alloc allocates a new instance without initialization.
 func (dc _DeleteCommandClass) Alloc() DeleteCommand {
 	rv := objc.Send[DeleteCommand](objc.ID(dc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (d_ DeleteCommand) Autorelease() DeleteCommand {
 func NewDeleteCommand() DeleteCommand {
 	return getDeleteCommandClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for DeleteCommand */
 // A command that deletes a scriptable object.
 //
 // An instance of deletes the specified scriptable object or objects (such as words, paragraphs, and so on). Suppose, for example, a user executes a script that sends the command to the Sketch sample application (located in ). Cocoa creates an object to perform the operation. When the command is executed, it uses the key-value coding mechanism (by invoking ) to remove the specified object or objects from their container. See the description for for related information. is part of Cocoa’s built-in scripting support. Most applications don’t need to subclass or call its methods.
@@ -109,30 +109,30 @@ func DeleteCommandFrom(ptr unsafe.Pointer) DeleteCommand {
 		ScriptCommand: ScriptCommandFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for DeleteCommand *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for DeleteCommand */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for DeleteCommand */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for DeleteCommand */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
-
-
-
-
-
+/* debug [instance_properties]: Instance properties for DeleteCommand */
 
 // Returns a specifier for the object or objects to be deleted.
 //
@@ -141,12 +141,12 @@ func DeleteCommandFrom(ptr unsafe.Pointer) DeleteCommand {
 func (d_ DeleteCommand) KeySpecifier() IScriptObjectSpecifier {
 	rv := objc.Send[ScriptObjectSpecifier](d_.ID, objc.Sel("keySpecifier"))
 	return rv
-}
+}/* debug [instance_properties/getter]: keySpecifier */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSDeleteCommand */
 
 
 

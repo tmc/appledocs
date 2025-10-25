@@ -9,10 +9,10 @@ import (
 	"github.com/tmc/appledocs/generated/objc"
 )
 
+/* debug [class.gen.go]: Generating class NSUnitSpeed */
 
 
-
-
+/* debug [class_header]: Header for NSUnitSpeed */
 // The class instance for the [UnitSpeed] class.
 var (
 	UnitSpeedClass     _UnitSpeedClass
@@ -29,30 +29,30 @@ func getUnitSpeedClass() _UnitSpeedClass {
 type _UnitSpeedClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for UnitSpeed */
 // An interface definition for the [UnitSpeed] class.
 type IUnitSpeed interface {
 	IDimension
 	
-
+/* debug [class_interface_properties]: Properties for UnitSpeed */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for UnitSpeed */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for UnitSpeed */
 // Alloc allocates a new instance without initialization.
 func (uc _UnitSpeedClass) Alloc() UnitSpeed {
 	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("alloc"))
@@ -82,11 +82,11 @@ func (u_ UnitSpeed) Autorelease() UnitSpeed {
 func NewUnitSpeed() UnitSpeed {
 	return getUnitSpeedClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for UnitSpeed */
 // A unit of measure for speed.
 //
 // You typically use instances of to represent specific quantities of speed using the class.
@@ -108,20 +108,20 @@ func UnitSpeedFrom(ptr unsafe.Pointer) UnitSpeed {
 		Dimension: DimensionFrom(ptr),
 	}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for UnitSpeed *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for UnitSpeed */
+/* debug [class_methods]: End class methods */
 
 
 
-
-
-
-
-
+/* debug [class_properties_class]: Class properties for UnitSpeed */
 
 // The meter per second unit of speed.
 //
@@ -130,17 +130,17 @@ func UnitSpeedFrom(ptr unsafe.Pointer) UnitSpeed {
 func (uc _UnitSpeedClass) MetersPerSecond() UnitSpeed {
 	rv := objc.Send[UnitSpeed](objc.ID(uc.class), objc.Sel("metersPerSecond"))
 	return rv
-}
+}/* debug [class_properties_class/property]: metersPerSecond */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for UnitSpeed */
+/* debug [instance_methods]: End instance methods */
 
 
 
-
-
-
-
+/* debug [instance_properties]: Instance properties for UnitSpeed */
 
 // The meter per second unit of speed.
 //
@@ -149,12 +149,12 @@ func (uc _UnitSpeedClass) MetersPerSecond() UnitSpeed {
 func (u_ UnitSpeed) MetersPerSecond() IUnitSpeed {
 	rv := objc.Send[UnitSpeed](u_.ID, objc.Sel("metersPerSecond"))
 	return rv
-}
+}/* debug [instance_properties/getter]: metersPerSecond */
+
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
+/* debug [class.gen.go]: End class NSUnitSpeed */
 
 
 

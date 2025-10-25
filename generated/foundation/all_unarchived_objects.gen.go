@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class allUnarchivedObjects */
 
 
-
-
+/* debug [class_header]: Header for allUnarchivedObjects */
 // The class instance for the [allUnarchivedObjects] class.
 var (
 	AllUnarchivedObjectsClass     _allUnarchivedObjectsClass
@@ -30,30 +30,30 @@ func getallUnarchivedObjectsClass() _allUnarchivedObjectsClass {
 type _allUnarchivedObjectsClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for allUnarchivedObjects */
 // An interface definition for the [allUnarchivedObjects] class.
 type IallUnarchivedObjects interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for allUnarchivedObjects */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for allUnarchivedObjects */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for allUnarchivedObjects */
 // Alloc allocates a new instance without initialization.
 func (ac _allUnarchivedObjectsClass) Alloc() allUnarchivedObjects {
 	rv := objc.Send[allUnarchivedObjects](objc.ID(ac.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (a_ allUnarchivedObjects) Autorelease() allUnarchivedObjects {
 func NewallUnarchivedObjects() allUnarchivedObjects {
 	return getallUnarchivedObjectsClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for allUnarchivedObjects */
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type allUnarchivedObjects struct {
 func allUnarchivedObjectsFrom(ptr unsafe.Pointer) allUnarchivedObjects {
 	return allUnarchivedObjects{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for allUnarchivedObjects *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for allUnarchivedObjects */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for allUnarchivedObjects */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for allUnarchivedObjects */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for allUnarchivedObjects */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class allUnarchivedObjects */
 
 
 

@@ -10,10 +10,10 @@ import (
 	"github.com/tmc/appledocs/generated/objectivec"
 )
 
+/* debug [class.gen.go]: Generating class refCount */
 
 
-
-
+/* debug [class_header]: Header for refCount */
 // The class instance for the [refCount] class.
 var (
 	RefCountClass     _refCountClass
@@ -30,30 +30,30 @@ func getrefCountClass() _refCountClass {
 type _refCountClass struct {
 	class objc.Class
 }
+/* debug [class_header]: End header */
 
 
 
-
-
+/* debug [class_interface]: Interface for refCount */
 // An interface definition for the [refCount] class.
 type IrefCount interface {
 	objectivec.IObject
 	
-
+/* debug [class_interface_properties]: Properties for refCount */
 	// properties:
-
+/* debug [class_interface_properties]: End properties */
 
 	
-
+/* debug [class_interface_methods]: Methods for refCount */
 	// methods:
-
+/* debug [class_interface_methods]: End methods */
 
 }
+/* debug [class_interface]: End interface */
 
 
 
-
-
+/* debug [class_constructors]: Constructors for refCount */
 // Alloc allocates a new instance without initialization.
 func (rc _refCountClass) Alloc() refCount {
 	rv := objc.Send[refCount](objc.ID(rc.class), objc.Sel("alloc"))
@@ -83,11 +83,11 @@ func (r_ refCount) Autorelease() refCount {
 func NewrefCount() refCount {
 	return getrefCountClass().New()
 }
+/* debug [class_constructors]: End constructors */
 
 
 
-
-
+/* debug [class_struct]: Struct for refCount */
 
 
 // [Full Topic]
@@ -100,34 +100,34 @@ type refCount struct {
 func refCountFrom(ptr unsafe.Pointer) refCount {
 	return refCount{objectivec.Object{objc.ID(ptr)}}
 }
+/* debug [class_struct]: End struct */
 
 
 
+/* debug [class_init_methods]: Init methods for refCount *//* debug [class_init_methods]: End init methods */
 
 
 
+/* debug [class_methods]: Class methods for refCount */
+/* debug [class_methods]: End class methods */
 
 
 
+/* debug [class_properties_class]: Class properties for refCount */
+/* debug [class_properties_class]: End class properties */
 
 
 
+/* debug [instance_methods]: Instance methods for refCount */
+/* debug [instance_methods]: End instance methods */
 
 
 
+/* debug [instance_properties]: Instance properties for refCount */
+/* debug [instance_properties]: End instance properties */
 
 
-
-
-
-
-
-
-
-
-
-
-
+/* debug [class.gen.go]: End class refCount */
 
 
 
